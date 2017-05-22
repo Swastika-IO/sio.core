@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk.Web">
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
 
   <PropertyGroup>
     <TargetFramework>netcoreapp1.1</TargetFramework>
@@ -15,6 +15,11 @@
   </ItemGroup>
   <ItemGroup>
     <DotNetCliToolReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Tools" Version="1.0.1" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\Swastika.UI.Base\Swastika.UI.Base.csproj" />
+    <ProjectReference Include="..\Swastika.Application\Swastika.Application.csproj" />
+    <ProjectReference Include="..\Swastika.Domain.Core\Swastika.Domain.Core.csproj" />
   </ItemGroup>
 
 </Project>

@@ -22,10 +22,11 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Swastika.Api\Swastika.Api.csproj" />
+    <ProjectReference Include="..\..\Swastika.UI.Base\Swastika.UI.Base.csproj" />
     <ProjectReference Include="..\Swastika.Application\Swastika.Application.csproj" />
     <ProjectReference Include="..\Swastika.Infra.CrossCutting.Identity\Swastika.Infra.CrossCutting.Identity.csproj" />
     <ProjectReference Include="..\Swastika.Infra.CrossCutting.IoC\Swastika.Infra.CrossCutting.IoC.csproj" />
+    <ProjectReference Include="..\Swastika.UI.Api\Swastika.UI.Api.csproj" />
   </ItemGroup>
 
   <ItemGroup>

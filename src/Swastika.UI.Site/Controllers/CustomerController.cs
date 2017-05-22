@@ -4,6 +4,7 @@ using Swastika.Application.ViewModels;
 using Swastika.Domain.Core.Notifications;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Swastika.UI.Base.Controllers;
 
 namespace Swastika.UI.Site.Controllers
 {

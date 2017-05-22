@@ -1,7 +1,7 @@
 ﻿using Swastika.Domain.Core.Notifications;
 using Microsoft.AspNetCore.Mvc;
 
-namespace Swastika.UI.Site.Controllers
+namespace Swastika.UI.Base.Controllers
 {
     public class BaseController : Controller
     {

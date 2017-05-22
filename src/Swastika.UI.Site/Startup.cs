@@ -54,7 +54,7 @@ namespace Swastika.UI.Site
                 options.AddPolicy("CanWriteCustomerData", policy => policy.Requirements.Add(new ClaimRequirement("Customers","Write")));
                 options.AddPolicy("CanRemoveCustomerData", policy => policy.Requirements.Add(new ClaimRequirement("Customers", "Remove")));
             });
-
+            
             // .NET Native DI Abstraction
             RegisterServices(services);
         }
@@ -96,6 +96,7 @@ namespace Swastika.UI.Site
 
             // Setting the IContainer interface for use like service locator for events.
             InMemoryBus.ContainerAccessor = () => accessor.HttpContext.RequestServices;
+            
         }
 
         private static void RegisterServices(IServiceCollection services)
