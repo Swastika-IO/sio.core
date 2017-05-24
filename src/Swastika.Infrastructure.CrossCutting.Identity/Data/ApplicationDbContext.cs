@@ -8,6 +8,9 @@ namespace Swastika.Infrastructure.CrossCutting.Identity.Data
 {
     public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
     {
+        private const string CONST_FILE_APPSETTING = "appsettings.json";
+        private const string CONST_DEFAULT_CONNECTION = "DefaultConnection";
+
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options)
             : base(options)
         {
@@ -23,11 +26,11 @@ namespace Swastika.Infrastructure.CrossCutting.Identity.Data
             // get the configuration from the app settings
             var config = new ConfigurationBuilder()
                 .SetBasePath(Directory.GetCurrentDirectory())
-                .AddJsonFile("appsettings.json")
+                .AddJsonFile(CONST_FILE_APPSETTING)
                 .Build();
 
             // define the database to use
-            optionsBuilder.UseSqlServer(config.GetConnectionString("DefaultConnection"));
+            optionsBuilder.UseSqlServer(config.GetConnectionString(CONST_DEFAULT_CONNECTION));
         }
 
         protected override void OnModelCreating(ModelBuilder builder)

@@ -18,11 +18,22 @@ namespace Swastika.UI.Site
 {
     public class Startup
     {
+        private const string CONST_DEFAULT_CONNECTION = "DefaultConnection";
+        private const string CONST_FILE_APPSETTING = "appsettings.json";
+        private const string CONST_AUTH_POLICY_CANWRITECUSTOMERDATA = "CanWriteCustomerData";
+        private const string CONST_AUTH_POLICY_CANREMOVECUSTOMERDATA = "CanRemoveCustomerData";
+        private const string CONST_PATH_HOME_ACCESS_DENIED = "/home/access-denied";
+        private const string CONST_PATH_HOME_ERROR = "/Home/Error";
+        private const string CONST_SECTION_LOGGING = "Logging";
+        private const string CONST_ROUTE_DEFAULT = "default";
+        private const string CONST_APPID = "SetYourDataHere";
+        private const string CONST_APPSECRET = "SetYourDataHere";
+
         public Startup(IHostingEnvironment env)
         {
             var builder = new ConfigurationBuilder()
                 .SetBasePath(Directory.GetCurrentDirectory())
-                .AddJsonFile("appsettings.json", optional: true, reloadOnChange: true)
+                .AddJsonFile(CONST_FILE_APPSETTING, optional: true, reloadOnChange: true)
                 .AddJsonFile($"appsettings.{env.EnvironmentName}.json", optional: true);
 
             if (env.IsDevelopment())
@@ -39,10 +50,10 @@ namespace Swastika.UI.Site
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddDbContext<ApplicationDbContext>(options =>
-                options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
+                options.UseSqlServer(Configuration.GetConnectionString(CONST_DEFAULT_CONNECTION)));
 
             services.AddIdentity<ApplicationUser, IdentityRole>(options =>
-                    options.Cookies.ApplicationCookie.AccessDeniedPath = "/home/access-denied")
+                    options.Cookies.ApplicationCookie.AccessDeniedPath = CONST_PATH_HOME_ACCESS_DENIED)
                 .AddEntityFrameworkStores<ApplicationDbContext>()
                 .AddDefaultTokenProviders();
 
@@ -51,8 +62,8 @@ namespace Swastika.UI.Site
 
             services.AddAuthorization(options =>
             {
-                options.AddPolicy("CanWriteCustomerData", policy => policy.Requirements.Add(new ClaimRequirement("Customers","Write")));
-                options.AddPolicy("CanRemoveCustomerData", policy => policy.Requirements.Add(new ClaimRequirement("Customers", "Remove")));
+                options.AddPolicy(CONST_AUTH_POLICY_CANWRITECUSTOMERDATA, policy => policy.Requirements.Add(new ClaimRequirement("Customers","Write")));
+                options.AddPolicy(CONST_AUTH_POLICY_CANREMOVECUSTOMERDATA, policy => policy.Requirements.Add(new ClaimRequirement("Customers", "Remove")));
             });
             
             // .NET Native DI Abstraction
@@ -64,7 +75,7 @@ namespace Swastika.UI.Site
                                       ILoggerFactory loggerFactory,
                                       IHttpContextAccessor accessor)
         {
-            loggerFactory.AddConsole(Configuration.GetSection("Logging"));
+            loggerFactory.AddConsole(Configuration.GetSection(CONST_SECTION_LOGGING));
             loggerFactory.AddDebug();
 
             if (env.IsDevelopment())
@@ -75,7 +86,7 @@ namespace Swastika.UI.Site
             }
             else
             {
-                app.UseExceptionHandler("/Home/Error");
+                app.UseExceptionHandler(CONST_PATH_HOME_ERROR);
             }
 
             app.UseStaticFiles();
@@ -83,14 +94,14 @@ namespace Swastika.UI.Site
 
             app.UseFacebookAuthentication(new FacebookOptions()
             {
-                AppId = "SetYourDataHere",
-                AppSecret = "SetYourDataHere"
+                AppId = CONST_APPID,
+                AppSecret = CONST_APPSECRET
             });
 
             app.UseMvc(routes =>
             {
                 routes.MapRoute(
-                    name: "default",
+                    name: CONST_ROUTE_DEFAULT,
                     template: "{controller=Home}/{action=welcome}/{id?}");
             });
 

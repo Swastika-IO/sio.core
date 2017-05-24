@@ -9,6 +9,8 @@ namespace Swastika.Infrastructure.Data.Context
 {
     public class SwastikaContext : DbContext
     {
+        private const string CONST_DEFAULT_CONNECTION = "DefaultConnection";
+        private const string CONST_FILE_APPSETTING = "appsettings.json";
         public DbSet<Customer> Customers { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
@@ -23,11 +25,11 @@ namespace Swastika.Infrastructure.Data.Context
             // get the configuration from the app settings
             var config = new ConfigurationBuilder()
                 .SetBasePath(Directory.GetCurrentDirectory())
-                .AddJsonFile("appsettings.json")
+                .AddJsonFile(CONST_FILE_APPSETTING)
                 .Build();
             
             // define the database to use
-            optionsBuilder.UseSqlServer(config.GetConnectionString("DefaultConnection"));
+            optionsBuilder.UseSqlServer(config.GetConnectionString(CONST_DEFAULT_CONNECTION));
         }
     }
 }

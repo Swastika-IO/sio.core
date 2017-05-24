@@ -8,6 +8,10 @@ namespace Swastika.Application.EventSourcedNormalizers
 {
     public class CustomerHistory
     {
+        private const string CONST_MESSAGE_TYPE_CUSTOMER_REGISTERED_EVENT = "CustomerRegisteredEvent";
+        private const string CONST_MESSAGE_TYPE_CUSTOMER_UPDATED_EVENT = "CustomerUpdatedEvent";
+        private const string CONST_MESSAGE_TYPE_CUSTOMER_REMOVED_EVENT = "CustomerRemovedEvent";
+
         public static IList<CustomerHistoryData> HistoryData { get; set; }
 
         public static IList<CustomerHistoryData> ToJavaScriptCustomerHistory(IList<StoredEvent> storedEvents)
@@ -55,7 +59,7 @@ namespace Swastika.Application.EventSourcedNormalizers
 
                 switch (e.MessageType)
                 {
-                    case "CustomerRegisteredEvent":
+                    case CONST_MESSAGE_TYPE_CUSTOMER_REGISTERED_EVENT:
                         values = JsonConvert.DeserializeObject<dynamic>(e.Data);
                         slot.BirthDate = values["BirthDate"];
                         slot.Email = values["Email"];
@@ -65,7 +69,7 @@ namespace Swastika.Application.EventSourcedNormalizers
                         slot.Id = values["Id"];
                         slot.Who = e.User;
                         break;
-                    case "CustomerUpdatedEvent":
+                    case CONST_MESSAGE_TYPE_CUSTOMER_UPDATED_EVENT:
                         values = JsonConvert.DeserializeObject<dynamic>(e.Data);
                         slot.BirthDate = values["BirthDate"];
                         slot.Email = values["Email"];
@@ -75,7 +79,7 @@ namespace Swastika.Application.EventSourcedNormalizers
                         slot.Id = values["Id"];
                         slot.Who = e.User;
                         break;
-                    case "CustomerRemovedEvent":
+                    case CONST_MESSAGE_TYPE_CUSTOMER_REMOVED_EVENT:
                         values = JsonConvert.DeserializeObject<dynamic>(e.Data);
                         slot.Action = "Removed";
                         slot.When = values["Timestamp"];

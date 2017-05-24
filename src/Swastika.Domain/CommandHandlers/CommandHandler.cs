@@ -7,6 +7,8 @@ namespace Swastika.Domain.CommandHandlers
 {
     public class CommandHandler
     {
+        private const string CONST_DOMAIN_NOTIFICATION_KEY_COMMIT = "Commit";
+        private const string CONST_DOMAIN_NOTIFICATION_KEY_COMMIT_VALUE = "We had a problem during saving your data.";
         private readonly IUnitOfWork _uow;
         private readonly IBus _bus;
         private readonly IDomainNotificationHandler<DomainNotification> _notifications;
@@ -32,7 +34,9 @@ namespace Swastika.Domain.CommandHandlers
             var commandResponse = _uow.Commit();
             if (commandResponse.Success) return true;
 
-            _bus.RaiseEvent(new DomainNotification("Commit", "We had a problem during saving your data."));
+            _bus.RaiseEvent(new DomainNotification(
+                CONST_DOMAIN_NOTIFICATION_KEY_COMMIT, 
+                CONST_DOMAIN_NOTIFICATION_KEY_COMMIT_VALUE));
             return false;
         }
     }

@@ -8,6 +8,8 @@ namespace Swastika.Infrastructure.CrossCutting.Bus
 {
     public sealed class InMemoryBus : IBus
     {
+        private const string CONST_DOMAIN_NOTIFICATION = "DomainNotification";
+
         public static Func<IServiceProvider> ContainerAccessor { get; set; }
         private static IServiceProvider Container => ContainerAccessor();
 
@@ -25,7 +27,7 @@ namespace Swastika.Infrastructure.CrossCutting.Bus
 
         public void RaiseEvent<T>(T theEvent) where T : Event
         {
-            if(!theEvent.MessageType.Equals("DomainNotification"))
+            if(!theEvent.MessageType.Equals(CONST_DOMAIN_NOTIFICATION))
                 _eventStore?.Save(theEvent);
 
             Publish(theEvent);
@@ -35,7 +37,7 @@ namespace Swastika.Infrastructure.CrossCutting.Bus
         {
             if (Container == null) return;
 
-            var obj = Container.GetService(message.MessageType.Equals("DomainNotification")
+            var obj = Container.GetService(message.MessageType.Equals(CONST_DOMAIN_NOTIFICATION)
                 ? typeof(IDomainNotificationHandler<T>)
                 : typeof(IHandler<T>));
 
