@@ -1,5 +1,5 @@
 ﻿using System.IO;
-using Swastika.Infra.CrossCutting.Identity.Data;
+using Swastika.Infrastructure.CrossCutting.Identity.Data;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
@@ -8,11 +8,11 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Microsoft.AspNetCore.Http;
-using Swastika.Infra.CrossCutting.Identity.Models;
+using Swastika.Infrastructure.CrossCutting.Identity.Models;
 using AutoMapper;
-using Swastika.Infra.CrossCutting.Bus;
-using Swastika.Infra.CrossCutting.Identity.Authorization;
-using Swastika.Infra.CrossCutting.IoC;
+using Swastika.Infrastructure.CrossCutting.Bus;
+using Swastika.Infrastructure.CrossCutting.Identity.Authorization;
+using Swastika.Infrastructure.CrossCutting.IoC;
 
 namespace Swastika.UI.Site
 {

@@ -1,9 +1,9 @@
 ﻿using System.Linq;
 using System.Security.Claims;
 using System.Threading.Tasks;
-using Swastika.Infra.CrossCutting.Identity.Models;
-using Swastika.Infra.CrossCutting.Identity.Models.AccountViewModels;
-using Swastika.Infra.CrossCutting.Identity.Services;
+using Swastika.Infrastructure.CrossCutting.Identity.Models;
+using Swastika.Infrastructure.CrossCutting.Identity.Models.AccountViewModels;
+using Swastika.Infrastructure.CrossCutting.Identity.Services;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;

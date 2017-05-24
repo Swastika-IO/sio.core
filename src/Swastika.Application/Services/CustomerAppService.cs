@@ -7,7 +7,7 @@ using Swastika.Application.ViewModels;
 using Swastika.Domain.Commands;
 using Swastika.Domain.Core.Bus;
 using Swastika.Domain.Interfaces;
-using Swastika.Infra.Data.Repository.EventSourcing;
+using Swastika.Infrastructure.Data.Repository.EventSourcing;
 
 namespace Swastika.Application.Services
 {

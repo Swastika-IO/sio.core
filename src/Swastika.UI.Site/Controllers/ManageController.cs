@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using Swastika.Infra.CrossCutting.Identity.Models;
-using Swastika.Infra.CrossCutting.Identity.Models.ManageViewModels;
-using Swastika.Infra.CrossCutting.Identity.Services;
+using Swastika.Infrastructure.CrossCutting.Identity.Models;
+using Swastika.Infrastructure.CrossCutting.Identity.Models.ManageViewModels;
+using Swastika.Infrastructure.CrossCutting.Identity.Services;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;

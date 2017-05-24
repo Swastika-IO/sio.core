@@ -28,15 +28,15 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Swastika.Domain", "src\Swas
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Swastika.Application", "src\Swastika.Application\Swastika.Application.csproj", "{8EA27390-8455-48EA-ABCB-881272BCE68A}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Swastika.Infra.Data", "src\Swastika.Infra.Data\Swastika.Infra.Data.csproj", "{3701E4D6-A057-49F4-9872-2CAD0487452C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Swastika.Infrastructure.Data", "src\Swastika.Infrastructure.Data\Swastika.Infrastructure.Data.csproj", "{3701E4D6-A057-49F4-9872-2CAD0487452C}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Swastika.Infra.CrossCutting.Identity", "src\Swastika.Infra.CrossCutting.Identity\Swastika.Infra.CrossCutting.Identity.csproj", "{37C44A01-20FE-4B09-8435-47164F08C0C8}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Swastika.Infrastructure.CrossCutting.Identity", "src\Swastika.Infrastructure.CrossCutting.Identity\Swastika.Infrastructure.CrossCutting.Identity.csproj", "{37C44A01-20FE-4B09-8435-47164F08C0C8}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Swastika.Infra.CrossCutting.IoC", "src\Swastika.Infra.CrossCutting.IoC\Swastika.Infra.CrossCutting.IoC.csproj", "{9330566C-4093-4FC7-AF61-14850DD15793}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Swastika.Infrastructure.CrossCutting.IoC", "src\Swastika.Infrastructure.CrossCutting.IoC\Swastika.Infrastructure.CrossCutting.IoC.csproj", "{9330566C-4093-4FC7-AF61-14850DD15793}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Swastika.Domain.Core", "src\Swastika.Domain.Core\Swastika.Domain.Core.csproj", "{A9CB4A5C-DCF4-4F87-83C2-2D6A34C6E2BA}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Swastika.Infra.CrossCutting.Bus", "src\Swastika.Infra.CrossCutting.Bus\Swastika.Infra.CrossCutting.Bus.csproj", "{7C9495CE-AEC5-44CB-9D9C-1150DF99F817}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Swastika.Infrastructure.CrossCutting.Bus", "src\Swastika.Infrastructure.CrossCutting.Bus\Swastika.Infrastructure.CrossCutting.Bus.csproj", "{7C9495CE-AEC5-44CB-9D9C-1150DF99F817}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Swastika.UI.Api", "src\Swastika.UI.Api\Swastika.UI.Api.csproj", "{4E93F1E9-5B96-4F03-9D9C-9026183FB391}"
 EndProject

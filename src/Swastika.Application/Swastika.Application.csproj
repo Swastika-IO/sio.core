@@ -13,7 +13,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Swastika.Domain\Swastika.Domain.csproj" />
-    <ProjectReference Include="..\Swastika.Infra.Data\Swastika.Infra.Data.csproj" />
+    <ProjectReference Include="..\Swastika.Infrastructure.Data\Swastika.Infrastructure.Data.csproj" />
   </ItemGroup>
 
   <ItemGroup>

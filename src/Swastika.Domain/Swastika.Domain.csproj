@@ -13,7 +13,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Swastika.Domain.Core\Swastika.Domain.Core.csproj" />
-    <ProjectReference Include="..\Swastika.Infra.CrossCutting.Bus\Swastika.Infra.CrossCutting.Bus.csproj" />
+    <ProjectReference Include="..\Swastika.Infrastructure.CrossCutting.Bus\Swastika.Infrastructure.CrossCutting.Bus.csproj" />
   </ItemGroup>
 
   <ItemGroup>
