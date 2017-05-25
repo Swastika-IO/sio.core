@@ -24,4 +24,12 @@
     <PackageReference Include="System.Security.Claims" Version="4.3.0" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Commands\" />
+    <Folder Include="EventHandlers\" />
+    <Folder Include="Events\" />
+    <Folder Include="Models\" />
+    <Folder Include="Validations\" />
+  </ItemGroup>
+
 </Project>
