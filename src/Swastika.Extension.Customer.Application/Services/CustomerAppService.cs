@@ -4,14 +4,10 @@ using AutoMapper;
 using Swastika.Extension.Customer.Application.EventSourcedNormalizers;
 using Swastika.Extension.Customer.Application.Interfaces;
 using Swastika.Extension.Customer.Application.ViewModels;
-//using Swastika.Domain.Commands;
 using Swastika.Domain.Core.Bus;
 using Swastika.Extension.Customer.Domain.Interfaces;
-//using Swastika.Extension.Customer.Infrastructure.Data.Repository.EventSourcing;
 using Swastika.Extension.Customer.Domain.Commands;
 using Swastika.Infrastructure.Data.Repository.EventSourcing;
-//using Swastika.Domain.Interfaces;
-//using Swastika.Infrastructure.Data.Repository.EventSourcing;
 
 namespace Swastika.Extension.Customer.Application.Services
 {

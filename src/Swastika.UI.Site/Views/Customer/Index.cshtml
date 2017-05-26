@@ -97,7 +97,7 @@
         $(".viewbutton").on("click", function() {
             var customerId = $(this).data('id');
             $.ajax({
-                url: "http://localhost:52346/customer-management/customer-history/" + customerId,
+                url: "http://localhost:5000/customer-management/customer-history/" + customerId,
                 //url: "http://Swastikaproject.azurewebsites.net/customer-management/customer-history/" + customerId,
                 cache: false
             }).done(function(data) {
