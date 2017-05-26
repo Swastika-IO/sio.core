@@ -14,7 +14,7 @@ namespace Swastika.Extension.Blog.Domain.Commands
         public DateTime ModifiedUtc { get; protected set; }
         public DateTime PublishedUtc { get; protected set; }
         public string CreatedByUserId { get; protected set; }
-        public int CommonStatusId { get; protected set; }
+        public Byte CommonStatusId { get; protected set; }
 
     }
 }

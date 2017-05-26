@@ -26,7 +26,7 @@ namespace Swastika.Extension.Blog.Application.ViewModels
         [DisplayName("CreatedByUserId")]
         public string CreatedByUserId { get; set; }
         [DisplayName("CommonStatusId")]
-        public int CommonStatusId { get; set; }
+        public Byte CommonStatusId { get; set; }
 
     }
 }

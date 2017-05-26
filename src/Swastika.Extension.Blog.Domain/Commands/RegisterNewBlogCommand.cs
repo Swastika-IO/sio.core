@@ -5,7 +5,7 @@ namespace Swastika.Extension.Blog.Domain.Commands
 {
     public class RegisterNewBlogCommand : BlogCommand
     {
-        public RegisterNewBlogCommand(string name, string title, string slug, string description, DateTime createdutc, DateTime modifiedutc, DateTime publishedutc, string createdbyuserid, int commonstatusid)
+        public RegisterNewBlogCommand(string name, string title, string slug, string description, DateTime createdutc, DateTime modifiedutc, DateTime publishedutc, string createdbyuserid, Byte commonstatusid)
         {
             Name = name;
             Title = title;

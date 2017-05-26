@@ -5,7 +5,7 @@ namespace Swastika.Extension.Blog.Domain.Commands
 {
     public class UpdateBlogCommand : BlogCommand
     {
-        public UpdateBlogCommand(Guid id, string name, string title, string slug, string description, DateTime createdutc, DateTime modifiedutc, DateTime publishedutc, string createdbyuserid, int commonstatusid)
+        public UpdateBlogCommand(Guid id, string name, string title, string slug, string description, DateTime createdutc, DateTime modifiedutc, DateTime publishedutc, string createdbyuserid, Byte commonstatusid)
         {
             Id = id;
             Title = title;

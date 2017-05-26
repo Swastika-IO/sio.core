@@ -5,7 +5,7 @@ namespace Swastika.Extension.Blog.Domain.Events
 {
     public class BlogRegisteredEvent : Event
     {
-        public BlogRegisteredEvent(Guid id, string name, string title, string slug, string description, DateTime createdutc, DateTime modifiedutc, DateTime publishedutc, string createdbyuserid, int commonstatusid)
+        public BlogRegisteredEvent(Guid id, string name, string title, string slug, string description, DateTime createdutc, DateTime modifiedutc, DateTime publishedutc, string createdbyuserid, Byte commonstatusid)
         {
             Id = id;
             Name = name;
@@ -28,6 +28,6 @@ namespace Swastika.Extension.Blog.Domain.Events
         public DateTime ModifiedUtc { get; private set; }
         public DateTime PublishedUtc { get; private set; }
         public string CreatedByUserId { get; private set; }
-        public int CommonStatusId { get; private set; }
+        public Byte CommonStatusId { get; private set; }
     }
 }
