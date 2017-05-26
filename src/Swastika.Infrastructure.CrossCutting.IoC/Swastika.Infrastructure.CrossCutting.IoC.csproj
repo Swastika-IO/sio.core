@@ -14,6 +14,7 @@
   <ItemGroup>
     <ProjectReference Include="..\Swastika.Application\Swastika.Application.csproj" />
     <ProjectReference Include="..\Swastika.Domain\Swastika.Domain.csproj" />
+    <ProjectReference Include="..\Swastika.Extension.Blog.Application\Swastika.Extension.Blog.Application.csproj" />
     <ProjectReference Include="..\Swastika.Extension.Customer.Application\Swastika.Extension.Customer.Application.csproj" />
     <ProjectReference Include="..\Swastika.Extension.Customer.Domain\Swastika.Extension.Customer.Domain.csproj" />
     <ProjectReference Include="..\Swastika.Extension.Customer.Infrastructure.Data\Swastika.Extension.Customer.Infrastructure.Data.csproj" />
