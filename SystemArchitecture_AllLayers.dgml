@@ -1,0 +1,73 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<DirectedGraph GraphDirection="TopToBottom" Layout="Sugiyama" ZoomLevel="-1" xmlns="http://schemas.microsoft.com/vs/2009/dgml">
+  <Nodes>
+    <Node Id="1-Presentation" Bounds="80.0383333333333,0,101.376666666667,25.96" Label="Swastika.UI.Site" />
+    <Node Id="Swastika.Application" Bounds="366.816666666667,223.84,127.82,25.96" Label="Swastika.Application" />
+    <Node Id="Swastika.Domain" Bounds="593.076666666667,335.76,109.3,25.96" Label="Swastika.Domain" />
+    <Node Id="Swastika.Domain.Core" Bounds="493.321666666667,391.72,136.81,25.96" Label="Swastika.Domain.Core" />
+    <Node Id="Swastika.Extension.Blog.Application" Bounds="301.01,167.88,207.433333333333,25.96" Label="Swastika.Extension.Blog.Application" />
+    <Node Id="Swastika.Extension.Blog.Domain" Bounds="300.27,279.8,188.913333333333,25.96" Label="Swastika.Extension.Blog.Domain" />
+    <Node Id="Swastika.Extension.Blog.Infrastructure.Data" Bounds="524.918333333333,223.84,245.616666666667,25.96" Label="Swastika.Extension.Blog.Infrastructure.Data" />
+    <Node Id="Swastika.Extension.Blog.UI.Api" Bounds="194.193333333333,111.92,179.066666666667,25.96" Label="Swastika.Extension.Blog.UI.Api" />
+    <Node Id="Swastika.Extension.Blog.UI.Site" Bounds="314.231666666667,55.96,180.99,25.96" Label="Swastika.Extension.Blog.UI.Site" />
+    <Node Id="Swastika.Infrastructure.CrossCutting.Bus" Bounds="300.421666666667,335.76,230.61,25.96" Label="Swastika.Infrastructure.CrossCutting.Bus" />
+    <Node Id="Swastika.Infrastructure.CrossCutting.Identity" Bounds="778.716666666667,279.8,252.02,25.96" Label="Swastika.Infrastructure.CrossCutting.Identity" />
+    <Node Id="Swastika.Infrastructure.CrossCutting.IoC" Bounds="800.976666666667,223.84,229.5,25.96" Label="Swastika.Infrastructure.CrossCutting.IoC" />
+    <Node Id="Swastika.Infrastructure.Data" Bounds="550.725,279.8,166.003333333333,25.96" Label="Swastika.Infrastructure.Data" />
+    <Node Id="Swastika.UI.Api" Bounds="0,111.92,99.4533333333333,25.96" Label="Swastika.UI.Api" />
+    <Node Id="Swastika.UI.Base" Bounds="109.671666666667,167.88,106.11,25.96" Label="Swastika.UI.Base" />
+  </Nodes>
+  <Links>
+    <Link Source="1-Presentation" Target="Swastika.Extension.Blog.UI.Site" Bounds="181.392395019531,23.3276424407959,150.961608886719,30.8314304351807" />
+    <Link Source="1-Presentation" Target="Swastika.UI.Api" Bounds="64.3973388671875,25.9599990844727,56.9352951049805,78.6691131591797" />
+    <Link Source="1-Presentation" Target="Swastika.UI.Base" Bounds="130.726669311523,25.9599990844727,20.1098937988281,134.10718536377" />
+    <Link Source="Swastika.Application" Target="Swastika.Domain" Bounds="451.370330810547,249.800003051758,157.510711669922,82.4417572021484" />
+    <Link Source="Swastika.Application" Target="Swastika.Infrastructure.Data" Bounds="477.812805175781,249.800003051758,100.1513671875,27.6082305908203" />
+    <Link Source="Swastika.Domain" Target="Swastika.Domain.Core" Bounds="589.218078613281,361.720001220703,38.560791015625,25.0914001464844" />
+    <Link Source="Swastika.Extension.Blog.Application" Target="Swastika.Application" Bounds="410.757415771484,193.839996337891,10.1462707519531,21.8379516601563" />
+    <Link Source="Swastika.Extension.Blog.Application" Target="Swastika.Extension.Blog.Domain" Bounds="351.628997802734,193.839996337891,37.093017578125,79.7665100097656" />
+    <Link Source="Swastika.Extension.Blog.Application" Target="Swastika.Extension.Blog.Infrastructure.Data" Bounds="461.090850830078,193.839996337891,121.501190185547,27.9802703857422" />
+    <Link Source="Swastika.Extension.Blog.Domain" Target="Swastika.Domain" Bounds="453.410369873047,305.760009765625,131.597808837891,29.1075439453125" />
+    <Link Source="Swastika.Extension.Blog.Domain" Target="Swastika.Domain.Core" Bounds="441.169189453125,305.760009765625,120.557495117188,76.9599914550781" />
+    <Link Source="Swastika.Extension.Blog.UI.Api" Target="Swastika.Domain.Core" Bounds="269.726654052734,137.880004882813,214.669555664063,256.804412841797" />
+    <Link Source="Swastika.Extension.Blog.UI.Api" Target="Swastika.Extension.Blog.Application" Bounds="311.792785644531,137.880004882813,56.6990661621094,26.2221374511719" />
+    <Link Source="Swastika.Extension.Blog.UI.Api" Target="Swastika.UI.Base" Bounds="198.961486816406,137.880004882813,56.6990661621094,26.2221374511719" />
+    <Link Source="Swastika.Extension.Blog.UI.Site" Target="Swastika.Domain.Core" Bounds="495.2216796875,76.6479187011719,566.505004882813,319.395172119141" />
+    <Link Source="Swastika.Extension.Blog.UI.Site" Target="Swastika.Extension.Blog.Application" Bounds="404.726654052734,81.9199981689453,0,76.9600067138672" />
+    <Link Source="Swastika.Extension.Blog.UI.Site" Target="Swastika.Extension.Blog.UI.Api" Bounds="319.961486816406,81.9199981689453,56.6990661621094,26.2221450805664" />
+    <Link Source="Swastika.Extension.Blog.UI.Site" Target="Swastika.UI.Base" Bounds="162.726669311523,81.9199981689453,164.380905151367,76.9600067138672" />
+    <Link Source="Swastika.Infrastructure.CrossCutting.Bus" Target="Swastika.Domain.Core" Bounds="449.591583251953,361.720001220703,69.8663635253906,26.7789001464844" />
+    <Link Source="Swastika.Infrastructure.CrossCutting.Identity" Target="Swastika.Domain" Bounds="710.57763671875,305.760009765625,134.537536621094,29.2946166992188" />
+    <Link Source="Swastika.Infrastructure.CrossCutting.IoC" Target="Swastika.Domain" Bounds="678.4599609375,249.800003051758,190.628601074219,81.5225067138672" />
+    <Link Source="Swastika.Infrastructure.CrossCutting.IoC" Target="Swastika.Infrastructure.CrossCutting.Identity" Bounds="909.014038085938,249.800003051758,4.1611328125,21.1689910888672" />
+    <Link Source="Swastika.Infrastructure.CrossCutting.IoC" Target="Swastika.Infrastructure.Data" Bounds="707.96484375,249.800003051758,142.351501464844,28.2481842041016" />
+    <Link Source="Swastika.Infrastructure.Data" Target="Swastika.Domain" Bounds="636.973999023438,305.760009765625,5.321044921875,21.2690734863281" />
+    <Link Source="Swastika.UI.Api" Target="Swastika.UI.Base" Bounds="75.9371719360352,137.880004882813,52.513786315918,26.0059356689453" />
+  </Links>
+  <Properties>
+    <Property Id="Bounds" DataType="System.Windows.Rect" />
+    <Property Id="Expression" DataType="System.String" />
+    <Property Id="GraphDirection" DataType="Microsoft.VisualStudio.Diagrams.Layout.LayoutOrientation" />
+    <Property Id="GroupLabel" DataType="System.String" />
+    <Property Id="IsEnabled" DataType="System.Boolean" />
+    <Property Id="Label" Label="Label" Description="Displayable label of an Annotatable object" DataType="System.String" />
+    <Property Id="Layout" DataType="System.String" />
+    <Property Id="TargetType" DataType="System.Type" />
+    <Property Id="ToolTip" DataType="System.String" />
+    <Property Id="Value" DataType="System.String" />
+    <Property Id="ValueLabel" DataType="System.String" />
+    <Property Id="ZoomLevel" DataType="System.String" />
+  </Properties>
+  <Styles>
+    <Style TargetType="Node" GroupLabel="Circular References" ToolTip="Node is part of a strongly coupled component" ValueLabel="Nodes">
+      <Condition Expression="IsStronglyConnected" />
+      <Setter Property="Stroke" Value="#D02030" />
+      <Setter Property="StrokeThickness" Value="2" />
+    </Style>
+    <Style TargetType="Link" GroupLabel="Circular References" ToolTip="Node is part of a strongly coupled component" ValueLabel="Links">
+      <Condition Expression="IsCircularLink" />
+      <Setter Property="Stroke" Value="#D02030" />
+      <Setter Property="StrokeThickness" Value="2" />
+    </Style>
+  </Styles>
+</DirectedGraph>

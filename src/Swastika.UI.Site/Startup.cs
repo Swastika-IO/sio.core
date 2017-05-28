@@ -13,6 +13,7 @@ using AutoMapper;
 using Swastika.Infrastructure.CrossCutting.Bus;
 using Swastika.Infrastructure.CrossCutting.Identity.Authorization;
 using Swastika.Infrastructure.CrossCutting.IoC;
+using Swastika.UI.Base.Extensions;
 
 namespace Swastika.UI.Site
 {
@@ -49,6 +50,9 @@ namespace Swastika.UI.Site
         
         public void ConfigureServices(IServiceCollection services)
         {
+            // Load all extensions to services
+            services.LoadExtensions();
+
             services.AddDbContext<ApplicationDbContext>(options =>
                 options.UseSqlServer(Configuration.GetConnectionString(CONST_DEFAULT_CONNECTION)));
 
