@@ -13,15 +13,42 @@ using Microsoft.Extensions.Logging;
 
 namespace Swastika.UI.Site.Controllers
 {
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <seealso cref="Microsoft.AspNetCore.Mvc.Controller" />
     [Authorize]
     public class AccountController : Controller
     {
+        /// <summary>
+        /// The user manager
+        /// </summary>
         private readonly UserManager<ApplicationUser> _userManager;
+        /// <summary>
+        /// The sign in manager
+        /// </summary>
         private readonly SignInManager<ApplicationUser> _signInManager;
+        /// <summary>
+        /// The email sender
+        /// </summary>
         private readonly IEmailSender _emailSender;
+        /// <summary>
+        /// The SMS sender
+        /// </summary>
         private readonly ISmsSender _smsSender;
+        /// <summary>
+        /// The logger
+        /// </summary>
         private readonly ILogger _logger;
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="AccountController"/> class.
+        /// </summary>
+        /// <param name="userManager">The user manager.</param>
+        /// <param name="signInManager">The sign in manager.</param>
+        /// <param name="emailSender">The email sender.</param>
+        /// <param name="smsSender">The SMS sender.</param>
+        /// <param name="loggerFactory">The logger factory.</param>
         public AccountController(
             UserManager<ApplicationUser> userManager,
             SignInManager<ApplicationUser> signInManager,
@@ -38,6 +65,11 @@ namespace Swastika.UI.Site.Controllers
 
         //
         // GET: /Account/Login
+        /// <summary>
+        /// Logins the specified return URL.
+        /// </summary>
+        /// <param name="returnUrl">The return URL.</param>
+        /// <returns></returns>
         [HttpGet]
         [AllowAnonymous]
         public IActionResult Login(string returnUrl = null)
@@ -48,6 +80,12 @@ namespace Swastika.UI.Site.Controllers
 
         //
         // POST: /Account/Login
+        /// <summary>
+        /// Logins the specified model.
+        /// </summary>
+        /// <param name="model">The model.</param>
+        /// <param name="returnUrl">The return URL.</param>
+        /// <returns></returns>
         [HttpPost]
         [AllowAnonymous]
         [ValidateAntiForgeryToken]
@@ -86,6 +124,11 @@ namespace Swastika.UI.Site.Controllers
 
         //
         // GET: /Account/Register
+        /// <summary>
+        /// Registers the specified return URL.
+        /// </summary>
+        /// <param name="returnUrl">The return URL.</param>
+        /// <returns></returns>
         [HttpGet]
         [AllowAnonymous]
         public IActionResult Register(string returnUrl = null)
@@ -96,6 +139,12 @@ namespace Swastika.UI.Site.Controllers
 
         //
         // POST: /Account/Register
+        /// <summary>
+        /// Registers the specified model.
+        /// </summary>
+        /// <param name="model">The model.</param>
+        /// <param name="returnUrl">The return URL.</param>
+        /// <returns></returns>
         [HttpPost]
         [AllowAnonymous]
         [ValidateAntiForgeryToken]
@@ -135,6 +184,10 @@ namespace Swastika.UI.Site.Controllers
 
         //
         // POST: /Account/LogOff
+        /// <summary>
+        /// Logs the off.
+        /// </summary>
+        /// <returns></returns>
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> LogOff()
@@ -146,6 +199,12 @@ namespace Swastika.UI.Site.Controllers
 
         //
         // POST: /Account/ExternalLogin
+        /// <summary>
+        /// Externals the login.
+        /// </summary>
+        /// <param name="provider">The provider.</param>
+        /// <param name="returnUrl">The return URL.</param>
+        /// <returns></returns>
         [HttpPost]
         [AllowAnonymous]
         [ValidateAntiForgeryToken]
@@ -158,6 +217,12 @@ namespace Swastika.UI.Site.Controllers
             return result;
         }
 
+        /// <summary>
+        /// Externals the login log off.
+        /// </summary>
+        /// <param name="provider">The provider.</param>
+        /// <param name="returnUrl">The return URL.</param>
+        /// <returns></returns>
         [HttpGet]
         [AllowAnonymous]
         public async Task<IActionResult> ExternalLoginLogOff(string provider, string returnUrl = null)
@@ -169,6 +234,12 @@ namespace Swastika.UI.Site.Controllers
 
         //
         // GET: /Account/ExternalLoginCallback
+        /// <summary>
+        /// Externals the login callback.
+        /// </summary>
+        /// <param name="returnUrl">The return URL.</param>
+        /// <param name="remoteError">The remote error.</param>
+        /// <returns></returns>
         [HttpGet]
         [AllowAnonymous]
         public async Task<IActionResult> ExternalLoginCallback(string returnUrl = null, string remoteError = null)
@@ -211,6 +282,12 @@ namespace Swastika.UI.Site.Controllers
 
         //
         // POST: /Account/ExternalLoginConfirmation
+        /// <summary>
+        /// Externals the login confirmation.
+        /// </summary>
+        /// <param name="model">The model.</param>
+        /// <param name="returnUrl">The return URL.</param>
+        /// <returns></returns>
         [HttpPost]
         [AllowAnonymous]
         [ValidateAntiForgeryToken]
@@ -252,6 +329,12 @@ namespace Swastika.UI.Site.Controllers
         }
 
         // GET: /Account/ConfirmEmail
+        /// <summary>
+        /// Confirms the email.
+        /// </summary>
+        /// <param name="userId">The user identifier.</param>
+        /// <param name="code">The code.</param>
+        /// <returns></returns>
         [HttpGet]
         [AllowAnonymous]
         public async Task<IActionResult> ConfirmEmail(string userId, string code)
@@ -271,6 +354,10 @@ namespace Swastika.UI.Site.Controllers
 
         //
         // GET: /Account/ForgotPassword
+        /// <summary>
+        /// Forgots the password.
+        /// </summary>
+        /// <returns></returns>
         [HttpGet]
         [AllowAnonymous]
         public IActionResult ForgotPassword()
@@ -280,6 +367,11 @@ namespace Swastika.UI.Site.Controllers
 
         //
         // POST: /Account/ForgotPassword
+        /// <summary>
+        /// Forgots the password.
+        /// </summary>
+        /// <param name="model">The model.</param>
+        /// <returns></returns>
         [HttpPost]
         [AllowAnonymous]
         [ValidateAntiForgeryToken]
@@ -309,6 +401,10 @@ namespace Swastika.UI.Site.Controllers
 
         //
         // GET: /Account/ForgotPasswordConfirmation
+        /// <summary>
+        /// Forgots the password confirmation.
+        /// </summary>
+        /// <returns></returns>
         [HttpGet]
         [AllowAnonymous]
         public IActionResult ForgotPasswordConfirmation()
@@ -318,6 +414,11 @@ namespace Swastika.UI.Site.Controllers
 
         //
         // GET: /Account/ResetPassword
+        /// <summary>
+        /// Resets the password.
+        /// </summary>
+        /// <param name="code">The code.</param>
+        /// <returns></returns>
         [HttpGet]
         [AllowAnonymous]
         public IActionResult ResetPassword(string code = null)
@@ -327,6 +428,11 @@ namespace Swastika.UI.Site.Controllers
 
         //
         // POST: /Account/ResetPassword
+        /// <summary>
+        /// Resets the password.
+        /// </summary>
+        /// <param name="model">The model.</param>
+        /// <returns></returns>
         [HttpPost]
         [AllowAnonymous]
         [ValidateAntiForgeryToken]
@@ -353,6 +459,10 @@ namespace Swastika.UI.Site.Controllers
 
         //
         // GET: /Account/ResetPasswordConfirmation
+        /// <summary>
+        /// Resets the password confirmation.
+        /// </summary>
+        /// <returns></returns>
         [HttpGet]
         [AllowAnonymous]
         public IActionResult ResetPasswordConfirmation()
@@ -362,6 +472,12 @@ namespace Swastika.UI.Site.Controllers
 
         //
         // GET: /Account/SendCode
+        /// <summary>
+        /// Sends the code.
+        /// </summary>
+        /// <param name="returnUrl">The return URL.</param>
+        /// <param name="rememberMe">if set to <c>true</c> [remember me].</param>
+        /// <returns></returns>
         [HttpGet]
         [AllowAnonymous]
         public async Task<ActionResult> SendCode(string returnUrl = null, bool rememberMe = false)
@@ -378,6 +494,11 @@ namespace Swastika.UI.Site.Controllers
 
         //
         // POST: /Account/SendCode
+        /// <summary>
+        /// Sends the code.
+        /// </summary>
+        /// <param name="model">The model.</param>
+        /// <returns></returns>
         [HttpPost]
         [AllowAnonymous]
         [ValidateAntiForgeryToken]
@@ -416,6 +537,13 @@ namespace Swastika.UI.Site.Controllers
 
         //
         // GET: /Account/VerifyCode
+        /// <summary>
+        /// Verifies the code.
+        /// </summary>
+        /// <param name="provider">The provider.</param>
+        /// <param name="rememberMe">if set to <c>true</c> [remember me].</param>
+        /// <param name="returnUrl">The return URL.</param>
+        /// <returns></returns>
         [HttpGet]
         [AllowAnonymous]
         public async Task<IActionResult> VerifyCode(string provider, bool rememberMe, string returnUrl = null)
@@ -431,6 +559,11 @@ namespace Swastika.UI.Site.Controllers
 
         //
         // POST: /Account/VerifyCode
+        /// <summary>
+        /// Verifies the code.
+        /// </summary>
+        /// <param name="model">The model.</param>
+        /// <returns></returns>
         [HttpPost]
         [AllowAnonymous]
         [ValidateAntiForgeryToken]
@@ -463,6 +596,10 @@ namespace Swastika.UI.Site.Controllers
 
         #region Helpers
 
+        /// <summary>
+        /// Adds the errors.
+        /// </summary>
+        /// <param name="result">The result.</param>
         private void AddErrors(IdentityResult result)
         {
             foreach (var error in result.Errors)
@@ -471,11 +608,20 @@ namespace Swastika.UI.Site.Controllers
             }
         }
 
+        /// <summary>
+        /// Gets the current user asynchronous.
+        /// </summary>
+        /// <returns></returns>
         private Task<ApplicationUser> GetCurrentUserAsync()
         {
             return _userManager.GetUserAsync(HttpContext.User);
         }
 
+        /// <summary>
+        /// Redirects to local.
+        /// </summary>
+        /// <param name="returnUrl">The return URL.</param>
+        /// <returns></returns>
         private IActionResult RedirectToLocal(string returnUrl)
         {
             if (Url.IsLocalUrl(returnUrl))

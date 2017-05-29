@@ -5,33 +5,126 @@ using System.IO;
 using System.Reflection;
 using System.Runtime.Loader;
 using System.Text;
+using Newtonsoft.Json;
+using Swastika.UI.Base.Extensions.Models;
+using Swastika.UI.Base.Extensions.Web.ModelBinders;
+using Microsoft.CodeAnalysis;
+using System.Linq;
 
 namespace Swastika.UI.Base.Extensions
 {
+
+    /// <summary>
+    /// 
+    /// </summary>
     public static class Core
     {
-        public static IServiceCollection LoadExtensions(this IServiceCollection services)
+        /// <summary>
+        /// The constant default extension path
+        /// </summary>
+        private const string CONST_DEFAULT_EXTENSIONS_FILE_PATH = "\\Content\\Extensions\\";
+        /// <summary>
+        /// The constant default extension file name
+        /// </summary>
+        private const string CONST_DEFAULT_EXTENSION_FILE_NAME = "extensions.json";
+
+
+
+        /// <summary>
+        /// Loads the extensions.
+        /// </summary>
+        /// <param name="services">The services.</param>
+        /// <param name="extensionsFilePath">The extensions file path.</param>
+        /// <param name="extensionsFileName">Name of the extensions file.</param>
+        /// <returns></returns>
+        public static IServiceCollection LoadExtensions(this IServiceCollection services,
+            string extensionsFilePath = CONST_DEFAULT_EXTENSIONS_FILE_PATH,
+            string extensionsFileName = CONST_DEFAULT_EXTENSION_FILE_NAME)
         {
-            Assembly assembly;
-            try
-            {
-                assembly = AssemblyLoadContext.Default.LoadFromAssemblyPath(@"D:\_Workspace\_Github\Swastika-Core\src\ClassLibrary\bin\Debug\netcoreapp1.1\" + "ClassLibrary.dll");
-                var type = assembly.GetType("ClassLibrary.Class");
-                dynamic obj = Activator.CreateInstance(type);
+            var extensions = new List<ExtensionInfo>();
+            string physicalExtensionsFolerPath = Directory.GetCurrentDirectory() + extensionsFilePath;
+            string json = File.ReadAllText(physicalExtensionsFolerPath + extensionsFileName);
+            List<Extension> extensionsFromJson = JsonConvert.DeserializeObject<List<Extension>>(json);
 
-                Console.WriteLine(obj.SayHello());
-                Console.WriteLine(obj.SayHello("John Doe"));
-            }
-            catch (FileLoadException)
+            foreach (Extension extension in extensionsFromJson)
             {
-                // Get loaded assembly
-                assembly = Assembly.Load(new AssemblyName(Path.GetFileNameWithoutExtension(@"D:\_Workspace\_Github\Swastika-Core\src\ClassLibrary\bin\Debug\netcoreapp1.1\" + "ClassLibrary")));
-
-                if (assembly == null)
+                var extFolder = new DirectoryInfo(Path.Combine(physicalExtensionsFolerPath, extension.Name));
+                if (!extFolder.Exists)
                 {
-                    throw;
+                    continue;
+                }
+
+                foreach (var dllFile in extFolder.GetFileSystemInfos(extension.Name+"*.dll"))
+                {
+                    Assembly assembly;
+                    try
+                    {
+                        assembly = AssemblyLoadContext.Default.LoadFromAssemblyPath(dllFile.FullName);
+                    }
+                    catch (FileLoadException)
+                    {
+                        // Get loaded assembly
+                        assembly = Assembly.Load(new AssemblyName(Path.GetFileNameWithoutExtension(dllFile.Name)));
+
+                        if (assembly == null)
+                        {
+                            throw;
+                        }
+                    }
+                    if (dllFile.Name == extension.Name + ".dll" || dllFile.Name == extension.Name + ".UI.Api.dll")
+                    {
+                        extensions.Add(new ExtensionInfo
+                        {
+                            Name = extension.Name,
+                            Assembly = assembly,
+                            AbsolutePath = extFolder.FullName,
+                        });
+                    }
+                }
+
+            }
+            ExtensionManager.Extensions = extensions;
+            ExtensionManager.RelativePath = extensionsFilePath;
+            return services;
+        }
+
+        /// <summary>
+        /// Adds the MVC to extensions.
+        /// </summary>
+        /// <param name="services">The services.</param>
+        /// <param name="extensionsInfo">The extensions information.</param>
+        /// <returns></returns>
+        public static IServiceCollection AddMvcToExtensions(this IServiceCollection services, IList<ExtensionInfo> extensionsInfo)
+        {
+            var mvcBuilder = services
+                .AddMvc(o =>{
+                    o.ModelBinderProviders.Insert(0, new InvariantDecimalModelBinderProvider());
+                })
+                .AddRazorOptions(o =>
+                {
+                    foreach (var extension in extensionsInfo)
+                    {
+                        o.AdditionalCompilationReferences.Add(MetadataReference.CreateFromFile(extension.Assembly.Location));
+                    }
+                })
+                .AddViewLocalization()
+                .AddDataAnnotationsLocalization();
+
+            foreach (var extension in extensionsInfo)
+            {
+                // Register controller from extensions
+                mvcBuilder.AddApplicationPart(extension.Assembly);
+
+                // Register dependency in extensions
+                var moduleInitializerType =
+                    extension.Assembly.GetTypes().FirstOrDefault(x => typeof(IExtensionInitializer).IsAssignableFrom(x));
+                if ((moduleInitializerType != null) && (moduleInitializerType != typeof(IExtensionInitializer)))
+                {
+                    var moduleInitializer = (IExtensionInitializer)Activator.CreateInstance(moduleInitializerType);
+                    moduleInitializer.Init(services);
                 }
             }
+
             return services;
         }
     }

@@ -1,0 +1,18 @@
+﻿[
+  {
+    "Title": "Swastika Customer",
+    "Name": "Swastika.Extension.Customer",
+    "IsActive": true,
+    "Ulr": "",
+    "Author": "Swastika Core Team",
+    "InstalledDateTime": ""
+  },
+  {
+    "Title": "Swastika ClassLibrary Sample",
+    "Name": "ClassLibrary",
+    "IsActive": true,
+    "Ulr": "",
+    "Author": "Swastika Core Team",
+    "InstalledDateTime": ""
+  }
+]
