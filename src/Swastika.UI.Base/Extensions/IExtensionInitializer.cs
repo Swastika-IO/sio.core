@@ -3,7 +3,7 @@
 namespace Swastika.UI.Base.Extensions
 {
     /// <summary>
-    /// 
+    /// IExtensionInitializer
     /// </summary>
     public interface IExtensionInitializer
     {

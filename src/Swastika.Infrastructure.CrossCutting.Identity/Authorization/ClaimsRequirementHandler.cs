@@ -7,8 +7,14 @@ namespace Swastika.Infrastructure.CrossCutting.Identity.Authorization
     public class ClaimsRequirementHandler : AuthorizationHandler<ClaimRequirement>
     {
 
+        /// <summary>
+        /// Handles the requirement asynchronous.
+        /// </summary>
+        /// <param name="context">The context.</param>
+        /// <param name="requirement">The requirement.</param>
+        /// <returns></returns>
         protected override Task HandleRequirementAsync(AuthorizationHandlerContext context,
-                                                       ClaimRequirement requirement)
+                                                               ClaimRequirement requirement)
         {
 
             var claim = context.User.Claims.FirstOrDefault(c => c.Type == requirement.ClaimName);

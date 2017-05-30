@@ -8,6 +8,10 @@ namespace Swastika.Extension.Customer.Infrastructure.Data.Mappings
 {    
     public class CustomerMap : EntityTypeConfiguration<Domain.Models.Customer>
     {
+        /// <summary>
+        /// Maps the specified builder.
+        /// </summary>
+        /// <param name="builder">The builder.</param>
         public override void Map(EntityTypeBuilder<Domain.Models.Customer> builder)
         {
             builder.Property(c => c.Id)
@@ -21,7 +25,7 @@ namespace Swastika.Extension.Customer.Infrastructure.Data.Mappings
             builder.Property(c => c.Email)
                 .HasColumnType("varchar(100)")
                 .HasMaxLength(11)
-                .IsRequired();   
+                .IsRequired();
         }
     }
 }

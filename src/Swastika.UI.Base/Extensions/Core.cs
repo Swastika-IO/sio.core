@@ -54,7 +54,7 @@ namespace Swastika.UI.Base.Extensions
                     continue;
                 }
 
-                foreach (var dllFile in extFolder.GetFileSystemInfos(extension.Name+"*.dll"))
+                foreach (var dllFile in extFolder.GetFileSystemInfos(extension.Name + "*.dll"))
                 {
                     Assembly assembly;
                     try
@@ -97,7 +97,8 @@ namespace Swastika.UI.Base.Extensions
         public static IServiceCollection AddMvcToExtensions(this IServiceCollection services, IList<ExtensionInfo> extensionsInfo)
         {
             var mvcBuilder = services
-                .AddMvc(o =>{
+                .AddMvc(o =>
+                {
                     o.ModelBinderProviders.Insert(0, new InvariantDecimalModelBinderProvider());
                 })
                 .AddRazorOptions(o =>

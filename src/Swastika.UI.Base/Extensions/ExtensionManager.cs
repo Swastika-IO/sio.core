@@ -12,7 +12,7 @@ namespace Swastika.UI.Base.Extensions
     public class ExtensionManager
     {
         /// <summary>
-        /// Initializes the <see cref="ExtensionManager"/> class.
+        /// Initializes the <see cref="ExtensionManager" /> class.
         /// </summary>
         static ExtensionManager()
         {

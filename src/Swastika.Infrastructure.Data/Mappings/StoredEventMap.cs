@@ -8,6 +8,10 @@ namespace Swastika.Infrastructure.Data.Mappings
 {    
     public class StoredEventMap : EntityTypeConfiguration<StoredEvent>
     {
+        /// <summary>
+        /// Maps the specified builder.
+        /// </summary>
+        /// <param name="builder">The builder.</param>
         public override void Map(EntityTypeBuilder<StoredEvent> builder)
         {
             builder.Property(c => c.Timestamp)
@@ -16,7 +20,7 @@ namespace Swastika.Infrastructure.Data.Mappings
             builder.Property(c => c.MessageType)
                 .HasColumnName("Action")
                 .HasColumnType("varchar(100)");
-  
+
         }
     }
 }

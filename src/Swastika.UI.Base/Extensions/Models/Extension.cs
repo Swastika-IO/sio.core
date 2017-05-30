@@ -27,7 +27,7 @@ namespace Swastika.UI.Base.Extensions.Models
         /// Gets or sets a value indicating whether this instance is active.
         /// </summary>
         /// <value>
-        ///   <c>true</c> if this instance is active; otherwise, <c>false</c>.
+        /// {D255958A-8513-4226-94B9-080D98F904A1}  <c>true</c> if this instance is active; otherwise, <c>false</c>.
         /// </value>
         public bool IsActive { get; set; }
         /// <summary>

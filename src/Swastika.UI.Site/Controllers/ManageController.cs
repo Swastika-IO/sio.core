@@ -15,18 +15,41 @@ namespace Swastika.UI.Site.Controllers
     [Authorize]
     public class ManageController : Controller
     {
+        /// <summary>
+        /// The user manager{CC2D43FA-BBC4-448A-9D0B-7B57ADF2655C}
+        /// </summary>
         private readonly UserManager<ApplicationUser> _userManager;
+        /// <summary>
+        /// The sign in manager{CC2D43FA-BBC4-448A-9D0B-7B57ADF2655C}
+        /// </summary>
         private readonly SignInManager<ApplicationUser> _signInManager;
+        /// <summary>
+        /// The email sender{CC2D43FA-BBC4-448A-9D0B-7B57ADF2655C}
+        /// </summary>
         private readonly IEmailSender _emailSender;
+        /// <summary>
+        /// The SMS sender{CC2D43FA-BBC4-448A-9D0B-7B57ADF2655C}
+        /// </summary>
         private readonly ISmsSender _smsSender;
+        /// <summary>
+        /// The logger{CC2D43FA-BBC4-448A-9D0B-7B57ADF2655C}
+        /// </summary>
         private readonly ILogger _logger;
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="ManageController" /> class.
+        /// </summary>
+        /// <param name="userManager">The user manager.</param>
+        /// <param name="signInManager">The sign in manager.</param>
+        /// <param name="emailSender">The email sender.</param>
+        /// <param name="smsSender">The SMS sender.</param>
+        /// <param name="loggerFactory">The logger factory.</param>
         public ManageController(
-        UserManager<ApplicationUser> userManager,
-        SignInManager<ApplicationUser> signInManager,
-        IEmailSender emailSender,
-        ISmsSender smsSender,
-        ILoggerFactory loggerFactory)
+                UserManager<ApplicationUser> userManager,
+                SignInManager<ApplicationUser> signInManager,
+                IEmailSender emailSender,
+                ISmsSender smsSender,
+                ILoggerFactory loggerFactory)
         {
             _userManager = userManager;
             _signInManager = signInManager;
@@ -37,6 +60,11 @@ namespace Swastika.UI.Site.Controllers
 
         //
         // GET: /Manage/Index
+        /// <summary>
+        /// Indexes the specified message.
+        /// </summary>
+        /// <param name="message">The message.</param>
+        /// <returns></returns>
         [HttpGet]
         public async Task<IActionResult> Index(ManageMessageId? message = null)
         {
@@ -67,6 +95,11 @@ namespace Swastika.UI.Site.Controllers
 
         //
         // POST: /Manage/RemoveLogin
+        /// <summary>
+        /// Removes the login.
+        /// </summary>
+        /// <param name="account">The account.</param>
+        /// <returns></returns>
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> RemoveLogin(RemoveLoginViewModel account)
@@ -87,6 +120,10 @@ namespace Swastika.UI.Site.Controllers
 
         //
         // GET: /Manage/AddPhoneNumber
+        /// <summary>
+        /// Adds the phone number.
+        /// </summary>
+        /// <returns></returns>
         public IActionResult AddPhoneNumber()
         {
             return View();
@@ -94,6 +131,11 @@ namespace Swastika.UI.Site.Controllers
 
         //
         // POST: /Manage/AddPhoneNumber
+        /// <summary>
+        /// Adds the phone number.
+        /// </summary>
+        /// <param name="model">The model.</param>
+        /// <returns></returns>
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> AddPhoneNumber(AddPhoneNumberViewModel model)
@@ -115,6 +157,10 @@ namespace Swastika.UI.Site.Controllers
 
         //
         // POST: /Manage/EnableTwoFactorAuthentication
+        /// <summary>
+        /// Enables the two factor authentication.
+        /// </summary>
+        /// <returns></returns>
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> EnableTwoFactorAuthentication()
@@ -131,6 +177,10 @@ namespace Swastika.UI.Site.Controllers
 
         //
         // POST: /Manage/DisableTwoFactorAuthentication
+        /// <summary>
+        /// Disables the two factor authentication.
+        /// </summary>
+        /// <returns></returns>
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DisableTwoFactorAuthentication()
@@ -147,6 +197,11 @@ namespace Swastika.UI.Site.Controllers
 
         //
         // GET: /Manage/VerifyPhoneNumber
+        /// <summary>
+        /// Verifies the phone number.
+        /// </summary>
+        /// <param name="phoneNumber">The phone number.</param>
+        /// <returns></returns>
         [HttpGet]
         public async Task<IActionResult> VerifyPhoneNumber(string phoneNumber)
         {
@@ -162,6 +217,11 @@ namespace Swastika.UI.Site.Controllers
 
         //
         // POST: /Manage/VerifyPhoneNumber
+        /// <summary>
+        /// Verifies the phone number.
+        /// </summary>
+        /// <param name="model">The model.</param>
+        /// <returns></returns>
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> VerifyPhoneNumber(VerifyPhoneNumberViewModel model)
@@ -187,6 +247,10 @@ namespace Swastika.UI.Site.Controllers
 
         //
         // POST: /Manage/RemovePhoneNumber
+        /// <summary>
+        /// Removes the phone number.
+        /// </summary>
+        /// <returns></returns>
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> RemovePhoneNumber()
@@ -206,6 +270,10 @@ namespace Swastika.UI.Site.Controllers
 
         //
         // GET: /Manage/ChangePassword
+        /// <summary>
+        /// Changes the password.
+        /// </summary>
+        /// <returns></returns>
         [HttpGet]
         public IActionResult ChangePassword()
         {
@@ -214,6 +282,11 @@ namespace Swastika.UI.Site.Controllers
 
         //
         // POST: /Manage/ChangePassword
+        /// <summary>
+        /// Changes the password.
+        /// </summary>
+        /// <param name="model">The model.</param>
+        /// <returns></returns>
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> ChangePassword(ChangePasswordViewModel model)
@@ -240,6 +313,10 @@ namespace Swastika.UI.Site.Controllers
 
         //
         // GET: /Manage/SetPassword
+        /// <summary>
+        /// Sets the password.
+        /// </summary>
+        /// <returns></returns>
         [HttpGet]
         public IActionResult SetPassword()
         {
@@ -248,6 +325,11 @@ namespace Swastika.UI.Site.Controllers
 
         //
         // POST: /Manage/SetPassword
+        /// <summary>
+        /// Sets the password.
+        /// </summary>
+        /// <param name="model">The model.</param>
+        /// <returns></returns>
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> SetPassword(SetPasswordViewModel model)
@@ -273,6 +355,11 @@ namespace Swastika.UI.Site.Controllers
         }
 
         //GET: /Manage/ManageLogins
+        /// <summary>
+        /// Manages the logins.
+        /// </summary>
+        /// <param name="message">The message.</param>
+        /// <returns></returns>
         [HttpGet]
         public async Task<IActionResult> ManageLogins(ManageMessageId? message = null)
         {
@@ -298,6 +385,11 @@ namespace Swastika.UI.Site.Controllers
 
         //
         // POST: /Manage/LinkLogin
+        /// <summary>
+        /// Links the login.
+        /// </summary>
+        /// <param name="provider">The provider.</param>
+        /// <returns></returns>
         [HttpPost]
         [ValidateAntiForgeryToken]
         public IActionResult LinkLogin(string provider)
@@ -310,6 +402,10 @@ namespace Swastika.UI.Site.Controllers
 
         //
         // GET: /Manage/LinkLoginCallback
+        /// <summary>
+        /// Links the login callback.
+        /// </summary>
+        /// <returns></returns>
         [HttpGet]
         public async Task<ActionResult> LinkLoginCallback()
         {
@@ -330,6 +426,10 @@ namespace Swastika.UI.Site.Controllers
 
         #region Helpers
 
+        /// <summary>
+        /// Adds the errors.
+        /// </summary>
+        /// <param name="result">The result.</param>
         private void AddErrors(IdentityResult result)
         {
             foreach (var error in result.Errors)
@@ -340,16 +440,44 @@ namespace Swastika.UI.Site.Controllers
 
         public enum ManageMessageId
         {
+            /// <summary>
+            /// The add phone success
+            /// </summary>
             AddPhoneSuccess,
+            /// <summary>
+            /// The add login success
+            /// </summary>
             AddLoginSuccess,
+            /// <summary>
+            /// The change password success
+            /// </summary>
             ChangePasswordSuccess,
+            /// <summary>
+            /// The set two factor success
+            /// </summary>
             SetTwoFactorSuccess,
+            /// <summary>
+            /// The set password success
+            /// </summary>
             SetPasswordSuccess,
+            /// <summary>
+            /// The remove login success
+            /// </summary>
             RemoveLoginSuccess,
+            /// <summary>
+            /// The remove phone success
+            /// </summary>
             RemovePhoneSuccess,
+            /// <summary>
+            /// The error
+            /// </summary>
             Error
         }
 
+        /// <summary>
+        /// Gets the current user asynchronous.
+        /// </summary>
+        /// <returns></returns>
         private Task<ApplicationUser> GetCurrentUserAsync()
         {
             return _userManager.GetUserAsync(HttpContext.User);

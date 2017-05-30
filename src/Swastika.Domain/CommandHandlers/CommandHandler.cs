@@ -7,12 +7,33 @@ namespace Swastika.Domain.CommandHandlers
 {
     public class CommandHandler
     {
+        /// <summary>
+        /// The constant domain notification key commit{CC2D43FA-BBC4-448A-9D0B-7B57ADF2655C}
+        /// </summary>
         private const string CONST_DOMAIN_NOTIFICATION_KEY_COMMIT = "Commit";
+        /// <summary>
+        /// The constant domain notification key commit value{CC2D43FA-BBC4-448A-9D0B-7B57ADF2655C}
+        /// </summary>
         private const string CONST_DOMAIN_NOTIFICATION_KEY_COMMIT_VALUE = "We had a problem during saving your data.";
+        /// <summary>
+        /// The uow{CC2D43FA-BBC4-448A-9D0B-7B57ADF2655C}
+        /// </summary>
         private readonly IUnitOfWork _uow;
+        /// <summary>
+        /// The bus{CC2D43FA-BBC4-448A-9D0B-7B57ADF2655C}
+        /// </summary>
         private readonly IBus _bus;
+        /// <summary>
+        /// The notifications{CC2D43FA-BBC4-448A-9D0B-7B57ADF2655C}
+        /// </summary>
         private readonly IDomainNotificationHandler<DomainNotification> _notifications;
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="CommandHandler" /> class.
+        /// </summary>
+        /// <param name="uow">The uow.</param>
+        /// <param name="bus">The bus.</param>
+        /// <param name="notifications">The notifications.</param>
         public CommandHandler(IUnitOfWork uow, IBus bus, IDomainNotificationHandler<DomainNotification> notifications)
         {
             _uow = uow;
@@ -20,6 +41,10 @@ namespace Swastika.Domain.CommandHandlers
             _bus = bus;
         }
 
+        /// <summary>
+        /// Notifies the validation errors.
+        /// </summary>
+        /// <param name="message">The message.</param>
         protected void NotifyValidationErrors(Command message)
         {
             foreach (var error in message.ValidationResult.Errors)
@@ -28,6 +53,10 @@ namespace Swastika.Domain.CommandHandlers
             }
         }
 
+        /// <summary>
+        /// Commits this instance.
+        /// </summary>
+        /// <returns></returns>
         public bool Commit()
         {
             if (_notifications.HasNotifications()) return false;
@@ -35,7 +64,7 @@ namespace Swastika.Domain.CommandHandlers
             if (commandResponse.Success) return true;
 
             _bus.RaiseEvent(new DomainNotification(
-                CONST_DOMAIN_NOTIFICATION_KEY_COMMIT, 
+                CONST_DOMAIN_NOTIFICATION_KEY_COMMIT,
                 CONST_DOMAIN_NOTIFICATION_KEY_COMMIT_VALUE));
             return false;
         }

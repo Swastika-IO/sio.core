@@ -5,6 +5,10 @@ namespace Swastika.UI.Site.Controllers
     [Route("home")]
     public class HomeController : Controller
     {
+        /// <summary>
+        /// Indexes this instance.
+        /// </summary>
+        /// <returns></returns>
         [Route("welcome")]
         [Route("")]
         [Route("/")]
@@ -13,6 +17,10 @@ namespace Swastika.UI.Site.Controllers
             return View();
         }
 
+        /// <summary>
+        /// Abouts this instance.
+        /// </summary>
+        /// <returns></returns>
         [Route("about")]
         public IActionResult About()
         {
@@ -21,6 +29,10 @@ namespace Swastika.UI.Site.Controllers
             return View();
         }
 
+        /// <summary>
+        /// Contacts this instance.
+        /// </summary>
+        /// <returns></returns>
         [Route("contact")]
         public IActionResult Contact()
         {
@@ -29,12 +41,20 @@ namespace Swastika.UI.Site.Controllers
             return View();
         }
 
+        /// <summary>
+        /// Errors this instance.
+        /// </summary>
+        /// <returns></returns>
         [Route("error")]
         public IActionResult Error()
         {
             return View();
         }
 
+        /// <summary>
+        /// Accesses the denied.
+        /// </summary>
+        /// <returns></returns>
         [Route("access-denied")]
         public IActionResult AccessDenied()
         {

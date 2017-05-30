@@ -37,6 +37,10 @@ namespace Swastika.Infrastructure.CrossCutting.IoC
 {
     public class SimpleInjectorBootStrapper
     {
+        /// <summary>
+        /// Registers the services.
+        /// </summary>
+        /// <param name="services">The services.</param>
         public static void RegisterServices(IServiceCollection services)
         {
             // ASP.NET HttpContext dependency
