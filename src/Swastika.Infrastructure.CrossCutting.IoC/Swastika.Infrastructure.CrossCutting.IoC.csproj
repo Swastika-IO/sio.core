@@ -20,6 +20,7 @@
     <ProjectReference Include="..\Swastika.Extension.Customer.Infrastructure.Data\Swastika.Extension.Customer.Infrastructure.Data.csproj" />
     <ProjectReference Include="..\Swastika.Infrastructure.CrossCutting.Identity\Swastika.Infrastructure.CrossCutting.Identity.csproj" />
     <ProjectReference Include="..\Swastika.Infrastructure.Data\Swastika.Infrastructure.Data.csproj" />
+    <ProjectReference Include="..\Swastika.UI.Base\Swastika.UI.Base.csproj" />
   </ItemGroup>
 
   <ItemGroup>

@@ -21,6 +21,7 @@
     <ProjectReference Include="..\..\src\Swastika.Extension.Customer.Application\Swastika.Extension.Customer.Application.csproj" />
     <ProjectReference Include="..\..\src\Swastika.Extension.Customer.UI.Api\Swastika.Extension.Customer.UI.Api.csproj" />
     <ProjectReference Include="..\..\src\Swastika.UI.Base\Swastika.UI.Base.csproj" />
+    <ProjectReference Include="..\Swastika.Extension.Customer.Infrastructure.CrossCutting.IoC\Swastika.Extension.Customer.Infrastructure.CrossCutting.IoC.csproj" />
   </ItemGroup>
 
 </Project>

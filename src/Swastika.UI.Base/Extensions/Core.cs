@@ -22,7 +22,7 @@ namespace Swastika.UI.Base.Extensions
         /// <summary>
         /// The constant default extension path
         /// </summary>
-        private const string CONST_DEFAULT_EXTENSIONS_FILE_PATH = "\\Content\\Extensions\\";
+        private const string CONST_DEFAULT_EXTENSIONS_FILE_PATH = "\\Contents\\Extensions\\";
         /// <summary>
         /// The constant default extension file name
         /// </summary>
@@ -54,11 +54,12 @@ namespace Swastika.UI.Base.Extensions
                     continue;
                 }
 
-                foreach (var dllFile in extFolder.GetFileSystemInfos(extension.Name + "*.dll"))
+                foreach (var dllFile in extFolder.GetFileSystemInfos("*.dll"))
                 {
                     Assembly assembly;
                     try
                     {
+                        // Get new assembly from path
                         assembly = AssemblyLoadContext.Default.LoadFromAssemblyPath(dllFile.FullName);
                     }
                     catch (FileLoadException)
@@ -71,10 +72,10 @@ namespace Swastika.UI.Base.Extensions
                             throw;
                         }
                     }
+
                     if (dllFile.Name == extension.Name + ".dll" || dllFile.Name == extension.Name + ".UI.Api.dll")
                     {
-                        extensions.Add(new ExtensionInfo
-                        {
+                        extensions.Add(new ExtensionInfo{
                             Name = extension.Name,
                             Assembly = assembly,
                             AbsolutePath = extFolder.FullName,

@@ -32,6 +32,8 @@ using Swastika.Extension.Blog.Domain.CommandHandlers;
 using Swastika.Extension.Blog.Domain.Interfaces;
 using Swastika.Extension.Blog.Infrastructure.Data.Repository;
 using Swastika.Extension.Blog.Infrastructure.Data.Context;
+using Swastika.UI.Base.Extensions;
+using System;
 
 namespace Swastika.Infrastructure.CrossCutting.IoC
 {
@@ -52,38 +54,42 @@ namespace Swastika.Infrastructure.CrossCutting.IoC
             // Application
             services.AddSingleton(Mapper.Configuration);
             services.AddScoped<IMapper>(sp => new Mapper(sp.GetRequiredService<IConfigurationProvider>(), sp.GetService));
+
+            //foreach (ExtensionInfo extension in ExtensionManager.Extensions)
+            //{
+            //    var type = extension.Assembly.GetType(extension.Name+ ".Infrastructure.CrossCutting.IoC.SimpleInjectorBootStrapper");
+            //    dynamic simpleInjectorBootStrapper = Activator.CreateInstance(type);
+            //    simpleInjectorBootStrapper.RegisterServices(services);
+            //}
+
             // Customer
             services.AddScoped<ICustomerAppService, CustomerAppService>();
-            // Blog
-            services.AddScoped<IBlogAppService, BlogAppService>();
-
             // Domain - Events
-            services.AddScoped<IDomainNotificationHandler<DomainNotification>, DomainNotificationHandler>();
-            // Customer
             services.AddScoped<IHandler<CustomerRegisteredEvent>, CustomerEventHandler>();
             services.AddScoped<IHandler<CustomerUpdatedEvent>, CustomerEventHandler>();
             services.AddScoped<IHandler<CustomerRemovedEvent>, CustomerEventHandler>();
-            // Blog
-            services.AddScoped<IHandler<BlogRegisteredEvent>, BlogEventHandler>();
-            services.AddScoped<IHandler<BlogUpdatedEvent>, BlogEventHandler>();
-            services.AddScoped<IHandler<BlogRemovedEvent>, BlogEventHandler>();
-
             // Domain - Commands
-            // Customer
             services.AddScoped<IHandler<RegisterNewCustomerCommand>, CustomerCommandHandler>();
             services.AddScoped<IHandler<UpdateCustomerCommand>, CustomerCommandHandler>();
             services.AddScoped<IHandler<RemoveCustomerCommand>, CustomerCommandHandler>();
-            // Blog
-            services.AddScoped<IHandler<RegisterNewBlogCommand>, BlogCommandHandler>();
-            services.AddScoped<IHandler<UpdateBlogCommand>, BlogCommandHandler>();
-            services.AddScoped<IHandler<RemoveBlogCommand>, BlogCommandHandler>();
-
             // Infra - Data
-            // Customer
             services.AddScoped<ICustomerRepository, CustomerRepository>();
             services.AddScoped<IUnitOfWork, UnitOfWork>();
             services.AddScoped<SwastikaExtensionCustomerContext>();
+
+
             // Blog
+            services.AddScoped<IBlogAppService, BlogAppService>();
+            // Domain - Events
+            services.AddScoped<IDomainNotificationHandler<DomainNotification>, DomainNotificationHandler>();
+            services.AddScoped<IHandler<BlogRegisteredEvent>, BlogEventHandler>();
+            services.AddScoped<IHandler<BlogUpdatedEvent>, BlogEventHandler>();
+            services.AddScoped<IHandler<BlogRemovedEvent>, BlogEventHandler>();
+            // Domain - Commands
+            services.AddScoped<IHandler<RegisterNewBlogCommand>, BlogCommandHandler>();
+            services.AddScoped<IHandler<UpdateBlogCommand>, BlogCommandHandler>();
+            services.AddScoped<IHandler<RemoveBlogCommand>, BlogCommandHandler>();
+            // Infra - Data
             services.AddScoped<IBlogRepository, BlogRepository>();
             services.AddScoped<IUnitOfWork, UnitOfWork>();
             services.AddScoped<SwastikaExtensionBlogContext>();

@@ -129,6 +129,8 @@ namespace Swastika.UI.Site
 
             services.AddMvcToExtensions(ExtensionManager.Extensions);
 
+
+
             // .NET Native DI Abstraction
             RegisterServices(services);
         }
