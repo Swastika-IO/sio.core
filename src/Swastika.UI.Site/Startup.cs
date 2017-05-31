@@ -16,6 +16,7 @@ using Swastika.Infrastructure.CrossCutting.IoC;
 using Swastika.UI.Base.Extensions;
 using Microsoft.AspNetCore.Mvc.Razor;
 using Swastika.UI.Base.Extensions.Web;
+using Swastika.Common.Utility;
 
 namespace Swastika.UI.Site
 {
@@ -24,46 +25,6 @@ namespace Swastika.UI.Site
     /// </summary>
     public class Startup
     {
-        /// <summary>
-        /// The constant default connection
-        /// </summary>
-        private const string CONST_DEFAULT_CONNECTION = "DefaultConnection";
-        /// <summary>
-        /// The constant file appsetting
-        /// </summary>
-        private const string CONST_FILE_APPSETTING = "appsettings.json";
-        /// <summary>
-        /// The constant authentication policy canwritecustomerdata
-        /// </summary>
-        private const string CONST_AUTH_POLICY_CANWRITECUSTOMERDATA = "CanWriteCustomerData";
-        /// <summary>
-        /// The constant authentication policy canremovecustomerdata
-        /// </summary>
-        private const string CONST_AUTH_POLICY_CANREMOVECUSTOMERDATA = "CanRemoveCustomerData";
-        /// <summary>
-        /// The constant path home access denied
-        /// </summary>
-        private const string CONST_PATH_HOME_ACCESS_DENIED = "/home/access-denied";
-        /// <summary>
-        /// The constant path home error
-        /// </summary>
-        private const string CONST_PATH_HOME_ERROR = "/Home/Error";
-        /// <summary>
-        /// The constant section logging
-        /// </summary>
-        private const string CONST_SECTION_LOGGING = "Logging";
-        /// <summary>
-        /// The constant route default
-        /// </summary>
-        private const string CONST_ROUTE_DEFAULT = "default";
-        /// <summary>
-        /// The constant appid
-        /// </summary>
-        private const string CONST_APPID = "SetYourDataHere";
-        /// <summary>
-        /// The constant appsecret
-        /// </summary>
-        private const string CONST_APPSECRET = "SetYourDataHere";
 
         /// <summary>
         /// Initializes a new instance of the <see cref="Startup"/> class.
@@ -73,7 +34,7 @@ namespace Swastika.UI.Site
         {
             var builder = new ConfigurationBuilder()
                 .SetBasePath(Directory.GetCurrentDirectory())
-                .AddJsonFile(CONST_FILE_APPSETTING, optional: true, reloadOnChange: true)
+                .AddJsonFile(Const.CONST_FILE_APPSETTING, optional: true, reloadOnChange: true)
                 .AddJsonFile($"appsettings.{env.EnvironmentName}.json", optional: true);
 
             if (env.IsDevelopment())
@@ -105,10 +66,10 @@ namespace Swastika.UI.Site
             services.LoadExtensions(extensionsFilePath, extensionsFileName);
 
             services.AddDbContext<ApplicationDbContext>(options =>
-                options.UseSqlServer(Configuration.GetConnectionString(CONST_DEFAULT_CONNECTION)));
+                options.UseSqlServer(Configuration.GetConnectionString(Const.CONST_DEFAULT_CONNECTION)));
 
             services.AddIdentity<ApplicationUser, IdentityRole>(options =>
-                    options.Cookies.ApplicationCookie.AccessDeniedPath = CONST_PATH_HOME_ACCESS_DENIED)
+                    options.Cookies.ApplicationCookie.AccessDeniedPath = Const.CONST_PATH_HOME_ACCESS_DENIED)
                 .AddEntityFrameworkStores<ApplicationDbContext>()
                 .AddDefaultTokenProviders();
 
@@ -117,8 +78,8 @@ namespace Swastika.UI.Site
 
             services.AddAuthorization(options =>
             {
-                options.AddPolicy(CONST_AUTH_POLICY_CANWRITECUSTOMERDATA, policy => policy.Requirements.Add(new ClaimRequirement("Customers","Write")));
-                options.AddPolicy(CONST_AUTH_POLICY_CANREMOVECUSTOMERDATA, policy => policy.Requirements.Add(new ClaimRequirement("Customers", "Remove")));
+                options.AddPolicy(Const.CONST_AUTH_POLICY_CANWRITECUSTOMERDATA, policy => policy.Requirements.Add(new ClaimRequirement("Customers","Write")));
+                options.AddPolicy(Const.CONST_AUTH_POLICY_CANREMOVECUSTOMERDATA, policy => policy.Requirements.Add(new ClaimRequirement("Customers", "Remove")));
             });
 
             // Add custom view for extensions
@@ -128,9 +89,7 @@ namespace Swastika.UI.Site
                 });
 
             services.AddMvcToExtensions(ExtensionManager.Extensions);
-
-
-
+            
             // .NET Native DI Abstraction
             RegisterServices(services);
         }
@@ -147,7 +106,7 @@ namespace Swastika.UI.Site
                                       ILoggerFactory loggerFactory,
                                       IHttpContextAccessor accessor)
         {
-            loggerFactory.AddConsole(Configuration.GetSection(CONST_SECTION_LOGGING));
+            loggerFactory.AddConsole(Configuration.GetSection(Const.CONST_SECTION_LOGGING));
             loggerFactory.AddDebug();
 
             if (env.IsDevelopment())
@@ -158,7 +117,7 @@ namespace Swastika.UI.Site
             }
             else
             {
-                app.UseExceptionHandler(CONST_PATH_HOME_ERROR);
+                app.UseExceptionHandler(Const.CONST_PATH_HOME_ERROR);
             }
 
             app.UseStaticFiles();
@@ -166,14 +125,14 @@ namespace Swastika.UI.Site
 
             app.UseFacebookAuthentication(new FacebookOptions()
             {
-                AppId = CONST_APPID,
-                AppSecret = CONST_APPSECRET
+                AppId = Const.CONST_APPID,
+                AppSecret = Const.CONST_APPSECRET
             });
 
             app.UseMvc(routes =>
             {
                 routes.MapRoute(
-                    name: CONST_ROUTE_DEFAULT,
+                    name: Const.CONST_ROUTE_DEFAULT,
                     template: "{controller=Home}/{action=welcome}/{id?}");
             });
 

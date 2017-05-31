@@ -1,45 +1,63 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Builder;
-using Microsoft.AspNetCore.Hosting;
-using Microsoft.Extensions.Configuration;
-using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Logging;
-using Newtonsoft.Json;
+﻿using Microsoft.Extensions.DependencyInjection;
+using Swastika.Domain.Core.Events;
+using Swastika.Domain.Interfaces;
+using Swastika.Extension.Customer.Application.Interfaces;
+using Swastika.Extension.Customer.Application.Services;
+using Swastika.Extension.Customer.Domain.CommandHandlers;
+using Swastika.Extension.Customer.Domain.Commands;
+using Swastika.Extension.Customer.Domain.EventHandlers;
+using Swastika.Extension.Customer.Domain.Events;
+using Swastika.Extension.Customer.Domain.Interfaces;
+using Swastika.Extension.Customer.Infrastructure.Data.Context;
+using Swastika.Extension.Customer.Infrastructure.Data.Repository;
+using Swastika.Extension.Customer.Infrastructure.Data.UoW;
+using Swastika.UI.Base.Extensions;
 
-namespace Swastika.Extension.Customer.UI.Site
+namespace Swastika.Extension.Customer
 {
-    public class Startup
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <seealso cref="Swastika.UI.Base.Extensions.IExtensionStartup" />
+    public class Startup : IExtensionStartup
     {
-        public Startup(IHostingEnvironment env)
+        /// <summary>
+        /// Initializes a new instance of the <see cref="Startup"/> class.
+        /// </summary>
+        public Startup()
         {
-
-            //var builder = new ConfigurationBuilder()
-            //    .SetBasePath(env.ContentRootPath)
-            //    .AddJsonFile("appsettings.json", optional: false, reloadOnChange: true)
-            //    .AddJsonFile($"appsettings.{env.EnvironmentName}.json", optional: true)
-            //    .AddEnvironmentVariables();
-            //Configuration = builder.Build();
+            // Do something on startup
         }
 
-        //public IConfigurationRoot Configuration { get; }
+        /// <summary>
+        /// Extensions the startup.
+        /// </summary>
+        /// <param name="serviceCollection">The service collection.</param>
+        public void ExtensionStartup(IServiceCollection serviceCollection)
+        {
+            ConfigureServices(serviceCollection);
+        }
 
-        //// This method gets called by the runtime. Use this method to add services to the container.
-        //public void ConfigureServices(IServiceCollection services)
-        //{
-        //    // Add framework services.
-        //    services.AddMvc();
-        //}
-
-        //// This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        //public void Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerFactory loggerFactory)
-        //{
-        //    loggerFactory.AddConsole(Configuration.GetSection("Logging"));
-        //    loggerFactory.AddDebug();
-
-        //    app.UseMvc();
-        //}
+        /// <summary>
+        /// Configures the services.
+        /// </summary>
+        /// <param name="serviceCollection">The service collection.</param>
+        public void ConfigureServices(IServiceCollection serviceCollection)
+        {
+            // Customer
+            serviceCollection.AddScoped<ICustomerAppService, CustomerAppService>();
+            // Domain - Events
+            serviceCollection.AddScoped<IHandler<CustomerRegisteredEvent>, CustomerEventHandler>();
+            serviceCollection.AddScoped<IHandler<CustomerUpdatedEvent>, CustomerEventHandler>();
+            serviceCollection.AddScoped<IHandler<CustomerRemovedEvent>, CustomerEventHandler>();
+            // Domain - Commands
+            serviceCollection.AddScoped<IHandler<RegisterNewCustomerCommand>, CustomerCommandHandler>();
+            serviceCollection.AddScoped<IHandler<UpdateCustomerCommand>, CustomerCommandHandler>();
+            serviceCollection.AddScoped<IHandler<RemoveCustomerCommand>, CustomerCommandHandler>();
+            // Infra - Data
+            serviceCollection.AddScoped<ICustomerRepository, CustomerRepository>();
+            serviceCollection.AddScoped<IUnitOfWork, UnitOfWork>();
+            serviceCollection.AddScoped<SwastikaExtensionCustomerContext>();
+        }
     }
 }

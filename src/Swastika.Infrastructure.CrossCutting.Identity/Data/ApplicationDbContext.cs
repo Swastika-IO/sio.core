@@ -3,19 +3,12 @@ using Swastika.Infrastructure.CrossCutting.Identity.Models;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
+using Swastika.Common.Utility;
 
 namespace Swastika.Infrastructure.CrossCutting.Identity.Data
 {
     public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
     {
-        /// <summary>
-        /// The constant file appsetting{CC2D43FA-BBC4-448A-9D0B-7B57ADF2655C}
-        /// </summary>
-        private const string CONST_FILE_APPSETTING = "appsettings.json";
-        /// <summary>
-        /// The constant default connection{CC2D43FA-BBC4-448A-9D0B-7B57ADF2655C}
-        /// </summary>
-        private const string CONST_DEFAULT_CONNECTION = "DefaultConnection";
 
         /// <summary>
         /// Initializes a new instance of the <see cref="ApplicationDbContext" /> class.
@@ -43,11 +36,11 @@ namespace Swastika.Infrastructure.CrossCutting.Identity.Data
             // get the configuration from the app settings
             var config = new ConfigurationBuilder()
                 .SetBasePath(Directory.GetCurrentDirectory())
-                .AddJsonFile(CONST_FILE_APPSETTING)
+                .AddJsonFile(Const.CONST_FILE_APPSETTING)
                 .Build();
 
             // define the database to use
-            optionsBuilder.UseSqlServer(config.GetConnectionString(CONST_DEFAULT_CONNECTION));
+            optionsBuilder.UseSqlServer(config.GetConnectionString(Const.CONST_DEFAULT_CONNECTION));
         }
 
         /// <summary>

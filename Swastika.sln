@@ -72,7 +72,11 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Swastika.Extension.Customer
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Swastika.Extension.Blog", "src\Swastika.Extension.Blog\Swastika.Extension.Blog.csproj", "{52441322-3D03-4FA3-AEA5-1EF986D01784}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Swastika.Extension.Customer.Infrastructure.CrossCutting.IoC", "src\Swastika.Extension.Customer.Infrastructure.CrossCutting.IoC\Swastika.Extension.Customer.Infrastructure.CrossCutting.IoC.csproj", "{94110A9F-F854-4989-ADC1-36031FF41B8E}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "0 - Common", "0 - Common", "{D9335B41-604E-4964-9CE5-8339736090A3}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Swastika.Common.Utility", "src\Swastika.Common.Utility\Swastika.Common.Utility.csproj", "{E1AFDFB3-9BAC-4979-8EBC-4A2C9D3A1131}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Swastika.Common.Helper", "src\Swastika.Common.Helper\Swastika.Common.Helper.csproj", "{9D4BA81C-4C1C-4CEF-9880-247B22FF2491}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -160,10 +164,14 @@ Global
 		{52441322-3D03-4FA3-AEA5-1EF986D01784}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{52441322-3D03-4FA3-AEA5-1EF986D01784}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{52441322-3D03-4FA3-AEA5-1EF986D01784}.Release|Any CPU.Build.0 = Release|Any CPU
-		{94110A9F-F854-4989-ADC1-36031FF41B8E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{94110A9F-F854-4989-ADC1-36031FF41B8E}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{94110A9F-F854-4989-ADC1-36031FF41B8E}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{94110A9F-F854-4989-ADC1-36031FF41B8E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E1AFDFB3-9BAC-4979-8EBC-4A2C9D3A1131}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E1AFDFB3-9BAC-4979-8EBC-4A2C9D3A1131}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E1AFDFB3-9BAC-4979-8EBC-4A2C9D3A1131}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E1AFDFB3-9BAC-4979-8EBC-4A2C9D3A1131}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9D4BA81C-4C1C-4CEF-9880-247B22FF2491}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9D4BA81C-4C1C-4CEF-9880-247B22FF2491}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9D4BA81C-4C1C-4CEF-9880-247B22FF2491}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9D4BA81C-4C1C-4CEF-9880-247B22FF2491}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -200,6 +208,8 @@ Global
 		{3FBCCBF7-4B84-4F84-A479-D4F78E0047F3} = {9F469D36-2903-4DF6-91FB-2E71746EBE23}
 		{86A9E019-8F92-42AA-96B7-D9F45B140161} = {ED12F9FC-9E2C-480F-8FB8-C361C2D625C7}
 		{52441322-3D03-4FA3-AEA5-1EF986D01784} = {9F469D36-2903-4DF6-91FB-2E71746EBE23}
-		{94110A9F-F854-4989-ADC1-36031FF41B8E} = {ED12F9FC-9E2C-480F-8FB8-C361C2D625C7}
+		{D9335B41-604E-4964-9CE5-8339736090A3} = {6C32D67C-8272-4A5E-8753-717CE471F4CE}
+		{E1AFDFB3-9BAC-4979-8EBC-4A2C9D3A1131} = {D9335B41-604E-4964-9CE5-8339736090A3}
+		{9D4BA81C-4C1C-4CEF-9880-247B22FF2491} = {D9335B41-604E-4964-9CE5-8339736090A3}
 	EndGlobalSection
 EndGlobal

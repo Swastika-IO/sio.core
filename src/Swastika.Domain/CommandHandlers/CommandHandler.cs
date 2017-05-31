@@ -2,19 +2,12 @@
 using Swastika.Domain.Core.Commands;
 using Swastika.Domain.Core.Notifications;
 using Swastika.Domain.Interfaces;
+using Swastika.Common.Utility;
 
 namespace Swastika.Domain.CommandHandlers
 {
     public class CommandHandler
     {
-        /// <summary>
-        /// The constant domain notification key commit{CC2D43FA-BBC4-448A-9D0B-7B57ADF2655C}
-        /// </summary>
-        private const string CONST_DOMAIN_NOTIFICATION_KEY_COMMIT = "Commit";
-        /// <summary>
-        /// The constant domain notification key commit value{CC2D43FA-BBC4-448A-9D0B-7B57ADF2655C}
-        /// </summary>
-        private const string CONST_DOMAIN_NOTIFICATION_KEY_COMMIT_VALUE = "We had a problem during saving your data.";
         /// <summary>
         /// The uow{CC2D43FA-BBC4-448A-9D0B-7B57ADF2655C}
         /// </summary>
@@ -64,8 +57,8 @@ namespace Swastika.Domain.CommandHandlers
             if (commandResponse.Success) return true;
 
             _bus.RaiseEvent(new DomainNotification(
-                CONST_DOMAIN_NOTIFICATION_KEY_COMMIT,
-                CONST_DOMAIN_NOTIFICATION_KEY_COMMIT_VALUE));
+                Const.CONST_DOMAIN_NOTIFICATION_KEY_COMMIT,
+                Const.CONST_DOMAIN_NOTIFICATION_KEY_COMMIT_VALUE));
             return false;
         }
     }

@@ -3,15 +3,11 @@ using Swastika.Domain.Core.Bus;
 using Swastika.Domain.Core.Commands;
 using Swastika.Domain.Core.Events;
 using Swastika.Domain.Core.Notifications;
-
+using Swastika.Common.Utility;
 namespace Swastika.Infrastructure.CrossCutting.Bus
 {
     public sealed class InMemoryBus : IBus
     {
-        /// <summary>
-        /// The constant domain notification{CC2D43FA-BBC4-448A-9D0B-7B57ADF2655C}
-        /// </summary>
-        private const string CONST_DOMAIN_NOTIFICATION = "DomainNotification";
 
         /// <summary>
         /// Gets or sets the container accessor.
@@ -59,7 +55,7 @@ namespace Swastika.Infrastructure.CrossCutting.Bus
         /// <param name="theEvent">The event.</param>
         public void RaiseEvent<T>(T theEvent) where T : Event
         {
-            if (!theEvent.MessageType.Equals(CONST_DOMAIN_NOTIFICATION))
+            if (!theEvent.MessageType.Equals(Const.CONST_DOMAIN_NOTIFICATION))
                 _eventStore?.Save(theEvent);
 
             Publish(theEvent);
@@ -74,7 +70,7 @@ namespace Swastika.Infrastructure.CrossCutting.Bus
         {
             if (Container == null) return;
 
-            var obj = Container.GetService(message.MessageType.Equals(CONST_DOMAIN_NOTIFICATION)
+            var obj = Container.GetService(message.MessageType.Equals(Const.CONST_DOMAIN_NOTIFICATION)
                 ? typeof(IDomainNotificationHandler<T>)
                 : typeof(IHandler<T>));
 

@@ -34,6 +34,8 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Swastika.Application\Swastika.Application.csproj" />
+    <ProjectReference Include="..\Swastika.Common.Helper\Swastika.Common.Helper.csproj" />
+    <ProjectReference Include="..\Swastika.Common.Utility\Swastika.Common.Utility.csproj" />
     <ProjectReference Include="..\Swastika.Domain.Core\Swastika.Domain.Core.csproj" />
     <ProjectReference Include="..\Swastika.Domain\Swastika.Domain.csproj" />
     <ProjectReference Include="..\Swastika.Infrastructure.CrossCutting.Bus\Swastika.Infrastructure.CrossCutting.Bus.csproj" />

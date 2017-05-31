@@ -118,12 +118,11 @@ namespace Swastika.UI.Base.Extensions
                 mvcBuilder.AddApplicationPart(extension.Assembly);
 
                 // Register dependency in extensions
-                var moduleInitializerType =
-                    extension.Assembly.GetTypes().FirstOrDefault(x => typeof(IExtensionInitializer).IsAssignableFrom(x));
-                if ((moduleInitializerType != null) && (moduleInitializerType != typeof(IExtensionInitializer)))
+                var extensionInitializerType = extension.Assembly.GetTypes().FirstOrDefault(x => typeof(IExtensionStartup).IsAssignableFrom(x));
+                if ((extensionInitializerType != null) && (extensionInitializerType != typeof(IExtensionStartup)))
                 {
-                    var moduleInitializer = (IExtensionInitializer)Activator.CreateInstance(moduleInitializerType);
-                    moduleInitializer.Init(services);
+                    var extensionInitializer = (IExtensionStartup)Activator.CreateInstance(extensionInitializerType);
+                    extensionInitializer.ExtensionStartup(services);
                 }
             }
 
