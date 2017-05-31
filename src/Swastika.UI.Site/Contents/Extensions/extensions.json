@@ -5,14 +5,16 @@
     "IsActive": true,
     "Ulr": "",
     "Author": "Swastika Core Team",
-    "InstalledDateTime": ""
+    "InstalledDateTime": "",
+	"Version":""
   },
   {
-    "Title": "Swastika ClassLibrary Sample",
-    "Name": "ClassLibrary",
+    "Title": "Swastika Blog",
+    "Name": "Swastika.Extension.Blog",
     "IsActive": true,
     "Ulr": "",
     "Author": "Swastika Core Team",
-    "InstalledDateTime": ""
+    "InstalledDateTime": "",
+	"Version":""
   }
 ]

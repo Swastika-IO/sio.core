@@ -1,43 +1,46 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Builder;
-using Microsoft.AspNetCore.Hosting;
-using Microsoft.Extensions.Configuration;
-using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Logging;
+﻿using Microsoft.Extensions.DependencyInjection;
+using Swastika.Domain.Core.Events;
+using Swastika.Domain.Interfaces;
+using Swastika.Extension.Blog.Application.Interfaces;
+using Swastika.Extension.Blog.Application.Services;
+using Swastika.Extension.Blog.Domain.CommandHandlers;
+using Swastika.Extension.Blog.Domain.Commands;
+using Swastika.Extension.Blog.Domain.EventHandlers;
+using Swastika.Extension.Blog.Domain.Events;
+using Swastika.Extension.Blog.Domain.Interfaces;
+using Swastika.Extension.Blog.Infrastructure.Data.Context;
+using Swastika.Extension.Blog.Infrastructure.Data.Repository;
+using Swastika.Extension.Blog.Infrastructure.Data.UoW;
+using Swastika.UI.Base.Extensions;
 
 namespace Swastika.Extension.Blog.UI.Site
 {
-    public class Startup
+    public class Startup : IExtensionStartup
     {
-        public Startup(IHostingEnvironment env)
+        public void ExtensionStartup(IServiceCollection serviceCollection)
         {
-            var builder = new ConfigurationBuilder()
-                .SetBasePath(env.ContentRootPath)
-                .AddJsonFile("appsettings.json", optional: false, reloadOnChange: true)
-                .AddJsonFile($"appsettings.{env.EnvironmentName}.json", optional: true)
-                .AddEnvironmentVariables();
-            Configuration = builder.Build();
+            ConfigureServices(serviceCollection);
         }
-
-        public IConfigurationRoot Configuration { get; }
-
-        // This method gets called by the runtime. Use this method to add services to the container.
-        public void ConfigureServices(IServiceCollection services)
+        public void ConfigureServices(IServiceCollection serviceCollection)
         {
-            // Add framework services.
-            services.AddMvc();
-        }
 
-        // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerFactory loggerFactory)
-        {
-            loggerFactory.AddConsole(Configuration.GetSection("Logging"));
-            loggerFactory.AddDebug();
+            // Blog
+            serviceCollection.AddScoped<IBlogAppService, BlogAppService>();
 
-            app.UseMvc();
+            // Domain - Events
+            serviceCollection.AddScoped<IHandler<BlogRegisteredEvent>, BlogEventHandler>();
+            serviceCollection.AddScoped<IHandler<BlogUpdatedEvent>, BlogEventHandler>();
+            serviceCollection.AddScoped<IHandler<BlogRemovedEvent>, BlogEventHandler>();
+
+            // Domain - Commands
+            serviceCollection.AddScoped<IHandler<RegisterNewBlogCommand>, BlogCommandHandler>();
+            serviceCollection.AddScoped<IHandler<UpdateBlogCommand>, BlogCommandHandler>();
+            serviceCollection.AddScoped<IHandler<RemoveBlogCommand>, BlogCommandHandler>();
+
+            // Infra - Data
+            serviceCollection.AddScoped<IBlogRepository, BlogRepository>();
+            serviceCollection.AddScoped<IUnitOfWork, UnitOfWork>();
+            serviceCollection.AddScoped<SwastikaExtensionBlogContext>();
         }
     }
 }

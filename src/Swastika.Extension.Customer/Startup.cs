@@ -46,14 +46,17 @@ namespace Swastika.Extension.Customer
         {
             // Customer
             serviceCollection.AddScoped<ICustomerAppService, CustomerAppService>();
+
             // Domain - Events
             serviceCollection.AddScoped<IHandler<CustomerRegisteredEvent>, CustomerEventHandler>();
             serviceCollection.AddScoped<IHandler<CustomerUpdatedEvent>, CustomerEventHandler>();
             serviceCollection.AddScoped<IHandler<CustomerRemovedEvent>, CustomerEventHandler>();
+
             // Domain - Commands
             serviceCollection.AddScoped<IHandler<RegisterNewCustomerCommand>, CustomerCommandHandler>();
             serviceCollection.AddScoped<IHandler<UpdateCustomerCommand>, CustomerCommandHandler>();
             serviceCollection.AddScoped<IHandler<RemoveCustomerCommand>, CustomerCommandHandler>();
+
             // Infra - Data
             serviceCollection.AddScoped<ICustomerRepository, CustomerRepository>();
             serviceCollection.AddScoped<IUnitOfWork, UnitOfWork>();

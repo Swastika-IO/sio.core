@@ -44,22 +44,9 @@ namespace Swastika.Infrastructure.CrossCutting.IoC
             serviceCollection.AddSingleton(Mapper.Configuration);
             serviceCollection.AddScoped<IMapper>(sp => new Mapper(sp.GetRequiredService<IConfigurationProvider>(), sp.GetService));
             
-            // Blog
-            serviceCollection.AddScoped<IBlogAppService, BlogAppService>();
             // Domain - Events
             serviceCollection.AddScoped<IDomainNotificationHandler<DomainNotification>, DomainNotificationHandler>();
-            serviceCollection.AddScoped<IHandler<BlogRegisteredEvent>, BlogEventHandler>();
-            serviceCollection.AddScoped<IHandler<BlogUpdatedEvent>, BlogEventHandler>();
-            serviceCollection.AddScoped<IHandler<BlogRemovedEvent>, BlogEventHandler>();
-            // Domain - Commands
-            serviceCollection.AddScoped<IHandler<RegisterNewBlogCommand>, BlogCommandHandler>();
-            serviceCollection.AddScoped<IHandler<UpdateBlogCommand>, BlogCommandHandler>();
-            serviceCollection.AddScoped<IHandler<RemoveBlogCommand>, BlogCommandHandler>();
-            // Infra - Data
-            serviceCollection.AddScoped<IBlogRepository, BlogRepository>();
-            serviceCollection.AddScoped<IUnitOfWork, UnitOfWork>();
-            serviceCollection.AddScoped<SwastikaExtensionBlogContext>();
-
+            
             // Infra - Data EventSourcing
             serviceCollection.AddScoped<IEventStoreRepository, EventStoreSQLRepository>();
             serviceCollection.AddScoped<IEventStore, SqlEventStore>();
