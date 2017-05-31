@@ -11,6 +11,7 @@ using Swastika.Extension.Customer.Domain.Interfaces;
 using Swastika.Extension.Customer.Infrastructure.Data.Context;
 using Swastika.Extension.Customer.Infrastructure.Data.Repository;
 using Swastika.Extension.Customer.Infrastructure.Data.UoW;
+using Swastika.Infrastructure.CrossCutting.Identity.Authorization;
 using Swastika.UI.Base.Extensions;
 
 namespace Swastika.Extension.Customer
@@ -21,6 +22,16 @@ namespace Swastika.Extension.Customer
     /// <seealso cref="Swastika.UI.Base.Extensions.IExtensionStartup" />
     public class Startup : IExtensionStartup
     {
+
+        /// <summary>
+        /// The constant authentication policy canwritecustomerdata
+        /// </summary>
+        public const string CONST_AUTH_POLICY_CANWRITECUSTOMERDATA = "CanWriteCustomerData";
+        /// <summary>
+        /// The constant authentication policy canremovecustomerdata
+        /// </summary>
+        public const string CONST_AUTH_POLICY_CANREMOVECUSTOMERDATA = "CanRemoveCustomerData";
+
         /// <summary>
         /// Initializes a new instance of the <see cref="Startup"/> class.
         /// </summary>
@@ -35,6 +46,7 @@ namespace Swastika.Extension.Customer
         /// <param name="serviceCollection">The service collection.</param>
         public void ExtensionStartup(IServiceCollection serviceCollection)
         {
+            AddAuthorization(serviceCollection);
             ConfigureServices(serviceCollection);
         }
 
@@ -61,6 +73,15 @@ namespace Swastika.Extension.Customer
             serviceCollection.AddScoped<ICustomerRepository, CustomerRepository>();
             serviceCollection.AddScoped<IUnitOfWork, UnitOfWork>();
             serviceCollection.AddScoped<SwastikaExtensionCustomerContext>();
+        }
+
+        public void AddAuthorization(IServiceCollection serviceCollection)
+        {
+            serviceCollection.AddAuthorization(options =>
+            {
+                options.AddPolicy(CONST_AUTH_POLICY_CANWRITECUSTOMERDATA, policy => policy.Requirements.Add(new ClaimRequirement("Customers", "Write")));
+                options.AddPolicy(CONST_AUTH_POLICY_CANREMOVECUSTOMERDATA, policy => policy.Requirements.Add(new ClaimRequirement("Customers", "Remove")));
+            });
         }
     }
 }

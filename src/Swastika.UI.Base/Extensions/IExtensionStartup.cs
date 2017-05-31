@@ -16,5 +16,11 @@ namespace Swastika.UI.Base.Extensions
         /// </summary>
         /// <param name="serviceCollection">The service collection.</param>
         void ConfigureServices(IServiceCollection serviceCollection);
+
+        /// <summary>
+        /// Adds the authorization.
+        /// </summary>
+        /// <param name="serviceCollection">The service collection.</param>
+        void AddAuthorization(IServiceCollection serviceCollection);
     }
 }

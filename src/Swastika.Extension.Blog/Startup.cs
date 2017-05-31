@@ -19,6 +19,7 @@ namespace Swastika.Extension.Blog.UI.Site
     {
         public void ExtensionStartup(IServiceCollection serviceCollection)
         {
+            AddAuthorization(serviceCollection);
             ConfigureServices(serviceCollection);
         }
         public void ConfigureServices(IServiceCollection serviceCollection)
@@ -41,6 +42,14 @@ namespace Swastika.Extension.Blog.UI.Site
             serviceCollection.AddScoped<IBlogRepository, BlogRepository>();
             serviceCollection.AddScoped<IUnitOfWork, UnitOfWork>();
             serviceCollection.AddScoped<SwastikaExtensionBlogContext>();
+        }
+
+        public void AddAuthorization(IServiceCollection serviceCollection)
+        {
+            serviceCollection.AddAuthorization(options =>
+            {
+                
+            });
         }
     }
 }

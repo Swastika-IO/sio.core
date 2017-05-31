@@ -1,4 +1,5 @@
-﻿using Microsoft.Extensions.DependencyInjection;
+﻿using System;
+using Microsoft.Extensions.DependencyInjection;
 using Swastika.UI.Base.Extensions;
 
 namespace Swastika.Extension.Customer.UI.Api
@@ -10,6 +11,11 @@ namespace Swastika.Extension.Customer.UI.Api
         /// </summary>
         public Startup()
         {
+        }
+
+        public void AddAuthorization(IServiceCollection serviceCollection)
+        {
+
         }
 
         /// <summary>

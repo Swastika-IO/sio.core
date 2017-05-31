@@ -1,15 +1,15 @@
-﻿using Microsoft.Extensions.DependencyInjection;
+﻿using Microsoft.CodeAnalysis;
+using Microsoft.Extensions.DependencyInjection;
+using Newtonsoft.Json;
+using Swastika.Common.Utility;
+using Swastika.UI.Base.Extensions.Models;
+using Swastika.UI.Base.Extensions.Web.ModelBinders;
 using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using System.Reflection;
 using System.Runtime.Loader;
-using System.Text;
-using Newtonsoft.Json;
-using Swastika.UI.Base.Extensions.Models;
-using Swastika.UI.Base.Extensions.Web.ModelBinders;
-using Microsoft.CodeAnalysis;
-using System.Linq;
 
 namespace Swastika.UI.Base.Extensions
 {
@@ -20,17 +20,6 @@ namespace Swastika.UI.Base.Extensions
     public static class Core
     {
         /// <summary>
-        /// The constant default extension path
-        /// </summary>
-        private const string CONST_DEFAULT_EXTENSIONS_FILE_PATH = "\\Contents\\Extensions\\";
-        /// <summary>
-        /// The constant default extension file name
-        /// </summary>
-        private const string CONST_DEFAULT_EXTENSION_FILE_NAME = "extensions.json";
-
-
-
-        /// <summary>
         /// Loads the extensions.
         /// </summary>
         /// <param name="services">The services.</param>
@@ -38,8 +27,8 @@ namespace Swastika.UI.Base.Extensions
         /// <param name="extensionsFileName">Name of the extensions file.</param>
         /// <returns></returns>
         public static IServiceCollection LoadExtensions(this IServiceCollection services,
-            string extensionsFilePath = CONST_DEFAULT_EXTENSIONS_FILE_PATH,
-            string extensionsFileName = CONST_DEFAULT_EXTENSION_FILE_NAME)
+            string extensionsFilePath = Const.CONST_DEFAULT_EXTENSIONS_FILE_PATH,
+            string extensionsFileName = Const.CONST_DEFAULT_EXTENSION_FILE_NAME)
         {
             var extensions = new List<ExtensionInfo>();
             string physicalExtensionsFolerPath = Directory.GetCurrentDirectory() + extensionsFilePath;
@@ -75,7 +64,8 @@ namespace Swastika.UI.Base.Extensions
 
                     if (dllFile.Name == extension.Name + ".dll" || dllFile.Name == extension.Name + ".UI.Api.dll")
                     {
-                        extensions.Add(new ExtensionInfo{
+                        extensions.Add(new ExtensionInfo
+                        {
                             Name = extension.Name,
                             Assembly = assembly,
                             AbsolutePath = extFolder.FullName,
@@ -122,6 +112,8 @@ namespace Swastika.UI.Base.Extensions
                 if ((extensionInitializerType != null) && (extensionInitializerType != typeof(IExtensionStartup)))
                 {
                     var extensionInitializer = (IExtensionStartup)Activator.CreateInstance(extensionInitializerType);
+
+                    // Call extension startup class
                     extensionInitializer.ExtensionStartup(services);
                 }
             }

@@ -1,22 +1,22 @@
-﻿using System.IO;
-using Swastika.Infrastructure.CrossCutting.Identity.Data;
+﻿using AutoMapper;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+using Microsoft.AspNetCore.Mvc.Razor;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
-using Microsoft.AspNetCore.Http;
-using Swastika.Infrastructure.CrossCutting.Identity.Models;
-using AutoMapper;
+using Swastika.Common.Utility;
 using Swastika.Infrastructure.CrossCutting.Bus;
 using Swastika.Infrastructure.CrossCutting.Identity.Authorization;
+using Swastika.Infrastructure.CrossCutting.Identity.Data;
+using Swastika.Infrastructure.CrossCutting.Identity.Models;
 using Swastika.Infrastructure.CrossCutting.IoC;
 using Swastika.UI.Base.Extensions;
-using Microsoft.AspNetCore.Mvc.Razor;
 using Swastika.UI.Base.Extensions.Web;
-using Swastika.Common.Utility;
+using System.IO;
 
 namespace Swastika.UI.Site
 {
@@ -63,33 +63,37 @@ namespace Swastika.UI.Site
             // Load all extensions to services
             string extensionsFilePath = Configuration.GetSection("Extensions:Path").Value;
             string extensionsFileName = Configuration.GetSection("Extensions:FileName").Value;
+
+            // Load extensions
             services.LoadExtensions(extensionsFilePath, extensionsFileName);
 
-            services.AddDbContext<ApplicationDbContext>(options =>
-                options.UseSqlServer(Configuration.GetConnectionString(Const.CONST_DEFAULT_CONNECTION)));
+            // Add Database context
+            services.AddDbContext<ApplicationDbContext>(options => options.UseSqlServer(
+                Configuration.GetConnectionString(Const.CONST_DEFAULT_CONNECTION)));
 
-            services.AddIdentity<ApplicationUser, IdentityRole>(options =>
-                    options.Cookies.ApplicationCookie.AccessDeniedPath = Const.CONST_PATH_HOME_ACCESS_DENIED)
+            // Add Identity
+            services.AddIdentity<ApplicationUser, IdentityRole>(
+                options => options.Cookies.ApplicationCookie.AccessDeniedPath =
+                Const.CONST_PATH_HOME_ACCESS_DENIED)
                 .AddEntityFrameworkStores<ApplicationDbContext>()
                 .AddDefaultTokenProviders();
 
-            services.AddMvc();
+            // Add MVC
+            services.AddMvc()
+                .AddViewLocalization()
+                .AddDataAnnotationsLocalization();
+
+            // Add AutoMapper
             services.AddAutoMapper();
 
-            services.AddAuthorization(options =>
+            // Add custom view for extensions
+            services.Configure<RazorViewEngineOptions>(options =>
             {
-                options.AddPolicy(Const.CONST_AUTH_POLICY_CANWRITECUSTOMERDATA, policy => policy.Requirements.Add(new ClaimRequirement("Customers","Write")));
-                options.AddPolicy(Const.CONST_AUTH_POLICY_CANREMOVECUSTOMERDATA, policy => policy.Requirements.Add(new ClaimRequirement("Customers", "Remove")));
+                options.ViewLocationExpanders.Add(new ViewLocationExpander());
             });
 
-            // Add custom view for extensions
-            services.Configure<RazorViewEngineOptions>(
-                options => {
-                    options.ViewLocationExpanders.Add(new ViewLocationExpander());
-                });
-
             services.AddMvcToExtensions(ExtensionManager.Extensions);
-            
+
             // .NET Native DI Abstraction
             RegisterServices(services);
         }
@@ -138,7 +142,7 @@ namespace Swastika.UI.Site
 
             // Setting the IContainer interface for use like service locator for events.
             InMemoryBus.ContainerAccessor = () => accessor.HttpContext.RequestServices;
-            
+
         }
 
         /// <summary>

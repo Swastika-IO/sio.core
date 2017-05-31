@@ -12,14 +12,6 @@
         /// </summary>
         public const string CONST_FILE_APPSETTING = "appsettings.json";
         /// <summary>
-        /// The constant authentication policy canwritecustomerdata
-        /// </summary>
-        public const string CONST_AUTH_POLICY_CANWRITECUSTOMERDATA = "CanWriteCustomerData";
-        /// <summary>
-        /// The constant authentication policy canremovecustomerdata
-        /// </summary>
-        public const string CONST_AUTH_POLICY_CANREMOVECUSTOMERDATA = "CanRemoveCustomerData";
-        /// <summary>
         /// The constant path home access denied
         /// </summary>
         public const string CONST_PATH_HOME_ACCESS_DENIED = "/home/access-denied";
@@ -57,5 +49,15 @@
         /// The constant domain notification{CC2D43FA-BBC4-448A-9D0B-7B57ADF2655C}
         /// </summary>
         public const string CONST_DOMAIN_NOTIFICATION = "DomainNotification";
+
+
+        /// <summary>
+        /// The constant default extension path
+        /// </summary>
+        public const string CONST_DEFAULT_EXTENSIONS_FILE_PATH = "\\Contents\\Extensions\\";
+        /// <summary>
+        /// The constant default extension file name
+        /// </summary>
+        public const string CONST_DEFAULT_EXTENSION_FILE_NAME = "extensions.json";
     }
 }
