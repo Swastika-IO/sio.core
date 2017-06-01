@@ -76,6 +76,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Swastika.Common.Utility", "
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Swastika.Common.Helper", "src\Swastika.Common.Helper\Swastika.Common.Helper.csproj", "{9D4BA81C-4C1C-4CEF-9880-247B22FF2491}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "BlogExt", "BlogExt", "{E5D12F6E-ECDB-464C-AF2D-97B6603F4689}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Swastika.Extensions.BlogExt.Lib", "Swastika.Extensions.BlogExt.Lib\Swastika.Extensions.BlogExt.Lib.csproj", "{B2DD09A1-1DC3-4F59-9D46-DC38EA5F0BC6}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -170,6 +174,10 @@ Global
 		{9D4BA81C-4C1C-4CEF-9880-247B22FF2491}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{9D4BA81C-4C1C-4CEF-9880-247B22FF2491}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{9D4BA81C-4C1C-4CEF-9880-247B22FF2491}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B2DD09A1-1DC3-4F59-9D46-DC38EA5F0BC6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B2DD09A1-1DC3-4F59-9D46-DC38EA5F0BC6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B2DD09A1-1DC3-4F59-9D46-DC38EA5F0BC6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B2DD09A1-1DC3-4F59-9D46-DC38EA5F0BC6}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -208,5 +216,7 @@ Global
 		{D9335B41-604E-4964-9CE5-8339736090A3} = {6C32D67C-8272-4A5E-8753-717CE471F4CE}
 		{E1AFDFB3-9BAC-4979-8EBC-4A2C9D3A1131} = {D9335B41-604E-4964-9CE5-8339736090A3}
 		{9D4BA81C-4C1C-4CEF-9880-247B22FF2491} = {D9335B41-604E-4964-9CE5-8339736090A3}
+		{E5D12F6E-ECDB-464C-AF2D-97B6603F4689} = {5ED80197-CA50-4599-A281-3977C4857EFC}
+		{B2DD09A1-1DC3-4F59-9D46-DC38EA5F0BC6} = {E5D12F6E-ECDB-464C-AF2D-97B6603F4689}
 	EndGlobalSection
 EndGlobal
