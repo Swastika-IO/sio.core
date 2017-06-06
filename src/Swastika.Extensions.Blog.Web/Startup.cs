@@ -27,7 +27,8 @@ namespace Swastika.Extensions.Blog.Web
         {
             // Add Database context
             services.AddDbContext<BlogDbContext>(options => options.UseSqlServer(
-                Configuration.GetConnectionString("BlogConnection")));
+                Configuration.GetConnectionString("BlogConnection")));         
+            
             // Add framework services.
             services.AddMvc();
 

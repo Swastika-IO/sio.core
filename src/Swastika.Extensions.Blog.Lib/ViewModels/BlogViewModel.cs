@@ -4,7 +4,8 @@ using System;
 namespace Swastika.Extension.Blog.ViewModels
 {
     public class BlogViewModel: ViewModelBase<Models.Blog, ViewModels.BlogViewModel>
-    { 
+    {
+        public Guid Id { get; set; }
         public string Name { get; private set; }
         public string Title { get; private set; }
         public string Slug { get; private set; }
@@ -13,6 +14,14 @@ namespace Swastika.Extension.Blog.ViewModels
         public DateTime ModifiedUtc { get; private set; }
         public DateTime PublishedUtc { get; private set; }
         public string CreatedByUserId { get; private set; }
-        public Byte CommonStatusId { get; private set; }        
+        public Byte CommonStatusId { get; private set; }
+
+        public BlogViewModel(Models.Blog model) : base(model)
+        {
+        }
+
+        public BlogViewModel() : base()
+        {
+        }
     }
 }

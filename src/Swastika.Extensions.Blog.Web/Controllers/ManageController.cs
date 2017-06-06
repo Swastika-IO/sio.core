@@ -15,6 +15,7 @@ namespace Swastika.Extensions.Blog.Web.Controllers
     {
         private readonly BlogDbContext _context;
         private readonly BlogPostRepository _repo;
+
         public ManageController(BlogDbContext context)
         {
             _context = context;
@@ -24,7 +25,7 @@ namespace Swastika.Extensions.Blog.Web.Controllers
         // GET: Manage
         public async Task<IActionResult> Index()
         {
-            return View(await _repo.GetModelListAsync(false));
+            return View(await _repo.GetViewModelListAsync(false));
         }
 
         // GET: Manage/Details/5
