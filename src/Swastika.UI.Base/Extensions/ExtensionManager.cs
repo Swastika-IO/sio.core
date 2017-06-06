@@ -26,6 +26,7 @@ namespace Swastika.UI.Base.Extensions
         /// The extensions.
         /// </value>
         public static IList<ExtensionInfo> Extensions { get; set; }
+
         /// <summary>
         /// Gets or sets the relative path.
         /// </summary>

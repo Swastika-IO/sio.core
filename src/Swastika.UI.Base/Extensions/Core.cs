@@ -31,6 +31,7 @@ namespace Swastika.UI.Base.Extensions
             string extensionsFileName = Const.CONST_DEFAULT_EXTENSION_FILE_NAME)
         {
             var extensions = new List<ExtensionInfo>();
+
             string physicalExtensionsFolerPath = Directory.GetCurrentDirectory() + extensionsFilePath;
             string json = File.ReadAllText(physicalExtensionsFolerPath + extensionsFileName);
             List<Extension> extensionsFromJson = JsonConvert.DeserializeObject<List<Extension>>(json);
@@ -42,6 +43,10 @@ namespace Swastika.UI.Base.Extensions
                 {
                     continue;
                 }
+
+
+                ExtensionInfo extInfo = new ExtensionInfo();
+                extInfo.References = new List<Assembly>();
 
                 foreach (var dllFile in extFolder.GetFileSystemInfos("*.dll"))
                 {
@@ -62,17 +67,18 @@ namespace Swastika.UI.Base.Extensions
                         }
                     }
 
-                    if (dllFile.Name == extension.Name + ".dll" || dllFile.Name == extension.Name + ".UI.Api.dll")
+                    if (dllFile.Name == extension.Name + ".dll")
                     {
-                        extensions.Add(new ExtensionInfo
-                        {
-                            Name = extension.Name,
-                            Assembly = assembly,
-                            AbsolutePath = extFolder.FullName,
-                        });
+                        extInfo.Name = extension.Name;
+                        extInfo.Assembly = assembly;
+                        extInfo.AbsolutePath = extFolder.FullName;
+                    }
+                    else
+                    {
+                        extInfo.References.Add(assembly);
                     }
                 }
-
+                extensions.Add(extInfo);
             }
             ExtensionManager.Extensions = extensions;
             ExtensionManager.RelativePath = extensionsFilePath;
@@ -87,16 +93,29 @@ namespace Swastika.UI.Base.Extensions
         /// <returns></returns>
         public static IServiceCollection AddMvcToExtensions(this IServiceCollection services, IList<ExtensionInfo> extensionsInfo)
         {
+            // ref:
+            // https://www.codeproject.com/Articles/1109475/WebControls/
+            // https://github.com/aspnet/Mvc/issues/4686
+            // https://github.com/aspnet/Razor/issues/755
+
             var mvcBuilder = services
-                .AddMvc(o =>
+                .AddMvc(mvcOption =>
                 {
-                    o.ModelBinderProviders.Insert(0, new InvariantDecimalModelBinderProvider());
+                    mvcOption.ModelBinderProviders.Insert(0, new InvariantDecimalModelBinderProvider());
                 })
-                .AddRazorOptions(o =>
+                .AddRazorOptions(razorViewEngineOption =>
                 {
+                    // Adding the extensions assemblies to the list of compilation assemblies directly
                     foreach (var extension in extensionsInfo)
                     {
-                        o.AdditionalCompilationReferences.Add(MetadataReference.CreateFromFile(extension.Assembly.Location));
+                        razorViewEngineOption.AdditionalCompilationReferences.Add(MetadataReference.CreateFromFile(extension.Assembly.Location));
+
+                        // Adding the extension's references assemblies to the list of compilation assemblies directly
+                        foreach (var reference in extension.References)
+                        {
+                            razorViewEngineOption.AdditionalCompilationReferences.Add(MetadataReference.CreateFromFile(reference.Location));
+
+                        }
                     }
                 })
                 .AddViewLocalization()
@@ -116,6 +135,10 @@ namespace Swastika.UI.Base.Extensions
                     // Call extension startup class
                     extensionInitializer.ExtensionStartup(services);
                 }
+                
+                AutoMapper.Mapper.Initialize(cfg => cfg.AddProfiles(extension.Assembly));
+                AutoMapper.Mapper.Initialize(cfg => cfg.AddProfiles(extension.References));
+                
             }
 
             return services;

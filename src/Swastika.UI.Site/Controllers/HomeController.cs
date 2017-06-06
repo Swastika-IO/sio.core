@@ -1,4 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Swastika.UI.Base.Extensions;
+using System.Collections.Generic;
 
 namespace Swastika.UI.Site.Controllers
 {
@@ -14,6 +16,7 @@ namespace Swastika.UI.Site.Controllers
         [Route("/")]
         public IActionResult Index()
         {
+            IList<ExtensionInfo> extensionsInfo = ExtensionManager.Extensions;
             return View();
         }
 

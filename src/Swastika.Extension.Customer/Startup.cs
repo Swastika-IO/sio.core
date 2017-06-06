@@ -1,6 +1,8 @@
-﻿using Microsoft.Extensions.DependencyInjection;
+﻿using AutoMapper;
+using Microsoft.Extensions.DependencyInjection;
 using Swastika.Domain.Core.Events;
 using Swastika.Domain.Interfaces;
+using Swastika.Extension.Customer.Application.AutoMapper;
 using Swastika.Extension.Customer.Application.Interfaces;
 using Swastika.Extension.Customer.Application.Services;
 using Swastika.Extension.Customer.Domain.CommandHandlers;

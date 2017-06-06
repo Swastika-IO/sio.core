@@ -7,14 +7,5 @@
     "Author": "Swastika Core Team",
     "InstalledDateTime": "",
 	"Version":""
-  },
-  {
-    "Title": "Swastika Blog",
-    "Name": "Swastika.Extension.Blog",
-    "IsActive": true,
-    "Ulr": "",
-    "Author": "Swastika Core Team",
-    "InstalledDateTime": "",
-	"Version":""
   }
 ]

@@ -7,8 +7,8 @@
     <OutputType>Exe</OutputType>
     <PackageId>Swastika.UI.Site</PackageId>
     <UserSecretsId>aspnet-Swastika.UI.Site-de2246eb-3cce-41bd-ab51-a1e37e0f6934</UserSecretsId>
-    <PackageTargetFallback>$(PackageTargetFallback);dnxcore50</PackageTargetFallback>
-    <RuntimeFrameworkVersion>1.1.1</RuntimeFrameworkVersion>
+    <!--<PackageTargetFallback>$(PackageTargetFallback);dnxcore50</PackageTargetFallback>-->
+    <!--<RuntimeFrameworkVersion>1.1.1</RuntimeFrameworkVersion>-->
     <MvcRazorCompileOnPublish>true</MvcRazorCompileOnPublish>
   </PropertyGroup>
 
@@ -17,10 +17,14 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Compile Remove="Extensions\**" />
-    <Content Remove="Extensions\**" />
-    <EmbeddedResource Remove="Extensions\**" />
-    <None Remove="Extensions\**" />
+    <Compile Remove="Contents\Extensions\**" />
+    <Content Remove="Contents\Extensions\**" />
+    <EmbeddedResource Remove="Contents\Extensions\**" />
+    <None Remove="Contents\Extensions\**" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Include="Contents\Extensions\extensions.json" />
   </ItemGroup>
 
   <ItemGroup>
