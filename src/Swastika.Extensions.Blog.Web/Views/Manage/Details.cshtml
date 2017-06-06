@@ -1,0 +1,73 @@
+@model Swastika.Extension.Blog.Models.Blog
+
+@{
+    ViewData["Title"] = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Blog</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Name)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Name)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Title)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Title)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Slug)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Slug)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Description)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Description)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.CreatedUtc)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.CreatedUtc)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.ModifiedUtc)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.ModifiedUtc)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.PublishedUtc)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.PublishedUtc)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.CreatedByUserId)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.CreatedByUserId)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.CommonStatusId)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.CommonStatusId)
+        </dd>
+    </dl>
+</div>
+<div>
+    <a asp-action="Edit" asp-route-id="@Model.Id">Edit</a> |
+    <a asp-action="Index">Back to List</a>
+</div>

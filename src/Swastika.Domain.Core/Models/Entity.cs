@@ -10,7 +10,7 @@ namespace Swastika.Domain.Core.Models
         /// <value>
         /// The identifier.
         /// </value>
-        public Guid Id { get; protected set; }
+        public Guid Id { get; set; }
 
         /// <summary>
         /// Determines whether the specified <see cref="System.Object" />, is equal to this instance.

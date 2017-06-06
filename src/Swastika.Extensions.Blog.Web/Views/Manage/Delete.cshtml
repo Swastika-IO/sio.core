@@ -1,0 +1,78 @@
+@model Swastika.Extension.Blog.Models.Blog
+
+@{
+    ViewData["Title"] = "Delete";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Delete</h2>
+
+<h3>Are you sure you want to delete this?</h3>
+<div>
+    <h4>Blog</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Name)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Name)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Title)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Title)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Slug)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Slug)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Description)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Description)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.CreatedUtc)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.CreatedUtc)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.ModifiedUtc)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.ModifiedUtc)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.PublishedUtc)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.PublishedUtc)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.CreatedByUserId)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.CreatedByUserId)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.CommonStatusId)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.CommonStatusId)
+        </dd>
+        <input type="hidden" asp-for="Id" />
+    </dl>
+    
+    <form asp-action="Delete">
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-default" /> |
+            <a asp-action="Index">Back to List</a>
+        </div>
+    </form>
+</div>
