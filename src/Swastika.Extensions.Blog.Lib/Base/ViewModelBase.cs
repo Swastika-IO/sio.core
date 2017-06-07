@@ -5,10 +5,9 @@ using System.Text;
 
 namespace Swastika.Extension.Blog.Base
 {
-    public abstract class ViewModelBase<TModel, TView>: Profile where TModel : class where TView : class
+    public abstract class ViewModelBase<TModel, TView>: Profile where TModel : class where TView : ViewModelBase<TModel, TView>
     {
         private TModel _model;
-        private TView _view;
 
         //private ICommand _saveCommand;
         //private ICommand _removeCommand;
@@ -19,17 +18,16 @@ namespace Swastika.Extension.Blog.Base
         //public abstract bool SaveModel();
 
         public TModel Model { get => _model; set => _model = value; }
-        public TView View { get => _view; set => _view = value; }
 
         
         public virtual void ParseView()
         {
-            View = Mapper.Instance.Map<TView>(Model);
+            Mapper.Map<TModel, TView>(Model, (TView)this);
         }
 
         public virtual void ParseModel()
         {
-            Model = Mapper.Instance.Map<TModel>(View);
+            Model = Mapper.Instance.Map<TModel>(this);
         }
 
         public ViewModelBase()

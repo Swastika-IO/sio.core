@@ -1,4 +1,4 @@
-@model Swastika.Extension.Blog.Models.Blog
+@model Swastika.Extension.Blog.ViewModels.BlogViewModel
 
 @{
     ViewData["Title"] = "Edit";
@@ -7,7 +7,7 @@
 
 <h2>Edit</h2>
 
-<form asp-action="Edit">
+<form asp-action="Edit" method="post">
     <div class="form-horizontal">
         <h4>Blog</h4>
         <hr />

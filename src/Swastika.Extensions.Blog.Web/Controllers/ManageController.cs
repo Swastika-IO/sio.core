@@ -8,18 +8,19 @@ using Microsoft.EntityFrameworkCore;
 using Swastika.Extension.Blog.Data;
 using Swastika.Extension.Blog.Models;
 using Swastika.Extensions.Blog.Repositories;
+using Swastika.Extension.Blog.ViewModels;
 
 namespace Swastika.Extensions.Blog.Web.Controllers
 {
     public class ManageController : Controller
     {
-        private readonly BlogDbContext _context;
+        //private readonly BlogDbContext _context;
         private readonly BlogPostRepository _repo;
 
         public ManageController(BlogDbContext context)
         {
-            _context = context;
-            _repo = new BlogPostRepository(context);
+            //_context = context;
+            _repo = BlogPostRepository.GetInstance(context);
         }
 
         // GET: Manage
@@ -36,8 +37,7 @@ namespace Swastika.Extensions.Blog.Web.Controllers
                 return NotFound();
             }
 
-            var blog = await _context.Blog
-                .SingleOrDefaultAsync(m => m.Id == id);
+            var blog = await _repo.GetSingleModelAsync(m => m.Id == id, false);
             if (blog == null)
             {
                 return NotFound();
@@ -57,17 +57,18 @@ namespace Swastika.Extensions.Blog.Web.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Name,Title,Slug,Description,CreatedUtc,ModifiedUtc,PublishedUtc,CreatedByUserId,CommonStatusId,Id")] Extension.Blog.Models.Blog blog)
+        public async Task<IActionResult> Create(BlogViewModel vmBlog)
         {
             if (ModelState.IsValid)
             {
+                vmBlog.ParseModel();
+                var blog = vmBlog.Model;
                 blog.Id = Guid.NewGuid();
                 blog.CreatedByUserId = Guid.NewGuid().ToString();
-                _context.Add(blog);
-                await _context.SaveChangesAsync();
+                await _repo.CreateModelAsync(blog);
                 return RedirectToAction("Index");
             }
-            return View(blog);
+            return View(vmBlog);
         }
 
         // GET: Manage/Edit/5
@@ -78,7 +79,7 @@ namespace Swastika.Extensions.Blog.Web.Controllers
                 return NotFound();
             }
 
-            var blog = await _context.Blog.SingleOrDefaultAsync(m => m.Id == id);
+            var blog = await _repo.GetSingleModelAsync(m => m.Id == id, false);
             if (blog == null)
             {
                 return NotFound();
@@ -91,8 +92,11 @@ namespace Swastika.Extensions.Blog.Web.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(Guid id, [Bind("Name,Title,Slug,Description,CreatedUtc,ModifiedUtc,PublishedUtc,CreatedByUserId,CommonStatusId,Id")] Extension.Blog.Models.Blog blog)
+        public async Task<IActionResult> Edit(Guid id, BlogViewModel vmBlog)
         {
+            vmBlog.ParseModel();
+            var blog = vmBlog.Model;
+
             if (id != blog.Id)
             {
                 return NotFound();
@@ -102,12 +106,11 @@ namespace Swastika.Extensions.Blog.Web.Controllers
             {
                 try
                 {
-                    _context.Update(blog);
-                    await _context.SaveChangesAsync();
+                    await _repo.EditModelAsync(blog);
                 }
                 catch (DbUpdateConcurrencyException)
                 {
-                    if (!BlogExists(blog.Id))
+                    if (!_repo.CheckExists(vmBlog.Model))
                     {
                         return NotFound();
                     }
@@ -118,7 +121,7 @@ namespace Swastika.Extensions.Blog.Web.Controllers
                 }
                 return RedirectToAction("Index");
             }
-            return View(blog);
+            return View(vmBlog);
         }
 
         // GET: Manage/Delete/5
@@ -129,8 +132,7 @@ namespace Swastika.Extensions.Blog.Web.Controllers
                 return NotFound();
             }
 
-            var blog = await _context.Blog
-                .SingleOrDefaultAsync(m => m.Id == id);
+            var blog = await _repo.GetSingleModelAsync(m => m.Id == id, false);
             if (blog == null)
             {
                 return NotFound();
@@ -144,15 +146,9 @@ namespace Swastika.Extensions.Blog.Web.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(Guid id)
         {
-            var blog = await _context.Blog.SingleOrDefaultAsync(m => m.Id == id);
-            _context.Blog.Remove(blog);
-            await _context.SaveChangesAsync();
+            var blog = await _repo.GetSingleModelAsync(m => m.Id == id, false);
+            await _repo.RemoveModelAsync(blog.Model);
             return RedirectToAction("Index");
-        }
-
-        private bool BlogExists(Guid id)
-        {
-            return _context.Blog.Any(e => e.Id == id);
         }
     }
 }

@@ -1,4 +1,5 @@
 ﻿using Swastika.Common.Helper;
+using Swastika.Extension.Blog.Base;
 using System;
 using System.Collections.Generic;
 using System.Linq.Expressions;
@@ -6,48 +7,48 @@ using System.Threading.Tasks;
 
 namespace Swastika.Extension.Blog.Interfaces
 {
-    public interface IRepository<T> where T : class
+    public interface IRepository<TModel, TView> where TModel : class where TView : ViewModelBase<TModel, TView>
     {
-        bool CheckExists(T entity);
+        bool CheckExists(TModel entity);
 
-        T CreateModel(T model);
-        Task<T> CreateModelAsync(T model);
+        TView CreateModel(TModel model);
+        Task<TView> CreateModelAsync(TModel model);
 
-        T EditModel(T model);
-        Task<T> EditModelAsync(T model);
+        TView EditModel(TModel model);
+        Task<TView> EditModelAsync(TModel model);
 
-        T SaveModel(T model);
-        Task<T> SaveModelAsync(T model);
+        TView SaveModel(TModel model);
+        Task<TView> SaveModelAsync(TModel model);
 
-        bool RemoveModel(T model);
-        bool RemoveModel(Expression<Func<T, bool>> predicate);
-        bool RemoveListModel(Expression<Func<T, bool>> predicate);
+        bool RemoveModel(TModel model);
+        bool RemoveModel(Expression<Func<TModel, bool>> predicate);
+        bool RemoveListModel(Expression<Func<TModel, bool>> predicate);
 
-        Task<bool> RemoveModelAsync(T model);
-        Task<bool> RemoveModelAsync(Expression<Func<T, bool>> predicate);
-        Task<bool> RemoveListModelAsync(Expression<Func<T, bool>> predicate);
+        Task<bool> RemoveModelAsync(TModel model);
+        Task<bool> RemoveModelAsync(Expression<Func<TModel, bool>> predicate);
+        Task<bool> RemoveListModelAsync(Expression<Func<TModel, bool>> predicate);
 
 
-        T GetSingleModel(Expression<Func<T, bool>> predicate, bool isGetSubModels);
-        Task<T> GetSingleModelAsync(Expression<Func<T, bool>> predicate, bool isGetSubModels);
+        TView GetSingleModel(Expression<Func<TModel, bool>> predicate, bool isGetSubModels);
+        Task<TView> GetSingleModelAsync(Expression<Func<TModel, bool>> predicate, bool isGetSubModels);
 
-        List<T> GetModelList(bool isGetSubModels);
-        PaginationModel<T> GetModelList(Expression<Func<T, int>> orderBy, string direction, int? pageIndex, int? pageSize, bool isGetSubModels);
-        PaginationModel<T> GetModelList(Expression<Func<T, string>> orderBy, string direction, int? pageIndex, int? pageSize, bool isGetSubModels);
-        PaginationModel<T> GetModelList(Expression<Func<T, DateTime>> orderBy, string direction, int? pageIndex, int? pageSize, bool isGetSubModels);
+        List<TView> GetModelList(bool isGetSubModels);
+        PaginationModel<TView> GetModelList(Expression<Func<TModel, int>> orderBy, string direction, int? pageIndex, int? pageSize, bool isGetSubModels);
+        PaginationModel<TView> GetModelList(Expression<Func<TModel, string>> orderBy, string direction, int? pageIndex, int? pageSize, bool isGetSubModels);
+        PaginationModel<TView> GetModelList(Expression<Func<TModel, DateTime>> orderBy, string direction, int? pageIndex, int? pageSize, bool isGetSubModels);
 
-        Task<PaginationModel<T>> GetModelListAsync(Expression<Func<T, int>> orderBy, string direction, int? pageIndex, int? pageSize, bool isGetSubModels);
-        Task<PaginationModel<T>> GetModelListAsync(Expression<Func<T, string>> orderBy, string direction, int? pageIndex, int? pageSize, bool isGetSubModels);
-        Task<PaginationModel<T>> GetModelListAsync(Expression<Func<T, DateTime>> orderBy, string direction, int? pageIndex, int? pageSize, bool isGetSubModels);
+        Task<PaginationModel<TView>> GetModelListAsync(Expression<Func<TModel, int>> orderBy, string direction, int? pageIndex, int? pageSize, bool isGetSubModels);
+        Task<PaginationModel<TView>> GetModelListAsync(Expression<Func<TModel, string>> orderBy, string direction, int? pageIndex, int? pageSize, bool isGetSubModels);
+        Task<PaginationModel<TView>> GetModelListAsync(Expression<Func<TModel, DateTime>> orderBy, string direction, int? pageIndex, int? pageSize, bool isGetSubModels);
 
-        PaginationModel<T> GetModelListBy(Expression<Func<T, bool>> predicate, Expression<Func<T, int>> orderBy, string direction, int? pageIndex, int? pageSize, bool isGetSubModels);
-        PaginationModel<T> GetModelListBy(Expression<Func<T, bool>> predicate, Expression<Func<T, string>> orderBy, string direction, int? pageIndex, int? pageSize, bool isGetSubModels);
-        PaginationModel<T> GetModelListBy(Expression<Func<T, bool>> predicate, Expression<Func<T, DateTime>> orderBy, string direction, int? pageIndex, int? pageSize, bool isGetSubModels);
-        List<T> GetModelListBy(Expression<Func<T, bool>> predicate, bool isGetSubModels);
+        PaginationModel<TView> GetModelListBy(Expression<Func<TModel, bool>> predicate, Expression<Func<TModel, int>> orderBy, string direction, int? pageIndex, int? pageSize, bool isGetSubModels);
+        PaginationModel<TView> GetModelListBy(Expression<Func<TModel, bool>> predicate, Expression<Func<TModel, string>> orderBy, string direction, int? pageIndex, int? pageSize, bool isGetSubModels);
+        PaginationModel<TView> GetModelListBy(Expression<Func<TModel, bool>> predicate, Expression<Func<TModel, DateTime>> orderBy, string direction, int? pageIndex, int? pageSize, bool isGetSubModels);
+        List<TView> GetModelListBy(Expression<Func<TModel, bool>> predicate, bool isGetSubModels);
 
-        Task<PaginationModel<T>> GetModelListByAsync(Expression<Func<T, bool>> predicate, Expression<Func<T, int>> orderBy, string direction, int? pageIndex, int? pageSize, bool isGetSubModels);
-        Task<PaginationModel<T>> GetModelListByAsync(Expression<Func<T, bool>> predicate, Expression<Func<T, string>> orderBy, string direction, int? pageIndex, int? pageSize, bool isGetSubModels);
-        Task<PaginationModel<T>> GetModelListByAsync(Expression<Func<T, bool>> predicate, Expression<Func<T, DateTime>> orderBy, string direction, int? pageIndex, int? pageSize, bool isGetSubModels);
-        Task<List<T>> GetModelListByAsync(Expression<Func<T, bool>> predicate, bool isGetSubModels);
+        Task<PaginationModel<TView>> GetModelListByAsync(Expression<Func<TModel, bool>> predicate, Expression<Func<TModel, int>> orderBy, string direction, int? pageIndex, int? pageSize, bool isGetSubModels);
+        Task<PaginationModel<TView>> GetModelListByAsync(Expression<Func<TModel, bool>> predicate, Expression<Func<TModel, string>> orderBy, string direction, int? pageIndex, int? pageSize, bool isGetSubModels);
+        Task<PaginationModel<TView>> GetModelListByAsync(Expression<Func<TModel, bool>> predicate, Expression<Func<TModel, DateTime>> orderBy, string direction, int? pageIndex, int? pageSize, bool isGetSubModels);
+        Task<List<TView>> GetModelListByAsync(Expression<Func<TModel, bool>> predicate, bool isGetSubModels);
     }
 }

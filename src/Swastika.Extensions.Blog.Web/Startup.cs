@@ -5,6 +5,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Swastika.Extension.Blog.Data;
+using Microsoft.AspNetCore.Routing;
 
 namespace Swastika.Extensions.Blog.Web
 {
@@ -51,14 +52,17 @@ namespace Swastika.Extensions.Blog.Web
                 app.UseExceptionHandler("/Home/Error");
             }
 
+            // For loading static files from server (.html, .jpg, ...)
             app.UseStaticFiles();
 
-            app.UseMvc(routes =>
-            {
-                routes.MapRoute(
+            app.UseMvc(ConfigureRoute);
+        }
+        private void ConfigureRoute(IRouteBuilder routeBuilder)
+        {
+            //Manage/Index 
+            routeBuilder.MapRoute(
                     name: "default",
-                    template: "{controller=Home}/{action=Index}/{id?}");
-            });
+                    template: "{controller=Manage}/{action=Index}/{id?}");
         }
     }
 }

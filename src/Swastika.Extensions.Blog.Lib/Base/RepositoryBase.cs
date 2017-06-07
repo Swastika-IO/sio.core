@@ -12,13 +12,18 @@ using System.Threading.Tasks;
 
 namespace Swastika.Extension.Blog.Base
 {
-    public abstract class RepositoryBase<TModel, TView, TContext> : IRepository<TModel> where TModel : class where TView : ViewModelBase<TModel, TView> where TContext : DbContext
+    public abstract class RepositoryBase<TModel, TView, TContext> : IRepository<TModel, TView> where TModel : class where TView : ViewModelBase<TModel, TView> where TContext : DbContext
     {
-        protected TContext Context { get; set; }
         public RepositoryBase(TContext context)
         {
-            Context = context;
             RegisterAutoMapper();
+        }
+        public virtual TContext InitContext()
+        {
+            Type classType = typeof(TContext);
+            ConstructorInfo classConstructor = classType.GetConstructor(new Type[] { });
+            TContext context = (TContext)classConstructor.Invoke(new object[] {  });
+            return context;
         }
         public virtual void RegisterAutoMapper()
         {
@@ -49,10 +54,10 @@ namespace Swastika.Extension.Blog.Base
 
         public virtual bool CheckExists(TModel entity)
         {
-            using (Context)
+            using (TContext context = InitContext())
             {
                 //For the former case use:
-                return Context.Set<TModel>().Local.Any(e => e == entity);
+                return context.Set<TModel>().Local.Any(e => e == entity);
 
                 //For the latter case use(it will check loaded entities as well):
                 //return (_context.Set<T>().Find(keys) != null);               
@@ -60,28 +65,33 @@ namespace Swastika.Extension.Blog.Base
         }
         public bool CheckExists(System.Func<TModel, bool> predicate)
         {
-            using (Context)
+            using (TContext context = InitContext())
             {
                 //For the former case use:
-                return Context.Set<TModel>().Local.Any(predicate);
+                return context.Set<TModel>().Local.Any(predicate);
 
                 //For the latter case use(it will check loaded entities as well):
                 //return (_context.Set<T>().Find(keys) != null);
             }
         }
 
-        public virtual TModel CreateModel(TModel model)
+        public virtual TView CreateModel(TModel model)
         {
-            TModel result = null;
             try
             {
-                using (Context)
+                using (TContext context = InitContext())
                 {
-                    Context.Entry(model).State = EntityState.Added;
-                    Context.SaveChanges();
-                    result = model;
+                    context.Entry(model).State = EntityState.Added;
+                    int records = context.SaveChanges();
+                    if (records > 0)
+                    {
+                        return ParseView(model);
+                    }
+                    else
+                    {
+                        return null;
+                    }
 
-                    return result;
                 }
             }
             catch (Exception ex)
@@ -92,17 +102,42 @@ namespace Swastika.Extension.Blog.Base
 
         }
 
-        public virtual async Task<TModel> CreateModelAsync(TModel model)
+        public virtual async Task<TView> CreateModelAsync(TModel model)
         {
             try
             {
-                using (Context)
+                using (TContext context = InitContext())
                 {
-                    Context.Entry(model).State = EntityState.Added;
-                    int records = await Context.SaveChangesAsync();
+                    context.Entry(model).State = EntityState.Added;
+                    int records = await context.SaveChangesAsync();
                     if (records > 0)
                     {
-                        return model;
+                        return ParseView(model);
+                    }
+                    else
+                    {
+                        return null;
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                LogErrorMessage(ex);
+                return null;
+            }
+        }
+
+        public virtual TView EditModel(TModel model)
+        {
+            try
+            {
+                using (TContext context = InitContext())
+                {
+                    context.Entry(model).State = EntityState.Modified;
+                    int records = context.SaveChanges();
+                    if (records > 0)
+                    {
+                        return ParseView(model);
                     }
                     return null;
                 }
@@ -114,39 +149,17 @@ namespace Swastika.Extension.Blog.Base
             }
         }
 
-        public virtual TModel EditModel(TModel model)
+        public virtual async Task<TView> EditModelAsync(TModel model)
         {
             try
             {
-                using (Context)
+                using (TContext context = InitContext())
                 {
-                    Context.Entry(model).State = EntityState.Modified;
-                    int records = Context.SaveChanges();
+                    context.Entry(model).State = EntityState.Modified;
+                    int records = await context.SaveChangesAsync();
                     if (records > 0)
                     {
-                        return model;
-                    }
-                    return null;
-                }
-            }
-            catch (Exception ex)
-            {
-                LogErrorMessage(ex);
-                return null;
-            }
-        }
-
-        public virtual async Task<TModel> EditModelAsync(TModel model)
-        {
-            try
-            {
-                using (Context)
-                {
-                    Context.Entry(model).State = EntityState.Modified;
-                    int records = await Context.SaveChangesAsync();
-                    if (records > 0)
-                    {
-                        return model;
+                        return ParseView(model);
                     }
                     else
                     {
@@ -163,13 +176,13 @@ namespace Swastika.Extension.Blog.Base
         #region GetModelList
         public virtual async Task<List<TView>> GetViewModelListAsync(bool isGetSubModels)
         {
-            using (Context)
+            using (TContext context = InitContext())
             {
                 try
                 {
                     List<TView> result = new List<TView>();
-                    var query = await Context.Set<TModel>().ToListAsync();
-                    query.ForEach(p => Context.Entry(p).State = EntityState.Detached);
+                    var query = await context.Set<TModel>().ToListAsync();
+                    query.ForEach(p => context.Entry(p).State = EntityState.Detached);
                     if (query.Count > 0)
                     {
                         foreach (var model in query)
@@ -197,22 +210,306 @@ namespace Swastika.Extension.Blog.Base
             }
         }
 
-        public virtual List<TModel> GetModelList(bool isGetSubModels)
+        public virtual List<TView> GetModelList(bool isGetSubModels)
         {
-            using (Context)
+            using (TContext context = InitContext())
             {
                 try
                 {
-                    var query = Context.Set<TModel>().ToList();
-                    query.ForEach(p => Context.Entry(p).State = EntityState.Detached);
+                    List<TView> result = new List<TView>();
+                    var query = context.Set<TModel>().ToList();
+                    query.ForEach(p => context.Entry(p).State = EntityState.Detached);
+                    if (query.Count > 0)
+                    {
+                        foreach (var model in query)
+                        {
+                            if (isGetSubModels)
+                            {
+                                GetSubModels(model);
+                            }
+                            result.Add(ParseView(model));
+                        }
+                        return result;                        
+                    }
+                    else
+                    {
+                        return result;
+                    }
+                }
+                catch (Exception ex)
+                {
+                    LogErrorMessage(ex);
+                    return null;
+                }
+
+            }
+        }
+        public virtual PaginationModel<TView> GetModelList(Expression<Func<TModel, int>> orderBy, string direction, int? pageIndex, int? pageSize, bool isGetSubModels)
+        {
+            using (TContext context = InitContext())
+            {
+
+                try
+                {
+                    PaginationModel<TView> result = new PaginationModel<TView>();
+                    List<TModel> lstModel = new List<TModel>();
+                    var query = context.Set<TModel>();
+                    result.TotalItems = query.Count();
+                    result.PageIndex = pageIndex ?? 0;
+                    result.PageSize = pageSize ?? result.TotalItems;
+                    if (pageSize.HasValue)
+                    {
+                        result.TotalPage = result.TotalItems / pageSize.Value + (result.TotalItems % pageSize.Value > 0 ? 1 : 0);
+                    }
+                    switch (direction)
+                    {
+                        case "desc":
+                            if (pageSize.HasValue)
+                            {
+                                lstModel = query.OrderByDescending(orderBy).Skip(pageIndex.Value * pageSize.Value).Take(pageSize.Value).ToList();
+
+                            }
+                            else
+                            {
+                                lstModel = query.OrderByDescending(orderBy).ToList();
+                            }
+                            break;
+                        default:
+                            if (pageSize.HasValue)
+                            {
+                                lstModel = query.OrderBy(orderBy).Skip(pageIndex.Value * pageSize.Value).Take(pageSize.Value).ToList();
+
+                            }
+                            else
+                            {
+                                lstModel = query.OrderBy(orderBy).ToList();
+                            }
+                            break;
+                    }
+                    lstModel.ForEach(p => context.Entry(p).State = EntityState.Detached);
+                    if (lstModel.Count > 0 && isGetSubModels)
+                    {
+                        foreach (var model in lstModel)
+                        {
+                            GetSubModels(model);
+                        }
+                    }
+                    result.Items = ParseView(lstModel);
+                    return result;
+                }
+                catch (Exception ex)
+                {
+                    LogErrorMessage(ex);
+                    return null;
+
+                }
+            }
+        }
+        public virtual PaginationModel<TView> GetModelList(Expression<Func<TModel, string>> orderBy, string direction, int? pageIndex, int? pageSize, bool isGetSubModels)
+        {
+            using (TContext context = InitContext())
+            {
+
+                try
+                {
+                    PaginationModel<TView> result = new PaginationModel<TView>();
+                    List<TModel> lstModel = new List<TModel>();
+                    var query = context.Set<TModel>();
+                    result.TotalItems = query.Count();
+                    result.PageIndex = pageIndex ?? 0;
+                    result.PageSize = pageSize ?? result.TotalItems;
+                    if (pageSize.HasValue)
+                    {
+                        result.TotalPage = result.TotalItems / pageSize.Value + (result.TotalItems % pageSize.Value > 0 ? 1 : 0);
+                    }
+                    switch (direction)
+                    {
+                        case "desc":
+                            if (pageSize.HasValue)
+                            {
+                                lstModel = query.OrderByDescending(orderBy).Skip(pageIndex.Value * pageSize.Value).Take(pageSize.Value).ToList();
+
+                            }
+                            else
+                            {
+                                lstModel = query.OrderByDescending(orderBy).ToList();
+                            }
+                            break;
+                        default:
+                            if (pageSize.HasValue)
+                            {
+                                lstModel = query.OrderBy(orderBy).Skip(pageIndex.Value * pageSize.Value).Take(pageSize.Value).ToList();
+
+                            }
+                            else
+                            {
+                                lstModel = query.OrderBy(orderBy).ToList();
+                            }
+                            break;
+                    }
+                    lstModel.ForEach(p => context.Entry(p).State = EntityState.Detached);
+
+                    if (lstModel.Count > 0 && isGetSubModels)
+                    {
+                        foreach (var model in lstModel)
+                        {
+                            GetSubModels(model);
+                        }
+                    }
+
+                    result.Items = ParseView(lstModel);
+                    return result;
+                }
+                catch (Exception ex)
+                {
+                    LogErrorMessage(ex);
+                    return null;
+
+                }
+            }
+        }
+        public virtual PaginationModel<TView> GetModelList(Expression<Func<TModel, DateTime>> orderBy, string direction, int? pageIndex, int? pageSize, bool isGetSubModels)
+        {
+            using (TContext context = InitContext())
+            {
+
+                try
+                {
+                    PaginationModel<TView> result = new PaginationModel<TView>();
+                    List<TModel> lstModel = new List<TModel>();
+                    var query = context.Set<TModel>();
+                    result.TotalItems = query.Count();
+                    result.PageIndex = pageIndex ?? 0;
+                    result.PageSize = pageSize ?? result.TotalItems;
+                    if (pageSize.HasValue)
+                    {
+                        result.TotalPage = result.TotalItems / pageSize.Value + (result.TotalItems % pageSize.Value > 0 ? 1 : 0);
+                    }
+                    switch (direction)
+                    {
+                        case "desc":
+                            if (pageSize.HasValue)
+                            {
+                                lstModel = query.OrderByDescending(orderBy).Skip(pageIndex.Value * pageSize.Value).Take(pageSize.Value).ToList();
+
+                            }
+                            else
+                            {
+                                lstModel = query.OrderByDescending(orderBy).ToList();
+                            }
+                            break;
+                        default:
+                            if (pageSize.HasValue)
+                            {
+                                lstModel = query.OrderBy(orderBy).Skip(pageIndex.Value * pageSize.Value).Take(pageSize.Value).ToList();
+
+                            }
+                            else
+                            {
+                                lstModel = query.OrderBy(orderBy).ToList();
+                            }
+                            break;
+                    }
+                    lstModel.ForEach(p => context.Entry(p).State = EntityState.Detached);
+
+                    if (lstModel.Count > 0 && isGetSubModels)
+                    {
+                        foreach (var model in lstModel)
+                        {
+                            GetSubModels(model);
+                        }
+                    }
+
+                    result.Items = ParseView(lstModel);
+                    return result;
+                }
+                catch (Exception ex)
+                {
+                    LogErrorMessage(ex);
+                    return null;
+
+                }
+            }
+        }
+        public virtual async Task<PaginationModel<TView>> GetModelListAsync(Expression<Func<TModel, string>> orderBy, string direction, int? pageIndex, int? pageSize, bool isGetSubModels)
+        {
+            using (TContext context = InitContext())
+            {
+
+                try
+                {
+                    PaginationModel<TView> result = new PaginationModel<TView>();
+                    List<TModel> lstModel = new List<TModel>();
+                    var query = context.Set<TModel>();
+                    result.TotalItems = query.Count();
+                    result.PageIndex = pageIndex ?? 0;
+                    result.PageSize = pageSize ?? result.TotalItems;
+                    if (pageSize.HasValue)
+                    {
+                        result.TotalPage = result.TotalItems / pageSize.Value + (result.TotalItems % pageSize.Value > 0 ? 1 : 0);
+                    }
+                    switch (direction)
+                    {
+                        case "desc":
+                            if (pageSize.HasValue)
+                            {
+                                lstModel = await query.OrderByDescending(orderBy).Skip(pageIndex.Value * pageSize.Value).Take(pageSize.Value).ToListAsync();
+
+                            }
+                            else
+                            {
+                                lstModel = await query.OrderByDescending(orderBy).ToListAsync();
+                            }
+                            break;
+                        default:
+                            if (pageSize.HasValue)
+                            {
+                                lstModel = await query.OrderBy(orderBy).Skip(pageIndex.Value * pageSize.Value).Take(pageSize.Value).ToListAsync();
+
+                            }
+                            else
+                            {
+                                lstModel = await query.OrderBy(orderBy).ToListAsync();
+                            }
+                            break;
+                    }
+                    lstModel.ForEach(p => context.Entry(p).State = EntityState.Detached);
+
+                    if (lstModel.Count > 0 && isGetSubModels)
+                    {
+                        foreach (var model in lstModel)
+                        {
+                            await GetSubModelsAsync(model);
+                        }
+                    }
+
+                    result.Items = ParseView(lstModel);
+                    return result;
+                }
+                catch (Exception ex)
+                {
+                    LogErrorMessage(ex);
+                    return null;
+
+                }
+            }
+        }
+        public virtual async Task<List<TView>> GetModelListAsync(bool isGetSubModels)
+        {
+            using (TContext context = InitContext())
+            {
+                try
+                {
+                    var query = await context.Set<TModel>().ToListAsync();
+                    query.ForEach(p => context.Entry(p).State = EntityState.Detached);
                     if (query.Count > 0 && isGetSubModels)
                     {
                         foreach (var model in query)
                         {
-                            GetSubModels(model);
+                            await GetSubModelsAsync(model);
                         }
                     }
-                    return query;
+                    return ParseView(query);
 
                 }
                 catch (Exception ex)
@@ -223,203 +520,16 @@ namespace Swastika.Extension.Blog.Base
 
             }
         }
-        public virtual PaginationModel<TModel> GetModelList(Expression<Func<TModel, int>> orderBy, string direction, int? pageIndex, int? pageSize, bool isGetSubModels)
+        public virtual async Task<PaginationModel<TView>> GetModelListAsync(Expression<Func<TModel, DateTime>> orderBy, string direction, int? pageIndex, int? pageSize, bool isGetSubModels)
         {
-            using (Context)
+            using (TContext context = InitContext())
             {
 
                 try
                 {
-                    PaginationModel<TModel> result = new PaginationModel<TModel>();
+                    PaginationModel<TView> result = new PaginationModel<TView>();
                     List<TModel> lstModel = new List<TModel>();
-                    var query = Context.Set<TModel>();
-                    result.TotalItems = query.Count();
-                    result.PageIndex = pageIndex ?? 0;
-                    result.PageSize = pageSize ?? result.TotalItems;
-                    if (pageSize.HasValue)
-                    {
-                        result.TotalPage = result.TotalItems / pageSize.Value + (result.TotalItems % pageSize.Value > 0 ? 1 : 0);
-                    }
-                    switch (direction)
-                    {
-                        case "desc":
-                            if (pageSize.HasValue)
-                            {
-                                lstModel = query.OrderByDescending(orderBy).Skip(pageIndex.Value * pageSize.Value).Take(pageSize.Value).ToList();
-
-                            }
-                            else
-                            {
-                                lstModel = query.OrderByDescending(orderBy).ToList();
-                            }
-                            break;
-                        default:
-                            if (pageSize.HasValue)
-                            {
-                                lstModel = query.OrderBy(orderBy).Skip(pageIndex.Value * pageSize.Value).Take(pageSize.Value).ToList();
-
-                            }
-                            else
-                            {
-                                lstModel = query.OrderBy(orderBy).ToList();
-                            }
-                            break;
-                    }
-                    lstModel.ForEach(p => Context.Entry(p).State = EntityState.Detached);
-                    if (lstModel.Count > 0 && isGetSubModels)
-                    {
-                        foreach (var model in lstModel)
-                        {
-                            GetSubModels(model);
-                        }
-                    }
-                    result.Items = lstModel;
-                    return result;
-                }
-                catch (Exception ex)
-                {
-                    LogErrorMessage(ex);
-                    return null;
-
-                }
-            }
-        }
-        public virtual PaginationModel<TModel> GetModelList(Expression<Func<TModel, string>> orderBy, string direction, int? pageIndex, int? pageSize, bool isGetSubModels)
-        {
-            using (Context)
-            {
-
-                try
-                {
-                    PaginationModel<TModel> result = new PaginationModel<TModel>();
-                    List<TModel> lstModel = new List<TModel>();
-                    var query = Context.Set<TModel>();
-                    result.TotalItems = query.Count();
-                    result.PageIndex = pageIndex ?? 0;
-                    result.PageSize = pageSize ?? result.TotalItems;
-                    if (pageSize.HasValue)
-                    {
-                        result.TotalPage = result.TotalItems / pageSize.Value + (result.TotalItems % pageSize.Value > 0 ? 1 : 0);
-                    }
-                    switch (direction)
-                    {
-                        case "desc":
-                            if (pageSize.HasValue)
-                            {
-                                lstModel = query.OrderByDescending(orderBy).Skip(pageIndex.Value * pageSize.Value).Take(pageSize.Value).ToList();
-
-                            }
-                            else
-                            {
-                                lstModel = query.OrderByDescending(orderBy).ToList();
-                            }
-                            break;
-                        default:
-                            if (pageSize.HasValue)
-                            {
-                                lstModel = query.OrderBy(orderBy).Skip(pageIndex.Value * pageSize.Value).Take(pageSize.Value).ToList();
-
-                            }
-                            else
-                            {
-                                lstModel = query.OrderBy(orderBy).ToList();
-                            }
-                            break;
-                    }
-                    lstModel.ForEach(p => Context.Entry(p).State = EntityState.Detached);
-
-                    if (lstModel.Count > 0 && isGetSubModels)
-                    {
-                        foreach (var model in lstModel)
-                        {
-                            GetSubModels(model);
-                        }
-                    }
-
-                    result.Items = lstModel;
-                    return result;
-                }
-                catch (Exception ex)
-                {
-                    LogErrorMessage(ex);
-                    return null;
-
-                }
-            }
-        }
-        public virtual PaginationModel<TModel> GetModelList(Expression<Func<TModel, DateTime>> orderBy, string direction, int? pageIndex, int? pageSize, bool isGetSubModels)
-        {
-            using (Context)
-            {
-
-                try
-                {
-                    PaginationModel<TModel> result = new PaginationModel<TModel>();
-                    List<TModel> lstModel = new List<TModel>();
-                    var query = Context.Set<TModel>();
-                    result.TotalItems = query.Count();
-                    result.PageIndex = pageIndex ?? 0;
-                    result.PageSize = pageSize ?? result.TotalItems;
-                    if (pageSize.HasValue)
-                    {
-                        result.TotalPage = result.TotalItems / pageSize.Value + (result.TotalItems % pageSize.Value > 0 ? 1 : 0);
-                    }
-                    switch (direction)
-                    {
-                        case "desc":
-                            if (pageSize.HasValue)
-                            {
-                                lstModel = query.OrderByDescending(orderBy).Skip(pageIndex.Value * pageSize.Value).Take(pageSize.Value).ToList();
-
-                            }
-                            else
-                            {
-                                lstModel = query.OrderByDescending(orderBy).ToList();
-                            }
-                            break;
-                        default:
-                            if (pageSize.HasValue)
-                            {
-                                lstModel = query.OrderBy(orderBy).Skip(pageIndex.Value * pageSize.Value).Take(pageSize.Value).ToList();
-
-                            }
-                            else
-                            {
-                                lstModel = query.OrderBy(orderBy).ToList();
-                            }
-                            break;
-                    }
-                    lstModel.ForEach(p => Context.Entry(p).State = EntityState.Detached);
-
-                    if (lstModel.Count > 0 && isGetSubModels)
-                    {
-                        foreach (var model in lstModel)
-                        {
-                            GetSubModels(model);
-                        }
-                    }
-
-                    result.Items = lstModel;
-                    return result;
-                }
-                catch (Exception ex)
-                {
-                    LogErrorMessage(ex);
-                    return null;
-
-                }
-            }
-        }
-        public virtual async Task<PaginationModel<TModel>> GetModelListAsync(Expression<Func<TModel, string>> orderBy, string direction, int? pageIndex, int? pageSize, bool isGetSubModels)
-        {
-            using (Context)
-            {
-
-                try
-                {
-                    PaginationModel<TModel> result = new PaginationModel<TModel>();
-                    List<TModel> lstModel = new List<TModel>();
-                    var query = Context.Set<TModel>();
+                    var query = context.Set<TModel>();
                     result.TotalItems = query.Count();
                     result.PageIndex = pageIndex ?? 0;
                     result.PageSize = pageSize ?? result.TotalItems;
@@ -452,7 +562,7 @@ namespace Swastika.Extension.Blog.Base
                             }
                             break;
                     }
-                    lstModel.ForEach(p => Context.Entry(p).State = EntityState.Detached);
+                    lstModel.ForEach(p => context.Entry(p).State = EntityState.Detached);
 
                     if (lstModel.Count > 0 && isGetSubModels)
                     {
@@ -461,8 +571,7 @@ namespace Swastika.Extension.Blog.Base
                             await GetSubModelsAsync(model);
                         }
                     }
-
-                    result.Items = lstModel;
+                    result.Items = ParseView(lstModel);
                     return result;
                 }
                 catch (Exception ex)
@@ -473,42 +582,16 @@ namespace Swastika.Extension.Blog.Base
                 }
             }
         }
-        public virtual async Task<List<TModel>> GetModelListAsync(bool isGetSubModels)
+        public virtual async Task<PaginationModel<TView>> GetModelListAsync(Expression<Func<TModel, int>> orderBy, string direction, int? pageIndex, int? pageSize, bool isGetSubModels)
         {
-            using (Context)
-            {
-                try
-                {
-                    var query = await Context.Set<TModel>().ToListAsync();
-                    query.ForEach(p => Context.Entry(p).State = EntityState.Detached);
-                    if (query.Count > 0 && isGetSubModels)
-                    {
-                        foreach (var model in query)
-                        {
-                            await GetSubModelsAsync(model);
-                        }
-                    }
-                    return query;
-
-                }
-                catch (Exception ex)
-                {
-                    LogErrorMessage(ex);
-                    return null;
-                }
-
-            }
-        }
-        public virtual async Task<PaginationModel<TModel>> GetModelListAsync(Expression<Func<TModel, DateTime>> orderBy, string direction, int? pageIndex, int? pageSize, bool isGetSubModels)
-        {
-            using (Context)
+            using (TContext context = InitContext())
             {
 
                 try
                 {
-                    PaginationModel<TModel> result = new PaginationModel<TModel>();
+                    PaginationModel<TView> result = new PaginationModel<TView>();
                     List<TModel> lstModel = new List<TModel>();
-                    var query = Context.Set<TModel>();
+                    var query = context.Set<TModel>();
                     result.TotalItems = query.Count();
                     result.PageIndex = pageIndex ?? 0;
                     result.PageSize = pageSize ?? result.TotalItems;
@@ -541,69 +624,7 @@ namespace Swastika.Extension.Blog.Base
                             }
                             break;
                     }
-                    lstModel.ForEach(p => Context.Entry(p).State = EntityState.Detached);
-
-                    if (lstModel.Count > 0 && isGetSubModels)
-                    {
-                        foreach (var model in lstModel)
-                        {
-                            await GetSubModelsAsync(model);
-                        }
-                    }
-                    result.Items = lstModel;
-                    return result;
-                }
-                catch (Exception ex)
-                {
-                    LogErrorMessage(ex);
-                    return null;
-
-                }
-            }
-        }
-        public virtual async Task<PaginationModel<TModel>> GetModelListAsync(Expression<Func<TModel, int>> orderBy, string direction, int? pageIndex, int? pageSize, bool isGetSubModels)
-        {
-            using (Context)
-            {
-
-                try
-                {
-                    PaginationModel<TModel> result = new PaginationModel<TModel>();
-                    List<TModel> lstModel = new List<TModel>();
-                    var query = Context.Set<TModel>();
-                    result.TotalItems = query.Count();
-                    result.PageIndex = pageIndex ?? 0;
-                    result.PageSize = pageSize ?? result.TotalItems;
-                    if (pageSize.HasValue)
-                    {
-                        result.TotalPage = result.TotalItems / pageSize.Value + (result.TotalItems % pageSize.Value > 0 ? 1 : 0);
-                    }
-                    switch (direction)
-                    {
-                        case "desc":
-                            if (pageSize.HasValue)
-                            {
-                                lstModel = await query.OrderByDescending(orderBy).Skip(pageIndex.Value * pageSize.Value).Take(pageSize.Value).ToListAsync();
-
-                            }
-                            else
-                            {
-                                lstModel = await query.OrderByDescending(orderBy).ToListAsync();
-                            }
-                            break;
-                        default:
-                            if (pageSize.HasValue)
-                            {
-                                lstModel = await query.OrderBy(orderBy).Skip(pageIndex.Value * pageSize.Value).Take(pageSize.Value).ToListAsync();
-
-                            }
-                            else
-                            {
-                                lstModel = await query.OrderBy(orderBy).ToListAsync();
-                            }
-                            break;
-                    }
-                    lstModel.ForEach(p => Context.Entry(p).State = EntityState.Detached);
+                    lstModel.ForEach(p => context.Entry(p).State = EntityState.Detached);
 
                     if (lstModel.Count > 0 && isGetSubModels)
                     {
@@ -613,7 +634,7 @@ namespace Swastika.Extension.Blog.Base
                         }
                     }
 
-                    result.Items = lstModel;
+                    result.Items = ParseView(lstModel);
                     return result;
                 }
                 catch (Exception ex)
@@ -628,14 +649,14 @@ namespace Swastika.Extension.Blog.Base
         #endregion
 
         #region GetModelListBy
-        public virtual List<TModel> GetModelListBy(Expression<Func<TModel, bool>> predicate, bool isGetSubModels)
+        public virtual List<TView> GetModelListBy(Expression<Func<TModel, bool>> predicate, bool isGetSubModels)
         {
-            using (Context)
+            using (TContext context = InitContext())
             {
                 try
                 {
-                    var query = Context.Set<TModel>().Where(predicate).ToList();
-                    query.ForEach(p => Context.Entry(p).State = EntityState.Detached);
+                    var query = context.Set<TModel>().Where(predicate).ToList();
+                    query.ForEach(p => context.Entry(p).State = EntityState.Detached);
                     if (isGetSubModels)
                     {
                         foreach (var model in query)
@@ -643,7 +664,7 @@ namespace Swastika.Extension.Blog.Base
                             GetSubModels(model);
                         }
                     }
-                    return query;
+                    return ParseView(query);
 
                 }
                 catch (Exception ex)
@@ -655,16 +676,16 @@ namespace Swastika.Extension.Blog.Base
 
             }
         }
-        public virtual PaginationModel<TModel> GetModelListBy(Expression<Func<TModel, bool>> predicate, Expression<Func<TModel, string>> orderBy, string direction, int? pageIndex, int? pageSize, bool isGetSubModels)
+        public virtual PaginationModel<TView> GetModelListBy(Expression<Func<TModel, bool>> predicate, Expression<Func<TModel, string>> orderBy, string direction, int? pageIndex, int? pageSize, bool isGetSubModels)
         {
-            using (Context)
+            using (TContext context = InitContext())
             {
 
                 try
                 {
-                    PaginationModel<TModel> result = new PaginationModel<TModel>();
+                    PaginationModel<TView> result = new PaginationModel<TView>();
                     List<TModel> lstModel = new List<TModel>();
-                    var query = Context.Set<TModel>().Where(predicate);
+                    var query = context.Set<TModel>().Where(predicate);
                     result.TotalItems = query.Count();
                     result.PageIndex = pageIndex ?? 0;
                     result.PageSize = pageSize ?? result.TotalItems;
@@ -697,7 +718,7 @@ namespace Swastika.Extension.Blog.Base
                             }
                             break;
                     }
-                    lstModel.ForEach(p => Context.Entry(p).State = EntityState.Detached);
+                    lstModel.ForEach(p => context.Entry(p).State = EntityState.Detached);
                     if (lstModel.Count > 0 && isGetSubModels)
                     {
                         foreach (var model in lstModel)
@@ -705,7 +726,7 @@ namespace Swastika.Extension.Blog.Base
                             GetSubModels(model);
                         }
                     }
-                    result.Items = lstModel;
+                    result.Items = ParseView(lstModel);
                     return result;
                 }
                 catch (Exception ex)
@@ -716,16 +737,16 @@ namespace Swastika.Extension.Blog.Base
                 }
             }
         }
-        public virtual PaginationModel<TModel> GetModelListBy(Expression<Func<TModel, bool>> predicate, Expression<Func<TModel, int>> orderBy, string direction, int? pageIndex, int? pageSize, bool isGetSubModels)
+        public virtual PaginationModel<TView> GetModelListBy(Expression<Func<TModel, bool>> predicate, Expression<Func<TModel, int>> orderBy, string direction, int? pageIndex, int? pageSize, bool isGetSubModels)
         {
-            using (Context)
+            using (TContext context = InitContext())
             {
 
                 try
                 {
-                    PaginationModel<TModel> result = new PaginationModel<TModel>();
+                    PaginationModel<TView> result = new PaginationModel<TView>();
                     List<TModel> lstModel = new List<TModel>();
-                    var query = Context.Set<TModel>().Where(predicate);
+                    var query = context.Set<TModel>().Where(predicate);
                     result.TotalItems = query.Count();
                     result.PageIndex = pageIndex ?? 0;
                     result.PageSize = pageSize ?? result.TotalItems;
@@ -758,7 +779,7 @@ namespace Swastika.Extension.Blog.Base
                             }
                             break;
                     }
-                    lstModel.ForEach(p => Context.Entry(p).State = EntityState.Detached);
+                    lstModel.ForEach(p => context.Entry(p).State = EntityState.Detached);
                     if (lstModel.Count > 0 && isGetSubModels)
                     {
                         foreach (var model in lstModel)
@@ -766,7 +787,7 @@ namespace Swastika.Extension.Blog.Base
                             GetSubModels(model);
                         }
                     }
-                    result.Items = lstModel;
+                    result.Items = ParseView(lstModel);
                     return result;
                 }
                 catch (Exception ex)
@@ -777,16 +798,16 @@ namespace Swastika.Extension.Blog.Base
                 }
             }
         }
-        public virtual PaginationModel<TModel> GetModelListBy(Expression<Func<TModel, bool>> predicate, Expression<Func<TModel, DateTime>> orderBy, string direction, int? pageIndex, int? pageSize, bool isGetSubModels)
+        public virtual PaginationModel<TView> GetModelListBy(Expression<Func<TModel, bool>> predicate, Expression<Func<TModel, DateTime>> orderBy, string direction, int? pageIndex, int? pageSize, bool isGetSubModels)
         {
-            using (Context)
+            using (TContext context = InitContext())
             {
 
                 try
                 {
-                    PaginationModel<TModel> result = new PaginationModel<TModel>();
+                    PaginationModel<TView> result = new PaginationModel<TView>();
                     List<TModel> lstModel = new List<TModel>();
-                    var query = Context.Set<TModel>().Where(predicate);
+                    var query = context.Set<TModel>().Where(predicate);
                     result.TotalItems = query.Count();
                     result.PageIndex = pageIndex ?? 0;
                     result.PageSize = pageSize ?? result.TotalItems;
@@ -819,7 +840,7 @@ namespace Swastika.Extension.Blog.Base
                             }
                             break;
                     }
-                    lstModel.ForEach(p => Context.Entry(p).State = EntityState.Detached);
+                    lstModel.ForEach(p => context.Entry(p).State = EntityState.Detached);
                     if (lstModel.Count > 0 && isGetSubModels)
                     {
                         foreach (var model in lstModel)
@@ -827,7 +848,7 @@ namespace Swastika.Extension.Blog.Base
                             GetSubModels(model);
                         }
                     }
-                    result.Items = lstModel;
+                    result.Items = ParseView(lstModel);
                     return result;
                 }
                 catch (Exception ex)
@@ -839,14 +860,14 @@ namespace Swastika.Extension.Blog.Base
             }
         }
 
-        public virtual async Task<List<TModel>> GetModelListByAsync(Expression<Func<TModel, bool>> predicate, bool isGetSubModels)
+        public virtual async Task<List<TView>> GetModelListByAsync(Expression<Func<TModel, bool>> predicate, bool isGetSubModels)
         {
-            using (Context)
+            using (TContext context = InitContext())
             {
                 try
                 {
-                    var query = await Context.Set<TModel>().Where(predicate).ToListAsync();
-                    query.ForEach(p => Context.Entry(p).State = EntityState.Detached);
+                    var query = await context.Set<TModel>().Where(predicate).ToListAsync();
+                    query.ForEach(p => context.Entry(p).State = EntityState.Detached);
                     if (isGetSubModels)
                     {
                         foreach (var model in query)
@@ -854,7 +875,7 @@ namespace Swastika.Extension.Blog.Base
                             await GetSubModelsAsync(model);
                         }
                     }
-                    return query;
+                    return ParseView(query);
 
                 }
                 catch (Exception ex)
@@ -867,16 +888,16 @@ namespace Swastika.Extension.Blog.Base
             }
         }
 
-        public virtual async Task<PaginationModel<TModel>> GetModelListByAsync(Expression<Func<TModel, bool>> predicate, Expression<Func<TModel, int>> orderBy, string direction, int? pageIndex, int? pageSize, bool isGetSubModels)
+        public virtual async Task<PaginationModel<TView>> GetModelListByAsync(Expression<Func<TModel, bool>> predicate, Expression<Func<TModel, int>> orderBy, string direction, int? pageIndex, int? pageSize, bool isGetSubModels)
         {
-            using (Context)
+            using (TContext context = InitContext())
             {
 
                 try
                 {
-                    PaginationModel<TModel> result = new PaginationModel<TModel>();
+                    PaginationModel<TView> result = new PaginationModel<TView>();
                     List<TModel> lstModel = new List<TModel>();
-                    var query = Context.Set<TModel>().Where(predicate);
+                    var query = context.Set<TModel>().Where(predicate);
                     result.TotalItems = query.Count();
                     result.PageIndex = pageIndex ?? 0;
                     result.PageSize = pageSize ?? result.TotalItems;
@@ -909,7 +930,7 @@ namespace Swastika.Extension.Blog.Base
                             }
                             break;
                     }
-                    lstModel.ForEach(p => Context.Entry(p).State = EntityState.Detached);
+                    lstModel.ForEach(p => context.Entry(p).State = EntityState.Detached);
 
                     if (lstModel.Count > 0 && isGetSubModels)
                     {
@@ -919,7 +940,7 @@ namespace Swastika.Extension.Blog.Base
                         }
                     }
 
-                    result.Items = lstModel;
+                    result.Items = ParseView(lstModel);
                     return result;
                 }
                 catch (Exception ex)
@@ -930,16 +951,16 @@ namespace Swastika.Extension.Blog.Base
                 }
             }
         }
-        public virtual async Task<PaginationModel<TModel>> GetModelListByAsync(Expression<Func<TModel, bool>> predicate, Expression<Func<TModel, string>> orderBy, string direction, int? pageIndex, int? pageSize, bool isGetSubModels)
+        public virtual async Task<PaginationModel<TView>> GetModelListByAsync(Expression<Func<TModel, bool>> predicate, Expression<Func<TModel, string>> orderBy, string direction, int? pageIndex, int? pageSize, bool isGetSubModels)
         {
-            using (Context)
+            using (TContext context = InitContext())
             {
 
                 try
                 {
-                    PaginationModel<TModel> result = new PaginationModel<TModel>();
+                    PaginationModel<TView> result = new PaginationModel<TView>();
                     List<TModel> lstModel = new List<TModel>();
-                    var query = Context.Set<TModel>().Where(predicate);
+                    var query = context.Set<TModel>().Where(predicate);
                     result.TotalItems = query.Count();
                     result.PageIndex = pageIndex ?? 0;
                     result.PageSize = pageSize ?? result.TotalItems;
@@ -972,7 +993,7 @@ namespace Swastika.Extension.Blog.Base
                             }
                             break;
                     }
-                    lstModel.ForEach(p => Context.Entry(p).State = EntityState.Detached);
+                    lstModel.ForEach(p => context.Entry(p).State = EntityState.Detached);
 
                     if (lstModel.Count > 0 && isGetSubModels)
                     {
@@ -982,7 +1003,7 @@ namespace Swastika.Extension.Blog.Base
                         }
                     }
 
-                    result.Items = lstModel;
+                    result.Items = ParseView(lstModel);
                     return result;
                 }
                 catch (Exception ex)
@@ -993,16 +1014,16 @@ namespace Swastika.Extension.Blog.Base
                 }
             }
         }
-        public virtual async Task<PaginationModel<TModel>> GetModelListByAsync(Expression<Func<TModel, bool>> predicate, Expression<Func<TModel, DateTime>> orderBy, string direction, int? pageIndex, int? pageSize, bool isGetSubModels)
+        public virtual async Task<PaginationModel<TView>> GetModelListByAsync(Expression<Func<TModel, bool>> predicate, Expression<Func<TModel, DateTime>> orderBy, string direction, int? pageIndex, int? pageSize, bool isGetSubModels)
         {
-            using (Context)
+            using (TContext context = InitContext())
             {
 
                 try
                 {
-                    PaginationModel<TModel> result = new PaginationModel<TModel>();
+                    PaginationModel<TView> result = new PaginationModel<TView>();
                     List<TModel> lstModel = new List<TModel>();
-                    var query = Context.Set<TModel>().Where(predicate);
+                    var query = context.Set<TModel>().Where(predicate);
                     result.TotalItems = query.Count();
                     result.PageIndex = pageIndex ?? 0;
                     result.PageSize = pageSize ?? result.TotalItems;
@@ -1035,7 +1056,7 @@ namespace Swastika.Extension.Blog.Base
                             }
                             break;
                     }
-                    lstModel.ForEach(p => Context.Entry(p).State = EntityState.Detached);
+                    lstModel.ForEach(p => context.Entry(p).State = EntityState.Detached);
 
                     if (lstModel.Count > 0 && isGetSubModels)
                     {
@@ -1045,7 +1066,7 @@ namespace Swastika.Extension.Blog.Base
                         }
                     }
 
-                    result.Items = lstModel;
+                    result.Items = ParseView(lstModel) ;
                     return result;
                 }
                 catch (Exception ex)
@@ -1059,53 +1080,54 @@ namespace Swastika.Extension.Blog.Base
         #endregion
 
 
-        public virtual TModel GetSingleModel(Expression<Func<TModel, bool>> predicate, bool isGetSubModels)
+        public virtual TView GetSingleModel(Expression<Func<TModel, bool>> predicate, bool isGetSubModels)
         {
-            using (Context)
+            using (TContext context = InitContext())
             {
-                TModel query = Context.Set<TModel>().FirstOrDefault(predicate);
+                TModel query = context.Set<TModel>().FirstOrDefault(predicate);
                 if (query != null)
                 {
-                    Context.Entry(query).State = EntityState.Detached;
+                    context.Entry(query).State = EntityState.Detached;
                     if (isGetSubModels)
                     {
                         GetSubModels(query);
                     }
+                    return ParseView(query);
                 }
-                return query;
+                return null;
             }
         }
 
-        public virtual async Task<TModel> GetSingleModelAsync(Expression<Func<TModel, bool>> predicate, bool isGetSubModels)
+        public virtual async Task<TView> GetSingleModelAsync(Expression<Func<TModel, bool>> predicate, bool isGetSubModels)
         {
-            using (Context)
+            using (TContext context = InitContext())
             {
-                TModel model = await Context.Set<TModel>().FirstOrDefaultAsync(predicate);
+                TModel model = await context.Set<TModel>().FirstOrDefaultAsync(predicate);
                 if (model != null)
                 {
-                    Context.Entry(model).State = EntityState.Detached;
+                    context.Entry(model).State = EntityState.Detached;
                 }
                 if (isGetSubModels)
                 {
                     await GetSubModelsAsync(model);
                 }
-                return model;
+                return ParseView(model);
             }
         }
 
         public virtual bool RemoveListModel(Expression<Func<TModel, bool>> predicate)
         {
-            using (Context)
+            using (TContext context = InitContext())
             {
-                var models = Context.Set<TModel>().Where(predicate);
+                var models = context.Set<TModel>().Where(predicate);
                 if (models != null)
                 {
                     foreach (var model in models)
                     {
-                        Context.Entry(models).State = EntityState.Deleted;
+                        context.Entry(models).State = EntityState.Deleted;
                     }
 
-                    int records = Context.SaveChanges();
+                    int records = context.SaveChanges();
                     return records > 0;
                 }
                 else
@@ -1117,17 +1139,17 @@ namespace Swastika.Extension.Blog.Base
 
         public virtual async Task<bool> RemoveListModelAsync(Expression<Func<TModel, bool>> predicate)
         {
-            using (Context)
+            using (TContext context = InitContext())
             {
-                var models = await Context.Set<TModel>().Where(predicate).ToListAsync();
+                var models = await context.Set<TModel>().Where(predicate).ToListAsync();
                 if (models != null)
                 {
                     foreach (var model in models)
                     {
-                        Context.Entry(models).State = EntityState.Deleted;
+                        context.Entry(models).State = EntityState.Deleted;
                     }
 
-                    int records = await Context.SaveChangesAsync();
+                    int records = await context.SaveChangesAsync();
                     return records > 0;
                 }
                 else
@@ -1139,25 +1161,28 @@ namespace Swastika.Extension.Blog.Base
 
         public virtual bool RemoveModel(Expression<Func<TModel, bool>> predicate)
         {
-            TModel model = Context.Set<TModel>().FirstOrDefault(predicate);
-            if (model != null)
+            using (TContext context = InitContext())
             {
+                TModel model = context.Set<TModel>().FirstOrDefault(predicate);
+                if (model != null)
+                {
 
-                Context.Entry(model).State = EntityState.Deleted;
-                int records = Context.SaveChanges();
-                return records > 0;
+                    context.Entry(model).State = EntityState.Deleted;
+                    int records = context.SaveChanges();
+                    return records > 0;
+                }
+                return false;
             }
-            return false;
         }
 
         public virtual bool RemoveModel(TModel model)
         {
             try
             {
-                using (Context)
+                using (TContext context = InitContext())
                 {
-                    Context.Entry(model).State = EntityState.Deleted;
-                    Context.SaveChanges();
+                    context.Entry(model).State = EntityState.Deleted;
+                    context.SaveChanges();
                     return true;
                 }
             }
@@ -1170,14 +1195,14 @@ namespace Swastika.Extension.Blog.Base
 
         public virtual async Task<bool> RemoveModelAsync(Expression<Func<TModel, bool>> predicate)
         {
-            using (Context)
+            using (TContext context = InitContext())
             {
-                TModel model = await Context.Set<TModel>().FirstOrDefaultAsync(predicate);
+                TModel model = await context.Set<TModel>().FirstOrDefaultAsync(predicate);
                 if (model != null)
                 {
 
-                    Context.Entry(model).State = EntityState.Deleted;
-                    int records = await Context.SaveChangesAsync();
+                    context.Entry(model).State = EntityState.Deleted;
+                    int records = await context.SaveChangesAsync();
                     return records > 0;
                 }
                 return false;
@@ -1189,10 +1214,10 @@ namespace Swastika.Extension.Blog.Base
         {
             try
             {
-                using (Context)
+                using (TContext context = InitContext())
                 {
-                    Context.Entry(model).State = EntityState.Deleted;
-                    int records = await Context.SaveChangesAsync();
+                    context.Entry(model).State = EntityState.Deleted;
+                    int records = await context.SaveChangesAsync();
                     return records > 0;
                 }
             }
@@ -1203,7 +1228,7 @@ namespace Swastika.Extension.Blog.Base
             }
         }
 
-        public virtual TModel SaveModel(TModel model)
+        public virtual TView SaveModel(TModel model)
         {
             if (CheckExists(model))
             {
@@ -1215,7 +1240,7 @@ namespace Swastika.Extension.Blog.Base
             }
         }
 
-        public virtual Task<TModel> SaveModelAsync(TModel model)
+        public virtual Task<TView> SaveModelAsync(TModel model)
         {
             if (CheckExists(model))
             {
