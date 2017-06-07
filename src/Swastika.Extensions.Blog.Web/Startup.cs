@@ -26,9 +26,9 @@ namespace Swastika.Extensions.Blog.Web
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            // Add Database context
-            services.AddDbContext<BlogDbContext>(options => options.UseSqlServer(
-                Configuration.GetConnectionString("BlogConnection")));         
+            //// Add Database context
+            //services.AddDbContext<BlogDbContext>(options => options.UseSqlServer(
+            //    Configuration.GetConnectionString("BlogConnection")));         
             
             // Add framework services.
             services.AddMvc();

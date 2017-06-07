@@ -14,7 +14,7 @@ namespace Swastika.Extension.Blog.Base
 {
     public abstract class RepositoryBase<TModel, TView, TContext> : IRepository<TModel, TView> where TModel : class where TView : ViewModelBase<TModel, TView> where TContext : DbContext
     {
-        public RepositoryBase(TContext context)
+        public RepositoryBase()
         {
             RegisterAutoMapper();
         }

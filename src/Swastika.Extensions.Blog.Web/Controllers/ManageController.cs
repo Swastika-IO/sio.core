@@ -1,26 +1,21 @@
 using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
-using Swastika.Extension.Blog.Data;
-using Swastika.Extension.Blog.Models;
 using Swastika.Extensions.Blog.Repositories;
 using Swastika.Extension.Blog.ViewModels;
+using Swastika.UI.Base.Controllers;
+using Swastika.Domain.Core.Notifications;
 
 namespace Swastika.Extensions.Blog.Web.Controllers
 {
-    public class ManageController : Controller
+    public class ManageController : BaseController
     {
-        //private readonly BlogDbContext _context;
         private readonly BlogPostRepository _repo;
 
-        public ManageController(BlogDbContext context)
+        public ManageController(IDomainNotificationHandler<DomainNotification> notifications) : base(notifications)
         {
-            //_context = context;
-            _repo = BlogPostRepository.GetInstance(context);
+            _repo = BlogPostRepository.GetInstance();
         }
 
         // GET: Manage

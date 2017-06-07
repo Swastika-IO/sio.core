@@ -11,20 +11,20 @@ namespace Swastika.Extensions.Blog.Repositories
         private static volatile BlogPostRepository instance;
         private static object syncRoot = new Object();
 
-        public static BlogPostRepository GetInstance(BlogDbContext context)
+        public static BlogPostRepository GetInstance()
         {
             if (instance == null)
             {
                 lock (syncRoot)
                 {
                     if (instance == null)
-                        instance = new BlogPostRepository(context);
+                        instance = new BlogPostRepository();
                 }
             }
             return instance;
         }
 
-        private BlogPostRepository(BlogDbContext context) : base(context)
+        private BlogPostRepository() : base()
         {
 
         }

@@ -27,7 +27,7 @@ namespace Swastika.Extension.Blog.Base
 
         public virtual void ParseModel()
         {
-            Model = Mapper.Instance.Map<TModel>(this);
+            Mapper.Map<TView, TModel>((TView)this, Model);
         }
 
         public ViewModelBase()
