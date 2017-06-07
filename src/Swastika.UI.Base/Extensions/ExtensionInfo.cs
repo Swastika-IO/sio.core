@@ -1,5 +1,6 @@
 ﻿using System.Reflection;
 using System.Linq;
+using System.Collections.Generic;
 
 namespace Swastika.UI.Base.Extensions
 {
@@ -23,6 +24,14 @@ namespace Swastika.UI.Base.Extensions
         /// The assembly.
         /// </value>
         public Assembly Assembly { get; set; }
+
+        /// <summary>
+        /// Gets or sets the references.
+        /// </summary>
+        /// <value>
+        /// The references.
+        /// </value>
+        public List<Assembly> References { get; set; }
 
         /// <summary>
         /// Gets the short name.
