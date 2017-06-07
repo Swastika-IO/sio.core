@@ -1,22 +1,32 @@
-﻿using System;
-using System.Threading.Tasks;
-using Microsoft.EntityFrameworkCore;
-using Swastika.Extension.Blog.Base;
+﻿using Swastika.Extension.Blog.Base;
 using Swastika.Extension.Blog.Data;
+using System;
 
-namespace Swastika.Extensions.Blog.Repositories
-{
-    public class BlogPostRepository : RepositoryBase<Extension.Blog.Models.Blog, Extension.Blog.ViewModels.BlogViewModel, BlogDbContext>
-    {
+namespace Swastika.Extensions.Blog.Repositories {
+
+    /// <summary>
+    ///
+    /// </summary>
+    /// <seealso cref="Swastika.Extension.Blog.Base.RepositoryBase{Swastika.Extension.Blog.Models.Blog, Swastika.Extension.Blog.ViewModels.BlogViewModel, Swastika.Extension.Blog.Data.BlogDbContext}" />
+    public class BlogPostRepository : RepositoryBase<Extension.Blog.Models.Blog, Extension.Blog.ViewModels.BlogViewModel, BlogDbContext> {
+
+        /// <summary>
+        /// The instance
+        /// </summary>
         private static volatile BlogPostRepository instance;
+
+        /// <summary>
+        /// The synchronize root
+        /// </summary>
         private static object syncRoot = new Object();
 
-        public static BlogPostRepository GetInstance()
-        {
-            if (instance == null)
-            {
-                lock (syncRoot)
-                {
+        /// <summary>
+        /// Gets the instance.
+        /// </summary>
+        /// <returns></returns>
+        public static BlogPostRepository GetInstance() {
+            if (instance == null) {
+                lock (syncRoot) {
                     if (instance == null)
                         instance = new BlogPostRepository();
                 }
@@ -24,10 +34,10 @@ namespace Swastika.Extensions.Blog.Repositories
             return instance;
         }
 
-        private BlogPostRepository() : base()
-        {
-
+        /// <summary>
+        /// Prevents a default instance of the <see cref="BlogPostRepository"/> class from being created.
+        /// </summary>
+        private BlogPostRepository() : base() {
         }
-
     }
 }
