@@ -1,10 +1,9 @@
-﻿using Microsoft.AspNetCore.Hosting;
-using Microsoft.Extensions.DependencyInjection;
+﻿using Microsoft.Extensions.DependencyInjection;
 
-namespace Swastika.UI.Base.Extensions
-{
-    public interface IExtensionStartup
-    {
+namespace Swastika.UI.Base.Extensions {
+
+    public interface IExtensionStartup {
+
         /// <summary>
         /// Extensions the startup.
         /// </summary>

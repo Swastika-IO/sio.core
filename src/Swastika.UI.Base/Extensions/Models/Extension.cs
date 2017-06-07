@@ -1,14 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
+﻿namespace Swastika.UI.Base.Extensions.Models {
 
-namespace Swastika.UI.Base.Extensions.Models
-{
     /// <summary>
-    /// 
+    ///
     /// </summary>
-    public class Extension
-    {
+    public class Extension {
+
         /// <summary>
         /// Gets or sets the title.
         /// </summary>
@@ -16,6 +12,7 @@ namespace Swastika.UI.Base.Extensions.Models
         /// The title.
         /// </value>
         public string Title { get; set; }
+
         /// <summary>
         /// Gets or sets the name.
         /// </summary>
@@ -23,6 +20,7 @@ namespace Swastika.UI.Base.Extensions.Models
         /// The name.
         /// </value>
         public string Name { get; set; }
+
         /// <summary>
         /// Gets or sets a value indicating whether this instance is active.
         /// </summary>
@@ -30,6 +28,7 @@ namespace Swastika.UI.Base.Extensions.Models
         /// {D255958A-8513-4226-94B9-080D98F904A1}  <c>true</c> if this instance is active; otherwise, <c>false</c>.
         /// </value>
         public bool IsActive { get; set; }
+
         /// <summary>
         /// Gets or sets the ulr.
         /// </summary>
@@ -37,6 +36,7 @@ namespace Swastika.UI.Base.Extensions.Models
         /// The ulr.
         /// </value>
         public string Ulr { get; set; }
+
         /// <summary>
         /// Gets or sets the author.
         /// </summary>
@@ -44,6 +44,7 @@ namespace Swastika.UI.Base.Extensions.Models
         /// The author.
         /// </value>
         public string Author { get; set; }
+
         /// <summary>
         /// Gets or sets the installed date time.
         /// </summary>

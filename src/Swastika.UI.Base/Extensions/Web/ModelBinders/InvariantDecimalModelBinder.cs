@@ -1,17 +1,17 @@
-﻿using System;
+﻿using Microsoft.AspNetCore.Mvc.ModelBinding;
+using Microsoft.AspNetCore.Mvc.ModelBinding.Binders;
+using System;
 using System.Globalization;
 using System.Threading.Tasks;
-using Microsoft.AspNetCore.Mvc.ModelBinding;
-using Microsoft.AspNetCore.Mvc.ModelBinding.Binders;
 
-namespace Swastika.UI.Base.Extensions.Web.ModelBinders
-{
+namespace Swastika.UI.Base.Extensions.Web.ModelBinders {
+
     /// <summary>
-    /// 
+    ///
     /// </summary>
     /// <seealso cref="Microsoft.AspNetCore.Mvc.ModelBinding.IModelBinder" />
-    public class InvariantDecimalModelBinder : IModelBinder
-    {
+    public class InvariantDecimalModelBinder : IModelBinder {
+
         /// <summary>
         /// The base binder
         /// </summary>
@@ -21,8 +21,7 @@ namespace Swastika.UI.Base.Extensions.Web.ModelBinders
         /// Initializes a new instance of the <see cref="InvariantDecimalModelBinder"/> class.
         /// </summary>
         /// <param name="modelType">Type of the model.</param>
-        public InvariantDecimalModelBinder(Type modelType)
-        {
+        public InvariantDecimalModelBinder(Type modelType) {
             _baseBinder = new SimpleTypeModelBinder(modelType);
         }
 
@@ -44,24 +43,20 @@ namespace Swastika.UI.Base.Extensions.Web.ModelBinders
         /// </para>
         /// </returns>
         /// <exception cref="System.ArgumentNullException">bindingContext</exception>
-        public Task BindModelAsync(ModelBindingContext bindingContext)
-        {
-            if (bindingContext == null)
-            {
+        public Task BindModelAsync(ModelBindingContext bindingContext) {
+            if (bindingContext == null) {
                 throw new ArgumentNullException(nameof(bindingContext));
             }
 
             var valueProviderResult = bindingContext.ValueProvider.GetValue(bindingContext.ModelName);
 
-            if (valueProviderResult != ValueProviderResult.None)
-            {
+            if (valueProviderResult != ValueProviderResult.None) {
                 bindingContext.ModelState.SetModelValue(bindingContext.ModelName, valueProviderResult);
 
                 var valueAsString = valueProviderResult.FirstValue;
                 decimal result;
 
-                if (decimal.TryParse(valueAsString, NumberStyles.AllowDecimalPoint, CultureInfo.InvariantCulture, out result))
-                {
+                if (decimal.TryParse(valueAsString, NumberStyles.AllowDecimalPoint, CultureInfo.InvariantCulture, out result)) {
                     bindingContext.Result = ModelBindingResult.Success(result);
                     return Task.CompletedTask;
                 }
