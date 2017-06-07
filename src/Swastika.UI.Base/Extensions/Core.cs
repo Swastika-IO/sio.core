@@ -44,7 +44,6 @@ namespace Swastika.UI.Base.Extensions
                     continue;
                 }
 
-
                 ExtensionInfo extInfo = new ExtensionInfo();
                 extInfo.References = new List<Assembly>();
 
@@ -114,7 +113,6 @@ namespace Swastika.UI.Base.Extensions
                         foreach (var reference in extension.References)
                         {
                             razorViewEngineOption.AdditionalCompilationReferences.Add(MetadataReference.CreateFromFile(reference.Location));
-
                         }
                     }
                 })
@@ -135,13 +133,47 @@ namespace Swastika.UI.Base.Extensions
                     // Call extension startup class
                     extensionInitializer.ExtensionStartup(services);
                 }
-                
+
                 AutoMapper.Mapper.Initialize(cfg => cfg.AddProfiles(extension.Assembly));
                 AutoMapper.Mapper.Initialize(cfg => cfg.AddProfiles(extension.References));
-                
+
             }
 
             return services;
         }
+
+        // Ref: https://stackoverflow.com/questions/31859267/load-nuget-dependencies-at-runtime
+        // TODO:
+        /// <summary>
+        /// Handles the PackageInstalled event of the PackageManager control.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="PackageOperationEventArgs" /> instance containing the event data.</param>
+        //private static void PackageManager_PackageInstalled(object sender,
+        //                                                    PackageOperationEventArgs e)
+        //{
+        //    var files = e.FileSystem.GetFiles(e.InstallPath, "*.dll", true);
+        //    foreach (var file in files)
+        //    {
+        //        try
+        //        {
+        //            AppDomain domain = AppDomain.CreateDomain("tmp");
+        //            Type typeProxyType = typeof(TypeProxy);
+        //            var typeProxyInstance = (TypeProxy)domain.CreateInstanceAndUnwrap(
+        //                    typeProxyType.Assembly.FullName,
+        //                    typeProxyType.FullName);
+
+        //            var type = typeProxyInstance.LoadFromAssembly(file, "<KnownTypeName>");
+        //            object instance =
+        //                domain.CreateInstanceAndUnwrap(type.Assembly.FullName, type.FullName);
+        //        }
+        //        catch (Exception ex)
+        //        {
+        //            Console.WriteLine("failed to load {0}", file);
+        //            Console.WriteLine(ex.ToString());
+        //        }
+
+        //    }
+        //}
     }
 }
