@@ -5,7 +5,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Swastika.Domain.Core.Bus;
 using Swastika.Domain.Core.Events;
 using Swastika.Domain.Core.Notifications;
-using Swastika.Domain.Interfaces;
+using Swastika.Domain.Core.Interfaces;
 using Swastika.Infrastructure.CrossCutting.Bus;
 using Swastika.Infrastructure.CrossCutting.Identity.Authorization;
 using Swastika.Infrastructure.CrossCutting.Identity.Models;

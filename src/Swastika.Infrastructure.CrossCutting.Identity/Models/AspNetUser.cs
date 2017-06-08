@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Security.Claims;
-using Swastika.Domain.Interfaces;
+using Swastika.Domain.Core.Interfaces;
 using Microsoft.AspNetCore.Http;
 
 namespace Swastika.Infrastructure.CrossCutting.Identity.Models

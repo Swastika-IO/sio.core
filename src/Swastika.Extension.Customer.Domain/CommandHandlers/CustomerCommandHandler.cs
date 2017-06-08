@@ -5,8 +5,8 @@ using Swastika.Domain.Core.Events;
 using Swastika.Domain.Core.Notifications;
 using Swastika.Extension.Customer.Domain.Events;
 using Swastika.Extension.Customer.Domain.Interfaces;
-using Swastika.Domain.Interfaces;
-using Swastika.Domain.CommandHandlers;
+using Swastika.Domain.Core.Interfaces;
+using Swastika.Domain.Core.CommandHandlers;
 
 namespace Swastika.Extension.Customer.Domain.CommandHandlers
 {

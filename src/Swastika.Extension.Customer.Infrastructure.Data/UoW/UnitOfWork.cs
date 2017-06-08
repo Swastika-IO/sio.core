@@ -1,5 +1,5 @@
 ﻿using Swastika.Domain.Core.Commands;
-using Swastika.Domain.Interfaces;
+using Swastika.Domain.Core.Interfaces;
 using Swastika.Extension.Customer.Domain.Interfaces;
 using Swastika.Extension.Customer.Infrastructure.Data.Context;
 

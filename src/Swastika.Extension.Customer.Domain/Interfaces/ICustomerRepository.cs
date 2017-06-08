@@ -1,4 +1,4 @@
-﻿using Swastika.Domain.Interfaces;
+﻿using Swastika.Domain.Core.Interfaces;
 
 namespace Swastika.Extension.Customer.Domain.Interfaces
 {

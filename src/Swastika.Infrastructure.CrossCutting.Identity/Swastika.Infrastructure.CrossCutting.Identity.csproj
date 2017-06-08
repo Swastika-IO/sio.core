@@ -26,4 +26,8 @@
     <PackageReference Include="Microsoft.AspNetCore.Authorization" Version="1.1.2" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\Swastika.Domain.Core\Swastika.Domain.Core.csproj" />
+  </ItemGroup>
+
 </Project>
