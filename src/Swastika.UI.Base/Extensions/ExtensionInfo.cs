@@ -1,14 +1,14 @@
-﻿using System.Reflection;
+﻿using System.Collections.Generic;
 using System.Linq;
-using System.Collections.Generic;
+using System.Reflection;
 
-namespace Swastika.UI.Base.Extensions
-{
+namespace Swastika.UI.Base.Extensions {
+
     /// <summary>
-    /// 
+    ///
     /// </summary>
-    public class ExtensionInfo
-    {
+    public class ExtensionInfo {
+
         /// <summary>
         /// Gets or sets the name.
         /// </summary>
@@ -39,10 +39,8 @@ namespace Swastika.UI.Base.Extensions
         /// <value>
         /// The short name.
         /// </value>
-        public string ShortName
-        {
-            get
-            {
+        public string ShortName {
+            get {
                 return Name.Split('.').Last();
             }
         }

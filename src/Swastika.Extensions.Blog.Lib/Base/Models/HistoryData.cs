@@ -1,11 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
+﻿namespace Swastika.Extension.Blog.Base.Models {
 
-namespace Swastika.Extension.Blog.Base.Models
-{
-    public class HistoryData<T> where T : class
-    {
+    /// <summary>
+    /// History Data class
+    /// </summary>
+    /// <typeparam name="T"></typeparam>
+    public class HistoryData<T> where T : class {
+
         /// <summary>
         /// Gets or sets the action.
         /// </summary>
@@ -13,6 +13,7 @@ namespace Swastika.Extension.Blog.Base.Models
         /// The action.
         /// </value>
         public string Action { get; set; }
+
         /// <summary>
         /// Gets or sets the identifier.
         /// </summary>
@@ -20,6 +21,7 @@ namespace Swastika.Extension.Blog.Base.Models
         /// The identifier.
         /// </value>
         public T Model { get; set; }
+
         /// <summary>
         /// Gets or sets the when.
         /// </summary>
@@ -27,6 +29,7 @@ namespace Swastika.Extension.Blog.Base.Models
         /// The when.
         /// </value>
         public string When { get; set; }
+
         /// <summary>
         /// Gets or sets the who.
         /// </summary>
