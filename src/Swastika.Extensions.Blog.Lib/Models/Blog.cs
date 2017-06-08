@@ -1,5 +1,6 @@
 ﻿using Swastika.Domain.Core.Models;
 using System;
+using System.Collections.Generic;
 
 namespace Swastika.Extension.Blog.Models {
 
@@ -112,5 +113,7 @@ namespace Swastika.Extension.Blog.Models {
         /// The common status identifier.
         /// </value>
         public Byte CommonStatusId { get; set; }
+
+        public virtual ICollection<BlogPost> BlogPost { get; set; }
     }
 }

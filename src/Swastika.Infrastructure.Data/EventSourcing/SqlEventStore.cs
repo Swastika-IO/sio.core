@@ -1,5 +1,5 @@
 ﻿using Swastika.Domain.Core.Events;
-using Swastika.Domain.Interfaces;
+using Swastika.Domain.Core.Interfaces;
 using Swastika.Infrastructure.Data.Repository.EventSourcing;
 using Newtonsoft.Json;
 

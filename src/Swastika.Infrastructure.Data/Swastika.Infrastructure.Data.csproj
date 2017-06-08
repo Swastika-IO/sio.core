@@ -29,7 +29,7 @@
   <ItemGroup>
     <ProjectReference Include="..\Swastika.Common.Helper\Swastika.Common.Helper.csproj" />
     <ProjectReference Include="..\Swastika.Common.Utility\Swastika.Common.Utility.csproj" />
-    <ProjectReference Include="..\Swastika.Domain\Swastika.Domain.csproj" />
+    <ProjectReference Include="..\Swastika.Domain.Core\Swastika.Domain.Core.csproj" />
   </ItemGroup>
 
   <ItemGroup>
