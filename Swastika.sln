@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
-VisualStudioVersion = 15.0.26430.12
+VisualStudioVersion = 15.0.26430.6
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{AE3E98DB-35C1-42D8-AB6D-DE37189DDAA1}"
 EndProject
@@ -64,9 +64,9 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Swastika.Common.Utility", "
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Swastika.Common.Helper", "src\Swastika.Common.Helper\Swastika.Common.Helper.csproj", "{9D4BA81C-4C1C-4CEF-9880-247B22FF2491}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Swastika.Extensions.Blog.Lib", "src\Swastika.Extensions.Blog.Lib\Swastika.Extensions.Blog.Lib.csproj", "{EF8A5923-D37B-4603-892D-39D077852B3D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Swastika.Extension.Blog.Lib", "src\Swastika.Extensions.Blog.Lib\Swastika.Extension.Blog.Lib.csproj", "{EF8A5923-D37B-4603-892D-39D077852B3D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Swastika.Extensions.Blog.Web", "src\Swastika.Extensions.Blog.Web\Swastika.Extensions.Blog.Web.csproj", "{541D0AF9-0DD9-4689-AABE-7E7EE44320D0}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Swastika.Extension.Blog.Web", "src\Swastika.Extensions.Blog.Web\Swastika.Extension.Blog.Web.csproj", "{541D0AF9-0DD9-4689-AABE-7E7EE44320D0}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

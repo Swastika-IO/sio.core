@@ -21,6 +21,6 @@
     <DotNetCliToolReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Tools" Version="1.0.1" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Swastika.Extensions.Blog.Lib\Swastika.Extensions.Blog.Lib.csproj" />
+    <ProjectReference Include="..\Swastika.Extensions.Blog.Lib\Swastika.Extension.Blog.Lib.csproj" />
   </ItemGroup>
 </Project>
