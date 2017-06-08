@@ -1,0 +1,1975 @@
+﻿<!DOCTYPE html>
+<!--[if IE]><![endif]-->
+<html>
+  
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>Interface IRepository&lt;TModel, TView&gt;
+   | Swastika I/O </title>
+    <meta name="viewport" content="width=device-width">
+    <meta name="title" content="Interface IRepository&lt;TModel, TView&gt;
+   | Swastika I/O ">
+    <meta name="generator" content="docfx 2.18.2.0">
+    
+    <link rel="shortcut icon" href="../images/ico/favicon.ico">
+    <link rel="stylesheet" href="../styles/docfx.vendor.css">
+    <link rel="stylesheet" href="../styles/docfx.css">
+    <link rel="stylesheet" href="../styles/main.css">
+    <meta property="docfx:navrel" content="../toc.html">
+    <meta property="docfx:tocrel" content="toc.html">
+    <meta property="docfx:rel" content="../">
+    
+  </head>
+  <body data-spy="scroll" data-target="#affix">
+    <div id="wrapper">
+      <header>
+        
+        <nav id="autocollapse" class="navbar navbar-inverse ng-scope" role="navigation">
+          <div class="container">
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+              
+              <a class="navbar-brand" href="../index.html">
+                <img id="logo" class="svg" src="../images/svg/logo.svg" alt="">
+              </a>
+            </div>
+            <div class="collapse navbar-collapse" id="navbar">
+              <form class="navbar-form navbar-right" role="search" id="search">
+                <div class="form-group">
+                  <input type="text" class="form-control" id="search-query" placeholder="Search" autocomplete="off">
+                </div>
+              </form>
+            </div>
+          </div>
+        </nav>
+        
+        <div class="subnav navbar navbar-default">
+          <div class="container hide-when-search" id="breadcrumb">
+            <ul class="breadcrumb">
+              <li></li>
+            </ul>
+          </div>
+        </div>
+      </header>
+      <div class="container body-content">
+        
+        <div id="search-results">
+          <div class="search-list"></div>
+          <div class="sr-items"></div>
+          <ul id="pagination"></ul>
+        </div>
+      </div>
+      <div role="main" class="container body-content hide-when-search">
+        
+        <div class="sidenav hide-when-search">
+          <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle">Show / Hide Table of Contents</a>
+          <div class="sidetoggle collapse" id="sidetoggle">
+            <div id="sidetoc"></div>
+          </div>
+        </div>
+        <div class="article row grid-right">
+          <div class="col-md-10">
+            <article class="content wrap" id="_content" data-uid="Swastika.Domain.Core.Interfaces.IRepository`2">
+  
+  
+  <h1 id="Swastika_Domain_Core_Interfaces_IRepository_2" data-uid="Swastika.Domain.Core.Interfaces.IRepository`2">Interface IRepository&lt;TModel, TView&gt;
+  </h1>
+  <div class="markdown level0 summary"></div>
+  <div class="markdown level0 conceptual"></div>
+  <h6><strong>Namespace</strong>: <a class="xref" href="Swastika.Domain.Core.Interfaces.html">Swastika.Domain.Core.Interfaces</a></h6>
+  <h6><strong>Assembly</strong>: Swastika.Domain.Core.dll</h6>
+  <h5 id="Swastika_Domain_Core_Interfaces_IRepository_2_syntax">Syntax</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public interface IRepository&lt;TModel, TView&gt;
+    where TModel : class where TView : ViewModelBase&lt;TModel, TView&gt;</code></pre>
+  </div>
+  <h5 class="typeParameters">Type Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="parametername">TModel</span></td>
+        <td><p>The type of the model.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="parametername">TView</span></td>
+        <td><p>The type of the view.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h3 id="methods">Methods
+  </h3>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/Swastika-IO/Swastika-Core/new/master/apiSpec/new?filename=Swastika_Domain_Core_Interfaces_IRepository_2_CreateModel__0_.md&amp;value=---%0Auid%3A%20Swastika.Domain.Core.Interfaces.IRepository%602.CreateModel(%600)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Swastika-IO/Swastika-Core/blob/master/src/Swastika.Domain.Core/Interfaces/IRepository.cs/#L31">View Source</a>
+  </span>
+  <a id="Swastika_Domain_Core_Interfaces_IRepository_2_CreateModel_" data-uid="Swastika.Domain.Core.Interfaces.IRepository`2.CreateModel*"></a>
+  <h4 id="Swastika_Domain_Core_Interfaces_IRepository_2_CreateModel__0_" data-uid="Swastika.Domain.Core.Interfaces.IRepository`2.CreateModel(`0)">CreateModel(TModel)</h4>
+  <div class="markdown level1 summary"><p>Creates the model.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">TView CreateModel(TModel model)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">TModel</span></td>
+        <td><span class="parametername">model</span></td>
+        <td><p>The model.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">TView</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/Swastika-IO/Swastika-Core/new/master/apiSpec/new?filename=Swastika_Domain_Core_Interfaces_IRepository_2_CreateModelAsync__0_.md&amp;value=---%0Auid%3A%20Swastika.Domain.Core.Interfaces.IRepository%602.CreateModelAsync(%600)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Swastika-IO/Swastika-Core/blob/master/src/Swastika.Domain.Core/Interfaces/IRepository.cs/#L38">View Source</a>
+  </span>
+  <a id="Swastika_Domain_Core_Interfaces_IRepository_2_CreateModelAsync_" data-uid="Swastika.Domain.Core.Interfaces.IRepository`2.CreateModelAsync*"></a>
+  <h4 id="Swastika_Domain_Core_Interfaces_IRepository_2_CreateModelAsync__0_" data-uid="Swastika.Domain.Core.Interfaces.IRepository`2.CreateModelAsync(`0)">CreateModelAsync(TModel)</h4>
+  <div class="markdown level1 summary"><p>Creates the model asynchronous.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">Task&lt;TView&gt; CreateModelAsync(TModel model)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">TModel</span></td>
+        <td><span class="parametername">model</span></td>
+        <td><p>The model.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Threading.Tasks.Task</span>&lt;TView&gt;</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/Swastika-IO/Swastika-Core/new/master/apiSpec/new?filename=Swastika_Domain_Core_Interfaces_IRepository_2_EditModel__0_.md&amp;value=---%0Auid%3A%20Swastika.Domain.Core.Interfaces.IRepository%602.EditModel(%600)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Swastika-IO/Swastika-Core/blob/master/src/Swastika.Domain.Core/Interfaces/IRepository.cs/#L45">View Source</a>
+  </span>
+  <a id="Swastika_Domain_Core_Interfaces_IRepository_2_EditModel_" data-uid="Swastika.Domain.Core.Interfaces.IRepository`2.EditModel*"></a>
+  <h4 id="Swastika_Domain_Core_Interfaces_IRepository_2_EditModel__0_" data-uid="Swastika.Domain.Core.Interfaces.IRepository`2.EditModel(`0)">EditModel(TModel)</h4>
+  <div class="markdown level1 summary"><p>Edits the model.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">TView EditModel(TModel model)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">TModel</span></td>
+        <td><span class="parametername">model</span></td>
+        <td><p>The model.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">TView</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/Swastika-IO/Swastika-Core/new/master/apiSpec/new?filename=Swastika_Domain_Core_Interfaces_IRepository_2_EditModelAsync__0_.md&amp;value=---%0Auid%3A%20Swastika.Domain.Core.Interfaces.IRepository%602.EditModelAsync(%600)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Swastika-IO/Swastika-Core/blob/master/src/Swastika.Domain.Core/Interfaces/IRepository.cs/#L52">View Source</a>
+  </span>
+  <a id="Swastika_Domain_Core_Interfaces_IRepository_2_EditModelAsync_" data-uid="Swastika.Domain.Core.Interfaces.IRepository`2.EditModelAsync*"></a>
+  <h4 id="Swastika_Domain_Core_Interfaces_IRepository_2_EditModelAsync__0_" data-uid="Swastika.Domain.Core.Interfaces.IRepository`2.EditModelAsync(`0)">EditModelAsync(TModel)</h4>
+  <div class="markdown level1 summary"><p>Edits the model asynchronous.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">Task&lt;TView&gt; EditModelAsync(TModel model)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">TModel</span></td>
+        <td><span class="parametername">model</span></td>
+        <td><p>The model.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Threading.Tasks.Task</span>&lt;TView&gt;</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/Swastika-IO/Swastika-Core/new/master/apiSpec/new?filename=Swastika_Domain_Core_Interfaces_IRepository_2_GetModelList_System_Boolean_.md&amp;value=---%0Auid%3A%20Swastika.Domain.Core.Interfaces.IRepository%602.GetModelList(System.Boolean)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Swastika-IO/Swastika-Core/blob/master/src/Swastika.Domain.Core/Interfaces/IRepository.cs/#L131">View Source</a>
+  </span>
+  <a id="Swastika_Domain_Core_Interfaces_IRepository_2_GetModelList_" data-uid="Swastika.Domain.Core.Interfaces.IRepository`2.GetModelList*"></a>
+  <h4 id="Swastika_Domain_Core_Interfaces_IRepository_2_GetModelList_System_Boolean_" data-uid="Swastika.Domain.Core.Interfaces.IRepository`2.GetModelList(System.Boolean)">GetModelList(Boolean)</h4>
+  <div class="markdown level1 summary"><p>Gets the model list.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">List&lt;TView&gt; GetModelList(bool isGetSubModels)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Boolean</span></td>
+        <td><span class="parametername">isGetSubModels</span></td>
+        <td><p>if set to <code>true</code> [is get sub models].</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Collections.Generic.List</span>&lt;TView&gt;</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/Swastika-IO/Swastika-Core/new/master/apiSpec/new?filename=Swastika_Domain_Core_Interfaces_IRepository_2_GetModelList_System_Linq_Expressions_Expression_System_Func__0_System_DateTime___System_String_System_Nullable_System_Int32__System_Nullable_System_Int32__System_Boolean_.md&amp;value=---%0Auid%3A%20Swastika.Domain.Core.Interfaces.IRepository%602.GetModelList(System.Linq.Expressions.Expression%7BSystem.Func%7B%600%2CSystem.DateTime%7D%7D%2CSystem.String%2CSystem.Nullable%7BSystem.Int32%7D%2CSystem.Nullable%7BSystem.Int32%7D%2CSystem.Boolean)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Swastika-IO/Swastika-Core/blob/master/src/Swastika.Domain.Core/Interfaces/IRepository.cs/#L164">View Source</a>
+  </span>
+  <a id="Swastika_Domain_Core_Interfaces_IRepository_2_GetModelList_" data-uid="Swastika.Domain.Core.Interfaces.IRepository`2.GetModelList*"></a>
+  <h4 id="Swastika_Domain_Core_Interfaces_IRepository_2_GetModelList_System_Linq_Expressions_Expression_System_Func__0_System_DateTime___System_String_System_Nullable_System_Int32__System_Nullable_System_Int32__System_Boolean_" data-uid="Swastika.Domain.Core.Interfaces.IRepository`2.GetModelList(System.Linq.Expressions.Expression{System.Func{`0,System.DateTime}},System.String,System.Nullable{System.Int32},System.Nullable{System.Int32},System.Boolean)">GetModelList(Expression&lt;Func&lt;TModel, DateTime&gt;&gt;, String, Nullable&lt;Int32&gt;, Nullable&lt;Int32&gt;, Boolean)</h4>
+  <div class="markdown level1 summary"><p>Gets the model list.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">PaginationModel&lt;TView&gt; GetModelList(Expression&lt;Func&lt;TModel, DateTime&gt;&gt; orderBy, string direction, int ? pageIndex, int ? pageSize, bool isGetSubModels)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Linq.Expressions.Expression</span>&lt;<span class="xref">System.Func</span>&lt;TModel, <span class="xref">System.DateTime</span>&gt;&gt;</td>
+        <td><span class="parametername">orderBy</span></td>
+        <td><p>The order by.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.String</span></td>
+        <td><span class="parametername">direction</span></td>
+        <td><p>The direction.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.Nullable</span>&lt;<span class="xref">System.Int32</span>&gt;</td>
+        <td><span class="parametername">pageIndex</span></td>
+        <td><p>Index of the page.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.Nullable</span>&lt;<span class="xref">System.Int32</span>&gt;</td>
+        <td><span class="parametername">pageSize</span></td>
+        <td><p>Size of the page.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.Boolean</span></td>
+        <td><span class="parametername">isGetSubModels</span></td>
+        <td><p>if set to <code>true</code> [is get sub models].</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Swastika.Common.Helper.PaginationModel-1.html">PaginationModel</a>&lt;TView&gt;</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/Swastika-IO/Swastika-Core/new/master/apiSpec/new?filename=Swastika_Domain_Core_Interfaces_IRepository_2_GetModelList_System_Linq_Expressions_Expression_System_Func__0_System_Int32___System_String_System_Nullable_System_Int32__System_Nullable_System_Int32__System_Boolean_.md&amp;value=---%0Auid%3A%20Swastika.Domain.Core.Interfaces.IRepository%602.GetModelList(System.Linq.Expressions.Expression%7BSystem.Func%7B%600%2CSystem.Int32%7D%7D%2CSystem.String%2CSystem.Nullable%7BSystem.Int32%7D%2CSystem.Nullable%7BSystem.Int32%7D%2CSystem.Boolean)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Swastika-IO/Swastika-Core/blob/master/src/Swastika.Domain.Core/Interfaces/IRepository.cs/#L142">View Source</a>
+  </span>
+  <a id="Swastika_Domain_Core_Interfaces_IRepository_2_GetModelList_" data-uid="Swastika.Domain.Core.Interfaces.IRepository`2.GetModelList*"></a>
+  <h4 id="Swastika_Domain_Core_Interfaces_IRepository_2_GetModelList_System_Linq_Expressions_Expression_System_Func__0_System_Int32___System_String_System_Nullable_System_Int32__System_Nullable_System_Int32__System_Boolean_" data-uid="Swastika.Domain.Core.Interfaces.IRepository`2.GetModelList(System.Linq.Expressions.Expression{System.Func{`0,System.Int32}},System.String,System.Nullable{System.Int32},System.Nullable{System.Int32},System.Boolean)">GetModelList(Expression&lt;Func&lt;TModel, Int32&gt;&gt;, String, Nullable&lt;Int32&gt;, Nullable&lt;Int32&gt;, Boolean)</h4>
+  <div class="markdown level1 summary"><p>Gets the model list.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">PaginationModel&lt;TView&gt; GetModelList(Expression&lt;Func&lt;TModel, int&gt;&gt; orderBy, string direction, int ? pageIndex, int ? pageSize, bool isGetSubModels)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Linq.Expressions.Expression</span>&lt;<span class="xref">System.Func</span>&lt;TModel, <span class="xref">System.Int32</span>&gt;&gt;</td>
+        <td><span class="parametername">orderBy</span></td>
+        <td><p>The order by.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.String</span></td>
+        <td><span class="parametername">direction</span></td>
+        <td><p>The direction.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.Nullable</span>&lt;<span class="xref">System.Int32</span>&gt;</td>
+        <td><span class="parametername">pageIndex</span></td>
+        <td><p>Index of the page.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.Nullable</span>&lt;<span class="xref">System.Int32</span>&gt;</td>
+        <td><span class="parametername">pageSize</span></td>
+        <td><p>Size of the page.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.Boolean</span></td>
+        <td><span class="parametername">isGetSubModels</span></td>
+        <td><p>if set to <code>true</code> [is get sub models].</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Swastika.Common.Helper.PaginationModel-1.html">PaginationModel</a>&lt;TView&gt;</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/Swastika-IO/Swastika-Core/new/master/apiSpec/new?filename=Swastika_Domain_Core_Interfaces_IRepository_2_GetModelList_System_Linq_Expressions_Expression_System_Func__0_System_String___System_String_System_Nullable_System_Int32__System_Nullable_System_Int32__System_Boolean_.md&amp;value=---%0Auid%3A%20Swastika.Domain.Core.Interfaces.IRepository%602.GetModelList(System.Linq.Expressions.Expression%7BSystem.Func%7B%600%2CSystem.String%7D%7D%2CSystem.String%2CSystem.Nullable%7BSystem.Int32%7D%2CSystem.Nullable%7BSystem.Int32%7D%2CSystem.Boolean)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Swastika-IO/Swastika-Core/blob/master/src/Swastika.Domain.Core/Interfaces/IRepository.cs/#L153">View Source</a>
+  </span>
+  <a id="Swastika_Domain_Core_Interfaces_IRepository_2_GetModelList_" data-uid="Swastika.Domain.Core.Interfaces.IRepository`2.GetModelList*"></a>
+  <h4 id="Swastika_Domain_Core_Interfaces_IRepository_2_GetModelList_System_Linq_Expressions_Expression_System_Func__0_System_String___System_String_System_Nullable_System_Int32__System_Nullable_System_Int32__System_Boolean_" data-uid="Swastika.Domain.Core.Interfaces.IRepository`2.GetModelList(System.Linq.Expressions.Expression{System.Func{`0,System.String}},System.String,System.Nullable{System.Int32},System.Nullable{System.Int32},System.Boolean)">GetModelList(Expression&lt;Func&lt;TModel, String&gt;&gt;, String, Nullable&lt;Int32&gt;, Nullable&lt;Int32&gt;, Boolean)</h4>
+  <div class="markdown level1 summary"><p>Gets the model list.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">PaginationModel&lt;TView&gt; GetModelList(Expression&lt;Func&lt;TModel, string&gt;&gt; orderBy, string direction, int ? pageIndex, int ? pageSize, bool isGetSubModels)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Linq.Expressions.Expression</span>&lt;<span class="xref">System.Func</span>&lt;TModel, <span class="xref">System.String</span>&gt;&gt;</td>
+        <td><span class="parametername">orderBy</span></td>
+        <td><p>The order by.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.String</span></td>
+        <td><span class="parametername">direction</span></td>
+        <td><p>The direction.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.Nullable</span>&lt;<span class="xref">System.Int32</span>&gt;</td>
+        <td><span class="parametername">pageIndex</span></td>
+        <td><p>Index of the page.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.Nullable</span>&lt;<span class="xref">System.Int32</span>&gt;</td>
+        <td><span class="parametername">pageSize</span></td>
+        <td><p>Size of the page.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.Boolean</span></td>
+        <td><span class="parametername">isGetSubModels</span></td>
+        <td><p>if set to <code>true</code> [is get sub models].</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Swastika.Common.Helper.PaginationModel-1.html">PaginationModel</a>&lt;TView&gt;</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/Swastika-IO/Swastika-Core/new/master/apiSpec/new?filename=Swastika_Domain_Core_Interfaces_IRepository_2_GetModelListAsync_System_Linq_Expressions_Expression_System_Func__0_System_DateTime___System_String_System_Nullable_System_Int32__System_Nullable_System_Int32__System_Boolean_.md&amp;value=---%0Auid%3A%20Swastika.Domain.Core.Interfaces.IRepository%602.GetModelListAsync(System.Linq.Expressions.Expression%7BSystem.Func%7B%600%2CSystem.DateTime%7D%7D%2CSystem.String%2CSystem.Nullable%7BSystem.Int32%7D%2CSystem.Nullable%7BSystem.Int32%7D%2CSystem.Boolean)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Swastika-IO/Swastika-Core/blob/master/src/Swastika.Domain.Core/Interfaces/IRepository.cs/#L197">View Source</a>
+  </span>
+  <a id="Swastika_Domain_Core_Interfaces_IRepository_2_GetModelListAsync_" data-uid="Swastika.Domain.Core.Interfaces.IRepository`2.GetModelListAsync*"></a>
+  <h4 id="Swastika_Domain_Core_Interfaces_IRepository_2_GetModelListAsync_System_Linq_Expressions_Expression_System_Func__0_System_DateTime___System_String_System_Nullable_System_Int32__System_Nullable_System_Int32__System_Boolean_" data-uid="Swastika.Domain.Core.Interfaces.IRepository`2.GetModelListAsync(System.Linq.Expressions.Expression{System.Func{`0,System.DateTime}},System.String,System.Nullable{System.Int32},System.Nullable{System.Int32},System.Boolean)">GetModelListAsync(Expression&lt;Func&lt;TModel, DateTime&gt;&gt;, String, Nullable&lt;Int32&gt;, Nullable&lt;Int32&gt;, Boolean)</h4>
+  <div class="markdown level1 summary"><p>Gets the model list asynchronous.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">Task&lt;PaginationModel&lt;TView&gt;&gt; GetModelListAsync(Expression&lt;Func&lt;TModel, DateTime&gt;&gt; orderBy, string direction, int ? pageIndex, int ? pageSize, bool isGetSubModels)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Linq.Expressions.Expression</span>&lt;<span class="xref">System.Func</span>&lt;TModel, <span class="xref">System.DateTime</span>&gt;&gt;</td>
+        <td><span class="parametername">orderBy</span></td>
+        <td><p>The order by.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.String</span></td>
+        <td><span class="parametername">direction</span></td>
+        <td><p>The direction.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.Nullable</span>&lt;<span class="xref">System.Int32</span>&gt;</td>
+        <td><span class="parametername">pageIndex</span></td>
+        <td><p>Index of the page.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.Nullable</span>&lt;<span class="xref">System.Int32</span>&gt;</td>
+        <td><span class="parametername">pageSize</span></td>
+        <td><p>Size of the page.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.Boolean</span></td>
+        <td><span class="parametername">isGetSubModels</span></td>
+        <td><p>if set to <code>true</code> [is get sub models].</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Threading.Tasks.Task</span>&lt;<a class="xref" href="Swastika.Common.Helper.PaginationModel-1.html">PaginationModel</a>&lt;TView&gt;&gt;</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/Swastika-IO/Swastika-Core/new/master/apiSpec/new?filename=Swastika_Domain_Core_Interfaces_IRepository_2_GetModelListAsync_System_Linq_Expressions_Expression_System_Func__0_System_Int32___System_String_System_Nullable_System_Int32__System_Nullable_System_Int32__System_Boolean_.md&amp;value=---%0Auid%3A%20Swastika.Domain.Core.Interfaces.IRepository%602.GetModelListAsync(System.Linq.Expressions.Expression%7BSystem.Func%7B%600%2CSystem.Int32%7D%7D%2CSystem.String%2CSystem.Nullable%7BSystem.Int32%7D%2CSystem.Nullable%7BSystem.Int32%7D%2CSystem.Boolean)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Swastika-IO/Swastika-Core/blob/master/src/Swastika.Domain.Core/Interfaces/IRepository.cs/#L175">View Source</a>
+  </span>
+  <a id="Swastika_Domain_Core_Interfaces_IRepository_2_GetModelListAsync_" data-uid="Swastika.Domain.Core.Interfaces.IRepository`2.GetModelListAsync*"></a>
+  <h4 id="Swastika_Domain_Core_Interfaces_IRepository_2_GetModelListAsync_System_Linq_Expressions_Expression_System_Func__0_System_Int32___System_String_System_Nullable_System_Int32__System_Nullable_System_Int32__System_Boolean_" data-uid="Swastika.Domain.Core.Interfaces.IRepository`2.GetModelListAsync(System.Linq.Expressions.Expression{System.Func{`0,System.Int32}},System.String,System.Nullable{System.Int32},System.Nullable{System.Int32},System.Boolean)">GetModelListAsync(Expression&lt;Func&lt;TModel, Int32&gt;&gt;, String, Nullable&lt;Int32&gt;, Nullable&lt;Int32&gt;, Boolean)</h4>
+  <div class="markdown level1 summary"><p>Gets the model list asynchronous.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">Task&lt;PaginationModel&lt;TView&gt;&gt; GetModelListAsync(Expression&lt;Func&lt;TModel, int&gt;&gt; orderBy, string direction, int ? pageIndex, int ? pageSize, bool isGetSubModels)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Linq.Expressions.Expression</span>&lt;<span class="xref">System.Func</span>&lt;TModel, <span class="xref">System.Int32</span>&gt;&gt;</td>
+        <td><span class="parametername">orderBy</span></td>
+        <td><p>The order by.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.String</span></td>
+        <td><span class="parametername">direction</span></td>
+        <td><p>The direction.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.Nullable</span>&lt;<span class="xref">System.Int32</span>&gt;</td>
+        <td><span class="parametername">pageIndex</span></td>
+        <td><p>Index of the page.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.Nullable</span>&lt;<span class="xref">System.Int32</span>&gt;</td>
+        <td><span class="parametername">pageSize</span></td>
+        <td><p>Size of the page.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.Boolean</span></td>
+        <td><span class="parametername">isGetSubModels</span></td>
+        <td><p>if set to <code>true</code> [is get sub models].</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Threading.Tasks.Task</span>&lt;<a class="xref" href="Swastika.Common.Helper.PaginationModel-1.html">PaginationModel</a>&lt;TView&gt;&gt;</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/Swastika-IO/Swastika-Core/new/master/apiSpec/new?filename=Swastika_Domain_Core_Interfaces_IRepository_2_GetModelListAsync_System_Linq_Expressions_Expression_System_Func__0_System_String___System_String_System_Nullable_System_Int32__System_Nullable_System_Int32__System_Boolean_.md&amp;value=---%0Auid%3A%20Swastika.Domain.Core.Interfaces.IRepository%602.GetModelListAsync(System.Linq.Expressions.Expression%7BSystem.Func%7B%600%2CSystem.String%7D%7D%2CSystem.String%2CSystem.Nullable%7BSystem.Int32%7D%2CSystem.Nullable%7BSystem.Int32%7D%2CSystem.Boolean)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Swastika-IO/Swastika-Core/blob/master/src/Swastika.Domain.Core/Interfaces/IRepository.cs/#L186">View Source</a>
+  </span>
+  <a id="Swastika_Domain_Core_Interfaces_IRepository_2_GetModelListAsync_" data-uid="Swastika.Domain.Core.Interfaces.IRepository`2.GetModelListAsync*"></a>
+  <h4 id="Swastika_Domain_Core_Interfaces_IRepository_2_GetModelListAsync_System_Linq_Expressions_Expression_System_Func__0_System_String___System_String_System_Nullable_System_Int32__System_Nullable_System_Int32__System_Boolean_" data-uid="Swastika.Domain.Core.Interfaces.IRepository`2.GetModelListAsync(System.Linq.Expressions.Expression{System.Func{`0,System.String}},System.String,System.Nullable{System.Int32},System.Nullable{System.Int32},System.Boolean)">GetModelListAsync(Expression&lt;Func&lt;TModel, String&gt;&gt;, String, Nullable&lt;Int32&gt;, Nullable&lt;Int32&gt;, Boolean)</h4>
+  <div class="markdown level1 summary"><p>Gets the model list asynchronous.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">Task&lt;PaginationModel&lt;TView&gt;&gt; GetModelListAsync(Expression&lt;Func&lt;TModel, string&gt;&gt; orderBy, string direction, int ? pageIndex, int ? pageSize, bool isGetSubModels)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Linq.Expressions.Expression</span>&lt;<span class="xref">System.Func</span>&lt;TModel, <span class="xref">System.String</span>&gt;&gt;</td>
+        <td><span class="parametername">orderBy</span></td>
+        <td><p>The order by.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.String</span></td>
+        <td><span class="parametername">direction</span></td>
+        <td><p>The direction.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.Nullable</span>&lt;<span class="xref">System.Int32</span>&gt;</td>
+        <td><span class="parametername">pageIndex</span></td>
+        <td><p>Index of the page.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.Nullable</span>&lt;<span class="xref">System.Int32</span>&gt;</td>
+        <td><span class="parametername">pageSize</span></td>
+        <td><p>Size of the page.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.Boolean</span></td>
+        <td><span class="parametername">isGetSubModels</span></td>
+        <td><p>if set to <code>true</code> [is get sub models].</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Threading.Tasks.Task</span>&lt;<a class="xref" href="Swastika.Common.Helper.PaginationModel-1.html">PaginationModel</a>&lt;TView&gt;&gt;</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/Swastika-IO/Swastika-Core/new/master/apiSpec/new?filename=Swastika_Domain_Core_Interfaces_IRepository_2_GetModelListBy_System_Linq_Expressions_Expression_System_Func__0_System_Boolean___System_Boolean_.md&amp;value=---%0Auid%3A%20Swastika.Domain.Core.Interfaces.IRepository%602.GetModelListBy(System.Linq.Expressions.Expression%7BSystem.Func%7B%600%2CSystem.Boolean%7D%7D%2CSystem.Boolean)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Swastika-IO/Swastika-Core/blob/master/src/Swastika.Domain.Core/Interfaces/IRepository.cs/#L241">View Source</a>
+  </span>
+  <a id="Swastika_Domain_Core_Interfaces_IRepository_2_GetModelListBy_" data-uid="Swastika.Domain.Core.Interfaces.IRepository`2.GetModelListBy*"></a>
+  <h4 id="Swastika_Domain_Core_Interfaces_IRepository_2_GetModelListBy_System_Linq_Expressions_Expression_System_Func__0_System_Boolean___System_Boolean_" data-uid="Swastika.Domain.Core.Interfaces.IRepository`2.GetModelListBy(System.Linq.Expressions.Expression{System.Func{`0,System.Boolean}},System.Boolean)">GetModelListBy(Expression&lt;Func&lt;TModel, Boolean&gt;&gt;, Boolean)</h4>
+  <div class="markdown level1 summary"><p>Gets the model list by.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">List&lt;TView&gt; GetModelListBy(Expression&lt;Func&lt;TModel, bool&gt;&gt; predicate, bool isGetSubModels)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Linq.Expressions.Expression</span>&lt;<span class="xref">System.Func</span>&lt;TModel, <span class="xref">System.Boolean</span>&gt;&gt;</td>
+        <td><span class="parametername">predicate</span></td>
+        <td><p>The predicate.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.Boolean</span></td>
+        <td><span class="parametername">isGetSubModels</span></td>
+        <td><p>if set to <code>true</code> [is get sub models].</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Collections.Generic.List</span>&lt;TView&gt;</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/Swastika-IO/Swastika-Core/new/master/apiSpec/new?filename=Swastika_Domain_Core_Interfaces_IRepository_2_GetModelListBy_System_Linq_Expressions_Expression_System_Func__0_System_Boolean___System_Linq_Expressions_Expression_System_Func__0_System_DateTime___System_String_System_Nullable_System_Int32__System_Nullable_System_Int32__System_Boolean_.md&amp;value=---%0Auid%3A%20Swastika.Domain.Core.Interfaces.IRepository%602.GetModelListBy(System.Linq.Expressions.Expression%7BSystem.Func%7B%600%2CSystem.Boolean%7D%7D%2CSystem.Linq.Expressions.Expression%7BSystem.Func%7B%600%2CSystem.DateTime%7D%7D%2CSystem.String%2CSystem.Nullable%7BSystem.Int32%7D%2CSystem.Nullable%7BSystem.Int32%7D%2CSystem.Boolean)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Swastika-IO/Swastika-Core/blob/master/src/Swastika.Domain.Core/Interfaces/IRepository.cs/#L233">View Source</a>
+  </span>
+  <a id="Swastika_Domain_Core_Interfaces_IRepository_2_GetModelListBy_" data-uid="Swastika.Domain.Core.Interfaces.IRepository`2.GetModelListBy*"></a>
+  <h4 id="Swastika_Domain_Core_Interfaces_IRepository_2_GetModelListBy_System_Linq_Expressions_Expression_System_Func__0_System_Boolean___System_Linq_Expressions_Expression_System_Func__0_System_DateTime___System_String_System_Nullable_System_Int32__System_Nullable_System_Int32__System_Boolean_" data-uid="Swastika.Domain.Core.Interfaces.IRepository`2.GetModelListBy(System.Linq.Expressions.Expression{System.Func{`0,System.Boolean}},System.Linq.Expressions.Expression{System.Func{`0,System.DateTime}},System.String,System.Nullable{System.Int32},System.Nullable{System.Int32},System.Boolean)">GetModelListBy(Expression&lt;Func&lt;TModel, Boolean&gt;&gt;, Expression&lt;Func&lt;TModel, DateTime&gt;&gt;, String, Nullable&lt;Int32&gt;, Nullable&lt;Int32&gt;, Boolean)</h4>
+  <div class="markdown level1 summary"><p>Gets the model list by.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">PaginationModel&lt;TView&gt; GetModelListBy(Expression&lt;Func&lt;TModel, bool&gt;&gt; predicate, Expression&lt;Func&lt;TModel, DateTime&gt;&gt; orderBy, string direction, int ? pageIndex, int ? pageSize, bool isGetSubModels)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Linq.Expressions.Expression</span>&lt;<span class="xref">System.Func</span>&lt;TModel, <span class="xref">System.Boolean</span>&gt;&gt;</td>
+        <td><span class="parametername">predicate</span></td>
+        <td><p>The predicate.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.Linq.Expressions.Expression</span>&lt;<span class="xref">System.Func</span>&lt;TModel, <span class="xref">System.DateTime</span>&gt;&gt;</td>
+        <td><span class="parametername">orderBy</span></td>
+        <td><p>The order by.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.String</span></td>
+        <td><span class="parametername">direction</span></td>
+        <td><p>The direction.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.Nullable</span>&lt;<span class="xref">System.Int32</span>&gt;</td>
+        <td><span class="parametername">pageIndex</span></td>
+        <td><p>Index of the page.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.Nullable</span>&lt;<span class="xref">System.Int32</span>&gt;</td>
+        <td><span class="parametername">pageSize</span></td>
+        <td><p>Size of the page.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.Boolean</span></td>
+        <td><span class="parametername">isGetSubModels</span></td>
+        <td><p>if set to <code>true</code> [is get sub models].</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Swastika.Common.Helper.PaginationModel-1.html">PaginationModel</a>&lt;TView&gt;</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/Swastika-IO/Swastika-Core/new/master/apiSpec/new?filename=Swastika_Domain_Core_Interfaces_IRepository_2_GetModelListBy_System_Linq_Expressions_Expression_System_Func__0_System_Boolean___System_Linq_Expressions_Expression_System_Func__0_System_Int32___System_String_System_Nullable_System_Int32__System_Nullable_System_Int32__System_Boolean_.md&amp;value=---%0Auid%3A%20Swastika.Domain.Core.Interfaces.IRepository%602.GetModelListBy(System.Linq.Expressions.Expression%7BSystem.Func%7B%600%2CSystem.Boolean%7D%7D%2CSystem.Linq.Expressions.Expression%7BSystem.Func%7B%600%2CSystem.Int32%7D%7D%2CSystem.String%2CSystem.Nullable%7BSystem.Int32%7D%2CSystem.Nullable%7BSystem.Int32%7D%2CSystem.Boolean)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Swastika-IO/Swastika-Core/blob/master/src/Swastika.Domain.Core/Interfaces/IRepository.cs/#L209">View Source</a>
+  </span>
+  <a id="Swastika_Domain_Core_Interfaces_IRepository_2_GetModelListBy_" data-uid="Swastika.Domain.Core.Interfaces.IRepository`2.GetModelListBy*"></a>
+  <h4 id="Swastika_Domain_Core_Interfaces_IRepository_2_GetModelListBy_System_Linq_Expressions_Expression_System_Func__0_System_Boolean___System_Linq_Expressions_Expression_System_Func__0_System_Int32___System_String_System_Nullable_System_Int32__System_Nullable_System_Int32__System_Boolean_" data-uid="Swastika.Domain.Core.Interfaces.IRepository`2.GetModelListBy(System.Linq.Expressions.Expression{System.Func{`0,System.Boolean}},System.Linq.Expressions.Expression{System.Func{`0,System.Int32}},System.String,System.Nullable{System.Int32},System.Nullable{System.Int32},System.Boolean)">GetModelListBy(Expression&lt;Func&lt;TModel, Boolean&gt;&gt;, Expression&lt;Func&lt;TModel, Int32&gt;&gt;, String, Nullable&lt;Int32&gt;, Nullable&lt;Int32&gt;, Boolean)</h4>
+  <div class="markdown level1 summary"><p>Gets the model list by.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">PaginationModel&lt;TView&gt; GetModelListBy(Expression&lt;Func&lt;TModel, bool&gt;&gt; predicate, Expression&lt;Func&lt;TModel, int&gt;&gt; orderBy, string direction, int ? pageIndex, int ? pageSize, bool isGetSubModels)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Linq.Expressions.Expression</span>&lt;<span class="xref">System.Func</span>&lt;TModel, <span class="xref">System.Boolean</span>&gt;&gt;</td>
+        <td><span class="parametername">predicate</span></td>
+        <td><p>The predicate.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.Linq.Expressions.Expression</span>&lt;<span class="xref">System.Func</span>&lt;TModel, <span class="xref">System.Int32</span>&gt;&gt;</td>
+        <td><span class="parametername">orderBy</span></td>
+        <td><p>The order by.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.String</span></td>
+        <td><span class="parametername">direction</span></td>
+        <td><p>The direction.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.Nullable</span>&lt;<span class="xref">System.Int32</span>&gt;</td>
+        <td><span class="parametername">pageIndex</span></td>
+        <td><p>Index of the page.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.Nullable</span>&lt;<span class="xref">System.Int32</span>&gt;</td>
+        <td><span class="parametername">pageSize</span></td>
+        <td><p>Size of the page.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.Boolean</span></td>
+        <td><span class="parametername">isGetSubModels</span></td>
+        <td><p>if set to <code>true</code> [is get sub models].</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Swastika.Common.Helper.PaginationModel-1.html">PaginationModel</a>&lt;TView&gt;</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/Swastika-IO/Swastika-Core/new/master/apiSpec/new?filename=Swastika_Domain_Core_Interfaces_IRepository_2_GetModelListBy_System_Linq_Expressions_Expression_System_Func__0_System_Boolean___System_Linq_Expressions_Expression_System_Func__0_System_String___System_String_System_Nullable_System_Int32__System_Nullable_System_Int32__System_Boolean_.md&amp;value=---%0Auid%3A%20Swastika.Domain.Core.Interfaces.IRepository%602.GetModelListBy(System.Linq.Expressions.Expression%7BSystem.Func%7B%600%2CSystem.Boolean%7D%7D%2CSystem.Linq.Expressions.Expression%7BSystem.Func%7B%600%2CSystem.String%7D%7D%2CSystem.String%2CSystem.Nullable%7BSystem.Int32%7D%2CSystem.Nullable%7BSystem.Int32%7D%2CSystem.Boolean)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Swastika-IO/Swastika-Core/blob/master/src/Swastika.Domain.Core/Interfaces/IRepository.cs/#L221">View Source</a>
+  </span>
+  <a id="Swastika_Domain_Core_Interfaces_IRepository_2_GetModelListBy_" data-uid="Swastika.Domain.Core.Interfaces.IRepository`2.GetModelListBy*"></a>
+  <h4 id="Swastika_Domain_Core_Interfaces_IRepository_2_GetModelListBy_System_Linq_Expressions_Expression_System_Func__0_System_Boolean___System_Linq_Expressions_Expression_System_Func__0_System_String___System_String_System_Nullable_System_Int32__System_Nullable_System_Int32__System_Boolean_" data-uid="Swastika.Domain.Core.Interfaces.IRepository`2.GetModelListBy(System.Linq.Expressions.Expression{System.Func{`0,System.Boolean}},System.Linq.Expressions.Expression{System.Func{`0,System.String}},System.String,System.Nullable{System.Int32},System.Nullable{System.Int32},System.Boolean)">GetModelListBy(Expression&lt;Func&lt;TModel, Boolean&gt;&gt;, Expression&lt;Func&lt;TModel, String&gt;&gt;, String, Nullable&lt;Int32&gt;, Nullable&lt;Int32&gt;, Boolean)</h4>
+  <div class="markdown level1 summary"><p>Gets the model list by.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">PaginationModel&lt;TView&gt; GetModelListBy(Expression&lt;Func&lt;TModel, bool&gt;&gt; predicate, Expression&lt;Func&lt;TModel, string&gt;&gt; orderBy, string direction, int ? pageIndex, int ? pageSize, bool isGetSubModels)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Linq.Expressions.Expression</span>&lt;<span class="xref">System.Func</span>&lt;TModel, <span class="xref">System.Boolean</span>&gt;&gt;</td>
+        <td><span class="parametername">predicate</span></td>
+        <td><p>The predicate.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.Linq.Expressions.Expression</span>&lt;<span class="xref">System.Func</span>&lt;TModel, <span class="xref">System.String</span>&gt;&gt;</td>
+        <td><span class="parametername">orderBy</span></td>
+        <td><p>The order by.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.String</span></td>
+        <td><span class="parametername">direction</span></td>
+        <td><p>The direction.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.Nullable</span>&lt;<span class="xref">System.Int32</span>&gt;</td>
+        <td><span class="parametername">pageIndex</span></td>
+        <td><p>Index of the page.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.Nullable</span>&lt;<span class="xref">System.Int32</span>&gt;</td>
+        <td><span class="parametername">pageSize</span></td>
+        <td><p>Size of the page.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.Boolean</span></td>
+        <td><span class="parametername">isGetSubModels</span></td>
+        <td><p>if set to <code>true</code> [is get sub models].</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Swastika.Common.Helper.PaginationModel-1.html">PaginationModel</a>&lt;TView&gt;</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/Swastika-IO/Swastika-Core/new/master/apiSpec/new?filename=Swastika_Domain_Core_Interfaces_IRepository_2_GetModelListByAsync_System_Linq_Expressions_Expression_System_Func__0_System_Boolean___System_Boolean_.md&amp;value=---%0Auid%3A%20Swastika.Domain.Core.Interfaces.IRepository%602.GetModelListByAsync(System.Linq.Expressions.Expression%7BSystem.Func%7B%600%2CSystem.Boolean%7D%7D%2CSystem.Boolean)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Swastika-IO/Swastika-Core/blob/master/src/Swastika.Domain.Core/Interfaces/IRepository.cs/#L285">View Source</a>
+  </span>
+  <a id="Swastika_Domain_Core_Interfaces_IRepository_2_GetModelListByAsync_" data-uid="Swastika.Domain.Core.Interfaces.IRepository`2.GetModelListByAsync*"></a>
+  <h4 id="Swastika_Domain_Core_Interfaces_IRepository_2_GetModelListByAsync_System_Linq_Expressions_Expression_System_Func__0_System_Boolean___System_Boolean_" data-uid="Swastika.Domain.Core.Interfaces.IRepository`2.GetModelListByAsync(System.Linq.Expressions.Expression{System.Func{`0,System.Boolean}},System.Boolean)">GetModelListByAsync(Expression&lt;Func&lt;TModel, Boolean&gt;&gt;, Boolean)</h4>
+  <div class="markdown level1 summary"><p>Gets the model list by asynchronous.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">Task&lt;List&lt;TView&gt;&gt; GetModelListByAsync(Expression&lt;Func&lt;TModel, bool&gt;&gt; predicate, bool isGetSubModels)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Linq.Expressions.Expression</span>&lt;<span class="xref">System.Func</span>&lt;TModel, <span class="xref">System.Boolean</span>&gt;&gt;</td>
+        <td><span class="parametername">predicate</span></td>
+        <td><p>The predicate.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.Boolean</span></td>
+        <td><span class="parametername">isGetSubModels</span></td>
+        <td><p>if set to <code>true</code> [is get sub models].</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Threading.Tasks.Task</span>&lt;<span class="xref">System.Collections.Generic.List</span>&lt;TView&gt;&gt;</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/Swastika-IO/Swastika-Core/new/master/apiSpec/new?filename=Swastika_Domain_Core_Interfaces_IRepository_2_GetModelListByAsync_System_Linq_Expressions_Expression_System_Func__0_System_Boolean___System_Linq_Expressions_Expression_System_Func__0_System_DateTime___System_String_System_Nullable_System_Int32__System_Nullable_System_Int32__System_Boolean_.md&amp;value=---%0Auid%3A%20Swastika.Domain.Core.Interfaces.IRepository%602.GetModelListByAsync(System.Linq.Expressions.Expression%7BSystem.Func%7B%600%2CSystem.Boolean%7D%7D%2CSystem.Linq.Expressions.Expression%7BSystem.Func%7B%600%2CSystem.DateTime%7D%7D%2CSystem.String%2CSystem.Nullable%7BSystem.Int32%7D%2CSystem.Nullable%7BSystem.Int32%7D%2CSystem.Boolean)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Swastika-IO/Swastika-Core/blob/master/src/Swastika.Domain.Core/Interfaces/IRepository.cs/#L277">View Source</a>
+  </span>
+  <a id="Swastika_Domain_Core_Interfaces_IRepository_2_GetModelListByAsync_" data-uid="Swastika.Domain.Core.Interfaces.IRepository`2.GetModelListByAsync*"></a>
+  <h4 id="Swastika_Domain_Core_Interfaces_IRepository_2_GetModelListByAsync_System_Linq_Expressions_Expression_System_Func__0_System_Boolean___System_Linq_Expressions_Expression_System_Func__0_System_DateTime___System_String_System_Nullable_System_Int32__System_Nullable_System_Int32__System_Boolean_" data-uid="Swastika.Domain.Core.Interfaces.IRepository`2.GetModelListByAsync(System.Linq.Expressions.Expression{System.Func{`0,System.Boolean}},System.Linq.Expressions.Expression{System.Func{`0,System.DateTime}},System.String,System.Nullable{System.Int32},System.Nullable{System.Int32},System.Boolean)">GetModelListByAsync(Expression&lt;Func&lt;TModel, Boolean&gt;&gt;, Expression&lt;Func&lt;TModel, DateTime&gt;&gt;, String, Nullable&lt;Int32&gt;, Nullable&lt;Int32&gt;, Boolean)</h4>
+  <div class="markdown level1 summary"><p>Gets the model list by asynchronous.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">Task&lt;PaginationModel&lt;TView&gt;&gt; GetModelListByAsync(Expression&lt;Func&lt;TModel, bool&gt;&gt; predicate, Expression&lt;Func&lt;TModel, DateTime&gt;&gt; orderBy, string direction, int ? pageIndex, int ? pageSize, bool isGetSubModels)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Linq.Expressions.Expression</span>&lt;<span class="xref">System.Func</span>&lt;TModel, <span class="xref">System.Boolean</span>&gt;&gt;</td>
+        <td><span class="parametername">predicate</span></td>
+        <td><p>The predicate.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.Linq.Expressions.Expression</span>&lt;<span class="xref">System.Func</span>&lt;TModel, <span class="xref">System.DateTime</span>&gt;&gt;</td>
+        <td><span class="parametername">orderBy</span></td>
+        <td><p>The order by.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.String</span></td>
+        <td><span class="parametername">direction</span></td>
+        <td><p>The direction.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.Nullable</span>&lt;<span class="xref">System.Int32</span>&gt;</td>
+        <td><span class="parametername">pageIndex</span></td>
+        <td><p>Index of the page.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.Nullable</span>&lt;<span class="xref">System.Int32</span>&gt;</td>
+        <td><span class="parametername">pageSize</span></td>
+        <td><p>Size of the page.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.Boolean</span></td>
+        <td><span class="parametername">isGetSubModels</span></td>
+        <td><p>if set to <code>true</code> [is get sub models].</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Threading.Tasks.Task</span>&lt;<a class="xref" href="Swastika.Common.Helper.PaginationModel-1.html">PaginationModel</a>&lt;TView&gt;&gt;</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/Swastika-IO/Swastika-Core/new/master/apiSpec/new?filename=Swastika_Domain_Core_Interfaces_IRepository_2_GetModelListByAsync_System_Linq_Expressions_Expression_System_Func__0_System_Boolean___System_Linq_Expressions_Expression_System_Func__0_System_Int32___System_String_System_Nullable_System_Int32__System_Nullable_System_Int32__System_Boolean_.md&amp;value=---%0Auid%3A%20Swastika.Domain.Core.Interfaces.IRepository%602.GetModelListByAsync(System.Linq.Expressions.Expression%7BSystem.Func%7B%600%2CSystem.Boolean%7D%7D%2CSystem.Linq.Expressions.Expression%7BSystem.Func%7B%600%2CSystem.Int32%7D%7D%2CSystem.String%2CSystem.Nullable%7BSystem.Int32%7D%2CSystem.Nullable%7BSystem.Int32%7D%2CSystem.Boolean)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Swastika-IO/Swastika-Core/blob/master/src/Swastika.Domain.Core/Interfaces/IRepository.cs/#L253">View Source</a>
+  </span>
+  <a id="Swastika_Domain_Core_Interfaces_IRepository_2_GetModelListByAsync_" data-uid="Swastika.Domain.Core.Interfaces.IRepository`2.GetModelListByAsync*"></a>
+  <h4 id="Swastika_Domain_Core_Interfaces_IRepository_2_GetModelListByAsync_System_Linq_Expressions_Expression_System_Func__0_System_Boolean___System_Linq_Expressions_Expression_System_Func__0_System_Int32___System_String_System_Nullable_System_Int32__System_Nullable_System_Int32__System_Boolean_" data-uid="Swastika.Domain.Core.Interfaces.IRepository`2.GetModelListByAsync(System.Linq.Expressions.Expression{System.Func{`0,System.Boolean}},System.Linq.Expressions.Expression{System.Func{`0,System.Int32}},System.String,System.Nullable{System.Int32},System.Nullable{System.Int32},System.Boolean)">GetModelListByAsync(Expression&lt;Func&lt;TModel, Boolean&gt;&gt;, Expression&lt;Func&lt;TModel, Int32&gt;&gt;, String, Nullable&lt;Int32&gt;, Nullable&lt;Int32&gt;, Boolean)</h4>
+  <div class="markdown level1 summary"><p>Gets the model list by asynchronous.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">Task&lt;PaginationModel&lt;TView&gt;&gt; GetModelListByAsync(Expression&lt;Func&lt;TModel, bool&gt;&gt; predicate, Expression&lt;Func&lt;TModel, int&gt;&gt; orderBy, string direction, int ? pageIndex, int ? pageSize, bool isGetSubModels)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Linq.Expressions.Expression</span>&lt;<span class="xref">System.Func</span>&lt;TModel, <span class="xref">System.Boolean</span>&gt;&gt;</td>
+        <td><span class="parametername">predicate</span></td>
+        <td><p>The predicate.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.Linq.Expressions.Expression</span>&lt;<span class="xref">System.Func</span>&lt;TModel, <span class="xref">System.Int32</span>&gt;&gt;</td>
+        <td><span class="parametername">orderBy</span></td>
+        <td><p>The order by.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.String</span></td>
+        <td><span class="parametername">direction</span></td>
+        <td><p>The direction.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.Nullable</span>&lt;<span class="xref">System.Int32</span>&gt;</td>
+        <td><span class="parametername">pageIndex</span></td>
+        <td><p>Index of the page.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.Nullable</span>&lt;<span class="xref">System.Int32</span>&gt;</td>
+        <td><span class="parametername">pageSize</span></td>
+        <td><p>Size of the page.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.Boolean</span></td>
+        <td><span class="parametername">isGetSubModels</span></td>
+        <td><p>if set to <code>true</code> [is get sub models].</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Threading.Tasks.Task</span>&lt;<a class="xref" href="Swastika.Common.Helper.PaginationModel-1.html">PaginationModel</a>&lt;TView&gt;&gt;</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/Swastika-IO/Swastika-Core/new/master/apiSpec/new?filename=Swastika_Domain_Core_Interfaces_IRepository_2_GetModelListByAsync_System_Linq_Expressions_Expression_System_Func__0_System_Boolean___System_Linq_Expressions_Expression_System_Func__0_System_String___System_String_System_Nullable_System_Int32__System_Nullable_System_Int32__System_Boolean_.md&amp;value=---%0Auid%3A%20Swastika.Domain.Core.Interfaces.IRepository%602.GetModelListByAsync(System.Linq.Expressions.Expression%7BSystem.Func%7B%600%2CSystem.Boolean%7D%7D%2CSystem.Linq.Expressions.Expression%7BSystem.Func%7B%600%2CSystem.String%7D%7D%2CSystem.String%2CSystem.Nullable%7BSystem.Int32%7D%2CSystem.Nullable%7BSystem.Int32%7D%2CSystem.Boolean)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Swastika-IO/Swastika-Core/blob/master/src/Swastika.Domain.Core/Interfaces/IRepository.cs/#L265">View Source</a>
+  </span>
+  <a id="Swastika_Domain_Core_Interfaces_IRepository_2_GetModelListByAsync_" data-uid="Swastika.Domain.Core.Interfaces.IRepository`2.GetModelListByAsync*"></a>
+  <h4 id="Swastika_Domain_Core_Interfaces_IRepository_2_GetModelListByAsync_System_Linq_Expressions_Expression_System_Func__0_System_Boolean___System_Linq_Expressions_Expression_System_Func__0_System_String___System_String_System_Nullable_System_Int32__System_Nullable_System_Int32__System_Boolean_" data-uid="Swastika.Domain.Core.Interfaces.IRepository`2.GetModelListByAsync(System.Linq.Expressions.Expression{System.Func{`0,System.Boolean}},System.Linq.Expressions.Expression{System.Func{`0,System.String}},System.String,System.Nullable{System.Int32},System.Nullable{System.Int32},System.Boolean)">GetModelListByAsync(Expression&lt;Func&lt;TModel, Boolean&gt;&gt;, Expression&lt;Func&lt;TModel, String&gt;&gt;, String, Nullable&lt;Int32&gt;, Nullable&lt;Int32&gt;, Boolean)</h4>
+  <div class="markdown level1 summary"><p>Gets the model list by asynchronous.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">Task&lt;PaginationModel&lt;TView&gt;&gt; GetModelListByAsync(Expression&lt;Func&lt;TModel, bool&gt;&gt; predicate, Expression&lt;Func&lt;TModel, string&gt;&gt; orderBy, string direction, int ? pageIndex, int ? pageSize, bool isGetSubModels)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Linq.Expressions.Expression</span>&lt;<span class="xref">System.Func</span>&lt;TModel, <span class="xref">System.Boolean</span>&gt;&gt;</td>
+        <td><span class="parametername">predicate</span></td>
+        <td><p>The predicate.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.Linq.Expressions.Expression</span>&lt;<span class="xref">System.Func</span>&lt;TModel, <span class="xref">System.String</span>&gt;&gt;</td>
+        <td><span class="parametername">orderBy</span></td>
+        <td><p>The order by.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.String</span></td>
+        <td><span class="parametername">direction</span></td>
+        <td><p>The direction.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.Nullable</span>&lt;<span class="xref">System.Int32</span>&gt;</td>
+        <td><span class="parametername">pageIndex</span></td>
+        <td><p>Index of the page.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.Nullable</span>&lt;<span class="xref">System.Int32</span>&gt;</td>
+        <td><span class="parametername">pageSize</span></td>
+        <td><p>Size of the page.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.Boolean</span></td>
+        <td><span class="parametername">isGetSubModels</span></td>
+        <td><p>if set to <code>true</code> [is get sub models].</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Threading.Tasks.Task</span>&lt;<a class="xref" href="Swastika.Common.Helper.PaginationModel-1.html">PaginationModel</a>&lt;TView&gt;&gt;</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/Swastika-IO/Swastika-Core/new/master/apiSpec/new?filename=Swastika_Domain_Core_Interfaces_IRepository_2_GetSingleModel_System_Linq_Expressions_Expression_System_Func__0_System_Boolean___System_Boolean_.md&amp;value=---%0Auid%3A%20Swastika.Domain.Core.Interfaces.IRepository%602.GetSingleModel(System.Linq.Expressions.Expression%7BSystem.Func%7B%600%2CSystem.Boolean%7D%7D%2CSystem.Boolean)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Swastika-IO/Swastika-Core/blob/master/src/Swastika.Domain.Core/Interfaces/IRepository.cs/#L116">View Source</a>
+  </span>
+  <a id="Swastika_Domain_Core_Interfaces_IRepository_2_GetSingleModel_" data-uid="Swastika.Domain.Core.Interfaces.IRepository`2.GetSingleModel*"></a>
+  <h4 id="Swastika_Domain_Core_Interfaces_IRepository_2_GetSingleModel_System_Linq_Expressions_Expression_System_Func__0_System_Boolean___System_Boolean_" data-uid="Swastika.Domain.Core.Interfaces.IRepository`2.GetSingleModel(System.Linq.Expressions.Expression{System.Func{`0,System.Boolean}},System.Boolean)">GetSingleModel(Expression&lt;Func&lt;TModel, Boolean&gt;&gt;, Boolean)</h4>
+  <div class="markdown level1 summary"><p>Gets the single model.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">TView GetSingleModel(Expression&lt;Func&lt;TModel, bool&gt;&gt; predicate, bool isGetSubModels)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Linq.Expressions.Expression</span>&lt;<span class="xref">System.Func</span>&lt;TModel, <span class="xref">System.Boolean</span>&gt;&gt;</td>
+        <td><span class="parametername">predicate</span></td>
+        <td><p>The predicate.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.Boolean</span></td>
+        <td><span class="parametername">isGetSubModels</span></td>
+        <td><p>if set to <code>true</code> [is get sub models].</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">TView</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/Swastika-IO/Swastika-Core/new/master/apiSpec/new?filename=Swastika_Domain_Core_Interfaces_IRepository_2_GetSingleModelAsync_System_Linq_Expressions_Expression_System_Func__0_System_Boolean___System_Boolean_.md&amp;value=---%0Auid%3A%20Swastika.Domain.Core.Interfaces.IRepository%602.GetSingleModelAsync(System.Linq.Expressions.Expression%7BSystem.Func%7B%600%2CSystem.Boolean%7D%7D%2CSystem.Boolean)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Swastika-IO/Swastika-Core/blob/master/src/Swastika.Domain.Core/Interfaces/IRepository.cs/#L124">View Source</a>
+  </span>
+  <a id="Swastika_Domain_Core_Interfaces_IRepository_2_GetSingleModelAsync_" data-uid="Swastika.Domain.Core.Interfaces.IRepository`2.GetSingleModelAsync*"></a>
+  <h4 id="Swastika_Domain_Core_Interfaces_IRepository_2_GetSingleModelAsync_System_Linq_Expressions_Expression_System_Func__0_System_Boolean___System_Boolean_" data-uid="Swastika.Domain.Core.Interfaces.IRepository`2.GetSingleModelAsync(System.Linq.Expressions.Expression{System.Func{`0,System.Boolean}},System.Boolean)">GetSingleModelAsync(Expression&lt;Func&lt;TModel, Boolean&gt;&gt;, Boolean)</h4>
+  <div class="markdown level1 summary"><p>Gets the single model asynchronous.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">Task&lt;TView&gt; GetSingleModelAsync(Expression&lt;Func&lt;TModel, bool&gt;&gt; predicate, bool isGetSubModels)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Linq.Expressions.Expression</span>&lt;<span class="xref">System.Func</span>&lt;TModel, <span class="xref">System.Boolean</span>&gt;&gt;</td>
+        <td><span class="parametername">predicate</span></td>
+        <td><p>The predicate.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.Boolean</span></td>
+        <td><span class="parametername">isGetSubModels</span></td>
+        <td><p>if set to <code>true</code> [is get sub models].</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Threading.Tasks.Task</span>&lt;TView&gt;</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/Swastika-IO/Swastika-Core/new/master/apiSpec/new?filename=Swastika_Domain_Core_Interfaces_IRepository_2_isExists__0_.md&amp;value=---%0Auid%3A%20Swastika.Domain.Core.Interfaces.IRepository%602.isExists(%600)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Swastika-IO/Swastika-Core/blob/master/src/Swastika.Domain.Core/Interfaces/IRepository.cs/#L24">View Source</a>
+  </span>
+  <a id="Swastika_Domain_Core_Interfaces_IRepository_2_isExists_" data-uid="Swastika.Domain.Core.Interfaces.IRepository`2.isExists*"></a>
+  <h4 id="Swastika_Domain_Core_Interfaces_IRepository_2_isExists__0_" data-uid="Swastika.Domain.Core.Interfaces.IRepository`2.isExists(`0)">isExists(TModel)</h4>
+  <div class="markdown level1 summary"><p>Determines whether the specified entity is exists.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">bool isExists(TModel entity)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">TModel</span></td>
+        <td><span class="parametername">entity</span></td>
+        <td><p>The entity.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Boolean</span></td>
+        <td><p><code>true</code> if the specified entity is exists; otherwise, <code>false</code>.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/Swastika-IO/Swastika-Core/new/master/apiSpec/new?filename=Swastika_Domain_Core_Interfaces_IRepository_2_RemoveListModel_System_Linq_Expressions_Expression_System_Func__0_System_Boolean___.md&amp;value=---%0Auid%3A%20Swastika.Domain.Core.Interfaces.IRepository%602.RemoveListModel(System.Linq.Expressions.Expression%7BSystem.Func%7B%600%2CSystem.Boolean%7D%7D)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Swastika-IO/Swastika-Core/blob/master/src/Swastika.Domain.Core/Interfaces/IRepository.cs/#L87">View Source</a>
+  </span>
+  <a id="Swastika_Domain_Core_Interfaces_IRepository_2_RemoveListModel_" data-uid="Swastika.Domain.Core.Interfaces.IRepository`2.RemoveListModel*"></a>
+  <h4 id="Swastika_Domain_Core_Interfaces_IRepository_2_RemoveListModel_System_Linq_Expressions_Expression_System_Func__0_System_Boolean___" data-uid="Swastika.Domain.Core.Interfaces.IRepository`2.RemoveListModel(System.Linq.Expressions.Expression{System.Func{`0,System.Boolean}})">RemoveListModel(Expression&lt;Func&lt;TModel, Boolean&gt;&gt;)</h4>
+  <div class="markdown level1 summary"><p>Removes the list model.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">bool RemoveListModel(Expression&lt;Func&lt;TModel, bool&gt;&gt; predicate)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Linq.Expressions.Expression</span>&lt;<span class="xref">System.Func</span>&lt;TModel, <span class="xref">System.Boolean</span>&gt;&gt;</td>
+        <td><span class="parametername">predicate</span></td>
+        <td><p>The predicate.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Boolean</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/Swastika-IO/Swastika-Core/new/master/apiSpec/new?filename=Swastika_Domain_Core_Interfaces_IRepository_2_RemoveListModelAsync_System_Linq_Expressions_Expression_System_Func__0_System_Boolean___.md&amp;value=---%0Auid%3A%20Swastika.Domain.Core.Interfaces.IRepository%602.RemoveListModelAsync(System.Linq.Expressions.Expression%7BSystem.Func%7B%600%2CSystem.Boolean%7D%7D)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Swastika-IO/Swastika-Core/blob/master/src/Swastika.Domain.Core/Interfaces/IRepository.cs/#L108">View Source</a>
+  </span>
+  <a id="Swastika_Domain_Core_Interfaces_IRepository_2_RemoveListModelAsync_" data-uid="Swastika.Domain.Core.Interfaces.IRepository`2.RemoveListModelAsync*"></a>
+  <h4 id="Swastika_Domain_Core_Interfaces_IRepository_2_RemoveListModelAsync_System_Linq_Expressions_Expression_System_Func__0_System_Boolean___" data-uid="Swastika.Domain.Core.Interfaces.IRepository`2.RemoveListModelAsync(System.Linq.Expressions.Expression{System.Func{`0,System.Boolean}})">RemoveListModelAsync(Expression&lt;Func&lt;TModel, Boolean&gt;&gt;)</h4>
+  <div class="markdown level1 summary"><p>Removes the list model asynchronous.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">Task&lt;bool&gt; RemoveListModelAsync(Expression&lt;Func&lt;TModel, bool&gt;&gt; predicate)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Linq.Expressions.Expression</span>&lt;<span class="xref">System.Func</span>&lt;TModel, <span class="xref">System.Boolean</span>&gt;&gt;</td>
+        <td><span class="parametername">predicate</span></td>
+        <td><p>The predicate.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Threading.Tasks.Task</span>&lt;<span class="xref">System.Boolean</span>&gt;</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/Swastika-IO/Swastika-Core/new/master/apiSpec/new?filename=Swastika_Domain_Core_Interfaces_IRepository_2_RemoveModel__0_.md&amp;value=---%0Auid%3A%20Swastika.Domain.Core.Interfaces.IRepository%602.RemoveModel(%600)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Swastika-IO/Swastika-Core/blob/master/src/Swastika.Domain.Core/Interfaces/IRepository.cs/#L73">View Source</a>
+  </span>
+  <a id="Swastika_Domain_Core_Interfaces_IRepository_2_RemoveModel_" data-uid="Swastika.Domain.Core.Interfaces.IRepository`2.RemoveModel*"></a>
+  <h4 id="Swastika_Domain_Core_Interfaces_IRepository_2_RemoveModel__0_" data-uid="Swastika.Domain.Core.Interfaces.IRepository`2.RemoveModel(`0)">RemoveModel(TModel)</h4>
+  <div class="markdown level1 summary"><p>Removes the model.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">bool RemoveModel(TModel model)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">TModel</span></td>
+        <td><span class="parametername">model</span></td>
+        <td><p>The model.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Boolean</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/Swastika-IO/Swastika-Core/new/master/apiSpec/new?filename=Swastika_Domain_Core_Interfaces_IRepository_2_RemoveModel_System_Linq_Expressions_Expression_System_Func__0_System_Boolean___.md&amp;value=---%0Auid%3A%20Swastika.Domain.Core.Interfaces.IRepository%602.RemoveModel(System.Linq.Expressions.Expression%7BSystem.Func%7B%600%2CSystem.Boolean%7D%7D)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Swastika-IO/Swastika-Core/blob/master/src/Swastika.Domain.Core/Interfaces/IRepository.cs/#L80">View Source</a>
+  </span>
+  <a id="Swastika_Domain_Core_Interfaces_IRepository_2_RemoveModel_" data-uid="Swastika.Domain.Core.Interfaces.IRepository`2.RemoveModel*"></a>
+  <h4 id="Swastika_Domain_Core_Interfaces_IRepository_2_RemoveModel_System_Linq_Expressions_Expression_System_Func__0_System_Boolean___" data-uid="Swastika.Domain.Core.Interfaces.IRepository`2.RemoveModel(System.Linq.Expressions.Expression{System.Func{`0,System.Boolean}})">RemoveModel(Expression&lt;Func&lt;TModel, Boolean&gt;&gt;)</h4>
+  <div class="markdown level1 summary"><p>Removes the model.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">bool RemoveModel(Expression&lt;Func&lt;TModel, bool&gt;&gt; predicate)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Linq.Expressions.Expression</span>&lt;<span class="xref">System.Func</span>&lt;TModel, <span class="xref">System.Boolean</span>&gt;&gt;</td>
+        <td><span class="parametername">predicate</span></td>
+        <td><p>The predicate.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Boolean</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/Swastika-IO/Swastika-Core/new/master/apiSpec/new?filename=Swastika_Domain_Core_Interfaces_IRepository_2_RemoveModelAsync__0_.md&amp;value=---%0Auid%3A%20Swastika.Domain.Core.Interfaces.IRepository%602.RemoveModelAsync(%600)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Swastika-IO/Swastika-Core/blob/master/src/Swastika.Domain.Core/Interfaces/IRepository.cs/#L94">View Source</a>
+  </span>
+  <a id="Swastika_Domain_Core_Interfaces_IRepository_2_RemoveModelAsync_" data-uid="Swastika.Domain.Core.Interfaces.IRepository`2.RemoveModelAsync*"></a>
+  <h4 id="Swastika_Domain_Core_Interfaces_IRepository_2_RemoveModelAsync__0_" data-uid="Swastika.Domain.Core.Interfaces.IRepository`2.RemoveModelAsync(`0)">RemoveModelAsync(TModel)</h4>
+  <div class="markdown level1 summary"><p>Removes the model asynchronous.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">Task&lt;bool&gt; RemoveModelAsync(TModel model)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">TModel</span></td>
+        <td><span class="parametername">model</span></td>
+        <td><p>The model.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Threading.Tasks.Task</span>&lt;<span class="xref">System.Boolean</span>&gt;</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/Swastika-IO/Swastika-Core/new/master/apiSpec/new?filename=Swastika_Domain_Core_Interfaces_IRepository_2_RemoveModelAsync_System_Linq_Expressions_Expression_System_Func__0_System_Boolean___.md&amp;value=---%0Auid%3A%20Swastika.Domain.Core.Interfaces.IRepository%602.RemoveModelAsync(System.Linq.Expressions.Expression%7BSystem.Func%7B%600%2CSystem.Boolean%7D%7D)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Swastika-IO/Swastika-Core/blob/master/src/Swastika.Domain.Core/Interfaces/IRepository.cs/#L101">View Source</a>
+  </span>
+  <a id="Swastika_Domain_Core_Interfaces_IRepository_2_RemoveModelAsync_" data-uid="Swastika.Domain.Core.Interfaces.IRepository`2.RemoveModelAsync*"></a>
+  <h4 id="Swastika_Domain_Core_Interfaces_IRepository_2_RemoveModelAsync_System_Linq_Expressions_Expression_System_Func__0_System_Boolean___" data-uid="Swastika.Domain.Core.Interfaces.IRepository`2.RemoveModelAsync(System.Linq.Expressions.Expression{System.Func{`0,System.Boolean}})">RemoveModelAsync(Expression&lt;Func&lt;TModel, Boolean&gt;&gt;)</h4>
+  <div class="markdown level1 summary"><p>Removes the model asynchronous.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">Task&lt;bool&gt; RemoveModelAsync(Expression&lt;Func&lt;TModel, bool&gt;&gt; predicate)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Linq.Expressions.Expression</span>&lt;<span class="xref">System.Func</span>&lt;TModel, <span class="xref">System.Boolean</span>&gt;&gt;</td>
+        <td><span class="parametername">predicate</span></td>
+        <td><p>The predicate.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Threading.Tasks.Task</span>&lt;<span class="xref">System.Boolean</span>&gt;</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/Swastika-IO/Swastika-Core/new/master/apiSpec/new?filename=Swastika_Domain_Core_Interfaces_IRepository_2_SaveModel__0_.md&amp;value=---%0Auid%3A%20Swastika.Domain.Core.Interfaces.IRepository%602.SaveModel(%600)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Swastika-IO/Swastika-Core/blob/master/src/Swastika.Domain.Core/Interfaces/IRepository.cs/#L59">View Source</a>
+  </span>
+  <a id="Swastika_Domain_Core_Interfaces_IRepository_2_SaveModel_" data-uid="Swastika.Domain.Core.Interfaces.IRepository`2.SaveModel*"></a>
+  <h4 id="Swastika_Domain_Core_Interfaces_IRepository_2_SaveModel__0_" data-uid="Swastika.Domain.Core.Interfaces.IRepository`2.SaveModel(`0)">SaveModel(TModel)</h4>
+  <div class="markdown level1 summary"><p>Saves the model.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">TView SaveModel(TModel model)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">TModel</span></td>
+        <td><span class="parametername">model</span></td>
+        <td><p>The model.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">TView</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/Swastika-IO/Swastika-Core/new/master/apiSpec/new?filename=Swastika_Domain_Core_Interfaces_IRepository_2_SaveModelAsync__0_.md&amp;value=---%0Auid%3A%20Swastika.Domain.Core.Interfaces.IRepository%602.SaveModelAsync(%600)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Swastika-IO/Swastika-Core/blob/master/src/Swastika.Domain.Core/Interfaces/IRepository.cs/#L66">View Source</a>
+  </span>
+  <a id="Swastika_Domain_Core_Interfaces_IRepository_2_SaveModelAsync_" data-uid="Swastika.Domain.Core.Interfaces.IRepository`2.SaveModelAsync*"></a>
+  <h4 id="Swastika_Domain_Core_Interfaces_IRepository_2_SaveModelAsync__0_" data-uid="Swastika.Domain.Core.Interfaces.IRepository`2.SaveModelAsync(`0)">SaveModelAsync(TModel)</h4>
+  <div class="markdown level1 summary"><p>Saves the model asynchronous.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">Task&lt;TView&gt; SaveModelAsync(TModel model)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">TModel</span></td>
+        <td><span class="parametername">model</span></td>
+        <td><p>The model.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Threading.Tasks.Task</span>&lt;TView&gt;</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+</article>
+          </div>
+          
+          <div class="hidden-sm col-md-2" role="complementary">
+            <div class="sideaffix">
+              <div class="contribution">
+                <ul class="nav">
+                  <li>
+                    <a href="https://github.com/Swastika-IO/Swastika-Core/new/master/apiSpec/new?filename=Swastika_Domain_Core_Interfaces_IRepository_2.md&amp;value=---%0Auid%3A%20Swastika.Domain.Core.Interfaces.IRepository%602%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A" class="contribution-link">Improve this Doc</a>
+                  </li>
+                  <li>
+                    <a href="https://github.com/Swastika-IO/Swastika-Core/blob/master/src/Swastika.Domain.Core/Interfaces/IRepository.cs/#L15" class="contribution-link">View Source</a>
+                  </li>
+                </ul>
+              </div>
+              <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix" id="affix">
+              <!-- <p><a class="back-to-top" href="#top">Back to top</a><p> -->
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <footer>
+        <div class="grad-bottom"></div>
+        <div class="footer">
+          <div class="container">
+            <span class="pull-right">
+              <a href="#top">Back to top</a>
+            </span>
+            By Swastika team
+            
+          </div>
+        </div>
+      </footer>
+    </div>
+    
+    <script type="text/javascript" src="../styles/docfx.vendor.js"></script>
+    <script type="text/javascript" src="../styles/docfx.js"></script>
+    <script type="text/javascript" src="../styles/main.js"></script>
+  </body>
+</html>

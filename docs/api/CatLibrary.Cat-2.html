@@ -1,0 +1,1070 @@
+﻿<!DOCTYPE html>
+<!--[if IE]><![endif]-->
+<html>
+  
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>Class Cat&lt;T, K&gt;
+   | Swastika I/O </title>
+    <meta name="viewport" content="width=device-width">
+    <meta name="title" content="Class Cat&lt;T, K&gt;
+   | Swastika I/O ">
+    <meta name="generator" content="docfx 2.18.2.0">
+    
+    <link rel="shortcut icon" href="../images/ico/favicon.ico">
+    <link rel="stylesheet" href="../styles/docfx.vendor.css">
+    <link rel="stylesheet" href="../styles/docfx.css">
+    <link rel="stylesheet" href="../styles/main.css">
+    <meta property="docfx:navrel" content="../toc.html">
+    <meta property="docfx:tocrel" content="toc.html">
+    <meta property="docfx:rel" content="../">
+    
+  </head>
+  <body data-spy="scroll" data-target="#affix">
+    <div id="wrapper">
+      <header>
+        
+        <nav id="autocollapse" class="navbar navbar-inverse ng-scope" role="navigation">
+          <div class="container">
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+              
+              <a class="navbar-brand" href="../index.html">
+                <img id="logo" class="svg" src="../images/svg/logo.svg" alt="">
+              </a>
+            </div>
+            <div class="collapse navbar-collapse" id="navbar">
+              <form class="navbar-form navbar-right" role="search" id="search">
+                <div class="form-group">
+                  <input type="text" class="form-control" id="search-query" placeholder="Search" autocomplete="off">
+                </div>
+              </form>
+            </div>
+          </div>
+        </nav>
+        
+        <div class="subnav navbar navbar-default">
+          <div class="container hide-when-search" id="breadcrumb">
+            <ul class="breadcrumb">
+              <li></li>
+            </ul>
+          </div>
+        </div>
+      </header>
+      <div class="container body-content">
+        
+        <div id="search-results">
+          <div class="search-list"></div>
+          <div class="sr-items"></div>
+          <ul id="pagination"></ul>
+        </div>
+      </div>
+      <div role="main" class="container body-content hide-when-search">
+        
+        <div class="sidenav hide-when-search">
+          <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle">Show / Hide Table of Contents</a>
+          <div class="sidetoggle collapse" id="sidetoggle">
+            <div id="sidetoc"></div>
+          </div>
+        </div>
+        <div class="article row grid-right">
+          <div class="col-md-10">
+            <article class="content wrap" id="_content" data-uid="CatLibrary.Cat`2">
+  
+  
+  <h1 id="CatLibrary_Cat_2" data-uid="CatLibrary.Cat`2">Class Cat&lt;T, K&gt;
+  </h1>
+  <div class="markdown level0 summary"><p>Here&#39;s main class of this <em>Demo</em>.</p>
+<p>You can see mostly type of article within this class and you for more detail, please see the remarks.</p>
+<p>
+<p>this class is a template class. It has two Generic parameter. they are: <span class="typeparamref">T</span> and <span class="typeparamref">K</span>.</p>
+<p>The extension method of this class can refer to <a class="xref" href="CatLibrary.ICatExtension.html">ICatExtension</a> class</p>
+</div>
+  <div class="markdown level0 conceptual"></div>
+  <div class="inheritance">
+    <h5>Inheritance</h5>
+    <div class="level0"><span class="xref">System.Object</span></div>
+    <div class="level1"><span class="xref">Cat&lt;T, K&gt;</span></div>
+  </div>
+  <div class="inheritedMembers">
+    <h5>Inherited Members</h5>
+    <div>
+      <span class="xref">System.Object.ToString()</span>
+    </div>
+    <div>
+      <span class="xref">System.Object.Equals(System.Object, System.Object)</span>
+    </div>
+    <div>
+      <span class="xref">System.Object.ReferenceEquals(System.Object, System.Object)</span>
+    </div>
+    <div>
+      <span class="xref">System.Object.GetHashCode()</span>
+    </div>
+    <div>
+      <span class="xref">System.Object.GetType()</span>
+    </div>
+    <div>
+      <span class="xref">System.Object.MemberwiseClone()</span>
+    </div>
+  </div>
+  <h6><strong>Namespace</strong>: <a class="xref" href="CatLibrary.html">CatLibrary</a></h6>
+  <h6><strong>Assembly</strong>: CatLibrary.dll</h6>
+  <h5 id="CatLibrary_Cat_2_syntax">Syntax</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">[Serializable]
+public class Cat&lt;T, K&gt; : ICat, IAnimal where T : class, new ()where K : struct</code></pre>
+  </div>
+  <h5 class="typeParameters">Type Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="parametername">T</span></td>
+        <td><p>This type should be class and can new instance.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="parametername">K</span></td>
+        <td><p>This type is a struct type, class type can&#39;t be used for this parameter.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 id="CatLibrary_Cat_2_remarks"><strong>Remarks</strong></h5>
+  <div class="markdown level0 remarks"><p>Here&#39;s all the content you can see in this class.</p>
+
+</div>
+  <h5 id="CatLibrary_Cat_2_examples"><strong>Examples</strong></h5>
+  <p>Here&#39;s example of how to create an instance of this class. As T is limited with <code>class</code> and K is limited with <code>struct</code>.</p>
+<pre><code class="c#">    var a = new Cat(object, int)();
+    int catNumber = new int();
+    unsafe
+    {
+        a.GetFeetLength(catNumber);
+    }</code></pre>
+<p>As you see, here we bring in <strong>pointer</strong> so we need to add <span class="languagekeyword">unsafe</span> keyword.</p>
+
+  <h3 id="constructors">Constructors
+  </h3>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/docascode/docfx-seed/new/master/apiSpec/new?filename=CatLibrary_Cat_2__ctor.md&amp;value=---%0Auid%3A%20CatLibrary.Cat%602.%23ctor%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/docascode/docfx-seed/blob/master/src/SampleClass1/CatLibrary/Class1.cs/#L122">View Source</a>
+  </span>
+  <a id="CatLibrary_Cat_2__ctor_" data-uid="CatLibrary.Cat`2.#ctor*"></a>
+  <h4 id="CatLibrary_Cat_2__ctor" data-uid="CatLibrary.Cat`2.#ctor">Cat()</h4>
+  <div class="markdown level1 summary"><p>Default constructor.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Cat()</code></pre>
+  </div>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/docascode/docfx-seed/new/master/apiSpec/new?filename=CatLibrary_Cat_2__ctor__0_.md&amp;value=---%0Auid%3A%20CatLibrary.Cat%602.%23ctor(%600)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/docascode/docfx-seed/blob/master/src/SampleClass1/CatLibrary/Class1.cs/#L128">View Source</a>
+  </span>
+  <a id="CatLibrary_Cat_2__ctor_" data-uid="CatLibrary.Cat`2.#ctor*"></a>
+  <h4 id="CatLibrary_Cat_2__ctor__0_" data-uid="CatLibrary.Cat`2.#ctor(`0)">Cat(T)</h4>
+  <div class="markdown level1 summary"><p>Constructor with one generic parameter.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Cat(T ownType)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">T</span></td>
+        <td><span class="parametername">ownType</span></td>
+        <td><p>This parameter type defined by class.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/docascode/docfx-seed/new/master/apiSpec/new?filename=CatLibrary_Cat_2__ctor_System_String_System_Int32__System_String_System_Boolean_.md&amp;value=---%0Auid%3A%20CatLibrary.Cat%602.%23ctor(System.String%2CSystem.Int32%40%2CSystem.String%2CSystem.Boolean)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/docascode/docfx-seed/blob/master/src/SampleClass1/CatLibrary/Class1.cs/#L137">View Source</a>
+  </span>
+  <a id="CatLibrary_Cat_2__ctor_" data-uid="CatLibrary.Cat`2.#ctor*"></a>
+  <h4 id="CatLibrary_Cat_2__ctor_System_String_System_Int32__System_String_System_Boolean_" data-uid="CatLibrary.Cat`2.#ctor(System.String,System.Int32@,System.String,System.Boolean)">Cat(String, out Int32, String, Boolean)</h4>
+  <div class="markdown level1 summary"><p>It&#39;s a complex constructor. The parameter will have some attributes.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Cat(string nickName, out int age, string realName, bool isHealthy)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.String</span></td>
+        <td><span class="parametername">nickName</span></td>
+        <td><p>it&#39;s string type.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.Int32</span></td>
+        <td><span class="parametername">age</span></td>
+        <td><p>It&#39;s an out and ref parameter.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.String</span></td>
+        <td><span class="parametername">realName</span></td>
+        <td><p>It&#39;s an out paramter.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.Boolean</span></td>
+        <td><span class="parametername">isHealthy</span></td>
+        <td><p>It&#39;s an in parameter.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h3 id="fields">Fields
+  </h3>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/docascode/docfx-seed/new/master/apiSpec/new?filename=CatLibrary_Cat_2_isHealthy.md&amp;value=---%0Auid%3A%20CatLibrary.Cat%602.isHealthy%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/docascode/docfx-seed/blob/master/src/SampleClass1/CatLibrary/Class1.cs/#L231">View Source</a>
+  </span>
+  <h4 id="CatLibrary_Cat_2_isHealthy" data-uid="CatLibrary.Cat`2.isHealthy">isHealthy</h4>
+  <div class="markdown level1 summary"><p>Field with attribute.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">[ContextStatic]
+[NonSerialized]
+public bool isHealthy</code></pre>
+  </div>
+  <h5 class="fieldValue">Field Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Boolean</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h3 id="properties">Properties
+  </h3>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/docascode/docfx-seed/new/master/apiSpec/new?filename=CatLibrary_Cat_2_Age.md&amp;value=---%0Auid%3A%20CatLibrary.Cat%602.Age%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/docascode/docfx-seed/blob/master/src/SampleClass1/CatLibrary/Class1.cs/#L213">View Source</a>
+  </span>
+  <a id="CatLibrary_Cat_2_Age_" data-uid="CatLibrary.Cat`2.Age*"></a>
+  <h4 id="CatLibrary_Cat_2_Age" data-uid="CatLibrary.Cat`2.Age">Age</h4>
+  <div class="markdown level1 summary"><p>Hint cat&#39;s age.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected int Age { get; set; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Int32</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/docascode/docfx-seed/new/master/apiSpec/new?filename=CatLibrary_Cat_2_Item_System_String_.md&amp;value=---%0Auid%3A%20CatLibrary.Cat%602.Item(System.String)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/docascode/docfx-seed/blob/master/src/SampleClass1/CatLibrary/Class1.cs/#L204">View Source</a>
+  </span>
+  <a id="CatLibrary_Cat_2_Item_" data-uid="CatLibrary.Cat`2.Item*"></a>
+  <h4 id="CatLibrary_Cat_2_Item_System_String_" data-uid="CatLibrary.Cat`2.Item(System.String)">Item[String]</h4>
+  <div class="markdown level1 summary"><p>This is index property of Cat. You can see that the visibility is different between <code>get</code> and <code>set</code> method.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public int this[string a] { protected get; set; }</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.String</span></td>
+        <td><span class="parametername">a</span></td>
+        <td><p>Cat&#39;s name.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Int32</span></td>
+        <td><p>Cat&#39;s number.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/docascode/docfx-seed/new/master/apiSpec/new?filename=CatLibrary_Cat_2_Name.md&amp;value=---%0Auid%3A%20CatLibrary.Cat%602.Name%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/docascode/docfx-seed/blob/master/src/SampleClass1/CatLibrary/Class1.cs/#L255">View Source</a>
+  </span>
+  <a id="CatLibrary_Cat_2_Name_" data-uid="CatLibrary.Cat`2.Name*"></a>
+  <h4 id="CatLibrary_Cat_2_Name" data-uid="CatLibrary.Cat`2.Name">Name</h4>
+  <div class="markdown level1 summary"><p>EII property.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public string Name { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.String</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="implements">Implements</h5>
+      <div><a class="xref" href="CatLibrary.IAnimal.html#CatLibrary_IAnimal_Name">IAnimal.Name</a></div>
+  <h3 id="methods">Methods
+  </h3>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/docascode/docfx-seed/new/master/apiSpec/new?filename=CatLibrary_Cat_2_CalculateFood_System_DateTime_.md&amp;value=---%0Auid%3A%20CatLibrary.Cat%602.CalculateFood(System.DateTime)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/docascode/docfx-seed/blob/master/src/SampleClass1/CatLibrary/Class1.cs/#L145">View Source</a>
+  </span>
+  <a id="CatLibrary_Cat_2_CalculateFood_" data-uid="CatLibrary.Cat`2.CalculateFood*"></a>
+  <h4 id="CatLibrary_Cat_2_CalculateFood_System_DateTime_" data-uid="CatLibrary.Cat`2.CalculateFood(System.DateTime)">CalculateFood(DateTime)</h4>
+  <div class="markdown level1 summary"><p>It&#39;s a method with complex return type.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Dictionary&lt;string, List&lt;int&gt;&gt; CalculateFood(DateTime date)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.DateTime</span></td>
+        <td><span class="parametername">date</span></td>
+        <td><p>Date time to now.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Collections.Generic.Dictionary</span>&lt;<span class="xref">System.String</span>, <span class="xref">System.Collections.Generic.List</span>&lt;<span class="xref">System.Int32</span>&gt;&gt;</td>
+        <td><p>It&#39;s a relationship map of different kind food.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/docascode/docfx-seed/new/master/apiSpec/new?filename=CatLibrary_Cat_2_Equals_System_Object_.md&amp;value=---%0Auid%3A%20CatLibrary.Cat%602.Equals(System.Object)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/docascode/docfx-seed/blob/master/src/SampleClass1/CatLibrary/Class1.cs/#L165">View Source</a>
+  </span>
+  <a id="CatLibrary_Cat_2_Equals_" data-uid="CatLibrary.Cat`2.Equals*"></a>
+  <h4 id="CatLibrary_Cat_2_Equals_System_Object_" data-uid="CatLibrary.Cat`2.Equals(System.Object)">Equals(Object)</h4>
+  <div class="markdown level1 summary"><p>Override the method of <code>Object.Equals(object obj).</code></p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public override bool Equals(object obj)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Object</span></td>
+        <td><span class="parametername">obj</span></td>
+        <td><p>Can pass any class type.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Boolean</span></td>
+        <td><p>The return value tell you whehter the compare operation is successful.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="overrides">Overrides</h5>
+  <div><span class="xref">System.Object.Equals(System.Object)</span></div>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/docascode/docfx-seed/new/master/apiSpec/new?filename=CatLibrary_Cat_2_GetTailLength_System_Int32__System_Object___.md&amp;value=---%0Auid%3A%20CatLibrary.Cat%602.GetTailLength(System.Int32*%2CSystem.Object%5B%5D)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/docascode/docfx-seed/blob/master/src/SampleClass1/CatLibrary/Class1.cs/#L174">View Source</a>
+  </span>
+  <a id="CatLibrary_Cat_2_GetTailLength_" data-uid="CatLibrary.Cat`2.GetTailLength*"></a>
+  <h4 id="CatLibrary_Cat_2_GetTailLength_System_Int32__System_Object___" data-uid="CatLibrary.Cat`2.GetTailLength(System.Int32*,System.Object[])">GetTailLength(Int32*, Object[])</h4>
+  <div class="markdown level1 summary"><p>It&#39;s an <code>unsafe</code> method.
+As you see, <span class="paramref">catName</span> is a <strong>pointer</strong>, so we need to add <span class="languagekeyword">unsafe</span> keyword.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public long GetTailLength(int *catName, params object[] parameters)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Int32</span>*</td>
+        <td><span class="parametername">catName</span></td>
+        <td><p>Thie represent for cat name length.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.Object</span>[]</td>
+        <td><span class="parametername">parameters</span></td>
+        <td><p>Optional parameters.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Int64</span></td>
+        <td><p>Return cat tail&#39;s length.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/docascode/docfx-seed/new/master/apiSpec/new?filename=CatLibrary_Cat_2_Jump__0__1_System_Boolean__.md&amp;value=---%0Auid%3A%20CatLibrary.Cat%602.Jump(%600%2C%601%2CSystem.Boolean%40)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/docascode/docfx-seed/blob/master/src/SampleClass1/CatLibrary/Class1.cs/#L154">View Source</a>
+  </span>
+  <a id="CatLibrary_Cat_2_Jump_" data-uid="CatLibrary.Cat`2.Jump*"></a>
+  <h4 id="CatLibrary_Cat_2_Jump__0__1_System_Boolean__" data-uid="CatLibrary.Cat`2.Jump(`0,`1,System.Boolean@)">Jump(T, K, ref Boolean)</h4>
+  <div class="markdown level1 summary"><p>This method have attribute above it.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">[Conditional(&quot;Debug&quot;)]
+public void Jump(T ownType, K anotherOwnType, ref bool cheat)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">T</span></td>
+        <td><span class="parametername">ownType</span></td>
+        <td><p>Type come from class define.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">K</span></td>
+        <td><span class="parametername">anotherOwnType</span></td>
+        <td><p>Type come from class define.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.Boolean</span></td>
+        <td><span class="parametername">cheat</span></td>
+        <td><p>Hint whether this cat has cheat mode.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.ArgumentException</span></td>
+        <td><p>This is an argument exception</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h3 id="events">Events
+  </h3>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/docascode/docfx-seed/new/master/apiSpec/new?filename=CatLibrary_Cat_2_ownEat.md&amp;value=---%0Auid%3A%20CatLibrary.Cat%602.ownEat%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/docascode/docfx-seed/blob/master/src/SampleClass1/CatLibrary/Class1.cs/#L223">View Source</a>
+  </span>
+  <h4 id="CatLibrary_Cat_2_ownEat" data-uid="CatLibrary.Cat`2.ownEat">ownEat</h4>
+  <div class="markdown level1 summary"><p>Eat event of this cat</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public event EventHandler ownEat</code></pre>
+  </div>
+  <h5 class="eventType">Event Type</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.EventHandler</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h3 id="operators">Operators
+  </h3>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/docascode/docfx-seed/new/master/apiSpec/new?filename=CatLibrary_Cat_2_op_Addition_CatLibrary_Cat__0__1__System_Int32_.md&amp;value=---%0Auid%3A%20CatLibrary.Cat%602.op_Addition(CatLibrary.Cat%7B%600%2C%601%7D%2CSystem.Int32)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/docascode/docfx-seed/blob/master/src/SampleClass1/CatLibrary/Class1.cs/#L183">View Source</a>
+  </span>
+  <a id="CatLibrary_Cat_2_op_Addition_" data-uid="CatLibrary.Cat`2.op_Addition*"></a>
+  <h4 id="CatLibrary_Cat_2_op_Addition_CatLibrary_Cat__0__1__System_Int32_" data-uid="CatLibrary.Cat`2.op_Addition(CatLibrary.Cat{`0,`1},System.Int32)">Addition(Cat&lt;T, K&gt;, Int32)</h4>
+  <div class="markdown level1 summary"><p>Addition operator of this class.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static int operator +(Cat&lt;T, K&gt; lsr, int rsr)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="CatLibrary.Cat-2.html">Cat</a>&lt;T, K&gt;</td>
+        <td><span class="parametername">lsr</span></td>
+        <td><p>...</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.Int32</span></td>
+        <td><span class="parametername">rsr</span></td>
+        <td><p>~~~</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Int32</span></td>
+        <td><p>Result with <em>int</em> type.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/docascode/docfx-seed/new/master/apiSpec/new?filename=CatLibrary_Cat_2_op_Explicit_CatLibrary_Cat__0__1___CatLibrary_Tom.md&amp;value=---%0Auid%3A%20CatLibrary.Cat%602.op_Explicit(CatLibrary.Cat%7B%600%2C%601%7D)~CatLibrary.Tom%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/docascode/docfx-seed/blob/master/src/SampleClass1/CatLibrary/Class1.cs/#L196">View Source</a>
+  </span>
+  <a id="CatLibrary_Cat_2_op_Explicit_" data-uid="CatLibrary.Cat`2.op_Explicit*"></a>
+  <h4 id="CatLibrary_Cat_2_op_Explicit_CatLibrary_Cat__0__1___CatLibrary_Tom" data-uid="CatLibrary.Cat`2.op_Explicit(CatLibrary.Cat{`0,`1})~CatLibrary.Tom">Explicit(Cat&lt;T, K&gt; to Tom)</h4>
+  <div class="markdown level1 summary"><p>Expilicit operator of this class.
+<p>It means this cat can evolve to change to Tom. Tom and Jerry.</p></p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static explicit operator Tom(Cat&lt;T, K&gt; src)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="CatLibrary.Cat-2.html">Cat</a>&lt;T, K&gt;</td>
+        <td><span class="parametername">src</span></td>
+        <td><p>Instance of this class.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="CatLibrary.Tom.html">Tom</a></td>
+        <td><p>Advanced class type of cat.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/docascode/docfx-seed/new/master/apiSpec/new?filename=CatLibrary_Cat_2_op_Subtraction_CatLibrary_Cat__0__1__System_Int32_.md&amp;value=---%0Auid%3A%20CatLibrary.Cat%602.op_Subtraction(CatLibrary.Cat%7B%600%2C%601%7D%2CSystem.Int32)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/docascode/docfx-seed/blob/master/src/SampleClass1/CatLibrary/Class1.cs/#L188">View Source</a>
+  </span>
+  <a id="CatLibrary_Cat_2_op_Subtraction_" data-uid="CatLibrary.Cat`2.op_Subtraction*"></a>
+  <h4 id="CatLibrary_Cat_2_op_Subtraction_CatLibrary_Cat__0__1__System_Int32_" data-uid="CatLibrary.Cat`2.op_Subtraction(CatLibrary.Cat{`0,`1},System.Int32)">Subtraction(Cat&lt;T, K&gt;, Int32)</h4>
+  <div class="markdown level1 summary"><p>Similar with operaotr +, refer to that topic.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static int operator -(Cat&lt;T, K&gt; lsr, int rsr)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="CatLibrary.Cat-2.html">Cat</a>&lt;T, K&gt;</td>
+        <td><span class="parametername">lsr</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.Int32</span></td>
+        <td><span class="parametername">rsr</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Int32</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h3 id="eii">Explicit Interface Implementations
+  </h3>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/docascode/docfx-seed/new/master/apiSpec/new?filename=CatLibrary_Cat_2_CatLibrary_IAnimal_Eat.md&amp;value=---%0Auid%3A%20CatLibrary.Cat%602.CatLibrary%23IAnimal%23Eat%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/docascode/docfx-seed/blob/master/src/SampleClass1/CatLibrary/Class1.cs/#L237">View Source</a>
+  </span>
+  <a id="CatLibrary_Cat_2_CatLibrary_IAnimal_Eat_" data-uid="CatLibrary.Cat`2.CatLibrary#IAnimal#Eat*"></a>
+  <h4 id="CatLibrary_Cat_2_CatLibrary_IAnimal_Eat" data-uid="CatLibrary.Cat`2.CatLibrary#IAnimal#Eat">IAnimal.Eat()</h4>
+  <div class="markdown level1 summary"><p>EII method.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">void IAnimal.Eat()</code></pre>
+  </div>
+  <h5 class="implements">Implements</h5>
+      <div><a class="xref" href="CatLibrary.IAnimal.html#CatLibrary_IAnimal_Eat">IAnimal.Eat()</a></div>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/docascode/docfx-seed/new/master/apiSpec/new?filename=CatLibrary_Cat_2_CatLibrary_IAnimal_Eat_System_String_.md&amp;value=---%0Auid%3A%20CatLibrary.Cat%602.CatLibrary%23IAnimal%23Eat(System.String)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/docascode/docfx-seed/blob/master/src/SampleClass1/CatLibrary/Class1.cs/#L249">View Source</a>
+  </span>
+  <a id="CatLibrary_Cat_2_CatLibrary_IAnimal_Eat_" data-uid="CatLibrary.Cat`2.CatLibrary#IAnimal#Eat*"></a>
+  <h4 id="CatLibrary_Cat_2_CatLibrary_IAnimal_Eat_System_String_" data-uid="CatLibrary.Cat`2.CatLibrary#IAnimal#Eat(System.String)">IAnimal.Eat(String)</h4>
+  <div class="markdown level1 summary"><p>Implementation of Eat(food)</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">void IAnimal.Eat(string food)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.String</span></td>
+        <td><span class="parametername">food</span></td>
+        <td><p>Food to eat</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="implements">Implements</h5>
+      <div><a class="xref" href="CatLibrary.IAnimal.html#CatLibrary_IAnimal_Eat_System_String_">IAnimal.Eat(String)</a></div>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/docascode/docfx-seed/new/master/apiSpec/new?filename=CatLibrary_Cat_2_CatLibrary_IAnimal_Eat__1___0_.md&amp;value=---%0Auid%3A%20CatLibrary.Cat%602.CatLibrary%23IAnimal%23Eat%60%601(%60%600)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/docascode/docfx-seed/blob/master/src/SampleClass1/CatLibrary/Class1.cs/#L243">View Source</a>
+  </span>
+  <a id="CatLibrary_Cat_2_CatLibrary_IAnimal_Eat_" data-uid="CatLibrary.Cat`2.CatLibrary#IAnimal#Eat*"></a>
+  <h4 id="CatLibrary_Cat_2_CatLibrary_IAnimal_Eat__1___0_" data-uid="CatLibrary.Cat`2.CatLibrary#IAnimal#Eat``1(``0)">IAnimal.Eat&lt;Tool&gt;(Tool)</h4>
+  <div class="markdown level1 summary"><p>EII template method.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">void IAnimal.Eat&lt;Tool&gt;(Tool a)where Tool : class</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">Tool</span></td>
+        <td><span class="parametername">a</span></td>
+        <td><p>Tool name.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="typeParameters">Type Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="parametername">Tool</span></td>
+        <td><p>Tool for eat.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="implements">Implements</h5>
+      <div><a class="xref" href="CatLibrary.IAnimal.html#CatLibrary_IAnimal_Eat__1___0_">IAnimal.Eat&lt;Tool&gt;(Tool)</a></div>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/docascode/docfx-seed/new/master/apiSpec/new?filename=CatLibrary_Cat_2_CatLibrary_IAnimal_Item_System_Int32_.md&amp;value=---%0Auid%3A%20CatLibrary.Cat%602.CatLibrary%23IAnimal%23Item(System.Int32)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/docascode/docfx-seed/blob/master/src/SampleClass1/CatLibrary/Class1.cs/#L262">View Source</a>
+  </span>
+  <a id="CatLibrary_Cat_2_CatLibrary_IAnimal_Item_" data-uid="CatLibrary.Cat`2.CatLibrary#IAnimal#Item*"></a>
+  <h4 id="CatLibrary_Cat_2_CatLibrary_IAnimal_Item_System_Int32_" data-uid="CatLibrary.Cat`2.CatLibrary#IAnimal#Item(System.Int32)">IAnimal.Item[Int32]</h4>
+  <div class="markdown level1 summary"><p>EII index.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">string IAnimal.this[int a] { get; }</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Int32</span></td>
+        <td><span class="parametername">a</span></td>
+        <td><p>Cat&#39;s number.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.String</span></td>
+        <td><p>Cat&#39;s name.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="implements">Implements</h5>
+      <div><a class="xref" href="CatLibrary.IAnimal.html#CatLibrary_IAnimal_Item_System_Int32_">IAnimal.Item[Int32]</a></div>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/docascode/docfx-seed/new/master/apiSpec/new?filename=CatLibrary_Cat_2_CatLibrary_ICat_eat.md&amp;value=---%0Auid%3A%20CatLibrary.Cat%602.CatLibrary%23ICat%23eat%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/docascode/docfx-seed/blob/master/src/SampleClass1/CatLibrary/Class1.cs/#L268">View Source</a>
+  </span>
+  <h4 id="CatLibrary_Cat_2_CatLibrary_ICat_eat" data-uid="CatLibrary.Cat`2.CatLibrary#ICat#eat">ICat.eat</h4>
+  <div class="markdown level1 summary"><p>EII event.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">event EventHandler ICat.eat</code></pre>
+  </div>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.EventHandler</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="implements">Implements</h5>
+      <div><a class="xref" href="CatLibrary.ICat.html#CatLibrary_ICat_eat">ICat.eat</a></div>
+  <h3 id="extensionmethods">Extension Methods</h3>
+  <div>
+      <a class="xref" href="CatLibrary.ICatExtension.html#CatLibrary_ICatExtension_Sleep_CatLibrary_ICat_System_Int64_">ICatExtension.Sleep(ICat, Int64)</a>
+  </div>
+  <div>
+      <a class="xref" href="CatLibrary.ICatExtension.html#CatLibrary_ICatExtension_Play_CatLibrary_ICat_System_String_">ICatExtension.Play(ICat, String)</a>
+  </div>
+</article>
+          </div>
+          
+          <div class="hidden-sm col-md-2" role="complementary">
+            <div class="sideaffix">
+              <div class="contribution">
+                <ul class="nav">
+                  <li>
+                    <a href="https://github.com/docascode/docfx-seed/new/master/apiSpec/new?filename=CatLibrary_Cat_2.md&amp;value=---%0Auid%3A%20CatLibrary.Cat%602%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A" class="contribution-link">Improve this Doc</a>
+                  </li>
+                  <li>
+                    <a href="https://github.com/docascode/docfx-seed/blob/master/src/SampleClass1/CatLibrary/Class1.cs/#L113" class="contribution-link">View Source</a>
+                  </li>
+                </ul>
+              </div>
+              <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix" id="affix">
+              <!-- <p><a class="back-to-top" href="#top">Back to top</a><p> -->
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <footer>
+        <div class="grad-bottom"></div>
+        <div class="footer">
+          <div class="container">
+            <span class="pull-right">
+              <a href="#top">Back to top</a>
+            </span>
+            By Swastika team
+            
+          </div>
+        </div>
+      </footer>
+    </div>
+    
+    <script type="text/javascript" src="../styles/docfx.vendor.js"></script>
+    <script type="text/javascript" src="../styles/docfx.js"></script>
+    <script type="text/javascript" src="../styles/main.js"></script>
+  </body>
+</html>

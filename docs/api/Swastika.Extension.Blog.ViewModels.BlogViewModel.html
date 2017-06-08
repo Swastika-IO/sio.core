@@ -1,0 +1,657 @@
+﻿<!DOCTYPE html>
+<!--[if IE]><![endif]-->
+<html>
+  
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>Class BlogViewModel
+   | Swastika I/O </title>
+    <meta name="viewport" content="width=device-width">
+    <meta name="title" content="Class BlogViewModel
+   | Swastika I/O ">
+    <meta name="generator" content="docfx 2.18.2.0">
+    
+    <link rel="shortcut icon" href="../images/ico/favicon.ico">
+    <link rel="stylesheet" href="../styles/docfx.vendor.css">
+    <link rel="stylesheet" href="../styles/docfx.css">
+    <link rel="stylesheet" href="../styles/main.css">
+    <meta property="docfx:navrel" content="../toc.html">
+    <meta property="docfx:tocrel" content="toc.html">
+    <meta property="docfx:rel" content="../">
+    
+  </head>
+  <body data-spy="scroll" data-target="#affix">
+    <div id="wrapper">
+      <header>
+        
+        <nav id="autocollapse" class="navbar navbar-inverse ng-scope" role="navigation">
+          <div class="container">
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+              
+              <a class="navbar-brand" href="../index.html">
+                <img id="logo" class="svg" src="../images/svg/logo.svg" alt="">
+              </a>
+            </div>
+            <div class="collapse navbar-collapse" id="navbar">
+              <form class="navbar-form navbar-right" role="search" id="search">
+                <div class="form-group">
+                  <input type="text" class="form-control" id="search-query" placeholder="Search" autocomplete="off">
+                </div>
+              </form>
+            </div>
+          </div>
+        </nav>
+        
+        <div class="subnav navbar navbar-default">
+          <div class="container hide-when-search" id="breadcrumb">
+            <ul class="breadcrumb">
+              <li></li>
+            </ul>
+          </div>
+        </div>
+      </header>
+      <div class="container body-content">
+        
+        <div id="search-results">
+          <div class="search-list"></div>
+          <div class="sr-items"></div>
+          <ul id="pagination"></ul>
+        </div>
+      </div>
+      <div role="main" class="container body-content hide-when-search">
+        
+        <div class="sidenav hide-when-search">
+          <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle">Show / Hide Table of Contents</a>
+          <div class="sidetoggle collapse" id="sidetoggle">
+            <div id="sidetoc"></div>
+          </div>
+        </div>
+        <div class="article row grid-right">
+          <div class="col-md-10">
+            <article class="content wrap" id="_content" data-uid="Swastika.Extension.Blog.ViewModels.BlogViewModel">
+  
+  
+  <h1 id="Swastika_Extension_Blog_ViewModels_BlogViewModel" data-uid="Swastika.Extension.Blog.ViewModels.BlogViewModel">Class BlogViewModel
+  </h1>
+  <div class="markdown level0 summary"></div>
+  <div class="markdown level0 conceptual"></div>
+  <div class="inheritance">
+    <h5>Inheritance</h5>
+    <div class="level0"><span class="xref">System.Object</span></div>
+    <div class="level1"><span class="xref">AutoMapper.Profile</span></div>
+    <div class="level2"><a class="xref" href="Swastika.Domain.Core.ViewModels.ViewModelBase-2.html">ViewModelBase</a>&lt;<a class="xref" href="Swastika.Extension.Blog.Models.Blog.html">Blog</a>, <a class="xref" href="Swastika.Extension.Blog.ViewModels.BlogViewModel.html">BlogViewModel</a>&gt;</div>
+    <div class="level3"><span class="xref">BlogViewModel</span></div>
+  </div>
+  <div class="inheritedMembers">
+    <h5>Inherited Members</h5>
+    <div>
+      <a class="xref" href="Swastika.Domain.Core.ViewModels.ViewModelBase-2.html#Swastika_Domain_Core_ViewModels_ViewModelBase_2_Model">ViewModelBase&lt;Blog, BlogViewModel&gt;.Model</a>
+    </div>
+    <div>
+      <a class="xref" href="Swastika.Domain.Core.ViewModels.ViewModelBase-2.html#Swastika_Domain_Core_ViewModels_ViewModelBase_2_ParseView">ViewModelBase&lt;Blog, BlogViewModel&gt;.ParseView()</a>
+    </div>
+    <div>
+      <a class="xref" href="Swastika.Domain.Core.ViewModels.ViewModelBase-2.html#Swastika_Domain_Core_ViewModels_ViewModelBase_2_ParseModel">ViewModelBase&lt;Blog, BlogViewModel&gt;.ParseModel()</a>
+    </div>
+    <div>
+      <span class="xref">AutoMapper.Profile.DisableConstructorMapping()</span>
+    </div>
+    <div>
+      <span class="xref">AutoMapper.Profile.ForAllMaps(System.Action&lt;AutoMapper.TypeMap, AutoMapper.IMappingExpression&gt;)</span>
+    </div>
+    <div>
+      <span class="xref">AutoMapper.Profile.ForAllPropertyMaps(System.Func&lt;AutoMapper.PropertyMap, System.Boolean&gt;, System.Action&lt;AutoMapper.PropertyMap, AutoMapper.IMemberConfigurationExpression&gt;)</span>
+    </div>
+    <div>
+      <span class="xref">AutoMapper.Profile.CreateMap&lt;TSource, TDestination&gt;()</span>
+    </div>
+    <div>
+      <span class="xref">AutoMapper.Profile.CreateMap&lt;TSource, TDestination&gt;(AutoMapper.MemberList)</span>
+    </div>
+    <div>
+      <span class="xref">AutoMapper.Profile.CreateMap(System.Type, System.Type)</span>
+    </div>
+    <div>
+      <span class="xref">AutoMapper.Profile.CreateMap(System.Type, System.Type, AutoMapper.MemberList)</span>
+    </div>
+    <div>
+      <span class="xref">AutoMapper.Profile.ClearPrefixes()</span>
+    </div>
+    <div>
+      <span class="xref">AutoMapper.Profile.RecognizeAlias(System.String, System.String)</span>
+    </div>
+    <div>
+      <span class="xref">AutoMapper.Profile.ReplaceMemberName(System.String, System.String)</span>
+    </div>
+    <div>
+      <span class="xref">AutoMapper.Profile.RecognizePrefixes(System.String[])</span>
+    </div>
+    <div>
+      <span class="xref">AutoMapper.Profile.RecognizePostfixes(System.String[])</span>
+    </div>
+    <div>
+      <span class="xref">AutoMapper.Profile.RecognizeDestinationPrefixes(System.String[])</span>
+    </div>
+    <div>
+      <span class="xref">AutoMapper.Profile.RecognizeDestinationPostfixes(System.String[])</span>
+    </div>
+    <div>
+      <span class="xref">AutoMapper.Profile.AddGlobalIgnore(System.String)</span>
+    </div>
+    <div>
+      <span class="xref">AutoMapper.Profile.AddMemberConfiguration()</span>
+    </div>
+    <div>
+      <span class="xref">AutoMapper.Profile.AddConditionalObjectMapper()</span>
+    </div>
+    <div>
+      <span class="xref">AutoMapper.Profile.IncludeSourceExtensionMethods(System.Type)</span>
+    </div>
+    <div>
+      <span class="xref">AutoMapper.Profile.DefaultMemberConfig</span>
+    </div>
+    <div>
+      <span class="xref">AutoMapper.Profile.ConstructorMappingEnabled</span>
+    </div>
+    <div>
+      <span class="xref">AutoMapper.Profile.CreateMissingTypeMaps</span>
+    </div>
+    <div>
+      <span class="xref">AutoMapper.Profile.AutoMapper.Configuration.IProfileConfiguration.AllPropertyMapActions</span>
+    </div>
+    <div>
+      <span class="xref">AutoMapper.Profile.AutoMapper.Configuration.IProfileConfiguration.AllTypeMapActions</span>
+    </div>
+    <div>
+      <span class="xref">AutoMapper.Profile.AutoMapper.Configuration.IProfileConfiguration.GlobalIgnores</span>
+    </div>
+    <div>
+      <span class="xref">AutoMapper.Profile.AutoMapper.Configuration.IProfileConfiguration.MemberConfigurations</span>
+    </div>
+    <div>
+      <span class="xref">AutoMapper.Profile.AutoMapper.Configuration.IProfileConfiguration.SourceExtensionMethods</span>
+    </div>
+    <div>
+      <span class="xref">AutoMapper.Profile.AutoMapper.Configuration.IProfileConfiguration.TypeConfigurations</span>
+    </div>
+    <div>
+      <span class="xref">AutoMapper.Profile.AutoMapper.Configuration.IProfileConfiguration.TypeMapConfigs</span>
+    </div>
+    <div>
+      <span class="xref">AutoMapper.Profile.AutoMapper.Configuration.IProfileConfiguration.OpenTypeMapConfigs</span>
+    </div>
+    <div>
+      <span class="xref">AutoMapper.Profile.ProfileName</span>
+    </div>
+    <div>
+      <span class="xref">AutoMapper.Profile.AllowNullDestinationValues</span>
+    </div>
+    <div>
+      <span class="xref">AutoMapper.Profile.AllowNullCollections</span>
+    </div>
+    <div>
+      <span class="xref">AutoMapper.Profile.EnableNullPropagationForQueryMapping</span>
+    </div>
+    <div>
+      <span class="xref">AutoMapper.Profile.ShouldMapProperty</span>
+    </div>
+    <div>
+      <span class="xref">AutoMapper.Profile.ShouldMapField</span>
+    </div>
+    <div>
+      <span class="xref">AutoMapper.Profile.SourceMemberNamingConvention</span>
+    </div>
+    <div>
+      <span class="xref">AutoMapper.Profile.DestinationMemberNamingConvention</span>
+    </div>
+    <div>
+      <span class="xref">System.Object.Equals(System.Object)</span>
+    </div>
+    <div>
+      <span class="xref">System.Object.Equals(System.Object, System.Object)</span>
+    </div>
+    <div>
+      <span class="xref">System.Object.GetHashCode()</span>
+    </div>
+    <div>
+      <span class="xref">System.Object.GetType()</span>
+    </div>
+    <div>
+      <span class="xref">System.Object.MemberwiseClone()</span>
+    </div>
+    <div>
+      <span class="xref">System.Object.ReferenceEquals(System.Object, System.Object)</span>
+    </div>
+    <div>
+      <span class="xref">System.Object.ToString()</span>
+    </div>
+  </div>
+  <h6><strong>Namespace</strong>: <a class="xref" href="Swastika.Extension.Blog.ViewModels.html">Swastika.Extension.Blog.ViewModels</a></h6>
+  <h6><strong>Assembly</strong>: Swastika.Extensions.Blog.Lib.dll</h6>
+  <h5 id="Swastika_Extension_Blog_ViewModels_BlogViewModel_syntax">Syntax</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public class BlogViewModel : ViewModelBase&lt;Blog, BlogViewModel&gt;, IProfileExpression, IProfileConfiguration</code></pre>
+  </div>
+  <h3 id="constructors">Constructors
+  </h3>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/Swastika-IO/Swastika-Core/new/master/apiSpec/new?filename=Swastika_Extension_Blog_ViewModels_BlogViewModel__ctor.md&amp;value=---%0Auid%3A%20Swastika.Extension.Blog.ViewModels.BlogViewModel.%23ctor%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Swastika-IO/Swastika-Core/blob/master/src/Swastika.Extensions.Blog.Lib/ViewModels/BlogViewModel.cs/#L102">View Source</a>
+  </span>
+  <a id="Swastika_Extension_Blog_ViewModels_BlogViewModel__ctor_" data-uid="Swastika.Extension.Blog.ViewModels.BlogViewModel.#ctor*"></a>
+  <h4 id="Swastika_Extension_Blog_ViewModels_BlogViewModel__ctor" data-uid="Swastika.Extension.Blog.ViewModels.BlogViewModel.#ctor">BlogViewModel()</h4>
+  <div class="markdown level1 summary"><p>Initializes a new instance of the <a class="xref" href="Swastika.Extension.Blog.ViewModels.BlogViewModel.html">BlogViewModel</a> class.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public BlogViewModel()</code></pre>
+  </div>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/Swastika-IO/Swastika-Core/new/master/apiSpec/new?filename=Swastika_Extension_Blog_ViewModels_BlogViewModel__ctor_Swastika_Extension_Blog_Models_Blog_.md&amp;value=---%0Auid%3A%20Swastika.Extension.Blog.ViewModels.BlogViewModel.%23ctor(Swastika.Extension.Blog.Models.Blog)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Swastika-IO/Swastika-Core/blob/master/src/Swastika.Extensions.Blog.Lib/ViewModels/BlogViewModel.cs/#L96">View Source</a>
+  </span>
+  <a id="Swastika_Extension_Blog_ViewModels_BlogViewModel__ctor_" data-uid="Swastika.Extension.Blog.ViewModels.BlogViewModel.#ctor*"></a>
+  <h4 id="Swastika_Extension_Blog_ViewModels_BlogViewModel__ctor_Swastika_Extension_Blog_Models_Blog_" data-uid="Swastika.Extension.Blog.ViewModels.BlogViewModel.#ctor(Swastika.Extension.Blog.Models.Blog)">BlogViewModel(Blog)</h4>
+  <div class="markdown level1 summary"><p>Initializes a new instance of the <a class="xref" href="Swastika.Extension.Blog.ViewModels.BlogViewModel.html">BlogViewModel</a> class.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public BlogViewModel(Blog model)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Swastika.Extension.Blog.Models.Blog.html">Blog</a></td>
+        <td><span class="parametername">model</span></td>
+        <td><p>The model.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h3 id="properties">Properties
+  </h3>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/Swastika-IO/Swastika-Core/new/master/apiSpec/new?filename=Swastika_Extension_Blog_ViewModels_BlogViewModel_CommonStatusId.md&amp;value=---%0Auid%3A%20Swastika.Extension.Blog.ViewModels.BlogViewModel.CommonStatusId%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Swastika-IO/Swastika-Core/blob/master/src/Swastika.Extensions.Blog.Lib/ViewModels/BlogViewModel.cs/#L90">View Source</a>
+  </span>
+  <a id="Swastika_Extension_Blog_ViewModels_BlogViewModel_CommonStatusId_" data-uid="Swastika.Extension.Blog.ViewModels.BlogViewModel.CommonStatusId*"></a>
+  <h4 id="Swastika_Extension_Blog_ViewModels_BlogViewModel_CommonStatusId" data-uid="Swastika.Extension.Blog.ViewModels.BlogViewModel.CommonStatusId">CommonStatusId</h4>
+  <div class="markdown level1 summary"><p>Gets or sets the common status identifier.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public byte CommonStatusId { get; set; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Byte</span></td>
+        <td><p>The common status identifier.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/Swastika-IO/Swastika-Core/new/master/apiSpec/new?filename=Swastika_Extension_Blog_ViewModels_BlogViewModel_CreatedByUserId.md&amp;value=---%0Auid%3A%20Swastika.Extension.Blog.ViewModels.BlogViewModel.CreatedByUserId%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Swastika-IO/Swastika-Core/blob/master/src/Swastika.Extensions.Blog.Lib/ViewModels/BlogViewModel.cs/#L82">View Source</a>
+  </span>
+  <a id="Swastika_Extension_Blog_ViewModels_BlogViewModel_CreatedByUserId_" data-uid="Swastika.Extension.Blog.ViewModels.BlogViewModel.CreatedByUserId*"></a>
+  <h4 id="Swastika_Extension_Blog_ViewModels_BlogViewModel_CreatedByUserId" data-uid="Swastika.Extension.Blog.ViewModels.BlogViewModel.CreatedByUserId">CreatedByUserId</h4>
+  <div class="markdown level1 summary"><p>Gets or sets the created by user identifier.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public string CreatedByUserId { get; set; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.String</span></td>
+        <td><p>The created by user identifier.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/Swastika-IO/Swastika-Core/new/master/apiSpec/new?filename=Swastika_Extension_Blog_ViewModels_BlogViewModel_CreatedUtc.md&amp;value=---%0Auid%3A%20Swastika.Extension.Blog.ViewModels.BlogViewModel.CreatedUtc%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Swastika-IO/Swastika-Core/blob/master/src/Swastika.Extensions.Blog.Lib/ViewModels/BlogViewModel.cs/#L58">View Source</a>
+  </span>
+  <a id="Swastika_Extension_Blog_ViewModels_BlogViewModel_CreatedUtc_" data-uid="Swastika.Extension.Blog.ViewModels.BlogViewModel.CreatedUtc*"></a>
+  <h4 id="Swastika_Extension_Blog_ViewModels_BlogViewModel_CreatedUtc" data-uid="Swastika.Extension.Blog.ViewModels.BlogViewModel.CreatedUtc">CreatedUtc</h4>
+  <div class="markdown level1 summary"><p>Gets or sets the created UTC.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public DateTime CreatedUtc { get; set; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.DateTime</span></td>
+        <td><p>The created UTC.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/Swastika-IO/Swastika-Core/new/master/apiSpec/new?filename=Swastika_Extension_Blog_ViewModels_BlogViewModel_Description.md&amp;value=---%0Auid%3A%20Swastika.Extension.Blog.ViewModels.BlogViewModel.Description%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Swastika-IO/Swastika-Core/blob/master/src/Swastika.Extensions.Blog.Lib/ViewModels/BlogViewModel.cs/#L50">View Source</a>
+  </span>
+  <a id="Swastika_Extension_Blog_ViewModels_BlogViewModel_Description_" data-uid="Swastika.Extension.Blog.ViewModels.BlogViewModel.Description*"></a>
+  <h4 id="Swastika_Extension_Blog_ViewModels_BlogViewModel_Description" data-uid="Swastika.Extension.Blog.ViewModels.BlogViewModel.Description">Description</h4>
+  <div class="markdown level1 summary"><p>Gets or sets the description.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public string Description { get; set; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.String</span></td>
+        <td><p>The description.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/Swastika-IO/Swastika-Core/new/master/apiSpec/new?filename=Swastika_Extension_Blog_ViewModels_BlogViewModel_Id.md&amp;value=---%0Auid%3A%20Swastika.Extension.Blog.ViewModels.BlogViewModel.Id%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Swastika-IO/Swastika-Core/blob/master/src/Swastika.Extensions.Blog.Lib/ViewModels/BlogViewModel.cs/#L18">View Source</a>
+  </span>
+  <a id="Swastika_Extension_Blog_ViewModels_BlogViewModel_Id_" data-uid="Swastika.Extension.Blog.ViewModels.BlogViewModel.Id*"></a>
+  <h4 id="Swastika_Extension_Blog_ViewModels_BlogViewModel_Id" data-uid="Swastika.Extension.Blog.ViewModels.BlogViewModel.Id">Id</h4>
+  <div class="markdown level1 summary"><p>Gets or sets the identifier.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Guid Id { get; set; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Guid</span></td>
+        <td><p>The identifier.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/Swastika-IO/Swastika-Core/new/master/apiSpec/new?filename=Swastika_Extension_Blog_ViewModels_BlogViewModel_ModifiedUtc.md&amp;value=---%0Auid%3A%20Swastika.Extension.Blog.ViewModels.BlogViewModel.ModifiedUtc%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Swastika-IO/Swastika-Core/blob/master/src/Swastika.Extensions.Blog.Lib/ViewModels/BlogViewModel.cs/#L66">View Source</a>
+  </span>
+  <a id="Swastika_Extension_Blog_ViewModels_BlogViewModel_ModifiedUtc_" data-uid="Swastika.Extension.Blog.ViewModels.BlogViewModel.ModifiedUtc*"></a>
+  <h4 id="Swastika_Extension_Blog_ViewModels_BlogViewModel_ModifiedUtc" data-uid="Swastika.Extension.Blog.ViewModels.BlogViewModel.ModifiedUtc">ModifiedUtc</h4>
+  <div class="markdown level1 summary"><p>Gets or sets the modified UTC.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public DateTime ModifiedUtc { get; set; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.DateTime</span></td>
+        <td><p>The modified UTC.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/Swastika-IO/Swastika-Core/new/master/apiSpec/new?filename=Swastika_Extension_Blog_ViewModels_BlogViewModel_Name.md&amp;value=---%0Auid%3A%20Swastika.Extension.Blog.ViewModels.BlogViewModel.Name%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Swastika-IO/Swastika-Core/blob/master/src/Swastika.Extensions.Blog.Lib/ViewModels/BlogViewModel.cs/#L26">View Source</a>
+  </span>
+  <a id="Swastika_Extension_Blog_ViewModels_BlogViewModel_Name_" data-uid="Swastika.Extension.Blog.ViewModels.BlogViewModel.Name*"></a>
+  <h4 id="Swastika_Extension_Blog_ViewModels_BlogViewModel_Name" data-uid="Swastika.Extension.Blog.ViewModels.BlogViewModel.Name">Name</h4>
+  <div class="markdown level1 summary"><p>Gets or sets the name.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public string Name { get; set; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.String</span></td>
+        <td><p>The name.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/Swastika-IO/Swastika-Core/new/master/apiSpec/new?filename=Swastika_Extension_Blog_ViewModels_BlogViewModel_PublishedUtc.md&amp;value=---%0Auid%3A%20Swastika.Extension.Blog.ViewModels.BlogViewModel.PublishedUtc%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Swastika-IO/Swastika-Core/blob/master/src/Swastika.Extensions.Blog.Lib/ViewModels/BlogViewModel.cs/#L74">View Source</a>
+  </span>
+  <a id="Swastika_Extension_Blog_ViewModels_BlogViewModel_PublishedUtc_" data-uid="Swastika.Extension.Blog.ViewModels.BlogViewModel.PublishedUtc*"></a>
+  <h4 id="Swastika_Extension_Blog_ViewModels_BlogViewModel_PublishedUtc" data-uid="Swastika.Extension.Blog.ViewModels.BlogViewModel.PublishedUtc">PublishedUtc</h4>
+  <div class="markdown level1 summary"><p>Gets or sets the published UTC.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public DateTime PublishedUtc { get; set; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.DateTime</span></td>
+        <td><p>The published UTC.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/Swastika-IO/Swastika-Core/new/master/apiSpec/new?filename=Swastika_Extension_Blog_ViewModels_BlogViewModel_Slug.md&amp;value=---%0Auid%3A%20Swastika.Extension.Blog.ViewModels.BlogViewModel.Slug%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Swastika-IO/Swastika-Core/blob/master/src/Swastika.Extensions.Blog.Lib/ViewModels/BlogViewModel.cs/#L42">View Source</a>
+  </span>
+  <a id="Swastika_Extension_Blog_ViewModels_BlogViewModel_Slug_" data-uid="Swastika.Extension.Blog.ViewModels.BlogViewModel.Slug*"></a>
+  <h4 id="Swastika_Extension_Blog_ViewModels_BlogViewModel_Slug" data-uid="Swastika.Extension.Blog.ViewModels.BlogViewModel.Slug">Slug</h4>
+  <div class="markdown level1 summary"><p>Gets or sets the slug.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public string Slug { get; set; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.String</span></td>
+        <td><p>The slug.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/Swastika-IO/Swastika-Core/new/master/apiSpec/new?filename=Swastika_Extension_Blog_ViewModels_BlogViewModel_Title.md&amp;value=---%0Auid%3A%20Swastika.Extension.Blog.ViewModels.BlogViewModel.Title%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Swastika-IO/Swastika-Core/blob/master/src/Swastika.Extensions.Blog.Lib/ViewModels/BlogViewModel.cs/#L34">View Source</a>
+  </span>
+  <a id="Swastika_Extension_Blog_ViewModels_BlogViewModel_Title_" data-uid="Swastika.Extension.Blog.ViewModels.BlogViewModel.Title*"></a>
+  <h4 id="Swastika_Extension_Blog_ViewModels_BlogViewModel_Title" data-uid="Swastika.Extension.Blog.ViewModels.BlogViewModel.Title">Title</h4>
+  <div class="markdown level1 summary"><p>Gets or sets the title.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public string Title { get; set; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.String</span></td>
+        <td><p>The title.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+</article>
+          </div>
+          
+          <div class="hidden-sm col-md-2" role="complementary">
+            <div class="sideaffix">
+              <div class="contribution">
+                <ul class="nav">
+                  <li>
+                    <a href="https://github.com/Swastika-IO/Swastika-Core/new/master/apiSpec/new?filename=Swastika_Extension_Blog_ViewModels_BlogViewModel.md&amp;value=---%0Auid%3A%20Swastika.Extension.Blog.ViewModels.BlogViewModel%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A" class="contribution-link">Improve this Doc</a>
+                  </li>
+                  <li>
+                    <a href="https://github.com/Swastika-IO/Swastika-Core/blob/master/src/Swastika.Extensions.Blog.Lib/ViewModels/BlogViewModel.cs/#L10" class="contribution-link">View Source</a>
+                  </li>
+                </ul>
+              </div>
+              <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix" id="affix">
+              <!-- <p><a class="back-to-top" href="#top">Back to top</a><p> -->
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <footer>
+        <div class="grad-bottom"></div>
+        <div class="footer">
+          <div class="container">
+            <span class="pull-right">
+              <a href="#top">Back to top</a>
+            </span>
+            By Swastika team
+            
+          </div>
+        </div>
+      </footer>
+    </div>
+    
+    <script type="text/javascript" src="../styles/docfx.vendor.js"></script>
+    <script type="text/javascript" src="../styles/docfx.js"></script>
+    <script type="text/javascript" src="../styles/main.js"></script>
+  </body>
+</html>
