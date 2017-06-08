@@ -1,5 +1,5 @@
-﻿using Swastika.Extension.Blog.Base;
-using Swastika.Extension.Blog.Data;
+﻿using Swastika.Extension.Blog.Data;
+using Swastika.Infrastructure.Data.Repository;
 using System;
 
 namespace Swastika.Extensions.Blog.Repositories {

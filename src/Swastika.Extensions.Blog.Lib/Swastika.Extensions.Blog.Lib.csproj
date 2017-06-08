@@ -5,6 +5,12 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Base\**" />
+    <EmbeddedResource Remove="Base\**" />
+    <None Remove="Base\**" />
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\Swastika.Application\Swastika.Application.csproj" />
     <ProjectReference Include="..\Swastika.Common.Helper\Swastika.Common.Helper.csproj" />
     <ProjectReference Include="..\Swastika.Common.Utility\Swastika.Common.Utility.csproj" />

@@ -1,4 +1,4 @@
-﻿using Swastika.Extension.Blog.Base;
+﻿using Swastika.Domain.Core.ViewModels;
 using System;
 
 namespace Swastika.Extension.Blog.ViewModels {

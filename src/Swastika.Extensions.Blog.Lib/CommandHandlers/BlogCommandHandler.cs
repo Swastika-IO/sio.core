@@ -1,9 +1,9 @@
-﻿using Swastika.Domain.CommandHandlers;
+﻿using Swastika.Domain.Core.CommandHandlers;
 using Swastika.Domain.Core.Events;
 using System;
 using Swastika.Domain.Core.Bus;
 using Swastika.Domain.Core.Notifications;
-using Swastika.Domain.Interfaces;
+using Swastika.Domain.Core.Interfaces;
 
 namespace Swastika.Extension.Blog.CommandHandlers
 {
