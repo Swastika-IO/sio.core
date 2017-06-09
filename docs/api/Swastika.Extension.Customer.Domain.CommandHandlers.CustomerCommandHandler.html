@@ -1,0 +1,348 @@
+﻿<!DOCTYPE html>
+<!--[if IE]><![endif]-->
+<html>
+  
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>Class CustomerCommandHandler
+   | Swastika I/O </title>
+    <meta name="viewport" content="width=device-width">
+    <meta name="title" content="Class CustomerCommandHandler
+   | Swastika I/O ">
+    <meta name="generator" content="docfx 2.18.2.0">
+    
+    <link rel="shortcut icon" href="../images/ico/favicon.ico">
+    <link rel="stylesheet" href="../styles/docfx.vendor.css">
+    <link rel="stylesheet" href="../styles/docfx.css">
+    <link rel="stylesheet" href="../styles/main.css">
+    <meta property="docfx:navrel" content="../toc.html">
+    <meta property="docfx:tocrel" content="toc.html">
+    <meta property="docfx:rel" content="../">
+    
+  </head>
+  <body data-spy="scroll" data-target="#affix">
+    <div id="wrapper">
+      <header>
+        
+        <nav id="autocollapse" class="navbar navbar-inverse ng-scope" role="navigation">
+          <div class="container">
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+              
+              <a class="navbar-brand" href="../index.html">
+                <img id="logo" class="svg" src="../images/svg/logo.svg" alt="">
+              </a>
+            </div>
+            <div class="collapse navbar-collapse" id="navbar">
+              <form class="navbar-form navbar-right" role="search" id="search">
+                <div class="form-group">
+                  <input type="text" class="form-control" id="search-query" placeholder="Search" autocomplete="off">
+                </div>
+              </form>
+            </div>
+          </div>
+        </nav>
+        
+        <div class="subnav navbar navbar-default">
+          <div class="container hide-when-search" id="breadcrumb">
+            <ul class="breadcrumb">
+              <li></li>
+            </ul>
+          </div>
+        </div>
+      </header>
+      <div class="container body-content">
+        
+        <div id="search-results">
+          <div class="search-list"></div>
+          <div class="sr-items"></div>
+          <ul id="pagination"></ul>
+        </div>
+      </div>
+      <div role="main" class="container body-content hide-when-search">
+        
+        <div class="sidenav hide-when-search">
+          <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle">Show / Hide Table of Contents</a>
+          <div class="sidetoggle collapse" id="sidetoggle">
+            <div id="sidetoc"></div>
+          </div>
+        </div>
+        <div class="article row grid-right">
+          <div class="col-md-10">
+            <article class="content wrap" id="_content" data-uid="Swastika.Extension.Customer.Domain.CommandHandlers.CustomerCommandHandler">
+  
+  
+  <h1 id="Swastika_Extension_Customer_Domain_CommandHandlers_CustomerCommandHandler" data-uid="Swastika.Extension.Customer.Domain.CommandHandlers.CustomerCommandHandler">Class CustomerCommandHandler
+  </h1>
+  <div class="markdown level0 summary"></div>
+  <div class="markdown level0 conceptual"></div>
+  <div class="inheritance">
+    <h5>Inheritance</h5>
+    <div class="level0"><span class="xref">System.Object</span></div>
+    <div class="level1"><a class="xref" href="Swastika.Domain.Core.CommandHandlers.CommandHandler.html">CommandHandler</a></div>
+    <div class="level2"><span class="xref">CustomerCommandHandler</span></div>
+  </div>
+  <div class="inheritedMembers">
+    <h5>Inherited Members</h5>
+    <div>
+      <a class="xref" href="Swastika.Domain.Core.CommandHandlers.CommandHandler.html#Swastika_Domain_Core_CommandHandlers_CommandHandler_NotifyValidationErrors_Swastika_Domain_Core_Commands_Command_">CommandHandler.NotifyValidationErrors(Command)</a>
+    </div>
+    <div>
+      <a class="xref" href="Swastika.Domain.Core.CommandHandlers.CommandHandler.html#Swastika_Domain_Core_CommandHandlers_CommandHandler_Commit">CommandHandler.Commit()</a>
+    </div>
+    <div>
+      <span class="xref">System.Object.Equals(System.Object)</span>
+    </div>
+    <div>
+      <span class="xref">System.Object.Equals(System.Object, System.Object)</span>
+    </div>
+    <div>
+      <span class="xref">System.Object.GetHashCode()</span>
+    </div>
+    <div>
+      <span class="xref">System.Object.GetType()</span>
+    </div>
+    <div>
+      <span class="xref">System.Object.MemberwiseClone()</span>
+    </div>
+    <div>
+      <span class="xref">System.Object.ReferenceEquals(System.Object, System.Object)</span>
+    </div>
+    <div>
+      <span class="xref">System.Object.ToString()</span>
+    </div>
+  </div>
+  <h6><strong>Namespace</strong>: <a class="xref" href="Swastika.Extension.Customer.Domain.CommandHandlers.html">Swastika.Extension.Customer.Domain.CommandHandlers</a></h6>
+  <h6><strong>Assembly</strong>: Swastika.Extension.Customer.Domain.dll</h6>
+  <h5 id="Swastika_Extension_Customer_Domain_CommandHandlers_CustomerCommandHandler_syntax">Syntax</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public class CustomerCommandHandler : CommandHandler, IHandler&lt;RegisterNewCustomerCommand&gt;, IHandler&lt;UpdateCustomerCommand&gt;, IHandler&lt;RemoveCustomerCommand&gt;</code></pre>
+  </div>
+  <h3 id="constructors">Constructors
+  </h3>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/Swastika-IO/Swastika-Core/new/master/apiSpec/new?filename=Swastika_Extension_Customer_Domain_CommandHandlers_CustomerCommandHandler__ctor_Swastika_Extension_Customer_Domain_Interfaces_ICustomerRepository_Swastika_Domain_Core_Interfaces_IUnitOfWork_Swastika_Domain_Core_Bus_IBus_Swastika_Domain_Core_Notifications_IDomainNotificationHandler_Swastika_Domain_Core_Notifications_DomainNotification__.md&amp;value=---%0Auid%3A%20Swastika.Extension.Customer.Domain.CommandHandlers.CustomerCommandHandler.%23ctor(Swastika.Extension.Customer.Domain.Interfaces.ICustomerRepository%2CSwastika.Domain.Core.Interfaces.IUnitOfWork%2CSwastika.Domain.Core.Bus.IBus%2CSwastika.Domain.Core.Notifications.IDomainNotificationHandler%7BSwastika.Domain.Core.Notifications.DomainNotification%7D)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Swastika-IO/Swastika-Core/blob/master/src/Swastika.Extension.Customer.Domain/CommandHandlers/CustomerCommandHandler.cs/#L34">View Source</a>
+  </span>
+  <a id="Swastika_Extension_Customer_Domain_CommandHandlers_CustomerCommandHandler__ctor_" data-uid="Swastika.Extension.Customer.Domain.CommandHandlers.CustomerCommandHandler.#ctor*"></a>
+  <h4 id="Swastika_Extension_Customer_Domain_CommandHandlers_CustomerCommandHandler__ctor_Swastika_Extension_Customer_Domain_Interfaces_ICustomerRepository_Swastika_Domain_Core_Interfaces_IUnitOfWork_Swastika_Domain_Core_Bus_IBus_Swastika_Domain_Core_Notifications_IDomainNotificationHandler_Swastika_Domain_Core_Notifications_DomainNotification__" data-uid="Swastika.Extension.Customer.Domain.CommandHandlers.CustomerCommandHandler.#ctor(Swastika.Extension.Customer.Domain.Interfaces.ICustomerRepository,Swastika.Domain.Core.Interfaces.IUnitOfWork,Swastika.Domain.Core.Bus.IBus,Swastika.Domain.Core.Notifications.IDomainNotificationHandler{Swastika.Domain.Core.Notifications.DomainNotification})">CustomerCommandHandler(ICustomerRepository, IUnitOfWork, IBus, IDomainNotificationHandler&lt;DomainNotification&gt;)</h4>
+  <div class="markdown level1 summary"><p>Initializes a new instance of the <a class="xref" href="Swastika.Extension.Customer.Domain.CommandHandlers.CustomerCommandHandler.html">CustomerCommandHandler</a> class.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public CustomerCommandHandler(ICustomerRepository customerRepository, IUnitOfWork uow, IBus bus, IDomainNotificationHandler&lt;DomainNotification&gt; notifications)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Swastika.Extension.Customer.Domain.Interfaces.ICustomerRepository.html">ICustomerRepository</a></td>
+        <td><span class="parametername">customerRepository</span></td>
+        <td><p>The customer repository.</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="Swastika.Domain.Core.Interfaces.IUnitOfWork.html">IUnitOfWork</a></td>
+        <td><span class="parametername">uow</span></td>
+        <td><p>The uow.</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="Swastika.Domain.Core.Bus.IBus.html">IBus</a></td>
+        <td><span class="parametername">bus</span></td>
+        <td><p>The bus.</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="Swastika.Domain.Core.Notifications.IDomainNotificationHandler-1.html">IDomainNotificationHandler</a>&lt;<a class="xref" href="Swastika.Domain.Core.Notifications.DomainNotification.html">DomainNotification</a>&gt;</td>
+        <td><span class="parametername">notifications</span></td>
+        <td><p>The notifications.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h3 id="methods">Methods
+  </h3>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/Swastika-IO/Swastika-Core/new/master/apiSpec/new?filename=Swastika_Extension_Customer_Domain_CommandHandlers_CustomerCommandHandler_Dispose.md&amp;value=---%0Auid%3A%20Swastika.Extension.Customer.Domain.CommandHandlers.CustomerCommandHandler.Dispose%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Swastika-IO/Swastika-Core/blob/master/src/Swastika.Extension.Customer.Domain/CommandHandlers/CustomerCommandHandler.cs/#L126">View Source</a>
+  </span>
+  <a id="Swastika_Extension_Customer_Domain_CommandHandlers_CustomerCommandHandler_Dispose_" data-uid="Swastika.Extension.Customer.Domain.CommandHandlers.CustomerCommandHandler.Dispose*"></a>
+  <h4 id="Swastika_Extension_Customer_Domain_CommandHandlers_CustomerCommandHandler_Dispose" data-uid="Swastika.Extension.Customer.Domain.CommandHandlers.CustomerCommandHandler.Dispose">Dispose()</h4>
+  <div class="markdown level1 summary"><p>Releases unmanaged and - optionally - managed resources.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void Dispose()</code></pre>
+  </div>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/Swastika-IO/Swastika-Core/new/master/apiSpec/new?filename=Swastika_Extension_Customer_Domain_CommandHandlers_CustomerCommandHandler_Handle_Swastika_Extension_Customer_Domain_Commands_RegisterNewCustomerCommand_.md&amp;value=---%0Auid%3A%20Swastika.Extension.Customer.Domain.CommandHandlers.CustomerCommandHandler.Handle(Swastika.Extension.Customer.Domain.Commands.RegisterNewCustomerCommand)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Swastika-IO/Swastika-Core/blob/master/src/Swastika.Extension.Customer.Domain/CommandHandlers/CustomerCommandHandler.cs/#L47">View Source</a>
+  </span>
+  <a id="Swastika_Extension_Customer_Domain_CommandHandlers_CustomerCommandHandler_Handle_" data-uid="Swastika.Extension.Customer.Domain.CommandHandlers.CustomerCommandHandler.Handle*"></a>
+  <h4 id="Swastika_Extension_Customer_Domain_CommandHandlers_CustomerCommandHandler_Handle_Swastika_Extension_Customer_Domain_Commands_RegisterNewCustomerCommand_" data-uid="Swastika.Extension.Customer.Domain.CommandHandlers.CustomerCommandHandler.Handle(Swastika.Extension.Customer.Domain.Commands.RegisterNewCustomerCommand)">Handle(RegisterNewCustomerCommand)</h4>
+  <div class="markdown level1 summary"><p>Handles the specified message.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void Handle(RegisterNewCustomerCommand message)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Swastika.Extension.Customer.Domain.Commands.RegisterNewCustomerCommand.html">RegisterNewCustomerCommand</a></td>
+        <td><span class="parametername">message</span></td>
+        <td><p>The message.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="implements">Implements</h5>
+      <div><a class="xref" href="Swastika.Domain.Core.Events.IHandler-1.html#Swastika_Domain_Core_Events_IHandler_1_Handle__0_">IHandler&lt;T&gt;.Handle(T)</a></div>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/Swastika-IO/Swastika-Core/new/master/apiSpec/new?filename=Swastika_Extension_Customer_Domain_CommandHandlers_CustomerCommandHandler_Handle_Swastika_Extension_Customer_Domain_Commands_RemoveCustomerCommand_.md&amp;value=---%0Auid%3A%20Swastika.Extension.Customer.Domain.CommandHandlers.CustomerCommandHandler.Handle(Swastika.Extension.Customer.Domain.Commands.RemoveCustomerCommand)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Swastika-IO/Swastika-Core/blob/master/src/Swastika.Extension.Customer.Domain/CommandHandlers/CustomerCommandHandler.cs/#L107">View Source</a>
+  </span>
+  <a id="Swastika_Extension_Customer_Domain_CommandHandlers_CustomerCommandHandler_Handle_" data-uid="Swastika.Extension.Customer.Domain.CommandHandlers.CustomerCommandHandler.Handle*"></a>
+  <h4 id="Swastika_Extension_Customer_Domain_CommandHandlers_CustomerCommandHandler_Handle_Swastika_Extension_Customer_Domain_Commands_RemoveCustomerCommand_" data-uid="Swastika.Extension.Customer.Domain.CommandHandlers.CustomerCommandHandler.Handle(Swastika.Extension.Customer.Domain.Commands.RemoveCustomerCommand)">Handle(RemoveCustomerCommand)</h4>
+  <div class="markdown level1 summary"><p>Handles the specified message.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void Handle(RemoveCustomerCommand message)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Swastika.Extension.Customer.Domain.Commands.RemoveCustomerCommand.html">RemoveCustomerCommand</a></td>
+        <td><span class="parametername">message</span></td>
+        <td><p>The message.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="implements">Implements</h5>
+      <div><a class="xref" href="Swastika.Domain.Core.Events.IHandler-1.html#Swastika_Domain_Core_Events_IHandler_1_Handle__0_">IHandler&lt;T&gt;.Handle(T)</a></div>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/Swastika-IO/Swastika-Core/new/master/apiSpec/new?filename=Swastika_Extension_Customer_Domain_CommandHandlers_CustomerCommandHandler_Handle_Swastika_Extension_Customer_Domain_Commands_UpdateCustomerCommand_.md&amp;value=---%0Auid%3A%20Swastika.Extension.Customer.Domain.CommandHandlers.CustomerCommandHandler.Handle(Swastika.Extension.Customer.Domain.Commands.UpdateCustomerCommand)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Swastika-IO/Swastika-Core/blob/master/src/Swastika.Extension.Customer.Domain/CommandHandlers/CustomerCommandHandler.cs/#L75">View Source</a>
+  </span>
+  <a id="Swastika_Extension_Customer_Domain_CommandHandlers_CustomerCommandHandler_Handle_" data-uid="Swastika.Extension.Customer.Domain.CommandHandlers.CustomerCommandHandler.Handle*"></a>
+  <h4 id="Swastika_Extension_Customer_Domain_CommandHandlers_CustomerCommandHandler_Handle_Swastika_Extension_Customer_Domain_Commands_UpdateCustomerCommand_" data-uid="Swastika.Extension.Customer.Domain.CommandHandlers.CustomerCommandHandler.Handle(Swastika.Extension.Customer.Domain.Commands.UpdateCustomerCommand)">Handle(UpdateCustomerCommand)</h4>
+  <div class="markdown level1 summary"><p>Handles the specified message.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void Handle(UpdateCustomerCommand message)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Swastika.Extension.Customer.Domain.Commands.UpdateCustomerCommand.html">UpdateCustomerCommand</a></td>
+        <td><span class="parametername">message</span></td>
+        <td><p>The message.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="implements">Implements</h5>
+      <div><a class="xref" href="Swastika.Domain.Core.Events.IHandler-1.html#Swastika_Domain_Core_Events_IHandler_1_Handle__0_">IHandler&lt;T&gt;.Handle(T)</a></div>
+</article>
+          </div>
+          
+          <div class="hidden-sm col-md-2" role="complementary">
+            <div class="sideaffix">
+              <div class="contribution">
+                <ul class="nav">
+                  <li>
+                    <a href="https://github.com/Swastika-IO/Swastika-Core/new/master/apiSpec/new?filename=Swastika_Extension_Customer_Domain_CommandHandlers_CustomerCommandHandler.md&amp;value=---%0Auid%3A%20Swastika.Extension.Customer.Domain.CommandHandlers.CustomerCommandHandler%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A" class="contribution-link">Improve this Doc</a>
+                  </li>
+                  <li>
+                    <a href="https://github.com/Swastika-IO/Swastika-Core/blob/master/src/Swastika.Extension.Customer.Domain/CommandHandlers/CustomerCommandHandler.cs/#L13" class="contribution-link">View Source</a>
+                  </li>
+                </ul>
+              </div>
+              <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix" id="affix">
+              <!-- <p><a class="back-to-top" href="#top">Back to top</a><p> -->
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <footer>
+        <div class="grad-bottom"></div>
+        <div class="footer">
+          <div class="container">
+            <span class="pull-right">
+              <a href="#top">Back to top</a>
+            </span>
+            By Swastika team
+            
+          </div>
+        </div>
+      </footer>
+    </div>
+    
+    <script type="text/javascript" src="../styles/docfx.vendor.js"></script>
+    <script type="text/javascript" src="../styles/docfx.js"></script>
+    <script type="text/javascript" src="../styles/main.js"></script>
+  </body>
+</html>

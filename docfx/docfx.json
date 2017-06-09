@@ -1,0 +1,40 @@
+﻿{
+  "metadata": [
+    {
+      "src": [
+        {
+          "files": [ "**/*.sln" ],
+          "exclude": [ "**/bin/**", "**/obj/**" ],
+          "cwd": "../"
+        }
+      ],
+      "dest": "obj/api"
+    }
+  ],
+  "build": {
+    "content": [
+      {
+        "files": [ "**/*.yml" ],
+        "cwd": "obj/api",
+        "dest": "api"
+      },
+      {
+        "files": [ "spec/**/*.md", "*.md", "toc.yml" ]
+      }
+    ],
+    "resource": [
+      {
+        "files": [ "images/**"]
+      }
+    ],
+    "overwrite": "spec/*.md",
+    "globalMetadata": {
+      "_appTitle": "Swastika I/O",
+      "_appFooter": "By Swastika team",
+      "_appLogoPath": "images/svg/logo.svg",
+      "_appFaviconPath": "images/ico/favicon.ico",
+      "_enableSearch": true
+    },
+    "dest": "../docs"
+  }
+}

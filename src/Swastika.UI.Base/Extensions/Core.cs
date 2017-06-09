@@ -2,7 +2,6 @@
 using Microsoft.Extensions.DependencyInjection;
 using Newtonsoft.Json;
 using Swastika.Common.Utility;
-using Swastika.UI.Base.Extensions.Models;
 using Swastika.UI.Base.Extensions.Web.ModelBinders;
 using System;
 using System.Collections.Generic;
@@ -32,9 +31,9 @@ namespace Swastika.UI.Base.Extensions {
 
             string physicalExtensionsFolerPath = Directory.GetCurrentDirectory() + extensionsFilePath;
             string json = File.ReadAllText(physicalExtensionsFolerPath + extensionsFileName);
-            List<Extension> extensionsFromJson = JsonConvert.DeserializeObject<List<Extension>>(json);
+            List<Models.Extension> extensionsFromJson = JsonConvert.DeserializeObject<List<Models.Extension>>(json);
 
-            foreach (Extension extension in extensionsFromJson) {
+            foreach (Models.Extension extension in extensionsFromJson) {
                 var extFolder = new DirectoryInfo(Path.Combine(physicalExtensionsFolerPath, extension.Name));
                 if (!extFolder.Exists) {
                     continue;

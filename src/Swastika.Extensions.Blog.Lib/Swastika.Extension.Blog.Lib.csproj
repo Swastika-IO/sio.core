@@ -1,0 +1,25 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard1.6</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Remove="Base\**" />
+    <EmbeddedResource Remove="Base\**" />
+    <None Remove="Base\**" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Swastika.Application\Swastika.Application.csproj" />
+    <ProjectReference Include="..\Swastika.Common.Helper\Swastika.Common.Helper.csproj" />
+    <ProjectReference Include="..\Swastika.Common.Utility\Swastika.Common.Utility.csproj" />
+    <ProjectReference Include="..\Swastika.Domain.Core\Swastika.Domain.Core.csproj" />
+    <ProjectReference Include="..\Swastika.Infrastructure.CrossCutting.Bus\Swastika.Infrastructure.CrossCutting.Bus.csproj" />
+    <ProjectReference Include="..\Swastika.Infrastructure.CrossCutting.Identity\Swastika.Infrastructure.CrossCutting.Identity.csproj" />
+    <ProjectReference Include="..\Swastika.Infrastructure.CrossCutting.IoC\Swastika.Infrastructure.CrossCutting.IoC.csproj" />
+    <ProjectReference Include="..\Swastika.Infrastructure.Data\Swastika.Infrastructure.Data.csproj" />
+    <ProjectReference Include="..\Swastika.UI.Base\Swastika.UI.Base.csproj" />
+  </ItemGroup>
+
+</Project>

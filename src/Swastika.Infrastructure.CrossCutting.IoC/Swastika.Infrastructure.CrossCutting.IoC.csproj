@@ -13,7 +13,8 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Swastika.Application\Swastika.Application.csproj" />
-    <ProjectReference Include="..\Swastika.Domain\Swastika.Domain.csproj" />
+    <ProjectReference Include="..\Swastika.Domain.Core\Swastika.Domain.Core.csproj" />
+    <ProjectReference Include="..\Swastika.Infrastructure.CrossCutting.Bus\Swastika.Infrastructure.CrossCutting.Bus.csproj" />
     <ProjectReference Include="..\Swastika.Infrastructure.CrossCutting.Identity\Swastika.Infrastructure.CrossCutting.Identity.csproj" />
     <ProjectReference Include="..\Swastika.Infrastructure.Data\Swastika.Infrastructure.Data.csproj" />
     <ProjectReference Include="..\Swastika.UI.Base\Swastika.UI.Base.csproj" />

@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
-VisualStudioVersion = 15.0.26430.12
+VisualStudioVersion = 15.0.26430.6
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{AE3E98DB-35C1-42D8-AB6D-DE37189DDAA1}"
 EndProject
@@ -23,8 +23,6 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "4.2 - CrossCutting", "4.2 - CrossCutting", "{68258835-A222-468B-84F5-441AD58BCD51}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Swastika.UI.Site", "src\Swastika.UI.Site\Swastika.UI.Site.csproj", "{E38E811D-9A10-41EF-A245-907A71C79ACB}"
-EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Swastika.Domain", "src\Swastika.Domain\Swastika.Domain.csproj", "{906E381B-85D8-4AEC-9DD0-48F4117FDD9D}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Swastika.Application", "src\Swastika.Application\Swastika.Application.csproj", "{8EA27390-8455-48EA-ABCB-881272BCE68A}"
 EndProject
@@ -66,9 +64,9 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Swastika.Common.Utility", "
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Swastika.Common.Helper", "src\Swastika.Common.Helper\Swastika.Common.Helper.csproj", "{9D4BA81C-4C1C-4CEF-9880-247B22FF2491}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Swastika.Extensions.Blog.Lib", "src\Swastika.Extensions.Blog.Lib\Swastika.Extensions.Blog.Lib.csproj", "{EF8A5923-D37B-4603-892D-39D077852B3D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Swastika.Extension.Blog.Lib", "src\Swastika.Extensions.Blog.Lib\Swastika.Extension.Blog.Lib.csproj", "{EF8A5923-D37B-4603-892D-39D077852B3D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Swastika.Extensions.Blog.Web", "src\Swastika.Extensions.Blog.Web\Swastika.Extensions.Blog.Web.csproj", "{541D0AF9-0DD9-4689-AABE-7E7EE44320D0}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Swastika.Extension.Blog.Web", "src\Swastika.Extensions.Blog.Web\Swastika.Extension.Blog.Web.csproj", "{541D0AF9-0DD9-4689-AABE-7E7EE44320D0}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -80,10 +78,6 @@ Global
 		{E38E811D-9A10-41EF-A245-907A71C79ACB}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{E38E811D-9A10-41EF-A245-907A71C79ACB}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{E38E811D-9A10-41EF-A245-907A71C79ACB}.Release|Any CPU.Build.0 = Release|Any CPU
-		{906E381B-85D8-4AEC-9DD0-48F4117FDD9D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{906E381B-85D8-4AEC-9DD0-48F4117FDD9D}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{906E381B-85D8-4AEC-9DD0-48F4117FDD9D}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{906E381B-85D8-4AEC-9DD0-48F4117FDD9D}.Release|Any CPU.Build.0 = Release|Any CPU
 		{8EA27390-8455-48EA-ABCB-881272BCE68A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{8EA27390-8455-48EA-ABCB-881272BCE68A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{8EA27390-8455-48EA-ABCB-881272BCE68A}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -164,7 +158,6 @@ Global
 		{DCCD4FD6-B437-4586-B932-7AC40EF86A71} = {04CCC7F8-8AF7-4965-B2EF-2E28331BE421}
 		{68258835-A222-468B-84F5-441AD58BCD51} = {04CCC7F8-8AF7-4965-B2EF-2E28331BE421}
 		{E38E811D-9A10-41EF-A245-907A71C79ACB} = {9340B0E0-D3D9-4917-B0AA-093A95183265}
-		{906E381B-85D8-4AEC-9DD0-48F4117FDD9D} = {988F2F26-89C2-4C44-B1BB-42C394832A4E}
 		{8EA27390-8455-48EA-ABCB-881272BCE68A} = {8941C48B-849B-4625-B5F8-0EF567135BC0}
 		{3701E4D6-A057-49F4-9872-2CAD0487452C} = {DCCD4FD6-B437-4586-B932-7AC40EF86A71}
 		{37C44A01-20FE-4B09-8435-47164F08C0C8} = {68258835-A222-468B-84F5-441AD58BCD51}

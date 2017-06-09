@@ -1,9 +1,8 @@
 ﻿using Swastika.Domain.Core.Models;
 using System;
-using System.Collections.Generic;
 
-namespace Swastika.Extension.Blog.Models
-{
+namespace Swastika.Extension.Blog.Models {
+
     public partial class BlogPost : Entity {
         public Guid PostId { get; set; }
         public Guid BlogId { get; set; }

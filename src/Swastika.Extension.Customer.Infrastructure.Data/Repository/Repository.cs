@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
-using Swastika.Domain.Interfaces;
+using Swastika.Domain.Core.Interfaces;
 using Swastika.Extension.Customer.Infrastructure.Data.Context;
 using Microsoft.EntityFrameworkCore;
 

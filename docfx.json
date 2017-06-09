@@ -1,0 +1,36 @@
+﻿{
+  "metadata": [
+    {
+      "src": [
+        {
+          "files": [ "**/*.sln" ],
+          "exclude": [ "**/bin/**", "**/obj/**" ]
+        }
+      ],
+      "dest": "obj/api"
+    }
+  ],
+  "build": {
+    "content": [
+      {
+        "files": [ "docs/**/*.yml" ],
+        "cwd": "obj/api",
+        "dest": "docs/api"
+      },
+      {
+        "files": [ "docs/articles/**/*.md", "docs/*.md", "docs/toc.yml", "docs/restapi/**" ]
+      }
+    ],
+    "resource": [
+      {
+        "files": [ "docs/articles/images/**"]
+      }
+    ],
+    "overwrite": "docs/specs/*.md",
+    "globalMetadata": {
+      "_appTitle": "Swastika I/O",
+      "_enableSearch": true
+    },
+    "dest": "docs/_site"
+  }
+}
