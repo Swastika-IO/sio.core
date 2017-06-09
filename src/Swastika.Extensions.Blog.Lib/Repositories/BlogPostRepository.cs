@@ -8,12 +8,12 @@ namespace Swastika.Extensions.Blog.Repositories {
     ///
     /// </summary>
     /// <seealso cref="Swastika.Extension.Blog.Base.RepositoryBase{Swastika.Extension.Blog.Models.Blog, Swastika.Extension.Blog.ViewModels.BlogViewModel, Swastika.Extension.Blog.Data.BlogDbContext}" />
-    public class BlogPostRepository : RepositoryBase<Extension.Blog.Models.Blog, Extension.Blog.ViewModels.BlogViewModel, BlogDbContext> {
+    public class BlogRepository : RepositoryBase<Extension.Blog.Models.Blog, Extension.Blog.ViewModels.BlogViewModel, BlogDbContext> {
 
         /// <summary>
         /// The instance
         /// </summary>
-        private static volatile BlogPostRepository instance;
+        private static volatile BlogRepository instance;
 
         /// <summary>
         /// The synchronize root
@@ -24,20 +24,20 @@ namespace Swastika.Extensions.Blog.Repositories {
         /// Gets the instance.
         /// </summary>
         /// <returns></returns>
-        public static BlogPostRepository GetInstance() {
+        public static BlogRepository GetInstance() {
             if (instance == null) {
                 lock (syncRoot) {
                     if (instance == null)
-                        instance = new BlogPostRepository();
+                        instance = new BlogRepository();
                 }
             }
             return instance;
         }
 
         /// <summary>
-        /// Prevents a default instance of the <see cref="BlogPostRepository"/> class from being created.
+        /// Prevents a default instance of the <see cref="BlogRepository"/> class from being created.
         /// </summary>
-        private BlogPostRepository() : base() {
+        private BlogRepository() : base() {
         }
     }
 }

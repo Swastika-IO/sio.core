@@ -10,37 +10,14 @@ namespace Swastika.Extension.Blog.Models {
     /// <seealso cref="Swastika.Domain.Core.Models.Entity" />
     public class Blog : Entity {
 
-        /// <summary>
-        /// Initializes a new instance of the <see cref="Blog"/> class.
-        /// </summary>
-        /// <param name="id">The identifier.</param>
-        /// <param name="name">The name.</param>
-        /// <param name="title">The title.</param>
-        /// <param name="slug">The slug.</param>
-        /// <param name="description">The description.</param>
-        /// <param name="createdutc">The createdutc.</param>
-        /// <param name="modifiedutc">The modifiedutc.</param>
-        /// <param name="publishedutc">The publishedutc.</param>
-        /// <param name="createdbyuserid">The createdbyuserid.</param>
-        /// <param name="commonstatusid">The commonstatusid.</param>
-        public Blog(Guid id, string name, string title, string slug, string description, DateTime createdutc, DateTime modifiedutc, DateTime publishedutc, string createdbyuserid, Byte commonstatusid) {
-            Id = id;
-            Name = name;
-            Title = title;
-            Slug = slug;
-            Description = description;
-            CreatedUtc = createdutc;
-            ModifiedUtc = modifiedutc;
-            PublishedUtc = publishedutc;
-            CreatedByUserId = createdbyuserid;
-            CommonStatusId = commonstatusid;
-        }
-
         // Empty constructor for EF
         /// <summary>
         /// Initializes a new instance of the <see cref="Blog"/> class.
         /// </summary>
-        public Blog() { }
+        public Blog()
+        {
+            BlogPost = new HashSet<BlogPost>();
+        }
 
         /// <summary>
         /// Gets or sets the name.
@@ -114,6 +91,13 @@ namespace Swastika.Extension.Blog.Models {
         /// </value>
         public Byte CommonStatusId { get; set; }
 
+
+        /// <summary>
+        /// Gets or sets the blog post.
+        /// </summary>
+        /// <value>
+        /// The blog post.
+        /// </value>
         public virtual ICollection<BlogPost> BlogPost { get; set; }
     }
 }

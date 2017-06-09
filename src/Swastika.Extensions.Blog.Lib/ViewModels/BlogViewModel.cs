@@ -1,13 +1,23 @@
 ﻿using Swastika.Domain.Core.ViewModels;
+using Swastika.Extensions.Blog.Lib.ViewModels;
 using System;
+using System.Collections.Generic;
 
-namespace Swastika.Extension.Blog.ViewModels {
+namespace Swastika.Extension.Blog.ViewModels
+{
 
     /// <summary>
     ///
     /// </summary>
     /// <seealso cref="Swastika.Extension.Blog.Base.ViewModelBase{Swastika.Extension.Blog.Models.Blog, Swastika.Extension.Blog.ViewModels.BlogViewModel}" />
-    public class BlogViewModel : ViewModelBase<Models.Blog, ViewModels.BlogViewModel> {
+    public class BlogViewModel : ViewModelBase<Models.Blog, ViewModels.BlogViewModel>
+    {
+        /// <summary>
+        /// Initializes a new instance of the <see cref="BlogViewModel"/> class.
+        /// </summary>
+        public BlogViewModel() : base()
+        {
+        }
 
         /// <summary>
         /// Gets or sets the identifier.
@@ -97,9 +107,11 @@ namespace Swastika.Extension.Blog.ViewModels {
         }
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="BlogViewModel"/> class.
+        /// Gets or sets the blog post.
         /// </summary>
-        public BlogViewModel() : base() {
-        }
+        /// <value>
+        /// The blog post.
+        /// </value>
+        public virtual List<BlogPostViewModel> BlogPost { get; set; }
     }
 }

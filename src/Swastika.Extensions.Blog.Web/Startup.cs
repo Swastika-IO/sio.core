@@ -1,10 +1,8 @@
 ﻿using Microsoft.AspNetCore.Builder;
-using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
-using Swastika.Extension.Blog.Data;
 using Microsoft.AspNetCore.Routing;
 
 namespace Swastika.Extensions.Blog.Web
@@ -62,7 +60,7 @@ namespace Swastika.Extensions.Blog.Web
             //Manage/Index 
             routeBuilder.MapRoute(
                     name: "default",
-                    template: "{controller=Manage}/{action=Index}/{id?}");
+                    template: "{controller=BlogAdmin}/{action=Index}/{id?}");
         }
     }
 }
