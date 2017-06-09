@@ -9,11 +9,12 @@ using System.Threading.Tasks;
 
 namespace Swastika.Extensions.Blog.Web.Controllers {
 
-    public class ManageController : BaseController {
-        private readonly BlogPostRepository _repo;
+    public class ManageController : Controller {
+        private readonly BlogRepository _repo;
 
-        public ManageController(IDomainNotificationHandler<DomainNotification> notifications) : base(notifications) {
-            _repo = BlogPostRepository.GetInstance();
+        public ManageController()
+        {
+            _repo = BlogRepository.GetInstance();
         }
 
         // GET: Manage

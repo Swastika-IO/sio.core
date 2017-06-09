@@ -62,7 +62,7 @@ namespace Swastika.Extensions.Blog.Web
             //Manage/Index 
             routeBuilder.MapRoute(
                     name: "default",
-                    template: "{controller=Manage}/{action=Index}/{id?}");
+                    template: "{controller=BlogAdmin}/{action=Index}/{id?}");
         }
     }
 }
