@@ -5,7 +5,7 @@ module.exports = {
   entry: './wwwroot/js/src/main.js',
   output: {
     path: path.resolve(__dirname, './wwwroot/js/dist'),
-    publicPath: '/dist/',
+    publicPath: '/js/dist/',
     filename: 'build.js'
   },
   module: {
