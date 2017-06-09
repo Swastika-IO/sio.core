@@ -81,6 +81,10 @@
     <PackageReference Include="Webpack" Version="4.0.0" />
   </ItemGroup>
 
+  <Target Name="MyPreCompileTarget" BeforeTargets="Build">
+    <Exec Command="webpack" />
+  </Target>
+
   <Target Name="PrepublishScript" BeforeTargets="PrepareForPublish">
     <Exec Command="bower install" />
     <Exec Command="dotnet bundle" />
@@ -90,5 +94,4 @@
     <DotNetCliToolReference Include="BundlerMinifier.Core" Version="2.2.301" />
     <DotNetCliToolReference Include="Microsoft.Extensions.SecretManager.Tools" Version="1.0.0" />
   </ItemGroup>
-
 </Project>

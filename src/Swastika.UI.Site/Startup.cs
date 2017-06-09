@@ -17,6 +17,7 @@ using Swastika.Infrastructure.CrossCutting.IoC;
 using Swastika.UI.Base.Extensions;
 using Swastika.UI.Base.Extensions.Web;
 using System.IO;
+using Webpack;
 
 namespace Swastika.UI.Site
 {
@@ -93,6 +94,8 @@ namespace Swastika.UI.Site
             });
 
             services.AddMvcToExtensions(ExtensionManager.Extensions);
+
+            services.AddWebpack();
 
             // .NET Native DI Abstraction
             RegisterServices(services);
