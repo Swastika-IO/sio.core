@@ -17,10 +17,26 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="build\**" />
+    <Compile Remove="config\**" />
     <Compile Remove="Contents\Extensions\**" />
+    <Compile Remove="static\**" />
+    <Compile Remove="vuejssrc\coreui\**" />
+    <Content Remove="build\**" />
+    <Content Remove="config\**" />
     <Content Remove="Contents\Extensions\**" />
+    <Content Remove="static\**" />
+    <Content Remove="vuejssrc\coreui\**" />
+    <EmbeddedResource Remove="build\**" />
+    <EmbeddedResource Remove="config\**" />
     <EmbeddedResource Remove="Contents\Extensions\**" />
+    <EmbeddedResource Remove="static\**" />
+    <EmbeddedResource Remove="vuejssrc\coreui\**" />
+    <None Remove="build\**" />
+    <None Remove="config\**" />
     <None Remove="Contents\Extensions\**" />
+    <None Remove="static\**" />
+    <None Remove="vuejssrc\coreui\**" />
   </ItemGroup>
 
   <ItemGroup>
@@ -82,7 +98,7 @@
   </ItemGroup>
 
   <Target Name="MyPreCompileTarget" BeforeTargets="Build">
-    <Exec Command="webpack" />
+    <Exec Command="node build/build.js" />
   </Target>
 
   <Target Name="PrepublishScript" BeforeTargets="PrepareForPublish">
@@ -93,5 +109,9 @@
   <ItemGroup>
     <DotNetCliToolReference Include="BundlerMinifier.Core" Version="2.2.301" />
     <DotNetCliToolReference Include="Microsoft.Extensions.SecretManager.Tools" Version="1.0.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="vuejssrc\" />
   </ItemGroup>
 </Project>

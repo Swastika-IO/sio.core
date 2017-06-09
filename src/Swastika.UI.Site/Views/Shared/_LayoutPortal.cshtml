@@ -5,41 +5,17 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>@ViewData["Title"] - Swastika Project</title>
 
-    <environment names="Development">
-        <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.css" />
-        <link rel="stylesheet" href="~/css/site.css" />
-    </environment>
-    <environment names="Staging,Production">
-        <link rel="stylesheet" href="https://ajax.aspnetcdn.com/ajax/bootstrap/3.3.6/css/bootstrap.min.css"
-              asp-fallback-href="~/lib/bootstrap/dist/css/bootstrap.min.css"
-              asp-fallback-test-class="sr-only" asp-fallback-test-property="position" asp-fallback-test-value="absolute" />
-        <link rel="stylesheet" href="~/css/site.min.css" asp-append-version="true" />
-    </environment>
+    <!-- Icons -->
+    <link href="js/vuejssrc/coreui/css/font-awesome.min.css" rel="stylesheet">
+    <link href="js/vuejssrc/coreui/css/simple-line-icons.css" rel="stylesheet">
+    <!-- Main styles for this application -->
+    <link href="js/vuejssrc/coreui/css/style.css" rel="stylesheet">
 </head>
-<body>
-    <div class="container body-content">
-        @RenderBody()
-    </div>
+<body class="app header-fixed sidebar-fixed aside-menu-fixed aside-menu-hidden">
+    @RenderBody()
 
-    <environment names="Development">
-        <script src="~/lib/jquery/dist/jquery.js"></script>
-        <script src="~/lib/bootstrap/dist/js/bootstrap.js"></script>
-        <script src="~/js/site.js" asp-append-version="true"></script>
-        <script src="~/js/dist/build.js"></script>
-    </environment>
-    <environment names="Staging,Production">
-        <script src="https://ajax.aspnetcdn.com/ajax/jquery/jquery-2.2.0.min.js"
-                asp-fallback-src="~/lib/jquery/dist/jquery.min.js"
-                asp-fallback-test="window.jQuery">
-        </script>
-        <script src="https://ajax.aspnetcdn.com/ajax/bootstrap/3.3.6/bootstrap.min.js"
-                asp-fallback-src="~/lib/bootstrap/dist/js/bootstrap.min.js"
-                asp-fallback-test="window.jQuery && window.jQuery.fn && window.jQuery.fn.modal">
-        </script>
-        <script src="~/js/site.min.js" asp-append-version="true"></script>
-        <script src="~/js/dist/build.js"></script>
-    </environment>
-
-    @RenderSection("scripts", required: false)
+    <script type="text/javascript" src="js/vuejssrc/coreui/js/manifest.js"></script>
+    <script type="text/javascript" src="js/vuejssrc/coreui/js/vendor.js"></script>
+    <script type="text/javascript" src="js/vuejssrc/coreui/js/app.js"></script>
 </body>
 </html>
