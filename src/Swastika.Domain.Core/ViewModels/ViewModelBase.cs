@@ -1,5 +1,5 @@
 ﻿using AutoMapper;
-
+using Newtonsoft.Json;
 namespace Swastika.Domain.Core.ViewModels {
 
     /// <summary>
@@ -8,10 +8,10 @@ namespace Swastika.Domain.Core.ViewModels {
     /// <typeparam name="TModel">The type of the model.</typeparam>
     /// <typeparam name="TView">The type of the view.</typeparam>
     /// <seealso cref="AutoMapper.Profile" />
-    public abstract class ViewModelBase<TModel, TView> : Profile where TModel : class where TView : ViewModelBase<TModel, TView> {
+    public abstract class ViewModelBase<TModel, TView> where TModel : class where TView : ViewModelBase<TModel, TView> {
         /// <summary>
         /// The model
-        /// </summary>
+        /// </summary>        
         private TModel _model;
 
         //private ICommand _saveCommand;
@@ -28,20 +28,23 @@ namespace Swastika.Domain.Core.ViewModels {
         /// <value>
         /// The model.
         /// </value>
+        [JsonIgnore]
         public TModel Model { get => _model; set => _model = value; }
 
         /// <summary>
         /// Parses the view.
         /// </summary>
-        public virtual void ParseView() {
+        public virtual TView ParseView() {
             Mapper.Map<TModel, TView>(Model, (TView)this);
+            return (TView)this;
         }
 
         /// <summary>
         /// Parses the model.
         /// </summary>
-        public virtual void ParseModel() {
+        public virtual TModel ParseModel() {
             Mapper.Map<TView, TModel>((TView)this, Model);
+            return this.Model;
         }
 
         /// <summary>

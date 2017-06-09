@@ -1,9 +1,10 @@
-﻿using Swastika.Extension.Blog.Base;
+﻿using Swastika.Domain.Core.ViewModels;
 using Swastika.Extensions.Blog.Lib.ViewModels;
 using System;
 using System.Collections.Generic;
 
-namespace Swastika.Extension.Blog.ViewModels {
+namespace Swastika.Extension.Blog.ViewModels
+{
 
     /// <summary>
     ///

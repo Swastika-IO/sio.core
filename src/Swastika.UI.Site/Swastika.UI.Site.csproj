@@ -82,7 +82,7 @@
   </ItemGroup>
 
   <Target Name="MyPreCompileTarget" BeforeTargets="Build">
-    <Exec Command="webpack" />
+    <!--<Exec Command="webpack" />-->
   </Target>
 
   <Target Name="PrepublishScript" BeforeTargets="PrepareForPublish">

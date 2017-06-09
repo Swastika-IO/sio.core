@@ -1,10 +1,8 @@
 ﻿using Microsoft.AspNetCore.Builder;
-using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
-using Swastika.Extension.Blog.Data;
 using Microsoft.AspNetCore.Routing;
 
 namespace Swastika.Extensions.Blog.Web
