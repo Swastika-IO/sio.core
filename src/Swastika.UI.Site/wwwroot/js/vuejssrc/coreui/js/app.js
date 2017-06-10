@@ -348,10 +348,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
-//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
-  name: 'app'
+    name: 'app'
 });
 
 /***/ }),
@@ -18940,7 +18939,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
   }, [_c('img', {
     staticClass: "img-avatar",
     attrs: {
-      "src": "static/img/avatars/1.jpg",
+      "src": "images/avatars/1.jpg",
       "alt": "admin@bootstrapmaster.com"
     }
   }), _vm._v(" "), _c('span', {
@@ -18954,7 +18953,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
       "height": "24px"
     },
     attrs: {
-      "src": "static/img/flags/USA.png",
+      "src": "images/flags/USA.png",
       "alt": "USA"
     }
   })]), _vm._v(" "), _c('td', [_c('div', {
@@ -18994,7 +18993,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
   }, [_c('img', {
     staticClass: "img-avatar",
     attrs: {
-      "src": "static/img/avatars/2.jpg",
+      "src": "images/avatars/2.jpg",
       "alt": "admin@bootstrapmaster.com"
     }
   }), _vm._v(" "), _c('span', {
@@ -19008,7 +19007,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
       "height": "24px"
     },
     attrs: {
-      "src": "static/img/flags/Brazil.png",
+      "src": "images/flags/Brazil.png",
       "alt": "Brazil"
     }
   })]), _vm._v(" "), _c('td', [_c('div', {
@@ -19048,7 +19047,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
   }, [_c('img', {
     staticClass: "img-avatar",
     attrs: {
-      "src": "static/img/avatars/3.jpg",
+      "src": "images/avatars/3.jpg",
       "alt": "admin@bootstrapmaster.com"
     }
   }), _vm._v(" "), _c('span', {
@@ -19062,7 +19061,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
       "height": "24px"
     },
     attrs: {
-      "src": "static/img/flags/India.png",
+      "src": "images/flags/India.png",
       "alt": "India"
     }
   })]), _vm._v(" "), _c('td', [_c('div', {
@@ -19102,7 +19101,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
   }, [_c('img', {
     staticClass: "img-avatar",
     attrs: {
-      "src": "static/img/avatars/4.jpg",
+      "src": "images/avatars/4.jpg",
       "alt": "admin@bootstrapmaster.com"
     }
   }), _vm._v(" "), _c('span', {
@@ -19116,7 +19115,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
       "height": "24px"
     },
     attrs: {
-      "src": "static/img/flags/France.png",
+      "src": "images/flags/France.png",
       "alt": "France"
     }
   })]), _vm._v(" "), _c('td', [_c('div', {
@@ -19156,7 +19155,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
   }, [_c('img', {
     staticClass: "img-avatar",
     attrs: {
-      "src": "static/img/avatars/5.jpg",
+      "src": "images/avatars/5.jpg",
       "alt": "admin@bootstrapmaster.com"
     }
   }), _vm._v(" "), _c('span', {
@@ -19170,7 +19169,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
       "height": "24px"
     },
     attrs: {
-      "src": "static/img/flags/Spain.png",
+      "src": "images/flags/Spain.png",
       "alt": "Spain"
     }
   })]), _vm._v(" "), _c('td', [_c('div', {
@@ -19210,7 +19209,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
   }, [_c('img', {
     staticClass: "img-avatar",
     attrs: {
-      "src": "static/img/avatars/6.jpg",
+      "src": "images/avatars/6.jpg",
       "alt": "admin@bootstrapmaster.com"
     }
   }), _vm._v(" "), _c('span', {
@@ -19224,7 +19223,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
       "height": "24px"
     },
     attrs: {
-      "src": "static/img/flags/Poland.png",
+      "src": "images/flags/Poland.png",
       "alt": "Poland"
     }
   })]), _vm._v(" "), _c('td', [_c('div', {
@@ -19320,15 +19319,15 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     staticClass: "app-footer"
   }, [_c('a', {
     attrs: {
-      "href": "http://coreui.io"
+      "href": "http://swastika.io"
     }
-  }, [_vm._v("CoreUI")]), _vm._v(" © 2017 creativeLabs.\n  "), _c('span', {
+  }, [_vm._v("Swastika I/O")]), _vm._v(" © 2017.\n  "), _c('span', {
     staticClass: "float-right"
   }, [_vm._v("Powered by "), _c('a', {
     attrs: {
-      "href": "http://coreui.io"
+      "href": "http://swastika.io"
     }
-  }, [_vm._v("CoreUI")])])])
+  }, [_vm._v("Swastika I/O")])])])
 }]}
 
 /***/ }),
@@ -26705,12 +26704,11 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 /* eslint-disable no-new */
 new __WEBPACK_IMPORTED_MODULE_0_vue__["default"]({
-  el: '#app',
-  router: __WEBPACK_IMPORTED_MODULE_2__router__["a" /* default */],
-  template: '<App/>',
-  components: { App: __WEBPACK_IMPORTED_MODULE_1__App___default.a }
+    el: '#app',
+    router: __WEBPACK_IMPORTED_MODULE_2__router__["a" /* default */],
+    template: '<App/>',
+    components: { App: __WEBPACK_IMPORTED_MODULE_1__App___default.a }
 })
-
 
 /***/ })
 

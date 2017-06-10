@@ -565,7 +565,7 @@
                 <tr>
                   <td class="text-center">
                     <div class="avatar">
-                      <img src="static/img/avatars/1.jpg" class="img-avatar" alt="admin@bootstrapmaster.com">
+                      <img src="images/avatars/1.jpg" class="img-avatar" alt="admin@bootstrapmaster.com">
                       <span class="avatar-status badge-success"></span>
                     </div>
                   </td>
@@ -576,7 +576,7 @@
                     </div>
                   </td>
                   <td class="text-center">
-                    <img src="static/img/flags/USA.png" alt="USA" style="height:24px;">
+                    <img src="images/flags/USA.png" alt="USA" style="height:24px;">
                   </td>
                   <td>
                     <div class="clearfix">
@@ -602,7 +602,7 @@
                 <tr>
                   <td class="text-center">
                     <div class="avatar">
-                      <img src="static/img/avatars/2.jpg" class="img-avatar" alt="admin@bootstrapmaster.com">
+                      <img src="images/avatars/2.jpg" class="img-avatar" alt="admin@bootstrapmaster.com">
                       <span class="avatar-status badge-danger"></span>
                     </div>
                   </td>
@@ -614,7 +614,7 @@
                     </div>
                   </td>
                   <td class="text-center">
-                    <img src="static/img/flags/Brazil.png" alt="Brazil" style="height:24px;">
+                    <img src="images/flags/Brazil.png" alt="Brazil" style="height:24px;">
                   </td>
                   <td>
                     <div class="clearfix">
@@ -640,7 +640,7 @@
                 <tr>
                   <td class="text-center">
                     <div class="avatar">
-                      <img src="static/img/avatars/3.jpg" class="img-avatar" alt="admin@bootstrapmaster.com">
+                      <img src="images/avatars/3.jpg" class="img-avatar" alt="admin@bootstrapmaster.com">
                       <span class="avatar-status badge-warning"></span>
                     </div>
                   </td>
@@ -651,7 +651,7 @@
                     </div>
                   </td>
                   <td class="text-center">
-                    <img src="static/img/flags/India.png" alt="India" style="height:24px;">
+                    <img src="images/flags/India.png" alt="India" style="height:24px;">
                   </td>
                   <td>
                     <div class="clearfix">
@@ -677,7 +677,7 @@
                 <tr>
                   <td class="text-center">
                     <div class="avatar">
-                      <img src="static/img/avatars/4.jpg" class="img-avatar" alt="admin@bootstrapmaster.com">
+                      <img src="images/avatars/4.jpg" class="img-avatar" alt="admin@bootstrapmaster.com">
                       <span class="avatar-status badge-default"></span>
                     </div>
                   </td>
@@ -688,7 +688,7 @@
                     </div>
                   </td>
                   <td class="text-center">
-                    <img src="static/img/flags/France.png" alt="France" style="height:24px;">
+                    <img src="images/flags/France.png" alt="France" style="height:24px;">
                   </td>
                   <td>
                     <div class="clearfix">
@@ -714,7 +714,7 @@
                 <tr>
                   <td class="text-center">
                     <div class="avatar">
-                      <img src="static/img/avatars/5.jpg" class="img-avatar" alt="admin@bootstrapmaster.com">
+                      <img src="images/avatars/5.jpg" class="img-avatar" alt="admin@bootstrapmaster.com">
                       <span class="avatar-status badge-success"></span>
                     </div>
                   </td>
@@ -725,7 +725,7 @@
                     </div>
                   </td>
                   <td class="text-center">
-                    <img src="static/img/flags/Spain.png" alt="Spain" style="height:24px;">
+                    <img src="images/flags/Spain.png" alt="Spain" style="height:24px;">
                   </td>
                   <td>
                     <div class="clearfix">
@@ -751,7 +751,7 @@
                 <tr>
                   <td class="text-center">
                     <div class="avatar">
-                      <img src="static/img/avatars/6.jpg" class="img-avatar" alt="admin@bootstrapmaster.com">
+                      <img src="images/avatars/6.jpg" class="img-avatar" alt="admin@bootstrapmaster.com">
                       <span class="avatar-status badge-danger"></span>
                     </div>
                   </td>
@@ -762,7 +762,7 @@
                     </div>
                   </td>
                   <td class="text-center">
-                    <img src="static/img/flags/Poland.png" alt="Poland" style="height:24px;">
+                    <img src="images/flags/Poland.png" alt="Poland" style="height:24px;">
                   </td>
                   <td>
                     <div class="clearfix">

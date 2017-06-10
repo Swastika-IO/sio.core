@@ -515,12 +515,12 @@ body .toc{
   font-weight: bold;
   margin-top: 10px;
   position: relative;
-  font-size: 12px;
+  font-size: 16px;
 }
 .toc .level2 {
   font-weight: normal;
   margin: 5px 0 0 15px;
-  font-size: 12px;
+  font-size: 14px;
 }
 .toc-toggle {
   display: none;

@@ -2463,6 +2463,231 @@ references:
   commentId: N:Swastika.Extension.Blog
   fullName: Swastika.Extension.Blog
   nameWithType: Swastika.Extension.Blog
+- uid: Swastika.Extension.Blog.Api
+  name: Swastika.Extension.Blog.Api
+  href: api/Swastika.Extension.Blog.Api.html
+  commentId: N:Swastika.Extension.Blog.Api
+  fullName: Swastika.Extension.Blog.Api
+  nameWithType: Swastika.Extension.Blog.Api
+- uid: Swastika.Extension.Blog.Api.Controllers
+  name: Swastika.Extension.Blog.Api.Controllers
+  href: api/Swastika.Extension.Blog.Api.Controllers.html
+  commentId: N:Swastika.Extension.Blog.Api.Controllers
+  fullName: Swastika.Extension.Blog.Api.Controllers
+  nameWithType: Swastika.Extension.Blog.Api.Controllers
+- uid: Swastika.Extension.Blog.Api.Controllers.BlogController
+  name: BlogController
+  href: api/Swastika.Extension.Blog.Api.Controllers.BlogController.html
+  commentId: T:Swastika.Extension.Blog.Api.Controllers.BlogController
+  fullName: Swastika.Extension.Blog.Api.Controllers.BlogController
+  nameWithType: BlogController
+- uid: Swastika.Extension.Blog.Api.Controllers.BlogController.#ctor
+  name: BlogController()
+  href: api/Swastika.Extension.Blog.Api.Controllers.BlogController.html#Swastika_Extension_Blog_Api_Controllers_BlogController__ctor
+  commentId: M:Swastika.Extension.Blog.Api.Controllers.BlogController.#ctor
+  fullName: Swastika.Extension.Blog.Api.Controllers.BlogController.BlogController()
+  nameWithType: BlogController.BlogController()
+- uid: Swastika.Extension.Blog.Api.Controllers.BlogController.#ctor*
+  name: BlogController
+  href: api/Swastika.Extension.Blog.Api.Controllers.BlogController.html#Swastika_Extension_Blog_Api_Controllers_BlogController__ctor_
+  commentId: Overload:Swastika.Extension.Blog.Api.Controllers.BlogController.#ctor
+  fullName: Swastika.Extension.Blog.Api.Controllers.BlogController.BlogController
+  nameWithType: BlogController.BlogController
+- uid: Swastika.Extension.Blog.Api.Controllers.BlogController.DeleteBlog(Guid)
+  name: DeleteBlog(Guid)
+  href: api/Swastika.Extension.Blog.Api.Controllers.BlogController.html#Swastika_Extension_Blog_Api_Controllers_BlogController_DeleteBlog_Guid_
+  commentId: M:Swastika.Extension.Blog.Api.Controllers.BlogController.DeleteBlog(Guid)
+  fullName: Swastika.Extension.Blog.Api.Controllers.BlogController.DeleteBlog(Guid)
+  nameWithType: BlogController.DeleteBlog(Guid)
+- uid: Swastika.Extension.Blog.Api.Controllers.BlogController.DeleteBlog*
+  name: DeleteBlog
+  href: api/Swastika.Extension.Blog.Api.Controllers.BlogController.html#Swastika_Extension_Blog_Api_Controllers_BlogController_DeleteBlog_
+  commentId: Overload:Swastika.Extension.Blog.Api.Controllers.BlogController.DeleteBlog
+  fullName: Swastika.Extension.Blog.Api.Controllers.BlogController.DeleteBlog
+  nameWithType: BlogController.DeleteBlog
+- uid: Swastika.Extension.Blog.Api.Controllers.BlogController.GetBlog(Guid)
+  name: GetBlog(Guid)
+  href: api/Swastika.Extension.Blog.Api.Controllers.BlogController.html#Swastika_Extension_Blog_Api_Controllers_BlogController_GetBlog_Guid_
+  commentId: M:Swastika.Extension.Blog.Api.Controllers.BlogController.GetBlog(Guid)
+  fullName: Swastika.Extension.Blog.Api.Controllers.BlogController.GetBlog(Guid)
+  nameWithType: BlogController.GetBlog(Guid)
+- uid: Swastika.Extension.Blog.Api.Controllers.BlogController.GetBlog*
+  name: GetBlog
+  href: api/Swastika.Extension.Blog.Api.Controllers.BlogController.html#Swastika_Extension_Blog_Api_Controllers_BlogController_GetBlog_
+  commentId: Overload:Swastika.Extension.Blog.Api.Controllers.BlogController.GetBlog
+  fullName: Swastika.Extension.Blog.Api.Controllers.BlogController.GetBlog
+  nameWithType: BlogController.GetBlog
+- uid: Swastika.Extension.Blog.Api.Controllers.BlogController.GetBlogAsync
+  name: GetBlogAsync()
+  href: api/Swastika.Extension.Blog.Api.Controllers.BlogController.html#Swastika_Extension_Blog_Api_Controllers_BlogController_GetBlogAsync
+  commentId: M:Swastika.Extension.Blog.Api.Controllers.BlogController.GetBlogAsync
+  fullName: Swastika.Extension.Blog.Api.Controllers.BlogController.GetBlogAsync()
+  nameWithType: BlogController.GetBlogAsync()
+- uid: Swastika.Extension.Blog.Api.Controllers.BlogController.GetBlogAsync*
+  name: GetBlogAsync
+  href: api/Swastika.Extension.Blog.Api.Controllers.BlogController.html#Swastika_Extension_Blog_Api_Controllers_BlogController_GetBlogAsync_
+  commentId: Overload:Swastika.Extension.Blog.Api.Controllers.BlogController.GetBlogAsync
+  fullName: Swastika.Extension.Blog.Api.Controllers.BlogController.GetBlogAsync
+  nameWithType: BlogController.GetBlogAsync
+- uid: Swastika.Extension.Blog.Api.Controllers.BlogController.PostBlog(Swastika.Extension.Blog.ViewModels.BlogViewModel)
+  name: PostBlog(BlogViewModel)
+  href: api/Swastika.Extension.Blog.Api.Controllers.BlogController.html#Swastika_Extension_Blog_Api_Controllers_BlogController_PostBlog_Swastika_Extension_Blog_ViewModels_BlogViewModel_
+  commentId: M:Swastika.Extension.Blog.Api.Controllers.BlogController.PostBlog(Swastika.Extension.Blog.ViewModels.BlogViewModel)
+  fullName: Swastika.Extension.Blog.Api.Controllers.BlogController.PostBlog(Swastika.Extension.Blog.ViewModels.BlogViewModel)
+  nameWithType: BlogController.PostBlog(BlogViewModel)
+- uid: Swastika.Extension.Blog.Api.Controllers.BlogController.PostBlog*
+  name: PostBlog
+  href: api/Swastika.Extension.Blog.Api.Controllers.BlogController.html#Swastika_Extension_Blog_Api_Controllers_BlogController_PostBlog_
+  commentId: Overload:Swastika.Extension.Blog.Api.Controllers.BlogController.PostBlog
+  fullName: Swastika.Extension.Blog.Api.Controllers.BlogController.PostBlog
+  nameWithType: BlogController.PostBlog
+- uid: Swastika.Extension.Blog.Api.Controllers.BlogController.PutBlog(Guid,Swastika.Extension.Blog.ViewModels.BlogViewModel)
+  name: PutBlog(Guid, BlogViewModel)
+  href: api/Swastika.Extension.Blog.Api.Controllers.BlogController.html#Swastika_Extension_Blog_Api_Controllers_BlogController_PutBlog_Guid_Swastika_Extension_Blog_ViewModels_BlogViewModel_
+  commentId: M:Swastika.Extension.Blog.Api.Controllers.BlogController.PutBlog(Guid,Swastika.Extension.Blog.ViewModels.BlogViewModel)
+  fullName: Swastika.Extension.Blog.Api.Controllers.BlogController.PutBlog(Guid, Swastika.Extension.Blog.ViewModels.BlogViewModel)
+  nameWithType: BlogController.PutBlog(Guid, BlogViewModel)
+- uid: Swastika.Extension.Blog.Api.Controllers.BlogController.PutBlog*
+  name: PutBlog
+  href: api/Swastika.Extension.Blog.Api.Controllers.BlogController.html#Swastika_Extension_Blog_Api_Controllers_BlogController_PutBlog_
+  commentId: Overload:Swastika.Extension.Blog.Api.Controllers.BlogController.PutBlog
+  fullName: Swastika.Extension.Blog.Api.Controllers.BlogController.PutBlog
+  nameWithType: BlogController.PutBlog
+- uid: Swastika.Extension.Blog.Api.Controllers.ValuesController
+  name: ValuesController
+  href: api/Swastika.Extension.Blog.Api.Controllers.ValuesController.html
+  commentId: T:Swastika.Extension.Blog.Api.Controllers.ValuesController
+  fullName: Swastika.Extension.Blog.Api.Controllers.ValuesController
+  nameWithType: ValuesController
+- uid: Swastika.Extension.Blog.Api.Controllers.ValuesController.Delete(System.Int32)
+  name: Delete(Int32)
+  href: api/Swastika.Extension.Blog.Api.Controllers.ValuesController.html#Swastika_Extension_Blog_Api_Controllers_ValuesController_Delete_System_Int32_
+  commentId: M:Swastika.Extension.Blog.Api.Controllers.ValuesController.Delete(System.Int32)
+  fullName: Swastika.Extension.Blog.Api.Controllers.ValuesController.Delete(System.Int32)
+  nameWithType: ValuesController.Delete(Int32)
+- uid: Swastika.Extension.Blog.Api.Controllers.ValuesController.Delete*
+  name: Delete
+  href: api/Swastika.Extension.Blog.Api.Controllers.ValuesController.html#Swastika_Extension_Blog_Api_Controllers_ValuesController_Delete_
+  commentId: Overload:Swastika.Extension.Blog.Api.Controllers.ValuesController.Delete
+  fullName: Swastika.Extension.Blog.Api.Controllers.ValuesController.Delete
+  nameWithType: ValuesController.Delete
+- uid: Swastika.Extension.Blog.Api.Controllers.ValuesController.Get
+  name: Get()
+  href: api/Swastika.Extension.Blog.Api.Controllers.ValuesController.html#Swastika_Extension_Blog_Api_Controllers_ValuesController_Get
+  commentId: M:Swastika.Extension.Blog.Api.Controllers.ValuesController.Get
+  fullName: Swastika.Extension.Blog.Api.Controllers.ValuesController.Get()
+  nameWithType: ValuesController.Get()
+- uid: Swastika.Extension.Blog.Api.Controllers.ValuesController.Get(System.Int32)
+  name: Get(Int32)
+  href: api/Swastika.Extension.Blog.Api.Controllers.ValuesController.html#Swastika_Extension_Blog_Api_Controllers_ValuesController_Get_System_Int32_
+  commentId: M:Swastika.Extension.Blog.Api.Controllers.ValuesController.Get(System.Int32)
+  fullName: Swastika.Extension.Blog.Api.Controllers.ValuesController.Get(System.Int32)
+  nameWithType: ValuesController.Get(Int32)
+- uid: Swastika.Extension.Blog.Api.Controllers.ValuesController.Get*
+  name: Get
+  href: api/Swastika.Extension.Blog.Api.Controllers.ValuesController.html#Swastika_Extension_Blog_Api_Controllers_ValuesController_Get_
+  commentId: Overload:Swastika.Extension.Blog.Api.Controllers.ValuesController.Get
+  fullName: Swastika.Extension.Blog.Api.Controllers.ValuesController.Get
+  nameWithType: ValuesController.Get
+- uid: Swastika.Extension.Blog.Api.Controllers.ValuesController.Post(System.String)
+  name: Post(String)
+  href: api/Swastika.Extension.Blog.Api.Controllers.ValuesController.html#Swastika_Extension_Blog_Api_Controllers_ValuesController_Post_System_String_
+  commentId: M:Swastika.Extension.Blog.Api.Controllers.ValuesController.Post(System.String)
+  fullName: Swastika.Extension.Blog.Api.Controllers.ValuesController.Post(System.String)
+  nameWithType: ValuesController.Post(String)
+- uid: Swastika.Extension.Blog.Api.Controllers.ValuesController.Post*
+  name: Post
+  href: api/Swastika.Extension.Blog.Api.Controllers.ValuesController.html#Swastika_Extension_Blog_Api_Controllers_ValuesController_Post_
+  commentId: Overload:Swastika.Extension.Blog.Api.Controllers.ValuesController.Post
+  fullName: Swastika.Extension.Blog.Api.Controllers.ValuesController.Post
+  nameWithType: ValuesController.Post
+- uid: Swastika.Extension.Blog.Api.Controllers.ValuesController.Put(System.Int32,System.String)
+  name: Put(Int32, String)
+  href: api/Swastika.Extension.Blog.Api.Controllers.ValuesController.html#Swastika_Extension_Blog_Api_Controllers_ValuesController_Put_System_Int32_System_String_
+  commentId: M:Swastika.Extension.Blog.Api.Controllers.ValuesController.Put(System.Int32,System.String)
+  fullName: Swastika.Extension.Blog.Api.Controllers.ValuesController.Put(System.Int32, System.String)
+  nameWithType: ValuesController.Put(Int32, String)
+- uid: Swastika.Extension.Blog.Api.Controllers.ValuesController.Put*
+  name: Put
+  href: api/Swastika.Extension.Blog.Api.Controllers.ValuesController.html#Swastika_Extension_Blog_Api_Controllers_ValuesController_Put_
+  commentId: Overload:Swastika.Extension.Blog.Api.Controllers.ValuesController.Put
+  fullName: Swastika.Extension.Blog.Api.Controllers.ValuesController.Put
+  nameWithType: ValuesController.Put
+- uid: Swastika.Extension.Blog.Api.Program
+  name: Program
+  href: api/Swastika.Extension.Blog.Api.Program.html
+  commentId: T:Swastika.Extension.Blog.Api.Program
+  fullName: Swastika.Extension.Blog.Api.Program
+  nameWithType: Program
+- uid: Swastika.Extension.Blog.Api.Program.Main(System.String[])
+  name: Main(String[])
+  href: api/Swastika.Extension.Blog.Api.Program.html#Swastika_Extension_Blog_Api_Program_Main_System_String___
+  commentId: M:Swastika.Extension.Blog.Api.Program.Main(System.String[])
+  name.vb: Main(String())
+  fullName: Swastika.Extension.Blog.Api.Program.Main(System.String[])
+  fullName.vb: Swastika.Extension.Blog.Api.Program.Main(System.String())
+  nameWithType: Program.Main(String[])
+  nameWithType.vb: Program.Main(String())
+- uid: Swastika.Extension.Blog.Api.Program.Main*
+  name: Main
+  href: api/Swastika.Extension.Blog.Api.Program.html#Swastika_Extension_Blog_Api_Program_Main_
+  commentId: Overload:Swastika.Extension.Blog.Api.Program.Main
+  fullName: Swastika.Extension.Blog.Api.Program.Main
+  nameWithType: Program.Main
+- uid: Swastika.Extension.Blog.Api.Startup
+  name: Startup
+  href: api/Swastika.Extension.Blog.Api.Startup.html
+  commentId: T:Swastika.Extension.Blog.Api.Startup
+  fullName: Swastika.Extension.Blog.Api.Startup
+  nameWithType: Startup
+- uid: Swastika.Extension.Blog.Api.Startup.#ctor(IHostingEnvironment)
+  name: Startup(IHostingEnvironment)
+  href: api/Swastika.Extension.Blog.Api.Startup.html#Swastika_Extension_Blog_Api_Startup__ctor_IHostingEnvironment_
+  commentId: M:Swastika.Extension.Blog.Api.Startup.#ctor(IHostingEnvironment)
+  fullName: Swastika.Extension.Blog.Api.Startup.Startup(IHostingEnvironment)
+  nameWithType: Startup.Startup(IHostingEnvironment)
+- uid: Swastika.Extension.Blog.Api.Startup.#ctor*
+  name: Startup
+  href: api/Swastika.Extension.Blog.Api.Startup.html#Swastika_Extension_Blog_Api_Startup__ctor_
+  commentId: Overload:Swastika.Extension.Blog.Api.Startup.#ctor
+  fullName: Swastika.Extension.Blog.Api.Startup.Startup
+  nameWithType: Startup.Startup
+- uid: Swastika.Extension.Blog.Api.Startup.Configuration
+  name: Configuration
+  href: api/Swastika.Extension.Blog.Api.Startup.html#Swastika_Extension_Blog_Api_Startup_Configuration
+  commentId: P:Swastika.Extension.Blog.Api.Startup.Configuration
+  fullName: Swastika.Extension.Blog.Api.Startup.Configuration
+  nameWithType: Startup.Configuration
+- uid: Swastika.Extension.Blog.Api.Startup.Configuration*
+  name: Configuration
+  href: api/Swastika.Extension.Blog.Api.Startup.html#Swastika_Extension_Blog_Api_Startup_Configuration_
+  commentId: Overload:Swastika.Extension.Blog.Api.Startup.Configuration
+  fullName: Swastika.Extension.Blog.Api.Startup.Configuration
+  nameWithType: Startup.Configuration
+- uid: Swastika.Extension.Blog.Api.Startup.Configure(IApplicationBuilder,IHostingEnvironment,ILoggerFactory)
+  name: Configure(IApplicationBuilder, IHostingEnvironment, ILoggerFactory)
+  href: api/Swastika.Extension.Blog.Api.Startup.html#Swastika_Extension_Blog_Api_Startup_Configure_IApplicationBuilder_IHostingEnvironment_ILoggerFactory_
+  commentId: M:Swastika.Extension.Blog.Api.Startup.Configure(IApplicationBuilder,IHostingEnvironment,ILoggerFactory)
+  fullName: Swastika.Extension.Blog.Api.Startup.Configure(IApplicationBuilder, IHostingEnvironment, ILoggerFactory)
+  nameWithType: Startup.Configure(IApplicationBuilder, IHostingEnvironment, ILoggerFactory)
+- uid: Swastika.Extension.Blog.Api.Startup.Configure*
+  name: Configure
+  href: api/Swastika.Extension.Blog.Api.Startup.html#Swastika_Extension_Blog_Api_Startup_Configure_
+  commentId: Overload:Swastika.Extension.Blog.Api.Startup.Configure
+  fullName: Swastika.Extension.Blog.Api.Startup.Configure
+  nameWithType: Startup.Configure
+- uid: Swastika.Extension.Blog.Api.Startup.ConfigureServices(IServiceCollection)
+  name: ConfigureServices(IServiceCollection)
+  href: api/Swastika.Extension.Blog.Api.Startup.html#Swastika_Extension_Blog_Api_Startup_ConfigureServices_IServiceCollection_
+  commentId: M:Swastika.Extension.Blog.Api.Startup.ConfigureServices(IServiceCollection)
+  fullName: Swastika.Extension.Blog.Api.Startup.ConfigureServices(IServiceCollection)
+  nameWithType: Startup.ConfigureServices(IServiceCollection)
+- uid: Swastika.Extension.Blog.Api.Startup.ConfigureServices*
+  name: ConfigureServices
+  href: api/Swastika.Extension.Blog.Api.Startup.html#Swastika_Extension_Blog_Api_Startup_ConfigureServices_
+  commentId: Overload:Swastika.Extension.Blog.Api.Startup.ConfigureServices
+  fullName: Swastika.Extension.Blog.Api.Startup.ConfigureServices
+  nameWithType: Startup.ConfigureServices
 - uid: Swastika.Extension.Blog.AutoMapper
   name: Swastika.Extension.Blog.AutoMapper
   href: api/Swastika.Extension.Blog.AutoMapper.html
@@ -2637,12 +2862,6 @@ references:
   commentId: M:Swastika.Extension.Blog.Models.Blog.#ctor
   fullName: Swastika.Extension.Blog.Models.Blog.Blog()
   nameWithType: Blog.Blog()
-- uid: Swastika.Extension.Blog.Models.Blog.#ctor(System.Guid,System.String,System.String,System.String,System.String,System.DateTime,System.DateTime,System.DateTime,System.String,System.Byte)
-  name: Blog(Guid, String, String, String, String, DateTime, DateTime, DateTime, String, Byte)
-  href: api/Swastika.Extension.Blog.Models.Blog.html#Swastika_Extension_Blog_Models_Blog__ctor_System_Guid_System_String_System_String_System_String_System_String_System_DateTime_System_DateTime_System_DateTime_System_String_System_Byte_
-  commentId: M:Swastika.Extension.Blog.Models.Blog.#ctor(System.Guid,System.String,System.String,System.String,System.String,System.DateTime,System.DateTime,System.DateTime,System.String,System.Byte)
-  fullName: Swastika.Extension.Blog.Models.Blog.Blog(System.Guid, System.String, System.String, System.String, System.String, System.DateTime, System.DateTime, System.DateTime, System.String, System.Byte)
-  nameWithType: Blog.Blog(Guid, String, String, String, String, DateTime, DateTime, DateTime, String, Byte)
 - uid: Swastika.Extension.Blog.Models.Blog.#ctor*
   name: Blog
   href: api/Swastika.Extension.Blog.Models.Blog.html#Swastika_Extension_Blog_Models_Blog__ctor_
@@ -3285,6 +3504,18 @@ references:
   commentId: Overload:Swastika.Extension.Blog.ViewModels.BlogViewModel.#ctor
   fullName: Swastika.Extension.Blog.ViewModels.BlogViewModel.BlogViewModel
   nameWithType: BlogViewModel.BlogViewModel
+- uid: Swastika.Extension.Blog.ViewModels.BlogViewModel.BlogPost
+  name: BlogPost
+  href: api/Swastika.Extension.Blog.ViewModels.BlogViewModel.html#Swastika_Extension_Blog_ViewModels_BlogViewModel_BlogPost
+  commentId: P:Swastika.Extension.Blog.ViewModels.BlogViewModel.BlogPost
+  fullName: Swastika.Extension.Blog.ViewModels.BlogViewModel.BlogPost
+  nameWithType: BlogViewModel.BlogPost
+- uid: Swastika.Extension.Blog.ViewModels.BlogViewModel.BlogPost*
+  name: BlogPost
+  href: api/Swastika.Extension.Blog.ViewModels.BlogViewModel.html#Swastika_Extension_Blog_ViewModels_BlogViewModel_BlogPost_
+  commentId: Overload:Swastika.Extension.Blog.ViewModels.BlogViewModel.BlogPost
+  fullName: Swastika.Extension.Blog.ViewModels.BlogViewModel.BlogPost
+  nameWithType: BlogViewModel.BlogPost
 - uid: Swastika.Extension.Blog.ViewModels.BlogViewModel.CommonStatusId
   name: CommonStatusId
   href: api/Swastika.Extension.Blog.ViewModels.BlogViewModel.html#Swastika_Extension_Blog_ViewModels_BlogViewModel_CommonStatusId
@@ -5387,6 +5618,24 @@ references:
   commentId: Overload:Swastika.Extensions.Blog.Repositories.BlogPostRepository.GetInstance
   fullName: Swastika.Extensions.Blog.Repositories.BlogPostRepository.GetInstance
   nameWithType: BlogPostRepository.GetInstance
+- uid: Swastika.Extensions.Blog.Repositories.BlogRepository
+  name: BlogRepository
+  href: api/Swastika.Extensions.Blog.Repositories.BlogRepository.html
+  commentId: T:Swastika.Extensions.Blog.Repositories.BlogRepository
+  fullName: Swastika.Extensions.Blog.Repositories.BlogRepository
+  nameWithType: BlogRepository
+- uid: Swastika.Extensions.Blog.Repositories.BlogRepository.GetInstance
+  name: GetInstance()
+  href: api/Swastika.Extensions.Blog.Repositories.BlogRepository.html#Swastika_Extensions_Blog_Repositories_BlogRepository_GetInstance
+  commentId: M:Swastika.Extensions.Blog.Repositories.BlogRepository.GetInstance
+  fullName: Swastika.Extensions.Blog.Repositories.BlogRepository.GetInstance()
+  nameWithType: BlogRepository.GetInstance()
+- uid: Swastika.Extensions.Blog.Repositories.BlogRepository.GetInstance*
+  name: GetInstance
+  href: api/Swastika.Extensions.Blog.Repositories.BlogRepository.html#Swastika_Extensions_Blog_Repositories_BlogRepository_GetInstance_
+  commentId: Overload:Swastika.Extensions.Blog.Repositories.BlogRepository.GetInstance
+  fullName: Swastika.Extensions.Blog.Repositories.BlogRepository.GetInstance
+  nameWithType: BlogRepository.GetInstance
 - uid: Swastika.Extensions.Blog.Web
   name: Swastika.Extensions.Blog.Web
   href: api/Swastika.Extensions.Blog.Web.html
@@ -5399,6 +5648,24 @@ references:
   commentId: N:Swastika.Extensions.Blog.Web.Controllers
   fullName: Swastika.Extensions.Blog.Web.Controllers
   nameWithType: Swastika.Extensions.Blog.Web.Controllers
+- uid: Swastika.Extensions.Blog.Web.Controllers.BlogAdminController
+  name: BlogAdminController
+  href: api/Swastika.Extensions.Blog.Web.Controllers.BlogAdminController.html
+  commentId: T:Swastika.Extensions.Blog.Web.Controllers.BlogAdminController
+  fullName: Swastika.Extensions.Blog.Web.Controllers.BlogAdminController
+  nameWithType: BlogAdminController
+- uid: Swastika.Extensions.Blog.Web.Controllers.BlogAdminController.Index
+  name: Index()
+  href: api/Swastika.Extensions.Blog.Web.Controllers.BlogAdminController.html#Swastika_Extensions_Blog_Web_Controllers_BlogAdminController_Index
+  commentId: M:Swastika.Extensions.Blog.Web.Controllers.BlogAdminController.Index
+  fullName: Swastika.Extensions.Blog.Web.Controllers.BlogAdminController.Index()
+  nameWithType: BlogAdminController.Index()
+- uid: Swastika.Extensions.Blog.Web.Controllers.BlogAdminController.Index*
+  name: Index
+  href: api/Swastika.Extensions.Blog.Web.Controllers.BlogAdminController.html#Swastika_Extensions_Blog_Web_Controllers_BlogAdminController_Index_
+  commentId: Overload:Swastika.Extensions.Blog.Web.Controllers.BlogAdminController.Index
+  fullName: Swastika.Extensions.Blog.Web.Controllers.BlogAdminController.Index
+  nameWithType: BlogAdminController.Index
 - uid: Swastika.Extensions.Blog.Web.Controllers.HomeController
   name: HomeController
   href: api/Swastika.Extensions.Blog.Web.Controllers.HomeController.html
@@ -5459,15 +5726,12 @@ references:
   commentId: T:Swastika.Extensions.Blog.Web.Controllers.ManageController
   fullName: Swastika.Extensions.Blog.Web.Controllers.ManageController
   nameWithType: ManageController
-- uid: Swastika.Extensions.Blog.Web.Controllers.ManageController.#ctor(IDomainNotificationHandler{DomainNotification})
-  name: ManageController(IDomainNotificationHandler<DomainNotification>)
-  href: api/Swastika.Extensions.Blog.Web.Controllers.ManageController.html#Swastika_Extensions_Blog_Web_Controllers_ManageController__ctor_IDomainNotificationHandler_DomainNotification__
-  commentId: M:Swastika.Extensions.Blog.Web.Controllers.ManageController.#ctor(IDomainNotificationHandler{DomainNotification})
-  name.vb: ManageController(IDomainNotificationHandler(Of DomainNotification))
-  fullName: Swastika.Extensions.Blog.Web.Controllers.ManageController.ManageController(IDomainNotificationHandler<DomainNotification>)
-  fullName.vb: Swastika.Extensions.Blog.Web.Controllers.ManageController.ManageController(IDomainNotificationHandler(Of DomainNotification))
-  nameWithType: ManageController.ManageController(IDomainNotificationHandler<DomainNotification>)
-  nameWithType.vb: ManageController.ManageController(IDomainNotificationHandler(Of DomainNotification))
+- uid: Swastika.Extensions.Blog.Web.Controllers.ManageController.#ctor
+  name: ManageController()
+  href: api/Swastika.Extensions.Blog.Web.Controllers.ManageController.html#Swastika_Extensions_Blog_Web_Controllers_ManageController__ctor
+  commentId: M:Swastika.Extensions.Blog.Web.Controllers.ManageController.#ctor
+  fullName: Swastika.Extensions.Blog.Web.Controllers.ManageController.ManageController()
+  nameWithType: ManageController.ManageController()
 - uid: Swastika.Extensions.Blog.Web.Controllers.ManageController.#ctor*
   name: ManageController
   href: api/Swastika.Extensions.Blog.Web.Controllers.ManageController.html#Swastika_Extensions_Blog_Web_Controllers_ManageController__ctor_
@@ -8564,6 +8828,24 @@ references:
   commentId: Overload:Swastika.UI.Site.Controllers.ManageController.VerifyPhoneNumber
   fullName: Swastika.UI.Site.Controllers.ManageController.VerifyPhoneNumber
   nameWithType: ManageController.VerifyPhoneNumber
+- uid: Swastika.UI.Site.Controllers.PortalController
+  name: PortalController
+  href: api/Swastika.UI.Site.Controllers.PortalController.html
+  commentId: T:Swastika.UI.Site.Controllers.PortalController
+  fullName: Swastika.UI.Site.Controllers.PortalController
+  nameWithType: PortalController
+- uid: Swastika.UI.Site.Controllers.PortalController.Index
+  name: Index()
+  href: api/Swastika.UI.Site.Controllers.PortalController.html#Swastika_UI_Site_Controllers_PortalController_Index
+  commentId: M:Swastika.UI.Site.Controllers.PortalController.Index
+  fullName: Swastika.UI.Site.Controllers.PortalController.Index()
+  nameWithType: PortalController.Index()
+- uid: Swastika.UI.Site.Controllers.PortalController.Index*
+  name: Index
+  href: api/Swastika.UI.Site.Controllers.PortalController.html#Swastika_UI_Site_Controllers_PortalController_Index_
+  commentId: Overload:Swastika.UI.Site.Controllers.PortalController.Index
+  fullName: Swastika.UI.Site.Controllers.PortalController.Index
+  nameWithType: PortalController.Index
 - uid: Swastika.UI.Site.Program
   name: Program
   href: api/Swastika.UI.Site.Program.html

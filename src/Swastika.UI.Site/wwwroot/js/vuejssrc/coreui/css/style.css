@@ -1,3 +1,4 @@
+﻿@charset "UTF-8";
 /**
  * CoreUI - Open Source Bootstrap Admin Template
  * @version v1.0.0-alpha.6
@@ -3514,7 +3515,8 @@ button.close {
   background-color: #fff;
   background-clip: padding-box;
   border: 1px solid rgba(0, 0, 0, 0.2);
-  outline: 0; }
+  outline: 0;
+  border-radius: 0.3rem; }
 
 .modal-backdrop {
   position: fixed;
@@ -7545,7 +7547,7 @@ base-chart.chart {
   border-bottom: 1px solid #cfd8dc; }
   .app-header.navbar .navbar-brand {
     display: inline-block;
-    width: 155px;
+    width: 50px;
     height: 55px;
     padding: 0.5rem 1rem;
     margin-right: 0;
@@ -7553,8 +7555,7 @@ base-chart.chart {
     background-image: url("../img/logo.png");
     background-repeat: no-repeat;
     background-position: center center;
-    background-size: 70px auto;
-    border-bottom: 1px solid #cfd8dc; }
+    background-size: 35px auto; }
   .app-header.navbar .navbar-nav {
     flex-direction: row;
     align-items: center; }
@@ -8917,3 +8918,4 @@ hr.transparent {
     border-right-color: #f86c6b; }
   *[dir="rtl"] .callout-success {
     border-right-color: #4dbd74; }
+
