@@ -18,6 +18,7 @@ target/
 /**/_site/
 .vscode/
 .vs/
+!obj/
 
 ###############
 #  temp file  #
