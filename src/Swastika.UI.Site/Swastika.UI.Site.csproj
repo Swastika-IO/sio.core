@@ -17,20 +17,12 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Compile Remove="build\**" />
-    <Compile Remove="config\**" />
     <Compile Remove="Contents\Extensions\**" />
     <Compile Remove="static\**" />
-    <Content Remove="build\**" />
-    <Content Remove="config\**" />
     <Content Remove="Contents\Extensions\**" />
     <Content Remove="static\**" />
-    <EmbeddedResource Remove="build\**" />
-    <EmbeddedResource Remove="config\**" />
     <EmbeddedResource Remove="Contents\Extensions\**" />
     <EmbeddedResource Remove="static\**" />
-    <None Remove="build\**" />
-    <None Remove="config\**" />
     <None Remove="Contents\Extensions\**" />
     <None Remove="static\**" />
   </ItemGroup>
@@ -104,5 +96,9 @@
   <ItemGroup>
     <DotNetCliToolReference Include="BundlerMinifier.Core" Version="2.2.301" />
     <DotNetCliToolReference Include="Microsoft.Extensions.SecretManager.Tools" Version="1.0.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="VueSrc\swastika\" />
   </ItemGroup>
 </Project>

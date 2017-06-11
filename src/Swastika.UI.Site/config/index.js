@@ -4,8 +4,8 @@ var path = require('path')
 module.exports = {
   build: {
     env: require('./prod.env'),
-    index: path.resolve(__dirname, '../wwwroot/js/vuejssrc/coreui/index.html'),
-    assetsRoot: path.resolve(__dirname, '../wwwroot/js/vuejssrc/coreui'),
+    index: path.resolve(__dirname, '../wwwroot/js/vuesrc/coreui/index.html'),
+    assetsRoot: path.resolve(__dirname, '../wwwroot/js/vuesrc/coreui'),
     assetsSubDirectory: '../coreui',///static',
     assetsPublicPath: '/',
     productionSourceMap: true,
