@@ -57,7 +57,7 @@ var webpackConfig = merge(baseWebpackConfig, {
       filename: process.env.NODE_ENV === 'testing'
         ? 'index.html'
         : config.build.index,
-      template: 'vuejssrc/coreui/index.html',
+      template: 'VueSrc/coreui/index.html',
       inject: true,
       minify: {
         removeComments: true,
@@ -92,7 +92,7 @@ var webpackConfig = merge(baseWebpackConfig, {
     // copy custom static assets
     new CopyWebpackPlugin([
       {
-        from: path.resolve(__dirname, '../vuejssrc/coreui/static'),
+        from: path.resolve(__dirname, '../VueSrc/coreui/static'),
         to: config.build.assetsSubDirectory,
         ignore: ['.*']
       }

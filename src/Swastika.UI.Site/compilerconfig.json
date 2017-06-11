@@ -1,6 +1,6 @@
 ﻿[
   {
-    "outputFile": "vuejssrc/coreui/static/css/style.css",
-    "inputFile": "vuejssrc/coreui/scss/style.scss"
+    "outputFile": "VueSrc/coreui/static/css/style.css",
+    "inputFile": "VueSrc/coreui/scss/style.scss"
   }
 ]
