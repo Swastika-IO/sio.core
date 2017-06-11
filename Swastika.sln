@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
-VisualStudioVersion = 15.0.26430.12
+VisualStudioVersion = 15.0.26430.13
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{AE3E98DB-35C1-42D8-AB6D-DE37189DDAA1}"
 EndProject
@@ -22,8 +22,6 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "4.1 - Data", "4.1 - Data", "{DCCD4FD6-B437-4586-B932-7AC40EF86A71}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "4.2 - CrossCutting", "4.2 - CrossCutting", "{68258835-A222-468B-84F5-441AD58BCD51}"
-EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Swastika.UI.Site", "src\Swastika.UI.Site\Swastika.UI.Site.csproj", "{E38E811D-9A10-41EF-A245-907A71C79ACB}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Swastika.Application", "src\Swastika.Application\Swastika.Application.csproj", "{8EA27390-8455-48EA-ABCB-881272BCE68A}"
 EndProject
@@ -47,29 +45,33 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Swastika.UI.Base", "src\Swa
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Customer", "Customer", "{ED12F9FC-9E2C-480F-8FB8-C361C2D625C7}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Swastika.Extension.Customer.Application", "src\Swastika.Extension.Customer.Application\Swastika.Extension.Customer.Application.csproj", "{8136A03D-7BD5-44C7-A3C8-2A4FBE070E47}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Swastika.Extension.Customer.Application", "src\Swastika.Extension.Customer.Application\Swastika.Extension.Customer.Application.csproj", "{8136A03D-7BD5-44C7-A3C8-2A4FBE070E47}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Swastika.Extension.Customer.Domain", "src\Swastika.Extension.Customer.Domain\Swastika.Extension.Customer.Domain.csproj", "{FDD769B6-3EE3-4C6C-870A-1F8286F94DE9}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Swastika.Extension.Customer.Domain", "src\Swastika.Extension.Customer.Domain\Swastika.Extension.Customer.Domain.csproj", "{FDD769B6-3EE3-4C6C-870A-1F8286F94DE9}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Swastika.Extension.Customer.Infrastructure.Data", "src\Swastika.Extension.Customer.Infrastructure.Data\Swastika.Extension.Customer.Infrastructure.Data.csproj", "{29C730F1-3D97-4602-8F4A-CA6E554FB04C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Swastika.Extension.Customer.Infrastructure.Data", "src\Swastika.Extension.Customer.Infrastructure.Data\Swastika.Extension.Customer.Infrastructure.Data.csproj", "{29C730F1-3D97-4602-8F4A-CA6E554FB04C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Swastika.Extension.Customer.UI.Api", "src\Swastika.Extension.Customer.UI.Api\Swastika.Extension.Customer.UI.Api.csproj", "{E464E07A-6788-41DE-9296-F13612D11D0D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Swastika.Extension.Customer.UI.Api", "src\Swastika.Extension.Customer.UI.Api\Swastika.Extension.Customer.UI.Api.csproj", "{E464E07A-6788-41DE-9296-F13612D11D0D}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Swastika.Extension.Customer", "src\Swastika.Extension.Customer\Swastika.Extension.Customer.csproj", "{86A9E019-8F92-42AA-96B7-D9F45B140161}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "0 - Common", "0 - Common", "{D9335B41-604E-4964-9CE5-8339736090A3}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Swastika.Common.Utility", "src\Swastika.Common.Utility\Swastika.Common.Utility.csproj", "{E1AFDFB3-9BAC-4979-8EBC-4A2C9D3A1131}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Swastika.Common.Utility", "src\Swastika.Common.Utility\Swastika.Common.Utility.csproj", "{E1AFDFB3-9BAC-4979-8EBC-4A2C9D3A1131}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Swastika.Common.Helper", "src\Swastika.Common.Helper\Swastika.Common.Helper.csproj", "{9D4BA81C-4C1C-4CEF-9880-247B22FF2491}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Swastika.Common.Helper", "src\Swastika.Common.Helper\Swastika.Common.Helper.csproj", "{9D4BA81C-4C1C-4CEF-9880-247B22FF2491}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Swastika.Extension.Blog.Lib", "src\Swastika.Extensions.Blog.Lib\Swastika.Extension.Blog.Lib.csproj", "{EF8A5923-D37B-4603-892D-39D077852B3D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Swastika.Extension.Blog.Web", "src\Swastika.Extensions.Blog.Web\Swastika.Extension.Blog.Web.csproj", "{541D0AF9-0DD9-4689-AABE-7E7EE44320D0}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Swastika.Extension.Blog.Web", "src\Swastika.Extensions.Blog.Web\Swastika.Extension.Blog.Web.csproj", "{541D0AF9-0DD9-4689-AABE-7E7EE44320D0}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Swastika.Extension.Blog.Api", "src\Swastika.Extension.Blog.Api\Swastika.Extension.Blog.Api.csproj", "{DE84138C-644D-433C-A607-1CB2544BB3C0}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Swastika.UI.Api", "src\Swastika.UI.Api\Swastika.UI.Api.csproj", "{E04BBE00-209F-48F2-8E7E-732B3105CB3B}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Swastika.UI.Spa", "src\Swastika.UI.Spa\Swastika.UI.Spa.csproj", "{D7C721ED-321C-403D-BB93-A5AAF4398302}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Swastika.UI.Site", "src\Swastika.UI.Site\Swastika.UI.Site.csproj", "{8AEB8063-51BC-46AA-98D2-E5DFF84D4178}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -77,10 +79,6 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{E38E811D-9A10-41EF-A245-907A71C79ACB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{E38E811D-9A10-41EF-A245-907A71C79ACB}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{E38E811D-9A10-41EF-A245-907A71C79ACB}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{E38E811D-9A10-41EF-A245-907A71C79ACB}.Release|Any CPU.Build.0 = Release|Any CPU
 		{8EA27390-8455-48EA-ABCB-881272BCE68A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{8EA27390-8455-48EA-ABCB-881272BCE68A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{8EA27390-8455-48EA-ABCB-881272BCE68A}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -153,6 +151,14 @@ Global
 		{E04BBE00-209F-48F2-8E7E-732B3105CB3B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{E04BBE00-209F-48F2-8E7E-732B3105CB3B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{E04BBE00-209F-48F2-8E7E-732B3105CB3B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D7C721ED-321C-403D-BB93-A5AAF4398302}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D7C721ED-321C-403D-BB93-A5AAF4398302}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D7C721ED-321C-403D-BB93-A5AAF4398302}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D7C721ED-321C-403D-BB93-A5AAF4398302}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8AEB8063-51BC-46AA-98D2-E5DFF84D4178}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8AEB8063-51BC-46AA-98D2-E5DFF84D4178}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8AEB8063-51BC-46AA-98D2-E5DFF84D4178}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8AEB8063-51BC-46AA-98D2-E5DFF84D4178}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -164,7 +170,6 @@ Global
 		{04CCC7F8-8AF7-4965-B2EF-2E28331BE421} = {6C32D67C-8272-4A5E-8753-717CE471F4CE}
 		{DCCD4FD6-B437-4586-B932-7AC40EF86A71} = {04CCC7F8-8AF7-4965-B2EF-2E28331BE421}
 		{68258835-A222-468B-84F5-441AD58BCD51} = {04CCC7F8-8AF7-4965-B2EF-2E28331BE421}
-		{E38E811D-9A10-41EF-A245-907A71C79ACB} = {9340B0E0-D3D9-4917-B0AA-093A95183265}
 		{8EA27390-8455-48EA-ABCB-881272BCE68A} = {8941C48B-849B-4625-B5F8-0EF567135BC0}
 		{3701E4D6-A057-49F4-9872-2CAD0487452C} = {DCCD4FD6-B437-4586-B932-7AC40EF86A71}
 		{37C44A01-20FE-4B09-8435-47164F08C0C8} = {68258835-A222-468B-84F5-441AD58BCD51}
@@ -188,5 +193,7 @@ Global
 		{541D0AF9-0DD9-4689-AABE-7E7EE44320D0} = {9F469D36-2903-4DF6-91FB-2E71746EBE23}
 		{DE84138C-644D-433C-A607-1CB2544BB3C0} = {9F469D36-2903-4DF6-91FB-2E71746EBE23}
 		{E04BBE00-209F-48F2-8E7E-732B3105CB3B} = {9340B0E0-D3D9-4917-B0AA-093A95183265}
+		{D7C721ED-321C-403D-BB93-A5AAF4398302} = {9340B0E0-D3D9-4917-B0AA-093A95183265}
+		{8AEB8063-51BC-46AA-98D2-E5DFF84D4178} = {9340B0E0-D3D9-4917-B0AA-093A95183265}
 	EndGlobalSection
 EndGlobal
