@@ -2,45 +2,38 @@
 
     <div class="app header-fixed sidebar-fixed aside-menu-fixed aside-menu-hidden">
         <!-- Icons -->
-        <link href="css/font-awesome.min.css" rel="stylesheet">
-        <link href="css/simple-line-icons.css" rel="stylesheet">
+        <link href="dist/coreui/css/font-awesome.min.css" rel="stylesheet">
+        <link href="dist/coreui/css/simple-line-icons.css" rel="stylesheet">
         <!-- Main styles for this application -->
-        <link href="css/style.css" rel="stylesheet">
+        <link href="dist/coreui/css/style.css" rel="stylesheet">
 
         <header class="app-header navbar">
             <button class="navbar-toggler mobile-sidebar-toggler d-lg-none" type="button">☰</button>
             <a class="navbar-brand" href="#"></a>
-            <ul class="nav navbar-nav d-md-down-none">
-                <li class="nav-item">
-                    <a class="nav-link navbar-toggler sidebar-toggler" href="#">☰</a>
-                </li>
-            </ul>
+            <menu-component />
         </header>
         <div class="app-body">
             <div class="sidebar">
-                <nav class="sidebar-nav">
-                    <ul class="nav">
-                        <li class="nav-item">
-                            <a class="nav-link" href="index.html"><i class="icon-speedometer"></i> Dashboard <span class="badge badge-info">NEW</span></a>
-                        </li>
-                    </ul>
-                </nav>
+                <sidebar-component />
             </div>
             <!-- Main content -->
             <main class="main">
 
+                <breadcrumb-component />
+
                 <div class="container-fluid">
+                    <router-view></router-view>
                 </div>
                 <!-- /.conainer-fluid -->
             </main>
         </div>
         <footer class="app-footer">
-            <a href="http://coreui.io">CoreUI</a> © 2017 creativeLabs.
+            <a href="http://swastika.io">Swastika I/O</a> © 2017 creativeLabs.
             <span class="float-right">
-                Powered by <a href="http://coreui.io">CoreUI</a>
+                Powered by <a href="http://swastika.io">Swastika I/O</a>
             </span>
         </footer>
-
-
     </div>
 </template>
+
+<script src="./portal.ts"></script>
