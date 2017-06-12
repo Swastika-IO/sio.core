@@ -12,13 +12,14 @@ Vue.use(VueRouter);
 //];
 
 const routes = [
-    { path: '/', component: require('./components/home/home.vue.html') },
+    { path: '/', name: 'Home', component: require('./components/home/home.vue.html') },
     {
         path: '/portal',
+        name: 'Portal',
         component: require('./components/portal/portal.vue.html'),
         children: [
-            { path: '', component: require('./components/portal/container/dashboard/dashboard.vue.html') },
-            { path: 'widgets', component: require('./components/portal/container/widgets/widgets.vue.html') },
+            { path: '', name: 'Dashboard', component: require('./components/portal/container/dashboard/dashboard.vue.html') },
+            { path: 'widgets', name: 'Widgets', component: require('./components/portal/container/widgets/widgets.vue.html') },
         ]
     },
     { path: '/counter', component: require('./components/counter/counter.vue.html') },

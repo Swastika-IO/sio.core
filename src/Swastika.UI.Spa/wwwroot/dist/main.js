@@ -59,7 +59,7 @@
 /******/ 	
 /******/ 	
 /******/ 	var hotApplyOnUpdate = true;
-/******/ 	var hotCurrentHash = "5a3c6a752f2cc5137c68"; // eslint-disable-line no-unused-vars
+/******/ 	var hotCurrentHash = "291af732911cee109ce2"; // eslint-disable-line no-unused-vars
 /******/ 	var hotCurrentModuleData = {};
 /******/ 	var hotCurrentChildModule; // eslint-disable-line no-unused-vars
 /******/ 	var hotCurrentParents = []; // eslint-disable-line no-unused-vars
@@ -1613,13 +1613,14 @@ __WEBPACK_IMPORTED_MODULE_0_vue__["default"].use(__WEBPACK_IMPORTED_MODULE_1_vue
 //    { path: '/fetchdata', component: require('./components/fetchdata/fetchdata.vue.html') }
 //];
 var routes = [
-    { path: '/', component: __webpack_require__(31) },
+    { path: '/', name: 'Home', component: __webpack_require__(31) },
     {
         path: '/portal',
+        name: 'Portal',
         component: __webpack_require__(33),
         children: [
-            { path: '', component: __webpack_require__(58) },
-            { path: 'widgets', component: __webpack_require__(60) },
+            { path: '', name: 'Dashboard', component: __webpack_require__(58) },
+            { path: 'widgets', name: 'Widgets', component: __webpack_require__(60) },
         ]
     },
     { path: '/counter', component: __webpack_require__(29) },
@@ -4583,17 +4584,17 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     staticClass: "app header-fixed sidebar-fixed aside-menu-fixed aside-menu-hidden"
   }, [_c('link', {
     attrs: {
-      "href": "dist/coreui/css/font-awesome.min.css",
+      "href": "/dist/coreui/css/font-awesome.min.css",
       "rel": "stylesheet"
     }
   }), _vm._v(" "), _c('link', {
     attrs: {
-      "href": "dist/coreui/css/simple-line-icons.css",
+      "href": "/dist/coreui/css/simple-line-icons.css",
       "rel": "stylesheet"
     }
   }), _vm._v(" "), _c('link', {
     attrs: {
-      "href": "dist/coreui/css/style.css",
+      "href": "/dist/coreui/css/style.css",
       "rel": "stylesheet"
     }
   }), _vm._v(" "), _c('header', {
@@ -5160,7 +5161,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
   }, [_c('a', {
     staticClass: "nav-link",
     attrs: {
-      "href": "portal"
+      "href": "/portal"
     }
   }, [_c('i', {
     staticClass: "icon-speedometer"
@@ -5171,7 +5172,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
   }, [_c('a', {
     staticClass: "nav-link",
     attrs: {
-      "href": "portal/widgets"
+      "href": "/portal/widgets"
     }
   }, [_c('i', {
     staticClass: "icon-calculator"
