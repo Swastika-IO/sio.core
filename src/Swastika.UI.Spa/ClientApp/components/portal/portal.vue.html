@@ -1,6 +1,46 @@
-<template>
-    <div>
-        <h1>Hello, world!</h1>
-        <p>This is portal admin dashboard page</p>
+﻿<template>
+
+    <div class="app header-fixed sidebar-fixed aside-menu-fixed aside-menu-hidden">
+        <!-- Icons -->
+        <link href="css/font-awesome.min.css" rel="stylesheet">
+        <link href="css/simple-line-icons.css" rel="stylesheet">
+        <!-- Main styles for this application -->
+        <link href="css/style.css" rel="stylesheet">
+
+        <header class="app-header navbar">
+            <button class="navbar-toggler mobile-sidebar-toggler d-lg-none" type="button">☰</button>
+            <a class="navbar-brand" href="#"></a>
+            <ul class="nav navbar-nav d-md-down-none">
+                <li class="nav-item">
+                    <a class="nav-link navbar-toggler sidebar-toggler" href="#">☰</a>
+                </li>
+            </ul>
+        </header>
+        <div class="app-body">
+            <div class="sidebar">
+                <nav class="sidebar-nav">
+                    <ul class="nav">
+                        <li class="nav-item">
+                            <a class="nav-link" href="index.html"><i class="icon-speedometer"></i> Dashboard <span class="badge badge-info">NEW</span></a>
+                        </li>
+                    </ul>
+                </nav>
+            </div>
+            <!-- Main content -->
+            <main class="main">
+
+                <div class="container-fluid">
+                </div>
+                <!-- /.conainer-fluid -->
+            </main>
+        </div>
+        <footer class="app-footer">
+            <a href="http://coreui.io">CoreUI</a> © 2017 creativeLabs.
+            <span class="float-right">
+                Powered by <a href="http://coreui.io">CoreUI</a>
+            </span>
+        </footer>
+
+
     </div>
 </template>

@@ -23,6 +23,7 @@
     <Content Remove="Contents\Extensions\**" />
     <EmbeddedResource Remove="Contents\Extensions\**" />
     <None Remove="Contents\Extensions\**" />
+    <None Remove="cmd-vue-compile.bat" />
     <None Remove="yarn.lock" />
   </ItemGroup>
 

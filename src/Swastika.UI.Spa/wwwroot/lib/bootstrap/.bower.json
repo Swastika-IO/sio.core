@@ -4,18 +4,18 @@
   "keywords": [
     "css",
     "js",
-    "less",
+    "sass",
     "mobile-first",
     "responsive",
     "front-end",
     "framework",
     "web"
   ],
-  "homepage": "http://getbootstrap.com",
+  "homepage": "https://getbootstrap.com",
   "license": "MIT",
   "moduleType": "globals",
   "main": [
-    "less/bootstrap.less",
+    "scss/bootstrap.scss",
     "dist/js/bootstrap.js"
   ],
   "ignore": [
@@ -29,16 +29,17 @@
     "test-infra"
   ],
   "dependencies": {
-    "jquery": "1.9.1 - 2"
+    "jquery": ">=1.9.1",
+    "tether": "^1.4.0"
   },
-  "version": "3.3.6",
-  "_release": "3.3.6",
+  "version": "4.0.0-alpha.6",
+  "_release": "4.0.0-alpha.6",
   "_resolution": {
     "type": "version",
-    "tag": "v3.3.6",
-    "commit": "81df608a40bf0629a1dc08e584849bb1e43e0b7a"
+    "tag": "v4.0.0-alpha.6",
+    "commit": "65ffb1c3b6e94440812a2e228cb8e8be512652ec"
   },
-  "_source": "git://github.com/twbs/bootstrap.git",
-  "_target": "3.3.6",
+  "_source": "https://github.com/twbs/bootstrap.git",
+  "_target": "^4.0.0-alpha.6",
   "_originalSource": "bootstrap"
 }
