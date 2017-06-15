@@ -29,6 +29,15 @@ module.exports = (env) => {
         },
         plugins: [
             new CheckerPlugin(),
+            new webpack.ProvidePlugin({
+                $: 'jquery',
+                jquery: 'jquery',
+                'window.jQuery': 'jquery',
+                jQuery: 'jquery',
+                '_': 'lodash',
+                'Tether': 'tether',
+                utils: 'utils'
+            }),
             new webpack.DefinePlugin({
                 'process.env': {
                     NODE_ENV: JSON.stringify(isDevBuild ? 'development' : 'production')

@@ -4,6 +4,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Swastika.Extensions.Blog.Repositories;
 using Swastika.Extension.Blog.ViewModels;
+using Swastika.Common.Helper;
 
 namespace Swastika.Extension.Blog.Api.Controllers
 {
@@ -20,9 +21,9 @@ namespace Swastika.Extension.Blog.Api.Controllers
 
         // GET: api/Blog
         [HttpGet]
-        public async Task<IEnumerable<BlogViewModel>> GetBlogAsync()
+        public async Task<PaginationModel<BlogViewModel>> GetBlogAsync()
         {
-            return await _repo.GetViewModelListAsync(false);
+            return await _repo.GetModelListAsync(b => b.CreatedUtc, "desc", 0, 10, false);
         }
 
         // GET: api/Blog/5
