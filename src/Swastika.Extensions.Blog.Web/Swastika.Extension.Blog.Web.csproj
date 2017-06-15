@@ -6,6 +6,12 @@
     <PackageTargetFallback>$(PackageTargetFallback);portable-net45+win8+wp8+wpa81;</PackageTargetFallback>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Remove="VueApp\**" />
+    <Content Remove="VueApp\**" />
+    <EmbeddedResource Remove="VueApp\**" />
+    <None Remove="VueApp\**" />
+  </ItemGroup>
+  <ItemGroup>
     <Content Include="wwwroot\css\font-awesome.css" />
     <Content Include="wwwroot\css\font-awesome.css.map" />
     <Content Include="wwwroot\css\font-awesome.min.css" />

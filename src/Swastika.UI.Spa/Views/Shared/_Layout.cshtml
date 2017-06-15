@@ -8,6 +8,7 @@
     @*<link rel="stylesheet" href="~/dist/vendor.css" asp-append-version="true" />*@
     <link href="/themes/blog/css/font-awesome.min.css" rel="stylesheet">
     <link href="/themes/blog/css/simple-line-icons.css" rel="stylesheet">
+    <link href="~/themes/blog/css/simplePagination.css" rel="stylesheet" />
     <link href="/themes/blog/css/style.css" rel="stylesheet">
 </head>
 
@@ -26,45 +27,18 @@
     <script src="/themes/blog/js/libs/ocLazyLoad.min.js"></script>
     <script src="/themes/blog/js/libs/angular-breadcrumb.min.js"></script>
     <script src="/themes/blog/js/libs/loading-bar.min.js"></script>
+    <script src="/themes/blog/js/libs/paging.js"></script>
+    <script src="/themes/blog/js/libs/jquery.simplePagination.js"></script>
     <!-- AngularJS CoreUI App scripts -->
-
+    <script src="/js/common.js"></script>
     <script src="~/dist/vendor.js" asp-append-version="true"></script>
 
     <script src="~/dist/coreui/js/app.js" language="javascript"></script>
     <script>
         $(document).ready(function () {
             var obj = { "items": [{ "id": "7c2457c7-0e51-4a97-a68c-c2d387570712", "name": "test Name", "title": "Test Title", "slug": "slug", "description": "asdfasdf", "createdUtc": "2017-06-06T07:20:44.557", "modifiedUtc": "2017-06-06T07:20:44.557", "publishedUtc": "2017-06-06T07:20:44.557", "createdByUserId": "5dc3a795-df97-4613-9f69-d320e68eecbe", "commonStatusId": 1, "blogPost": [] }], "pageIndex": 0, "pageSize": 10, "totalPage": 1, "totalItems": 1 };
-            var items = obj['items'];
-            var table = document.createElement("Table");
-            table.className = 'table table-bordered table-striped table-sm';
-            var thead = document.createElement('th');
-            if (items.length > 0) {
-                var fstObj = items[0];
-                for (var name in fstObj) {
-                    var td = document.createElement('td');
-                    td.innerHTML = name;
-                    thead.appendChild(td);
-                }
-                table.appendChild(thead);
-                for (var item in items) {
-                    if (typeof (item[contentName]) != 'object') {
-                        var trContent = document.createElement('tr');
-                        for (var contentName in item) {
-
-                            var tdContent = document.createElement('td');
-                            td.innerHTML = name;
-                            trContent.appendChild(td);
-                        }
-                    }
-                    table.appendChild(trContent);
-                }
-                $('.card-block').append(table);
-            }
-
-            //for (var name in obj) {
-            //    var value = obj[name];
-            //    console.log(name + ' - ' + value);
-            //}
+            var row = SW.Common.getPagingTable(obj);
+            $('.card-block').append(row);
         });
     </script>
     @RenderSection("scripts", required: false)

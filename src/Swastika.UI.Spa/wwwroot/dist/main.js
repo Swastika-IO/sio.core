@@ -59,7 +59,7 @@
 /******/ 	
 /******/ 	
 /******/ 	var hotApplyOnUpdate = true;
-/******/ 	var hotCurrentHash = "cf853acb47bc1c7a3813"; // eslint-disable-line no-unused-vars
+/******/ 	var hotCurrentHash = "e3617ae87c9754aec5b3"; // eslint-disable-line no-unused-vars
 /******/ 	var hotCurrentModuleData = {};
 /******/ 	var hotCurrentChildModule; // eslint-disable-line no-unused-vars
 /******/ 	var hotCurrentParents = []; // eslint-disable-line no-unused-vars
@@ -1089,7 +1089,7 @@ exports = module.exports = __webpack_require__(7)(true);
 
 
 // module
-exports.push([module.i, "/*\r\n * Globals\r\n */\r\n\r\n/* Links */\na,\r\na:focus,\r\na:hover {\r\n    color: #fff;\n}\r\n\r\n/* Custom default button */\n.btn-secondary,\r\n.btn-secondary:hover,\r\n.btn-secondary:focus {\r\n    color: #333;\r\n    text-shadow: none; /* Prevent inheritance from `body` */\r\n    background-color: #fff;\r\n    border: .05rem solid #fff;\n}\r\n\r\n\r\n/*\r\n * Base structure\r\n */\nhtml,\r\nbody {\r\n    height: 100%;\r\n    background-color: #333;\n}\nbody {\r\n    color: #fff;\r\n    text-align: center;\r\n    text-shadow: 0 .05rem .1rem rgba(0,0,0,.5);\n}\n#app-root{\r\n    height:100%;\n}\r\n\r\n/* Extra markup and styles for table-esque vertical and horizontal centering */\n.site-wrapper {\r\n    display: table;\r\n    width: 100%;\r\n    height: 100%; /* For at least Firefox */\r\n    min-height: 100%;\r\n    -webkit-box-shadow: inset 0 0 5rem rgba(0,0,0,.5);\r\n    box-shadow: inset 0 0 5rem rgba(0,0,0,.5);\n}\n.site-wrapper-inner {\r\n    display: table-cell;\r\n    vertical-align: top;\n}\n.cover-container {\r\n    margin-right: auto;\r\n    margin-left: auto;\n}\r\n\r\n/* Padding for spacing */\n.inner {\r\n    padding: 2rem;\n}\r\n\r\n\r\n/*\r\n * Header\r\n */\n.masthead {\r\n    margin-bottom: 2rem;\n}\n.masthead-brand {\r\n    margin-bottom: 0;\n}\n.nav-masthead .nav-link {\r\n    padding: .25rem 0;\r\n    font-weight: bold;\r\n    color: rgba(255,255,255,.5);\r\n    background-color: transparent;\r\n    border-bottom: .25rem solid transparent;\n}\n.nav-masthead .nav-link:hover,\r\n    .nav-masthead .nav-link:focus {\r\n        border-bottom-color: rgba(255,255,255,.25);\n}\n.nav-masthead .nav-link + .nav-link {\r\n        margin-left: 1rem;\n}\n.nav-masthead .active {\r\n    color: #fff;\r\n    border-bottom-color: #fff;\n}\n@media (min-width: 48em) {\n.masthead-brand {\r\n        float: left;\n}\n.nav-masthead {\r\n        float: right;\n}\n}\r\n\r\n\r\n/*\r\n * Cover\r\n */\n.cover {\r\n    padding: 0 1.5rem;\n}\n.cover .btn-lg {\r\n        padding: .75rem 1.25rem;\r\n        font-weight: bold;\n}\r\n\r\n\r\n/*\r\n * Footer\r\n */\n.mastfoot {\r\n    color: rgba(255,255,255,.5);\n}\r\n\r\n\r\n/*\r\n * Affix and center\r\n */\n@media (min-width: 40em) {\r\n    /* Pull out the header and footer */\n.masthead {\r\n        position: fixed;\r\n        top: 0;\n}\n.mastfoot {\r\n        position: fixed;\r\n        bottom: 0;\n}\r\n    /* Start the vertical centering */\n.site-wrapper-inner {\r\n        vertical-align: middle;\n}\r\n    /* Handle the widths */\n.masthead,\r\n    .mastfoot,\r\n    .cover-container {\r\n        width: 100%; /* Must be percentage or pixels for horizontal alignment */\n}\n}\n@media (min-width: 62em) {\n.masthead,\r\n    .mastfoot,\r\n    .cover-container {\r\n        width: 42rem;\n}\n}\r\n", "", {"version":3,"sources":["D:/NhatHoang/Git/GitHub/Swastika-Core/src/Swastika.UI.Spa/ClientApp/components/home/home.css"],"names":[],"mappings":"AAAA;;GAEG;;AAEH,WAAW;AACX;;;IAGI,YAAY;CACf;;AAED,2BAA2B;AAC3B;;;IAGI,YAAY;IACZ,kBAAkB,CAAC,qCAAqC;IACxD,uBAAuB;IACvB,0BAA0B;CAC7B;;;AAGD;;GAEG;AAEH;;IAEI,aAAa;IACb,uBAAuB;CAC1B;AAED;IACI,YAAY;IACZ,mBAAmB;IACnB,2CAA2C;CAC9C;AAED;IACI,YAAY;CACf;;AAED,+EAA+E;AAC/E;IACI,eAAe;IACf,YAAY;IACZ,aAAa,CAAC,0BAA0B;IACxC,iBAAiB;IACjB,kDAAkD;IAClD,0CAA0C;CAC7C;AAED;IACI,oBAAoB;IACpB,oBAAoB;CACvB;AAED;IACI,mBAAmB;IACnB,kBAAkB;CACrB;;AAED,yBAAyB;AACzB;IACI,cAAc;CACjB;;;AAGD;;GAEG;AAEH;IACI,oBAAoB;CACvB;AAED;IACI,iBAAiB;CACpB;AAED;IACI,kBAAkB;IAClB,kBAAkB;IAClB,4BAA4B;IAC5B,8BAA8B;IAC9B,wCAAwC;CAC3C;AAEG;;QAEI,2CAA2C;CAC9C;AAED;QACI,kBAAkB;CACrB;AAEL;IACI,YAAY;IACZ,0BAA0B;CAC7B;AAED;AACI;QACI,YAAY;CACf;AAED;QACI,aAAa;CAChB;CACJ;;;AAGD;;GAEG;AAEH;IACI,kBAAkB;CACrB;AAEG;QACI,wBAAwB;QACxB,kBAAkB;CACrB;;;AAGL;;GAEG;AAEH;IACI,4BAA4B;CAC/B;;;AAGD;;GAEG;AAEH;IACI,oCAAoC;AACpC;QACI,gBAAgB;QAChB,OAAO;CACV;AAED;QACI,gBAAgB;QAChB,UAAU;CACb;IACD,kCAAkC;AAClC;QACI,uBAAuB;CAC1B;IACD,uBAAuB;AACvB;;;QAGI,YAAY,CAAC,2DAA2D;CAC3E;CACJ;AAED;AACI;;;QAGI,aAAa;CAChB;CACJ","file":"home.css","sourcesContent":["/*\r\n * Globals\r\n */\r\n\r\n/* Links */\r\na,\r\na:focus,\r\na:hover {\r\n    color: #fff;\r\n}\r\n\r\n/* Custom default button */\r\n.btn-secondary,\r\n.btn-secondary:hover,\r\n.btn-secondary:focus {\r\n    color: #333;\r\n    text-shadow: none; /* Prevent inheritance from `body` */\r\n    background-color: #fff;\r\n    border: .05rem solid #fff;\r\n}\r\n\r\n\r\n/*\r\n * Base structure\r\n */\r\n\r\nhtml,\r\nbody {\r\n    height: 100%;\r\n    background-color: #333;\r\n}\r\n\r\nbody {\r\n    color: #fff;\r\n    text-align: center;\r\n    text-shadow: 0 .05rem .1rem rgba(0,0,0,.5);\r\n}\r\n\r\n#app-root{\r\n    height:100%;\r\n}\r\n\r\n/* Extra markup and styles for table-esque vertical and horizontal centering */\r\n.site-wrapper {\r\n    display: table;\r\n    width: 100%;\r\n    height: 100%; /* For at least Firefox */\r\n    min-height: 100%;\r\n    -webkit-box-shadow: inset 0 0 5rem rgba(0,0,0,.5);\r\n    box-shadow: inset 0 0 5rem rgba(0,0,0,.5);\r\n}\r\n\r\n.site-wrapper-inner {\r\n    display: table-cell;\r\n    vertical-align: top;\r\n}\r\n\r\n.cover-container {\r\n    margin-right: auto;\r\n    margin-left: auto;\r\n}\r\n\r\n/* Padding for spacing */\r\n.inner {\r\n    padding: 2rem;\r\n}\r\n\r\n\r\n/*\r\n * Header\r\n */\r\n\r\n.masthead {\r\n    margin-bottom: 2rem;\r\n}\r\n\r\n.masthead-brand {\r\n    margin-bottom: 0;\r\n}\r\n\r\n.nav-masthead .nav-link {\r\n    padding: .25rem 0;\r\n    font-weight: bold;\r\n    color: rgba(255,255,255,.5);\r\n    background-color: transparent;\r\n    border-bottom: .25rem solid transparent;\r\n}\r\n\r\n    .nav-masthead .nav-link:hover,\r\n    .nav-masthead .nav-link:focus {\r\n        border-bottom-color: rgba(255,255,255,.25);\r\n    }\r\n\r\n    .nav-masthead .nav-link + .nav-link {\r\n        margin-left: 1rem;\r\n    }\r\n\r\n.nav-masthead .active {\r\n    color: #fff;\r\n    border-bottom-color: #fff;\r\n}\r\n\r\n@media (min-width: 48em) {\r\n    .masthead-brand {\r\n        float: left;\r\n    }\r\n\r\n    .nav-masthead {\r\n        float: right;\r\n    }\r\n}\r\n\r\n\r\n/*\r\n * Cover\r\n */\r\n\r\n.cover {\r\n    padding: 0 1.5rem;\r\n}\r\n\r\n    .cover .btn-lg {\r\n        padding: .75rem 1.25rem;\r\n        font-weight: bold;\r\n    }\r\n\r\n\r\n/*\r\n * Footer\r\n */\r\n\r\n.mastfoot {\r\n    color: rgba(255,255,255,.5);\r\n}\r\n\r\n\r\n/*\r\n * Affix and center\r\n */\r\n\r\n@media (min-width: 40em) {\r\n    /* Pull out the header and footer */\r\n    .masthead {\r\n        position: fixed;\r\n        top: 0;\r\n    }\r\n\r\n    .mastfoot {\r\n        position: fixed;\r\n        bottom: 0;\r\n    }\r\n    /* Start the vertical centering */\r\n    .site-wrapper-inner {\r\n        vertical-align: middle;\r\n    }\r\n    /* Handle the widths */\r\n    .masthead,\r\n    .mastfoot,\r\n    .cover-container {\r\n        width: 100%; /* Must be percentage or pixels for horizontal alignment */\r\n    }\r\n}\r\n\r\n@media (min-width: 62em) {\r\n    .masthead,\r\n    .mastfoot,\r\n    .cover-container {\r\n        width: 42rem;\r\n    }\r\n}\r\n"],"sourceRoot":""}]);
+exports.push([module.i, "/*\r\n * Globals\r\n */\r\n\r\n/* Links */\na,\r\na:focus,\r\na:hover {\r\n    color: #fff;\n}\r\n\r\n/* Custom default button */\n.btn-secondary,\r\n.btn-secondary:hover,\r\n.btn-secondary:focus {\r\n    color: #333;\r\n    text-shadow: none; /* Prevent inheritance from `body` */\r\n    background-color: #fff;\r\n    border: .05rem solid #fff;\n}\r\n\r\n\r\n/*\r\n * Base structure\r\n */\nhtml,\r\nbody {\r\n    height: 100%;\r\n    background-color: #333;\n}\nbody {\r\n    color: #fff;\r\n    text-align: center;\r\n    text-shadow: 0 .05rem .1rem rgba(0,0,0,.5);\n}\n#app-root{\r\n    height:100%;\n}\r\n\r\n/* Extra markup and styles for table-esque vertical and horizontal centering */\n.site-wrapper {\r\n    display: table;\r\n    width: 100%;\r\n    height: 100%; /* For at least Firefox */\r\n    min-height: 100%;\r\n    -webkit-box-shadow: inset 0 0 5rem rgba(0,0,0,.5);\r\n    box-shadow: inset 0 0 5rem rgba(0,0,0,.5);\n}\n.site-wrapper-inner {\r\n    display: table-cell;\r\n    vertical-align: top;\n}\n.cover-container {\r\n    margin-right: auto;\r\n    margin-left: auto;\n}\r\n\r\n/* Padding for spacing */\n.inner {\r\n    padding: 2rem;\n}\r\n\r\n\r\n/*\r\n * Header\r\n */\n.masthead {\r\n    margin-bottom: 2rem;\n}\n.masthead-brand {\r\n    margin-bottom: 0;\n}\n.nav-masthead .nav-link {\r\n    padding: .25rem 0;\r\n    font-weight: bold;\r\n    color: rgba(255,255,255,.5);\r\n    background-color: transparent;\r\n    border-bottom: .25rem solid transparent;\n}\n.nav-masthead .nav-link:hover,\r\n    .nav-masthead .nav-link:focus {\r\n        border-bottom-color: rgba(255,255,255,.25);\n}\n.nav-masthead .nav-link + .nav-link {\r\n        margin-left: 1rem;\n}\n.nav-masthead .active {\r\n    color: #fff;\r\n    border-bottom-color: #fff;\n}\n@media (min-width: 48em) {\n.masthead-brand {\r\n        float: left;\n}\n.nav-masthead {\r\n        float: right;\n}\n}\r\n\r\n\r\n/*\r\n * Cover\r\n */\n.cover {\r\n    padding: 0 1.5rem;\n}\n.cover .btn-lg {\r\n        padding: .75rem 1.25rem;\r\n        font-weight: bold;\n}\r\n\r\n\r\n/*\r\n * Footer\r\n */\n.mastfoot {\r\n    color: rgba(255,255,255,.5);\n}\r\n\r\n\r\n/*\r\n * Affix and center\r\n */\n@media (min-width: 40em) {\r\n    /* Pull out the header and footer */\n.masthead {\r\n        position: fixed;\r\n        top: 0;\n}\n.mastfoot {\r\n        position: fixed;\r\n        bottom: 0;\n}\r\n    /* Start the vertical centering */\n.site-wrapper-inner {\r\n        vertical-align: middle;\n}\r\n    /* Handle the widths */\n.masthead,\r\n    .mastfoot,\r\n    .cover-container {\r\n        width: 100%; /* Must be percentage or pixels for horizontal alignment */\n}\n}\n@media (min-width: 62em) {\n.masthead,\r\n    .mastfoot,\r\n    .cover-container {\r\n        width: 42rem;\n}\n}\r\n", "", {"version":3,"sources":["E:/Net/Git/GitHub/Swastika-Core/src/Swastika.UI.Spa/ClientApp/components/home/home.css"],"names":[],"mappings":"AAAA;;GAEG;;AAEH,WAAW;AACX;;;IAGI,YAAY;CACf;;AAED,2BAA2B;AAC3B;;;IAGI,YAAY;IACZ,kBAAkB,CAAC,qCAAqC;IACxD,uBAAuB;IACvB,0BAA0B;CAC7B;;;AAGD;;GAEG;AAEH;;IAEI,aAAa;IACb,uBAAuB;CAC1B;AAED;IACI,YAAY;IACZ,mBAAmB;IACnB,2CAA2C;CAC9C;AAED;IACI,YAAY;CACf;;AAED,+EAA+E;AAC/E;IACI,eAAe;IACf,YAAY;IACZ,aAAa,CAAC,0BAA0B;IACxC,iBAAiB;IACjB,kDAAkD;IAClD,0CAA0C;CAC7C;AAED;IACI,oBAAoB;IACpB,oBAAoB;CACvB;AAED;IACI,mBAAmB;IACnB,kBAAkB;CACrB;;AAED,yBAAyB;AACzB;IACI,cAAc;CACjB;;;AAGD;;GAEG;AAEH;IACI,oBAAoB;CACvB;AAED;IACI,iBAAiB;CACpB;AAED;IACI,kBAAkB;IAClB,kBAAkB;IAClB,4BAA4B;IAC5B,8BAA8B;IAC9B,wCAAwC;CAC3C;AAEG;;QAEI,2CAA2C;CAC9C;AAED;QACI,kBAAkB;CACrB;AAEL;IACI,YAAY;IACZ,0BAA0B;CAC7B;AAED;AACI;QACI,YAAY;CACf;AAED;QACI,aAAa;CAChB;CACJ;;;AAGD;;GAEG;AAEH;IACI,kBAAkB;CACrB;AAEG;QACI,wBAAwB;QACxB,kBAAkB;CACrB;;;AAGL;;GAEG;AAEH;IACI,4BAA4B;CAC/B;;;AAGD;;GAEG;AAEH;IACI,oCAAoC;AACpC;QACI,gBAAgB;QAChB,OAAO;CACV;AAED;QACI,gBAAgB;QAChB,UAAU;CACb;IACD,kCAAkC;AAClC;QACI,uBAAuB;CAC1B;IACD,uBAAuB;AACvB;;;QAGI,YAAY,CAAC,2DAA2D;CAC3E;CACJ;AAED;AACI;;;QAGI,aAAa;CAChB;CACJ","file":"home.css","sourcesContent":["/*\r\n * Globals\r\n */\r\n\r\n/* Links */\r\na,\r\na:focus,\r\na:hover {\r\n    color: #fff;\r\n}\r\n\r\n/* Custom default button */\r\n.btn-secondary,\r\n.btn-secondary:hover,\r\n.btn-secondary:focus {\r\n    color: #333;\r\n    text-shadow: none; /* Prevent inheritance from `body` */\r\n    background-color: #fff;\r\n    border: .05rem solid #fff;\r\n}\r\n\r\n\r\n/*\r\n * Base structure\r\n */\r\n\r\nhtml,\r\nbody {\r\n    height: 100%;\r\n    background-color: #333;\r\n}\r\n\r\nbody {\r\n    color: #fff;\r\n    text-align: center;\r\n    text-shadow: 0 .05rem .1rem rgba(0,0,0,.5);\r\n}\r\n\r\n#app-root{\r\n    height:100%;\r\n}\r\n\r\n/* Extra markup and styles for table-esque vertical and horizontal centering */\r\n.site-wrapper {\r\n    display: table;\r\n    width: 100%;\r\n    height: 100%; /* For at least Firefox */\r\n    min-height: 100%;\r\n    -webkit-box-shadow: inset 0 0 5rem rgba(0,0,0,.5);\r\n    box-shadow: inset 0 0 5rem rgba(0,0,0,.5);\r\n}\r\n\r\n.site-wrapper-inner {\r\n    display: table-cell;\r\n    vertical-align: top;\r\n}\r\n\r\n.cover-container {\r\n    margin-right: auto;\r\n    margin-left: auto;\r\n}\r\n\r\n/* Padding for spacing */\r\n.inner {\r\n    padding: 2rem;\r\n}\r\n\r\n\r\n/*\r\n * Header\r\n */\r\n\r\n.masthead {\r\n    margin-bottom: 2rem;\r\n}\r\n\r\n.masthead-brand {\r\n    margin-bottom: 0;\r\n}\r\n\r\n.nav-masthead .nav-link {\r\n    padding: .25rem 0;\r\n    font-weight: bold;\r\n    color: rgba(255,255,255,.5);\r\n    background-color: transparent;\r\n    border-bottom: .25rem solid transparent;\r\n}\r\n\r\n    .nav-masthead .nav-link:hover,\r\n    .nav-masthead .nav-link:focus {\r\n        border-bottom-color: rgba(255,255,255,.25);\r\n    }\r\n\r\n    .nav-masthead .nav-link + .nav-link {\r\n        margin-left: 1rem;\r\n    }\r\n\r\n.nav-masthead .active {\r\n    color: #fff;\r\n    border-bottom-color: #fff;\r\n}\r\n\r\n@media (min-width: 48em) {\r\n    .masthead-brand {\r\n        float: left;\r\n    }\r\n\r\n    .nav-masthead {\r\n        float: right;\r\n    }\r\n}\r\n\r\n\r\n/*\r\n * Cover\r\n */\r\n\r\n.cover {\r\n    padding: 0 1.5rem;\r\n}\r\n\r\n    .cover .btn-lg {\r\n        padding: .75rem 1.25rem;\r\n        font-weight: bold;\r\n    }\r\n\r\n\r\n/*\r\n * Footer\r\n */\r\n\r\n.mastfoot {\r\n    color: rgba(255,255,255,.5);\r\n}\r\n\r\n\r\n/*\r\n * Affix and center\r\n */\r\n\r\n@media (min-width: 40em) {\r\n    /* Pull out the header and footer */\r\n    .masthead {\r\n        position: fixed;\r\n        top: 0;\r\n    }\r\n\r\n    .mastfoot {\r\n        position: fixed;\r\n        bottom: 0;\r\n    }\r\n    /* Start the vertical centering */\r\n    .site-wrapper-inner {\r\n        vertical-align: middle;\r\n    }\r\n    /* Handle the widths */\r\n    .masthead,\r\n    .mastfoot,\r\n    .cover-container {\r\n        width: 100%; /* Must be percentage or pixels for horizontal alignment */\r\n    }\r\n}\r\n\r\n@media (min-width: 62em) {\r\n    .masthead,\r\n    .mastfoot,\r\n    .cover-container {\r\n        width: 42rem;\r\n    }\r\n}\r\n"],"sourceRoot":""}]);
 
 // exports
 
@@ -1393,7 +1393,7 @@ var Component = __webpack_require__(2)(
   /* moduleIdentifier (server only) */
   null
 )
-Component.options.__file = "D:\\NhatHoang\\Git\\GitHub\\Swastika-Core\\src\\Swastika.UI.Spa\\ClientApp\\components\\navmenu\\navmenu.vue.html"
+Component.options.__file = "E:\\Net\\Git\\GitHub\\Swastika-Core\\src\\Swastika.UI.Spa\\ClientApp\\components\\navmenu\\navmenu.vue.html"
 if (Component.esModule && Object.keys(Component.esModule).some(function (key) {return key !== "default" && key.substr(0, 2) !== "__"})) {console.error("named exports are not supported in *.vue files.")}
 if (Component.options.functional) {console.error("[vue-loader] navmenu.vue.html: functional components are not supported with templates, they should use render functions.")}
 
@@ -4581,7 +4581,7 @@ var Component = __webpack_require__(2)(
   /* moduleIdentifier (server only) */
   null
 )
-Component.options.__file = "D:\\NhatHoang\\Git\\GitHub\\Swastika-Core\\src\\Swastika.UI.Spa\\ClientApp\\components\\app\\app.vue.html"
+Component.options.__file = "E:\\Net\\Git\\GitHub\\Swastika-Core\\src\\Swastika.UI.Spa\\ClientApp\\components\\app\\app.vue.html"
 if (Component.esModule && Object.keys(Component.esModule).some(function (key) {return key !== "default" && key.substr(0, 2) !== "__"})) {console.error("named exports are not supported in *.vue files.")}
 if (Component.options.functional) {console.error("[vue-loader] app.vue.html: functional components are not supported with templates, they should use render functions.")}
 
@@ -4621,7 +4621,7 @@ var Component = __webpack_require__(2)(
   /* moduleIdentifier (server only) */
   null
 )
-Component.options.__file = "D:\\NhatHoang\\Git\\GitHub\\Swastika-Core\\src\\Swastika.UI.Spa\\ClientApp\\components\\blog\\app-header\\header.vue.html"
+Component.options.__file = "E:\\Net\\Git\\GitHub\\Swastika-Core\\src\\Swastika.UI.Spa\\ClientApp\\components\\blog\\app-header\\header.vue.html"
 if (Component.esModule && Object.keys(Component.esModule).some(function (key) {return key !== "default" && key.substr(0, 2) !== "__"})) {console.error("named exports are not supported in *.vue files.")}
 if (Component.options.functional) {console.error("[vue-loader] header.vue.html: functional components are not supported with templates, they should use render functions.")}
 
@@ -4661,7 +4661,7 @@ var Component = __webpack_require__(2)(
   /* moduleIdentifier (server only) */
   null
 )
-Component.options.__file = "D:\\NhatHoang\\Git\\GitHub\\Swastika-Core\\src\\Swastika.UI.Spa\\ClientApp\\components\\blog\\blog.vue.html"
+Component.options.__file = "E:\\Net\\Git\\GitHub\\Swastika-Core\\src\\Swastika.UI.Spa\\ClientApp\\components\\blog\\blog.vue.html"
 if (Component.esModule && Object.keys(Component.esModule).some(function (key) {return key !== "default" && key.substr(0, 2) !== "__"})) {console.error("named exports are not supported in *.vue files.")}
 if (Component.options.functional) {console.error("[vue-loader] blog.vue.html: functional components are not supported with templates, they should use render functions.")}
 
@@ -4701,7 +4701,7 @@ var Component = __webpack_require__(2)(
   /* moduleIdentifier (server only) */
   null
 )
-Component.options.__file = "D:\\NhatHoang\\Git\\GitHub\\Swastika-Core\\src\\Swastika.UI.Spa\\ClientApp\\components\\blog\\breadcrumb\\breadcrumb.vue.html"
+Component.options.__file = "E:\\Net\\Git\\GitHub\\Swastika-Core\\src\\Swastika.UI.Spa\\ClientApp\\components\\blog\\breadcrumb\\breadcrumb.vue.html"
 if (Component.esModule && Object.keys(Component.esModule).some(function (key) {return key !== "default" && key.substr(0, 2) !== "__"})) {console.error("named exports are not supported in *.vue files.")}
 if (Component.options.functional) {console.error("[vue-loader] breadcrumb.vue.html: functional components are not supported with templates, they should use render functions.")}
 
@@ -4741,7 +4741,7 @@ var Component = __webpack_require__(2)(
   /* moduleIdentifier (server only) */
   null
 )
-Component.options.__file = "D:\\NhatHoang\\Git\\GitHub\\Swastika-Core\\src\\Swastika.UI.Spa\\ClientApp\\components\\blog\\container\\dashboard\\dashboard.vue.html"
+Component.options.__file = "E:\\Net\\Git\\GitHub\\Swastika-Core\\src\\Swastika.UI.Spa\\ClientApp\\components\\blog\\container\\dashboard\\dashboard.vue.html"
 if (Component.esModule && Object.keys(Component.esModule).some(function (key) {return key !== "default" && key.substr(0, 2) !== "__"})) {console.error("named exports are not supported in *.vue files.")}
 if (Component.options.functional) {console.error("[vue-loader] dashboard.vue.html: functional components are not supported with templates, they should use render functions.")}
 
@@ -4781,7 +4781,7 @@ var Component = __webpack_require__(2)(
   /* moduleIdentifier (server only) */
   null
 )
-Component.options.__file = "D:\\NhatHoang\\Git\\GitHub\\Swastika-Core\\src\\Swastika.UI.Spa\\ClientApp\\components\\blog\\container\\widgets\\widgets.vue.html"
+Component.options.__file = "E:\\Net\\Git\\GitHub\\Swastika-Core\\src\\Swastika.UI.Spa\\ClientApp\\components\\blog\\container\\widgets\\widgets.vue.html"
 if (Component.esModule && Object.keys(Component.esModule).some(function (key) {return key !== "default" && key.substr(0, 2) !== "__"})) {console.error("named exports are not supported in *.vue files.")}
 if (Component.options.functional) {console.error("[vue-loader] widgets.vue.html: functional components are not supported with templates, they should use render functions.")}
 
@@ -4821,7 +4821,7 @@ var Component = __webpack_require__(2)(
   /* moduleIdentifier (server only) */
   null
 )
-Component.options.__file = "D:\\NhatHoang\\Git\\GitHub\\Swastika-Core\\src\\Swastika.UI.Spa\\ClientApp\\components\\blog\\nav-bar\\nav-bar.vue.html"
+Component.options.__file = "E:\\Net\\Git\\GitHub\\Swastika-Core\\src\\Swastika.UI.Spa\\ClientApp\\components\\blog\\nav-bar\\nav-bar.vue.html"
 if (Component.esModule && Object.keys(Component.esModule).some(function (key) {return key !== "default" && key.substr(0, 2) !== "__"})) {console.error("named exports are not supported in *.vue files.")}
 if (Component.options.functional) {console.error("[vue-loader] nav-bar.vue.html: functional components are not supported with templates, they should use render functions.")}
 
@@ -4861,7 +4861,7 @@ var Component = __webpack_require__(2)(
   /* moduleIdentifier (server only) */
   null
 )
-Component.options.__file = "D:\\NhatHoang\\Git\\GitHub\\Swastika-Core\\src\\Swastika.UI.Spa\\ClientApp\\components\\blog\\sidebar\\sidebar.vue.html"
+Component.options.__file = "E:\\Net\\Git\\GitHub\\Swastika-Core\\src\\Swastika.UI.Spa\\ClientApp\\components\\blog\\sidebar\\sidebar.vue.html"
 if (Component.esModule && Object.keys(Component.esModule).some(function (key) {return key !== "default" && key.substr(0, 2) !== "__"})) {console.error("named exports are not supported in *.vue files.")}
 if (Component.options.functional) {console.error("[vue-loader] sidebar.vue.html: functional components are not supported with templates, they should use render functions.")}
 
@@ -4901,7 +4901,7 @@ var Component = __webpack_require__(2)(
   /* moduleIdentifier (server only) */
   null
 )
-Component.options.__file = "D:\\NhatHoang\\Git\\GitHub\\Swastika-Core\\src\\Swastika.UI.Spa\\ClientApp\\components\\counter\\counter.vue.html"
+Component.options.__file = "E:\\Net\\Git\\GitHub\\Swastika-Core\\src\\Swastika.UI.Spa\\ClientApp\\components\\counter\\counter.vue.html"
 if (Component.esModule && Object.keys(Component.esModule).some(function (key) {return key !== "default" && key.substr(0, 2) !== "__"})) {console.error("named exports are not supported in *.vue files.")}
 if (Component.options.functional) {console.error("[vue-loader] counter.vue.html: functional components are not supported with templates, they should use render functions.")}
 
@@ -4941,7 +4941,7 @@ var Component = __webpack_require__(2)(
   /* moduleIdentifier (server only) */
   null
 )
-Component.options.__file = "D:\\NhatHoang\\Git\\GitHub\\Swastika-Core\\src\\Swastika.UI.Spa\\ClientApp\\components\\fetchdata\\fetchdata.vue.html"
+Component.options.__file = "E:\\Net\\Git\\GitHub\\Swastika-Core\\src\\Swastika.UI.Spa\\ClientApp\\components\\fetchdata\\fetchdata.vue.html"
 if (Component.esModule && Object.keys(Component.esModule).some(function (key) {return key !== "default" && key.substr(0, 2) !== "__"})) {console.error("named exports are not supported in *.vue files.")}
 if (Component.options.functional) {console.error("[vue-loader] fetchdata.vue.html: functional components are not supported with templates, they should use render functions.")}
 
@@ -4985,7 +4985,7 @@ var Component = __webpack_require__(2)(
   /* moduleIdentifier (server only) */
   null
 )
-Component.options.__file = "D:\\NhatHoang\\Git\\GitHub\\Swastika-Core\\src\\Swastika.UI.Spa\\ClientApp\\components\\home\\home.vue.html"
+Component.options.__file = "E:\\Net\\Git\\GitHub\\Swastika-Core\\src\\Swastika.UI.Spa\\ClientApp\\components\\home\\home.vue.html"
 if (Component.esModule && Object.keys(Component.esModule).some(function (key) {return key !== "default" && key.substr(0, 2) !== "__"})) {console.error("named exports are not supported in *.vue files.")}
 if (Component.options.functional) {console.error("[vue-loader] home.vue.html: functional components are not supported with templates, they should use render functions.")}
 
@@ -5025,7 +5025,7 @@ var Component = __webpack_require__(2)(
   /* moduleIdentifier (server only) */
   null
 )
-Component.options.__file = "D:\\NhatHoang\\Git\\GitHub\\Swastika-Core\\src\\Swastika.UI.Spa\\ClientApp\\components\\portal\\breadcrumb\\breadcrumb.vue.html"
+Component.options.__file = "E:\\Net\\Git\\GitHub\\Swastika-Core\\src\\Swastika.UI.Spa\\ClientApp\\components\\portal\\breadcrumb\\breadcrumb.vue.html"
 if (Component.esModule && Object.keys(Component.esModule).some(function (key) {return key !== "default" && key.substr(0, 2) !== "__"})) {console.error("named exports are not supported in *.vue files.")}
 if (Component.options.functional) {console.error("[vue-loader] breadcrumb.vue.html: functional components are not supported with templates, they should use render functions.")}
 
@@ -5065,7 +5065,7 @@ var Component = __webpack_require__(2)(
   /* moduleIdentifier (server only) */
   null
 )
-Component.options.__file = "D:\\NhatHoang\\Git\\GitHub\\Swastika-Core\\src\\Swastika.UI.Spa\\ClientApp\\components\\portal\\container\\dashboard\\dashboard.vue.html"
+Component.options.__file = "E:\\Net\\Git\\GitHub\\Swastika-Core\\src\\Swastika.UI.Spa\\ClientApp\\components\\portal\\container\\dashboard\\dashboard.vue.html"
 if (Component.esModule && Object.keys(Component.esModule).some(function (key) {return key !== "default" && key.substr(0, 2) !== "__"})) {console.error("named exports are not supported in *.vue files.")}
 if (Component.options.functional) {console.error("[vue-loader] dashboard.vue.html: functional components are not supported with templates, they should use render functions.")}
 
@@ -5105,7 +5105,7 @@ var Component = __webpack_require__(2)(
   /* moduleIdentifier (server only) */
   null
 )
-Component.options.__file = "D:\\NhatHoang\\Git\\GitHub\\Swastika-Core\\src\\Swastika.UI.Spa\\ClientApp\\components\\portal\\container\\widgets\\widgets.vue.html"
+Component.options.__file = "E:\\Net\\Git\\GitHub\\Swastika-Core\\src\\Swastika.UI.Spa\\ClientApp\\components\\portal\\container\\widgets\\widgets.vue.html"
 if (Component.esModule && Object.keys(Component.esModule).some(function (key) {return key !== "default" && key.substr(0, 2) !== "__"})) {console.error("named exports are not supported in *.vue files.")}
 if (Component.options.functional) {console.error("[vue-loader] widgets.vue.html: functional components are not supported with templates, they should use render functions.")}
 
@@ -5145,7 +5145,7 @@ var Component = __webpack_require__(2)(
   /* moduleIdentifier (server only) */
   null
 )
-Component.options.__file = "D:\\NhatHoang\\Git\\GitHub\\Swastika-Core\\src\\Swastika.UI.Spa\\ClientApp\\components\\portal\\navbar\\navbar.vue.html"
+Component.options.__file = "E:\\Net\\Git\\GitHub\\Swastika-Core\\src\\Swastika.UI.Spa\\ClientApp\\components\\portal\\navbar\\navbar.vue.html"
 if (Component.esModule && Object.keys(Component.esModule).some(function (key) {return key !== "default" && key.substr(0, 2) !== "__"})) {console.error("named exports are not supported in *.vue files.")}
 if (Component.options.functional) {console.error("[vue-loader] navbar.vue.html: functional components are not supported with templates, they should use render functions.")}
 
@@ -5185,7 +5185,7 @@ var Component = __webpack_require__(2)(
   /* moduleIdentifier (server only) */
   null
 )
-Component.options.__file = "D:\\NhatHoang\\Git\\GitHub\\Swastika-Core\\src\\Swastika.UI.Spa\\ClientApp\\components\\portal\\portal.vue.html"
+Component.options.__file = "E:\\Net\\Git\\GitHub\\Swastika-Core\\src\\Swastika.UI.Spa\\ClientApp\\components\\portal\\portal.vue.html"
 if (Component.esModule && Object.keys(Component.esModule).some(function (key) {return key !== "default" && key.substr(0, 2) !== "__"})) {console.error("named exports are not supported in *.vue files.")}
 if (Component.options.functional) {console.error("[vue-loader] portal.vue.html: functional components are not supported with templates, they should use render functions.")}
 
@@ -5225,7 +5225,7 @@ var Component = __webpack_require__(2)(
   /* moduleIdentifier (server only) */
   null
 )
-Component.options.__file = "D:\\NhatHoang\\Git\\GitHub\\Swastika-Core\\src\\Swastika.UI.Spa\\ClientApp\\components\\portal\\sidebar\\sidebar.vue.html"
+Component.options.__file = "E:\\Net\\Git\\GitHub\\Swastika-Core\\src\\Swastika.UI.Spa\\ClientApp\\components\\portal\\sidebar\\sidebar.vue.html"
 if (Component.esModule && Object.keys(Component.esModule).some(function (key) {return key !== "default" && key.substr(0, 2) !== "__"})) {console.error("named exports are not supported in *.vue files.")}
 if (Component.options.functional) {console.error("[vue-loader] sidebar.vue.html: functional components are not supported with templates, they should use render functions.")}
 
@@ -10374,7 +10374,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     }
   }), _vm._v(" "), _c('span', {
     staticClass: "avatar-status badge-success"
-  })])]), _vm._v(" "), _c('td', [_c('div', [_vm._v("Agapetus Tade��")]), _vm._v(" "), _c('div', {
+  })])]), _vm._v(" "), _c('td', [_c('div', [_vm._v("Agapetus Tade�")]), _vm._v(" "), _c('div', {
     staticClass: "small text-muted"
   }, [_c('span', [_vm._v("New")]), _vm._v("| Registered: Jan 1, 2015\n                                    ")])]), _vm._v(" "), _c('td', {
     staticClass: "text-center"
@@ -10578,7 +10578,9 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     attrs: {
       "href": "#"
     }
-  }, [_vm._v("Next")])])])])])])])])])
+  }, [_vm._v("Next")])])])]), _vm._v(" "), _c('div', {
+    staticClass: "pagination"
+  })])])])])])
 }]}
 module.exports.render._withStripped = true
 if (true) {

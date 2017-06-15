@@ -1366,6 +1366,7 @@
     <Content Include="wwwroot\themes\blog\js\libs\bootstrap.min.js" />
     <Content Include="wwwroot\themes\blog\js\libs\Chart.js" />
     <Content Include="wwwroot\themes\blog\js\libs\Chart.min.js" />
+    <Content Include="wwwroot\themes\blog\js\libs\jquery - Copy.simplePagination.js" />
     <Content Include="wwwroot\themes\blog\js\libs\jquery-3.2.1.min.js" />
     <Content Include="wwwroot\themes\blog\js\libs\jquery.js" />
     <Content Include="wwwroot\themes\blog\js\libs\jquery.min.js" />
@@ -1373,8 +1374,10 @@
     <Content Include="wwwroot\themes\blog\js\libs\ocLazyLoad.min.js" />
     <Content Include="wwwroot\themes\blog\js\libs\pace.js" />
     <Content Include="wwwroot\themes\blog\js\libs\pace.min.js" />
+    <Content Include="wwwroot\themes\blog\js\libs\paging.js" />
     <Content Include="wwwroot\themes\blog\js\libs\tether.js" />
     <Content Include="wwwroot\themes\blog\js\libs\tether.min.js" />
+    <Content Include="wwwroot\themes\blog\js\paging.js" />
     <Content Include="wwwroot\themes\blog\js\views\charts.js" />
     <Content Include="wwwroot\themes\blog\js\views\main.js" />
     <Content Include="wwwroot\themes\blog\js\views\widgets.js" />
