@@ -108,25 +108,7 @@ span.ellipse.clickable {
 }
 
 .light-theme a, .light-theme span {
-	float: left;
-	color: #666;
-	font-size:14px;
-	line-height:24px;
-	font-weight: normal;
-	text-align: center;
-	border: 1px solid #BBB;
-	min-width: 14px;
-	padding: 0 7px;
-	margin: 0 5px 0 0;
-	border-radius: 3px;
-	box-shadow: 0 1px 2px rgba(0,0,0,0.2);
-	background: #efefef; /* Old browsers */
-	background: -moz-linear-gradient(top, #ffffff 0%, #efefef 100%); /* FF3.6+ */
-	background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#ffffff), color-stop(100%,#efefef)); /* Chrome,Safari4+ */
-	background: -webkit-linear-gradient(top, #ffffff 0%,#efefef 100%); /* Chrome10+,Safari5.1+ */
-	background: -o-linear-gradient(top, #ffffff 0%,#efefef 100%); /* Opera11.10+ */
-	background: -ms-linear-gradient(top, #ffffff 0%,#efefef 100%); /* IE10+ */
-	background: linear-gradient(top, #ffffff 0%,#efefef 100%); /* W3C */
+	
 }
 
 .light-theme a:hover, .light-theme li:not(.disabled):not(.active) span:hover {
@@ -134,13 +116,13 @@ span.ellipse.clickable {
 	background: #FCFCFC;
 }
 
-.light-theme .current {
+/*.light-theme .current {
 	background: #666;
 	color: #FFF;
 	border-color: #444;
 	box-shadow: 0 1px 0 rgba(255,255,255,1), 0 0 2px rgba(0, 0, 0, 0.3) inset;
 	cursor: default;
-}
+}*/
 
 .light-theme .ellipse {
 	background: none;
@@ -203,4 +185,14 @@ span.ellipse.clickable {
 }
 .simple-pagination li.disabled{
     display:none;
+}
+.pagination li.active span {
+    z-index: 2;
+    color: #fff;
+    background-color: #20a8d8;
+    border-color: #20a8d8;
+    position: relative;
+    display: block;
+    padding: 0.5rem 0.75rem;
+    line-height: 1.25;
 }

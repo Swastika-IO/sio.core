@@ -27,7 +27,6 @@
     <script src="/themes/blog/js/libs/ocLazyLoad.min.js"></script>
     <script src="/themes/blog/js/libs/angular-breadcrumb.min.js"></script>
     <script src="/themes/blog/js/libs/loading-bar.min.js"></script>
-    <script src="/themes/blog/js/libs/paging.js"></script>
     <script src="/themes/blog/js/libs/jquery.simplePagination.js"></script>
     <!-- AngularJS CoreUI App scripts -->
     <script src="/js/common.js"></script>
@@ -35,11 +34,14 @@
 
     <script src="~/dist/coreui/js/app.js" language="javascript"></script>
     <script>
-        $(document).ready(function () {
-            var obj = { "items": [{ "id": "7c2457c7-0e51-4a97-a68c-c2d387570712", "name": "test Name", "title": "Test Title", "slug": "slug", "description": "asdfasdf", "createdUtc": "2017-06-06T07:20:44.557", "modifiedUtc": "2017-06-06T07:20:44.557", "publishedUtc": "2017-06-06T07:20:44.557", "createdByUserId": "5dc3a795-df97-4613-9f69-d320e68eecbe", "commonStatusId": 1, "blogPost": [] }], "pageIndex": 0, "pageSize": 10, "totalPage": 1, "totalItems": 1 };
-            var row = SW.Common.getPagingTable(obj);
-            $('.card-block').append(row);
-        });
+        let initPagination = function () {
+            var pagination = $('.pagination')
+            pagination.pagination({
+                items: pagination.attr('items'),
+                itemsOnPage: pagination.attr('pageSize'),
+                currentPage: pagination.attr('pageIndex') + 1
+            });
+        }        
     </script>
     @RenderSection("scripts", required: false)
 </body>

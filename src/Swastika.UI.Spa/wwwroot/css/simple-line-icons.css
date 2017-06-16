@@ -776,3 +776,9 @@
 .icon-social-steam:before {
   content: "\e620";
 }
+.page-item.active > span {
+    z-index: 2;
+    color: #fff;
+    background-color: #20a8d8;
+    border-color: #20a8d8;
+}

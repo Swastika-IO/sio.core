@@ -1,0 +1,24 @@
+﻿<template>
+    <div id="page-dashboard" class="col-lg-12">
+        <div class="card">
+            <div class="card-header">
+                <i class="fa fa-align-justify" />
+                {{title}}
+            </div>
+            <div class="card-block">
+                <table class="table table-bordered table-striped table-sm">
+                    <thead>
+                    <th v-for="header in headers"> {{header.display}} </th>
+                    </thead>
+                    <tbody>
+                        <tr v-for="item in models.items">
+                            <td v-for="header in headers"> {{item[header.key]}} </td>
+                        </tr>
+                    </tbody>
+                </table>
+                <paging class="pagination" :items="models.totalItems" :pageSize="models.pageSize" :pageIndex="models.pageIndex"/>                
+            </div>
+        </div>
+    </div>
+</template>
+<script src="./paging-container.ts"></script>

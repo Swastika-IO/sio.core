@@ -2,6 +2,7 @@
 using Swastika.Extensions.Blog.Lib.ViewModels;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 
 namespace Swastika.Extension.Blog.ViewModels
 {

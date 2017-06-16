@@ -59,7 +59,7 @@
 /******/ 	
 /******/ 	
 /******/ 	var hotApplyOnUpdate = true;
-/******/ 	var hotCurrentHash = "e3617ae87c9754aec5b3"; // eslint-disable-line no-unused-vars
+/******/ 	var hotCurrentHash = "fda7f1e8e0f817e94f4f"; // eslint-disable-line no-unused-vars
 /******/ 	var hotCurrentModuleData = {};
 /******/ 	var hotCurrentChildModule; // eslint-disable-line no-unused-vars
 /******/ 	var hotCurrentParents = []; // eslint-disable-line no-unused-vars
@@ -1089,7 +1089,7 @@ exports = module.exports = __webpack_require__(7)(true);
 
 
 // module
-exports.push([module.i, "/*\r\n * Globals\r\n */\r\n\r\n/* Links */\na,\r\na:focus,\r\na:hover {\r\n    color: #fff;\n}\r\n\r\n/* Custom default button */\n.btn-secondary,\r\n.btn-secondary:hover,\r\n.btn-secondary:focus {\r\n    color: #333;\r\n    text-shadow: none; /* Prevent inheritance from `body` */\r\n    background-color: #fff;\r\n    border: .05rem solid #fff;\n}\r\n\r\n\r\n/*\r\n * Base structure\r\n */\nhtml,\r\nbody {\r\n    height: 100%;\r\n    background-color: #333;\n}\nbody {\r\n    color: #fff;\r\n    text-align: center;\r\n    text-shadow: 0 .05rem .1rem rgba(0,0,0,.5);\n}\n#app-root{\r\n    height:100%;\n}\r\n\r\n/* Extra markup and styles for table-esque vertical and horizontal centering */\n.site-wrapper {\r\n    display: table;\r\n    width: 100%;\r\n    height: 100%; /* For at least Firefox */\r\n    min-height: 100%;\r\n    -webkit-box-shadow: inset 0 0 5rem rgba(0,0,0,.5);\r\n    box-shadow: inset 0 0 5rem rgba(0,0,0,.5);\n}\n.site-wrapper-inner {\r\n    display: table-cell;\r\n    vertical-align: top;\n}\n.cover-container {\r\n    margin-right: auto;\r\n    margin-left: auto;\n}\r\n\r\n/* Padding for spacing */\n.inner {\r\n    padding: 2rem;\n}\r\n\r\n\r\n/*\r\n * Header\r\n */\n.masthead {\r\n    margin-bottom: 2rem;\n}\n.masthead-brand {\r\n    margin-bottom: 0;\n}\n.nav-masthead .nav-link {\r\n    padding: .25rem 0;\r\n    font-weight: bold;\r\n    color: rgba(255,255,255,.5);\r\n    background-color: transparent;\r\n    border-bottom: .25rem solid transparent;\n}\n.nav-masthead .nav-link:hover,\r\n    .nav-masthead .nav-link:focus {\r\n        border-bottom-color: rgba(255,255,255,.25);\n}\n.nav-masthead .nav-link + .nav-link {\r\n        margin-left: 1rem;\n}\n.nav-masthead .active {\r\n    color: #fff;\r\n    border-bottom-color: #fff;\n}\n@media (min-width: 48em) {\n.masthead-brand {\r\n        float: left;\n}\n.nav-masthead {\r\n        float: right;\n}\n}\r\n\r\n\r\n/*\r\n * Cover\r\n */\n.cover {\r\n    padding: 0 1.5rem;\n}\n.cover .btn-lg {\r\n        padding: .75rem 1.25rem;\r\n        font-weight: bold;\n}\r\n\r\n\r\n/*\r\n * Footer\r\n */\n.mastfoot {\r\n    color: rgba(255,255,255,.5);\n}\r\n\r\n\r\n/*\r\n * Affix and center\r\n */\n@media (min-width: 40em) {\r\n    /* Pull out the header and footer */\n.masthead {\r\n        position: fixed;\r\n        top: 0;\n}\n.mastfoot {\r\n        position: fixed;\r\n        bottom: 0;\n}\r\n    /* Start the vertical centering */\n.site-wrapper-inner {\r\n        vertical-align: middle;\n}\r\n    /* Handle the widths */\n.masthead,\r\n    .mastfoot,\r\n    .cover-container {\r\n        width: 100%; /* Must be percentage or pixels for horizontal alignment */\n}\n}\n@media (min-width: 62em) {\n.masthead,\r\n    .mastfoot,\r\n    .cover-container {\r\n        width: 42rem;\n}\n}\r\n", "", {"version":3,"sources":["E:/Net/Git/GitHub/Swastika-Core/src/Swastika.UI.Spa/ClientApp/components/home/home.css"],"names":[],"mappings":"AAAA;;GAEG;;AAEH,WAAW;AACX;;;IAGI,YAAY;CACf;;AAED,2BAA2B;AAC3B;;;IAGI,YAAY;IACZ,kBAAkB,CAAC,qCAAqC;IACxD,uBAAuB;IACvB,0BAA0B;CAC7B;;;AAGD;;GAEG;AAEH;;IAEI,aAAa;IACb,uBAAuB;CAC1B;AAED;IACI,YAAY;IACZ,mBAAmB;IACnB,2CAA2C;CAC9C;AAED;IACI,YAAY;CACf;;AAED,+EAA+E;AAC/E;IACI,eAAe;IACf,YAAY;IACZ,aAAa,CAAC,0BAA0B;IACxC,iBAAiB;IACjB,kDAAkD;IAClD,0CAA0C;CAC7C;AAED;IACI,oBAAoB;IACpB,oBAAoB;CACvB;AAED;IACI,mBAAmB;IACnB,kBAAkB;CACrB;;AAED,yBAAyB;AACzB;IACI,cAAc;CACjB;;;AAGD;;GAEG;AAEH;IACI,oBAAoB;CACvB;AAED;IACI,iBAAiB;CACpB;AAED;IACI,kBAAkB;IAClB,kBAAkB;IAClB,4BAA4B;IAC5B,8BAA8B;IAC9B,wCAAwC;CAC3C;AAEG;;QAEI,2CAA2C;CAC9C;AAED;QACI,kBAAkB;CACrB;AAEL;IACI,YAAY;IACZ,0BAA0B;CAC7B;AAED;AACI;QACI,YAAY;CACf;AAED;QACI,aAAa;CAChB;CACJ;;;AAGD;;GAEG;AAEH;IACI,kBAAkB;CACrB;AAEG;QACI,wBAAwB;QACxB,kBAAkB;CACrB;;;AAGL;;GAEG;AAEH;IACI,4BAA4B;CAC/B;;;AAGD;;GAEG;AAEH;IACI,oCAAoC;AACpC;QACI,gBAAgB;QAChB,OAAO;CACV;AAED;QACI,gBAAgB;QAChB,UAAU;CACb;IACD,kCAAkC;AAClC;QACI,uBAAuB;CAC1B;IACD,uBAAuB;AACvB;;;QAGI,YAAY,CAAC,2DAA2D;CAC3E;CACJ;AAED;AACI;;;QAGI,aAAa;CAChB;CACJ","file":"home.css","sourcesContent":["/*\r\n * Globals\r\n */\r\n\r\n/* Links */\r\na,\r\na:focus,\r\na:hover {\r\n    color: #fff;\r\n}\r\n\r\n/* Custom default button */\r\n.btn-secondary,\r\n.btn-secondary:hover,\r\n.btn-secondary:focus {\r\n    color: #333;\r\n    text-shadow: none; /* Prevent inheritance from `body` */\r\n    background-color: #fff;\r\n    border: .05rem solid #fff;\r\n}\r\n\r\n\r\n/*\r\n * Base structure\r\n */\r\n\r\nhtml,\r\nbody {\r\n    height: 100%;\r\n    background-color: #333;\r\n}\r\n\r\nbody {\r\n    color: #fff;\r\n    text-align: center;\r\n    text-shadow: 0 .05rem .1rem rgba(0,0,0,.5);\r\n}\r\n\r\n#app-root{\r\n    height:100%;\r\n}\r\n\r\n/* Extra markup and styles for table-esque vertical and horizontal centering */\r\n.site-wrapper {\r\n    display: table;\r\n    width: 100%;\r\n    height: 100%; /* For at least Firefox */\r\n    min-height: 100%;\r\n    -webkit-box-shadow: inset 0 0 5rem rgba(0,0,0,.5);\r\n    box-shadow: inset 0 0 5rem rgba(0,0,0,.5);\r\n}\r\n\r\n.site-wrapper-inner {\r\n    display: table-cell;\r\n    vertical-align: top;\r\n}\r\n\r\n.cover-container {\r\n    margin-right: auto;\r\n    margin-left: auto;\r\n}\r\n\r\n/* Padding for spacing */\r\n.inner {\r\n    padding: 2rem;\r\n}\r\n\r\n\r\n/*\r\n * Header\r\n */\r\n\r\n.masthead {\r\n    margin-bottom: 2rem;\r\n}\r\n\r\n.masthead-brand {\r\n    margin-bottom: 0;\r\n}\r\n\r\n.nav-masthead .nav-link {\r\n    padding: .25rem 0;\r\n    font-weight: bold;\r\n    color: rgba(255,255,255,.5);\r\n    background-color: transparent;\r\n    border-bottom: .25rem solid transparent;\r\n}\r\n\r\n    .nav-masthead .nav-link:hover,\r\n    .nav-masthead .nav-link:focus {\r\n        border-bottom-color: rgba(255,255,255,.25);\r\n    }\r\n\r\n    .nav-masthead .nav-link + .nav-link {\r\n        margin-left: 1rem;\r\n    }\r\n\r\n.nav-masthead .active {\r\n    color: #fff;\r\n    border-bottom-color: #fff;\r\n}\r\n\r\n@media (min-width: 48em) {\r\n    .masthead-brand {\r\n        float: left;\r\n    }\r\n\r\n    .nav-masthead {\r\n        float: right;\r\n    }\r\n}\r\n\r\n\r\n/*\r\n * Cover\r\n */\r\n\r\n.cover {\r\n    padding: 0 1.5rem;\r\n}\r\n\r\n    .cover .btn-lg {\r\n        padding: .75rem 1.25rem;\r\n        font-weight: bold;\r\n    }\r\n\r\n\r\n/*\r\n * Footer\r\n */\r\n\r\n.mastfoot {\r\n    color: rgba(255,255,255,.5);\r\n}\r\n\r\n\r\n/*\r\n * Affix and center\r\n */\r\n\r\n@media (min-width: 40em) {\r\n    /* Pull out the header and footer */\r\n    .masthead {\r\n        position: fixed;\r\n        top: 0;\r\n    }\r\n\r\n    .mastfoot {\r\n        position: fixed;\r\n        bottom: 0;\r\n    }\r\n    /* Start the vertical centering */\r\n    .site-wrapper-inner {\r\n        vertical-align: middle;\r\n    }\r\n    /* Handle the widths */\r\n    .masthead,\r\n    .mastfoot,\r\n    .cover-container {\r\n        width: 100%; /* Must be percentage or pixels for horizontal alignment */\r\n    }\r\n}\r\n\r\n@media (min-width: 62em) {\r\n    .masthead,\r\n    .mastfoot,\r\n    .cover-container {\r\n        width: 42rem;\r\n    }\r\n}\r\n"],"sourceRoot":""}]);
+exports.push([module.i, "/*\r\n * Globals\r\n */\r\n\r\n/* Links */\na,\r\na:focus,\r\na:hover {\r\n    color: #fff;\n}\r\n\r\n/* Custom default button */\n.btn-secondary,\r\n.btn-secondary:hover,\r\n.btn-secondary:focus {\r\n    color: #333;\r\n    text-shadow: none; /* Prevent inheritance from `body` */\r\n    background-color: #fff;\r\n    border: .05rem solid #fff;\n}\r\n\r\n\r\n/*\r\n * Base structure\r\n */\nhtml,\r\nbody {\r\n    height: 100%;\r\n    background-color: #333;\n}\nbody {\r\n    color: #fff;\r\n    text-align: center;\r\n    text-shadow: 0 .05rem .1rem rgba(0,0,0,.5);\n}\n#app-root{\r\n    height:100%;\n}\r\n\r\n/* Extra markup and styles for table-esque vertical and horizontal centering */\n.site-wrapper {\r\n    display: table;\r\n    width: 100%;\r\n    height: 100%; /* For at least Firefox */\r\n    min-height: 100%;\r\n    -webkit-box-shadow: inset 0 0 5rem rgba(0,0,0,.5);\r\n    box-shadow: inset 0 0 5rem rgba(0,0,0,.5);\n}\n.site-wrapper-inner {\r\n    display: table-cell;\r\n    vertical-align: top;\n}\n.cover-container {\r\n    margin-right: auto;\r\n    margin-left: auto;\n}\r\n\r\n/* Padding for spacing */\n.inner {\r\n    padding: 2rem;\n}\r\n\r\n\r\n/*\r\n * Header\r\n */\n.masthead {\r\n    margin-bottom: 2rem;\n}\n.masthead-brand {\r\n    margin-bottom: 0;\n}\n.nav-masthead .nav-link {\r\n    padding: .25rem 0;\r\n    font-weight: bold;\r\n    color: rgba(255,255,255,.5);\r\n    background-color: transparent;\r\n    border-bottom: .25rem solid transparent;\n}\n.nav-masthead .nav-link:hover,\r\n    .nav-masthead .nav-link:focus {\r\n        border-bottom-color: rgba(255,255,255,.25);\n}\n.nav-masthead .nav-link + .nav-link {\r\n        margin-left: 1rem;\n}\n.nav-masthead .active {\r\n    color: #fff;\r\n    border-bottom-color: #fff;\n}\n@media (min-width: 48em) {\n.masthead-brand {\r\n        float: left;\n}\n.nav-masthead {\r\n        float: right;\n}\n}\r\n\r\n\r\n/*\r\n * Cover\r\n */\n.cover {\r\n    padding: 0 1.5rem;\n}\n.cover .btn-lg {\r\n        padding: .75rem 1.25rem;\r\n        font-weight: bold;\n}\r\n\r\n\r\n/*\r\n * Footer\r\n */\n.mastfoot {\r\n    color: rgba(255,255,255,.5);\n}\r\n\r\n\r\n/*\r\n * Affix and center\r\n */\n@media (min-width: 40em) {\r\n    /* Pull out the header and footer */\n.masthead {\r\n        position: fixed;\r\n        top: 0;\n}\n.mastfoot {\r\n        position: fixed;\r\n        bottom: 0;\n}\r\n    /* Start the vertical centering */\n.site-wrapper-inner {\r\n        vertical-align: middle;\n}\r\n    /* Handle the widths */\n.masthead,\r\n    .mastfoot,\r\n    .cover-container {\r\n        width: 100%; /* Must be percentage or pixels for horizontal alignment */\n}\n}\n@media (min-width: 62em) {\n.masthead,\r\n    .mastfoot,\r\n    .cover-container {\r\n        width: 42rem;\n}\n}\r\n", "", {"version":3,"sources":["D:/NhatHoang/Git/GitHub/Swastika-Core/src/Swastika.UI.Spa/ClientApp/components/home/home.css"],"names":[],"mappings":"AAAA;;GAEG;;AAEH,WAAW;AACX;;;IAGI,YAAY;CACf;;AAED,2BAA2B;AAC3B;;;IAGI,YAAY;IACZ,kBAAkB,CAAC,qCAAqC;IACxD,uBAAuB;IACvB,0BAA0B;CAC7B;;;AAGD;;GAEG;AAEH;;IAEI,aAAa;IACb,uBAAuB;CAC1B;AAED;IACI,YAAY;IACZ,mBAAmB;IACnB,2CAA2C;CAC9C;AAED;IACI,YAAY;CACf;;AAED,+EAA+E;AAC/E;IACI,eAAe;IACf,YAAY;IACZ,aAAa,CAAC,0BAA0B;IACxC,iBAAiB;IACjB,kDAAkD;IAClD,0CAA0C;CAC7C;AAED;IACI,oBAAoB;IACpB,oBAAoB;CACvB;AAED;IACI,mBAAmB;IACnB,kBAAkB;CACrB;;AAED,yBAAyB;AACzB;IACI,cAAc;CACjB;;;AAGD;;GAEG;AAEH;IACI,oBAAoB;CACvB;AAED;IACI,iBAAiB;CACpB;AAED;IACI,kBAAkB;IAClB,kBAAkB;IAClB,4BAA4B;IAC5B,8BAA8B;IAC9B,wCAAwC;CAC3C;AAEG;;QAEI,2CAA2C;CAC9C;AAED;QACI,kBAAkB;CACrB;AAEL;IACI,YAAY;IACZ,0BAA0B;CAC7B;AAED;AACI;QACI,YAAY;CACf;AAED;QACI,aAAa;CAChB;CACJ;;;AAGD;;GAEG;AAEH;IACI,kBAAkB;CACrB;AAEG;QACI,wBAAwB;QACxB,kBAAkB;CACrB;;;AAGL;;GAEG;AAEH;IACI,4BAA4B;CAC/B;;;AAGD;;GAEG;AAEH;IACI,oCAAoC;AACpC;QACI,gBAAgB;QAChB,OAAO;CACV;AAED;QACI,gBAAgB;QAChB,UAAU;CACb;IACD,kCAAkC;AAClC;QACI,uBAAuB;CAC1B;IACD,uBAAuB;AACvB;;;QAGI,YAAY,CAAC,2DAA2D;CAC3E;CACJ;AAED;AACI;;;QAGI,aAAa;CAChB;CACJ","file":"home.css","sourcesContent":["/*\r\n * Globals\r\n */\r\n\r\n/* Links */\r\na,\r\na:focus,\r\na:hover {\r\n    color: #fff;\r\n}\r\n\r\n/* Custom default button */\r\n.btn-secondary,\r\n.btn-secondary:hover,\r\n.btn-secondary:focus {\r\n    color: #333;\r\n    text-shadow: none; /* Prevent inheritance from `body` */\r\n    background-color: #fff;\r\n    border: .05rem solid #fff;\r\n}\r\n\r\n\r\n/*\r\n * Base structure\r\n */\r\n\r\nhtml,\r\nbody {\r\n    height: 100%;\r\n    background-color: #333;\r\n}\r\n\r\nbody {\r\n    color: #fff;\r\n    text-align: center;\r\n    text-shadow: 0 .05rem .1rem rgba(0,0,0,.5);\r\n}\r\n\r\n#app-root{\r\n    height:100%;\r\n}\r\n\r\n/* Extra markup and styles for table-esque vertical and horizontal centering */\r\n.site-wrapper {\r\n    display: table;\r\n    width: 100%;\r\n    height: 100%; /* For at least Firefox */\r\n    min-height: 100%;\r\n    -webkit-box-shadow: inset 0 0 5rem rgba(0,0,0,.5);\r\n    box-shadow: inset 0 0 5rem rgba(0,0,0,.5);\r\n}\r\n\r\n.site-wrapper-inner {\r\n    display: table-cell;\r\n    vertical-align: top;\r\n}\r\n\r\n.cover-container {\r\n    margin-right: auto;\r\n    margin-left: auto;\r\n}\r\n\r\n/* Padding for spacing */\r\n.inner {\r\n    padding: 2rem;\r\n}\r\n\r\n\r\n/*\r\n * Header\r\n */\r\n\r\n.masthead {\r\n    margin-bottom: 2rem;\r\n}\r\n\r\n.masthead-brand {\r\n    margin-bottom: 0;\r\n}\r\n\r\n.nav-masthead .nav-link {\r\n    padding: .25rem 0;\r\n    font-weight: bold;\r\n    color: rgba(255,255,255,.5);\r\n    background-color: transparent;\r\n    border-bottom: .25rem solid transparent;\r\n}\r\n\r\n    .nav-masthead .nav-link:hover,\r\n    .nav-masthead .nav-link:focus {\r\n        border-bottom-color: rgba(255,255,255,.25);\r\n    }\r\n\r\n    .nav-masthead .nav-link + .nav-link {\r\n        margin-left: 1rem;\r\n    }\r\n\r\n.nav-masthead .active {\r\n    color: #fff;\r\n    border-bottom-color: #fff;\r\n}\r\n\r\n@media (min-width: 48em) {\r\n    .masthead-brand {\r\n        float: left;\r\n    }\r\n\r\n    .nav-masthead {\r\n        float: right;\r\n    }\r\n}\r\n\r\n\r\n/*\r\n * Cover\r\n */\r\n\r\n.cover {\r\n    padding: 0 1.5rem;\r\n}\r\n\r\n    .cover .btn-lg {\r\n        padding: .75rem 1.25rem;\r\n        font-weight: bold;\r\n    }\r\n\r\n\r\n/*\r\n * Footer\r\n */\r\n\r\n.mastfoot {\r\n    color: rgba(255,255,255,.5);\r\n}\r\n\r\n\r\n/*\r\n * Affix and center\r\n */\r\n\r\n@media (min-width: 40em) {\r\n    /* Pull out the header and footer */\r\n    .masthead {\r\n        position: fixed;\r\n        top: 0;\r\n    }\r\n\r\n    .mastfoot {\r\n        position: fixed;\r\n        bottom: 0;\r\n    }\r\n    /* Start the vertical centering */\r\n    .site-wrapper-inner {\r\n        vertical-align: middle;\r\n    }\r\n    /* Handle the widths */\r\n    .masthead,\r\n    .mastfoot,\r\n    .cover-container {\r\n        width: 100%; /* Must be percentage or pixels for horizontal alignment */\r\n    }\r\n}\r\n\r\n@media (min-width: 62em) {\r\n    .masthead,\r\n    .mastfoot,\r\n    .cover-container {\r\n        width: 42rem;\r\n    }\r\n}\r\n"],"sourceRoot":""}]);
 
 // exports
 
@@ -1393,7 +1393,7 @@ var Component = __webpack_require__(2)(
   /* moduleIdentifier (server only) */
   null
 )
-Component.options.__file = "E:\\Net\\Git\\GitHub\\Swastika-Core\\src\\Swastika.UI.Spa\\ClientApp\\components\\navmenu\\navmenu.vue.html"
+Component.options.__file = "D:\\NhatHoang\\Git\\GitHub\\Swastika-Core\\src\\Swastika.UI.Spa\\ClientApp\\components\\navmenu\\navmenu.vue.html"
 if (Component.esModule && Object.keys(Component.esModule).some(function (key) {return key !== "default" && key.substr(0, 2) !== "__"})) {console.error("named exports are not supported in *.vue files.")}
 if (Component.options.functional) {console.error("[vue-loader] navmenu.vue.html: functional components are not supported with templates, they should use render functions.")}
 
@@ -4581,7 +4581,7 @@ var Component = __webpack_require__(2)(
   /* moduleIdentifier (server only) */
   null
 )
-Component.options.__file = "E:\\Net\\Git\\GitHub\\Swastika-Core\\src\\Swastika.UI.Spa\\ClientApp\\components\\app\\app.vue.html"
+Component.options.__file = "D:\\NhatHoang\\Git\\GitHub\\Swastika-Core\\src\\Swastika.UI.Spa\\ClientApp\\components\\app\\app.vue.html"
 if (Component.esModule && Object.keys(Component.esModule).some(function (key) {return key !== "default" && key.substr(0, 2) !== "__"})) {console.error("named exports are not supported in *.vue files.")}
 if (Component.options.functional) {console.error("[vue-loader] app.vue.html: functional components are not supported with templates, they should use render functions.")}
 
@@ -4621,7 +4621,7 @@ var Component = __webpack_require__(2)(
   /* moduleIdentifier (server only) */
   null
 )
-Component.options.__file = "E:\\Net\\Git\\GitHub\\Swastika-Core\\src\\Swastika.UI.Spa\\ClientApp\\components\\blog\\app-header\\header.vue.html"
+Component.options.__file = "D:\\NhatHoang\\Git\\GitHub\\Swastika-Core\\src\\Swastika.UI.Spa\\ClientApp\\components\\blog\\app-header\\header.vue.html"
 if (Component.esModule && Object.keys(Component.esModule).some(function (key) {return key !== "default" && key.substr(0, 2) !== "__"})) {console.error("named exports are not supported in *.vue files.")}
 if (Component.options.functional) {console.error("[vue-loader] header.vue.html: functional components are not supported with templates, they should use render functions.")}
 
@@ -4661,7 +4661,7 @@ var Component = __webpack_require__(2)(
   /* moduleIdentifier (server only) */
   null
 )
-Component.options.__file = "E:\\Net\\Git\\GitHub\\Swastika-Core\\src\\Swastika.UI.Spa\\ClientApp\\components\\blog\\blog.vue.html"
+Component.options.__file = "D:\\NhatHoang\\Git\\GitHub\\Swastika-Core\\src\\Swastika.UI.Spa\\ClientApp\\components\\blog\\blog.vue.html"
 if (Component.esModule && Object.keys(Component.esModule).some(function (key) {return key !== "default" && key.substr(0, 2) !== "__"})) {console.error("named exports are not supported in *.vue files.")}
 if (Component.options.functional) {console.error("[vue-loader] blog.vue.html: functional components are not supported with templates, they should use render functions.")}
 
@@ -4701,7 +4701,7 @@ var Component = __webpack_require__(2)(
   /* moduleIdentifier (server only) */
   null
 )
-Component.options.__file = "E:\\Net\\Git\\GitHub\\Swastika-Core\\src\\Swastika.UI.Spa\\ClientApp\\components\\blog\\breadcrumb\\breadcrumb.vue.html"
+Component.options.__file = "D:\\NhatHoang\\Git\\GitHub\\Swastika-Core\\src\\Swastika.UI.Spa\\ClientApp\\components\\blog\\breadcrumb\\breadcrumb.vue.html"
 if (Component.esModule && Object.keys(Component.esModule).some(function (key) {return key !== "default" && key.substr(0, 2) !== "__"})) {console.error("named exports are not supported in *.vue files.")}
 if (Component.options.functional) {console.error("[vue-loader] breadcrumb.vue.html: functional components are not supported with templates, they should use render functions.")}
 
@@ -4731,7 +4731,7 @@ module.exports = Component.exports
 var disposed = false
 var Component = __webpack_require__(2)(
   /* script */
-  null,
+  __webpack_require__(80),
   /* template */
   __webpack_require__(67),
   /* styles */
@@ -4741,7 +4741,7 @@ var Component = __webpack_require__(2)(
   /* moduleIdentifier (server only) */
   null
 )
-Component.options.__file = "E:\\Net\\Git\\GitHub\\Swastika-Core\\src\\Swastika.UI.Spa\\ClientApp\\components\\blog\\container\\dashboard\\dashboard.vue.html"
+Component.options.__file = "D:\\NhatHoang\\Git\\GitHub\\Swastika-Core\\src\\Swastika.UI.Spa\\ClientApp\\components\\blog\\container\\dashboard\\dashboard.vue.html"
 if (Component.esModule && Object.keys(Component.esModule).some(function (key) {return key !== "default" && key.substr(0, 2) !== "__"})) {console.error("named exports are not supported in *.vue files.")}
 if (Component.options.functional) {console.error("[vue-loader] dashboard.vue.html: functional components are not supported with templates, they should use render functions.")}
 
@@ -4781,7 +4781,7 @@ var Component = __webpack_require__(2)(
   /* moduleIdentifier (server only) */
   null
 )
-Component.options.__file = "E:\\Net\\Git\\GitHub\\Swastika-Core\\src\\Swastika.UI.Spa\\ClientApp\\components\\blog\\container\\widgets\\widgets.vue.html"
+Component.options.__file = "D:\\NhatHoang\\Git\\GitHub\\Swastika-Core\\src\\Swastika.UI.Spa\\ClientApp\\components\\blog\\container\\widgets\\widgets.vue.html"
 if (Component.esModule && Object.keys(Component.esModule).some(function (key) {return key !== "default" && key.substr(0, 2) !== "__"})) {console.error("named exports are not supported in *.vue files.")}
 if (Component.options.functional) {console.error("[vue-loader] widgets.vue.html: functional components are not supported with templates, they should use render functions.")}
 
@@ -4821,7 +4821,7 @@ var Component = __webpack_require__(2)(
   /* moduleIdentifier (server only) */
   null
 )
-Component.options.__file = "E:\\Net\\Git\\GitHub\\Swastika-Core\\src\\Swastika.UI.Spa\\ClientApp\\components\\blog\\nav-bar\\nav-bar.vue.html"
+Component.options.__file = "D:\\NhatHoang\\Git\\GitHub\\Swastika-Core\\src\\Swastika.UI.Spa\\ClientApp\\components\\blog\\nav-bar\\nav-bar.vue.html"
 if (Component.esModule && Object.keys(Component.esModule).some(function (key) {return key !== "default" && key.substr(0, 2) !== "__"})) {console.error("named exports are not supported in *.vue files.")}
 if (Component.options.functional) {console.error("[vue-loader] nav-bar.vue.html: functional components are not supported with templates, they should use render functions.")}
 
@@ -4861,7 +4861,7 @@ var Component = __webpack_require__(2)(
   /* moduleIdentifier (server only) */
   null
 )
-Component.options.__file = "E:\\Net\\Git\\GitHub\\Swastika-Core\\src\\Swastika.UI.Spa\\ClientApp\\components\\blog\\sidebar\\sidebar.vue.html"
+Component.options.__file = "D:\\NhatHoang\\Git\\GitHub\\Swastika-Core\\src\\Swastika.UI.Spa\\ClientApp\\components\\blog\\sidebar\\sidebar.vue.html"
 if (Component.esModule && Object.keys(Component.esModule).some(function (key) {return key !== "default" && key.substr(0, 2) !== "__"})) {console.error("named exports are not supported in *.vue files.")}
 if (Component.options.functional) {console.error("[vue-loader] sidebar.vue.html: functional components are not supported with templates, they should use render functions.")}
 
@@ -4901,7 +4901,7 @@ var Component = __webpack_require__(2)(
   /* moduleIdentifier (server only) */
   null
 )
-Component.options.__file = "E:\\Net\\Git\\GitHub\\Swastika-Core\\src\\Swastika.UI.Spa\\ClientApp\\components\\counter\\counter.vue.html"
+Component.options.__file = "D:\\NhatHoang\\Git\\GitHub\\Swastika-Core\\src\\Swastika.UI.Spa\\ClientApp\\components\\counter\\counter.vue.html"
 if (Component.esModule && Object.keys(Component.esModule).some(function (key) {return key !== "default" && key.substr(0, 2) !== "__"})) {console.error("named exports are not supported in *.vue files.")}
 if (Component.options.functional) {console.error("[vue-loader] counter.vue.html: functional components are not supported with templates, they should use render functions.")}
 
@@ -4941,7 +4941,7 @@ var Component = __webpack_require__(2)(
   /* moduleIdentifier (server only) */
   null
 )
-Component.options.__file = "E:\\Net\\Git\\GitHub\\Swastika-Core\\src\\Swastika.UI.Spa\\ClientApp\\components\\fetchdata\\fetchdata.vue.html"
+Component.options.__file = "D:\\NhatHoang\\Git\\GitHub\\Swastika-Core\\src\\Swastika.UI.Spa\\ClientApp\\components\\fetchdata\\fetchdata.vue.html"
 if (Component.esModule && Object.keys(Component.esModule).some(function (key) {return key !== "default" && key.substr(0, 2) !== "__"})) {console.error("named exports are not supported in *.vue files.")}
 if (Component.options.functional) {console.error("[vue-loader] fetchdata.vue.html: functional components are not supported with templates, they should use render functions.")}
 
@@ -4985,7 +4985,7 @@ var Component = __webpack_require__(2)(
   /* moduleIdentifier (server only) */
   null
 )
-Component.options.__file = "E:\\Net\\Git\\GitHub\\Swastika-Core\\src\\Swastika.UI.Spa\\ClientApp\\components\\home\\home.vue.html"
+Component.options.__file = "D:\\NhatHoang\\Git\\GitHub\\Swastika-Core\\src\\Swastika.UI.Spa\\ClientApp\\components\\home\\home.vue.html"
 if (Component.esModule && Object.keys(Component.esModule).some(function (key) {return key !== "default" && key.substr(0, 2) !== "__"})) {console.error("named exports are not supported in *.vue files.")}
 if (Component.options.functional) {console.error("[vue-loader] home.vue.html: functional components are not supported with templates, they should use render functions.")}
 
@@ -5025,7 +5025,7 @@ var Component = __webpack_require__(2)(
   /* moduleIdentifier (server only) */
   null
 )
-Component.options.__file = "E:\\Net\\Git\\GitHub\\Swastika-Core\\src\\Swastika.UI.Spa\\ClientApp\\components\\portal\\breadcrumb\\breadcrumb.vue.html"
+Component.options.__file = "D:\\NhatHoang\\Git\\GitHub\\Swastika-Core\\src\\Swastika.UI.Spa\\ClientApp\\components\\portal\\breadcrumb\\breadcrumb.vue.html"
 if (Component.esModule && Object.keys(Component.esModule).some(function (key) {return key !== "default" && key.substr(0, 2) !== "__"})) {console.error("named exports are not supported in *.vue files.")}
 if (Component.options.functional) {console.error("[vue-loader] breadcrumb.vue.html: functional components are not supported with templates, they should use render functions.")}
 
@@ -5065,7 +5065,7 @@ var Component = __webpack_require__(2)(
   /* moduleIdentifier (server only) */
   null
 )
-Component.options.__file = "E:\\Net\\Git\\GitHub\\Swastika-Core\\src\\Swastika.UI.Spa\\ClientApp\\components\\portal\\container\\dashboard\\dashboard.vue.html"
+Component.options.__file = "D:\\NhatHoang\\Git\\GitHub\\Swastika-Core\\src\\Swastika.UI.Spa\\ClientApp\\components\\portal\\container\\dashboard\\dashboard.vue.html"
 if (Component.esModule && Object.keys(Component.esModule).some(function (key) {return key !== "default" && key.substr(0, 2) !== "__"})) {console.error("named exports are not supported in *.vue files.")}
 if (Component.options.functional) {console.error("[vue-loader] dashboard.vue.html: functional components are not supported with templates, they should use render functions.")}
 
@@ -5105,7 +5105,7 @@ var Component = __webpack_require__(2)(
   /* moduleIdentifier (server only) */
   null
 )
-Component.options.__file = "E:\\Net\\Git\\GitHub\\Swastika-Core\\src\\Swastika.UI.Spa\\ClientApp\\components\\portal\\container\\widgets\\widgets.vue.html"
+Component.options.__file = "D:\\NhatHoang\\Git\\GitHub\\Swastika-Core\\src\\Swastika.UI.Spa\\ClientApp\\components\\portal\\container\\widgets\\widgets.vue.html"
 if (Component.esModule && Object.keys(Component.esModule).some(function (key) {return key !== "default" && key.substr(0, 2) !== "__"})) {console.error("named exports are not supported in *.vue files.")}
 if (Component.options.functional) {console.error("[vue-loader] widgets.vue.html: functional components are not supported with templates, they should use render functions.")}
 
@@ -5145,7 +5145,7 @@ var Component = __webpack_require__(2)(
   /* moduleIdentifier (server only) */
   null
 )
-Component.options.__file = "E:\\Net\\Git\\GitHub\\Swastika-Core\\src\\Swastika.UI.Spa\\ClientApp\\components\\portal\\navbar\\navbar.vue.html"
+Component.options.__file = "D:\\NhatHoang\\Git\\GitHub\\Swastika-Core\\src\\Swastika.UI.Spa\\ClientApp\\components\\portal\\navbar\\navbar.vue.html"
 if (Component.esModule && Object.keys(Component.esModule).some(function (key) {return key !== "default" && key.substr(0, 2) !== "__"})) {console.error("named exports are not supported in *.vue files.")}
 if (Component.options.functional) {console.error("[vue-loader] navbar.vue.html: functional components are not supported with templates, they should use render functions.")}
 
@@ -5185,7 +5185,7 @@ var Component = __webpack_require__(2)(
   /* moduleIdentifier (server only) */
   null
 )
-Component.options.__file = "E:\\Net\\Git\\GitHub\\Swastika-Core\\src\\Swastika.UI.Spa\\ClientApp\\components\\portal\\portal.vue.html"
+Component.options.__file = "D:\\NhatHoang\\Git\\GitHub\\Swastika-Core\\src\\Swastika.UI.Spa\\ClientApp\\components\\portal\\portal.vue.html"
 if (Component.esModule && Object.keys(Component.esModule).some(function (key) {return key !== "default" && key.substr(0, 2) !== "__"})) {console.error("named exports are not supported in *.vue files.")}
 if (Component.options.functional) {console.error("[vue-loader] portal.vue.html: functional components are not supported with templates, they should use render functions.")}
 
@@ -5225,7 +5225,7 @@ var Component = __webpack_require__(2)(
   /* moduleIdentifier (server only) */
   null
 )
-Component.options.__file = "E:\\Net\\Git\\GitHub\\Swastika-Core\\src\\Swastika.UI.Spa\\ClientApp\\components\\portal\\sidebar\\sidebar.vue.html"
+Component.options.__file = "D:\\NhatHoang\\Git\\GitHub\\Swastika-Core\\src\\Swastika.UI.Spa\\ClientApp\\components\\portal\\sidebar\\sidebar.vue.html"
 if (Component.esModule && Object.keys(Component.esModule).some(function (key) {return key !== "default" && key.substr(0, 2) !== "__"})) {console.error("named exports are not supported in *.vue files.")}
 if (Component.options.functional) {console.error("[vue-loader] sidebar.vue.html: functional components are not supported with templates, they should use render functions.")}
 
@@ -10374,7 +10374,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     }
   }), _vm._v(" "), _c('span', {
     staticClass: "avatar-status badge-success"
-  })])]), _vm._v(" "), _c('td', [_c('div', [_vm._v("Agapetus Tade�")]), _vm._v(" "), _c('div', {
+  })])]), _vm._v(" "), _c('td', [_c('div', [_vm._v("Agapetus Tade��")]), _vm._v(" "), _c('div', {
     staticClass: "small text-muted"
   }, [_c('span', [_vm._v("New")]), _vm._v("| Registered: Jan 1, 2015\n                                    ")])]), _vm._v(" "), _c('td', {
     staticClass: "text-center"
@@ -10506,82 +10506,18 @@ if (true) {
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
-  return _vm._m(0)
-},staticRenderFns: [function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
   return _c('div', {
     staticClass: "animated fadeIn"
   }, [_c('div', {
     staticClass: "row"
-  }, [_c('div', {
-    staticClass: "col-lg-12"
-  }, [_c('div', {
-    staticClass: "card"
-  }, [_c('div', {
-    staticClass: "card-header"
-  }, [_c('i', {
-    staticClass: "fa fa-align-justify"
-  }), _vm._v(" Combined All Table\n                ")]), _vm._v(" "), _c('div', {
-    staticClass: "card-block"
-  }, [_c('table', {
-    staticClass: "table table-bordered table-striped table-sm"
-  }, [_c('thead', [_c('tr', [_c('th', [_vm._v("Username")]), _vm._v(" "), _c('th', [_vm._v("Date registered")]), _vm._v(" "), _c('th', [_vm._v("Role")]), _vm._v(" "), _c('th', [_vm._v("Status")])])]), _vm._v(" "), _c('tbody', [_c('tr', [_c('td', [_vm._v("Vishnu Serghei")]), _vm._v(" "), _c('td', [_vm._v("2012/01/01")]), _vm._v(" "), _c('td', [_vm._v("Member")]), _vm._v(" "), _c('td', [_c('span', {
-    staticClass: "badge badge-success"
-  }, [_vm._v("Active")])])]), _vm._v(" "), _c('tr', [_c('td', [_vm._v("Zbyněk Phoibos")]), _vm._v(" "), _c('td', [_vm._v("2012/02/01")]), _vm._v(" "), _c('td', [_vm._v("Staff")]), _vm._v(" "), _c('td', [_c('span', {
-    staticClass: "badge badge-danger"
-  }, [_vm._v("Banned")])])]), _vm._v(" "), _c('tr', [_c('td', [_vm._v("Einar Randall")]), _vm._v(" "), _c('td', [_vm._v("2012/02/01")]), _vm._v(" "), _c('td', [_vm._v("Admin")]), _vm._v(" "), _c('td', [_c('span', {
-    staticClass: "badge badge-default"
-  }, [_vm._v("Inactive")])])]), _vm._v(" "), _c('tr', [_c('td', [_vm._v("Félix Troels")]), _vm._v(" "), _c('td', [_vm._v("2012/03/01")]), _vm._v(" "), _c('td', [_vm._v("Member")]), _vm._v(" "), _c('td', [_c('span', {
-    staticClass: "badge badge-warning"
-  }, [_vm._v("Pending")])])]), _vm._v(" "), _c('tr', [_c('td', [_vm._v("Aulus Agmundr")]), _vm._v(" "), _c('td', [_vm._v("2012/01/21")]), _vm._v(" "), _c('td', [_vm._v("Staff")]), _vm._v(" "), _c('td', [_c('span', {
-    staticClass: "badge badge-success"
-  }, [_vm._v("Active")])])])])]), _vm._v(" "), _c('nav', [_c('ul', {
-    staticClass: "pagination"
-  }, [_c('li', {
-    staticClass: "page-item"
-  }, [_c('a', {
-    staticClass: "page-link",
+  }, [_c('paging', {
     attrs: {
-      "href": "#"
+      "models": _vm.blogs,
+      "title": _vm.title,
+      "headers": _vm.headers
     }
-  }, [_vm._v("Prev")])]), _vm._v(" "), _c('li', {
-    staticClass: "page-item active"
-  }, [_c('a', {
-    staticClass: "page-link",
-    attrs: {
-      "href": "#"
-    }
-  }, [_vm._v("1")])]), _vm._v(" "), _c('li', {
-    staticClass: "page-item"
-  }, [_c('a', {
-    staticClass: "page-link",
-    attrs: {
-      "href": "#"
-    }
-  }, [_vm._v("2")])]), _vm._v(" "), _c('li', {
-    staticClass: "page-item"
-  }, [_c('a', {
-    staticClass: "page-link",
-    attrs: {
-      "href": "#"
-    }
-  }, [_vm._v("3")])]), _vm._v(" "), _c('li', {
-    staticClass: "page-item"
-  }, [_c('a', {
-    staticClass: "page-link",
-    attrs: {
-      "href": "#"
-    }
-  }, [_vm._v("4")])]), _vm._v(" "), _c('li', {
-    staticClass: "page-item"
-  }, [_c('a', {
-    staticClass: "page-link",
-    attrs: {
-      "href": "#"
-    }
-  }, [_vm._v("Next")])])])]), _vm._v(" "), _c('div', {
-    staticClass: "pagination"
-  })])])])])])
-}]}
+  })], 1)])
+},staticRenderFns: []}
 module.exports.render._withStripped = true
 if (true) {
   module.hot.accept()
@@ -10605,486 +10541,8 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     staticClass: "main"
   }, [_c('breadcrumb-component'), _vm._v(" "), _c('div', {
     staticClass: "container-fluid"
-  }, [_c('router-view')], 1)], 1), _vm._v(" "), _vm._m(0)]), _vm._v(" "), _vm._m(1)], 1)
+  }, [_c('router-view')], 1)], 1)]), _vm._v(" "), _vm._m(0)], 1)
 },staticRenderFns: [function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
-  return _c('aside', {
-    staticClass: "aside-menu"
-  }, [_c('ul', {
-    staticClass: "nav nav-tabs",
-    attrs: {
-      "role": "tablist"
-    }
-  }, [_c('li', {
-    staticClass: "nav-item"
-  }, [_c('a', {
-    staticClass: "nav-link active",
-    attrs: {
-      "data-toggle": "tab",
-      "href": "#timeline",
-      "role": "tab"
-    }
-  }, [_c('i', {
-    staticClass: "icon-list"
-  })])]), _vm._v(" "), _c('li', {
-    staticClass: "nav-item"
-  }, [_c('a', {
-    staticClass: "nav-link",
-    attrs: {
-      "data-toggle": "tab",
-      "href": "#messages",
-      "role": "tab"
-    }
-  }, [_c('i', {
-    staticClass: "icon-speech"
-  })])]), _vm._v(" "), _c('li', {
-    staticClass: "nav-item"
-  }, [_c('a', {
-    staticClass: "nav-link",
-    attrs: {
-      "data-toggle": "tab",
-      "href": "#settings",
-      "role": "tab"
-    }
-  }, [_c('i', {
-    staticClass: "icon-settings"
-  })])])]), _vm._v(" "), _c('div', {
-    staticClass: "tab-content"
-  }, [_c('div', {
-    staticClass: "tab-pane active",
-    attrs: {
-      "id": "timeline",
-      "role": "tabpanel"
-    }
-  }, [_c('div', {
-    staticClass: "callout m-a-0 p-y-h text-muted text-xs-center bg-faded text-uppercase"
-  }, [_c('small', [_c('b', [_vm._v("Today")])])]), _vm._v(" "), _c('hr', {
-    staticClass: "transparent m-x-1 m-y-0"
-  }), _vm._v(" "), _c('div', {
-    staticClass: "callout callout-warning m-a-0 p-y-1"
-  }, [_c('div', {
-    staticClass: "avatar pull-xs-right"
-  }, [_c('img', {
-    staticClass: "img-avatar",
-    attrs: {
-      "src": "assets/img/avatars/7.jpg",
-      "alt": "admin@bootstrapmaster.com"
-    }
-  })]), _vm._v(" "), _c('div', [_vm._v("\n                            Meeting with\n                            "), _c('strong', [_vm._v("Lucas")])]), _vm._v(" "), _c('small', {
-    staticClass: "text-muted m-r-1"
-  }, [_c('i', {
-    staticClass: "icon-calendar"
-  }), _vm._v("  1 - 3pm")]), _vm._v(" "), _c('small', {
-    staticClass: "text-muted"
-  }, [_c('i', {
-    staticClass: "icon-location-pin"
-  }), _vm._v("  Palo Alto, CA ")])]), _vm._v(" "), _c('hr', {
-    staticClass: "m-x-1 m-y-0"
-  }), _vm._v(" "), _c('div', {
-    staticClass: "callout callout-info m-a-0 p-y-1"
-  }, [_c('div', {
-    staticClass: "avatar pull-xs-right"
-  }, [_c('img', {
-    staticClass: "img-avatar",
-    attrs: {
-      "src": "assets/img/avatars/4.jpg",
-      "alt": "admin@bootstrapmaster.com"
-    }
-  })]), _vm._v(" "), _c('div', [_vm._v("\n                            Skype with\n                            "), _c('strong', [_vm._v("Megan")])]), _vm._v(" "), _c('small', {
-    staticClass: "text-muted m-r-1"
-  }, [_c('i', {
-    staticClass: "icon-calendar"
-  }), _vm._v("  4 - 5pm")]), _vm._v(" "), _c('small', {
-    staticClass: "text-muted"
-  }, [_c('i', {
-    staticClass: "icon-social-skype"
-  }), _vm._v("  On-line ")])]), _vm._v(" "), _c('hr', {
-    staticClass: "transparent m-x-1 m-y-0"
-  }), _vm._v(" "), _c('div', {
-    staticClass: "callout m-a-0 p-y-h text-muted text-xs-center bg-faded text-uppercase"
-  }, [_c('small', [_c('b', [_vm._v("Tomorrow")])])]), _vm._v(" "), _c('hr', {
-    staticClass: "transparent m-x-1 m-y-0"
-  }), _vm._v(" "), _c('div', {
-    staticClass: "callout callout-danger m-a-0 p-y-1"
-  }, [_c('div', [_vm._v("\n                            New UI Project -\n                            "), _c('strong', [_vm._v("deadline")])]), _vm._v(" "), _c('small', {
-    staticClass: "text-muted m-r-1"
-  }, [_c('i', {
-    staticClass: "icon-calendar"
-  }), _vm._v("  10 - 11pm")]), _vm._v(" "), _c('small', {
-    staticClass: "text-muted"
-  }, [_c('i', {
-    staticClass: "icon-home"
-  }), _vm._v("  creativeLabs HQ ")]), _vm._v(" "), _c('div', {
-    staticClass: "avatars-stack m-t-h"
-  }, [_c('div', {
-    staticClass: "avatar avatar-xs"
-  }, [_c('img', {
-    staticClass: "img-avatar",
-    attrs: {
-      "src": "assets/img/avatars/2.jpg",
-      "alt": "admin@bootstrapmaster.com"
-    }
-  })]), _vm._v(" "), _c('div', {
-    staticClass: "avatar avatar-xs"
-  }, [_c('img', {
-    staticClass: "img-avatar",
-    attrs: {
-      "src": "assets/img/avatars/3.jpg",
-      "alt": "admin@bootstrapmaster.com"
-    }
-  })]), _vm._v(" "), _c('div', {
-    staticClass: "avatar avatar-xs"
-  }, [_c('img', {
-    staticClass: "img-avatar",
-    attrs: {
-      "src": "assets/img/avatars/4.jpg",
-      "alt": "admin@bootstrapmaster.com"
-    }
-  })]), _vm._v(" "), _c('div', {
-    staticClass: "avatar avatar-xs"
-  }, [_c('img', {
-    staticClass: "img-avatar",
-    attrs: {
-      "src": "assets/img/avatars/5.jpg",
-      "alt": "admin@bootstrapmaster.com"
-    }
-  })]), _vm._v(" "), _c('div', {
-    staticClass: "avatar avatar-xs"
-  }, [_c('img', {
-    staticClass: "img-avatar",
-    attrs: {
-      "src": "assets/img/avatars/6.jpg",
-      "alt": "admin@bootstrapmaster.com"
-    }
-  })])])]), _vm._v(" "), _c('hr', {
-    staticClass: "m-x-1 m-y-0"
-  }), _vm._v(" "), _c('div', {
-    staticClass: "callout callout-success m-a-0 p-y-1"
-  }, [_c('div', [_c('strong', [_vm._v("#10 Startups.Garden")]), _vm._v(" Meetup\n                        ")]), _vm._v(" "), _c('small', {
-    staticClass: "text-muted m-r-1"
-  }, [_c('i', {
-    staticClass: "icon-calendar"
-  }), _vm._v("  1 - 3pm")]), _vm._v(" "), _c('small', {
-    staticClass: "text-muted"
-  }, [_c('i', {
-    staticClass: "icon-location-pin"
-  }), _vm._v("  Palo Alto, CA ")])]), _vm._v(" "), _c('hr', {
-    staticClass: "m-x-1 m-y-0"
-  }), _vm._v(" "), _c('div', {
-    staticClass: "callout callout-primary m-a-0 p-y-1"
-  }, [_c('div', [_c('strong', [_vm._v("Team meeting")])]), _vm._v(" "), _c('small', {
-    staticClass: "text-muted m-r-1"
-  }, [_c('i', {
-    staticClass: "icon-calendar"
-  }), _vm._v("  4 - 6pm")]), _vm._v(" "), _c('small', {
-    staticClass: "text-muted"
-  }, [_c('i', {
-    staticClass: "icon-home"
-  }), _vm._v("  creativeLabs HQ ")]), _vm._v(" "), _c('div', {
-    staticClass: "avatars-stack m-t-h"
-  }, [_c('div', {
-    staticClass: "avatar avatar-xs"
-  }, [_c('img', {
-    staticClass: "img-avatar",
-    attrs: {
-      "src": "assets/img/avatars/2.jpg",
-      "alt": "admin@bootstrapmaster.com"
-    }
-  })]), _vm._v(" "), _c('div', {
-    staticClass: "avatar avatar-xs"
-  }, [_c('img', {
-    staticClass: "img-avatar",
-    attrs: {
-      "src": "assets/img/avatars/3.jpg",
-      "alt": "admin@bootstrapmaster.com"
-    }
-  })]), _vm._v(" "), _c('div', {
-    staticClass: "avatar avatar-xs"
-  }, [_c('img', {
-    staticClass: "img-avatar",
-    attrs: {
-      "src": "assets/img/avatars/4.jpg",
-      "alt": "admin@bootstrapmaster.com"
-    }
-  })]), _vm._v(" "), _c('div', {
-    staticClass: "avatar avatar-xs"
-  }, [_c('img', {
-    staticClass: "img-avatar",
-    attrs: {
-      "src": "assets/img/avatars/5.jpg",
-      "alt": "admin@bootstrapmaster.com"
-    }
-  })]), _vm._v(" "), _c('div', {
-    staticClass: "avatar avatar-xs"
-  }, [_c('img', {
-    staticClass: "img-avatar",
-    attrs: {
-      "src": "assets/img/avatars/6.jpg",
-      "alt": "admin@bootstrapmaster.com"
-    }
-  })]), _vm._v(" "), _c('div', {
-    staticClass: "avatar avatar-xs"
-  }, [_c('img', {
-    staticClass: "img-avatar",
-    attrs: {
-      "src": "assets/img/avatars/7.jpg",
-      "alt": "admin@bootstrapmaster.com"
-    }
-  })]), _vm._v(" "), _c('div', {
-    staticClass: "avatar avatar-xs"
-  }, [_c('img', {
-    staticClass: "img-avatar",
-    attrs: {
-      "src": "assets/img/avatars/8.jpg",
-      "alt": "admin@bootstrapmaster.com"
-    }
-  })])])]), _vm._v(" "), _c('hr', {
-    staticClass: "m-x-1 m-y-0"
-  })]), _vm._v(" "), _c('div', {
-    staticClass: "tab-pane p-a-1",
-    attrs: {
-      "id": "messages",
-      "role": "tabpanel"
-    }
-  }, [_c('div', {
-    staticClass: "message"
-  }, [_c('div', {
-    staticClass: "p-y-1 p-b-3 m-r-1 pull-left"
-  }, [_c('div', {
-    staticClass: "avatar"
-  }, [_c('img', {
-    staticClass: "img-avatar",
-    attrs: {
-      "src": "assets/img/avatars/7.jpg",
-      "alt": "admin@bootstrapmaster.com"
-    }
-  }), _vm._v(" "), _c('span', {
-    staticClass: "avatar-status tag-success"
-  })])]), _vm._v(" "), _c('div', [_c('small', {
-    staticClass: "text-muted"
-  }, [_vm._v("Lukasz Holeczek")]), _vm._v(" "), _c('small', {
-    staticClass: "text-muted pull-right m-t-q"
-  }, [_vm._v("1:52 PM")])]), _vm._v(" "), _c('div', {
-    staticClass: "text-truncate font-weight-bold"
-  }, [_vm._v("Lorem ipsum dolor sit amet")]), _vm._v(" "), _c('small', {
-    staticClass: "text-muted"
-  }, [_vm._v("Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt...")])]), _vm._v(" "), _c('hr'), _vm._v(" "), _c('div', {
-    staticClass: "message"
-  }, [_c('div', {
-    staticClass: "p-y-1 p-b-3 m-r-1 pull-left"
-  }, [_c('div', {
-    staticClass: "avatar"
-  }, [_c('img', {
-    staticClass: "img-avatar",
-    attrs: {
-      "src": "assets/img/avatars/7.jpg",
-      "alt": "admin@bootstrapmaster.com"
-    }
-  }), _vm._v(" "), _c('span', {
-    staticClass: "avatar-status tag-success"
-  })])]), _vm._v(" "), _c('div', [_c('small', {
-    staticClass: "text-muted"
-  }, [_vm._v("Lukasz Holeczek")]), _vm._v(" "), _c('small', {
-    staticClass: "text-muted pull-right m-t-q"
-  }, [_vm._v("1:52 PM")])]), _vm._v(" "), _c('div', {
-    staticClass: "text-truncate font-weight-bold"
-  }, [_vm._v("Lorem ipsum dolor sit amet")]), _vm._v(" "), _c('small', {
-    staticClass: "text-muted"
-  }, [_vm._v("Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt...")])]), _vm._v(" "), _c('hr'), _vm._v(" "), _c('div', {
-    staticClass: "message"
-  }, [_c('div', {
-    staticClass: "p-y-1 p-b-3 m-r-1 pull-left"
-  }, [_c('div', {
-    staticClass: "avatar"
-  }, [_c('img', {
-    staticClass: "img-avatar",
-    attrs: {
-      "src": "assets/img/avatars/7.jpg",
-      "alt": "admin@bootstrapmaster.com"
-    }
-  }), _vm._v(" "), _c('span', {
-    staticClass: "avatar-status tag-success"
-  })])]), _vm._v(" "), _c('div', [_c('small', {
-    staticClass: "text-muted"
-  }, [_vm._v("Lukasz Holeczek")]), _vm._v(" "), _c('small', {
-    staticClass: "text-muted pull-right m-t-q"
-  }, [_vm._v("1:52 PM")])]), _vm._v(" "), _c('div', {
-    staticClass: "text-truncate font-weight-bold"
-  }, [_vm._v("Lorem ipsum dolor sit amet")]), _vm._v(" "), _c('small', {
-    staticClass: "text-muted"
-  }, [_vm._v("Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt...")])]), _vm._v(" "), _c('hr'), _vm._v(" "), _c('div', {
-    staticClass: "message"
-  }, [_c('div', {
-    staticClass: "p-y-1 p-b-3 m-r-1 pull-left"
-  }, [_c('div', {
-    staticClass: "avatar"
-  }, [_c('img', {
-    staticClass: "img-avatar",
-    attrs: {
-      "src": "assets/img/avatars/7.jpg",
-      "alt": "admin@bootstrapmaster.com"
-    }
-  }), _vm._v(" "), _c('span', {
-    staticClass: "avatar-status tag-success"
-  })])]), _vm._v(" "), _c('div', [_c('small', {
-    staticClass: "text-muted"
-  }, [_vm._v("Lukasz Holeczek")]), _vm._v(" "), _c('small', {
-    staticClass: "text-muted pull-right m-t-q"
-  }, [_vm._v("1:52 PM")])]), _vm._v(" "), _c('div', {
-    staticClass: "text-truncate font-weight-bold"
-  }, [_vm._v("Lorem ipsum dolor sit amet")]), _vm._v(" "), _c('small', {
-    staticClass: "text-muted"
-  }, [_vm._v("Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt...")])]), _vm._v(" "), _c('hr'), _vm._v(" "), _c('div', {
-    staticClass: "message"
-  }, [_c('div', {
-    staticClass: "p-y-1 p-b-3 m-r-1 pull-left"
-  }, [_c('div', {
-    staticClass: "avatar"
-  }, [_c('img', {
-    staticClass: "img-avatar",
-    attrs: {
-      "src": "assets/img/avatars/7.jpg",
-      "alt": "admin@bootstrapmaster.com"
-    }
-  }), _vm._v(" "), _c('span', {
-    staticClass: "avatar-status tag-success"
-  })])]), _vm._v(" "), _c('div', [_c('small', {
-    staticClass: "text-muted"
-  }, [_vm._v("Lukasz Holeczek")]), _vm._v(" "), _c('small', {
-    staticClass: "text-muted pull-right m-t-q"
-  }, [_vm._v("1:52 PM")])]), _vm._v(" "), _c('div', {
-    staticClass: "text-truncate font-weight-bold"
-  }, [_vm._v("Lorem ipsum dolor sit amet")]), _vm._v(" "), _c('small', {
-    staticClass: "text-muted"
-  }, [_vm._v("Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt...")])])]), _vm._v(" "), _c('div', {
-    staticClass: "tab-pane p-a-1",
-    attrs: {
-      "id": "settings",
-      "role": "tabpanel"
-    }
-  }, [_c('h6', [_vm._v("Settings")]), _vm._v(" "), _c('div', {
-    staticClass: "aside-options"
-  }, [_c('div', {
-    staticClass: "clearfix m-t-2"
-  }, [_c('small', [_c('b', [_vm._v("Option 1")])]), _vm._v(" "), _c('label', {
-    staticClass: "switch switch-text switch-pill switch-success switch-sm pull-right"
-  }, [_c('input', {
-    staticClass: "switch-input",
-    attrs: {
-      "type": "checkbox",
-      "checked": ""
-    }
-  }), _vm._v(" "), _c('span', {
-    staticClass: "switch-label",
-    attrs: {
-      "data-on": "On",
-      "data-off": "Off"
-    }
-  }), _vm._v(" "), _c('span', {
-    staticClass: "switch-handle"
-  })])]), _vm._v(" "), _c('div', [_c('small', {
-    staticClass: "text-muted"
-  }, [_vm._v("Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.")])])]), _vm._v(" "), _c('div', {
-    staticClass: "aside-options"
-  }, [_c('div', {
-    staticClass: "clearfix m-t-1"
-  }, [_c('small', [_c('b', [_vm._v("Option 2")])]), _vm._v(" "), _c('label', {
-    staticClass: "switch switch-text switch-pill switch-success switch-sm pull-right"
-  }, [_c('input', {
-    staticClass: "switch-input",
-    attrs: {
-      "type": "checkbox"
-    }
-  }), _vm._v(" "), _c('span', {
-    staticClass: "switch-label",
-    attrs: {
-      "data-on": "On",
-      "data-off": "Off"
-    }
-  }), _vm._v(" "), _c('span', {
-    staticClass: "switch-handle"
-  })])]), _vm._v(" "), _c('div', [_c('small', {
-    staticClass: "text-muted"
-  }, [_vm._v("Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.")])])]), _vm._v(" "), _c('div', {
-    staticClass: "aside-options"
-  }, [_c('div', {
-    staticClass: "clearfix m-t-1"
-  }, [_c('small', [_c('b', [_vm._v("Option 3")])]), _vm._v(" "), _c('label', {
-    staticClass: "switch switch-text switch-pill switch-success switch-sm pull-right"
-  }, [_c('input', {
-    staticClass: "switch-input",
-    attrs: {
-      "type": "checkbox"
-    }
-  }), _vm._v(" "), _c('span', {
-    staticClass: "switch-label",
-    attrs: {
-      "data-on": "On",
-      "data-off": "Off"
-    }
-  }), _vm._v(" "), _c('span', {
-    staticClass: "switch-handle"
-  })])])]), _vm._v(" "), _c('div', {
-    staticClass: "aside-options"
-  }, [_c('div', {
-    staticClass: "clearfix m-t-1"
-  }, [_c('small', [_c('b', [_vm._v("Option 4")])]), _vm._v(" "), _c('label', {
-    staticClass: "switch switch-text switch-pill switch-success switch-sm pull-right"
-  }, [_c('input', {
-    staticClass: "switch-input",
-    attrs: {
-      "type": "checkbox",
-      "checked": ""
-    }
-  }), _vm._v(" "), _c('span', {
-    staticClass: "switch-label",
-    attrs: {
-      "data-on": "On",
-      "data-off": "Off"
-    }
-  }), _vm._v(" "), _c('span', {
-    staticClass: "switch-handle"
-  })])])]), _vm._v(" "), _c('hr'), _vm._v(" "), _c('h6', [_vm._v("System Utilization")]), _vm._v(" "), _c('div', {
-    staticClass: "text-uppercase m-b-q m-t-2"
-  }, [_c('small', [_c('b', [_vm._v("CPU Usage")])])]), _vm._v(" "), _c('progress', {
-    staticClass: "progress progress-xs progress-info m-a-0",
-    attrs: {
-      "value": "25",
-      "max": "100"
-    }
-  }, [_vm._v("25%")]), _vm._v(" "), _c('small', {
-    staticClass: "text-muted"
-  }, [_vm._v("348 Processes. 1/4 Cores.")]), _vm._v(" "), _c('div', {
-    staticClass: "text-uppercase m-b-q m-t-h"
-  }, [_c('small', [_c('b', [_vm._v("Memory Usage")])])]), _vm._v(" "), _c('progress', {
-    staticClass: "progress progress-xs progress-warning m-a-0",
-    attrs: {
-      "value": "70",
-      "max": "100"
-    }
-  }, [_vm._v("70%")]), _vm._v(" "), _c('small', {
-    staticClass: "text-muted"
-  }, [_vm._v("11444GB/16384MB")]), _vm._v(" "), _c('div', {
-    staticClass: "text-uppercase m-b-q m-t-h"
-  }, [_c('small', [_c('b', [_vm._v("SSD 1 Usage")])])]), _vm._v(" "), _c('progress', {
-    staticClass: "progress progress-xs progress-danger m-a-0",
-    attrs: {
-      "value": "95",
-      "max": "100"
-    }
-  }, [_vm._v("95%")]), _vm._v(" "), _c('small', {
-    staticClass: "text-muted"
-  }, [_vm._v("243GB/256GB")]), _vm._v(" "), _c('div', {
-    staticClass: "text-uppercase m-b-q m-t-h"
-  }, [_c('small', [_c('b', [_vm._v("SSD 2 Usage")])])]), _vm._v(" "), _c('progress', {
-    staticClass: "progress progress-xs progress-success m-a-0",
-    attrs: {
-      "value": "10",
-      "max": "100"
-    }
-  }, [_vm._v("10%")]), _vm._v(" "), _c('small', {
-    staticClass: "text-muted"
-  }, [_vm._v("25GB/256GB")])])])])
-},function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
   return _c('footer', {
     staticClass: "app-footer"
   }, [_c('a', {
@@ -21103,6 +20561,205 @@ module.exports = (__webpack_require__(4))(7);
 __webpack_require__(13);
 __webpack_require__(12);
 module.exports = __webpack_require__(11);
+
+
+/***/ }),
+/* 80 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vue__ = __webpack_require__(1);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_vue_property_decorator__ = __webpack_require__(3);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_vue_property_decorator___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_vue_property_decorator__);
+var __extends = (this && this.__extends) || (function () {
+    var extendStatics = Object.setPrototypeOf ||
+        ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
+        function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
+    return function (d, b) {
+        extendStatics(d, b);
+        function __() { this.constructor = d; }
+        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+    };
+})();
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+
+
+var DashboardComponent = (function (_super) {
+    __extends(DashboardComponent, _super);
+    function DashboardComponent() {
+        var _this = _super !== null && _super.apply(this, arguments) || this;
+        _this.blogs = {};
+        _this.title = 'Blogs';
+        _this.headers = [
+            { key: 'id', display: 'Id' },
+            { key: 'title', display: 'Title' },
+            { key: 'name', display: 'Name' }
+        ];
+        return _this;
+    }
+    DashboardComponent.prototype.mounted = function () {
+        var _this = this;
+        fetch('/api/Blog')
+            .then(function (response) { return response.json(); })
+            .then(function (data) {
+            _this.blogs = data;
+            _this.title = 'Blogs';
+        });
+    };
+    return DashboardComponent;
+}(__WEBPACK_IMPORTED_MODULE_0_vue__["default"]));
+DashboardComponent = __decorate([
+    __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1_vue_property_decorator__["Component"])({
+        components: {
+            paging: __webpack_require__(83),
+        }
+    })
+], DashboardComponent);
+/* harmony default export */ __webpack_exports__["default"] = (DashboardComponent);
+
+
+/***/ }),
+/* 81 */,
+/* 82 */,
+/* 83 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var disposed = false
+var Component = __webpack_require__(2)(
+  /* script */
+  __webpack_require__(86),
+  /* template */
+  __webpack_require__(84),
+  /* styles */
+  null,
+  /* scopeId */
+  null,
+  /* moduleIdentifier (server only) */
+  null
+)
+Component.options.__file = "D:\\NhatHoang\\Git\\GitHub\\Swastika-Core\\src\\Swastika.UI.Spa\\ClientApp\\components\\blog\\paging-container\\paging-container.vue.html"
+if (Component.esModule && Object.keys(Component.esModule).some(function (key) {return key !== "default" && key.substr(0, 2) !== "__"})) {console.error("named exports are not supported in *.vue files.")}
+if (Component.options.functional) {console.error("[vue-loader] paging-container.vue.html: functional components are not supported with templates, they should use render functions.")}
+
+/* hot reload */
+if (true) {(function () {
+  var hotAPI = __webpack_require__(0)
+  hotAPI.install(__webpack_require__(1), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-3d11ae8d", Component.options)
+  } else {
+    hotAPI.reload("data-v-3d11ae8d", Component.options)
+  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+/* 84 */
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
+  return _c('div', {
+    staticClass: "col-lg-12",
+    attrs: {
+      "id": "page-dashboard"
+    }
+  }, [_c('div', {
+    staticClass: "card"
+  }, [_c('div', {
+    staticClass: "card-header"
+  }, [_c('i', {
+    staticClass: "fa fa-align-justify"
+  }), _vm._v("\n            " + _vm._s(_vm.title) + "\n        ")]), _vm._v(" "), _c('div', {
+    staticClass: "card-block"
+  }, [_c('table', {
+    staticClass: "table table-bordered table-striped table-sm"
+  }, [_c('thead', _vm._l((_vm.headers), function(header) {
+    return _c('th', [_vm._v(" " + _vm._s(header.display) + " ")])
+  })), _vm._v(" "), _c('tbody', _vm._l((_vm.models.items), function(item) {
+    return _c('tr', _vm._l((_vm.headers), function(header) {
+      return _c('td', [_vm._v(" " + _vm._s(item[header.key]) + " ")])
+    }))
+  }))]), _vm._v(" "), _c('paging', {
+    staticClass: "pagination",
+    attrs: {
+      "items": _vm.models.totalItems,
+      "pageSize": _vm.models.pageSize,
+      "pageIndex": _vm.models.pageIndex
+    }
+  })], 1)])])
+},staticRenderFns: []}
+module.exports.render._withStripped = true
+if (true) {
+  module.hot.accept()
+  if (module.hot.data) {
+     __webpack_require__(0).rerender("data-v-3d11ae8d", module.exports)
+  }
+}
+
+/***/ }),
+/* 85 */,
+/* 86 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vue__ = __webpack_require__(1);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_vue_property_decorator__ = __webpack_require__(3);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_vue_property_decorator___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_vue_property_decorator__);
+var __extends = (this && this.__extends) || (function () {
+    var extendStatics = Object.setPrototypeOf ||
+        ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
+        function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
+    return function (d, b) {
+        extendStatics(d, b);
+        function __() { this.constructor = d; }
+        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+    };
+})();
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+
+
+var PagingComponent = (function (_super) {
+    __extends(PagingComponent, _super);
+    function PagingComponent() {
+        return _super !== null && _super.apply(this, arguments) || this;
+    }
+    PagingComponent.prototype.mounted = function () {
+        if (initPagination !== undefined) {
+            console.log(this.models);
+            initPagination();
+        }
+    };
+    return PagingComponent;
+}(__WEBPACK_IMPORTED_MODULE_0_vue__["default"]));
+PagingComponent = __decorate([
+    __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1_vue_property_decorator__["Component"])({
+        props: {
+            title: String,
+            models: JSON,
+            headers: Object
+        }
+    })
+], PagingComponent);
+/* harmony default export */ __webpack_exports__["default"] = (PagingComponent);
 
 
 /***/ })

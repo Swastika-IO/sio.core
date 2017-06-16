@@ -3,31 +3,60 @@
 (function ($) {
     SW.Common = {
         edtModule: '',
-        getPagingTable: function (obj) {
+        getPagingTable: function (obj, title, headers) {
+
+            /// Example: var table = SW.Common.getPagingTable(obj, 'Header Title', ['Col 1', null, 'Col 2', 'Col 3', null, 'Col 4']);
+
             var items = obj['items'];
-            var row = document.createElement("div");
-            row.className = 'row';
+            title = title !== undefined ? title : '';
+
+            var card = this.createElement('div', 'card');
+            var icon = this.createElement('i', 'fa fa-align-justify');
+            var cardHeader = this.createElement('div', 'card-header');
+            cardHeader.innerHTML = title;
+            $(cardHeader).prepend(icon);
+            card.appendChild(cardHeader);
+
+            var cardBlock = this.createElement('div', 'card-block');
+
             var table = document.createElement("Table");
             table.className = 'table table-bordered table-striped table-sm';
+
+            // Create table headers
             var thead = document.createElement('thead');
+            if (headers === undefined) {
+                headers = [];
+                var fstObj = items[0];
+                for (var name in fstObj) {
+                    headers.push(name.toString());
+                    console.log(name);
+                }
+            }
+            headers.forEach(function (header) {
+                if (header != null) {
+                    var th = document.createElement('th');
+                    th.innerHTML = header;
+                    thead.appendChild(th);
+                }
+            });
+            table.appendChild(thead);
+
+
             if (items.length > 0) {
                 var paging = document.createElement("paging");
                 paging.className = 'pagination';
-                var fstObj = items[0];
-                for (var name in fstObj) {
-                    var th = document.createElement('th');
-                    th.innerHTML = name;
-                    thead.appendChild(th);
-                }
-                table.appendChild(thead);
+
                 items.forEach(function (item) {
 
                     var trContent = document.createElement('tr');
+                    var i = 0;
                     for (var name in item) {
-
-                        var tdContent = document.createElement('td');
-                        tdContent.innerHTML = item[name];
-                        trContent.appendChild(tdContent);
+                        if (trContent.childNodes.length < headers.length && headers[i] != null) {
+                            var tdContent = document.createElement('td');
+                            tdContent.innerHTML = item[name];
+                            trContent.appendChild(tdContent);
+                        }
+                        i++;
                     }
                     table.appendChild(trContent);
                 });
@@ -37,10 +66,17 @@
                     itemsOnPage: obj.pageSize,
                     currentPage: obj.pageIndex + 1
                 });
-                row.appendChild(table);
-                row.appendChild(paging);                
+                //$(paging).find('li').addClass('page-item')
+                cardBlock.appendChild(table);
+                cardBlock.appendChild(paging);
+                card.appendChild(cardBlock);
             }
-            return row;
+            return card;
+        },
+        createElement: function (eName, eClass) {
+            var el = document.createElement(eName);
+            el.className = eClass;
+            return el;
         },
         getBase64: function (file) {
             var reader = new FileReader();
@@ -49,10 +85,10 @@
                 return reader.result;
             };
             reader.onerror = function (error) {
-                
+
             };
             return null;
-        },       
+        },
         executeFunctionByName: function (functionName, args, context) {
             if (functionName != null) {
                 var namespaces = functionName.split(".");
@@ -75,7 +111,7 @@
             return JSON.stringify(obj, null, '\t');
         },
         // Route operations
-        
+
         writeEvent: function (line) {
             var messages = $("#Messages");
             messages.prepend("<li style='color:blue;'>" + TTX.Common.getTimeString() + ' ' + line + "</li>");
@@ -182,4 +218,5 @@
             return encodedValue;
         }
     }
+    
 }(jQuery));
