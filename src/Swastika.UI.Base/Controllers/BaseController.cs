@@ -14,6 +14,14 @@ namespace Swastika.UI.Base.Controllers {
         /// Initializes a new instance of the <see cref="BaseController" /> class.
         /// </summary>
         /// <param name="notifications">The notifications.</param>
+        public BaseController()
+        {
+        }
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="BaseController" /> class.
+        /// </summary>
+        /// <param name="notifications">The notifications.</param>
         public BaseController(IDomainNotificationHandler<DomainNotification> notifications) {
             _notifications = notifications;
         }
@@ -26,6 +34,11 @@ namespace Swastika.UI.Base.Controllers {
         /// </returns>
         public bool IsValidOperation() {
             return (!_notifications.HasNotifications());
+        }
+
+        public override NotFoundResult NotFound()
+        {
+            return base.NotFound();
         }
     }
 }

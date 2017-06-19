@@ -5,12 +5,14 @@ using Microsoft.AspNetCore.Mvc;
 using Swastika.Extensions.Blog.Repositories;
 using Swastika.Extension.Blog.ViewModels;
 using Swastika.Common.Helper;
+using Swastika.UI.Base.Controllers;
+using Swastika.UI.Base;
 
 namespace Swastika.Extension.Blog.Api.Controllers
 {
     [Produces("application/json")]
     [Route("api/Blog")]
-    public class BlogController : Controller
+    public class BlogController : BaseApiController<BlogViewModel>
     {
         private readonly BlogRepository _repo;
 
@@ -39,7 +41,8 @@ namespace Swastika.Extension.Blog.Api.Controllers
 
             if (blog == null)
             {
-                return NotFound();
+                return GetResult(1, new BlogViewModel(), SWConstants.ResponseKey.OK.ToString(), string.Empty, string.Empty);
+                //return NotFound(id);
             }
 
             return Ok(blog);
@@ -56,7 +59,7 @@ namespace Swastika.Extension.Blog.Api.Controllers
 
             if (id != blog.Id)
             {
-                return BadRequest();
+                return BadRequest(blog);
             }
 
             var result = await _repo.EditModelAsync(blog.ParseModel());

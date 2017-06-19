@@ -17,7 +17,6 @@ export default class PagingComponent extends Vue {
     
     mounted() {
         if (initPagination !== undefined) {
-            console.log(this.models)
             initPagination();
         }
     }

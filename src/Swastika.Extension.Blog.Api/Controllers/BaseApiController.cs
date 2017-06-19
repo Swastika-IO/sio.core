@@ -1,0 +1,47 @@
+using System.Linq;
+using Microsoft.AspNetCore.Mvc;
+using Swastika.UI.Base;
+using Microsoft.AspNetCore.Mvc.ModelBinding;
+using System.Collections.Generic;
+
+namespace Swastika.Extension.Blog.Api.Controllers
+{
+    public class BaseApiController<T> : Controller
+    {
+        public override NotFoundObjectResult NotFound(object value)
+        {
+            var result = ApiHelper<T>.GetResult(0, default(T), SWConstants.ResponseKey.NotFound.ToString(), null, string.Empty);
+            return base.NotFound(result);
+        }
+        public override BadRequestObjectResult BadRequest(ModelStateDictionary modelState)
+        {
+            List<string> errors = new List<string>();
+            foreach (ModelStateEntry state in ViewData.ModelState.Values)
+            {
+                foreach (ModelError error in state.Errors)
+                {
+                    errors.Add(error.ErrorMessage);
+                }
+            }
+            var result = ApiHelper<ModelStateDictionary>.GetResult(0, modelState, SWConstants.ResponseKey.BadRequest.ToString(), errors, string.Empty);
+            return base.BadRequest(result);
+        }
+        public override BadRequestObjectResult BadRequest(object error)
+        {
+            var result = ApiHelper<T>.GetResult(0, default(T), SWConstants.ResponseKey.BadRequest.ToString(), null, string.Empty);
+            return base.BadRequest(result);
+        }
+        protected IActionResult GetErrorResult(string responseKey, string errorMsg, string message)
+        {
+            var result = ApiHelper<T>.GetResult(0, default(T), responseKey, null, message);
+            return BadRequest(result);
+
+        }
+       
+        protected IActionResult GetResult<T>(int status, T data, string responseKey, string error, string message)
+        {
+            var result = ApiHelper<T>.GetResult(status, data, responseKey, null, message);
+            return Ok(result);
+        }
+    }
+}

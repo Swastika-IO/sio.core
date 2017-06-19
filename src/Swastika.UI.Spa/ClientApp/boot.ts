@@ -28,6 +28,7 @@ const routes = [
         component: require('./components/blog/blog.vue.html'),
         children: [
             { path: '', name: 'Dashboard', component: require('./components/blog/container/dashboard/dashboard.vue.html') },
+            { path: 'details/:id?', name: 'BlogDetails', component: require('./components/blog/details/details.vue.html') },
             { path: 'widgets', name: 'Widgets', component: require('./components/blog/container/widgets/widgets.vue.html') },
         ]
     },
