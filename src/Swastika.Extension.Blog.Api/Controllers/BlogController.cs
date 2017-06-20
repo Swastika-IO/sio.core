@@ -7,6 +7,7 @@ using Swastika.Extension.Blog.ViewModels;
 using Swastika.Common.Helper;
 using Swastika.UI.Base.Controllers;
 using Swastika.UI.Base;
+using System.Linq.Expressions;
 
 namespace Swastika.Extension.Blog.Api.Controllers
 {
@@ -28,6 +29,16 @@ namespace Swastika.Extension.Blog.Api.Controllers
             return await _repo.GetModelListAsync(b => b.CreatedUtc, "desc", 0, 10, false);
         }
 
+        // GET: api/Blog
+        [HttpPost]
+        public async Task<IActionResult> GetBlogAsync([FromBody]RequestPaging request)
+        {
+            Expression<Func<Models.Blog, bool>> predicate = b => string.IsNullOrEmpty(request.Keyword)
+            || b.Title.Contains(request.Keyword) || b.Name.Contains(request.Keyword);
+            var result = await _repo.GetModelListByAsync(predicate, b => b.CreatedUtc, "desc", request.PageIndex, request.PageSize, false);
+            return GetSuccessResult(result);
+        }
+
         // GET: api/Blog/5
         [HttpGet("{id}")]
         public async Task<IActionResult> GetBlog([FromRoute] Guid id)
@@ -41,11 +52,10 @@ namespace Swastika.Extension.Blog.Api.Controllers
 
             if (blog == null)
             {
-                return GetResult(1, new BlogViewModel(), SWConstants.ResponseKey.OK.ToString(), string.Empty, string.Empty);
+                blog = new BlogViewModel();
                 //return NotFound(id);
             }
-
-            return Ok(blog);
+            return GetResult(1, blog, SWConstants.ResponseKey.OK.ToString(), string.Empty, string.Empty);
         }
 
         // PUT: api/Blog/5
@@ -74,6 +84,7 @@ namespace Swastika.Extension.Blog.Api.Controllers
         }
 
         // POST: api/Blog
+        [Route("save")]
         [HttpPost]
         public async Task<IActionResult> PostBlog([FromBody] BlogViewModel blog)
         {
@@ -81,10 +92,15 @@ namespace Swastika.Extension.Blog.Api.Controllers
             {
                 return BadRequest(ModelState);
             }
-
-            var result = await _repo.EditModelAsync(blog.ParseModel());
-
-            return CreatedAtAction("GetBlog", new { id = result.Id }, result);
+            if (blog.Id == default(Guid))
+            {
+                blog.Id = Guid.NewGuid();
+                blog.CreatedUtc = DateTime.Now;
+                blog.ModifiedUtc = DateTime.Now;
+                blog.PublishedUtc = DateTime.Now;
+            }
+            var result = await _repo.SaveModelAsync(blog.ParseModel());
+            return GetResult<BlogViewModel>(result != null ? 1 : 0, result, SWConstants.ResponseKey.OK.ToString(), string.Empty, string.Empty);
         }
 
         // DELETE: api/Blog/5

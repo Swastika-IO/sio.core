@@ -3,22 +3,29 @@
         <div class="card">
             <div class="card-header">
                 <i class="fa fa-align-justify" />
-                {{title}} 
+                <span v-text="title"/>
 
-                <router-link to="/blog/details" class="nav-link"><i class="icon-calculator"></i> Create New</router-link>
+                <router-link  v-bind:to="createUrl" class="nav-link"><i class="icon-calculator"></i> Create New</router-link>
             </div>
             <div class="card-block">
                 <table class="table table-bordered table-striped table-sm">
                     <thead>
-                    <th v-for="header in headers"> {{header.display}} </th>
+                    <th v-for="header in headers"> <span v-text="header.display"/> </th>
+                    <th>
+                        Actions
+                    </th>
                     </thead>
                     <tbody>
                         <tr v-for="item in models.items">
-                            <td v-for="header in headers"> {{item[header.key]}} </td>
+                            <td v-for="header in headers"> <span v-text="item[header.key]"/> </td>
+                            <td>
+                                <router-link v-bind:to="getDetailsUrl + item.id" class="btn btn-sm btn-info"><i class="fa fa-eye"></i> </router-link>
+                                <button type="reset" class="btn btn-sm btn-danger"><i class="fa fa-remove"></i> </button>
+                            </td>
                         </tr>
                     </tbody>
                 </table>
-                <paging class="pagination" :items="models.totalItems" :pageSize="models.pageSize" :pageIndex="models.pageIndex"/>                
+                <div v-pagination :pagination="pagination" :callback="loadData" :options="paginationOptions"/>                                 
             </div>
         </div>
     </div>

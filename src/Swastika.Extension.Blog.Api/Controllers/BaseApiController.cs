@@ -23,7 +23,7 @@ namespace Swastika.Extension.Blog.Api.Controllers
                     errors.Add(error.ErrorMessage);
                 }
             }
-            var result = ApiHelper<ModelStateDictionary>.GetResult(0, modelState, SWConstants.ResponseKey.BadRequest.ToString(), errors, string.Empty);
+            var result = ApiHelper<T>.GetResult(0, default(T), SWConstants.ResponseKey.BadRequest.ToString(), errors, string.Empty);
             return base.BadRequest(result);
         }
         public override BadRequestObjectResult BadRequest(object error)
@@ -41,6 +41,12 @@ namespace Swastika.Extension.Blog.Api.Controllers
         protected IActionResult GetResult<T>(int status, T data, string responseKey, string error, string message)
         {
             var result = ApiHelper<T>.GetResult(status, data, responseKey, null, message);
+            return Ok(result);
+        }
+
+        protected IActionResult GetSuccessResult<T>(T data)
+        {
+            var result = ApiHelper<T>.GetResult(1, data, SWConstants.ResponseKey.OK.ToString(), null, string.Empty);
             return Ok(result);
         }
     }

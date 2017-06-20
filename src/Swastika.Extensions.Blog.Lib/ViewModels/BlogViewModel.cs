@@ -90,6 +90,7 @@ namespace Swastika.Extension.Blog.ViewModels
         /// <value>
         /// The created by user identifier.
         /// </value>
+        //[Required]
         public string CreatedByUserId { get; set; }
 
         /// <summary>

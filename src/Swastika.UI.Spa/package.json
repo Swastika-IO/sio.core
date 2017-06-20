@@ -32,6 +32,11 @@
     "webpack-hot-middleware": "^2.18.0"
   },
   "dependencies": {
-    "vue-strap": "^1.1.37"
+    "vue-bootstrap-pagination": "^2.10.2",
+    "vue-pages": "^1.1.0",
+    "vue-ripple-directive": "^1.0.8",
+    "vue-strap": "^1.1.37",
+    "vue2-simplert": "^0.2.8",
+    "vuejs-paginator": "^2.0.1"
   }
 }

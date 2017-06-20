@@ -35,7 +35,7 @@ const routes = [
     { path: '/counter', component: require('./components/counter/counter.vue.html') },
     { path: '/fetchdata', component: require('./components/fetchdata/fetchdata.vue.html') }
 ];
-
+const vuePages = require('vue-pages');
 new Vue({
     el: '#app-root',
     router: new VueRouter({

@@ -4,6 +4,16 @@ using System.Text;
 
 namespace Swastika.UI.Base
 {
+    public class SWConstants
+    {
+        public enum ResponseKey
+        {
+            BadRequest = 400,
+            NotFound = 404,
+            OK = 200
+        }
+    }
+
     public class ApiResult<T>
     {
         public int status { get; set; }
@@ -12,13 +22,15 @@ namespace Swastika.UI.Base
         public string message { get; set; }
         public IEnumerable<string> errors { get; set; }
     }
-    public class SWConstants
+    
+    public class RequestPaging
     {
-        public enum ResponseKey
-        {
-            BadRequest = 400,
-            NotFound = 404,
-            OK = 200
-        }      
+        public string Culture { get; set; }
+        public string Key { get; set; }
+        public string Keyword { get; set; }
+        public string UserId { get; set; }
+        public string UserAgent { get; set; }
+        public int PageIndex { get; set; }
+        public int? PageSize { get; set; }
     }
 }

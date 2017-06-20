@@ -99,7 +99,7 @@ namespace Swastika.Infrastructure.Data.Repository
             using (TContext context = InitContext())
             {
                 //For the former case use:
-                return context.Set<TModel>().Local.Any(e => e == entity);
+                return context.Set<TModel>().Any(e => e == entity);
 
                 //For the latter case use(it will check loaded entities as well):
                 //return (_context.Set<T>().Find(keys) != null);
