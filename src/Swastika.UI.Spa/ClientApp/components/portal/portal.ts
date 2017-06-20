@@ -3,6 +3,7 @@ import { Component } from 'vue-property-decorator';
 
 @Component({
     components: {
+        AppHeader: require('./app-header/header.vue.html'),
         MenuComponent: require('./navbar/navbar.vue.html'),
         SidebarComponent: require('./sidebar/sidebar.vue.html'),
         BreadcrumbComponent: require('./breadcrumb/breadcrumb.vue.html')

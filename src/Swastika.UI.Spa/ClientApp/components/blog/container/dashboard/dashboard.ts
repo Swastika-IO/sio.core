@@ -1,8 +1,13 @@
 ﻿import Vue from 'vue';
 import { Component } from 'vue-property-decorator';
+
+// Using vue-pagination-2
+import { Pagination, PaginationEvent } from 'vue-pagination-2';
+Vue.component('vuepagination2', Pagination);
+
 @Component({
     components: {
-        paging: require('../../paging-container/paging-container.vue.html'),
+        listItemPaging: require('../../paging-container/paging-container.vue.html'),
     }
 })
 export default class DashboardComponent extends Vue {
@@ -13,12 +18,12 @@ export default class DashboardComponent extends Vue {
         Key: '',
         Keyword: '',
         PageIndex: 0,
-        PageSize: null
+        PageSize: 2
     };
 
     getListUrl: string = '/api/Blog';
-    getDetailsUrl: string = '/blog/details/';
-    createUrl: string = '/blog/details/00000000-0000-0000-0000-000000000000';
+    getDetailsUrl: string = '/portal/blog/details/';
+    createUrl: string = '/portal/blog/details/00000000-0000-0000-0000-000000000000';
     saveUrl: string = '/api/Blog/save';
     removeUrl: string = '/api/Blog/remove';
     headers: Array<object> = [
@@ -41,6 +46,41 @@ export default class DashboardComponent extends Vue {
                 this.blogs = data['data'];
                 this.title = 'Blogs';
             });
+
+        PaginationEvent.$on('vue-pagination::blogs', function (page) {
+            // display the relevant records using the page param
+
+            //this.filter.PageIndex = page;
+            //alert();
+            var request = {
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                method: "POST",
+                body: JSON.stringify({
+                    Culture: '',
+                    Key: '',
+                    Keyword: '',
+                    PageIndex: page,
+                    PageSize: 2
+                })
+            }
+
+            fetch(this.getListUrl, request)
+                .then(response => response.json())
+                .then(data => {
+                    this.blogs = data['data'];
+                    this.title = 'Blogs';
+                });
+        });
+        
+    };
+
+    created() {
+        
     }
+    
+
+    
 }
 

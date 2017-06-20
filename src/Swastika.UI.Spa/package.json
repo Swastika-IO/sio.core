@@ -34,6 +34,7 @@
   "dependencies": {
     "vue-bootstrap-pagination": "^2.10.2",
     "vue-pages": "^1.1.0",
+    "vue-pagination-2": "^0.3.1",
     "vue-ripple-directive": "^1.0.8",
     "vue-strap": "^1.1.37",
     "vue2-simplert": "^0.2.8",
