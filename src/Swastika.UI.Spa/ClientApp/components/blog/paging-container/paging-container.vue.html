@@ -7,13 +7,13 @@
 
                 <router-link v-bind:to="createUrl" class="nav-link btn-outline-success"><i class="icon-calculator"></i> Create New</router-link>
             </div>
-            <div class="card-block">                
-                <table class="table table-bordered table-striped table-sm">
+            <div class="card-block" v-if="models!=null">
+                <table class="table table-bordered table-striped">
                     <thead>
-                    <th v-for="header in headers"> <span v-text="header.display" /> </th>
-                    <th>
-                        Actions
-                    </th>
+                        <th v-for="header in headers"> <span v-text="header.display" /></th>
+                        <th>
+                            Actions
+                        </th>
                     </thead>
                     <tbody>
                         <tr v-for="item in models.items">
@@ -29,7 +29,7 @@
                         </tr>
                     </tbody>
                 </table>
-                <div v-pagination :pagination="pagination" :callback="loadData" :options="paginationOptions" />
+                <vuepagination2 for="models" :records="models.totalItems" :perPage="models.pageSize"></vuepagination2>
             </div>
         </div>
     </div>

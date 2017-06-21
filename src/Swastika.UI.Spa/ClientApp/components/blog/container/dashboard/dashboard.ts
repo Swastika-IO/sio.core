@@ -2,8 +2,8 @@
 import { Component } from 'vue-property-decorator';
 
 // Using vue-pagination-2
-import { Pagination, PaginationEvent } from 'vue-pagination-2';
-Vue.component('vuepagination2', Pagination);
+//import { Pagination, PaginationEvent } from 'vue-pagination-2';
+//Vue.component('vuepagination2', Pagination);
 
 @Component({
     components: {
@@ -28,32 +28,6 @@ export default class DashboardComponent extends Vue {
     mounted() {
         
 
-        PaginationEvent.$on('vue-pagination::blogs', function (page) {
-            // display the relevant records using the page param
-
-            //this.filter.PageIndex = page;
-            //alert();
-            var request = {
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                method: "POST",
-                body: JSON.stringify({
-                    Culture: '',
-                    Key: '',
-                    Keyword: '',
-                    PageIndex: page,
-                    PageSize: 2
-                })
-            }
-
-            fetch(this.getListUrl, request)
-                .then(response => response.json())
-                .then(data => {
-                    this.blogs = data['data'];
-                    this.title = 'Blogs';
-                });
-        });
         
     };
 

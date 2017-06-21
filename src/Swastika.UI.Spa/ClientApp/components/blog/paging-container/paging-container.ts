@@ -1,6 +1,8 @@
 ﻿import Vue from 'vue';
 import { Component, Prop } from 'vue-property-decorator';
 import ClickConfirm from 'click-confirm';
+import { Pagination, PaginationEvent } from 'vue-pagination-2';
+Vue.component('vuepagination2', Pagination);
 
 @Component({
     components: {
@@ -25,27 +27,12 @@ export default class PagingComponent extends Vue {
     @Prop()
     headers: Array<String>;
 
-    pagination: object = {
-        total: 0,
-        per_page: 12,    // required 
-        current_page: 1, // required 
-        last_page: 0,    // required 
-        from: 1,
-        to: 12           // required 
-    };
-
-    paginationOptions: object = {
-        offset: 4,
-        previousText: 'Prev',
-        nextText: 'Next',
-        alwaysShowPrevNext: true
-    };
     filter: object = {
         Culture: '',
         Key: '',
         Keyword: '',
         PageIndex: 0,
-        PageSize: null
+        PageSize: 10
     };
     remove(id) {
         var request = {
@@ -62,7 +49,8 @@ export default class PagingComponent extends Vue {
                 }
             });
     }
-    loadPage() {
+    loadPage: Function = function (page) {
+        this.filter.pageIndex = page;
         var request = {
             headers: {
                 'Content-Type': 'application/json'
@@ -77,9 +65,15 @@ export default class PagingComponent extends Vue {
                 this.models = data['data'];
                 this.title = 'Blogs';
             });
-    }
+    }   
     mounted() {
-        this.loadPage();
+        this.loadPage(0);
+        var me = this;
+        PaginationEvent.$on('vue-pagination::models', function (page) {
+            // display the relevant records using the page param
+            me.loadPage(page - 1);
+        });
+
     }
 }
 

@@ -1,5 +1,5 @@
 ﻿import Vue from 'vue';
-import { Component } from 'vue-property-decorator';
+import { Component, } from 'vue-property-decorator';
 
 @Component({
     props: {
@@ -24,12 +24,12 @@ export default class DetailsComponent extends Vue {
             .then(response => response.json())
             .then(data => {
                 if (data.status == 1) {
-                    this.$router.push('/blog');
+                    this.$router.push('/portal/blog');
                 }
             });
     }
     back() {
-        this.$router.push('/blog');
+        this.$router.push('/portal/blog');
     }
     mounted() {
 
