@@ -28,6 +28,9 @@ export default class DetailsComponent extends Vue {
                 }
             });
     }
+    back() {
+        this.$router.push('/blog');
+    }
     mounted() {
 
         this.id = this.$route.params.id;

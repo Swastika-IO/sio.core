@@ -32,6 +32,8 @@
     "webpack-hot-middleware": "^2.18.0"
   },
   "dependencies": {
+    "archer-vue-confirm": "^0.3.1",
+    "click-confirm": "^1.0.4",
     "vue-bootstrap-pagination": "^2.10.2",
     "vue-pages": "^1.1.0",
     "vue-ripple-directive": "^1.0.8",

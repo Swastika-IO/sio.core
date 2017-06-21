@@ -9,9 +9,11 @@
     <PackageId>Swastika.UI.Spa</PackageId>
     <UserSecretsId>aspnet-Swastika.UI.Spa-de2246eb-3cce-41bd-ab51-a1e37e0f6934</UserSecretsId>
     <!--<PackageTargetFallback>$(PackageTargetFallback);dnxcore50</PackageTargetFallback>-->
+    <PackageTargetFallback>$(PackageTargetFallback);dotnet5.6;portable-net45+win8</PackageTargetFallback>
     <!--<RuntimeFrameworkVersion>1.1.1</RuntimeFrameworkVersion>-->
     <MvcRazorCompileOnPublish>true</MvcRazorCompileOnPublish>
     <IsPackable>false</IsPackable>
+    
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">

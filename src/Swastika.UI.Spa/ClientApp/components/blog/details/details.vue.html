@@ -3,7 +3,7 @@
         <div class="card">
             <div class="card-header">
                 <i class="fa fa-align-justify" />
-                {{model}}
+                Details
             </div>
             <div class="card-block" v-if="model!=null">
                 <div class="form-group">
@@ -25,7 +25,7 @@
             </div>
             <div class="card-footer">
                 <button type="submit" v-on:click="submit" class="btn btn-sm btn-primary"><i class="fa fa-dot-circle-o"></i> Submit</button>
-                <button type="reset" class="btn btn-sm btn-danger"><i class="fa fa-ban"></i> Reset</button>
+                <button type="button" v-on:click="back" class="btn btn-sm btn-danger"><i class="fa fa-ban"></i> Back</button>
             </div>
         </div>
     </div>

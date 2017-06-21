@@ -3,29 +3,33 @@
         <div class="card">
             <div class="card-header">
                 <i class="fa fa-align-justify" />
-                <span v-text="title"/>
+                <span v-text="title" />
 
-                <router-link  v-bind:to="createUrl" class="nav-link"><i class="icon-calculator"></i> Create New</router-link>
+                <router-link v-bind:to="createUrl" class="nav-link btn-outline-success"><i class="icon-calculator"></i> Create New</router-link>
             </div>
-            <div class="card-block">
+            <div class="card-block">                
                 <table class="table table-bordered table-striped table-sm">
                     <thead>
-                    <th v-for="header in headers"> <span v-text="header.display"/> </th>
+                    <th v-for="header in headers"> <span v-text="header.display" /> </th>
                     <th>
                         Actions
                     </th>
                     </thead>
                     <tbody>
                         <tr v-for="item in models.items">
-                            <td v-for="header in headers"> <span v-text="item[header.key]"/> </td>
+                            <td v-for="header in headers"> <span v-text="item[header.key]" /> </td>
                             <td>
-                                <router-link v-bind:to="getDetailsUrl + item.id" class="btn btn-sm btn-info"><i class="fa fa-eye"></i> </router-link>
-                                <button type="reset" class="btn btn-sm btn-danger"><i class="fa fa-remove"></i> </button>
+                                <div class="d-inline-block">
+                                    <router-link v-bind:to="getDetailsUrl + item.id" class="btn btn-sm btn-info"><i class="fa fa-eye"></i> </router-link>
+                                    <click-confirm class="d-inline-block">
+                                        <button type="button" @click="remove(item.id)" class="btn btn-sm btn-danger"><i class="fa fa-remove"></i> </button>
+                                    </click-confirm>
+                                </div>
                             </td>
                         </tr>
                     </tbody>
                 </table>
-                <div v-pagination :pagination="pagination" :callback="loadData" :options="paginationOptions"/>                                 
+                <div v-pagination :pagination="pagination" :callback="loadData" :options="paginationOptions" />
             </div>
         </div>
     </div>

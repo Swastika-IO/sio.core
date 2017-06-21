@@ -104,7 +104,7 @@ namespace Swastika.Extension.Blog.Api.Controllers
         }
 
         // DELETE: api/Blog/5
-        [HttpDelete("{id}")]
+        [HttpDelete("remove/{id}")]
         public async Task<IActionResult> DeleteBlog([FromRoute] Guid id)
         {
             if (!ModelState.IsValid)
@@ -115,12 +115,12 @@ namespace Swastika.Extension.Blog.Api.Controllers
             var blog = await _repo.GetSingleModelAsync(m => m.Id == id, false);
             if (blog == null)
             {
-                return NotFound();
+                return NotFound(id);
             }
 
-            await _repo.RemoveModelAsync(blog.Model);
-
-            return Ok(blog);
+            var result = await _repo.RemoveModelAsync(blog.ParseModel());
+            return GetResult<bool>(result ? 1 : 0, result, SWConstants.ResponseKey.OK.ToString(), string.Empty, string.Empty);
+            //return Ok(blog);
         }
     }
 }
