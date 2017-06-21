@@ -18,18 +18,18 @@ const routes = [
         name: 'Portal',
         component: require('./components/portal/portal.vue.html'),
         children: [
-            { path: '', name: 'Dashboard', component: require('./components/portal/container/dashboard/dashboard.vue.html') },
+            { path: '', name: 'Dashboard', component: require('./components/portal/container/dashboard/dashboard.vue.html') }, ,
+            {
+                path: 'blog',
+                name: 'Blog',
+                component: require('./components/blog/blog.vue.html'),
+                children: [
+                    { path: '', name: 'Dashboard', component: require('./components/blog/container/dashboard/dashboard.vue.html') },
+                    { path: 'details/:id?', name: 'BlogDetails', component: require('./components/blog/details/details.vue.html') },
+                    { path: 'widgets', name: 'Widgets', component: require('./components/blog/container/widgets/widgets.vue.html') },
+                ]
+            },
             { path: 'widgets', name: 'Widgets', component: require('./components/portal/container/widgets/widgets.vue.html') },
-        ]
-    },
-    {
-        path: '/blog',
-        name: 'Blog',
-        component: require('./components/blog/blog.vue.html'),
-        children: [
-            { path: '', name: 'Dashboard', component: require('./components/blog/container/dashboard/dashboard.vue.html') },
-            { path: 'details/:id?', name: 'BlogDetails', component: require('./components/blog/details/details.vue.html') },
-            { path: 'widgets', name: 'Widgets', component: require('./components/blog/container/widgets/widgets.vue.html') },
         ]
     },
     { path: '/counter', component: require('./components/counter/counter.vue.html') },

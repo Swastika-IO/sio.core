@@ -5,6 +5,10 @@
             <paging :title="title" :headers="headers"
                     :getListUrl="getListUrl" :getDetailsUrl="getDetailsUrl" :saveUrl="saveUrl" :removeUrl="removeUrl"
                     :createUrl="createUrl" />
+
+            <!--SAMPLE WITH vue-pagination-2 (https://www.npmjs.com/package/vue-pagination-2#usage)-->
+            <vuepagination2 for="blogs" :records="100"></vuepagination2>
+
         </div>
         <!--/.col-->
     </div>

@@ -1,6 +1,7 @@
 ﻿import Vue from 'vue';
 import { Component, Prop } from 'vue-property-decorator';
 import ClickConfirm from 'click-confirm';
+
 @Component({
     components: {
         clickConfirm: ClickConfirm
