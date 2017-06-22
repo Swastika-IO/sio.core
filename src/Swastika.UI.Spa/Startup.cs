@@ -19,7 +19,8 @@ using Swastika.UI.Base.Extensions.Web;
 using System.IO;
 using Webpack;
 
-namespace Swastika.UI.Spa {
+namespace Swastika.UI.Spa
+{
     /// <summary>
     /// 
     /// </summary>
@@ -73,10 +74,19 @@ namespace Swastika.UI.Spa {
 
             // Add Identity
             services.AddIdentity<ApplicationUser, IdentityRole>(
-                options => options.Cookies.ApplicationCookie.AccessDeniedPath =
-                Const.CONST_PATH_HOME_ACCESS_DENIED)
+                options =>
+                {
+                    options.Cookies.ApplicationCookie.AccessDeniedPath = Const.CONST_PATH_HOME_ACCESS_DENIED;
+                    options.Password.RequireDigit = false;
+                    options.Password.RequiredLength = 6;
+                    options.Password.RequireLowercase = false;
+                    options.Password.RequireNonAlphanumeric = false;
+                    options.Password.RequireUppercase = false;
+                })
                 .AddEntityFrameworkStores<ApplicationDbContext>()
                 .AddDefaultTokenProviders();
+
+
 
             // Add MVC
             services.AddMvc()
@@ -93,7 +103,7 @@ namespace Swastika.UI.Spa {
             });
 
             services.AddMvcToExtensions(ExtensionManager.Extensions);
-            
+
             // .NET Native DI Abstraction
             RegisterServices(services);
         }
@@ -118,7 +128,8 @@ namespace Swastika.UI.Spa {
                 app.UseDeveloperExceptionPage();
                 app.UseDatabaseErrorPage();
                 //app.UseBrowserLink();
-                app.UseWebpackDevMiddleware(new WebpackDevMiddlewareOptions {
+                app.UseWebpackDevMiddleware(new WebpackDevMiddlewareOptions
+                {
                     HotModuleReplacement = true
                 });
             }
@@ -130,7 +141,8 @@ namespace Swastika.UI.Spa {
             app.UseStaticFiles();
             app.UseIdentity();
 
-            app.UseFacebookAuthentication(new FacebookOptions() {
+            app.UseFacebookAuthentication(new FacebookOptions()
+            {
                 AppId = Const.CONST_APPID,
                 AppSecret = Const.CONST_APPSECRET
             });

@@ -10,11 +10,11 @@ namespace Swastika.UI.Base
         {
             ApiResult<T> result = new ApiResult<T>()
             {
-                status = status,
-                responseKey = responseKey,
-                data = data,
-                errors = errors,
-                message = message,
+                Status = status,
+                ResponseKey = responseKey,
+                Data = data,
+                Errors = errors,
+                Message = message,
             };
 
             return result;

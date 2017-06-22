@@ -59,7 +59,7 @@
 /******/ 	
 /******/ 	
 /******/ 	var hotApplyOnUpdate = true;
-/******/ 	var hotCurrentHash = "70b7417902326acf8d4c"; // eslint-disable-line no-unused-vars
+/******/ 	var hotCurrentHash = "1f7c424bd9f032476f38"; // eslint-disable-line no-unused-vars
 /******/ 	var hotCurrentModuleData = {};
 /******/ 	var hotCurrentChildModule; // eslint-disable-line no-unused-vars
 /******/ 	var hotCurrentParents = []; // eslint-disable-line no-unused-vars
@@ -12066,6 +12066,7 @@ var DashboardComponent = (function (_super) {
         var _this = _super !== null && _super.apply(this, arguments) || this;
         _this.blogs = {};
         _this.title = 'Blogs';
+        _this.pageSize = 10;
         _this.getListUrl = '/api/Blog';
         _this.getDetailsUrl = '/portal/blog/details/';
         _this.createUrl = '/portal/blog/details/00000000-0000-0000-0000-000000000000';
@@ -12073,8 +12074,10 @@ var DashboardComponent = (function (_super) {
         _this.removeUrl = '/api/Blog/remove/';
         _this.headers = [
             { key: 'id', display: 'Id' },
-            { key: 'title', display: 'Title' },
-            { key: 'name', display: 'Name' }
+            { key: 'name', display: 'Name' },
+            { key: 'description', display: 'Description' },
+            { key: 'slug', display: 'Slug' },
+            { key: 'createdUtc', display: 'Created Date' }
         ];
         return _this;
     }
@@ -12261,7 +12264,7 @@ var PagingComponent = (function (_super) {
             Key: '',
             Keyword: '',
             PageIndex: 0,
-            PageSize: 10
+            PageSize: _this.pageSize
         };
         _this.loadPage = function (page) {
             var _this = this;
@@ -12314,6 +12317,9 @@ __decorate([
 __decorate([
     __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1_vue_property_decorator__["Prop"])()
 ], PagingComponent.prototype, "models", void 0);
+__decorate([
+    __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1_vue_property_decorator__["Prop"])()
+], PagingComponent.prototype, "pageSize", void 0);
 __decorate([
     __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1_vue_property_decorator__["Prop"])()
 ], PagingComponent.prototype, "getListUrl", void 0);
@@ -19697,13 +19703,13 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     staticClass: "card-block"
   }, [_c('table', {
     staticClass: "table table-bordered table-striped"
-  }, [_c('thead', [_vm._l((_vm.headers), function(header) {
+  }, [_c('thead', [_c('tr', [_vm._l((_vm.headers), function(header) {
     return _c('th', [_c('span', {
       domProps: {
         "textContent": _vm._s(header.display)
       }
     })])
-  }), _vm._v(" "), _c('th', [_vm._v("\n                        Actions\n                    ")])], 2), _vm._v(" "), _c('tbody', _vm._l((_vm.models.items), function(item) {
+  }), _vm._v(" "), _c('th', [_vm._v("\n                            Actions\n                        ")])], 2)]), _vm._v(" "), _c('tbody', _vm._l((_vm.models.items), function(item) {
     return _c('tr', [_vm._l((_vm.headers), function(header) {
       return _c('td', [_c('span', {
         domProps: {
@@ -23165,7 +23171,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
   }, [_c('img', {
     staticClass: "img-avatar",
     attrs: {
-      "src": "img/avatars/6.jpg",
+      "src": "/static/img/avatars/6.jpg",
       "alt": "admin@bootstrapmaster.com"
     }
   }), _vm._v(" "), _c('span', {
@@ -25173,6 +25179,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     attrs: {
       "title": _vm.title,
       "headers": _vm.headers,
+      "pageSize": _vm.pageSize,
       "getListUrl": _vm.getListUrl,
       "getDetailsUrl": _vm.getDetailsUrl,
       "saveUrl": _vm.saveUrl,

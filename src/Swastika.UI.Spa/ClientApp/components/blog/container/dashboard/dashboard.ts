@@ -14,7 +14,7 @@ import { Component } from 'vue-property-decorator';
 export default class DashboardComponent extends Vue {
     blogs: object = {};
     title: string = 'Blogs';
-    
+    pageSize: number = 10;
     getListUrl: string = '/api/Blog';
     getDetailsUrl: string = '/portal/blog/details/';
     createUrl: string = '/portal/blog/details/00000000-0000-0000-0000-000000000000';
@@ -22,8 +22,10 @@ export default class DashboardComponent extends Vue {
     removeUrl: string = '/api/Blog/remove/';
     headers: Array<object> = [
         { key: 'id', display: 'Id' },
-        { key: 'title', display: 'Title' },
-        { key: 'name', display: 'Name' }
+        { key: 'name', display: 'Name' },
+        { key: 'description', display: 'Description' },
+        { key: 'slug', display: 'Slug' },
+        { key: 'createdUtc', display: 'Created Date' }
     ];
     mounted() {
         

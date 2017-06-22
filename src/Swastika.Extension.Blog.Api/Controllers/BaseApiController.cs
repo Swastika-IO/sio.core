@@ -38,15 +38,15 @@ namespace Swastika.Extension.Blog.Api.Controllers
 
         }
        
-        protected IActionResult GetResult<T>(int status, T data, string responseKey, string error, string message)
+        protected IActionResult GetResult<TResult>(int status, TResult data, string responseKey, string error, string message)
         {
-            var result = ApiHelper<T>.GetResult(status, data, responseKey, null, message);
+            var result = ApiHelper<TResult>.GetResult(status, data, responseKey, null, message);
             return Ok(result);
         }
 
-        protected IActionResult GetSuccessResult<T>(T data)
+        protected IActionResult GetSuccessResult<TResult>(TResult data)
         {
-            var result = ApiHelper<T>.GetResult(1, data, SWConstants.ResponseKey.OK.ToString(), null, string.Empty);
+            var result = ApiHelper<TResult>.GetResult(1, data, SWConstants.ResponseKey.OK.ToString(), null, string.Empty);
             return Ok(result);
         }
     }

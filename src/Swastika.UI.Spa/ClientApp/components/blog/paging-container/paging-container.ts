@@ -15,6 +15,8 @@ export default class PagingComponent extends Vue {
     @Prop()
     models: object;
     @Prop()
+    pageSize: number;
+    @Prop()
     getListUrl: string;
     @Prop()
     getDetailsUrl: string;
@@ -32,7 +34,7 @@ export default class PagingComponent extends Vue {
         Key: '',
         Keyword: '',
         PageIndex: 0,
-        PageSize: 10
+        PageSize: this.pageSize
     };
     remove(id) {
         var request = {

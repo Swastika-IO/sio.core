@@ -16,11 +16,11 @@ namespace Swastika.UI.Base
 
     public class ApiResult<T>
     {
-        public int status { get; set; }
-        public string responseKey { get; set; }
-        public T data { get; set; }
-        public string message { get; set; }
-        public IEnumerable<string> errors { get; set; }
+        public int Status { get; set; }
+        public string ResponseKey { get; set; }
+        public T Data { get; set; }
+        public string Message { get; set; }
+        public IEnumerable<string> Errors { get; set; }
     }
     
     public class RequestPaging

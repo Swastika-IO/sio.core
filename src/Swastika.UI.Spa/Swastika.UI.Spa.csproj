@@ -25,6 +25,7 @@
     <Content Remove="Contents\Extensions\**" />
     <EmbeddedResource Remove="Contents\Extensions\**" />
     <None Remove="Contents\Extensions\**" />
+    <Compile Remove="Controllers\SampleDataController.cs" />
     <None Remove="cmd-vue-compile.bat" />
     <None Remove="yarn.lock" />
   </ItemGroup>

@@ -24,9 +24,10 @@ namespace Swastika.Extension.Blog.Api.Controllers
 
         // GET: api/Blog
         [HttpGet]
-        public async Task<PaginationModel<BlogViewModel>> GetBlogAsync()
+        public async Task<IActionResult> GetBlogAsync()
         {
-            return await _repo.GetModelListAsync(b => b.CreatedUtc, "desc", 0, 10, false);
+            var result = await _repo.GetModelListAsync(b => b.CreatedUtc, "desc", 0, 10, false);
+            return GetSuccessResult(result);
         }
 
         // GET: api/Blog
@@ -75,7 +76,7 @@ namespace Swastika.Extension.Blog.Api.Controllers
             var result = await _repo.EditModelAsync(blog.ParseModel());
 
 
-            if (!_repo.isExists(blog.Model))
+            if (!_repo.CheckIsExists(blog.Model))
             {
                 return NotFound();
             }

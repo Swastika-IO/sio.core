@@ -10,10 +10,12 @@
             <div class="card-block" v-if="models!=null">
                 <table class="table table-bordered table-striped">
                     <thead>
-                        <th v-for="header in headers"> <span v-text="header.display" /></th>
-                        <th>
-                            Actions
-                        </th>
+                        <tr>
+                            <th v-for="header in headers"> <span v-text="header.display" /></th>
+                            <th>
+                                Actions
+                            </th>
+                        </tr>
                     </thead>
                     <tbody>
                         <tr v-for="item in models.items">

@@ -94,7 +94,7 @@ namespace Swastika.Infrastructure.Data.Repository
         /// <returns>
         ///   <c>true</c> if the specified entity is exists; otherwise, <c>false</c>.
         /// </returns>
-        public virtual bool isExists(TModel entity)
+        public virtual bool CheckIsExists(TModel entity)
         {
             using (TContext context = InitContext())
             {
@@ -113,7 +113,7 @@ namespace Swastika.Infrastructure.Data.Repository
         /// <returns>
         ///   <c>true</c> if the specified predicate is exists; otherwise, <c>false</c>.
         /// </returns>
-        public bool isExists(System.Func<TModel, bool> predicate)
+        public bool CheckIsExists(System.Func<TModel, bool> predicate)
         {
             using (TContext context = InitContext())
             {
@@ -355,9 +355,11 @@ namespace Swastika.Infrastructure.Data.Repository
                     List<TModel> lstModelss = new List<TModel>();
                     var query = context.Set<TModel>();
 
-                    PaginationModel<TView> result = new PaginationModel<TView>();
-                    result.TotalItems = query.Count();
-                    result.PageIndex = pageIndex ?? 0;
+                    PaginationModel<TView> result = new PaginationModel<TView>()
+                    {
+                        TotalItems = query.Count(),
+                        PageIndex = pageIndex ?? 0
+                    };
                     result.PageSize = pageSize ?? result.TotalItems;
 
                     if (pageSize.HasValue)
@@ -443,9 +445,11 @@ namespace Swastika.Infrastructure.Data.Repository
                     List<TModel> lstModelss = new List<TModel>();
 
                     var query = context.Set<TModel>();
-                    PaginationModel<TView> result = new PaginationModel<TView>();
-                    result.TotalItems = query.Count();
-                    result.PageIndex = pageIndex ?? 0;
+                    PaginationModel<TView> result = new PaginationModel<TView>()
+                    {
+                        TotalItems = query.Count(),
+                        PageIndex = pageIndex ?? 0
+                    };
                     result.PageSize = pageSize ?? result.TotalItems;
 
                     if (pageSize.HasValue)
@@ -532,9 +536,11 @@ namespace Swastika.Infrastructure.Data.Repository
                     List<TModel> lstModelss = new List<TModel>();
                     var query = context.Set<TModel>();
 
-                    PaginationModel<TView> result = new PaginationModel<TView>();
-                    result.TotalItems = query.Count();
-                    result.PageIndex = pageIndex ?? 0;
+                    PaginationModel<TView> result = new PaginationModel<TView>()
+                    {
+                        TotalItems = query.Count(),
+                        PageIndex = pageIndex ?? 0
+                    };
                     result.PageSize = pageSize ?? result.TotalItems;
 
                     if (pageSize.HasValue)
@@ -618,9 +624,11 @@ namespace Swastika.Infrastructure.Data.Repository
                     List<TModel> lstModelss = new List<TModel>();
                     var query = context.Set<TModel>();
 
-                    PaginationModel<TView> result = new PaginationModel<TView>();
-                    result.TotalItems = query.Count();
-                    result.PageIndex = pageIndex ?? 0;
+                    PaginationModel<TView> result = new PaginationModel<TView>()
+                    {
+                        TotalItems = query.Count(),
+                        PageIndex = pageIndex ?? 0
+                    };
                     result.PageSize = pageSize ?? result.TotalItems;
 
                     if (pageSize.HasValue)
@@ -732,9 +740,11 @@ namespace Swastika.Infrastructure.Data.Repository
                     List<TModel> lstModels = new List<TModel>();
                     var query = context.Set<TModel>();
 
-                    PaginationModel<TView> result = new PaginationModel<TView>();
-                    result.TotalItems = query.Count();
-                    result.PageIndex = pageIndex ?? 0;
+                    PaginationModel<TView> result = new PaginationModel<TView>()
+                    {
+                        TotalItems = query.Count(),
+                        PageIndex = pageIndex ?? 0
+                    };
                     result.PageSize = pageSize ?? result.TotalItems;
 
                     if (pageSize.HasValue)
@@ -818,9 +828,11 @@ namespace Swastika.Infrastructure.Data.Repository
                     List<TModel> lstModels = new List<TModel>();
                     var query = context.Set<TModel>();
 
-                    PaginationModel<TView> result = new PaginationModel<TView>();
-                    result.TotalItems = query.Count();
-                    result.PageIndex = pageIndex ?? 0;
+                    PaginationModel<TView> result = new PaginationModel<TView>()
+                    {
+                        TotalItems = query.Count(),
+                        PageIndex = pageIndex ?? 0
+                    };
                     result.PageSize = pageSize ?? result.TotalItems;
 
                     if (pageSize.HasValue)
@@ -941,9 +953,11 @@ namespace Swastika.Infrastructure.Data.Repository
                     List<TModel> lstModels = new List<TModel>();
                     var query = context.Set<TModel>().Where(predicate);
 
-                    PaginationModel<TView> result = new PaginationModel<TView>();
-                    result.TotalItems = query.Count();
-                    result.PageIndex = pageIndex ?? 0;
+                    PaginationModel<TView> result = new PaginationModel<TView>()
+                    {
+                        TotalItems = query.Count(),
+                        PageIndex = pageIndex ?? 0
+                    };
                     result.PageSize = pageSize ?? result.TotalItems;
 
                     if (pageSize.HasValue)
@@ -1028,9 +1042,11 @@ namespace Swastika.Infrastructure.Data.Repository
                     List<TModel> lstModels = new List<TModel>();
                     var query = context.Set<TModel>().Where(predicate);
 
-                    PaginationModel<TView> result = new PaginationModel<TView>();
-                    result.TotalItems = query.Count();
-                    result.PageIndex = pageIndex ?? 0;
+                    PaginationModel<TView> result = new PaginationModel<TView>()
+                    {
+                        TotalItems = query.Count(),
+                        PageIndex = pageIndex ?? 0
+                    };
                     result.PageSize = pageSize ?? result.TotalItems;
 
                     if (pageSize.HasValue)
@@ -1115,9 +1131,11 @@ namespace Swastika.Infrastructure.Data.Repository
                     List<TModel> lstModels = new List<TModel>();
                     var query = context.Set<TModel>().Where(predicate);
 
-                    PaginationModel<TView> result = new PaginationModel<TView>();
-                    result.TotalItems = query.Count();
-                    result.PageIndex = pageIndex ?? 0;
+                    PaginationModel<TView> result = new PaginationModel<TView>()
+                    {
+                        TotalItems = query.Count(),
+                        PageIndex = pageIndex ?? 0
+                    };
                     result.PageSize = pageSize ?? result.TotalItems;
 
                     if (pageSize.HasValue)
@@ -1233,9 +1251,11 @@ namespace Swastika.Infrastructure.Data.Repository
                     List<TModel> lstModels = new List<TModel>();
                     var query = context.Set<TModel>().Where(predicate);
 
-                    PaginationModel<TView> result = new PaginationModel<TView>();
-                    result.TotalItems = query.Count();
-                    result.PageIndex = pageIndex ?? 0;
+                    PaginationModel<TView> result = new PaginationModel<TView>()
+                    {
+                        TotalItems = query.Count(),
+                        PageIndex = pageIndex ?? 0
+                    };
                     result.PageSize = pageSize ?? result.TotalItems;
 
                     if (pageSize.HasValue)
@@ -1320,9 +1340,11 @@ namespace Swastika.Infrastructure.Data.Repository
                     List<TModel> lstModels = new List<TModel>();
                     var query = context.Set<TModel>().Where(predicate);
 
-                    PaginationModel<TView> result = new PaginationModel<TView>();
-                    result.TotalItems = query.Count();
-                    result.PageIndex = pageIndex ?? 0;
+                    PaginationModel<TView> result = new PaginationModel<TView>()
+                    {
+                        TotalItems = query.Count(),
+                        PageIndex = pageIndex ?? 0
+                    };
                     result.PageSize = pageSize ?? result.TotalItems;
 
                     if (pageSize.HasValue)
@@ -1406,11 +1428,12 @@ namespace Swastika.Infrastructure.Data.Repository
                     List<TModel> lstModels = new List<TModel>();
                     var query = context.Set<TModel>().Where(predicate);
 
-                    PaginationModel<TView> result = new PaginationModel<TView>();
-                    result.TotalItems = query.Count();
-                    result.PageIndex = pageIndex ?? 0;
+                    PaginationModel<TView> result = new PaginationModel<TView>()
+                    {
+                        TotalItems = query.Count(),
+                        PageIndex = pageIndex ?? 0
+                    };
                     result.PageSize = pageSize ?? result.TotalItems;
-
                     if (pageSize.HasValue)
                     {
                         result.TotalPage = result.TotalItems / pageSize.Value + (result.TotalItems % pageSize.Value > 0 ? 1 : 0);
@@ -1682,7 +1705,7 @@ namespace Swastika.Infrastructure.Data.Repository
         /// <returns></returns>
         public virtual TView SaveModel(TModel model)
         {
-            if (isExists(model))
+            if (CheckIsExists(model))
             {
                 return EditModel(model);
             }
@@ -1699,7 +1722,7 @@ namespace Swastika.Infrastructure.Data.Repository
         /// <returns></returns>
         public virtual Task<TView> SaveModelAsync(TModel model)
         {
-            if (isExists(model))
+            if (CheckIsExists(model))
             {
                 return EditModelAsync(model);
             }
