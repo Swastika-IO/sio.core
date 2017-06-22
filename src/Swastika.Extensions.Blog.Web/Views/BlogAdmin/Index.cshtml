@@ -4,4 +4,22 @@
     Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
 }
 
-<div id=app></div>
+<main class="main">
+    @Html.Partial("_Breadcrumb")
+
+    <div class="container-fluid">
+        <div id="container" class="animated fadeIn">
+            <div class="row">
+                <div class="col-12">
+                    
+                </div>
+            </div>
+        </div>
+
+    </div>
+    <!-- /.conainer-fluid -->
+
+    @section scripts{
+        <script src="/js/views/main.min.js"></script>
+    }
+</main>

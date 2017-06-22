@@ -20,5 +20,54 @@
     },
     // Optionally generate .map file
     "sourceMap": false
+  },
+  {
+    "outputFileName": "wwwroot/js/jquery.min.js",
+    // An array of relative input file paths. Globbing patterns supported
+    "inputFiles": [
+      "wwwroot/bower_components/jquery/dist/jquery.js"
+    ]
+  },
+  {
+    "outputFileName": "wwwroot/js/tether.min.js",
+    // An array of relative input file paths. Globbing patterns supported
+    "inputFiles": [
+      "wwwroot/bower_components/tether/dist/js/tether.js"
+    ]
+  },
+  {
+    "outputFileName": "wwwroot/js/bootstrap.min.js",
+    // An array of relative input file paths. Globbing patterns supported
+    "inputFiles": [
+      "wwwroot/bower_components/bootstrap/dist/js/bootstrap.js"
+    ]
+  },
+  {
+    "outputFileName": "wwwroot/js/pace.min.js",
+    // An array of relative input file paths. Globbing patterns supported
+    "inputFiles": [
+      "wwwroot/bower_components/pace/pace.js"
+    ]
+  },
+  {
+    "outputFileName": "wwwroot/js/chart.min.js",
+    // An array of relative input file paths. Globbing patterns supported
+    "inputFiles": [
+      "wwwroot/bower_components/chart.js/dist/chart.js"
+    ]
+  },
+  {
+    "outputFileName": "wwwroot/js/app.min.js",
+    // An array of relative input file paths. Globbing patterns supported
+    "inputFiles": [
+      "wwwroot/js/src/app.js"
+    ]
+  },
+  {
+    "outputFileName": "wwwroot/js/views/main.min.js",
+    // An array of relative input file paths. Globbing patterns supported
+    "inputFiles": [
+      "wwwroot/js/src/main.js"
+    ]
   }
 ]
