@@ -1,0 +1,26 @@
+﻿<!DOCTYPE html>
+
+<html>
+<head>
+    <meta charset=utf-8>
+    <link href=/static/css/font-awesome.min.css rel=stylesheet>
+    <link href=/static/css/simple-line-icons.css rel=stylesheet>
+    <link href=/static/css/style.css rel=stylesheet>
+    <link href=/static/css/app.9de9555480b8c9146078f8b64ef9eaa1.css rel=stylesheet>
+    <title>@ViewBag.Title</title>
+</head>
+<body class="app header-fixed sidebar-fixed aside-menu-fixed aside-menu-hidden">
+    @Html.Partial("_Header")
+    <div class="app-body">
+        @Html.Partial("_SideBar")
+        @RenderBody()
+    </div>
+    @Html.Partial("_Footer")
+
+    @RenderSection("scripts", required: false)
+
+    @*<script type=text/javascript src=/static/js/manifest.a5ea8304a5a6e968c424.js></script>
+        <script type=text/javascript src=/static/js/vendor.865f3be4ff82a3bc1ace.js></script>
+        <script type=text/javascript src=/static/js/app.5d497ac8e711483bcb79.js></script>*@
+</body>
+</html>
