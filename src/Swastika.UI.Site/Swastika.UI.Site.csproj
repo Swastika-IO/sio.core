@@ -41,19 +41,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Swastika.Application\Swastika.Application.csproj" />
-    <ProjectReference Include="..\Swastika.Common.Helper\Swastika.Common.Helper.csproj" />
-    <ProjectReference Include="..\Swastika.Common.Utility\Swastika.Common.Utility.csproj" />
-    <ProjectReference Include="..\Swastika.Domain.Core\Swastika.Domain.Core.csproj" />
-    <ProjectReference Include="..\Swastika.Infrastructure.CrossCutting.Bus\Swastika.Infrastructure.CrossCutting.Bus.csproj" />
-    <ProjectReference Include="..\Swastika.Infrastructure.CrossCutting.Identity\Swastika.Infrastructure.CrossCutting.Identity.csproj" />
-    <ProjectReference Include="..\Swastika.Infrastructure.CrossCutting.IoC\Swastika.Infrastructure.CrossCutting.IoC.csproj" />
-    <ProjectReference Include="..\Swastika.Infrastructure.Data\Swastika.Infrastructure.Data.csproj" />
-    <ProjectReference Include="..\Swastika.UI.Base\Swastika.UI.Base.csproj" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <PackageReference Include="AutoMapper" Version="6.0.2" />
+    <PackageReference Include="AutoMapper" Version="6.1.0" />
     <PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="2.0.1" />
     <PackageReference Include="Microsoft.AspNetCore.Authentication.Cookies" Version="1.1.2" />
     <PackageReference Include="Microsoft.AspNetCore.Diagnostics" Version="1.1.2" />
@@ -80,7 +68,7 @@
     <PackageReference Include="Microsoft.Extensions.Options.ConfigurationExtensions" Version="1.1.2" />
     <PackageReference Include="Microsoft.VisualStudio.Web.BrowserLink.Loader" Version="14.1.0" />
     <PackageReference Include="Microsoft.AspNetCore.Authentication.Facebook" Version="1.1.2" />
-    <PackageReference Include="Newtonsoft.Json" Version="10.0.2" />
+    <PackageReference Include="Newtonsoft.Json" Version="10.0.3" />
     <PackageReference Include="Webpack" Version="4.0.0" />
   </ItemGroup>
 
@@ -100,5 +88,9 @@
 
   <ItemGroup>
     <Folder Include="VueSrc\swastika\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Swastika\Swastika.csproj" />
   </ItemGroup>
 </Project>

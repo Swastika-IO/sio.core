@@ -25,6 +25,6 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Swastika.Extension.Customer.Domain\Swastika.Extension.Customer.Domain.csproj" />
-    <ProjectReference Include="..\Swastika.Infrastructure.Data\Swastika.Infrastructure.Data.csproj" />
+    <ProjectReference Include="..\Swastika\Swastika.csproj" />
   </ItemGroup>
 </Project>

@@ -17,9 +17,8 @@
     <DotNetCliToolReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Tools" Version="1.0.1" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Swastika.Domain.Core\Swastika.Domain.Core.csproj" />
     <ProjectReference Include="..\Swastika.Extension.Customer.Application\Swastika.Extension.Customer.Application.csproj" />
-    <ProjectReference Include="..\Swastika.UI.Base\Swastika.UI.Base.csproj" />
+    <ProjectReference Include="..\Swastika\Swastika.csproj" />
   </ItemGroup>
 
 </Project>
