@@ -1400,8 +1400,7 @@
   <ItemGroup>
     <PackageReference Include="AngularJS.Core" Version="1.6.4" />
     <PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="2.0.1" />
-    <PackageReference Include="Microsoft.ApplicationInsights.AspNetCore" Version="2.0.0" />
-    <PackageReference Include="Microsoft.AspNetCore" Version="1.1.2" />
+    <PackageReference Include="Microsoft.ApplicationInsights.AspNetCore" Version="2.0.1" />
     <PackageReference Include="Microsoft.AspNetCore.Mvc" Version="1.1.3" />
     <PackageReference Include="Microsoft.AspNetCore.StaticFiles" Version="1.1.2" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="1.1.2" />
@@ -1415,7 +1414,6 @@
     <DotNetCliToolReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Tools" Version="1.0.1" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Swastika.Extension.Blog.Api\Swastika.Extension.Blog.Api.csproj" />
     <ProjectReference Include="..\Swastika.Extensions.Blog.Lib\Swastika.Extension.Blog.Lib.csproj" />
   </ItemGroup>
 </Project>

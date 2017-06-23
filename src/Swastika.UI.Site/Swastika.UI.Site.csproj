@@ -73,7 +73,6 @@
   </ItemGroup>
 
   <Target Name="MyPreCompileTarget" BeforeTargets="Build">
-    <Exec Command="node build/build.js" />
   </Target>
 
   <Target Name="PrepublishScript" BeforeTargets="PrepareForPublish">
@@ -87,10 +86,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="VueSrc\swastika\" />
-  </ItemGroup>
-
-  <ItemGroup>
+    <ProjectReference Include="..\Swastika.Extensions.Blog.Web\Swastika.Extension.Blog.Web.csproj" />
     <ProjectReference Include="..\Swastika\Swastika.csproj" />
   </ItemGroup>
 </Project>
