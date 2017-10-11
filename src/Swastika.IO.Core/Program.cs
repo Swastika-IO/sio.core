@@ -8,7 +8,7 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Logging;
 
-namespace Swastika_IO_Core
+namespace Swastika.IO.Admin
 {
     public class Program
     {

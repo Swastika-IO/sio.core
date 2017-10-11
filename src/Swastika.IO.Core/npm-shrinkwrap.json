@@ -1,5 +1,5 @@
 {
-  "name": "Swastika_IO_Core",
+  "name": "Swastika.IO.Admin",
   "version": "0.0.0",
   "dependencies": {
     "@angular/animations": {

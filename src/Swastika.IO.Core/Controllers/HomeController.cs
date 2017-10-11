@@ -5,7 +5,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 
-namespace Swastika_IO_Core.Controllers
+namespace Swastika.IO.Core.Controllers
 {
     public class HomeController : Controller
     {
