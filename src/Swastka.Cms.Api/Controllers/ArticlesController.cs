@@ -68,9 +68,9 @@ namespace Swastka.Cms.Api.Controllers
 
         // GET api/articles
         [HttpGet]
-        [Route("search/{keyword}")]
-        [Route("search/{pageSize:int?}/{pageIndex:int?}/{keyword}")]
-        [Route("search/{pageSize:int?}/{pageIndex:int?}/{orderBy}/{direction}/{keyword}")]
+        [Route("{keyword}")]
+        [Route("{pageSize:int?}/{pageIndex:int?}/{keyword}")]
+        [Route("{pageSize:int?}/{pageIndex:int?}/{orderBy}/{direction}/{keyword}")]
         public async Task<RepositoryResponse<PaginationModel<ArticleListItemViewModel>>> Search(
             string keyword = null, int? pageSize = null, int? pageIndex = null, string orderBy = "Id"
             , OrderByDirection direction = OrderByDirection.Ascending)
