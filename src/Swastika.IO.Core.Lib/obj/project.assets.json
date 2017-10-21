@@ -177,26 +177,23 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\nhathoang.nguyen\\.nuget\\packages\\": {},
+    "C:\\Users\\smile\\.nuget\\packages\\": {},
     "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder": {}
   },
   "project": {
     "version": "1.0.0",
-    "restoreSettings": {
-      "hideWarningsAndErrors": true
-    },
     "restore": {
-      "projectUniqueName": "D:\\NhatHoang\\Git\\GitHub\\Swastikas\\Swastika-IO-Core\\src\\Swastika.IO.Core.Lib\\Swastika.IO.Core.Lib.csproj",
+      "projectUniqueName": "E:\\_Workspace\\Github\\Swastika-IO-Core\\src\\Swastika.IO.Core.Lib\\Swastika.IO.Core.Lib.csproj",
       "projectName": "Swastika.IO.Core.Lib",
-      "projectPath": "D:\\NhatHoang\\Git\\GitHub\\Swastikas\\Swastika-IO-Core\\src\\Swastika.IO.Core.Lib\\Swastika.IO.Core.Lib.csproj",
-      "packagesPath": "C:\\Users\\nhathoang.nguyen\\.nuget\\packages\\",
-      "outputPath": "D:\\NhatHoang\\Git\\GitHub\\Swastikas\\Swastika-IO-Core\\src\\Swastika.IO.Core.Lib\\obj\\",
+      "projectPath": "E:\\_Workspace\\Github\\Swastika-IO-Core\\src\\Swastika.IO.Core.Lib\\Swastika.IO.Core.Lib.csproj",
+      "packagesPath": "C:\\Users\\smile\\.nuget\\packages\\",
+      "outputPath": "E:\\_Workspace\\Github\\Swastika-IO-Core\\src\\Swastika.IO.Core.Lib\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
       ],
       "configFilePaths": [
-        "C:\\Users\\nhathoang.nguyen\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\smile\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
@@ -204,6 +201,7 @@
       ],
       "sources": {
         "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+        "C:\\Users\\smile\\.dotnet\\NuGetFallbackFolder": {},
         "https://api.nuget.org/v3/index.json": {}
       },
       "frameworks": {

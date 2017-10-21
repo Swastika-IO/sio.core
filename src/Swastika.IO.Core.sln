@@ -7,13 +7,13 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Swastika.IO.Core", "Swastik
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Swastika.IO.Core.Lib", "Swastika.IO.Core.Lib\Swastika.IO.Core.Lib.csproj", "{4D11C3D3-A136-4C88-85DA-D45DD38FEF47}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Swastika.Cms.Lib", "Swastika.Cms.Lib\Swastika.Cms.Lib.csproj", "{52DD88D7-CE01-494B-9219-3D5EA67B8AF3}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Swastika.IO.Cms.Lib", "Swastika.Cms.Lib\Swastika.IO.Cms.Lib.csproj", "{52DD88D7-CE01-494B-9219-3D5EA67B8AF3}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Swastka.Cms.Api", "Swastka.Cms.Api\Swastka.Cms.Api.csproj", "{FCD5568D-56D1-482C-B36D-B38AA4ECB890}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Swastka.IO.Cms.Api", "Swastka.Cms.Api\Swastka.IO.Cms.Api.csproj", "{FCD5568D-56D1-482C-B36D-B38AA4ECB890}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Swastika.Identity", "..\..\Swastika-Identity\src\Swastika.Identity\Swastika.Identity.csproj", "{0E2638EB-E0E9-42C0-AEE9-82D7E14F0AC7}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Swastika.IO.Identity", "..\..\Swastika-Identity\src\Swastika.Identity\Swastika.IO.Identity.csproj", "{0E2638EB-E0E9-42C0-AEE9-82D7E14F0AC7}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Swastika", "..\..\Swastika-Heart\src\Swastika\Swastika.csproj", "{0939F258-BB72-4A86-A833-910D8D6F8B7D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Swastika.IO", "..\..\Swastika-Heart\src\Swastika\Swastika.IO.csproj", "{0939F258-BB72-4A86-A833-910D8D6F8B7D}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
