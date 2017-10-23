@@ -30,15 +30,15 @@
   },
   "libraries": {
     "Microsoft.NETCore.Platforms/1.1.0": {
-      "sha512": "kz0PEW2lhqygehI/d6XsPCQzD7ff7gUJaVGPVETX611eadGsA3A877GdSlU0LRVMCTH/+P3o2iDTak+S08V2+A==",
+      "sha512": "/NqxxR1/M9QU5dO7szrInelQ46hkneJCsrOZXchauh3UkNDVZg3GDS8RV+J/leeuXCsjqgb1StoW2Bpc50jmcA==",
       "type": "package",
       "path": "microsoft.netcore.platforms/1.1.0",
       "files": [
+        "Microsoft.NETCore.Platforms.1.1.0.nupkg.sha512",
+        "Microsoft.NETCore.Platforms.nuspec",
         "ThirdPartyNotices.txt",
         "dotnet_library_license.txt",
         "lib/netstandard1.0/_._",
-        "microsoft.netcore.platforms.1.1.0.nupkg.sha512",
-        "microsoft.netcore.platforms.nuspec",
         "runtime.json"
       ]
     },
@@ -177,23 +177,26 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\smile\\.nuget\\packages\\": {},
+    "C:\\Users\\tuanhuy.nguyen\\.nuget\\packages\\": {},
     "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder": {}
   },
   "project": {
     "version": "1.0.0",
+    "restoreSettings": {
+      "hideWarningsAndErrors": true
+    },
     "restore": {
-      "projectUniqueName": "E:\\_Workspace\\Github\\Swastika-IO-Core\\src\\Swastika.IO.Core.Lib\\Swastika.IO.Core.Lib.csproj",
+      "projectUniqueName": "D:\\_Workspace\\SW\\Github\\Swastika-IO-Core\\src\\Swastika.IO.Core.Lib\\Swastika.IO.Core.Lib.csproj",
       "projectName": "Swastika.IO.Core.Lib",
-      "projectPath": "E:\\_Workspace\\Github\\Swastika-IO-Core\\src\\Swastika.IO.Core.Lib\\Swastika.IO.Core.Lib.csproj",
-      "packagesPath": "C:\\Users\\smile\\.nuget\\packages\\",
-      "outputPath": "E:\\_Workspace\\Github\\Swastika-IO-Core\\src\\Swastika.IO.Core.Lib\\obj\\",
+      "projectPath": "D:\\_Workspace\\SW\\Github\\Swastika-IO-Core\\src\\Swastika.IO.Core.Lib\\Swastika.IO.Core.Lib.csproj",
+      "packagesPath": "C:\\Users\\tuanhuy.nguyen\\.nuget\\packages\\",
+      "outputPath": "D:\\_Workspace\\SW\\Github\\Swastika-IO-Core\\src\\Swastika.IO.Core.Lib\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
       ],
       "configFilePaths": [
-        "C:\\Users\\smile\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\tuanhuy.nguyen\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
@@ -201,7 +204,7 @@
       ],
       "sources": {
         "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
-        "C:\\Users\\smile\\.dotnet\\NuGetFallbackFolder": {},
+        "C:\\Users\\tuanhuy.nguyen\\.dotnet\\NuGetFallbackFolder": {},
         "https://api.nuget.org/v3/index.json": {}
       },
       "frameworks": {
