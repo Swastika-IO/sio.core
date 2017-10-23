@@ -8213,7 +8213,7 @@
       ]
     },
     "Newtonsoft.Json.Bson/1.0.1": {
-      "sha512": "U04TKdSdpEXcQNuNcuAfukfER/atfEC0OFbTuPgWErYp0Or9WYPVlBtAhD3JO+585kFfgvIPX6o/NsqRhTwcyg==",
+      "sha512": "5PYT/IqQ+UK31AmZiSS102R6EsTo+LGTSI8bp7WAUqDKaF4wHXD8U9u4WxTI1vc64tYi++8p3dk3WWNqPFgldw==",
       "type": "package",
       "path": "newtonsoft.json.bson/1.0.1",
       "files": [
@@ -8226,7 +8226,7 @@
       ]
     },
     "NuGet.Frameworks/4.0.0": {
-      "sha512": "AP98eTmoQVmG36rbRWDP7ZjtHbJND+xI0mdW2fGBFcm/aLTjVt/ByLg2bOZ2vER51QuMnZJiNAEm3wVmwebI1w==",
+      "sha512": "WCkN68c8q+USG+Ot1MmBDH+9DUo5dk7UB0QDMiwCYhrH7ZoFLKFGGNzJ8C3LTR1DvB1LW9BOxKeznnZznKiCTA==",
       "type": "package",
       "path": "nuget.frameworks/4.0.0",
       "files": [
@@ -13474,7 +13474,7 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\smile\\.nuget\\packages\\": {},
+    "C:\\Users\\nhathoang.nguyen\\.nuget\\packages\\": {},
     "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder": {}
   },
   "project": {
@@ -13483,17 +13483,17 @@
       "hideWarningsAndErrors": true
     },
     "restore": {
-      "projectUniqueName": "E:\\_Workspace\\Github\\Swastika-IO-Core\\src\\Swastka.Cms.Api\\Swastka.IO.Cms.Api.csproj",
+      "projectUniqueName": "D:\\NhatHoang\\Git\\GitHub\\Swastikas\\Swastika-IO-Core\\src\\Swastka.Cms.Api\\Swastka.IO.Cms.Api.csproj",
       "projectName": "Swastka.IO.Cms.Api",
-      "projectPath": "E:\\_Workspace\\Github\\Swastika-IO-Core\\src\\Swastka.Cms.Api\\Swastka.IO.Cms.Api.csproj",
-      "packagesPath": "C:\\Users\\smile\\.nuget\\packages\\",
-      "outputPath": "E:\\_Workspace\\Github\\Swastika-IO-Core\\src\\Swastka.Cms.Api\\obj\\",
+      "projectPath": "D:\\NhatHoang\\Git\\GitHub\\Swastikas\\Swastika-IO-Core\\src\\Swastka.Cms.Api\\Swastka.IO.Cms.Api.csproj",
+      "packagesPath": "C:\\Users\\nhathoang.nguyen\\.nuget\\packages\\",
+      "outputPath": "D:\\NhatHoang\\Git\\GitHub\\Swastikas\\Swastika-IO-Core\\src\\Swastka.Cms.Api\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
       ],
       "configFilePaths": [
-        "C:\\Users\\smile\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\nhathoang.nguyen\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
@@ -13501,20 +13501,19 @@
       ],
       "sources": {
         "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
-        "C:\\Users\\smile\\.dotnet\\NuGetFallbackFolder": {},
         "https://api.nuget.org/v3/index.json": {}
       },
       "frameworks": {
         "netcoreapp2.0": {
           "projectReferences": {
-            "E:\\_Workspace\\Github\\Swastika-IO-Core\\src\\Swastika.Cms.Lib\\Swastika.IO.Cms.Lib.csproj": {
-              "projectPath": "E:\\_Workspace\\Github\\Swastika-IO-Core\\src\\Swastika.Cms.Lib\\Swastika.IO.Cms.Lib.csproj"
+            "D:\\NhatHoang\\Git\\GitHub\\Swastikas\\Swastika-IO-Core\\src\\Swastika.Cms.Lib\\Swastika.IO.Cms.Lib.csproj": {
+              "projectPath": "D:\\NhatHoang\\Git\\GitHub\\Swastikas\\Swastika-IO-Core\\src\\Swastika.Cms.Lib\\Swastika.IO.Cms.Lib.csproj"
             },
-            "E:\\_Workspace\\Github\\Swastika-Heart\\src\\Swastika\\Swastika.IO.csproj": {
-              "projectPath": "E:\\_Workspace\\Github\\Swastika-Heart\\src\\Swastika\\Swastika.IO.csproj"
+            "D:\\NhatHoang\\Git\\GitHub\\Swastikas\\Swastika-Heart\\src\\Swastika\\Swastika.IO.csproj": {
+              "projectPath": "D:\\NhatHoang\\Git\\GitHub\\Swastikas\\Swastika-Heart\\src\\Swastika\\Swastika.IO.csproj"
             },
-            "E:\\_Workspace\\Github\\Swastika-Identity\\src\\Swastika.Identity\\Swastika.IO.Identity.csproj": {
-              "projectPath": "E:\\_Workspace\\Github\\Swastika-Identity\\src\\Swastika.Identity\\Swastika.IO.Identity.csproj"
+            "D:\\NhatHoang\\Git\\GitHub\\Swastikas\\Swastika-Identity\\src\\Swastika.Identity\\Swastika.IO.Identity.csproj": {
+              "projectPath": "D:\\NhatHoang\\Git\\GitHub\\Swastikas\\Swastika-Identity\\src\\Swastika.Identity\\Swastika.IO.Identity.csproj"
             }
           }
         }
