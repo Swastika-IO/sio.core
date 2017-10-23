@@ -1,8 +1,0 @@
-E:\_Workspace\Github\Swastika-IO-Core\src\Swastika.IO.Core.Lib\bin\Debug\netstandard2.0\Swastika.IO.Core.Lib.deps.json
-E:\_Workspace\Github\Swastika-IO-Core\src\Swastika.IO.Core.Lib\bin\Debug\netstandard2.0\Swastika.IO.Core.Lib.dll
-E:\_Workspace\Github\Swastika-IO-Core\src\Swastika.IO.Core.Lib\bin\Debug\netstandard2.0\Swastika.IO.Core.Lib.pdb
-E:\_Workspace\Github\Swastika-IO-Core\src\Swastika.IO.Core.Lib\obj\Debug\netstandard2.0\Swastika.IO.Core.Lib.csproj.CoreCompileInputs.cache
-E:\_Workspace\Github\Swastika-IO-Core\src\Swastika.IO.Core.Lib\obj\Debug\netstandard2.0\Swastika.IO.Core.Lib.AssemblyInfoInputs.cache
-E:\_Workspace\Github\Swastika-IO-Core\src\Swastika.IO.Core.Lib\obj\Debug\netstandard2.0\Swastika.IO.Core.Lib.AssemblyInfo.cs
-E:\_Workspace\Github\Swastika-IO-Core\src\Swastika.IO.Core.Lib\obj\Debug\netstandard2.0\Swastika.IO.Core.Lib.dll
-E:\_Workspace\Github\Swastika-IO-Core\src\Swastika.IO.Core.Lib\obj\Debug\netstandard2.0\Swastika.IO.Core.Lib.pdb
