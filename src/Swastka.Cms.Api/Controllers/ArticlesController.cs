@@ -17,7 +17,7 @@ namespace Swastka.Cms.Api.Controllers
     {
         // POST api/articles
         [HttpPost]
-        public async Task<RepositoryResponse<BEArticleViewModel>> Post([FromBody]BEArticleViewModel model)
+        public async Task<RepositoryResponse<ArticleBEViewModel>> Post([FromBody]ArticleBEViewModel model)
         {
             return await model.SaveModelAsync(true);
         }
@@ -33,9 +33,9 @@ namespace Swastka.Cms.Api.Controllers
         // GET api/articles/id
         [HttpGet]
         [Route("edit/{id}")]
-        public async Task<RepositoryResponse<BEArticleViewModel>> Edit(string id)
+        public async Task<RepositoryResponse<ArticleBEViewModel>> Edit(string id)
         {
-            return await BEArticleViewModel.Repository.GetSingleModelAsync(model => model.Id == id && model.Specificulture == _lang); //base.GetAsync(model => model.Id == id);
+            return await ArticleBEViewModel.Repository.GetSingleModelAsync(model => model.Id == id && model.Specificulture == _lang); //base.GetAsync(model => model.Id == id);
         }
 
 
@@ -44,7 +44,15 @@ namespace Swastka.Cms.Api.Controllers
         [Route("delete/{id}")]
         public async Task<RepositoryResponse<bool>> Delete(string id)
         {
-            return await BEArticleViewModel.Repository.RemoveModelAsync(model => model.Id == id);
+            var getArticle = await ArticleBEViewModel.Repository.GetSingleModelAsync(a => a.Id == id && a.Specificulture == _lang);
+            if (getArticle.IsSucceed)
+            {
+                return await getArticle.Data.RemoveModelAsync(true);
+            }
+            else
+            {
+                return new RepositoryResponse<bool>() { IsSucceed = false };
+            }
         }
 
         // GET api/articles

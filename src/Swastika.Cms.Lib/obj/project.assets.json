@@ -5135,7 +5135,7 @@
       ]
     },
     "Newtonsoft.Json.Bson/1.0.1": {
-      "sha512": "U04TKdSdpEXcQNuNcuAfukfER/atfEC0OFbTuPgWErYp0Or9WYPVlBtAhD3JO+585kFfgvIPX6o/NsqRhTwcyg==",
+      "sha512": "5PYT/IqQ+UK31AmZiSS102R6EsTo+LGTSI8bp7WAUqDKaF4wHXD8U9u4WxTI1vc64tYi++8p3dk3WWNqPFgldw==",
       "type": "package",
       "path": "newtonsoft.json.bson/1.0.1",
       "files": [
@@ -9698,7 +9698,7 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\smile\\.nuget\\packages\\": {},
+    "C:\\Users\\nhath\\.nuget\\packages\\": {},
     "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder": {}
   },
   "project": {
@@ -9707,17 +9707,17 @@
       "hideWarningsAndErrors": true
     },
     "restore": {
-      "projectUniqueName": "E:\\_Workspace\\Github\\Swastika-IO-Core\\src\\Swastika.Cms.Lib\\Swastika.IO.Cms.Lib.csproj",
+      "projectUniqueName": "E:\\Net\\Git\\GitHub\\Swastikas\\Swastika-IO-Core\\src\\Swastika.Cms.Lib\\Swastika.IO.Cms.Lib.csproj",
       "projectName": "Swastika.IO.Cms.Lib",
-      "projectPath": "E:\\_Workspace\\Github\\Swastika-IO-Core\\src\\Swastika.Cms.Lib\\Swastika.IO.Cms.Lib.csproj",
-      "packagesPath": "C:\\Users\\smile\\.nuget\\packages\\",
-      "outputPath": "E:\\_Workspace\\Github\\Swastika-IO-Core\\src\\Swastika.Cms.Lib\\obj\\",
+      "projectPath": "E:\\Net\\Git\\GitHub\\Swastikas\\Swastika-IO-Core\\src\\Swastika.Cms.Lib\\Swastika.IO.Cms.Lib.csproj",
+      "packagesPath": "C:\\Users\\nhath\\.nuget\\packages\\",
+      "outputPath": "E:\\Net\\Git\\GitHub\\Swastikas\\Swastika-IO-Core\\src\\Swastika.Cms.Lib\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
       ],
       "configFilePaths": [
-        "C:\\Users\\smile\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\nhath\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
@@ -9725,14 +9725,13 @@
       ],
       "sources": {
         "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
-        "C:\\Users\\smile\\.dotnet\\NuGetFallbackFolder": {},
         "https://api.nuget.org/v3/index.json": {}
       },
       "frameworks": {
         "netstandard2.0": {
           "projectReferences": {
-            "E:\\_Workspace\\Github\\Swastika-Heart\\src\\Swastika\\Swastika.IO.csproj": {
-              "projectPath": "E:\\_Workspace\\Github\\Swastika-Heart\\src\\Swastika\\Swastika.IO.csproj"
+            "E:\\Net\\Git\\GitHub\\Swastikas\\Swastika-Heart\\src\\Swastika\\Swastika.IO.csproj": {
+              "projectPath": "E:\\Net\\Git\\GitHub\\Swastikas\\Swastika-Heart\\src\\Swastika\\Swastika.IO.csproj"
             }
           }
         }
