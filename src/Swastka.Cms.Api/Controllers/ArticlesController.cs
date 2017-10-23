@@ -38,6 +38,23 @@ namespace Swastka.Cms.Api.Controllers
             return await ArticleBEViewModel.Repository.GetSingleModelAsync(model => model.Id == id && model.Specificulture == _lang); //base.GetAsync(model => model.Id == id);
         }
 
+        // GET api/articles/id
+        [HttpGet]
+        [Route("create")]
+        public RepositoryResponse<BEArticleViewModel> Create()
+        {
+            SiocArticle article = new SiocArticle()
+            {
+                Id = Guid.NewGuid().ToString(),
+                Specificulture = _lang
+            };
+            return new RepositoryResponse<BEArticleViewModel>()
+            {
+                IsSucceed = true,
+                Data = new BEArticleViewModel(article)
+            };
+        }
+
 
         // GET api/articles/id
         [HttpGet]
