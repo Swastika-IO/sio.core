@@ -23,6 +23,8 @@ namespace Swastika.Cms.Lib.ViewModels
         public string BriefContent { get; set; }
         public string FullContent { get; set; }
 
+        public string StaticUrl { get; set; }
+
         public string Seoname { get; set; }
         public string Seotitle { get; set; }
         public string Seodescription { get; set; }
@@ -375,6 +377,8 @@ namespace Swastika.Cms.Lib.ViewModels
         public string Template { get; set; }
         public string Thumbnail { get; set; }
         public string Title { get; set; }
+
+        public string StaticUrl { get; set; }
         public string Source { get; set; }
         public DateTime CreatedDateTime { get; set; }
         public DateTime? UpdatedDateTime { get; set; }
@@ -404,6 +408,7 @@ namespace Swastika.Cms.Lib.ViewModels
         public string Thumbnail { get; set; }
         public string Image { get; set; }
         public string Title { get; set; }
+        public string StaticUrl { get; set; }
         public string Excerpt { get; set; }
         public string Content { get; set; }
         public string SeoName { get; set; }
