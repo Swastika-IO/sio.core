@@ -1,0 +1,28 @@
+@using System.Globalization
+@using Microsoft.AspNetCore.Http.Features
+@using Microsoft.AspNetCore.Localization
+@using Microsoft.AspNetCore.Mvc.Localization
+@model TTS.Lib.ViewModels.FEHomeData
+
+@foreach (var nav in Model.ModuleNavs.OrderBy(n => n.Priority))
+{
+    if (nav.Module != null)
+    {
+        Html.RenderPartial(nav.Module.Template, nav.Module);
+    }
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+

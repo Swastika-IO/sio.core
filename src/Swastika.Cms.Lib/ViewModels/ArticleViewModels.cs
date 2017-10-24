@@ -21,7 +21,7 @@ namespace Swastika.Cms.Lib.ViewModels
         public string Thumbnail { get; set; }
         public string Title { get; set; }
         public string BriefContent { get; set; }
-        public string FullContent { get; set; }
+        public string Content { get; set; }
 
         public string StaticUrl { get; set; }
 
@@ -32,7 +32,7 @@ namespace Swastika.Cms.Lib.ViewModels
         public string Source { get; set; }
         public int? Views { get; set; }
         public int Type { get; set; }
-        public DateTime CreatedDate { get; set; }
+        public DateTime CreatedDateTime { get; set; }
         public string CreatedBy { get; set; }
         public bool IsVisible { get; set; }
         public bool IsDeleted { get; set; }
@@ -47,6 +47,8 @@ namespace Swastika.Cms.Lib.ViewModels
         public TemplateViewModel View { get; set; }
         public List<TemplateViewModel> Templates { get; set; }// Article Templates
 
+        public string ImageFileStream { get; set; }
+        public string ThumbnailFileStream { get; set; }
 
         public BEArticleViewModel(SiocArticle model, SiocCmsContext _context = null, IDbContextTransaction _transaction = null) : base(model, _context, _transaction)
         {
@@ -91,16 +93,23 @@ namespace Swastika.Cms.Lib.ViewModels
                 vm.ModuleNavs = getArticleModule.Data;
             }
 
+            if (string.IsNullOrEmpty(Id))
+            {
+                vm.ListSupportedCulture.ForEach(c => c.IsSupported = (c.Specificulture == Specificulture));
+            }            
+
             return vm;
         }
 
         public override SiocArticle ParseModel()
-        {
-            var model = base.ParseModel();
-            if (string.IsNullOrEmpty(model.Id))
+        {            
+            if (string.IsNullOrEmpty(Id))
             {
-                model.Id = Common.Common.GetBase62(8);
+                Id = Guid.NewGuid().ToString(); //Common.Common.GetBase62(8);
+                CreatedDateTime = DateTime.UtcNow;
             }
+            var model = base.ParseModel();
+
             return model;
         }
         #region Async Methods
