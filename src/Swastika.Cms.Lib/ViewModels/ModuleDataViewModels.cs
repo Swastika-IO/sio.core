@@ -47,6 +47,16 @@ namespace Swastika.Cms.Lib.ViewModels
             return DataProperties.FirstOrDefault(p => p.Name == name);
         }
 
+        public JObject ParseJson() {
+            JObject result = new JObject();
+            foreach (var prop in DataProperties)
+            {
+                result.Add(new JProperty(prop.Name, prop.Value));
+            }
+            return result;
+
+        }
+
         #region Overrides
 
         public override FEModuleContentData ParseView(SiocCmsContext _context = null, IDbContextTransaction _transaction = null)
