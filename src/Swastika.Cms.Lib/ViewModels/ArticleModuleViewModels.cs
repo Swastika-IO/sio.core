@@ -4,12 +4,14 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 using Microsoft.EntityFrameworkCore.Storage;
+using Newtonsoft.Json;
 
 namespace Swastika.Cms.Lib.ViewModels
 {
     public class ArticleModuleListItemViewModel : ViewModelBase<SiocCmsContext, SiocArticleModule, ArticleModuleListItemViewModel>
     {
         public string ArticleId { get; set; }
+        [JsonProperty("moduleId")]
         public int Id { get; set; } // ModuleId
         public string Specificulture { get; set; }
         public bool IsActived { get; set; }

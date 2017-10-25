@@ -42,7 +42,7 @@ namespace Swastika.Cms.Lib.ViewModels
         {
             var vm = base.ParseView(_context, _transaction);
 
-            vm.Templates = Templates ?? TemplateRepository.GetInstance().GetTemplates(Constants.TemplateFolder.Articles);
+            vm.Templates = Templates ?? TemplateRepository.GetInstance().GetTemplates(Constants.TemplateFolder.Modules);
             vm.Columns = new List<ModuleFieldViewModel>();
             JArray arrField = !string.IsNullOrEmpty(Fields) ? JArray.Parse(Fields) : new JArray();
             foreach (var field in arrField)
