@@ -1,0 +1,17 @@
+E:\_Workspace\Github\Swastika-IO-Core\src\Swastka.Cms.Api\bin\Debug\netcoreapp2.0\Swastka.IO.Cms.Api.deps.json
+E:\_Workspace\Github\Swastika-IO-Core\src\Swastka.Cms.Api\bin\Debug\netcoreapp2.0\Swastka.IO.Cms.Api.runtimeconfig.json
+E:\_Workspace\Github\Swastika-IO-Core\src\Swastka.Cms.Api\bin\Debug\netcoreapp2.0\Swastka.IO.Cms.Api.runtimeconfig.dev.json
+E:\_Workspace\Github\Swastika-IO-Core\src\Swastka.Cms.Api\bin\Debug\netcoreapp2.0\Swastka.IO.Cms.Api.dll
+E:\_Workspace\Github\Swastika-IO-Core\src\Swastka.Cms.Api\bin\Debug\netcoreapp2.0\Swastka.IO.Cms.Api.pdb
+E:\_Workspace\Github\Swastika-IO-Core\src\Swastka.Cms.Api\bin\Debug\netcoreapp2.0\Swastika.IO.Cms.Lib.dll
+E:\_Workspace\Github\Swastika-IO-Core\src\Swastka.Cms.Api\bin\Debug\netcoreapp2.0\Swastika.IO.dll
+E:\_Workspace\Github\Swastika-IO-Core\src\Swastka.Cms.Api\bin\Debug\netcoreapp2.0\Swastika.IO.Identity.dll
+E:\_Workspace\Github\Swastika-IO-Core\src\Swastka.Cms.Api\bin\Debug\netcoreapp2.0\Swastika.IO.pdb
+E:\_Workspace\Github\Swastika-IO-Core\src\Swastka.Cms.Api\bin\Debug\netcoreapp2.0\Swastika.IO.Identity.pdb
+E:\_Workspace\Github\Swastika-IO-Core\src\Swastka.Cms.Api\bin\Debug\netcoreapp2.0\Swastika.IO.Cms.Lib.pdb
+E:\_Workspace\Github\Swastika-IO-Core\src\Swastka.Cms.Api\obj\Debug\netcoreapp2.0\Swastka.IO.Cms.Api.csprojResolveAssemblyReference.cache
+E:\_Workspace\Github\Swastika-IO-Core\src\Swastka.Cms.Api\obj\Debug\netcoreapp2.0\Swastka.IO.Cms.Api.csproj.CoreCompileInputs.cache
+E:\_Workspace\Github\Swastika-IO-Core\src\Swastka.Cms.Api\obj\Debug\netcoreapp2.0\Swastka.IO.Cms.Api.AssemblyInfoInputs.cache
+E:\_Workspace\Github\Swastika-IO-Core\src\Swastka.Cms.Api\obj\Debug\netcoreapp2.0\Swastka.IO.Cms.Api.AssemblyInfo.cs
+E:\_Workspace\Github\Swastika-IO-Core\src\Swastka.Cms.Api\obj\Debug\netcoreapp2.0\Swastka.IO.Cms.Api.dll
+E:\_Workspace\Github\Swastika-IO-Core\src\Swastka.Cms.Api\obj\Debug\netcoreapp2.0\Swastka.IO.Cms.Api.pdb
