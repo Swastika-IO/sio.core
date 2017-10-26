@@ -42,7 +42,7 @@ namespace Swastika.Cms.Lib.ViewModels
         {
             var vm = base.ParseView(_context, _transaction);
 
-            vm.Templates = Templates ?? TemplateRepository.GetInstance().GetTemplates(Constants.TemplateFolder.Articles);
+            vm.Templates = Templates ?? TemplateRepository.GetInstance().GetTemplates(Constants.TemplateFolder.Modules);
             vm.Columns = new List<ModuleFieldViewModel>();
             JArray arrField = !string.IsNullOrEmpty(Fields) ? JArray.Parse(Fields) : new JArray();
             foreach (var field in arrField)
@@ -66,6 +66,8 @@ namespace Swastika.Cms.Lib.ViewModels
 
             if (getDataResult.IsSucceed)
             {
+                getDataResult.Data.JsonItems = new List<JObject>();
+                getDataResult.Data.Items.ForEach(d => getDataResult.Data.JsonItems.Add(d.JItem));
                 vm.Data = getDataResult.Data;
             }
 

@@ -89,8 +89,6 @@ namespace Swastka.Cms.Api.Controllers
             return data;
         }
 
-
-
         // GET api/articles
         [HttpGet]
         [Route("{keyword}")]

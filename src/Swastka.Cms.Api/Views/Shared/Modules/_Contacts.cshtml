@@ -1,0 +1,61 @@
+@*
+    For more information on enabling MVC for empty projects, visit http://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@model TTS.Lib.ViewModels.FEModuleData
+
+@if (Model != null && Model.Data.TotalItems > 0)
+{
+
+    <section id="contact-info">
+        <div class="center hidden">
+            <h2>@Model.Title</h2>
+            <p class="lead">@Model.Description</p>
+        </div>
+        <div class="gmap-area">
+            <div class="container">
+                <div class="row">
+                    <div class="col-sm-6 text-center">
+                        <div class="gmap">
+                            @Html.Raw(@Model.Data.Items[0].GetStringValue("Gmap"))
+                        </div>
+                    </div>
+                    <div class="col-sm-6 map-content">
+                        <ul class="row">
+                            @foreach (var item in Model.Data.Items)
+                            {
+                                <li class="col-sm-12">
+                                    <address>
+                                        <h5>@item.GetStringValue("Title")</h5>
+                                        <p><i class="fa fa-home"></i> @item.GetStringValue("Address")</p>
+                                        <p><i class="fa fa-phone-square"></i> @item.GetStringValue("Phone")</p>
+                                        <p><i class="fa fa-envelope-square"></i> @item.GetStringValue("Email")</p>
+                                        <p><i class="fa fa-skype"></i> @item.GetStringValue("Skype")</p>
+                                        <p><i class="fa fa-facebook-square"></i> @item.GetStringValue("Facebook")</p>
+                                    </address>
+                                </li>
+                            }
+                        </ul>
+                    </div>
+                </div>
+                <!--/.row-->
+            </div>
+        </div>
+    </section><!--/#contact info-->
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

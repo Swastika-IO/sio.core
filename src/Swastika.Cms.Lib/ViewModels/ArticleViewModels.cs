@@ -21,7 +21,7 @@ namespace Swastika.Cms.Lib.ViewModels
         public string Thumbnail { get; set; }
         public string Title { get; set; }
         public string BriefContent { get; set; }
-        public string FullContent { get; set; }
+        public string Content { get; set; }
 
         public string StaticUrl { get; set; }
 
@@ -32,7 +32,7 @@ namespace Swastika.Cms.Lib.ViewModels
         public string Source { get; set; }
         public int? Views { get; set; }
         public int Type { get; set; }
-        public DateTime CreatedDate { get; set; }
+        public DateTime CreatedDateTime { get; set; }
         public string CreatedBy { get; set; }
         public bool IsVisible { get; set; }
         public bool IsDeleted { get; set; }
@@ -43,10 +43,13 @@ namespace Swastika.Cms.Lib.ViewModels
         public List<CategoryArticleViewModel> Categories { get; set; }
         public List<ModuleArticleViewModel> Modules { get; set; } // Parent to Modules
         public List<ArticleModuleListItemViewModel> ModuleNavs { get; set; } // Children Modules
+        public List<ModuleWithDataViewModel> ActivedModules { get; set; } // Children Modules
 
         public TemplateViewModel View { get; set; }
         public List<TemplateViewModel> Templates { get; set; }// Article Templates
 
+        public string ImageFileStream { get; set; }
+        public string ThumbnailFileStream { get; set; }
 
         public ArticleBEViewModel(SiocArticle model, SiocCmsContext _context = null, IDbContextTransaction _transaction = null) : base(model, _context, _transaction)
         {
@@ -91,16 +94,29 @@ namespace Swastika.Cms.Lib.ViewModels
                 vm.ModuleNavs = getArticleModule.Data;
             }
 
+            if (string.IsNullOrEmpty(Id))
+            {
+                vm.ListSupportedCulture.ForEach(c => c.IsSupported = (c.Specificulture == Specificulture));
+            }
+            vm.ActivedModules = new List<ModuleWithDataViewModel>();
+            foreach (var module in vm.ModuleNavs.Where(m=>m.IsActived))
+            {
+                var getModule = ModuleWithDataViewModel.Repository.GetSingleModel(m => m.Id == module.Id && m.Specificulture == module.Specificulture, _context, _transaction);
+                if (getModule.IsSucceed)
+                {
+                    vm.ActivedModules.Add(getModule.Data);
+                }
+            }
             return vm;
         }
 
         public override SiocArticle ParseModel()
-        {
+        {            
             if (string.IsNullOrEmpty(Id))
             {
-                Id = Guid.NewGuid().ToString(); // Common.Common.GetBase62(8);
+                Id = Guid.NewGuid().ToString(); //Common.Common.GetBase62(8);
+                CreatedDateTime = DateTime.UtcNow;
             }
-
             var model = base.ParseModel();
 
             return model;
