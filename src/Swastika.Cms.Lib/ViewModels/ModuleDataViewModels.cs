@@ -29,6 +29,7 @@ namespace Swastika.Cms.Lib.ViewModels
         //View
         public List<ModuleDataValueViewModel> DataProperties { get; set; }
         public List<ModuleFieldViewModel> Columns { get; set; }
+        public JObject JItem { get { return ParseJson(); } }
 
         public string GetStringValue(string name)
         {

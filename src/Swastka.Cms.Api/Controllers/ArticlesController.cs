@@ -45,6 +45,7 @@ namespace Swastka.Cms.Api.Controllers
         {
             SiocArticle article = new SiocArticle()
             {
+                Id = Guid.NewGuid().ToString(),
                 Specificulture = _lang
             };
             return new RepositoryResponse<BEArticleViewModel>()

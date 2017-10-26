@@ -19,7 +19,7 @@ namespace Swastka.Cms.Api.Controllers
 
         // GET api/articles/id
         [HttpGet]
-        [Route("{id}")]
+        [Route("details/{id}")]
         public async Task<RepositoryResponse<FEModuleContentData>> Details(string id)
         {
             return await FEModuleContentData.Repository.GetSingleModelAsync(model => model.Id == id && model.Specificulture == _lang); //base.GetAsync(model => model.Id == id);
@@ -71,6 +71,26 @@ namespace Swastka.Cms.Api.Controllers
         {
             var result = await FEModuleContentData.Repository.GetModelListByAsync(
                 m => m.ModuleId == moduleId && m.Specificulture == _lang, orderBy, direction, pageSize, pageIndex); //base.Get(orderBy, direction, pageSize, pageIndex);
+            string domain = string.Format("{0}://{1}", Request.Scheme, Request.Host);
+            result.Data.JsonItems = new List<Newtonsoft.Json.Linq.JObject>();
+            result.Data.Items.ForEach(i => result.Data.JsonItems.Add(i.ParseJson()));
+            return result;
+        }
+
+        // GET api/articles
+        [HttpGet]
+        [Route("getByArticle/{articleId}/{moduleId}")]
+        [Route("getByArticle/{articleId}/{moduleId}/{pageSize:int?}/{pageIndex:int?}")]
+        [Route("getByArticle/{articleId}/{moduleId}/{orderBy}/{direction}")]
+        [Route("getByArticle/{articleId}/{moduleId}/{pageSize:int?}/{pageIndex:int?}/{orderBy}/{direction}")]
+        public async Task<RepositoryResponse<PaginationModel<FEModuleContentData>>> GetByArticle(
+            string articleId, int moduleId,
+            int? pageSize = 15, int? pageIndex = 0, string orderBy = "moduleId"
+            , OrderByDirection direction = OrderByDirection.Ascending)
+        {
+            var result = await FEModuleContentData.Repository.GetModelListByAsync(
+                m => m.ModuleId == moduleId && m.ArticleId == articleId && m.Specificulture == _lang,
+                orderBy, direction, pageSize, pageIndex); //base.Get(orderBy, direction, pageSize, pageIndex);
             string domain = string.Format("{0}://{1}", Request.Scheme, Request.Host);
             result.Data.JsonItems = new List<Newtonsoft.Json.Linq.JObject>();
             result.Data.Items.ForEach(i => result.Data.JsonItems.Add(i.ParseJson()));

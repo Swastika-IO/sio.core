@@ -43,6 +43,7 @@ namespace Swastika.Cms.Lib.ViewModels
         public List<CategoryArticleViewModel> Categories { get; set; }
         public List<ModuleArticleViewModel> Modules { get; set; } // Parent to Modules
         public List<ArticleModuleListItemViewModel> ModuleNavs { get; set; } // Children Modules
+        public List<ModuleWithDataViewModel> ActivedModules { get; set; } // Children Modules
 
         public TemplateViewModel View { get; set; }
         public List<TemplateViewModel> Templates { get; set; }// Article Templates
@@ -96,8 +97,16 @@ namespace Swastika.Cms.Lib.ViewModels
             if (string.IsNullOrEmpty(Id))
             {
                 vm.ListSupportedCulture.ForEach(c => c.IsSupported = (c.Specificulture == Specificulture));
-            }            
-
+            }
+            vm.ActivedModules = new List<ModuleWithDataViewModel>();
+            foreach (var module in vm.ModuleNavs.Where(m=>m.IsActived))
+            {
+                var getModule = ModuleWithDataViewModel.Repository.GetSingleModel(m => m.Id == module.Id && m.Specificulture == module.Specificulture, _context, _transaction);
+                if (getModule.IsSucceed)
+                {
+                    vm.ActivedModules.Add(getModule.Data);
+                }
+            }
             return vm;
         }
 
