@@ -41,17 +41,17 @@ namespace Swastka.Cms.Api.Controllers
         // GET api/articles/id
         [HttpGet]
         [Route("create")]
-        public RepositoryResponse<BEArticleViewModel> Create()
+        public RepositoryResponse<ArticleBEViewModel> Create()
         {
             SiocArticle article = new SiocArticle()
             {
                 Id = Guid.NewGuid().ToString(),
                 Specificulture = _lang
             };
-            return new RepositoryResponse<BEArticleViewModel>()
+            return new RepositoryResponse<ArticleBEViewModel>()
             {
                 IsSucceed = true,
-                Data = new BEArticleViewModel(article)
+                Data = new ArticleBEViewModel(article)
             };
         }
 
