@@ -8,9 +8,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Swastika.Domain.Core.Models;
 
 namespace Swastika.Cms.Lib.ViewModels
-{    
+{
     public class FEModuleContentData : ViewModelBase<SiocCmsContext, SiocModuleData, FEModuleContentData>
     {
         public FEModuleContentData(SiocModuleData model, SiocCmsContext _context = null, IDbContextTransaction _transaction = null) : base(model, _context, _transaction)
@@ -24,7 +25,7 @@ namespace Swastika.Cms.Lib.ViewModels
         public string Value { get; set; }
         public string ArticleId { get; set; }
         public int? CategoryId { get; set; }
-        public DateTime CreatedDate { get; set; }
+        public DateTime CreatedDateTime { get; set; }
         public int Priority { get; set; }
         //View
         public List<ModuleDataValueViewModel> DataProperties { get; set; }
@@ -48,16 +49,37 @@ namespace Swastika.Cms.Lib.ViewModels
             return DataProperties.FirstOrDefault(p => p.Name == name);
         }
 
-        public JObject ParseJson() {
+        public JObject ParseJson()
+        {
             JObject result = new JObject();
             foreach (var prop in DataProperties)
             {
                 result.Add(new JProperty(prop.Name, prop.Value));
             }
+            JObject model = new JObject();
+            model.Add(new JProperty("Id", Id));
+            model.Add(new JProperty("ModuleId", ModuleId));
+            model.Add(new JProperty("Specificulture", Specificulture));
+            model.Add(new JProperty("Fields", Fields));
+            model.Add(new JProperty("Value", Value));
+            model.Add(new JProperty("ArticleId", ArticleId));
+            model.Add(new JProperty("Priority", Priority));
+            model.Add(new JProperty("CategoryId", CategoryId));
+            model.Add(new JProperty("CreatedDateTime", CreatedDateTime));
+            result.Add(new JProperty("Model", model));
             return result;
 
         }
 
+        public override SiocModuleData ParseModel()
+        {
+            if (string.IsNullOrEmpty(Id))
+            {
+                Id = Guid.NewGuid().ToString();
+                CreatedDateTime = DateTime.UtcNow;
+            }
+            return base.ParseModel();
+        }
         #region Overrides
 
         public override FEModuleContentData ParseView(SiocCmsContext _context = null, IDbContextTransaction _transaction = null)
@@ -109,11 +131,11 @@ namespace Swastika.Cms.Lib.ViewModels
                 switch (col.DataType)
                 {
                     case Constants.DataType.Int:
-                        dataVal.Value = prop.Value["Value"].Value<int>();
+                        dataVal.Value = prop.Value["Value"] != null ? prop.Value["Value"].Value<int>() : 0;
                         break;
 
                     case Constants.DataType.Boolean:
-                        dataVal.Value = prop.Value["Value"].Value<bool>();
+                        dataVal.Value = prop.Value["Value"] != null ? prop.Value["Value"].Value<bool>() : false;
                         break;
                     case Constants.DataType.String:
                     case Constants.DataType.Image:
@@ -132,6 +154,7 @@ namespace Swastika.Cms.Lib.ViewModels
             return vm;
         }
 
+       
         #endregion
     }
 

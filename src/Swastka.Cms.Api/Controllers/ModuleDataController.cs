@@ -1,11 +1,13 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.Data.OData.Query;
+using Newtonsoft.Json.Linq;
 using Swastika.Cms.Lib.Models;
 using Swastika.Cms.Lib.ViewModels;
 using Swastika.Common.Helper;
 using Swastika.Domain.Core.Models;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Linq.Expressions;
 using System.Threading.Tasks;
 
@@ -16,6 +18,28 @@ namespace Swastka.Cms.Api.Controllers
         BaseAPIController<SiocCmsContext, SiocArticle>
     {
 
+        [HttpPost]
+        [Route("save")]
+        public async Task<RepositoryResponse<FEModuleContentData>> Save([FromBody]JObject data)
+        {
+            var model = data["Model"].ToObject<SiocModuleData>();
+            List<ModuleFieldViewModel> cols = data["Columns"].ToObject<List<ModuleFieldViewModel>>();
+            JObject val = new JObject();
+            foreach (JProperty prop in data.Properties())
+            {
+                if (prop.Name != "Model" && prop.Name != "Columns")
+                {
+                    var col = cols.FirstOrDefault(c => c.Name == prop.Name);
+                    JObject fieldVal = new JObject();
+                    fieldVal.Add(new JProperty("DataType", col.DataType));
+                    fieldVal.Add(new JProperty("Value", prop.Value));
+                    val.Add(new JProperty(prop.Name, fieldVal));
+                }
+            }
+            model.Value = val.ToString(Newtonsoft.Json.Formatting.None);
+            var vmData = new FEModuleContentData(model);
+            return await vmData.SaveModelAsync();
+        }
 
         // GET api/articles/id
         [HttpGet]
