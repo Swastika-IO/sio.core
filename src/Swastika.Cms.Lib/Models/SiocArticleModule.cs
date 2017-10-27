@@ -10,7 +10,7 @@ namespace Swastika.Cms.Lib.Models
             SiocModuleData = new HashSet<SiocModuleData>();
         }
 
-        public int Id { get; set; }
+        public int ModuleId { get; set; }
         public string ArticleId { get; set; }
         public string Specificulture { get; set; }
         public int Position { get; set; }

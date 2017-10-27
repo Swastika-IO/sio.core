@@ -19,5 +19,26 @@ namespace Swastka.IO.Cms.Api.Controllers
         {
             return await ModuleWithDataViewModel.Repository.GetSingleModelAsync(model => model.Id == id && model.Specificulture == _lang);
         }
+
+        // GET api/articles/id
+        [HttpPost]
+        [Route("addToArticle")]
+        public async Task<RepositoryResponse<bool>> AddToArticle([FromBody]ArticleModuleFEViewModel view)
+        {
+            if (view.IsActived)
+            {
+                var addResult = await view.SaveModelAsync();
+                return new RepositoryResponse<bool>()
+                {
+                    IsSucceed = addResult.IsSucceed,
+                    Data = addResult.IsSucceed
+                };
+            }
+            else
+            {
+                return await view.RemoveModelAsync();
+            }
+            
+        }
     }
 }

@@ -17,7 +17,7 @@ namespace Swastka.Cms.Api.Controllers
     {
         // POST api/articles
         [HttpPost]
-        public async Task<RepositoryResponse<BEArticleViewModel>> Post([FromBody]BEArticleViewModel model)
+        public async Task<RepositoryResponse<ArticleBEViewModel>> Post([FromBody]ArticleBEViewModel model)
         {
             return await model.SaveModelAsync(true);
         }
@@ -33,25 +33,25 @@ namespace Swastka.Cms.Api.Controllers
         // GET api/articles/id
         [HttpGet]
         [Route("edit/{id}")]
-        public async Task<RepositoryResponse<BEArticleViewModel>> Edit(string id)
+        public async Task<RepositoryResponse<ArticleBEViewModel>> Edit(string id)
         {
-            return await BEArticleViewModel.Repository.GetSingleModelAsync(model => model.Id == id && model.Specificulture == _lang); //base.GetAsync(model => model.Id == id);
+            return await ArticleBEViewModel.Repository.GetSingleModelAsync(model => model.Id == id && model.Specificulture == _lang); //base.GetAsync(model => model.Id == id);
         }
 
         // GET api/articles/id
         [HttpGet]
         [Route("create")]
-        public RepositoryResponse<BEArticleViewModel> Create()
+        public RepositoryResponse<ArticleBEViewModel> Create()
         {
             SiocArticle article = new SiocArticle()
             {
-                Id = Guid.NewGuid().ToString(),
+                //Id = Guid.NewGuid().ToString(),
                 Specificulture = _lang
             };
-            return new RepositoryResponse<BEArticleViewModel>()
+            return new RepositoryResponse<ArticleBEViewModel>()
             {
                 IsSucceed = true,
-                Data = new BEArticleViewModel(article)
+                Data = new ArticleBEViewModel(article)
             };
         }
 
@@ -61,7 +61,7 @@ namespace Swastka.Cms.Api.Controllers
         [Route("delete/{id}")]
         public async Task<RepositoryResponse<bool>> Delete(string id)
         {
-            return await BEArticleViewModel.Repository.RemoveModelAsync(model => model.Id == id);
+            return await ArticleBEViewModel.Repository.RemoveModelAsync(model => model.Id == id);
         }
 
         // GET api/articles

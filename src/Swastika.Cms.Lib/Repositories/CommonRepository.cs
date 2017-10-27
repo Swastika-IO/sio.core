@@ -260,7 +260,7 @@ namespace Swastika.Cms.Lib.Repositories
                      .Select(p => new ArticleModuleListItemViewModel(
                          new SiocArticleModule() {
                              ArticleId = articleId,
-                             Id = p.Id,
+                             ModuleId = p.Id,
                              Specificulture = specificulture,
                          } ,
                          
@@ -312,7 +312,7 @@ namespace Swastika.Cms.Lib.Repositories
                         new SiocArticleModule()
                         {
                             ArticleId = articleId,
-                            Id = p.Id,
+                            ModuleId = p.Id,
                             Specificulture = specificulture,
                             
                         },

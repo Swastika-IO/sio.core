@@ -135,7 +135,7 @@ namespace Swastika.Cms.Lib.ViewModels
                         break;
 
                     case Constants.DataType.Boolean:
-                        dataVal.Value = prop.Value["Value"] != null ? prop.Value["Value"].Value<bool>() : false;
+                        dataVal.Value = !string.IsNullOrEmpty(prop.Value["Value"].ToString()) ? prop.Value["Value"].Value<bool>() : false;
                         break;
                     case Constants.DataType.String:
                     case Constants.DataType.Image:

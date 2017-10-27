@@ -35,7 +35,13 @@ namespace Swastka.Cms.Api
                 app.UseDeveloperExceptionPage();
             }
             app.UseStaticFiles();
-            app.UseCors(builder => builder.AllowAnyOrigin());
+            app.UseCors(builder =>
+            {
+                builder.AllowAnyOrigin();
+                builder.AllowAnyMethod();
+                builder.AllowAnyHeader();
+                });
+            
             app.UseMvc(routes =>
             {
                 

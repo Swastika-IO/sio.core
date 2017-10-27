@@ -196,7 +196,7 @@ namespace Swastika.Cms.Lib.Models
 
             modelBuilder.Entity<SiocArticleModule>(entity =>
             {
-                entity.HasKey(e => new { e.Id, e.ArticleId, e.Specificulture });
+                entity.HasKey(e => new { e.ModuleId, e.ArticleId, e.Specificulture });
 
                 entity.ToTable("sioc_article_module");
 
@@ -212,7 +212,7 @@ namespace Swastika.Cms.Lib.Models
 
                 entity.HasOne(d => d.SiocModule)
                     .WithMany(p => p.SiocArticleModule)
-                    .HasForeignKey(d => new { d.Id, d.Specificulture })
+                    .HasForeignKey(d => new { d.ModuleId, d.Specificulture })
                     .HasConstraintName("FK_TTS_Article_Module_TTS_Module1");
             });
 
