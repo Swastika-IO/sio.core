@@ -1,0 +1,32 @@
+<div class="page-header page-header-small">
+    <div class="page-header-image" data-parallax="true" style="background-image: url('../../../../themes/now-ui-kit-pro-v1.1.0/img/bg26.jpg');">
+    </div>
+    <div class="content-center">
+        <h1 class="title">Weather forecast</h1>
+        <div class="text-center">
+            <p>This component demonstrates fetching data from the server.</p>
+
+            <p *ngIf="!forecasts"><em>Loading...</em></p>
+
+            <table class='table' *ngIf="forecasts">
+                <thead>
+                    <tr>
+                        <th>Date</th>
+                        <th>Temp. (C)</th>
+                        <th>Temp. (F)</th>
+                        <th>Summary</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let forecast of forecasts">
+                        <td>{{ forecast.dateFormatted }}</td>
+                        <td>{{ forecast.temperatureC }}</td>
+                        <td>{{ forecast.temperatureF }}</td>
+                        <td>{{ forecast.summary }}</td>
+                    </tr>
+                </tbody>
+            </table>
+
+        </div>
+    </div>
+</div>

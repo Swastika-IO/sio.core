@@ -5,12 +5,14 @@ import { HttpModule } from '@angular/http';
 import { Routes, RouterModule } from '@angular/router';
 
 import { AppComponent } from './components/app/app.component';
-import { NavMenuComponent } from './components/navmenu/navmenu.component';
+import { NavMenuComponent } from './components/shared/navmenu/navmenu.component';
+import { FooterComponent } from './components/shared/footer/footer.component';
 
 @NgModule({
     declarations: [
         AppComponent,
-        NavMenuComponent
+        NavMenuComponent,
+        FooterComponent
     ],
     imports: [
         CommonModule,
@@ -20,15 +22,23 @@ import { NavMenuComponent } from './components/navmenu/navmenu.component';
             { path: '', redirectTo: 'home', pathMatch: 'full' },
             {
                 path: 'home',
-                loadChildren: './components/home/home.module#HomeModule'
+                loadChildren: './pages/home/home.module#HomeModule'
+            },
+            {
+                path: 'blog',
+                loadChildren: './pages/blog/blog.module#BlogModule'
+            },
+            {
+                path: 'blog-detail/:id',
+                loadChildren: './pages/blog/item/item.module#ItemModule'
             },
             {
                 path: 'counter',
-                loadChildren: './components/counter/counter.module#CounterModule'
+                loadChildren: './pages/counter/counter.module#CounterModule'
             },
             {
                 path: 'fetch-data',
-                loadChildren: './components/fetchdata/fetchdata.module#FetchdataModule'
+                loadChildren: './pages/fetchdata/fetchdata.module#FetchdataModule'
             },
             { path: '**', redirectTo: 'home' }
         ])

@@ -1,24 +1,20 @@
-import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
-import { FormsModule } from '@angular/forms';
-import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+﻿import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
-
 import { HomeComponent } from './home.component';
 
-import { ComponentsModule } from '../../themes/pk2/components/components.module';
+import { HeaderComponent } from '../../components/modules/home/header/header.component';
+import { FeaturesComponent } from '../../components/modules/home/features/features.component';
 
 @NgModule({
     imports: [
-        CommonModule,
-        BrowserModule,
-        FormsModule,
-        RouterModule,
-        ComponentsModule
+        RouterModule.forChild([{ path: '', component: HomeComponent }])
     ],
-    declarations: [ HomeComponent ],
-    exports:[ HomeComponent ],
-    providers: []
+    exports: [RouterModule],
+    declarations: [
+        HomeComponent,
+        HeaderComponent,
+        FeaturesComponent
+    ]
 })
-export class HomeModule { }
+
+export class HomeModule { }   
