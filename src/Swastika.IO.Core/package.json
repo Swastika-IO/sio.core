@@ -36,6 +36,7 @@
     "isomorphic-fetch": "2.2.1",
     "jquery": "3.2.1",
     "json-loader": "0.5.4",
+    "tether": "1.4.0",
     "popper.js": "^1.11.0",
     "preboot": "4.5.2",
     "raw-loader": "0.5.1",
@@ -56,6 +57,7 @@
   "devDependencies": {
     "@types/chai": "4.0.1",
     "@types/jasmine": "2.5.53",
+    "angular-router-loader": "^0.6.0",
     "chai": "4.0.2",
     "jasmine-core": "2.6.4",
     "karma": "1.7.0",
