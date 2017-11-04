@@ -84,7 +84,7 @@ namespace Swastika.Cms.Lib.Repositories
 
             if (File.Exists(fullPath))
             {
-                Common.Common.RemoveFile(fullPath);
+                Common.CommonHelper.RemoveFile(fullPath);
             }
             return true;
         }
