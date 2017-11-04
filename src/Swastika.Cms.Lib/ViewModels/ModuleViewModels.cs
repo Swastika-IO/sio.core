@@ -91,6 +91,9 @@ namespace Swastika.Cms.Lib.ViewModels
         public string Description { get; set; }
         public string Fields { get; set; }
 
+        public string DetailsUrl { get; set; }
+        public string EditUrl { get; set; }
+
         public ModuleListItemViewModel(SiocModule model, SiocCmsContext _context = null, IDbContextTransaction _transaction = null) : base(model, _context, _transaction)
         {
         }
@@ -165,7 +168,7 @@ namespace Swastika.Cms.Lib.ViewModels
         {
             var arrField = Columns != null ? JArray.Parse(
                 Newtonsoft.Json.JsonConvert.SerializeObject(Columns.Where(
-                    c => !string.IsNullOrEmpty(c.Name)))) : new JArray();
+                    c => !string.IsNullOrEmpty(c.Name)))) : new JArray();           
             Fields = arrField.ToString(Newtonsoft.Json.Formatting.None);
             Template = View != null ? string.Format(@"{0}/{1}", View.FileFolder, View.Filename) : string.Empty;
 
