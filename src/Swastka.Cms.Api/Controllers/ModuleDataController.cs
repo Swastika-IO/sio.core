@@ -22,17 +22,17 @@ namespace Swastka.Cms.Api.Controllers
         [Route("save")]
         public async Task<RepositoryResponse<FEModuleContentData>> Save([FromBody]JObject data)
         {
-            var model = data["Model"].ToObject<SiocModuleData>();
-            List<ModuleFieldViewModel> cols = data["Columns"].ToObject<List<ModuleFieldViewModel>>();
+            var model = data["model"].ToObject<SiocModuleData>();
+            List<ModuleFieldViewModel> cols = data["columns"].ToObject<List<ModuleFieldViewModel>>();
             JObject val = new JObject();
             foreach (JProperty prop in data.Properties())
             {
-                if (prop.Name != "Model" && prop.Name != "Columns")
+                if (prop.Name != "model" && prop.Name != "columns")
                 {
                     var col = cols.FirstOrDefault(c => c.Name == prop.Name);
                     JObject fieldVal = new JObject();
-                    fieldVal.Add(new JProperty("DataType", col.DataType));
-                    fieldVal.Add(new JProperty("Value", prop.Value));
+                    fieldVal.Add(new JProperty("dataType", col.DataType));
+                    fieldVal.Add(new JProperty("value", prop.Value));
                     val.Add(new JProperty(prop.Name, fieldVal));
                 }
             }
@@ -79,7 +79,7 @@ namespace Swastka.Cms.Api.Controllers
         [Route("delete/{id}")]
         public async Task<RepositoryResponse<bool>> Delete(string id)
         {
-            return await FEModuleContentData.Repository.RemoveModelAsync(model => model.Id == id);
+            return await FEModuleContentData.Repository.RemoveModelAsync(model => model.Id == id && model.Specificulture== _lang);
         }
 
         // GET api/articles

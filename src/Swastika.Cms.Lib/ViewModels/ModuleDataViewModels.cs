@@ -54,19 +54,19 @@ namespace Swastika.Cms.Lib.ViewModels
             JObject result = new JObject();
             foreach (var prop in DataProperties)
             {
-                result.Add(new JProperty(prop.Name, prop.Value));
+                result.Add(new JProperty(Common.CommonHelper.ParseJsonPropertyName(prop.Name), prop.Value));
             }
             JObject model = new JObject();
-            model.Add(new JProperty("Id", Id));
-            model.Add(new JProperty("ModuleId", ModuleId));
-            model.Add(new JProperty("Specificulture", Specificulture));
-            model.Add(new JProperty("Fields", Fields));
-            model.Add(new JProperty("Value", Value));
-            model.Add(new JProperty("ArticleId", ArticleId));
-            model.Add(new JProperty("Priority", Priority));
-            model.Add(new JProperty("CategoryId", CategoryId));
-            model.Add(new JProperty("CreatedDateTime", CreatedDateTime));
-            result.Add(new JProperty("Model", model));
+            model.Add(new JProperty("id", Id));
+            model.Add(new JProperty("moduleId", ModuleId));
+            model.Add(new JProperty("specificulture", Specificulture));
+            model.Add(new JProperty("fields", Fields));
+            model.Add(new JProperty("value", Value));
+            model.Add(new JProperty("articleId", ArticleId));
+            model.Add(new JProperty("priority", Priority));
+            model.Add(new JProperty("categoryId", CategoryId));
+            model.Add(new JProperty("createdDateTime", CreatedDateTime));
+            result.Add(new JProperty("model", model));
             return result;
 
         }
@@ -98,7 +98,7 @@ namespace Swastika.Cms.Lib.ViewModels
             {
                 ModuleFieldViewModel vmField = new ModuleFieldViewModel()
                 {
-                    Name = field["Name"].ToString(),
+                    Name = CommonHelper.ParseJsonPropertyName(field["Name"].ToString()),
                     DataType = (Constants.DataType)(int)field["DataType"],
                     Width = field["Width"] != null ? field["Width"].Value<int>() : 3,
                     IsDisplay = field["IsDisplay"] != null ? field["IsDisplay"].Value<bool>() : true
@@ -114,8 +114,8 @@ namespace Swastika.Cms.Lib.ViewModels
                 {
                     JObject val = new JObject
                     {
-                        { "DataType", (int)col.DataType },
-                        { "Value", null }
+                        { "dataType", (int)col.DataType },
+                        { "value", null }
                     };
                     prop = new JProperty(col.Name, val);
                 }
@@ -125,17 +125,17 @@ namespace Swastika.Cms.Lib.ViewModels
                 {
                     ModuleId = ModuleId,
                     DataType = (Constants.DataType)col.DataType,
-                    Name = prop.Name,
-                    StringValue = prop.Value["Value"].Value<string>()
+                    Name = CommonHelper.ParseJsonPropertyName(prop.Name),
+                    StringValue = prop.Value["value"].Value<string>()
                 };
                 switch (col.DataType)
                 {
                     case Constants.DataType.Int:
-                        dataVal.Value = prop.Value["Value"] != null ? prop.Value["Value"].Value<int>() : 0;
+                        dataVal.Value = prop.Value["value"] != null ? prop.Value["value"].Value<int>() : 0;
                         break;
 
                     case Constants.DataType.Boolean:
-                        dataVal.Value = prop.Value["Value"] != null ? prop.Value["Value"].Value<bool>() : false;
+                        dataVal.Value = !string.IsNullOrEmpty(prop.Value["value"].ToString()) ? prop.Value["value"].Value<bool>() : false;
                         break;
                     case Constants.DataType.String:
                     case Constants.DataType.Image:
@@ -144,7 +144,7 @@ namespace Swastika.Cms.Lib.ViewModels
                     case Constants.DataType.Html:
                     case Constants.DataType.TextArea:
                     default:
-                        dataVal.Value = prop.Value["Value"].Value<string>();
+                        dataVal.Value = prop.Value["value"].Value<string>();
                         break;
                 }
                 vm.DataProperties.Add(dataVal);

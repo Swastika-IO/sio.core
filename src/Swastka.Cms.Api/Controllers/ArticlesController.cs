@@ -45,7 +45,7 @@ namespace Swastka.Cms.Api.Controllers
         {
             SiocArticle article = new SiocArticle()
             {
-                Id = Guid.NewGuid().ToString(),
+                //Id = Guid.NewGuid().ToString(),
                 Specificulture = _lang
             };
             return new RepositoryResponse<ArticleBEViewModel>()
@@ -61,7 +61,7 @@ namespace Swastka.Cms.Api.Controllers
         [Route("delete/{id}")]
         public async Task<RepositoryResponse<bool>> Delete(string id)
         {
-            var getArticle = await ArticleBEViewModel.Repository.GetSingleModelAsync(a => a.Id == id && a.Specificulture == _lang);
+            var getArticle = ArticleListItemViewModel.Repository.GetSingleModel(a => a.Id == id);
             if (getArticle.IsSucceed)
             {
                 return await getArticle.Data.RemoveModelAsync(true);

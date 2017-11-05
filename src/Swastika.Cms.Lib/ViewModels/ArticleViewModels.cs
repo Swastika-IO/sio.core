@@ -51,6 +51,7 @@ namespace Swastika.Cms.Lib.ViewModels
         public string ImageFileStream { get; set; }
         public string ThumbnailFileStream { get; set; }
 
+        private bool IsNew { get; set; }
         public ArticleBEViewModel(SiocArticle model, SiocCmsContext _context = null, IDbContextTransaction _transaction = null) : base(model, _context, _transaction)
         {
         }
@@ -99,9 +100,9 @@ namespace Swastika.Cms.Lib.ViewModels
                 vm.ListSupportedCulture.ForEach(c => c.IsSupported = (c.Specificulture == Specificulture));
             }
             vm.ActivedModules = new List<ModuleWithDataViewModel>();
-            foreach (var module in vm.ModuleNavs.Where(m=>m.IsActived))
+            foreach (var module in vm.ModuleNavs.Where(m => m.IsActived))
             {
-                var getModule = ModuleWithDataViewModel.Repository.GetSingleModel(m => m.Id == module.Id && m.Specificulture == module.Specificulture, _context, _transaction);
+                var getModule = ModuleWithDataViewModel.Repository.GetSingleModel(m => m.Id == module.ModuleId && m.Specificulture == module.Specificulture, _context, _transaction);
                 if (getModule.IsSucceed)
                 {
                     vm.ActivedModules.Add(getModule.Data);
@@ -111,11 +112,12 @@ namespace Swastika.Cms.Lib.ViewModels
         }
 
         public override SiocArticle ParseModel()
-        {            
+        {
             if (string.IsNullOrEmpty(Id))
             {
                 Id = Guid.NewGuid().ToString(); //Common.Common.GetBase62(8);
                 CreatedDateTime = DateTime.UtcNow;
+                IsNew = true;
             }
             var model = base.ParseModel();
 
@@ -134,40 +136,8 @@ namespace Swastika.Cms.Lib.ViewModels
                 Errors.Add("Seoname is required");
             }
         }
-        #region Async Methods
 
-        public override async Task<RepositoryResponse<bool>> RemoveRelatedModelsAsync(ArticleBEViewModel model, SiocCmsContext _context = null, IDbContextTransaction _transaction = null)
-        {
-            RepositoryResponse<bool> result = new RepositoryResponse<bool>()
-            {
-                IsSucceed = true
-            };
-
-            if (result.IsSucceed)
-            {
-                foreach (var item in model.Categories)
-                {
-                    result = await item.RemoveModelAsync(false, _context, _transaction);
-                }
-            }
-
-            if (result.IsSucceed)
-            {
-                foreach (var item in model.Modules)
-                {
-                    result = await item.RemoveModelAsync(false, _context, _transaction);
-                }
-            }
-
-            if (result.IsSucceed)
-            {
-                foreach (var item in model.ModuleNavs)
-                {
-                    result = await item.RemoveModelAsync(false, _context, _transaction);
-                }
-            }
-            return result;
-        }
+        #region Async Methods        
 
         public override Task<RepositoryResponse<ArticleBEViewModel>> SaveModelAsync(bool isSaveSubModels = false, SiocCmsContext _context = null, IDbContextTransaction _transaction = null)
         {
@@ -260,11 +230,56 @@ namespace Swastika.Cms.Lib.ViewModels
                         break;
                     }
                 }
+
+                if (result)
+                {
+                    foreach (var item in Categories)
+                    {
+                        result = (await item.RemoveModelAsync(false, _context, _transaction)).IsSucceed;
+                    }
+                }
+
+                if (result)
+                {
+                    foreach (var item in Modules)
+                    {
+                        result = (await item.RemoveModelAsync(false, _context, _transaction)).IsSucceed;
+                    }
+                }
+
+                if (result)
+                {
+                    foreach (var item in ModuleNavs)
+                    {
+                        result = (await item.RemoveModelAsync(false, _context, _transaction)).IsSucceed;
+                    }
+                }
+
+                if (IsNew)
+                {
+                    foreach (var module in ActivedModules)
+                    {
+                        ArticleModuleFEViewModel nav = new ArticleModuleFEViewModel(
+                            new SiocArticleModule()
+                            {
+                                ArticleId = Id,
+                                ModuleId = module.Id,
+                                Specificulture = Specificulture,
+                            }, _context, _transaction)
+                        {
+                            Module = module
+                        };
+                        var saveResult = await nav.SaveModelAsync(true, _context, _transaction);
+                        result = result && saveResult.IsSucceed;
+                    }
+                }
+
                 return new RepositoryResponse<bool>()
                 {
                     IsSucceed = result,
                     Data = result
                 };
+
             }
             catch (Exception ex)
             {
@@ -428,8 +443,6 @@ namespace Swastika.Cms.Lib.ViewModels
         #endregion
 
         #endregion
-
-
         void GenerateSEO()
         {
             if (string.IsNullOrEmpty(this.Seotitle))

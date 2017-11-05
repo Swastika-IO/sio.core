@@ -9,6 +9,9 @@ using Swastika.Cms.Lib.Repositories;
 using Newtonsoft.Json.Linq;
 using Swastika.Common;
 using Microsoft.Data.OData.Query;
+using Swastika.Domain.Core.Models;
+using System.Linq;
+using System.Threading.Tasks;
 
 namespace Swastika.Cms.Lib.ViewModels
 {
@@ -27,7 +30,7 @@ namespace Swastika.Cms.Lib.ViewModels
 
         // View
         public TemplateViewModel View { get; set; }
-        public PaginationModel<FEModuleContentData> Data { get; set; }        
+        public PaginationModel<FEModuleContentData> Data { get; set; }
         public List<ModuleFieldViewModel> Columns { get; set; }
         public List<TemplateViewModel> Templates { get; set; }
         public int Priority { get; set; }
@@ -49,7 +52,7 @@ namespace Swastika.Cms.Lib.ViewModels
             {
                 ModuleFieldViewModel vmField = new ModuleFieldViewModel()
                 {
-                    Name = field["Name"].ToString(),
+                    Name = CommonHelper.ParseJsonPropertyName(field["Name"].ToString()),
                     DataType = (Constants.DataType)(int)field["DataType"],
                     Width = field["Width"] != null ? field["Width"].Value<int>() : 3,
                     IsDisplay = field["IsDisplay"] != null ? field["IsDisplay"].Value<bool>() : true
@@ -61,7 +64,7 @@ namespace Swastika.Cms.Lib.ViewModels
                        .GetModelListBy(m => m.ModuleId == Id && m.Specificulture == Specificulture
                        && (string.IsNullOrEmpty(ArticleId) || m.ArticleId == ArticleId || string.IsNullOrEmpty(m.ArticleId))
                        && (!CategoryId.HasValue || m.CategoryId == CategoryId || !m.CategoryId.HasValue)
-                       , "Priority", OrderByDirection.Ascending,null, null
+                       , "Priority", OrderByDirection.Ascending, null, null
                        , _context, _transaction);
 
             if (getDataResult.IsSucceed)
@@ -88,8 +91,196 @@ namespace Swastika.Cms.Lib.ViewModels
         public string Description { get; set; }
         public string Fields { get; set; }
 
+        public string DetailsUrl { get; set; }
+        public string EditUrl { get; set; }
+
         public ModuleListItemViewModel(SiocModule model, SiocCmsContext _context = null, IDbContextTransaction _transaction = null) : base(model, _context, _transaction)
         {
         }
     }
+
+    #region Module Backend ViewModel
+
+    public class ModuleBEViewModel : ViewModelBase<SiocCmsContext, SiocModule, ModuleBEViewModel>
+    {
+
+        public int Id { get; set; }
+        public string Specificulture { get; set; }
+        public string Name { get; set; }
+        public string Template { get; set; }
+        public string Title { get; set; }
+        public string Description { get; set; }
+        public string Fields { get; set; }
+
+
+        public List<CultureViewModel> ListSupportedCulture { get; set; }
+        public TemplateViewModel View { get; set; }
+        public List<TemplateViewModel> Templates { get; set; }
+        public List<ModuleFieldViewModel> Columns { get; set; }
+
+        public ModuleBEViewModel(SiocModule model, SiocCmsContext _context = null, IDbContextTransaction _transaction = null) : base(model, _context, _transaction)
+        {
+        }
+        #region Overrides
+
+        #region Common
+
+        public override ModuleBEViewModel ParseView(SiocCmsContext _context = null, IDbContextTransaction _transaction = null)
+        {
+            var vm = base.ParseView(_context, _transaction);
+
+            //Get Languages
+            vm.Templates = Templates ?? TemplateRepository.GetInstance().GetTemplates(Constants.TemplateFolder.Modules);
+            vm.Template = string.IsNullOrEmpty(Template) ? "Modules/_Default" : Template;
+            vm.View = TemplateRepository.GetInstance().GetTemplate(Template, Templates, Constants.TemplateFolder.Modules);
+
+            var getCulture = CultureViewModel.Repository.GetModelList(_context, _transaction);
+            if (getCulture.IsSucceed)
+            {
+                getCulture.Data.ForEach(c =>
+                c.IsSupported = ModuleBEViewModel.Repository.CheckIsExists(
+                    a => a.Id == vm.Id && a.Specificulture == c.Specificulture));
+
+                vm.ListSupportedCulture = getCulture.Data;
+            }
+
+
+            //Get columns
+            vm.Columns = new List<ModuleFieldViewModel>();
+
+            JArray arrField = JArray.Parse(Fields);
+            foreach (var field in arrField)
+            {
+                ModuleFieldViewModel vmField = new ModuleFieldViewModel()
+                {
+                    Name = CommonHelper.ParseJsonPropertyName(field["Name"].ToString()),
+                    DataType = (Constants.DataType)(int)field["DataType"],
+                    Width = field["Width"] != null ? field["Width"].Value<int>() : 3,
+                    IsDisplay = field["IsDisplay"] != null ? field["IsDisplay"].Value<bool>() : true
+                };
+                vm.Columns.Add(vmField);
+            }
+
+            return vm;
+        }
+
+        public override SiocModule ParseModel()
+        {
+            var arrField = Columns != null ? JArray.Parse(
+                Newtonsoft.Json.JsonConvert.SerializeObject(Columns.Where(
+                    c => !string.IsNullOrEmpty(c.Name)))) : new JArray();           
+            Fields = arrField.ToString(Newtonsoft.Json.Formatting.None);
+            Template = View != null ? string.Format(@"{0}/{1}", View.FileFolder, View.Filename) : string.Empty;
+
+            return base.ParseModel();
+        }
+
+        #endregion
+
+        #region Async
+
+        public override async Task<RepositoryResponse<ModuleBEViewModel>> SaveModelAsync(bool isSaveSubModels = false, SiocCmsContext _context = null, IDbContextTransaction _transaction = null)
+        {
+            var result = await base.SaveModelAsync(isSaveSubModels, _context, _transaction);
+
+            if (result.IsSucceed)
+            {
+                TemplateRepository.GetInstance().SaveTemplate(View);
+                foreach (var supportedCulture in ListSupportedCulture.Where(c => c.Specificulture != Specificulture))
+                {
+
+                    var cloneModule = await ModuleBEViewModel.Repository.GetSingleModelAsync(
+                        b => b.Id == Id && b.Specificulture == supportedCulture.Specificulture);
+                    if (cloneModule.Data == null && supportedCulture.IsSupported)
+                    {
+                        var cloneResult = this.Clone(supportedCulture.Specificulture);
+                    }
+                    else if (cloneModule.Data != null && !supportedCulture.IsSupported)
+                    {
+                        await ModuleBEViewModel.Repository.RemoveModelAsync(
+                            b => b.Id == cloneModule.Data.Id && b.Specificulture == supportedCulture.Specificulture);
+                    }
+                }
+            }
+
+            return result;
+        }
+
+        #endregion
+
+        #region Sync
+
+        public override RepositoryResponse<ModuleBEViewModel> SaveModel(bool isSaveSubModels = false,
+            SiocCmsContext _context = null, IDbContextTransaction _transaction = null)
+        {
+            var result = base.SaveModel(isSaveSubModels, _context, _transaction);
+
+            if (result.IsSucceed)
+            {
+                TemplateRepository.GetInstance().SaveTemplate(View);
+                foreach (var supportedCulture in ListSupportedCulture.Where(c =>
+                c.Specificulture != Specificulture))
+                {
+
+                    var cloneModule = ModuleBEViewModel.Repository.GetSingleModel(
+                        b => b.Id == Id && b.Specificulture == supportedCulture.Specificulture);
+                    if (cloneModule.Data == null && supportedCulture.IsSupported)
+                    {
+                        var cloneResult = this.Clone(supportedCulture.Specificulture);
+                    }
+                    else if (cloneModule.Data != null && !supportedCulture.IsSupported)
+                    {
+                        ModuleBEViewModel.Repository.RemoveModel(
+                            b => b.Id == cloneModule.Data.Id
+                            && b.Specificulture == supportedCulture.Specificulture);
+                    }
+                }
+            }
+
+            return result;
+        }
+
+        #endregion
+
+        #endregion
+
+        #region Expands
+        public RepositoryResponse<ModuleBEViewModel> Clone(string culture)
+        {
+            var cloneModel = new ModuleBEViewModel(this.Model)
+            {
+                Id = Id,
+                Specificulture = culture,
+                //Categories = new List<CategoryModuleViewModel>(),
+                //Data = new PaginationModel<ModuleDataViewModel>()
+            };
+            //foreach (var cateModule in this.Categories.Where(p => p.IsActived))
+            //{
+            //    cloneModel.Categories.Add(new CategoryModuleViewModel()
+            //    {
+            //        ModuleId = cateModule.ModuleId,
+            //        Specificulture = culture,
+            //        CategoryId = cateModule.CategoryId,
+            //        IsActived = cateModule.IsActived,
+            //        Description = cateModule.Description
+            //    });
+            //}
+
+            //Clone Data 
+            //Data = ModuleDataRepository.GetInstance().GetModelListBy(d => d.ModuleId == Id && d.Specificulture == Specificulture, d => d.CreatedDate, "desc", 0, null, Constants.ViewModelType.BackEnd);
+            //foreach (var data in Data.Items)
+            //{
+
+            //    ModuleDataViewModel cloneData = data;
+            //    cloneData.Id = Guid.NewGuid().ToString();
+            //    cloneData.Specificulture = culture;
+
+            //    cloneModel.Data.Items.Add(cloneData);
+            //}
+            return ModuleBEViewModel.Repository.SaveModel(cloneModel, true);
+        }
+        #endregion
+    }
+
+    #endregion
 }
