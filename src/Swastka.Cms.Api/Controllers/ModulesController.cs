@@ -42,7 +42,7 @@ namespace Swastka.IO.Cms.Api.Controllers
             {
                 return await view.RemoveModelAsync();
             }
-            
+
         }
 
         // GET api/modules
@@ -66,17 +66,19 @@ namespace Swastka.IO.Cms.Api.Controllers
         [HttpGet]
         [Route("{keyword}")]
         [Route("{pageSize:int?}/{pageIndex:int?}/{keyword}")]
+        [Route("{pageSize:int?}/{pageIndex:int?}/{keyword}/{description}")]
         [Route("{pageSize:int?}/{pageIndex:int?}/{orderBy}/{direction}/{keyword}")]
+        [Route("{pageSize:int?}/{pageIndex:int?}/{orderBy}/{direction}/{keyword}/{description}")]
         public async Task<RepositoryResponse<PaginationModel<ModuleListItemViewModel>>> Search(
-            string keyword = null, int? pageSize = null, int? pageIndex = null, string orderBy = "Id"
+            string keyword = null,
+            string description = null,
+            int? pageSize = null, int? pageIndex = null, string orderBy = "Id"
             , OrderByDirection direction = OrderByDirection.Ascending)
         {
             Expression<Func<SiocModule, bool>> predicate = model =>
-            model.Specificulture == _lang &&
-            (
-            string.IsNullOrWhiteSpace(keyword)
-                || (model.Title.Contains(keyword) || model.Description.Contains(keyword))
-                );
+            model.Specificulture == _lang
+            && (string.IsNullOrWhiteSpace(keyword) || (model.Title.Contains(keyword)))
+            && (string.IsNullOrWhiteSpace(description) || (model.Description.Contains(description)));
             return await ModuleListItemViewModel.Repository.GetModelListByAsync(predicate, orderBy, direction, pageSize, pageIndex); // base.Search(predicate, orderBy, direction, pageSize, pageIndex, keyword);
         }
     }
