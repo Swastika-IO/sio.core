@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace Swastika.Cms.Lib.Models
+namespace Swastika.IO.Cms.Lib.Models
 {
     public partial class SiocModule
     {
@@ -20,6 +20,7 @@ namespace Swastika.Cms.Lib.Models
         public string Title { get; set; }
         public string Description { get; set; }
         public string Fields { get; set; }
+        public int Type { get; set; }
 
         public SiocCulture SpecificultureNavigation { get; set; }
         public ICollection<SiocArticleModule> SiocArticleModule { get; set; }

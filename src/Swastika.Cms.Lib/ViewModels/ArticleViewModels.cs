@@ -8,6 +8,7 @@ using Swastika.Common;
 using Swastika.Domain.Core.Models;
 using System.Threading.Tasks;
 using System.Linq;
+using Swastika.IO.Cms.Lib.Models;
 
 namespace Swastika.Cms.Lib.ViewModels
 {
@@ -20,7 +21,7 @@ namespace Swastika.Cms.Lib.ViewModels
         public string Image { get; set; }
         public string Thumbnail { get; set; }
         public string Title { get; set; }
-        public string BriefContent { get; set; }
+        public string Excerpt { get; set; }
         public string Content { get; set; }
 
         public string StaticUrl { get; set; }
@@ -473,7 +474,7 @@ namespace Swastika.Cms.Lib.ViewModels
         public string Template { get; set; }
         public string Thumbnail { get; set; }
         public string Title { get; set; }
-
+        public string Excerpt { get; set; }
         public string StaticUrl { get; set; }
         public string Source { get; set; }
         public DateTime CreatedDateTime { get; set; }

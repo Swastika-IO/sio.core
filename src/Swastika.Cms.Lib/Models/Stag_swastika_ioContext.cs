@@ -2,7 +2,7 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata;
 
-namespace Swastika.Cms.Lib.Models
+namespace Swastika.IO.Cms.Lib.Models
 {
     public partial class Stag_swastika_ioContext : DbContext
     {
@@ -162,15 +162,15 @@ namespace Swastika.Cms.Lib.Models
 
                 entity.Property(e => e.Image).HasMaxLength(250);
 
-                entity.Property(e => e.SeoDescription).HasColumnType("nvarchar(max)");
+                entity.Property(e => e.SeoDescription).HasColumnType("nvarchar");
 
-                entity.Property(e => e.SeoKeywords).HasColumnType("nvarchar(max)");
+                entity.Property(e => e.SeoKeywords).HasColumnType("nvarchar");
 
                 entity.Property(e => e.SeoName)
                     .HasMaxLength(500)
                     .IsUnicode(false);
 
-                entity.Property(e => e.SeoTitle).HasColumnType("nvarchar(max)");
+                entity.Property(e => e.SeoTitle).HasColumnType("nvarchar");
 
                 entity.Property(e => e.Source).HasMaxLength(250);
 
@@ -180,7 +180,7 @@ namespace Swastika.Cms.Lib.Models
 
                 entity.Property(e => e.Thumbnail).HasMaxLength(250);
 
-                entity.Property(e => e.Title).HasColumnType("nvarchar(max)");
+                entity.Property(e => e.Title).HasColumnType("nvarchar");
 
                 entity.Property(e => e.UpdatedBy).HasMaxLength(250);
 
@@ -275,15 +275,15 @@ namespace Swastika.Cms.Lib.Models
 
                 entity.Property(e => e.Priority).HasDefaultValueSql("((0))");
 
-                entity.Property(e => e.SeoDescription).HasColumnType("nvarchar(max)");
+                entity.Property(e => e.SeoDescription).HasColumnType("nvarchar");
 
-                entity.Property(e => e.SeoKeywords).HasColumnType("nvarchar(max)");
+                entity.Property(e => e.SeoKeywords).HasColumnType("nvarchar");
 
                 entity.Property(e => e.SeoName)
                     .HasMaxLength(500)
                     .IsUnicode(false);
 
-                entity.Property(e => e.SeoTitle).HasColumnType("nvarchar(max)");
+                entity.Property(e => e.SeoTitle).HasColumnType("nvarchar");
 
                 entity.Property(e => e.StaticUrl).HasMaxLength(250);
 
@@ -291,7 +291,7 @@ namespace Swastika.Cms.Lib.Models
 
                 entity.Property(e => e.Template).HasMaxLength(50);
 
-                entity.Property(e => e.Title).HasColumnType("nvarchar(max)");
+                entity.Property(e => e.Title).HasColumnType("nvarchar");
 
                 entity.Property(e => e.UpdatedBy).HasMaxLength(250);
 
@@ -458,7 +458,7 @@ namespace Swastika.Cms.Lib.Models
 
                 entity.Property(e => e.Description).HasMaxLength(500);
 
-                entity.Property(e => e.Fields).HasColumnType("nvarchar(max)");
+                entity.Property(e => e.Fields).HasColumnType("nvarchar");
 
                 entity.Property(e => e.Name)
                     .IsRequired()
@@ -467,6 +467,8 @@ namespace Swastika.Cms.Lib.Models
                 entity.Property(e => e.Template).HasMaxLength(50);
 
                 entity.Property(e => e.Title).HasMaxLength(250);
+
+                entity.Property(e => e.Type).HasDefaultValueSql("('0')");
 
                 entity.HasOne(d => d.SpecificultureNavigation)
                     .WithMany(p => p.SiocModule)
@@ -512,7 +514,7 @@ namespace Swastika.Cms.Lib.Models
 
                 entity.Property(e => e.Fields)
                     .IsRequired()
-                    .HasColumnType("nvarchar(max)");
+                    .HasColumnType("nvarchar");
 
                 entity.Property(e => e.Priority).HasDefaultValueSql("((0))");
 
