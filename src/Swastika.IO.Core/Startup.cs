@@ -43,6 +43,13 @@ namespace Swastika.IO.Admin
 
             app.UseStaticFiles();
 
+            app.UseCors(builder =>
+            {
+                builder.AllowAnyOrigin();
+                builder.AllowAnyMethod();
+                builder.AllowAnyHeader();
+            });
+
             app.UseMvc(routes =>
             {
                 routes.MapRoute(
@@ -57,6 +64,8 @@ namespace Swastika.IO.Admin
                     name: "spa-fallback",
                     defaults: new { controller = "Home", action = "Index" });
             });
+
+
         }
     }
 }
