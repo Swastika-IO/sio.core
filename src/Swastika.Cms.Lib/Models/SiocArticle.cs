@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace Swastika.Cms.Lib.Models
+namespace Swastika.IO.Cms.Lib.Models
 {
     public partial class SiocArticle
     {
@@ -10,27 +10,6 @@ namespace Swastika.Cms.Lib.Models
             SiocArticleModule = new HashSet<SiocArticleModule>();
             SiocCategoryArticle = new HashSet<SiocCategoryArticle>();
             SiocModuleArticle = new HashSet<SiocModuleArticle>();
-        }
-
-        public object this[string propertyName]
-        {
-            get
-            {
-                // probably faster without reflection:
-                // like:  return Properties.Settings.Default.PropertyValues[propertyName] 
-                // instead of the following
-                Type myType = typeof(SiocArticle);
-                System.Reflection.PropertyInfo myPropInfo = myType.GetProperty(propertyName);
-                return myPropInfo.GetValue(this, null);
-            }
-            set
-            {
-                Type myType = typeof(SiocArticle);
-                System.Reflection.PropertyInfo myPropInfo = myType.GetProperty(propertyName);
-                myPropInfo.SetValue(this, value, null);
-
-            }
-
         }
 
         public string Id { get; set; }

@@ -5,6 +5,8 @@ using Swastika.Cms.Lib.ViewModels;
 using Swastika.Common;
 using Swastika.Domain.Core.Models;
 using Swastika.Infrastructure.Data.Repository;
+using Swastika.IO.Cms.Lib;
+using Swastika.IO.Cms.Lib.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -46,7 +48,8 @@ namespace Swastika.Cms.Lib.Repositories
             var transaction = _transaction ?? context.Database.BeginTransaction();
             try
             {
-                var result = context.SiocCategory.Include(cp => cp.SiocCategoryArticle).Where(a => a.Specificulture == specificulture && a.Type == (int)Constants.CateType.List)
+                var result = context.SiocCategory.Include(cp => cp.SiocCategoryArticle)
+                    .Where(a => a.Specificulture == specificulture && a.Type == (int)Constants.CateType.List)
                     .Select(p => new CategoryArticleViewModel(
                         new SiocCategoryArticle()
                         {
@@ -151,7 +154,9 @@ namespace Swastika.Cms.Lib.Repositories
             var transaction = _transaction ?? context.Database.BeginTransaction();
             try
             {
-                var result = context.SiocModule.Include(cp => cp.SiocModuleArticle).Where(a => a.Specificulture == specificulture)
+                var result = context.SiocModule.Include(cp => cp.SiocModuleArticle)
+                    .Where(a => a.Specificulture == specificulture
+                    && a.Type == (int)SWCmsConstants.ModuleType.Root)
                      .Select(p => new ModuleArticleViewModel(
                          new SiocModuleArticle()
                          {
@@ -201,7 +206,9 @@ namespace Swastika.Cms.Lib.Repositories
             var transaction = _transaction ?? context.Database.BeginTransaction();
             try
             {
-                var result = context.SiocModule.Include(cp => cp.SiocModuleArticle).Where(a => a.Specificulture == specificulture)
+                var result = context.SiocModule.Include(cp => cp.SiocModuleArticle)
+                    .Where(a => a.Specificulture == specificulture
+                    && a.Type == (int)SWCmsConstants.ModuleType.Root)
                     .Select(p => new ModuleArticleViewModel(
                         new SiocModuleArticle()
                         {
@@ -256,17 +263,20 @@ namespace Swastika.Cms.Lib.Repositories
             var transaction = _transaction ?? context.Database.BeginTransaction();
             try
             {
-                var result = context.SiocModule.Include(cp => cp.SiocArticleModule).Where(a => a.Specificulture == specificulture)
+                var result = context.SiocModule.Include(cp => cp.SiocArticleModule)
+                    .Where(a => a.Specificulture == specificulture 
+                    && a.Type == (int)SWCmsConstants.ModuleType.SubArticle)
                      .Select(p => new ArticleModuleListItemViewModel(
-                         new SiocArticleModule() {
+                         new SiocArticleModule()
+                         {
                              ArticleId = articleId,
                              ModuleId = p.Id,
                              Specificulture = specificulture,
-                         } ,
-                         
+                         },
+
                          _context, _transaction)
                      {
-                         
+
                          IsActived = p.SiocArticleModule.Count(cp => cp.ArticleId == articleId && cp.Specificulture == specificulture) > 0,
                          Description = p.Title
                      });
@@ -307,14 +317,16 @@ namespace Swastika.Cms.Lib.Repositories
             var transaction = _transaction ?? context.Database.BeginTransaction();
             try
             {
-                var result = context.SiocModule.Include(cp => cp.SiocArticleModule).Where(a => a.Specificulture == specificulture)
+                var result = context.SiocModule.Include(cp => cp.SiocArticleModule)
+                    .Where(a => a.Specificulture == specificulture
+                    && a.Type == (int)SWCmsConstants.ModuleType.SubArticle)
                     .Select(p => new ArticleModuleListItemViewModel(
                         new SiocArticleModule()
                         {
                             ArticleId = articleId,
                             ModuleId = p.Id,
                             Specificulture = specificulture,
-                            
+
                         },
 
                         _context, _transaction)

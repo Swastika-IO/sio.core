@@ -5,6 +5,9 @@ using System.Collections.Generic;
 using System.Text;
 using Microsoft.EntityFrameworkCore.Storage;
 using Swastika.Infrastructure.Data.Repository;
+using Swastika.IO.Cms.Lib.Models;
+using Swastika.Domain.Core.Models;
+using System.Threading.Tasks;
 
 namespace Swastika.Cms.Lib.ViewModels
 {
@@ -21,6 +24,19 @@ namespace Swastika.Cms.Lib.ViewModels
         public string Specificulture { get; set; }
         public bool IsActived { get; set; }
         public string Description { get; set; }
+
+        #region overrides
+
+        #region Async
+        
+        #endregion
+
+        #region Sync
+
+      
+        #endregion
+
+        #endregion
 
     }
 }

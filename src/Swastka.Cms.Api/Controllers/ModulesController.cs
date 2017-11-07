@@ -8,6 +8,7 @@ using Swastika.Common.Helper;
 using Microsoft.Data.OData.Query;
 using System.Linq.Expressions;
 using System;
+using Swastika.IO.Cms.Lib.Models;
 
 namespace Swastka.IO.Cms.Api.Controllers
 {
@@ -23,6 +24,16 @@ namespace Swastka.IO.Cms.Api.Controllers
         {
             return await ModuleWithDataViewModel.Repository.GetSingleModelAsync(model => model.Id == id && model.Specificulture == _lang);
         }
+
+        // GET api/articles/id
+        [HttpGet]
+        [Route("byArticle/{id}")]
+        [Route("byArticle/{id}/{articleId}")]
+        public async Task<RepositoryResponse<ModuleWithDataViewModel>> GetByArticle(int id, string articleId = null)
+        {
+            return await ModuleWithDataViewModel.Repository.GetSingleModelAsync(model => model.Id == id && model.Specificulture == _lang);
+        }
+
 
         // GET api/articles/id
         [HttpPost]

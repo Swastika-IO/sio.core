@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 using Microsoft.EntityFrameworkCore.Storage;
+using Swastika.IO.Cms.Lib.Models;
 
 namespace Swastika.Cms.Lib.ViewModels
 {

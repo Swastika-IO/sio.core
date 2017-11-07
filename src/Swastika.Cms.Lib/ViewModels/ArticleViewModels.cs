@@ -9,6 +9,7 @@ using Swastika.Domain.Core.Models;
 using System.Threading.Tasks;
 using System.Linq;
 using Newtonsoft.Json.Linq;
+using Swastika.IO.Cms.Lib.Models;
 
 namespace Swastika.Cms.Lib.ViewModels
 {
@@ -67,7 +68,7 @@ namespace Swastika.Cms.Lib.ViewModels
             {
                 ListTag = JArray.Parse(vm.Tags);
             }
-            
+
             vm.Templates = vm.Templates ?? TemplateRepository.GetInstance().GetTemplates(Constants.TemplateFolder.Articles);
             vm.Template = string.IsNullOrEmpty(Template) ? "Articles/_Default" : Template;
             vm.View = TemplateRepository.GetInstance().GetTemplate(Template, Templates, Constants.TemplateFolder.Articles);
@@ -111,6 +112,7 @@ namespace Swastika.Cms.Lib.ViewModels
                 if (getModule.IsSucceed)
                 {
                     vm.ActivedModules.Add(getModule.Data);
+                    vm.ActivedModules.ForEach(m => m.LoadData(Id));
                 }
             }
             return vm;
@@ -241,7 +243,15 @@ namespace Swastika.Cms.Lib.ViewModels
                 {
                     foreach (var item in Categories)
                     {
-                        result = (await item.RemoveModelAsync(false, _context, _transaction)).IsSucceed;
+                        item.ArticleId = Id;
+                        if (item.IsActived)
+                        {
+                            result = (await item.SaveModelAsync(false, _context, _transaction)).IsSucceed;
+                        }
+                        else
+                        {
+                            result = (await item.RemoveModelAsync(false, _context, _transaction)).IsSucceed;
+                        }
                     }
                 }
 
@@ -249,7 +259,15 @@ namespace Swastika.Cms.Lib.ViewModels
                 {
                     foreach (var item in Modules)
                     {
-                        result = (await item.RemoveModelAsync(false, _context, _transaction)).IsSucceed;
+                        item.ArticleId = Id;
+                        if (item.IsActived)
+                        {
+                            result = (await item.SaveModelAsync(false, _context, _transaction)).IsSucceed;
+                        }
+                        else
+                        {
+                            result = (await item.RemoveModelAsync(false, _context, _transaction)).IsSucceed;
+                        }
                     }
                 }
 
@@ -257,26 +275,68 @@ namespace Swastika.Cms.Lib.ViewModels
                 {
                     foreach (var item in ModuleNavs)
                     {
-                        result = (await item.RemoveModelAsync(false, _context, _transaction)).IsSucceed;
+                        item.ArticleId = Id;
+                        if (item.IsActived)
+                        {
+                            result = (await item.SaveModelAsync(false, _context, _transaction)).IsSucceed;
+                        }
+                        else
+                        {
+                            result = (await item.RemoveModelAsync(false, _context, _transaction)).IsSucceed;
+                        }
                     }
                 }
 
-                if (IsNew)
+                // save submodules navs
+                if (result)
+                {
+                    foreach (var item in Modules)
+                    {
+                        item.ArticleId = Id;
+                        if (item.IsActived)
+                        {
+                            result = (await item.SaveModelAsync(false, _context, _transaction)).IsSucceed;
+                        }
+                        else
+                        {
+                            result = (await item.RemoveModelAsync(false, _context, _transaction)).IsSucceed;
+                        }
+                    }
+                }
+
+                //save submodules data
+                if (result)
                 {
                     foreach (var module in ActivedModules)
                     {
-                        ArticleModuleFEViewModel nav = new ArticleModuleFEViewModel(
-                            new SiocArticleModule()
+                        foreach (var data in module.Data.JsonItems)
+                        {
+                            SiocModuleData model = new SiocModuleData()
                             {
+                                Id = Guid.NewGuid().ToString(),
+                                Specificulture = module.Specificulture,
                                 ArticleId = Id,
                                 ModuleId = module.Id,
-                                Specificulture = Specificulture,
-                            }, _context, _transaction)
-                        {
-                            Module = module
-                        };
-                        var saveResult = await nav.SaveModelAsync(true, _context, _transaction);
-                        result = result && saveResult.IsSucceed;
+                                Fields = module.Fields,                                
+                                CreatedDateTime = DateTime.UtcNow,
+                                UpdatedDateTime = DateTime.UtcNow
+                            };
+
+                            List<ModuleFieldViewModel> cols = module.Columns;
+                            JObject val = new JObject();
+                            foreach (JProperty prop in data.Properties())
+                            {
+                                var col = cols.FirstOrDefault(c => c.Name == prop.Name);
+                                JObject fieldVal = new JObject();
+                                fieldVal.Add(new JProperty("dataType", col.DataType));
+                                fieldVal.Add(new JProperty("value", prop.Value));
+                                val.Add(new JProperty(prop.Name, fieldVal));
+                            }
+                            model.Value = val.ToString(Newtonsoft.Json.Formatting.None);
+                            var vmData = new FEModuleContentData(model);
+                            var saveResult = await vmData.SaveModelAsync(false, _context, _transaction);
+                            result = result && saveResult.IsSucceed;
+                        }                      
                     }
                 }
 
@@ -479,7 +539,7 @@ namespace Swastika.Cms.Lib.ViewModels
         public string Template { get; set; }
         public string Thumbnail { get; set; }
         public string Title { get; set; }
-
+        public string Excerpt { get; set; }
         public string StaticUrl { get; set; }
         public string Source { get; set; }
         public DateTime CreatedDateTime { get; set; }

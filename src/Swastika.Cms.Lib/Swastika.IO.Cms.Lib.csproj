@@ -9,7 +9,10 @@
     <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="2.0.0" />
     <PackageReference Include="Microsoft.Extensions.Configuration" Version="2.0.0" />
     <PackageReference Include="Microsoft.IdentityModel.Tokens" Version="5.1.4" />
-    <PackageReference Include="Swastika.IO" Version="0.0.2" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\Swastika-Heart\src\Swastika.IO\Swastika.IO.csproj" />
   </ItemGroup>
 
 </Project>

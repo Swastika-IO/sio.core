@@ -1,6 +1,7 @@
 ﻿using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Swastika.IO.Cms.Lib.Models;
 
 namespace Swastika.Cms.Lib.Models
 {

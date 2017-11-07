@@ -12,6 +12,8 @@ using Microsoft.Data.OData.Query;
 using Swastika.Domain.Core.Models;
 using System.Linq;
 using System.Threading.Tasks;
+using static Swastika.IO.Cms.Lib.SWCmsConstants;
+using Swastika.IO.Cms.Lib.Models;
 
 namespace Swastika.Cms.Lib.ViewModels
 {
@@ -27,6 +29,9 @@ namespace Swastika.Cms.Lib.ViewModels
 
         public string ArticleId { get; set; } // Article this module belong to
         public int? CategoryId { get; set; }// Category this module belong to
+
+        public ModuleType Type { get; set; }
+
 
         // View
         public TemplateViewModel View { get; set; }
@@ -59,22 +64,51 @@ namespace Swastika.Cms.Lib.ViewModels
                 };
                 Columns.Add(vmField);
             }
+            return vm;
+        }
 
-            var getDataResult = FEModuleContentData.Repository
+
+
+        #endregion
+        #region Expand
+
+        public void LoadData(string articleId, int? categoryId = null, SiocCmsContext _context = null, IDbContextTransaction _transaction = null)
+        {
+
+            RepositoryResponse<PaginationModel<FEModuleContentData>> getDataResult = new RepositoryResponse<PaginationModel<FEModuleContentData>>();
+
+            switch (Type)
+            {
+                case ModuleType.Root:
+                    getDataResult = FEModuleContentData.Repository
                        .GetModelListBy(m => m.ModuleId == Id && m.Specificulture == Specificulture
-                       && (string.IsNullOrEmpty(ArticleId) || m.ArticleId == ArticleId || string.IsNullOrEmpty(m.ArticleId))
-                       && (!CategoryId.HasValue || m.CategoryId == CategoryId || !m.CategoryId.HasValue)
                        , "Priority", OrderByDirection.Ascending, null, null
                        , _context, _transaction);
+                    break;
+                case ModuleType.SubPage:
+                    getDataResult = FEModuleContentData.Repository
+                       .GetModelListBy(m => m.ModuleId == Id && m.Specificulture == Specificulture
+                       && (m.CategoryId == categoryId)
+                       , "Priority", OrderByDirection.Ascending, null, null
+                       , _context, _transaction);
+                    break;
+                case ModuleType.SubArticle:
+                    getDataResult = FEModuleContentData.Repository
+                       .GetModelListBy(m => m.ModuleId == Id && m.Specificulture == Specificulture
+                       && (m.ArticleId == articleId)
+                       , "Priority", OrderByDirection.Ascending, null, null
+                       , _context, _transaction);
+                    break;
+                default:
+                    break;
+            }
 
             if (getDataResult.IsSucceed)
             {
                 getDataResult.Data.JsonItems = new List<JObject>();
                 getDataResult.Data.Items.ForEach(d => getDataResult.Data.JsonItems.Add(d.JItem));
-                vm.Data = getDataResult.Data;
+                Data = getDataResult.Data;
             }
-
-            return vm;
         }
 
         #endregion

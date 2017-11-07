@@ -1,12 +1,9 @@
 ﻿using Swastika.Cms.Lib.Models;
 using Swastika.Infrastructure.Data.ViewModels;
-using System;
-using System.Collections.Generic;
-using System.Text;
 using Microsoft.EntityFrameworkCore.Storage;
-using Newtonsoft.Json;
 using Swastika.Domain.Core.Models;
 using System.Threading.Tasks;
+using Swastika.IO.Cms.Lib.Models;
 
 namespace Swastika.Cms.Lib.ViewModels
 {
@@ -71,6 +68,11 @@ namespace Swastika.Cms.Lib.ViewModels
                 Data = result
             };
 
+        }
+        public override Task<RepositoryResponse<bool>> RemoveRelatedModelsAsync(ArticleModuleFEViewModel view, SiocCmsContext _context = null, IDbContextTransaction _transaction = null)
+        {
+            return FEModuleContentData.Repository.RemoveListModelAsync(d => d.ArticleId == view.ArticleId
+                && d.ModuleId == view.ModuleId && d.Specificulture == view.Specificulture, _context, _transaction);
         }
         #endregion
         #endregion
