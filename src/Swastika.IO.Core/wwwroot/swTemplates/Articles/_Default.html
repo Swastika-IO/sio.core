@@ -1,0 +1,51 @@
+<ng-container *ngIf="data?.">
+    <section id="blog" class="container">
+        <div class="center">
+            <h2>{{data.title}}</h2>
+            <p class="lead">{{data.excerpt}}</p>
+        </div>
+
+        <div class="blog">
+            <div class="row">
+                <div class="col-md-8">
+                    <div class="blog-item">
+                        <ng-container *ngIf="data?.">
+                            <img class="img-responsive img-blog" src="{{data.image}}" width="100%" alt="" />
+                        </ng-container>
+                        <div class="row">
+
+                            <!--div class="col-xs-12 col-sm-2 text-center">
+                                    <div class="entry-meta">
+                                        <span id="publish_date">{{data.createdDateTime}}</span>
+                                        <span><i class="fa fa-user"></i> {{data.createdBy}}</span>
+                                        <span><i class="fa fa-comment"></i> 
+                                        <script>document.write("<span class=\"fb-comments-count\" data-href=\"" + document.URL+"\">0</span>")</script>
+                                        Comments</span>
+                                    </div>
+                                </div-->
+                            <div class="col-xs-12 col-sm-12 blog-content">
+                                {{data.fullContent}}
+                            </div>
+                        </div>
+                    </div>
+                    <!--/.blog-item-->
+
+                    <!-- subModules -->
+
+                    <!-- facebook comment  -->
+
+                </div>
+                <!--/.col-md-8-->
+                <aside class="col-md-4">
+                    <!-- article tags -->
+                </aside>
+
+            </div>
+            <!--/.row-->
+
+
+        </div>
+        <!--/.blog-->
+
+    </section>
+</ng-container>
