@@ -10,6 +10,7 @@ using System.Threading.Tasks;
 using System.Linq;
 using Newtonsoft.Json.Linq;
 using Swastika.IO.Cms.Lib.Models;
+using Swastika.IO.Cms.Lib;
 
 namespace Swastika.Cms.Lib.ViewModels
 {
@@ -54,6 +55,18 @@ namespace Swastika.Cms.Lib.ViewModels
         public string ThumbnailFileStream { get; set; }
 
         private bool IsNew { get; set; }
+        public string TemplateFolder
+        {
+            get
+            {
+                return SWCmsHelper.GetFullPath(new string[]
+                {
+                    SWCmsConstants.TemplatesFolder
+                    , SWCmsConstants.TemplateFolder.Articles.ToString()
+                }
+            );
+            }
+        }
         public ArticleBEViewModel(SiocArticle model, SiocCmsContext _context = null, IDbContextTransaction _transaction = null) : base(model, _context, _transaction)
         {
         }
@@ -69,9 +82,18 @@ namespace Swastika.Cms.Lib.ViewModels
                 ListTag = JArray.Parse(vm.Tags);
             }
 
-            vm.Templates = vm.Templates ?? TemplateRepository.GetInstance().GetTemplates(Constants.TemplateFolder.Articles);
-            vm.Template = string.IsNullOrEmpty(Template) ? "Articles/_Default" : Template;
-            vm.View = TemplateRepository.GetInstance().GetTemplate(Template, Templates, Constants.TemplateFolder.Articles);
+            vm.Templates = vm.Templates ?? TemplateRepository.Instance.GetTemplates(Constants.TemplateFolder.Articles);
+            //vm.Template = string.IsNullOrEmpty(Template) ? "Articles/_Default" : Template;
+
+
+            if (string.IsNullOrEmpty(vm.Template))
+            {
+                vm.Template = SWCmsHelper.GetFullPath(new string[]
+            {
+                vm.TemplateFolder
+                , SWCmsConstants.Default.ArticleTemplate });
+            }
+            vm.View = TemplateRepository.Instance.GetTemplate(Template, Templates, vm.TemplateFolder);
 
             var getCulture = CultureViewModel.Repository.GetModelList(_context, _transaction);
             if (getCulture.IsSucceed)
@@ -156,7 +178,7 @@ namespace Swastika.Cms.Lib.ViewModels
         public override async Task<RepositoryResponse<bool>> SaveSubModelsAsync(SiocArticle parent, SiocCmsContext _context = null, IDbContextTransaction _transaction = null)
         {
             bool result = true;
-            TemplateRepository.GetInstance().SaveTemplate(View);
+            TemplateRepository.Instance.SaveTemplate(View);
             try
             {
                 foreach (var supportedCulture in ListSupportedCulture.Where(c => c.Specificulture != Specificulture))
@@ -317,7 +339,7 @@ namespace Swastika.Cms.Lib.ViewModels
                                 Specificulture = module.Specificulture,
                                 ArticleId = Id,
                                 ModuleId = module.Id,
-                                Fields = module.Fields,                                
+                                Fields = module.Fields,
                                 CreatedDateTime = DateTime.UtcNow,
                                 UpdatedDateTime = DateTime.UtcNow
                             };
@@ -336,7 +358,7 @@ namespace Swastika.Cms.Lib.ViewModels
                             var vmData = new FEModuleContentData(model);
                             var saveResult = await vmData.SaveModelAsync(false, _context, _transaction);
                             result = result && saveResult.IsSucceed;
-                        }                      
+                        }
                     }
                 }
 
@@ -404,7 +426,7 @@ namespace Swastika.Cms.Lib.ViewModels
         public override RepositoryResponse<bool> SaveSubModels(SiocArticle parent, SiocCmsContext _context = null, IDbContextTransaction _transaction = null)
         {
             bool result = true;
-            TemplateRepository.GetInstance().SaveTemplate(View);
+            TemplateRepository.Instance.SaveTemplate(View);
             try
             {
                 foreach (var supportedCulture in ListSupportedCulture.Where(c => c.Specificulture != Specificulture))
@@ -511,6 +533,11 @@ namespace Swastika.Cms.Lib.ViewModels
         #endregion
         void GenerateSEO()
         {
+            if (string.IsNullOrEmpty(this.SeoName))
+            {
+                this.SeoName = SEOHelper.GetSEOString(this.Title);
+            }
+
             if (string.IsNullOrEmpty(this.SeoTitle))
             {
                 this.SeoTitle = SEOHelper.GetSEOString(this.Title);

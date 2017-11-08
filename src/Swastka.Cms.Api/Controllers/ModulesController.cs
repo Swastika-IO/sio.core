@@ -22,7 +22,12 @@ namespace Swastka.IO.Cms.Api.Controllers
         [Route("full/{id}")]
         public async Task<RepositoryResponse<ModuleWithDataViewModel>> Details(int id)
         {
-            return await ModuleWithDataViewModel.Repository.GetSingleModelAsync(model => model.Id == id && model.Specificulture == _lang);
+            var result = await ModuleWithDataViewModel.Repository.GetSingleModelAsync(model => model.Id == id && model.Specificulture == _lang);
+            if (result.IsSucceed)
+            {
+                result.Data.LoadData();
+            }
+            return result;
         }
 
         // GET api/articles/id
@@ -31,7 +36,12 @@ namespace Swastka.IO.Cms.Api.Controllers
         [Route("byArticle/{id}/{articleId}")]
         public async Task<RepositoryResponse<ModuleWithDataViewModel>> GetByArticle(int id, string articleId = null)
         {
-            return await ModuleWithDataViewModel.Repository.GetSingleModelAsync(model => model.Id == id && model.Specificulture == _lang);
+            var result = await ModuleWithDataViewModel.Repository.GetSingleModelAsync(model => model.Id == id && model.Specificulture == _lang);
+            if (result.IsSucceed)
+            {
+                result.Data.LoadData(articleId: articleId);
+            }
+            return result;
         }
 
 

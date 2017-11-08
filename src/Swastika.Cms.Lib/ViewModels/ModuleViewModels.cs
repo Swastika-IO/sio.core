@@ -50,7 +50,7 @@ namespace Swastika.Cms.Lib.ViewModels
         {
             var vm = base.ParseView(_context, _transaction);
 
-            vm.Templates = Templates ?? TemplateRepository.GetInstance().GetTemplates(Constants.TemplateFolder.Modules);
+            vm.Templates = Templates ?? TemplateRepository.Instance.GetTemplates(Constants.TemplateFolder.Modules);
             vm.Columns = new List<ModuleFieldViewModel>();
             JArray arrField = !string.IsNullOrEmpty(Fields) ? JArray.Parse(Fields) : new JArray();
             foreach (var field in arrField)
@@ -64,6 +64,20 @@ namespace Swastika.Cms.Lib.ViewModels
                 };
                 Columns.Add(vmField);
             }
+
+            //if (Type == ModuleType.Root)
+            //{
+            //    var getDataResult = FEModuleContentData.Repository
+            //      .GetModelListBy(m => m.ModuleId == Id && m.Specificulture == Specificulture
+            //      , "Priority", OrderByDirection.Ascending, null, null
+            //      , _context, _transaction);
+            //    if (getDataResult.IsSucceed)
+            //    {
+            //        getDataResult.Data.JsonItems = new List<JObject>();
+            //        getDataResult.Data.Items.ForEach(d => getDataResult.Data.JsonItems.Add(d.JItem));
+            //        vm.Data = getDataResult.Data;
+            //    }
+            //}
             return vm;
         }
 
@@ -72,7 +86,9 @@ namespace Swastika.Cms.Lib.ViewModels
         #endregion
         #region Expand
 
-        public void LoadData(string articleId, int? categoryId = null, SiocCmsContext _context = null, IDbContextTransaction _transaction = null)
+        public void LoadData(string articleId = null, int? categoryId = null
+            , int? pageSize = null, int? pageIndex = 0
+            , SiocCmsContext _context = null, IDbContextTransaction _transaction = null)
         {
 
             RepositoryResponse<PaginationModel<FEModuleContentData>> getDataResult = new RepositoryResponse<PaginationModel<FEModuleContentData>>();
@@ -82,21 +98,21 @@ namespace Swastika.Cms.Lib.ViewModels
                 case ModuleType.Root:
                     getDataResult = FEModuleContentData.Repository
                        .GetModelListBy(m => m.ModuleId == Id && m.Specificulture == Specificulture
-                       , "Priority", OrderByDirection.Ascending, null, null
+                       , "Priority", OrderByDirection.Ascending, pageSize, pageIndex
                        , _context, _transaction);
                     break;
                 case ModuleType.SubPage:
                     getDataResult = FEModuleContentData.Repository
                        .GetModelListBy(m => m.ModuleId == Id && m.Specificulture == Specificulture
                        && (m.CategoryId == categoryId)
-                       , "Priority", OrderByDirection.Ascending, null, null
+                       , "Priority", OrderByDirection.Ascending, pageSize, pageIndex
                        , _context, _transaction);
                     break;
                 case ModuleType.SubArticle:
                     getDataResult = FEModuleContentData.Repository
                        .GetModelListBy(m => m.ModuleId == Id && m.Specificulture == Specificulture
                        && (m.ArticleId == articleId)
-                       , "Priority", OrderByDirection.Ascending, null, null
+                       , "Priority", OrderByDirection.Ascending, pageSize, pageIndex
                        , _context, _transaction);
                     break;
                 default:
@@ -164,9 +180,9 @@ namespace Swastika.Cms.Lib.ViewModels
             var vm = base.ParseView(_context, _transaction);
 
             //Get Languages
-            vm.Templates = Templates ?? TemplateRepository.GetInstance().GetTemplates(Constants.TemplateFolder.Modules);
+            vm.Templates = Templates ?? TemplateRepository.Instance.GetTemplates(Constants.TemplateFolder.Modules);
             vm.Template = string.IsNullOrEmpty(Template) ? "Modules/_Default" : Template;
-            vm.View = TemplateRepository.GetInstance().GetTemplate(Template, Templates, Constants.TemplateFolder.Modules);
+            vm.View = TemplateRepository.Instance.GetTemplate(Template, Templates, Constants.TemplateFolder.Modules);
 
             var getCulture = CultureViewModel.Repository.GetModelList(_context, _transaction);
             if (getCulture.IsSucceed)
@@ -202,7 +218,7 @@ namespace Swastika.Cms.Lib.ViewModels
         {
             var arrField = Columns != null ? JArray.Parse(
                 Newtonsoft.Json.JsonConvert.SerializeObject(Columns.Where(
-                    c => !string.IsNullOrEmpty(c.Name)))) : new JArray();           
+                    c => !string.IsNullOrEmpty(c.Name)))) : new JArray();
             Fields = arrField.ToString(Newtonsoft.Json.Formatting.None);
             Template = View != null ? string.Format(@"{0}/{1}", View.FileFolder, View.Filename) : string.Empty;
 
@@ -219,7 +235,7 @@ namespace Swastika.Cms.Lib.ViewModels
 
             if (result.IsSucceed)
             {
-                TemplateRepository.GetInstance().SaveTemplate(View);
+                TemplateRepository.Instance.SaveTemplate(View);
                 foreach (var supportedCulture in ListSupportedCulture.Where(c => c.Specificulture != Specificulture))
                 {
 
@@ -251,7 +267,7 @@ namespace Swastika.Cms.Lib.ViewModels
 
             if (result.IsSucceed)
             {
-                TemplateRepository.GetInstance().SaveTemplate(View);
+                TemplateRepository.Instance.SaveTemplate(View);
                 foreach (var supportedCulture in ListSupportedCulture.Where(c =>
                 c.Specificulture != Specificulture))
                 {

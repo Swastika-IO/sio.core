@@ -1,5 +1,6 @@
 ﻿using Swastika.Common;
 using Swastika.Common.Helper;
+using Swastika.IO.Cms.Lib;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -24,17 +25,20 @@ namespace Swastika.Cms.Lib.Repositories
         /// Gets the instance.
         /// </summary>
         /// <returns></returns>
-        public static TemplateRepository GetInstance()
+        public static TemplateRepository Instance
         {
-            if (instance == null)
+            get
             {
-                lock (syncRoot)
+                if (instance == null)
                 {
-                    if (instance == null)
-                        instance = new TemplateRepository();
+                    lock (syncRoot)
+                    {
+                        if (instance == null)
+                            instance = new TemplateRepository();
+                    }
                 }
+                return instance;
             }
-            return instance;
         }
 
         /// <summary>
@@ -45,7 +49,15 @@ namespace Swastika.Cms.Lib.Repositories
         }
         public TemplateViewModel GetTemplate(string templatePath, List<TemplateViewModel> templates, Constants.TemplateFolder templateFolder)
         {
-            var result = templates.FirstOrDefault(v => !string.IsNullOrEmpty(templatePath) && v.Filename == templatePath.Replace(@"\", "/").Split('/')[1]);
+            var result = templates.FirstOrDefault(
+                v => !string.IsNullOrEmpty(templatePath) && v.Filename == templatePath.Replace(@"\", "/").Split('/')[1]);
+            result = result ?? new TemplateViewModel() { FileFolder = templateFolder.ToString() };
+            return result;
+        }
+        public TemplateViewModel GetTemplate(string templatePath, List<TemplateViewModel> templates, string templateFolder)
+        {
+            var result = templates.FirstOrDefault(
+                v => !string.IsNullOrEmpty(templatePath) && v.Filename == templatePath.Replace(@"\", "/").Split('/')[1]);
             result = result ?? new TemplateViewModel() { FileFolder = templateFolder.ToString() };
             return result;
         }
@@ -117,7 +129,8 @@ namespace Swastika.Cms.Lib.Repositories
 
         public List<TemplateViewModel> GetTemplates(Constants.TemplateFolder templateFolder)
         {
-            string folder = templateFolder.ToString();
+            //string folder = string.Format(SWCmsConstants.TemplatesFolder, templateFolder.ToString());
+            string folder = SWCmsHelper.GetFullPath(new string[] { SWCmsConstants.TemplatesFolder, templateFolder.ToString() });
             return GetTemplates(folder);
         }
 

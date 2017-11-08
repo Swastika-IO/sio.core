@@ -21,7 +21,12 @@ namespace Swastka.Cms.Api.Controllers
         [Route("save")]
         public async Task<RepositoryResponse<ArticleBEViewModel>> Post([FromBody]ArticleBEViewModel model)
         {
-            return await model.SaveModelAsync(true);
+            if (model!=null)
+            {
+                return await model.SaveModelAsync(true);
+            }
+            return new RepositoryResponse<ArticleBEViewModel>();
+            
         }
 
         // GET api/articles/id

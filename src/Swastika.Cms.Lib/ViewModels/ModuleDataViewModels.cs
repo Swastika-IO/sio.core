@@ -53,6 +53,7 @@ namespace Swastika.Cms.Lib.ViewModels
         public JObject ParseJson()
         {
             JObject result = new JObject();
+            result.Add(new JProperty("id", Id));
             foreach (var prop in DataProperties)
             {
                 result.Add(new JProperty(Common.CommonHelper.ParseJsonPropertyName(prop.Name), prop.Value));
@@ -151,6 +152,8 @@ namespace Swastika.Cms.Lib.ViewModels
                 vm.DataProperties.Add(dataVal);
                 //}
             }
+
+
 
             return vm;
         }
