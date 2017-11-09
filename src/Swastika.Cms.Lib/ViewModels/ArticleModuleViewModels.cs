@@ -71,7 +71,7 @@ namespace Swastika.Cms.Lib.ViewModels
         }
         public override Task<RepositoryResponse<bool>> RemoveRelatedModelsAsync(ArticleModuleFEViewModel view, SiocCmsContext _context = null, IDbContextTransaction _transaction = null)
         {
-            return FEModuleContentData.Repository.RemoveListModelAsync(d => d.ArticleId == view.ArticleId
+            return ModuleContentViewmodel.Repository.RemoveListModelAsync(d => d.ArticleId == view.ArticleId
                 && d.ModuleId == view.ModuleId && d.Specificulture == view.Specificulture, _context, _transaction);
         }
         #endregion

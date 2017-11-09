@@ -103,13 +103,13 @@ namespace Swastika.Cms.Lib.Repositories
 
         public List<TemplateViewModel> GetTemplates(string folder)
         {
-            string fullPath = string.Format(Constants.StringTemplates.TemplateFolder, folder);
-            if (!Directory.Exists(fullPath))
+            //string fullPath = string.Format(Constants.StringTemplates.TemplateFolder, folder);
+            if (!Directory.Exists(folder))
             {
-                Directory.CreateDirectory(fullPath);
+                Directory.CreateDirectory(folder);
             }
-            DirectoryInfo d = new DirectoryInfo(fullPath);//Assuming Test is your Folder
-            FileInfo[] Files = d.GetFiles("*.cshtml"); //Getting cshtml files
+            DirectoryInfo d = new DirectoryInfo(folder);//Assuming Test is your Folder
+            FileInfo[] Files = d.GetFiles("*.html"); //Getting cshtml files
             List<TemplateViewModel> result = new List<TemplateViewModel>();
             foreach (var file in Files)
             {
@@ -119,6 +119,7 @@ namespace Swastika.Cms.Lib.Repositories
                     {
                         FileFolder = folder,
                         Filename = file.Name.Split('.').First(),
+                        Extension = ".html",
                         Content = s.ReadToEnd()
                     });
 
@@ -141,7 +142,7 @@ namespace Swastika.Cms.Lib.Repositories
                 if (!string.IsNullOrEmpty(file.Filename))
                 {
 
-                    string fileName = string.Format(@"Views\Shared\{0}\{1}.cshtml", file.FileFolder, file.Filename);
+                    string fileName = SWCmsHelper.GetFullPath(new string[] { file.FileFolder, file.Filename + file.Extension }); //string.Format(file.FileFolder, file.Filename);
                     //var logPath = System.IO.Path.GetTempFileName();
                     using (var writer = File.CreateText(fileName))
                     {

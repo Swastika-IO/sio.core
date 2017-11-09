@@ -35,7 +35,7 @@ namespace Swastika.Cms.Lib.ViewModels
 
         // View
         public TemplateViewModel View { get; set; }
-        public PaginationModel<FEModuleContentData> Data { get; set; }
+        public PaginationModel<ModuleContentViewmodel> Data { get; set; }
         public List<ModuleFieldViewModel> Columns { get; set; }
         public List<TemplateViewModel> Templates { get; set; }
         public int Priority { get; set; }
@@ -91,25 +91,25 @@ namespace Swastika.Cms.Lib.ViewModels
             , SiocCmsContext _context = null, IDbContextTransaction _transaction = null)
         {
 
-            RepositoryResponse<PaginationModel<FEModuleContentData>> getDataResult = new RepositoryResponse<PaginationModel<FEModuleContentData>>();
+            RepositoryResponse<PaginationModel<ModuleContentViewmodel>> getDataResult = new RepositoryResponse<PaginationModel<ModuleContentViewmodel>>();
 
             switch (Type)
             {
                 case ModuleType.Root:
-                    getDataResult = FEModuleContentData.Repository
+                    getDataResult = ModuleContentViewmodel.Repository
                        .GetModelListBy(m => m.ModuleId == Id && m.Specificulture == Specificulture
                        , "Priority", OrderByDirection.Ascending, pageSize, pageIndex
                        , _context, _transaction);
                     break;
                 case ModuleType.SubPage:
-                    getDataResult = FEModuleContentData.Repository
+                    getDataResult = ModuleContentViewmodel.Repository
                        .GetModelListBy(m => m.ModuleId == Id && m.Specificulture == Specificulture
                        && (m.CategoryId == categoryId)
                        , "Priority", OrderByDirection.Ascending, pageSize, pageIndex
                        , _context, _transaction);
                     break;
                 case ModuleType.SubArticle:
-                    getDataResult = FEModuleContentData.Repository
+                    getDataResult = ModuleContentViewmodel.Repository
                        .GetModelListBy(m => m.ModuleId == Id && m.Specificulture == Specificulture
                        && (m.ArticleId == articleId)
                        , "Priority", OrderByDirection.Ascending, pageSize, pageIndex

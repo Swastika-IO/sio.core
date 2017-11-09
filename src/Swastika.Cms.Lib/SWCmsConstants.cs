@@ -7,6 +7,7 @@ namespace Swastika.IO.Cms.Lib
     public class SWCmsConstants
     {
         public const string TemplatesFolder = @"swTemplates";
+        public const string UploadFolder= @"Uploads";
         public class Default
         {
             public const string ArticleTemplate = @"_Default.html";

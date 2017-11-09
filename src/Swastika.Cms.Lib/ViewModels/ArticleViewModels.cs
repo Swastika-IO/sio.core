@@ -11,6 +11,8 @@ using System.Linq;
 using Newtonsoft.Json.Linq;
 using Swastika.IO.Cms.Lib.Models;
 using Swastika.IO.Cms.Lib;
+using System.IO;
+using Swastika.IO.Cms.Lib.ViewModels;
 
 namespace Swastika.Cms.Lib.ViewModels
 {
@@ -51,8 +53,8 @@ namespace Swastika.Cms.Lib.ViewModels
         public TemplateViewModel View { get; set; }
         public List<TemplateViewModel> Templates { get; set; }// Article Templates
 
-        public string ImageFileStream { get; set; }
-        public string ThumbnailFileStream { get; set; }
+        public FileStreamViewModel ImageFileStream { get; set; }
+        public FileStreamViewModel ThumbnailFileStream { get; set; }
 
         private bool IsNew { get; set; }
         public string TemplateFolder
@@ -83,17 +85,17 @@ namespace Swastika.Cms.Lib.ViewModels
             }
 
             vm.Templates = vm.Templates ?? TemplateRepository.Instance.GetTemplates(Constants.TemplateFolder.Articles);
-            //vm.Template = string.IsNullOrEmpty(Template) ? "Articles/_Default" : Template;
 
-
-            if (string.IsNullOrEmpty(vm.Template))
+            vm.View = Templates.FirstOrDefault(t => !string.IsNullOrEmpty(vm.Template) && vm.Template.Contains(t.Filename + t.Extension));
+            if (vm.View == null)
             {
                 vm.Template = SWCmsHelper.GetFullPath(new string[]
-            {
-                vm.TemplateFolder
-                , SWCmsConstants.Default.ArticleTemplate });
+                {
+                    vm.TemplateFolder
+                    , SWCmsConstants.Default.ArticleTemplate
+                });
+                vm.View = Templates.FirstOrDefault(t => vm.Template.Contains(t.Filename + t.Extension));
             }
-            vm.View = TemplateRepository.Instance.GetTemplate(Template, Templates, vm.TemplateFolder);
 
             var getCulture = CultureViewModel.Repository.GetModelList(_context, _transaction);
             if (getCulture.IsSucceed)
@@ -148,7 +150,18 @@ namespace Swastika.Cms.Lib.ViewModels
                 CreatedDateTime = DateTime.UtcNow;
                 IsNew = true;
             }
-            //Tags = ListTag.ToString(Newtonsoft.Json.Formatting.None);
+            if (ThumbnailFileStream != null)
+            {
+                string fullPath = SWCmsHelper.GetFullPath(new string[]
+                {
+                    SWCmsConstants.UploadFolder, ThumbnailFileStream.Name
+                });
+
+                var fileStream = SWCmsHelper.SaveFileBase64(fullPath, ThumbnailFileStream.Base64);
+
+            }
+            Tags = ListTag.ToString(Newtonsoft.Json.Formatting.None);
+            Template = SWCmsHelper.GetFullPath(new string[] { View.FileFolder, View.Filename + View.Extension });
             var model = base.ParseModel();
 
             return model;
@@ -175,91 +188,14 @@ namespace Swastika.Cms.Lib.ViewModels
             return base.SaveModelAsync(isSaveSubModels, _context, _transaction);
         }
 
-        public override async Task<RepositoryResponse<bool>> SaveSubModelsAsync(SiocArticle parent, SiocCmsContext _context = null, IDbContextTransaction _transaction = null)
+        public override async Task<RepositoryResponse<bool>> SaveSubModelsAsync(
+            SiocArticle parent
+            , SiocCmsContext _context = null, IDbContextTransaction _transaction = null)
         {
             bool result = true;
             TemplateRepository.Instance.SaveTemplate(View);
             try
             {
-                foreach (var supportedCulture in ListSupportedCulture.Where(c => c.Specificulture != Specificulture))
-                {
-
-                    if (result)
-                    {
-
-                        var getcloneArticle = await ArticleBEViewModel.Repository.GetSingleModelAsync(b => b.Id == Id && b.Specificulture == supportedCulture.Specificulture
-                            , _context, _transaction);
-                        if (!getcloneArticle.IsSucceed && supportedCulture.IsSupported)
-                        {
-                            var cloneArticle = new ArticleBEViewModel(this.Model, _context, _transaction)
-                            {
-                                Id = Id,
-                                Specificulture = supportedCulture.Specificulture,
-                                Categories = new List<CategoryArticleViewModel>(),
-                                Modules = new List<ModuleArticleViewModel>(),
-                                ModuleNavs = new List<ArticleModuleListItemViewModel>()
-                            };
-                            foreach (var cateArticle in this.Categories.Where(p => p.IsActived))
-                            {
-                                cloneArticle.Categories.Add(new CategoryArticleViewModel(
-                                    new SiocCategoryArticle()
-                                    {
-                                        ArticleId = cateArticle.ArticleId,
-                                        Specificulture = supportedCulture.Specificulture,
-                                        CategoryId = cateArticle.CategoryId
-                                    },
-                                    _context, _transaction)
-                                {
-                                    IsActived = cateArticle.IsActived,
-                                    Description = cateArticle.Description
-                                });
-                            }
-
-                            foreach (var moduleArticle in this.Modules.Where(p => p.IsActived))
-                            {
-                                cloneArticle.Modules.Add(new ModuleArticleViewModel(
-                                    new SiocModuleArticle()
-                                    {
-                                        ArticleId = moduleArticle.ArticleId,
-                                        Specificulture = supportedCulture.Specificulture,
-                                        ModuleId = moduleArticle.ModuleId
-                                    },
-                                    _context, _transaction)
-                                {
-                                    IsActived = moduleArticle.IsActived,
-                                    Description = moduleArticle.Description
-                                });
-                            }
-
-                            foreach (var moduleArticle in this.Modules.Where(p => p.IsActived))
-                            {
-                                cloneArticle.Modules.Add(new ModuleArticleViewModel(
-                                    new SiocModuleArticle()
-                                    {
-                                        ArticleId = moduleArticle.ArticleId,
-                                        Specificulture = supportedCulture.Specificulture,
-                                        ModuleId = moduleArticle.ModuleId
-                                    },
-                                    _context, _transaction)
-                                {
-                                    IsActived = moduleArticle.IsActived,
-                                    Description = moduleArticle.Description
-                                });
-                            }
-                            var cloneResult = await ArticleBEViewModel.Repository.SaveModelAsync(cloneArticle, true);
-                            result = result && cloneResult.IsSucceed;
-                        }
-                        else if (getcloneArticle.IsSucceed && !supportedCulture.IsSupported)
-                        {
-                            var delResult = await ArticleBEViewModel.Repository.RemoveModelAsync(b => b.Id == getcloneArticle.Data.Id && b.Specificulture == supportedCulture.Specificulture);
-                            result = result && delResult.IsSucceed;
-                        }
-                    }
-                    else
-                    {
-                        break;
-                    }
-                }
 
                 if (result)
                 {
@@ -268,11 +204,21 @@ namespace Swastika.Cms.Lib.ViewModels
                         item.ArticleId = Id;
                         if (item.IsActived)
                         {
-                            result = (await item.SaveModelAsync(false, _context, _transaction)).IsSucceed;
+                            var saveResult = await item.SaveModelAsync(false, _context, _transaction);
+                            result = result && saveResult.IsSucceed;
+                            if (!result)
+                            {
+                                Errors.AddRange(saveResult.Errors);
+                            }
                         }
                         else
                         {
-                            result = (await item.RemoveModelAsync(false, _context, _transaction)).IsSucceed;
+                            var saveResult = await item.RemoveModelAsync(false, _context, _transaction);
+                            result = result && saveResult.IsSucceed;
+                            if (!result)
+                            {
+                                Errors.AddRange(saveResult.Errors);
+                            }
                         }
                     }
                 }
@@ -284,11 +230,21 @@ namespace Swastika.Cms.Lib.ViewModels
                         item.ArticleId = Id;
                         if (item.IsActived)
                         {
-                            result = (await item.SaveModelAsync(false, _context, _transaction)).IsSucceed;
+                            var saveResult = await item.SaveModelAsync(false, _context, _transaction);
+                            result = result && saveResult.IsSucceed;
+                            if (!result)
+                            {
+                                Errors.AddRange(saveResult.Errors);
+                            }
                         }
                         else
                         {
-                            result = (await item.RemoveModelAsync(false, _context, _transaction)).IsSucceed;
+                            var saveResult = await item.RemoveModelAsync(false, _context, _transaction);
+                            result = result && saveResult.IsSucceed;
+                            if (!result)
+                            {
+                                Errors.AddRange(saveResult.Errors);
+                            }
                         }
                     }
                 }
@@ -300,11 +256,16 @@ namespace Swastika.Cms.Lib.ViewModels
                         item.ArticleId = Id;
                         if (item.IsActived)
                         {
-                            result = (await item.SaveModelAsync(false, _context, _transaction)).IsSucceed;
+                            var saveResult = await item.SaveModelAsync(false, _context, _transaction);
                         }
                         else
                         {
-                            result = (await item.RemoveModelAsync(false, _context, _transaction)).IsSucceed;
+                            var saveResult = await item.RemoveModelAsync(false, _context, _transaction);
+                            result = saveResult.IsSucceed;
+                            if (!result)
+                            {
+                                Errors.AddRange(saveResult.Errors);
+                            }
                         }
                     }
                 }
@@ -317,11 +278,21 @@ namespace Swastika.Cms.Lib.ViewModels
                         item.ArticleId = Id;
                         if (item.IsActived)
                         {
-                            result = (await item.SaveModelAsync(false, _context, _transaction)).IsSucceed;
+                            var saveResult = await item.SaveModelAsync(false, _context, _transaction);
+                            result = result && saveResult.IsSucceed;
+                            if (!result)
+                            {
+                                Errors.AddRange(saveResult.Errors);
+                            }
                         }
                         else
                         {
-                            result = (await item.RemoveModelAsync(false, _context, _transaction)).IsSucceed;
+                            var saveResult = await item.RemoveModelAsync(false, _context, _transaction);
+                            result = result && saveResult.IsSucceed;
+                            if (!result)
+                            {
+                                Errors.AddRange(saveResult.Errors);
+                            }
                         }
                     }
                 }
@@ -346,21 +317,51 @@ namespace Swastika.Cms.Lib.ViewModels
 
                             List<ModuleFieldViewModel> cols = module.Columns;
                             JObject val = new JObject();
+
                             foreach (JProperty prop in data.Properties())
                             {
                                 var col = cols.FirstOrDefault(c => c.Name == prop.Name);
-                                JObject fieldVal = new JObject();
-                                fieldVal.Add(new JProperty("dataType", col.DataType));
-                                fieldVal.Add(new JProperty("value", prop.Value));
-                                val.Add(new JProperty(prop.Name, fieldVal));
+                                if (col != null)
+                                {
+
+                                    JObject fieldVal = new JObject();
+                                    fieldVal.Add(new JProperty("dataType", col.DataType));
+                                    fieldVal.Add(new JProperty("value", prop.Value));
+                                    val.Add(new JProperty(prop.Name, fieldVal));
+                                }
                             }
                             model.Value = val.ToString(Newtonsoft.Json.Formatting.None);
-                            var vmData = new FEModuleContentData(model);
+                            var vmData = new ModuleContentViewmodel(model);
                             var saveResult = await vmData.SaveModelAsync(false, _context, _transaction);
                             result = result && saveResult.IsSucceed;
                         }
                     }
                 }
+
+                // Clone article
+                foreach (var supportedCulture in ListSupportedCulture.Where(c => c.Specificulture != Specificulture))
+                {
+                    if (result)
+                    {
+                        var getcloneArticle = await ArticleBEViewModel.Repository.GetSingleModelAsync(b => b.Id == Id && b.Specificulture == supportedCulture.Specificulture
+                            , _context, _transaction);
+                        if (!getcloneArticle.IsSucceed && supportedCulture.IsSupported)
+                        {
+                            var cloneResult = await CloneAsync(supportedCulture.Specificulture, _context, _transaction);
+                            result = result && cloneResult.IsSucceed;
+                        }
+                        else if (getcloneArticle.IsSucceed && !supportedCulture.IsSupported)
+                        {
+                            var delResult = await ArticleBEViewModel.Repository.RemoveModelAsync(b => b.Id == getcloneArticle.Data.Id && b.Specificulture == supportedCulture.Specificulture);
+                            result = result && delResult.IsSucceed;
+                        }
+                    }
+                    else
+                    {
+                        break;
+                    }
+                }
+
 
                 return new RepositoryResponse<bool>()
                 {
@@ -379,6 +380,62 @@ namespace Swastika.Cms.Lib.ViewModels
                     Ex = ex
                 };
             }
+        }
+
+        public override async Task<RepositoryResponse<ArticleBEViewModel>> CloneAsync(string desSpecificulture, SiocCmsContext _context = null, IDbContextTransaction _transaction = null)
+        {
+            ArticleBEViewModel cloneArticle = new ArticleBEViewModel(this.Model, _context, _transaction)
+            {
+                Id = Id,
+                Specificulture = desSpecificulture,
+                Categories = new List<CategoryArticleViewModel>(),
+                Modules = new List<ModuleArticleViewModel>(),
+                ModuleNavs = new List<ArticleModuleListItemViewModel>()
+            };
+
+            foreach (var cateArticle in this.Categories.Where(p => p.IsActived))
+            {
+                var cloneCateNavResult = await cateArticle.CloneAsync(desSpecificulture, _context, _transaction);
+                if (cloneCateNavResult.IsSucceed)
+                {
+                    cloneArticle.Categories.Add(cloneCateNavResult.Data);
+                }
+                // else => skip navigation
+            }
+
+            foreach (var moduleArticle in this.Modules.Where(p => p.IsActived))
+            {
+                cloneArticle.Modules.Add(new ModuleArticleViewModel(
+                    new SiocModuleArticle()
+                    {
+                        ArticleId = moduleArticle.ArticleId,
+                        Specificulture = desSpecificulture,
+                        ModuleId = moduleArticle.ModuleId
+                    },
+                    _context, _transaction)
+                {
+                    IsActived = moduleArticle.IsActived,
+                    Description = moduleArticle.Description
+                });
+            }
+
+            foreach (var moduleArticle in this.Modules.Where(p => p.IsActived))
+            {
+                cloneArticle.Modules.Add(new ModuleArticleViewModel(
+                    new SiocModuleArticle()
+                    {
+                        ArticleId = moduleArticle.ArticleId,
+                        Specificulture = desSpecificulture,
+                        ModuleId = moduleArticle.ModuleId
+                    },
+                    _context, _transaction)
+                {
+                    IsActived = moduleArticle.IsActived,
+                    Description = moduleArticle.Description
+                });
+            }
+            var cloneResult = await ArticleBEViewModel.Repository.SaveModelAsync(cloneArticle, true);
+            return cloneResult;
         }
         #endregion
 
@@ -553,6 +610,7 @@ namespace Swastika.Cms.Lib.ViewModels
                 this.SeoKeywords = SEOHelper.GetSEOString(this.Title);
             }
         }
+
     }
 
 

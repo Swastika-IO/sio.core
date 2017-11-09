@@ -8,7 +8,7 @@ using Swastika.IO.Cms.Lib.Models;
 
 namespace Swastika.Cms.Lib.ViewModels
 {
-    public class InfoCategoryViewModel : ViewModelBase<SiocCmsContext, SiocCategory, InfoCategoryViewModel>
+    public class CategoryListItemViewModel : ViewModelBase<SiocCmsContext, SiocCategory, CategoryListItemViewModel>
     {
         public int Id { get; set; }
         public string Specificulture { get; set; }
@@ -26,7 +26,7 @@ namespace Swastika.Cms.Lib.ViewModels
         public int Priority { get; set; }
         public string Tags { get; set; }
 
-        public InfoCategoryViewModel(SiocCategory model, SiocCmsContext _context = null, IDbContextTransaction _transaction = null) : base(model, _context, _transaction)
+        public CategoryListItemViewModel(SiocCategory model, SiocCmsContext _context = null, IDbContextTransaction _transaction = null) : base(model, _context, _transaction)
         {
 
         }

@@ -13,16 +13,16 @@ using Swastika.IO.Cms.Lib.Models;
 
 namespace Swastika.Cms.Lib.ViewModels
 {
-    public class FEModuleContentData : ViewModelBase<SiocCmsContext, SiocModuleData, FEModuleContentData>
+    public class ModuleContentViewmodel : ViewModelBase<SiocCmsContext, SiocModuleData, ModuleContentViewmodel>
     {
-        public FEModuleContentData(SiocModuleData model, SiocCmsContext _context = null, IDbContextTransaction _transaction = null) : base(model, _context, _transaction)
+        public ModuleContentViewmodel(SiocModuleData model, SiocCmsContext _context = null, IDbContextTransaction _transaction = null) : base(model, _context, _transaction)
         {
         }
 
         public string Id { get; set; }
         public int ModuleId { get; set; }
         public string Specificulture { get; set; }
-        public string Fields { get; set; }
+        public string Fields { get; set; } = "[]";
         public string Value { get; set; }
         public string ArticleId { get; set; }
         public int? CategoryId { get; set; }
@@ -84,7 +84,7 @@ namespace Swastika.Cms.Lib.ViewModels
         }
         #region Overrides
 
-        public override FEModuleContentData ParseView(SiocCmsContext _context = null, IDbContextTransaction _transaction = null)
+        public override ModuleContentViewmodel ParseView(SiocCmsContext _context = null, IDbContextTransaction _transaction = null)
         {
             var vm = base.ParseView(_context, _transaction);
 
@@ -94,18 +94,21 @@ namespace Swastika.Cms.Lib.ViewModels
             //Columns = new List<ModuleFieldViewModel>(); // ModuleRepository.GetInstance().GetColumns(m => m.Id == ModuleId && m.Specificulture == Specificulture);
 
             vm.Columns = new List<ModuleFieldViewModel>();
-
-            JArray arrField = JArray.Parse(Fields);
-            foreach (var field in arrField)
+            if (!string.IsNullOrEmpty(Fields))
             {
-                ModuleFieldViewModel vmField = new ModuleFieldViewModel()
+                JArray arrField = JArray.Parse(Fields);
+                
+                foreach (var field in arrField)
                 {
-                    Name = CommonHelper.ParseJsonPropertyName(field["Name"].ToString()),
-                    DataType = (Constants.DataType)(int)field["DataType"],
-                    Width = field["Width"] != null ? field["Width"].Value<int>() : 3,
-                    IsDisplay = field["IsDisplay"] != null ? field["IsDisplay"].Value<bool>() : true
-                };
-                vm.Columns.Add(vmField);
+                    ModuleFieldViewModel vmField = new ModuleFieldViewModel()
+                    {
+                        Name = CommonHelper.ParseJsonPropertyName(field["Name"].ToString()),
+                        DataType = (Constants.DataType)(int)field["DataType"],
+                        Width = field["Width"] != null ? field["Width"].Value<int>() : 3,
+                        IsDisplay = field["IsDisplay"] != null ? field["IsDisplay"].Value<bool>() : true
+                    };
+                    vm.Columns.Add(vmField);
+                }
             }
             foreach (var col in Columns)
             {
@@ -158,7 +161,7 @@ namespace Swastika.Cms.Lib.ViewModels
             return vm;
         }
 
-       
+
         #endregion
     }
 
