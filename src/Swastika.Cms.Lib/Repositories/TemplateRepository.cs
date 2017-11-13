@@ -65,10 +65,13 @@ namespace Swastika.Cms.Lib.Repositories
         public TemplateViewModel GetTemplate(string name, Constants.TemplateFolder templateFolder)
         {
             string folder = templateFolder.ToString();
-            string fullPath = string.Format(@"Views\Shared\{0}", folder);
+            string fullPath = SWCmsHelper.GetFullPath(new string[]
+           {
+                SWCmsConstants.TemplatesFolder, folder
+           });
 
             DirectoryInfo d = new DirectoryInfo(fullPath);
-            FileInfo[] Files = d.GetFiles(string.Format("{0}.cshtml", name)); //Getting cshtml files
+            FileInfo[] Files = d.GetFiles(string.Format("{0}{1}", name, SWCmsConstants.TemplateExtension)); //Getting cshtml files
             var file = Files.FirstOrDefault();
             TemplateViewModel result = null;
             if (file != null)
@@ -92,8 +95,12 @@ namespace Swastika.Cms.Lib.Repositories
         public bool DeleteTemplate(string name, Constants.TemplateFolder templateFolder)
         {
             string folder = templateFolder.ToString();
-            string fullPath = string.Format(@"Views\Shared\{0}\{1}.cshtml", folder, name);
-
+            string fullPath = SWCmsHelper.GetFullPath(new string[]
+            {
+                SWCmsConstants.TemplatesFolder,
+                folder,
+                name + SWCmsConstants.TemplateExtension
+            });
             if (File.Exists(fullPath))
             {
                 Common.CommonHelper.RemoveFile(fullPath);
@@ -109,7 +116,7 @@ namespace Swastika.Cms.Lib.Repositories
                 Directory.CreateDirectory(folder);
             }
             DirectoryInfo d = new DirectoryInfo(folder);//Assuming Test is your Folder
-            FileInfo[] Files = d.GetFiles("*.html"); //Getting cshtml files
+            FileInfo[] Files = d.GetFiles(string.Format("*{0}", SWCmsConstants.TemplateExtension)); //Getting cshtml files
             List<TemplateViewModel> result = new List<TemplateViewModel>();
             foreach (var file in Files)
             {
@@ -118,8 +125,8 @@ namespace Swastika.Cms.Lib.Repositories
                     result.Add(new TemplateViewModel()
                     {
                         FileFolder = folder,
-                        Filename = file.Name.Split('.').First(),
-                        Extension = ".html",
+                        Filename = file.Name,//.Split('.').First(),
+                        Extension = SWCmsConstants.TemplateExtension,
                         Content = s.ReadToEnd()
                     });
 

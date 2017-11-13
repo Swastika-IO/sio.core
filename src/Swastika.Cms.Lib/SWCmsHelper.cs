@@ -20,14 +20,31 @@ namespace Swastika.IO.Cms.Lib
             return string.Format(strFormat, subPaths);
         }
 
-        public static bool SaveFileBase64(string fullPath, string strBase64)
+        public static string GetRandomName(string filename)
+        {
+            string ext = filename.Split('.')[1];
+            return string.Format("{0}.{1}", Guid.NewGuid().ToString("N"), ext);
+        }
+
+        public static bool SaveFileBase64(string folder, string filename, string strBase64)
         {
             //data:image/gif;base64,
             //this image is a single pixel (black)
             try
             {
+                string fullPath = SWCmsHelper.GetFullPath(new string[]
+                {
+                    SWCmsConstants.WebRootPath,
+                    folder, filename
+                });
                 string fileData = strBase64.Substring(strBase64.IndexOf(',') + 1);
                 byte[] bytes = Convert.FromBase64String(fileData);
+
+                if (!Directory.Exists(folder))
+                {
+                    Directory.CreateDirectory(folder);
+                }
+
                 if (File.Exists(fullPath))
                 {
                     File.Delete(fullPath);
@@ -52,6 +69,29 @@ namespace Swastika.IO.Cms.Lib
             }
         }
 
+        public static bool RemoveFile(string filePath)
+        {
+            bool result = false;
+            try
+            {
+                string fullPath = SWCmsHelper.GetFullPath(new string[]
+               {
+                    SWCmsConstants.WebRootPath,
+                    filePath
+               });
+                if (File.Exists(fullPath))
+                {
+                    File.Delete(fullPath);
+                    result = true;
+                }
+            }
+            catch
+            {
+
+            }
+            return result;
+        }
+
         public static void WriteBytesToFile(string fullPath, string strBase64)
         {
             string fileData = strBase64.Substring(strBase64.IndexOf(',') + 1);
@@ -60,7 +100,7 @@ namespace Swastika.IO.Cms.Lib
             {
                 File.Delete(fullPath);
             }
-            
+
             FileStream fs = new FileStream(fullPath, FileMode.Create);
             BinaryWriter w = new BinaryWriter(fs);
             try

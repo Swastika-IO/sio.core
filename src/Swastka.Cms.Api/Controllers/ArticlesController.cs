@@ -21,12 +21,17 @@ namespace Swastka.Cms.Api.Controllers
         [Route("save")]
         public async Task<RepositoryResponse<ArticleBEViewModel>> Post([FromBody]ArticleBEViewModel model)
         {
-            if (model!=null)
+            if (model != null)
             {
-                return await model.SaveModelAsync(true);
+                var result = await model.SaveModelAsync(true);
+                if (result.IsSucceed)
+                {
+                    result.Data.Domain = this._domain;
+                }
+                return result;
             }
             return new RepositoryResponse<ArticleBEViewModel>();
-            
+
         }
 
         // GET api/articles/id
@@ -34,7 +39,12 @@ namespace Swastka.Cms.Api.Controllers
         [Route("{id}")]
         public async Task<RepositoryResponse<FEArticleViewModel>> Details(string id)
         {
-            return await FEArticleViewModel.Repository.GetSingleModelAsync(model => model.Id == id && model.Specificulture == _lang); //base.GetAsync(model => model.Id == id);
+            var result = await FEArticleViewModel.Repository.GetSingleModelAsync(model => model.Id == id && model.Specificulture == _lang); //base.GetAsync(model => model.Id == id);
+            if (result.IsSucceed)
+            {
+                result.Data.Domain = this._domain;
+            }
+            return result;
         }
 
         // GET api/articles/id
@@ -42,7 +52,12 @@ namespace Swastka.Cms.Api.Controllers
         [Route("edit/{id}")]
         public async Task<RepositoryResponse<ArticleBEViewModel>> Edit(string id)
         {
-            return await ArticleBEViewModel.Repository.GetSingleModelAsync(model => model.Id == id && model.Specificulture == _lang); //base.GetAsync(model => model.Id == id);
+            var result =  await ArticleBEViewModel.Repository.GetSingleModelAsync(model => model.Id == id && model.Specificulture == _lang); //base.GetAsync(model => model.Id == id);
+            if (result.IsSucceed)
+            {
+                result.Data.Domain = this._domain;
+            }
+            return result;
         }
 
         // GET api/articles/id
@@ -52,13 +67,14 @@ namespace Swastka.Cms.Api.Controllers
         {
             SiocArticle article = new SiocArticle()
             {
-                //Id = Guid.NewGuid().ToString(),
+                //Id = Guid.NewGuid().ToString(),                
                 Specificulture = _lang
             };
             return new RepositoryResponse<ArticleBEViewModel>()
             {
                 IsSucceed = true,
-                Data = new ArticleBEViewModel(article)
+                Data = new ArticleBEViewModel(article) { Domain = this._domain }
+
             };
         }
 
@@ -90,9 +106,12 @@ namespace Swastka.Cms.Api.Controllers
             , OrderByDirection direction = OrderByDirection.Ascending)
         {
             var data = await ArticleListItemViewModel.Repository.GetModelListByAsync(m => m.Specificulture == _lang, orderBy, direction, pageSize, pageIndex); //base.Get(orderBy, direction, pageSize, pageIndex);
-            string domain = string.Format("{0}://{1}", Request.Scheme, Request.Host);
-            data.Data.Items.ForEach(d => d.DetailsUrl = string.Format("{0}{1}", domain, this.Url.Action("Details", "articles", new { id = d.Id })));
-            data.Data.Items.ForEach(d => d.EditUrl = string.Format("{0}{1}", domain, this.Url.Action("Edit", "articles", new { id = d.Id })));
+            if (data.IsSucceed)
+            {
+                data.Data.Items.ForEach(d => d.DetailsUrl = string.Format("{0}{1}", _domain, this.Url.Action("Details", "articles", new { id = d.Id })));
+                data.Data.Items.ForEach(d => d.EditUrl = string.Format("{0}{1}", _domain, this.Url.Action("Edit", "articles", new { id = d.Id })));
+                data.Data.Items.ForEach(d => d.Domain = _domain);
+            }            
             return data;
         }
 
@@ -111,7 +130,14 @@ namespace Swastka.Cms.Api.Controllers
             string.IsNullOrWhiteSpace(keyword)
                 || (model.Title.Contains(keyword) || model.Content.Contains(keyword))
                 );
-            return await ArticleListItemViewModel.Repository.GetModelListByAsync(predicate, orderBy, direction, pageSize, pageIndex); // base.Search(predicate, orderBy, direction, pageSize, pageIndex, keyword);
+            var data = await ArticleListItemViewModel.Repository.GetModelListByAsync(predicate, orderBy, direction, pageSize, pageIndex); // base.Search(predicate, orderBy, direction, pageSize, pageIndex, keyword);
+            if (data.IsSucceed)
+            {
+                data.Data.Items.ForEach(d => d.DetailsUrl = string.Format("{0}{1}", _domain, this.Url.Action("Details", "articles", new { id = d.Id })));
+                data.Data.Items.ForEach(d => d.EditUrl = string.Format("{0}{1}", _domain, this.Url.Action("Edit", "articles", new { id = d.Id })));
+                data.Data.Items.ForEach(d => d.Domain = _domain);
+            }
+            return data;
         }
 
     }

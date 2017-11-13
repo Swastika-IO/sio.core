@@ -56,7 +56,6 @@ namespace Swastika.Cms.Lib.ViewModels
         public FileStreamViewModel ImageFileStream { get; set; }
         public FileStreamViewModel ThumbnailFileStream { get; set; }
 
-        private bool IsNew { get; set; }
         public string TemplateFolder
         {
             get
@@ -69,6 +68,43 @@ namespace Swastika.Cms.Lib.ViewModels
             );
             }
         }
+
+        public string Domain { get; set; } = "/";
+        public string ImageUrl
+        {
+            get
+            {
+                if (Image != null && Image.IndexOf("http") == -1)
+                {
+                    return SWCmsHelper.GetFullPath(new string[] {
+                    Domain,  Image
+                });
+                }
+                else
+                {
+                    return Image;
+                }
+
+            }
+        }
+        public string ThumbnailUrl
+        {
+            get
+            {
+                if (Thumbnail!= null && Thumbnail.IndexOf("http") == -1)
+                {
+                    return SWCmsHelper.GetFullPath(new string[] {
+                    Domain,  Thumbnail
+                });
+                }
+                else
+                {
+                    return Thumbnail;
+                }
+
+            }
+        }
+
         public ArticleBEViewModel(SiocArticle model, SiocCmsContext _context = null, IDbContextTransaction _transaction = null) : base(model, _context, _transaction)
         {
         }
@@ -89,12 +125,17 @@ namespace Swastika.Cms.Lib.ViewModels
             vm.View = Templates.FirstOrDefault(t => !string.IsNullOrEmpty(vm.Template) && vm.Template.Contains(t.Filename + t.Extension));
             if (vm.View == null)
             {
+                //vm.Template = SWCmsHelper.GetFullPath(new string[]
+                //{
+                //    vm.TemplateFolder
+                //    , SWCmsConstants.Default.ArticleTemplate
+                //});
+                vm.View = Templates.FirstOrDefault();//t => vm.Template.Contains(t.Filename + t.Extension)
                 vm.Template = SWCmsHelper.GetFullPath(new string[]
                 {
-                    vm.TemplateFolder
-                    , SWCmsConstants.Default.ArticleTemplate
+                    vm.View.FileFolder
+                    , vm.View.Filename
                 });
-                vm.View = Templates.FirstOrDefault(t => vm.Template.Contains(t.Filename + t.Extension));
             }
 
             var getCulture = CultureViewModel.Repository.GetModelList(_context, _transaction);
@@ -148,18 +189,36 @@ namespace Swastika.Cms.Lib.ViewModels
             {
                 Id = Guid.NewGuid().ToString(); //Common.Common.GetBase62(8);
                 CreatedDateTime = DateTime.UtcNow;
-                IsNew = true;
             }
             if (ThumbnailFileStream != null)
             {
-                string fullPath = SWCmsHelper.GetFullPath(new string[]
+                string folder = SWCmsHelper.GetFullPath(new string[]
                 {
-                    SWCmsConstants.UploadFolder, ThumbnailFileStream.Name
+                    SWCmsConstants.UploadFolder, "Articles", DateTime.UtcNow.ToString("dd-MM-yyyy")
                 });
-
-                var fileStream = SWCmsHelper.SaveFileBase64(fullPath, ThumbnailFileStream.Base64);
-
+                string filename = SWCmsHelper.GetRandomName(ThumbnailFileStream.Name);
+                bool saveThumbnail = SWCmsHelper.SaveFileBase64(folder, filename, ThumbnailFileStream.Base64);
+                if (saveThumbnail)
+                {
+                    SWCmsHelper.RemoveFile(Thumbnail);
+                    Thumbnail = SWCmsHelper.GetFullPath(new string[] { folder, filename });
+                }
             }
+            if (ImageFileStream != null)
+            {
+                string folder = SWCmsHelper.GetFullPath(new string[]
+                {
+                    SWCmsConstants.UploadFolder, "Articles", DateTime.UtcNow.ToString("dd-MM-yyyy")
+                });
+                string filename = SWCmsHelper.GetRandomName(ImageFileStream.Name);
+                bool saveImage = SWCmsHelper.SaveFileBase64(folder, filename, ImageFileStream.Base64);
+                if (saveImage)
+                {
+                    SWCmsHelper.RemoveFile(Image);
+                    Image = SWCmsHelper.GetFullPath(new string[] { folder, filename });
+                }
+            }
+
             Tags = ListTag.ToString(Newtonsoft.Json.Formatting.None);
             Template = SWCmsHelper.GetFullPath(new string[] { View.FileFolder, View.Filename + View.Extension });
             var model = base.ParseModel();
@@ -622,6 +681,7 @@ namespace Swastika.Cms.Lib.ViewModels
         public string Id { get; set; }
         public string Specificulture { get; set; }
         public string Template { get; set; }
+        public string Image { get; set; }
         public string Thumbnail { get; set; }
         public string Title { get; set; }
         public string Excerpt { get; set; }
@@ -636,6 +696,42 @@ namespace Swastika.Cms.Lib.ViewModels
 
         public string DetailsUrl { get; set; }
         public string EditUrl { get; set; }
+
+        public string Domain { get; set; } = "/";
+        public string ImageUrl
+        {
+            get
+            {
+                if (Image != null && Image.IndexOf("http") == -1)
+                {
+                    return SWCmsHelper.GetFullPath(new string[] {
+                    Domain,  Image
+                });
+                }
+                else
+                {
+                    return Image;
+                }
+
+            }
+        }
+        public string ThumbnailUrl
+        {
+            get
+            {
+                if (Thumbnail!= null && Thumbnail.IndexOf("http") == -1)
+                {
+                    return SWCmsHelper.GetFullPath(new string[] {
+                    Domain,  Thumbnail
+                });
+                }
+                else
+                {
+                    return Thumbnail;
+                }
+
+            }
+        }
 
         public ArticleListItemViewModel(SiocArticle model
             , SiocCmsContext _context = null, IDbContextTransaction _transaction = null)
@@ -675,6 +771,41 @@ namespace Swastika.Cms.Lib.ViewModels
 
         public List<ArticleModuleFEViewModel> Modules { get; set; }
 
+        public string Domain { get; set; } = "/";
+        public string ImageUrl
+        {
+            get
+            {
+                if (Image != null && Image.IndexOf("http") == -1)
+                {
+                    return SWCmsHelper.GetFullPath(new string[] {
+                    Domain,  Image
+                });
+                }
+                else
+                {
+                    return Image;
+                }
+
+            }
+        }
+        public string ThumbnailUrl
+        {
+            get
+            {
+                if (Thumbnail!= null && Thumbnail.IndexOf("http") == -1)
+                {
+                    return SWCmsHelper.GetFullPath(new string[] {
+                    Domain,  Thumbnail
+                });
+                }
+                else
+                {
+                    return Thumbnail;
+                }
+
+            }
+        }
         public FEArticleViewModel(SiocArticle model
             , SiocCmsContext _context = null, IDbContextTransaction _transaction = null)
             : base(model, _context, _transaction)

@@ -16,6 +16,7 @@ namespace Swastka.Cms.Api.Controllers
         where TContext : DbContext
         where TModel : class
     {
+        protected string _domain;
         protected string _lang;
 
         public override void OnActionExecuting(ActionExecutingContext context)
@@ -29,6 +30,9 @@ namespace Swastka.Cms.Api.Controllers
             _lang = RouteData != null && RouteData.Values["culture"] != null
                 ? RouteData.Values["culture"].ToString() : "vi-vn";
             ViewBag.culture = _lang;
+
+            _domain = string.Format("{0}://{1}", Request.Scheme, Request.Host);
+
             //ViewBag.currentCulture = listCultures.FirstOrDefault(c => c.Specificulture == _lang);
             //ViewBag.cultures = listCultures;
         }
