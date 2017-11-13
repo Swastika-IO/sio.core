@@ -32,17 +32,22 @@ namespace Swastika.IO.Cms.Lib
             //this image is a single pixel (black)
             try
             {
+                string webFolder = SWCmsHelper.GetFullPath(new string[]
+               {
+                    SWCmsConstants.WebRootPath,
+                    folder
+               });
                 string fullPath = SWCmsHelper.GetFullPath(new string[]
                 {
-                    SWCmsConstants.WebRootPath,
-                    folder, filename
+                    webFolder,
+                    filename
                 });
                 string fileData = strBase64.Substring(strBase64.IndexOf(',') + 1);
                 byte[] bytes = Convert.FromBase64String(fileData);
 
-                if (!Directory.Exists(folder))
+                if (!Directory.Exists(webFolder))
                 {
-                    Directory.CreateDirectory(folder);
+                    Directory.CreateDirectory(webFolder);
                 }
 
                 if (File.Exists(fullPath))
