@@ -11,9 +11,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Swastika.IO.Cms.Lib", "Swas
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Swastka.IO.Cms.Api", "Swastka.Cms.Api\Swastka.IO.Cms.Api.csproj", "{FCD5568D-56D1-482C-B36D-B38AA4ECB890}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Swastika.IO.Identity", "..\..\Swastika-Identity\src\Swastika.Identity\Swastika.IO.Identity.csproj", "{C23AD860-EAA5-45E4-BF4E-004B34DB347E}"
-EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Swastika.IO", "..\..\Swastika-Heart\src\Swastika.IO\Swastika.IO.csproj", "{672C5B3A-0F7C-494A-820F-73B5DB8A9B4A}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Swastika.IO.Identity", "..\..\Swastika-Identity\src\Swastika.IO.Identity\Swastika.IO.Identity.csproj", "{136F0E3D-1F88-4353-8DEE-57A7B88750D5}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -37,14 +37,14 @@ Global
 		{FCD5568D-56D1-482C-B36D-B38AA4ECB890}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{FCD5568D-56D1-482C-B36D-B38AA4ECB890}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{FCD5568D-56D1-482C-B36D-B38AA4ECB890}.Release|Any CPU.Build.0 = Release|Any CPU
-		{C23AD860-EAA5-45E4-BF4E-004B34DB347E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{C23AD860-EAA5-45E4-BF4E-004B34DB347E}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{C23AD860-EAA5-45E4-BF4E-004B34DB347E}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{C23AD860-EAA5-45E4-BF4E-004B34DB347E}.Release|Any CPU.Build.0 = Release|Any CPU
 		{672C5B3A-0F7C-494A-820F-73B5DB8A9B4A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{672C5B3A-0F7C-494A-820F-73B5DB8A9B4A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{672C5B3A-0F7C-494A-820F-73B5DB8A9B4A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{672C5B3A-0F7C-494A-820F-73B5DB8A9B4A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{136F0E3D-1F88-4353-8DEE-57A7B88750D5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{136F0E3D-1F88-4353-8DEE-57A7B88750D5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{136F0E3D-1F88-4353-8DEE-57A7B88750D5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{136F0E3D-1F88-4353-8DEE-57A7B88750D5}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
