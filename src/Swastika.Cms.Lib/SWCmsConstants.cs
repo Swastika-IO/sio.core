@@ -10,8 +10,35 @@ namespace Swastika.IO.Cms.Lib
         public const string TemplateExtension = @".cshtml";
         public const string WebRootPath = @"wwwroot";
         public const string UploadFolder = @"Uploads";
+
+        public class AuthConfiguration
+        {            
+            public const string ConnectionString = @"Server=115.77.190.113,4444;Database=stag_swastika_io;UID=sa;Pwd=sqlP@ssw0rd;MultipleActiveResultSets=true";
+            public const string ApiEndPoint = "/";
+
+            public const string FacebookId = "";
+            public const string FacebookSecret = "";
+
+            public const string GoogleId = "";
+            public const string GoogleSecret = "";
+
+            public const string MicrosoftId = "";
+            public const string MicrosoftSecret = "";
+
+            public const string TwitterKey = "";
+            public const string TwitterSecret = "";
+
+            public const string OpenIdAuthority = "";
+            public const string OpenIdClientId = "";
+
+            public const int AuthCookieExpiration = 150; // In minutes
+            public const string AuthCookieLoginPath = "";
+            public const string AuthCookieLogoutPath = "";
+            public const string AuthCookieAccessDeniedPath = "";
+        }
         public class Default
         {
+            
             public const string ArticleTemplate = @"_Default.cshtml";
         }
         public enum ModuleType

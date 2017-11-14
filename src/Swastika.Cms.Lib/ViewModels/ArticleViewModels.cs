@@ -11,7 +11,6 @@ using System.Linq;
 using Newtonsoft.Json.Linq;
 using Swastika.IO.Cms.Lib.Models;
 using Swastika.IO.Cms.Lib;
-using System.IO;
 using Swastika.IO.Cms.Lib.ViewModels;
 using System.ComponentModel.DataAnnotations;
 
@@ -512,6 +511,39 @@ namespace Swastika.Cms.Lib.ViewModels
             }
             var cloneResult = await ArticleBEViewModel.Repository.SaveModelAsync(cloneArticle, true);
             return cloneResult;
+        }
+
+        public override async Task<RepositoryResponse<bool>> RemoveRelatedModelsAsync(ArticleBEViewModel view, SiocCmsContext _context = null, IDbContextTransaction _transaction = null)
+        {
+            RepositoryResponse<bool> result = new RepositoryResponse<bool>()
+            {
+                IsSucceed = true
+            };
+
+            if (result.IsSucceed)
+            {
+                foreach (var item in view.Categories)
+                {
+                    result = await item.RemoveModelAsync(false, _context, _transaction);
+                }
+            }
+
+            if (result.IsSucceed)
+            {
+                foreach (var item in view.Modules)
+                {
+                    result = await item.RemoveModelAsync(false, _context, _transaction);
+                }
+            }
+
+            if (result.IsSucceed)
+            {
+                foreach (var item in view.ModuleNavs)
+                {
+                    result = item.RemoveModel(false, _context, _transaction);
+                }
+            }
+            return result;
         }
         #endregion
 

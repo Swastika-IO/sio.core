@@ -10,7 +10,7 @@ using Microsoft.Extensions.DependencyInjection;
 
 namespace Swastika.IO.Admin
 {
-    public class Startup
+    public partial class Startup
     {
         public Startup(IConfiguration configuration)
         {
@@ -22,6 +22,8 @@ namespace Swastika.IO.Admin
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            ConfigureAuth(services, Configuration);
+            ConfigureApiServices(services);
             services.AddMvc();
         }
 
@@ -42,12 +44,9 @@ namespace Swastika.IO.Admin
             }
 
             app.UseStaticFiles();
-            app.UseCors(builder =>
-            {
-                builder.AllowAnyOrigin();
-                builder.AllowAnyMethod();
-                builder.AllowAnyHeader();
-            });
+            app.UseAuthentication();
+
+            app.UseCors("default");
 
             app.UseMvc(routes =>
             {

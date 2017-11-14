@@ -88,7 +88,25 @@ namespace Swastka.Cms.Api.Controllers
             {
                 var data = getArticle.Data;
                 data.IsDeleted = true;
-                return await ArticleListItemViewModel.Repository.SaveModelAsync(data);
+                return await data.SaveModelAsync();
+            }
+            else
+            {
+                return new RepositoryResponse<ArticleListItemViewModel>() { IsSucceed = false };
+            }
+        }
+
+        // GET api/articles/id
+        [HttpGet]
+        [Route("restore/{id}")]
+        public async Task<RepositoryResponse<ArticleListItemViewModel>> Restore(string id)
+        {
+            var getArticle = ArticleListItemViewModel.Repository.GetSingleModel(a => a.Id == id);
+            if (getArticle.IsSucceed)
+            {
+                var data = getArticle.Data;
+                data.IsDeleted = false;
+                return await data.SaveModelAsync();
             }
             else
             {
@@ -102,7 +120,7 @@ namespace Swastka.Cms.Api.Controllers
         [Route("delete/{id}")]
         public async Task<RepositoryResponse<bool>> Delete(string id)
         {
-            var getArticle = ArticleListItemViewModel.Repository.GetSingleModel(a => a.Id == id);
+            var getArticle = ArticleBEViewModel.Repository.GetSingleModel(a => a.Id == id);
             if (getArticle.IsSucceed)
             {
                 return await getArticle.Data.RemoveModelAsync(true);
@@ -123,7 +141,8 @@ namespace Swastka.Cms.Api.Controllers
             int? pageSize = 15, int? pageIndex = 0, string orderBy = "Id"
             , OrderByDirection direction = OrderByDirection.Ascending)
         {
-            var data = await ArticleListItemViewModel.Repository.GetModelListByAsync(m => m.Specificulture == _lang, orderBy, direction, pageSize, pageIndex); //base.Get(orderBy, direction, pageSize, pageIndex);
+            var data = await ArticleListItemViewModel.Repository.GetModelListByAsync(
+                m => !m.IsDeleted && m.Specificulture == _lang, orderBy, direction, pageSize, pageIndex); //base.Get(orderBy, direction, pageSize, pageIndex);
             if (data.IsSucceed)
             {
                 data.Data.Items.ForEach(d => d.DetailsUrl = string.Format("{0}{1}", _domain, this.Url.Action("Details", "articles", new { id = d.Id })));
@@ -143,8 +162,9 @@ namespace Swastka.Cms.Api.Controllers
             , OrderByDirection direction = OrderByDirection.Ascending)
         {
             Expression<Func<SiocArticle, bool>> predicate = model =>
-            model.Specificulture == _lang &&
-            (
+            model.Specificulture == _lang
+            && !model.IsDeleted
+            && (
             string.IsNullOrWhiteSpace(keyword)
                 || (model.Title.Contains(keyword) || model.Content.Contains(keyword))
                 );
