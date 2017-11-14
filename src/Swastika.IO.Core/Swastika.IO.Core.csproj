@@ -26,7 +26,16 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="ClientApp\app\modules\portal\components\nav\" />
+    <Folder Include="ClientApp\app\components\app\" />
+    <Folder Include="ClientApp\app\%40swastika-io\" />
+    <Folder Include="wwwroot\themes\swastika-io-admin\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="wwwroot\assets\css\open-iconic-bootstrap.css" />
+    <None Include="wwwroot\assets\css\open-iconic-bootstrap.css.map" />
+    <None Include="wwwroot\assets\css\open-iconic-bootstrap.scss" />
+    <None Include="wwwroot\assets\fonts\open-iconic-bootstrap.styl" />
   </ItemGroup>
 
   <Target Name="DebugRunWebpack" BeforeTargets="Build" Condition=" '$(Configuration)' == 'Debug' And !Exists('wwwroot\dist') ">

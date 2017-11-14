@@ -2,7 +2,9 @@
 import { RouterModule } from '@angular/router';
 import { PortalComponent } from './portal.component';
 
-//import { HeaderComponent } from '../../components/modules/home/header/header.component';
+import { HeaderComponent } from './components/header/header.component';
+import { SidebarComponent } from './components/sidebar/sidebar.component';
+
 //import { FeaturesComponent } from '../../components/modules/home/features/features.component';
 
 @NgModule({
@@ -17,7 +19,8 @@ import { PortalComponent } from './portal.component';
     ],
     declarations: [
         PortalComponent,
-        //HeaderComponent,
+        HeaderComponent,
+        SidebarComponent
         //FeaturesComponent
     ]
 })

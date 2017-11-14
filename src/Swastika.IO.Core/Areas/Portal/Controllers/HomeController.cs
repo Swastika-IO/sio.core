@@ -7,7 +7,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace Swastika.IO.Core.Areas.Portal.Controllers
 {
-    [Area("Portal")]
+    [Area("ngx-admin")]
     public class HomeController : Controller
     {
         public IActionResult Index()

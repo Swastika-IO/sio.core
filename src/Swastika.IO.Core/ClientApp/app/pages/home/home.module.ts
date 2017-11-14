@@ -7,7 +7,9 @@ import { FeaturesComponent } from '../../components/modules/home/features/featur
 
 @NgModule({
     imports: [
-        RouterModule.forChild([{ path: '', component: HomeComponent }])
+        RouterModule.forChild([
+            { path: '', component: HomeComponent }
+        ])
     ],
     exports: [RouterModule],
     declarations: [

@@ -1,8 +1,9 @@
-const path = require('path');
+﻿const path = require('path');
 const webpack = require('webpack');
 const merge = require('webpack-merge');
 const AotPlugin = require('@ngtools/webpack').AotPlugin;
 const CheckerPlugin = require('awesome-typescript-loader').CheckerPlugin;
+const ExtractTextPlugin = require("extract-text-webpack-plugin");
 
 module.exports = (env) => {
     // Configuration in common to both client-side and server-side bundles
@@ -18,15 +19,45 @@ module.exports = (env) => {
         module: {
             rules: [
                 //{ test: /\.ts$/, include: /ClientApp/, use: isDevBuild ? ['awesome-typescript-loader?silent=true', 'angular2-template-loader', 'angular-router-loader'] : '@ngtools/webpack' },
-                { test: /\.ts$/, include: /ClientApp/, use: ['awesome-typescript-loader?silent=true', 'angular2-template-loader', 'angular-router-loader'] },
-                { test: /\.html$/, use: 'html-loader?minimize=false' },
-                { test: /\.(css|scss)$/, use: [ 'to-string-loader', isDevBuild ? 'css-loader' : 'css-loader?minimize' ] },
-                { test: /\.(png|jpg|jpeg|gif|svg)$/, use: 'url-loader?limit=25000' }
+                {
+                    test: /\.ts$/, include: /ClientApp/, use: ['awesome-typescript-loader?silent=true', 'angular2-template-loader', 'angular-router-loader']
+                },
+                {
+                    test: /\.html$/, use: 'html-loader?minimize=false'
+                },
+                {
+                    //test: /\.css$/, use: ['to-string-loader', isDevBuild ? 'css-loader' : 'css-loader?minimize']
+                    test: /\.(scss|css)$/,
+                    use: ['raw-loader', 'sass-loader'], // don't use css-loader for ng2 （unusual）
+                },
+                {
+                    test: /\.scss$/,
+                    exclude: [/node_modules/, /src\/app/],
+                    use: ExtractTextPlugin.extract({
+                        fallbackLoader: 'style-loader',
+                        use: ['css-loader', 'sass-loader']
+                    })
+                },
+                //{
+                //    test: /\.(css|scss)$/, use: ExtractTextPlugin.extract({
+                //        fallback: 'style-loader',
+                //        //resolve-url-loader may be chained before sass-loader if necessary
+                //        use: ['to-string-loader', isDevBuild ? 'css-loader' : 'css-loader?minimize', 'sass-loader']
+                //    })
+                //},
+                {
+                    test: /\.(png|jpg|jpeg|gif|svg)$/, use: 'url-loader?limit=25000'
+                }
             ]
         },
-        plugins: [new CheckerPlugin()]
+        plugins: [
+            new ExtractTextPlugin({
+                filename: '[name].css'
+            }),
+            new CheckerPlugin()
+        ]
     };
-
+    
     // Configuration for client-side bundle suitable for running in browsers
     const clientBundleOutputDir = './wwwroot/dist';
     const clientBundleConfig = merge(sharedConfig, {
