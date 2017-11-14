@@ -78,6 +78,24 @@ namespace Swastka.Cms.Api.Controllers
             };
         }
 
+        // GET api/articles/id
+        [HttpGet]
+        [Route("recycle/{id}")]
+        public async Task<RepositoryResponse<ArticleListItemViewModel>> Recycle(string id)
+        {
+            var getArticle = ArticleListItemViewModel.Repository.GetSingleModel(a => a.Id == id);
+            if (getArticle.IsSucceed)
+            {
+                var data = getArticle.Data;
+                data.IsDeleted = true;
+                return await ArticleListItemViewModel.Repository.SaveModelAsync(data);
+            }
+            else
+            {
+                return new RepositoryResponse<ArticleListItemViewModel>() { IsSucceed = false };
+            }
+        }
+
 
         // GET api/articles/id
         [HttpGet]
@@ -127,6 +145,34 @@ namespace Swastka.Cms.Api.Controllers
             Expression<Func<SiocArticle, bool>> predicate = model =>
             model.Specificulture == _lang &&
             (
+            string.IsNullOrWhiteSpace(keyword)
+                || (model.Title.Contains(keyword) || model.Content.Contains(keyword))
+                );
+            var data = await ArticleListItemViewModel.Repository.GetModelListByAsync(predicate, orderBy, direction, pageSize, pageIndex); // base.Search(predicate, orderBy, direction, pageSize, pageIndex, keyword);
+            if (data.IsSucceed)
+            {
+                data.Data.Items.ForEach(d => d.DetailsUrl = string.Format("{0}{1}", _domain, this.Url.Action("Details", "articles", new { id = d.Id })));
+                data.Data.Items.ForEach(d => d.EditUrl = string.Format("{0}{1}", _domain, this.Url.Action("Edit", "articles", new { id = d.Id })));
+                data.Data.Items.ForEach(d => d.Domain = _domain);
+            }
+            return data;
+        }
+
+        // GET api/articles
+        [HttpGet]
+        [Route("draft/{keyword}")]
+        [Route("draft/{pageSize:int?}/{pageIndex:int?}")]
+        [Route("draft/{pageSize:int?}/{pageIndex:int?}/{keyword}")]
+        [Route("draft/{pageSize:int?}/{pageIndex:int?}/{orderBy}/{direction}/{keyword}")]
+        public async Task<RepositoryResponse<PaginationModel<ArticleListItemViewModel>>> Draft(
+            string keyword = null, int? pageSize = null, int? pageIndex = null, string orderBy = "Id"
+            , OrderByDirection direction = OrderByDirection.Ascending)
+        {
+            Expression<Func<SiocArticle, bool>> predicate = model =>
+            model.Specificulture == _lang
+
+            && model.IsDeleted
+            && (
             string.IsNullOrWhiteSpace(keyword)
                 || (model.Title.Contains(keyword) || model.Content.Contains(keyword))
                 );
