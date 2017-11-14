@@ -18,7 +18,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\..\Swastika-Identity\src\Swastika.Identity\Swastika.IO.Identity.csproj" />
+    <ProjectReference Include="..\..\..\Swastika-Identity\src\Swastika.IO.Identity\Swastika.IO.Identity.csproj" />
     <ProjectReference Include="..\Swastika.Cms.Lib\Swastika.IO.Cms.Lib.csproj" />
   </ItemGroup>
 
