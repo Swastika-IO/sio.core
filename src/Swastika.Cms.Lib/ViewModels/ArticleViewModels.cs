@@ -134,8 +134,8 @@ namespace Swastika.Cms.Lib.ViewModels
                 vm.View = Templates.FirstOrDefault();//t => vm.Template.Contains(t.Filename + t.Extension)
                 vm.Template = SWCmsHelper.GetFullPath(new string[]
                 {
-                    vm.View.FileFolder
-                    , vm.View.Filename
+                    vm.View?.FileFolder
+                    , vm.View?.Filename
                 });
             }
 

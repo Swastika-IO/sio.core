@@ -44,7 +44,7 @@ namespace Swastika.IO.Admin
             }
 
             app.UseStaticFiles();
-            app.UseAuthentication();
+            app.UseAuthentication()                ;
 
             app.UseCors("default");
 

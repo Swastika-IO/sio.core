@@ -35,6 +35,9 @@ namespace Swastika.IO.Cms.Lib
             public const string AuthCookieLoginPath = "";
             public const string AuthCookieLogoutPath = "";
             public const string AuthCookieAccessDeniedPath = "";
+
+            public const string AuthTokenIssuer= "Swastika";
+            public const string AuthTokenKey = "SwastikaSecretKey";
         }
         public class Default
         {
