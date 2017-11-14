@@ -1,0 +1,29 @@
+body::before{
+    position: fixed;
+    background: url(../../../../wwwroot/assets/images/bg.jpg) center center no-repeat;
+    background-size: cover;
+
+    content: '';
+    height: 100%;
+    top: 0;
+    left: 0;
+    will-change: transform;
+    z-index: -1;
+    width: 100%;
+  }
+
+
+
+
+.form-control {
+    color: #fff;
+    border: solid rgba(248, 249, 250, 0.01);
+    border-radius: 5px;
+    background-color: rgba(0,0,0,.4);
+    box-shadow: none;
+}
+.form-control:focus {
+    box-shadow: none;
+    border-color: #4db1a7;
+    background: rgba(0,0,0,.5);
+}

@@ -1,0 +1,34 @@
+﻿// Your variable overrides
+$body-bg: #000;
+$body-color: #111;
+$body-color:#fff;
+$color:#209e91;
+$link-color:#ffffff;
+$link-hover-color:#9bfff3;
+
+// form
+$input-focus-color:#fff;
+$input-placeholder-color:rgb(199, 199, 199);
+
+$card-bg:rgba(0,0,0,.5);
+$text-muted:#fff;
+
+$theme-colors: (
+    "primary": #209e91,
+    "danger": #ff4136
+  );
+
+@import "../../../../node_modules/bootstrap/scss/bootstrap";
+
+// @import "../node_modules/bootstrap/scss/functions";
+// @import "../node_modules/bootstrap/scss/variables";
+// @import "../node_modules/bootstrap/scss/mixins";
+
+@import "variables";
+@import "reboot";
+@import "nav";
+@import "sidebar";
+@import "card";
+@import "breadcrumb";
+@import "text";
+@import "nav-action";

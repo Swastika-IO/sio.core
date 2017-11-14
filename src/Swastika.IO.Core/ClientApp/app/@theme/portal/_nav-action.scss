@@ -1,0 +1,13 @@
+.sw-nav-action{
+    .row div{
+        border-right: 1px solid #333;
+    }
+    .row div:last-child{
+        border-right: none;
+    }
+    .btn{
+        font-weight: bold;
+        cursor: pointer;
+        text-decoration: none;
+    }
+}
