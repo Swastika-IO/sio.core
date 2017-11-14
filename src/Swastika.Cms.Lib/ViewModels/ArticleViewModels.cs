@@ -13,6 +13,7 @@ using Swastika.IO.Cms.Lib.Models;
 using Swastika.IO.Cms.Lib;
 using System.IO;
 using Swastika.IO.Cms.Lib.ViewModels;
+using System.ComponentModel.DataAnnotations;
 
 namespace Swastika.Cms.Lib.ViewModels
 {
@@ -25,6 +26,7 @@ namespace Swastika.Cms.Lib.ViewModels
         public string Template { get; set; }
         public string Thumbnail { get; set; }
         public string Image { get; set; }
+        [Required]
         public string Title { get; set; }
         public string Excerpt { get; set; }
         public string Content { get; set; }
@@ -225,26 +227,41 @@ namespace Swastika.Cms.Lib.ViewModels
 
             return model;
         }
-        public override void Validate()
-        {
-            if (IsValid && string.IsNullOrEmpty(Title))
-            {
-                IsValid = false;
-                Errors.Add("Title is required");
-            }
-            if (string.IsNullOrEmpty(SeoName))
-            {
-                IsValid = false;
-                Errors.Add("Seoname is required");
-            }
-        }
+        //public override void Validate()
+        //{
+
+        //    if (IsValid && string.IsNullOrEmpty(Title))
+        //    {
+        //        IsValid = false;
+        //        Errors.Add("Title is required");
+        //    }
+        //    if (string.IsNullOrEmpty(SeoName))
+        //    {
+        //        IsValid = false;
+        //        Errors.Add("Seoname is required");
+        //    }
+        //}
 
         #region Async Methods        
 
-        public override Task<RepositoryResponse<ArticleBEViewModel>> SaveModelAsync(bool isSaveSubModels = false, SiocCmsContext _context = null, IDbContextTransaction _transaction = null)
+        public override async Task<RepositoryResponse<ArticleBEViewModel>> SaveModelAsync(bool isSaveSubModels = false, SiocCmsContext _context = null, IDbContextTransaction _transaction = null)
         {
-            GenerateSEO();
-            return base.SaveModelAsync(isSaveSubModels, _context, _transaction);
+            Validate();
+            if (IsValid)
+            {
+                GenerateSEO();
+                return await base.SaveModelAsync(isSaveSubModels, _context, _transaction);
+            }
+            else
+            {
+                return new RepositoryResponse<ArticleBEViewModel>()
+                {
+                    IsSucceed = false,
+                    Data = null,
+                    Errors = Errors
+                };
+            }
+            
         }
 
         public override async Task<RepositoryResponse<bool>> SaveSubModelsAsync(
@@ -535,8 +552,21 @@ namespace Swastika.Cms.Lib.ViewModels
 
         public override RepositoryResponse<ArticleBEViewModel> SaveModel(bool isSaveSubModels = false, SiocCmsContext _context = null, IDbContextTransaction _transaction = null)
         {
-            GenerateSEO();
-            return base.SaveModel(isSaveSubModels, _context, _transaction);
+            Validate();
+            if (IsValid)
+            {
+                GenerateSEO();
+                return base.SaveModel(isSaveSubModels, _context, _transaction);
+            }
+            else
+            {
+                return new RepositoryResponse<ArticleBEViewModel>()
+                {
+                    IsSucceed = false,
+                    Data = null,
+                    Errors = Errors
+                };
+            }
         }
 
         public override RepositoryResponse<bool> SaveSubModels(SiocArticle parent, SiocCmsContext _context = null, IDbContextTransaction _transaction = null)
