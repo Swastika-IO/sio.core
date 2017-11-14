@@ -11,7 +11,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Swastika.IO.Cms.Lib", "Swas
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Swastka.IO.Cms.Api", "Swastka.Cms.Api\Swastka.IO.Cms.Api.csproj", "{FCD5568D-56D1-482C-B36D-B38AA4ECB890}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Swastika.IO.Identity", "..\..\Swastika-Identity\src\Swastika.Identity\Swastika.IO.Identity.csproj", "{C23AD860-EAA5-45E4-BF4E-004B34DB347E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Swastika.IO.Identity", "..\..\Swastika-Identity\src\Swastika.IO.Identity\Swastika.IO.Identity.csproj", "{C23AD860-EAA5-45E4-BF4E-004B34DB347E}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Swastika.IO", "..\..\Swastika-Heart\src\Swastika.IO\Swastika.IO.csproj", "{672C5B3A-0F7C-494A-820F-73B5DB8A9B4A}"
 EndProject
