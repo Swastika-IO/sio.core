@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.IdentityModel.Tokens;
 using Swastika.Identity.Data;
 using Swastika.Identity.Models;
 using Swastika.Identity.Services;
@@ -11,6 +12,7 @@ using Swastika.IO.Cms.Lib;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text;
 using System.Threading.Tasks;
 
 namespace Swastika.IO.Admin
@@ -29,20 +31,6 @@ namespace Swastika.IO.Admin
                     policy.WithExposedHeaders("WWW-Authenticate");
                 });
             });
-
-            services.AddAuthentication(o =>
-            {
-                o.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
-                o.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
-
-            }).AddJwtBearer(o =>
-            {
-                o.Authority = "/";
-                o.Audience = "swApi";
-                o.RequireHttpsMetadata = false;
-            });
-
-            services.AddMvc();
         }
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureAuth(IServiceCollection services, IConfiguration configuration)
@@ -70,7 +58,10 @@ namespace Swastika.IO.Admin
             string authCookieLogoutPath = SWCmsConstants.AuthConfiguration.AuthCookieLogoutPath;
             string authCookieAccessDeniedPath = SWCmsConstants.AuthConfiguration.AuthCookieAccessDeniedPath;
 
-        services.AddDbContext<ApplicationDbContext>(options =>
+            string authTokenIssuer = SWCmsConstants.AuthConfiguration.AuthTokenIssuer;
+            string authTokenKey = SWCmsConstants.AuthConfiguration.AuthTokenKey;
+
+            services.AddDbContext<ApplicationDbContext>(options =>
         options.UseSqlServer(connectionString));
 
             services.AddIdentity<ApplicationUser, IdentityRole>()
@@ -112,33 +103,45 @@ namespace Swastika.IO.Admin
                 {
                     options.Audience = apiEndPoint;
                     options.Authority = apiEndPoint;
+                    options.TokenValidationParameters = new Microsoft.IdentityModel.Tokens.TokenValidationParameters()
+                    {
+                        ValidIssuer = authTokenIssuer,
+                        ValidAudience = authTokenIssuer,
+                        IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(authTokenKey))
+                    };
                 })
                 .AddCookie()
-                .AddOpenIdConnect(options =>
-                {
-                    options.Authority = openIdAuthority;
-                    options.ClientId = openIdClientId;
-                })
-               .AddFacebook(options =>
-               {
-                   options.AppId = fbId;
-                   options.AppSecret = fbSecret;
-               })
-               .AddGoogle(options =>
-               {
-                   options.ClientId = ggId;
-                   options.ClientSecret = ggSecret;
-               })
-               .AddMicrosoftAccount(options =>
-               {
-                   options.ClientId = msId;
-                   options.ClientSecret = msSecret;
-               })
-               .AddTwitter(options =>
-               {
-                   options.ConsumerKey = twConsumerKey;
-                   options.ConsumerSecret = twConsumerSecret;
-               });
+               // Auth with OpenId
+               //.AddOpenIdConnect(options =>
+               //{
+               //    options.Authority = openIdAuthority;
+               //    options.ClientId = openIdClientId;
+               //})
+               // Auth with Facebook
+               //.AddFacebook(options =>
+               //{
+               //    options.AppId = fbId;
+               //    options.AppSecret = fbSecret;
+               //})
+               // Auth with Google
+               //.AddGoogle(options =>
+               //{
+               //    options.ClientId = ggId;
+               //    options.ClientSecret = ggSecret;
+               //})
+               // Auth with Microsoft
+               //.AddMicrosoftAccount(options =>
+               //{
+               //    options.ClientId = msId;
+               //    options.ClientSecret = msSecret;
+               //})
+               // Auth with Twitter
+               //.AddTwitter(options =>
+               //{
+               //    options.ConsumerKey = twConsumerKey;
+               //    options.ConsumerSecret = twConsumerSecret;
+               //})
+               ;
 
             // Add application services.
             //services.AddTransient<IEmailSender, EmailSender>();
