@@ -162,7 +162,7 @@ namespace Swastika.Cms.Lib.Repositories
                     return false;
                 }
             }
-            catch (Exception ex)
+            catch
             {
                 return false;
             }

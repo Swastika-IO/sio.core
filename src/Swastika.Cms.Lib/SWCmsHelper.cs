@@ -3,12 +3,20 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Security.Cryptography;
 using System.Text;
 
 namespace Swastika.IO.Cms.Lib
 {
     public class SWCmsHelper
     {
+        public static RSAParameters GenerateKey()
+        {
+            using (var key = new RSACryptoServiceProvider(2048))
+            {
+                return key.ExportParameters(true);
+            }
+        }
         public static string GetFullPath(string[] subPaths)
         {
             string result = string.Empty;

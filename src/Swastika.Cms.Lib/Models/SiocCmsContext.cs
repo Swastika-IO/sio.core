@@ -18,6 +18,8 @@ namespace Swastika.Cms.Lib.Models
         public virtual DbSet<AspNetUsers> AspNetUsers { get; set; }
         public virtual DbSet<AspNetUserTokens> AspNetUserTokens { get; set; }
         public virtual DbSet<BaseConfiguration> BaseConfiguration { get; set; }
+        public virtual DbSet<Clients> Clients { get; set; }
+        public virtual DbSet<RefreshTokens> RefreshTokens { get; set; }
         public virtual DbSet<SiocArticle> SiocArticle { get; set; }
         public virtual DbSet<SiocArticleModule> SiocArticleModule { get; set; }
         public virtual DbSet<SiocBanner> SiocBanner { get; set; }

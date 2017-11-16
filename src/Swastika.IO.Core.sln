@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
-VisualStudioVersion = 15.0.26730.15
+VisualStudioVersion = 15.0.27004.2002
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Swastika.IO.Core", "Swastika.IO.Core\Swastika.IO.Core.csproj", "{8A86B290-1957-4D92-A24C-B7B5DD7B025C}"
 EndProject
@@ -14,6 +14,8 @@ EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Swastika.IO", "..\..\Swastika-Heart\src\Swastika.IO\Swastika.IO.csproj", "{672C5B3A-0F7C-494A-820F-73B5DB8A9B4A}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Swastika.IO.Identity", "..\..\Swastika-Identity\src\Swastika.IO.Identity\Swastika.IO.Identity.csproj", "{136F0E3D-1F88-4353-8DEE-57A7B88750D5}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ASPNETCoreAngularJWT", "..\..\..\Tutorial\ASPNETcoreAngularJWT\ASPNETCoreAngularJWT.csproj", "{8CFEE743-B8E9-4BE9-961E-E9B84DA08603}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -45,6 +47,10 @@ Global
 		{136F0E3D-1F88-4353-8DEE-57A7B88750D5}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{136F0E3D-1F88-4353-8DEE-57A7B88750D5}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{136F0E3D-1F88-4353-8DEE-57A7B88750D5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8CFEE743-B8E9-4BE9-961E-E9B84DA08603}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8CFEE743-B8E9-4BE9-961E-E9B84DA08603}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8CFEE743-B8E9-4BE9-961E-E9B84DA08603}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8CFEE743-B8E9-4BE9-961E-E9B84DA08603}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

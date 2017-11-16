@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.IdentityModel.Tokens;
+using System;
 using System.Collections.Generic;
 using System.Text;
 
@@ -12,7 +13,7 @@ namespace Swastika.IO.Cms.Lib
         public const string UploadFolder = @"Uploads";
 
         public class AuthConfiguration
-        {            
+        {
             public const string ConnectionString = @"Server=115.77.190.113,4444;Database=stag_swastika_io;UID=sa;Pwd=sqlP@ssw0rd;MultipleActiveResultSets=true";
             public const string ApiEndPoint = "/";
 
@@ -31,18 +32,32 @@ namespace Swastika.IO.Cms.Lib
             public const string OpenIdAuthority = "";
             public const string OpenIdClientId = "";
 
-            public const int AuthCookieExpiration = 150; // In minutes
+            public const int AuthCookieExpiration = 30; // In Seconds
+            public const int AuthCookieRefreshExpiration = 3000; // In Seconds
             public const string AuthCookieLoginPath = "";
             public const string AuthCookieLogoutPath = "";
             public const string AuthCookieAccessDeniedPath = "";
 
-            public const string AuthTokenIssuer= "Swastika";
-            public const string AuthTokenKey = "SwastikaSecretKey";
+            public static string Audience { get; } = "MyAudience";
+            public const string AuthTokenIssuer = "Swastika";
+            public static RsaSecurityKey AuthTokenKey { get; } = new RsaSecurityKey(SWCmsHelper.GenerateKey());
+            public static string TokenType { get; } = "Bearer";
+            public static SigningCredentials SigningCredentials { get; } = new SigningCredentials(AuthTokenKey, SecurityAlgorithms.RsaSha256Signature);
+
+            public static List<string> UserClaims { get; set; }
+                = new List<string>
+                {
+                    "Add User",
+                    "Edit User",
+                    "Delete User"
+                };
         }
         public class Default
         {
-            
+
             public const string ArticleTemplate = @"_Default.cshtml";
+            public const string Specificulture = @"vi-vn";
+            public const string Password = @"1234qwe@";
         }
         public enum ModuleType
         {

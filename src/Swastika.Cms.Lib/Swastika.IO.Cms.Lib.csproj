@@ -5,7 +5,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Compile Remove="Models\Stag_swastika_ioContext.cs" />
+    <Compile Remove="Repositories\AuthRepository.cs" />
   </ItemGroup>
 
   <ItemGroup>

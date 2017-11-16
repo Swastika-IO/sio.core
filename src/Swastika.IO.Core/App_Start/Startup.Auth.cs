@@ -9,6 +9,7 @@ using Swastika.Identity.Data;
 using Swastika.Identity.Models;
 using Swastika.Identity.Services;
 using Swastika.IO.Cms.Lib;
+using Swastika.IO.Identity.Identity.Services;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -36,30 +37,29 @@ namespace Swastika.IO.Admin
         public void ConfigureAuth(IServiceCollection services, IConfiguration configuration)
         {
             string connectionString = SWCmsConstants.AuthConfiguration.ConnectionString;
-            string apiEndPoint = SWCmsConstants.AuthConfiguration.ApiEndPoint;
-
-            string fbId = SWCmsConstants.AuthConfiguration.FacebookId;
-            string fbSecret = SWCmsConstants.AuthConfiguration.FacebookSecret;
-
-            string ggId = SWCmsConstants.AuthConfiguration.GoogleId;
-            string ggSecret = SWCmsConstants.AuthConfiguration.GoogleSecret;
-
-            string msId = SWCmsConstants.AuthConfiguration.MicrosoftId;
-            string msSecret = SWCmsConstants.AuthConfiguration.MicrosoftSecret;
-
-            string twConsumerKey = SWCmsConstants.AuthConfiguration.TwitterKey;
-            string twConsumerSecret = SWCmsConstants.AuthConfiguration.TwitterSecret;
-
-            string openIdAuthority = SWCmsConstants.AuthConfiguration.OpenIdAuthority;
-            string openIdClientId = SWCmsConstants.AuthConfiguration.OpenIdClientId;
-
             int authCookieExpiration = SWCmsConstants.AuthConfiguration.AuthCookieExpiration;
             string authCookieLoginPath = SWCmsConstants.AuthConfiguration.AuthCookieLoginPath;
             string authCookieLogoutPath = SWCmsConstants.AuthConfiguration.AuthCookieLogoutPath;
             string authCookieAccessDeniedPath = SWCmsConstants.AuthConfiguration.AuthCookieAccessDeniedPath;
 
-            string authTokenIssuer = SWCmsConstants.AuthConfiguration.AuthTokenIssuer;
-            string authTokenKey = SWCmsConstants.AuthConfiguration.AuthTokenKey;
+            //string apiEndPoint = SWCmsConstants.AuthConfiguration.ApiEndPoint;
+
+            //string fbId = SWCmsConstants.AuthConfiguration.FacebookId;
+            //string fbSecret = SWCmsConstants.AuthConfiguration.FacebookSecret;
+
+            //string ggId = SWCmsConstants.AuthConfiguration.GoogleId;
+            //string ggSecret = SWCmsConstants.AuthConfiguration.GoogleSecret;
+
+            //string msId = SWCmsConstants.AuthConfiguration.MicrosoftId;
+            //string msSecret = SWCmsConstants.AuthConfiguration.MicrosoftSecret;
+
+            //string twConsumerKey = SWCmsConstants.AuthConfiguration.TwitterKey;
+            //string twConsumerSecret = SWCmsConstants.AuthConfiguration.TwitterSecret;
+
+            //string openIdAuthority = SWCmsConstants.AuthConfiguration.OpenIdAuthority;
+            //string openIdClientId = SWCmsConstants.AuthConfiguration.OpenIdClientId;
+
+            //string authTokenIssuer = SWCmsConstants.AuthConfiguration.AuthTokenIssuer;
 
             services.AddDbContext<ApplicationDbContext>(options =>
         options.UseSqlServer(connectionString));
@@ -71,10 +71,10 @@ namespace Swastika.IO.Admin
             services.Configure<IdentityOptions>(options =>
             {
                 // Password settings
-                options.Password.RequireDigit = true;
-                options.Password.RequiredLength = 8;
+                options.Password.RequireDigit = false;
+                options.Password.RequiredLength = 6;
                 options.Password.RequireNonAlphanumeric = false;
-                options.Password.RequireUppercase = true;
+                options.Password.RequireUppercase = false;
                 options.Password.RequireLowercase = false;
                 options.Password.RequiredUniqueChars = 6;
 
@@ -97,20 +97,28 @@ namespace Swastika.IO.Admin
                 options.AccessDeniedPath = authCookieAccessDeniedPath; // If the AccessDeniedPath is not set here, ASP.NET Core will default to /Account/AccessDenied
                 options.SlidingExpiration = true;
             });
-
+           
             services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
-                .AddJwtBearer(options =>
+                .AddJwtBearer(cfg =>
                 {
-                    options.Audience = apiEndPoint;
-                    options.Authority = apiEndPoint;
-                    options.TokenValidationParameters = new Microsoft.IdentityModel.Tokens.TokenValidationParameters()
+                    cfg.RequireHttpsMetadata = false;
+                    cfg.SaveToken = true;                    
+                    cfg.TokenValidationParameters = new TokenValidationParameters()
                     {
-                        ValidIssuer = authTokenIssuer,
-                        ValidAudience = authTokenIssuer,
-                        IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(authTokenKey))
+                        IssuerSigningKey = SWCmsConstants.AuthConfiguration.AuthTokenKey,
+                        ValidAudience = SWCmsConstants.AuthConfiguration.Audience,
+                        ValidIssuer = SWCmsConstants.AuthConfiguration.AuthTokenIssuer,
+                        // When receiving a token, check that we've signed it.
+                        ValidateIssuerSigningKey = true,
+                        // When receiving a token, check that it is still valid.
+                        ValidateLifetime = true,                       
+                        // This defines the maximum allowable clock skew - i.e. provides a tolerance on the token expiry time 
+                        // when validating the lifetime. As we're creating the tokens locally and validating them on the same 
+                        // machines which should have synchronised time, this can be set to zero. and default value will be 5minutes
+                        ClockSkew = TimeSpan.FromMinutes(0)
                     };
                 })
-                .AddCookie()
+                //.AddCookie()
                // Auth with OpenId
                //.AddOpenIdConnect(options =>
                //{
@@ -144,7 +152,7 @@ namespace Swastika.IO.Admin
                ;
 
             // Add application services.
-            //services.AddTransient<IEmailSender, EmailSender>();
+            services.AddTransient<IEmailSender, EmailSender>();
 
         }
     }

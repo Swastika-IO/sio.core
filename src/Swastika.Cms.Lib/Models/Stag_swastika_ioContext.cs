@@ -14,6 +14,8 @@ namespace Swastika.IO.Cms.Lib.Models
         public virtual DbSet<AspNetUsers> AspNetUsers { get; set; }
         public virtual DbSet<AspNetUserTokens> AspNetUserTokens { get; set; }
         public virtual DbSet<BaseConfiguration> BaseConfiguration { get; set; }
+        public virtual DbSet<Clients> Clients { get; set; }
+        public virtual DbSet<RefreshTokens> RefreshTokens { get; set; }
         public virtual DbSet<SiocArticle> SiocArticle { get; set; }
         public virtual DbSet<SiocArticleModule> SiocArticleModule { get; set; }
         public virtual DbSet<SiocBanner> SiocBanner { get; set; }
@@ -36,7 +38,7 @@ namespace Swastika.IO.Cms.Lib.Models
             if (!optionsBuilder.IsConfigured)
             {
 #warning To protect potentially sensitive information in your connection string, you should move it out of source code. See http://go.microsoft.com/fwlink/?LinkId=723263 for guidance on storing connection strings.
-                optionsBuilder.UseSqlServer(@"Server=115.77.190.113,4444;Database=Stag_swastika_io;UID=sa;Pwd=sql#P@ssw0rd;MultipleActiveResultSets=true");
+                optionsBuilder.UseSqlServer(@"Server=115.77.190.113,4444;Database=Stag_swastika_io;UID=sa;Pwd=sqlP@ssw0rd;MultipleActiveResultSets=true");
             }
         }
 
@@ -144,6 +146,44 @@ namespace Swastika.IO.Cms.Lib.Models
                     .HasPrincipalKey(p => p.Specificulture)
                     .HasForeignKey(d => d.Specificulture)
                     .HasConstraintName("FK_Base_Configuration_TTS_Culture");
+            });
+
+            modelBuilder.Entity<Clients>(entity =>
+            {
+                entity.Property(e => e.Id)
+                    .HasMaxLength(128)
+                    .ValueGeneratedNever();
+
+                entity.Property(e => e.AllowedOrigin).HasMaxLength(100);
+
+                entity.Property(e => e.Name)
+                    .IsRequired()
+                    .HasMaxLength(100);
+
+                entity.Property(e => e.Secret).IsRequired();
+            });
+
+            modelBuilder.Entity<RefreshTokens>(entity =>
+            {
+                entity.Property(e => e.Id)
+                    .HasMaxLength(128)
+                    .ValueGeneratedNever();
+
+                entity.Property(e => e.ClientId)
+                    .IsRequired()
+                    .HasMaxLength(50);
+
+                entity.Property(e => e.Email)
+                    .IsRequired()
+                    .HasMaxLength(256);
+
+                entity.Property(e => e.ExpiresUtc).HasColumnType("datetime");
+
+                entity.Property(e => e.IssuedUtc).HasColumnType("datetime");
+
+                entity.Property(e => e.Subject)
+                    .IsRequired()
+                    .HasMaxLength(50);
             });
 
             modelBuilder.Entity<SiocArticle>(entity =>
