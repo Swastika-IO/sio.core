@@ -5,21 +5,33 @@ import { HttpModule } from '@angular/http';
 import { Routes, RouterModule } from '@angular/router';
 
 import { AppComponent } from './components/app/app.component';
-import { NavMenuComponent } from './components/shared/navmenu/navmenu.component';
-import { FooterComponent } from './components/shared/footer/footer.component';
+//import { NavMenuComponent } from './components/shared/navmenu/navmenu.component';
+//import { FooterComponent } from './components/shared/footer/footer.component';
 
 @NgModule({
     declarations: [
         AppComponent,
-        NavMenuComponent,
-        FooterComponent
+        //NavMenuComponent,
+        //FooterComponent
     ],
     imports: [
         CommonModule,
         HttpModule,
         FormsModule,
         RouterModule.forRoot([
-            { path: '', redirectTo: 'home', pathMatch: 'full' },
+            {
+                path: '',
+                redirectTo: 'front',
+                pathMatch: 'full'
+            },
+            {
+                path: 'front',
+                loadChildren: './areas/front/front.module#FrontModule'
+            },
+            {
+                path: 'portal',
+                loadChildren: './areas/portal/portal.module#PortalModule'
+            },
             {
                 path: 'home',
                 loadChildren: './pages/home/home.module#HomeModule'
