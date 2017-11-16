@@ -21,7 +21,8 @@ module.exports = (env) => {
                 { test: /\.ts$/, include: /ClientApp/, use: ['awesome-typescript-loader?silent=true', 'angular2-template-loader', 'angular-router-loader'] },
                 { test: /\.html$/, use: 'html-loader?minimize=false' },
                 { test: /\.(css|scss)$/, use: [ 'to-string-loader', isDevBuild ? 'css-loader' : 'css-loader?minimize', 'sass-loader' ] },
-                { test: /\.(png|jpg|jpeg|gif|svg)$/, use: 'url-loader?limit=25000' }
+                { test: /\.(png|jpg|jpeg|gif|svg)$/, use: 'url-loader?limit=100000' },
+                { test: /\.(eot|woff|woff2|ttf)([\?]?.*)$/, use: 'url-loader?prefix=font/&limit=10000' }
             ]
         },
         plugins: [new CheckerPlugin()]
