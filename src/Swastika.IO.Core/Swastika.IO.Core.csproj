@@ -17,7 +17,7 @@
 
   <ItemGroup>
     <!-- Files not to publish (note that the 'dist' subfolders are re-added below) -->
-    <Compile Remove="ClientApp\app\components\home\**" />
+    <Compile Remove="ClientApp\app\areas\front\components\home\**" />
     <Content Remove="ClientApp\**" />
   </ItemGroup>
 

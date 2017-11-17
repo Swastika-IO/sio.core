@@ -4,7 +4,7 @@ import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 import { Routes, RouterModule } from '@angular/router';
 
-import { AppComponent } from './components/app/app.component';
+import { AppComponent } from './app.component';
 //import { NavMenuComponent } from './components/shared/navmenu/navmenu.component';
 //import { FooterComponent } from './components/shared/footer/footer.component';
 
