@@ -27,10 +27,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="ClientApp\app\areas\portal\modules\" />
-  </ItemGroup>
-
-  <ItemGroup>
     <None Include="wwwroot\assets\font\css\open-iconic-bootstrap.css.map" />
     <None Include="wwwroot\assets\font\css\open-iconic-bootstrap.less" />
     <None Include="wwwroot\assets\font\css\open-iconic-bootstrap.scss" />
