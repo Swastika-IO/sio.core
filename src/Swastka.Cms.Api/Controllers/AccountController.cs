@@ -126,16 +126,23 @@ namespace Swastika.IO.Core.Controllers
             if (getRefreshToken.IsSucceed)
             {
                 var oldToken = getRefreshToken.Data;
-                var user = await _userManager.FindByEmailAsync(oldToken.Email);
-                var token = await GenerateAccessTokenAsync(user);
-                if (token != null)
+                if (oldToken.ExpiresUtc < DateTime.UtcNow)
+                {
+                    var user = await _userManager.FindByEmailAsync(oldToken.Email);
+                    var token = await GenerateAccessTokenAsync(user);
+                    if (token != null)
+                    {
+                        await oldToken.RemoveModelAsync();
+                    }
+                    result.IsSucceed = true;
+                    result.Data = token;
+                    return result;
+                }
+                else
                 {
                     await oldToken.RemoveModelAsync();
+                    return result;
                 }
-                result.IsSucceed = true;
-                result.Data = token;
-
-                return result;
             }
             else
             {
@@ -152,13 +159,14 @@ namespace Swastika.IO.Core.Controllers
             RepositoryResponse<AccessTokenViewModel> result = new RepositoryResponse<AccessTokenViewModel>();
             if (ModelState.IsValid)
             {
-                var user = new ApplicationUser {
+                var user = new ApplicationUser
+                {
                     UserName = model.UserName,
                     Email = model.Email,
                     FirstName = model.FirstName,
                     LastName = model.LastName,
                     JoinDate = DateTime.UtcNow
-                    
+
                 };
                 var createResult = await _userManager.CreateAsync(user, model.Password);
                 if (createResult.Succeeded)
