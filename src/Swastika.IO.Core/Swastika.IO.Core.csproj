@@ -42,6 +42,11 @@
     <None Include="wwwroot\assets\font\fonts\open-iconic.svg" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Areas\App\Data\" />
+    <Folder Include="Areas\App\Models\" />
+  </ItemGroup>
+
   <Target Name="DebugRunWebpack" BeforeTargets="Build" Condition=" '$(Configuration)' == 'Debug' And !Exists('wwwroot\dist') ">
     <!-- Ensure Node.js is installed -->
     <Exec Command="node --version" ContinueOnError="true">

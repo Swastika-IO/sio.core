@@ -1,12 +1,9 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.SpaServices.Webpack;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using System;
 
 namespace Swastika.IO.Admin
 {
@@ -24,7 +21,16 @@ namespace Swastika.IO.Admin
         {
             ConfigureAuth(services, Configuration);
             ConfigureApiServices(services);
-            services.AddMvc();
+            services.AddDistributedMemoryCache();
+            services.AddMvc()
+                .AddSessionStateTempDataProvider();
+            services.AddSession(options =>
+            {
+                // Set a short timeout for easy testing.
+                options.Cookie.Name = ".SwastikaIO.Session";
+                options.IdleTimeout = TimeSpan.FromSeconds(10);
+                options.Cookie.HttpOnly = true;
+            });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -43,16 +49,18 @@ namespace Swastika.IO.Admin
                 app.UseExceptionHandler("/Home/Error");
             }
 
+            app.UseSession();
             app.UseStaticFiles();
-            app.UseAuthentication()                ;
+            app.UseAuthentication();
 
             app.UseCors("default");
 
             app.UseMvc(routes =>
             {
                 routes.MapRoute(
-                    name: "areaRoute",
-                    template: "{area:exists}/{controller=Home}/{action=Index}");
+                    name: "areas",
+                    template: "{area:exists}/{controller=Home}/{action=Index}/{id?}"
+                );
 
                 routes.MapRoute(
                     name: "default",
@@ -62,8 +70,6 @@ namespace Swastika.IO.Admin
                     name: "spa-fallback",
                     defaults: new { controller = "Home", action = "Index" });
             });
-
-
         }
     }
 }

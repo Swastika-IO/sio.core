@@ -19,13 +19,13 @@ import { AppComponent } from './app.component';
         HttpModule,
         FormsModule,
         RouterModule.forRoot([
+            //{
+            //    path: '',
+            //    redirectTo: 'front',
+            //    pathMatch: 'full'
+            //},
             {
                 path: '',
-                redirectTo: 'front',
-                pathMatch: 'full'
-            },
-            {
-                path: 'front',
                 loadChildren: './areas/front/front.module#FrontModule'
             },
             {
