@@ -335,11 +335,12 @@ namespace Swastika.Cms.Lib.ViewModels
                         }
                         else
                         {
-                            var saveResult = await item.RemoveModelAsync(false, _context, _transaction);
+                            var saveResult = await item.RemoveModelAsync(true, _context, _transaction);
                             result = saveResult.IsSucceed;
                             if (!result)
                             {
                                 Errors.AddRange(saveResult.Errors);
+                                Ex = saveResult.Ex;
                             }
                         }
                     }
@@ -441,7 +442,9 @@ namespace Swastika.Cms.Lib.ViewModels
                 return new RepositoryResponse<bool>()
                 {
                     IsSucceed = result,
-                    Data = result
+                    Data = result,
+                    Errors = Errors,
+                    Ex = Ex
                 };
 
             }

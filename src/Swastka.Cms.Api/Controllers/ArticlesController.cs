@@ -1,4 +1,6 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.Data.OData.Query;
 using Swastika.Cms.Lib.Models;
 using Swastika.Cms.Lib.ViewModels;
@@ -12,6 +14,7 @@ using System.Threading.Tasks;
 
 namespace Swastka.Cms.Api.Controllers
 {
+    [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
     [Route("api/{culture}/[controller]")]
     public class ArticlesController :
         BaseAPIController<SiocCmsContext, SiocArticle>
