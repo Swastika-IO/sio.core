@@ -2,18 +2,38 @@
 import { RouterModule } from '@angular/router';
 import { PortalComponent } from './portal.component';
 
-//import { HeaderComponent } from '../../components/modules/portal/header/header.component';
-//import { FeaturesComponent } from '../../components/modules/portal/features/features.component';
+import { HeaderComponent } from './components/header/header.component';
+import { SidebarComponent } from './components/sidebar/sidebar.component';
 
 @NgModule({
     imports: [
-        RouterModule.forChild([{ path: '', component: PortalComponent }])
+        RouterModule.forChild([
+            {
+                path: '',
+                component: PortalComponent,
+                children: [
+                    {
+                        path: '',
+                        redirectTo: 'dashboard',
+                        pathMatch: 'full'
+                    },
+                    {
+                        path: 'dashboard',
+                        loadChildren: './modules/dashboard/dashboard.module#PortalDashboardModule',
+                    },
+                    {
+                        path: 'article',
+                        loadChildren: './modules/article/article.module#PortalArticleModule',
+                    }
+                ]
+            },
+        ])
     ],
     exports: [RouterModule],
     declarations: [
         PortalComponent,
-        //HeaderComponent,
-        //FeaturesComponent
+        HeaderComponent,
+        SidebarComponent,
     ]
 })
 

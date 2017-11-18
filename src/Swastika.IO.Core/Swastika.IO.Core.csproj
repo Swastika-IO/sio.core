@@ -17,18 +17,13 @@
 
   <ItemGroup>
     <!-- Files not to publish (note that the 'dist' subfolders are re-added below) -->
-    <Compile Remove="ClientApp\app\components\home\**" />
+    <Compile Remove="ClientApp\app\areas\front\components\home\**" />
     <Content Remove="ClientApp\**" />
   </ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\..\..\Swastika-Identity\src\Swastika.IO.Identity\Swastika.IO.Identity.csproj" />
     <ProjectReference Include="..\Swastka.Cms.Api\Swastka.IO.Cms.Api.csproj" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="ClientApp\app\areas\portal\modules\" />
-    <Folder Include="ClientApp\app\areas\portal\components\" />
   </ItemGroup>
 
   <ItemGroup>
