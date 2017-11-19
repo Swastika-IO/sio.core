@@ -14,7 +14,9 @@ using System.Threading.Tasks;
 
 namespace Swastka.Cms.Api.Controllers
 {
-    [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
+    [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme
+        //, Policy = "AddEditUser"
+        )]
     [Route("api/{culture}/[controller]")]
     public class ArticlesController :
         BaseAPIController<SiocCmsContext, SiocArticle>

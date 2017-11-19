@@ -32,6 +32,16 @@ namespace Swastika.IO.Admin
                     policy.WithExposedHeaders("WWW-Authenticate");
                 });
             });
+
+            services.AddAuthorization(options =>
+            {
+                options.AddPolicy("AddEditUser", policy =>
+                {
+                    policy.RequireClaim("Add User", "Add User");
+                    policy.RequireClaim("Edit User", "Edit User");
+                });
+                options.AddPolicy("DeleteUser", policy => policy.RequireClaim("Delete User", "Delete User"));
+            });
         }
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureAuth(IServiceCollection services, IConfiguration configuration)

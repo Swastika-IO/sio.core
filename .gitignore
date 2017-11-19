@@ -248,3 +248,4 @@ ModelManifest.xml
 /src/Swastka.Cms.Api/bin
 /src/Swastika.Cms.Lib/bin
 /src/Swastika.Cms.Lib/obj
+/src/.vs
