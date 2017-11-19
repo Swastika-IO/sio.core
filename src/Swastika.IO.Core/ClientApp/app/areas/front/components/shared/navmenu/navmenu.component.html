@@ -20,7 +20,7 @@
         </div>
         <div class="navbar-translate">
             <a class="navbar-brand" href="http://www.swastika.io" rel="tooltip" title="Designed by Invision. Coded by Creative Tim" data-placement="bottom" target="_blank">
-                Swastika I/O
+                Swastika I/O (SPA)
             </a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navigation" aria-controls="navigation-index" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-bar bar1"></span>
@@ -31,7 +31,7 @@
         <div class="collapse navbar-collapse" data-nav-image="../assets/img/blurred-image-1.jpg" data-color="orange">
             <ul class="navbar-nav ml-auto">
                 <li class="nav-item" [routerLinkActive]="['link-active']">
-                    <a class="nav-link" [routerLink]="['/home']">
+                    <a class="nav-link" [routerLink]="['/']">
                         <i class='now-ui-icons design_app'></i> <p>Home</p>
                     </a>
                 </li>
@@ -45,11 +45,23 @@
                         <i class='now-ui-icons files_paper'></i> <p>Blog</p>
                     </a>
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="/portal/">
+                <li class="nav-item" [routerLinkActive]="['link-active']">
+                    <a class="nav-link" [routerLink]="['/portal']">
                         <i class='now-ui-icons ui-1_settings-gear-63'></i> <p>Portal</p>
                     </a>
                 </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/ngx-admin?app=false">
+                        <i class='now-ui-icons ui-1_settings-gear-63'></i> <p>ngx-admin</p>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/?app=false">
+                        <i class='now-ui-icons ui-1_settings-gear-63'></i> <p>MVC Mode</p>
+                    </a>
+                </li>
+
+
                 <!-- <li class="nav-item" [routerLinkActive]="['link-active']">
                     <a class="nav-link" [routerLink]="['/fetch-data']">
                         <i class='now-ui-icons shopping_box'></i> <p>Fetch data</p>

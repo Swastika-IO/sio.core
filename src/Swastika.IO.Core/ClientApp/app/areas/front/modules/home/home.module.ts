@@ -2,8 +2,8 @@
 import { RouterModule } from '@angular/router';
 import { HomeComponent } from './home.component';
 
-import { HeaderComponent } from './components/header/header.component';
-import { FeaturesComponent } from './components/features/features.component';
+import { HeaderComponent } from './header/header.component';
+import { FeaturesComponent } from './features/features.component';
 
 @NgModule({
     imports: [

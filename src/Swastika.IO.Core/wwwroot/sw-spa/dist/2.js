@@ -1,20 +1,50 @@
 webpackJsonp([2],{
 
-/***/ 23:
+/***/ 108:
+/***/ (function(module, exports, __webpack_require__) {
+
+
+        var result = __webpack_require__(73);
+
+        if (typeof result === "string") {
+            module.exports = result;
+        } else {
+            module.exports = result.toString();
+        }
+    
+
+/***/ }),
+
+/***/ 109:
+/***/ (function(module, exports, __webpack_require__) {
+
+
+        var result = __webpack_require__(74);
+
+        if (typeof result === "string") {
+            module.exports = result;
+        } else {
+            module.exports = result.toString();
+        }
+    
+
+/***/ }),
+
+/***/ 38:
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports = __webpack_require__.p + "e71a46732da747f87312714c6642b092.jpg";
 
 /***/ }),
 
-/***/ 24:
+/***/ 39:
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports = __webpack_require__.p + "8d1a4a68a9dbd9f287427c8744a2dc3d.jpg";
 
 /***/ }),
 
-/***/ 32:
+/***/ 46:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -33,7 +63,7 @@ var BlogComponent = (function () {
     BlogComponent = __decorate([
         __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
             selector: 'blog',
-            template: __webpack_require__(77)
+            template: __webpack_require__(90)
         })
     ], BlogComponent);
     return BlogComponent;
@@ -43,17 +73,17 @@ var BlogComponent = (function () {
 
 /***/ }),
 
-/***/ 33:
+/***/ 47:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "BlogModule", function() { return BlogModule; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(1);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_router__ = __webpack_require__(9);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__blog_component__ = __webpack_require__(32);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__header_header_component__ = __webpack_require__(34);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__list_list_component__ = __webpack_require__(35);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_router__ = __webpack_require__(8);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__blog_component__ = __webpack_require__(46);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__header_header_component__ = __webpack_require__(48);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__list_list_component__ = __webpack_require__(49);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -93,7 +123,7 @@ var BlogModule = (function () {
 
 /***/ }),
 
-/***/ 34:
+/***/ 48:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -112,8 +142,8 @@ var HeaderComponent = (function () {
     HeaderComponent = __decorate([
         __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
             selector: 'sw-header',
-            template: __webpack_require__(78),
-            styles: [__webpack_require__(95)]
+            template: __webpack_require__(91),
+            styles: [__webpack_require__(108)]
         })
     ], HeaderComponent);
     return HeaderComponent;
@@ -123,7 +153,7 @@ var HeaderComponent = (function () {
 
 /***/ }),
 
-/***/ 35:
+/***/ 49:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -142,8 +172,8 @@ var ListComponent = (function () {
     ListComponent = __decorate([
         __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
             selector: 'sw-list',
-            template: __webpack_require__(79),
-            styles: [__webpack_require__(96)]
+            template: __webpack_require__(92),
+            styles: [__webpack_require__(109)]
         })
     ], ListComponent);
     return ListComponent;
@@ -153,10 +183,10 @@ var ListComponent = (function () {
 
 /***/ }),
 
-/***/ 59:
+/***/ 73:
 /***/ (function(module, exports, __webpack_require__) {
 
-exports = module.exports = __webpack_require__(8)(undefined);
+exports = module.exports = __webpack_require__(7)(undefined);
 // imports
 
 
@@ -168,10 +198,10 @@ exports.push([module.i, "", ""]);
 
 /***/ }),
 
-/***/ 60:
+/***/ 74:
 /***/ (function(module, exports, __webpack_require__) {
 
-exports = module.exports = __webpack_require__(8)(undefined);
+exports = module.exports = __webpack_require__(7)(undefined);
 // imports
 
 
@@ -183,54 +213,24 @@ exports.push([module.i, "", ""]);
 
 /***/ }),
 
-/***/ 77:
+/***/ 90:
 /***/ (function(module, exports) {
 
-module.exports = "<sw-header></sw-header>\n<sw-list></sw-list>";
+module.exports = "<sw-header></sw-header>\r\n<sw-list></sw-list>";
 
 /***/ }),
 
-/***/ 78:
+/***/ 91:
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"page-header page-header-small\">\n    <div class=\"page-header-image\" data-parallax=\"true\" style=\"background-image: url('../../../../../themes/now-ui-kit-pro-v1.1.0/img/bg14.jpg');\">\n    </div>\n    <div class=\"content-center\">\n        <h1 class=\"title\">Our journey.</h1>\n        <div class=\"text-center\">\n            <a href=\"#pablo\" class=\"btn btn-primary btn-icon  btn-round\">\n                <i class=\"fa fa-facebook-square\"></i>\n            </a>\n            <a href=\"#pablo\" class=\"btn btn-primary btn-icon btn-round\">\n                <i class=\"fa fa-twitter\"></i>\n            </a>\n            <a href=\"#pablo\" class=\"btn btn-primary btn-icon btn-round\">\n                <i class=\"fa fa-google-plus\"></i>\n            </a>\n        </div>\n    </div>\n</div>";
+module.exports = "<div class=\"page-header page-header-small\">\r\n    <div class=\"page-header-image\" data-parallax=\"true\" style=\"background-image: url('../../../../../themes/now-ui-kit-pro-v1.1.0/img/bg14.jpg');\">\r\n    </div>\r\n    <div class=\"content-center\">\r\n        <h1 class=\"title\">Our journey.</h1>\r\n        <div class=\"text-center\">\r\n            <a href=\"#pablo\" class=\"btn btn-primary btn-icon  btn-round\">\r\n                <i class=\"fa fa-facebook-square\"></i>\r\n            </a>\r\n            <a href=\"#pablo\" class=\"btn btn-primary btn-icon btn-round\">\r\n                <i class=\"fa fa-twitter\"></i>\r\n            </a>\r\n            <a href=\"#pablo\" class=\"btn btn-primary btn-icon btn-round\">\r\n                <i class=\"fa fa-google-plus\"></i>\r\n            </a>\r\n        </div>\r\n    </div>\r\n</div>";
 
 /***/ }),
 
-/***/ 79:
+/***/ 92:
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = "<div class=\"cd-section\" id=\"blogs\">\n    <!--     *********     BLOGS 1      *********      -->\n    <div class=\"blogs-1\" id=\"blogs-1\">\n        <div class=\"container\">\n            <div class=\"row\">\n                <div class=\"col-md-10 ml-auto mr-auto\">\n                    <h2 class=\"title\">Latest Blogposts</h2>\n                    <br />\n                    <div class=\"card card-plain card-blog\">\n                        <div class=\"row\">\n                            <div class=\"col-md-5\">\n                                <div class=\"card-image\">\n                                    <img class=\"img img-raised rounded\" src=\"" + __webpack_require__(23) + "\" />\n                                </div>\n                            </div>\n                            <div class=\"col-md-7\">\n                                <h6 class=\"category text-info\">Enterprise</h6>\n                                <h3 class=\"card-title\">\n                                    <a href=\"#pablo\">Warner Music Group buys concert discovery service Songkick</a>\n                                </h3>\n                                <p class=\"card-description\">\n                                    Warner Music Group announced today it’s acquiring the selected of the music platform Songkick, including its app for finding concerts and the company’s trademark. Songkick has been involved in a lawsuit against the major…\n                                    <a [routerLink]=\"['/blog-detail/123']\"> Read More </a>\n                                </p>\n                                <p class=\"author\">\n                                    by\n                                    <a href=\"#pablo\">\n                                        <b>Sarah Perez</b>\n                                    </a>, 2 days ago\n                            </div>\n                        </div>\n                    </div>\n                    <div class=\"card card-plain card-blog\">\n                        <div class=\"row\">\n                            <div class=\"col-md-7\">\n                                <h6 class=\"category text-danger\">\n                                    <i class=\"now-ui-icons now-ui-icons media-2_sound-wave\"></i> Startup\n                                </h6>\n                                <h3 class=\"card-title\">\n                                    <a href=\"#pablo\">Insticator raises $5.2M to help publishers</a>\n                                </h3>\n                                <p class=\"card-description\">\n                                    Insticator is announcing that it has raised $5.2 million in Series A funding. The startup allows online publishers to add quizzes, polls and other interactive elements (either created by Insticator or by the publisher themselves) to their stories.\n                                    <a [routerLink]=\"['/blog-detail/123']\"> Read More </a>\n                                </p>\n                                <p class=\"author\">\n                                    by\n                                    <a href=\"#pablo\">\n                                        <b>Anthony Ha</b>\n                                    </a>, 5 days ago\n                            </div>\n                            <div class=\"col-md-5\">\n                                <div class=\"card-image\">\n                                    <img class=\"img img-raised rounded\" src=\"" + __webpack_require__(24) + "\" />\n                                </div>\n                            </div>\n                        </div>\n                    </div>\n                    <div class=\"card card-plain card-blog\">\n                        <div class=\"row\">\n                            <div class=\"col-md-5\">\n                                <div class=\"card-image\">\n                                    <img class=\"img img-raised rounded\" src=\"" + __webpack_require__(23) + "\" />\n                                </div>\n                            </div>\n                            <div class=\"col-md-7\">\n                                <h6 class=\"category text-info\">Enterprise</h6>\n                                <h3 class=\"card-title\">\n                                    <a href=\"#pablo\">Warner Music Group buys concert discovery service Songkick</a>\n                                </h3>\n                                <p class=\"card-description\">\n                                    Warner Music Group announced today it’s acquiring the selected of the music platform Songkick, including its app for finding concerts and the company’s trademark. Songkick has been involved in a lawsuit against the major…\n                                    <a [routerLink]=\"['/blog-detail/123']\"> Read More </a>\n                                </p>\n                                <p class=\"author\">\n                                    by\n                                    <a href=\"#pablo\">\n                                        <b>Sarah Perez</b>\n                                    </a>, 2 days ago\n                            </div>\n                        </div>\n                    </div>\n                    <div class=\"card card-plain card-blog\">\n                        <div class=\"row\">\n                            <div class=\"col-md-7\">\n                                <h6 class=\"category text-danger\">\n                                    <i class=\"now-ui-icons now-ui-icons media-2_sound-wave\"></i> Startup\n                                </h6>\n                                <h3 class=\"card-title\">\n                                    <a href=\"#pablo\">Insticator raises $5.2M to help publishers</a>\n                                </h3>\n                                <p class=\"card-description\">\n                                    Insticator is announcing that it has raised $5.2 million in Series A funding. The startup allows online publishers to add quizzes, polls and other interactive elements (either created by Insticator or by the publisher themselves) to their stories.\n                                    <a [routerLink]=\"['/blog-detail/123']\"> Read More </a>\n                                </p>\n                                <p class=\"author\">\n                                    by\n                                    <a href=\"#pablo\">\n                                        <b>Anthony Ha</b>\n                                    </a>, 5 days ago\n                            </div>\n                            <div class=\"col-md-5\">\n                                <div class=\"card-image\">\n                                    <img class=\"img img-raised rounded\" src=\"" + __webpack_require__(24) + "\" />\n                                </div>\n                            </div>\n                        </div>\n                    </div>\n                </div>\n            </div>\n        </div>\n    </div>\n    <!--     *********    END BLOGS 1      *********      -->\n\n</div>";
-
-/***/ }),
-
-/***/ 95:
-/***/ (function(module, exports, __webpack_require__) {
-
-
-        var result = __webpack_require__(59);
-
-        if (typeof result === "string") {
-            module.exports = result;
-        } else {
-            module.exports = result.toString();
-        }
-    
-
-/***/ }),
-
-/***/ 96:
-/***/ (function(module, exports, __webpack_require__) {
-
-
-        var result = __webpack_require__(60);
-
-        if (typeof result === "string") {
-            module.exports = result;
-        } else {
-            module.exports = result.toString();
-        }
-    
+module.exports = "<div class=\"cd-section\" id=\"blogs\">\r\n    <!--     *********     BLOGS 1      *********      -->\r\n    <div class=\"blogs-1\" id=\"blogs-1\">\r\n        <div class=\"container\">\r\n            <div class=\"row\">\r\n                <div class=\"col-md-10 ml-auto mr-auto\">\r\n                    <h2 class=\"title\">Latest Blogposts</h2>\r\n                    <br />\r\n                    <div class=\"card card-plain card-blog\">\r\n                        <div class=\"row\">\r\n                            <div class=\"col-md-5\">\r\n                                <div class=\"card-image\">\r\n                                    <img class=\"img img-raised rounded\" src=\"" + __webpack_require__(38) + "\" />\r\n                                </div>\r\n                            </div>\r\n                            <div class=\"col-md-7\">\r\n                                <h6 class=\"category text-info\">Enterprise</h6>\r\n                                <h3 class=\"card-title\">\r\n                                    <a href=\"#pablo\">Warner Music Group buys concert discovery service Songkick</a>\r\n                                </h3>\r\n                                <p class=\"card-description\">\r\n                                    Warner Music Group announced today it’s acquiring the selected of the music platform Songkick, including its app for finding concerts and the company’s trademark. Songkick has been involved in a lawsuit against the major…\r\n                                    <a [routerLink]=\"['/blog-detail/123']\"> Read More </a>\r\n                                </p>\r\n                                <p class=\"author\">\r\n                                    by\r\n                                    <a href=\"#pablo\">\r\n                                        <b>Sarah Perez</b>\r\n                                    </a>, 2 days ago\r\n                            </div>\r\n                        </div>\r\n                    </div>\r\n                    <div class=\"card card-plain card-blog\">\r\n                        <div class=\"row\">\r\n                            <div class=\"col-md-7\">\r\n                                <h6 class=\"category text-danger\">\r\n                                    <i class=\"now-ui-icons now-ui-icons media-2_sound-wave\"></i> Startup\r\n                                </h6>\r\n                                <h3 class=\"card-title\">\r\n                                    <a href=\"#pablo\">Insticator raises $5.2M to help publishers</a>\r\n                                </h3>\r\n                                <p class=\"card-description\">\r\n                                    Insticator is announcing that it has raised $5.2 million in Series A funding. The startup allows online publishers to add quizzes, polls and other interactive elements (either created by Insticator or by the publisher themselves) to their stories.\r\n                                    <a [routerLink]=\"['/blog-detail/123']\"> Read More </a>\r\n                                </p>\r\n                                <p class=\"author\">\r\n                                    by\r\n                                    <a href=\"#pablo\">\r\n                                        <b>Anthony Ha</b>\r\n                                    </a>, 5 days ago\r\n                            </div>\r\n                            <div class=\"col-md-5\">\r\n                                <div class=\"card-image\">\r\n                                    <img class=\"img img-raised rounded\" src=\"" + __webpack_require__(39) + "\" />\r\n                                </div>\r\n                            </div>\r\n                        </div>\r\n                    </div>\r\n                    <div class=\"card card-plain card-blog\">\r\n                        <div class=\"row\">\r\n                            <div class=\"col-md-5\">\r\n                                <div class=\"card-image\">\r\n                                    <img class=\"img img-raised rounded\" src=\"" + __webpack_require__(38) + "\" />\r\n                                </div>\r\n                            </div>\r\n                            <div class=\"col-md-7\">\r\n                                <h6 class=\"category text-info\">Enterprise</h6>\r\n                                <h3 class=\"card-title\">\r\n                                    <a href=\"#pablo\">Warner Music Group buys concert discovery service Songkick</a>\r\n                                </h3>\r\n                                <p class=\"card-description\">\r\n                                    Warner Music Group announced today it’s acquiring the selected of the music platform Songkick, including its app for finding concerts and the company’s trademark. Songkick has been involved in a lawsuit against the major…\r\n                                    <a [routerLink]=\"['/blog-detail/123']\"> Read More </a>\r\n                                </p>\r\n                                <p class=\"author\">\r\n                                    by\r\n                                    <a href=\"#pablo\">\r\n                                        <b>Sarah Perez</b>\r\n                                    </a>, 2 days ago\r\n                            </div>\r\n                        </div>\r\n                    </div>\r\n                    <div class=\"card card-plain card-blog\">\r\n                        <div class=\"row\">\r\n                            <div class=\"col-md-7\">\r\n                                <h6 class=\"category text-danger\">\r\n                                    <i class=\"now-ui-icons now-ui-icons media-2_sound-wave\"></i> Startup\r\n                                </h6>\r\n                                <h3 class=\"card-title\">\r\n                                    <a href=\"#pablo\">Insticator raises $5.2M to help publishers</a>\r\n                                </h3>\r\n                                <p class=\"card-description\">\r\n                                    Insticator is announcing that it has raised $5.2 million in Series A funding. The startup allows online publishers to add quizzes, polls and other interactive elements (either created by Insticator or by the publisher themselves) to their stories.\r\n                                    <a [routerLink]=\"['/blog-detail/123']\"> Read More </a>\r\n                                </p>\r\n                                <p class=\"author\">\r\n                                    by\r\n                                    <a href=\"#pablo\">\r\n                                        <b>Anthony Ha</b>\r\n                                    </a>, 5 days ago\r\n                            </div>\r\n                            <div class=\"col-md-5\">\r\n                                <div class=\"card-image\">\r\n                                    <img class=\"img img-raised rounded\" src=\"" + __webpack_require__(39) + "\" />\r\n                                </div>\r\n                            </div>\r\n                        </div>\r\n                    </div>\r\n                </div>\r\n            </div>\r\n        </div>\r\n    </div>\r\n    <!--     *********    END BLOGS 1      *********      -->\r\n\r\n</div>";
 
 /***/ })
 

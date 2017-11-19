@@ -1,6 +1,6 @@
 webpackJsonp([10],{
 
-/***/ 36:
+/***/ 50:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -23,7 +23,7 @@ var CounterComponent = (function () {
     CounterComponent = __decorate([
         __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
             selector: 'counter',
-            template: __webpack_require__(80)
+            template: __webpack_require__(93)
         })
     ], CounterComponent);
     return CounterComponent;
@@ -33,15 +33,15 @@ var CounterComponent = (function () {
 
 /***/ }),
 
-/***/ 37:
+/***/ 51:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "CounterModule", function() { return CounterModule; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(1);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_router__ = __webpack_require__(9);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__counter_component__ = __webpack_require__(36);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_router__ = __webpack_require__(8);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__counter_component__ = __webpack_require__(50);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -70,10 +70,10 @@ var CounterModule = (function () {
 
 /***/ }),
 
-/***/ 80:
+/***/ 93:
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"page-header page-header-small\">\n    <div class=\"page-header-image\" data-parallax=\"true\" style=\"background-image: url('../../../../themes/now-ui-kit-pro-v1.1.0/img/bg26.jpg');\">\n    </div>\n    <div class=\"content-center\">\n        <h1 class=\"title\">Counter</h1>\n        <div class=\"text-center\">\n\n            <p>This is a simple example of an Angular component.</p>\n\n            <p>Current count: <strong>{{ currentCount }}</strong></p>\n\n            <button (click)=\"incrementCounter()\">Increment</button>\n        </div>\n    </div>\n</div>\n\n";
+module.exports = "<div class=\"page-header page-header-small\">\r\n    <div class=\"page-header-image\" data-parallax=\"true\" style=\"background-image: url('../../../../themes/now-ui-kit-pro-v1.1.0/img/bg26.jpg');\">\r\n    </div>\r\n    <div class=\"content-center\">\r\n        <h1 class=\"title\">Counter</h1>\r\n        <div class=\"text-center\">\r\n\r\n            <p>This is a simple example of an Angular component.</p>\r\n\r\n            <p>Current count: <strong>{{ currentCount }}</strong></p>\r\n\r\n            <button (click)=\"incrementCounter()\">Increment</button>\r\n        </div>\r\n    </div>\r\n</div>\r\n\r\n";
 
 /***/ })
 

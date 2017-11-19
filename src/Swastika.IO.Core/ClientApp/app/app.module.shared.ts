@@ -28,7 +28,7 @@ import { AppComponent } from './app.component';
                 path: 'portal',
                 loadChildren: './areas/portal/portal.module#PortalModule'
             },
-            { path: '**', redirectTo: 'home' }
+            { path: '**', redirectTo: '' }
         ])
     ]
 })

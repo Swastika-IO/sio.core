@@ -12,13 +12,13 @@ import { SidebarComponent } from './components/sidebar/sidebar.component';
                 path: '',
                 component: PortalComponent,
                 children: [
+                    //{
+                    //    path: '',
+                    //    redirectTo: 'dashboard',
+                    //    pathMatch: 'full'
+                    //},
                     {
                         path: '',
-                        redirectTo: 'dashboard',
-                        pathMatch: 'full'
-                    },
-                    {
-                        path: 'dashboard',
                         loadChildren: './modules/dashboard/dashboard.module#PortalDashboardModule',
                     },
                     {

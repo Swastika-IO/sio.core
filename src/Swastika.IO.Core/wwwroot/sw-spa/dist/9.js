@@ -1,12 +1,12 @@
 webpackJsonp([9],{
 
-/***/ 38:
+/***/ 52:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return FetchDataComponent; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(1);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_http__ = __webpack_require__(10);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_http__ = __webpack_require__(9);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -31,7 +31,7 @@ var FetchDataComponent = (function () {
     FetchDataComponent = __decorate([
         __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
             selector: 'fetchdata',
-            template: __webpack_require__(81)
+            template: __webpack_require__(94)
         }),
         __param(1, __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Inject"])('BASE_URL')),
         __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1__angular_http__["Http"], String])
@@ -43,15 +43,15 @@ var FetchDataComponent = (function () {
 
 /***/ }),
 
-/***/ 39:
+/***/ 53:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "FetchdataModule", function() { return FetchdataModule; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(1);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_router__ = __webpack_require__(9);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__fetchdata_component__ = __webpack_require__(38);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_router__ = __webpack_require__(8);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__fetchdata_component__ = __webpack_require__(52);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -80,10 +80,10 @@ var FetchdataModule = (function () {
 
 /***/ }),
 
-/***/ 81:
+/***/ 94:
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"page-header page-header-small\">\n    <div class=\"page-header-image\" data-parallax=\"true\" style=\"background-image: url('../../../../themes/now-ui-kit-pro-v1.1.0/img/bg26.jpg');\">\n    </div>\n    <div class=\"content-center\">\n        <h1 class=\"title\">Weather forecast</h1>\n        <div class=\"text-center\">\n            <p>This component demonstrates fetching data from the server.</p>\n\n            <p *ngIf=\"!forecasts\"><em>Loading...</em></p>\n\n            <table class='table' *ngIf=\"forecasts\">\n                <thead>\n                    <tr>\n                        <th>Date</th>\n                        <th>Temp. (C)</th>\n                        <th>Temp. (F)</th>\n                        <th>Summary</th>\n                    </tr>\n                </thead>\n                <tbody>\n                    <tr *ngFor=\"let forecast of forecasts\">\n                        <td>{{ forecast.dateFormatted }}</td>\n                        <td>{{ forecast.temperatureC }}</td>\n                        <td>{{ forecast.temperatureF }}</td>\n                        <td>{{ forecast.summary }}</td>\n                    </tr>\n                </tbody>\n            </table>\n\n        </div>\n    </div>\n</div>\n";
+module.exports = "<div class=\"page-header page-header-small\">\r\n    <div class=\"page-header-image\" data-parallax=\"true\" style=\"background-image: url('../../../../themes/now-ui-kit-pro-v1.1.0/img/bg26.jpg');\">\r\n    </div>\r\n    <div class=\"content-center\">\r\n        <h1 class=\"title\">Weather forecast</h1>\r\n        <div class=\"text-center\">\r\n            <p>This component demonstrates fetching data from the server.</p>\r\n\r\n            <p *ngIf=\"!forecasts\"><em>Loading...</em></p>\r\n\r\n            <table class='table' *ngIf=\"forecasts\">\r\n                <thead>\r\n                    <tr>\r\n                        <th>Date</th>\r\n                        <th>Temp. (C)</th>\r\n                        <th>Temp. (F)</th>\r\n                        <th>Summary</th>\r\n                    </tr>\r\n                </thead>\r\n                <tbody>\r\n                    <tr *ngFor=\"let forecast of forecasts\">\r\n                        <td>{{ forecast.dateFormatted }}</td>\r\n                        <td>{{ forecast.temperatureC }}</td>\r\n                        <td>{{ forecast.temperatureF }}</td>\r\n                        <td>{{ forecast.summary }}</td>\r\n                    </tr>\r\n                </tbody>\r\n            </table>\r\n\r\n        </div>\r\n    </div>\r\n</div>\r\n";
 
 /***/ })
 

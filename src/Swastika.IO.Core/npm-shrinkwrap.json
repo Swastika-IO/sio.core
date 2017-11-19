@@ -1766,9 +1766,9 @@
       }
     },
     "bootstrap": {
-      "version": "4.0.0-beta",
-      "resolved": "https://registry.npmjs.org/bootstrap/-/bootstrap-4.0.0-beta.tgz",
-      "integrity": "sha1-3FkoF10ucTELxmjPngWpByEbcqY="
+      "version": "4.0.0-beta.2",
+      "resolved": "https://registry.npmjs.org/bootstrap/-/bootstrap-4.0.0-beta.2.tgz",
+      "integrity": "sha512-DzGtdTlKbrMoGMpz0LigKSqJ+MgtFKxA791PU/q062OlRG0HybNZcTLH7rpDAmLS66Y3esN9yzKHLLbqa5UR3w=="
     },
     "brace-expansion": {
       "version": "1.1.8",
@@ -6253,9 +6253,9 @@
       }
     },
     "popper.js": {
-      "version": "1.11.0",
-      "resolved": "https://registry.npmjs.org/popper.js/-/popper.js-1.11.0.tgz",
-      "integrity": "sha1-AQPyOsDJIh2UTn8l46ukwvc5h94="
+      "version": "1.12.9",
+      "resolved": "https://registry.npmjs.org/popper.js/-/popper.js-1.12.9.tgz",
+      "integrity": "sha1-DfvC3/lsRRuzMu3Pz6r1ZtMx1bM="
     },
     "preboot": {
       "version": "4.5.2",

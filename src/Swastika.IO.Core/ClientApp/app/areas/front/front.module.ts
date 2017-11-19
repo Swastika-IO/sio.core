@@ -10,28 +10,30 @@ import { FooterComponent } from './components/shared/footer/footer.component';
         RouterModule.forChild([
             {
                 path: '',
-                component: FrontComponent
-            },
-            {
-                path: 'home',
-                loadChildren: './modules/home/home.module#HomeModule'
-            },
-            {
-                path: 'blog',
-                loadChildren: './modules/blog/blog.module#BlogModule'
-            },
-            {
-                path: 'blog-detail/:id',
-                loadChildren: './modules/blog-item/item.module#ItemModule'
-            },
-            {
-                path: 'counter',
-                loadChildren: './modules/counter/counter.module#CounterModule'
-            },
-            {
-                path: 'fetch-data',
-                loadChildren: './modules/fetchdata/fetchdata.module#FetchdataModule'
-            },
+                component: FrontComponent,
+                children: [
+                    {
+                        path: '',
+                        loadChildren: './modules/home/home.module#HomeModule'
+                    },
+                    {
+                        path: 'blog',
+                        loadChildren: './modules/blog/blog.module#BlogModule'
+                    },
+                    {
+                        path: 'blog-detail/:id',
+                        loadChildren: './modules/blog-item/item.module#ItemModule'
+                    },
+                    {
+                        path: 'counter',
+                        loadChildren: './modules/counter/counter.module#CounterModule'
+                    },
+                    {
+                        path: 'fetch-data',
+                        loadChildren: './modules/fetchdata/fetchdata.module#FetchdataModule'
+                    }
+                ]
+            }
         ])
     ],
     exports: [RouterModule],

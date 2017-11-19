@@ -28,7 +28,7 @@ namespace Swastika.IO.Admin
             {
                 // Set a short timeout for easy testing.
                 options.Cookie.Name = ".SwastikaIO.Session";
-                options.IdleTimeout = TimeSpan.FromSeconds(10);
+                //options.IdleTimeout = TimeSpan.FromSeconds(10);
                 options.Cookie.HttpOnly = true;
             });
         }
