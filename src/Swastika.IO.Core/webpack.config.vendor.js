@@ -62,7 +62,7 @@ module.exports = (env) => {
             // But for production builds, leave the tree-shakable ones out so the AOT compiler can produce a smaller bundle.
             vendor: isDevBuild ? allModules : nonTreeShakableModules
         },
-        output: { path: path.join(__dirname, 'wwwroot', 'spa' , 'dist') },
+        output: { path: path.join(__dirname, 'wwwroot', 'sw-spa' , 'dist') },
         module: {
             rules: [
                 { test: /\.css(\?|$)/, use: extractCSS.extract({ use: isDevBuild ? 'css-loader' : 'css-loader?minimize' }) }
@@ -71,7 +71,7 @@ module.exports = (env) => {
         plugins: [
             extractCSS,
             new webpack.DllPlugin({
-                path: path.join(__dirname, 'wwwroot', 'spa', 'dist', '[name]-manifest.json'),
+                path: path.join(__dirname, 'wwwroot', 'sw-spa', 'dist', '[name]-manifest.json'),
                 name: '[name]_[hash]'
             })
         ].concat(isDevBuild ? [] : [

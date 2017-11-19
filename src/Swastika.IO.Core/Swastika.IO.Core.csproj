@@ -48,8 +48,7 @@
 
   <ItemGroup>
     <Folder Include="wwwroot\assets\js\" />
-    <Folder Include="wwwroot\spa\dist\" />
-    <Folder Include="wwwroot\spa\assets\" />
+    <Folder Include="wwwroot\sw-spa\assets\" />
     <Folder Include="wwwroot\sw-content\extensions\" />
     <Folder Include="wwwroot\sw-content\templates\" />
     <Folder Include="wwwroot\sw-content\uploads\" />
