@@ -1,10 +1,25 @@
 webpackJsonp([6],{
 
-/***/ 43:
+/***/ 103:
+/***/ (function(module, exports, __webpack_require__) {
+
+
+        var result = __webpack_require__(67);
+
+        if (typeof result === "string") {
+            module.exports = result;
+        } else {
+            module.exports = result.toString();
+        }
+    
+
+/***/ }),
+
+/***/ 50:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return PortalArticleComponent; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return ProtalListArticleComponent; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(1);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -13,32 +28,32 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
 
-var PortalArticleComponent = (function () {
-    function PortalArticleComponent() {
+var ProtalListArticleComponent = (function () {
+    function ProtalListArticleComponent() {
     }
-    PortalArticleComponent = __decorate([
+    ProtalListArticleComponent = __decorate([
         __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
-            selector: 'sw-portal-article',
-            //styles: [require('./article.component.scss')],
-            template: __webpack_require__(66),
+            selector: 'sw-portal-list-article',
+            styles: [__webpack_require__(103)],
+            template: __webpack_require__(89),
         })
-    ], PortalArticleComponent);
-    return PortalArticleComponent;
+    ], ProtalListArticleComponent);
+    return ProtalListArticleComponent;
 }());
 
 
 
 /***/ }),
 
-/***/ 44:
+/***/ 51:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "PortalArticleModule", function() { return PortalArticleModule; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "PortalListArticleModule", function() { return PortalListArticleModule; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(1);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_router__ = __webpack_require__(8);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__article_component__ = __webpack_require__(43);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_router__ = __webpack_require__(9);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__list_article_component__ = __webpack_require__(50);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -48,55 +63,49 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 
 
 
-var PortalArticleModule = (function () {
-    function PortalArticleModule() {
+var PortalListArticleModule = (function () {
+    function PortalListArticleModule() {
     }
-    PortalArticleModule = __decorate([
+    PortalListArticleModule = __decorate([
         __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["NgModule"])({
             imports: [
-                __WEBPACK_IMPORTED_MODULE_1__angular_router__["RouterModule"].forChild([
-                    {
+                __WEBPACK_IMPORTED_MODULE_1__angular_router__["RouterModule"].forChild([{
                         path: '',
-                        component: __WEBPACK_IMPORTED_MODULE_2__article_component__["a" /* PortalArticleComponent */],
-                        children: [
-                            {
-                                path: '',
-                                redirectTo: 'list-article',
-                                pathMatch: 'full'
-                            },
-                            {
-                                path: 'create-article',
-                                loadChildren: function () { return new Promise(function (resolve) { __webpack_require__.e/* require.ensure */(5).then((function (require) { resolve(__webpack_require__(46)['PortalCreateArticleModule']); }).bind(null, __webpack_require__)).catch(__webpack_require__.oe); }); },
-                            },
-                            {
-                                path: 'list-article',
-                                loadChildren: function () { return new Promise(function (resolve) { __webpack_require__.e/* require.ensure */(4).then((function (require) { resolve(__webpack_require__(48)['PortalListArticleModule']); }).bind(null, __webpack_require__)).catch(__webpack_require__.oe); }); },
-                            },
-                            {
-                                path: 'list-draft-article',
-                                loadChildren: function () { return new Promise(function (resolve) { __webpack_require__.e/* require.ensure */(3).then((function (require) { resolve(__webpack_require__(50)['PortalListDraftArticleModule']); }).bind(null, __webpack_require__)).catch(__webpack_require__.oe); }); },
-                            }
-                        ]
-                    },
-                ])
+                        component: __WEBPACK_IMPORTED_MODULE_2__list_article_component__["a" /* ProtalListArticleComponent */]
+                    }])
             ],
             exports: [__WEBPACK_IMPORTED_MODULE_1__angular_router__["RouterModule"]],
             declarations: [
-                __WEBPACK_IMPORTED_MODULE_2__article_component__["a" /* PortalArticleComponent */]
+                __WEBPACK_IMPORTED_MODULE_2__list_article_component__["a" /* ProtalListArticleComponent */]
             ]
         })
-    ], PortalArticleModule);
-    return PortalArticleModule;
+    ], PortalListArticleModule);
+    return PortalListArticleModule;
 }());
 
 
 
 /***/ }),
 
-/***/ 66:
+/***/ 67:
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__(8)(undefined);
+// imports
+
+
+// module
+exports.push([module.i, "", ""]);
+
+// exports
+
+
+/***/ }),
+
+/***/ 89:
 /***/ (function(module, exports) {
 
-module.exports = "<router-outlet></router-outlet>";
+module.exports = "\n<div class=\"row\">\n    <div class=\"col-sm-12\">\n        <div class=\"card\">\n            <div class=\"card-header\">\n                Featured\n            </div>\n            <div class=\"card-body\">\n                <h4 class=\"card-title\">ARTICLES</h4>\n                <table class=\"table\">\n                    <thead>\n                        <tr>\n                            <th scope=\"col\">#</th>\n                            <th scope=\"col\">First Name</th>\n                            <th scope=\"col\">Last Name</th>\n                            <th scope=\"col\">Username</th>\n                        </tr>\n                    </thead>\n                    <tbody>\n                        <tr>\n                            <th scope=\"row\">1</th>\n                            <td>Mark</td>\n                            <td>Otto</td>\n                            <td>mdo</td>\n                        </tr>\n                        <tr>\n                            <th scope=\"row\">2</th>\n                            <td>Jacob</td>\n                            <td>Thornton</td>\n                            <td>fat</td>\n                        </tr>\n                        <tr>\n                            <th scope=\"row\">3</th>\n                            <td>Larry</td>\n                            <td>the Bird</td>\n                            <td>twitter</td>\n                        </tr>\n                        <tr>\n                            <th scope=\"row\">1</th>\n                            <td>Mark</td>\n                            <td>Otto</td>\n                            <td>mdo</td>\n                        </tr>\n                        <tr>\n                            <th scope=\"row\">2</th>\n                            <td>Jacob</td>\n                            <td>Thornton</td>\n                            <td>fat</td>\n                        </tr>\n                        <tr>\n                            <th scope=\"row\">3</th>\n                            <td>Larry</td>\n                            <td>the Bird</td>\n                            <td>twitter</td>\n                        </tr>\n                        <tr>\n                            <th scope=\"row\">1</th>\n                            <td>Mark</td>\n                            <td>Otto</td>\n                            <td>mdo</td>\n                        </tr>\n                        <tr>\n                            <th scope=\"row\">2</th>\n                            <td>Jacob</td>\n                            <td>Thornton</td>\n                            <td>fat</td>\n                        </tr>\n                        <tr>\n                            <th scope=\"row\">3</th>\n                            <td>Larry</td>\n                            <td>the Bird</td>\n                            <td>twitter</td>\n                        </tr>\n                        <tr>\n                            <th scope=\"row\">1</th>\n                            <td>Mark</td>\n                            <td>Otto</td>\n                            <td>mdo</td>\n                        </tr>\n                        <tr>\n                            <th scope=\"row\">2</th>\n                            <td>Jacob</td>\n                            <td>Thornton</td>\n                            <td>fat</td>\n                        </tr>\n                        <tr>\n                            <th scope=\"row\">3</th>\n                            <td>Larry</td>\n                            <td>the Bird</td>\n                            <td>twitter</td>\n                        </tr>\n                        <tr>\n                            <th scope=\"row\">1</th>\n                            <td>Mark</td>\n                            <td>Otto</td>\n                            <td>mdo</td>\n                        </tr>\n                        <tr>\n                            <th scope=\"row\">2</th>\n                            <td>Jacob</td>\n                            <td>Thornton</td>\n                            <td>fat</td>\n                        </tr>\n                        <tr>\n                            <th scope=\"row\">3</th>\n                            <td>Larry</td>\n                            <td>the Bird</td>\n                            <td>twitter</td>\n                        </tr>\n                    </tbody>\n                </table>\n            </div>\n        </div>\n    </div>\n</div>";
 
 /***/ })
 

@@ -1,8 +1,13 @@
-import { Component } from '@angular/core';
+import { Component, ViewEncapsulation } from '@angular/core';
+//import '../../../../../wwwroot/sw-content/themes/now-ui-kit-pro-v1.1.0/js/now-ui-kit.js';
 
 @Component({
     selector: 'front',
-    templateUrl: './front.component.html'
+    styleUrls: [
+        './themes/now-ui-kit-pro-v1.1.0/css/now-ui-kit.css'
+    ],
+    templateUrl: './front.component.html',
+    encapsulation: ViewEncapsulation.None
 })
 export class FrontComponent {
 }

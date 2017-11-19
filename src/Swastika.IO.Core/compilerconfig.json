@@ -1,0 +1,6 @@
+﻿[
+  {
+    "outputFile": "webpack.config.cms-vendor.es5.js",
+    "inputFile": "webpack.config.cms-vendor.js"
+  }
+]
