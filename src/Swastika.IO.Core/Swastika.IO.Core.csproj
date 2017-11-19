@@ -17,8 +17,12 @@
 
   <ItemGroup>
     <!-- Files not to publish (note that the 'dist' subfolders are re-added below) -->
+    <Compile Remove="Areas\App\**" />
     <Compile Remove="ClientApp\app\areas\front\components\home\**" />
+    <Content Remove="Areas\App\**" />
     <Content Remove="ClientApp\**" />
+    <EmbeddedResource Remove="Areas\App\**" />
+    <None Remove="Areas\App\**" />
   </ItemGroup>
 
   <ItemGroup>
@@ -43,8 +47,12 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Areas\App\Data\" />
-    <Folder Include="Areas\App\Models\" />
+    <Folder Include="wwwroot\assets\js\" />
+    <Folder Include="wwwroot\spa\dist\" />
+    <Folder Include="wwwroot\spa\assets\" />
+    <Folder Include="wwwroot\sw-content\extensions\" />
+    <Folder Include="wwwroot\sw-content\templates\" />
+    <Folder Include="wwwroot\sw-content\uploads\" />
   </ItemGroup>
 
   <Target Name="DebugRunWebpack" BeforeTargets="Build" Condition=" '$(Configuration)' == 'Debug' And !Exists('wwwroot\dist') ">

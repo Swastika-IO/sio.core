@@ -1,16 +1,14 @@
 ﻿using Microsoft.IdentityModel.Tokens;
-using System;
 using System.Collections.Generic;
-using System.Text;
 
 namespace Swastika.IO.Cms.Lib
 {
     public class SWCmsConstants
     {
-        public const string TemplatesFolder = @"Views/Shared";
+        public const string TemplatesFolder = @"Views/Templates";
         public const string TemplateExtension = @".cshtml";
         public const string WebRootPath = @"wwwroot";
-        public const string UploadFolder = @"Uploads";
+        public const string UploadFolder = @"sw-content/uploads";
 
         public class AuthConfiguration
         {
@@ -52,13 +50,14 @@ namespace Swastika.IO.Cms.Lib
                     "Delete User"
                 };
         }
+
         public class Default
         {
-
             public const string ArticleTemplate = @"_Default.cshtml";
             public const string Specificulture = @"vi-vn";
             public const string Password = @"1234qwe@";
         }
+
         public enum ModuleType
         {
             Root,
@@ -82,6 +81,7 @@ namespace Swastika.IO.Cms.Lib
             Articles,
             Widgets,
         }
+
         public enum FileFolder
         {
             Styles,
