@@ -1,17 +1,17 @@
 webpackJsonp([4],{
 
-/***/ 104:
+/***/ 105:
 /***/ (function(module, exports) {
 
 module.exports = "<div class=\"row sortable\">\r\n    <div class=\"col-sm-3\">\r\n        <div class=\"card draggable1\">\r\n            <div class=\"card-body\">\r\n                <h4 class=\"card-title\">Draggable 1</h4>\r\n                <p class=\"card-text\">With supporting text below as a natural lead-in to additional content.</p>\r\n                <a href=\"#\" class=\"btn btn-primary\">Go somewhere</a>\r\n            </div>\r\n        </div>\r\n    </div>\r\n    <div class=\"col-sm-3\">\r\n        <div class=\"card draggable1\">\r\n            <div class=\"card-body\">\r\n                <h4 class=\"card-title\">Draggable 2</h4>\r\n                <p class=\"card-text\">With supporting text below as a natural lead-in to additional content.</p>\r\n                <a href=\"#\" class=\"btn btn-primary\">Go somewhere</a>\r\n            </div>\r\n        </div>\r\n    </div>\r\n    <div class=\"col-sm-3\">\r\n        <div class=\"card draggable1\">\r\n            <div class=\"card-body\">\r\n                <h4 class=\"card-title\">Draggable 3</h4>\r\n                <p class=\"card-text\">With supporting text below as a natural lead-in to additional content.</p>\r\n                <a href=\"#\" class=\"btn btn-primary\">Go somewhere</a>\r\n            </div>\r\n        </div>\r\n    </div>\r\n    <div class=\"col-sm-3\">\r\n        <div class=\"card draggable1\">\r\n            <div class=\"card-body\">\r\n                <h4 class=\"card-title\">Draggable 4</h4>\r\n                <p class=\"card-text\">With supporting text below as a natural lead-in to additional content.</p>\r\n                <a href=\"#\" class=\"btn btn-primary\">Go somewhere</a>\r\n            </div>\r\n        </div>\r\n    </div>\r\n</div>\r\n<div class=\"row\">\r\n    <div class=\"col-sm-6\">\r\n        <div class=\"card\">\r\n            <div class=\"card-body\">\r\n                <h4 class=\"card-title\">Special title treatment</h4>\r\n                <p class=\"card-text\">With supporting text below as a natural lead-in to additional content.</p>\r\n                <a href=\"#\" class=\"btn btn-primary\">Go somewhere</a>\r\n            </div>\r\n        </div>\r\n    </div>\r\n    <div class=\"col-sm-6\">\r\n        <div class=\"card\">\r\n            <div class=\"card-body\">\r\n                <h4 class=\"card-title\">Special title treatment</h4>\r\n                <p class=\"card-text\">With supporting text below as a natural lead-in to additional content.</p>\r\n                <a href=\"#\" class=\"btn btn-primary\">Go somewhere</a>\r\n            </div>\r\n        </div>\r\n    </div>\r\n</div>\r\n<div class=\"row\">\r\n    <div class=\"col-sm-12\">\r\n        <div class=\"card draggable-header\">\r\n            <div class=\"card-header\">\r\n                Featured\r\n                <button type=\"button\" id=\"sidebarCollapse\" class=\"btn btn-link move\">\r\n                    <span class=\"oi oi-move\"></span>\r\n                </button>\r\n            </div>\r\n            <div class=\"card-body\">\r\n                <h4 class=\"card-title\">Special title treatment</h4>\r\n                <form>\r\n                    <div class=\"form-group\">\r\n                        <label for=\"exampleInputEmail1\">Email address</label>\r\n                        <input type=\"email\" class=\"form-control\" id=\"exampleInputEmail1\" aria-describedby=\"emailHelp\" placeholder=\"Enter email\">\r\n                        <small id=\"emailHelp\" class=\"form-text text-muted\">We'll never share your email with anyone else.</small>\r\n                    </div>\r\n                    <div class=\"form-group\">\r\n                        <label for=\"exampleInputPassword1\">Password</label>\r\n                        <input type=\"password\" class=\"form-control\" id=\"exampleInputPassword1\" placeholder=\"Password\">\r\n                    </div>\r\n                    <div class=\"form-check\">\r\n                        <label class=\"form-check-label\">\r\n                            <input type=\"checkbox\" class=\"form-check-input\"> Check me out\r\n                        </label>\r\n                    </div>\r\n                    <button type=\"submit\" class=\"btn btn-primary\">Submit</button>\r\n                </form>\r\n            </div>\r\n        </div>\r\n    </div>\r\n</div>\r\n<div class=\"row\">\r\n    <div class=\"col-sm-12\">\r\n        <div class=\"card\">\r\n            <div class=\"card-header\">\r\n                Featured\r\n            </div>\r\n            <div class=\"card-body\">\r\n                <h4 class=\"card-title\">Special title treatment</h4>\r\n                <div class=\"input-group\">\r\n                    <span class=\"input-group-addon\" id=\"basic-addon1\"></span>\r\n                    <input type=\"text\" class=\"form-control\" placeholder=\"Username\" aria-label=\"Username\" aria-describedby=\"basic-addon1\">\r\n                </div>\r\n                <br>\r\n                <div class=\"input-group\">\r\n                    <input type=\"text\" class=\"form-control\" placeholder=\"Recipient's username\" aria-label=\"Recipient's username\" aria-describedby=\"basic-addon2\">\r\n                    <span class=\"input-group-addon\" id=\"basic-addon2\">example.com</span>\r\n                </div>\r\n                <br>\r\n                <label for=\"basic-url\">Your vanity URL</label>\r\n                <div class=\"input-group\">\r\n                    <span class=\"input-group-addon\" id=\"basic-addon3\">https://example.com/users/</span>\r\n                    <input type=\"text\" class=\"form-control\" id=\"basic-url\" aria-describedby=\"basic-addon3\">\r\n                </div>\r\n                <br>\r\n                <div class=\"input-group\">\r\n                    <span class=\"input-group-addon\">$</span>\r\n                    <input type=\"text\" class=\"form-control\" aria-label=\"Amount (to the nearest dollar)\">\r\n                    <span class=\"input-group-addon\">.00</span>\r\n                </div>\r\n                <br>\r\n                <div class=\"input-group\">\r\n                    <span class=\"input-group-addon\">$</span>\r\n                    <span class=\"input-group-addon\">0.00</span>\r\n                    <input type=\"text\" class=\"form-control\" aria-label=\"Amount (to the nearest dollar)\">\r\n                </div>\r\n            </div>\r\n        </div>\r\n    </div>\r\n</div>\r\n<div class=\"row\">\r\n    <div class=\"col-sm-12\">\r\n        <div class=\"card\">\r\n            <div class=\"card-header\">\r\n                Featured\r\n            </div>\r\n            <div class=\"card-body\">\r\n                <h4 class=\"card-title\">Special title treatment</h4>\r\n                <p class=\"card-text\">With supporting text below as a natural lead-in to additional content.</p>\r\n                <a href=\"#\" class=\"btn btn-primary\">Go somewhere</a>\r\n            </div>\r\n        </div>\r\n    </div>\r\n</div>\r\n<div class=\"row\">\r\n    <div class=\"col-sm-12\">\r\n        <div class=\"card\">\r\n            <div class=\"card-header\">\r\n                Featured\r\n            </div>\r\n            <div class=\"card-body\">\r\n                <h4 class=\"card-title\">Special title treatment</h4>\r\n                <table class=\"table\">\r\n                    <thead>\r\n                        <tr>\r\n                            <th scope=\"col\">#</th>\r\n                            <th scope=\"col\">First Name</th>\r\n                            <th scope=\"col\">Last Name</th>\r\n                            <th scope=\"col\">Username</th>\r\n                        </tr>\r\n                    </thead>\r\n                    <tbody>\r\n                        <tr>\r\n                            <th scope=\"row\">1</th>\r\n                            <td>Mark</td>\r\n                            <td>Otto</td>\r\n                            <td>mdo</td>\r\n                        </tr>\r\n                        <tr>\r\n                            <th scope=\"row\">2</th>\r\n                            <td>Jacob</td>\r\n                            <td>Thornton</td>\r\n                            <td>fat</td>\r\n                        </tr>\r\n                        <tr>\r\n                            <th scope=\"row\">3</th>\r\n                            <td>Larry</td>\r\n                            <td>the Bird</td>\r\n                            <td>twitter</td>\r\n                        </tr>\r\n                    </tbody>\r\n                </table>\r\n            </div>\r\n        </div>\r\n    </div>\r\n</div>";
 
 /***/ }),
 
-/***/ 117:
+/***/ 118:
 /***/ (function(module, exports, __webpack_require__) {
 
 
-        var result = __webpack_require__(82);
+        var result = __webpack_require__(83);
 
         if (typeof result === "string") {
             module.exports = result;
@@ -22,7 +22,7 @@ module.exports = "<div class=\"row sortable\">\r\n    <div class=\"col-sm-3\">\r
 
 /***/ }),
 
-/***/ 68:
+/***/ 69:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -41,8 +41,8 @@ var ProtalDashboardComponent = (function () {
     ProtalDashboardComponent = __decorate([
         __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
             selector: 'sw-portal-dashboard',
-            styles: [__webpack_require__(117)],
-            template: __webpack_require__(104),
+            styles: [__webpack_require__(118)],
+            template: __webpack_require__(105),
         })
     ], ProtalDashboardComponent);
     return ProtalDashboardComponent;
@@ -52,7 +52,7 @@ var ProtalDashboardComponent = (function () {
 
 /***/ }),
 
-/***/ 69:
+/***/ 70:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -60,7 +60,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "PortalDashboardModule", function() { return PortalDashboardModule; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(1);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_router__ = __webpack_require__(8);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__dashboard_component__ = __webpack_require__(68);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__dashboard_component__ = __webpack_require__(69);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -94,7 +94,7 @@ var PortalDashboardModule = (function () {
 
 /***/ }),
 
-/***/ 82:
+/***/ 83:
 /***/ (function(module, exports, __webpack_require__) {
 
 exports = module.exports = __webpack_require__(7)(undefined);

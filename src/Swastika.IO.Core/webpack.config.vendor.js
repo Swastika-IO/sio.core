@@ -43,9 +43,9 @@ module.exports = (env) => {
         plugins: [
             new webpack.ProvidePlugin({
                 $: 'jquery',
-                jQuery: 'jquery',
+                'jQuery': 'jquery',
                 'window.jQuery': 'jquery',
-                Popper: ['popper.js', 'default'],
+                'Popper': ['popper.js', 'default'],
                 "window.Tether": 'tether',
                 Util: "exports-loader?Util!bootstrap/js/dist/util",
                 Dropdown: "exports-loader?Dropdown!bootstrap/js/dist/dropdown",

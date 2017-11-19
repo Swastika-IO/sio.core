@@ -16,14 +16,21 @@
         <link href="~/sw-content/themes/now-ui-kit-pro-v1.1.0/css/demo.css" rel="stylesheet" />
     }
 }
+
+<app asp-prerender-module="ClientApp/dist/main-server">Loading...</app>
+<script src="~/sw-spa/dist/main-client.js" asp-append-version="true"></script>
+
+
 @section scripts {
     <script src="~/sw-spa/dist/vendor.js" asp-append-version="true"></script>
+
     @if (isFront)
     {
         <!--   Core JS Files   -->
         <script src="~/sw-content/themes/now-ui-kit-pro-v1.1.0/js/core/jquery.3.2.1.min.js" type="text/javascript"></script>
         <script src="~/sw-content/themes/now-ui-kit-pro-v1.1.0/js/core/popper.min.js" type="text/javascript"></script>
         <script src="~/sw-content/themes/now-ui-kit-pro-v1.1.0/js/core/bootstrap.min.js" type="text/javascript"></script>
+
         <script src="~/sw-content/themes/now-ui-kit-pro-v1.1.0/js/plugins/moment.min.js"></script>
         <!--  Plugin for Switches, full documentation here: http://www.jque.re/plugins/version3/bootstrap.switch/ -->
         <script src="~/sw-content/themes/now-ui-kit-pro-v1.1.0/js/plugins/bootstrap-switch.js"></script>
@@ -43,6 +50,3 @@
         <script src="~/sw-content/themes/now-ui-kit-pro-v1.1.0/js/now-ui-kit.js?v=1.1.0" type="text/javascript"></script>
     }
 }
-
-<app asp-prerender-module="ClientApp/dist/main-server">Loading...</app>
-<script src="~/sw-spa/dist/main-client.js" asp-append-version="true"></script>

@@ -47,7 +47,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="ClientApp\app\areas\front\modules\" />
     <Folder Include="wwwroot\assets\js\" />
     <Folder Include="wwwroot\sw-spa\assets\" />
     <Folder Include="wwwroot\sw-content\extensions\" />
