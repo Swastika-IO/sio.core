@@ -1,7 +1,10 @@
 language: csharp
 mono: none
 dotnet: 2.0.0
+before_install: cd src/Swastika.IO.Core
 script:
+  - npm i
+  - cmd-webpack.bat
   - dotnet restore
   - dotnet build ./TheLog/
   - dotnet build ./TheLog.Demos/
