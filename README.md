@@ -10,27 +10,44 @@ These instructions will get you a copy of the project up and running on your loc
 
 What things you need to install the software and how to install them
 
-```
-Give examples
-```
+* [.NET](https://www.microsoft.com/net/core) - .NET Core framework
+* [Node.js®](https://nodejs.org/en/download/) - Node.js® framework
+* [Visual Studio Community 2017](https://www.visualstudio.com/downloads/) - Free, fully-featured IDE for students, open-source and individual developers
+* [SQL Server 2016+](https://www.microsoft.com/en-us/sql-server/sql-server-editions-express) - Database server
 
 ### Installing
 
 A step by step series of examples that tell you have to get a development env running
 
-Say what the step will be
+Install npm packages
 
 ```
-Give the example
+cd [github-project-folder]\src\Swastika.IO.Core]
+npm i
 ```
 
-And repeat
+Restore dotnet core packages
 
 ```
-until finished
+cd [github-project-folder]\src\Swastika.IO.Core]
+dotnet restore
 ```
 
-End with an example of getting some data out of the system or using it for a little demo
+Build dotnet core packages
+
+```
+cd [github-project-folder]\src\Swastika.IO.Core]
+dotnet build
+```
+
+Build dotnet core packages
+
+```
+cd [github-project-folder]\src\Swastika.IO.Core]
+dotnet run
+```
+
+Use [github-project-folder]\db\] to create Database
 
 ## Running the tests
 
@@ -58,27 +75,26 @@ Add additional notes about how to deploy this on a live system
 
 ## Built With
 
-* [Dropwizard](http://www.dropwizard.io/1.0.2/docs/) - The web framework used
-* [Maven](https://maven.apache.org/) - Dependency Management
-* [ROME](https://rometools.github.io/rome/) - Used to generate RSS Feeds
+* [NET Core](https://www.microsoft.com/net/core) - NET Core framework
+* [Node.js®](https://nodejs.org) - Node.js® framework
 
 ## Contributing
 
-Please read [CONTRIBUTING.md](https://gist.github.com/PurpleBooth/b24679402957c63ec426) for details on our code of conduct, and the process for submitting pull requests to us.
+Please read [CONTRIBUTING.md](CONTRIBUTING.md) for details on our code of conduct, and the process for submitting pull requests to us.
 
 ## Versioning
 
-We use [SemVer](http://semver.org/) for versioning. For the versions available, see the [tags on this repository](https://github.com/your/project/tags). 
+We use [SemVer](http://semver.org/) for versioning. For the versions available, see the [tags on this repository](https://github.com/Swastika-IO/Swastika-IO-Core/tags). 
 
 ## Authors
 
-* **Billie Thompson** - *Initial work* - [PurpleBooth](https://github.com/PurpleBooth)
+* **Smileway Team** - *Initial work* - [Smileway.co](http://www.smileway.co)
 
-See also the list of [contributors](https://github.com/your/project/contributors) who participated in this project.
+See also the list of [contributors](https://github.com/Swastika-IO/Swastika-IO-Core/graphs/contributors) who participated in this project.
 
 ## License
 
-This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md) file for details
+This project is licensed under the GPL-3.0 License - see the [LICENSE.md](LICENSE.md) file for details
 
 ## Acknowledgments
 
