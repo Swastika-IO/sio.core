@@ -1,6 +1,6 @@
 webpackJsonp([12],{
 
-/***/ 51:
+/***/ 50:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -20,7 +20,7 @@ var PortalSomethingComponent = (function () {
         __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
             selector: 'sw-portal-something',
             //styles: [require('./something.component.scss')],
-            template: __webpack_require__(99),
+            template: __webpack_require__(96),
         })
     ], PortalSomethingComponent);
     return PortalSomethingComponent;
@@ -30,7 +30,7 @@ var PortalSomethingComponent = (function () {
 
 /***/ }),
 
-/***/ 52:
+/***/ 51:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -38,7 +38,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "PortalSomethingModule", function() { return PortalSomethingModule; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(1);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_router__ = __webpack_require__(9);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__something_component__ = __webpack_require__(51);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__something_component__ = __webpack_require__(50);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -66,15 +66,15 @@ var PortalSomethingModule = (function () {
                             },
                             {
                                 path: 'create-something',
-                                loadChildren: function () { return new Promise(function (resolve) { __webpack_require__.e/* require.ensure */(10).then((function (require) { resolve(__webpack_require__(46)['PortalCreateSomethingModule']); }).bind(null, __webpack_require__)).catch(__webpack_require__.oe); }); },
+                                loadChildren: function () { return new Promise(function (resolve) { __webpack_require__.e/* require.ensure */(10).then((function (require) { resolve(__webpack_require__(45)['PortalCreateSomethingModule']); }).bind(null, __webpack_require__)).catch(__webpack_require__.oe); }); },
                             },
                             {
                                 path: 'list-something',
-                                loadChildren: function () { return new Promise(function (resolve) { __webpack_require__.e/* require.ensure */(8).then((function (require) { resolve(__webpack_require__(50)['PortalListSomethingModule']); }).bind(null, __webpack_require__)).catch(__webpack_require__.oe); }); },
+                                loadChildren: function () { return new Promise(function (resolve) { __webpack_require__.e/* require.ensure */(8).then((function (require) { resolve(__webpack_require__(49)['PortalListSomethingModule']); }).bind(null, __webpack_require__)).catch(__webpack_require__.oe); }); },
                             },
                             {
                                 path: 'list-draft-something',
-                                loadChildren: function () { return new Promise(function (resolve) { __webpack_require__.e/* require.ensure */(9).then((function (require) { resolve(__webpack_require__(48)['PortalListDraftSomethingModule']); }).bind(null, __webpack_require__)).catch(__webpack_require__.oe); }); },
+                                loadChildren: function () { return new Promise(function (resolve) { __webpack_require__.e/* require.ensure */(9).then((function (require) { resolve(__webpack_require__(47)['PortalListDraftSomethingModule']); }).bind(null, __webpack_require__)).catch(__webpack_require__.oe); }); },
                             }
                         ]
                     },
@@ -93,7 +93,7 @@ var PortalSomethingModule = (function () {
 
 /***/ }),
 
-/***/ 99:
+/***/ 96:
 /***/ (function(module, exports) {
 
 module.exports = "<router-outlet></router-outlet>";

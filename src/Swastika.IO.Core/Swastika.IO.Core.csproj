@@ -30,31 +30,7 @@
     <ProjectReference Include="..\Swastka.Cms.Api\Swastka.IO.Cms.Api.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <None Include="wwwroot\assets\font\css\open-iconic-bootstrap.css.map" />
-    <None Include="wwwroot\assets\font\css\open-iconic-bootstrap.less" />
-    <None Include="wwwroot\assets\font\css\open-iconic-bootstrap.scss" />
-    <None Include="wwwroot\assets\font\css\open-iconic-bootstrap.styl" />
-    <None Include="wwwroot\assets\font\css\open-iconic-foundation.css.map" />
-    <None Include="wwwroot\assets\font\css\open-iconic-foundation.less" />
-    <None Include="wwwroot\assets\font\css\open-iconic-foundation.scss" />
-    <None Include="wwwroot\assets\font\css\open-iconic-foundation.styl" />
-    <None Include="wwwroot\assets\font\css\open-iconic.css.map" />
-    <None Include="wwwroot\assets\font\css\open-iconic.less" />
-    <None Include="wwwroot\assets\font\css\open-iconic.scss" />
-    <None Include="wwwroot\assets\font\css\open-iconic.styl" />
-    <None Include="wwwroot\assets\font\fonts\open-iconic.svg" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="wwwroot\assets\js\" />
-    <Folder Include="wwwroot\sw-spa\assets\" />
-    <Folder Include="wwwroot\sw-content\extensions\" />
-    <Folder Include="wwwroot\sw-content\templates\" />
-    <Folder Include="wwwroot\sw-content\uploads\" />
-  </ItemGroup>
-
-  <Target Name="DebugRunWebpack" BeforeTargets="Build" Condition=" '$(Configuration)' == 'Debug' And !Exists('wwwroot\dist') ">
+  <Target Name="DebugRunWebpack" BeforeTargets="Build" Condition=" '$(Configuration)' == 'Debug' And !Exists('wwwroot\sw-spa\dist') ">
     <!-- Ensure Node.js is installed -->
     <Exec Command="node --version" ContinueOnError="true">
       <Output TaskParameter="ExitCode" PropertyName="ErrorCode" />
