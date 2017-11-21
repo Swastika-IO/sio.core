@@ -1,40 +1,87 @@
 # Swastika I/O - swas·ti·ka (/ˈswästəkə/)
+
 Swastika I/O is free, open source and cross-platform CMS based on ASP.NET Core. It is built using the best and the most modern tools and languages (Visual Studio 2017, C# etc). Be the best and join our team!
 
-## Build Status
-| Build server| Platform       | Status      |
-|-------------|----------------|-------------|
-| AppVeyor    | Windows        |[![Build status](https://ci.appveyor.com/api/projects/status/dup0f5a09j58ud8s?svg=true)](https://ci.appveyor.com/project/Smilefounder/swastika-core) |
-|Travis       | Linux / MacOS  |[![Build Status](https://api.travis-ci.org/Swastika-IO/Swastika-Core.svg?branch=master)](https://travis-ci.org/Swastika-IO/Swastika-Core) |
-|Visual Studio       | Hosted  |[![Build Status](https://swastika-io.visualstudio.com/_apis/public/build/definitions/67a4dc0a-8e40-4fd9-af40-5c8cc4a0751e/4/badge)](https://swastika-io.visualstudio.com/Swastika-IO/) |
-|Code Climate       | |[![Code Climate](https://codeclimate.com/github/Swastika-IO/Swastika-Core.png)](https://codeclimate.com/github/Swastika-IO/Swastika-Core) |
-|Codecov       | |[![codecov](https://codecov.io/gh/Swastika-IO/Swastika-Core/branch/master/graph/badge.svg)](https://codecov.io/gh/Swastika-IO/Swastika-Core) |
+## Getting Started
 
+These instructions will get you a copy of the project up and running on your local machine for development and testing purposes. See deployment for notes on how to deploy the project on a live system.
 
-## Technology
-- ASP.NET Core 2.0
-- .NET Standard 2.0
-- Entity Framework Core
+### Prerequisites
 
-## Architecture:
-- Full architecture with responsibility separation concerns, SOLID and Clean Code
-- Domain Driven Design (Layers and Domain Model Pattern)
-- Domain Events
-- Domain Notification
-- CQRS (Imediate Consistency)
-- Event Sourcing
+What things you need to install the software and how to install them
 
-## Prerequisites
-- You will need Visual Studio 2017 and the .NET Core SDK (latest).
-- .NET Core 2.0 for Visual Studio
+```
+Give examples
+```
 
-## How to run on local
-- Open the Swastika.sln solution in Visual Studio
-- Build the solution (default apps will be copied to the "Apps" folder)
-- Choose the data provider of your choice in the appsettings file and modify the default connection string accordingly if needed.
-- Run (F5 or Ctrl+F5)
-- Database and seed data will be created automatically the first time you run the application.
+### Installing
 
-## How to contribute
-Please create issues to report bugs, suggest new functionalities, ask questions or just share your thoughts about the project. Our team will really appreciate your contribution, thanks!
+A step by step series of examples that tell you have to get a development env running
 
+Say what the step will be
+
+```
+Give the example
+```
+
+And repeat
+
+```
+until finished
+```
+
+End with an example of getting some data out of the system or using it for a little demo
+
+## Running the tests
+
+Explain how to run the automated tests for this system
+
+### Break down into end to end tests
+
+Explain what these tests test and why
+
+```
+Give an example
+```
+
+### And coding style tests
+
+Explain what these tests test and why
+
+```
+Give an example
+```
+
+## Deployment
+
+Add additional notes about how to deploy this on a live system
+
+## Built With
+
+* [Dropwizard](http://www.dropwizard.io/1.0.2/docs/) - The web framework used
+* [Maven](https://maven.apache.org/) - Dependency Management
+* [ROME](https://rometools.github.io/rome/) - Used to generate RSS Feeds
+
+## Contributing
+
+Please read [CONTRIBUTING.md](https://gist.github.com/PurpleBooth/b24679402957c63ec426) for details on our code of conduct, and the process for submitting pull requests to us.
+
+## Versioning
+
+We use [SemVer](http://semver.org/) for versioning. For the versions available, see the [tags on this repository](https://github.com/your/project/tags). 
+
+## Authors
+
+* **Billie Thompson** - *Initial work* - [PurpleBooth](https://github.com/PurpleBooth)
+
+See also the list of [contributors](https://github.com/your/project/contributors) who participated in this project.
+
+## License
+
+This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md) file for details
+
+## Acknowledgments
+
+* Hat tip to anyone who's code was used
+* Inspiration
+* etc
