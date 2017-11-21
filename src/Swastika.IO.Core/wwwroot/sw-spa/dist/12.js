@@ -1,17 +1,10 @@
 webpackJsonp([12],{
 
-/***/ 116:
-/***/ (function(module, exports) {
-
-module.exports = "<div class=\"page-header page-header-small\">\r\n    <div class=\"page-header-image\" data-parallax=\"true\" style=\"background-image: url('../../../../themes/now-ui-kit-pro-v1.1.0/img/bg26.jpg');\">\r\n    </div>\r\n    <div class=\"content-center\">\r\n        <h1 class=\"title\">Counter</h1>\r\n        <div class=\"text-center\">\r\n\r\n            <p>This is a simple example of an Angular component.</p>\r\n\r\n            <p>Current count: <strong>{{ currentCount }}</strong></p>\r\n\r\n            <button (click)=\"incrementCounter()\">Increment</button>\r\n        </div>\r\n    </div>\r\n</div>\r\n\r\n";
-
-/***/ }),
-
-/***/ 95:
+/***/ 51:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return CounterComponent; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return PortalSomethingComponent; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(1);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -20,35 +13,32 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
 
-var CounterComponent = (function () {
-    function CounterComponent() {
-        this.currentCount = 0;
+var PortalSomethingComponent = (function () {
+    function PortalSomethingComponent() {
     }
-    CounterComponent.prototype.incrementCounter = function () {
-        this.currentCount++;
-    };
-    CounterComponent = __decorate([
+    PortalSomethingComponent = __decorate([
         __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
-            selector: 'counter',
-            template: __webpack_require__(116)
+            selector: 'sw-portal-something',
+            //styles: [require('./something.component.scss')],
+            template: __webpack_require__(99),
         })
-    ], CounterComponent);
-    return CounterComponent;
+    ], PortalSomethingComponent);
+    return PortalSomethingComponent;
 }());
 
 
 
 /***/ }),
 
-/***/ 96:
+/***/ 52:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "CounterModule", function() { return CounterModule; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "PortalSomethingModule", function() { return PortalSomethingModule; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(1);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_router__ = __webpack_require__(9);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__counter_component__ = __webpack_require__(95);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__something_component__ = __webpack_require__(51);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -58,22 +48,55 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 
 
 
-var CounterModule = (function () {
-    function CounterModule() {
+var PortalSomethingModule = (function () {
+    function PortalSomethingModule() {
     }
-    CounterModule = __decorate([
+    PortalSomethingModule = __decorate([
         __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["NgModule"])({
             imports: [
-                __WEBPACK_IMPORTED_MODULE_1__angular_router__["RouterModule"].forChild([{ path: '', component: __WEBPACK_IMPORTED_MODULE_2__counter_component__["a" /* CounterComponent */] }])
+                __WEBPACK_IMPORTED_MODULE_1__angular_router__["RouterModule"].forChild([
+                    {
+                        path: '',
+                        component: __WEBPACK_IMPORTED_MODULE_2__something_component__["a" /* PortalSomethingComponent */],
+                        children: [
+                            {
+                                path: '',
+                                redirectTo: 'list-something',
+                                pathMatch: 'full'
+                            },
+                            {
+                                path: 'create-something',
+                                loadChildren: function () { return new Promise(function (resolve) { __webpack_require__.e/* require.ensure */(10).then((function (require) { resolve(__webpack_require__(46)['PortalCreateSomethingModule']); }).bind(null, __webpack_require__)).catch(__webpack_require__.oe); }); },
+                            },
+                            {
+                                path: 'list-something',
+                                loadChildren: function () { return new Promise(function (resolve) { __webpack_require__.e/* require.ensure */(8).then((function (require) { resolve(__webpack_require__(50)['PortalListSomethingModule']); }).bind(null, __webpack_require__)).catch(__webpack_require__.oe); }); },
+                            },
+                            {
+                                path: 'list-draft-something',
+                                loadChildren: function () { return new Promise(function (resolve) { __webpack_require__.e/* require.ensure */(9).then((function (require) { resolve(__webpack_require__(48)['PortalListDraftSomethingModule']); }).bind(null, __webpack_require__)).catch(__webpack_require__.oe); }); },
+                            }
+                        ]
+                    },
+                ])
             ],
             exports: [__WEBPACK_IMPORTED_MODULE_1__angular_router__["RouterModule"]],
-            declarations: [__WEBPACK_IMPORTED_MODULE_2__counter_component__["a" /* CounterComponent */]]
+            declarations: [
+                __WEBPACK_IMPORTED_MODULE_2__something_component__["a" /* PortalSomethingComponent */]
+            ]
         })
-    ], CounterModule);
-    return CounterModule;
+    ], PortalSomethingModule);
+    return PortalSomethingModule;
 }());
 
 
+
+/***/ }),
+
+/***/ 99:
+/***/ (function(module, exports) {
+
+module.exports = "<router-outlet></router-outlet>";
 
 /***/ })
 

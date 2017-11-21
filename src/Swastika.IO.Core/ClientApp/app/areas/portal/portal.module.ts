@@ -24,6 +24,10 @@ import { SidebarComponent } from './components/sidebar/sidebar.component';
                     {
                         path: 'article',
                         loadChildren: './modules/article/article.module#PortalArticleModule',
+                    },
+                    {
+                        path: 'blank',
+                        loadChildren: './modules/_blank/something.module#PortalSomethingModule',
                     }
                 ]
             },

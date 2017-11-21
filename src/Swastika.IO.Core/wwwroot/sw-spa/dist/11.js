@@ -1,10 +1,17 @@
 webpackJsonp([11],{
 
-/***/ 45:
+/***/ 100:
+/***/ (function(module, exports) {
+
+module.exports = "<router-outlet></router-outlet>";
+
+/***/ }),
+
+/***/ 53:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return ItemComponent; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return PortalArticleComponent; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(1);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -13,31 +20,32 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
 
-var ItemComponent = (function () {
-    function ItemComponent() {
+var PortalArticleComponent = (function () {
+    function PortalArticleComponent() {
     }
-    ItemComponent = __decorate([
+    PortalArticleComponent = __decorate([
         __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
-            selector: 'blog-item',
-            template: __webpack_require__(90)
+            selector: 'sw-portal-article',
+            //styles: [require('./article.component.scss')],
+            template: __webpack_require__(100),
         })
-    ], ItemComponent);
-    return ItemComponent;
+    ], PortalArticleComponent);
+    return PortalArticleComponent;
 }());
 
 
 
 /***/ }),
 
-/***/ 46:
+/***/ 54:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ItemModule", function() { return ItemModule; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "PortalArticleModule", function() { return PortalArticleModule; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(1);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_router__ = __webpack_require__(8);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__item_component__ = __webpack_require__(45);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_router__ = __webpack_require__(9);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__article_component__ = __webpack_require__(53);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -47,33 +55,48 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 
 
 
-//import { HeaderComponent } from '../../components/modules/blog/header/header.component';
-//import { ListComponent } from '../../components/modules/blog/list/list.component';
-var ItemModule = (function () {
-    function ItemModule() {
+var PortalArticleModule = (function () {
+    function PortalArticleModule() {
     }
-    ItemModule = __decorate([
+    PortalArticleModule = __decorate([
         __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["NgModule"])({
             imports: [
-                __WEBPACK_IMPORTED_MODULE_1__angular_router__["RouterModule"].forChild([{ path: '', component: __WEBPACK_IMPORTED_MODULE_2__item_component__["a" /* ItemComponent */] }])
+                __WEBPACK_IMPORTED_MODULE_1__angular_router__["RouterModule"].forChild([
+                    {
+                        path: '',
+                        component: __WEBPACK_IMPORTED_MODULE_2__article_component__["a" /* PortalArticleComponent */],
+                        children: [
+                            {
+                                path: '',
+                                redirectTo: 'list-article',
+                                pathMatch: 'full'
+                            },
+                            {
+                                path: 'create-article',
+                                loadChildren: function () { return new Promise(function (resolve) { __webpack_require__.e/* require.ensure */(7).then((function (require) { resolve(__webpack_require__(56)['PortalCreateArticleModule']); }).bind(null, __webpack_require__)).catch(__webpack_require__.oe); }); },
+                            },
+                            {
+                                path: 'list-article',
+                                loadChildren: function () { return new Promise(function (resolve) { __webpack_require__.e/* require.ensure */(6).then((function (require) { resolve(__webpack_require__(58)['PortalListArticleModule']); }).bind(null, __webpack_require__)).catch(__webpack_require__.oe); }); },
+                            },
+                            {
+                                path: 'list-draft-article',
+                                loadChildren: function () { return new Promise(function (resolve) { __webpack_require__.e/* require.ensure */(5).then((function (require) { resolve(__webpack_require__(60)['PortalListDraftArticleModule']); }).bind(null, __webpack_require__)).catch(__webpack_require__.oe); }); },
+                            }
+                        ]
+                    },
+                ])
             ],
             exports: [__WEBPACK_IMPORTED_MODULE_1__angular_router__["RouterModule"]],
             declarations: [
-                __WEBPACK_IMPORTED_MODULE_2__item_component__["a" /* ItemComponent */]
+                __WEBPACK_IMPORTED_MODULE_2__article_component__["a" /* PortalArticleComponent */]
             ]
         })
-    ], ItemModule);
-    return ItemModule;
+    ], PortalArticleModule);
+    return PortalArticleModule;
 }());
 
 
-
-/***/ }),
-
-/***/ 90:
-/***/ (function(module, exports) {
-
-module.exports = "<div class=\"page-header page-header-small\">\r\n    <div class=\"page-header-image\" data-parallax=\"true\" style=\"background-image: url('../assets/img/bg24.jpg') ;\">\r\n    </div>\r\n    <div class=\"content-center\">\r\n        <div class=\"row\">\r\n            <div class=\"col-md-8 ml-auto mr-auto text-center\">\r\n                <h2 class=\"title\">WeChat Lucky Money</h2>\r\n                <h4>WeChat launched in 2013.</h4>\r\n            </div>\r\n        </div>\r\n    </div>\r\n</div>\r\n<div class=\"section\">\r\n    <div class=\"container\">\r\n        <div class=\"row\">\r\n            <div class=\"col-md-12\">\r\n                <div class=\"button-container\">\r\n                    <a href=\"#pablo\" class=\"btn btn-primary btn-round btn-lg\">\r\n                        <i class=\"now-ui-icons text_align-left\"></i> Read Article\r\n                    </a>\r\n                    <a href=\"#pablo\" class=\"btn btn-icon btn-lg btn-twitter btn-round\">\r\n                        <i class=\"fa fa-twitter\"></i>\r\n                    </a>\r\n                    <a href=\"#pablo\" class=\"btn btn-icon btn-lg btn-facebook btn-round\">\r\n                        <i class=\"fa fa-facebook-square\"></i>\r\n                    </a>\r\n                    <a href=\"#pablo\" class=\"btn btn-icon btn-lg btn-google btn-round\">\r\n                        <i class=\"fa fa-google\"></i>\r\n                    </a>\r\n                </div>\r\n            </div>\r\n        </div>\r\n    </div>\r\n    <div class=\"section\">\r\n        <div class=\"container\">\r\n            <div class=\"row\">\r\n                <div class=\"col-md-8 ml-auto mr-auto\">\r\n                    <h3 class=\"title\">The Castle Looks Different at Night...</h3>\r\n                    <p>\r\n                        This is the paragraph where you can write more details about your product. Keep you user engaged by providing meaningful information. Remember that by this time, the user is curious, otherwise he wouldn't scroll to get here. Add a button if you want the user to see more. We are here to make life better.\r\n                        <br />\r\n                        <br /> And now I look and look around and there�s so many Kanyes I've been trying to figure out the bed design for the master bedroom at our Hidden Hills compound... and thank you for turning my personal jean jacket into a couture piece.\r\n                    </p>\r\n                    <p class=\"blockquote blockquote-primary\">\r\n                        �And thank you for turning my personal jean jacket into a couture piece.�\r\n                        <br>\r\n                        <br>\r\n                        <small>\r\n                            Kanye West, Producer.\r\n                        </small>\r\n                    </p>\r\n                </div>\r\n            </div>\r\n        </div>\r\n    </div>\r\n";
 
 /***/ })
 
