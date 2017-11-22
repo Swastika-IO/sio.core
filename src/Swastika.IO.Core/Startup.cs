@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.SpaServices.Webpack;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Swastika.IO.Cms.Lib.Services;
 using System;
 
 namespace Swastika.IO.Admin
@@ -31,6 +32,9 @@ namespace Swastika.IO.Admin
                 //options.IdleTimeout = TimeSpan.FromSeconds(10);
                 options.Cookie.HttpOnly = true;
             });
+
+            // Add Singleton Configs App Configs (load from db)
+            services.AddSingleton<ApplicationConfigService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

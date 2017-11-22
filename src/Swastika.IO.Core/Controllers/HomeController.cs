@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Swastika.IO.Cms.Lib.Services;
 using System;
 using System.Diagnostics;
 
@@ -9,7 +10,11 @@ namespace Swastika.IO.Core.Controllers
     {
         private const string SessionKeyIsApp = "_IsApp";
         private const string RequestQueryIsApp = "app";
-
+        private readonly ApplicationConfigService _appService;
+        public HomeController(ApplicationConfigService service)
+        {
+            this._appService = service;
+        }
         public IActionResult Index()
         {
             if (HttpContext.Session.GetString(SessionKeyIsApp) == null)
