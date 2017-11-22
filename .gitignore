@@ -249,3 +249,5 @@ ModelManifest.xml
 /src/Swastika.Cms.Lib/bin
 /src/Swastika.Cms.Lib/obj
 /src/.vs
+/src/Swastika.IO.Core/wwwroot/sw-spa/dist
+/src/.vs
