@@ -11,7 +11,7 @@ namespace Swastika.Cms.Lib.ViewModels
     public class CategoryListItemViewModel : ViewModelBase<SiocCmsContext, SiocCategory, CategoryListItemViewModel>
     {
         public int Id { get; set; }
-        public string Specificulture { get; set; }
+        //public string Specificulture { get; set; }
         public string Template { get; set; }
         public string Icon { get; set; }
         public string Title { get; set; }

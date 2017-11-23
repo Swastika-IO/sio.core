@@ -12,14 +12,29 @@ namespace Swastika.IO.Cms.Lib.Services
         public string Culture { get; set; }
         public string Name { get; set; }
         //public List<ConfigurationViewModel> ListConfiguration { get; set; }
-        public static List<SupportedCulture> ListSupportedCulture { get; set; } = new List<SupportedCulture>();
+        private static List<SupportedCulture> _listSupportedLanguage;
+        public static List<SupportedCulture> ListSupportedCulture
+        {
+            get
+            {
+                if (_listSupportedLanguage==null)
+                {
+                    InitCultures();
+                }
+                return _listSupportedLanguage; 
+            }
+            set
+            {
+                _listSupportedLanguage = value;
+            }
+        }
         //private readonly ConfigurationRepository _repo;
         public ApplicationConfigService()
         {
             //_repo = ConfigurationRepository.GetInstance();
             InitCultures();
         }
-       
+
         public void Refresh()
         {
             InitCultures();
@@ -30,14 +45,15 @@ namespace Swastika.IO.Cms.Lib.Services
             InitCultures();
         }
 
-        public void InitCultures()
+        static void InitCultures()
         {
             var getCultures = CultureViewModel.Repository.GetModelList();
+            _listSupportedLanguage = new List<SupportedCulture>();
             if (getCultures.IsSucceed)
             {
                 foreach (var culture in getCultures.Data)
                 {
-                    ListSupportedCulture.Add(
+                    _listSupportedLanguage.Add(
                         new SupportedCulture()
                         {
                             Icon = culture.Icon,

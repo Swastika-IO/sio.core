@@ -11,7 +11,7 @@ namespace Swastika.Cms.Lib.ViewModels
         Swastika.Infrastructure.Data.ViewModels.ViewModelBase<SiocCmsContext, SiocCulture, CultureViewModel>
     {
         public int Id { get; set; }
-        public string Specificulture { get; set; }
+        //public string Specificulture { get; set; }
         public string Lcid { get; set; }
         public string Alias { get; set; }
         public string FullName { get; set; }

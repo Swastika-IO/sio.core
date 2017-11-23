@@ -177,7 +177,7 @@ namespace Swastika.Cms.Lib.ViewModels
 
             //if (string.IsNullOrEmpty(Id))
             //{
-                vm.ListSupportedCulture.ForEach(c => c.IsSupported = (c.Specificulture == Specificulture));
+                vm.ListSupportedCulture.ForEach(c => c.IsSupported = Repository.CheckIsExists(a=>a.Id==Id && a.Specificulture == c.Specificulture, _context, _transaction));
             //}
             vm.ActivedModules = new List<ModuleWithDataViewModel>();
             foreach (var module in vm.ModuleNavs.Where(m => m.IsActived))
@@ -531,7 +531,7 @@ namespace Swastika.Cms.Lib.ViewModels
 
             if (result.IsSucceed)
             {
-                foreach (var item in view.Categories)
+                foreach (var item in view.Categories.Where(m=>m.IsActived))
                 {
                     result = await item.RemoveModelAsync(false, _context, _transaction);
                 }
@@ -539,7 +539,7 @@ namespace Swastika.Cms.Lib.ViewModels
 
             if (result.IsSucceed)
             {
-                foreach (var item in view.Modules)
+                foreach (var item in view.Modules.Where(m => m.IsActived))
                 {
                     result = await item.RemoveModelAsync(false, _context, _transaction);
                 }
@@ -547,7 +547,7 @@ namespace Swastika.Cms.Lib.ViewModels
 
             if (result.IsSucceed)
             {
-                foreach (var item in view.ModuleNavs)
+                foreach (var item in view.ModuleNavs.Where(m => m.IsActived))
                 {
                     result = item.RemoveModel(false, _context, _transaction);
                 }
@@ -750,7 +750,7 @@ namespace Swastika.Cms.Lib.ViewModels
         Swastika.Infrastructure.Data.ViewModels.ViewModelBase<SiocCmsContext, SiocArticle, ArticleListItemViewModel>
     {
         public string Id { get; set; }
-        public string Specificulture { get; set; }
+        //public string Specificulture { get; set; }
         public string Template { get; set; }
         public string Image { get; set; }
         public string Thumbnail { get; set; }
@@ -817,7 +817,7 @@ namespace Swastika.Cms.Lib.ViewModels
         Swastika.Infrastructure.Data.ViewModels.ViewModelBase<SiocCmsContext, SiocArticle, FEArticleViewModel>
     {
         public string Id { get; set; }
-        public string Specificulture { get; set; }
+        //public string Specificulture { get; set; }
         public string Template { get; set; }
         public string Thumbnail { get; set; }
         public string Image { get; set; }

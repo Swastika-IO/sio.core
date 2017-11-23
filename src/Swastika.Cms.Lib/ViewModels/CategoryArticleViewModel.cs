@@ -21,7 +21,7 @@ namespace Swastika.Cms.Lib.ViewModels
 
         public string ArticleId { get; set; }
         public int CategoryId { get; set; }
-        public string Specificulture { get; set; }
+        //public string Specificulture { get; set; }
         public bool IsActived { get; set; }
         public string Description { get; set; }
 

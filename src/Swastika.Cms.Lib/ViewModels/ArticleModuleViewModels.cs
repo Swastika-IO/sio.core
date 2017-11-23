@@ -11,7 +11,7 @@ namespace Swastika.Cms.Lib.ViewModels
     {
         public string ArticleId { get; set; }
         public int ModuleId { get; set; } // ModuleId
-        public string Specificulture { get; set; }
+        //public string Specificulture { get; set; }
         public bool IsActived { get; set; }
         public string Description { get; set; }
 
@@ -50,7 +50,7 @@ namespace Swastika.Cms.Lib.ViewModels
     {
         public string ArticleId { get; set; }
         public int ModuleId { get; set; } // Module Id
-        public string Specificulture { get; set; }
+        //public string Specificulture { get; set; }
         public bool IsActived { get; set; }
         public string Description { get; set; }
 

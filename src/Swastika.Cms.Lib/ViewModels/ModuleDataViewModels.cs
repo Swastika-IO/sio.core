@@ -21,7 +21,7 @@ namespace Swastika.Cms.Lib.ViewModels
 
         public string Id { get; set; }
         public int ModuleId { get; set; }
-        public string Specificulture { get; set; }
+        //public string Specificulture { get; set; }
         public string Fields { get; set; } = "[]";
         public string Value { get; set; }
         public string ArticleId { get; set; }

@@ -20,7 +20,7 @@ namespace Swastika.Cms.Lib.ViewModels
     public class ModuleWithDataViewModel : ViewModelBase<SiocCmsContext, SiocModule, ModuleWithDataViewModel>
     {
         public int Id { get; set; }
-        public string Specificulture { get; set; }
+        //public string Specificulture { get; set; }
         public string Name { get; set; }
         public string Template { get; set; }
         public string Description { get; set; }
@@ -134,7 +134,7 @@ namespace Swastika.Cms.Lib.ViewModels
     {
 
         public int Id { get; set; }
-        public string Specificulture { get; set; }
+        //public string Specificulture { get; set; }
         public string Name { get; set; }
         public string Template { get; set; }
         public string Title { get; set; }
@@ -155,7 +155,7 @@ namespace Swastika.Cms.Lib.ViewModels
     {
 
         public int Id { get; set; }
-        public string Specificulture { get; set; }
+        //public string Specificulture { get; set; }
         public string Name { get; set; }
         public string Template { get; set; }
         public string Title { get; set; }
@@ -163,7 +163,7 @@ namespace Swastika.Cms.Lib.ViewModels
         public string Fields { get; set; }
 
 
-        public List<CultureViewModel> ListSupportedCulture { get; set; }
+        //public List<CultureViewModel> ListSupportedCulture { get; set; }
         public TemplateViewModel View { get; set; }
         public List<TemplateViewModel> Templates { get; set; }
         public List<ModuleFieldViewModel> Columns { get; set; }
@@ -177,23 +177,15 @@ namespace Swastika.Cms.Lib.ViewModels
 
         public override ModuleBEViewModel ParseView(SiocCmsContext _context = null, IDbContextTransaction _transaction = null)
         {
+            IsClone = true;
+            ListSupportedCulture = IO.Cms.Lib.Services.ApplicationConfigService.ListSupportedCulture;
+
             var vm = base.ParseView(_context, _transaction);
 
             //Get Languages
             vm.Templates = Templates ?? TemplateRepository.Instance.GetTemplates(Constants.TemplateFolder.Modules);
             vm.Template = string.IsNullOrEmpty(Template) ? "Modules/_Default" : Template;
             vm.View = TemplateRepository.Instance.GetTemplate(Template, Templates, Constants.TemplateFolder.Modules);
-
-            var getCulture = CultureViewModel.Repository.GetModelList(_context, _transaction);
-            if (getCulture.IsSucceed)
-            {
-                getCulture.Data.ForEach(c =>
-                c.IsSupported = ModuleBEViewModel.Repository.CheckIsExists(
-                    a => a.Id == vm.Id && a.Specificulture == c.Specificulture));
-
-                vm.ListSupportedCulture = getCulture.Data;
-            }
-
 
             //Get columns
             vm.Columns = new List<ModuleFieldViewModel>();
@@ -233,25 +225,25 @@ namespace Swastika.Cms.Lib.ViewModels
         {
             var result = await base.SaveModelAsync(isSaveSubModels, _context, _transaction);
 
-            if (result.IsSucceed)
-            {
-                TemplateRepository.Instance.SaveTemplate(View);
-                foreach (var supportedCulture in ListSupportedCulture.Where(c => c.Specificulture != Specificulture))
-                {
+            //if (result.IsSucceed)
+            //{
+            //    TemplateRepository.Instance.SaveTemplate(View);
+            //    foreach (var supportedCulture in ListSupportedCulture.Where(c => c.Specificulture != Specificulture))
+            //    {
 
-                    var cloneModule = await ModuleBEViewModel.Repository.GetSingleModelAsync(
-                        b => b.Id == Id && b.Specificulture == supportedCulture.Specificulture);
-                    if (cloneModule.Data == null && supportedCulture.IsSupported)
-                    {
-                        var cloneResult = this.Clone(supportedCulture.Specificulture);
-                    }
-                    else if (cloneModule.Data != null && !supportedCulture.IsSupported)
-                    {
-                        await ModuleBEViewModel.Repository.RemoveModelAsync(
-                            b => b.Id == cloneModule.Data.Id && b.Specificulture == supportedCulture.Specificulture);
-                    }
-                }
-            }
+            //        var cloneModule = await ModuleBEViewModel.Repository.GetSingleModelAsync(
+            //            b => b.Id == Id && b.Specificulture == supportedCulture.Specificulture);
+            //        if (cloneModule.Data == null && supportedCulture.IsSupported)
+            //        {
+            //            var cloneResult = this.Clone(supportedCulture.Specificulture);
+            //        }
+            //        else if (cloneModule.Data != null && !supportedCulture.IsSupported)
+            //        {
+            //            await ModuleBEViewModel.Repository.RemoveModelAsync(
+            //                b => b.Id == cloneModule.Data.Id && b.Specificulture == supportedCulture.Specificulture);
+            //        }
+            //    }
+            //}
 
             return result;
         }

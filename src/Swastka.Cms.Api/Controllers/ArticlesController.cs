@@ -125,7 +125,7 @@ namespace Swastka.Cms.Api.Controllers
         [Route("delete/{id}")]
         public async Task<RepositoryResponse<bool>> Delete(string id)
         {
-            var getArticle = ArticleBEViewModel.Repository.GetSingleModel(a => a.Id == id);
+            var getArticle = ArticleBEViewModel.Repository.GetSingleModel(a => a.Id == id && a.Specificulture == _lang);
             if (getArticle.IsSucceed)
             {
                 return await getArticle.Data.RemoveModelAsync(true);
