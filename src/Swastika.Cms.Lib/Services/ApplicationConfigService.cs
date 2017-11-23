@@ -32,7 +32,7 @@ namespace Swastika.IO.Cms.Lib.Services
         public ApplicationConfigService()
         {
             //_repo = ConfigurationRepository.GetInstance();
-            InitCultures();
+            //InitCultures();
         }
 
         public void Refresh()
