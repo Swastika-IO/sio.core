@@ -45,26 +45,29 @@ namespace Swastika.Cms.Lib.ViewModels
         }
 
         #region Overrides
-
-        public override ModuleWithDataViewModel ParseView(SiocCmsContext _context = null, IDbContextTransaction _transaction = null)
+        public override ModuleWithDataViewModel ParseView(bool isExpand = true, SiocCmsContext _context = null, IDbContextTransaction _transaction = null)
         {
-            var vm = base.ParseView(_context, _transaction);
-
-            vm.Templates = Templates ?? TemplateRepository.Instance.GetTemplates(Constants.TemplateFolder.Modules);
+            var vm  = base.ParseView(isExpand, _context, _transaction);
             vm.Columns = new List<ModuleFieldViewModel>();
-            JArray arrField = !string.IsNullOrEmpty(Fields) ? JArray.Parse(Fields) : new JArray();
+            JArray arrField = !string.IsNullOrEmpty(vm.Fields) ? JArray.Parse(vm.Fields) : new JArray();
             foreach (var field in arrField)
             {
-                ModuleFieldViewModel vmField = new ModuleFieldViewModel()
+                ModuleFieldViewModel thisField = new ModuleFieldViewModel()
                 {
                     Name = CommonHelper.ParseJsonPropertyName(field["Name"].ToString()),
                     DataType = (Constants.DataType)(int)field["DataType"],
                     Width = field["Width"] != null ? field["Width"].Value<int>() : 3,
                     IsDisplay = field["IsDisplay"] != null ? field["IsDisplay"].Value<bool>() : true
                 };
-                Columns.Add(vmField);
+                vm.Columns.Add(thisField);
             }
+            return vm;
+        }
 
+        public override void ExpandView(SiocCmsContext _context = null, IDbContextTransaction _transaction = null)
+        {
+            this.Templates = Templates ?? TemplateRepository.Instance.GetTemplates(Constants.TemplateFolder.Modules);
+           
             //if (Type == ModuleType.Root)
             //{
             //    var getDataResult = FEModuleContentData.Repository
@@ -75,13 +78,17 @@ namespace Swastika.Cms.Lib.ViewModels
             //    {
             //        getDataResult.Data.JsonItems = new List<JObject>();
             //        getDataResult.Data.Items.ForEach(d => getDataResult.Data.JsonItems.Add(d.JItem));
-            //        vm.Data = getDataResult.Data;
+            //        this.Data = getDataResult.Data;
             //    }
             //}
-            return vm;
         }
 
-
+        public override SiocModule ParseModel()
+        {
+            var model = base.ParseModel();
+            model.Type = (int)Type;
+            return model;
+        }
 
         #endregion
         #region Expand
@@ -143,7 +150,7 @@ namespace Swastika.Cms.Lib.ViewModels
 
         public string DetailsUrl { get; set; }
         public string EditUrl { get; set; }
-
+        public ModuleType Type { get; set; }
         public ModuleListItemViewModel(SiocModule model, SiocCmsContext _context = null, IDbContextTransaction _transaction = null) : base(model, _context, _transaction)
         {
         }
@@ -162,7 +169,7 @@ namespace Swastika.Cms.Lib.ViewModels
         public string Description { get; set; }
         public string Fields { get; set; }
 
-
+        public ModuleType Type { get; set; }
         //public List<CultureViewModel> ListSupportedCulture { get; set; }
         public TemplateViewModel View { get; set; }
         public List<TemplateViewModel> Templates { get; set; }
@@ -174,36 +181,49 @@ namespace Swastika.Cms.Lib.ViewModels
         #region Overrides
 
         #region Common
-
-        public override ModuleBEViewModel ParseView(SiocCmsContext _context = null, IDbContextTransaction _transaction = null)
+        public override ModuleBEViewModel ParseView(bool isExpand = true, SiocCmsContext _context = null, IDbContextTransaction _transaction = null)
         {
-            IsClone = true;
-            ListSupportedCulture = IO.Cms.Lib.Services.ApplicationConfigService.ListSupportedCulture;
-
-            var vm = base.ParseView(_context, _transaction);
-
-            //Get Languages
-            vm.Templates = Templates ?? TemplateRepository.Instance.GetTemplates(Constants.TemplateFolder.Modules);
-            vm.Template = string.IsNullOrEmpty(Template) ? "Modules/_Default" : Template;
-            vm.View = TemplateRepository.Instance.GetTemplate(Template, Templates, Constants.TemplateFolder.Modules);
-
-            //Get columns
+            var vm = base.ParseView(isExpand, _context, _transaction);
             vm.Columns = new List<ModuleFieldViewModel>();
-
-            JArray arrField = JArray.Parse(Fields ?? "[]");
+            JArray arrField = !string.IsNullOrEmpty(vm.Fields) ? JArray.Parse(vm.Fields) : new JArray();
             foreach (var field in arrField)
             {
-                ModuleFieldViewModel vmField = new ModuleFieldViewModel()
+                ModuleFieldViewModel thisField = new ModuleFieldViewModel()
                 {
                     Name = CommonHelper.ParseJsonPropertyName(field["Name"].ToString()),
                     DataType = (Constants.DataType)(int)field["DataType"],
                     Width = field["Width"] != null ? field["Width"].Value<int>() : 3,
                     IsDisplay = field["IsDisplay"] != null ? field["IsDisplay"].Value<bool>() : true
                 };
-                vm.Columns.Add(vmField);
+                vm.Columns.Add(thisField);
             }
-
             return vm;
+        }
+        public override void ExpandView(SiocCmsContext _context = null, IDbContextTransaction _transaction = null)
+        {
+            IsClone = true;
+            ListSupportedCulture = IO.Cms.Lib.Services.ApplicationConfigService.ListSupportedCulture;
+
+            //Get Languages
+            this.Templates = Templates ?? TemplateRepository.Instance.GetTemplates(Constants.TemplateFolder.Modules);
+            this.Template = string.IsNullOrEmpty(Template) ? "Modules/_Default" : Template;
+            this.View = TemplateRepository.Instance.GetTemplate(Template, Templates, Constants.TemplateFolder.Modules);
+
+            //Get columns
+            this.Columns = new List<ModuleFieldViewModel>();
+
+            JArray arrField = JArray.Parse(Fields ?? "[]");
+            foreach (var field in arrField)
+            {
+                ModuleFieldViewModel thisField = new ModuleFieldViewModel()
+                {
+                    Name = CommonHelper.ParseJsonPropertyName(field["Name"].ToString()),
+                    DataType = (Constants.DataType)(int)field["DataType"],
+                    Width = field["Width"] != null ? field["Width"].Value<int>() : 3,
+                    IsDisplay = field["IsDisplay"] != null ? field["IsDisplay"].Value<bool>() : true
+                };
+                this.Columns.Add(thisField);
+            }
         }
 
         public override SiocModule ParseModel()
@@ -212,7 +232,7 @@ namespace Swastika.Cms.Lib.ViewModels
                 Newtonsoft.Json.JsonConvert.SerializeObject(Columns.Where(
                     c => !string.IsNullOrEmpty(c.Name)))) : new JArray();
             Fields = arrField.ToString(Newtonsoft.Json.Formatting.None);
-            Template = View != null ? string.Format(@"{0}/{1}", View.FileFolder, View.Filename) : string.Empty;
+            Template = View != null ? string.Format(@"{0}/{1}", View.FileFolder, View.Filename) : Template;
 
             return base.ParseModel();
         }

@@ -88,17 +88,13 @@ namespace Swastika.Cms.Lib.ViewModels
 
         #region Sync
 
-        public override ArticleModuleFEViewModel ParseView(SiocCmsContext _context = null, IDbContextTransaction _transaction = null)
+        public override void ExpandView(SiocCmsContext _context = null, IDbContextTransaction _transaction = null)
         {
-            var vm = base.ParseView(_context, _transaction);
-
             var getModuleResult = ModuleWithDataViewModel.Repository.GetSingleModel(m => m.Id == ModuleId && m.Specificulture == Specificulture);
             if (getModuleResult.IsSucceed)
             {
-                vm.Module = getModuleResult.Data;
+                this.Module = getModuleResult.Data;
             }
-
-            return vm;
         }
 
         public override  RepositoryResponse<bool> SaveSubModels(SiocArticleModule parent, SiocCmsContext _context = null, IDbContextTransaction _transaction = null)

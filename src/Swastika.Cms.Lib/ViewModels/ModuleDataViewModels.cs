@@ -84,30 +84,28 @@ namespace Swastika.Cms.Lib.ViewModels
         }
         #region Overrides
 
-        public override ModuleContentViewmodel ParseView(SiocCmsContext _context = null, IDbContextTransaction _transaction = null)
+        public override void ExpandView(SiocCmsContext _context = null, IDbContextTransaction _transaction = null)
         {
-            var vm = base.ParseView(_context, _transaction);
-
             var objValue = Value != null ? JObject.Parse(Value) : new JObject();
 
-            vm.DataProperties = new List<ModuleDataValueViewModel>();
+            this.DataProperties = new List<ModuleDataValueViewModel>();
             //Columns = new List<ModuleFieldViewModel>(); // ModuleRepository.GetInstance().GetColumns(m => m.Id == ModuleId && m.Specificulture == Specificulture);
 
-            vm.Columns = new List<ModuleFieldViewModel>();
+            this.Columns = new List<ModuleFieldViewModel>();
             if (!string.IsNullOrEmpty(Fields))
             {
                 JArray arrField = JArray.Parse(Fields);
                 
                 foreach (var field in arrField)
                 {
-                    ModuleFieldViewModel vmField = new ModuleFieldViewModel()
+                    ModuleFieldViewModel thisField = new ModuleFieldViewModel()
                     {
                         Name = CommonHelper.ParseJsonPropertyName(field["Name"].ToString()),
                         DataType = (Constants.DataType)(int)field["DataType"],
                         Width = field["Width"] != null ? field["Width"].Value<int>() : 3,
                         IsDisplay = field["IsDisplay"] != null ? field["IsDisplay"].Value<bool>() : true
                     };
-                    vm.Columns.Add(vmField);
+                    this.Columns.Add(thisField);
                 }
             }
             foreach (var col in Columns)
@@ -152,13 +150,9 @@ namespace Swastika.Cms.Lib.ViewModels
                         dataVal.Value = prop.Value["value"].Value<string>();
                         break;
                 }
-                vm.DataProperties.Add(dataVal);
+                this.DataProperties.Add(dataVal);
                 //}
             }
-
-
-
-            return vm;
         }
 
 

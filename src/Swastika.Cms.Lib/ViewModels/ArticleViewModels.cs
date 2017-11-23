@@ -117,33 +117,31 @@ namespace Swastika.Cms.Lib.ViewModels
 
         #region Overrides
 
-        public override ArticleBEViewModel ParseView(SiocCmsContext _context = null, IDbContextTransaction _transaction = null)
+        public override void ExpandView(SiocCmsContext _context = null, IDbContextTransaction _transaction = null)
         {
             IsClone = true;
             ListSupportedCulture = IO.Cms.Lib.Services.ApplicationConfigService.ListSupportedCulture;
 
-            var vm = base.ParseView(_context, _transaction);
-            
-            if (!string.IsNullOrEmpty(vm.Tags))
+            if (!string.IsNullOrEmpty(this.Tags))
             {
-                ListTag = JArray.Parse(vm.Tags);
+                ListTag = JArray.Parse(this.Tags);
             }
 
-            vm.Templates = vm.Templates ?? TemplateRepository.Instance.GetTemplates(Constants.TemplateFolder.Articles);
+            this.Templates = this.Templates ?? TemplateRepository.Instance.GetTemplates(Constants.TemplateFolder.Articles);
 
-            vm.View = Templates.FirstOrDefault(t => !string.IsNullOrEmpty(vm.Template) && vm.Template.Contains(t.Filename + t.Extension));
-            if (vm.View == null)
+            this.View = Templates.FirstOrDefault(t => !string.IsNullOrEmpty(this.Template) && this.Template.Contains(t.Filename + t.Extension));
+            if (this.View == null)
             {
-                //vm.Template = SWCmsHelper.GetFullPath(new string[]
+                //this.Template = SWCmsHelper.GetFullPath(new string[]
                 //{
-                //    vm.TemplateFolder
+                //    this.TemplateFolder
                 //    , SWCmsConstants.Default.ArticleTemplate
                 //});
-                vm.View = Templates.FirstOrDefault();//t => vm.Template.Contains(t.Filename + t.Extension)
-                vm.Template = SWCmsHelper.GetFullPath(new string[]
+                this.View = Templates.FirstOrDefault();//t => this.Template.Contains(t.Filename + t.Extension)
+                this.Template = SWCmsHelper.GetFullPath(new string[]
                 {
-                    vm.View?.FileFolder
-                    , vm.View?.Filename
+                    this.View?.FileFolder
+                    , this.View?.Filename
                 });
             }
 
@@ -152,44 +150,43 @@ namespace Swastika.Cms.Lib.ViewModels
             //{
             //    getCulture.Data.ForEach(c =>
             //    c.IsSupported = ArticleBEViewModel.Repository.CheckIsExists(
-            //        a => a.Id == vm.Id && a.Specificulture == c.Specificulture));
+            //        a => a.Id == this.Id && a.Specificulture == c.Specificulture));
 
-            //    //vm.ListSupportedCulture = getCulture.Data;
+            //    //this.ListSupportedCulture = getCulture.Data;
             //}
 
             var getCateArticle = CommonRepository.Instance.GetCategoryArticleNav(Id, Specificulture, _context, _transaction);
             if (getCateArticle.IsSucceed)
             {
-                vm.Categories = getCateArticle.Data;
+                this.Categories = getCateArticle.Data;
             }
 
             var getModuleArticle = CommonRepository.Instance.GetModuleArticleNav(Id, Specificulture, _context, _transaction);
             if (getModuleArticle.IsSucceed)
             {
-                vm.Modules = getModuleArticle.Data;
+                this.Modules = getModuleArticle.Data;
             }
 
             var getArticleModule = CommonRepository.Instance.GetArticleModuleNav(Id, Specificulture, _context, _transaction);
             if (getArticleModule.IsSucceed)
             {
-                vm.ModuleNavs = getArticleModule.Data;
+                this.ModuleNavs = getArticleModule.Data;
             }
 
             //if (string.IsNullOrEmpty(Id))
             //{
-                vm.ListSupportedCulture.ForEach(c => c.IsSupported = Repository.CheckIsExists(a=>a.Id==Id && a.Specificulture == c.Specificulture, _context, _transaction));
+                this.ListSupportedCulture.ForEach(c => c.IsSupported = Repository.CheckIsExists(a=>a.Id==Id && a.Specificulture == c.Specificulture, _context, _transaction));
             //}
-            vm.ActivedModules = new List<ModuleWithDataViewModel>();
-            foreach (var module in vm.ModuleNavs.Where(m => m.IsActived))
+            this.ActivedModules = new List<ModuleWithDataViewModel>();
+            foreach (var module in this.ModuleNavs.Where(m => m.IsActived))
             {
                 var getModule = ModuleWithDataViewModel.Repository.GetSingleModel(m => m.Id == module.ModuleId && m.Specificulture == module.Specificulture, _context, _transaction);
                 if (getModule.IsSucceed)
                 {
-                    vm.ActivedModules.Add(getModule.Data);
-                    vm.ActivedModules.ForEach(m => m.LoadData(Id));
+                    this.ActivedModules.Add(getModule.Data);
+                    this.ActivedModules.ForEach(m => m.LoadData(Id));
                 }
             }
-            return vm;
         }
 
         public override SiocArticle ParseModel()
@@ -451,7 +448,7 @@ namespace Swastika.Cms.Lib.ViewModels
                 var getModule = await ModuleBEViewModel.Repository.GetSingleModelAsync(m => m.Id == moduleNav.ModuleId
                     && m.Specificulture == Specificulture, _context, _transaction);
                 var module = getModule.Data;
-                var cloneModule = await module.CloneAsync(ListSupportedCulture, _context, _transaction);
+                var cloneModule = await module.CloneAsync(ListSupportedCulture.Where(c=>c.Specificulture!= Specificulture).ToList(), _context, _transaction);
                 if (cloneModule.IsSucceed)
                 {
                     var cloneNav = await moduleNav.CloneAsync(ListSupportedCulture, _context, _transaction);
@@ -886,17 +883,13 @@ namespace Swastika.Cms.Lib.ViewModels
 
         #region Overrides
 
-        public override FEArticleViewModel ParseView(SiocCmsContext _context = null, IDbContextTransaction _transaction = null)
+        public override void ExpandView(SiocCmsContext _context = null, IDbContextTransaction _transaction = null)
         {
-            var vm = base.ParseView(_context, _transaction);
-
             var getModulesResult = ArticleModuleFEViewModel.Repository.GetModelListBy(m => m.ArticleId == Id && m.Specificulture == Specificulture, _context, _transaction);
             if (getModulesResult.IsSucceed)
             {
-                vm.Modules = getModulesResult.Data;
+                this.Modules = getModulesResult.Data;
             }
-
-            return vm;
         }
 
         #endregion
