@@ -198,7 +198,7 @@ namespace Swastika.Cms.Lib.ViewModels
             //Get columns
             vm.Columns = new List<ModuleFieldViewModel>();
 
-            JArray arrField = JArray.Parse(Fields);
+            JArray arrField = JArray.Parse(Fields ?? "[]");
             foreach (var field in arrField)
             {
                 ModuleFieldViewModel vmField = new ModuleFieldViewModel()

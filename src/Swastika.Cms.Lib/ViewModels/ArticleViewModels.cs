@@ -22,7 +22,7 @@ namespace Swastika.Cms.Lib.ViewModels
 
         public string Id { get; set; }
         //public string Specificulture { get; set; }
-        public List<SupportedCulture> ListSupportedCulture { get; set; } = IO.Cms.Lib.Services.ApplicationConfigService.ListSupportedCulture;
+        //public List<SupportedCulture> ListSupportedCulture { get; set; } = IO.Cms.Lib.Services.ApplicationConfigService.ListSupportedCulture;
 
         public string Template { get; set; }
         public string Thumbnail { get; set; }
@@ -107,15 +107,11 @@ namespace Swastika.Cms.Lib.ViewModels
         }
 
         public ArticleBEViewModel(SiocArticle model, SiocCmsContext _context = null, IDbContextTransaction _transaction = null) : base(model, _context, _transaction)
+        {            
+        }
+        public ArticleBEViewModel()
         {
-            var getCulture = CultureViewModel.Repository.GetModelList(_context, _transaction);
-            if (getCulture.IsSucceed)
-            {
-                getCulture.Data.ForEach(c =>
-                c.IsSupported = ArticleBEViewModel.Repository.CheckIsExists(
-                    a => a.Id == Id && a.Specificulture == c.Specificulture));
 
-            }
         }
 
 
@@ -123,7 +119,11 @@ namespace Swastika.Cms.Lib.ViewModels
 
         public override ArticleBEViewModel ParseView(SiocCmsContext _context = null, IDbContextTransaction _transaction = null)
         {
+            IsClone = true;
+            ListSupportedCulture = IO.Cms.Lib.Services.ApplicationConfigService.ListSupportedCulture;
+
             var vm = base.ParseView(_context, _transaction);
+            
             if (!string.IsNullOrEmpty(vm.Tags))
             {
                 ListTag = JArray.Parse(vm.Tags);
@@ -229,7 +229,7 @@ namespace Swastika.Cms.Lib.ViewModels
             }
 
             Tags = ListTag.ToString(Newtonsoft.Json.Formatting.None);
-            Template = SWCmsHelper.GetFullPath(new string[] { View.FileFolder, View.Filename + View.Extension });
+            Template = View!=null? SWCmsHelper.GetFullPath(new string[] { View?.FileFolder, View?.Filename + View?.Extension }): Template;
             var model = base.ParseModel();
 
             return model;
@@ -422,49 +422,6 @@ namespace Swastika.Cms.Lib.ViewModels
                     }
                 }
 
-                // Clone article
-                //foreach (var supportedCulture in ListSupportedCulture.Where(
-                //    c => c.Specificulture != Specificulture))
-                //{
-                //    if (result)
-                //    {
-                //        if (supportedCulture.IsSupported)
-                //        {
-                //            var getCloneArticle = await CloneAsync(
-                //                a => a.Id == Id && a.Specificulture == supportedCulture.Specificulture,
-                //                supportedCulture.Specificulture, _context, _transaction);
-                //            result = result && getCloneArticle.IsSucceed;
-                //        }
-                //        else
-                //        {
-                //            var delResult = await ArticleBEViewModel.Repository.RemoveModelAsync(b => b.Id == getcloneArticle.Data.Id && b.Specificulture == supportedCulture.Specificulture);
-                //            result = result && delResult.IsSucceed;
-                //        }
-                //        //var getCloneArticle = await CloneAsync(
-                //        //        a => a.Id == Id && a.Specificulture == supportedCulture.Specificulture,
-                //        //        supportedCulture.Specificulture, _context, _transaction);
-                //        //var getcloneArticle = await ArticleBEViewModel.Repository.GetSingleModelAsync(b => b.Id == Id && b.Specificulture == supportedCulture.Specificulture
-                //        //    , _context, _transaction);
-                //        //if (!getCloneArticle.IsSucceed && supportedCulture.IsSupported)
-                //        //{
-                //        //    var cloneResult = await CloneAsync( 
-                //        //        a=>a.Id== Id && a.Specificulture == culture,
-                //        //        supportedCulture.Specificulture, _context, _transaction);
-                //        //    result = result && cloneResult.IsSucceed;
-                //        //}
-                //        //else if (getCloneArticle.IsSucceed && !supportedCulture.IsSupported)
-                //        //{
-                //        //    var delResult = await ArticleBEViewModel.Repository.RemoveModelAsync(b => b.Id == getcloneArticle.Data.Id && b.Specificulture == supportedCulture.Specificulture);
-                //        //    result = result && delResult.IsSucceed;
-                //        //}
-                //    }
-                //    else
-                //    {
-                //        break;
-                //    }
-                //}
-
-
                 return new RepositoryResponse<bool>()
                 {
                     IsSucceed = result,
@@ -494,10 +451,10 @@ namespace Swastika.Cms.Lib.ViewModels
                 var getModule = await ModuleBEViewModel.Repository.GetSingleModelAsync(m => m.Id == moduleNav.ModuleId
                     && m.Specificulture == Specificulture, _context, _transaction);
                 var module = getModule.Data;
-                var cloneModule = await module.CloneAsync(_context, _transaction, ListSupportedCulture);
+                var cloneModule = await module.CloneAsync(ListSupportedCulture, _context, _transaction);
                 if (cloneModule.IsSucceed)
                 {
-                    var cloneNav = await moduleNav.CloneAsync(_context, _transaction);
+                    var cloneNav = await moduleNav.CloneAsync(ListSupportedCulture, _context, _transaction);
                     if (cloneNav.IsSucceed)
                     {
                         result.IsSucceed = cloneNav.IsSucceed;
