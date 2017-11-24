@@ -50,7 +50,7 @@ namespace Swastika.Cms.Lib.ViewModels
             var vm  = base.ParseView(isExpand, _context, _transaction);
             vm.Columns = new List<ModuleFieldViewModel>();
             JArray arrField = !string.IsNullOrEmpty(vm.Fields) ? JArray.Parse(vm.Fields) : new JArray();
-            foreach (var field in arrField)
+            foreach (var field  in arrField)
             {
                 ModuleFieldViewModel thisField = new ModuleFieldViewModel()
                 {
@@ -90,6 +90,26 @@ namespace Swastika.Cms.Lib.ViewModels
             return model;
         }
 
+        public override async Task<RepositoryResponse<bool>> CloneSubModelsAsync(ModuleWithDataViewModel parent, List<SupportedCulture> cloneCultures, SiocCmsContext _context = null, IDbContextTransaction _transaction = null)
+        {
+            RepositoryResponse<bool> result = new RepositoryResponse<bool>() { IsSucceed = true };
+            foreach (var data in Data.Items)
+            {
+                
+                var cloneData = await data.CloneAsync(cloneCultures, _context, _transaction);
+                if (cloneData.IsSucceed)
+                {
+                    result.IsSucceed = cloneData.IsSucceed;
+                }
+                else
+                {
+                    result.IsSucceed = cloneData.IsSucceed;
+                    result.Errors.AddRange(cloneData.Errors);
+                    result.Ex = cloneData.Ex;
+                }
+            }
+            return result;
+        }
         #endregion
         #region Expand
 
@@ -174,6 +194,7 @@ namespace Swastika.Cms.Lib.ViewModels
         public TemplateViewModel View { get; set; }
         public List<TemplateViewModel> Templates { get; set; }
         public List<ModuleFieldViewModel> Columns { get; set; }
+        public PaginationModel<ModuleContentViewmodel> Data { get; set; }
 
         public ModuleBEViewModel(SiocModule model, SiocCmsContext _context = null, IDbContextTransaction _transaction = null) : base(model, _context, _transaction)
         {
@@ -196,6 +217,10 @@ namespace Swastika.Cms.Lib.ViewModels
                     IsDisplay = field["IsDisplay"] != null ? field["IsDisplay"].Value<bool>() : true
                 };
                 vm.Columns.Add(thisField);
+            }
+            if (isExpand)
+            {
+                ExpandView();
             }
             return vm;
         }
@@ -224,6 +249,8 @@ namespace Swastika.Cms.Lib.ViewModels
                 };
                 this.Columns.Add(thisField);
             }
+            var getData = ModuleContentViewmodel.Repository.GetModelListBy(d => d.ModuleId == Id && d.Specificulture == Specificulture,"Id", OrderByDirection.Ascending, pageSize: null ,pageIndex:null, _context: _context, _transaction: _transaction);
+            this.Data = getData.Data;
         }
 
         public override SiocModule ParseModel()
@@ -268,6 +295,25 @@ namespace Swastika.Cms.Lib.ViewModels
             return result;
         }
 
+        public override async Task<RepositoryResponse<bool>> CloneSubModelsAsync(ModuleBEViewModel parent, List<SupportedCulture> cloneCultures, SiocCmsContext _context = null, IDbContextTransaction _transaction = null)
+        {
+            RepositoryResponse<bool> result = new RepositoryResponse<bool>() { IsSucceed = true };
+            foreach (var data in parent.Data.Items)
+            {
+                var cloneData = await data.CloneAsync(cloneCultures, _context, _transaction);
+                if (cloneData.IsSucceed)
+                {
+                    result.IsSucceed = cloneData.IsSucceed;
+                }
+                else
+                {
+                    result.IsSucceed = cloneData.IsSucceed;
+                    result.Errors.AddRange(cloneData.Errors);
+                    result.Ex = cloneData.Ex;
+                }
+            }
+            return result;
+        }
         #endregion
 
         #region Sync

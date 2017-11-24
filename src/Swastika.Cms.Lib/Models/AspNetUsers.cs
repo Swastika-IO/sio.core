@@ -32,7 +32,7 @@ namespace Swastika.IO.Cms.Lib.Models
         public string Culture { get; set; }
         public DateTime? Dob { get; set; }
         public string Gender { get; set; }
-        public bool? IsActived { get; set; }
+        public bool IsActived { get; set; }
         public DateTime JoinDate { get; set; }
         public DateTime LastModified { get; set; }
         public string ModifiedBy { get; set; }

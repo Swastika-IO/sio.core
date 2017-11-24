@@ -10,6 +10,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Swastika.Domain.Core.Models;
 using Swastika.IO.Cms.Lib.Models;
+using Swastika.IO.Cms.Lib.Services;
 
 namespace Swastika.Cms.Lib.ViewModels
 {
@@ -73,6 +74,7 @@ namespace Swastika.Cms.Lib.ViewModels
 
         }
 
+
         public override SiocModuleData ParseModel()
         {
             if (string.IsNullOrEmpty(Id))
@@ -86,6 +88,9 @@ namespace Swastika.Cms.Lib.ViewModels
 
         public override void ExpandView(SiocCmsContext _context = null, IDbContextTransaction _transaction = null)
         {
+            IsClone = true;
+            ListSupportedCulture = ApplicationConfigService.ListSupportedCulture;
+
             var objValue = Value != null ? JObject.Parse(Value) : new JObject();
 
             this.DataProperties = new List<ModuleDataValueViewModel>();

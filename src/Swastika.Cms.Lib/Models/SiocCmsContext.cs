@@ -8,6 +8,7 @@ using System.IO;
 
 namespace Swastika.Cms.Lib.Models
 {
+
     public partial class SiocCmsContext : DbContext
     {
         public virtual DbSet<AspNetRoleClaims> AspNetRoleClaims { get; set; }
@@ -123,8 +124,6 @@ namespace Swastika.Cms.Lib.Models
 
                 entity.Property(e => e.Email).HasMaxLength(256);
 
-                entity.Property(e => e.IsActived).HasDefaultValueSql("((0))");
-
                 entity.Property(e => e.JoinDate).HasDefaultValueSql("('0001-01-01T00:00:00.000')");
 
                 entity.Property(e => e.LastModified).HasDefaultValueSql("('0001-01-01T00:00:00.000')");
@@ -160,6 +159,44 @@ namespace Swastika.Cms.Lib.Models
                     .HasConstraintName("FK_Base_Configuration_TTS_Culture");
             });
 
+            modelBuilder.Entity<Clients>(entity =>
+            {
+                entity.Property(e => e.Id)
+                    .HasMaxLength(128)
+                    .ValueGeneratedNever();
+
+                entity.Property(e => e.AllowedOrigin).HasMaxLength(100);
+
+                entity.Property(e => e.Name)
+                    .IsRequired()
+                    .HasMaxLength(100);
+
+                entity.Property(e => e.Secret).IsRequired();
+            });
+
+            modelBuilder.Entity<RefreshTokens>(entity =>
+            {
+                entity.Property(e => e.Id)
+                    .HasMaxLength(128)
+                    .ValueGeneratedNever();
+
+                entity.Property(e => e.ClientId)
+                    .IsRequired()
+                    .HasMaxLength(50);
+
+                entity.Property(e => e.Email)
+                    .IsRequired()
+                    .HasMaxLength(256);
+
+                entity.Property(e => e.ExpiresUtc).HasColumnType("datetime");
+
+                entity.Property(e => e.IssuedUtc).HasColumnType("datetime");
+
+                entity.Property(e => e.Subject)
+                    .IsRequired()
+                    .HasMaxLength(50);
+            });
+
             modelBuilder.Entity<SiocArticle>(entity =>
             {
                 entity.HasKey(e => new { e.Id, e.Specificulture });
@@ -176,15 +213,15 @@ namespace Swastika.Cms.Lib.Models
 
                 entity.Property(e => e.Image).HasMaxLength(250);
 
-                entity.Property(e => e.SeoDescription).HasColumnType("nvarchar(max)");
+                entity.Property(e => e.SeoDescription).HasMaxLength(4000);
 
-                entity.Property(e => e.SeoKeywords).HasColumnType("nvarchar(max)");
+                entity.Property(e => e.SeoKeywords).HasMaxLength(4000);
 
                 entity.Property(e => e.SeoName)
                     .HasMaxLength(500)
                     .IsUnicode(false);
 
-                entity.Property(e => e.SeoTitle).HasColumnType("nvarchar(max)");
+                entity.Property(e => e.SeoTitle).HasMaxLength(4000);
 
                 entity.Property(e => e.Source).HasMaxLength(250);
 
@@ -194,7 +231,7 @@ namespace Swastika.Cms.Lib.Models
 
                 entity.Property(e => e.Thumbnail).HasMaxLength(250);
 
-                entity.Property(e => e.Title).HasColumnType("nvarchar(max)");
+                entity.Property(e => e.Title).HasMaxLength(4000);
 
                 entity.Property(e => e.UpdatedBy).HasMaxLength(250);
 
@@ -250,10 +287,6 @@ namespace Swastika.Cms.Lib.Models
                     .IsRequired()
                     .HasMaxLength(250);
 
-                entity.Property(e => e.IsDeleted).HasDefaultValueSql("((0))");
-
-                entity.Property(e => e.IsPublished).HasDefaultValueSql("((0))");
-
                 entity.Property(e => e.ModifiedBy).HasMaxLength(450);
 
                 entity.Property(e => e.Url)
@@ -289,15 +322,15 @@ namespace Swastika.Cms.Lib.Models
 
                 entity.Property(e => e.Priority).HasDefaultValueSql("((0))");
 
-                entity.Property(e => e.SeoDescription).HasColumnType("nvarchar(max)");
+                entity.Property(e => e.SeoDescription).HasMaxLength(4000);
 
-                entity.Property(e => e.SeoKeywords).HasColumnType("nvarchar(max)");
+                entity.Property(e => e.SeoKeywords).HasMaxLength(4000);
 
                 entity.Property(e => e.SeoName)
                     .HasMaxLength(500)
                     .IsUnicode(false);
 
-                entity.Property(e => e.SeoTitle).HasColumnType("nvarchar(max)");
+                entity.Property(e => e.SeoTitle).HasMaxLength(4000);
 
                 entity.Property(e => e.StaticUrl).HasMaxLength(250);
 
@@ -305,7 +338,7 @@ namespace Swastika.Cms.Lib.Models
 
                 entity.Property(e => e.Template).HasMaxLength(50);
 
-                entity.Property(e => e.Title).HasColumnType("nvarchar(max)");
+                entity.Property(e => e.Title).HasMaxLength(4000);
 
                 entity.Property(e => e.UpdatedBy).HasMaxLength(250);
 
@@ -472,7 +505,7 @@ namespace Swastika.Cms.Lib.Models
 
                 entity.Property(e => e.Description).HasMaxLength(500);
 
-                entity.Property(e => e.Fields).HasColumnType("nvarchar(max)");
+                entity.Property(e => e.Fields).HasMaxLength(4000);
 
                 entity.Property(e => e.Name)
                     .IsRequired()
@@ -481,6 +514,8 @@ namespace Swastika.Cms.Lib.Models
                 entity.Property(e => e.Template).HasMaxLength(50);
 
                 entity.Property(e => e.Title).HasMaxLength(250);
+
+                entity.Property(e => e.Type).HasDefaultValueSql("('0')");
 
                 entity.HasOne(d => d.SpecificultureNavigation)
                     .WithMany(p => p.SiocModule)
@@ -514,11 +549,13 @@ namespace Swastika.Cms.Lib.Models
 
             modelBuilder.Entity<SiocModuleData>(entity =>
             {
+                entity.HasKey(e => new { e.Id, e.ModuleId, e.Specificulture });
+
                 entity.ToTable("sioc_module_data");
 
-                entity.Property(e => e.Id)
-                    .HasMaxLength(50)
-                    .ValueGeneratedNever();
+                entity.Property(e => e.Id).HasMaxLength(50);
+
+                entity.Property(e => e.Specificulture).HasMaxLength(10);
 
                 entity.Property(e => e.ArticleId).HasMaxLength(50);
 
@@ -526,13 +563,9 @@ namespace Swastika.Cms.Lib.Models
 
                 entity.Property(e => e.Fields)
                     .IsRequired()
-                    .HasColumnType("nvarchar(max)");
+                    .HasMaxLength(4000);
 
                 entity.Property(e => e.Priority).HasDefaultValueSql("((0))");
-
-                entity.Property(e => e.Specificulture)
-                    .IsRequired()
-                    .HasMaxLength(10);
 
                 entity.Property(e => e.UpdatedDateTime).HasColumnType("datetime");
 

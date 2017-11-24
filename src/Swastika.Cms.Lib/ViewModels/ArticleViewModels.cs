@@ -107,7 +107,7 @@ namespace Swastika.Cms.Lib.ViewModels
         }
 
         public ArticleBEViewModel(SiocArticle model, SiocCmsContext _context = null, IDbContextTransaction _transaction = null) : base(model, _context, _transaction)
-        {            
+        {
         }
         public ArticleBEViewModel()
         {
@@ -145,16 +145,6 @@ namespace Swastika.Cms.Lib.ViewModels
                 });
             }
 
-            //var getCulture = CultureViewModel.Repository.GetModelList(_context, _transaction);
-            //if (getCulture.IsSucceed)
-            //{
-            //    getCulture.Data.ForEach(c =>
-            //    c.IsSupported = ArticleBEViewModel.Repository.CheckIsExists(
-            //        a => a.Id == this.Id && a.Specificulture == c.Specificulture));
-
-            //    //this.ListSupportedCulture = getCulture.Data;
-            //}
-
             var getCateArticle = CommonRepository.Instance.GetCategoryArticleNav(Id, Specificulture, _context, _transaction);
             if (getCateArticle.IsSucceed)
             {
@@ -173,10 +163,10 @@ namespace Swastika.Cms.Lib.ViewModels
                 this.ModuleNavs = getArticleModule.Data;
             }
 
-            //if (string.IsNullOrEmpty(Id))
-            //{
-                this.ListSupportedCulture.ForEach(c => c.IsSupported = Repository.CheckIsExists(a=>a.Id==Id && a.Specificulture == c.Specificulture, _context, _transaction));
-            //}
+            this.ListSupportedCulture.ForEach(c => c.IsSupported =
+            (string.IsNullOrEmpty(Id) && c.Specificulture == Specificulture)
+            || Repository.CheckIsExists(a => a.Id == Id && a.Specificulture == c.Specificulture, _context, _transaction)
+            );
             this.ActivedModules = new List<ModuleWithDataViewModel>();
             foreach (var module in this.ModuleNavs.Where(m => m.IsActived))
             {
@@ -226,7 +216,7 @@ namespace Swastika.Cms.Lib.ViewModels
             }
 
             Tags = ListTag.ToString(Newtonsoft.Json.Formatting.None);
-            Template = View!=null? SWCmsHelper.GetFullPath(new string[] { View?.FileFolder, View?.Filename + View?.Extension }): Template;
+            Template = View != null ? SWCmsHelper.GetFullPath(new string[] { View?.FileFolder, View?.Filename + View?.Extension }) : Template;
             var model = base.ParseModel();
 
             return model;
@@ -383,11 +373,13 @@ namespace Swastika.Cms.Lib.ViewModels
                 {
                     foreach (var module in ActivedModules)
                     {
+                        module.Data.Items = new List<ModuleContentViewmodel>();
                         foreach (var data in module.Data.JsonItems)
                         {
+
                             SiocModuleData model = new SiocModuleData()
                             {
-                                Id = Guid.NewGuid().ToString(),
+                                Id = data.Value<string>("id") ?? Guid.NewGuid().ToString(),
                                 Specificulture = module.Specificulture,
                                 ArticleId = Id,
                                 ModuleId = module.Id,
@@ -412,8 +404,19 @@ namespace Swastika.Cms.Lib.ViewModels
                                 }
                             }
                             model.Value = val.ToString(Newtonsoft.Json.Formatting.None);
+
                             var vmData = new ModuleContentViewmodel(model);
+
                             var saveResult = await vmData.SaveModelAsync(false, _context, _transaction);
+                            if (saveResult.IsSucceed)
+                            {
+                                module.Data.Items.Add(vmData);
+                            }
+                            else
+                            {
+                                Errors.AddRange(saveResult.Errors);
+                                Ex = saveResult.Ex;
+                            }
                             result = result && saveResult.IsSucceed;
                         }
                     }
@@ -439,25 +442,25 @@ namespace Swastika.Cms.Lib.ViewModels
                 };
             }
         }
-        public override async Task<RepositoryResponse<bool>> CloneSubModelsAsync(ArticleBEViewModel parent, SiocCmsContext _context = null, IDbContextTransaction _transaction = null)
+        public override async Task<RepositoryResponse<bool>> CloneSubModelsAsync(ArticleBEViewModel parent, List<SupportedCulture> cloneCultures, SiocCmsContext _context = null, IDbContextTransaction _transaction = null)
         {
             RepositoryResponse<bool> result = new RepositoryResponse<bool>() { };
-            foreach (var moduleNav in ModuleNavs.Where(a => a.IsActived))
+            foreach (var module in ActivedModules)
             {
-
-                var getModule = await ModuleBEViewModel.Repository.GetSingleModelAsync(m => m.Id == moduleNav.ModuleId
-                    && m.Specificulture == Specificulture, _context, _transaction);
-                var module = getModule.Data;
-                var cloneModule = await module.CloneAsync(ListSupportedCulture.Where(c=>c.Specificulture!= Specificulture).ToList(), _context, _transaction);
+                module.ParseModel();
+                var cloneModule = await module.CloneAsync(cloneCultures, _context, _transaction);
                 if (cloneModule.IsSucceed)
                 {
-                    var cloneNav = await moduleNav.CloneAsync(ListSupportedCulture, _context, _transaction);
+                    var moduleNav = ModuleNavs.FirstOrDefault(m => m.ModuleId == module.Id &&
+                        m.ArticleId == Id && m.Specificulture == module.Specificulture);
+                    var cloneNav = await moduleNav.CloneAsync(cloneCultures, _context, _transaction);
                     if (cloneNav.IsSucceed)
                     {
                         result.IsSucceed = cloneNav.IsSucceed;
                     }
                     else
                     {
+                        result.IsSucceed = cloneNav.IsSucceed;
                         result.Errors.AddRange(cloneNav.Errors);
                         result.Ex = cloneNav.Ex;
                     }
@@ -528,7 +531,7 @@ namespace Swastika.Cms.Lib.ViewModels
 
             if (result.IsSucceed)
             {
-                foreach (var item in view.Categories.Where(m=>m.IsActived))
+                foreach (var item in view.Categories.Where(m => m.IsActived))
                 {
                     result = await item.RemoveModelAsync(false, _context, _transaction);
                 }

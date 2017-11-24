@@ -11,8 +11,8 @@ namespace Swastika.IO.Cms.Lib.Models
         public string Alias { get; set; }
         public string Image { get; set; }
         public DateTime? CreatedDate { get; set; }
-        public bool? IsPublished { get; set; }
-        public bool? IsDeleted { get; set; }
+        public bool IsPublished { get; set; }
+        public bool IsDeleted { get; set; }
         public string ModifiedBy { get; set; }
 
         public SiocCulture SpecificultureNavigation { get; set; }
