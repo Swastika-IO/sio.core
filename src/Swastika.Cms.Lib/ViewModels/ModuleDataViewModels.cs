@@ -53,22 +53,26 @@ namespace Swastika.Cms.Lib.ViewModels
 
         public JObject ParseJson()
         {
-            JObject result = new JObject();
-            result.Add(new JProperty("id", Id));
+            JObject result = new JObject
+            {
+                new JProperty("id", Id)
+            };
             foreach (var prop in DataProperties)
             {
                 result.Add(new JProperty(Common.CommonHelper.ParseJsonPropertyName(prop.Name), prop.Value));
             }
-            JObject model = new JObject();
-            model.Add(new JProperty("id", Id));
-            model.Add(new JProperty("moduleId", ModuleId));
-            model.Add(new JProperty("specificulture", Specificulture));
-            model.Add(new JProperty("fields", Fields));
-            model.Add(new JProperty("value", Value));
-            model.Add(new JProperty("articleId", ArticleId));
-            model.Add(new JProperty("priority", Priority));
-            model.Add(new JProperty("categoryId", CategoryId));
-            model.Add(new JProperty("createdDateTime", CreatedDateTime));
+            JObject model = new JObject
+            {
+                new JProperty("id", Id),
+                new JProperty("moduleId", ModuleId),
+                new JProperty("specificulture", Specificulture),
+                new JProperty("fields", Fields),
+                new JProperty("value", Value),
+                new JProperty("articleId", ArticleId),
+                new JProperty("priority", Priority),
+                new JProperty("categoryId", CategoryId),
+                new JProperty("createdDateTime", CreatedDateTime)
+            };
             result.Add(new JProperty("model", model));
             return result;
 

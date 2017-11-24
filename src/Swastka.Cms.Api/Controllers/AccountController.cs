@@ -629,13 +629,13 @@ namespace Swastika.IO.Core.Controllers
             {
                 AccessTokenViewModel token = new AccessTokenViewModel()
                 {
-                    access_token = GenerateToken(user, dtExpired, refreshToken),
-                    refresh_token = vmRefreshToken.Id,
-                    token_type = SWCmsConstants.AuthConfiguration.TokenType,
-                    expires_in = SWCmsConstants.AuthConfiguration.AuthCookieExpiration,
-                    userData = user,
-                    issued = dtIssued,
-                    expires = dtExpired,
+                    Access_token = GenerateToken(user, dtExpired, refreshToken),
+                    Refresh_token = vmRefreshToken.Id,
+                    Token_type = SWCmsConstants.AuthConfiguration.TokenType,
+                    Expires_in = SWCmsConstants.AuthConfiguration.AuthCookieExpiration,
+                    UserData = user,
+                    Issued = dtIssued,
+                    Expires = dtExpired,
                 };
                 return token;
             }

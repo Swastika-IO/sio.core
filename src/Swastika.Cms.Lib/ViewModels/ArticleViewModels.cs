@@ -397,9 +397,11 @@ namespace Swastika.Cms.Lib.ViewModels
                                 if (col != null)
                                 {
 
-                                    JObject fieldVal = new JObject();
-                                    fieldVal.Add(new JProperty("dataType", col.DataType));
-                                    fieldVal.Add(new JProperty("value", prop.Value));
+                                    JObject fieldVal = new JObject
+                                    {
+                                        new JProperty("dataType", col.DataType),
+                                        new JProperty("value", prop.Value)
+                                    };
                                     val.Add(new JProperty(prop.Name, fieldVal));
                                 }
                             }
