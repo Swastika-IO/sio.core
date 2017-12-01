@@ -92,13 +92,13 @@ namespace Swastika.IO.Admin
                         template: "{area:exists}/{controller=Home}/{action=Index}/{id?}");
 
                     routes.MapRoute(
-                     name: "default",
-                     template: "{controller=Home}/{action=Index}/{id?}");
+                        name: "default",
+                        template: "{controller=Home}/{action=Index}/{id?}");
 
                     routes.MapRoute(
-                     "Sitemap",
-                     "sitemap.xml",
-                     new { controller = "Home", action = "SitemapXml" });
+                        "Sitemap",
+                        "sitemap.xml",
+                        new { controller = "Home", action = "SitemapXml" });
 
                     routes.MapSpaFallbackRoute(
                       name: "spa-fallback",

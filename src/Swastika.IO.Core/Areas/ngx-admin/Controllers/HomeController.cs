@@ -7,18 +7,20 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace Swastika.IO.Core.Areas.Portal.Controllers
 {
-    [Area("ngx-admin")]
-    public class HomeController : Controller
+  [Area("ngx-admin")]
+  [Route("ngx-admin")]
+  public class HomeController : Controller
+  {
+    [HttpGet]
+    public IActionResult Index()
     {
-        public IActionResult Index()
-        {
-            return View();
-        }
-
-        public IActionResult Error()
-        {
-            ViewData["RequestId"] = Activity.Current?.Id ?? HttpContext.TraceIdentifier;
-            return View();
-        }
+      return View();
     }
+
+    public IActionResult Error()
+    {
+      ViewData["RequestId"] = Activity.Current?.Id ?? HttpContext.TraceIdentifier;
+      return View();
+    }
+  }
 }
