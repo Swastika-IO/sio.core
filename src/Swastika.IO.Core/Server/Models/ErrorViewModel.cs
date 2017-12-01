@@ -1,6 +1,6 @@
 using System;
 
-namespace Swastika.IO.Core.Models
+namespace Swastika.IO.Core.Server.Models
 {
     public class ErrorViewModel
     {

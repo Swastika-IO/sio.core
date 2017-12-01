@@ -92,6 +92,9 @@ We use [SemVer](http://semver.org/) for versioning. For the versions available, 
 
 See also the list of [contributors](https://github.com/Swastika-IO/Swastika-IO-Core/graphs/contributors) who participated in this project.
 
+## References
+* [aspnetcore-angular2-universal](https://github.com/MarkPieszak/aspnetcore-angular2-universal) - ASP.NET Core 2.0 & Angular 5(+) Advanced Starter - with Server-side prerendering (for Angular SEO)!
+
 ## License
 
 This project is licensed under the GPL-3.0 License - see the [LICENSE.md](LICENSE.md) file for details
