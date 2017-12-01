@@ -2663,9 +2663,9 @@
       }
     },
     "bootstrap": {
-      "version": "3.3.7",
-      "resolved": "https://registry.npmjs.org/bootstrap/-/bootstrap-3.3.7.tgz",
-      "integrity": "sha1-WjiTlFSfIzMIdaOxUGVldPip63E="
+      "version": "4.0.0-beta.2",
+      "resolved": "https://registry.npmjs.org/bootstrap/-/bootstrap-4.0.0-beta.2.tgz",
+      "integrity": "sha512-DzGtdTlKbrMoGMpz0LigKSqJ+MgtFKxA791PU/q062OlRG0HybNZcTLH7rpDAmLS66Y3esN9yzKHLLbqa5UR3w=="
     },
     "bootstrap-sass": {
       "version": "3.3.7",
@@ -7373,9 +7373,9 @@
       "dev": true
     },
     "ngx-bootstrap": {
-      "version": "2.0.0-beta.6",
-      "resolved": "https://registry.npmjs.org/ngx-bootstrap/-/ngx-bootstrap-2.0.0-beta.6.tgz",
-      "integrity": "sha512-ImP1jnOWDi1R04DR1Aq795vvEHUOrxMxycG/+ppVZwzwG015S3nTXJZ66iCmqXEPW1D5g8TPo5mKeJ+gdYrQiw=="
+      "version": "2.0.0-beta.9",
+      "resolved": "https://registry.npmjs.org/ngx-bootstrap/-/ngx-bootstrap-2.0.0-beta.9.tgz",
+      "integrity": "sha512-RnEwsRNv75RW7KvyN1WdJN32TqiAMqVcj16P2ZP742WtrSSLs1/HAZNlx57y8eomfC8wE3lGCcK5pfvjMy39Iw=="
     },
     "no-case": {
       "version": "2.3.2",
