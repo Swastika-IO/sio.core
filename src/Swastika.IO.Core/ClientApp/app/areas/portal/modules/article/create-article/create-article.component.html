@@ -1,3 +1,4 @@
+
 <div class="row">
     <div class="col-sm-12">
         <div class="card sw-nav-action">
@@ -40,6 +41,14 @@
                 <input class="form-control form-control-lg" type="text" placeholder="Enter title here..." />
                 <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" placeholder="Excerpt"></textarea>
                 <textarea class="form-control" id="exampleFormControlTextarea1" rows="10" placeholder="Content"></textarea>
+                <ckeditor [config]=""
+                          [readonly]="false"
+                          (change)="onChange($event)"
+                          (ready)="onReady($event)"
+                          (focus)="onFocus($event)"
+                          (blur)="onBlur($event)"
+                          debounce="500">
+                </ckeditor>
             </div>
         </div>
         <div class="card">

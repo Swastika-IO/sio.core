@@ -8,6 +8,7 @@ import { BrowserModule, BrowserTransferStateModule } from '@angular/platform-bro
 import { TransferHttpCacheModule } from '@nguniversal/common';
 
 //import { Ng2BootstrapModule } from 'ngx-bootstrap';
+import { CKEditorModule } from 'ng2-ckeditor';
 
 // i18n support
 import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
@@ -54,6 +55,8 @@ export function createTranslateLoader(http: HttpClient, baseHref) {
     HttpClientModule,
     TransferHttpCacheModule,
     BrowserTransferStateModule,
+
+    CKEditorModule,
 
 
     FormsModule,
