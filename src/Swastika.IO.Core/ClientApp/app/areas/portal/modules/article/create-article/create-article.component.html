@@ -1,142 +1,143 @@
 
 <div class="row">
-    <div class="col-sm-12">
-        <div class="card sw-nav-action">
-            <div class="card-body">
-                <div class="row">
-                    <div class="col-sm-3 text-center">
-                        <button type="button" class="btn btn-link btn-block">
-                            <span class="oi oi-cloud-upload"></span> PUBLISH
-                        </button>
-                    </div>
-                    <div class="col-sm-3 text-center">
-                        <button type="button" class="btn btn-link">
-                            <span class="oi oi-eye"></span> PREVIEW
-                        </button>
-                    </div>
-                    <div class="col-sm-3 text-center">
-                        <button type="button" class="btn btn-link">
-                            <span class="oi oi-clipboard"></span> DRAFT
-                        </button>
-                    </div>
-                    <div class="col-sm-3 text-center">
-                        <button type="button" class="btn btn-link">
-                            <span class="oi oi-timer"></span> SCHEDULER
-                        </button>
-                    </div>
-                </div>
-            </div>
+  <div class="col-sm-12">
+    <div class="card sw-nav-action">
+      <div class="card-body">
+        <div class="row">
+          <div class="col-sm-3 text-center">
+            <button type="button" class="btn btn-link btn-block">
+              <span class="oi oi-cloud-upload"></span> PUBLISH
+            </button>
+          </div>
+          <div class="col-sm-3 text-center">
+            <button type="button" class="btn btn-link">
+              <span class="oi oi-eye"></span> PREVIEW
+            </button>
+          </div>
+          <div class="col-sm-3 text-center">
+            <button type="button" class="btn btn-link">
+              <span class="oi oi-clipboard"></span> DRAFT
+            </button>
+          </div>
+          <div class="col-sm-3 text-center">
+            <button type="button" class="btn btn-link">
+              <span class="oi oi-timer"></span> SCHEDULER
+            </button>
+          </div>
         </div>
+      </div>
     </div>
+  </div>
 </div>
 
 <div class="row">
-    <div class="col-sm-9">
-        <div class="card">
+  <div class="col-sm-9">
+    <div class="card">
 
-            <div class="card-header">
-                Main content
-            </div>
-            <div class="card-body">
-                <input class="form-control form-control-lg" type="text" placeholder="Enter title here..." />
-                <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" placeholder="Excerpt"></textarea>
-                <textarea class="form-control" id="exampleFormControlTextarea1" rows="10" placeholder="Content"></textarea>
-                <ckeditor [config]=""
-                          [readonly]="false"
-                          (change)="onChange($event)"
-                          (ready)="onReady($event)"
-                          (focus)="onFocus($event)"
-                          (blur)="onBlur($event)"
-                          debounce="500">
-                </ckeditor>
-            </div>
+      <div class="card-header">
+        Main content
+      </div>
+      <div class="card-body">
+        <input class="form-control form-control-lg" type="text" placeholder="Enter title here..." />
+        <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" placeholder="Excerpt"></textarea>
+        <div class="ckeditor">
+          <ckeditor [config]=""
+                    [readonly]="false"
+                    (change)="onChange($event)"
+                    (ready)="onReady($event)"
+                    (focus)="onFocus($event)"
+                    (blur)="onBlur($event)"
+                    debounce="500">
+          </ckeditor>
         </div>
-        <div class="card">
-            <div class="card-header-nav-pills">
-                <ul class="nav nav-pills text-center" id="pills-tab" role="tablist">
-                    <li class="nav-item">
-                        <a class="nav-link active" id="pills-home-tab" data-toggle="pill" href="#pills-home" role="tab" aria-controls="pills-home"
-                           aria-selected="true">SEO</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" id="pills-profile-tab" data-toggle="pill" href="#pills-profile" role="tab" aria-controls="pills-profile"
-                           aria-selected="false">Parents</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" id="pills-contact-tab" data-toggle="pill" href="#pills-contact" role="tab" aria-controls="pills-contact"
-                           aria-selected="false">Modules</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" id="pills-contact-tab" data-toggle="pill" href="#pills-contact" role="tab" aria-controls="pills-contact"
-                           aria-selected="false">Layout</a>
-                    </li>
-                </ul>
-            </div>
-            <div class="card-body">
-
-                <div class="tab-content" id="pills-tabContent">
-                    <div class="tab-pane fade show active" id="pills-home" role="tabpanel" aria-labelledby="pills-home-tab">
-                        <input class="form-control" type="text" placeholder="Title" />
-                        <input class="form-control" type="text" placeholder="Name" />
-                        <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" placeholder="Description"></textarea>
-                        <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" placeholder="Keywords"></textarea>
-
-                    </div>
-                    <div class="tab-pane fade" id="pills-profile" role="tabpanel" aria-labelledby="pills-profile-tab">...</div>
-                    <div class="tab-pane fade" id="pills-contact" role="tabpanel" aria-labelledby="pills-contact-tab">...</div>
-                </div>
-            </div>
-        </div>
+      </div>
     </div>
-    <div class="col-sm-3">
-        <div class="card">
-            <div class="card-header">
-                Languages
-            </div>
-            <div class="card-body">
-                <form class="">
-                    <label class="custom-control custom-checkbox d-block">
-                        <input type="checkbox" class="custom-control-input" required>
-                        <span class="custom-control-indicator"></span>
-                        <span class="custom-control-description">English</span>
-                    </label>
-                    <label class="custom-control custom-checkbox d-block">
-                        <input type="checkbox" class="custom-control-input" required>
-                        <span class="custom-control-indicator"></span>
-                        <span class="custom-control-description">Vietnam</span>
-                    </label>
-                </form>
-            </div>
-        </div>
+    <div class="card">
+      <div class="card-header-nav-pills">
+        <ul class="nav nav-pills text-center" id="pills-tab" role="tablist">
+          <li class="nav-item">
+            <a class="nav-link active" id="pills-home-tab" data-toggle="pill" href="#pills-home" role="tab" aria-controls="pills-home"
+               aria-selected="true">SEO</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" id="pills-profile-tab" data-toggle="pill" href="#pills-profile" role="tab" aria-controls="pills-profile"
+               aria-selected="false">Parents</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" id="pills-contact-tab" data-toggle="pill" href="#pills-contact" role="tab" aria-controls="pills-contact"
+               aria-selected="false">Modules</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" id="pills-contact-tab" data-toggle="pill" href="#pills-contact" role="tab" aria-controls="pills-contact"
+               aria-selected="false">Layout</a>
+          </li>
+        </ul>
+      </div>
+      <div class="card-body">
 
-        <div class="card">
-            <div class="card-header">
-                Article Type
-            </div>
-            <div class="card-body">
-                <form class="">
-                    <label class="custom-control custom-radio d-block">
-                        <input id="radioStacked1" name="radio-stacked" type="radio" class="custom-control-input" required>
-                        <span class="custom-control-indicator"></span>
-                        <span class="custom-control-description">Blank</span>
-                    </label>
-                    <label class="custom-control custom-radio d-block">
-                        <input id="radioStacked1" name="radio-stacked" type="radio" class="custom-control-input" required>
-                        <span class="custom-control-indicator"></span>
-                        <span class="custom-control-description">Article</span>
-                    </label>
-                    <label class="custom-control custom-radio d-block">
-                        <input id="radioStacked1" name="radio-stacked" type="radio" class="custom-control-input" required>
-                        <span class="custom-control-indicator"></span>
-                        <span class="custom-control-description">List</span>
-                    </label>
-                    <label class="custom-control custom-radio d-block">
-                        <input id="radioStacked1" name="radio-stacked" type="radio" class="custom-control-input" required>
-                        <span class="custom-control-indicator"></span>
-                        <span class="custom-control-description">Modules</span>
-                    </label>
-                </form>
-            </div>
+        <div class="tab-content" id="pills-tabContent">
+          <div class="tab-pane fade show active" id="pills-home" role="tabpanel" aria-labelledby="pills-home-tab">
+            <input class="form-control" type="text" placeholder="Title" />
+            <input class="form-control" type="text" placeholder="Name" />
+            <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" placeholder="Description"></textarea>
+            <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" placeholder="Keywords"></textarea>
+
+          </div>
+          <div class="tab-pane fade" id="pills-profile" role="tabpanel" aria-labelledby="pills-profile-tab">...</div>
+          <div class="tab-pane fade" id="pills-contact" role="tabpanel" aria-labelledby="pills-contact-tab">...</div>
         </div>
+      </div>
     </div>
+  </div>
+  <div class="col-sm-3">
+    <div class="card">
+      <div class="card-header">
+        Languages
+      </div>
+      <div class="card-body">
+        <form class="">
+          <label class="custom-control custom-checkbox d-block">
+            <input type="checkbox" class="custom-control-input" required>
+            <span class="custom-control-indicator"></span>
+            <span class="custom-control-description">English</span>
+          </label>
+          <label class="custom-control custom-checkbox d-block">
+            <input type="checkbox" class="custom-control-input" required>
+            <span class="custom-control-indicator"></span>
+            <span class="custom-control-description">Vietnam</span>
+          </label>
+        </form>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-header">
+        Article Type
+      </div>
+      <div class="card-body">
+        <form class="">
+          <label class="custom-control custom-radio d-block">
+            <input id="radioStacked1" name="radio-stacked" type="radio" class="custom-control-input" required>
+            <span class="custom-control-indicator"></span>
+            <span class="custom-control-description">Blank</span>
+          </label>
+          <label class="custom-control custom-radio d-block">
+            <input id="radioStacked1" name="radio-stacked" type="radio" class="custom-control-input" required>
+            <span class="custom-control-indicator"></span>
+            <span class="custom-control-description">Article</span>
+          </label>
+          <label class="custom-control custom-radio d-block">
+            <input id="radioStacked1" name="radio-stacked" type="radio" class="custom-control-input" required>
+            <span class="custom-control-indicator"></span>
+            <span class="custom-control-description">List</span>
+          </label>
+          <label class="custom-control custom-radio d-block">
+            <input id="radioStacked1" name="radio-stacked" type="radio" class="custom-control-input" required>
+            <span class="custom-control-indicator"></span>
+            <span class="custom-control-description">Modules</span>
+          </label>
+        </form>
+      </div>
+    </div>
+  </div>
 </div>
