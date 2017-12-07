@@ -1,19 +1,30 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html>
 <head>
-    <meta charset="utf-8" />
-    <link rel="apple-touch-icon" sizes="76x76" href="~/sw-content/themes/now-ui-kit-pro-v1.1.0/img/apple-icon.png">
-    <link rel="icon" type="image/png" href="~/sw-content/themes/now-ui-kit-pro-v1.1.0/img/favicon.png">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
-    <title>@ViewData["Title"] - Swastika I/O</title>
-    <base href="~/" />
+  <base href="@(Url.Content("~/"))" />
+  <title>@ViewData["Title"]</title>
 
-    <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0, shrink-to-fit=no' name='viewport' />
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  @Html.Raw(ViewData["Meta"])
+  @Html.Raw(ViewData["Links"])
 
-    @RenderSection("styles", required: false)
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/flag-icon-css/0.8.2/css/flag-icon.min.css" />
+  <!-- <link rel="stylesheet" href="~/dist/vendor.css" asp-append-version="true" /> -->
+
+  @RenderSection("styles", required: false)
+
+  @Html.Raw(ViewData["Styles"])
+
 </head>
-<body style="margin:0;">
-    @RenderBody()
+<body>
+  @RenderBody()
+
+  <!-- Here we're passing down any data to be used by grabbed and parsed by Angular -->
+  @Html.Raw(ViewData["TransferData"])
+  @Html.Raw(ViewData["Scripts"])
+
+  @RenderSection("scripts", required: false)
+
 </body>
-@RenderSection("scripts", required: false)
 </html>

@@ -1,5 +1,6 @@
 import { Component, ViewEncapsulation } from '@angular/core';
 
+
 @Component({
     selector: 'sw-portal-create-article',
     styleUrls: ['./create-article.component.scss'],
@@ -7,4 +8,7 @@ import { Component, ViewEncapsulation } from '@angular/core';
     //encapsulation: ViewEncapsulation.None
 })
 export class ProtalCreateArticleComponent {
+  constructor() {
+    //this.ckeditorContent = `<p>My HTML</p>`;
+  }
 }

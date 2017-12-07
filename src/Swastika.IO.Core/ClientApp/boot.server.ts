@@ -1,38 +1,38 @@
-import 'reflect-metadata';
-import 'zone.js';
-import 'rxjs/add/operator/first';
-import { APP_BASE_HREF } from '@angular/common';
-import { enableProdMode, ApplicationRef, NgZone, ValueProvider } from '@angular/core';
-import { platformDynamicServer, PlatformState, INITIAL_CONFIG } from '@angular/platform-server';
-import { createServerRenderer, RenderResult } from 'aspnet-prerendering';
+import 'zone.js/dist/zone-node';
+import './polyfills/server.polyfills';
+import { enableProdMode } from '@angular/core';
+import { createServerRenderer } from 'aspnet-prerendering';
+
+// Grab the (Node) server-specific NgModule
 import { AppModule } from './app/app.module.server';
+import { ngAspnetCoreEngine, IEngineOptions, createTransferScript } from '@nguniversal/aspnetcore-engine';
 
 enableProdMode();
 
-export default createServerRenderer(params => {
-    const providers = [
-        { provide: INITIAL_CONFIG, useValue: { document: '<app></app>', url: params.url } },
-        { provide: APP_BASE_HREF, useValue: params.baseUrl },
-        { provide: 'BASE_URL', useValue: params.origin + params.baseUrl },
-    ];
+export default createServerRenderer((params) => {
 
-    return platformDynamicServer(providers).bootstrapModule(AppModule).then(moduleRef => {
-        const appRef: ApplicationRef = moduleRef.injector.get(ApplicationRef);
-        const state = moduleRef.injector.get(PlatformState);
-        const zone = moduleRef.injector.get(NgZone);
+  // Platform-server provider configuration
+  const setupOptions: IEngineOptions = {
+    appSelector: '<app-root></app-root>',
+    ngModule: AppModule,
+    request: params,
+    providers: [
+      // Optional - Any other Server providers you want to pass
+      // (remember you'll have to provide them for the Browser as well)
+    ]
+  };
 
-        return new Promise<RenderResult>((resolve, reject) => {
-            zone.onError.subscribe((errorInfo: any) => reject(errorInfo));
-            appRef.isStable.first(isStable => isStable).subscribe(() => {
-                // Because 'onStable' fires before 'onError', we have to delay slightly before
-                // completing the request in case there's an error to report
-                setImmediate(() => {
-                    resolve({
-                        html: state.renderToString()
-                    });
-                    moduleRef.destroy();
-                });
-            });
-        });
+  return ngAspnetCoreEngine(setupOptions).then(response => {
+
+    // Apply your transferData to response.globals
+    response.globals.transferData = createTransferScript({
+      someData: 'Transfer this to the client on the window.TRANSFER_CACHE {} object',
+      fromDotnet: params.data.thisCameFromDotNET // example of data coming from dotnet, in HomeController
     });
+
+    return ({
+      html: response.html, // our <app-root> serialized
+      globals: response.globals // all of our styles/scripts/meta-tags/link-tags for aspnet to serve up
+    });
+  });
 });
