@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { ProtalCreateArticleComponent } from './create-article.component';
 import { CKEditorModule } from 'ng2-ckeditor';
+import { AceEditorModule } from 'ng2-ace-editor';
 
 @NgModule({
     imports: [
@@ -9,7 +10,8 @@ import { CKEditorModule } from 'ng2-ckeditor';
             path: '',
             component: ProtalCreateArticleComponent
       }]),
-        CKEditorModule
+        CKEditorModule,
+        AceEditorModule
     ],
     exports: [RouterModule],
     declarations: [
