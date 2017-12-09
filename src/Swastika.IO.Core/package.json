@@ -51,6 +51,7 @@
     "jquery": "^2.2.1",
     "json-loader": "^0.5.4",
     "moment": "2.18.1",
+    "ng2-ace-editor": "^0.3.4",
     "ng2-ckeditor": "^1.1.13",
     "ngx-bootstrap": "2.0.0-beta.6",
     "node-sass": "^4.7.2",
