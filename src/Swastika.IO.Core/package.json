@@ -53,6 +53,7 @@
     "moment": "2.18.1",
     "ng2-ace-editor": "^0.3.4",
     "ng2-ckeditor": "^1.1.13",
+    "ng2-smart-table": "^1.2.2",
     "ngx-bootstrap": "2.0.0-beta.6",
     "node-sass": "^4.7.2",
     "preboot": "^5.0.0",
