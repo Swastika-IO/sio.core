@@ -337,8 +337,22 @@
 
             </div></div>
           <div class="tab-pane fade" id="pills-layout" role="tabpanel" aria-labelledby="pills-layout-tab">
-
-            <ace-editor [(text)]="text" style="height:150px;"></ace-editor>
+            <div class="input-group">
+              <div class="input-group-btn">
+                <button type="button" class="btn btn-dark dropdown-toggle select-template" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                  Select template...
+                </button>
+                <div class="dropdown-menu">
+                  <a class="dropdown-item" href="#">Action</a>
+                  <a class="dropdown-item" href="#">Another action</a>
+                  <a class="dropdown-item" href="#">Something else here</a>
+                  <div role="separator" class="dropdown-divider"></div>
+                  <a class="dropdown-item" href="#">Separated link</a>
+                </div>
+              </div>
+              <input type="text" class="form-control input-template-name" aria-label="Text input with dropdown button">
+            </div>
+            <ace-editor [(text)]="text"></ace-editor>
           </div>
         </div>
       </div>
