@@ -33,6 +33,19 @@
     <ProjectReference Include="..\Swastka.Cms.Api\Swastka.IO.Cms.Api.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Content Update="wwwroot\sw-content\themes\shared\js\pace.js">
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Update="wwwroot\sw-content\themes\shared\js\pace.min.js">
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="wwwroot\sw-content\themes\portal\vendors\" />
+  </ItemGroup>
+
   <Target Name="DebugRunWebpack" BeforeTargets="Build" Condition=" '$(Configuration)' == 'Debug' And !Exists('wwwroot\sw-spa\dist') ">
     <!-- Ensure Node.js is installed -->
     <Exec Command="node --version" ContinueOnError="true">

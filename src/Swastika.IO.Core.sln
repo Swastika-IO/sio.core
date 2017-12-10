@@ -15,8 +15,6 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Swastika.IO", "..\..\Swasti
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Swastika.IO.Identity", "..\..\Swastika-Identity\src\Swastika.IO.Identity\Swastika.IO.Identity.csproj", "{136F0E3D-1F88-4353-8DEE-57A7B88750D5}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ASPNETCoreAngularJWT", "..\..\..\Tutorial\ASPNETcoreAngularJWT\ASPNETCoreAngularJWT.csproj", "{8CFEE743-B8E9-4BE9-961E-E9B84DA08603}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -47,10 +45,6 @@ Global
 		{136F0E3D-1F88-4353-8DEE-57A7B88750D5}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{136F0E3D-1F88-4353-8DEE-57A7B88750D5}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{136F0E3D-1F88-4353-8DEE-57A7B88750D5}.Release|Any CPU.Build.0 = Release|Any CPU
-		{8CFEE743-B8E9-4BE9-961E-E9B84DA08603}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{8CFEE743-B8E9-4BE9-961E-E9B84DA08603}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{8CFEE743-B8E9-4BE9-961E-E9B84DA08603}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{8CFEE743-B8E9-4BE9-961E-E9B84DA08603}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
