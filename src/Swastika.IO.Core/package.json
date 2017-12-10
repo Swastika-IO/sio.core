@@ -56,6 +56,7 @@
     "ng2-smart-table": "^1.2.2",
     "ngx-bootstrap": "2.0.0-beta.6",
     "node-sass": "^4.7.2",
+    "pell": "^0.7.0",
     "preboot": "^5.0.0",
     "raw-loader": "^0.5.1",
     "rimraf": "^2.6.2",
