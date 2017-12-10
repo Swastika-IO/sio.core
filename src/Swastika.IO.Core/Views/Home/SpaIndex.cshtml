@@ -20,16 +20,17 @@
   {
     <link href="~/sw-content/themes/portal/swastika-io-admin-v0.0.1/css/portal.css?v=0.0.1" rel="stylesheet" />
     <link href="~/sw-content/themes/portal/swastika-io-admin-v0.0.1/font/css/open-iconic-bootstrap.min.css?v=0.0.1" rel="stylesheet" />
+    <link href = "/sw-content/themes/portal/vendors/css/pace-theme-minimal.css" rel = "stylesheet" />
   }
 }
 
 @Html.Raw(ViewData["SpaHtml"])
 
-<script src="~/dist/vendor.js" asp-append-version="true"></script>
+<script src="~/sw-spa/dist/vendor.js" asp-append-version="true"></script>
 
 @section scripts {
   <!-- Our webpack bundle -->
-  <script src="~/dist/main-client.js" asp-append-version="true"></script>
+  <script src="~/sw-spa/dist/main-client.js" asp-append-version="true"></script>
   @if (isFront)
   {
   <!--   Core JS Files   -->
@@ -62,5 +63,21 @@
     <script src="~/sw-content/themes/portal/swastika-io-admin-v0.0.1/js/core/bootstrap.min.js" type="text/javascript"></script>
     <script src="~/sw-content/themes/portal/swastika-io-admin-v0.0.1/js/swastika-io-admin-v0.0.1.js" type="text/javascript"></script>
     <script src="https://cdn.ckeditor.com/4.7.3/standard/ckeditor.js"></script>
+    <script src = "/sw-content/themes/portal/vendors/js/pace.js" type="text/javascript"></script>
+
+    <script>
+      Pace.options = {
+        ajax: false,
+        document: false, // disabled
+        eventLag: false, // disabled
+        elements: {
+          selectors: ['.my-page']
+        }
+      }
+
+      Pace.on("done", function () {
+        $("body > app-root").show();
+      });
+    </script>
   }
 }

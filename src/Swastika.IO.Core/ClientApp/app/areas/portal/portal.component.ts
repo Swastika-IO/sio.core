@@ -11,4 +11,12 @@ import { Component, ViewEncapsulation } from '@angular/core';
     encapsulation: ViewEncapsulation.None
 })
 export class PortalComponent {
+  paceOptions = {
+    ajax: true,
+    document: true,
+    eventLag: true,
+    elements: {
+      selectors: ['.my-page']
+    }
+  };
 }

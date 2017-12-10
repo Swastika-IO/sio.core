@@ -26,7 +26,7 @@ module.exports = (env) => {
         resolve: { extensions: [ '.js', '.ts' ] },
         output: {
             filename: '[name].js',
-            publicPath: 'dist/' // Webpack dev middleware, if enabled, handles requests for this URL prefix
+            publicPath: 'sw-spa/dist/' // Webpack dev middleware, if enabled, handles requests for this URL prefix
         },
         module: {
             rules: [
@@ -41,14 +41,14 @@ module.exports = (env) => {
     };
 
     // Configuration for client-side bundle suitable for running in browsers
-    const clientBundleOutputDir = './wwwroot/dist';
+    const clientBundleOutputDir = './wwwroot/sw-spa/dist';
     const clientBundleConfig = merge(sharedConfig, {
         entry: { 'main-client': './ClientApp/boot.browser.ts' },
         output: { path: path.join(__dirname, clientBundleOutputDir) },
         plugins: [
             new webpack.DllReferencePlugin({
                 context: __dirname,
-                manifest: require('./wwwroot/dist/vendor-manifest.json')
+                manifest: require('./wwwroot/sw-spa/dist/vendor-manifest.json')
             })
         ].concat(isDevBuild ? [
             // Plugins that apply in development builds only
