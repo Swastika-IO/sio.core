@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { ProtalListArticleComponent } from './list-article.component';
 import { Ng2SmartTableModule } from 'ng2-smart-table';
+import { NgxDatatableModule } from '@swimlane/ngx-datatable';
 
 @NgModule({
     imports: [
@@ -9,7 +10,8 @@ import { Ng2SmartTableModule } from 'ng2-smart-table';
             path: '',
             component: ProtalListArticleComponent
         }]),
-        Ng2SmartTableModule
+      Ng2SmartTableModule,
+      NgxDatatableModule
     ],
     exports: [RouterModule],
     declarations: [

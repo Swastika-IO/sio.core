@@ -6,6 +6,8 @@ Swastika I/O is free, open source and cross-platform CMS based on ASP.NET Core. 
 
 These instructions will get you a copy of the project up and running on your local machine for development and testing purposes. See deployment for notes on how to deploy the project on a live system.
 
+Note: This project is under heavy construction and is not intended for general production use yet. As such, we are not accepting bugs at the moment and documentation is quite lacking.
+
 ### Prerequisites
 
 What things you need to install the software and how to install them

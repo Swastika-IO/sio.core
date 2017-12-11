@@ -4,9 +4,21 @@ import { Component, ViewEncapsulation } from '@angular/core';
     selector: 'sw-portal-list-article',
     styleUrls: ['./list-article.component.scss'],
     templateUrl: './list-article.component.html',
-    //encapsulation: ViewEncapsulation.None
+    encapsulation: ViewEncapsulation.None
 })
 export class ProtalListArticleComponent {
+
+  rows = [
+    { name: 'Austin', gender: 'Male', company: 'Swimlane' },
+    { name: 'Dany', gender: 'Male', company: 'KFC' },
+    { name: 'Molly', gender: 'Female', company: 'Burger King' },
+  ];
+  columns = [
+    { prop: 'name' },
+    { name: 'Gender' },
+    { name: 'Company' },
+  ];
+
   settings = {
     columns: {
       id: {
