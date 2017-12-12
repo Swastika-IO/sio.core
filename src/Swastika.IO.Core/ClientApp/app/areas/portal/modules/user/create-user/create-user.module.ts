@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
-import { PortalCreatePageComponent } from './create-page.component';
+import { PortalCreateUserComponent } from './create-user.component';
 //import { CKEditorModule } from 'ng2-ckeditor';
 import { AceEditorModule } from 'ng2-ace-editor';
 import { PortalSharedModule } from '../../../portal.shared.module';
@@ -9,17 +9,16 @@ import { PortalSharedModule } from '../../../portal.shared.module';
     imports: [
         RouterModule.forChild([{
             path: '',
-            component: PortalCreatePageComponent
+            component: PortalCreateUserComponent
       }]),
       //CKEditorModule,
       AceEditorModule,
-      //SharedRichTextAreaModule,
       PortalSharedModule
     ],
     exports: [RouterModule],
     declarations: [
-      PortalCreatePageComponent
+      PortalCreateUserComponent
     ]
 })
 
-export class PortalCreatePageModule { }   
+export class PortalCreateUserModule { }   

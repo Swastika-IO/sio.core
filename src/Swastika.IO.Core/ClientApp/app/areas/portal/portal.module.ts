@@ -33,6 +33,26 @@ import { RichtextareaComponent } from '../shared/components/ng-pell/richtextarea
             loadChildren: './modules/page/page.module#PortalPageModule',
           },
           {
+            path: 'module',
+            loadChildren: './modules/module/module.module#PortalModuleModule',
+          },
+          {
+            path: 'appearance',
+            loadChildren: './modules/appearance/appearance.module#PortalAppearanceModule',
+          },
+          {
+            path: 'media',
+            loadChildren: './modules/media/media.module#PortalMediaModule',
+          },
+          {
+            path: 'user',
+            loadChildren: './modules/user/user.module#PortalUserModule',
+          },
+          {
+            path: 'setting',
+            loadChildren: './modules/setting/setting.module#PortalSettingModule',
+          },
+          {
             path: 'blank',
             loadChildren: './modules/_blank/something.module#PortalSomethingModule',
           }

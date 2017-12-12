@@ -4,7 +4,7 @@ $upperCaseDestName = (Get-Culture).TextInfo.ToTitleCase($destname)
 
 Get-ChildItem -Filter "*something*" -Recurse | Rename-Item -NewName {$_.name -replace 'something', $destname }
 
-$configFiles = Get-ChildItem -Filter "*page*" -Recurse
+$configFiles = Get-ChildItem -Filter "*$destname*" -Recurse
 foreach ($file in $configFiles)
 {
     (Get-Content $file.PSPath) |
