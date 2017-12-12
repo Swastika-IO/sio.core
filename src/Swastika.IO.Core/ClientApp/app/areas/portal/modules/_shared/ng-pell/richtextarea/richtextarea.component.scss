@@ -18,24 +18,24 @@
   padding: 10px;
   width: 100%;
   min-height: 400px;
-  background-color: rgba(10, 10, 10, 0.5);
-  pre
-  {
-    color: #fff;
+  border-top-left-radius: 0;
+  border-top-right-radius: 0;
+  //background-color: rgba(10, 10, 10, 0.5);
+  pre {
+    //color: #fff;
   }
-
 }
 
 .pell-actionbar {
-  background-color: #101010;
+  background-color: #fff;
   border-bottom: 1px solid rgba(10, 10, 10, 0.1);
-  border-top-left-radius: 5px;
-  border-top-right-radius: 5px;
+  border-bottom-left-radius: 0;
+  border-bottom-right-radius: 0;
   width: 100%;
 }
 
 .pell-button {
-  color: #fff;
+  color: #333;
   background-color: transparent;
   border: none;
   cursor: pointer;

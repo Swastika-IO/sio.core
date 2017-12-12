@@ -39,20 +39,22 @@
       </div>
       <div class="card-body">
         <input class="form-control form-control-lg" type="text" placeholder="Enter title here..." />
+        <br>
         <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" placeholder="Excerpt"></textarea>
+        <br>
         <!--<h3>CKEditor</h3>
-        <div class="ckeditor">
-          <ckeditor [config]=""
-                    [readonly]="false"
-                    (change)="onChange($event)"
-                    (ready)="onReady($event)"
-                    (focus)="onFocus($event)"
-                    (blur)="onBlur($event)"
-                    debounce="500">
-          </ckeditor>
-          <br/>
-        </div>
-        <h3>Pell Edtior</h3>-->
+  <div class="ckeditor">
+    <ckeditor [config]=""
+              [readonly]="false"
+              (change)="onChange($event)"
+              (ready)="onReady($event)"
+              (focus)="onFocus($event)"
+              (blur)="onBlur($event)"
+              debounce="500">
+    </ckeditor>
+    <br/>
+  </div>
+  <h3>Pell Edtior</h3>-->
         <richtextarea></richtextarea>
       </div>
     </div>
@@ -81,9 +83,9 @@
 
         <div class="tab-content" id="pills-tabContent">
           <div class="tab-pane fade show active" id="pills-seo" role="tabpanel" aria-labelledby="pills-seo-tab">
-            <input class="form-control" type="text" placeholder="Title" />
-            <input class="form-control" type="text" placeholder="Name" />
-            <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" placeholder="Description"></textarea>
+            <input class="form-control" type="text" placeholder="Title" /><br>
+            <input class="form-control" type="text" placeholder="Name" /><br>
+            <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" placeholder="Description"></textarea><br>
             <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" placeholder="Keywords"></textarea>
 
           </div>
