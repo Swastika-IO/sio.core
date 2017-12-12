@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
-import { PortalListArticleComponent } from './list-article.component';
+import { PortalListPageComponent } from './list-page.component';
 import { Ng2SmartTableModule } from 'ng2-smart-table';
 import { NgxDatatableModule } from '@swimlane/ngx-datatable';
 
@@ -8,15 +8,15 @@ import { NgxDatatableModule } from '@swimlane/ngx-datatable';
     imports: [
         RouterModule.forChild([{
             path: '',
-            component: PortalListArticleComponent
-        }]),
+            component: PortalListPageComponent
+      }]),
       Ng2SmartTableModule,
       NgxDatatableModule
     ],
     exports: [RouterModule],
     declarations: [
-      PortalListArticleComponent
+      PortalListPageComponent
     ]
 })
 
-export class PortalListArticleModule { }   
+export class PortalListPageModule { }   

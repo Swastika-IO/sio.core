@@ -7,7 +7,7 @@ import { Component, ViewEncapsulation } from '@angular/core';
     templateUrl: './create-article.component.html',
     //encapsulation: ViewEncapsulation.None
 })
-export class ProtalCreateArticleComponent {
+export class PortalCreateArticleComponent {
   constructor() {
     //this.ckeditorContent = `<p>My HTML</p>`;
   }

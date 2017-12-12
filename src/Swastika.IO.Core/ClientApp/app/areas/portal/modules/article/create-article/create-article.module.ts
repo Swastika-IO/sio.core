@@ -1,23 +1,24 @@
 import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
-import { ProtalCreateArticleComponent } from './create-article.component';
+import { PortalCreateArticleComponent } from './create-article.component';
 //import { CKEditorModule } from 'ng2-ckeditor';
 import { AceEditorModule } from 'ng2-ace-editor';
-import { RichtextareaComponent } from '../../../../shared/components/ng-pell/richtextarea/richtextarea.component';
+
+import { PortalSharedModule } from '../../../portal.shared.module';
 
 @NgModule({
   imports: [
     RouterModule.forChild([{
       path: '',
-      component: ProtalCreateArticleComponent
+      component: PortalCreateArticleComponent
     }]),
     //CKEditorModule,
-    AceEditorModule
+    AceEditorModule,
+    PortalSharedModule
   ],
   exports: [RouterModule],
   declarations: [
-    ProtalCreateArticleComponent,
-    RichtextareaComponent
+    PortalCreateArticleComponent
   ]
 })
 

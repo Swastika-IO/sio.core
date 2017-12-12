@@ -6,6 +6,8 @@ import { HeaderComponent } from './components/header/header.component';
 import { FooterComponent } from './components/footer/footer.component';
 import { SidebarComponent } from './components/sidebar/sidebar.component';
 
+import { RichtextareaComponent } from '../shared/components/ng-pell/richtextarea/richtextarea.component';
+
 @NgModule({
   imports: [
     RouterModule.forChild([
@@ -27,6 +29,10 @@ import { SidebarComponent } from './components/sidebar/sidebar.component';
             loadChildren: './modules/article/article.module#PortalArticleModule',
           },
           {
+            path: 'page',
+            loadChildren: './modules/page/page.module#PortalPageModule',
+          },
+          {
             path: 'blank',
             loadChildren: './modules/_blank/something.module#PortalSomethingModule',
           }
@@ -34,12 +40,13 @@ import { SidebarComponent } from './components/sidebar/sidebar.component';
       },
     ])
   ],
-  exports: [RouterModule],
+  exports: [RouterModule, RichtextareaComponent],
   declarations: [
     PortalComponent,
     HeaderComponent,
     FooterComponent,
     SidebarComponent,
+    RichtextareaComponent
   ]
 })
 

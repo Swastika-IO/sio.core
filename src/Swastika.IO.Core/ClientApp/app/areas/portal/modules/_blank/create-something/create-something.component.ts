@@ -6,5 +6,5 @@ import { Component, ViewEncapsulation } from '@angular/core';
     templateUrl: './create-something.component.html',
     //encapsulation: ViewEncapsulation.None
 })
-export class ProtalCreateSomethingComponent {
+export class PortalCreateSomethingComponent {
 }

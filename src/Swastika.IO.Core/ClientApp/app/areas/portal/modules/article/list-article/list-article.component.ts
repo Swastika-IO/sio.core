@@ -6,7 +6,7 @@ import { Component, ViewEncapsulation } from '@angular/core';
     templateUrl: './list-article.component.html',
     encapsulation: ViewEncapsulation.None
 })
-export class ProtalListArticleComponent {
+export class PortalListArticleComponent {
 
   rows = [
     { name: 'Austin', gender: 'Male', company: 'Swimlane' },

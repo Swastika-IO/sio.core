@@ -1,12 +1,12 @@
 import { Component, ViewEncapsulation } from '@angular/core';
 
 @Component({
-  selector: 'sw-portal-list-something',
-  styleUrls: ['./list-something.component.scss'],
-  templateUrl: './list-something.component.html',
-  //encapsulation: ViewEncapsulation.None
+    selector: 'sw-portal-list-page',
+    styleUrls: ['./list-page.component.scss'],
+    templateUrl: './list-page.component.html',
+    //encapsulation: ViewEncapsulation.None
 })
-export class PortalListSomethingComponent {
+export class PortalListPageComponent {
 
   rows = [
     { name: 'Austin', gender: 'Male', company: 'Swimlane' },
