@@ -1,0 +1,16 @@
+.sw-sidebar {
+    width: 400px;
+    nav {
+        .sw-toc-link {
+            .text {
+                padding-left: 10px;
+            }
+        }
+    }
+}
+
+@media (min-width: 1200px) {
+    .sw-sidebar {
+        max-width: 400px;
+    }
+}
