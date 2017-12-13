@@ -3,10 +3,6 @@ import { RouterModule } from '@angular/router';
 import { PortalComponent } from './portal.component';
 
 import { HeaderComponent } from './components/header/header.component';
-import { FooterComponent } from './components/footer/footer.component';
-import { SidebarComponent } from './components/sidebar/sidebar.component';
-
-import { RichtextareaComponent } from '../shared/components/ng-pell/richtextarea/richtextarea.component';
 
 @NgModule({
   imports: [
@@ -15,58 +11,31 @@ import { RichtextareaComponent } from '../shared/components/ng-pell/richtextarea
         path: '',
         component: PortalComponent,
         children: [
-          //{
-          //    path: '',
-          //    redirectTo: 'dashboard',
-          //    pathMatch: 'full'
-          //},
           {
-            path: '',
+             path: '',
+             redirectTo: 'dashboard',
+             pathMatch: 'full'
+          },
+          {
+            path: 'dashboard',
             loadChildren: './modules/dashboard/dashboard.module#PortalDashboardModule',
           },
           {
-            path: 'article',
-            loadChildren: './modules/article/article.module#PortalArticleModule',
+            path: 'cms',
+            loadChildren: './areas/cms/cms-portal.module#CmsPortalModule',
           },
           {
-            path: 'page',
-            loadChildren: './modules/page/page.module#PortalPageModule',
-          },
-          {
-            path: 'module',
-            loadChildren: './modules/module/module.module#PortalModuleModule',
-          },
-          {
-            path: 'appearance',
-            loadChildren: './modules/appearance/appearance.module#PortalAppearanceModule',
-          },
-          {
-            path: 'media',
-            loadChildren: './modules/media/media.module#PortalMediaModule',
-          },
-          {
-            path: 'user',
-            loadChildren: './modules/user/user.module#PortalUserModule',
-          },
-          {
-            path: 'setting',
-            loadChildren: './modules/setting/setting.module#PortalSettingModule',
-          },
-          {
-            path: 'blank',
-            loadChildren: './modules/_blank/something.module#PortalSomethingModule',
+            path: 'messenger',
+            loadChildren: './areas/messenger/messenger-portal.module#MessengerPortalModule',
           }
         ]
       },
     ])
   ],
-  exports: [RouterModule, RichtextareaComponent],
+  exports: [RouterModule],
   declarations: [
     PortalComponent,
-    HeaderComponent,
-    FooterComponent,
-    SidebarComponent,
-    RichtextareaComponent
+    HeaderComponent
   ]
 })
 
