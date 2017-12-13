@@ -11,18 +11,22 @@ import { HeaderComponent } from './components/header/header.component';
         path: '',
         component: PortalComponent,
         children: [
+          // {
+          //    path: '',
+          //    redirectTo: 'dashboard',
+          //    pathMatch: 'full'
+          // },
           {
-             path: '',
-             redirectTo: 'dashboard',
-             pathMatch: 'full'
-          },
-          {
-            path: 'dashboard',
+            path: '',
             loadChildren: './modules/dashboard/dashboard.module#PortalDashboardModule',
           },
           {
             path: 'cms',
             loadChildren: './areas/cms/cms-portal.module#CmsPortalModule',
+          },
+          {
+            path: 'ecom',
+            loadChildren: './areas/ecom/ecom-portal.module#EcomPortalModule',
           },
           {
             path: 'messenger',
