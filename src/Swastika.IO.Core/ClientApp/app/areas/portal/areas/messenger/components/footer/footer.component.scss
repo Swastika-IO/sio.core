@@ -1,0 +1,69 @@
+
+  /*Reply*/
+  
+  .reply {
+    height: 60px;
+    width: 100%;
+    background-color: #fff;
+    padding: 10px 5px 10px 5px !important;
+    margin: 0 !important;
+    z-index: 1000;
+    border-top: 1px solid #f0f0f0;
+  }
+  
+  .reply-emojis {
+    padding: 5px !important;
+  }
+  
+  .reply-emojis i {
+    text-align: center;
+    padding: 5px 5px 5px 5px !important;
+    color: #93918f;
+    cursor: pointer;
+  }
+  
+  .reply-recording {
+    padding: 5px !important;
+  }
+  
+  .reply-recording i {
+    text-align: center;
+    padding: 5px !important;
+    color: #93918f;
+    cursor: pointer;
+  }
+  
+  .reply-send {
+    padding: 5px !important;
+  }
+  
+  .reply-send i {
+    text-align: center;
+    padding: 5px !important;
+    color: #93918f;
+    cursor: pointer;
+  }
+  
+  .reply-main {
+    padding: 2px 5px !important;
+  }
+  
+  .reply-main textarea {
+    width: 100%;
+    resize: none;
+    overflow: hidden;
+    padding: 5px !important;
+    outline: none;
+    border: none;
+    text-indent: 5px;
+    box-shadow: none;
+    height: 100%;
+    font-size: 16px;
+  }
+  
+  .reply-main textarea:focus {
+    outline: none;
+    border: none;
+    text-indent: 5px;
+    box-shadow: none;
+  }
