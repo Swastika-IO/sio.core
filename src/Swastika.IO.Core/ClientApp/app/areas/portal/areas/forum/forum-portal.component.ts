@@ -9,12 +9,4 @@ import { Component, ViewEncapsulation } from '@angular/core';
     encapsulation: ViewEncapsulation.None
 })
 export class ForumPortalComponent {
-  paceOptions = {
-    ajax: true,
-    document: true,
-    eventLag: true,
-    elements: {
-      selectors: ['.my-page']
-    }
-  };
 }

@@ -2,8 +2,8 @@ import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { BlogPortalComponent } from './blog-portal.component';
 
-// import { FooterComponent } from './components/footer/footer.component';
-// import { SidebarComponent } from './components/sidebar/sidebar.component';
+import { FooterComponent } from './components/footer/footer.component';
+import { SidebarComponent } from './components/sidebar/sidebar.component';
 
 @NgModule({
   imports: [
@@ -28,8 +28,8 @@ import { BlogPortalComponent } from './blog-portal.component';
   exports: [RouterModule],
   declarations: [
     BlogPortalComponent,
-    // FooterComponent,
-    // SidebarComponent
+    FooterComponent,
+    SidebarComponent
   ]
 })
 
