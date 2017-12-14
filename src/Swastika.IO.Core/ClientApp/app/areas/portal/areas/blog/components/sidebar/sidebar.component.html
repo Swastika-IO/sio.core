@@ -21,53 +21,21 @@
       </a>
     </div>
     <div class="sw-toc-item">
-      <a class="sw-toc-link" data-toggle="collapse" href="#collapseArticleSubMenus" aria-expanded="false" aria-controls="collapseArticleSubMenus">
+      <a routerLink="/portal/cms" class="sw-toc-link">
         <span class="oi oi-plus"></span>
-        <span class="text">Create</span>
+        <span class="text">Create Post</span>
       </a>
-      <ul id="collapseArticleSubMenus" class="collapse list-unstyled">
-        <li>
-          <a routerLink="/portal/cms/article/create-article">
-            <span class="oi oi-document"></span>
-            <span class="text">Create Article</span>
-          </a>
-        </li>
-        <li>
-          <a routerLink="/portal/cms/article/create-article">
-            <span class="oi oi-puzzle-piece"></span>
-            <span class="text">Create Module</span>
-          </a>
-        </li>
-        <li>
-          <a routerLink="/portal/cms/article/create-article">
-            <span class="oi oi-plus"></span>
-            <span class="text">Create Data</span>
-          </a>
-        </li>
-        <li>
-          <a routerLink="/portal/cms/article/create-article">
-            <span class="oi oi-plus"></span>
-            <span class="text">Create User</span>
-          </a>
-        </li>
-        <li>
-          <a routerLink="/portal/cms/article/create-article">
-            <span class="oi oi-plus"></span>
-            <span class="text">Create Template</span>
-          </a>
-        </li>
-      </ul>
     </div>
     <div class="sw-toc-item">
       <a class="sw-toc-link" data-toggle="collapse" href="#collapseCreateSubMenus" aria-expanded="false" aria-controls="collapseArticleSubMenus">
         <span class="oi oi-document"></span>
-        <span class="text">Articles</span>
+        <span class="text">Content</span>
       </a>
       <ul id="collapseCreateSubMenus" class="collapse list-unstyled">
         <li class="active sw-sidenav-active">
           <a routerLink="/portal/cms/article/create-article">
             <span class="oi oi-plus"></span>
-            <span class="text">Create Article</span>
+            <span class="text">Create Post</span>
           </a>
         </li>
         <li>
@@ -85,79 +53,41 @@
       </ul>
     </div>
     <div class="sw-toc-item">
-      <a class="sw-toc-link" data-toggle="collapse" href="#collapsePageSubMenus" aria-expanded="false" aria-controls="collapsePageSubMenus">
-        <span class="oi oi-browser"></span>
-        <span class="text">Pages</span>
+      <a class="sw-toc-link" data-toggle="collapse" href="#collapseUsersSubMenus" aria-expanded="false" aria-controls="collapseSettingSubMenus">
+        <span class="oi oi-people"></span>
+        <span class="text">Team</span>
       </a>
-      <ul id="collapsePageSubMenus" class="collapse list-unstyled">
+      <ul id="collapseUsersSubMenus" class="collapse list-unstyled">
         <li class="active sw-sidenav-active">
-          <a routerLink="/portal/cms/page/create-page">
+          <a routerLink="/portal/cms/user/create-user">
             <span class="oi oi-plus"></span>
-            <span class="text">Create Article</span>
+            <span class="text">Add User</span>
           </a>
         </li>
         <li>
-          <a routerLink="/portal/cms/page/list-page">
+          <a routerLink="/portal/cms/user/list-user">
             <span class="oi oi-list"></span>
-            <span class="text">List Article</span>
-          </a>
-        </li>
-        <li>
-          <a routerLink="/portal/cms/page/list-draft-page">
-            <span class="oi oi-pencil"></span>
-            <span class="text">Draft</span>
+            <span class="text">List User</span>
           </a>
         </li>
       </ul>
     </div>
     <div class="sw-toc-item">
-      <a class="sw-toc-link" data-toggle="collapse" href="#collapseModuleSubMenus" aria-expanded="false" aria-controls="collapseModuleSubMenus">
-        <span class="oi oi-puzzle-piece"></span>
-        <span class="text">Modules</span>
+      <a class="sw-toc-link" data-toggle="collapse" href="#collapseUsersSubMenus" aria-expanded="false" aria-controls="collapseSettingSubMenus">
+        <span class="oi oi-tag"></span>
+        <span class="text">Tags</span>
       </a>
-      <ul id="collapseModuleSubMenus" class="collapse list-unstyled">
+      <ul id="collapseUsersSubMenus" class="collapse list-unstyled">
         <li class="active sw-sidenav-active">
-          <a routerLink="/portal/cms/module/create-module">
+          <a routerLink="/portal/cms/user/create-user">
             <span class="oi oi-plus"></span>
-            <span class="text">Create Module</span>
+            <span class="text">Add Tag</span>
           </a>
         </li>
         <li>
-          <a routerLink="/portal/cms/module/list-module">
+          <a routerLink="/portal/cms/user/list-user">
             <span class="oi oi-list"></span>
-            <span class="text">List Module</span>
-          </a>
-        </li>
-        <li>
-          <a routerLink="/portal/cms/module/list-draft-module">
-            <span class="oi oi-pencil"></span>
-            <span class="text">Draft</span>
-          </a>
-        </li>
-      </ul>
-    </div>
-    <div class="sw-toc-item">
-      <a class="sw-toc-link" data-toggle="collapse" href="#collapseAppearanceSubMenus" aria-expanded="false" aria-controls="collapseAppearanceSubMenus">
-        <span class="oi oi-brush"></span>
-        <span class="text">Appearance</span>
-      </a>
-      <ul id="collapseAppearanceSubMenus" class="collapse list-unstyled">
-        <li class="active sw-sidenav-active">
-          <a routerLink="/portal/cms/appearance/create-appearance">
-            <span class="oi oi-plus"></span>
-            <span class="text">Create Template</span>
-          </a>
-        </li>
-        <li>
-          <a routerLink="/portal/cms/appearance/list-appearance">
-            <span class="oi oi-list"></span>
-            <span class="text">List Template</span>
-          </a>
-        </li>
-        <li>
-          <a routerLink="/portal/cms/appearance/list-draft-appearance">
-            <span class="oi oi-pencil"></span>
-            <span class="text">Template</span>
+            <span class="text">List Tag</span>
           </a>
         </li>
       </ul>
@@ -178,26 +108,6 @@
           <a routerLink="/portal/cms/media/list-media">
             <span class="oi oi-file"></span>
             <span class="text">Files</span>
-          </a>
-        </li>
-      </ul>
-    </div>
-    <div class="sw-toc-item">
-      <a class="sw-toc-link" data-toggle="collapse" href="#collapseUsersSubMenus" aria-expanded="false" aria-controls="collapseSettingSubMenus">
-        <span class="oi oi-people"></span>
-        <span class="text">Users</span>
-      </a>
-      <ul id="collapseUsersSubMenus" class="collapse list-unstyled">
-        <li class="active sw-sidenav-active">
-          <a routerLink="/portal/cms/user/create-user">
-            <span class="oi oi-plus"></span>
-            <span class="text">Add User</span>
-          </a>
-        </li>
-        <li>
-          <a routerLink="/portal/cms/user/list-user">
-            <span class="oi oi-list"></span>
-            <span class="text">List User</span>
           </a>
         </li>
       </ul>
