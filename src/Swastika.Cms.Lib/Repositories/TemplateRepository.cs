@@ -1,13 +1,15 @@
 ﻿using Swastika.Common;
 using Swastika.Common.Helper;
+using Swastika.Domain.Core.Models;
 using Swastika.IO.Cms.Lib;
+using Swastika.IO.Cms.Lib.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Text;
 
-namespace Swastika.Cms.Lib.Repositories
+namespace Swastika.IO.Cms.Lib.Repositories
 {
     public class TemplateRepository
     {
@@ -47,13 +49,7 @@ namespace Swastika.Cms.Lib.Repositories
         private TemplateRepository()
         {
         }
-        public TemplateViewModel GetTemplate(string templatePath, List<TemplateViewModel> templates, Constants.TemplateFolder templateFolder)
-        {
-            var result = templates.FirstOrDefault(
-                v => !string.IsNullOrEmpty(templatePath) && v.Filename == templatePath.Replace(@"\", "/").Split('/')[1]);
-            result = result ?? new TemplateViewModel() { FileFolder = templateFolder.ToString() };
-            return result;
-        }
+
         public TemplateViewModel GetTemplate(string templatePath, List<TemplateViewModel> templates, string templateFolder)
         {
             var result = templates.FirstOrDefault(
@@ -62,16 +58,16 @@ namespace Swastika.Cms.Lib.Repositories
             return result;
         }
 
-        public TemplateViewModel GetTemplate(string name, Constants.TemplateFolder templateFolder)
+        public TemplateViewModel GetTemplate(string name, string templateFolder)
         {
             string folder = templateFolder.ToString();
             string fullPath = SWCmsHelper.GetFullPath(new string[]
            {
-                SWCmsConstants.TemplatesFolder, folder
+                SWCmsConstants.Parameters.TemplatesFolder, folder
            });
 
             DirectoryInfo d = new DirectoryInfo(fullPath);
-            FileInfo[] Files = d.GetFiles(string.Format("{0}{1}", name, SWCmsConstants.TemplateExtension)); //Getting cshtml files
+            FileInfo[] Files = d.GetFiles(string.Format("{0}{1}", name, SWCmsConstants.Parameters.TemplateExtension)); //Getting cshtml files
             var file = Files.FirstOrDefault();
             TemplateViewModel result = null;
             if (file != null)
@@ -92,14 +88,14 @@ namespace Swastika.Cms.Lib.Repositories
             return result;
         }
 
-        public bool DeleteTemplate(string name, Constants.TemplateFolder templateFolder)
+        public bool DeleteTemplate(string name, string templateFolder)
         {
             string folder = templateFolder.ToString();
             string fullPath = SWCmsHelper.GetFullPath(new string[]
             {
-                SWCmsConstants.TemplatesFolder,
+                SWCmsConstants.Parameters.TemplatesFolder,
                 folder,
-                name + SWCmsConstants.TemplateExtension
+                name + SWCmsConstants.Parameters.TemplateExtension
             });
             if (File.Exists(fullPath))
             {
@@ -116,7 +112,7 @@ namespace Swastika.Cms.Lib.Repositories
                 Directory.CreateDirectory(folder);
             }
             DirectoryInfo d = new DirectoryInfo(folder);//Assuming Test is your Folder
-            FileInfo[] Files = d.GetFiles(string.Format("*{0}", SWCmsConstants.TemplateExtension)); //Getting cshtml files
+            FileInfo[] Files = d.GetFiles(string.Format("*{0}", SWCmsConstants.Parameters.TemplateExtension)); //Getting cshtml files
             List<TemplateViewModel> result = new List<TemplateViewModel>();
             foreach (var file in Files)
             {
@@ -126,7 +122,7 @@ namespace Swastika.Cms.Lib.Repositories
                     {
                         FileFolder = folder,
                         Filename = file.Name,//.Split('.').First(),
-                        Extension = SWCmsConstants.TemplateExtension,
+                        Extension = SWCmsConstants.Parameters.TemplateExtension,
                         Content = s.ReadToEnd()
                     });
 
@@ -135,13 +131,7 @@ namespace Swastika.Cms.Lib.Repositories
             return result;
         }
 
-        public List<TemplateViewModel> GetTemplates(Constants.TemplateFolder templateFolder)
-        {
-            //string folder = string.Format(SWCmsConstants.TemplatesFolder, templateFolder.ToString());
-            string folder = SWCmsHelper.GetFullPath(new string[] { SWCmsConstants.TemplatesFolder, templateFolder.ToString() });
-            return GetTemplates(folder);
-        }
-
+      
         public bool SaveTemplate(TemplateViewModel file)
         {
             try

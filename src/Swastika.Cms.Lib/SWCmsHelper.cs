@@ -42,7 +42,7 @@ namespace Swastika.IO.Cms.Lib
             {
                 string webFolder = SWCmsHelper.GetFullPath(new string[]
                {
-                    SWCmsConstants.WebRootPath,
+                    SWCmsConstants.Parameters.WebRootPath,
                     folder
                });
                 string fullPath = SWCmsHelper.GetFullPath(new string[]
@@ -89,7 +89,7 @@ namespace Swastika.IO.Cms.Lib
             {
                 string fullPath = SWCmsHelper.GetFullPath(new string[]
                {
-                    SWCmsConstants.WebRootPath,
+                    SWCmsConstants.Parameters.WebRootPath,
                     filePath
                });
                 if (File.Exists(fullPath))

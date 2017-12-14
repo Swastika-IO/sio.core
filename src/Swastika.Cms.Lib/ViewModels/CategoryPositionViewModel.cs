@@ -4,15 +4,18 @@ using Microsoft.EntityFrameworkCore.Storage;
 
 namespace Swastika.IO.Cms.Lib.ViewModels
 {
-    public class CategoryArticleViewModel : ViewModelBase<SiocCmsContext, SiocCategoryArticle, CategoryArticleViewModel>
+    public class CategoryPositionViewModel : ViewModelBase<SiocCmsContext, SiocCategoryPosition, CategoryPositionViewModel>
     {
-        public CategoryArticleViewModel(SiocCategoryArticle model, SiocCmsContext _context = null, IDbContextTransaction _transaction = null)
+        public CategoryPositionViewModel(SiocCategoryPosition model, SiocCmsContext _context = null, IDbContextTransaction _transaction = null)
             : base(model, _context, _transaction)
         {
         }
+        public CategoryPositionViewModel(): base()
+        {
 
+        }
 
-        public string ArticleId { get; set; }
+        public int PositionId { get; set; }
         public int CategoryId { get; set; }
         //public string Specificulture { get; set; }
         public bool IsActived { get; set; }
@@ -22,21 +25,21 @@ namespace Swastika.IO.Cms.Lib.ViewModels
 
         #region Async
 
-        //public override async Task<RepositoryResponse<CategoryArticleViewModel>> CloneAsync(string desSpecificulture, SiocCmsContext _context = null, IDbContextTransaction _transaction = null)
+        //public override async Task<RepositoryResponse<CategoryPositionViewModel>> CloneAsync(string desSpecificulture, SiocCmsContext _context = null, IDbContextTransaction _transaction = null)
         //{
-        //    //Check is destinate cate and article already defined in des culture
+        //    //Check is destinate cate and Position already defined in des culture
         //    bool isValidDes = CategoryListItemViewModel.Repository.CheckIsExists(
         //        c => c.Id == this.CategoryId && c.Specificulture == desSpecificulture, _context, _transaction)
         //    && CategoryListItemViewModel.Repository.CheckIsExists(
         //        c => c.Id == this.CategoryId && c.Specificulture == desSpecificulture, _context, _transaction);
-        //    RepositoryResponse<CategoryArticleViewModel> result = new RepositoryResponse<CategoryArticleViewModel>();
+        //    RepositoryResponse<CategoryPositionViewModel> result = new RepositoryResponse<CategoryPositionViewModel>();
 
         //    if (isValidDes)
         //    {
-        //        var data = new CategoryArticleViewModel(
-        //            new SiocCategoryArticle()
+        //        var data = new CategoryPositionViewModel(
+        //            new SiocCategoryPosition()
         //            {
-        //                ArticleId = this.ArticleId,
+        //                PositionId = this.PositionId,
         //                Specificulture = desSpecificulture,
         //                CategoryId = this.CategoryId
         //            },

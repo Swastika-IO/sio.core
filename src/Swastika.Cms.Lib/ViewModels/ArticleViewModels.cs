@@ -1,29 +1,25 @@
-﻿using Swastika.Cms.Lib.Models;
+﻿using Swastika.IO.Cms.Lib.Models;
 using System;
 using System.Collections.Generic;
 using Microsoft.EntityFrameworkCore.Storage;
 using Swastika.Common.Helper;
-using Swastika.Cms.Lib.Repositories;
-using Swastika.Common;
+using Swastika.IO.Cms.Lib.Repositories;
 using Swastika.Domain.Core.Models;
 using System.Threading.Tasks;
 using System.Linq;
 using Newtonsoft.Json.Linq;
-using Swastika.IO.Cms.Lib.Models;
-using Swastika.IO.Cms.Lib;
-using Swastika.IO.Cms.Lib.ViewModels;
 using System.ComponentModel.DataAnnotations;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.Data.OData.Query;
 
-namespace Swastika.Cms.Lib.ViewModels
+namespace Swastika.IO.Cms.Lib.ViewModels
 {
     public class ArticleBEViewModel :
         Swastika.Infrastructure.Data.ViewModels.ViewModelBase<SiocCmsContext, SiocArticle, ArticleBEViewModel>
     {
+        #region Properties
 
         public string Id { get; set; }
-        //public string Specificulture { get; set; }
-        //public List<SupportedCulture> ListSupportedCulture { get; set; } = IO.Cms.Lib.Services.ApplicationConfigService.ListSupportedCulture;
-
         public string Template { get; set; }
         public string Thumbnail { get; set; }
         public string Image { get; set; }
@@ -63,7 +59,7 @@ namespace Swastika.Cms.Lib.ViewModels
             {
                 return SWCmsHelper.GetFullPath(new string[]
                 {
-                    SWCmsConstants.TemplatesFolder
+                    SWCmsConstants.Parameters.TemplatesFolder
                     , SWCmsConstants.TemplateFolder.Articles.ToString()
                 }
             );
@@ -106,6 +102,9 @@ namespace Swastika.Cms.Lib.ViewModels
             }
         }
 
+
+        #endregion
+
         public ArticleBEViewModel(SiocArticle model, SiocCmsContext _context = null, IDbContextTransaction _transaction = null) : base(model, _context, _transaction)
         {
         }
@@ -127,7 +126,8 @@ namespace Swastika.Cms.Lib.ViewModels
                 ListTag = JArray.Parse(this.Tags);
             }
 
-            this.Templates = this.Templates ?? TemplateRepository.Instance.GetTemplates(Constants.TemplateFolder.Articles);
+            this.Templates = this.Templates ?? TemplateRepository.Instance.GetTemplates(
+                SWCmsConstants.TemplateFolder.Articles);
 
             this.View = Templates.FirstOrDefault(t => !string.IsNullOrEmpty(this.Template) && this.Template.Contains(t.Filename + t.Extension));
             if (this.View == null)
@@ -190,7 +190,7 @@ namespace Swastika.Cms.Lib.ViewModels
             {
                 string folder = SWCmsHelper.GetFullPath(new string[]
                 {
-                    SWCmsConstants.UploadFolder, "Articles", DateTime.UtcNow.ToString("dd-MM-yyyy")
+                    SWCmsConstants.Parameters.UploadFolder, "Articles", DateTime.UtcNow.ToString("dd-MM-yyyy")
                 });
                 string filename = SWCmsHelper.GetRandomName(ThumbnailFileStream.Name);
                 bool saveThumbnail = SWCmsHelper.SaveFileBase64(folder, filename, ThumbnailFileStream.Base64);
@@ -204,7 +204,7 @@ namespace Swastika.Cms.Lib.ViewModels
             {
                 string folder = SWCmsHelper.GetFullPath(new string[]
                 {
-                    SWCmsConstants.UploadFolder, "Articles", DateTime.UtcNow.ToString("dd-MM-yyyy")
+                    SWCmsConstants.Parameters.UploadFolder, "Articles", DateTime.UtcNow.ToString("dd-MM-yyyy")
                 });
                 string filename = SWCmsHelper.GetRandomName(ImageFileStream.Name);
                 bool saveImage = SWCmsHelper.SaveFileBase64(folder, filename, ImageFileStream.Base64);
@@ -720,6 +720,8 @@ namespace Swastika.Cms.Lib.ViewModels
         #endregion
 
         #endregion
+
+        #region Expands
         void GenerateSEO()
         {
             if (string.IsNullOrEmpty(this.SeoName))
@@ -743,6 +745,10 @@ namespace Swastika.Cms.Lib.ViewModels
             }
         }
 
+        
+        #endregion
+
+
     }
 
 
@@ -751,21 +757,29 @@ namespace Swastika.Cms.Lib.ViewModels
     public class ArticleListItemViewModel :
         Swastika.Infrastructure.Data.ViewModels.ViewModelBase<SiocCmsContext, SiocArticle, ArticleListItemViewModel>
     {
+        #region Properties
+
         public string Id { get; set; }
-        //public string Specificulture { get; set; }
         public string Template { get; set; }
-        public string Image { get; set; }
         public string Thumbnail { get; set; }
+        public string Image { get; set; }
         public string Title { get; set; }
         public string Excerpt { get; set; }
-        public string StaticUrl { get; set; }
+        public string Content { get; set; }
+        public string SeoName { get; set; }
+        public string SeoTitle { get; set; }
+        public string SeoDescription { get; set; }
+        public string SeoKeywords { get; set; }
         public string Source { get; set; }
+        public int? Views { get; set; }
+        public int Type { get; set; }
         public DateTime CreatedDateTime { get; set; }
         public DateTime? UpdatedDateTime { get; set; }
         public string CreatedBy { get; set; }
         public string UpdatedBy { get; set; }
         public bool IsVisible { get; set; }
         public bool IsDeleted { get; set; }
+        public string Tags { get; set; }
 
         public string DetailsUrl { get; set; }
         public string EditUrl { get; set; }
@@ -806,12 +820,176 @@ namespace Swastika.Cms.Lib.ViewModels
             }
         }
 
+        #endregion
         public ArticleListItemViewModel(SiocArticle model
             , SiocCmsContext _context = null, IDbContextTransaction _transaction = null)
             : base(model, _context, _transaction)
         {
         }
 
+        #region Expands
+
+        public static async Task<RepositoryResponse<PaginationModel<ArticleListItemViewModel>>> GetModelListByCategoryAsync(
+            int categoryId, string specificulture
+            , string orderByPropertyName, OrderByDirection direction
+            , int? pageSize = 1, int? pageIndex = 0
+            , SiocCmsContext _context = null, IDbContextTransaction _transaction = null)
+        {
+            SiocCmsContext context = _context ?? new SiocCmsContext();
+            var transaction = _transaction ?? context.Database.BeginTransaction();
+            try
+            {
+                var query = context.SiocCategoryArticle.Include(ac => ac.SiocArticle)
+                    .Where(ac =>
+                    ac.CategoryId == categoryId && ac.Specificulture == specificulture
+                    && !ac.SiocArticle.IsDeleted && ac.SiocArticle.IsVisible).Select(ac => ac.SiocArticle);
+                PaginationModel<ArticleListItemViewModel> result = await Repository.ParsePagingQueryAsync(
+                    query, orderByPropertyName
+                    , direction,
+                    pageSize, pageIndex, context, transaction
+                    );
+                return new RepositoryResponse<PaginationModel<ArticleListItemViewModel>>()
+                {
+                    IsSucceed = true,
+                    Data = result
+                };
+            }
+            // TODO: Add more specific exeption types instead of Exception only
+            catch (Exception ex)
+            {
+                Repository.LogErrorMessage(ex);
+                if (_transaction == null)
+                {
+                    //if current transaction is root transaction
+                    transaction.Rollback();
+                }
+
+                return new RepositoryResponse<PaginationModel<ArticleListItemViewModel>>()
+                {
+                    IsSucceed = false,
+                    Data = null,
+                    Ex = ex
+                };
+            }
+            finally
+            {
+                if (_context == null)
+                {
+                    //if current Context is Root
+                    context.Dispose();
+                }
+            }
+
+        }
+
+        #region Sync
+        public static  RepositoryResponse<PaginationModel<ArticleListItemViewModel>> GetModelListByCategory(
+           int categoryId, string specificulture
+           , string orderByPropertyName, OrderByDirection direction
+           , int? pageSize = 1, int? pageIndex = 0
+           , SiocCmsContext _context = null, IDbContextTransaction _transaction = null)
+        {
+            SiocCmsContext context = _context ?? new SiocCmsContext();
+            var transaction = _transaction ?? context.Database.BeginTransaction();
+            try
+            {
+                var query = context.SiocCategoryArticle.Include(ac => ac.SiocArticle)
+                    .Where(ac =>
+                    ac.CategoryId == categoryId && ac.Specificulture == specificulture
+                    && !ac.SiocArticle.IsDeleted && ac.SiocArticle.IsVisible).Select(ac => ac.SiocArticle);
+                PaginationModel<ArticleListItemViewModel> result = Repository.ParsePagingQuery(
+                    query, orderByPropertyName
+                    , direction,
+                    pageSize, pageIndex, context, transaction
+                    );
+                return new RepositoryResponse<PaginationModel<ArticleListItemViewModel>>()
+                {
+                    IsSucceed = true,
+                    Data = result
+                };
+            }
+            // TODO: Add more specific exeption types instead of Exception only
+            catch (Exception ex)
+            {
+                Repository.LogErrorMessage(ex);
+                if (_transaction == null)
+                {
+                    //if current transaction is root transaction
+                    transaction.Rollback();
+                }
+
+                return new RepositoryResponse<PaginationModel<ArticleListItemViewModel>>()
+                {
+                    IsSucceed = false,
+                    Data = null,
+                    Ex = ex
+                };
+            }
+            finally
+            {
+                if (_context == null)
+                {
+                    //if current Context is Root
+                    context.Dispose();
+                }
+            }
+
+        }
+
+        public static RepositoryResponse<PaginationModel<ArticleListItemViewModel>> GetModelListByModule(
+          int ModuleId, string specificulture
+          , string orderByPropertyName, OrderByDirection direction
+          , int? pageSize = 1, int? pageIndex = 0
+          , SiocCmsContext _context = null, IDbContextTransaction _transaction = null)
+        {
+            SiocCmsContext context = _context ?? new SiocCmsContext();
+            var transaction = _transaction ?? context.Database.BeginTransaction();
+            try
+            {
+                var query = context.SiocModuleArticle.Include(ac => ac.SiocArticle)
+                    .Where(ac =>
+                    ac.ModuleId == ModuleId && ac.Specificulture == specificulture
+                    && !ac.SiocArticle.IsDeleted && ac.SiocArticle.IsVisible).Select(ac => ac.SiocArticle);
+                PaginationModel<ArticleListItemViewModel> result = Repository.ParsePagingQuery(
+                    query, orderByPropertyName
+                    , direction,
+                    pageSize, pageIndex, context, transaction
+                    );
+                return new RepositoryResponse<PaginationModel<ArticleListItemViewModel>>()
+                {
+                    IsSucceed = true,
+                    Data = result
+                };
+            }
+            // TODO: Add more specific exeption types instead of Exception only
+            catch (Exception ex)
+            {
+                Repository.LogErrorMessage(ex);
+                if (_transaction == null)
+                {
+                    //if current transaction is root transaction
+                    transaction.Rollback();
+                }
+
+                return new RepositoryResponse<PaginationModel<ArticleListItemViewModel>>()
+                {
+                    IsSucceed = false,
+                    Data = null,
+                    Ex = ex
+                };
+            }
+            finally
+            {
+                if (_context == null)
+                {
+                    //if current Context is Root
+                    context.Dispose();
+                }
+            }
+
+        }
+        #endregion
+        #endregion
 
     }
 

@@ -1,18 +1,13 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Storage;
-using Swastika.Cms.Lib.Models;
-using Swastika.Cms.Lib.ViewModels;
-using Swastika.Common;
-using Swastika.Domain.Core.Models;
-using Swastika.Infrastructure.Data.Repository;
-using Swastika.IO.Cms.Lib;
 using Swastika.IO.Cms.Lib.Models;
+using Swastika.IO.Cms.Lib.ViewModels;
+using Swastika.Domain.Core.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 
-namespace Swastika.Cms.Lib.Repositories
+namespace Swastika.IO.Cms.Lib.Repositories
 {
     public class CommonRepository
     {
@@ -49,7 +44,7 @@ namespace Swastika.Cms.Lib.Repositories
             try
             {
                 var result = context.SiocCategory.Include(cp => cp.SiocCategoryArticle)
-                    .Where(a => a.Specificulture == specificulture && a.Type == (int)Constants.CateType.List)
+                    .Where(a => a.Specificulture == specificulture && a.Type == (int)SWCmsConstants.CateType.List)
                     .Select(p => new CategoryArticleViewModel(
                         new SiocCategoryArticle()
                         {
@@ -99,7 +94,7 @@ namespace Swastika.Cms.Lib.Repositories
             var transaction = _transaction ?? context.Database.BeginTransaction();
             try
             {
-                var result = context.SiocCategory.Include(cp => cp.SiocCategoryArticle).Where(a => a.Specificulture == specificulture && a.Type == (int)Constants.CateType.List)
+                var result = context.SiocCategory.Include(cp => cp.SiocCategoryArticle).Where(a => a.Specificulture == specificulture && a.Type == (int)SWCmsConstants.CateType.List)
                     .Select(p => new CategoryArticleViewModel(
                         new SiocCategoryArticle()
                         {

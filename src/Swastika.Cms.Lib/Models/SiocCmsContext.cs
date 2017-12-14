@@ -6,9 +6,8 @@ using Swastika.Common.Utility;
 using Microsoft.Extensions.Configuration;
 using System.IO;
 
-namespace Swastika.Cms.Lib.Models
+namespace Swastika.IO.Cms.Lib.Models
 {
-
     public partial class SiocCmsContext : DbContext
     {
         public virtual DbSet<AspNetRoleClaims> AspNetRoleClaims { get; set; }
@@ -30,13 +29,29 @@ namespace Swastika.Cms.Lib.Models
         public virtual DbSet<SiocCategoryModule> SiocCategoryModule { get; set; }
         public virtual DbSet<SiocCategoryPosition> SiocCategoryPosition { get; set; }
         public virtual DbSet<SiocComment> SiocComment { get; set; }
+        public virtual DbSet<SiocConfiguration> SiocConfiguration { get; set; }
         public virtual DbSet<SiocCopy> SiocCopy { get; set; }
         public virtual DbSet<SiocCulture> SiocCulture { get; set; }
         public virtual DbSet<SiocModule> SiocModule { get; set; }
         public virtual DbSet<SiocModuleArticle> SiocModuleArticle { get; set; }
+        public virtual DbSet<SiocModuleAttributeSet> SiocModuleAttributeSet { get; set; }
+        public virtual DbSet<SiocModuleAttributeValue> SiocModuleAttributeValue { get; set; }
         public virtual DbSet<SiocModuleData> SiocModuleData { get; set; }
         public virtual DbSet<SiocParameter> SiocParameter { get; set; }
         public virtual DbSet<SiocPosition> SiocPosition { get; set; }
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="ApplicationDbContext" /> class.
+        /// </summary>
+        /// <param name="options">The options.</param>
+        public SiocCmsContext(DbContextOptions<SiocCmsContext> options)
+                    : base(options)
+        {
+        }
+
+        public SiocCmsContext()
+        {
+        }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
@@ -54,7 +69,6 @@ namespace Swastika.Cms.Lib.Models
             // define the database to use
             optionsBuilder.UseSqlServer(config.GetConnectionString(Const.CONST_DEFAULT_CONNECTION));
         }
-
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<AspNetRoleClaims>(entity =>
@@ -457,6 +471,27 @@ namespace Swastika.Cms.Lib.Models
                 entity.Property(e => e.UpdatedDateTime).HasColumnType("datetime");
             });
 
+            modelBuilder.Entity<SiocConfiguration>(entity =>
+            {
+                entity.HasKey(e => new { e.Keyword, e.Specificulture });
+
+                entity.ToTable("sioc_configuration");
+
+                entity.Property(e => e.Keyword).HasMaxLength(250);
+
+                entity.Property(e => e.Specificulture).HasMaxLength(10);
+
+                entity.Property(e => e.Category).HasMaxLength(250);
+
+                entity.Property(e => e.Description).HasMaxLength(250);
+
+                entity.HasOne(d => d.SpecificultureNavigation)
+                    .WithMany(p => p.SiocConfiguration)
+                    .HasPrincipalKey(p => p.Specificulture)
+                    .HasForeignKey(d => d.Specificulture)
+                    .HasConstraintName("FK_Sioc_Configuration_Sioc_Culture");
+            });
+
             modelBuilder.Entity<SiocCopy>(entity =>
             {
                 entity.HasKey(e => new { e.Culture, e.Keyword });
@@ -545,6 +580,66 @@ namespace Swastika.Cms.Lib.Models
                     .HasForeignKey(d => new { d.ModuleId, d.Specificulture })
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_TTS_Module_Article_TTS_Module");
+            });
+
+            modelBuilder.Entity<SiocModuleAttributeSet>(entity =>
+            {
+                entity.HasKey(e => new { e.Id, e.ModuleId, e.Specificulture });
+
+                entity.ToTable("sioc_module_attribute_set");
+
+                entity.Property(e => e.Specificulture).HasMaxLength(10);
+
+                entity.Property(e => e.ArticleId).HasMaxLength(50);
+
+                entity.Property(e => e.CreatedDateTime).HasColumnType("datetime");
+
+                entity.Property(e => e.Fields)
+                    .IsRequired()
+                    .HasMaxLength(4000);
+
+                entity.Property(e => e.Priority).HasDefaultValueSql("((0))");
+
+                entity.Property(e => e.UpdatedDateTime).HasColumnType("datetime");
+
+                entity.HasOne(d => d.SiocModule)
+                    .WithMany(p => p.SiocModuleAttributeSet)
+                    .HasForeignKey(d => new { d.ModuleId, d.Specificulture })
+                    .HasConstraintName("FK_TTS_Module_Attribute_set_TTS_Module");
+
+                entity.HasOne(d => d.SiocArticleModule)
+                    .WithMany(p => p.SiocModuleAttributeSet)
+                    .HasForeignKey(d => new { d.ModuleId, d.ArticleId, d.Specificulture })
+                    .HasConstraintName("FK_TTS_Module_Attribute_set_TTS_Article_Module");
+
+                entity.HasOne(d => d.SiocCategoryModule)
+                    .WithMany(p => p.SiocModuleAttributeSet)
+                    .HasForeignKey(d => new { d.ModuleId, d.CategoryId, d.Specificulture })
+                    .HasConstraintName("FK_TTS_Module_Attribute_set_TTS_Category_Module");
+            });
+
+            modelBuilder.Entity<SiocModuleAttributeValue>(entity =>
+            {
+                entity.HasKey(e => new { e.Id, e.AttributeSetId, e.Specificulture });
+
+                entity.ToTable("sioc_module_attribute_value");
+
+                entity.Property(e => e.Specificulture).HasMaxLength(10);
+
+                entity.Property(e => e.DefaultValue)
+                    .IsRequired()
+                    .HasColumnType("ntext");
+
+                entity.Property(e => e.Name).HasMaxLength(250);
+
+                entity.Property(e => e.Title).HasMaxLength(250);
+
+                entity.Property(e => e.Width).HasDefaultValueSql("((0))");
+
+                entity.HasOne(d => d.SiocModuleAttributeSet)
+                    .WithMany(p => p.SiocModuleAttributeValue)
+                    .HasForeignKey(d => new { d.AttributeSetId, d.ModuleId, d.Specificulture })
+                    .HasConstraintName("FK_sioc_module_attribute_value_sioc_module_attribute_set");
             });
 
             modelBuilder.Entity<SiocModuleData>(entity =>

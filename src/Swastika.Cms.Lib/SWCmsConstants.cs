@@ -5,11 +5,13 @@ namespace Swastika.IO.Cms.Lib
 {
     public class SWCmsConstants
     {
-        public const string TemplatesFolder = @"Views/Templates";
-        public const string TemplateExtension = @".cshtml";
-        public const string WebRootPath = @"wwwroot";
-        public const string UploadFolder = @"sw-content/uploads";
-
+        public class Parameters
+        {
+            public const string TemplatesFolder = @"Views/Templates";
+            public const string TemplateExtension = @".cshtml";
+            public const string WebRootPath = @"wwwroot";
+            public const string UploadFolder = @"sw-content/uploads";
+        }
         public class AuthConfiguration
         {
             public const string ConnectionString = @"Server=115.77.190.113,4444;Database=stag_swastika_io;UID=sa;Pwd=sqlP@ssw0rd;MultipleActiveResultSets=true";
@@ -56,14 +58,33 @@ namespace Swastika.IO.Cms.Lib
             public const string ArticleTemplate = @"_Default.cshtml";
             public const string Specificulture = @"vi-vn";
             public const string Password = @"1234qwe@";
-        }
+            public const string OrderBy = @"1234qwe@";
+            public const int PageSizeArticle = 20;
 
+        }
+        public class FileFolder
+        {
+            public const string Styles = "Styles";
+            public const string Scripts = "Scripts";
+            public const string Images = "Images";
+            public const string Fonts = "Fonts";
+            public const string Others = "Others";
+        }
         public enum ModuleType
         {
             Root,
             SubPage,
             SubArticle,
         }
+        public class TemplateFolder
+        {
+            public const string Layouts = "Layouts";
+            public const string Pages = "Pages";
+            public const string Modules = "Modules";
+            public const string Articles = "Articles";
+            public const string Widgets = "Widgets";
+        }
+        
 
         public enum SearchType
         {
@@ -73,23 +94,9 @@ namespace Swastika.IO.Cms.Lib
             Page
         }
 
-        public enum TemplateFolder
-        {
-            Layouts,
-            Pages,
-            Modules,
-            Articles,
-            Widgets,
-        }
 
-        public enum FileFolder
-        {
-            Styles,
-            Scripts,
-            Images,
-            Fonts,
-            Others
-        }
+
+       
 
         public enum ViewModelType
         {
