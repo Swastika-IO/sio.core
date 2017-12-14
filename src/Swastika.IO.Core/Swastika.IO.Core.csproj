@@ -22,10 +22,14 @@
     <!-- Files not to publish (note that the 'dist' subfolders are re-added below) -->
     <Compile Remove="Areas\App\**" />
     <Compile Remove="ClientApp\app\areas\front\components\home\**" />
+    <Compile Remove="Views\Templates\Default\**" />
     <Content Remove="Areas\App\**" />
     <Content Remove="ClientApp\**" />
+    <Content Remove="Views\Templates\Default\**" />
     <EmbeddedResource Remove="Areas\App\**" />
+    <EmbeddedResource Remove="Views\Templates\Default\**" />
     <None Remove="Areas\App\**" />
+    <None Remove="Views\Templates\Default\**" />
   </ItemGroup>
 
   <ItemGroup>
@@ -43,6 +47,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Folder Include="Views\Templates\" />
     <Folder Include="wwwroot\sw-content\themes\portal\vendors\" />
   </ItemGroup>
 
