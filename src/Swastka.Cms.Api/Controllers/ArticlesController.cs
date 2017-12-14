@@ -1,14 +1,9 @@
-﻿using Microsoft.AspNetCore.Authentication.JwtBearer;
-using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.Data.OData.Query;
-using Swastika.Cms.Lib.Models;
-using Swastika.Cms.Lib.ViewModels;
-using Swastika.Common.Helper;
-using Swastika.Domain.Core.Models;
 using Swastika.IO.Cms.Lib.Models;
+using Swastika.IO.Cms.Lib.ViewModels;
+using Swastika.Domain.Core.Models;
 using System;
-using System.Collections.Generic;
 using System.Linq.Expressions;
 using System.Threading.Tasks;
 

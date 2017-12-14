@@ -1,18 +1,14 @@
 ﻿using Microsoft.EntityFrameworkCore.Storage;
 using Newtonsoft.Json.Linq;
-using Swastika.Cms.Lib.Models;
+using Swastika.IO.Cms.Lib.Models;
 using Swastika.Common;
 using Swastika.Infrastructure.Data.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Swastika.Domain.Core.Models;
-using Swastika.IO.Cms.Lib.Models;
 using Swastika.IO.Cms.Lib.Services;
 
-namespace Swastika.Cms.Lib.ViewModels
+namespace Swastika.IO.Cms.Lib.ViewModels
 {
     public class ModuleContentViewmodel : ViewModelBase<SiocCmsContext, SiocModuleData, ModuleContentViewmodel>
     {
@@ -28,7 +24,6 @@ namespace Swastika.Cms.Lib.ViewModels
         public string ArticleId { get; set; }
         public int? CategoryId { get; set; }
         public DateTime CreatedDateTime { get; set; }
-        public int Priority { get; set; }
         //View
         public List<ModuleDataValueViewModel> DataProperties { get; set; }
         public List<ModuleFieldViewModel> Columns { get; set; }
@@ -110,7 +105,7 @@ namespace Swastika.Cms.Lib.ViewModels
                     ModuleFieldViewModel thisField = new ModuleFieldViewModel()
                     {
                         Name = CommonHelper.ParseJsonPropertyName(field["Name"].ToString()),
-                        DataType = (Constants.DataType)(int)field["DataType"],
+                        DataType = (SWCmsConstants.DataType)(int)field["DataType"],
                         Width = field["Width"] != null ? field["Width"].Value<int>() : 3,
                         IsDisplay = field["IsDisplay"] != null ? field["IsDisplay"].Value<bool>() : true
                     };
@@ -136,25 +131,25 @@ namespace Swastika.Cms.Lib.ViewModels
                 var dataVal = new ModuleDataValueViewModel()
                 {
                     ModuleId = ModuleId,
-                    DataType = (Constants.DataType)col.DataType,
+                    DataType = (SWCmsConstants.DataType)col.DataType,
                     Name = CommonHelper.ParseJsonPropertyName(prop.Name),
                     StringValue = prop.Value["value"].Value<string>()
                 };
                 switch (col.DataType)
                 {
-                    case Constants.DataType.Int:
+                    case SWCmsConstants.DataType.Int:
                         dataVal.Value = prop.Value["value"] != null ? prop.Value["value"].Value<int>() : 0;
                         break;
 
-                    case Constants.DataType.Boolean:
+                    case SWCmsConstants.DataType.Boolean:
                         dataVal.Value = !string.IsNullOrEmpty(prop.Value["value"].ToString()) ? prop.Value["value"].Value<bool>() : false;
                         break;
-                    case Constants.DataType.String:
-                    case Constants.DataType.Image:
-                    case Constants.DataType.Icon:
-                    case Constants.DataType.CodeEditor:
-                    case Constants.DataType.Html:
-                    case Constants.DataType.TextArea:
+                    case SWCmsConstants.DataType.String:
+                    case SWCmsConstants.DataType.Image:
+                    case SWCmsConstants.DataType.Icon:
+                    case SWCmsConstants.DataType.CodeEditor:
+                    case SWCmsConstants.DataType.Html:
+                    case SWCmsConstants.DataType.TextArea:
                     default:
                         dataVal.Value = prop.Value["value"].Value<string>();
                         break;
@@ -172,7 +167,7 @@ namespace Swastika.Cms.Lib.ViewModels
     {
         public int ModuleId { get; set; }
         public string Name { get; set; }
-        public Constants.DataType DataType { get; set; }
+        public SWCmsConstants.DataType DataType { get; set; }
         public IConvertible Value { get; set; }
 
         public string StringValue { get; set; }
@@ -187,7 +182,7 @@ namespace Swastika.Cms.Lib.ViewModels
     public class ModuleFieldViewModel
     {
         public string Name { get; set; }
-        public Constants.DataType DataType { get; set; }
+        public SWCmsConstants.DataType DataType { get; set; }
         public bool IsDisplay { get; set; }
         public int Width { get; set; }
     }

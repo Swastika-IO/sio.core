@@ -1,8 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
 using Swastika.Infrastructure.Data.ViewModels;
-using Swastika.Cms.Lib.Models;
 using Swastika.IO.Cms.Lib.Models;
 using Microsoft.EntityFrameworkCore.Storage;
 using Swastika.Domain.Core.Models;

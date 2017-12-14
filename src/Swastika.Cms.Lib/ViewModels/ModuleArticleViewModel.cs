@@ -1,9 +1,8 @@
-﻿using Swastika.Cms.Lib.Models;
+﻿using Swastika.IO.Cms.Lib.Models;
 using Swastika.Infrastructure.Data.ViewModels;
 using Microsoft.EntityFrameworkCore.Storage;
-using Swastika.IO.Cms.Lib.Models;
 
-namespace Swastika.Cms.Lib.ViewModels
+namespace Swastika.IO.Cms.Lib.ViewModels
 {
     public class ModuleArticleViewModel: ViewModelBase<SiocCmsContext, SiocModuleArticle, ModuleArticleViewModel>
     {

@@ -22,7 +22,7 @@ using Swastika.IO.Identity.Identity.Services;
 using Swastika.IO.Cms.Lib.ViewModels;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using System.Security.Principal;
-using Swastika.Cms.Lib.Models;
+using Swastika.IO.Cms.Lib.Models;
 using Microsoft.EntityFrameworkCore.Storage;
 
 namespace Swastika.IO.Core.Controllers

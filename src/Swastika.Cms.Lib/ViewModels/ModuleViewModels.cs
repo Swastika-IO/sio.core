@@ -1,21 +1,16 @@
-﻿using Swastika.Cms.Lib.Models;
+﻿using Swastika.IO.Cms.Lib.Models;
 using Swastika.Infrastructure.Data.ViewModels;
-using System;
 using System.Collections.Generic;
-using System.Text;
 using Microsoft.EntityFrameworkCore.Storage;
-using Swastika.Common.Helper;
-using Swastika.Cms.Lib.Repositories;
+using Swastika.IO.Cms.Lib.Repositories;
 using Newtonsoft.Json.Linq;
 using Swastika.Common;
 using Microsoft.Data.OData.Query;
 using Swastika.Domain.Core.Models;
 using System.Linq;
 using System.Threading.Tasks;
-using static Swastika.IO.Cms.Lib.SWCmsConstants;
-using Swastika.IO.Cms.Lib.Models;
 
-namespace Swastika.Cms.Lib.ViewModels
+namespace Swastika.IO.Cms.Lib.ViewModels
 {
     public class ModuleWithDataViewModel : ViewModelBase<SiocCmsContext, SiocModule, ModuleWithDataViewModel>
     {
@@ -30,15 +25,15 @@ namespace Swastika.Cms.Lib.ViewModels
         public string ArticleId { get; set; } // Article this module belong to
         public int? CategoryId { get; set; }// Category this module belong to
 
-        public ModuleType Type { get; set; }
+        public SWCmsConstants.ModuleType Type { get; set; }
 
 
         // View
         public TemplateViewModel View { get; set; }
-        public PaginationModel<ModuleContentViewmodel> Data { get; set; }
+        public PaginationModel<ModuleContentViewmodel> Data { get; set; } = new PaginationModel<ModuleContentViewmodel>();
         public List<ModuleFieldViewModel> Columns { get; set; }
         public List<TemplateViewModel> Templates { get; set; }
-        public int Priority { get; set; }
+        public PaginationModel<ArticleListItemViewModel> Articles { get; set; } = new PaginationModel<ArticleListItemViewModel>();
 
         public ModuleWithDataViewModel(SiocModule model, SiocCmsContext _context = null, IDbContextTransaction _transaction = null) : base(model, _context, _transaction)
         {
@@ -55,7 +50,7 @@ namespace Swastika.Cms.Lib.ViewModels
                 ModuleFieldViewModel thisField = new ModuleFieldViewModel()
                 {
                     Name = CommonHelper.ParseJsonPropertyName(field["Name"].ToString()),
-                    DataType = (Constants.DataType)(int)field["DataType"],
+                    DataType = (SWCmsConstants.DataType)(int)field["DataType"],
                     Width = field["Width"] != null ? field["Width"].Value<int>() : 3,
                     IsDisplay = field["IsDisplay"] != null ? field["IsDisplay"].Value<bool>() : true
                 };
@@ -66,21 +61,26 @@ namespace Swastika.Cms.Lib.ViewModels
 
         public override void ExpandView(SiocCmsContext _context = null, IDbContextTransaction _transaction = null)
         {
-            this.Templates = Templates ?? TemplateRepository.Instance.GetTemplates(Constants.TemplateFolder.Modules);
-           
-            //if (Type == ModuleType.Root)
-            //{
-            //    var getDataResult = FEModuleContentData.Repository
-            //      .GetModelListBy(m => m.ModuleId == Id && m.Specificulture == Specificulture
-            //      , "Priority", OrderByDirection.Ascending, null, null
-            //      , _context, _transaction);
-            //    if (getDataResult.IsSucceed)
-            //    {
-            //        getDataResult.Data.JsonItems = new List<JObject>();
-            //        getDataResult.Data.Items.ForEach(d => getDataResult.Data.JsonItems.Add(d.JItem));
-            //        this.Data = getDataResult.Data;
-            //    }
-            //}
+            this.Templates = Templates ?? TemplateRepository.Instance.GetTemplates(SWCmsConstants.TemplateFolder.Modules);
+
+            var getDataResult = ModuleContentViewmodel.Repository
+                .GetModelListBy(m => m.ModuleId == Id && m.Specificulture == Specificulture
+                , "Priority", OrderByDirection.Ascending, null, null
+                , _context, _transaction);
+            if (getDataResult.IsSucceed)
+            {
+                getDataResult.Data.JsonItems = new List<JObject>();
+                getDataResult.Data.Items.ForEach(d => getDataResult.Data.JsonItems.Add(d.JItem));
+                Data = getDataResult.Data;
+            }
+            var getArticles = ArticleListItemViewModel.GetModelListByModule(Id, Specificulture, SWCmsConstants.Default.OrderBy, OrderByDirection.Ascending
+                , _context: _context, _transaction: _transaction
+                );
+            if (getArticles.IsSucceed)
+            {
+                Articles = getArticles.Data;
+            }
+
         }
 
         public override SiocModule ParseModel()
@@ -122,20 +122,20 @@ namespace Swastika.Cms.Lib.ViewModels
 
             switch (Type)
             {
-                case ModuleType.Root:
+                case SWCmsConstants.ModuleType.Root:
                     getDataResult = ModuleContentViewmodel.Repository
                        .GetModelListBy(m => m.ModuleId == Id && m.Specificulture == Specificulture
                        , "Priority", OrderByDirection.Ascending, pageSize, pageIndex
                        , _context, _transaction);
                     break;
-                case ModuleType.SubPage:
+                case SWCmsConstants.ModuleType.SubPage:
                     getDataResult = ModuleContentViewmodel.Repository
                        .GetModelListBy(m => m.ModuleId == Id && m.Specificulture == Specificulture
                        && (m.CategoryId == categoryId)
                        , "Priority", OrderByDirection.Ascending, pageSize, pageIndex
                        , _context, _transaction);
                     break;
-                case ModuleType.SubArticle:
+                case SWCmsConstants.ModuleType.SubArticle:
                     getDataResult = ModuleContentViewmodel.Repository
                        .GetModelListBy(m => m.ModuleId == Id && m.Specificulture == Specificulture
                        && (m.ArticleId == articleId)
@@ -170,7 +170,7 @@ namespace Swastika.Cms.Lib.ViewModels
 
         public string DetailsUrl { get; set; }
         public string EditUrl { get; set; }
-        public ModuleType Type { get; set; }
+        public SWCmsConstants.ModuleType Type { get; set; }
         public ModuleListItemViewModel(SiocModule model, SiocCmsContext _context = null, IDbContextTransaction _transaction = null) : base(model, _context, _transaction)
         {
         }
@@ -189,7 +189,7 @@ namespace Swastika.Cms.Lib.ViewModels
         public string Description { get; set; }
         public string Fields { get; set; }
 
-        public ModuleType Type { get; set; }
+        public SWCmsConstants.ModuleType Type { get; set; }
         //public List<CultureViewModel> ListSupportedCulture { get; set; }
         public TemplateViewModel View { get; set; }
         public List<TemplateViewModel> Templates { get; set; }
@@ -212,7 +212,7 @@ namespace Swastika.Cms.Lib.ViewModels
                 ModuleFieldViewModel thisField = new ModuleFieldViewModel()
                 {
                     Name = CommonHelper.ParseJsonPropertyName(field["Name"].ToString()),
-                    DataType = (Constants.DataType)(int)field["DataType"],
+                    DataType = (SWCmsConstants.DataType)(int)field["DataType"],
                     Width = field["Width"] != null ? field["Width"].Value<int>() : 3,
                     IsDisplay = field["IsDisplay"] != null ? field["IsDisplay"].Value<bool>() : true
                 };
@@ -230,9 +230,9 @@ namespace Swastika.Cms.Lib.ViewModels
             ListSupportedCulture = IO.Cms.Lib.Services.ApplicationConfigService.ListSupportedCulture;
 
             //Get Languages
-            this.Templates = Templates ?? TemplateRepository.Instance.GetTemplates(Constants.TemplateFolder.Modules);
+            this.Templates = Templates ?? TemplateRepository.Instance.GetTemplates(SWCmsConstants.TemplateFolder.Modules);
             this.Template = string.IsNullOrEmpty(Template) ? "Modules/_Default" : Template;
-            this.View = TemplateRepository.Instance.GetTemplate(Template, Templates, Constants.TemplateFolder.Modules);
+            this.View = TemplateRepository.Instance.GetTemplate(Template, Templates, SWCmsConstants.TemplateFolder.Modules);
 
             //Get columns
             this.Columns = new List<ModuleFieldViewModel>();
@@ -243,7 +243,7 @@ namespace Swastika.Cms.Lib.ViewModels
                 ModuleFieldViewModel thisField = new ModuleFieldViewModel()
                 {
                     Name = CommonHelper.ParseJsonPropertyName(field["Name"].ToString()),
-                    DataType = (Constants.DataType)(int)field["DataType"],
+                    DataType = (SWCmsConstants.DataType)(int)field["DataType"],
                     Width = field["Width"] != null ? field["Width"].Value<int>() : 3,
                     IsDisplay = field["IsDisplay"] != null ? field["IsDisplay"].Value<bool>() : true
                 };
@@ -375,7 +375,7 @@ namespace Swastika.Cms.Lib.ViewModels
             //}
 
             //Clone Data 
-            //Data = ModuleDataRepository.GetInstance().GetModelListBy(d => d.ModuleId == Id && d.Specificulture == Specificulture, d => d.CreatedDate, "desc", 0, null, Constants.ViewModelType.BackEnd);
+            //Data = ModuleDataRepository.GetInstance().GetModelListBy(d => d.ModuleId == Id && d.Specificulture == Specificulture, d => d.CreatedDate, "desc", 0, null, SWCmsConstants.ViewModelType.BackEnd);
             //foreach (var data in Data.Items)
             //{
 
