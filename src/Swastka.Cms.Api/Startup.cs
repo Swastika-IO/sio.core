@@ -2,7 +2,7 @@
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 
-namespace Swastka.Cms.Api
+namespace Swastka.Cms.Web
 {
     public partial class Startup
     {

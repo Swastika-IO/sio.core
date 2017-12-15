@@ -3,6 +3,7 @@ using Swastika.Common.Helper;
 using Swastika.Domain.Core.Models;
 using Swastika.IO.Cms.Lib;
 using Swastika.IO.Cms.Lib.ViewModels;
+using Swastika.IO.Common.Helper;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -99,7 +100,7 @@ namespace Swastika.IO.Cms.Lib.Repositories
             });
             if (File.Exists(fullPath))
             {
-                Common.CommonHelper.RemoveFile(fullPath);
+                CommonHelper.RemoveFile(fullPath);
             }
             return true;
         }

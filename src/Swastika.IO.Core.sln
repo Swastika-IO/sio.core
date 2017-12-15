@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
-VisualStudioVersion = 15.0.27004.2006
+VisualStudioVersion = 15.0.27004.2002
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Swastika.IO.Core", "Swastika.IO.Core\Swastika.IO.Core.csproj", "{8A86B290-1957-4D92-A24C-B7B5DD7B025C}"
 EndProject
@@ -14,6 +14,10 @@ EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Swastika.IO", "..\..\Swastika-Heart\src\Swastika.IO\Swastika.IO.csproj", "{672C5B3A-0F7C-494A-820F-73B5DB8A9B4A}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Swastika.IO.Identity", "..\..\Swastika-Identity\src\Swastika.IO.Identity\Swastika.IO.Identity.csproj", "{136F0E3D-1F88-4353-8DEE-57A7B88750D5}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Swastika.Messenger.Lib", "Swastika.Chat.Lib\Swastika.Messenger.Lib.csproj", "{B75A0A7C-6445-40EC-8713-F73AE13BA0E9}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Swastika.Messenger.Web", "Swastika.Chat.Web\Swastika.Messenger.Web.csproj", "{124A8555-524D-49B1-B489-ADC8DA3DD3FB}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -45,6 +49,14 @@ Global
 		{136F0E3D-1F88-4353-8DEE-57A7B88750D5}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{136F0E3D-1F88-4353-8DEE-57A7B88750D5}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{136F0E3D-1F88-4353-8DEE-57A7B88750D5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B75A0A7C-6445-40EC-8713-F73AE13BA0E9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B75A0A7C-6445-40EC-8713-F73AE13BA0E9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B75A0A7C-6445-40EC-8713-F73AE13BA0E9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B75A0A7C-6445-40EC-8713-F73AE13BA0E9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{124A8555-524D-49B1-B489-ADC8DA3DD3FB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{124A8555-524D-49B1-B489-ADC8DA3DD3FB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{124A8555-524D-49B1-B489-ADC8DA3DD3FB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{124A8555-524D-49B1-B489-ADC8DA3DD3FB}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

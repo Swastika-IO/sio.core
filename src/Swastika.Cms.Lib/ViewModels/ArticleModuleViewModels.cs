@@ -27,7 +27,8 @@ namespace Swastika.IO.Cms.Lib.ViewModels
         public override Task<RepositoryResponse<bool>> RemoveRelatedModelsAsync(ArticleModuleListItemViewModel view, SiocCmsContext _context = null, IDbContextTransaction _transaction = null)
         {
             return ModuleContentViewmodel.Repository.RemoveListModelAsync(
-                d => d.ArticleId == view.ArticleId && d.ModuleId == view.ModuleId && d.Specificulture == view.Specificulture);
+                d => d.ArticleId == view.ArticleId && d.ModuleId == view.ModuleId && d.Specificulture == view.Specificulture
+                , _context, _transaction);
         }
 
         #endregion
@@ -37,7 +38,8 @@ namespace Swastika.IO.Cms.Lib.ViewModels
         public override RepositoryResponse<bool> RemoveRelatedModels(ArticleModuleListItemViewModel view, SiocCmsContext _context = null, IDbContextTransaction _transaction = null)
         {
             return ModuleContentViewmodel.Repository.RemoveListModel(
-                d => d.ArticleId == view.ArticleId && d.ModuleId == view.ModuleId && d.Specificulture == view.Specificulture);
+                d => d.ArticleId == view.ArticleId && d.ModuleId == view.ModuleId && d.Specificulture == view.Specificulture
+                , _context, _transaction);
         }
 
         #endregion
