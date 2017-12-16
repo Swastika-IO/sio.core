@@ -7,6 +7,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using Swastika.IO.Cms.Lib.Services;
+using Swastika.IO.Common.Helper;
 
 namespace Swastika.IO.Cms.Lib.ViewModels
 {
@@ -54,7 +55,7 @@ namespace Swastika.IO.Cms.Lib.ViewModels
             };
             foreach (var prop in DataProperties)
             {
-                result.Add(new JProperty(Common.CommonHelper.ParseJsonPropertyName(prop.Name), prop.Value));
+                result.Add(new JProperty(CommonHelper.ParseJsonPropertyName(prop.Name), prop.Value));
             }
             JObject model = new JObject
             {
