@@ -25,6 +25,14 @@ import { HeaderComponent } from './components/header/header.component';
             loadChildren: './areas/cms/cms-portal.module#CmsPortalModule',
           },
           {
+            path: 'blog',
+            loadChildren: './areas/blog/blog-portal.module#BlogPortalModule',
+          },
+          {
+            path: 'forum',
+            loadChildren: './areas/forum/forum-portal.module#ForumPortalModule',
+          },
+          {
             path: 'ecom',
             loadChildren: './areas/ecom/ecom-portal.module#EcomPortalModule',
           },
