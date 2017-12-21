@@ -1,0 +1,79 @@
+@model Swastika.IO.Cms.Lib.ViewModels.CategoryFEViewModel
+
+
+<section id="portfolio">
+    <div class="container">
+        <div class="center">
+            <h2>@Model.Title</h2>
+            <p class="lead">@Model.Description</p>
+        </div>
+
+
+        <!-- <ul class="portfolio-filter text-center">
+            <li><a class="btn btn-default active" href="#" data-filter="*">Tất cả tour</a></li>
+            <li><a class="btn btn-default" href="#" data-filter=".chau-a">Châu Á</a></li>
+            <li><a class="btn btn-default" href="#" data-filter=".chau-my">Châu Mỹ</a></li>
+            <li><a class="btn btn-default" href="#" data-filter=".chau-phi">Châu Phi</a></li>
+            <li><a class="btn btn-default" href="#" data-filter=".trong-nuoc">Trong nước</a></li>
+        </ul> -->
+
+        <div class="row">
+            <div class="portfolio-items">
+
+                @foreach (var article in Model.Articles.Items)
+                {
+                    string cl = (!string.IsNullOrEmpty(article.Tags) ? article.Tags.Replace(",", " ") : string.Empty);
+                    <div class="portfolio-item apps col-xs-12 col-sm-4 col-md-3 @cl">
+                        <div class="recent-work-wrap">
+                            <img class="img-responsive" src="@article.Image" alt="@article.SeoTitle" style="width: 293px;height: 222px;margin: auto;">
+                            <div class="overlay">
+                                <div class="recent-work-inner">
+                                    <h3><a asp-action="ArticleDetails" asp-route-id="@article.Id" asp-route-SeoTitle="@article.SeoName">@article.Title</a></h3>
+                                    <p>@article.Excerpt</p>
+                                    <a asp-action="ArticleDetails" asp-route-id="@article.Id" asp-route-SeoTitle="@article.SeoName" class="preview"><i class="fa fa-eye"></i> View</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div><!--/.portfolio-item-->
+                }
+            </div>
+        </div>
+    </div>
+</section><!--/#portfolio-item-->
+
+@if (Model != null && Model.Articles.TotalItems > 0)
+{
+
+    <section id="recent-works">
+        <div class="container">
+            <div class="center wow fadeInDown">
+                <h2>@Model.Title</h2>
+                <p class="lead">@Model.Description</p>
+            </div>
+            <div class="row">
+                @foreach (var article in Model.Articles.Items)
+                {
+                    <a asp-action="ArticleDetails" asp-route-id="@article.Id" asp-route-SeoTitle="@article.SeoTitle">
+                    <div class="col-md-4 col-sm-6 wow fadeInDown animated">
+                            <div class="feature-wrap">
+                                <img alt="@article.SeoTitle" src="@article.Image">
+                                <h2>@article.Title</h2>
+                                <h3>@article.Excerpt.Substring(0, Math.Min(article.Excerpt.Length,80))</h3>
+                            </div>
+                    </div>
+                    </a>
+                }
+
+            </div>
+            <!--/.row-->
+        </div>
+        <!--/.container-->
+    </section><!--/#recent-works-->
+}
+
+
+
+
+
+
+

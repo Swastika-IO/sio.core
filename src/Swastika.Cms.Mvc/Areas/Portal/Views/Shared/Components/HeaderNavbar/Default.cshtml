@@ -1,0 +1,98 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+
+@inject UserManager<ApplicationUser> UserManager
+
+@{
+
+}
+
+
+<nav class="navbar navbar-static-top" role="navigation">
+    <!-- Sidebar toggle button-->
+    <a href="#" class="sidebar-toggle" data-toggle="push-menu" role="button">
+        <span class="sr-only">Toggle navigation</span>
+    </a>
+    <!-- Navbar Right Menu -->
+    <div class="navbar-custom-menu">
+        <ul class="nav navbar-nav">
+
+            @*<li class="dropdown tasks-menu">
+    @Html.Partial("_PartialSelectLanguage")
+    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modal-files">
+            Files
+        </button>
+            </li>*@
+            <!-- Messages: style can be found in dropdown.less-->
+            <li class="tasks-menu">
+                <a href="/vi-vn/Portal/Articles/Index">
+                    VN
+                </a>
+            </li>
+            <li class="tasks-menu">
+                <a href="/en-UK/Portal/Articles/Index">
+                    EN
+                </a>
+            </li>
+            <li class="tasks-menu">
+                <!-- Menu toggle button -->
+                <a href="#" data-toggle="modal" data-target="#modal-files">
+                    <i class="fa fa-file"></i>
+                </a>
+            </li>
+            <!-- /.messages-menu -->
+            <!-- User Account Menu -->
+            <li class="dropdown user user-menu">
+                <!-- Menu Toggle Button -->
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                    <!-- The user image in the navbar-->
+                    <img src="~/lib/admin-lte-2.4.0-rc/dist/img/user2-160x160.jpg" class="user-image" alt="User Image">
+                    <!-- hidden-xs hides the username on small devices so only the image appears. -->
+                    <span class="hidden-xs">@UserManager.GetUserName(User)</span>
+                </a>
+                <ul class="dropdown-menu">
+                    <!-- The user image in the menu -->
+                    <li class="user-header">
+                        <img src="~/lib/admin-lte-2.4.0-rc/dist/img/user2-160x160.jpg" class="img-circle" alt="User Image">
+
+                        <p>
+                            @UserManager.GetUserName(User)
+                            <small>Hello!</small>
+                        </p>
+                    </li>
+                    <!-- Menu Body -->
+                    @*<li class="user-body">
+                            <div class="row">
+                                <div class="col-xs-4 text-center">
+                                    <a href="#">Followers</a>
+                                </div>
+                                <div class="col-xs-4 text-center">
+                                    <a href="#">Sales</a>
+                                </div>
+                                <div class="col-xs-4 text-center">
+                                    <a href="#">Friends</a>
+                                </div>
+                            </div>
+                            <!-- /.row -->
+                        </li>*@
+                    <!-- Menu Footer-->
+                    <li class="user-footer">
+                        <div class="pull-left">
+                            <a asp-controller="Profile" asp-action="Index" class="btn btn-default btn-flat">Profile</a>
+                        </div>
+                        <div class="pull-right">
+                            <form asp-area="User" asp-controller="Account" asp-action="Logout" method="post" id="logoutForm" class="">
+                                <button type="submit" class="btn btn-default btn-flat">Log out</button>
+                            </form>
+                        </div>
+                    </li>
+                </ul>
+            </li>
+            <!-- Control Sidebar Toggle Button -->
+            @*<li>
+                    <a href="#" data-toggle="control-sidebar"><i class="fa fa-gears"></i></a>
+                </li>*@
+        </ul>
+    </div>
+</nav>

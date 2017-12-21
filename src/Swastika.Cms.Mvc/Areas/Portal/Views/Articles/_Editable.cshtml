@@ -1,0 +1,300 @@
+﻿@model Swastika.IO.Cms.Lib.ViewModels.ArticleViewModel
+@{
+    string img = Model != null ? Model.Image : "http://placehold.it/200x200";
+    string thumb = Model != null ? Model.Thumbnail : "http://placehold.it/200x200";
+    var templates = new SelectList(Model.Templates, "Filename", "Filename");
+}
+
+<!-- Custom Tabs -->
+<div>
+    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+    <input type="hidden" asp-for="Id" />
+    <input type="hidden" asp-for="Specificulture" />
+    <input type="hidden" asp-for="CreatedBy" />
+    <input type="hidden" asp-for="CreatedDate" />
+    <input type="hidden" asp-for="View" />
+    <input type="hidden" asp-for="Type" />
+</div>
+<div class="nav-tabs-custom">
+    <ul class="nav nav-tabs">
+        <li class="active"><a href="#tab_info" data-toggle="tab">Content</a></li>
+        <li class=""><a href="#tab_seos" data-toggle="tab">SEO</a></li>
+        <li class=""><a href="#tab_languages" data-toggle="tab">Languages</a></li>
+        <li class=""><a href="#tab_layout" data-toggle="tab">Layout</a></li>
+        <li class=""><a href="#tab_parents" data-toggle="tab">Parents</a></li>
+        <li class=""><a href="#tab_custom_modules" data-toggle="tab">Modules</a></li>
+    </ul>
+
+    <div class="tab-content">
+
+        <div class="tab-pane active" id="tab_info">
+            <div class="form-horizontal">
+                <div class="form-group">
+                    <label asp-for="Priority" class="col-md-2 control-label"></label>
+                    <div class="col-md-10">
+                        <input asp-for="Priority" class="form-control" />
+                        <span asp-validation-for="Priority" class="text-danger"></span>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Title" class="col-md-2 control-label"></label>
+                    <div class="col-md-10">
+                        <input asp-for="Title" class="form-control" />
+                        <span asp-validation-for="Title" class="text-danger"></span>
+                    </div>
+                </div>
+               
+                <div class="form-group">
+                    <label asp-for="Excerpt" class="col-md-2 control-label"></label>
+                    <div class="col-md-10">
+                        <textarea asp-for="Excerpt" class="form-control"></textarea>
+                        <span asp-validation-for="Excerpt" class="text-danger"></span>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label asp-for="FullContent" class="col-md-2 control-label"></label>
+                    <div class="col-md-10">
+                        <textarea asp-for="FullContent" class="form-control"></textarea>
+                        <script>
+                            // Replace the <textarea id="FullContent"> with a CKEditor
+                            // instance, using default configuration.
+                            CKEDITOR.replace('FullContent');
+                        </script>
+                        <span asp-validation-for="FullContent" class="text-danger"></span>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-md-offset-2 col-md-10">
+                        <div class="checkbox">
+                            <input asp-for="IsVisible" />
+                            <label asp-for="IsVisible"></label>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-md-offset-2 col-md-10">
+                        <div class="checkbox">
+                            <input asp-for="IsDeleted" />
+                            <label asp-for="IsDeleted"></label>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label asp-for="Source" class="col-md-2 control-label"></label>
+                    <div class="col-md-10">
+                        <input asp-for="Source" class="form-control" />
+                        <span asp-validation-for="Source" class="text-danger"></span>
+                    </div>
+                </div>
+                 <div class="form-group">
+                    <label asp-for="Tags" class="col-md-2 control-label"></label>
+                    <div class="col-md-10">
+                        <input asp-for="Tags" class="form-control tags" />
+                        <span asp-validation-for="Tags" class="text-danger"></span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="tab-pane" id="tab_seos">
+            <div class="form-horizontal">
+                <div class="form-group">
+                    <label asp-for="SeoName" class="col-md-2 control-label"></label>
+                    <div class="col-md-10">
+                        <input asp-for="SeoName" class="form-control" />
+                        <span asp-validation-for="SeoName" class="text-danger"></span>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label asp-for="SeoTitle" class="col-md-2 control-label"></label>
+                    <div class="col-md-10">
+                        <input asp-for="SeoTitle" class="form-control" />
+                        <span asp-validation-for="SeoTitle" class="text-danger"></span>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label asp-for="SeoDescription" class="col-md-2 control-label"></label>
+                    <div class="col-md-10">
+                        <input asp-for="SeoDescription" class="form-control" />
+                        <span asp-validation-for="SeoDescription" class="text-danger"></span>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label asp-for="SeoKeywords" class="col-md-2 control-label"></label>
+                    <div class="col-md-10">
+                        <input asp-for="SeoKeywords" class="form-control" />
+                        <span asp-validation-for="SeoKeywords" class="text-danger"></span>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+         <!-- /.tab-pane -->
+        <div class="tab-pane" id="tab_languages">
+            <ul class="nav nav-pills nav-stacked">
+                @for (int i = 0; i < Model.ListSupportedCulture.Count; i++)
+            {
+
+                    <li style="position: relative;padding: 10px 15px;float:left;">
+                        <label class="form-check-label">
+                            <input type="checkbox" asp-for="@Model.ListSupportedCulture[i].IsSupported" />
+                            <input type="hidden" asp-for="@Model.ListSupportedCulture[i].Specificulture" />
+                            <i class="flag-icon h5 @Model.ListSupportedCulture[i].Icon" style="margin-right: 5px;margin-left: 10px;"></i> @Model.ListSupportedCulture[i].Specificulture
+                        </label>
+                    </li>
+                }
+            </ul>
+            <input type="hidden" asp-for="Specificulture" />
+        </div>
+        <div class="tab-pane" id="tab_layout">
+            <div class="form-horizontal">
+                <div class="form-group">
+
+                    <label asp-for="Template" class="col-md-2 control-label"></label>
+
+                    <div class="col-md-10">
+
+                        @Html.Partial("_Editor_Code", Model.View, new ViewDataDictionary(this.ViewData)
+               {
+               {
+                       "Files", Model.Templates
+                   },
+                   {
+                       "Name", "View"
+                   }
+
+                })
+                        @* <input asp-for="View.Filename" class="form-control"/>
+
+                            <div class="form-control" id="code-editor" asp-for="View.Content"></div>*@
+                        <span asp-validation-for="Template" class="text-danger"></span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="tab-pane" id="tab_parents">
+            <div class="form-horizontal">
+                <div class="form-group">
+
+                    <label asp-for="Categories" class="control-label col-md-2"></label>
+
+                    <div class="form-check col-md-10">
+                        <ul class="nav">
+                            @for (int i = 0; i < Model.Categories.Count; i++)
+                            {
+                                <li class="col-sm-4">
+                                    <input type="checkbox" asp-for="@Model.Categories[i].IsActived" />
+                                    <label asp-for="@Model.Categories[i].IsActived">@Model.Categories[i].Description</label>
+                                    <input type="hidden" asp-for="@Model.Categories[i].Specificulture" />
+                                    <input type="hidden" asp-for="@Model.Categories[i].ArticleId" />
+                                    <input type="hidden" asp-for="@Model.Categories[i].CategoryId" />
+                                </li>
+                            }
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="form-group">
+
+                    <label asp-for="Modules" class="control-label col-md-2"></label>
+                    <div class="form-check col-md-10">
+                        <ul class="nav">
+                            @for (int i = 0; i < Model.Modules.Count; i++)
+                            {
+                                <li class="col-sm-4">
+                                    <input type="checkbox" asp-for="@Model.Modules[i].IsActived" />
+                                    <label asp-for="@Model.Modules[i].IsActived">@Model.Modules[i].Description</label>
+                                    <input type="hidden" asp-for="@Model.Modules[i].Specificulture" />
+                                    <input type="hidden" asp-for="@Model.Modules[i].ArticleId" />
+                                    <input type="hidden" asp-for="@Model.Modules[i].ModuleId" />
+                                </li>
+                            }
+                        </ul>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+        <div class="tab-pane" id="tab_custom_modules">
+            <div class="form-horizontal">
+                <div class="form-group">                    
+                    <label asp-for="Modules" class="control-label col-md-2"></label>
+                    <div class="form-check col-md-10">
+                        <ul class="nav">
+                            @for (int i = 0; i < Model.ModuleNavs.Count; i++)
+            {
+                                <li class="col-sm-4">
+                                    <input type="checkbox" asp-for="@Model.ModuleNavs[i].IsActived" data-module-id="@Model.ModuleNavs[i].ModuleId" class="cb-active-module" />
+                                    <label asp-for="@Model.ModuleNavs[i].IsActived">@Model.ModuleNavs[i].Description</label>
+                                    <input type="hidden" asp-for="@Model.ModuleNavs[i].Specificulture" />
+                                    <input type="hidden" asp-for="@Model.ModuleNavs[i].ArticleId" />
+                                    <input type="hidden" asp-for="@Model.ModuleNavs[i].ModuleId" />
+                                </li>
+                            }
+                        </ul>
+                    </div>
+                </div>
+                <div class="form-group">
+
+                    <label class="control-label col-md-2">Modules Data</label>
+                    @foreach (var childModule in Model.ModuleNavs)
+                    {
+                        string cl = !childModule.IsActived ? "hidden" : string.Empty;
+                        var module = childModule.Module;
+                        <div class="col-md-12 @cl module-data-@childModule.ModuleId">
+                            <h1>@module.Title</h1>
+                            @*<a href="#" class="btn btn-success AddObject" moduleId="@module.Id">Add new</a>*@
+                            <table class="table table-hover table-striped" id="module-@module.Id">
+                                <thead>
+                                    <tr>
+                                        @foreach (var col in module.Columns.Where(c => c.IsDisplay))
+                                        {
+                                            <th class="col-sm-@col.Width">
+                                                @col.Name
+                                            </th>
+                                        }
+                                        <th>Actived</th>
+                                        <th></th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach (var item in module.Data.Items)
+                                    {
+                                        bool isActived = item.ArticleId == Model.Id;
+                                        <tr id="data-@item.Id" dataId="data-@item.Id">
+                                            @foreach (var col in module.Columns.Where(c => c.IsDisplay))
+                                            {
+                                                var prop = item.GetDataProperty(col.Name);
+                                                <td>
+                                                    @{Html.RenderPartial("_ViewByFieldType",
+    new ViewDataDictionary(this.Vi‌​ewData) { { "DataType", prop.DataType }, { "Value", prop.Value } });
+                                                    }
+                                                </td>
+                                                        }
+                                            <td>
+                                                <input asp-for="@isActived" class="cb-active-data" dataId="@item.Id" />
+                                            </td>
+                                            <td>
+                                                <a asp-area="Portal" asp-controller="Module" 
+                                                   asp-action="EditModuleData" asp-route-id="@item.ModuleId" asp-route-dataId="@item.Id" 
+                                                   dataId="@item.Id" class="btn btn-sm btn-warning"><i class="fa fa-pencil"></i> </a>
+                                            </td>
+                                        </tr>
+                                                        }
+                                </tbody>
+                            </table>
+                        </div>
+                                                        }
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+</div>
+
+    
+

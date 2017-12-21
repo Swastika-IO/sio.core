@@ -3,18 +3,19 @@ using Microsoft.Data.OData.Query;
 using Newtonsoft.Json.Linq;
 using Swastika.IO.Cms.Lib.Models;
 using Swastika.IO.Cms.Lib.ViewModels;
-using Swastika.Domain.Core.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
 using System.Threading.Tasks;
+using Swastika.IO.Domain.Core.ViewModels;
+using Swastika.Extension.Blog.Api.Controllers;
 
 namespace Swastka.Cms.Api.Controllers
 {
     [Route("api/{culture}/moduleData")]
     public class ModuleDataController :
-        BaseAPIController<SiocCmsContext, SiocArticle>
+        BaseApiController<SiocCmsContext, SiocArticle>
     {
 
         [HttpPost]

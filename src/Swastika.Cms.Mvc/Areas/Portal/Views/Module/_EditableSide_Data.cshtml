@@ -1,0 +1,8 @@
+@model Swastika.IO.Cms.Lib.ViewModels.ModuleDataViewModel
+
+@{
+    var types = Html.GetEnumSelectList<Swastika.IO.Cms.Lib.SWCmsConstants.CateType>();
+    //string img = Model != null ? Model.Image : "http://placehold.it/200x200";
+}
+
+@await Html.PartialAsync("EditableSides/_EditableSide_Actions")

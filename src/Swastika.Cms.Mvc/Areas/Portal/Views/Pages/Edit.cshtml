@@ -1,0 +1,43 @@
+@model Swastika.IO.Cms.Lib.ViewModels.CategoryBEViewModel
+
+@{
+    ViewData["Title"] = "Edit Page";
+    Layout = "~/Areas/Portal/Views/Shared/_Layout.cshtml";
+}
+
+
+@section Styles
+{
+    <link href="~/lib/icheck-1.x/skins/square/square.css" rel="stylesheet">
+    <link href="~/lib/icheck-1.x/skins/square/blue.css" rel="stylesheet">
+
+}
+<form enctype="multipart/form-data" asp-action="@ViewContext.RouteData.Values["action"].ToString()">
+    <!-- Main content -->
+    <section class="content container-fluid">
+        <div class="row">
+            <section class="col-lg-9">
+                @await Html.PartialAsync("_Editable", Model)
+            </section>
+            <section class="col-lg-3">
+                @await Html.PartialAsync("_EditableSide", Model)
+            </section>
+        </div>
+    </section>
+    <!-- /.content -->
+</form>
+
+@section Scripts
+{
+    <script src="~/lib/icheck-1.x/icheck.min.js"></script>
+    <script>
+        $(function () {
+            //Enable iCheck plugin for checkboxes
+            //iCheck for checkbox and radio inputs
+            $('input[type="checkbox"]').iCheck({
+                checkboxClass: 'icheckbox_square-blue',
+                radioClass: 'iradio_square-blue'
+            });
+        });
+    </script>
+}

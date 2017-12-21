@@ -6,6 +6,7 @@ using Swastika.Domain.Core.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using Swastika.IO.Domain.Core.ViewModels;
 
 namespace Swastika.IO.Cms.Lib.Repositories
 {

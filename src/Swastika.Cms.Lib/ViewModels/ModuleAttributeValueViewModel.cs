@@ -8,6 +8,7 @@ using System.Collections.Generic;
 using System.Linq;
 using Swastika.IO.Cms.Lib.Services;
 using Swastika.Domain.Core.Models;
+using Swastika.IO.Domain.Core.ViewModels;
 
 namespace Swastika.IO.Cms.Lib.ViewModels
 {

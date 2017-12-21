@@ -10,6 +10,7 @@ using Swastika.Domain.Core.Models;
 using System.Linq;
 using System.Threading.Tasks;
 using Swastika.IO.Common.Helper;
+using Swastika.IO.Domain.Core.ViewModels;
 
 namespace Swastika.IO.Cms.Lib.ViewModels
 {

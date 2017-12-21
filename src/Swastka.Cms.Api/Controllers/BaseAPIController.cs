@@ -12,7 +12,7 @@ using Microsoft.AspNetCore.Mvc.Filters;
 
 namespace Swastka.Cms.Api.Controllers
 {
-    public class BaseAPIController<TContext, TModel> : Controller
+    public class BaseApiController<TContext, TModel> : Controller
         where TContext : DbContext
         where TModel : class
     {
@@ -45,7 +45,7 @@ namespace Swastka.Cms.Api.Controllers
 
     }
 
-    public class BaseAPIController<TDbContext, TModel, TView> : Controller
+    public class BaseApiController<TDbContext, TModel, TView> : Controller
         where TDbContext : DbContext
         where TModel : class
         where TView : Swastika.Infrastructure.Data.ViewModels.ViewModelBase<TDbContext, TModel, TView>
@@ -64,8 +64,6 @@ namespace Swastka.Cms.Api.Controllers
             _lang = RouteData != null && RouteData.Values["culture"] != null
                 ? RouteData.Values["culture"].ToString() : "vi-vn";
             ViewBag.culture = _lang;
-            //ViewBag.currentCulture = listCultures.FirstOrDefault(c => c.Specificulture == _lang);
-            //ViewBag.cultures = listCultures;
         }
 
         

@@ -2,10 +2,12 @@
 using Microsoft.Data.OData.Query;
 using Swastika.IO.Cms.Lib.Models;
 using Swastika.IO.Cms.Lib.ViewModels;
-using Swastika.Domain.Core.Models;
 using System;
 using System.Linq.Expressions;
 using System.Threading.Tasks;
+using Swastika.IO.Domain.Core.ViewModels;
+using Swastika.IO.UI.Core.Controllers;
+using Swastika.Extension.Blog.Api.Controllers;
 
 namespace Swastka.Cms.Api.Controllers
 {
@@ -14,7 +16,7 @@ namespace Swastka.Cms.Api.Controllers
     //    )]
     [Route("api/{culture}/[controller]")]
     public class ArticlesController :
-        BaseAPIController<SiocCmsContext, SiocArticle>
+        BaseApiController<SiocCmsContext, SiocArticle>
     {
         // POST api/articles
         [HttpPost]

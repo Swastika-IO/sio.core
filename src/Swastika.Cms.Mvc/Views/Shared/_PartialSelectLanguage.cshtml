@@ -1,0 +1,76 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+    string currentController = ViewContext.RouteData.Values["Controller"] == null ? string.Empty : ViewContext.RouteData.Values["Controller"].ToString();
+    string currentAction = ViewContext.RouteData.Values["Action"] == null ? string.Empty : ViewContext.RouteData.Values["Action"].ToString();
+    string currentArea = ViewContext.RouteData.Values["Area"] == null ? string.Empty : ViewContext.RouteData.Values["Area"].ToString();
+    string currentId = ViewContext.RouteData.Values["Id"] == null ? string.Empty : ViewContext.RouteData.Values["Id"].ToString();
+    string currentPageName = ViewContext.RouteData.Values["PageName"] == null ? string.Empty : ViewContext.RouteData.Values["PageName"].ToString();
+    string currentSeoTitle = ViewContext.RouteData.Values["SeoTitle"] == null ? string.Empty : ViewContext.RouteData.Values["SeoTitle"].ToString();
+    
+var currentCulture = LocalizerService.GetCulture(ViewBag.culture); //ViewContext.RouteData.Values["culture"].ToString();
+
+}
+
+@*<a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
+    
+    <i class="flag-icon @currentCulture.Icon"></i>
+</a>*@
+@*<ul class="dropdown-menu">
+
+    <li class="header">
+        <strong>Language</strong>
+    </li>
+
+    @foreach (var culture in LocalizerService.ListSupportedCulture)
+    {
+        <li>
+            <a class="dropdown-item"
+               asp-route-culture="@culture.Specificulture"
+               asp-area="@currentArea"
+               asp-controller="@currentController"
+               asp-action="@currentAction"
+               asp-route-id="@currentId">
+                <i class="flag-icon @culture.Icon"></i>  @culture.Description
+            </a>
+        </li>
+    }
+
+</ul>*@
+<div class="btn-group btn-group-sm btn-culture" role="group" aria-label="..." style="margin-left: 10px;">
+     @foreach (var culture in LocalizerService.GetSupportedCultures())
+     {
+         string cl = (currentCulture.Specificulture == culture.Specificulture ? "active" : string.Empty);
+        <a class="btn btn-default @cl"
+           title="@culture.Description"
+           asp-route-culture="@culture.Specificulture"
+           asp-area="@currentArea"
+           asp-controller="@currentController"
+           asp-action="@currentAction"
+           asp-route-pageName="@currentPageName"
+           asp-route-SeoTitle="@currentSeoTitle"
+           asp-route-id="@currentId">
+            <span class="flag-icon @culture.Icon"></span>
+        </a>
+    }
+</div>
+<style>
+    .btn-culture .btn.btn-default {
+        background-color: transparent;
+        border: 1px solid #3d8e86;
+    }
+
+        .btn-culture .btn.btn-default span {
+            filter: grayscale(1.0);
+        }
+
+        .btn-culture .btn.btn-default.active span {
+            filter: grayscale(0.2);
+        }
+
+    #header .btn.btn-default span:hover {
+        filter: grayscale(0);
+    }
+
+</style>

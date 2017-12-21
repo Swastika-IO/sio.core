@@ -1,0 +1,70 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup Label="Configuration" Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+    <OutputType>exe</OutputType>
+  </PropertyGroup>
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp2.0</TargetFramework>
+    <MvcRazorCompileOnPublish>false</MvcRazorCompileOnPublish>
+    <TypeScriptToolsVersion>2.3</TypeScriptToolsVersion>
+  </PropertyGroup>
+
+  <!--<PropertyGroup>
+    <PackageTargetFallback>$(PackageTargetFallback);portable-net45+win8+wp8+wpa81;</PackageTargetFallback>
+  </PropertyGroup>-->
+
+  <PropertyGroup>
+    <UserSecretsId>aspnet-TTS.Web-3493e67c-f484-44f7-8cce-5debca65edaa</UserSecretsId>
+    <ApplicationIcon />
+    <OutputTypeEx>exe</OutputTypeEx>
+    <StartupObject />
+    <PackageRequireLicenseAcceptance>False</PackageRequireLicenseAcceptance>
+    <EnableDefaultContentItems>false</EnableDefaultContentItems>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="bootstrap-select" Version="1.12.4" />
+    <PackageReference Include="Microsoft.ApplicationInsights.AspNetCore" Version="2.1.1" />
+    <PackageReference Include="Microsoft.Extensions.Configuration.UserSecrets" Version="2.0.0" />
+    <PackageReference Include="Microsoft.Extensions.Logging.Debug" Version="2.0.0" />
+    <PackageReference Include="Newtonsoft.Json" Version="10.0.3" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Include="Views\**\*" CopyToPublishDirectory="Always" />
+    <Content Include="Areas\*\Views\**\*" CopyToPublishDirectory="Always" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Remove="Areas\Portal\Controllers\Apis\**" />
+    <Compile Remove="Files\**" />
+    <Compile Remove="wwwroot\lib\**" />
+    <Content Remove="Areas\Portal\Controllers\Apis\**" />
+    <EmbeddedResource Remove="Areas\Portal\Controllers\Apis\**" />
+    <EmbeddedResource Remove="Files\**" />
+    <EmbeddedResource Remove="wwwroot\lib\**" />
+    <None Remove="Areas\Portal\Controllers\Apis\**" />
+    <None Remove="Files\**" />
+    <None Remove="wwwroot\lib\**" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Remove="Areas\Portal\Controllers\CollaboratorsController.cs" />
+    <Compile Remove="Areas\Portal\Controllers\ContentsController.cs" />
+    <Compile Remove="Areas\Portal\Controllers\MediaController.cs" />
+    <Compile Remove="Areas\Portal\Controllers\ProfileController.cs" />
+    <Compile Remove="Areas\Portal\Controllers\TemplateController.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Remove="wwwroot\css\main.css" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\Swastika-Heart\src\Swastika.IO\Swastika.IO.csproj" />
+    <ProjectReference Include="..\..\..\Swastika-Identity\src\Swastika.IO.Identity\Swastika.IO.Identity.csproj" />
+    <ProjectReference Include="..\Swastika.Cms.Lib\Swastika.IO.Cms.Lib.csproj" />
+    <ProjectReference Include="..\Swastka.Cms.Api\Swastka.IO.Cms.Api.csproj" />
+  </ItemGroup>
+</Project>

@@ -1,0 +1,97 @@
+@using Swastika.Common.Helper
+@model PaginationModel<Swastika.IO.Cms.Lib.ViewModels.CultureViewModel>
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Areas/Portal/Views/Shared/_Layout.cshtml";
+    int fromValue = Model.PageIndex * @Model.PageSize + 1;
+    int toValue = fromValue + Model.PageSize;
+    int prevPage = Model.PageIndex > 0 ? Model.PageIndex - 1 : 0;
+    int nextPage = Model.PageIndex == Model.TotalPage - 1 ? Model.PageIndex : Model.PageIndex + 1;
+    toValue = toValue > Model.TotalItems ? Model.TotalItems : toValue;
+}
+
+<div class="box-body no-padding">
+    <div class="mailbox-controls">
+        <!-- Check all button -->
+        <button type="button" class="btn btn-default btn-sm checkbox-toggle">
+            <i class="fa fa-square-o"></i>
+        </button>
+        <div class="btn-group">
+            <button type="button" class="btn btn-default btn-sm"><i class="fa fa-trash-o"></i></button>
+            <button type="button" class="btn btn-default btn-sm"><i class="fa fa-reply"></i></button>
+            <button type="button" class="btn btn-default btn-sm"><i class="fa fa-share"></i></button>
+        </div>
+        <!-- /.btn-group -->
+        <button type="button" class="btn btn-default btn-sm"><i class="fa fa-refresh"></i></button>
+        <div class="pull-right">
+            @fromValue  - @toValue
+            / @Model.TotalItems
+            <div class="btn-group">
+                <a asp-route-pageSize="@Model.PageSize" asp-route-pageIndex="@prevPage" class="btn btn-default btn-sm"><i class="fa fa-chevron-left"></i></a>
+                <a asp-route-pageSize="@Model.PageSize" asp-route-pageIndex="@nextPage" class="btn btn-default btn-sm"><i class="fa fa-chevron-right"></i></a>
+            </div>
+            <!-- /.btn-group -->
+        </div>
+        <!-- /.pull-right -->
+    </div>
+    <div class="table-responsive mailbox-messages" style="height:500px;">
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>
+                        Icon
+                    </th>
+                    <th>
+                        Specificulture
+                    </th>
+                    <th>
+                        Lcid
+                    </th>
+                    <th>
+                        Alias
+                    </th>
+                    <th>
+                        FullName
+                    </th>
+                    <th>
+                        Description
+                    </th>
+
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model.Items)
+                {
+                    <tr>
+                        <td>
+                            <i class="flag-icon @item.Icon"></i>
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Specificulture)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Lcid)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Alias)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.FullName)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Description)
+                        </td>
+
+                        <td>
+                            <a asp-action="Edit" asp-route-id="@item.Id" class="btn btn-sm btn-warning"> <i class="fa fa-pencil"></i></a>
+                            @*<a asp-action="Details" asp-route-id="@item.Id" class="btn btn-sm btn-info"> <i class="fa fa-eye"></i> </a>*@
+                            <a asp-action="Delete" asp-route-id="@item.Id" class="btn btn-sm btn-danger" data-popout="true" data-toggle="confirmation" data-singleton="true"> <i class="fa fa-remove"></i> </a>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>

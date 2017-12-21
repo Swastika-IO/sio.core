@@ -3,6 +3,7 @@ using Swastika.Infrastructure.Data.ViewModels;
 using Microsoft.EntityFrameworkCore.Storage;
 using Swastika.Domain.Core.Models;
 using System.Threading.Tasks;
+using Swastika.IO.Domain.Core.ViewModels;
 
 namespace Swastika.IO.Cms.Lib.ViewModels
 {

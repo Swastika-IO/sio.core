@@ -1,0 +1,9 @@
+@{
+    string href = string.Format("{0}://{1}{2}", Context.Request.Scheme, Context.Request.Host, Url.Action());
+}
+
+<div class="row">
+    <div class="fb-comments" width="100%"
+         data-href="@href"
+         data-numposts="5"></div>
+</div>

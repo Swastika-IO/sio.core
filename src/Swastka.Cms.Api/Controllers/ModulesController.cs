@@ -1,19 +1,19 @@
 ﻿using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
-using Swastka.Cms.Api.Controllers;
 using Swastika.IO.Cms.Lib.Models;
-using Swastika.Domain.Core.Models;
 using Swastika.IO.Cms.Lib.ViewModels;
 using Microsoft.Data.OData.Query;
 using System.Linq.Expressions;
 using System;
+using Swastika.IO.Domain.Core.ViewModels;
+using Swastika.Extension.Blog.Api.Controllers;
 
 namespace Swastka.IO.Cms.Api.Controllers
 {
     [Produces("application/json")]
     [Route("api/{culture}/Modules")]
     public class ModulesController :
-        BaseAPIController<SiocCmsContext, SiocArticle>
+        BaseApiController<SiocCmsContext, SiocArticle>
     {
         // GET api/articles/id
         [HttpGet]

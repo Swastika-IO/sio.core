@@ -1,0 +1,122 @@
+﻿@inject Microsoft.ApplicationInsights.AspNetCore.JavaScriptSnippet JavaScriptSnippet
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>@ViewBag.Title</title>
+    <environment names="Development">
+        <link rel="stylesheet" href="/lib/bootstrap/dist/css/bootstrap.css" />
+        <link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.css" />
+        <link rel="stylesheet" href="/css/site.css" />
+    </environment>
+    <environment names="Staging,Production">
+        <link rel="stylesheet" href="https://ajax.aspnetcdn.com/ajax/bootstrap/3.3.7//css/bootstrap.min.css"
+              asp-fallback-href="/lib/bootstrap/dist//css/bootstrap.min.css"
+              asp-fallback-test-class="sr-only" asp-fallback-test-property="position" asp-fallback-test-value="absolute" />
+        <link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.css" />
+        <link rel="stylesheet" href="/css/site.min.css" asp-append-version="true" />
+    </environment>
+
+    <link rel="stylesheet" href="/css/owl.carousel.css" />
+    <link rel="stylesheet" href="/css/magnific-popup.css" />
+    <link rel="stylesheet" href="/css/style.css" />
+    <link rel="stylesheet" href="/css/responsive.css" />
+
+    <!-- Favicon -->
+    <link rel="shortcut icon" href="/images/icon/favicon.png">
+    <link rel="apple-touch-icon-precomposed" sizes="144x144" href="/images/icon/apple-touch-icon-144-precomposed.png">
+    <link rel="apple-touch-icon-precomposed" sizes="114x114" href="/images/icon/apple-touch-icon-114-precomposed.png">
+    <link rel="apple-touch-icon-precomposed" sizes="72x72" href="/images/icon/apple-touch-icon-72-precomposed.png">
+    <link rel="apple-touch-icon-precomposed" href="/images/icon/apple-touch-icon-57-precomposed.png">
+
+    @Html.Raw(JavaScriptSnippet.FullScript)
+</head>
+<body>
+    <!-- PRELOADER -->
+    <div id="st-preloader">
+        <div id="pre-status">
+            <div class="preload-placeholder"></div>
+        </div>
+    </div>
+    <!-- /PRELOADER -->
+    <!-- HEADER -->
+    <header id="header">
+        <nav class="navbar st-navbar navbar-fixed-top">
+            <div class="container">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#st-navbar-collapse">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    @*<a class="logo" href="/"><img src="/images/logo.png" alt=""></a>*@
+                    <a class="logo" href="/"><h3>TTS Asia</h3></a>
+                </div>
+
+                <div class="collapse navbar-collapse" id="st-navbar-collapse">
+                    @await Html.PartialAsync("_LoginPartial")
+                    <ul class="nav navbar-nav navbar-right">
+                        <li><a asp-route-culture="vi-vn" asp-area="Portal" asp-controller="Portal" asp-action="">Admin</a></li>
+                        <li><a href="#header">Home</a></li>
+                        <li><a href="#our-works">Works</a></li>
+                        <li><a href="#pricing">Pricing</a></li>
+                        <li><a href="#our-team">Team</a></li>
+                        <li><a href="#contact">Contact</a></li>
+                        <li><a asp-area="" asp-controller="Home" asp-action="Blog">Blog</a></li>
+                    </ul>
+
+                </div><!-- /.navbar-collapse -->
+            </div><!-- /.container -->
+        </nav>
+    </header>
+    <!-- /HEADER -->
+
+    <div class="main-container">
+        @RenderBody()
+    </div>
+    <!-- FOOTER -->
+    <footer id="footer">
+        <div class="container">
+            <div class="row">
+                <!-- SOCIAL ICONS -->
+                <div class="col-sm-6 col-sm-push-6 footer-social-icons">
+                    <span>Follow us:</span>
+                    <a href=""><i class="fa fa-facebook"></i></a>
+                    <a href=""><i class="fa fa-twitter"></i></a>
+                    <a href=""><i class="fa fa-google-plus"></i></a>
+                    <a href=""><i class="fa fa-pinterest-p"></i></a>
+                </div>
+                <!-- /SOCIAL ICONS -->
+                <div class="col-sm-6 col-sm-pull-6 copyright">
+                    @await Html.PartialAsync("_SelectLanguagePartial")
+                    <p>&copy; 2015 <a href="">ShapedTheme</a>. All Rights Reserved.</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <!-- /FOOTER -->
+    <!-- Scroll-up -->
+    <div class="scroll-up">
+        <ul><li><a href="#header"><i class="fa fa-angle-up"></i></a></li></ul>
+    </div>
+
+
+    <!-- JS -->
+    <script type="text/javascript" src="/js/jquery.min.js"></script><!-- jQuery -->
+    <script type="text/javascript" src="/js/bootstrap.min.js"></script><!-- Bootstrap -->
+    <script type="text/javascript" src="/js/jquery.parallax.js"></script><!-- Parallax -->
+    <script type="text/javascript" src="/js/smoothscroll.js"></script><!-- Smooth Scroll -->
+    <script type="text/javascript" src="/js/masonry.pkgd.min.js"></script><!-- masonry -->
+    <script type="text/javascript" src="/js/jquery.fitvids.js"></script><!-- fitvids -->
+    <script type="text/javascript" src="/js/owl.carousel.min.js"></script><!-- Owl-Carousel -->
+    <script type="text/javascript" src="/js/jquery.counterup.min.js"></script><!-- CounterUp -->
+    <script type="text/javascript" src="/js/waypoints.min.js"></script><!-- CounterUp -->
+    <script type="text/javascript" src="/js/jquery.isotope.min.js"></script><!-- isotope -->
+    <script type="text/javascript" src="/js/jquery.magnific-popup.min.js"></script><!-- magnific-popup -->
+    <script type="text/javascript" src="/js/scripts.js"></script><!-- Scripts -->
+
+    @RenderSection("Scripts", required: false)
+</body>
+</html>

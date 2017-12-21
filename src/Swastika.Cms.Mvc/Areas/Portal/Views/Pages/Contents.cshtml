@@ -1,0 +1,86 @@
+@using Swastika.Common.Helper
+@model PaginationModel<Swastika.IO.Cms.Lib.ViewModels.ArticleViewModel>
+
+@{
+    ViewData["Title"] = "Articles";
+    Layout = "~/Areas/Portal/Views/Shared/_Layout.cshtml";
+    int fromValue = Model.PageIndex * @Model.PageSize + 1;
+    int toValue = fromValue + Model.PageSize - 1;
+    int prevPage = Model.PageIndex > 0 ? Model.PageIndex - 1 : 0;
+    int nextPage = Model.PageIndex == Model.TotalPage - 1 ? Model.PageIndex : Model.PageIndex + 1;
+    toValue = toValue > Model.TotalItems ? Model.TotalItems : toValue;
+}
+
+
+    <div class="box-body">
+        <table class="table table-hover table-striped dataTable">
+            <thead>
+                <tr>
+                    <th>
+                        Title
+                    </th>
+                    <th>
+                        Excerpt
+                    </th>
+                    <th>
+                        Type
+                    </th>
+                    <th>
+                        CreatedBy
+                    </th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tfoot>
+                <tr>
+                    <th>
+                        Title
+                    </th>
+                    <th>
+                        Excerpt
+                    </th>
+                    <th>
+                        Type
+                    </th>
+                    <th>
+                        CreatedBy
+                    </th>
+                    <th></th>
+                </tr>
+            </tfoot>
+            <tbody>
+                @foreach (var item in Model.Items)
+                {
+                    <tr>
+                        <td class="col-md-3">
+                            @Html.DisplayFor(modelItem => item.Title)
+                        </td>
+                        <td class="col-md-4">
+                            @Html.Raw(item.Excerpt)
+                        </td>
+
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Type)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.CreatedBy)
+                        </td>
+
+                        <td>
+                            <div class="btn-block">
+                                <a asp-controller="Articles" asp-action="Edit" asp-route-id="@item.Id" asp-route-categoryId="@ViewBag.categoryId"
+                                   class="btn btn-sm btn-warning d-inline-block "><i class="fa fa-pencil"></i></a>
+                                <a asp-area="" asp-controller="Home" asp-action="ArticleDetails" asp-route-id="@item.Id" asp-route-SeoTitle="@item.SeoTitle"
+                                   target="_blank" class="btn btn-sm btn-info"><i class="fa fa-eye"></i></a>
+                                <a asp-controller="Articles" asp-action="Recycle" asp-route-id="@item.Id" class="btn btn-sm btn-danger d-inline-block" data-popout="true" data-toggle="confirmation" data-singleton="true"> <i class="fa fa-remove"></i> </a>
+                            </div>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+
+            <tbody></tbody>
+        </table>
+
+    </div>
+    <!-- /.box-body -->

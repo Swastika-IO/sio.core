@@ -1,0 +1,33 @@
+
+@model List<Swastika.Domain.Core.Models.SupportedCulture>
+@{ 
+    var ListSupportedCulture = Model;
+    string culture = ViewBag.culture;
+}
+<div class="box box-solid">
+    <div class="box-header with-border">
+        <h3 class="box-title"><lable>@LocalizerService.GetLocalString("Cultures", ViewBag.culture)</label></h3>
+        <div class="box-tools">
+            <button type="button" class="btn btn-box-tool" data-widget="collapse">
+                <i class="fa fa-minus"></i>
+            </button>
+        </div>
+    </div>
+    <div class="box-body no-padding">
+        <ul class="nav nav-pills nav-stacked">
+            @for (int i = 0; i < ListSupportedCulture.Count; i++)
+            {
+                <li style="position: relative;display: block;padding: 10px 15px;">
+                    <label class="form-check-label">
+                        <input type="checkbox" asp-for="@ListSupportedCulture[i].IsSupported" />
+                        <input type="hidden" asp-for="@ListSupportedCulture[i].Specificulture" />
+                        <i class="flag-icon @ListSupportedCulture[i].Icon"></i> @ListSupportedCulture[i].Specificulture
+                    </label>
+                </li>
+            }
+
+        </ul>
+    </div>
+    <!-- /.box-body -->
+
+</div>

@@ -1,6 +1,6 @@
 ﻿using Newtonsoft.Json;
 using ChatRoom.Lib.ViewModels.Chat;
-using Swastika.Domain.Core.Models;
+using Swastika.IO.Domain.Core.ViewModels;
 
 namespace ChatRoom.Lib.Models.SignalR
 {

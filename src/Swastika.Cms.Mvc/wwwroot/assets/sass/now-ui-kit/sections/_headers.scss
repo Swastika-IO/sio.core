@@ -1,0 +1,108 @@
+.page-header{
+    .carousel .carousel-indicators{
+        bottom: 60px;
+    }
+
+    .container{
+        color: #FFFFFF;
+    }
+
+    .title{
+        color: $white-color;
+    }
+
+    &.header-small{
+        height: 65vh;
+        min-height: 65vh;
+
+        .container{
+            padding-top: 20vh;
+        }
+    }
+}
+
+.header-filter{
+    position: relative;
+
+    .container{
+        z-index: 2;
+        position: relative;
+    }
+
+    // &[filter-color="purple"],
+    // &[filter-color="primary"]{
+    //     &:after{
+    //         @include linear-gradient(rgba($purple-100,.56), rgba($purple-300,.95));
+    //
+    //     }
+    // }
+    // &[filter-color="blue"],
+    // &[filter-color="info"]{
+    //     &:after{
+    //         @include linear-gradient(rgba($cyan-100,.56), rgba($cyan-300,.95));
+    //     }
+    // }
+    // &[filter-color="green"],
+    // &[filter-color="success"]{
+    //     &:after{
+    //         @include linear-gradient(rgba($green-200,.56), rgba($green-400,.95));
+    //     }
+    // }
+    // &[filter-color="orange"],
+    // &[filter-color="warning"]{
+    //     &:after{
+    //         @include linear-gradient(rgba($orange-100,.56), rgba($orange-300,.95));
+    //     }
+    // }
+    //
+    // &[filter-color="red"],
+    // &[filter-color="danger"]{
+    //     &:after{
+    //         @include linear-gradient(rgba($red-200,.56), rgba($red-400,.95));
+    //     }
+    // }
+    // &[filter-color="rose"]{
+    //     &:after{
+    //         @include linear-gradient(rgba($pink-100,.56), rgba($pink-300,.95));
+    //     }
+    // }
+}
+.clear-filter{
+    &:before{
+        display: none;
+    }
+}
+
+.iframe-container iframe{
+    width: 100%;
+    box-shadow: 0px 10px 50px 0px rgba(0, 0, 0, 0.3);
+}
+
+.header-1,
+.header-2,
+.header-3{
+    .wrapper{
+        background: #CCCCCC;
+    }
+    .content-center{
+        max-width: none !important;
+    }
+}
+
+.header-2,
+.header-1{
+    .page-header{
+        .card{
+            margin-top: 60px;
+        }
+    }
+}
+
+.header-3{
+    .btn{
+        margin: 0;
+    }
+    h6{
+        margin-bottom: 0;
+    }
+}

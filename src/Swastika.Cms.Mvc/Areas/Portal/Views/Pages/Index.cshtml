@@ -1,0 +1,105 @@
+﻿@using Swastika.Common.Helper
+@using Swastika.Domain.Core.Models
+@model PaginationModel<Swastika.IO.Cms.Lib.ViewModels.CategoryListItemViewModel>
+@{
+    ViewData["Title"] = "Pages";
+    ViewData["Description"] = "Manage site navigations and menus";
+    Layout = "~/Areas/Portal/Views/Shared/_Layout.cshtml";
+    int fromValue = Model.PageIndex * @Model.PageSize + 1;
+    int toValue = fromValue + Model.PageSize;
+    int prevPage = Model.PageIndex > 0 ? Model.PageIndex - 1 : 0;
+    int nextPage = Model.PageIndex == Model.TotalPage - 1 ? Model.PageIndex : Model.PageIndex + 1;
+    toValue = toValue > Model.TotalItems ? Model.TotalItems : toValue;
+}
+<!-- Main content -->
+<div class="box-body">
+    <table class="table table-hover table-striped dataTable">
+        <thead>
+            <tr>
+                 <th>
+                    Priority
+                </th>
+                <th>
+                        Id
+                    </th>
+                <th class="col-md-3">
+                    Title
+                </th>
+                <th class="col-md-4">
+                    Description
+                </th>
+                <th>
+                    Type
+                </th>
+                <th>
+                    CreatedBy
+                </th>
+               
+                <th></th>
+            </tr>
+        </thead>
+        <tfoot>
+            <tr>
+                <th>
+                    Priority
+                </th>
+                <th>
+                        Id
+                    </th>
+                <th class="col-md-3">
+                    Title
+                </th>
+                <th class="col-md-4">
+                    Description
+                </th>
+                <th>
+                    Type
+                </th>
+                <th>
+                    CreatedBy
+                </th>
+                
+                <th></th>
+            </tr>
+        </tfoot>
+        <tbody>
+            @foreach (var item in Model.Items)
+            {
+                <tr>
+                     <td>
+                        @Html.DisplayFor(modelItem => item.Priority)
+                    </td>
+                     <td>
+                        @Html.DisplayFor(modelItem => item.Id)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Title)
+                    </td>
+                    <td>
+                        @Html.Raw(item.Excerpt)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Type)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.CreatedBy)
+                    </td>
+                   
+                    <td>
+                        <a asp-action="Edit" asp-route-id="@item.Id" class="btn btn-sm btn-warning"> <i class="fa fa-pencil"></i></a>
+                        <a asp-area="" asp-controller="Home" asp-action="Home" asp-route-pageName="@item.SeoName"
+                           target="_blank" class="btn btn-sm btn-info"><i class="fa fa-eye"></i></a>
+                        <a asp-action="Delete" asp-route-id="@item.Id" class="btn btn-sm btn-danger" data-popout="true" data-toggle="confirmation" data-singleton="true"> <i class="fa fa-remove"></i> </a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+
+        <tbody></tbody>
+    </table>
+    @await Html.PartialAsync("_Pagination", Model
+    , new ViewDataDictionary(this.Vi‌​ewData)
+    {
+        { "PageSize", Model.PageSize}, { "PageIndex", Model.PageIndex }, { "TotalPage", Model.TotalPage } })
+</div>
+

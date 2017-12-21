@@ -91,6 +91,12 @@ export class PagingItems<T>{
     totalPage: number;
     totalItems: number;
     items: T[];
+    /**
+     *
+     */
+    constructor() {
+        this.items = [];            
+    }
 }
 export class ApiResult<T>{
     status: number;
@@ -99,4 +105,27 @@ export class ApiResult<T>{
     exception: object;
     data: T;
 
+}
+
+export class MessengerRequest{
+    teamId: number;
+    userId: string;
+    connectionId: string;
+    memberStatus: MemberStatus;
+    isOnline: boolean;
+    keyword: string;
+}
+
+enum MemberStatus{
+    Requested = 0,
+    Invited = 1,
+    AdminRejected = 2,
+    MemberRejected = 3,
+    Banned = 4,
+    Membered = 5,
+    AdminRemoved = 6,
+    MemberCanceled = 7,
+    Guest = 8,
+    MemberAccepted = 9,
+    MemberLeft = 10
 }

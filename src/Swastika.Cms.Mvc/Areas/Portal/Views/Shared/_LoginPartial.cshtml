@@ -1,0 +1,34 @@
+﻿@using Microsoft.AspNetCore.Identity
+@using Swastika.Identity.Models
+
+@inject SignInManager<ApplicationUser> SignInManager
+@inject UserManager<ApplicationUser> UserManager
+
+<!-- Sidebar user panel -->
+@if (SignInManager.IsSignedIn(User))
+{
+<form asp-controller="Account" asp-action="Logout" method="post" id="logoutForm" class="">
+    <div class="user-panel">
+        <div class="pull-left image">
+            <img src="~/lib/admin-lte-2.4.0-rc/dist/img/user2-160x160.jpg" class="img-circle" alt="User Image">
+        </div>
+        <div class="pull-left info">
+            <p>@UserManager.GetUserName(User)</p>
+            <button type="submit" style="text-decoration: none;font-size: 11px;background: transparent;border: 0px;"><i class="fa fa-circle text-red"></i> Log out</button>
+        </div>
+    </div>
+</form>
+
+}
+else
+{
+    <div class="user-panel">
+        <div class="pull-left image">
+            <img src="~/lib/admin-lte-2.4.0-rc/dist/img/user2-160x160.jpg" class="img-circle" alt="User Image">
+        </div>
+        <div class="pull-left info">
+            <p>Hello Guest...</p>
+            <a asp-controller="Account" asp-action="Login"><i class="fa fa-circle text-success"></i> Login</a>
+        </div>
+    </div>
+}

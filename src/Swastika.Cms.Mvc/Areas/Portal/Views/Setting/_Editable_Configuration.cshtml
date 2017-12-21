@@ -1,0 +1,57 @@
+﻿@model Swastika.IO.Cms.Lib.ViewModels.ConfigurationViewModel
+@{
+    var types = Html.GetEnumSelectList<Swastika.IO.Cms.Lib.SWCmsConstants.DataType>();
+}
+<div class="form-horizontal">
+    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+    <input type="hidden" asp-for="Specificulture" />
+    <div class="form-group">
+        <label asp-for="Keyword" class="col-md-2 control-label"></label>
+        <div class="col-md-10">
+            <input asp-for="Keyword" class="form-control" />
+            <span asp-validation-for="Keyword" class="text-danger"></span>
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="Value" class="col-md-2 control-label"></label>
+        <div class="col-md-10">
+            @Html.Partial("_Editor",
+                new ViewDataDictionary(this.Vi‌​ewData) {
+                {
+                "DataType", Model.DataType
+                },
+                {
+                "Value", Model.Value
+                },
+                {
+                "Name","Value"
+                },
+                {
+
+                "Id","Value"
+                }
+                }
+                )
+
+            <span asp-validation-for="Value" class="text-danger"></span>
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="Description" class="col-md-2 control-label"></label>
+        <div class="col-md-10">
+            <input asp-for="Description" class="form-control" />
+            <span asp-validation-for="Description" class="text-danger"></span>
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="DataType" class="col-md-2 control-label"></label>
+        <div class="col-md-10">
+            <select asp-for="DataType" class="form-control" asp-items="@types" ></select>
+            <span asp-validation-for="DataType" class="text-danger"></span>
+        </div>
+    </div>
+</div>
+

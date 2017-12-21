@@ -12,6 +12,7 @@ using Newtonsoft.Json.Linq;
 using Swastika.IO.Cms.Lib.Repositories;
 using System.Linq;
 using Microsoft.EntityFrameworkCore;
+using Swastika.IO.Domain.Core.ViewModels;
 
 namespace Swastika.IO.Cms.Lib.ViewModels
 {

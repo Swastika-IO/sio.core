@@ -1,0 +1,159 @@
+﻿@using Swastika.Common.Helper
+@model Swastika.IO.Cms.Lib.ViewModels.SWModuleInfo
+@{
+    ViewData["Title"] = "Module " + Model.Name;
+    Layout = "~/Areas/Portal/Views/Shared/_Layout.cshtml";
+    var Data = Model.Data;
+
+    int fromValue = Data.PageIndex * Data.PageSize + 1;
+    int toValue = fromValue + Data.PageSize;
+    int prevPage = Data.PageIndex > 0 ? Data.PageIndex - 1 : 0;
+    int nextPage = Data.PageIndex == Data.TotalPage - 1 ? Data.PageIndex : Data.PageIndex + 1;
+    toValue = toValue > Data.TotalItems ? Data.TotalItems : toValue;
+}
+
+<div class="box-body">
+    @if (Model.Data.TotalItems > 0)
+    {
+        <table class="table table-hover table-striped dataTable">
+            <thead>
+                <tr>
+                    @foreach (var col in Model.Columns.Where(c => c.IsDisplay))
+                    {
+                    <th class="col-sm-@col.Width">
+                        @col.Name
+                    </th>
+                    }
+                    <th>Priority</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tfoot>
+                <tr>
+                    @foreach (var col in Model.Columns.Where(c => c.IsDisplay))
+                    {
+                    <th class="col-sm-@col.Width">
+                        @col.Name
+                    </th>
+                    }
+                    <th>Priority</th>
+                    <th></th>
+                </tr>
+            </tfoot>
+            <tbody>
+                @foreach (var item in Data.Items)
+                {
+                <tr>
+                    @foreach (var col in Model.Columns.Where(c => c.IsDisplay))
+                    {
+                        var prop = item.GetDataProperty(col.Name);
+                        <td>
+                            @{Html.RenderPartial("_ViewByFieldType",
+                                    new ViewDataDictionary(this.Vi‌​ewData) { { "DataType", prop.DataType }, { "Value", prop.Value } });
+                            }
+                        </td>
+                                    }
+                    <td>@item.Priority</td>
+                    <td>
+                        <a asp-action="EditModuleData" asp-route-id="@item.ModuleId" asp-route-dataId="@item.Id" class="btn btn-sm btn-warning"> <i class="fa fa-pencil"></i></a>
+                        <a asp-action="DeleteModuleData" asp-route-id="@item.Id" class="btn btn-sm btn-danger" data-popout="true" data-toggle="confirmation" data-singleton="true"> <i class="fa fa-remove"></i> </a>
+                    </td>
+                </tr>
+                                    }
+            </tbody>
+
+            <tbody></tbody>
+        </table>
+        @await Html.PartialAsync("_Pagination", Model
+                                        , new ViewDataDictionary(this.Vi‌​ewData)
+                                        {
+        { "PageSize", Model.Data.PageSize}, { "PageIndex", Model.Data.PageIndex }, { "TotalPage", Model.Data.TotalPage } })
+                                }
+
+    @if (Model.Articles.TotalItems > 0)
+    {
+
+        <table class="table table-hover table-striped dataTable">
+            <thead>
+                <tr>
+                    <th>
+                        Priority
+                    </th>
+                    <th class="col-md-4">
+                        Title
+                    </th>
+                    <th class="col-md-4">
+                        Excerpt
+                    </th>
+
+                    <th>
+                        Type
+                    </th>
+                    <th>
+                        CreatedBy
+                    </th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tfoot>
+                <tr>
+                    <th>
+                        Priority
+                    </th>
+                    <th>
+                        Title
+                    </th>
+                    <th>
+                        Excerpt
+                    </th>
+                    
+                    <th>
+                        Type
+                    </th>
+                    <th>
+                        CreatedBy
+                    </th>
+                    <th></th>
+                </tr>
+            </tfoot>
+            <tbody>
+                @foreach (var item in Model.Articles.Items)
+                {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Priority)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Title)
+                        </td>
+                        <td>
+                            @Html.Raw(item.Excerpt)
+                        </td>
+                        
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Type)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.CreatedBy)
+                        </td>
+
+                        <td>
+                            <a href="/@ViewBag.culture/Portal/Articles/Edit/@item.Id"
+                               class="btn btn-sm btn-warning"><i class="fa fa-pencil"></i></a>
+                            @*<a asp-action="Details" asp-route-id="@item.Id" class="btn btn-sm btn-info"> <i class="fa fa-eye"></i> </a>*@
+                            <a href="/@ViewBag.culture/Portal/Articles/Recycle/@item.Id" class="btn btn-sm btn-danger" data-popout="true" data-toggle="confirmation" data-singleton="true"> <i class="fa fa-remove"></i> </a>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+
+            <tbody></tbody>
+        </table>
+        @await Html.PartialAsync("_Pagination", Model
+                                        , new ViewDataDictionary(this.Vi‌​ewData)
+                                        {
+        { "PageSize", Model.Articles.PageSize}, { "PageIndex", Model.Articles.PageIndex }, { "TotalPage", Model.Articles.TotalPage } })
+    }
+
+</div>
+<!-- /.mail-box-messages -->

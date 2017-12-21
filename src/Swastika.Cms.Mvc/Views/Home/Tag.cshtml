@@ -1,0 +1,111 @@
+@model Swastika.Common.Helper.PaginationModel<Swastika.IO.Cms.Lib.ViewModels.ArticleListItemViewModel>
+
+@{
+    ViewData["Title"] = "Search Results";
+    Layout = string.Format("Layouts/{0}", LocalizerService.GetLocalString("Layout", ViewBag.culture, "_Layout_Corlate"));// "_Layout_Corlate";
+    List<Swastika.IO.Cms.Lib.ViewModels.CategoryFEViewModel> categories = ViewData["Categories"] as List<Swastika.IO.Cms.Lib.ViewModels.CategoryFEViewModel>;
+}
+
+<section id="blog" class="container">
+    <div class="blog">
+        <div class="row">
+            <div class="col-md-8">
+            @if (categories != null)
+            {
+                foreach (var cate in categories)
+                {
+                    <div class="blog-item">
+                        <div class="row">
+                            <div class="col-sm-2 text-center">
+                                <div class="entry-meta">
+                                    <span id="publish_date">@cate.CreatedDate.ToString("dd MMM")</span>
+                                    <span><i class="fa fa-user"></i> <a href="#">@cate.CreatedBy</a></span>
+                                    @*<span><i class="fa fa-comment"></i> <a href="blog-item.html#comments">2 Comments</a></span>
+                                        <span><i class="fa fa-heart"></i><a href="#">56 Likes</a></span>*@
+                                </div>
+                            </div>
+
+                            <div class="col-xs-12 col-sm-10 blog-content">
+                                <a asp-route-culture="@ViewBag.culture" asp-controller="Home" asp-action="Home" asp-route-pageName="@cate.SeoTitle">
+                                    <img class="img-responsive img-blog" src="@cate.Image" width="100%" alt="" />
+                                </a>
+                                <h2>
+                                    <a asp-route-culture="@ViewBag.culture" asp-controller="Home" asp-action="Home" asp-route-pageName="@cate.SeoTitle">@cate.Title</a>
+                                </h2>
+                                <h3>
+                                    @cate.Description
+                                </h3>
+
+                                <a class="btn btn-primary readmore"
+                                   asp-route-culture="@ViewBag.culture" asp-controller="Home" 
+                                   asp-action="Home" asp-route-pageName="@cate.SeoTitle">
+                                    @LocalizerService.GetLocalString("Read More", ViewBag.culture) <i class="fa fa-angle-right"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                }
+            }
+                @foreach (var article in Model.Items)
+            {
+                    <div class="blog-item">
+                        <div class="row">
+                            <div class="col-sm-2 text-center">
+                                <div class="entry-meta">
+                                    <span id="publish_date">@article.CreatedDate.ToString("dd MMM")</span>
+                                    <span><i class="fa fa-user"></i> <a href="#">@article.CreatedBy</a></span>
+                                    @*<span><i class="fa fa-comment"></i> <a href="blog-item.html#comments">2 Comments</a></span>
+                                        <span><i class="fa fa-heart"></i><a href="#">56 Likes</a></span>*@
+                                </div>
+                            </div>
+
+                            <div class="col-xs-12 col-sm-10 blog-content">
+                                <a asp-action="ArticleDetails" asp-route-id="@article.Id" asp-route-SeoTitle="@article.SeoTitle">
+                                    <img class="img-responsive img-blog" src="@article.Image" width="100%" alt="" />
+                                </a>
+                                <h2>
+                                    <a asp-action="ArticleDetails" asp-route-id="@article.Id" asp-route-SeoTitle="@article.SeoTitle">
+                                        @article.Title
+                                    </a>
+                                </h2>
+                                <h3>
+                                    @article.Excerpt
+                                </h3>
+                                <a class="btn btn-primary readmore"
+                                   asp-action="ArticleDetails" asp-route-id="@article.Id" asp-route-SeoTitle="@article.SeoTitle">
+                                    Read More <i class="fa fa-angle-right"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                }
+                <!--/.blog-item-->
+                @if (Model.TotalPage > 1)
+            {
+
+                    <ul class="pagination pagination-lg">
+                        <li><a href="#"><i class="fa fa-long-arrow-left"></i>Previous Page</a></li>
+                        @for (int i = 0; i < Model.TotalPage; i++)
+                        {
+                            string cl = Model.PageIndex == i ? "active" : string.Empty;
+                            <li class="@cl">
+                                <a asp-controller="Home" asp-action="List" asp-route-pageIndex="@i">@i</a>
+                            </li>
+                        }
+
+                        <li><a href="#">Next Page<i class="fa fa-long-arrow-right"></i></a></li>
+                    </ul><!--/.pagination-->
+                }
+            </div><!--/.col-md-8-->
+            <aside class="col-md-4">
+                <div class="widget search">
+                    <form role="form">
+                        <input type="text" class="form-control search_box" autocomplete="off" placeholder="Search Here">
+                    </form>
+                </div><!--/.search-->
+                @Html.Partial("Widgets/_Categories")
+
+            </aside>
+        </div><!--/.row-->
+    </div>
+</section><!--/#blog-->

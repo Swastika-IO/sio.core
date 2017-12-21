@@ -1,0 +1,122 @@
+@*@inject IViewLocalizer Localizer*@
+@model Swastika.IO.Cms.Lib.ViewModels.ModuleWithDataViewModel
+
+@if (Model != null && Model.Data.TotalItems > 0)
+{
+
+    <section id="main-slider" class="no-margin">
+        <div class="carousel slide">
+            <ol class="carousel-indicators">
+                @for (int i = 0; i < Model.Data.TotalItems + 1; i++)
+                {
+                    string cl = i == 0 ? "active" : string.Empty;
+                    <li data-target="#main-slider" data-slide-to="@i" class="@cl"></li>
+                }
+            </ol>
+            <div class="carousel-inner">
+                <div class="item active" style="background-image: url(/Uploads/Modules/1/c6f33aca57a44e1fa9009c8bf6858f4f.jpg)">
+                    <div class="container">
+                        <div class="row slide-margin">
+                            <div class="col-sm-6">
+                                <div class="carousel-content">
+
+                                    <div class="row justify-content-md-center">
+                                        <div class="col-md-12" style="text-align: center;">
+                                            <h1 class="animation animated-item-1" style="color:#333;background-color: rgba(255, 255, 255, 0.5);">
+                                                @LocalizerService.GetLocalString("Bạn cần gì từ TTS ASIA?", ViewBag.culture)
+                                            </h1>
+                                            <form role="form" asp-controller="Home" asp-action="Search">
+                                                <div class="input-group">
+                                                    <span class="input-group-addon"><i class="fa fa-search"></i></span>
+                                                    <input type="text" name="keyword" class="form-control input-lg" autocomplete="off" placeholder='@LocalizerService.GetLocalString("Tìm kiếm thông tin", ViewBag.culture)'>
+                                                </div>
+
+
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div><!--/.item-->
+
+                @foreach (var item in Model.Data.Items)
+                {
+                    // string cl = Model.Data.Items.IndexOf(item) == 0 ? "active" : string.Empty;
+                    string img = item.GetValue<string>("Image");
+                    string url = item.GetValue<string>("Url");
+                    string title = item.GetValue<string>("Title");
+                    string Excerpt = item.GetValue<string>("BrieftContent");
+
+                    <div class="item" style="background-image: url(@img)">
+                        <div class="container">
+                            <div class="row slide-margin">
+                                <div class="col-sm-6">
+                                    <div class="carousel-content">
+                                        <h1 class="animation animated-item-1" style="color:#333;background-color: rgba(255, 255, 255, 0.5);">
+                                            @title
+                                        </h1>
+                                        <h2 class="animation animated-item-2" style="color:#333;background-color: rgba(255, 255, 255, 0.5);">
+                                            @Html.Raw(Excerpt)
+                                        </h2>
+                                        @if (!string.IsNullOrWhiteSpace(url))
+                                        {
+                                            /* if nav to link have value*/
+                                            <a class="btn-slide animation animated-item-3" target="_blank" href="@url">@LocalizerService.GetLocalString("View", ViewBag.culture)</a>
+                                        }
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div><!--/.item-->
+                }
+            </div><!--/.carousel-inner-->
+        </div><!--/.carousel-->
+        <a class="prev hidden-xs" href="#main-slider" data-slide="prev">
+            <i class="fa fa-chevron-left"></i>
+        </a>
+        <a class="next hidden-xs" href="#main-slider" data-slide="next">
+            <i class="fa fa-chevron-right"></i>
+        </a>
+    </section><!--/#main-slider-->
+}
+
+
+@*<section class="container">
+    <div class="row justify-content-md-center">
+        <div class="col-md-6 col-md-offset-3" style="text-align: center;">
+            <form role="form" asp-controller="Home" asp-action="Search">
+                <div class="input-group">
+                    <span class="input-group-addon"><i class="fa fa-search"></i></span>
+                    <input type="text" name="keyword" class="form-control input-lg" autocomplete="off" placeholder='@LocalizerService.GetLocalString("Tìm kiếm thông tin tour...", ViewBag.culture)'>
+                </div>
+
+
+            </form>
+        </div>
+    </div>
+</section>*@
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

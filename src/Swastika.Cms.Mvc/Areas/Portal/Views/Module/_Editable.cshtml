@@ -1,0 +1,177 @@
+@model Swastika.IO.Cms.Lib.ViewModels.ModuleViewModel
+@inject UserManager<ApplicationUser> UserManager
+
+@{
+    ViewBag.IsAdmin = UserManager.GetUserName(User) == "administrator";
+    string isHidden = ViewBag.IsAdmin ? string.Empty : "hidden";
+}
+
+@{
+    var types = Html.GetEnumSelectList<Swastika.IO.Cms.Lib.SWCmsConstants.DataType>();
+    var templates = new SelectList(Model.Templates, "Filename", "Filename");
+}
+<div class="box box-primary">
+    <div class="box-header with-border">
+        <h3 class="box-title">@ViewData["Title"]</h3>
+    </div>
+    <!-- /.box-header -->
+    <div class="box-body">
+        <div class="form-horizontal">
+            <input type="hidden" asp-for="Id" />
+            <input type="hidden" asp-for="Specificulture" />
+            @*<div class="form-group">
+                    <div class="col-md-2">
+                        <label asp-for="Specificulture" class="control-label"></label>
+                    </div>
+
+                    <div class="form-check col-md-10">
+                        @for (int i = 0; i < Model.ListSupportedCulture.Count; i++)
+                    {
+                            <div class="col-md-3">
+                                <label class="form-check-label">
+                                    <input type="checkbox" asp-for="@Model.ListSupportedCulture[i].IsSupported" />
+                                    <input type="hidden" asp-for="@Model.ListSupportedCulture[i].Specificulture" />
+                                    <i class="flag-icon @Model.ListSupportedCulture[i].Icon"></i> @Model.ListSupportedCulture[i].Specificulture
+                                </label>
+                            </div>
+                        }
+
+                    </div>
+
+                </div>
+                <div class="form-group">
+                        <div class="col-md-2">
+                            <label asp-for="Categories" class="control-label"></label>
+                        </div>
+                        <div class="form-check col-md-10">
+                            @for (int i = 0; i < Model.Categories.Count; i++)
+                        {
+                                <div class="col-md-3">
+                                    <input type="checkbox" asp-for="@Model.Categories[i].IsActived" />
+                                    <label asp-for="@Model.Categories[i].IsActived">@Model.Categories[i].Description</label>
+                                    <input type="hidden" asp-for="@Model.Categories[i].Specificulture" />
+                                    <input type="hidden" asp-for="@Model.Categories[i].ModuleId" />
+                                    <input type="hidden" asp-for="@Model.Categories[i].CategoryId" />
+                                </div>
+                            }
+                        </div>
+                    </div>*@
+                    
+       
+            <div class="form-group @isHidden">
+                <div class="col-md-2">
+                    <label asp-for="Columns" class="control-label"></label>
+
+                </div>
+                <div class="form-check col-md-10">
+                    <a href="#" id="AddObject" class="btn btn-success">@LocalizerService.GetLocalString("Add New", ViewBag.culture)</a>
+                    <table class="table table-hover table-striped" id="Table">
+                        <thead>
+                            <tr>
+                                <th>Name</th>
+                                <th>DataType</th>
+                                <th>Width</th>
+                                <th>IsDisplay</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @for (int i = 0; i < Model.Columns.Count; i++)
+                            {
+                                <tr class="field-row">
+                                    <td>
+                                        <input asp-for="@Model.Columns[i].Name" class="form-control" />
+                                    </td>
+                                    <td>
+                                        <select asp-for="@Model.Columns[i].DataType" class="form-control" asp-items="@types"></select>
+                                    </td>
+                                    <td>
+                                        <input asp-for="@Model.Columns[i].Width" class="form-control" />
+                                    </td>
+                                    <td>
+                                        <label class="form-check-label">
+                                            <input type="checkbox" asp-for="@Model.Columns[i].IsDisplay" class="form-check" />
+                                        </label>
+                                    </td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group  @isHidden">
+                <div class="col-md-2">
+                    <label asp-for="Name" class="control-label"></label>
+                </div>
+                <div class="col-md-10">
+                    <input asp-for="Name" class="form-control" />
+                    <span asp-validation-for="Name" class="text-danger"></span>
+                </div>
+            </div>
+
+            <div class="form-group  @isHidden">
+                <div class="col-md-2">
+                    <label asp-for="Template" class="control-label"></label>
+                </div>
+
+                <div class="col-md-10">
+
+                    @Html.Partial("_Editor_Code", Model.View, new ViewDataDictionary(this.ViewData)
+               {
+               {
+                       "Files", Model.Templates
+                   },
+                   {
+                       "Name", "View"
+                   }
+
+                })
+                    @* <input asp-for="View.Filename" class="form-control"/>
+
+                        <div class="form-control" id="code-editor" asp-for="View.Content"></div>*@
+                    <span asp-validation-for="Template" class="text-danger"></span>
+                </div>
+            </div>
+       
+            <div class="form-group ">
+                <div class="col-md-2">
+                    <label asp-for="Title" class="control-label"></label>
+                </div>
+                <div class="col-md-10">
+                    <input asp-for="Title" class="form-control" />
+                    <span asp-validation-for="Title" class="text-danger"></span>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-md-2">
+                    <label asp-for="Description" class="control-label"></label>
+                </div>
+                <div class="col-md-10">
+                    <input asp-for="Description" class="form-control" />
+                    <span asp-validation-for="Description" class="text-danger"></span>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+    <!-- /.box-body -->
+</div>
+
+@section scripts{
+    <script>
+        $('#AddObject').click(function () {
+            var i = $(".field-row").length;
+            $.ajax({
+                url: '/vi-vn/Portal/Module/AddEmptyField/' + i,
+                success: function (data) {
+                    $('#Table > tbody').append(data);
+                },
+                error: function (a, b, c) {
+                    alert(a + " " + b + " " + c);
+                }
+            });
+        });
+    </script>
+}

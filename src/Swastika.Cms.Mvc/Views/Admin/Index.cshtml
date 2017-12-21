@@ -1,0 +1,65 @@
+
+@using Swastika.IO.Cms.Lib.ViewModels
+@model List<BannerViewModel>
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+
+<div class="row">
+    <div class="col-12">
+        <div class="card">
+            <div class="card-header">
+                <i class="fa fa-align-justify"></i>Banners
+            </div>
+            <div class="card-block">
+                <table class="table table-bordered table-striped">
+                    <thead>
+                        <tr>
+                            <th>Id</th>
+                            <th>Name</th>
+                            <th>Description</th>
+                            <th>Slug</th>
+                            <th>Created Date</th>
+                        </tr>
+                    </thead>
+                    <tr>
+                        <td>
+                            <span>d8184946-157d-4a4a-b1ad-e011d0a7ef3f</span>
+                        </td>
+                        <td><span>dddd</span></td>
+                        <td><span>cszvxzc</span></td>
+                        <td><span>d slug</span></td>
+                        <td><span>2017-06-21T17:02:49.137</span></td>
+                    </tr>
+                    <tr>
+                        <td><span>886e4e12-4a4c-4646-855e-065f87214f42</span></td>
+                        <td><span>cccc</span></td>
+                        <td><span>null</span></td>
+                        <td><span>f asdf asd</span></td>
+                        <td><span>2017-06-21T17:02:35.617</span></td>
+                    </tr>
+                    <tr>
+                        <td><span>326d2f20-b802-4c7c-bb60-07c9b8cef4a1</span></td>
+                        <td><span>bbbbb</span></td>
+                        <td><span>null</span></td>
+                        <td><span>null</span></td>
+                        <td><span>2017-06-21T17:02:26.403</span></td>
+                    </tr>
+                    <tr>
+                        <td><span>bb99fd7d-fef8-4ca9-b54d-7248b07bfeea</span></td>
+                        <td><span>aaaaa</span></td>
+                        <td><span>null</span></td>
+                        <td><span>null</span></td>
+                        <td><span>2017-06-21T17:01:25.503</span></td>
+                    </tr>
+                </table><paging class="pagination"></paging>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section scripts{
+    @*<script src="/js/views/main.min.js"></script>*@
+}

@@ -1,8 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Authorization;
 using Swastika.Identity.Models.AccountViewModels;
@@ -13,17 +11,12 @@ using Microsoft.Extensions.Logging;
 using System.Security.Claims;
 using System.IdentityModel.Tokens.Jwt;
 using Microsoft.IdentityModel.Tokens;
-using System.Text;
 using Swastika.IO.Cms.Lib;
-using Swastika.Domain.Core.Models;
-using Microsoft.AspNetCore.Authentication;
 using Swastika.IO.Identity.Identity.Models.AccountViewModels;
-using Swastika.IO.Identity.Identity.Services;
 using Swastika.IO.Cms.Lib.ViewModels;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using System.Security.Principal;
-using Swastika.IO.Cms.Lib.Models;
-using Microsoft.EntityFrameworkCore.Storage;
+using Swastika.IO.Domain.Core.ViewModels;
 
 namespace Swastika.IO.Core.Controllers
 {

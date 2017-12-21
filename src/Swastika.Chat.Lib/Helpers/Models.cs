@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 namespace ChatRoom.Lib.Helpers
 {
    
-    public class ChatRequest
+    public class MessengerRequest
     {
         [JsonProperty("teamId")]
         public int TeamId { get; set; }

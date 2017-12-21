@@ -1,0 +1,56 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - Swastika Project</title>
+
+    <link href="/css/portal/font-awesome.min.css" rel="stylesheet" />
+    <link href="/css/portal/simple-line-icons.css" rel="stylesheet" />
+    <link href="/css/portal/style.css" rel="stylesheet" />
+    <link href="/css/portal/custom.css" rel="stylesheet" />
+    <link href="/css/flag-icon.min.css" rel="stylesheet" />
+    <link href="/lib/bootstrap-select/dist/css/bootstrap-select.css" rel="stylesheet" />
+    <link href="~/lib/bootstrap3-wysihtml5-bower/bootstrap.min.css" rel="stylesheet" />
+    <link href="~/lib/bootstrap3-wysihtml5-bower/bootstrap-theme.min.css" rel="stylesheet" />
+    <link href="~/lib/bootstrap3-wysihtml5-bower/dist/bootstrap3-wysihtml5.min.css" rel="stylesheet" />
+</head>
+
+
+<body class="app header-fixed sidebar-fixed aside-menu-fixed aside-menu-hidden">
+    @Html.Partial("_Header")
+    <div class="app-body">
+        @Html.Partial("_SideBar")
+        <main class="main">
+            @Html.Partial("_Breadcrumb")
+
+            <div class="container-fluid">
+                <div id="container" class="animated fadeIn">
+                    @RenderBody()
+                </div>
+
+            </div>
+            <!-- /.conainer-fluid -->
+
+
+        </main>
+    </div>
+    @Html.Partial("_Footer")
+    <!-- Bootstrap and necessary plugins -->
+    <script src="~/js/portal/jquery.min.js"></script>
+    <script src="~/js/portal/app.min.js"></script>
+    <script src="~/js/portal/chart.min.js"></script>
+    <script src="~/js/portal/common.js"></script>
+    <script src="~/js/portal/pace.min.js"></script>
+    <script src="~/js/portal/tether.min.js"></script>
+    <script src="~/js/portal/bootstrap.min.js"></script>
+    <script src="/lib/bootstrap-select/dist/js/bootstrap-select.js"></script>
+    @*<script src="/lib/bootstrap-wysiwyg.js"></script>*@
+    <script src="~/lib/bootstrap3-wysihtml5-bower/wysihtml5-0.3.0_rc2.min.js"></script>
+    <script src="~/lib/bootstrap3-wysihtml5-bower/handlebars.runtime.min.js"></script>
+    <script src="~/lib/bootstrap3-wysihtml5-bower/dist/bootstrap3-wysihtml5.all.min.js"></script>
+    @RenderSection("scripts", required: false)
+
+
+</body>
+</html>

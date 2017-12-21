@@ -1,0 +1,42 @@
+@using Swastika.Cms.Mvc.Areas.Portal.Controllers
+@model List<FileViewModel>
+@{
+    Layout = "~/Areas/Portal/Views/Shared/_Layout.cshtml";
+}
+<div class="box-body">
+    <div class="form-horizontal">
+        <div class="form-group">
+            <label class="col-md-2 control-label">Select File</label>
+            <div class="col-md-10">
+
+                <select id="sel-template">
+                    <option value="">Select File</option>
+                    @foreach(var file in Model)
+    {
+                        <option value="@file.Content">@file.Filename</option>
+    }
+                </select>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-md-2 control-label">Edit File</label>
+            <div class="col-md-10">
+
+                <div id="code-editor" class="code-editor"></div>
+
+            </div>
+        </div>
+    </div>
+</div>
+@section Scripts
+{
+    <script>
+        $(document).ready(function () {
+            $('#sel-template').on('change', function () {
+
+                SW.Common.codeEditor.setValue($(this).val());
+            })
+
+        })
+    </script>
+}

@@ -1,0 +1,33 @@
+﻿@model Swastika.IO.Cms.Lib.ViewModels.ModuleDataViewModel
+<form asp-controller="Home"
+      asp-action="AddModuleData"
+      class="">
+    <input type="hidden" name="Id" value="@Model.Id" />
+    <input type="hidden" asp-for="@Model.ModuleId" />
+    <input type="hidden" asp-for="@Model.ArticleId" />
+    <input type="hidden" asp-for="@Model.Specificulture" />
+    <input type="hidden" asp-for="@Model.Fields" />
+    <input type="hidden" asp-for="@Model.CreatedDate" />
+    @for (int i = 0; i < Model.DataProperties.Count; i++)
+    {
+
+        Html.RenderPartial("_Editor_ModuleData",
+        new ViewDataDictionary(this.ViewData) {
+                        {
+                        "Model", Model.DataProperties[i]
+                        },
+                        {
+
+                        "Name","DataProperties"
+                        },
+                        {
+
+                        "Index",i
+                        }
+        }
+        );
+    }
+    <div class="form-group">
+        <button type="submit" name="submit" class="btn btn-primary btn-lg" required="required">Submit Message</button>
+    </div>
+</form>
