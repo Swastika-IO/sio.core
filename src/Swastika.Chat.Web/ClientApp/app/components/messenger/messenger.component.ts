@@ -1,4 +1,5 @@
 ﻿import { Component, OnInit } from '@angular/core';
+
 import { HubConnection, TransportType } from '@aspnet/signalr-client';
 import * as models from './messenger.viewmodels';
 
@@ -10,24 +11,25 @@ import { PagingItems, Team } from './messenger.viewmodels';
 })
 /** messenger component*/
 export class MessengerComponent implements OnInit {
-    private responseMethod = '';
+    private responseMethod = 'receiveMessage';
     private request: models.MessengerRequest;
-    private hubData: models.HubData = new models.HubData();
+    private userData: models.UserData = new models.UserData();
     private user = new models.MessengerInfo();
     private teams: PagingItems<Team>;
     private activedTeam: Team;
     public messages: models.Message[] = [];
     public message: models.Message = new models.Message();
     ngOnInit(): void {
-        this._hubConnection = new HubConnection('/messenger', { transport: TransportType.LongPolling });
-        this._hubConnection.on('receiveMessage', (response) => {
+        this._hubConnection = new HubConnection('/messenger', { transport: TransportType.WebSockets });
+        this._hubConnection.on(this.responseMethod, (response) => {
             // Add the message to the page.
-            var message = response.data;
+            var rsp = response as models.ApiResult<any>;
+            var message = rsp.data;
             console.log(response);
-            switch (response.responseKey) {
+            switch (rsp.responseKey) {
                 case 'UpdateOnlineStatus':
-                    if (response.status === 1 && this.hubData.activedTeam.id === message.teamId) {
-                        this.hubData.activedTeam.members.items.forEach(member => {
+                    if (rsp.isSucceed && this.activedTeam.id === message.teamId) {
+                        this.activedTeam.members.items.forEach(member => {
                             if (member.memberId === message.userId) {
                                 member.isOnline = message.isOnline;
                                 member.chatInfo.connectionId = message.connectionId;
@@ -37,26 +39,37 @@ export class MessengerComponent implements OnInit {
                     }
                     break;
                 case 'SendMessage':
-                    if (response.status === 1) {
-                        if (this.activedTeam.id === message.teamId) {
-                            this.activedTeam.messages.items.push(message);
-                            // this.seenTeamMessages();
-                        }
-                        else {
-                            this.hubData.teams.items.forEach(team => {
-                                if (team.id === message.teamId) {
-                                    team.isNewMessage = true;
-                                    return false;
-                                }
-                            });
+                    if (rsp.isSucceed) {
+                        this.messages.push(rsp.data)
+                        if (this.activedTeam) {
+
+                            if (this.activedTeam.id === message.teamId) {
+                                this.activedTeam.messages.items.push(message);
+                                // this.seenTeamMessages();
+                            }
+                            else {
+                                this.userData.myTeams.items.forEach(team => {
+                                    if (team.id === message.teamId) {
+                                        team.isNewMessage = true;
+                                        return false;
+                                    }
+                                });
+                            }
+
                         }
                         //});
                     }
                     break;
                 case 'Connect':
-                    if (response.status === 1) {
-                        this.hubData = response.data;
-                        this.teams = response.data.teams;
+                    if (rsp.isSucceed) {
+                        this.userData = rsp.data;
+                        this.teams = this.userData.myTeams;
+                        this.user.username = this.userData.name;
+                        this.user.avatarUrl = this.userData.avatarUrl;
+                        this.user.connectionId = this.userData.connectionId;
+                        this.message.userId = this.user.userId;
+                        this.message.userAvatar = this.user.avatarUrl;
+                        this.message.username = this.user.username;
                         // if (this.teams.totalItems > 0) {
                         //     this.request.teamId = this.teams.items[0].id;
                         //     this.getTeam();
@@ -67,11 +80,11 @@ export class MessengerComponent implements OnInit {
                     }
                     break;
                 case 'GetTeam':
-                    if (response.status === 1) {
+                    if (rsp.isSucceed) {
                         this.activedTeam = response.data;
                         // this.seenTeamMessages();
 
-                        this.hubData.teams.items.forEach(team => {
+                        this.userData.myTeams.items.forEach(team => {
                             if (team.id === this.activedTeam.id) {
                                 team.isNewMessage = false;
                             }
@@ -86,7 +99,7 @@ export class MessengerComponent implements OnInit {
                     }
                     break;
                 case 'RemovedTeam':
-                    if (response.status === 1) {
+                    if (rsp.isSucceed) {
                         // this.proxy.invoke('hubconnect', this.user);
                     }
                     break;
@@ -94,11 +107,11 @@ export class MessengerComponent implements OnInit {
 
         });
 
-        this.user.userId = '86549ce1-9d5b-473c-9ec8-3302df3875be';
-        this.user.username = 'tin';
+        //this.user.userId = '86549ce1-9d5b-473c-9ec8-3302df3875be';
+        //this.user.username = 'tin';
         this.request = new models.MessengerRequest();
         this.message.userId = this.user.userId;
-        this.message.avatarUrl = this.user.avatarUrl;
+        this.message.userAvatar = this.user.avatarUrl;
         this.message.username = this.user.username;
         this.request.isOnline = true;
         this.request.userId = this.user.userId;
@@ -120,9 +133,13 @@ export class MessengerComponent implements OnInit {
     }
 
     public sendMessage(): void {
-        this.message.teamId = this.activedTeam.id;
+
+        if (this.activedTeam) {
+            this.message.teamId = this.activedTeam.id;
+        }
+
         this.hubInvoke('SendMessage', this.message, () => {
-            this.message.message ='';
+            this.message.content = '';
         });
     }
 
@@ -133,7 +150,7 @@ export class MessengerComponent implements OnInit {
             }
         })
             .catch(err => {
-                
+
                 console.log('error: ', methodName, err);
             });
     }

@@ -14,7 +14,7 @@ using Swastika.IO.Domain.Core.ViewModels;
 
 namespace ChatRoom.Lib.ViewModels.Chat
 {
-    public class TeamInfoViewModel : ViewModelBase<ChatContext, SiocChatTeam, TeamInfoViewModel>
+    public class TeamInfoViewModel : ViewModelBase<MessengerContext, SiocChatTeam, TeamInfoViewModel>
     {
         #region Properties
 
@@ -72,7 +72,7 @@ namespace ChatRoom.Lib.ViewModels.Chat
         {
         }
 
-        public TeamInfoViewModel(SiocChatTeam model, ChatContext _context = null, IDbContextTransaction _transaction = null) : base(model, _context, _transaction)
+        public TeamInfoViewModel(SiocChatTeam model, MessengerContext _context = null, IDbContextTransaction _transaction = null) : base(model, _context, _transaction)
         {
         }
 
@@ -80,18 +80,18 @@ namespace ChatRoom.Lib.ViewModels.Chat
 
     }
 
-    public class TeamViewModel : ViewModelBase<ChatContext, SiocChatTeam, TeamViewModel>
+    public class TeamViewModel : ViewModelBase<MessengerContext, SiocChatTeam, TeamViewModel>
     {
         public TeamViewModel()
         {
         }
 
-        public TeamViewModel(SiocChatTeam model, ChatContext _context = null, IDbContextTransaction _transaction = null) 
+        public TeamViewModel(SiocChatTeam model, MessengerContext _context = null, IDbContextTransaction _transaction = null) 
             : base(model, _context, _transaction)
         {
         }
 
-        public TeamViewModel(SiocChatTeam model, bool isLazyLoad, ChatContext _context = null, IDbContextTransaction _transaction = null) : base(model, isLazyLoad, _context, _transaction)
+        public TeamViewModel(SiocChatTeam model, bool isLazyLoad, MessengerContext _context = null, IDbContextTransaction _transaction = null) : base(model, isLazyLoad, _context, _transaction)
         {
         }
 
@@ -138,7 +138,7 @@ namespace ChatRoom.Lib.ViewModels.Chat
         }
         public FileStreamViewModel AvatarFileStream { get; set; }
 
-        public override void ExpandView(ChatContext _context = null, IDbContextTransaction _transaction = null)
+        public override void ExpandView(MessengerContext _context = null, IDbContextTransaction _transaction = null)
         {
             var members = _context.SiocChatTeamMember.Where(m => m.TeamId == Id);
             MaxTeamMember = 50;
@@ -168,7 +168,7 @@ namespace ChatRoom.Lib.ViewModels.Chat
             return base.ParseModel();
         }
 
-        public override RepositoryResponse<bool> SaveSubModels(SiocChatTeam parent, ChatContext _context = null, IDbContextTransaction _transaction = null)
+        public override RepositoryResponse<bool> SaveSubModels(SiocChatTeam parent, MessengerContext _context = null, IDbContextTransaction _transaction = null)
         {
             var host = new TeamMemberViewModel()
             {
@@ -190,7 +190,7 @@ namespace ChatRoom.Lib.ViewModels.Chat
         }
 
 
-        public override async Task<RepositoryResponse<bool>> SaveSubModelsAsync(SiocChatTeam parent, ChatContext _context = null, IDbContextTransaction _transaction = null)
+        public override async Task<RepositoryResponse<bool>> SaveSubModelsAsync(SiocChatTeam parent, MessengerContext _context = null, IDbContextTransaction _transaction = null)
         {
             var host = new TeamMemberViewModel()
             {
@@ -212,17 +212,17 @@ namespace ChatRoom.Lib.ViewModels.Chat
         }
     }
 
-    public class TeamChatViewModel : ViewModelBase<ChatContext, SiocChatTeam, TeamChatViewModel>
+    public class TeamChatViewModel : ViewModelBase<MessengerContext, SiocChatTeam, TeamChatViewModel>
     {
         public TeamChatViewModel()
         {
         }
 
-        public TeamChatViewModel(SiocChatTeam model, ChatContext _context = null, IDbContextTransaction _transaction = null) : base(model, _context, _transaction)
+        public TeamChatViewModel(SiocChatTeam model, MessengerContext _context = null, IDbContextTransaction _transaction = null) : base(model, _context, _transaction)
         {
         }
 
-        public TeamChatViewModel(SiocChatTeam model, bool isLazyLoad, ChatContext _context = null, IDbContextTransaction _transaction = null) : base(model, isLazyLoad, _context, _transaction)
+        public TeamChatViewModel(SiocChatTeam model, bool isLazyLoad, MessengerContext _context = null, IDbContextTransaction _transaction = null) : base(model, isLazyLoad, _context, _transaction)
         {
         }
 
@@ -260,7 +260,7 @@ namespace ChatRoom.Lib.ViewModels.Chat
 
 
         public override void ExpandView(
-            ChatContext _context = null, IDbContextTransaction _transaction = null)
+            MessengerContext _context = null, IDbContextTransaction _transaction = null)
         {
 
             TotalMember = TeamMemberViewModel.Repository.Count(m => m.TeamId == Id, _context, _transaction).Data;
@@ -284,12 +284,12 @@ namespace ChatRoom.Lib.ViewModels.Chat
         #region Expands
 
         public static async Task<ApiResult<TeamChatViewModel>> GetByUserIdAsync(MessengerRequest request,
-            ChatContext _context = null, IDbContextTransaction _transaction = null)
+            MessengerContext _context = null, IDbContextTransaction _transaction = null)
         {
             string action = Enum.GetName(typeof(TeamMessageReponseKey), TeamMessageReponseKey.GetTeam);
             ApiResult<TeamChatViewModel> result = null;
             bool isRoot = _context == null;
-            var context = _context ?? new ChatContext();
+            var context = _context ?? new MessengerContext();
             var transaction = _transaction ?? context.Database.BeginTransaction();
             try
             {

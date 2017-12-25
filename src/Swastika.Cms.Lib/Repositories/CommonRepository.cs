@@ -74,7 +74,7 @@ namespace Swastika.IO.Cms.Lib.Repositories
                 {
                     IsSucceed = true,
                     Data = null,
-                    Ex = ex
+                    Exception = ex
                 };
             }
             finally
@@ -124,7 +124,7 @@ namespace Swastika.IO.Cms.Lib.Repositories
                 {
                     IsSucceed = true,
                     Data = null,
-                    Ex = ex
+                    Exception = ex
                 };
             }
             finally
@@ -181,7 +181,7 @@ namespace Swastika.IO.Cms.Lib.Repositories
                 {
                     IsSucceed = true,
                     Data = null,
-                    Ex = ex
+                    Exception = ex
                 };
             }
             finally
@@ -233,7 +233,7 @@ namespace Swastika.IO.Cms.Lib.Repositories
                 {
                     IsSucceed = true,
                     Data = null,
-                    Ex = ex
+                    Exception = ex
                 };
             }
             finally
@@ -292,7 +292,7 @@ namespace Swastika.IO.Cms.Lib.Repositories
                 {
                     IsSucceed = true,
                     Data = null,
-                    Ex = ex
+                    Exception = ex
                 };
             }
             finally
@@ -346,7 +346,7 @@ namespace Swastika.IO.Cms.Lib.Repositories
                 {
                     IsSucceed = true,
                     Data = null,
-                    Ex = ex
+                    Exception = ex
                 };
             }
             finally

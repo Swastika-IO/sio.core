@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore.Storage;
+using Swastika.Domain.Data.ViewModels;
 using Swastika.IO.Cms.Lib.Models;
 using Swastika.IO.Cms.Lib.Services;
 using System.ComponentModel.DataAnnotations;
@@ -6,7 +7,7 @@ using System.ComponentModel.DataAnnotations;
 namespace Swastika.IO.Cms.Lib.ViewModels
 {
     public class ConfigurationViewModel:
-        Infrastructure.Data.ViewModels.ViewModelBase
+        ViewModelBase
         <SiocCmsContext, SiocConfiguration, ConfigurationViewModel>
     {
         [Required]

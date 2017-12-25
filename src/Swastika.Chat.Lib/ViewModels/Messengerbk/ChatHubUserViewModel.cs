@@ -16,7 +16,7 @@ using Swastika.IO.Domain.Core.ViewModels;
 
 namespace ChatRoom.Lib.ViewModels.Chat
 {
-    public class ChatHubUserViewModel : ViewModelBase<ChatContext, SiocChathubUser, ChatHubUserViewModel>
+    public class ChatHubUserViewModel : ViewModelBase<MessengerContext, SiocChathubUser, ChatHubUserViewModel>
     {
         #region Properties
         [Required]
@@ -61,7 +61,7 @@ namespace ChatRoom.Lib.ViewModels.Chat
 
         #endregion
         public ChatHubUserViewModel(SiocChathubUser model
-            , ChatContext _context = null, IDbContextTransaction _transaction = null)
+            , MessengerContext _context = null, IDbContextTransaction _transaction = null)
             : base(model, _context, _transaction)
         {
         }
@@ -71,7 +71,7 @@ namespace ChatRoom.Lib.ViewModels.Chat
         }
 
         #region Overrides
-        public override void ExpandView(ChatContext _context = null, IDbContextTransaction _transaction = null)
+        public override void ExpandView(MessengerContext _context = null, IDbContextTransaction _transaction = null)
         {
             Rooms = ChatHubRoomViewModel.Repository.GetModelListBy(r => r.UserId == UserId
             , _context, _transaction: _transaction).Data;
@@ -87,7 +87,7 @@ namespace ChatRoom.Lib.ViewModels.Chat
             return base.ParseModel();
         }
 
-        public override RepositoryResponse<bool> SaveSubModels(SiocChathubUser parent, ChatContext _context = null, IDbContextTransaction _transaction = null)
+        public override RepositoryResponse<bool> SaveSubModels(SiocChathubUser parent, MessengerContext _context = null, IDbContextTransaction _transaction = null)
         {
             RepositoryResponse<bool> result = new RepositoryResponse<bool>() { IsSucceed = true };
 
@@ -106,7 +106,7 @@ namespace ChatRoom.Lib.ViewModels.Chat
             return result;
         }
 
-        public override async Task<RepositoryResponse<bool>> SaveSubModelsAsync(SiocChathubUser parent, ChatContext _context = null, IDbContextTransaction _transaction = null)
+        public override async Task<RepositoryResponse<bool>> SaveSubModelsAsync(SiocChathubUser parent, MessengerContext _context = null, IDbContextTransaction _transaction = null)
         {
             RepositoryResponse<bool> result = new RepositoryResponse<bool>() { IsSucceed = true };
 
@@ -133,7 +133,7 @@ namespace ChatRoom.Lib.ViewModels.Chat
 
         public async Task<ApiResult<TeamChatConnectedData>> JoinChatAsync()
         {
-            var context = new ChatContext();
+            var context = new MessengerContext();
             var transaction = context.Database.BeginTransaction();
 
             var result = new ApiResult<TeamChatConnectedData>();

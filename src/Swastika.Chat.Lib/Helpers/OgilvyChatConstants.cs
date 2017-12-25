@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace ChatRoom.Lib.Helpers
 {
-    public class ChatConstants
+    public class MessengerConstants
     {
         public static string Domain = "";
         public static string DefaultAvatar = "https://vignette.wikia.nocookie.net/caseclosed/images/0/06/Shadow_Person.PNG";
@@ -89,7 +89,7 @@ namespace ChatRoom.Lib.Helpers
         Edit,
         Delete
     }
-    public enum TeamMessageReponseKey
+    public enum MessageReponseKey
     {
         NewInvite,
         NewRequest,

@@ -1,5 +1,5 @@
 ﻿using System;
-using Swastika.Infrastructure.Data.ViewModels;
+using Swastika.Domain.Data.ViewModels;
 using Swastika.IO.Cms.Lib.Models;
 using Microsoft.EntityFrameworkCore.Storage;
 using Swastika.Domain.Core.Models;
@@ -82,7 +82,7 @@ namespace Swastika.IO.Cms.Lib.ViewModels
                 {
                     IsSucceed = false,
                     Data = false,
-                    Ex = ex
+                    Exception = ex
                 };
             }
             finally

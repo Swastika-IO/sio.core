@@ -18,7 +18,6 @@ namespace Swastika.Messenger.Lib.Models
         public DateTime? SeenRequestDate { get; set; }
         public DateTime? SeenInviteDate { get; set; }
 
-        public AspNetUsers Member { get; set; }
         public SiocChatTeam Team { get; set; }
     }
 }

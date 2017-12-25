@@ -10,7 +10,7 @@ using Swastika.IO.Common.Helper;
 using Swastika.Identity.Models;
 namespace ChatRoom.Lib.ViewModels.Chat
 {
-    public class TeamMemberViewModel : ViewModelBase<ChatContext, SiocChatTeamMember, TeamMemberViewModel>
+    public class TeamMemberViewModel : ViewModelBase<MessengerContext, SiocChatTeamMember, TeamMemberViewModel>
     {
         #region Properties
 
@@ -34,9 +34,9 @@ namespace ChatRoom.Lib.ViewModels.Chat
         public DateTime? SeenRequestDate { get; set; }
         [JsonProperty("seenInviteDate")]
         public DateTime? SeenInviteDate { get; set; }
-        //View
-        [JsonProperty("info")]
-        public AccountViewModel Info { get; set; }
+        ////View
+        //[JsonProperty("info")]
+        //public AccountViewModel Info { get; set; }
         [JsonProperty("chatInfo")]
         public ChatHubUserViewModel ChatInfo { get; set; }
         [JsonProperty("isOnline")]
@@ -48,7 +48,7 @@ namespace ChatRoom.Lib.ViewModels.Chat
         {
         }
 
-        public TeamMemberViewModel(SiocChatTeamMember model, ChatContext _context = null, IDbContextTransaction _transaction = null)
+        public TeamMemberViewModel(SiocChatTeamMember model, MessengerContext _context = null, IDbContextTransaction _transaction = null)
             : base(model, _context, _transaction)
         {
         }
@@ -64,24 +64,24 @@ namespace ChatRoom.Lib.ViewModels.Chat
             return base.ParseModel();
         }
 
-        public override TeamMemberViewModel ParseView(bool isExpand = true, ChatContext _context = null, IDbContextTransaction _transaction = null)
+        public override TeamMemberViewModel ParseView(bool isExpand = true, MessengerContext _context = null, IDbContextTransaction _transaction = null)
         {
             var vm = base.ParseView(isExpand, _context, _transaction);
-            vm.Info = AccountViewModel.Repository.GetSingleModel(
-                m => m.Id == MemberId).Data;
+            //vm.Info = AccountViewModel.Repository.GetSingleModel(
+            //    m => m.Id == MemberId).Data;
             vm.ChatInfo = ChatHubUserViewModel.Repository.GetSingleModel(
                 m => m.UserId == MemberId, _context, _transaction).Data;
             vm.IsOnline = vm.ChatInfo != null;
             vm.ChatInfo = vm.ChatInfo ?? new ChatHubUserViewModel()
             {
                 UserId = vm.MemberId,
-                AvatarUrl = vm.Info?.AvatarUrl
+                //AvatarUrl = vm.Info?.AvatarUrl
             };
             
             return vm;
         }
 
-        public override void Validate(ChatContext _context = null, IDbContextTransaction _transaction = null)
+        public override void Validate(MessengerContext _context = null, IDbContextTransaction _transaction = null)
         {
             base.Validate(_context, _transaction);
             int maxMember = 50;
@@ -323,7 +323,7 @@ namespace ChatRoom.Lib.ViewModels.Chat
         #endregion
     }
 
-    public class InvitationViewModel : ViewModelBase<ChatContext, SiocChatTeamMember, InvitationViewModel>
+    public class InvitationViewModel : ViewModelBase<MessengerContext, SiocChatTeamMember, InvitationViewModel>
     {
         [JsonIgnore]
         [JsonProperty("teamId")]
@@ -339,7 +339,7 @@ namespace ChatRoom.Lib.ViewModels.Chat
         [JsonProperty("team")]
         public TeamViewModel Team { get; set; }
 
-        public override void ExpandView(ChatContext _context = null, IDbContextTransaction _transaction = null)
+        public override void ExpandView(MessengerContext _context = null, IDbContextTransaction _transaction = null)
         {
             Team = TeamViewModel.Repository.GetSingleModel(t => t.Id == TeamId, _context, _transaction).Data;
         }

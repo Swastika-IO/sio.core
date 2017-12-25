@@ -7,8 +7,8 @@ import { FormsModule } from '@angular/forms';
 import { BrowserModule, BrowserTransferStateModule } from '@angular/platform-browser';
 import { TransferHttpCacheModule } from '@nguniversal/common';
 
-//import { Ng2BootstrapModule } from 'ngx-bootstrap';
-//import { CKEditorModule } from 'ng2-ckeditor';
+// import { Ng2BootstrapModule } from 'ngx-bootstrap';
+// import { CKEditorModule } from 'ng2-ckeditor';
 
 // i18n support
 import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
@@ -21,12 +21,15 @@ import { UsersComponent } from './containers/users/users.component';
 import { UserDetailComponent } from './components/user-detail/user-detail.component';
 import { CounterComponent } from './containers/counter/counter.component';
 import { NotFoundComponent } from './containers/not-found/not-found.component';
-//import { NgxBootstrapComponent } from './containers/ngx-bootstrap-demo/ngx-bootstrap.component';
 
 import { LinkService } from './shared/link.service';
 import { UserService } from './shared/user.service';
 import { ORIGIN_URL } from '@nguniversal/aspnetcore-engine';
-
+import { ArticleService } from './areas/portal/areas/cms/services/article.services';
+import { StorageService } from './areas/portal/areas/cms/services/localStorage.service';
+import { ServiceHelper } from './areas/portal/areas/cms/service.helper';
+import { ModuleService } from './areas/portal/areas/cms/services/module.service';
+import { Ng4LoadingSpinnerService } from 'ng4-loading-spinner';
 export function createTranslateLoader(http: HttpClient, baseHref) {
   // Temporary Azure hack
   if (baseHref === null && typeof window !== 'undefined') {
@@ -45,22 +48,19 @@ export function createTranslateLoader(http: HttpClient, baseHref) {
     UserDetailComponent,
     HomeComponent,
     NotFoundComponent,
-    //NgxBootstrapComponent
   ],
   imports: [
     CommonModule,
+    HttpModule,
     BrowserModule.withServerTransition({
       appId: 'my-app-id' // make sure this matches with your Server NgModule
     }),
     HttpClientModule,
     TransferHttpCacheModule,
     BrowserTransferStateModule,
-
-    //CKEditorModule,
-
-
     FormsModule,
-    //Ng2BootstrapModule.forRoot(), // You could also split this up if you don't want the Entire Module imported
+    
+    // Ng2BootstrapModule.forRoot(), // You could also split this up if you don't want the Entire Module imported
 
     // i18n support
     TranslateModule.forRoot({
@@ -162,7 +162,12 @@ export function createTranslateLoader(http: HttpClient, baseHref) {
   providers: [
     LinkService,
     UserService,
-    TranslateModule
+    TranslateModule,
+
+    // StorageService,
+    // ServiceHelper,
+    // ArticleService,
+    // ModuleService
   ],
   bootstrap: [AppComponent]
 })

@@ -1,0 +1,7 @@
+npm install class-transformer --save
+npm install reflect-metadata --save
+npm install ngx-store --save
+npm install ng4-loading-spinner --save
+npm install ng2-smart-table --save
+spinnerSerice ?
+notificationService ? (toaster)

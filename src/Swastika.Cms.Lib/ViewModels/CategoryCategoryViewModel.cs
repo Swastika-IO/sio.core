@@ -1,5 +1,5 @@
 ﻿using Swastika.IO.Cms.Lib.Models;
-using Swastika.Infrastructure.Data.ViewModels;
+using Swastika.Domain.Data.ViewModels;
 using Microsoft.EntityFrameworkCore.Storage;
 
 namespace Swastika.IO.Cms.Lib.ViewModels
@@ -7,7 +7,7 @@ namespace Swastika.IO.Cms.Lib.ViewModels
     /// <summary>
     /// 
     /// </summary>
-    /// <seealso cref="Swastika.Infrastructure.Data.ViewModels.ViewModelBase{Swastika.IO.Cms.Lib.Models.SiocCmsContext, Swastika.IO.Cms.Lib.Models.SiocCategoryCategory, Swastika.IO.Cms.Lib.ViewModels.CategoryCategoryViewModel}" />
+    /// <seealso cref="Swastika.Domain.Data.ViewModels.ViewModelBase{Swastika.IO.Cms.Lib.Models.SiocCmsContext, Swastika.IO.Cms.Lib.Models.SiocCategoryCategory, Swastika.IO.Cms.Lib.ViewModels.CategoryCategoryViewModel}" />
     public class CategoryCategoryViewModel : ViewModelBase<SiocCmsContext, SiocCategoryCategory, CategoryCategoryViewModel>
     {
         /// <summary>

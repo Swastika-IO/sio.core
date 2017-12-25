@@ -4,9 +4,10 @@ import { MessengerPortalComponent } from './messenger-portal.component';
 
 import { FooterComponent } from './components/footer/footer.component';
 import { SidebarComponent } from './components/sidebar/sidebar.component';
-
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 @NgModule({
   imports: [
+    FormsModule,
     RouterModule.forChild([
       {
         path: '',
@@ -28,7 +29,6 @@ import { SidebarComponent } from './components/sidebar/sidebar.component';
   exports: [RouterModule],
   declarations: [
     MessengerPortalComponent,
-    FooterComponent,
     SidebarComponent
   ]
 })

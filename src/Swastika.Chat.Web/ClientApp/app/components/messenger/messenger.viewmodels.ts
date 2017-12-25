@@ -1,9 +1,11 @@
-﻿export class HubData {
-    totalInvitation: number;
-    isCreatedTeam: boolean;
-    activedTeam: Team;
-    teams: PagingItems<Team>;
-    otherTeams: PagingItems<Team>;
+﻿export class UserData {
+    id: string;
+    name: string;
+    avatarUrl: string;
+    connectionId: string;
+    
+    myTeams: PagingItems<Team>;
+    myRooms: PagingItems<Team>;   
 }
 
 export class Team {
@@ -61,20 +63,23 @@ export class MessengerInfo {
 }
 
 export class MessengerRoom {
-    roomName: string;
-    userId: string;
-    roomTitle: string;
-    joinedDate: Date;
+    id: string;
+    name: string;
     teamId: number;
+    hostId: string;
+    title: string;
+    description: string;
+    avatarUrl: string;
+    joinedDate: Date;
 }
 
 export class Message {
     id: string;
     userId: string;
     username: string;
-    avatarUrl: string;
+    userAvatar: string;
     teamId: number;
-    message: string;
+    content: string;
     messageType: number;
     notificationType: number;
     createdDate: Date;
@@ -99,6 +104,7 @@ export class PagingItems<T>{
     }
 }
 export class ApiResult<T>{
+    isSucceed: boolean;
     status: number;
     responseKey: string;
     errors: string[];

@@ -38,7 +38,7 @@ namespace Swastka.Cms.Api.Controllers
         }
 
         protected readonly DefaultRepository<TContext, TModel> _repo;
-        public BaseAPIController()
+        public BaseApiController()
         {
             _repo = DefaultRepository<TContext, TModel>.Instance;
         }      
@@ -67,7 +67,7 @@ namespace Swastka.Cms.Api.Controllers
         }
 
         
-        public BaseAPIController()
+        public BaseApiController()
         {
             _repo = DefaultRepository<TDbContext, TModel, TView>.Instance;
         }

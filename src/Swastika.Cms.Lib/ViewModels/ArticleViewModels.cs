@@ -16,7 +16,7 @@ using Swastika.IO.Domain.Core.ViewModels;
 namespace Swastika.IO.Cms.Lib.ViewModels
 {
     public class ArticleBEViewModel :
-        Swastika.Infrastructure.Data.ViewModels.ViewModelBase<SiocCmsContext, SiocArticle, ArticleBEViewModel>
+        Swastika.Domain.Data.ViewModels.ViewModelBase<SiocCmsContext, SiocArticle, ArticleBEViewModel>
     {
         #region Properties
 
@@ -336,7 +336,7 @@ namespace Swastika.IO.Cms.Lib.ViewModels
                             if (!result)
                             {
                                 Errors.AddRange(saveResult.Errors);
-                                Ex = saveResult.Ex;
+                                Ex = saveResult.Exception;
                             }
                         }
                     }
@@ -418,7 +418,7 @@ namespace Swastika.IO.Cms.Lib.ViewModels
                             else
                             {
                                 Errors.AddRange(saveResult.Errors);
-                                Ex = saveResult.Ex;
+                                Ex = saveResult.Exception;
                             }
                             result = result && saveResult.IsSucceed;
                         }
@@ -430,7 +430,7 @@ namespace Swastika.IO.Cms.Lib.ViewModels
                     IsSucceed = result,
                     Data = result,
                     Errors = Errors,
-                    Ex = Ex
+                    Exception = Ex
                 };
 
             }
@@ -441,7 +441,7 @@ namespace Swastika.IO.Cms.Lib.ViewModels
                 {
                     IsSucceed = false,
                     Data = false,
-                    Ex = ex
+                    Exception = ex
                 };
             }
         }
@@ -465,14 +465,14 @@ namespace Swastika.IO.Cms.Lib.ViewModels
                     {
                         result.IsSucceed = cloneNav.IsSucceed;
                         result.Errors.AddRange(cloneNav.Errors);
-                        result.Ex = cloneNav.Ex;
+                        result.Exception = cloneNav.Exception;
                     }
 
                 }
                 else
                 {
                     result.Errors.AddRange(cloneModule.Errors);
-                    result.Ex = cloneModule.Ex;
+                    result.Exception = cloneModule.Exception;
                 }
             }
             return result;
@@ -714,7 +714,7 @@ namespace Swastika.IO.Cms.Lib.ViewModels
                 {
                     IsSucceed = false,
                     Data = false,
-                    Ex = ex
+                    Exception = ex
                 };
             }
         }
@@ -756,7 +756,7 @@ namespace Swastika.IO.Cms.Lib.ViewModels
 
 
     public class ArticleListItemViewModel :
-        Swastika.Infrastructure.Data.ViewModels.ViewModelBase<SiocCmsContext, SiocArticle, ArticleListItemViewModel>
+        Swastika.Domain.Data.ViewModels.ViewModelBase<SiocCmsContext, SiocArticle, ArticleListItemViewModel>
     {
         #region Properties
 
@@ -869,7 +869,7 @@ namespace Swastika.IO.Cms.Lib.ViewModels
                 {
                     IsSucceed = false,
                     Data = null,
-                    Ex = ex
+                    Exception = ex
                 };
             }
             finally
@@ -923,7 +923,7 @@ namespace Swastika.IO.Cms.Lib.ViewModels
                 {
                     IsSucceed = false,
                     Data = null,
-                    Ex = ex
+                    Exception = ex
                 };
             }
             finally
@@ -976,7 +976,7 @@ namespace Swastika.IO.Cms.Lib.ViewModels
                 {
                     IsSucceed = false,
                     Data = null,
-                    Ex = ex
+                    Exception = ex
                 };
             }
             finally
@@ -995,7 +995,7 @@ namespace Swastika.IO.Cms.Lib.ViewModels
     }
 
     public class FEArticleViewModel :
-        Swastika.Infrastructure.Data.ViewModels.ViewModelBase<SiocCmsContext, SiocArticle, FEArticleViewModel>
+        Swastika.Domain.Data.ViewModels.ViewModelBase<SiocCmsContext, SiocArticle, FEArticleViewModel>
     {
         public string Id { get; set; }
         //public string Specificulture { get; set; }

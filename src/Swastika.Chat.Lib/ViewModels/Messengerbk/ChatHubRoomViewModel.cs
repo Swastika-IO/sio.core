@@ -7,7 +7,7 @@ using Microsoft.EntityFrameworkCore.Storage;
 
 namespace ChatRoom.Lib.ViewModels.Chat
 {
-    public class ChatHubRoomViewModel : ViewModelBase<ChatContext, SiocChathubRoom, ChatHubRoomViewModel>
+    public class ChatHubRoomViewModel : ViewModelBase<MessengerContext, SiocChathubRoom, ChatHubRoomViewModel>
     {
         #region Properties
         [Required]
@@ -25,7 +25,7 @@ namespace ChatRoom.Lib.ViewModels.Chat
         [JsonProperty("teamId")]
         public int TeamId { get; set; }
         #endregion
-        public ChatHubRoomViewModel(SiocChathubRoom model, ChatContext _context = null, IDbContextTransaction _transaction = null) 
+        public ChatHubRoomViewModel(SiocChathubRoom model, MessengerContext _context = null, IDbContextTransaction _transaction = null) 
             : base(model, _context, _transaction)
         {
         }

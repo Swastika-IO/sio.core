@@ -15,7 +15,6 @@ namespace Swastika.Messenger.Lib.Models
         public string ConnectionId { get; set; }
         public DateTime JoinedDate { get; set; }
 
-        public AspNetUsers User { get; set; }
         public ICollection<SiocChathubRoom> SiocChathubRoom { get; set; }
     }
 }

@@ -7,12 +7,7 @@ namespace Swastika.Messenger.Lib.Models
 {   
 
     public partial class ChatContext : DbContext
-    {
-        public virtual DbSet<AspNetRoles> AspNetRoles { get; set; }
-        public virtual DbSet<AspNetUserClaims> AspNetUserClaims { get; set; }
-        public virtual DbSet<AspNetUserLogins> AspNetUserLogins { get; set; }
-        public virtual DbSet<AspNetUserRoles> AspNetUserRoles { get; set; }
-        public virtual DbSet<AspNetUsers> AspNetUsers { get; set; }
+    {        
         public virtual DbSet<MigrationHistory> MigrationHistory { get; set; }
         public virtual DbSet<SiocChathubRoom> SiocChathubRoom { get; set; }
         public virtual DbSet<SiocChathubUser> SiocChathubUser { get; set; }
@@ -33,83 +28,7 @@ namespace Swastika.Messenger.Lib.Models
         }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
-        {
-            modelBuilder.Entity<AspNetRoles>(entity =>
-            {
-                entity.Property(e => e.Id)
-                    .HasMaxLength(128)
-                    .ValueGeneratedNever();
-
-                entity.Property(e => e.Name)
-                    .IsRequired()
-                    .HasMaxLength(256);
-            });
-
-            modelBuilder.Entity<AspNetUserClaims>(entity =>
-            {
-                entity.Property(e => e.UserId)
-                    .IsRequired()
-                    .HasMaxLength(128);
-
-                entity.HasOne(d => d.User)
-                    .WithMany(p => p.AspNetUserClaims)
-                    .HasForeignKey(d => d.UserId)
-                    .HasConstraintName("FK_dbo.AspNetUserClaims_dbo.AspNetUsers_UserId");
-            });
-
-            modelBuilder.Entity<AspNetUserLogins>(entity =>
-            {
-                entity.HasKey(e => new { e.LoginProvider, e.ProviderKey, e.UserId });
-
-                entity.Property(e => e.LoginProvider).HasMaxLength(128);
-
-                entity.Property(e => e.ProviderKey).HasMaxLength(128);
-
-                entity.Property(e => e.UserId).HasMaxLength(128);
-
-                entity.HasOne(d => d.User)
-                    .WithMany(p => p.AspNetUserLogins)
-                    .HasForeignKey(d => d.UserId)
-                    .HasConstraintName("FK_dbo.AspNetUserLogins_dbo.AspNetUsers_UserId");
-            });
-
-            modelBuilder.Entity<AspNetUserRoles>(entity =>
-            {
-                entity.HasKey(e => new { e.UserId, e.RoleId });
-
-                entity.Property(e => e.UserId).HasMaxLength(128);
-
-                entity.Property(e => e.RoleId).HasMaxLength(128);
-
-                entity.HasOne(d => d.Role)
-                    .WithMany(p => p.AspNetUserRoles)
-                    .HasForeignKey(d => d.RoleId)
-                    .HasConstraintName("FK_dbo.AspNetUserRoles_dbo.AspNetRoles_RoleId");
-
-                entity.HasOne(d => d.User)
-                    .WithMany(p => p.AspNetUserRoles)
-                    .HasForeignKey(d => d.UserId)
-                    .HasConstraintName("FK_dbo.AspNetUserRoles_dbo.AspNetUsers_UserId");
-            });
-
-            modelBuilder.Entity<AspNetUsers>(entity =>
-            {
-                entity.Property(e => e.Id)
-                    .HasMaxLength(128)
-                    .ValueGeneratedNever();
-
-                entity.Property(e => e.Avatar).HasMaxLength(250);
-
-                entity.Property(e => e.Email).HasMaxLength(256);
-
-                entity.Property(e => e.JoinDate).HasColumnType("datetime");
-
-                entity.Property(e => e.LockoutEndDateUtc).HasColumnType("datetime");
-
-                entity.Property(e => e.UserName)
-                    .IsRequired()
-                    .HasMaxLength(256);
-            });
+        {           
 
             modelBuilder.Entity<MigrationHistory>(entity =>
             {
@@ -169,11 +88,6 @@ namespace Swastika.Messenger.Lib.Models
                 entity.Property(e => e.NickName)
                     .IsRequired()
                     .HasMaxLength(50);
-
-                entity.HasOne(d => d.User)
-                    .WithOne(p => p.SiocChathubUser)
-                    .HasForeignKey<SiocChathubUser>(d => d.UserId)
-                    .HasConstraintName("FK_Ogilvy_ChatHub_User_AspNetUsers");
             });
 
             modelBuilder.Entity<SiocChatTeam>(entity =>
@@ -217,10 +131,7 @@ namespace Swastika.Messenger.Lib.Models
 
                 entity.Property(e => e.SeenRequestDate).HasColumnType("datetime");
 
-                entity.HasOne(d => d.Member)
-                    .WithMany(p => p.SiocChatTeamMember)
-                    .HasForeignKey(d => d.MemberId)
-                    .HasConstraintName("FK_Ogilvy_Team_Member_AspNetUsers");
+             
 
                 entity.HasOne(d => d.Team)
                     .WithMany(p => p.SiocChatTeamMember)
@@ -257,10 +168,7 @@ namespace Swastika.Messenger.Lib.Models
                     .HasForeignKey(d => d.TeamId)
                     .HasConstraintName("FK_Ogilvy_Team_Message_Ogilvy_Team");
 
-                entity.HasOne(d => d.User)
-                    .WithMany(p => p.SiocChatTeamMessage)
-                    .HasForeignKey(d => d.UserId)
-                    .HasConstraintName("FK_Ogilvy_Team_Message_AspNetUsers");
+              
             });
         }
     }

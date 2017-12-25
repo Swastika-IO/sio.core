@@ -1,6 +1,4 @@
 ﻿using Newtonsoft.Json;
-using ChatRoom.Lib.ViewModels.Chat;
-using Swastika.IO.Domain.Core.ViewModels;
 
 namespace ChatRoom.Lib.Models.SignalR
 {
@@ -58,10 +56,10 @@ namespace ChatRoom.Lib.Models.SignalR
         public int TotalInvitation { get; set; }
         [JsonProperty("isCreatedTeam")]
         public bool IsCreatedTeam { get; set; }
-        [JsonProperty("teams")]
-        public PaginationModel<TeamInfoViewModel> Teams { get; set; }
-        [JsonProperty("otherTeams")]
-        public PaginationModel<TeamInfoViewModel> OtherTeams { get; set; }
+        //[JsonProperty("teams")]
+        //public PaginationModel<TeamInfoViewModel> Teams { get; set; }
+        //[JsonProperty("otherTeams")]
+        //public PaginationModel<TeamInfoViewModel> OtherTeams { get; set; }
 
     }
 }

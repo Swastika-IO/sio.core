@@ -23,7 +23,7 @@
             </div>
          </div>
      </div>
-     <div class="row" *ngIf="activedTeam != null">
+     <div class="row" *ngIf="messages != null">
         <div class="table-responsive">
             <table class="table table-striped">
                 <thead>
@@ -33,9 +33,9 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr *ngFor="let msg of activedTeam.messages.items; let i = index">
+                    <tr *ngFor="let msg of messages; let i = index">
                         <td>{{msg.createdDate}}</td>
-                        <td>{{msg.message}}</td>
+                        <td>{{msg.content}}</td>
                     </tr>
                 </tbody>
             </table>
@@ -48,8 +48,9 @@
            <form class="form-inline" (ngSubmit)="sendMessage()" #messageForm="ngForm">
                <div class="form-group">
                    <label class="sr-only" for="message">Message</label>
+                   <span>From: {{message.username}}</span>
                    <input type="text" class="form-control" id="message" placeholder="your message..." 
-                   name="message" [(ngModel)]="message.message" required>
+                   name="message" [(ngModel)]="message.content" required>
                </div>
                <button type="submit" class="btn btn-primary" [disabled]="!messageForm.valid">Send SignalR Message</button>
            </form>

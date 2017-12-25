@@ -4,7 +4,7 @@ using Microsoft.EntityFrameworkCore.Storage;
 namespace Swastika.IO.Cms.Lib.ViewModels
 {
     public class CultureViewModel :
-        Swastika.Infrastructure.Data.ViewModels.ViewModelBase<SiocCmsContext, SiocCulture, CultureViewModel>
+        Swastika.Domain.Data.ViewModels.ViewModelBase<SiocCmsContext, SiocCulture, CultureViewModel>
     {
         public int Id { get; set; }
         //public string Specificulture { get; set; }

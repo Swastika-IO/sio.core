@@ -1,5 +1,5 @@
 ﻿using Swastika.IO.Cms.Lib.Models;
-using Swastika.Infrastructure.Data.ViewModels;
+using Swastika.Domain.Data.ViewModels;
 using System.Collections.Generic;
 using Microsoft.EntityFrameworkCore.Storage;
 using Swastika.IO.Cms.Lib.Repositories;
@@ -107,7 +107,7 @@ namespace Swastika.IO.Cms.Lib.ViewModels
                 {
                     result.IsSucceed = cloneData.IsSucceed;
                     result.Errors.AddRange(cloneData.Errors);
-                    result.Ex = cloneData.Ex;
+                    result.Exception = cloneData.Exception;
                 }
             }
             return result;
@@ -311,7 +311,7 @@ namespace Swastika.IO.Cms.Lib.ViewModels
                 {
                     result.IsSucceed = cloneData.IsSucceed;
                     result.Errors.AddRange(cloneData.Errors);
-                    result.Ex = cloneData.Ex;
+                    result.Exception = cloneData.Exception;
                 }
             }
             return result;

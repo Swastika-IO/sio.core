@@ -2,7 +2,7 @@
 using Newtonsoft.Json.Linq;
 using Swastika.IO.Cms.Lib.Models;
 using Swastika.Common;
-using Swastika.Infrastructure.Data.ViewModels;
+using Swastika.Domain.Data.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;

@@ -8,9 +8,9 @@ using Swastika.Messenger.Lib.Models;
 
 namespace ChatRoom.Lib.ViewModels.Chat
 {
-    public class AccountViewModel: ViewModelBase<ChatContext, AspNetUsers, AccountViewModel>
+    public class AccountViewModel: ViewModelBase<MessengerContext, AspNetUsers, AccountViewModel>
     {
-        public AccountViewModel(AspNetUsers model, ChatContext _context = null, IDbContextTransaction _transaction = null) : base(model, _context, _transaction)
+        public AccountViewModel(AspNetUsers model, MessengerContext _context = null, IDbContextTransaction _transaction = null) : base(model, _context, _transaction)
         {
         }
         [JsonProperty("id")]

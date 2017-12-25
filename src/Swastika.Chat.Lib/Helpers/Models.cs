@@ -1,30 +1,25 @@
 ﻿using Newtonsoft.Json;
-using ChatRoom.Lib.ViewModels.Chat;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace ChatRoom.Lib.Helpers
 {
-   
-    public class MessengerRequest
-    {
-        [JsonProperty("teamId")]
-        public int TeamId { get; set; }
-        [JsonProperty("userId")]
-        public string UserId { get; set; }
-        [JsonProperty("connectionId")]
-        public string ConnectionId { get; set; }
-        [JsonProperty("memberStatus")]
-        public MemberStatus MemberStatus { get; set; }
-        [JsonProperty("isOnline")]
-        public bool IsOnline { get; set; }
-        [JsonProperty("keyword")]
-        public string Keyword { get; set; }
 
-    }
+    //public class MessengerRequest
+    //{
+    //    [JsonProperty("teamId")]
+    //    public int TeamId { get; set; }
+    //    [JsonProperty("userId")]
+    //    public string UserId { get; set; }
+    //    [JsonProperty("connectionId")]
+    //    public string ConnectionId { get; set; }
+    //    [JsonProperty("memberStatus")]
+    //    public MemberStatus MemberStatus { get; set; }
+    //    [JsonProperty("isOnline")]
+    //    public bool IsOnline { get; set; }
+    //    [JsonProperty("keyword")]
+    //    public string Keyword { get; set; }
+
+    //}
 
     public class AccessTokenViewModel
     {
@@ -44,8 +39,8 @@ namespace ChatRoom.Lib.Helpers
         public string Expires { get; set; }
         [JsonProperty("deviceId")]
         public string DeviceId { get; set; }
-        [JsonProperty("userData")]
-        public AccountViewModel UserData { get; set; }
+        //[JsonProperty("userData")]
+        //public AccountViewModel UserData { get; set; }
     }
 
     public class LoginModel

@@ -9,14 +9,14 @@ using Swastika.IO.Common.Helper;
 
 namespace ChatRoom.Lib.ViewModels.Chat
 {
-    public class TeamMessageViewModel : ViewModelBase<ChatContext, SiocChatTeamMessage, TeamMessageViewModel>
+    public class TeamMessageViewModel : ViewModelBase<MessengerContext, SiocChatTeamMessage, TeamMessageViewModel>
     {
         public TeamMessageViewModel()
         {
         }
 
         public TeamMessageViewModel(SiocChatTeamMessage model
-            , ChatContext _context = null, IDbContextTransaction _transaction = null) 
+            , MessengerContext _context = null, IDbContextTransaction _transaction = null) 
             : base(model, _context, _transaction)
         {
         }
@@ -62,10 +62,10 @@ namespace ChatRoom.Lib.ViewModels.Chat
         [JsonProperty("createdDate")]
         public System.DateTime CreatedDate { get; set; }
 
-        public override void ExpandView(ChatContext _context = null, IDbContextTransaction _transaction = null)
+        public override void ExpandView(MessengerContext _context = null, IDbContextTransaction _transaction = null)
         {
-            var user = _context?.AspNetUsers.FirstOrDefault(m => m.Id == UserId);
-            UserAvatar = user?.Avatar;
+            //var user = _context?.AspNetUsers.FirstOrDefault(m => m.Id == UserId);
+            //UserAvatar = user?.Avatar;
         }
 
         public override SiocChatTeamMessage ParseModel()

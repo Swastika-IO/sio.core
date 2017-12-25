@@ -9,6 +9,7 @@
 
   <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.All" Version="2.0.3" />
+    <PackageReference Include="Microsoft.AspNetCore.SignalR.Client" Version="1.0.0-alpha2-final" />
     <PackageReference Include="Swashbuckle.AspNetCore.Swagger" Version="1.1.0" />
     <PackageReference Include="Swashbuckle.AspNetCore.SwaggerGen" Version="1.1.0" />
     <PackageReference Include="Swashbuckle.AspNetCore.SwaggerUI" Version="1.1.0" />
@@ -33,6 +34,14 @@
   </ItemGroup>
 
   <ItemGroup>
+    <None Remove="ClientApp\app\areas\portal\areas\cms\environment.ts" />
+    <None Remove="ClientApp\app\areas\portal\areas\cms\service.helper.ts" />
+    <None Remove="ClientApp\app\areas\portal\areas\cms\services\article.services.ts" />
+    <None Remove="ClientApp\app\areas\portal\areas\cms\services\localStorage.service.ts" />
+    <None Remove="ClientApp\app\areas\portal\areas\cms\services\module.service.ts" />
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\..\..\Swastika-Identity\src\Swastika.IO.Identity\Swastika.IO.Identity.csproj" />
     <ProjectReference Include="..\Swastika.Chat.Lib\Swastika.Messenger.Lib.csproj" />
     <ProjectReference Include="..\Swastka.Cms.Api\Swastka.IO.Cms.Api.csproj" />
@@ -50,6 +59,14 @@
   <ItemGroup>
     <Folder Include="Views\Templates\" />
     <Folder Include="wwwroot\sw-content\themes\portal\vendors\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <TypeScriptCompile Include="ClientApp\app\areas\portal\areas\cms\environment.ts" />
+    <TypeScriptCompile Include="ClientApp\app\areas\portal\areas\cms\service.helper.ts" />
+    <TypeScriptCompile Include="ClientApp\app\areas\portal\areas\cms\services\article.services.ts" />
+    <TypeScriptCompile Include="ClientApp\app\areas\portal\areas\cms\services\localStorage.service.ts" />
+    <TypeScriptCompile Include="ClientApp\app\areas\portal\areas\cms\services\module.service.ts" />
   </ItemGroup>
 
   <Target Name="DebugRunWebpack" BeforeTargets="Build" Condition=" '$(Configuration)' == 'Debug' And !Exists('wwwroot\sw-spa\dist') ">
