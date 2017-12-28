@@ -1,15 +1,15 @@
 ﻿using Microsoft.EntityFrameworkCore.Storage;
 using Newtonsoft.Json.Linq;
-using Swastika.IO.Cms.Lib.Models;
+using Swastika.Cms.Lib.Models;
 using Swastika.Common;
 using Swastika.Domain.Data.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using Swastika.IO.Cms.Lib.Services;
+using Swastika.Cms.Lib.Services;
 using Swastika.IO.Common.Helper;
 
-namespace Swastika.IO.Cms.Lib.ViewModels
+namespace Swastika.Cms.Lib.ViewModels
 {
     public class ModuleContentViewmodel : ViewModelBase<SiocCmsContext, SiocModuleData, ModuleContentViewmodel>
     {
@@ -178,13 +178,5 @@ namespace Swastika.IO.Cms.Lib.ViewModels
             return this.Value != null ? (T)Value : default(T);
         }
 
-    }
-
-    public class ModuleFieldViewModel
-    {
-        public string Name { get; set; }
-        public SWCmsConstants.DataType DataType { get; set; }
-        public bool IsDisplay { get; set; }
-        public int Width { get; set; }
     }
 }

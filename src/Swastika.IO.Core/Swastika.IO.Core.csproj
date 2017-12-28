@@ -43,7 +43,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\..\..\Swastika-Identity\src\Swastika.IO.Identity\Swastika.IO.Identity.csproj" />
-    <ProjectReference Include="..\Swastika.Chat.Lib\Swastika.Messenger.Lib.csproj" />
+    <ProjectReference Include="..\Swastika.Messenger.Lib\Swastika.Messenger.Lib.csproj" />
     <ProjectReference Include="..\Swastka.Cms.Api\Swastka.IO.Cms.Api.csproj" />
   </ItemGroup>
 

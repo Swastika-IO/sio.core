@@ -1,7 +1,7 @@
-﻿using Swastika.IO.Cms.Lib.Models;
+﻿using Swastika.Cms.Lib.Models;
 using Microsoft.EntityFrameworkCore.Storage;
 
-namespace Swastika.IO.Cms.Lib.ViewModels
+namespace Swastika.Cms.Lib.ViewModels
 {
     public class CultureViewModel :
         Swastika.Domain.Data.ViewModels.ViewModelBase<SiocCmsContext, SiocCulture, CultureViewModel>

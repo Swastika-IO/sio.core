@@ -11,9 +11,9 @@ using Microsoft.Extensions.Logging;
 using System.Security.Claims;
 using System.IdentityModel.Tokens.Jwt;
 using Microsoft.IdentityModel.Tokens;
-using Swastika.IO.Cms.Lib;
+using Swastika.Cms.Lib;
 using Swastika.IO.Identity.Identity.Models.AccountViewModels;
-using Swastika.IO.Cms.Lib.ViewModels;
+using Swastika.Cms.Lib.ViewModels;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using System.Security.Principal;
 using Swastika.IO.Domain.Core.ViewModels;
@@ -21,18 +21,18 @@ using Swastika.IO.Domain.Core.ViewModels;
 namespace Swastika.IO.Core.Controllers
 {
     [Route("api/{culture}/[controller]")]
-    public class AccountController : Controller
+    public class ApiAccountController : Controller
     {
         private readonly UserManager<ApplicationUser> _userManager;
         private readonly SignInManager<ApplicationUser> _signInManager;
         private readonly IEmailSender _emailSender;
         private readonly ILogger _logger;
 
-        public AccountController(
+        public ApiAccountController(
             UserManager<ApplicationUser> userManager,
             SignInManager<ApplicationUser> signInManager,
             IEmailSender emailSender,
-            ILogger<AccountController> logger)
+            ILogger<ApiAccountController> logger)
         {
             _userManager = userManager;
             _signInManager = signInManager;
@@ -626,7 +626,7 @@ namespace Swastika.IO.Core.Controllers
                     Refresh_token = vmRefreshToken.Id,
                     Token_type = SWCmsConstants.AuthConfiguration.TokenType,
                     Expires_in = SWCmsConstants.AuthConfiguration.AuthCookieExpiration,
-                    UserData = user,
+                    //UserData = user,
                     Issued = dtIssued,
                     Expires = dtExpired,
                 };

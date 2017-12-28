@@ -2,7 +2,7 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata;
 
-namespace Swastika.IO.Cms.Lib.Models
+namespace Swastika.Cms.Lib.Models
 {
     public partial class Stag_swastika_ioContext : DbContext
     {

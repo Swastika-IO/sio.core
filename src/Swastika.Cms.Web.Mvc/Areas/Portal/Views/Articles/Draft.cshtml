@@ -1,0 +1,92 @@
+@using Swastika.IO.Domain.Core.ViewModels;
+@model PaginationModel<Swastika.Cms.Lib.ViewModels.Info.InfoArticleViewModel>
+
+@{
+    ViewData["Title"] = "Draft Articles";
+    Layout = "~/Areas/Portal/Views/Shared/_Layout.cshtml";
+    int fromValue = Model.PageIndex * @Model.PageSize + 1;
+    int toValue = fromValue + Model.PageSize;
+    int prevPage = Model.PageIndex > 0 ? Model.PageIndex - 1 : 0;
+    int nextPage = Model.PageIndex == Model.TotalPage - 1 ? Model.PageIndex : Model.PageIndex + 1;
+    toValue = toValue > Model.TotalItems ? Model.TotalItems : toValue;
+}
+
+<div class="box-body no-padding">
+    <div class="mailbox-controls">
+        <!-- Check all button -->
+        <button type="button" class="btn btn-default btn-sm checkbox-toggle">
+            <i class="fa fa-square-o"></i>
+        </button>
+        <div class="btn-group">
+            <button type="button" class="btn btn-default btn-sm"><i class="fa fa-trash-o"></i></button>
+            <button type="button" class="btn btn-default btn-sm"><i class="fa fa-reply"></i></button>
+            <button type="button" class="btn btn-default btn-sm"><i class="fa fa-share"></i></button>
+        </div>
+        <!-- /.btn-group -->
+        <button type="button" class="btn btn-default btn-sm"><i class="fa fa-refresh"></i></button>
+        <div class="pull-right">
+            @fromValue  - @toValue
+            / @Model.TotalItems
+            <div class="btn-group">
+                <a asp-route-pageSize="@Model.PageSize" asp-route-pageIndex="@prevPage" class="btn btn-default btn-sm"><i class="fa fa-chevron-left"></i></a>
+                <a asp-route-pageSize="@Model.PageSize" asp-route-pageIndex="@nextPage" class="btn btn-default btn-sm"><i class="fa fa-chevron-right"></i></a>
+            </div>
+            <!-- /.btn-group -->
+        </div>
+        <!-- /.pull-right -->
+    </div>
+    <div class="table-responsive mailbox-messages" style="height:500px;">
+        <table class="table table-hover table-striped">
+            <thead>
+                <tr>
+                    <th></th>
+                    <th>
+                        Title
+                    </th>
+                    <th>
+                        Excerpt
+                    </th>
+                    <th>
+                        Type
+                    </th>
+                    <th>
+                        CreatedBy
+                    </th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+
+                @foreach (var item in Model.Items)
+                {
+                    <tr>
+                        <td><input type="checkbox"></td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Title)
+                        </td>
+                        <td>
+                            @Html.Raw(item.Excerpt)
+                        </td>
+
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Type)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.CreatedBy)
+                        </td>
+
+                        <td>
+                            <a  asp-area="Portal" asp-action="Restore" asp-route-id="@item.Id"
+                               class="btn btn-sm btn-success" data-popout="true" data-toggle="confirmation" data-singleton="true"> <i class="fa fa-retweet"></i> </a>
+                            
+                            <a  asp-area="Portal" asp-controller="Articles" asp-action="Delete" asp-route-id="@item.Id" 
+                               class="btn btn-sm btn-danger d-inline-block" data-popout="true" data-toggle="confirmation" data-singleton="true"> <i class="fa fa-remove"></i> </a>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+        <!-- /.table -->
+    </div>
+    <!-- /.mail-box-messages -->
+</div>

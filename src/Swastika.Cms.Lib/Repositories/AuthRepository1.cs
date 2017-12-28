@@ -5,7 +5,7 @@ using System;
 using System.Collections.Generic;
 using Swastika.Identity.Models;
 
-namespace Swastika.IO.Cms.Lib.Repositories
+namespace Swastika.Cms.Lib.Repositories
 {
     public class AuthRepository : UserManager<ApplicationUser>
     {

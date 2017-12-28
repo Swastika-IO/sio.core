@@ -11,7 +11,7 @@ using Microsoft.AspNetCore.Mvc.ViewFeatures;
 using Microsoft.AspNetCore.Routing;
 
 
-namespace Swastika.IO.Cms.Lib.Services
+namespace Swastika.Cms.Lib.Services
 {
     public interface IViewRenderService
     {

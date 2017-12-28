@@ -1,9 +1,9 @@
-﻿using Swastika.IO.Cms.Lib.Models;
+﻿using Swastika.Cms.Lib.Models;
 using System;
 using System.Collections.Generic;
 using Microsoft.EntityFrameworkCore.Storage;
 using Swastika.Common.Helper;
-using Swastika.IO.Cms.Lib.Repositories;
+using Swastika.Cms.Lib.Repositories;
 using Swastika.Domain.Core.Models;
 using System.Threading.Tasks;
 using System.Linq;
@@ -12,8 +12,11 @@ using System.ComponentModel.DataAnnotations;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Data.OData.Query;
 using Swastika.IO.Domain.Core.ViewModels;
+using Swastika.Cms.Lib.Services;
+using Swastika.IO.Cms.Lib.ViewModels.Info;
+using Swastika.IO.Cms.Lib.ViewModels.FrontEnd;
 
-namespace Swastika.IO.Cms.Lib.ViewModels
+namespace Swastika.Cms.Lib.ViewModels
 {
     public class ArticleBEViewModel :
         Swastika.Domain.Data.ViewModels.ViewModelBase<SiocCmsContext, SiocArticle, ArticleBEViewModel>
@@ -45,7 +48,7 @@ namespace Swastika.IO.Cms.Lib.ViewModels
 
         public List<CategoryArticleViewModel> Categories { get; set; }
         public List<ModuleArticleViewModel> Modules { get; set; } // Parent to Modules
-        public List<ArticleModuleListItemViewModel> ModuleNavs { get; set; } // Children Modules
+        public List<InfoArticleModuleViewModel> ModuleNavs { get; set; } // Children Modules
         public List<ModuleWithDataViewModel> ActivedModules { get; set; } // Children Modules
         public JArray ListTag { get; set; } = new JArray();
         public TemplateViewModel View { get; set; }
@@ -120,7 +123,7 @@ namespace Swastika.IO.Cms.Lib.ViewModels
         public override void ExpandView(SiocCmsContext _context = null, IDbContextTransaction _transaction = null)
         {
             IsClone = true;
-            ListSupportedCulture = IO.Cms.Lib.Services.ApplicationConfigService.ListSupportedCulture;
+            ListSupportedCulture = ApplicationConfigService.ListSupportedCulture;
 
             if (!string.IsNullOrEmpty(this.Tags))
             {
@@ -485,7 +488,7 @@ namespace Swastika.IO.Cms.Lib.ViewModels
         //        Specificulture = desSpecificulture,
         //        Categories = new List<CategoryArticleViewModel>(),
         //        Modules = new List<ModuleArticleViewModel>(),
-        //        ModuleNavs = new List<ArticleModuleListItemViewModel>()
+        //        ModuleNavs = new List<InfoArticleModuleViewModel>()
         //    };
 
 
@@ -635,7 +638,7 @@ namespace Swastika.IO.Cms.Lib.ViewModels
                                 Specificulture = supportedCulture.Specificulture,
                                 Categories = new List<CategoryArticleViewModel>(),
                                 Modules = new List<ModuleArticleViewModel>(),
-                                ModuleNavs = new List<ArticleModuleListItemViewModel>()
+                                ModuleNavs = new List<InfoArticleModuleViewModel>()
                             };
                             foreach (var cateArticle in this.Categories.Where(p => p.IsActived))
                             {
@@ -1021,7 +1024,7 @@ namespace Swastika.IO.Cms.Lib.ViewModels
         public bool IsDeleted { get; set; }
         public string Tags { get; set; }
 
-        public List<ArticleModuleFEViewModel> Modules { get; set; }
+        public List<FEArticleModuleViewModel> Modules { get; set; }
 
         public string Domain { get; set; } = "/";
         public string ImageUrl

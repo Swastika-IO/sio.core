@@ -1,12 +1,12 @@
 ﻿using Swastika.Common;
-using Swastika.IO.Cms.Lib.ViewModels;
+using Swastika.Cms.Lib.ViewModels;
 using Swastika.IO.Common.Helper;
 using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 
-namespace Swastika.IO.Cms.Lib.Repositories
+namespace Swastika.Cms.Lib.Repositories
 {
     public class FileRepository
     {

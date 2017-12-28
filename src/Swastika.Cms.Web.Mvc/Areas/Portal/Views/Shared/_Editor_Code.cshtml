@@ -1,0 +1,49 @@
+@*
+    For more information on enabling MVC for empty projects, visit http://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@model Swastika.Cms.Lib.ViewModels.TemplateViewModel
+@inject UserManager<ApplicationUser> UserManager
+
+@{
+    ViewBag.IsAdmin = true;// UserManager.GetUserName(User) == "administrator";
+    string isHidden = ViewBag.IsAdmin ? string.Empty : "hidden";
+}
+@{
+    List<Swastika.Cms.Lib.ViewModels.TemplateViewModel> files = (List<Swastika.Cms.Lib.ViewModels.TemplateViewModel>)this.ViewData["Files"];
+    files = files ?? new List<Swastika.Cms.Lib.ViewModels.TemplateViewModel>();
+    string name = (string)this.ViewData["Name"];
+    string inpName_Folder = string.IsNullOrEmpty(name) ? "FileFolder" : string.Format("{0}.FileFolder", name);
+    string inpId_Folder = string.IsNullOrEmpty(name) ? "FileFolder" : string.Format("{0}_FileFolder", name);
+
+    string inpName_Filename = string.IsNullOrEmpty(name) ? "Filename" : string.Format("{0}.Filename", name);
+    string inpId_Filename = string.IsNullOrEmpty(name) ? "Filename" : string.Format("{0}_Filename", name);
+
+    string inpName_Content = string.IsNullOrEmpty(name) ? "Content" : string.Format("{0}.Content", name);
+    string inpId_Content = string.IsNullOrEmpty(name) ? "Content" : string.Format("{0}_Content", name);
+
+
+    var templates = new SelectList(files, "Content", "Filename");
+}
+<div>
+    @if (files.Count > 0)
+    {
+
+        <select asp-for="Filename" asp-items="@templates" id="sel-template" class="form-control">
+            <option>--- Seclect Template Layout ---</option>
+            @if (ViewBag.IsAdmin)
+            {
+                <option>[+] Create New template</option>
+            }
+        </select>
+
+    }
+    @*<input id="@inputId" name="@inputName" value="@Model.Filename" class="form-control sel-filename"/>*@
+    <input type="hidden" id="@inpId_Folder" name="@inpName_Folder" value="@Model.FileFolder">
+    
+    
+        <input class="form-control sel-filename" type="text" id="@inpId_Filename" name="@inpName_Filename" value="@Model.Filename">
+        <div class="form-control @isHidden" id="code-editor">@Model.Content</div>
+  
+    <input class="form-control code-content" type="hidden" id="@inpId_Content" name="@inpName_Content" value="@Model.Content">
+
+</div>

@@ -1,0 +1,213 @@
+@using Swastika.Cms.Lib.ViewModels
+@using Swastika.Cms.Lib.ViewModels
+@{
+    ViewData["Title"] = "Search Result";
+    Layout = "~/Areas/Portal/Views/Shared/_Layout.cshtml";
+    var articles = (List<InfoArticleViewModel>)ViewData["Articles"];
+    var pages = (List<CategoryListItemViewModel>)ViewData["Pages"];
+    var modules = (List<ModuleListItemViewModel>)ViewData["Modules"];
+
+    articles = articles ?? new List<InfoArticleViewModel>();
+    pages = pages ?? new List<CategoryListItemViewModel>();
+    modules = modules ?? new List<ModuleListItemViewModel>();
+}
+
+
+@if (articles.Count > 0)
+{
+
+    <div class="box box-primary">
+        <div class="box-header with-border">
+            <h3 class="box-title">@LocalizerService.GetLocalString("Articles", ViewBag.culture)</h3>
+            <div class="box-tools">
+                <button type="button" class="btn btn-box-tool" data-widget="collapse">
+                    <i class="fa fa-minus"></i>
+                </button>
+            </div>
+        </div>
+        <div class="box-body">
+            <table class="table table-hover table-striped dataTable">
+                <thead>
+                    <tr>
+                        <th>
+                            Title
+                        </th>
+                        <th>
+                            Excerpt
+                        </th>
+                        <th>
+                            Type
+                        </th>
+                        <th>
+                            CreatedBy
+                        </th>
+                        <th></th>
+                    </tr>
+                </thead>
+
+                <tbody>
+                    @foreach (var item in articles)
+                {
+                <tr>
+                    <td class="col-md-3">
+                        @Html.DisplayFor(modelItem => item.Title)
+                    </td>
+                    <td class="col-md-4">
+                        @Html.Raw(item.Excerpt)
+                    </td>
+
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Type)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.CreatedBy)
+                    </td>
+
+                    <td>
+                        <div class="btn-block">
+                            <a asp-controller="Articles" asp-action="Edit" asp-route-id="@item.Id" asp-route-categoryId="@ViewBag.categoryId"
+                               class="btn btn-sm btn-warning d-inline-block "><i class="fa fa-pencil"></i></a>
+                            <a asp-area="" asp-controller="Home" asp-action="ArticleDetails" asp-route-id="@item.Id" asp-route-SeoTitle="@item.SeoTitle"
+                               target="_blank" class="btn btn-sm btn-info"><i class="fa fa-eye"></i></a>
+                            <a asp-controller="Articles" asp-action="Recycle" asp-route-id="@item.Id" class="btn btn-sm btn-danger d-inline-block" data-popout="true" data-toggle="confirmation" data-singleton="true"> <i class="fa fa-remove"></i> </a>
+                        </div>
+                    </td>
+                </tr>
+                }
+                </tbody>
+
+                <tbody></tbody>
+            </table>
+
+        </div>
+    </div>
+
+}
+@if (pages.Count > 0)
+{
+    <div class="box box-primary">
+        <div class="box-header with-border">
+            <h3 class="box-title">@LocalizerService.GetLocalString("Pages", ViewBag.culture)</h3>
+            <div class="box-tools">
+                <button type="button" class="btn btn-box-tool" data-widget="collapse">
+                    <i class="fa fa-minus"></i>
+                </button>
+            </div>
+        </div>
+        <div class="box-body">
+            <table class="table table-hover table-striped dataTable">
+                <thead>
+                    <tr>
+                        <th></th>
+                        <th class="col-md-3">
+                            Title
+                        </th>
+                        <th class="col-md-4">
+                            Description
+                        </th>
+                        <th>
+                            Type
+                        </th>
+                        <th>
+                            CreatedBy
+                        </th>
+                        <th>
+                            Priority
+                        </th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in pages)
+                {
+                <tr>
+                    <td><input type="checkbox"></td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Title)
+                    </td>
+                    <td>
+                        @Html.Raw(item.Excerpt)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Type)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.CreatedBy)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Priority)
+                    </td>
+                    <td>
+                        <a asp-controller="Pages" asp-action="Edit" asp-route-id="@item.Id" class="btn btn-sm btn-warning"> <i class="fa fa-pencil"></i></a>
+                        <a asp-controller="Pages" asp-area="" asp-controller="Home" asp-action="Home" asp-route-pageName="@item.SeoTitle"
+                           target="_blank" class="btn btn-sm btn-info"><i class="fa fa-eye"></i></a>
+                        <a asp-controller="Pages" asp-action="Delete" asp-route-id="@item.Id" class="btn btn-sm btn-danger" data-popout="true" data-toggle="confirmation" data-singleton="true"> <i class="fa fa-remove"></i> </a>
+                    </td>
+                </tr>
+                }
+                </tbody>
+            </table>
+        </div>
+    </div>
+}
+
+@if (modules.Count > 0)
+{
+    <div class="box box-primary">
+        <div class="box-header with-border">
+            <h3 class="box-title">@LocalizerService.GetLocalString("Modules", ViewBag.culture)</h3>
+            <div class="box-tools">
+                <button type="button" class="btn btn-box-tool" data-widget="collapse">
+                    <i class="fa fa-minus"></i>
+                </button>
+            </div>
+        </div>
+        <div class="box-body">
+            <div class="table-responsive mailbox-messages" style="height:500px;">
+                <table class="table table-hover table-striped dataTable">
+                    <thead>
+                        <tr>
+                            <th></th>
+                            <th>
+                                Name
+                            </th>
+                            <th>
+                                Template
+                            </th>
+                            <th>
+                                Title
+                            </th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+
+                        @foreach (var item in modules)
+                {
+                            <tr>
+                                <td><input type="checkbox"></td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Name)
+                                </td>
+                                <td>
+                                    @Html.Raw(item.Template)
+                                </td>
+
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Title)
+                                </td>
+                                <td>
+                                    <a asp-controller="Module" asp-action="Edit" asp-route-id="@item.Id" class="btn btn-sm btn-warning"> <i class="fa fa-pencil"></i></a>
+                                    <a asp-controller="Module" asp-action="Details" asp-route-id="@item.Id"
+                                       class="btn btn-sm btn-info"><i class="fa fa-eye"></i></a>
+                                    <a asp-controller="Module" asp-action="Delete" asp-route-id="@item.Id" class="btn btn-sm btn-danger" data-popout="true" data-toggle="confirmation" data-singleton="true" data-btn-ok-class="btn-danger btn-sm" data-btn-cancel-class="btn-success btn-sm" data-content="This can be undo!"> <i class="fa fa-remove"></i> </a>
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+                <!-- /.table -->
+            </div>
+        </div>
+    </div>
+}

@@ -6,7 +6,7 @@ using System.Linq;
 using System.Security.Cryptography;
 using System.Text;
 
-namespace Swastika.IO.Cms.Lib
+namespace Swastika.Cms.Lib
 {
     public class SWCmsHelper
     {

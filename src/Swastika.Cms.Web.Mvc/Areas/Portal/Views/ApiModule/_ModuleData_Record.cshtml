@@ -1,0 +1,22 @@
+﻿@model Swastika.Cms.Lib.ViewModels.ModuleDataViewModel
+
+@{
+    <tr id="data-@Model.Id" dataId="data-@Model.Id">
+        @foreach (var col in Model.Columns.Where(c => c.IsDisplay))
+        {
+            var prop = Model.GetDataProperty(col.Name);
+            <td>
+                @{Html.RenderPartial("_ViewByFieldType",
+                new ViewDataDictionary(this.Vi‌​ewData) { { "Model", prop } });
+                }
+            </td>
+                    }
+        <td>
+            <input type="checkbox" class="cb-active-data" dataId="@Model.Id"/>
+        </td>
+        <td>
+            <a dataId="@Model.Id" class="btn-edit-data btn btn-sm btn-warning"><i class="fa fa-pencil"></i> </a>
+        </td>
+    </tr>
+}
+

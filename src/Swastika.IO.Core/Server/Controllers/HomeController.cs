@@ -1,6 +1,6 @@
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using Swastika.IO.Cms.Lib.Services;
+using Swastika.Cms.Lib.Services;
 using Swastika.IO.Core.Server.Helpers;
 using System;
 using System.Diagnostics;

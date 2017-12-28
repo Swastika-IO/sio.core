@@ -1,20 +1,21 @@
-﻿using Swastika.IO.Cms.Lib.Models;
+﻿using Swastika.Cms.Lib.Models;
 using Swastika.Domain.Data.ViewModels;
 using System;
 using System.Collections.Generic;
 using Microsoft.EntityFrameworkCore.Storage;
-using static Swastika.IO.Cms.Lib.SWCmsConstants;
+using static Swastika.Cms.Lib.SWCmsConstants;
 using Swastika.Domain.Core.Models;
 using Microsoft.Data.OData.Query;
-using Swastika.IO.Cms.Lib.Services;
+using Swastika.Cms.Lib.Services;
 using Swastika.Common.Helper;
 using Newtonsoft.Json.Linq;
-using Swastika.IO.Cms.Lib.Repositories;
+using Swastika.Cms.Lib.Repositories;
 using System.Linq;
 using Microsoft.EntityFrameworkCore;
 using Swastika.IO.Domain.Core.ViewModels;
+using Swastika.Cms.Lib.ViewModels.Info;
 
-namespace Swastika.IO.Cms.Lib.ViewModels
+namespace Swastika.Cms.Lib.ViewModels
 {
     public class CategoryListItemViewModel : ViewModelBase<SiocCmsContext, SiocCategory, CategoryListItemViewModel>
     {
@@ -64,7 +65,7 @@ namespace Swastika.IO.Cms.Lib.ViewModels
             {
                 Childs = getChilds.Data;
             }
-            var getSubArticles = ArticleListItemViewModel.GetModelListByCategory(
+            var getSubArticles = InfoArticleViewModel.GetModelListByCategory(
                 Id, Specificulture, SWCmsConstants.Default.OrderBy, OrderByDirection.Ascending
                 , _context: _context, _transaction: _transaction);
             if (getSubArticles.IsSucceed)
@@ -104,7 +105,7 @@ namespace Swastika.IO.Cms.Lib.ViewModels
 
         //Views
         public List<ModuleWithDataViewModel> Modules { get; set; } // Get All Module
-        public PaginationModel<ArticleListItemViewModel> Articles { get; set; } // Get Articles with paging
+        public PaginationModel<InfoArticleViewModel> Articles { get; set; } // Get Articles with paging
 
         public CategoryFEViewModel(SiocCategory model, SiocCmsContext _context = null, IDbContextTransaction _transaction = null) : base(model, _context, _transaction)
         {
@@ -180,10 +181,10 @@ namespace Swastika.IO.Cms.Lib.ViewModels
                 , _context, _transaction);
             if (getNavs.IsSucceed)
             {
-                var lstArticles = new List<ArticleListItemViewModel>();
+                var lstArticles = new List<InfoArticleViewModel>();
                 foreach (var nav in getNavs.Data.Items)
                 {
-                    var getArticle = ArticleListItemViewModel.Repository.GetSingleModel(
+                    var getArticle = InfoArticleViewModel.Repository.GetSingleModel(
                         m => m.Id == nav.ArticleId && nav.Specificulture == Specificulture
                         , _context, _transaction);
                     if (getArticle.IsSucceed)
@@ -191,7 +192,7 @@ namespace Swastika.IO.Cms.Lib.ViewModels
                         lstArticles.Add(getArticle.Data);
                     }
                 }
-                Articles = new PaginationModel<ArticleListItemViewModel>()
+                Articles = new PaginationModel<InfoArticleViewModel>()
                 {
                     PageIndex = getNavs.Data.PageIndex,
                     PageSize = getNavs.Data.PageSize,
@@ -307,7 +308,7 @@ namespace Swastika.IO.Cms.Lib.ViewModels
         public override void ExpandView(SiocCmsContext _context = null, IDbContextTransaction _transaction = null)
         {
             IsClone = true;
-            ListSupportedCulture = IO.Cms.Lib.Services.ApplicationConfigService.ListSupportedCulture;
+            ListSupportedCulture = ApplicationConfigService.ListSupportedCulture;
             this.ListSupportedCulture.ForEach(c => c.IsSupported =
            (Id == 0 && c.Specificulture == Specificulture)
            || Repository.CheckIsExists(a => a.Id == Id && a.Specificulture == c.Specificulture, _context, _transaction)

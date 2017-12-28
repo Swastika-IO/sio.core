@@ -1,0 +1,75 @@
+﻿@using Swastika.IO.Domain.Core.ViewModels;
+@model List<Swastika.Cms.Lib.ViewModels.FileViewModel>
+@{
+    ViewData["Title"] = "Blank Template";
+    ViewData["Description"] = "Manage site navigations and menus";
+    var lst = new SelectList(Enum.GetNames(typeof(Swastika.Cms.Lib.SWCmsConstants.TemplateFolder)).ToList());
+    string folder = ViewBag.folder;
+}
+
+<div class="box-body no-padding">
+    <form asp-action="">
+        <a asp-action="EditTemplate" asp-route-folder="@folder" asp-route-name="" class="btn btn-sm btn-success d-inline-block "> <i class="fa fa-plus"></i> Add</a>
+        <div class="form-group">
+            <div class="col-md-1">
+                <label class="col-md-3">Folder </label>
+            </div>
+            <div class="col-md-11">
+                <select asp-for="@folder" class="form-control" asp-items="@lst" onchange="submit()"></select>
+            </div>
+        </div>
+        <div class="form-group">            
+            <div class="col-md-12">
+                <div class="table-responsive mailbox-messages">
+                    <table class="table table-hover table-striped">
+                        <thead>
+                            <tr>
+                                <th></th>
+                                <th class="col-sm-2">
+                                    Folder
+                                </th>
+                                <th class="col-sm-2">
+                                    Name
+                                </th>
+                                <th class="col-sm-6">
+                                    Content
+                                </th>
+                                <th></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+
+                            @foreach (var item in Model)
+                    {
+                    <tr>
+                        <td><input type="checkbox"></td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.FileFolder)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Filename)
+                        </td>
+
+                        <td>
+                            <div class="form-control code-editor" style="height:150px;">@item.Content</div>
+                        </td>
+                        <td>
+
+                        <td>
+                            <div class="btn-block">
+                                <a asp-action="EditTemplate" asp-route-folder="@item.FileFolder" asp-route-name="@item.Filename" class="btn btn-sm btn-warning d-inline-block "> <i class="fa fa-pencil"></i></a>
+                                @*<a asp-area="" asp-controller="Home" asp-action="ArticleDetails" asp-route-id="@item.Id" asp-route-SeoTitle="@item.SeoTitle"
+                                    target="_blank" class="btn btn-sm btn-info"> <i class="fa fa-eye"></i> </a>*@
+                                <a asp-action="DeleteTemplate" asp-route-folder="@item.FileFolder" asp-route-name="@item.Filename" class="btn btn-sm btn-danger d-inline-block" data-popout="true" data-toggle="confirmation" data-singleton="true"> <i class="fa fa-remove"></i> </a>
+                            </div>
+                        </td>
+                    </tr>
+                    }
+                        </tbody>
+                    </table>
+                    <!-- /.table -->
+                </div>
+            </div>
+        </div>
+    </form>
+</div>

@@ -1,24 +1,19 @@
-﻿using Microsoft.AspNetCore.Authentication.Cookies;
-using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.IdentityModel.Tokens;
+using Swastika.Cms.Lib;
 using Swastika.Identity.Data;
 using Swastika.Identity.Models;
 using Swastika.Identity.Services;
-using Swastika.IO.Cms.Lib;
 using Swastika.IO.Identity.Identity.Services;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Swastika.IO.Admin
 {
-    public partial class Startup
+  public partial class Startup
     {
         public void ConfigureApiServices(IServiceCollection services)
         {

@@ -1,0 +1,19 @@
+@*
+    For more information on enabling MVC for empty projects, visit http://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@model Swastika.Cms.Lib.ViewModels.ModuleViewModel
+
+@if (Model != null && Model.Data.TotalItems > 0)
+{
+    <ul class="social-share">
+        @foreach (var item in Model.Data.Items)
+        {
+            <li><a target="_blank" href="@item.GetStringValue("Url")"><i class="@item.GetStringValue("Icon")"></i></a></li>
+        }
+    </ul>
+}
+
+
+
+
+

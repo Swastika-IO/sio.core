@@ -1,16 +1,9 @@
 ﻿using Microsoft.EntityFrameworkCore.Storage;
-using Newtonsoft.Json.Linq;
-using Swastika.IO.Cms.Lib.Models;
-using Swastika.Common;
+using Swastika.Cms.Lib.Models;
 using Swastika.Domain.Data.ViewModels;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using Swastika.IO.Cms.Lib.Services;
-using Swastika.Domain.Core.Models;
 using Swastika.IO.Domain.Core.ViewModels;
 
-namespace Swastika.IO.Cms.Lib.ViewModels
+namespace Swastika.Cms.Lib.ViewModels
 {
     public class ModuleAttributeValueViewModel
         : ViewModelBase<SiocCmsContext, SiocModuleAttributeValue, ModuleAttributeValueViewModel>

@@ -1,14 +1,16 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Storage;
-using Swastika.IO.Cms.Lib.Models;
-using Swastika.IO.Cms.Lib.ViewModels;
+using Swastika.Cms.Lib.Models;
+using Swastika.Cms.Lib.ViewModels;
 using Swastika.Domain.Core.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using Swastika.IO.Domain.Core.ViewModels;
+using Swastika.Cms.Lib.ViewModels.Info;
+using Swastika.Cms.Lib.ViewModels.BackEnd;
 
-namespace Swastika.IO.Cms.Lib.Repositories
+namespace Swastika.Cms.Lib.Repositories
 {
     public class CommonRepository
     {
@@ -252,7 +254,7 @@ namespace Swastika.IO.Cms.Lib.Repositories
         #region Article-Module Navigator
 
 
-        public RepositoryResponse<List<ArticleModuleListItemViewModel>> GetArticleModuleNav(string articleId, string specificulture
+        public RepositoryResponse<List<BEArticleModuleViewModel>> GetArticleModuleNav(string articleId, string specificulture
             , SiocCmsContext _context = null, IDbContextTransaction _transaction = null)
         {
             SiocCmsContext context = _context ?? new SiocCmsContext();
@@ -262,7 +264,7 @@ namespace Swastika.IO.Cms.Lib.Repositories
                 var result = context.SiocModule.Include(cp => cp.SiocArticleModule)
                     .Where(a => a.Specificulture == specificulture 
                     && a.Type == (int)SWCmsConstants.ModuleType.SubArticle)
-                     .Select(p => new ArticleModuleListItemViewModel(
+                     .Select(p => new BEArticleModuleViewModel(
                          new SiocArticleModule()
                          {
                              ArticleId = articleId,
@@ -276,7 +278,7 @@ namespace Swastika.IO.Cms.Lib.Repositories
                          IsActived = p.SiocArticleModule.Count(cp => cp.ArticleId == articleId && cp.Specificulture == specificulture) > 0,
                          Description = p.Title
                      });
-                return new RepositoryResponse<List<ArticleModuleListItemViewModel>>()
+                return new RepositoryResponse<List<BEArticleModuleViewModel>>()
                 {
                     IsSucceed = true,
                     Data = result.ToList()
@@ -288,7 +290,7 @@ namespace Swastika.IO.Cms.Lib.Repositories
                 {
                     transaction.Rollback();
                 }
-                return new RepositoryResponse<List<ArticleModuleListItemViewModel>>()
+                return new RepositoryResponse<List<BEArticleModuleViewModel>>()
                 {
                     IsSucceed = true,
                     Data = null,
@@ -306,7 +308,7 @@ namespace Swastika.IO.Cms.Lib.Repositories
             }
         }
 
-        public async System.Threading.Tasks.Task<RepositoryResponse<List<ArticleModuleListItemViewModel>>> GetArticleModuleNavAsync(string articleId, string specificulture
+        public async System.Threading.Tasks.Task<RepositoryResponse<List<InfoArticleModuleViewModel>>> GetArticleModuleNavAsync(string articleId, string specificulture
            , SiocCmsContext _context = null, IDbContextTransaction _transaction = null)
         {
             SiocCmsContext context = _context ?? new SiocCmsContext();
@@ -316,7 +318,7 @@ namespace Swastika.IO.Cms.Lib.Repositories
                 var result = context.SiocModule.Include(cp => cp.SiocArticleModule)
                     .Where(a => a.Specificulture == specificulture
                     && a.Type == (int)SWCmsConstants.ModuleType.SubArticle)
-                    .Select(p => new ArticleModuleListItemViewModel(
+                    .Select(p => new InfoArticleModuleViewModel(
                         new SiocArticleModule()
                         {
                             ArticleId = articleId,
@@ -330,7 +332,7 @@ namespace Swastika.IO.Cms.Lib.Repositories
                         IsActived = p.SiocArticleModule.Count(cp => cp.ArticleId == articleId && cp.Specificulture == specificulture) > 0,
                         Description = p.Title
                     });
-                return new RepositoryResponse<List<ArticleModuleListItemViewModel>>()
+                return new RepositoryResponse<List<InfoArticleModuleViewModel>>()
                 {
                     IsSucceed = true,
                     Data = await result.ToListAsync()
@@ -342,7 +344,7 @@ namespace Swastika.IO.Cms.Lib.Repositories
                 {
                     transaction.Rollback();
                 }
-                return new RepositoryResponse<List<ArticleModuleListItemViewModel>>()
+                return new RepositoryResponse<List<InfoArticleModuleViewModel>>()
                 {
                     IsSucceed = true,
                     Data = null,

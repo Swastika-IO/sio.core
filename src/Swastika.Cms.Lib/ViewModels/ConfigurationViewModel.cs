@@ -1,10 +1,10 @@
 ﻿using Microsoft.EntityFrameworkCore.Storage;
 using Swastika.Domain.Data.ViewModels;
-using Swastika.IO.Cms.Lib.Models;
-using Swastika.IO.Cms.Lib.Services;
+using Swastika.Cms.Lib.Models;
+using Swastika.Cms.Lib.Services;
 using System.ComponentModel.DataAnnotations;
 
-namespace Swastika.IO.Cms.Lib.ViewModels
+namespace Swastika.Cms.Lib.ViewModels
 {
     public class ConfigurationViewModel:
         ViewModelBase

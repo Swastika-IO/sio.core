@@ -1,0 +1,47 @@
+﻿@model Swastika.Cms.Lib.ViewModels.ModuleDataViewModel
+
+@{
+    var types = Html.GetEnumSelectList<Swastika.Cms.Lib.SWCmsConstants.DataType>();
+}
+
+<div class="box-body">
+    <div class="form-horizontal">
+        <input type="hidden" name="Id" value="@Model.Id" />
+        <input type="hidden" asp-for="ModuleId" />
+        <input type="hidden" asp-for="Specificulture" />
+        <input type="hidden" asp-for="Fields" />
+        <input type="hidden" asp-for="CreatedDate" />
+        @foreach (var col in Model.Columns)
+            {
+
+            }
+        @for (int i = 0; i < Model.DataProperties.Count; i++)
+            {
+
+                Html.RenderPartial("_Editor_ModuleData",
+                new ViewDataDictionary(this.Vi‌​ewData) {
+                {
+                "Model", Model.DataProperties[i]
+                },
+                {
+
+                "Name","DataProperties"
+                },
+                {
+
+                "Index",i
+                },
+                {
+
+                "DataType",Model.DataProperties[i].DataType
+                }
+                }
+                );
+
+            <input type="hidden" asp-for="@Model.DataProperties[i].Name" class="form-control" />
+            <input type="hidden" asp-for="@Model.DataProperties[i].DataType" class="form-control" />
+
+        }       
+    </div>
+</div>
+<!-- /.box-body -->

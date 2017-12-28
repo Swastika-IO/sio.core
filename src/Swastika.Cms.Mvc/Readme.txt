@@ -1,1 +1,0 @@
-Ref Localization: https://github.com/rwwilden/AspNet5Localization/tree/develop

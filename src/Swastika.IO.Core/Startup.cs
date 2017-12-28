@@ -3,10 +3,10 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.SpaServices.Webpack;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using Swastika.IO.Cms.Lib.Services;
 using System;
 using Swashbuckle.AspNetCore.Swagger;
-using ChatRoom.Lib.SignalR.Hubs;
+using Messenger.Lib.SignalR.Hubs;
+using Swastika.Cms.Lib.Services;
 
 namespace Swastika.IO.Admin
 {

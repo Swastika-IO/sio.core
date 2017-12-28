@@ -1,0 +1,57 @@
+@model Swastika.Cms.Lib.ViewModels.ModuleWithDataViewModel
+
+@if (Model != null && Model.Data.TotalItems > 0)
+{
+    string cl = "active";
+    <div class="row">
+        <div class="col-xs-12 col-sm-12">
+            <h2>Tab</h2>
+            <div class="tab-wrap">
+                <div class="media">
+                    <div class="parrent pull-left">
+                        <ul class="nav nav-tabs nav-stacked">
+                            @foreach (var item in Model.Data.Items)
+                            {
+                                string href = string.Format("#tab{0}", Model.Data.Items.IndexOf(item));
+                                <li class="@cl"><a href="@href" data-toggle="tab" class="analistic-01">@item.GetStringValue("Title")</a></li>
+                                cl = string.Empty;
+                            }
+                        </ul>
+                    </div>
+
+                    <div class="parrent media-body">
+                        <div class="tab-content">
+                            @{
+                                cl = "active";
+                                foreach (var item in Model.Data.Items)
+                                {
+                                    string id = string.Format("tab{0}", Model.Data.Items.IndexOf(item));
+                                    <div class="tab-pane @cl" id="@id">
+
+                                        @if (!string.IsNullOrEmpty(item.GetStringValue("Image")))
+                                        {
+                                            <div class="pull-left" style="max-width:200px; margin-right:20px;">
+                                                <img class="img-responsive" src="@item.GetStringValue("Image")">
+                                            </div>
+                                        }
+                                        <div class="media-body">
+                                            <p>@item.GetStringValue("Description")</p>
+
+                                        </div>
+                                    </div>
+                                    cl = string.Empty;
+                                }
+                            }
+
+                        </div>
+                        <!--/.tab-content-->
+                    </div>
+                    <!--/.media-body-->
+                </div>
+                <!--/.media-->
+            </div>
+            <!--/.tab-wrap-->
+        </div>
+        <!--/.col-sm-6-->
+    </div>
+                                }

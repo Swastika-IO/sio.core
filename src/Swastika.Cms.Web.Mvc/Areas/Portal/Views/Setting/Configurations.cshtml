@@ -1,0 +1,75 @@
+﻿@using Swastika.Domain.Core.Models
+@model PaginationModel<Swastika.Cms.Lib.ViewModels.ConfigurationViewModel>
+@{
+    ViewData["Title"] = "Blank Template";
+    ViewData["Description"] = "Manage site navigations and menus";
+    string culture = ViewContext.RouteData.Values["culture"].ToString();
+    //int fromValue = Model.PageIndex * @Model.PageSize + 1;
+    //int toValue = fromValue + Model.PageSize;
+    //int prevPage = Model.PageIndex > 0 ? Model.PageIndex - 1 : 0;
+    //int nextPage = Model.PageIndex == Model.TotalPage - 1 ? Model.PageIndex : Model.PageIndex + 1;
+    //toValue = toValue > Model.TotalItems ? Model.TotalItems : toValue;
+
+}
+
+<div class="box-body">
+    <table class="table table-hover table-striped dataTable">
+        <thead>
+            <tr>
+                <th>
+                    @LocalizerService.GetLocalString("Keyword", culture)
+                </th>
+                <th>
+                    @LocalizerService.GetLocalString("Specificulture", culture)
+                </th>
+                <th>
+                    @LocalizerService.GetLocalString("Description", culture)
+                </th>
+                <th>
+                    @LocalizerService.GetLocalString("Value", culture)
+                </th>
+                <th>
+                    @LocalizerService.GetLocalString("DataType", culture)
+                </th>
+
+                <th></th>
+            </tr>
+        </thead>
+
+        <tbody>
+            @foreach (var item in Model.Items)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Keyword)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Specificulture)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Description)
+                    </td>
+                    <td>
+                        @{Html.RenderPartial("_ViewByFieldType",
+                new ViewDataDictionary(this.Vi‌​ewData) { { "DataType", item.DataType }, { "Value", item.Value } });
+                        }
+                    </td>
+                    <td>
+                        @Enum.GetName(typeof(Swastika.Cms.Lib.SWCmsConstants.DataType), item.DataType)
+                    </td>
+                    <td>
+                        <a asp-action="EditConfiguration" asp-route-id="@item.Keyword" class="btn btn-sm btn-warning">
+                            <i class="fa fa-pencil"></i>
+                        </a>
+                        @*<a asp-action="Details" asp-route-id="@item.Id" class="btn btn-sm btn-info"> <i class="fa fa-eye"></i> </a>*@
+                        <a asp-action="DeleteConfiguration" asp-route-id="@item.Keyword"
+                           class="btn btn-sm btn-danger" data-popout="true" data-toggle="confirmation" data-singleton="true">
+                            <i class="fa fa-remove"></i>
+                        </a>
+                    </td>
+                </tr>
+                            }
+        </tbody>
+    </table>
+
+</div>

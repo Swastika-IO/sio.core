@@ -1,0 +1,58 @@
+﻿@model Swastika.Cms.Lib.ViewModels.ModuleDataViewModel
+
+@{
+    var types = Html.GetEnumSelectList<Swastika.Cms.Lib.SWCmsConstants.DataType>();
+}
+
+<div class="box box-primary">
+    <div class="box-header with-border">
+        <h3 class="box-title">@ViewData["Title"]</h3>
+    </div>
+    <!-- /.box-header -->
+    <div class="box-body">
+        <div class="form-horizontal">
+            <input type="hidden" name="Id" value="@Model.Id" />
+            <input type="hidden" asp-for="ModuleId" />
+            <input type="hidden" asp-for="ArticleId" />
+            <input type="hidden" asp-for="Specificulture" />
+            <input type="hidden" asp-for="Fields" />
+            <input type="hidden" asp-for="CreatedDate" />
+          
+            <div class="form-group">
+                <div class="col-md-2">
+                    <label asp-for="Priority" class="control-label"></label>
+                </div>
+                <div class="col-md-10">
+                    <input class="form-control col-md-10" asp-for="Priority" />
+                    <span asp-validation-for="Priority" class="text-danger"></span>
+                </div>
+            </div>
+            
+            
+            @for (int i = 0; i < Model.DataProperties.Count; i++)
+            {
+
+                Html.RenderPartial("_Editor_ModuleData",
+                new ViewDataDictionary(this.Vi‌​ewData) {
+                {
+                "Model", Model.DataProperties[i]
+                },
+                {
+
+                "Name","DataProperties"
+                },
+                {
+
+                "Index",i
+                }
+                }
+                );
+                <input type="hidden" asp-for="@Model.DataProperties[i].Value" class="form-control" />
+                <input type="hidden" asp-for="@Model.DataProperties[i].Name" class="form-control" />
+                <input type="hidden" asp-for="@Model.DataProperties[i].DataType" class="form-control" />
+            }
+        </div>
+
+    </div>
+    <!-- /.box-body -->
+</div>

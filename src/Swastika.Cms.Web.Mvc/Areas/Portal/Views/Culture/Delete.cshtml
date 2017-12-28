@@ -1,0 +1,54 @@
+@model Swastika.Cms.Lib.ViewModels.CultureViewModel
+
+@{
+    ViewData["Title"] = "Delete";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<h2>Delete</h2>
+
+<h3>Are you sure you want to delete this?</h3>
+<div>
+    <h4>TtsCulture</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <input type="hidden" asp-for="Specificulture" />
+        <dt>
+            @Html.DisplayNameFor(model => model.Lcid)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Lcid)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Alias)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Alias)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.FullName)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.FullName)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Description)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Description)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Icon)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Icon)
+        </dd>
+    </dl>
+    
+    <form asp-action="Delete">
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-default" /> |
+            <a asp-action="Index">Back to List</a>
+        </div>
+    </form>
+</div>

@@ -1,0 +1,66 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit http://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@model List<Swastika.Cms.Lib.ViewModels.CategoryListItemViewModel>
+
+
+<footer id="footer" class="midnight-blue">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12">
+                &copy; 2013 <a target="_blank" href="http://shapebootstrap.net/" title="Free Twitter Bootstrap WordPress Themes and HTML templates">ShapeBootstrap</a>. All Rights Reserved.
+            </div>
+            <div class="col-sm-12">
+                <ul class="navbar-right">
+                    @await Html.PartialAsync("_LoginPartial")
+                </ul>
+                <ul class="pull-right">
+                    @foreach (var cate in Model)
+                    {
+                        string action = cate.Type.ToString();
+                        switch (cate.Type)
+                        {
+                            case Swastika.Cms.Lib.SWCmsConstants.CateType.Blank:
+                                string pageNames = string.Join(",", cate.Childs.Select(c => c.SeoTitle).ToList());
+                                <li is-active-menu asp-controllers="Home" asp-action=",Home" asp-route-pagenames="@pageNames" pages="@pageNames" class="dropdown">
+                                    <a href="#" target="_blank" class="dropdown-toggle" data-toggle="dropdown">
+                                        @cate.Title <i class="fa fa-angle-down"></i>
+                                    </a>
+                                    <ul class="dropdown-menu">
+                                        @foreach (var childNav in cate.Childs)
+                                        {
+                                            action = childNav.Type.ToString();
+                                            <li is-active-menu asp-controllers="Home" asp-action=",Home" asp-route-pagenames="@childNav.SeoTitle">
+                                                <a asp-route-culture="@ViewBag.culture" asp-controller="Home" asp-action="Home" asp-route-pageName="@childNav.SeoTitle">@childNav.Title</a>
+                                            </li>
+                                        }
+                                    </ul>
+                                </li>
+                                break;
+                            case Swastika.Cms.Lib.SWCmsConstants.CateType.Home:
+                                <li is-active-menu asp-controllers="Home" asp-action="Home" asp-route-pagenames=",@cate.SeoTitle">
+                                    @*<a href="@href">@cate.Title</a>*@
+                                    <a asp-route-culture="@ViewBag.culture" asp-controller="Home" asp-action="Home" asp-route-pageName="">@cate.Title</a>
+                                </li>
+                                break;
+                            case Swastika.Cms.Lib.SWCmsConstants.CateType.StaticUrl:
+                                <li>
+                                    @*<a href="@href">@cate.Title</a>*@
+                                    <a href="@cate.StaticUrl">@cate.Title</a>
+                                </li>
+                                break;
+                            default:
+                                <li is-active-menu asp-controllers="Home" asp-action="Home" asp-route-pagenames="@cate.SeoTitle">
+                                    @*<a href="@href">@cate.Title</a>*@
+                                    <a asp-route-culture="@ViewBag.culture" asp-controller="Home" asp-action="Home" asp-route-pageName="@cate.SeoTitle">@cate.Title</a>
+                                </li>
+                                break;
+                        }
+
+                    }
+                </ul>
+                
+            </div>
+        </div>
+    </div>
+</footer><!--/#footer-->

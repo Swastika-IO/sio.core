@@ -1,0 +1,20 @@
+﻿
+@model Swastika.Cms.Lib.ViewModels.CategoryFEViewModel
+@{
+    string culture = ViewBag.culture;
+    Layout = string.Format("Layouts/{0}", LocalizerService.GetLocalString("Layout", culture, "_Layout_Corlate"));// "_Layout_Corlate";
+    ViewData["Title"] = Model.Title;
+    ViewData["SeoTitle"] = Model.SeoTitle;
+    ViewData["SeoKeywords"] = Model.SeoKeywords;
+    ViewData["SeoDescription"] = Model.SeoDescription;
+}
+@if (!string.IsNullOrEmpty(Model.Template))
+{
+    @Html.Partial(Model.Template, Model)
+}
+else
+{
+    <section class="container">
+        <h1>@LocalizerService.GetLocalString("Please choose template", ViewBag.culture)</h1>
+    </section>
+}

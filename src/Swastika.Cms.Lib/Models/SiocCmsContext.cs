@@ -3,7 +3,7 @@ using Swastika.Common.Utility;
 using Microsoft.Extensions.Configuration;
 using System.IO;
 
-namespace Swastika.IO.Cms.Lib.Models
+namespace Swastika.Cms.Lib.Models
 {
     public partial class SiocCmsContext : DbContext
     {

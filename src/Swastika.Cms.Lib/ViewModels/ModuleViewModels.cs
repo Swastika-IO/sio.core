@@ -1,8 +1,8 @@
-﻿using Swastika.IO.Cms.Lib.Models;
+﻿using Swastika.Cms.Lib.Models;
 using Swastika.Domain.Data.ViewModels;
 using System.Collections.Generic;
 using Microsoft.EntityFrameworkCore.Storage;
-using Swastika.IO.Cms.Lib.Repositories;
+using Swastika.Cms.Lib.Repositories;
 using Newtonsoft.Json.Linq;
 using Swastika.Common;
 using Microsoft.Data.OData.Query;
@@ -11,8 +11,10 @@ using System.Linq;
 using System.Threading.Tasks;
 using Swastika.IO.Common.Helper;
 using Swastika.IO.Domain.Core.ViewModels;
+using Swastika.Cms.Lib.Services;
+using Swastika.Cms.Lib.ViewModels.Info;
 
-namespace Swastika.IO.Cms.Lib.ViewModels
+namespace Swastika.Cms.Lib.ViewModels
 {
     public class ModuleWithDataViewModel : ViewModelBase<SiocCmsContext, SiocModule, ModuleWithDataViewModel>
     {
@@ -35,7 +37,7 @@ namespace Swastika.IO.Cms.Lib.ViewModels
         public PaginationModel<ModuleContentViewmodel> Data { get; set; } = new PaginationModel<ModuleContentViewmodel>();
         public List<ModuleFieldViewModel> Columns { get; set; }
         public List<TemplateViewModel> Templates { get; set; }
-        public PaginationModel<ArticleListItemViewModel> Articles { get; set; } = new PaginationModel<ArticleListItemViewModel>();
+        public PaginationModel<InfoArticleViewModel> Articles { get; set; } = new PaginationModel<InfoArticleViewModel>();
 
         public ModuleWithDataViewModel(SiocModule model, SiocCmsContext _context = null, IDbContextTransaction _transaction = null) : base(model, _context, _transaction)
         {
@@ -75,7 +77,7 @@ namespace Swastika.IO.Cms.Lib.ViewModels
                 getDataResult.Data.Items.ForEach(d => getDataResult.Data.JsonItems.Add(d.JItem));
                 Data = getDataResult.Data;
             }
-            var getArticles = ArticleListItemViewModel.GetModelListByModule(Id, Specificulture, SWCmsConstants.Default.OrderBy, OrderByDirection.Ascending
+            var getArticles = InfoArticleViewModel.GetModelListByModule(Id, Specificulture, SWCmsConstants.Default.OrderBy, OrderByDirection.Ascending
                 , _context: _context, _transaction: _transaction
                 );
             if (getArticles.IsSucceed)
@@ -229,7 +231,7 @@ namespace Swastika.IO.Cms.Lib.ViewModels
         public override void ExpandView(SiocCmsContext _context = null, IDbContextTransaction _transaction = null)
         {
             IsClone = true;
-            ListSupportedCulture = IO.Cms.Lib.Services.ApplicationConfigService.ListSupportedCulture;
+            ListSupportedCulture = ApplicationConfigService.ListSupportedCulture;
 
             //Get Languages
             this.Templates = Templates ?? TemplateRepository.Instance.GetTemplates(SWCmsConstants.TemplateFolder.Modules);

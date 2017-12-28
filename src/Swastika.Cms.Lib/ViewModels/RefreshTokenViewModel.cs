@@ -1,12 +1,12 @@
 ﻿using System;
 using Swastika.Domain.Data.ViewModels;
-using Swastika.IO.Cms.Lib.Models;
+using Swastika.Cms.Lib.Models;
 using Microsoft.EntityFrameworkCore.Storage;
 using Swastika.Domain.Core.Models;
 using System.Threading.Tasks;
 using Swastika.IO.Domain.Core.ViewModels;
 
-namespace Swastika.IO.Cms.Lib.ViewModels
+namespace Swastika.Cms.Lib.ViewModels
 {
     public class RefreshTokenViewModel : ViewModelBase<SiocCmsContext, RefreshTokens, RefreshTokenViewModel>
     {

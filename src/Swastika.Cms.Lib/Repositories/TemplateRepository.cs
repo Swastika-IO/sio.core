@@ -1,8 +1,8 @@
 ﻿using Swastika.Common;
 using Swastika.Common.Helper;
 using Swastika.Domain.Core.Models;
-using Swastika.IO.Cms.Lib;
-using Swastika.IO.Cms.Lib.ViewModels;
+using Swastika.Cms.Lib;
+using Swastika.Cms.Lib.ViewModels;
 using Swastika.IO.Common.Helper;
 using System;
 using System.Collections.Generic;
@@ -10,7 +10,7 @@ using System.IO;
 using System.Linq;
 using System.Text;
 
-namespace Swastika.IO.Cms.Lib.Repositories
+namespace Swastika.Cms.Lib.Repositories
 {
     public class TemplateRepository
     {

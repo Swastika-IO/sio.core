@@ -1,0 +1,36 @@
+@*
+    For more information on enabling MVC for empty projects, visit http://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@model Swastika.Cms.Lib.ViewModels.ModuleWithDataViewModel
+
+@if (Model != null && Model.Data.TotalItems > 0)
+{
+    <section id="content">
+        <div class="container">
+            <div class="center wow fadeInDown">
+                <h2>@Model.Title</h2>
+                <p class="lead">@Model.Description</p>
+            </div>
+
+            <div class="partners">
+                <ul>
+                    @foreach (var item in Model.Data.Items)
+                    {
+                        <li>
+                            <a href="@item.GetStringValue("Url")">
+                                <img class="img-responsive wow fadeInDown" data-wow-duration="1000ms" data-wow-delay="300ms"
+                                     src="@item.GetStringValue("Image")">
+                            </a>
+                        </li>
+                    }
+                </ul>
+            </div>
+        </div><!--/.container-->
+    </section><!--/#partner-->
+}
+
+
+
+
+
+

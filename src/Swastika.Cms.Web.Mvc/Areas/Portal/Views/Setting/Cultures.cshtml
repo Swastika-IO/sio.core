@@ -1,0 +1,70 @@
+﻿@using Swastika.Domain.Core.Models
+@model PaginationModel<Swastika.Cms.Lib.ViewModels.CultureViewModel>
+
+@{
+    ViewData["Title"] = "Cultures ";
+    Layout = "~/Areas/Portal/Views/Shared/_Layout.cshtml";
+    string culture = ViewBag.culture;
+}
+
+<div class="box-body">
+    <table class="table table-hover table-striped dataTable">
+        <thead>
+            <tr>
+                <th>
+                    @LocalizerService.GetLocalString("Icon", culture)
+                </th>
+                <th>
+                    @LocalizerService.GetLocalString("Specificulture", culture)
+                </th>
+                <th>
+                    @LocalizerService.GetLocalString("Lcid", culture)
+                </th>
+                <th>
+                    @LocalizerService.GetLocalString("Alias", culture)
+                </th>
+                <th>
+                    @LocalizerService.GetLocalString("FullName", culture)
+                </th>
+                <th>
+                    @LocalizerService.GetLocalString("Description", culture)
+                </th>
+                <th></th>
+            </tr>
+        </thead>
+
+        <tbody>
+            @foreach (var item in Model.Items)
+            {
+                <tr>
+                    <td>
+                        <i class="flag-icon @item.Icon"></i>
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Specificulture)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Lcid)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Alias)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.FullName)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Description)
+                    </td>
+
+                    <td>
+                        <a asp-action="EditCulture" asp-route-id="@item.Id" class="btn btn-sm btn-warning"> <i class="fa fa-pencil"></i></a>
+                        @*<a asp-action="Details" asp-route-id="@item.Id" class="btn btn-sm btn-info"> <i class="fa fa-eye"></i> </a>*@
+                        <a asp-action="DeleteCulture" asp-route-id="@item.Id" class="btn btn-sm btn-danger" data-popout="true" data-toggle="confirmation" data-singleton="true"> <i class="fa fa-remove"></i> </a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+
+    </table>
+
+</div>

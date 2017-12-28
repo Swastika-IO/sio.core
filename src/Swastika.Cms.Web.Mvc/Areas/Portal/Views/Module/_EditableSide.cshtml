@@ -1,0 +1,36 @@
+@model Swastika.Cms.Lib.ViewModels.ModuleViewModel
+
+@{
+    var types = Html.GetEnumSelectList<Swastika.Cms.Lib.SWCmsConstants.CateType>();
+    //string img = Model != null ? Model.Image : "http://placehold.it/200x200";
+}
+
+@await Html.PartialAsync("EditableSides/_EditableSide_Actions")
+
+<div class="box box-solid">
+    <div class="box-header with-border">
+        <h3 class="box-title"><label asp-for="Specificulture" class="control-label"></label></h3>
+        <div class="box-tools">
+            <button type="button" class="btn btn-box-tool" data-widget="collapse">
+                <i class="fa fa-minus"></i>
+            </button>
+        </div>
+    </div>
+    <div class="box-body no-padding">
+        <ul class="nav nav-pills nav-stacked">
+            @for (int i = 0; i < Model.ListSupportedCulture.Count; i++)
+            {
+                <li style="position: relative;display: block;padding: 10px 15px;">
+                    <label class="form-check-label">
+                        <input type="checkbox" asp-for="@Model.ListSupportedCulture[i].IsSupported" />
+                        <input type="hidden" asp-for="@Model.ListSupportedCulture[i].Specificulture" />
+                        <i class="flag-icon @Model.ListSupportedCulture[i].Icon"></i> @Model.ListSupportedCulture[i].Specificulture
+                    </label>
+                </li>
+            }
+
+        </ul>
+    </div>
+    <!-- /.box-body -->
+
+</div>

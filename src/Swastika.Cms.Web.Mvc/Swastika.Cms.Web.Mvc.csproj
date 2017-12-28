@@ -1,0 +1,157 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp2.0</TargetFramework>
+    <TypeScriptCompileBlocked>true</TypeScriptCompileBlocked>
+    <TypeScriptToolsVersion>2.5</TypeScriptToolsVersion>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.AspNetCore.All" Version="2.0.3" />
+    <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="2.0.1" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <DotNetCliToolReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Tools" Version="2.0.1" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Areas\Portal\Data\" />
+    <Folder Include="Areas\Portal\Models\" />
+    <Folder Include="Views\Shared\Corlate\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="Areas\Portal\Views\ApiModule\_ModuleData.cshtml" />
+    <None Include="Areas\Portal\Views\ApiModule\_ModuleData_Record.cshtml" />
+    <None Include="Areas\Portal\Views\Apperance\EditTemplate.cshtml" />
+    <None Include="Areas\Portal\Views\Apperance\Menus.cshtml" />
+    <None Include="Areas\Portal\Views\Apperance\Templates.cshtml" />
+    <None Include="Areas\Portal\Views\Apperance\Themes.cshtml" />
+    <None Include="Areas\Portal\Views\Apperance\_Editable_Template.cshtml" />
+    <None Include="Areas\Portal\Views\Articles\Create.cshtml" />
+    <None Include="Areas\Portal\Views\Articles\Details.cshtml" />
+    <None Include="Areas\Portal\Views\Articles\Draft.cshtml" />
+    <None Include="Areas\Portal\Views\Articles\Edit.cshtml" />
+    <None Include="Areas\Portal\Views\Articles\Index.cshtml" />
+    <None Include="Areas\Portal\Views\Articles\_Editable.cshtml" />
+    <None Include="Areas\Portal\Views\Articles\_EditableSide.cshtml" />
+    <None Include="Areas\Portal\Views\Collaborators\AddMember.cshtml" />
+    <None Include="Areas\Portal\Views\Collaborators\Index.cshtml" />
+    <None Include="Areas\Portal\Views\Collaborators\Members.cshtml" />
+    <None Include="Areas\Portal\Views\Collaborators\Permission.cshtml" />
+    <None Include="Areas\Portal\Views\Collaborators\Roles.cshtml" />
+    <None Include="Areas\Portal\Views\Contents\AddArticle.cshtml" />
+    <None Include="Areas\Portal\Views\Contents\Articles.cshtml" />
+    <None Include="Areas\Portal\Views\Contents\Categories.cshtml" />
+    <None Include="Areas\Portal\Views\Contents\Tags.cshtml" />
+    <None Include="Areas\Portal\Views\Culture\Create.cshtml" />
+    <None Include="Areas\Portal\Views\Culture\Delete.cshtml" />
+    <None Include="Areas\Portal\Views\Culture\Details.cshtml" />
+    <None Include="Areas\Portal\Views\Culture\Edit.cshtml" />
+    <None Include="Areas\Portal\Views\Culture\Index.cshtml" />
+    <None Include="Areas\Portal\Views\Culture\_Editable.cshtml" />
+    <None Include="Areas\Portal\Views\File\Edit.cshtml" />
+    <None Include="Areas\Portal\Views\File\Index.cshtml" />
+    <None Include="Areas\Portal\Views\File\_Editable_File.cshtml" />
+    <None Include="Areas\Portal\Views\Media\AddFile.cshtml" />
+    <None Include="Areas\Portal\Views\Media\Files.cshtml" />
+    <None Include="Areas\Portal\Views\Module\AddEmptyField.cshtml" />
+    <None Include="Areas\Portal\Views\Module\AddModuleData.cshtml" />
+    <None Include="Areas\Portal\Views\Module\Create.cshtml" />
+    <None Include="Areas\Portal\Views\Module\Details.cshtml" />
+    <None Include="Areas\Portal\Views\Module\Edit.cshtml" />
+    <None Include="Areas\Portal\Views\Module\EditModuleData.cshtml" />
+    <None Include="Areas\Portal\Views\Module\Index.cshtml" />
+    <None Include="Areas\Portal\Views\Module\_Editable.cshtml" />
+    <None Include="Areas\Portal\Views\Module\_EditableSide.cshtml" />
+    <None Include="Areas\Portal\Views\Module\_EditableSide_Data.cshtml" />
+    <None Include="Areas\Portal\Views\Module\_Editable_Data.cshtml" />
+    <None Include="Areas\Portal\Views\Module\_ModuleData.cshtml" />
+    <None Include="Areas\Portal\Views\Module\_ModuleData_Record.cshtml" />
+    <None Include="Areas\Portal\Views\Pages\AddPage.cshtml" />
+    <None Include="Areas\Portal\Views\Pages\Contents.cshtml" />
+    <None Include="Areas\Portal\Views\Pages\Create.cshtml" />
+    <None Include="Areas\Portal\Views\Pages\Edit.cshtml" />
+    <None Include="Areas\Portal\Views\Pages\Index.cshtml" />
+    <None Include="Areas\Portal\Views\Pages\_Editable.cshtml" />
+    <None Include="Areas\Portal\Views\Pages\_EditableSide.cshtml" />
+    <None Include="Areas\Portal\Views\Portal\About.cshtml" />
+    <None Include="Areas\Portal\Views\Portal\Contact.cshtml" />
+    <None Include="Areas\Portal\Views\Portal\Index.cshtml" />
+    <None Include="Areas\Portal\Views\Portal\Search.cshtml" />
+    <None Include="Areas\Portal\Views\Profile\AddPhoneNumber.cshtml" />
+    <None Include="Areas\Portal\Views\Profile\ChangePassword.cshtml" />
+    <None Include="Areas\Portal\Views\Profile\Index.cshtml" />
+    <None Include="Areas\Portal\Views\Profile\ManageLogins.cshtml" />
+    <None Include="Areas\Portal\Views\Profile\SetPassword.cshtml" />
+    <None Include="Areas\Portal\Views\Profile\VerifyPhoneNumber.cshtml" />
+    <None Include="Areas\Portal\Views\Setting\Configurations.cshtml" />
+    <None Include="Areas\Portal\Views\Setting\CreateConfiguration.cshtml" />
+    <None Include="Areas\Portal\Views\Setting\CreateCulture.cshtml" />
+    <None Include="Areas\Portal\Views\Setting\Cultures.cshtml" />
+    <None Include="Areas\Portal\Views\Setting\EditConfiguration.cshtml" />
+    <None Include="Areas\Portal\Views\Setting\EditCulture.cshtml" />
+    <None Include="Areas\Portal\Views\Setting\_Editable_Configuration.cshtml" />
+    <None Include="Areas\Portal\Views\Setting\_Editable_Culture.cshtml" />
+    <None Include="Areas\Portal\Views\Shared\Components\Breadcrumbs\Default.cshtml" />
+    <None Include="Areas\Portal\Views\Shared\Components\ControlSidebar\Default.cshtml" />
+    <None Include="Areas\Portal\Views\Shared\Components\HeaderNavbar\Default.cshtml" />
+    <None Include="Areas\Portal\Views\Shared\Components\MainFooter\Default.cshtml" />
+    <None Include="Areas\Portal\Views\Shared\Components\MainSidebar\Default.cshtml" />
+    <None Include="Areas\Portal\Views\Shared\EditableSides\_EditableSide_Actions.cshtml" />
+    <None Include="Areas\Portal\Views\Shared\EditableSides\_EditableSide_Cultures.cshtml" />
+    <None Include="Areas\Portal\Views\Shared\Error.cshtml" />
+    <None Include="Areas\Portal\Views\Shared\_Editor.cshtml" />
+    <None Include="Areas\Portal\Views\Shared\_Editor_Code.cshtml" />
+    <None Include="Areas\Portal\Views\Shared\_Editor_ModuleData.cshtml" />
+    <None Include="Areas\Portal\Views\Shared\_Layout.cshtml" />
+    <None Include="Areas\Portal\Views\Shared\_Layout_Add_Edit.cshtml" />
+    <None Include="Areas\Portal\Views\Shared\_LoginPartial.cshtml" />
+    <None Include="Areas\Portal\Views\Shared\_Pagination.cshtml" />
+    <None Include="Areas\Portal\Views\Shared\_ValidationScriptsPartial.cshtml" />
+    <None Include="Areas\Portal\Views\Shared\_ViewByFieldType.cshtml" />
+    <None Include="Areas\Portal\Views\Template\Index.cshtml" />
+    <None Include="Areas\Portal\Views\_BlankTemplate.cshtml" />
+    <None Include="Areas\Portal\Views\_ViewImports.cshtml" />
+    <None Include="Areas\Portal\Views\_ViewStart.cshtml" />
+    <None Include="Areas\User\Views\Account\AccessDenied.cshtml" />
+    <None Include="Areas\User\Views\Account\ConfirmEmail.cshtml" />
+    <None Include="Areas\User\Views\Account\ExternalLoginConfirmation.cshtml" />
+    <None Include="Areas\User\Views\Account\ExternalLoginFailure.cshtml" />
+    <None Include="Areas\User\Views\Account\ForgotPassword.cshtml" />
+    <None Include="Areas\User\Views\Account\ForgotPasswordConfirmation.cshtml" />
+    <None Include="Areas\User\Views\Account\Lockout.cshtml" />
+    <None Include="Areas\User\Views\Account\Login.cshtml" />
+    <None Include="Areas\User\Views\Account\Register.cshtml" />
+    <None Include="Areas\User\Views\Account\ResetPassword.cshtml" />
+    <None Include="Areas\User\Views\Account\ResetPasswordConfirmation.cshtml" />
+    <None Include="Areas\User\Views\Account\SendCode.cshtml" />
+    <None Include="Areas\User\Views\Account\VerifyCode.cshtml" />
+    <None Include="Areas\User\Views\Manage\AddPhoneNumber.cshtml" />
+    <None Include="Areas\User\Views\Manage\ChangePassword.cshtml" />
+    <None Include="Areas\User\Views\Manage\Index.cshtml" />
+    <None Include="Areas\User\Views\Manage\ManageLogins.cshtml" />
+    <None Include="Areas\User\Views\Manage\SetPassword.cshtml" />
+    <None Include="Areas\User\Views\Manage\VerifyPhoneNumber.cshtml" />
+    <None Include="Areas\User\Views\_ViewImports.cshtml" />
+    <None Include="Areas\User\Views\_ViewStart.cshtml" />
+    <None Include="Views\Home\About.cshtml" />
+    <None Include="Views\Home\Contact.cshtml" />
+    <None Include="Views\Home\Index.cshtml" />
+    <None Include="Views\Shared\Error.cshtml" />
+    <None Include="Views\Shared\_Layout.cshtml" />
+    <None Include="Views\Shared\_ValidationScriptsPartial.cshtml" />
+    <None Include="Views\_ViewImports.cshtml" />
+    <None Include="Views\_ViewStart.cshtml" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\Swastika-Heart\src\Swastika.IO\Swastika.IO.csproj" />
+    <ProjectReference Include="..\..\..\Swastika-Identity\src\Swastika.IO.Identity\Swastika.IO.Identity.csproj" />
+    <ProjectReference Include="..\Swastika.Cms.Lib\Swastika.IO.Cms.Lib.csproj" />
+    <ProjectReference Include="..\Swastika.IO.Core.Lib\Swastika.IO.Core.Lib.csproj" />
+    <ProjectReference Include="..\Swastka.Cms.Api\Swastka.IO.Cms.Api.csproj" />
+  </ItemGroup>
+
+</Project>

@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace Swastika.IO.Cms.Lib.Models
+namespace Swastika.Cms.Lib.Models
 {
     public partial class SiocBanner
     {

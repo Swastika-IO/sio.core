@@ -1,0 +1,24 @@
+@model Swastika.Cms.Lib.ViewModels.ModuleFieldViewModel
+@{
+    var types = Html.GetEnumSelectList<Swastika.Cms.Lib.SWCmsConstants.DataType>();
+}
+<tr class="field-row">
+    <td>
+        <input class="form-control" type="text" id="Columns_@ViewData["Index"]__Name" name="Columns[@ViewData["Index"]].Name" value="@Model.Name">
+    </td>
+    <td>
+        <select id="Columns_@ViewData["Index"]__DataType" name="Columns[@ViewData["Index"]].DataType" class="form-control" asp-items="@types"></select>
+    </td>
+    <td>
+        <input class="form-control" type="number" id="Columns_@ViewData["Index"]__Width" name="Columns[@ViewData["Index"]].Width" value="@Model.Width">
+    </td>
+    <td>
+        <label class="form-check-label">            
+            <input 
+                   checked="checked" class="form-check" 
+                   data-val="@Model.IsDisplay" data-val-required="The IsDisplay field is required." 
+                   type="checkbox" value="@Model.IsDisplay.ToString()"
+                   id="Columns_@ViewData["Index"]__IsDisplay" name="Columns[@ViewData["Index"]].IsDisplay">
+        </label>
+    </td>
+</tr>

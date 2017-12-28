@@ -1,7 +1,7 @@
 ﻿using Microsoft.IdentityModel.Tokens;
 using System.Collections.Generic;
 
-namespace Swastika.IO.Cms.Lib
+namespace Swastika.Cms.Lib
 {
     public class SWCmsConstants
     {
@@ -55,7 +55,7 @@ namespace Swastika.IO.Cms.Lib
 
         public class Default
         {
-            public const string ArticleTemplate = @"_Default.cshtml";
+            public const string DefaultTemplate = @"_Default";
             public const string Specificulture = @"vi-vn";
             public const string Password = @"1234qwe@";
             public const string OrderBy = @"1234qwe@";

@@ -1,8 +1,8 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.Data.OData.Query;
 using Newtonsoft.Json.Linq;
-using Swastika.IO.Cms.Lib.Models;
-using Swastika.IO.Cms.Lib.ViewModels;
+using Swastika.Cms.Lib.Models;
+using Swastika.Cms.Lib.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,17 +10,18 @@ using System.Linq.Expressions;
 using System.Threading.Tasks;
 using Swastika.IO.Domain.Core.ViewModels;
 using Swastika.Extension.Blog.Api.Controllers;
+using Swastika.Cms.Lib.ViewModels.Info;
 
 namespace Swastka.Cms.Api.Controllers
 {
     [Route("api/{culture}/moduleData")]
-    public class ModuleDataController :
+    public class ApiModuleDataController :
         BaseApiController<SiocCmsContext, SiocArticle>
     {
 
         [HttpPost]
         [Route("save")]
-        public async Task<RepositoryResponse<ModuleContentViewmodel>> Save([FromBody]JObject data)
+        public async Task<RepositoryResponse<InfoModuleDataViewModel>> Save([FromBody]JObject data)
         {
             var model = data["model"].ToObject<SiocModuleData>();
             List<ModuleFieldViewModel> cols = data["columns"].ToObject<List<ModuleFieldViewModel>>();
@@ -39,39 +40,39 @@ namespace Swastka.Cms.Api.Controllers
                 }
             }
             model.Value = val.ToString(Newtonsoft.Json.Formatting.None);
-            var vmData = new ModuleContentViewmodel(model);
+            var vmData = new InfoModuleDataViewModel(model);
             return await vmData.SaveModelAsync();
         }
 
         // GET api/articles/id
         [HttpGet]
         [Route("details/{id}")]
-        public async Task<RepositoryResponse<ModuleContentViewmodel>> Details(string id)
+        public async Task<RepositoryResponse<InfoModuleDataViewModel>> Details(string id)
         {
-            return await ModuleContentViewmodel.Repository.GetSingleModelAsync(model => model.Id == id && model.Specificulture == _lang); //base.GetAsync(model => model.Id == id);
+            return await InfoModuleDataViewModel.Repository.GetSingleModelAsync(model => model.Id == id && model.Specificulture == _lang); //base.GetAsync(model => model.Id == id);
         }
 
         // GET api/articles/id
         [HttpGet]
         [Route("edit/{id}")]
-        public async Task<RepositoryResponse<ModuleContentViewmodel>> Edit(string id)
+        public async Task<RepositoryResponse<InfoModuleDataViewModel>> Edit(string id)
         {
-            return await ModuleContentViewmodel.Repository.GetSingleModelAsync(model => model.Id == id && model.Specificulture == _lang); //base.GetAsync(model => model.Id == id);
+            return await InfoModuleDataViewModel.Repository.GetSingleModelAsync(model => model.Id == id && model.Specificulture == _lang); //base.GetAsync(model => model.Id == id);
         }
 
         // GET api/articles/id
         [HttpGet]
         [Route("create")]
-        public RepositoryResponse<ModuleContentViewmodel> Create()
+        public RepositoryResponse<InfoModuleDataViewModel> Create()
         {
             SiocModuleData article = new SiocModuleData()
             {
                 Specificulture = _lang
             };
-            return new RepositoryResponse<ModuleContentViewmodel>()
+            return new RepositoryResponse<InfoModuleDataViewModel>()
             {
                 IsSucceed = true,
-                Data = new ModuleContentViewmodel(article)
+                Data = new InfoModuleDataViewModel(article)
             };
         }
 
@@ -81,7 +82,7 @@ namespace Swastka.Cms.Api.Controllers
         [Route("delete/{id}")]
         public async Task<RepositoryResponse<bool>> Delete(string id)
         {
-            return await ModuleContentViewmodel.Repository.RemoveModelAsync(model => model.Id == id && model.Specificulture== _lang);
+            return await InfoModuleDataViewModel.Repository.RemoveModelAsync(model => model.Id == id && model.Specificulture== _lang);
         }
 
         // GET api/articles
@@ -90,12 +91,12 @@ namespace Swastka.Cms.Api.Controllers
         [Route("{moduleId}/{pageSize:int?}/{pageIndex:int?}")]
         [Route("{moduleId}/{orderBy}/{direction}")]
         [Route("{moduleId}/{pageSize:int?}/{pageIndex:int?}/{orderBy}/{direction}")]
-        public async Task<RepositoryResponse<PaginationModel<ModuleContentViewmodel>>> Get(
+        public async Task<RepositoryResponse<PaginationModel<InfoModuleDataViewModel>>> Get(
             int moduleId,
             int? pageSize = 15, int? pageIndex = 0, string orderBy = "moduleId"
             , OrderByDirection direction = OrderByDirection.Ascending)
         {
-            var result = await ModuleContentViewmodel.Repository.GetModelListByAsync(
+            var result = await InfoModuleDataViewModel.Repository.GetModelListByAsync(
                 m => m.ModuleId == moduleId && m.Specificulture == _lang, orderBy, direction, pageSize, pageIndex); //base.Get(orderBy, direction, pageSize, pageIndex);
             string domain = string.Format("{0}://{1}", Request.Scheme, Request.Host);
             result.Data.JsonItems = new List<Newtonsoft.Json.Linq.JObject>();
@@ -109,12 +110,12 @@ namespace Swastka.Cms.Api.Controllers
         [Route("getByArticle/{articleId}/{moduleId}/{pageSize:int?}/{pageIndex:int?}")]
         [Route("getByArticle/{articleId}/{moduleId}/{orderBy}/{direction}")]
         [Route("getByArticle/{articleId}/{moduleId}/{pageSize:int?}/{pageIndex:int?}/{orderBy}/{direction}")]
-        public async Task<RepositoryResponse<PaginationModel<ModuleContentViewmodel>>> GetByArticle(
+        public async Task<RepositoryResponse<PaginationModel<InfoModuleDataViewModel>>> GetByArticle(
             string articleId, int moduleId,
             int? pageSize = 15, int? pageIndex = 0, string orderBy = "moduleId"
             , OrderByDirection direction = OrderByDirection.Ascending)
         {
-            var result = await ModuleContentViewmodel.Repository.GetModelListByAsync(
+            var result = await InfoModuleDataViewModel.Repository.GetModelListByAsync(
                 m => m.ModuleId == moduleId && m.ArticleId == articleId && m.Specificulture == _lang,
                 orderBy, direction, pageSize, pageIndex); //base.Get(orderBy, direction, pageSize, pageIndex);
             string domain = string.Format("{0}://{1}", Request.Scheme, Request.Host);
@@ -130,7 +131,7 @@ namespace Swastka.Cms.Api.Controllers
         [Route("{moduleId}/{keyword}")]
         [Route("{moduleId}/{pageSize:int?}/{pageIndex:int?}/{keyword}")]
         [Route("{moduleId}/{pageSize:int?}/{pageIndex:int?}/{orderBy}/{direction}/{keyword}")]
-        public async Task<RepositoryResponse<PaginationModel<ModuleContentViewmodel>>> Search(
+        public async Task<RepositoryResponse<PaginationModel<InfoModuleDataViewModel>>> Search(
              int moduleId,
             string keyword = null, int? pageSize = null, int? pageIndex = null, string orderBy = "Id"
             , OrderByDirection direction = OrderByDirection.Ascending)
@@ -142,7 +143,7 @@ namespace Swastka.Cms.Api.Controllers
             string.IsNullOrWhiteSpace(keyword)
                 || (model.Fields.Contains(keyword) || model.Fields.Contains(keyword))
                 );
-            var result = await ModuleContentViewmodel.Repository.GetModelListByAsync(predicate, orderBy, direction, pageSize, pageIndex); // base.Search(predicate, orderBy, direction, pageSize, pageIndex, keyword);
+            var result = await InfoModuleDataViewModel.Repository.GetModelListByAsync(predicate, orderBy, direction, pageSize, pageIndex); // base.Search(predicate, orderBy, direction, pageSize, pageIndex, keyword);
             result.Data.JsonItems = new List<Newtonsoft.Json.Linq.JObject>();
             result.Data.Items.ForEach(i => result.Data.JsonItems.Add(i.ParseJson()));
             return result;

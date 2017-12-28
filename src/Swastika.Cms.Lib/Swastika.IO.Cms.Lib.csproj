@@ -2,10 +2,17 @@
 
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
+    <RootNamespace>Swastika.Cms.Lib</RootNamespace>
   </PropertyGroup>
 
   <ItemGroup>
     <Compile Remove="Repositories\AuthRepository.cs" />
+    <Compile Remove="ViewModels\AccessTokenViewModel.cs" />
+    <Compile Remove="ViewModels\ArticleModuleViewModels.cs" />
+    <Compile Remove="ViewModels\ArticleViewModels.cs" />
+    <Compile Remove="ViewModels\BackEnd\_BlankViewModel.cs" />
+    <Compile Remove="ViewModels\BlankViewModel.cs" />
+    <Compile Remove="ViewModels\_BlankViewModel.cs" />
   </ItemGroup>
 
   <ItemGroup>

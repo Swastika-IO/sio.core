@@ -1,13 +1,14 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.Data.OData.Query;
-using Swastika.IO.Cms.Lib.Models;
-using Swastika.IO.Cms.Lib.ViewModels;
+using Swastika.Cms.Lib.Models;
 using System;
 using System.Linq.Expressions;
 using System.Threading.Tasks;
 using Swastika.IO.Domain.Core.ViewModels;
-using Swastika.IO.UI.Core.Controllers;
 using Swastika.Extension.Blog.Api.Controllers;
+using Swastika.Cms.Lib.ViewModels.BackEnd;
+using Swastika.Cms.Lib.ViewModels.FrontEnd;
+using Swastika.Cms.Lib.ViewModels.Info;
 
 namespace Swastka.Cms.Api.Controllers
 {
@@ -15,13 +16,13 @@ namespace Swastka.Cms.Api.Controllers
     //    //, Policy = "AddEditUser"
     //    )]
     [Route("api/{culture}/[controller]")]
-    public class ArticlesController :
+    public class ApiArticlesController :
         BaseApiController<SiocCmsContext, SiocArticle>
     {
         // POST api/articles
         [HttpPost]
         [Route("save")]
-        public async Task<RepositoryResponse<ArticleBEViewModel>> Post([FromBody]ArticleBEViewModel model)
+        public async Task<RepositoryResponse<BEArticleViewModel>> Post([FromBody]BEArticleViewModel model)
         {
             if (model != null)
             {
@@ -32,7 +33,7 @@ namespace Swastka.Cms.Api.Controllers
                 }
                 return result;
             }
-            return new RepositoryResponse<ArticleBEViewModel>();
+            return new RepositoryResponse<BEArticleViewModel>();
 
         }
 
@@ -52,9 +53,9 @@ namespace Swastka.Cms.Api.Controllers
         // GET api/articles/id
         [HttpGet]
         [Route("edit/{id}")]
-        public async Task<RepositoryResponse<ArticleBEViewModel>> Edit(string id)
+        public async Task<RepositoryResponse<BEArticleViewModel>> Edit(string id)
         {
-            var result =  await ArticleBEViewModel.Repository.GetSingleModelAsync(model => model.Id == id && model.Specificulture == _lang); //base.GetAsync(model => model.Id == id);
+            var result =  await BEArticleViewModel.Repository.GetSingleModelAsync(model => model.Id == id && model.Specificulture == _lang); //base.GetAsync(model => model.Id == id);
             if (result.IsSucceed)
             {
                 result.Data.Domain = this._domain;
@@ -65,17 +66,17 @@ namespace Swastka.Cms.Api.Controllers
         // GET api/articles/id
         [HttpGet]
         [Route("create")]
-        public RepositoryResponse<ArticleBEViewModel> Create()
+        public RepositoryResponse<BEArticleViewModel> Create()
         {
             SiocArticle article = new SiocArticle()
             {
                 //Id = Guid.NewGuid().ToString(),                
                 Specificulture = _lang
             };
-            return new RepositoryResponse<ArticleBEViewModel>()
+            return new RepositoryResponse<BEArticleViewModel>()
             {
                 IsSucceed = true,
-                Data = new ArticleBEViewModel(article) { Domain = this._domain }
+                Data = new BEArticleViewModel(article) { Domain = this._domain }
 
             };
         }
@@ -83,9 +84,9 @@ namespace Swastka.Cms.Api.Controllers
         // GET api/articles/id
         [HttpGet]
         [Route("recycle/{id}")]
-        public async Task<RepositoryResponse<ArticleListItemViewModel>> Recycle(string id)
+        public async Task<RepositoryResponse<InfoArticleViewModel>> Recycle(string id)
         {
-            var getArticle = ArticleListItemViewModel.Repository.GetSingleModel(a => a.Id == id);
+            var getArticle = InfoArticleViewModel.Repository.GetSingleModel(a => a.Id == id);
             if (getArticle.IsSucceed)
             {
                 var data = getArticle.Data;
@@ -94,16 +95,16 @@ namespace Swastka.Cms.Api.Controllers
             }
             else
             {
-                return new RepositoryResponse<ArticleListItemViewModel>() { IsSucceed = false };
+                return new RepositoryResponse<InfoArticleViewModel>() { IsSucceed = false };
             }
         }
 
         // GET api/articles/id
         [HttpGet]
         [Route("restore/{id}")]
-        public async Task<RepositoryResponse<ArticleListItemViewModel>> Restore(string id)
+        public async Task<RepositoryResponse<InfoArticleViewModel>> Restore(string id)
         {
-            var getArticle = ArticleListItemViewModel.Repository.GetSingleModel(a => a.Id == id);
+            var getArticle = InfoArticleViewModel.Repository.GetSingleModel(a => a.Id == id);
             if (getArticle.IsSucceed)
             {
                 var data = getArticle.Data;
@@ -112,7 +113,7 @@ namespace Swastka.Cms.Api.Controllers
             }
             else
             {
-                return new RepositoryResponse<ArticleListItemViewModel>() { IsSucceed = false };
+                return new RepositoryResponse<InfoArticleViewModel>() { IsSucceed = false };
             }
         }
 
@@ -122,7 +123,7 @@ namespace Swastka.Cms.Api.Controllers
         [Route("delete/{id}")]
         public async Task<RepositoryResponse<bool>> Delete(string id)
         {
-            var getArticle = ArticleBEViewModel.Repository.GetSingleModel(a => a.Id == id && a.Specificulture == _lang);
+            var getArticle = BEArticleViewModel.Repository.GetSingleModel(a => a.Id == id && a.Specificulture == _lang);
             if (getArticle.IsSucceed)
             {
                 return await getArticle.Data.RemoveModelAsync(true);
@@ -139,18 +140,13 @@ namespace Swastka.Cms.Api.Controllers
         [Route("{pageSize:int?}/{pageIndex:int?}")]
         [Route("{orderBy}/{direction}")]
         [Route("{pageSize:int?}/{pageIndex:int?}/{orderBy}/{direction}")]
-        public async Task<RepositoryResponse<PaginationModel<ArticleListItemViewModel>>> Get(
+        public async Task<RepositoryResponse<PaginationModel<InfoArticleViewModel>>> Get(
             int? pageSize = 15, int? pageIndex = 0, string orderBy = "Id"
             , OrderByDirection direction = OrderByDirection.Ascending)
         {
-            var data = await ArticleListItemViewModel.Repository.GetModelListByAsync(
+            var data = await InfoArticleViewModel.Repository.GetModelListByAsync(
                 m => !m.IsDeleted && m.Specificulture == _lang, orderBy, direction, pageSize, pageIndex); //base.Get(orderBy, direction, pageSize, pageIndex);
-            if (data.IsSucceed)
-            {
-                data.Data.Items.ForEach(d => d.DetailsUrl = string.Format("{0}{1}", _domain, this.Url.Action("Details", "articles", new { id = d.Id })));
-                data.Data.Items.ForEach(d => d.EditUrl = string.Format("{0}{1}", _domain, this.Url.Action("Edit", "articles", new { id = d.Id })));
-                data.Data.Items.ForEach(d => d.Domain = _domain);
-            }            
+              
             return data;
         }
 
@@ -159,7 +155,7 @@ namespace Swastka.Cms.Api.Controllers
         [Route("{keyword}")]
         [Route("{pageSize:int?}/{pageIndex:int?}/{keyword}")]
         [Route("{pageSize:int?}/{pageIndex:int?}/{orderBy}/{direction}/{keyword}")]
-        public async Task<RepositoryResponse<PaginationModel<ArticleListItemViewModel>>> Search(
+        public async Task<RepositoryResponse<PaginationModel<InfoArticleViewModel>>> Search(
             string keyword = null, int? pageSize = null, int? pageIndex = null, string orderBy = "Id"
             , OrderByDirection direction = OrderByDirection.Ascending)
         {
@@ -170,13 +166,13 @@ namespace Swastka.Cms.Api.Controllers
             string.IsNullOrWhiteSpace(keyword)
                 || (model.Title.Contains(keyword) || model.Content.Contains(keyword))
                 );
-            var data = await ArticleListItemViewModel.Repository.GetModelListByAsync(predicate, orderBy, direction, pageSize, pageIndex); // base.Search(predicate, orderBy, direction, pageSize, pageIndex, keyword);
-            if (data.IsSucceed)
-            {
-                data.Data.Items.ForEach(d => d.DetailsUrl = string.Format("{0}{1}", _domain, this.Url.Action("Details", "articles", new { id = d.Id })));
-                data.Data.Items.ForEach(d => d.EditUrl = string.Format("{0}{1}", _domain, this.Url.Action("Edit", "articles", new { id = d.Id })));
-                data.Data.Items.ForEach(d => d.Domain = _domain);
-            }
+            var data = await InfoArticleViewModel.Repository.GetModelListByAsync(predicate, orderBy, direction, pageSize, pageIndex); // base.Search(predicate, orderBy, direction, pageSize, pageIndex, keyword);
+            //if (data.IsSucceed)
+            //{
+            //    data.Data.Items.ForEach(d => d.DetailsUrl = string.Format("{0}{1}", _domain, this.Url.Action("Details", "articles", new { id = d.Id })));
+            //    data.Data.Items.ForEach(d => d.EditUrl = string.Format("{0}{1}", _domain, this.Url.Action("Edit", "articles", new { id = d.Id })));
+            //    data.Data.Items.ForEach(d => d.Domain = _domain);
+            //}
             return data;
         }
 
@@ -186,7 +182,7 @@ namespace Swastka.Cms.Api.Controllers
         [Route("draft/{pageSize:int?}/{pageIndex:int?}")]
         [Route("draft/{pageSize:int?}/{pageIndex:int?}/{keyword}")]
         [Route("draft/{pageSize:int?}/{pageIndex:int?}/{orderBy}/{direction}/{keyword}")]
-        public async Task<RepositoryResponse<PaginationModel<ArticleListItemViewModel>>> Draft(
+        public async Task<RepositoryResponse<PaginationModel<InfoArticleViewModel>>> Draft(
             string keyword = null, int? pageSize = null, int? pageIndex = null, string orderBy = "Id"
             , OrderByDirection direction = OrderByDirection.Ascending)
         {
@@ -198,13 +194,13 @@ namespace Swastka.Cms.Api.Controllers
             string.IsNullOrWhiteSpace(keyword)
                 || (model.Title.Contains(keyword) || model.Content.Contains(keyword))
                 );
-            var data = await ArticleListItemViewModel.Repository.GetModelListByAsync(predicate, orderBy, direction, pageSize, pageIndex); // base.Search(predicate, orderBy, direction, pageSize, pageIndex, keyword);
-            if (data.IsSucceed)
-            {
-                data.Data.Items.ForEach(d => d.DetailsUrl = string.Format("{0}{1}", _domain, this.Url.Action("Details", "articles", new { id = d.Id })));
-                data.Data.Items.ForEach(d => d.EditUrl = string.Format("{0}{1}", _domain, this.Url.Action("Edit", "articles", new { id = d.Id })));
-                data.Data.Items.ForEach(d => d.Domain = _domain);
-            }
+            var data = await InfoArticleViewModel.Repository.GetModelListByAsync(predicate, orderBy, direction, pageSize, pageIndex); // base.Search(predicate, orderBy, direction, pageSize, pageIndex, keyword);
+            //if (data.IsSucceed)
+            //{
+            //    data.Data.Items.ForEach(d => d.DetailsUrl = string.Format("{0}{1}", _domain, this.Url.Action("Details", "articles", new { id = d.Id })));
+            //    data.Data.Items.ForEach(d => d.EditUrl = string.Format("{0}{1}", _domain, this.Url.Action("Edit", "articles", new { id = d.Id })));
+            //    data.Data.Items.ForEach(d => d.Domain = _domain);
+            //}
             return data;
         }
 

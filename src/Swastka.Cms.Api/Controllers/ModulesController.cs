@@ -1,18 +1,19 @@
 ﻿using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
-using Swastika.IO.Cms.Lib.Models;
-using Swastika.IO.Cms.Lib.ViewModels;
+using Swastika.Cms.Lib.Models;
+using Swastika.Cms.Lib.ViewModels;
 using Microsoft.Data.OData.Query;
 using System.Linq.Expressions;
 using System;
 using Swastika.IO.Domain.Core.ViewModels;
 using Swastika.Extension.Blog.Api.Controllers;
+using Swastika.Cms.Lib.ViewModels.FrontEnd;
 
 namespace Swastka.IO.Cms.Api.Controllers
 {
     [Produces("application/json")]
     [Route("api/{culture}/Modules")]
-    public class ModulesController :
+    public class ApiModulesController :
         BaseApiController<SiocCmsContext, SiocArticle>
     {
         // GET api/articles/id
@@ -46,7 +47,7 @@ namespace Swastka.IO.Cms.Api.Controllers
         // GET api/articles/id
         [HttpPost]
         [Route("addToArticle")]
-        public async Task<RepositoryResponse<bool>> AddToArticle([FromBody]ArticleModuleFEViewModel view)
+        public async Task<RepositoryResponse<bool>> AddToArticle([FromBody]FEArticleModuleViewModel view)
         {
             if (view.IsActived)
             {

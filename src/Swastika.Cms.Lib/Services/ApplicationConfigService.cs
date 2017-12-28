@@ -1,9 +1,9 @@
-﻿using Swastika.IO.Cms.Lib.ViewModels;
+﻿using Swastika.Cms.Lib.ViewModels;
 using Swastika.Domain.Core.Models;
 using System.Collections.Generic;
 using System.Linq;
 
-namespace Swastika.IO.Cms.Lib.Services
+namespace Swastika.Cms.Lib.Services
 {
     public class ApplicationConfigService
     {
