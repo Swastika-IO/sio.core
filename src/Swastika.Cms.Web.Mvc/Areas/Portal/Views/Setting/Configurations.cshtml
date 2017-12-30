@@ -1,4 +1,4 @@
-﻿@using Swastika.Domain.Core.Models
+﻿@using Swastika.IO.Domain.Core.ViewModels;
 @model PaginationModel<Swastika.Cms.Lib.ViewModels.ConfigurationViewModel>
 @{
     ViewData["Title"] = "Blank Template";
@@ -51,7 +51,7 @@
                     </td>
                     <td>
                         @{Html.RenderPartial("_ViewByFieldType",
-                new ViewDataDictionary(this.Vi‌​ewData) { { "DataType", item.DataType }, { "Value", item.Value } });
+                  new ViewDataDictionary(this.Vi‌​ewData) { { "DataType", item.DataType }, { "Value", item.Value } });
                         }
                     </td>
                     <td>
@@ -68,7 +68,7 @@
                         </a>
                     </td>
                 </tr>
-                            }
+            }
         </tbody>
     </table>
 

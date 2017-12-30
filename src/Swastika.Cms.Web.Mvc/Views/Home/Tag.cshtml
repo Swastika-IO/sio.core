@@ -1,4 +1,4 @@
-@model Swastika.Common.Helper.PaginationModel<Swastika.Cms.Lib.ViewModels.ArticleListItemViewModel>
+@model Swastika.IO.Domain.Core.ViewModels.PaginationModel<Swastika.Cms.Lib.ViewModels.Info.InfoArticleViewModel>
 
 @{
     ViewData["Title"] = "Search Results";
@@ -18,7 +18,7 @@
                         <div class="row">
                             <div class="col-sm-2 text-center">
                                 <div class="entry-meta">
-                                    <span id="publish_date">@cate.CreatedDate.ToString("dd MMM")</span>
+                                    <span id="publish_date">@cate.CreatedDateTime.ToString("dd MMM")</span>
                                     <span><i class="fa fa-user"></i> <a href="#">@cate.CreatedBy</a></span>
                                     @*<span><i class="fa fa-comment"></i> <a href="blog-item.html#comments">2 Comments</a></span>
                                         <span><i class="fa fa-heart"></i><a href="#">56 Likes</a></span>*@
@@ -33,7 +33,7 @@
                                     <a asp-route-culture="@ViewBag.culture" asp-controller="Home" asp-action="Home" asp-route-pageName="@cate.SeoTitle">@cate.Title</a>
                                 </h2>
                                 <h3>
-                                    @cate.Description
+                                    @cate.Excerpt
                                 </h3>
 
                                 <a class="btn btn-primary readmore"
@@ -52,7 +52,7 @@
                         <div class="row">
                             <div class="col-sm-2 text-center">
                                 <div class="entry-meta">
-                                    <span id="publish_date">@article.CreatedDate.ToString("dd MMM")</span>
+                                    <span id="publish_date">@article.CreatedDateTime.ToString("dd MMM")</span>
                                     <span><i class="fa fa-user"></i> <a href="#">@article.CreatedBy</a></span>
                                     @*<span><i class="fa fa-comment"></i> <a href="blog-item.html#comments">2 Comments</a></span>
                                         <span><i class="fa fa-heart"></i><a href="#">56 Likes</a></span>*@

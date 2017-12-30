@@ -1,12 +1,12 @@
 @{
-    var contact = new Swastika.Cms.Lib.ViewModels.ModuleDataViewModel();
+    var contact = new Swastika.Cms.Lib.ViewModels.Info.InfoModuleDataViewModel();
     string culture = ViewBag.culture;
     int id = 16;
     Swastika.Cms.Lib.ViewModels.ModuleViewModel module = await Swastika.Cms.Lib.Repositories.ModuleRepository.GetInstance().GetSingleModelAsync(
 m => m.Id == id && m.Specificulture == culture, Swastika.Cms.Lib.SWCmsConstants.ViewModelType.BackEnd);
     if (module != null)
     {
-        contact = new Swastika.Cms.Lib.ViewModels.ModuleDataViewModel(culture, module.Columns)
+        contact = new Swastika.Cms.Lib.ViewModels.Info.InfoModuleDataViewModel(culture, module.Columns)
         {
             Id = Guid.NewGuid().ToString("N"),
             ModuleId = id,

@@ -1,7 +1,7 @@
 @*
     For more information on enabling MVC for empty projects, visit http://go.microsoft.com/fwlink/?LinkID=397860
 *@
-@model Swastika.Cms.Lib.ViewModels.FEArticleData
+@model Swastika.Cms.Lib.ViewModels.FrontEnd.FEArticleViewModel
 
 @if (Model != null)
 {
@@ -23,7 +23,7 @@
 
                             <div class="col-xs-12 col-sm-2 text-center">
                                 <div class="entry-meta">
-                                    <span id="publish_date">@Model.CreatedDate.ToString("dd MMM")</span>
+                                    <span id="publish_date">@Model.CreatedDateTime.ToString("dd MMM")</span>
                                     <span><i class="fa fa-user"></i> @Model.CreatedBy</span>
                                     <span><i class="fa fa-comment"></i> 
                                     <script>document.write("<span class=\"fb- comments - count\" data-href=\"" + document.URL+"\">0</span>")</script>
@@ -31,7 +31,7 @@
                                 </div>
                             </div>
                             <div class="col-xs-12 col-sm-10 blog-content">
-                                @Html.Raw(Model.FullContent)
+                                @Html.Raw(Model.Content)
 
                             </div>
                         </div>

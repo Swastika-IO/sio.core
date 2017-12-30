@@ -15,29 +15,35 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using System;
-using Swastika.Cms.Lib.Repositories;
-using Swastika.Cms.Lib.ViewModels.Info;
+using Swastika.Identity.Repositories;
+using Swastika.Cms.Web.Mvc.Models.Identity;
+using Microsoft.Extensions.Options;
+using Swastika.IO.Identity.Identity.Infrastructure;
+
 namespace Swastika.Cms.Mvc.Controllers
 {
     [Route("{culture}/account")]
     public class AccountController : BaseController<AccountController>
     {
-        private readonly AuthRepository _userManager;
+        private readonly UserManager<ApplicationUser> _userManager;
         private readonly SignInManager<ApplicationUser> _signInManager;
+        private readonly JWTSettings _options;
         private readonly IEmailSender _emailSender;
         private readonly ISmsSender _smsSender;
         private readonly ILogger _logger;
 
         public AccountController(
             IHostingEnvironment env,
-            AuthRepository userManager,
+            UserManager<ApplicationUser> userManager,
             SignInManager<ApplicationUser> signInManager,
+            IOptions<JWTSettings> optionsAccessor,
             IEmailSender emailSender,
             ISmsSender smsSender,
             ILoggerFactory loggerFactory) : base(env)
         {
             _userManager = userManager;
             _signInManager = signInManager;
+            _options = optionsAccessor.Value;
             _emailSender = emailSender;
             _smsSender = smsSender;
             _logger = loggerFactory.CreateLogger<AccountController>();
@@ -53,6 +59,7 @@ namespace Swastika.Cms.Mvc.Controllers
         {
             // Clear the existing external cookie to ensure a clean login process
             await HttpContext.SignOutAsync(IdentityConstants.ExternalScheme);
+            await this._signInManager.SignOutAsync();
             ViewData["ReturnUrl"] = returnUrl;           
             return View();
         }
@@ -77,7 +84,10 @@ namespace Swastika.Cms.Mvc.Controllers
                     {
                         new Claim(ClaimTypes.Name, model.UserName)
                     };
+                    var user = await _userManager.FindByNameAsync(model.UserName);
+                    claims.AddRange(ExtendedClaimsProvider.GetClaims(user));
                     var claimsIdentity = new ClaimsIdentity(claims, "login");
+                    
                     await HttpContext.SignInAsync(
                     CookieAuthenticationDefaults.AuthenticationScheme,
                     new ClaimsPrincipal(claimsIdentity),
@@ -119,7 +129,7 @@ namespace Swastika.Cms.Mvc.Controllers
             ViewData["ReturnUrl"] = returnUrl;
             RegisterViewModel model = new RegisterViewModel()
             {
-                UserClaims = ClaimData.UserClaims.Select(c => new SelectListItem
+                UserClaims = IdentityBasedData.UserClaims.Select(c => new SelectListItem
                 {
                     Text = c,
                     Value = c
@@ -150,8 +160,9 @@ namespace Swastika.Cms.Mvc.Controllers
                 List<SelectListItem> userClaims = model.UserClaims.Where(c => c.Selected).ToList();
                 foreach (var claim in userClaims)
                 {
-                    user.Claims.Add(new IdentityUserClaim<int>
+                    user.Claims.Add(new IdentityUserClaim<string>
                     {
+                        UserId = user.Id,
                         ClaimType = claim.Value,
                         ClaimValue = claim.Value
                     });

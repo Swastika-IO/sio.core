@@ -7,16 +7,7 @@ namespace Swastika.Cms.Lib.Models
 {
     public partial class SiocCmsContext : DbContext
     {
-        public virtual DbSet<AspNetRoleClaims> AspNetRoleClaims { get; set; }
-        public virtual DbSet<AspNetRoles> AspNetRoles { get; set; }
-        public virtual DbSet<AspNetUserClaims> AspNetUserClaims { get; set; }
-        public virtual DbSet<AspNetUserLogins> AspNetUserLogins { get; set; }
-        public virtual DbSet<AspNetUserRoles> AspNetUserRoles { get; set; }
-        public virtual DbSet<AspNetUsers> AspNetUsers { get; set; }
-        public virtual DbSet<AspNetUserTokens> AspNetUserTokens { get; set; }
         public virtual DbSet<BaseConfiguration> BaseConfiguration { get; set; }
-        public virtual DbSet<Clients> Clients { get; set; }
-        public virtual DbSet<RefreshTokens> RefreshTokens { get; set; }
         public virtual DbSet<SiocArticle> SiocArticle { get; set; }
         public virtual DbSet<SiocArticleModule> SiocArticleModule { get; set; }
         public virtual DbSet<SiocBanner> SiocBanner { get; set; }
@@ -62,89 +53,7 @@ namespace Swastika.Cms.Lib.Models
         }
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            modelBuilder.Entity<AspNetRoleClaims>(entity =>
-            {
-                entity.Property(e => e.RoleId)
-                    .IsRequired()
-                    .HasMaxLength(450);
-
-                entity.HasOne(d => d.Role)
-                    .WithMany(p => p.AspNetRoleClaims)
-                    .HasForeignKey(d => d.RoleId);
-            });
-
-            modelBuilder.Entity<AspNetRoles>(entity =>
-            {
-                entity.Property(e => e.Id).ValueGeneratedNever();
-
-                entity.Property(e => e.Name).HasMaxLength(256);
-
-                entity.Property(e => e.NormalizedName).HasMaxLength(256);
-            });
-
-            modelBuilder.Entity<AspNetUserClaims>(entity =>
-            {
-                entity.Property(e => e.UserId)
-                    .IsRequired()
-                    .HasMaxLength(450);
-
-                entity.HasOne(d => d.User)
-                    .WithMany(p => p.AspNetUserClaims)
-                    .HasForeignKey(d => d.UserId);
-            });
-
-            modelBuilder.Entity<AspNetUserLogins>(entity =>
-            {
-                entity.HasKey(e => new { e.LoginProvider, e.ProviderKey });
-
-                entity.Property(e => e.UserId)
-                    .IsRequired()
-                    .HasMaxLength(450);
-
-                entity.HasOne(d => d.User)
-                    .WithMany(p => p.AspNetUserLogins)
-                    .HasForeignKey(d => d.UserId);
-            });
-
-            modelBuilder.Entity<AspNetUserRoles>(entity =>
-            {
-                entity.HasKey(e => new { e.UserId, e.RoleId });
-
-                entity.HasOne(d => d.Role)
-                    .WithMany(p => p.AspNetUserRoles)
-                    .HasForeignKey(d => d.RoleId);
-
-                entity.HasOne(d => d.User)
-                    .WithMany(p => p.AspNetUserRoles)
-                    .HasForeignKey(d => d.UserId);
-            });
-
-            modelBuilder.Entity<AspNetUsers>(entity =>
-            {
-                entity.Property(e => e.Id).ValueGeneratedNever();
-
-                entity.Property(e => e.CountryId).HasDefaultValueSql("((0))");
-
-                entity.Property(e => e.Dob).HasColumnName("DOB");
-
-                entity.Property(e => e.Email).HasMaxLength(256);
-
-                entity.Property(e => e.JoinDate).HasDefaultValueSql("('0001-01-01T00:00:00.000')");
-
-                entity.Property(e => e.LastModified).HasDefaultValueSql("('0001-01-01T00:00:00.000')");
-
-                entity.Property(e => e.NormalizedEmail).HasMaxLength(256);
-
-                entity.Property(e => e.NormalizedUserName).HasMaxLength(256);
-
-                entity.Property(e => e.UserName).HasMaxLength(256);
-            });
-
-            modelBuilder.Entity<AspNetUserTokens>(entity =>
-            {
-                entity.HasKey(e => new { e.UserId, e.LoginProvider, e.Name });
-            });
-
+           
             modelBuilder.Entity<BaseConfiguration>(entity =>
             {
                 entity.HasKey(e => new { e.Keyword, e.Specificulture });
@@ -162,44 +71,6 @@ namespace Swastika.Cms.Lib.Models
                     .HasPrincipalKey(p => p.Specificulture)
                     .HasForeignKey(d => d.Specificulture)
                     .HasConstraintName("FK_Base_Configuration_TTS_Culture");
-            });
-
-            modelBuilder.Entity<Clients>(entity =>
-            {
-                entity.Property(e => e.Id)
-                    .HasMaxLength(128)
-                    .ValueGeneratedNever();
-
-                entity.Property(e => e.AllowedOrigin).HasMaxLength(100);
-
-                entity.Property(e => e.Name)
-                    .IsRequired()
-                    .HasMaxLength(100);
-
-                entity.Property(e => e.Secret).IsRequired();
-            });
-
-            modelBuilder.Entity<RefreshTokens>(entity =>
-            {
-                entity.Property(e => e.Id)
-                    .HasMaxLength(128)
-                    .ValueGeneratedNever();
-
-                entity.Property(e => e.ClientId)
-                    .IsRequired()
-                    .HasMaxLength(50);
-
-                entity.Property(e => e.Email)
-                    .IsRequired()
-                    .HasMaxLength(256);
-
-                entity.Property(e => e.ExpiresUtc).HasColumnType("datetime");
-
-                entity.Property(e => e.IssuedUtc).HasColumnType("datetime");
-
-                entity.Property(e => e.Subject)
-                    .IsRequired()
-                    .HasMaxLength(50);
             });
 
             modelBuilder.Entity<SiocArticle>(entity =>

@@ -6,7 +6,7 @@ using Microsoft.Data.OData.Query;
 using System.Linq.Expressions;
 using System;
 using Swastika.IO.Domain.Core.ViewModels;
-using Swastika.Extension.Blog.Api.Controllers;
+using Swastika.Api.Controllers;
 using Swastika.Cms.Lib.ViewModels.FrontEnd;
 
 namespace Swastka.IO.Cms.Api.Controllers

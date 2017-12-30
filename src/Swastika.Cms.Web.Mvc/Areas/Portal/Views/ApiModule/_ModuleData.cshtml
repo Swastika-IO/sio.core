@@ -1,4 +1,4 @@
-﻿@model Swastika.Cms.Lib.ViewModels.ModuleDataViewModel
+﻿@model Swastika.Cms.Lib.ViewModels.Info.InfoModuleDataViewModel
 
 @{
     var types = Html.GetEnumSelectList<Swastika.Cms.Lib.SWCmsConstants.DataType>();
@@ -10,7 +10,7 @@
         <input type="hidden" asp-for="ModuleId" />
         <input type="hidden" asp-for="Specificulture" />
         <input type="hidden" asp-for="Fields" />
-        <input type="hidden" asp-for="CreatedDate" />
+        <input type="hidden" asp-for="CreatedDateTime" />
         @foreach (var col in Model.Columns)
             {
 

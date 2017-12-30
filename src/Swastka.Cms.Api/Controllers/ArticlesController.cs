@@ -5,17 +5,19 @@ using System;
 using System.Linq.Expressions;
 using System.Threading.Tasks;
 using Swastika.IO.Domain.Core.ViewModels;
-using Swastika.Extension.Blog.Api.Controllers;
+using Swastika.Api.Controllers;
 using Swastika.Cms.Lib.ViewModels.BackEnd;
 using Swastika.Cms.Lib.ViewModels.FrontEnd;
 using Swastika.Cms.Lib.ViewModels.Info;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 
 namespace Swastka.Cms.Api.Controllers
 {
     //[Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme
     //    //, Policy = "AddEditUser"
     //    )]
-    [Route("api/{culture}/[controller]")]
+    [Route("api/{culture}/apiarticles")]
     public class ApiArticlesController :
         BaseApiController<SiocCmsContext, SiocArticle>
     {
@@ -136,6 +138,7 @@ namespace Swastka.Cms.Api.Controllers
 
         // GET api/articles
         [HttpGet]
+        [Authorize]
         [Route("")]
         [Route("{pageSize:int?}/{pageIndex:int?}")]
         [Route("{orderBy}/{direction}")]

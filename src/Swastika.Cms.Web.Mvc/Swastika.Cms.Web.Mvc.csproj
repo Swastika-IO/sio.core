@@ -7,7 +7,9 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="JWT" Version="3.2.0-beta" />
     <PackageReference Include="Microsoft.AspNetCore.All" Version="2.0.3" />
+    <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="2.0.1" />
     <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="2.0.1" />
   </ItemGroup>
 
@@ -18,6 +20,7 @@
   <ItemGroup>
     <Folder Include="Areas\Portal\Data\" />
     <Folder Include="Areas\Portal\Models\" />
+    <Folder Include="Views\Admin\" />
     <Folder Include="Views\Shared\Corlate\" />
   </ItemGroup>
 

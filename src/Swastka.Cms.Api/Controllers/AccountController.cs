@@ -14,14 +14,16 @@ using Microsoft.IdentityModel.Tokens;
 using Swastika.Cms.Lib;
 using Swastika.IO.Identity.Identity.Models.AccountViewModels;
 using Swastika.Cms.Lib.ViewModels;
-using Microsoft.AspNetCore.Authentication.JwtBearer;
 using System.Security.Principal;
 using Swastika.IO.Domain.Core.ViewModels;
+using Swastika.Api.Controllers;
+using Swastika.IO.Identity.Identity.Infrastructure;
+using System.Collections.Generic;
 
 namespace Swastika.IO.Core.Controllers
 {
-    [Route("api/{culture}/[controller]")]
-    public class ApiAccountController : Controller
+    [Route("api/{culture}/apiaccount")]
+    public class ApiAccountController : BaseApiController
     {
         private readonly UserManager<ApplicationUser> _userManager;
         private readonly SignInManager<ApplicationUser> _signInManager;
@@ -43,7 +45,7 @@ namespace Swastika.IO.Core.Controllers
         [TempData]
         public string ErrorMessage { get; set; }
 
-        [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
+        //[Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
         [Route("Get")]
         [HttpGet]
         public string Get()
@@ -56,22 +58,23 @@ namespace Swastika.IO.Core.Controllers
         [HttpPost]
         [AllowAnonymous]
         //[ValidateAntiForgeryToken]
-        public async Task<RepositoryResponse<AccessTokenViewModel>> Login([FromBody]LoginViewModel model)
+        public async Task<RepositoryResponse<AccessTokenViewModel>> Login(LoginViewModel model)
         {
             RepositoryResponse<AccessTokenViewModel> loginResult = new RepositoryResponse<AccessTokenViewModel>();
             if (ModelState.IsValid)
             {
                 // This doesn't count login failures towards account lockout
                 // To enable password failures to trigger account lockout, set lockoutOnFailure: true
-                var result = await _signInManager.PasswordSignInAsync(model.Email, model.Password, model.RememberMe, lockoutOnFailure: false);
+                var result = await _signInManager.PasswordSignInAsync(model.UserName, model.Password, isPersistent: model.RememberMe, lockoutOnFailure: false);
                 if (result.Succeeded)
                 {
 
-                    var user = await _userManager.FindByEmailAsync(model.Email);
-                    var token = await GenerateAccessTokenAsync(user);
+                    var user = await _userManager.FindByNameAsync(model.UserName);
+                    var token = GenerateAccessToken(user);
                     if (token != null)
                     {
                         loginResult.IsSucceed = true;
+                        loginResult.Status = 1;
                         loginResult.Data = token;
                         _logger.LogInformation("User logged in.");
                         return loginResult;
@@ -109,40 +112,40 @@ namespace Swastika.IO.Core.Controllers
             }
         }
 
-        [Route("refreshToken/{refreshTokenId}")]
-        [HttpGet]
-        [AllowAnonymous]
-        public async Task<RepositoryResponse<AccessTokenViewModel>> RefreshToken(string refreshTokenId)
-        {
-            RepositoryResponse<AccessTokenViewModel> result = new RepositoryResponse<AccessTokenViewModel>();
-            var getRefreshToken = await RefreshTokenViewModel.Repository.GetSingleModelAsync(t => t.Id == refreshTokenId);
-            if (getRefreshToken.IsSucceed)
-            {
-                var oldToken = getRefreshToken.Data;
-                if (oldToken.ExpiresUtc < DateTime.UtcNow)
-                {
-                    var user = await _userManager.FindByEmailAsync(oldToken.Email);
-                    var token = await GenerateAccessTokenAsync(user);
-                    if (token != null)
-                    {
-                        await oldToken.RemoveModelAsync();
-                    }
-                    result.IsSucceed = true;
-                    result.Data = token;
-                    return result;
-                }
-                else
-                {
-                    await oldToken.RemoveModelAsync();
-                    return result;
-                }
-            }
-            else
-            {
-                return result;
-            }
+        //[Route("refreshToken/{refreshTokenId}")]
+        //[HttpGet]
+        //[AllowAnonymous]
+        //public async Task<RepositoryResponse<AccessTokenViewModel>> RefreshToken(string refreshTokenId)
+        //{
+        //    RepositoryResponse<AccessTokenViewModel> result = new RepositoryResponse<AccessTokenViewModel>();
+        //    var getRefreshToken = await RefreshTokenViewModel.Repository.GetSingleModelAsync(t => t.Id == refreshTokenId);
+        //    if (getRefreshToken.IsSucceed)
+        //    {
+        //        var oldToken = getRefreshToken.Data;
+        //        if (oldToken.ExpiresUtc < DateTime.UtcNow)
+        //        {
+        //            var user = await _userManager.FindByEmailAsync(oldToken.Email);
+        //            var token = await GenerateAccessTokenAsync(user);
+        //            if (token != null)
+        //            {
+        //                await oldToken.RemoveModelAsync();
+        //            }
+        //            result.IsSucceed = true;
+        //            result.Data = token;
+        //            return result;
+        //        }
+        //        else
+        //        {
+        //            await oldToken.RemoveModelAsync();
+        //            return result;
+        //        }
+        //    }
+        //    else
+        //    {
+        //        return result;
+        //    }
 
-        }
+        //}
 
         [Route("Register")]
         [HttpPost]
@@ -161,13 +164,13 @@ namespace Swastika.IO.Core.Controllers
                     JoinDate = DateTime.UtcNow
 
                 };
-                var createResult = await _userManager.CreateAsync(user, model.Password);
+                var createResult = await _userManager.CreateAsync(user, password: model.Password);
                 if (createResult.Succeeded)
                 {
                     _logger.LogInformation("User created a new account with password.");
 
                     user = await _userManager.FindByEmailAsync(model.Email);
-                    var token = await GenerateAccessTokenAsync(user);
+                    var token = GenerateAccessToken(user);
                     if (token != null)
                     {
                         result.IsSucceed = true;
@@ -201,20 +204,20 @@ namespace Swastika.IO.Core.Controllers
             return result;
         }
 
-        [Route("logOut/{refreshTokenId}")]
-        [HttpGet]
-        public async Task<RepositoryResponse<bool>> Logout(string refreshTokenId)
-        {
-            var result = await RefreshTokenViewModel.Repository.RemoveListModelAsync(t => t.Id == refreshTokenId);
-            return result;
-        }
+        //[Route("logOut/{refreshTokenId}")]
+        //[HttpGet]
+        //public async Task<RepositoryResponse<bool>> Logout(string refreshTokenId)
+        //{
+        //    var result = await RefreshTokenViewModel.Repository.RemoveListModelAsync(t => t.Id == refreshTokenId);
+        //    return result;
+        //}
 
-        [Route("logOutOther/{refreshTokenId}")]
-        [HttpGet]
-        public async Task<RepositoryResponse<bool>> LogoutOther(string refreshTokenId)
-        {
-            return await RefreshTokenViewModel.LogoutOther(refreshTokenId);
-        }
+        //[Route("logOutOther/{refreshTokenId}")]
+        //[HttpGet]
+        //public async Task<RepositoryResponse<bool>> LogoutOther(string refreshTokenId)
+        //{
+        //    return await RefreshTokenViewModel.LogoutOther(refreshTokenId);
+        //}
 
         [HttpGet]
         [AllowAnonymous]
@@ -573,18 +576,16 @@ namespace Swastika.IO.Core.Controllers
         private string GenerateToken(ApplicationUser user, DateTime expires, string refreshToken)
         {
             var handler = new JwtSecurityTokenHandler();
-
-            ClaimsIdentity identity = new ClaimsIdentity(
-                new GenericIdentity(user.UserName, "TokenAuth"),
-                new[]
+            List<Claim> claims = ExtendedClaimsProvider.GetClaims(user).ToList();
+            claims.AddRange(new[]
                 {
                     new Claim("Id", user.Id.ToString()),
                     new Claim("RefreshToken", refreshToken)
-                }
-            );
-            foreach (var claim in user.Claims)
-            {
-            }
+                });
+            ClaimsIdentity identity = new ClaimsIdentity(
+                new GenericIdentity(user.UserName, "TokenAuth"),
+                claims
+            );            
 
             var securityToken = handler.CreateToken(new SecurityTokenDescriptor
             {
@@ -598,44 +599,56 @@ namespace Swastika.IO.Core.Controllers
             return handler.WriteToken(securityToken);
         }
 
-        private async Task<AccessTokenViewModel> GenerateAccessTokenAsync(ApplicationUser user)
+        private AccessTokenViewModel GenerateAccessToken(ApplicationUser user)
         {
             string refreshToken = Guid.NewGuid().ToString();
             var dtIssued = DateTime.UtcNow;
             var dtExpired = dtIssued.AddSeconds(SWCmsConstants.AuthConfiguration.AuthCookieExpiration);
             var dtRefreshTokenExpired = dtIssued.AddSeconds(SWCmsConstants.AuthConfiguration.AuthCookieExpiration);
 
-            RefreshTokenViewModel vmRefreshToken = new RefreshTokenViewModel(
-                        new Cms.Lib.Models.RefreshTokens()
-                        {
-                            Id = refreshToken,
-                            Email = user.Email,
-                            IssuedUtc = dtIssued,
-                            ClientId = SWCmsConstants.AuthConfiguration.Audience,
-                            Subject = SWCmsConstants.AuthConfiguration.Audience,
-                            ExpiresUtc = dtRefreshTokenExpired
-                        });
+            //RefreshTokenViewModel vmRefreshToken = new RefreshTokenViewModel(
+            //            new RefreshToken()
+            //            {
+            //                Id = refreshToken,
+            //                Email = user.Email,
+            //                IssuedUtc = dtIssued,
+            //                ClientId = SWCmsConstants.AuthConfiguration.Audience,
+            //                //Subject = SWCmsConstants.AuthConfiguration.Audience,
+            //                ExpiresUtc = dtRefreshTokenExpired
+            //            });
 
-            var saveRefreshTokenResult = await vmRefreshToken.SaveModelAsync();
+            //var saveRefreshTokenResult = await vmRefreshToken.SaveModelAsync();
 
-            if (saveRefreshTokenResult.IsSucceed)
+            //if (saveRefreshTokenResult.IsSucceed)
+            //{
+            //    AccessTokenViewModel token = new AccessTokenViewModel()
+            //    {
+            //        Access_token = GenerateToken(user, dtExpired, refreshToken),
+            //        //Refresh_token = vmRefreshToken.Id,
+            //        Token_type = SWCmsConstants.AuthConfiguration.TokenType,
+            //        Expires_in = SWCmsConstants.AuthConfiguration.AuthCookieExpiration,
+            //        //UserData = user,
+            //        Issued = dtIssued,
+            //        Expires = dtExpired,
+            //    };
+            //    return token;
+            //}
+            //else
+            //{
+            //    return null;
+            //}
+
+            AccessTokenViewModel token = new AccessTokenViewModel()
             {
-                AccessTokenViewModel token = new AccessTokenViewModel()
-                {
-                    Access_token = GenerateToken(user, dtExpired, refreshToken),
-                    Refresh_token = vmRefreshToken.Id,
-                    Token_type = SWCmsConstants.AuthConfiguration.TokenType,
-                    Expires_in = SWCmsConstants.AuthConfiguration.AuthCookieExpiration,
-                    //UserData = user,
-                    Issued = dtIssued,
-                    Expires = dtExpired,
-                };
-                return token;
-            }
-            else
-            {
-                return null;
-            }
+                Access_token = GenerateToken(user, dtExpired, refreshToken),
+                //Refresh_token = vmRefreshToken.Id,
+                Token_type = SWCmsConstants.AuthConfiguration.TokenType,
+                Expires_in = SWCmsConstants.AuthConfiguration.AuthCookieExpiration,
+                //UserData = user,
+                Issued = dtIssued,
+                Expires = dtExpired,
+            };
+            return token;
         }
     }
 }

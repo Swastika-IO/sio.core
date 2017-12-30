@@ -1,8 +1,8 @@
 ﻿@using Microsoft.AspNetCore.Identity
 @using Swastika.Identity.Models;
-@using Swastika.Cms.Lib.Repositories;
+@using Swastika.Identity.Repositories;
 @inject SignInManager<ApplicationUser> SignInManager
-@inject AuthRepository UserManager
+@inject UserManager<ApplicationUser> UserManager
 
 @if (SignInManager.IsSignedIn(User))
 {
@@ -17,9 +17,7 @@
         <li>
             <a asp-area="" asp-controller="Account" asp-action="Logout">Log out</a>
         </li>
-
     </form>
-
 }
 else
 {

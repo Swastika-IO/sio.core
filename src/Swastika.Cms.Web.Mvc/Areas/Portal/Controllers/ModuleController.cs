@@ -39,7 +39,7 @@ namespace Swastika.Cms.Mvc.Areas.Portal.Controllers
         public async Task<IActionResult> Index(int pageSize = 10, int pageIndex = 0, string keyword = null)
         {
             var pagingPages = await 
-                ModuleListItemViewModel.Repository.GetModelListByAsync(
+                InfoModuleViewModel.Repository.GetModelListByAsync(
                 m => m.Specificulture == _lang
                     && (string.IsNullOrEmpty(keyword) || m.Name.Contains(keyword)),
                 "Name", OrderByDirection.Ascending,

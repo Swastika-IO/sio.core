@@ -9,14 +9,14 @@ using System.Linq;
 using System.Linq.Expressions;
 using System.Threading.Tasks;
 using Swastika.IO.Domain.Core.ViewModels;
-using Swastika.Extension.Blog.Api.Controllers;
+using Swastika.Api.Controllers;
 using Swastika.Cms.Lib.ViewModels.Info;
 
 namespace Swastka.Cms.Api.Controllers
 {
     [Route("api/{culture}/moduleData")]
-    public class ApiModuleDataController :
-        BaseApiController<SiocCmsContext, SiocArticle>
+    public class ModuleDataController :
+        BaseApiController<SiocCmsContext, SiocModule>
     {
 
         [HttpPost]

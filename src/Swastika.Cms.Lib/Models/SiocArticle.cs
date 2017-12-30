@@ -17,6 +17,7 @@ namespace Swastika.Cms.Lib.Models
         public string Template { get; set; }
         public string Thumbnail { get; set; }
         public string Image { get; set; }
+        public string Icon { get; set; }
         public string Title { get; set; }
         public string Excerpt { get; set; }
         public string Content { get; set; }

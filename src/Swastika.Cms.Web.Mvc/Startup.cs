@@ -1,10 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text;
 using System.Text.Encodings.Web;
 using System.Text.Unicode;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authentication.Cookies;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Identity;
@@ -13,9 +15,11 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.WebEncoders;
+using Microsoft.IdentityModel.Tokens;
 using Swastika.Cms.Lib.Models;
 using Swastika.Cms.Lib.Repositories;
 using Swastika.Cms.Lib.Services;
+using Swastika.Cms.Web.Mvc.Models.Identity;
 using Swastika.Identity.Data;
 using Swastika.Identity.Models;
 using Swastika.Identity.Services;
@@ -48,8 +52,7 @@ namespace Swastika.Cms.Web.Mvc
         public void ConfigureServices(IServiceCollection services)
         {
             // Add framework services.
-            services.AddDbContext<ApplicationDbContext>(options =>
-                options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
+            
             services.AddDbContext<SiocCmsContext>(options =>
                 options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
 
@@ -59,35 +62,38 @@ namespace Swastika.Cms.Web.Mvc
                 options.TextEncoderSettings = new TextEncoderSettings(UnicodeRanges.All);
             });
 
-            PasswordOptions pOpt = new PasswordOptions()
-            {
-                RequireDigit = false,
-                RequiredLength = 6,
-                RequireLowercase = false,
-                RequireNonAlphanumeric = false,
-                RequireUppercase = false
-            };
+            services.Configure<JWTSettings>(Configuration.GetSection("JWTSettings"));
+            Swastika.Identity.Startup.ConfigIdentity(services, Configuration);
+            
+            //PasswordOptions pOpt = new PasswordOptions()
+            //{
+            //    RequireDigit = false,
+            //    RequiredLength = 6,
+            //    RequireLowercase = false,
+            //    RequireNonAlphanumeric = false,
+            //    RequireUppercase = false
+            //};
 
-            services.AddIdentity<ApplicationUser, IdentityRole>(options =>
-            {
-                options.Password = pOpt;
+            //services.AddIdentity<ApplicationUser, IdentityRole>(options =>
+            //{
+            //    options.Password = pOpt;
 
-            })
-                .AddEntityFrameworkStores<ApplicationDbContext>()
-                .AddDefaultTokenProviders()
-                .AddUserManager<AuthRepository>();
+            //})
+            //    .AddEntityFrameworkStores<ApplicationDbContext>()
+            //    .AddDefaultTokenProviders()
+            //    .AddUserManager<AuthRepository>();
 
 
 
-            services.AddAuthorization(options =>
-            {
-                options.AddPolicy("AddEditUser", policy =>
-                {
-                    policy.RequireClaim("Add User", "Add User");
-                    policy.RequireClaim("Edit User", "Edit User");
-                });
-                options.AddPolicy("DeleteUser", policy => policy.RequireClaim("Delete User", "Delete User"));
-            });
+            //services.AddAuthorization(options =>
+            //{
+            //    options.AddPolicy("AddEditUser", policy =>
+            //    {
+            //        policy.RequireClaim("Add User", "Add User");
+            //        policy.RequireClaim("Edit User", "Edit User");
+            //    });
+            //    options.AddPolicy("DeleteUser", policy => policy.RequireClaim("Delete User", "Delete User"));
+            //});
 
 
             services.ConfigureApplicationCookie(options =>
@@ -101,9 +107,28 @@ namespace Swastika.Cms.Web.Mvc
                 options.SlidingExpiration = true;
             });
 
-            services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme).AddCookie(
+            var secretKey = Configuration.GetSection("JWTSettings:SecretKey").Value;
+            var issuer = Configuration.GetSection("JWTSettings:Issuer").Value;
+            var audience = Configuration.GetSection("JWTSettings:Audience").Value;
+            var signingKey = new SymmetricSecurityKey(Encoding.ASCII.GetBytes(secretKey));
+            var tokenValidationParameters = new TokenValidationParameters
+            {
+                ValidateIssuerSigningKey = true,
+                IssuerSigningKey = signingKey,
+
+                // Validate the JWT Issuer (iss) claim
+                ValidateIssuer = true,
+                ValidIssuer = issuer,
+
+                // Validate the JWT Audience (aud) claim
+                ValidateAudience = true,
+                ValidAudience = audience
+            };
+
+            services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
+                .AddCookie(
                 options =>
-                {
+                {                    
                     // Cookie settings
                     options.Cookie.HttpOnly = true;
                     options.Cookie.Expiration = TimeSpan.FromDays(150);
@@ -111,7 +136,13 @@ namespace Swastika.Cms.Web.Mvc
                     options.LogoutPath = "/vi-vn/Account/Logout"; // If the LogoutPath is not set here, ASP.NET Core will default to /Account/Logout
                     options.AccessDeniedPath = "/"; // If the AccessDeniedPath is not set here, ASP.NET Core will default to /Account/AccessDenied
                     options.SlidingExpiration = true;
+                })
+                .AddJwtBearer(opt =>
+                {
+                    opt.TokenValidationParameters = tokenValidationParameters;
                 });
+           
+            
 
             // Add application services.
             services.AddTransient<Swastika.Identity.Services.IEmailSender, AuthEmailMessageSender>();
@@ -148,6 +179,8 @@ namespace Swastika.Cms.Web.Mvc
 
             app.UseStaticFiles();
             app.UseAuthentication();
+            
+
             //app.UseIdentity();
 
             // Add external authentication middleware below. To configure them please see https://go.microsoft.com/fwlink/?LinkID=532715
@@ -160,9 +193,9 @@ namespace Swastika.Cms.Web.Mvc
                 routes.MapRoute(
                     name: "areaRoute2",
                     template: "{culture=vi-vn}/{area:exists}/{controller=Portal}/{action=Index}/{id?}");
-                routes.MapRoute(
-                  name: "apiRoute",
-                  template: "api/{culture=vi-vn}/{area:exists}/{controller=Portal}/{action=Index}");
+                //routes.MapRoute(
+                //  name: "apiRoute",
+                //  template: "api/{culture=vi-vn}/{area:exists}/{controller=Portal}/{action=Index}");
                 routes.MapRoute(
                     name: "default",
                     template: "{culture=vi-vn}/{controller=Home}/{action=Index}/{id?}");

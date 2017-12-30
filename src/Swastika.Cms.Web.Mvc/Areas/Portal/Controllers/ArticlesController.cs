@@ -13,7 +13,7 @@ using Swastika.Cms.Lib.ViewModels.BackEnd;
 
 namespace Swastika.Cms.Mvc.Areas.Portal.Controllers
 {
-    [Microsoft.AspNetCore.Authorization.Authorize]
+    //[Microsoft.AspNetCore.Authorization.Authorize(Policy ="AddEditUser")]
     [Area("Portal")]
     [Route("{culture}/Portal/Articles")]
     public class ArticlesController : BaseController<ArticlesController>
