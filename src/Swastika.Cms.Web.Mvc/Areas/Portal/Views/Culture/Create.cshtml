@@ -1,8 +1,8 @@
 @model Swastika.Cms.Lib.ViewModels.CultureViewModel
 
 @{
-    ViewData["Title"] = "Create Culture";
-    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+//ViewData["Title"] = "Create Culture";
+//Layout = "~/Views/Shared/_AdminLayout.cshtml";
 }
 <section class="content container-fluid">
     <form asp-controller="@ViewContext.RouteData.Values["controller"].ToString()"
@@ -13,7 +13,7 @@
                 @await Html.PartialAsync("_Editable", Model)
             </section>
             <section class="col-lg-3">
-                @await Html.PartialAsync(@"EditableSides\_EditableSide", Model)
+                @await Html.PartialAsync(@"EditableSides\_EditableSide_Actions", Model)
             </section>
 
         </div>

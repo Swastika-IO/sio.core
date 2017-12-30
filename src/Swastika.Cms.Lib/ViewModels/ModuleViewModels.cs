@@ -237,7 +237,21 @@ namespace Swastika.Cms.Lib.ViewModels
             this.Templates = Templates ?? TemplateRepository.Instance.GetTemplates(SWCmsConstants.TemplateFolder.Modules);
             this.Template = string.IsNullOrEmpty(Template) ? "Modules/_Default" : Template;
             this.View = TemplateRepository.Instance.GetTemplate(Template, Templates, SWCmsConstants.TemplateFolder.Modules);
-
+            if (this.View == null)
+            {
+                this.View = new TemplateViewModel()
+                {
+                    Extension = SWCmsConstants.Parameters.TemplateExtension,
+                    FileFolder = SWCmsConstants.TemplateFolder.Modules,
+                    Filename = SWCmsConstants.Default.DefaultTemplate,
+                    Content = "<div></div>"
+                };
+                this.Template = SWCmsHelper.GetFullPath(new string[]
+                {
+                    this.View?.FileFolder
+                    , this.View?.Filename
+                });
+            }
             //Get columns
             this.Columns = new List<ModuleFieldViewModel>();
 

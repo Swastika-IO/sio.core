@@ -3,7 +3,7 @@
 @{
     ViewData["Title"] = "Blank File";
     ViewData["Description"] = "Manage site navigations and menus";
-    var lst = new SelectList(Enum.GetNames(typeof(Swastika.Cms.Lib.SWCmsConstants.FileFolder)).ToList());
+    var lst = new SelectList(Enum.GetNames(typeof(Swastika.Cms.Lib.SWCmsConstants.FileFolderEnum)).ToList());
     string folder = ViewBag.folder;
 }
 

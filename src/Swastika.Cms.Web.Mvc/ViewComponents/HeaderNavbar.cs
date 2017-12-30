@@ -13,7 +13,8 @@ namespace Swastika.Cms.Mvc.ViewComponents
                 (c => c.Specificulture == culture && c.SiocCategoryPosition.Count(p => p.PositionId == (int)SWCmsConstants.CatePosition.Top) > 0
 
                 );
-            return View(topCates.Data.OrderBy(c=>c.Priority).ToList());
+            var data = topCates.Data ?? new System.Collections.Generic.List<CategoryListItemViewModel>();
+            return View(data);
         }
     }
 }

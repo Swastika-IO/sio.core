@@ -1,35 +1,99 @@
-@using Swastika.Cms.Mvc.Areas.Portal.Controllers
-@model List<Swastika.Cms.Lib.ViewModels.FileViewModel>
+﻿@using Swastika.IO.Domain.Core.ViewModels;
+@model PaginationModel<Swastika.Cms.Lib.ViewModels.Info.InfoTemplateViewModel>
 @{
+    ViewData["Title"] = "Template";
     Layout = "~/Areas/Portal/Views/Shared/_Layout.cshtml";
+    int fromValue = Model.PageIndex * @Model.PageSize + 1;
+    int toValue = fromValue + Model.PageSize - 1;
+    int prevPage = Model.PageIndex > 0 ? Model.PageIndex - 1 : 0;
+    int nextPage = Model.PageIndex == Model.TotalPage - 1 ? Model.PageIndex : Model.PageIndex + 1;
+    toValue = toValue > Model.TotalItems ? Model.TotalItems : toValue;
+    string href = string.Format("{0}://{1}{2}", Context.Request.Scheme, Context.Request.Host, Url.Action());
 }
+
 <div class="box-body">
-    <div class="form-horizontal">
-        <div class="form-group">
-            <label class="col-md-2 control-label">Select File</label>
-            <div class="col-md-10">
+    <table class="table table-hover table-striped dataTable">
+        <thead>
+            <tr>
+                <th>
+                    Priority
+                </th>
+                <th>
+                    Name
+                </th>
+                <th>
+                    CreatedDate
+                </th>
 
-                <select id="sel-template">
-                    <option value="">Select File</option>
-                    @foreach(var file in Model)
-    {
-                        <option value="@file.Content">@file.Filename</option>
-    }
-                </select>
-            </div>
-        </div>
-        <div class="form-group">
-            <label class="col-md-2 control-label">Edit File</label>
-            <div class="col-md-10">
+                <th>
+                    CreatedBy
+                </th>
+                <th></th>
+            </tr>
+        </thead>
+        <tfoot>
+             <tr>
+                <th>
+                    Priority
+                </th>
+                <th>
+                    Name
+                </th>
+                <th>
+                    CreatedDate
+                </th>
 
-                <div id="code-editor" class="code-editor"></div>
+                <th>
+                    CreatedBy
+                </th>
+                <th></th>
+            </tr>
+        </tfoot>
+        <tbody>
+            @foreach (var item in Model.Items)
+            {
+                <tr>
+                    <td class="col-md-3">
+                        @Html.DisplayFor(modelItem => item.Priority)
+                    </td>
+                    <td class="col-md-4">
+                        
+                        <a asp-controller="TemplateFile" asp-action="Index" asp-route-templateId="@item.Id" 
+                               class="link">
+                            @Html.Raw(item.Name)
+                        </a>
+                    </td>
 
-            </div>
-        </div>
-    </div>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.CreatedDateTime)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.CreatedBy)
+                    </td>
+
+                    <td>
+                        <div class="btn-block">
+                            <a asp-controller="Template" asp-action="Edit" asp-route-id="@item.Id" 
+                               class="btn btn-sm btn-warning d-inline-block "><i class="fa fa-pencil"></i></a>
+                            <a asp-area="Portal" asp-controller="Template" asp-action="Delete" asp-route-id="@item.Id"
+                               class="btn btn-sm btn-danger d-inline-block" data-popout="true" data-toggle="confirmation" data-singleton="true"><i class="fa fa-remove"></i></a>
+
+                        </div>
+                    </td>
+                </tr>
+            }
+        </tbody>
+
+        <tbody></tbody>
+    </table>
+    @await Html.PartialAsync("_Pagination", Model
+                    , new ViewDataDictionary(this.Vi‌​ewData)
+                    {
+{ "PageSize", Model.PageSize}, { "PageIndex", Model.PageIndex }, { "TotalPage", Model.TotalPage } })
 </div>
+<!-- /.box-body -->
 @section Scripts
-{
+    {
     <script>
         $(document).ready(function () {
             $('#sel-template').on('change', function () {

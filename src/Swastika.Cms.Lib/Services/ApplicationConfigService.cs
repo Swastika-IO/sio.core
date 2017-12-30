@@ -9,6 +9,7 @@ namespace Swastika.Cms.Lib.Services
     {
         public string Culture { get; set; }
         public string Name { get; set; }
+        
 
         private static List<ConfigurationViewModel> _listConfiguration;
         public static List<ConfigurationViewModel> ListConfiguration
@@ -41,6 +42,22 @@ namespace Swastika.Cms.Lib.Services
             set
             {
                 _listSupportedLanguage = value;
+            }
+        }
+        private static ApplicationConfigService _instance;
+        public static ApplicationConfigService Instance
+        {
+            get
+            {
+                if (_instance == null)
+                {
+                    _instance = new ApplicationConfigService();
+                }
+                return _instance;
+            }
+            set
+            {
+                _instance = value;
             }
         }
 

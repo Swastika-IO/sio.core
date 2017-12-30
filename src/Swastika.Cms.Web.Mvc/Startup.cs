@@ -54,7 +54,7 @@ namespace Swastika.Cms.Web.Mvc
             // Add framework services.
             
             services.AddDbContext<SiocCmsContext>(options =>
-                options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
+                options.UseSqlServer(Configuration.GetConnectionString("CmsConnection")));
 
             //When View Page Source That changes only the HTML encoder, leaving the JavaScript and URL encoders with their (ASCII) defaults.
             services.Configure<WebEncoderOptions>(options =>
@@ -170,8 +170,8 @@ namespace Swastika.Cms.Web.Mvc
             }
             else
             {
-                app.UseExceptionHandler("/");
-                //app.UseDeveloperExceptionPage();
+                //app.UseExceptionHandler("/");
+                app.UseDeveloperExceptionPage();
             }
 
             //var locOptions = app.ApplicationServices.GetService<IOptions<RequestLocalizationOptions>>();

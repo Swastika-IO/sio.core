@@ -1,11 +1,11 @@
 @using Swastika.Common;
-@using Swastika.Cms.Lib.ViewModels;
-@using Swastika.Cms.Lib.Repositories;
+@using Swastika.Cms.Lib.ViewModels.FrontEnd;
+@using Swastika.Cms.Lib;
 @{
     string culture = ViewBag.culture;
-    var cates = SWCategoryRepository<SWCategoryWidget>.Instance.GetListWidgetCategory
-                (Constants.CateType.List, culture
-                );
+    var cates = FECategoryViewModel.Repository.GetModelListBy
+                (c=>c.Type== (int) SWCmsConstants.CateType.List && c.Specificulture== culture
+                ).Data;
 }
 <div class="widget categories">
     <h3>@LocalizerService.GetLocalString("Categories", culture)</h3>
@@ -17,7 +17,7 @@
                     <li><a 
                            asp-route-culture="@ViewBag.culture" asp-controller="Home" 
                            asp-action="Home" asp-route-pageName="@cate.SeoTitle">
-                        @cate.Title <span class="badge">@cate.TotalArticle</span></a></li>
+                        @cate.Title <span class="badge">@cate.Articles.TotalItems</span></a></li>
                 }
             </ul>
         </div>

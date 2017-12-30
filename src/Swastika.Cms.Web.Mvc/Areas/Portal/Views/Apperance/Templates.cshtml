@@ -1,9 +1,9 @@
 ﻿@using Swastika.IO.Domain.Core.ViewModels;
-@model List<Swastika.Cms.Lib.ViewModels.FileViewModel>
+@model List<Swastika.Cms.Lib.ViewModels.TemplateViewModel>
 @{
     ViewData["Title"] = "Blank Template";
     ViewData["Description"] = "Manage site navigations and menus";
-    var lst = new SelectList(Enum.GetNames(typeof(Swastika.Cms.Lib.SWCmsConstants.TemplateFolder)).ToList());
+    var lst = new SelectList(Enum.GetNames(typeof(Swastika.Cms.Lib.SWCmsConstants.TemplateFolderEnum)).ToList());
     string folder = ViewBag.folder;
 }
 
@@ -57,10 +57,10 @@
 
                         <td>
                             <div class="btn-block">
-                                <a asp-action="EditTemplate" asp-route-folder="@item.FileFolder" asp-route-name="@item.Filename" class="btn btn-sm btn-warning d-inline-block "> <i class="fa fa-pencil"></i></a>
+                                <a asp-action="EditTemplate" asp-route-folder="@folder" asp-route-name="@item.Filename" class="btn btn-sm btn-warning d-inline-block "> <i class="fa fa-pencil"></i></a>
                                 @*<a asp-area="" asp-controller="Home" asp-action="ArticleDetails" asp-route-id="@item.Id" asp-route-SeoTitle="@item.SeoTitle"
                                     target="_blank" class="btn btn-sm btn-info"> <i class="fa fa-eye"></i> </a>*@
-                                <a asp-action="DeleteTemplate" asp-route-folder="@item.FileFolder" asp-route-name="@item.Filename" class="btn btn-sm btn-danger d-inline-block" data-popout="true" data-toggle="confirmation" data-singleton="true"> <i class="fa fa-remove"></i> </a>
+                                <a asp-action="DeleteTemplate" asp-route-folder="@folder" asp-route-name="@item.Filename" class="btn btn-sm btn-danger d-inline-block" data-popout="true" data-toggle="confirmation" data-singleton="true"> <i class="fa fa-remove"></i> </a>
                             </div>
                         </td>
                     </tr>

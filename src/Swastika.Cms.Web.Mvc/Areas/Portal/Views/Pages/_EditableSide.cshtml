@@ -2,7 +2,7 @@
 @inject UserManager<ApplicationUser> UserManager
 
 @{
-    ViewBag.IsAdmin = UserManager.GetUserName(User) == "administrator";
+    ViewBag.IsAdmin = true; // UserManager.GetUserName(User) == "administrator";
     string isHidden = ViewBag.IsAdmin ? string.Empty : "hidden";
 }
 

@@ -28,6 +28,8 @@ namespace Swastika.Cms.Lib.ViewModels.Info
         public string Thumbnail { get; set; }
         [JsonProperty("image")]
         public string Image { get; set; }
+        [JsonProperty("icon")]
+        public string Icon { get; set; }
         [Required]
         [JsonProperty("title")]
         public string Title { get; set; }

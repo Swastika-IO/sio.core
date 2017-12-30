@@ -5,6 +5,7 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.EntityFrameworkCore;
 using Swastika.Cms.Lib.ViewModels;
 using Swastika.Cms.Lib.Services;
+using Microsoft.Data.OData.Query;
 
 namespace Swastika.Cms.Mvc.Areas.Portal.Controllers
 {
@@ -28,7 +29,8 @@ namespace Swastika.Cms.Mvc.Areas.Portal.Controllers
         [Route("Index/{pageSize:int?}/{pageIndex:int?}/{keyword}")]
         public IActionResult Index(int pageSize = 10, int pageIndex = 0, string keyword = null)
         {
-            return View(ApplicationConfigService.ListSupportedCulture);
+            return View(CultureViewModel.Repository.GetModelList("FullName", OrderByDirection.Ascending
+                ,pageSize, pageIndex).Data);
         }
 
         // GET: Culture/Details/5
@@ -61,7 +63,7 @@ namespace Swastika.Cms.Mvc.Areas.Portal.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [Route("Create")]
         [HttpPost]
-        [ValidateAntiForgeryToken]
+        //[ValidateAntiForgeryToken]
         public async Task<IActionResult> Create(CultureViewModel vmCulture)
         {
             if (ModelState.IsValid)

@@ -20,6 +20,7 @@ namespace Swastika.Cms.Web.Mvc
         public static IWebHost BuildWebHost(string[] args) =>
             WebHost.CreateDefaultBuilder(args)
                 .UseStartup<Startup>()
+            .UseApplicationInsights()
                 .Build();
     }
 }

@@ -4,11 +4,11 @@
 @using Microsoft.AspNetCore.Mvc.Localization
 @model Swastika.Cms.Lib.ViewModels.CategoryFEViewModel
 
-@foreach (var nav in Model.ModuleNavs.OrderBy(n => n.Priority))
+@foreach (var nav in Model.Modules.OrderBy(n => n.Priority))
 {
-    if (nav.Module != null)
+    if (nav != null)
     {
-        Html.RenderPartial(nav.Module.Template, nav.Module);
+        Html.RenderPartial(nav.Template, nav);
     }
 
 }

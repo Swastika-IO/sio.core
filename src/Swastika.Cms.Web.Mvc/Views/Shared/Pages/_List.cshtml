@@ -14,7 +14,7 @@
 <section id="blog" class="container">
     <div class="center">
         <h2>@Model.Title</h2>
-        <p class="lead">@Model.Description</p>
+        <p class="lead">@Model.Excerpt</p>
     </div>
 
     <div class="blog">
@@ -27,7 +27,7 @@
                         <div class="row">
                             <div class="col-xs-12 col-sm-2 text-center">
                                 <div class="entry-meta">
-                                    <span id="publish_date">@article.CreatedDate.ToString("dd MMM")</span>
+                                    <span id="publish_date">@article.CreatedDateTime.ToString("dd MMM")</span>
                                     <span><i class="fa fa-user"></i> <a href="#">@article.CreatedBy</a></span>
                                     @*<span><i class="fa fa-comment"></i> <a href="blog-item.html#comments">2 Comments</a></span>
                                         <span><i class="fa fa-heart"></i><a href="#">56 Likes</a></span>*@

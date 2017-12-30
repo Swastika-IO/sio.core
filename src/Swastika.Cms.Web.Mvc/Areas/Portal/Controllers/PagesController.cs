@@ -44,8 +44,8 @@ namespace Swastika.Cms.Mvc.Areas.Portal.Controllers
             //ViewData["Specificulture"] = new SelectList(_context.TtsCulture, "Specificulture", "Specificulture");
             var ttsMenu = new CategoryBEViewModel(new SiocCategory()
             {
-                Specificulture = _lang
-                //CreatedBy = "admin",
+                Specificulture = _lang,
+                CreatedBy = User.Identity.Name,
                 //CreatedDate = DateTime.UtcNow
             });
             return View(ttsMenu);
@@ -68,7 +68,7 @@ namespace Swastika.Cms.Mvc.Areas.Portal.Controllers
                 }
                 else
                 {
-                    throw new Exception(result.Exception.StackTrace);
+                    return View(ttsMenu);
                 }
             }
             return View(ttsMenu);

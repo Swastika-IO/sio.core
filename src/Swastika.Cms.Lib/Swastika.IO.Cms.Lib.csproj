@@ -13,6 +13,7 @@
     <Compile Remove="Models\AspNetUserRoles.cs" />
     <Compile Remove="Models\AspNetUsers.cs" />
     <Compile Remove="Models\AspNetUserTokens.cs" />
+    <Compile Remove="Models\BaseConfiguration.cs" />
     <Compile Remove="Models\Clients.cs" />
     <Compile Remove="Models\RefreshTokens.cs" />
     <Compile Remove="Models\Stag_swastika_ioContext.cs" />

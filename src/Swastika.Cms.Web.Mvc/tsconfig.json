@@ -1,7 +1,12 @@
 {
   "compilerOptions": {
     "allowJs": true,
-    "noEmit": true
+    "noEmit": true,
+    "module": "system",
+    "noImplicitAny": true,
+    "removeComments": true,
+    "preserveConstEnums": true,
+    "sourceMap": true
   },
   "exclude": [
     "wwwroot/lib",
@@ -12,6 +17,6 @@
   ], //ignore lib folders, we will get IntelliSense via ATA
   "typeAcquisition": {
     "enable": true,
-    "include": [ "kendo-ui" ] //kendo-ui wasn't added via bower, so we need to list it here
+    //"include": [ "kendo-ui" ] //kendo-ui wasn't added via bower, so we need to list it here
   }
 }

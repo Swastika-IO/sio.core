@@ -5,12 +5,23 @@ namespace Swastika.Cms.Lib
 {
     public class SWCmsConstants
     {
+        public const string CONST_DEFAULT_CONNECTION = "CmsConnection";
         public class Parameters
         {
-            public const string TemplatesFolder = @"Views/Templates";
+            public const string TemplatesFolder = @"Views/Shared/Templates";
             public const string TemplateExtension = @".cshtml";
             public const string WebRootPath = @"wwwroot";
             public const string UploadFolder = @"sw-content/uploads";
+        }
+        public class Default
+        {
+            public const string DefaultTemplateFolder = @"Default";
+            public const string DefaultTemplate = @"_Default";
+            public const string Specificulture = @"vi-vn";
+            public const string Password = @"1234qwe@";
+            public const string OrderBy = @"1234qwe@";
+            public const int PageSizeArticle = 20;
+
         }
         public class AuthConfiguration
         {
@@ -53,15 +64,7 @@ namespace Swastika.Cms.Lib
                 };
         }
 
-        public class Default
-        {
-            public const string DefaultTemplate = @"_Default";
-            public const string Specificulture = @"vi-vn";
-            public const string Password = @"1234qwe@";
-            public const string OrderBy = @"1234qwe@";
-            public const int PageSizeArticle = 20;
-
-        }
+     
         public class FileFolder
         {
             public const string Styles = "Styles";
@@ -69,6 +72,15 @@ namespace Swastika.Cms.Lib
             public const string Images = "Images";
             public const string Fonts = "Fonts";
             public const string Others = "Others";
+        }
+
+        public enum FileFolderEnum
+        {
+            Styles,
+            Scripts,
+            Images,
+            Fonts,
+            Others
         }
         public enum ModuleType
         {
@@ -84,7 +96,15 @@ namespace Swastika.Cms.Lib
             public const string Articles = "Articles";
             public const string Widgets = "Widgets";
         }
-        
+        public enum TemplateFolderEnum
+        {
+            Layouts,
+            Pages,
+            Modules,
+            Articles,
+            Widgets
+        }
+
 
         public enum SearchType
         {

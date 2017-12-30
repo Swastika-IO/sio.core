@@ -57,7 +57,7 @@ namespace Swastika.Cms.Mvc.Areas.Portal.Controllers
                 article => article.Specificulture == _lang &&
                     (string.IsNullOrEmpty(keyword) || article.Title.Contains(keyword))
                     && article.IsDeleted,
-                "CreatedDate", OrderByDirection.Descending,
+                "CreatedDateTime", OrderByDirection.Descending,
                 pageSize, pageIndex);
 
             return View(getArticles.Data);

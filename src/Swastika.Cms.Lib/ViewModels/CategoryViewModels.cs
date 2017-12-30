@@ -259,7 +259,8 @@ namespace Swastika.Cms.Lib.ViewModels
                 return SWCmsHelper.GetFullPath(new string[]
                 {
                     SWCmsConstants.Parameters.TemplatesFolder
-                    , SWCmsConstants.TemplateFolder.Articles.ToString()
+                    , SWCmsConstants.Default.DefaultTemplateFolder
+                    , SWCmsConstants.TemplateFolderEnum.Pages.ToString()
                 }
             );
             }
@@ -297,11 +298,21 @@ namespace Swastika.Cms.Lib.ViewModels
 
         }
 
-        #region Overrides
-
+        #region Overrides        
+        
         public override SiocCategory ParseModel()
         {
             GenerateSEO();
+            if (View != null)
+            {
+                TemplateRepository.Instance.SaveTemplate(View);
+            }
+            Template = View != null ? string.Format(@"/{0}/{1}{2}", View.FileFolder, View.Filename, View.Extension) : Template;
+            if (Id==0)
+            {
+                Id = CategoryFEViewModel.Repository.Count().Data + 1;
+                CreatedDateTime = DateTime.UtcNow;
+            }
             return base.ParseModel();
         }
 
@@ -320,12 +331,18 @@ namespace Swastika.Cms.Lib.ViewModels
             }
 
             this.Templates = this.Templates ?? TemplateRepository.Instance.GetTemplates(
-                SWCmsConstants.TemplateFolder.Pages);
+                this.TemplateFolder);
 
             this.View = Templates.FirstOrDefault(t => !string.IsNullOrEmpty(this.Template) && this.Template.Contains(t.Filename + t.Extension));
             if (this.View == null)
             {
-                this.View = Templates.FirstOrDefault();//t => this.Template.Contains(t.Filename + t.Extension)
+                this.View = new TemplateViewModel()
+                {
+                    Extension = SWCmsConstants.Parameters.TemplateExtension,
+                    FileFolder = this.TemplateFolder,
+                    Filename = string.Format("{0}{1}", SWCmsConstants.Default.DefaultTemplate, SWCmsConstants.Parameters.TemplateExtension),
+                    Content = "<div></div>"
+                };
                 this.Template = SWCmsHelper.GetFullPath(new string[]
                 {
                     this.View?.FileFolder
@@ -337,9 +354,6 @@ namespace Swastika.Cms.Lib.ViewModels
             this.ParentNavs = GetParentNavs(_context, _transaction);
             this.ChildNavs = GetChildNavs(_context, _transaction);
             this.PositionNavs = GetPositionNavs(_context, _transaction);
-
-
-
         }
 
         #endregion

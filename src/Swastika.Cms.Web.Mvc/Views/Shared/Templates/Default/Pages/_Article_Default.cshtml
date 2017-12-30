@@ -3,7 +3,7 @@
 <section id="blog" class="container">
     <div class="center">
         <h2>@Model.Title</h2>
-        <p class="lead">@Model.Description</p>
+        <p class="lead">@Model.Excerpt</p>
     </div>
 
     <div class="blog">
@@ -17,7 +17,7 @@
                     <div class="row">
                         <!--div class="col-xs-12 col-sm-2 text-center">
                             <div class="entry-meta">
-                                <span id="publish_date">@Model.CreatedDate.ToString("dd MMM")</span>
+                                <span id="publish_date">@Model.CreatedDateTime.ToString("dd MMM")</span>
                                 <span><i class="fa fa-user"></i> @Model.CreatedBy</span>
                                 <span>
                                     <i class="fa fa-comment"></i>
@@ -27,7 +27,7 @@
                             </div>
                         </div-->
                         <div class="col-xs-12 col-sm-12 blog-content">
-                            @Html.Raw(Model.FullContent)
+                            @Html.Raw(Model.Content)
 
                         </div>
                     </div>

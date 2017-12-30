@@ -7,7 +7,7 @@ namespace Swastika.Cms.Lib.Models
     {
         public string Culture { get; set; }
         public string Keyword { get; set; }
-        public string Value { get; set; }
         public string Note { get; set; }
+        public string Value { get; set; }
     }
 }

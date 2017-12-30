@@ -1,4 +1,4 @@
-﻿@inject Microsoft.ApplicationInsights.AspNetCore.JavaScriptSnippet JavaScriptSnippet
+﻿@**@
 <!DOCTYPE html>
 <!--
 This is a starter template page. Use this page to start your new project from
@@ -46,7 +46,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
               asp-fallback-test-class="sr-only" asp-fallback-test-property="position" asp-fallback-test-value="absolute" />
         <link rel="stylesheet" href="~/css/site.min.css" asp-append-version="true" />
     </environment>
-    @Html.Raw(JavaScriptSnippet.FullScript)
+    @*@Html.Raw(JavaScriptSnippet.FullScript)*@
 
     @RenderSection("Styles", required: false)
 </head>

@@ -61,14 +61,8 @@ namespace Swastika.Cms.Lib.Repositories
 
         public TemplateViewModel GetTemplate(string name, string templateFolder)
         {
-            string folder = templateFolder.ToString();
-            string fullPath = SWCmsHelper.GetFullPath(new string[]
-           {
-                SWCmsConstants.Parameters.TemplatesFolder, folder
-           });
-
-            DirectoryInfo d = new DirectoryInfo(fullPath);
-            FileInfo[] Files = d.GetFiles(string.Format("{0}{1}", name, SWCmsConstants.Parameters.TemplateExtension)); //Getting cshtml files
+            DirectoryInfo d = new DirectoryInfo(templateFolder);
+            FileInfo[] Files = d.GetFiles(name); //Getting cshtml files
             var file = Files.FirstOrDefault();
             TemplateViewModel result = null;
             if (file != null)
@@ -78,8 +72,9 @@ namespace Swastika.Cms.Lib.Repositories
                 {
                     result = new TemplateViewModel()
                     {
-                        FileFolder = folder,
-                        Filename = file.Name.Split('.').First(),
+                        FileFolder = templateFolder,
+                        Filename = file.Name,
+                        Extension = file.Extension,
                         Content = s.ReadToEnd()
                     };
 

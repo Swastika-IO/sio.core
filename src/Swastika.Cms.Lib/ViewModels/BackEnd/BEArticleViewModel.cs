@@ -171,7 +171,7 @@ namespace Swastika.Cms.Lib.ViewModels.BackEnd
             }
 
             this.Templates = this.Templates ?? TemplateRepository.Instance.GetTemplates(
-                SWCmsConstants.TemplateFolder.Articles);
+                 this.TemplateFolder);
 
             this.View = Templates.FirstOrDefault(t => !string.IsNullOrEmpty(this.Template) && this.Template.Contains(t.Filename + t.Extension));
             if (this.View == null)
@@ -179,7 +179,7 @@ namespace Swastika.Cms.Lib.ViewModels.BackEnd
                 this.View = new TemplateViewModel()
                 {
                     Extension = SWCmsConstants.Parameters.TemplateExtension,
-                    FileFolder = SWCmsConstants.TemplateFolder.Articles,
+                    FileFolder = this.TemplateFolder,
                     Filename = SWCmsConstants.Default.DefaultTemplate,
                     Content = "<div></div>"
                 };
@@ -189,6 +189,7 @@ namespace Swastika.Cms.Lib.ViewModels.BackEnd
                     , this.View?.Filename
                 });
             }
+            Template = View != null ? string.Format(@"{0}/{1}", View.FileFolder, View.Filename) : Template;
 
             var getCateArticle = CommonRepository.Instance.GetCategoryArticleNav(Id, Specificulture, _context, _transaction);
             if (getCateArticle.IsSucceed)
@@ -261,7 +262,7 @@ namespace Swastika.Cms.Lib.ViewModels.BackEnd
             }
 
             Tags = ListTag.ToString(Newtonsoft.Json.Formatting.None);
-            Template = View != null ? SWCmsHelper.GetFullPath(new string[] { View?.FileFolder, View?.Filename + View?.Extension }) : Template;
+            Template = View != null ? string.Format(@"{0}/{1}{2}", View.FileFolder, View.Filename, View.Extension) : Template;
 
             GenerateSEO();
 

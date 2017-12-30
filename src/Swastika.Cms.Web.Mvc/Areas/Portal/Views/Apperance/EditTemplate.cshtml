@@ -1,5 +1,5 @@
 
-@model Swastika.Cms.Lib.ViewModels.FileViewModel
+@model Swastika.Cms.Lib.ViewModels.TemplateViewModel
 @{
     ViewData["Title"] = "Template - " + Model.FileFolder;
     Layout = "~/Areas/Portal/Views/Shared/_Layout.cshtml";
@@ -10,7 +10,7 @@
 <section class="content container-fluid">
     <form asp-controller="@ViewContext.RouteData.Values["controller"].ToString()"
           asp-action="@ViewContext.RouteData.Values["action"].ToString()"
-          asp-route-folder="@Model.FileFolder"
+          asp-route-folder="@ViewBag.folder"
           asp-route-name="@Model.Filename"
           >
         <div class="row" style="position:relative;">

@@ -44,7 +44,14 @@ namespace Swastika.Cms.Mvc.Areas.Portal.Controllers
         public IActionResult Templates(string folder)
         {
             folder = folder ?? SWCmsConstants.TemplateFolder.Layouts;
-            var templates = TemplateRepository.Instance.GetTemplates(folder);
+            string templateFoler = SWCmsHelper.GetFullPath(new string[]
+            {
+                    SWCmsConstants.Parameters.TemplatesFolder
+                    , SWCmsConstants.Default.DefaultTemplateFolder
+                    , folder
+            });
+
+        var templates = TemplateRepository.Instance.GetTemplates(templateFoler);
             ViewBag.folder = folder;
             return View(templates);
         }
@@ -54,11 +61,18 @@ namespace Swastika.Cms.Mvc.Areas.Portal.Controllers
         [Route("templates/Edit/{folder}/{name}")]
         public IActionResult EditTemplate(string folder, string name)
         {
-            var template = TemplateRepository.Instance.GetTemplate(name, folder);
+            string templateFoler = SWCmsHelper.GetFullPath(new string[]
+           {
+                    SWCmsConstants.Parameters.TemplatesFolder
+                    , SWCmsConstants.Default.DefaultTemplateFolder
+                    , folder
+           });
+            var template = TemplateRepository.Instance.GetTemplate(name, templateFoler);
             if (template == null)
             {
                 return RedirectToAction("templates", new {  folder });
             }
+            ViewBag.folder = folder;
             return View(template);
         }
 
@@ -69,14 +83,14 @@ namespace Swastika.Cms.Mvc.Areas.Portal.Controllers
         [Route("templates/Edit/{folder}/{name}")]
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public IActionResult EditTemplate(TemplateViewModel template)
+        public IActionResult EditTemplate(string folder, string name, TemplateViewModel template)
         {
             if (ModelState.IsValid)
             {
                 var result = TemplateRepository.Instance.SaveTemplate(template);
                 if (result)
                 {
-                    return RedirectToAction("templates", new { folder = template.FileFolder.ToString() });
+                    return RedirectToAction("templates", new { folder = folder });
                 }
             }
             ModelState.AddModelError(string.Empty, "Invalid Model");

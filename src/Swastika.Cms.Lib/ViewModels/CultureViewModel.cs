@@ -7,7 +7,6 @@ namespace Swastika.Cms.Lib.ViewModels
         Swastika.Domain.Data.ViewModels.ViewModelBase<SiocCmsContext, SiocCulture, CultureViewModel>
     {
         public int Id { get; set; }
-        //public string Specificulture { get; set; }
         public string Lcid { get; set; }
         public string Alias { get; set; }
         public string FullName { get; set; }
@@ -16,6 +15,10 @@ namespace Swastika.Cms.Lib.ViewModels
 
         public bool IsSupported { get; set; }
 
+        public CultureViewModel()
+        {
+
+        }
         public CultureViewModel(SiocCulture model, SiocCmsContext _context = null, IDbContextTransaction _transaction = null) : base(model, _context, _transaction)
         {
         }

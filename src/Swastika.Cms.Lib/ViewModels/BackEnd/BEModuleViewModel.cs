@@ -49,7 +49,19 @@ namespace Swastika.Cms.Lib.ViewModels.BackEnd
         public List<TemplateViewModel> Templates { get; set; }
         [JsonProperty("articles")]
         public PaginationModel<InfoArticleViewModel> Articles { get; set; } = new PaginationModel<InfoArticleViewModel>();
-
+        [JsonProperty("templateFolder")]
+        public string TemplateFolder
+        {
+            get
+            {
+                return SWCmsHelper.GetFullPath(new string[]
+                {
+                    SWCmsConstants.Parameters.TemplatesFolder
+                    , SWCmsConstants.TemplateFolder.Modules.ToString()
+                }
+            );
+            }
+        }
         #endregion
 
         #endregion
@@ -69,6 +81,10 @@ namespace Swastika.Cms.Lib.ViewModels.BackEnd
         #region Overrides
         public override SiocModule ParseModel()
         {
+            if (Id==0)
+            {
+                Id = InfoModuleViewModel.Repository.Count().Data + 1;
+            }
             var arrField = Columns != null ? JArray.Parse(
                 Newtonsoft.Json.JsonConvert.SerializeObject(Columns.Where(
                     c => !string.IsNullOrEmpty(c.Name)))) : new JArray();
@@ -96,9 +112,25 @@ namespace Swastika.Cms.Lib.ViewModels.BackEnd
             }
 
             //Get Languages
-            this.Templates = Templates ?? TemplateRepository.Instance.GetTemplates(SWCmsConstants.TemplateFolder.Modules);
-            this.Template = string.IsNullOrEmpty(Template) ? "Modules/_Default" : Template;
+            this.Templates = Templates ?? TemplateRepository.Instance.GetTemplates(
+                this.TemplateFolder);
             this.View = TemplateRepository.Instance.GetTemplate(Template, Templates, SWCmsConstants.TemplateFolder.Modules);
+            if (this.View == null)
+            {
+                this.View = new TemplateViewModel()
+                {
+                    Extension = SWCmsConstants.Parameters.TemplateExtension,
+                    FileFolder = this.TemplateFolder,
+                    Filename = SWCmsConstants.Default.DefaultTemplate,
+                    Content = "<div></div>"
+                };
+                this.Template = SWCmsHelper.GetFullPath(new string[]
+                {
+                    this.View?.FileFolder
+                    , this.View?.Filename
+                });
+            }
+            Template = View != null ? string.Format(@"{0}/{1}{2}", View.FileFolder, View.Filename, View.Extension) : Template;
 
             var getDataResult = InfoModuleDataViewModel.Repository
                 .GetModelListBy(m => m.ModuleId == Id && m.Specificulture == Specificulture
