@@ -9,17 +9,17 @@
 @inject UserManager<Swastika.Identity.Models.ApplicationUser> UserManager
 @{
     string culture = ViewBag.culture;
-    var getSocialModule = Swastika.Cms.Lib.ViewModels.ModuleWithDataViewModel.Repository.GetSingleModel
+    var getSocialModule = Swastika.Cms.Lib.ViewModels.FrontEnd.FEModuleViewModel.Repository.GetSingleModel
         (m => m.Name == "Socials"
         && m.Specificulture == ViewContext.RouteData.Values["culture"].ToString());
-    ModuleWithDataViewModel socialModule = getSocialModule.Data ?? null;
+    Swastika.Cms.Lib.ViewModels.FrontEnd.FEModuleViewModel socialModule = getSocialModule.Data ?? null;
 
-    var getTopCates = CategoryListItemViewModel.Repository.GetModelListBy
+    var getTopCates = Swastika.Cms.Lib.ViewModels.Info.InfoCategoryViewModel.Repository.GetModelListBy
 (c => c.Specificulture == culture && c.SiocCategoryPosition.Count(
    p => p.PositionId == (int)Swastika.Cms.Lib.SWCmsConstants.CatePosition.Top) > 0
 
 );
-    var topCates = getTopCates.Data?? new List<CategoryListItemViewModel>();
+    var topCates = getTopCates.Data?? new List<Swastika.Cms.Lib.ViewModels.Info.InfoCategoryViewModel>();
 }
 <header id="header">
     <div class="top-bar">
@@ -30,10 +30,10 @@
                         <p>
                         <span>
                             <i class="fa fa-phone-square"></i>  
-                            @LocalizerService.GetLocalString("Phone", ViewBag.culture)
+                            @Swastika.Cms.Lib.Services.ApplicationConfigService.Instance.GetLocalString("Phone", ViewBag.culture)
                             </span>
                             <!--
-                            <a href="mailto:@LocalizerService.GetLocalString("Email", ViewBag.culture)" style="color: #fff;"><i class="fa fa-envelope-square"></i>  @LocalizerService.GetLocalString("Email", ViewBag.culture)</a> 
+                            <a href="mailto:@Swastika.Cms.Lib.Services.ApplicationConfigService.Instance.GetLocalString("Email", ViewBag.culture)" style="color: #fff;"><i class="fa fa-envelope-square"></i>  @Swastika.Cms.Lib.Services.ApplicationConfigService.Instance.GetLocalString("Email", ViewBag.culture)</a> 
                             -->
                         </p>
                     </div>
@@ -69,7 +69,7 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" asp-controller="home" asp-action="Index" asp-route-culture="@ViewBag.culture"><img src="@LocalizerService.GetLocalString("Logo",ViewBag.culture)" alt="logo"></a>
+                <a class="navbar-brand" asp-controller="home" asp-action="Index" asp-route-culture="@ViewBag.culture"><img src="@Swastika.Cms.Lib.Services.ApplicationConfigService.Instance.GetLocalString("Logo",ViewBag.culture)" alt="logo"></a>
             </div>
 <style>
 .navbar-nav > li {

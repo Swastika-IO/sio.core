@@ -42,7 +42,10 @@ namespace Swastika.Cms.Lib.ViewModels
         public ModuleWithDataViewModel(SiocModule model, SiocCmsContext _context = null, IDbContextTransaction _transaction = null) : base(model, _context, _transaction)
         {
         }
+        public ModuleWithDataViewModel():base()
+        {
 
+        }
         #region Overrides
         public override ModuleWithDataViewModel ParseView(bool isExpand = true, SiocCmsContext _context = null, IDbContextTransaction _transaction = null)
         {

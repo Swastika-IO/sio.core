@@ -1,4 +1,5 @@
 ﻿using Swastika.Cms.Lib.ViewModels;
+using Swastika.Cms.Lib.ViewModels.Info;
 using Swastika.Domain.Core.Models;
 using System.Collections.Generic;
 using System.Linq;
@@ -67,6 +68,14 @@ namespace Swastika.Cms.Lib.Services
             //_repo = ConfigurationRepository.GetInstance();
             InitCultures();
             InitConfigurations();
+            var getTemplates = InfoTemplateViewModel.Repository.GetModelList();
+            if (getTemplates.IsSucceed)
+            {
+                foreach (var item in getTemplates.Data)
+                {
+                    item.SaveModel();
+                }
+            }
         }
 
 
@@ -115,6 +124,7 @@ namespace Swastika.Cms.Lib.Services
                         });
                 }
             }
+           
         }
 
         static void InitConfigurations()
@@ -161,11 +171,14 @@ namespace Swastika.Cms.Lib.Services
             //return config != null ? config.Value : key;
         }
 
-        public int GetLocalInt(string key, string culture, string defaultValue)
+        public int GetLocalInt(string key, string culture, int defaultValue)
         {
-            return 10;
-            //var config = ListConfiguration.FirstOrDefault(c => c.Keyword == key && c.Specificulture == culture);
-            //return config != null ? config.Value : defaultValue;
+            var config = ListConfiguration.FirstOrDefault(c => c.Keyword == key && c.Specificulture == culture);
+            if(!int.TryParse(config?.Value, out int result))
+            {
+                result = defaultValue;
+            }
+            return result;
         }
     }
 }

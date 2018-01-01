@@ -25,6 +25,8 @@ namespace Swastika.Cms.Lib.ViewModels.FrontEnd
         public string Thumbnail { get; set; }
         [JsonProperty("image")]
         public string Image { get; set; }
+        [JsonProperty("icon")]
+        public string Icon { get; set; }
         [Required]
         [JsonProperty("title")]
         public string Title { get; set; }
@@ -48,12 +50,12 @@ namespace Swastika.Cms.Lib.ViewModels.FrontEnd
         public int Type { get; set; }
         [JsonProperty("createdDateTime")]
         public DateTime CreatedDateTime { get; set; }
-        [JsonProperty("updatedDateTime")]
-        public DateTime? UpdatedDateTime { get; set; }
         [JsonProperty("createdBy")]
         public string CreatedBy { get; set; }
-        [JsonProperty("updatedBy")]
-        public string UpdatedBy { get; set; }
+        [JsonProperty("lastModified")]
+        public DateTime? LastModified { get; set; }
+        [JsonProperty("modifiedBy")]
+        public string ModifiedBy { get; set; }
         [JsonProperty("isVisible")]
         public bool IsVisible { get; set; }
         [JsonProperty("isDeleted")]

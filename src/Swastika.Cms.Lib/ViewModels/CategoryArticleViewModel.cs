@@ -10,7 +10,10 @@ namespace Swastika.Cms.Lib.ViewModels
             : base(model, _context, _transaction)
         {
         }
+        public CategoryArticleViewModel(): base()
+        {
 
+        }
 
         public string ArticleId { get; set; }
         public int CategoryId { get; set; }

@@ -12,6 +12,8 @@ using Microsoft.Data.OData.Query;
 using System.Linq;
 using Swastika.Domain.Core.Models;
 using System.Threading.Tasks;
+using Swastika.Cms.Lib.Services;
+using System;
 
 namespace Swastika.Cms.Lib.ViewModels.BackEnd
 {
@@ -35,20 +37,39 @@ namespace Swastika.Cms.Lib.ViewModels.BackEnd
         public string Fields { get; set; }
         [JsonProperty("type")]
         public int Type { get; set; }
+        [JsonProperty("lastModified")]
+        public DateTime? LastModified { get; set; }
+        [JsonProperty("modifiedBy")]
+        public string ModifiedBy { get; set; }
         #endregion
 
         #region Views
 
-        [JsonProperty("view")]
-        public TemplateViewModel View { get; set; }
+
         [JsonProperty("data")]
         public PaginationModel<InfoModuleDataViewModel> Data { get; set; } = new PaginationModel<InfoModuleDataViewModel>();
         [JsonProperty("columns")]
         public List<ModuleFieldViewModel> Columns { get; set; }
-        [JsonProperty("templates")]
-        public List<TemplateViewModel> Templates { get; set; }
+        
         [JsonProperty("articles")]
         public PaginationModel<InfoArticleViewModel> Articles { get; set; } = new PaginationModel<InfoArticleViewModel>();
+
+        #region Template
+
+        [JsonProperty("view")]
+        public InfoTemplateViewModel View { get; set; }
+        [JsonProperty("templates")]
+        public List<InfoTemplateViewModel> Templates { get; set; }// Article Templates
+        [JsonIgnore]
+        public string ActivedTemplate
+        {
+            get
+            {
+                return ApplicationConfigService.Instance.GetLocalString(SWCmsConstants.ConfigurationKeyword.Theme, Specificulture, SWCmsConstants.Default.DefaultTemplateFolder);
+            }
+        }
+        [JsonIgnore]
+        public string TemplateFolderType { get { return SWCmsConstants.TemplateFolderEnum.Modules.ToString(); } }
         [JsonProperty("templateFolder")]
         public string TemplateFolder
         {
@@ -57,11 +78,14 @@ namespace Swastika.Cms.Lib.ViewModels.BackEnd
                 return SWCmsHelper.GetFullPath(new string[]
                 {
                     SWCmsConstants.Parameters.TemplatesFolder
-                    , SWCmsConstants.TemplateFolder.Modules.ToString()
+                    , ActivedTemplate
+                    , TemplateFolderType
                 }
             );
             }
         }
+
+        #endregion
         #endregion
 
         #endregion
@@ -89,7 +113,8 @@ namespace Swastika.Cms.Lib.ViewModels.BackEnd
                 Newtonsoft.Json.JsonConvert.SerializeObject(Columns.Where(
                     c => !string.IsNullOrEmpty(c.Name)))) : new JArray();
             Fields = arrField.ToString(Newtonsoft.Json.Formatting.None);
-            Template = View != null ? string.Format(@"{0}/{1}", View.FileFolder, View.Filename) : Template;
+
+            Template = View != null ? string.Format(@"/{0}/{1}{2}", View.FileFolder, View.FileName, View.Extension) : Template;
 
             return base.ParseModel();
         }
@@ -97,6 +122,12 @@ namespace Swastika.Cms.Lib.ViewModels.BackEnd
 
         public override void ExpandView(SiocCmsContext _context = null, IDbContextTransaction _transaction = null)
         {
+            IsClone = true;
+            ListSupportedCulture = ApplicationConfigService.ListSupportedCulture;
+            this.ListSupportedCulture.ForEach(c => c.IsSupported =
+           (Id == 0 && c.Specificulture == Specificulture)
+           || Repository.CheckIsExists(a => a.Id == Id && a.Specificulture == c.Specificulture, _context, _transaction)
+           );
             Columns = new List<ModuleFieldViewModel>();
             JArray arrField = !string.IsNullOrEmpty(Fields) ? JArray.Parse(Fields) : new JArray();
             foreach (var field in arrField)
@@ -111,26 +142,29 @@ namespace Swastika.Cms.Lib.ViewModels.BackEnd
                 Columns.Add(thisField);
             }
 
-            //Get Languages
-            this.Templates = Templates ?? TemplateRepository.Instance.GetTemplates(
-                this.TemplateFolder);
-            this.View = TemplateRepository.Instance.GetTemplate(Template, Templates, SWCmsConstants.TemplateFolder.Modules);
+            //Get Templates
+            this.Templates = this.Templates ?? InfoTemplateViewModel.Repository.GetModelListBy(
+                t => t.Template.Name == ActivedTemplate && t.FolderType == this.TemplateFolderType).Data;
+            this.View = Templates.FirstOrDefault(t => !string.IsNullOrEmpty(this.Template) && this.Template.Contains(t.FileName + t.Extension));
             if (this.View == null)
             {
-                this.View = new TemplateViewModel()
+                this.View = new InfoTemplateViewModel()
                 {
                     Extension = SWCmsConstants.Parameters.TemplateExtension,
+                    TemplateId = ApplicationConfigService.Instance.GetLocalInt(SWCmsConstants.ConfigurationKeyword.ThemeId, Specificulture, 0),
+                    TemplateName = ActivedTemplate,
+                    FolderType = TemplateFolderType,
                     FileFolder = this.TemplateFolder,
-                    Filename = SWCmsConstants.Default.DefaultTemplate,
+                    FileName = SWCmsConstants.Default.DefaultTemplate,
+                    ModifiedBy = ModifiedBy,
                     Content = "<div></div>"
                 };
                 this.Template = SWCmsHelper.GetFullPath(new string[]
                 {
                     this.View?.FileFolder
-                    , this.View?.Filename
+                    , this.View?.FileName
                 });
             }
-            Template = View != null ? string.Format(@"{0}/{1}{2}", View.FileFolder, View.Filename, View.Extension) : Template;
 
             var getDataResult = InfoModuleDataViewModel.Repository
                 .GetModelListBy(m => m.ModuleId == Id && m.Specificulture == Specificulture
@@ -151,8 +185,12 @@ namespace Swastika.Cms.Lib.ViewModels.BackEnd
             }
         }
 
-        #region Async
 
+        #region Async
+        public override Task<RepositoryResponse<bool>> RemoveModelAsync(bool isRemoveRelatedModels = false, SiocCmsContext _context = null, IDbContextTransaction _transaction = null)
+        {            
+            return base.RemoveModelAsync(isRemoveRelatedModels, _context, _transaction);
+        }
 
         public override async Task<RepositoryResponse<bool>> CloneSubModelsAsync(BEModuleViewModel parent, List<SupportedCulture> cloneCultures, SiocCmsContext _context = null, IDbContextTransaction _transaction = null)
         {
@@ -169,6 +207,20 @@ namespace Swastika.Cms.Lib.ViewModels.BackEnd
                     result.IsSucceed = cloneData.IsSucceed;
                     result.Errors.AddRange(cloneData.Errors);
                     result.Exception = cloneData.Exception;
+                }
+            }
+            return result;
+        }
+
+        public override async Task<RepositoryResponse<BEModuleViewModel>> SaveModelAsync(bool isSaveSubModels = false, SiocCmsContext _context = null, IDbContextTransaction _transaction = null)
+        {
+            var result = await base.SaveModelAsync(isSaveSubModels, _context, _transaction);
+            if (result.IsSucceed)
+            {
+                if (View != null)
+                {
+                    //TemplateRepository.Instance.SaveTemplate(View);
+                    View.SaveModel();
                 }
             }
             return result;
@@ -191,6 +243,19 @@ namespace Swastika.Cms.Lib.ViewModels.BackEnd
                     result.IsSucceed = cloneData.IsSucceed;
                     result.Errors.AddRange(cloneData.Errors);
                     result.Exception = cloneData.Exception;
+                }
+            }
+            return result;
+        }
+        public override RepositoryResponse<BEModuleViewModel> SaveModel(bool isSaveSubModels = false, SiocCmsContext _context = null, IDbContextTransaction _transaction = null)
+        {
+            var result = base.SaveModel(isSaveSubModels, _context, _transaction);
+            if (result.IsSucceed)
+            {
+                if (View != null)
+                {
+                    //TemplateRepository.Instance.SaveTemplate(View);
+                    View.SaveModel();
                 }
             }
             return result;

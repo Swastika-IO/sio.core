@@ -2,6 +2,7 @@
 using Swastika.Domain.Data.ViewModels;
 using Microsoft.EntityFrameworkCore.Storage;
 using Newtonsoft.Json;
+using System;
 
 namespace Swastika.Cms.Lib.ViewModels.Info
 {
@@ -25,6 +26,10 @@ namespace Swastika.Cms.Lib.ViewModels.Info
         public string Fields { get; set; }
         [JsonProperty("type")]
         public int Type { get; set; }
+        [JsonProperty("lastModified")]
+        public DateTime? LastModified { get; set; }
+        [JsonProperty("modifiedBy")]
+        public string ModifiedBy { get; set; }
         #endregion
 
         #region Views

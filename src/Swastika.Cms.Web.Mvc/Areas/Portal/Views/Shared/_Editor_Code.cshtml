@@ -1,7 +1,7 @@
 @*
     For more information on enabling MVC for empty projects, visit http://go.microsoft.com/fwlink/?LinkID=397860
 *@
-@model Swastika.Cms.Lib.ViewModels.Info.InfoTemplateFileViewModel
+@model Swastika.Cms.Lib.ViewModels.Info.InfoTemplateViewModel
 @inject UserManager<ApplicationUser> UserManager
 
 @{
@@ -9,11 +9,36 @@
     string isHidden = ViewBag.IsAdmin ? string.Empty : "hidden";
 }
 @{
-    List<Swastika.Cms.Lib.ViewModels.TemplateViewModel> files = (List<Swastika.Cms.Lib.ViewModels.TemplateViewModel>)this.ViewData["Files"];
-    files = files ?? new List<Swastika.Cms.Lib.ViewModels.TemplateViewModel>();
+    List<Swastika.Cms.Lib.ViewModels.Info.InfoTemplateViewModel> files = (List<Swastika.Cms.Lib.ViewModels.Info.InfoTemplateViewModel>)this.ViewData["Files"];
+    files = files ?? new List<Swastika.Cms.Lib.ViewModels.Info.InfoTemplateViewModel>();
     string name = (string)this.ViewData["Name"];
-    string inpName_Folder = string.IsNullOrEmpty(name) ? "FileFolder" : string.Format("{0}.FileFolder", name);
-    string inpId_Folder = string.IsNullOrEmpty(name) ? "FileFolder" : string.Format("{0}_FileFolder", name);
+
+    string inpName_TemplateName = string.IsNullOrEmpty(name) ? "TemplateName" : string.Format("{0}.TemplateName", name);
+    string inpId_TemplateName = string.IsNullOrEmpty(name) ? "TemplateName" : string.Format("{0}_TemplateName", name);
+
+    string inpName_TemplateId = string.IsNullOrEmpty(name) ? "TemplateId" : string.Format("{0}.TemplateId", name);
+    string inpId_TemplateId = string.IsNullOrEmpty(name) ? "TemplateId" : string.Format("{0}_TemplateId", name);
+
+    string inpName_Id = string.IsNullOrEmpty(name) ? "Id" : string.Format("{0}.Id", name);
+    string inpId_Id = string.IsNullOrEmpty(name) ? "Id" : string.Format("{0}_Id", name);
+
+    string inpName_FolderType = string.IsNullOrEmpty(name) ? "FolderType" : string.Format("{0}.FolderType", name);
+    string inpFolderType_FolderType = string.IsNullOrEmpty(name) ? "FolderType" : string.Format("{0}_FolderType", name);
+
+    string inpName_FileFolder = string.IsNullOrEmpty(name) ? "FileFolder" : string.Format("{0}.FileFolder", name);
+    string inpId_FileFolder = string.IsNullOrEmpty(name) ? "FileFolder" : string.Format("{0}_FileFolder", name);
+
+    string inpName_Extension = string.IsNullOrEmpty(name) ? "Extension" : string.Format("{0}.Extension", name);
+    string inpId_Extension = string.IsNullOrEmpty(name) ? "Extension" : string.Format("{0}_Extension", name);
+
+    string inpName_CreatedDateTime = string.IsNullOrEmpty(name) ? "CreatedDateTime" : string.Format("{0}.CreatedDateTime", name);
+    string inpId_CreatedDateTime = string.IsNullOrEmpty(name) ? "CreatedDateTime" : string.Format("{0}_CreatedDateTime", name);
+
+    string inpName_LastModified = string.IsNullOrEmpty(name) ? "LastModified" : string.Format("{0}.LastModified", name);
+    string inpId_LastModified = string.IsNullOrEmpty(name) ? "LastModified" : string.Format("{0}_LastModified", name);
+
+    string inpName_ModifiedBy = string.IsNullOrEmpty(name) ? "ModifiedBy" : string.Format("{0}.ModifiedBy", name);
+    string inpId_ModifiedBy = string.IsNullOrEmpty(name) ? "ModifiedBy" : string.Format("{0}_ModifiedBy", name);
 
     string inpName_Filename = string.IsNullOrEmpty(name) ? "Filename" : string.Format("{0}.Filename", name);
     string inpId_Filename = string.IsNullOrEmpty(name) ? "Filename" : string.Format("{0}_Filename", name);
@@ -22,24 +47,24 @@
     string inpId_Content = string.IsNullOrEmpty(name) ? "Content" : string.Format("{0}_Content", name);
 
 
-    var templates = new SelectList(files, "Content", "Filename");
+    var templates = new SelectList(files, "Content", "FileName");
 }
 <div>
     @if (files.Count > 0)
     {
-
         <select asp-for="FileName" asp-items="@templates" id="sel-template" class="form-control">
-            <option>--- Seclect Template Layout ---</option>
-            @if (true)
-            {
-                <option>[+] Create New template</option>
-            }
+            <option value="<div></div>">--- Seclect Template Layout ---</option>           
         </select>
-
     }
     @*<input id="@inputId" name="@inputName" value="@Model.Filename" class="form-control sel-filename"/>*@
-    <input type="hidden" id="@inpId_Folder" name="@inpName_Folder" value="@Model.FileFolder">
-    
+    <input type="hidden" id="@inpId_TemplateName" name="@inpName_TemplateName" value="@Model.TemplateName">
+    <input type="hidden" id="@inpId_TemplateId" name="@inpName_TemplateId" value="@Model.TemplateId">
+    <input type="hidden" id="@inpId_Id" name="@inpName_Id" value="@Model.Id">
+    <input type="hidden" id="@inpId_FileFolder" name="@inpName_FileFolder" value="@Model.FileFolder">
+    <input type="hidden" id="@inpId_Extension" name="@inpName_Extension" value="@Model.Extension">
+    <input type="hidden" id="@inpId_CreatedDateTime" name="@inpName_CreatedDateTime" value="@Model.CreatedDateTime">
+    <input type="hidden" id="@inpId_LastModified" name="@inpName_LastModified" value="@Model.LastModified">
+    <input type="hidden" id="@inpId_ModifiedBy" name="@inpName_ModifiedBy" value="@Model.ModifiedBy">
     
         <input class="form-control sel-filename" type="text" id="@inpId_Filename" name="@inpName_Filename" value="@Model.FileName">
         <div class="form-control @isHidden" id="code-editor">@Model.Content</div>

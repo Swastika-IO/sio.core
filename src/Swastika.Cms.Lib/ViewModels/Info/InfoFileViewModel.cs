@@ -1,0 +1,142 @@
+﻿using System;
+using Swastika.Cms.Lib.Models;
+using Swastika.Domain.Data.ViewModels;
+using Microsoft.EntityFrameworkCore.Storage;
+using Newtonsoft.Json;
+using Swastika.IO.Domain.Core.ViewModels;
+using Swastika.Cms.Lib.Repositories;
+using System.Threading.Tasks;
+
+namespace Swastika.Cms.Lib.ViewModels.Info
+{
+    public class InfoFileViewModel
+       : ViewModelBase<SiocCmsContext, SiocFile, InfoFileViewModel>
+    {
+        #region Properties
+
+        #region Models
+        [JsonProperty("id")]
+        public int Id { get; set; }
+        [JsonProperty("FileId")]
+        public int FileId { get; set; }
+        [JsonProperty("FileName")]
+        public string FileName { get; set; }
+        [JsonProperty("folderType")]
+        public string FolderType { get; set; }
+        [JsonProperty("fileFolder")]
+        public string FileFolder { get; set; }
+        [JsonProperty("themeName")]
+        public string ThemeName { get; set; }
+        [JsonProperty("extension")]
+        public string Extension { get; set; }
+        [JsonProperty("content")]
+        public string Content { get; set; }
+        [JsonProperty("createdDateTime")]
+        public DateTime CreatedDateTime { get; set; }
+        [JsonProperty("lastModified")]
+        public DateTime? LastModified { get; set; }
+        [JsonProperty("modifiedBy")]
+        public string ModifiedBy { get; set; }
+
+        #endregion
+
+        #region Views
+      
+        #endregion
+
+        #endregion
+
+        #region Contructors
+
+        public InfoFileViewModel() 
+            : base()
+        {
+        }
+
+        public InfoFileViewModel(SiocFile model, SiocCmsContext _context = null, IDbContextTransaction _transaction = null) 
+            : base(model, _context, _transaction)
+        {
+        }
+
+        #endregion
+
+        #region Overrides
+
+        #region Common
+
+        public override SiocFile ParseModel()
+        {
+            if (Id==0)
+            {
+                CreatedDateTime = DateTime.UtcNow;      
+            }           
+            if (FileName.IndexOf(Extension)==-1)
+            {
+                FileName += Extension;
+            }
+            Content = Content.Trim();
+            return base.ParseModel();
+        }
+
+        #endregion
+        #region Sync
+        public override RepositoryResponse<bool> RemoveModel(bool isRemoveRelatedModels = false, SiocCmsContext _context = null, IDbContextTransaction _transaction = null)
+        {
+            var result = base.RemoveModel(isRemoveRelatedModels, _context, _transaction);
+            if (result.IsSucceed)
+            {
+                FileRepository.Instance.DeleteFile(FileName, Extension, FileFolder);
+            }
+            return result;
+        }
+        public override RepositoryResponse<InfoFileViewModel> SaveModel(bool isSaveSubModels = false, SiocCmsContext _context = null, IDbContextTransaction _transaction = null)
+        {
+            var result = base.SaveModel(isSaveSubModels, _context, _transaction);
+            if (result.IsSucceed)
+            {
+                FileRepository.Instance.SaveFile(new FileViewModel()
+                {
+                    Filename = FileName,
+                    Extension = Extension,
+                    Content = Content,
+                    FileFolder = FileFolder
+                });
+            }
+            return result;
+        }
+
+        #endregion
+        #region Async
+        public override async Task<RepositoryResponse<bool>> RemoveModelAsync(bool isRemoveRelatedModels = false, SiocCmsContext _context = null, IDbContextTransaction _transaction = null)
+        {
+            var result = await base.RemoveModelAsync(isRemoveRelatedModels, _context, _transaction);
+            if (result.IsSucceed)
+            {
+                FileRepository.Instance.DeleteFile(FileName, Extension, FileFolder);
+            }
+            return result;
+        }
+        public override async Task<RepositoryResponse<InfoFileViewModel>> SaveModelAsync(bool isSaveSubModels = false, SiocCmsContext _context = null, IDbContextTransaction _transaction = null)
+        {
+            var result = await base.SaveModelAsync(isSaveSubModels, _context, _transaction);
+            if (result.IsSucceed)
+            {
+                if (result.IsSucceed)
+                {
+                    FileRepository.Instance.SaveFile(new FileViewModel()
+                    {
+                        Filename = FileName,
+                        Extension = Extension,
+                        Content = Content,
+                        FileFolder = FileFolder
+                    });
+                }
+            }
+            return result;
+        }
+
+        #endregion
+
+        #endregion
+    }
+}

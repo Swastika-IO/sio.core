@@ -7,6 +7,7 @@ using Microsoft.AspNetCore;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Logging;
+using Swastika.Cms.Lib.Services;
 
 namespace Swastika.Cms.Web.Mvc
 {
@@ -15,6 +16,7 @@ namespace Swastika.Cms.Web.Mvc
         public static void Main(string[] args)
         {
             BuildWebHost(args).Run();
+            ApplicationConfigService.Instance.Refresh();
         }
 
         public static IWebHost BuildWebHost(string[] args) =>

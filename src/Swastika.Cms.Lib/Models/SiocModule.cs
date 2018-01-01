@@ -22,6 +22,8 @@ namespace Swastika.Cms.Lib.Models
         public string Template { get; set; }
         public string Title { get; set; }
         public int Type { get; set; }
+        public string ModifiedBy { get; set; }
+        public DateTime? LastModified { get; set; }
 
         public SiocCulture SpecificultureNavigation { get; set; }
         public ICollection<SiocArticleModule> SiocArticleModule { get; set; }

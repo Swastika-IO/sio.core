@@ -252,3 +252,10 @@ ModelManifest.xml
 /src/Swastika.IO.Core/wwwroot/sw-spa/dist
 /src/.vs
 /src/Swastika.Cms.Mvc/wwwroot/lib
+/src/Swastika.Cms.Web.Mvc/Content
+/src/Swastika.Cms.Web.Mvc/wwwroot/Content
+/src/Swastika.Cms.Web.Mvc/Views/Shared/Templates
+/src/Swastika.Chat.Web
+/src/Swastika.Chat.Lib
+/src/Swastika.Cms.Lib/Migrations
+/src/Swastika.Cms.Web.Mvc/wwwroot/Uploads

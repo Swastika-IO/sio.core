@@ -3,6 +3,8 @@ using Swastika.Domain.Data.ViewModels;
 using Swastika.Cms.Lib.Models;
 using Swastika.Cms.Lib.Services;
 using System.ComponentModel.DataAnnotations;
+using Swastika.IO.Domain.Core.ViewModels;
+using System.Threading.Tasks;
 
 namespace Swastika.Cms.Lib.ViewModels
 {
@@ -14,7 +16,7 @@ namespace Swastika.Cms.Lib.ViewModels
         public string Keyword { get; set; }
         public string Category { get; set; }
         public string Value { get; set; }
-        public int DataType { get; set; }
+        public  SWCmsConstants.DataType DataType { get; set; }
         public string Description { get; set; }
 
 
@@ -42,6 +44,25 @@ namespace Swastika.Cms.Lib.ViewModels
             );
         }
 
+        public override RepositoryResponse<ConfigurationViewModel> SaveModel(bool isSaveSubModels = false, SiocCmsContext _context = null, IDbContextTransaction _transaction = null)
+        {
+            var result =base.SaveModel(isSaveSubModels, _context, _transaction);
+            if (result.IsSucceed)
+            {
+                ApplicationConfigService.Instance.Refresh();
+            }
+            return result;
+        }
+
+        public override async Task<RepositoryResponse<ConfigurationViewModel>> SaveModelAsync(bool isSaveSubModels = false, SiocCmsContext _context = null, IDbContextTransaction _transaction = null)
+        {
+            var result = await base.SaveModelAsync(isSaveSubModels, _context, _transaction);
+            if (result.IsSucceed)
+            {
+                ApplicationConfigService.Instance.Refresh();
+            }
+            return result;
+        }
         #endregion
     }
 }

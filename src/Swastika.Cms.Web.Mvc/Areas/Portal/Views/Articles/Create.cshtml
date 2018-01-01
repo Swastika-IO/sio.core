@@ -7,10 +7,11 @@
 }
 
 <!-- Main content -->
-<section class="content container-fluid">
-    <form asp-controller="@ViewContext.RouteData.Values["controller"].ToString()"
-          asp-action="@ViewContext.RouteData.Values["action"].ToString()"
-          asp-route-categoryId="@ViewBag.categoryId">
+<section class="content container-fluid">    
+    <form asp-action="@ViewContext.RouteData.Values["action"].ToString()"
+          asp-route-categoryId="@ViewBag.categoryId"
+          enctype="multipart/form-data"
+          >
         <div class="row">
 
             <section class="col-lg-9">

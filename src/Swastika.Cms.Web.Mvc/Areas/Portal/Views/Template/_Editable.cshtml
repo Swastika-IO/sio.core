@@ -1,18 +1,63 @@
 ﻿@model Swastika.Cms.Lib.ViewModels.Info.InfoTemplateViewModel
 @{
-    var types = Html.GetEnumSelectList<Swastika.Cms.Lib.SWCmsConstants.DataType>();
+    var lst = new SelectList(Enum.GetNames(typeof(Swastika.Cms.Lib.SWCmsConstants.TemplateFolderEnum)).ToList());
 }
 <div class="form-horizontal">
     <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
     <input type="hidden" asp-for="CreatedDateTime" />
-    <div class="form-group">
-        <label asp-for="Name" class="col-md-2 control-label"></label>
+    <input type="hidden" asp-for="TemplateId" />
+    <input type="hidden" asp-for="TemplateName" />
+    <input type="hidden" asp-for="FileFolder" />
+    <input type="hidden" asp-for="Extension" />
+    <input type="hidden" asp-for="LastModified" />
+     <div class="form-group">
+        <label asp-for="AssetFolder" class="col-md-2 control-label"></label>
         <div class="col-md-10">
-            <input asp-for="Name" class="form-control" />
-            <span asp-validation-for="Name" class="text-danger"></span>
+            <input asp-for="AssetFolder" onclick="this.select()" class="form-control" />
         </div>
     </div>
+    <div class="form-group">
+        <label asp-for="TemplateFolder" class="col-md-2 control-label"></label>
+        <div class="col-md-10">
+            <input asp-for="TemplateFolder" onclick="this.select()" class="form-control" />
+        </div>
+    </div>
+     <div class="form-group">
+        <label asp-for="FolderType" class="col-md-2 control-label"></label>
+        <div class="col-md-10">
+            <select asp-for="FolderType" class="form-control" asp-items="@lst"></select>
+            <span asp-validation-for="FolderType" class="text-danger"></span>
+        </div>
+    </div>
+    <div class="form-group">
+        <label asp-for="FileName" class="col-md-2 control-label"></label>
+        <div class="col-md-10">
+            <input asp-for="FileName" class="form-control" />
+            <span asp-validation-for="FileName" class="text-danger"></span>
+        </div>
+    </div>
+    <div class="form-group">
+        <label asp-for="Content" class="col-md-2 control-label"></label>
 
+        <div class="col-md-10">
+
+            @Html.Partial("_Editor_Code", Model, new ViewDataDictionary(this.ViewData)
+               {
+               {
+                       "Files", null
+                   },
+                   {
+                       "Name", ""
+                   }
+
+                })
+            @* <input asp-for="View.Filename" class="form-control"/>
+
+                <div class="form-control" id="code-editor" asp-for="View.Content"></div>*@
+            <span asp-validation-for="Content" class="text-danger"></span>
+        </div>
+    </div>
     <div class="form-group">
         <label asp-for="Priority" class="col-md-2 control-label"></label>
         <div class="col-md-10">
@@ -22,9 +67,9 @@
     </div>
 
     <div class="form-group">
-        <label asp-for="CreatedBy" class="col-md-2 control-label"></label>
+        <label asp-for="ModifiedBy" class="col-md-2 control-label"></label>
         <div class="col-md-10">
-            <input asp-for="CreatedBy" class="form-control" readonly />
+            <input asp-for="ModifiedBy" class="form-control" readonly />
         </div>
     </div>
 </div>

@@ -10,6 +10,10 @@ using Newtonsoft.Json.Linq;
 using Swastika.IO.Common.Helper;
 using System.Linq;
 using Swastika.Cms.Lib.ViewModels;
+using Swastika.Cms.Lib.Services;
+using Swastika.IO.Domain.Core.ViewModels;
+using Swastika.Cms.Lib.Repositories;
+using System.Threading.Tasks;
 
 namespace Swastika.Cms.Lib.ViewModels.Info
 {
@@ -59,8 +63,6 @@ namespace Swastika.Cms.Lib.ViewModels.Info
         #endregion
 
         #region Overrides
-
-        
         public override SiocModuleData ParseModel()
         {
             if (string.IsNullOrEmpty(Id))
@@ -68,13 +70,139 @@ namespace Swastika.Cms.Lib.ViewModels.Info
                 Id = Guid.NewGuid().ToString();
                 CreatedDateTime = DateTime.UtcNow;
             }
+            Value = ParseObjectValue();
             return base.ParseModel();
+        }
+        public override void ExpandView(SiocCmsContext _context = null, IDbContextTransaction _transaction = null)
+        {
+            IsClone = true;
+            ListSupportedCulture = ApplicationConfigService.ListSupportedCulture;
+
+            var objValue = Value != null ? JObject.Parse(Value) : new JObject();
+
+            this.DataProperties = new List<ModuleDataValueViewModel>();
+            //Columns = new List<ModuleFieldViewModel>(); // ModuleRepository.GetInstance().GetColumns(m => m.Id == ModuleId && m.Specificulture == Specificulture);
+
+            this.Columns = new List<ModuleFieldViewModel>();
+            if (!string.IsNullOrEmpty(Fields))
+            {
+                JArray arrField = JArray.Parse(Fields);
+
+                foreach (var field in arrField)
+                {
+                    ModuleFieldViewModel thisField = new ModuleFieldViewModel()
+                    {
+                        Name = CommonHelper.ParseJsonPropertyName(field["Name"].ToString()),
+                        DataType = (SWCmsConstants.DataType)(int)field["DataType"],
+                        Width = field["Width"] != null ? field["Width"].Value<int>() : 3,
+                        IsDisplay = field["IsDisplay"] != null ? field["IsDisplay"].Value<bool>() : true
+                    };
+                    this.Columns.Add(thisField);
+                }
+            }
+            foreach (var col in Columns)
+            {
+                //    foreach (var field in objValue.Properties())
+                //{
+                JProperty prop = objValue.Property(col.Name);
+                if (prop == null)
+                {
+                    JObject val = new JObject
+                    {
+                        { "dataType", (int)col.DataType },
+                        { "value", null }
+                    };
+                    prop = new JProperty(col.Name, val);
+                }
+                //foreach (var prop in objValue.Properties())
+                //{               
+                var dataVal = new ModuleDataValueViewModel()
+                {
+                    ModuleId = ModuleId,
+                    DataType = (SWCmsConstants.DataType)col.DataType,
+                    Name = CommonHelper.ParseJsonPropertyName(prop.Name),
+                    StringValue = prop.Value["value"].Value<string>()
+                };
+                switch (col.DataType)
+                {
+                    case SWCmsConstants.DataType.Int:
+                        dataVal.Value = prop.Value["value"] != null ? prop.Value["value"].Value<int>() : 0;
+                        break;
+
+                    case SWCmsConstants.DataType.Boolean:
+                        dataVal.Value = !string.IsNullOrEmpty(prop.Value["value"].ToString()) ? prop.Value["value"].Value<bool>() : false;
+                        break;
+                    case SWCmsConstants.DataType.String:
+                    case SWCmsConstants.DataType.Image:
+                    case SWCmsConstants.DataType.Icon:
+                    case SWCmsConstants.DataType.CodeEditor:
+                    case SWCmsConstants.DataType.Html:
+                    case SWCmsConstants.DataType.TextArea:
+                    default:
+                        dataVal.Value = prop.Value["value"].Value<string>();
+                        break;
+                }
+                this.DataProperties.Add(dataVal);
+                //}
+            }
+        }
+
+        #region Sync
+
+        public override RepositoryResponse<bool> RemoveModel(bool isRemoveRelatedModels = false, SiocCmsContext _context = null, IDbContextTransaction _transaction = null)
+        {
+            var result = base.RemoveModel(isRemoveRelatedModels, _context, _transaction);
+            if (result.IsSucceed)
+            {
+                foreach (var prop in DataProperties)
+                {
+                    if (prop.DataType == SWCmsConstants.DataType.Image)
+                    {
+                        FileRepository.Instance.DeleteWebFile(prop.StringValue);
+                    }
+                }
+            }
+            return result;
         }
 
         #endregion
 
+        #region ASync
+
+        public override async Task<RepositoryResponse<bool>> RemoveModelAsync(bool isRemoveRelatedModels = false, SiocCmsContext _context = null, IDbContextTransaction _transaction = null)
+        {
+           
+            var result = await base.RemoveModelAsync(isRemoveRelatedModels, _context, _transaction);
+            if (result.IsSucceed)
+            {
+                foreach (var prop in DataProperties)
+                {
+                    if (prop.DataType == SWCmsConstants.DataType.Image)
+                    {
+                        FileRepository.Instance.DeleteWebFile(prop.StringValue);
+                    }
+                }
+            }
+            return result;
+        }
+        #endregion
+        #endregion
+
 
         #region Expands
+        public string ParseObjectValue()
+        {
+            JObject result = new JObject();
+            foreach (var prop in DataProperties)
+            {
+                
+                JObject obj = new JObject();
+                obj.Add(new JProperty("dataType", prop.DataType));
+                obj.Add(new JProperty("value", prop.StringValue));
+                result.Add(new JProperty(CommonHelper.ParseJsonPropertyName(prop.Name), obj));
+            }
+            return result.ToString(Formatting.None);
+        }
 
         public string GetStringValue(string name)
         {

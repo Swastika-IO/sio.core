@@ -68,14 +68,13 @@ namespace Swastika.Cms.Mvc.Areas.Portal.Controllers
         [Route("Create/{categoryId:int}")]
         public IActionResult Create(int? categoryId = null)
         {           
-            var vmArticle = new BEArticleViewModel()
+            var vmArticle = new BEArticleViewModel( new SiocArticle() 
             {
                 IsVisible = true,
-                Specificulture = _lang,
-                Domain = this._domain,
+                Specificulture = _lang,              
                 CreatedBy = User.Identity.Name,
                 CreatedDateTime = DateTime.UtcNow
-            };
+            });
             if (categoryId.HasValue)
             {
                 var activeCate = vmArticle.Categories.FirstOrDefault(c => c.CategoryId == categoryId);
@@ -102,7 +101,7 @@ namespace Swastika.Cms.Mvc.Areas.Portal.Controllers
             {
                 //var vmArticle = new SWBEArticleViewModel<BackendBEArticleViewModel>(article);
                 //var result = await vmArticle.SaveModelAsync();
-                var result = await article.SaveModelAsync();
+                var result = await article.SaveModelAsync(true);
                 if (result.IsSucceed)
                 {
                     if (categoryId.HasValue)
@@ -116,7 +115,7 @@ namespace Swastika.Cms.Mvc.Areas.Portal.Controllers
                 }
                 else
                 {
-                    throw new Exception(result.Exception.StackTrace);
+                    return View(article);
                 }
             }
             ViewBag.categoryId = categoryId;

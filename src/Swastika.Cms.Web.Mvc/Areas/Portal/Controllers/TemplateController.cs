@@ -9,6 +9,7 @@ using Microsoft.Data.OData.Query;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 using System;
+using Swastika.Cms.Lib;
 
 namespace Swastika.Cms.Mvc.Areas.Portal.Controllers
 {
@@ -19,46 +20,56 @@ namespace Swastika.Cms.Mvc.Areas.Portal.Controllers
     {
         //private readonly IViewRenderService _viewRenderService;
         public TemplateController(IHostingEnvironment env
-            //, IStringLocalizer<PortalController> templateLocalizer
-            //, IViewRenderService viewRenderService
-            //, IStringLocalizer<SharedResource> localizer
             )
             : base(env)
         {
         }
 
-        [Route("")]
-        [Route("{pageSize:int?}/{pageIndex:int?}/{keyword}")]
-        [Route("{pageSize:int?}/{pageIndex:int?}")]
-        [Route("Index/{pageSize:int?}/{pageIndex:int?}/{keyword}")]
-        [Route("Index/{pageSize:int?}/{pageIndex:int?}")]
-        public async Task<IActionResult> Index(int pageSize = 10, int pageIndex = 0, string keyword = null)
+        [Route("{templateId:int}")]
+        [Route("{templateId:int}/{pageSize:int?}/{pageIndex:int?}/{keyword}")]
+        [Route("{templateId:int}/{pageSize:int?}/{pageIndex:int?}")]
+        [Route("Index/{templateId:int}/{pageSize:int?}/{pageIndex:int?}/{keyword}")]
+        [Route("Index/{templateId:int}/{pageSize:int?}/{pageIndex:int?}")]
+        public async Task<IActionResult> Index(int templateId, int pageSize = 10, int pageIndex = 0, string keyword = null)
         {
-           var getTemplate = await InfoTemplateViewModel.Repository.GetModelListByAsync(
-                template => (string.IsNullOrEmpty(keyword) || template.Name.Contains(keyword)),
+           var getTemplateFile = await InfoTemplateViewModel.Repository.GetModelListByAsync(
+                template => template.TemplateId == templateId 
+                && (string.IsNullOrEmpty(keyword) || template.FileName.Contains(keyword)),
                 "CreatedDateTime", OrderByDirection.Descending,
                 pageSize, pageIndex);
-
-            return View(getTemplate.Data);
+            ViewBag.templateId = templateId;
+            return View(getTemplateFile.Data);
         }
 
-        [Route("Create")]
-        public IActionResult Create()
+        [Route("Create/{templateId:int}")]
+        public IActionResult Create(int templateId)
         {
-            var template = new InfoTemplateViewModel()
+            var getTemplate = InfoThemeViewModel.Repository.GetSingleModel(t => t.Id == templateId);
+            if (getTemplate.IsSucceed)
             {
-                CreatedBy = User.Identity.Name
-            };
-            return View(template);
+                var TemplateFile = new InfoTemplateViewModel()
+                {
+                    ModifiedBy = User.Identity.Name,
+                    Extension = SWCmsConstants.Parameters.TemplateExtension,
+                    TemplateId = templateId,
+                    TemplateName = getTemplate.Data.Name
+                };
+                return View(TemplateFile);
+            }
+            else
+            {
+                return NotFound();
+            }
+            
         }
 
         // POST: TtsMenu/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
-        [Route("Create")]
+        [Route("Create/{templateId:int}")]
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create(InfoTemplateViewModel template)
+        public async Task<IActionResult> Create(int templateId, InfoTemplateViewModel template)
         {
             if (ModelState.IsValid)
             {
@@ -66,7 +77,7 @@ namespace Swastika.Cms.Mvc.Areas.Portal.Controllers
                 var result = await template.SaveModelAsync();
                 if (result.IsSucceed)
                 {
-                    return RedirectToAction("Index");
+                    return RedirectToAction("Index", new { templateId = template.TemplateId });
                 }
                 else
                 {
@@ -85,12 +96,12 @@ namespace Swastika.Cms.Mvc.Areas.Portal.Controllers
                 return NotFound();
             }
 
-            var template = await InfoTemplateViewModel.Repository.GetSingleModelAsync(m => m.Id == id);
-            if (!template.IsSucceed)
+            var TemplateFile = await InfoTemplateViewModel.Repository.GetSingleModelAsync(m => m.Id == id);
+            if (!TemplateFile.IsSucceed)
             {
                 return NotFound();
             }
-            return View(template.Data);
+            return View(TemplateFile.Data);
         }
 
         // POST: TtsMenu/Edit/5
@@ -110,10 +121,12 @@ namespace Swastika.Cms.Mvc.Areas.Portal.Controllers
             {
                 try
                 {
+                    template.ModifiedBy = User.Identity.Name;
+                    template.LastModified = DateTime.UtcNow;
                     var result = await template.SaveModelAsync();
                     if (result.IsSucceed)
                     {
-                        return RedirectToAction("Index");
+                        return RedirectToAction("Index", new { templateId = template.TemplateId });
                     }
                     else
                     {
@@ -135,15 +148,16 @@ namespace Swastika.Cms.Mvc.Areas.Portal.Controllers
                 //return RedirectToAction("Index");
             }
             ViewData["Action"] = "Edit";
-            ViewData["Controller"] = "Template";
+            ViewData["Controller"] = "TemplateFile";
             return View(template);
         }
 
         [Route("Delete/{id}")]
         public async Task<IActionResult> Delete(int? id)
         {
-            var template = await InfoTemplateViewModel.Repository.RemoveModelAsync(m => m.Id == id);
-            return RedirectToAction("Index");
+            var template = await InfoTemplateViewModel.Repository.GetSingleModelAsync(m => m.Id == id);
+            await template.Data.RemoveModelAsync();
+            return RedirectToAction("Index", new { templateId = template.Data.TemplateId });
         }
     }
     //public class FileViewModel

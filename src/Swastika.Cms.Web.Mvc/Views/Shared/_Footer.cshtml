@@ -5,12 +5,12 @@
 *@
 @{
     string culture = ViewBag.culture;
-    var getCates = CategoryListItemViewModel.Repository.GetModelListBy
+    var getCates = Swastika.Cms.Lib.ViewModels.Info.InfoCategoryViewModel.Repository.GetModelListBy
         (c => c.Specificulture == culture && c.SiocCategoryPosition.Count(
             p => p.PositionId == (int)Swastika.Cms.Lib.SWCmsConstants.CatePosition.Footer) > 0
 
         );
-    var cates = getCates.Data ?? new List<CategoryListItemViewModel>();
+    var cates = getCates.Data ?? new List<Swastika.Cms.Lib.ViewModels.Info.InfoCategoryViewModel>();
 }
 
 
@@ -18,7 +18,7 @@
     <div class="container">
         <div class="row">
             <div class="col-sm-12">
-                &copy; 2017 <a target="_blank" href="http://totaltravelsolutions.asia/" title="Total Travel Solutions">Total Travel Solutions</a>. @LocalizerService.GetLocalString("All Rights Reserved.", ViewBag.culture)
+                &copy; 2017 <a target="_blank" href="http://totaltravelsolutions.asia/" title="Total Travel Solutions">Total Travel Solutions</a>. @Swastika.Cms.Lib.Services.ApplicationConfigService.Instance.GetLocalString("All Rights Reserved.", ViewBag.culture)
             </div>
             <div class="col-sm-12">
                 <ul class="navbar-right">

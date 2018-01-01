@@ -2,8 +2,8 @@
 
 @{
     ViewData["Title"] = "Search Results";
-    Layout = string.Format("Layouts/{0}", LocalizerService.GetLocalString("Layout", ViewBag.culture, "_Layout_Corlate"));// "_Layout_Corlate";
-    List<Swastika.Cms.Lib.ViewModels.CategoryFEViewModel> categories = ViewData["Categories"] as List<Swastika.Cms.Lib.ViewModels.CategoryFEViewModel>;
+    Layout = string.Format("Layouts/{0}", Swastika.Cms.Lib.Services.ApplicationConfigService.Instance.GetLocalString("Layout", ViewBag.culture, "_Layout_Corlate"));// "_Layout_Corlate";
+    List<Swastika.Cms.Lib.ViewModels.FrontEnd.FECategoryViewModel> categories = ViewData["Categories"] as List<Swastika.Cms.Lib.ViewModels.FrontEnd.FECategoryViewModel>;
 }
 
 <section id="blog" class="container">
@@ -39,7 +39,7 @@
                                 <a class="btn btn-primary readmore"
                                    asp-route-culture="@ViewBag.culture" asp-controller="Home" 
                                    asp-action="Home" asp-route-pageName="@cate.SeoTitle">
-                                    @LocalizerService.GetLocalString("Read More", ViewBag.culture) <i class="fa fa-angle-right"></i>
+                                    @Swastika.Cms.Lib.Services.ApplicationConfigService.Instance.GetLocalString("Read More", ViewBag.culture) <i class="fa fa-angle-right"></i>
                                 </a>
                             </div>
                         </div>

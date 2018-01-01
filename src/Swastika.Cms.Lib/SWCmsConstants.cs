@@ -9,14 +9,17 @@ namespace Swastika.Cms.Lib
         public class Parameters
         {
             public const string TemplatesFolder = @"Views/Shared/Templates";
+            public const string TemplatesAssetFolder = @"Content/Templates";
             public const string TemplateExtension = @".cshtml";
             public const string WebRootPath = @"wwwroot";
-            public const string UploadFolder = @"sw-content/uploads";
+            public const string UploadFolder = @"Uploads";
         }
         public class Default
         {
             public const string DefaultTemplateFolder = @"Default";
             public const string DefaultTemplate = @"_Default";
+            public const string DefaultTemplateLayout = @"_Layout";
+            public const string DefaultTemplateLayoutBody = "<div>@RenderBody();</div>";
             public const string Specificulture = @"vi-vn";
             public const string Password = @"1234qwe@";
             public const string OrderBy = @"1234qwe@";
@@ -96,6 +99,16 @@ namespace Swastika.Cms.Lib
             public const string Articles = "Articles";
             public const string Widgets = "Widgets";
         }
+        public class ConfigurationKeyword
+        {
+            public const string Theme = "Theme";
+            public const string ThemeId = "ThemeId";
+        }
+        public class ConfigurationType
+        {
+            public const string System = "System";
+            public const string User = "User";
+        }
         public enum TemplateFolderEnum
         {
             Layouts,
@@ -140,7 +153,7 @@ namespace Swastika.Cms.Lib
             Left = 2,
             Footer = 3
         }
-
+        
         public enum DataType
         {
             String = 0,

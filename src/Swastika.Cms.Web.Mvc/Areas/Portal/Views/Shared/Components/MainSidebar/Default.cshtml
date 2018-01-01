@@ -5,17 +5,18 @@
 @using Swastika.Cms.Lib.Repositories;
 @using Microsoft.AspNetCore.Identity
 @using Swastika.Cms.Lib.ViewModels
+@using Swastika.Cms.Lib.ViewModels.Info
 @using Swastika.Cms.Lib;
 @inject SignInManager<ApplicationUser> SignInManager
 @inject UserManager<ApplicationUser> UserManager
 @{
-    var getListAvailbleModules =  ModuleListItemViewModel.Repository.GetModelListBy(
+    var getListAvailbleModules = Swastika.Cms.Lib.ViewModels.Info.InfoModuleViewModel.Repository.GetModelListBy(
         m => m.Specificulture == ViewContext.RouteData.Values["culture"].ToString());
     var listAvaiModule = getListAvailbleModules.Data;
     // ModuleRepository.GetInstance().GetModelListBy(m => m.Specificulture == ViewContext.RouteData.Values["culture"].ToString());
-    var getAvailableCategories = CategoryListItemViewModel.Repository.GetModelListBy(m => m.Specificulture == ViewContext.RouteData.Values["culture"].ToString());
+    var getAvailableCategories = Swastika.Cms.Lib.ViewModels.Info.InfoCategoryViewModel.Repository.GetModelListBy(m => m.Specificulture == ViewContext.RouteData.Values["culture"].ToString());
     var listAvaiPage = getAvailableCategories.Data;
-
+    var listAvaiTheme = InfoThemeViewModel.Repository.GetModelList();
     //CategoryRepository.GetInstance().GetModelListBy(m => m.Specificulture == ViewContext.RouteData.Values["culture"].ToString());
     var searchTypes = new SelectList(Enum.GetNames(typeof(SWCmsConstants.SearchType)).ToList());
 
@@ -50,216 +51,246 @@
             <li class="header">MAIN NAVIGATION</li>
 
             @if (SignInManager.IsSignedIn(User))
-    {
-        <li class="treeview" is-active-menu asp-controllers="Articles">
-            <a href="#">
-                <i class="mi mi-ReadingList mi-lg"></i> <span>Articles</span>
-                <span class="pull-right-container">
-                    <i class="fa fa-angle-left pull-right"></i>
-                </span>
-            </a>
-            <ul class="treeview-menu">
-                <li is-active-route asp-controller="Articles Portal" asp-action="Create,">
-                    <a asp-area="Portal" asp-controller="Articles" asp-action="Create"><i class="mi mi-Add text-green"></i> Add New</a>
-                </li>
-                @*<li is-active-route asp-controller="Articles" asp-action="Index"><a asp-area="Portal" asp-controller="Articles" asp-action="Index"><i class="mi mi-Library"></i> Articles</a></li>*@
-                <li is-active-route asp-controller="Articles" asp-action="Index"><a asp-area="Portal" asp-controller="Articles" asp-action="Index"><i class="mi mi-Library"></i> All Articles...</a></li>
-                <li is-active-route asp-controller="Articles" asp-action="Draft"><a asp-area="Portal" asp-controller="Articles" asp-action="Draft"><i class="mi mi-Broom"></i> Trash</a></li>
-            </ul>
-        </li>
-        <li class="treeview" is-active-menu asp-controllers="Pages">
-            <a href="#">
-                <i class="mi mi-MapLayers mi-lg"></i> <span>Pages</span>
-                <span class="pull-right-container">
-                    <i class="fa fa-angle-left pull-right"></i>
-                </span>
-            </a>
-            <ul class="treeview-menu">
-                @if (true)
-        {
-            <li is-active-route asp-controller="Pages" asp-action="Create"><a asp-area="Portal" asp-controller="Pages" asp-action="Create"><i class="mi mi-Add text-green"></i> Add Page</a></li>
-}
-        @*<li is-active-route asp-controller="Pages" asp-action="Index"><a asp-area="Portal" asp-controller="Pages" asp-action=""><i class="mi mi-TreeFolderFolderOpen"></i> All Pages</a></li>*@
-                <li is-active-route asp-controller="Pages" asp-action="Index"><a asp-area="Portal" asp-controller="Pages" asp-action=""><i class="mi mi-TreeFolderFolderOpen"></i> All Pages...</a></li>
-
-                @foreach (var cate in listAvaiPage)
-        {
-            <li class="treeview page" is-active-menu
-                asp-controllers="Pages" asp-action="AddData,EditData,Contents,Edit" asp-route-id="@cate.Id">
-                <a href="#">
-                    <i class="mi mi-Component"></i> <span>
-                        @cate.Title
-                    </span>
-                    <span class="pull-right-container">
-                        <i class="fa fa-angle-left pull-right"></i>
-                    </span>
-                </a>
-                <ul class="treeview-menu">
-                    @if (cate.Type == SWCmsConstants.CateType.List)
             {
-                <li is-active-route
-                    asp-controllers="Articles" asp-action="Create" asp-route-categoryId="@cate.Id">
-                    <a asp-area="Portal" asp-controller="Articles" asp-action="Create" asp-route-categoryId="@cate.Id">
-                        <i class="mi mi-Add text-green"></i> Add content
-                    </a>
-                </li>
-
-                <li is-active-route asp-controllers="Pages" asp-action="Contents" asp-route-id="@cate.Id">
-                    <a asp-area="Portal" asp-controller="Pages" asp-action="Contents" asp-route-id="@cate.Id" asp-route-pagename="@cate.SeoTitle">
-                        <i class="mi mi-Library"></i> Contents
-                    </a>
-                </li>
-    }
-                    <li is-active-route asp-controllers="Pages" asp-action="Edit" asp-route-id="@cate.Id">
-                        <a asp-area="Portal" asp-controller="Pages" asp-action="Edit" asp-route-id="@cate.Id" asp-route-pageName="@cate.SeoTitle">
-                            <i class="mi mi-PenPalette"></i> Edit Page
-                        </a>
-                    </li>
-                </ul>
-            </li>
-}
-            </ul>
-        </li>
-
-
-        <li class="treeview" is-active-menu asp-controllers="Module">
-            <a href="#">
-                <i class="mi mi-AppIconDefault mi-lg"></i> <span>Modules</span>
-                <span class="pull-right-container">
-                    <i class="fa fa-angle-left pull-right"></i>
-                </span>
-            </a>
-            <ul class="treeview-menu">
-                @if (true)
-        {
-            <li is-active-route asp-controller="Module" asp-action="Create"><a asp-area="Portal" asp-controller="Module" asp-action="Create"><i class="mi mi-Add text-green"></i> Add New</a></li>
-}
-                <li is-active-route asp-controller="Module" asp-action="Index"><a asp-area="Portal" asp-controller="Module" asp-action="Index"><i class="mi mi-Library"></i> All Modules...</a></li>
-                @foreach (var module in listAvaiModule)
-        {
-            <li class="treeview" is-active-menu asp-controllers="Module" asp-action="Details,AddModuleData,EditModuleData,Edit" asp-route-id="@module.Id">
-                <a href="#">
-                    <i class="mi mi-Component"></i> <span>@module.Title</span>
-                    <span class="pull-right-container">
-                        <i class="fa fa-angle-left pull-right"></i>
-                    </span>
-                </a>
-                <ul class="treeview-menu">
-                    <li is-active-route asp-controller="Module" asp-action="AddModuleData" asp-route-id="@module.Id">
-                        <a asp-area="Portal" asp-controller="Module" asp-action="AddModuleData" asp-route-id="@module.Id"><i class="mi mi-Add text-green"></i> Add content</a>
-                    </li>
-                    <li is-active-route asp-controller="Module" asp-action="Details" asp-route-id="@module.Id">
-                        <a asp-area="Portal" asp-controller="Module" asp-action="Details" asp-route-id="@module.Id"><i class="mi mi-Library"></i> Contents</a>
-                    </li>
-                    <li is-active-route asp-controller="Module" asp-action="Edit" asp-route-id="@module.Id">
-                        <a asp-area="Portal" asp-controller="Module" asp-action="Edit" asp-route-id="@module.Id"><i class="mi mi-PenPalette"></i> Edit Module</a>
-                    </li>
-                </ul>
-            </li>
-}
-
-            </ul>
-        </li>
-
-        @if (true)
-{
-        <li class="treeview" is-active-menu asp-controllers="Apperance">
-            <a href="#">
-                <i class="mi mi-LayoutLegacy mi-lg"></i>
-                <span>Apperance</span>
-                <span class="pull-right-container">
-                    <i class="fa fa-angle-left pull-right"></i>
-                </span>
-            </a>
-            <ul class="treeview-menu">
-                <li is-active-route asp-controller="Apperance" asp-action="CreateTemplate"><a asp-area="Portal" asp-controller="Apperance" asp-action="CreateTemplate"><i class="mi mi-Add text-green"></i> Create Template</a></li>
-                <li is-active-route asp-controller="Apperance" asp-action="Templates">
-                    <a asp-area="Portal" asp-controller="Apperance" asp-action="Templates"><i class="mi mi-Color"></i> Templates</a>
-                </li>
-            </ul>
-        </li>
-}
-        <li class="treeview" is-active-menu asp-controllers="Template">
-            <a href="#">
-                <i class="mi mi-ReadingList mi-lg"></i> <span>Template</span>
-                <span class="pull-right-container">
-                    <i class="fa fa-angle-left pull-right"></i>
-                </span>
-            </a>
-            <ul class="treeview-menu">
-                <li is-active-route asp-controller="Template Portal" asp-action="Create,">
-                    <a asp-area="Portal" asp-controller="Template" asp-action="Create"><i class="mi mi-Add text-green"></i> Add New</a>
-                </li>
-                @*<li is-active-route asp-controller="Template" asp-action="Index"><a asp-area="Portal" asp-controller="Template" asp-action="Index"><i class="mi mi-Library"></i> Template</a></li>*@
-                <li is-active-route asp-controller="Template" asp-action="Index"><a asp-area="Portal" asp-controller="Template" asp-action="Index"><i class="mi mi-Library"></i> All Template...</a></li>
-            </ul>
-        </li>
-
-        <li class="treeview" is-active-menu asp-controllers="File">
-            <a href="#">
-                <i class="mi mi-LayoutLegacy mi-lg"></i>
-                <span>Files</span>
-                <span class="pull-right-container">
-                    <i class="fa fa-angle-left pull-right"></i>
-                </span>
-            </a>
-            <ul class="treeview-menu">
-                <li is-active-route asp-controller="File" asp-action=",Index">
-                    <a asp-area="Portal" asp-controller="File" asp-action="Index"><i class="mi mi-Color"></i> Folders</a>
-                </li>
-            </ul>
-        </li>
-        <li class="treeview" is-active-menu asp-controllers="Setting">
-            <a href="#">
-                <i class="mi mi-Repair mi-lg"></i> <span>Setting</span>
-                <span class="pull-right-container">
-                    <i class="fa fa-angle-left pull-right"></i>
-                </span>
-            </a>
-            <ul class="treeview-menu">
-                <li is-active-menu asp-controllers="Setting" asp-action="Configurations,CreateConfiguration,EditConfiguration" class="treeview">
+                <li class="treeview" is-active-menu asp-controllers="Articles">
                     <a href="#">
-                        <i class="mi ion-ios-list-outline mi-lg"></i> <span>Configurations</span>
+                        <i class="mi mi-ReadingList mi-lg"></i> <span>Articles</span>
                         <span class="pull-right-container">
                             <i class="fa fa-angle-left pull-right"></i>
                         </span>
                     </a>
                     <ul class="treeview-menu">
-                        <li is-active-route asp-controller="Setting" asp-action="CreateConfiguration">
-                            <a asp-area="Portal" asp-controller="Setting" asp-action="CreateConfiguration"><i class="mi mi-Add text-green"></i> Crete Configuration</a>
+                        <li is-active-route asp-controller="Articles Portal" asp-action="Create,">
+                            <a asp-area="Portal" asp-controller="Articles" asp-action="Create"><i class="mi mi-Add text-green"></i> Add New</a>
                         </li>
-                        <li is-active-route asp-controller="Setting" asp-action="Configurations">
-                            <a asp-area="Portal" asp-controller="Setting" asp-action="Configurations"><i class="mi mi-Library"></i> View</a>
+                        @*<li is-active-route asp-controller="Articles" asp-action="Index"><a asp-area="Portal" asp-controller="Articles" asp-action="Index"><i class="mi mi-Library"></i> Articles</a></li>*@
+                        <li is-active-route asp-controller="Articles" asp-action="Index"><a asp-area="Portal" asp-controller="Articles" asp-action="Index"><i class="mi mi-Library"></i> All Articles...</a></li>
+                        <li is-active-route asp-controller="Articles" asp-action="Draft"><a asp-area="Portal" asp-controller="Articles" asp-action="Draft"><i class="mi mi-Broom"></i> Trash</a></li>
+                    </ul>
+                </li>
+                <li class="treeview" is-active-menu asp-controllers="Pages">
+                    <a href="#">
+                        <i class="mi mi-MapLayers mi-lg"></i> <span>Pages</span>
+                        <span class="pull-right-container">
+                            <i class="fa fa-angle-left pull-right"></i>
+                        </span>
+                    </a>
+                    <ul class="treeview-menu">
+                        @if (true)
+                        {
+                            <li is-active-route asp-controller="Pages" asp-action="Create"><a asp-area="Portal" asp-controller="Pages" asp-action="Create"><i class="mi mi-Add text-green"></i> Add Page</a></li>
+                        }
+                        @*<li is-active-route asp-controller="Pages" asp-action="Index"><a asp-area="Portal" asp-controller="Pages" asp-action=""><i class="mi mi-TreeFolderFolderOpen"></i> All Pages</a></li>*@
+                        <li is-active-route asp-controller="Pages" asp-action="Index"><a asp-area="Portal" asp-controller="Pages" asp-action=""><i class="mi mi-TreeFolderFolderOpen"></i> All Pages...</a></li>
+
+                        @foreach (var cate in listAvaiPage)
+                        {
+                            <li class="treeview page" is-active-menu
+                                asp-controllers="Pages" asp-action="AddData,EditData,Contents,Edit" asp-route-id="@cate.Id">
+                                <a href="#">
+                                    <i class="mi mi-Component"></i> <span>
+                                        @cate.Title
+                                    </span>
+                                    <span class="pull-right-container">
+                                        <i class="fa fa-angle-left pull-right"></i>
+                                    </span>
+                                </a>
+                                <ul class="treeview-menu">
+                                    @if (cate.Type == SWCmsConstants.CateType.List)
+                                    {
+                                        <li is-active-route
+                                            asp-controllers="Articles" asp-action="Create" asp-route-categoryId="@cate.Id">
+                                            <a asp-area="Portal" asp-controller="Articles" asp-action="Create" asp-route-categoryId="@cate.Id">
+                                                <i class="mi mi-Add text-green"></i> Add content
+                                            </a>
+                                        </li>
+
+                                        <li is-active-route asp-controllers="Pages" asp-action="Contents" asp-route-id="@cate.Id">
+                                            <a asp-area="Portal" asp-controller="Pages" asp-action="Contents" asp-route-id="@cate.Id" asp-route-pagename="@cate.SeoTitle">
+                                                <i class="mi mi-Library"></i> Contents
+                                            </a>
+                                        </li>
+                                    }
+                                    <li is-active-route asp-controllers="Pages" asp-action="Edit" asp-route-id="@cate.Id">
+                                        <a asp-area="Portal" asp-controller="Pages" asp-action="Edit" asp-route-id="@cate.Id" asp-route-pageName="@cate.SeoTitle">
+                                            <i class="mi mi-PenPalette"></i> Edit Page
+                                        </a>
+                                    </li>
+                                </ul>
+                            </li>
+                        }
+                    </ul>
+                </li>
+
+
+                <li class="treeview" is-active-menu asp-controllers="Module">
+                    <a href="#">
+                        <i class="mi mi-AppIconDefault mi-lg"></i> <span>Modules</span>
+                        <span class="pull-right-container">
+                            <i class="fa fa-angle-left pull-right"></i>
+                        </span>
+                    </a>
+                    <ul class="treeview-menu">
+                        @if (true)
+                        {
+                            <li is-active-route asp-controller="Module" asp-action="Create"><a asp-area="Portal" asp-controller="Module" asp-action="Create"><i class="mi mi-Add text-green"></i> Add New</a></li>
+                        }
+                        <li is-active-route asp-controller="Module" asp-action="Index"><a asp-area="Portal" asp-controller="Module" asp-action="Index"><i class="mi mi-Library"></i> All Modules...</a></li>
+                        @foreach (var module in listAvaiModule)
+                        {
+                            <li class="treeview" is-active-menu asp-controllers="Module" asp-action="Details,AddModuleData,EditModuleData,Edit" asp-route-id="@module.Id">
+                                <a href="#">
+                                    <i class="mi mi-Component"></i> <span>@module.Title</span>
+                                    <span class="pull-right-container">
+                                        <i class="fa fa-angle-left pull-right"></i>
+                                    </span>
+                                </a>
+                                <ul class="treeview-menu">
+                                    <li is-active-route asp-controller="Module" asp-action="AddModuleData" asp-route-id="@module.Id">
+                                        <a asp-area="Portal" asp-controller="Module" asp-action="AddModuleData" asp-route-id="@module.Id"><i class="mi mi-Add text-green"></i> Add content</a>
+                                    </li>
+                                    <li is-active-route asp-controller="Module" asp-action="Details" asp-route-id="@module.Id">
+                                        <a asp-area="Portal" asp-controller="Module" asp-action="Details" asp-route-id="@module.Id"><i class="mi mi-Library"></i> Contents</a>
+                                    </li>
+                                    <li is-active-route asp-controller="Module" asp-action="Edit" asp-route-id="@module.Id">
+                                        <a asp-area="Portal" asp-controller="Module" asp-action="Edit" asp-route-id="@module.Id"><i class="mi mi-PenPalette"></i> Edit Module</a>
+                                    </li>
+                                </ul>
+                            </li>
+                        }
+
+                    </ul>
+                </li>
+
+                @if (true)
+                {
+                    @*<li class="treeview" is-active-menu asp-controllers="Apperance">
+                            <a href="#">
+                                <i class="mi mi-LayoutLegacy mi-lg"></i>
+                                <span>Apperance</span>
+                                <span class="pull-right-container">
+                                    <i class="fa fa-angle-left pull-right"></i>
+                                </span>
+                            </a>
+                            <ul class="treeview-menu">
+                                <li is-active-route asp-controller="Apperance" asp-action="CreateTemplate"><a asp-area="Portal" asp-controller="Apperance" asp-action="CreateTemplate"><i class="mi mi-Add text-green"></i> Create Template</a></li>
+                                <li is-active-route asp-controller="Apperance" asp-action="Templates">
+                                    <a asp-area="Portal" asp-controller="Apperance" asp-action="Templates"><i class="mi mi-Color"></i> Templates</a>
+                                </li>
+                            </ul>
+                        </li>*@
+                }
+                <li class="treeview" is-active-menu asp-controllers="Theme">
+                    <a href="#">
+                        <i class="mi mi-ReadingList mi-lg"></i> <span>Themes</span>
+                        <span class="pull-right-container">
+                            <i class="fa fa-angle-left pull-right"></i>
+                        </span>
+                    </a>
+                    <ul class="treeview-menu">
+                        <li is-active-route asp-controller="Theme" asp-action="Create,">
+                            <a asp-area="Portal" asp-controller="Theme" asp-action="Create"><i class="mi mi-Add text-green"></i> Add New</a>
+                        </li>
+                        @*<li is-active-route asp-controller="Template" asp-action="Index"><a asp-area="Portal" asp-controller="Template" asp-action="Index"><i class="mi mi-Library"></i> Template</a></li>*@
+                        <li is-active-route asp-controller="Theme" asp-action="Index">
+                            <a asp-area="Portal" asp-controller="Theme" asp-action="Index"><i class="mi mi-Library"></i> All Themes...</a>
+                        </li>
+                        @foreach (var item in listAvaiTheme.Data)
+                        {
+                            <li class="treeview page" is-active-menu
+                                asp-controllers="Theme" asp-action="AddData,EditData,Contents,Edit" asp-route-id="@item.Id">
+                                <a href="#">
+                                    <i class="mi mi-Component"></i> <span>
+                                        @item.Name
+                                    </span>
+                                    <span class="pull-right-container">
+                                        <i class="fa fa-angle-left pull-right"></i>
+                                    </span>
+                                </a>
+                                <ul class="treeview-menu">
+
+                                    <li is-active-route asp-controller="Theme" asp-action="Index">
+                                        <a asp-controller="Template" asp-action="Index" asp-route-templateId="@item.Id"
+                                           class="link">
+                                            <i class="mi fa-eye"></i> Details
+                                        </a>
+                                    </li>
+                                    <li is-active-route asp-controllers="Theme" asp-action="Edit" asp-route-id="@item.Id">
+                                        <a asp-area="Portal" asp-controller="Theme" asp-action="Edit" asp-route-id="@item.Id">
+                                            <i class="mi mi-PenPalette"></i> Edit Theme
+                                        </a>
+                                    </li>
+                                </ul>
+                            </li>
+                        }
+                    </ul>
+                </li>
+
+                <li class="treeview" is-active-menu asp-controllers="File">
+                    <a href="#">
+                        <i class="mi mi-LayoutLegacy mi-lg"></i>
+                        <span>Files</span>
+                        <span class="pull-right-container">
+                            <i class="fa fa-angle-left pull-right"></i>
+                        </span>
+                    </a>
+                    <ul class="treeview-menu">
+                        <li is-active-route asp-controller="File" asp-action=",Index">
+                            <a asp-area="Portal" asp-controller="File" asp-action="Index"><i class="mi mi-Color"></i> Folders</a>
                         </li>
                     </ul>
                 </li>
-                @if (true)
-        {
-            <li is-active-menu asp-controllers="Setting,Culture" asp-action="Create,Edit" class="treeview">
-                <a href="#">
-                    <i class="mi ion-ios-list-outline mi-lg"></i> <span>Cultures</span>
-                    <span class="pull-right-container">
-                        <i class="fa fa-angle-left pull-right"></i>
-                    </span>
-                </a>
-                <ul class="treeview-menu">
-                    <li is-active-route asp-controller="Culture" asp-action="Create">
-                        <a asp-area="Portal" asp-controller="Culture" asp-action="Create"><i class="mi mi-Add text-green"></i> Crete culture</a>
-                    </li>
-                    <li is-active-route asp-controller="Culture" asp-action="Index">
-                        <a asp-area="Portal" asp-controller="Culture" asp-action="Index"><i class="mi mi-Library"></i> View</a>
-                    </li>
-                </ul>
-            </li>
-}
-            </ul>
-        </li>
+                <li class="treeview" is-active-menu asp-controllers="Setting">
+                    <a href="#">
+                        <i class="mi mi-Repair mi-lg"></i> <span>Setting</span>
+                        <span class="pull-right-container">
+                            <i class="fa fa-angle-left pull-right"></i>
+                        </span>
+                    </a>
+                    <ul class="treeview-menu">
+                        <li is-active-menu asp-controllers="Setting" asp-action="Configurations,CreateConfiguration,EditConfiguration" class="treeview">
+                            <a href="#">
+                                <i class="mi ion-ios-list-outline mi-lg"></i> <span>Configurations</span>
+                                <span class="pull-right-container">
+                                    <i class="fa fa-angle-left pull-right"></i>
+                                </span>
+                            </a>
+                            <ul class="treeview-menu">
+                                <li is-active-route asp-controller="Setting" asp-action="CreateConfiguration">
+                                    <a asp-area="Portal" asp-controller="Setting" asp-action="CreateConfiguration"><i class="mi mi-Add text-green"></i> Crete Configuration</a>
+                                </li>
+                                <li is-active-route asp-controller="Setting" asp-action="Configurations">
+                                    <a asp-area="Portal" asp-controller="Setting" asp-action="Configurations"><i class="mi mi-Library"></i> View</a>
+                                </li>
+                            </ul>
+                        </li>
+                        @if (true)
+                        {
+                            <li is-active-menu asp-controllers="Setting,Culture" asp-action="Create,Edit" class="treeview">
+                                <a href="#">
+                                    <i class="mi ion-ios-list-outline mi-lg"></i> <span>Cultures</span>
+                                    <span class="pull-right-container">
+                                        <i class="fa fa-angle-left pull-right"></i>
+                                    </span>
+                                </a>
+                                <ul class="treeview-menu">
+                                    <li is-active-route asp-controller="Culture" asp-action="Create">
+                                        <a asp-area="Portal" asp-controller="Culture" asp-action="Create"><i class="mi mi-Add text-green"></i> Crete culture</a>
+                                    </li>
+                                    <li is-active-route asp-controller="Culture" asp-action="Index">
+                                        <a asp-area="Portal" asp-controller="Culture" asp-action="Index"><i class="mi mi-Library"></i> View</a>
+                                    </li>
+                                </ul>
+                            </li>
+                        }
+                    </ul>
+                </li>
 
-}
-else
-{
-        <li><a href="#"><i class="fa fa-circle-o text-red"></i> <span>Permission denied</span></a></li>
-}
+            }
+            else
+            {
+                <li><a href="#"><i class="fa fa-circle-o text-red"></i> <span>Permission denied</span></a></li>
+            }
         </ul>
 
     </section>

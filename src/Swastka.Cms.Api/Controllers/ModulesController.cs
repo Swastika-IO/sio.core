@@ -8,6 +8,7 @@ using System;
 using Swastika.IO.Domain.Core.ViewModels;
 using Swastika.Api.Controllers;
 using Swastika.Cms.Lib.ViewModels.FrontEnd;
+using Swastika.Cms.Lib.ViewModels.Info;
 
 namespace Swastka.IO.Cms.Api.Controllers
 {
@@ -19,9 +20,9 @@ namespace Swastka.IO.Cms.Api.Controllers
         // GET api/articles/id
         [HttpGet]
         [Route("full/{id}")]
-        public async Task<RepositoryResponse<ModuleWithDataViewModel>> Details(int id)
+        public async Task<RepositoryResponse<FEModuleViewModel>> Details(int id)
         {
-            var result = await ModuleWithDataViewModel.Repository.GetSingleModelAsync(model => model.Id == id && model.Specificulture == _lang);
+            var result = await FEModuleViewModel.Repository.GetSingleModelAsync(model => model.Id == id && model.Specificulture == _lang);
             if (result.IsSucceed)
             {
                 result.Data.LoadData();
@@ -33,9 +34,9 @@ namespace Swastka.IO.Cms.Api.Controllers
         [HttpGet]
         [Route("byArticle/{id}")]
         [Route("byArticle/{id}/{articleId}")]
-        public async Task<RepositoryResponse<ModuleWithDataViewModel>> GetByArticle(int id, string articleId = null)
+        public async Task<RepositoryResponse<FEModuleViewModel>> GetByArticle(int id, string articleId = null)
         {
-            var result = await ModuleWithDataViewModel.Repository.GetSingleModelAsync(model => model.Id == id && model.Specificulture == _lang);
+            var result = await FEModuleViewModel.Repository.GetSingleModelAsync(model => model.Id == id && model.Specificulture == _lang);
             if (result.IsSucceed)
             {
                 result.Data.LoadData(articleId: articleId);
@@ -71,14 +72,14 @@ namespace Swastka.IO.Cms.Api.Controllers
         [Route("{pageSize:int?}/{pageIndex:int?}")]
         [Route("{orderBy}/{direction}")]
         [Route("{pageSize:int?}/{pageIndex:int?}/{orderBy}/{direction}")]
-        public async Task<RepositoryResponse<PaginationModel<ModuleListItemViewModel>>> Get(
+        public async Task<RepositoryResponse<PaginationModel<InfoModuleViewModel>>> Get(
             int? pageSize = 15, int? pageIndex = 0, string orderBy = "Id"
             , OrderByDirection direction = OrderByDirection.Ascending)
         {
-            var data = await ModuleListItemViewModel.Repository.GetModelListByAsync(m => m.Specificulture == _lang, orderBy, direction, pageSize, pageIndex); //base.Get(orderBy, direction, pageSize, pageIndex);
+            var data = await InfoModuleViewModel.Repository.GetModelListByAsync(m => m.Specificulture == _lang, orderBy, direction, pageSize, pageIndex); //base.Get(orderBy, direction, pageSize, pageIndex);
             string domain = string.Format("{0}://{1}", Request.Scheme, Request.Host);
-            data.Data.Items.ForEach(d => d.DetailsUrl = string.Format("{0}{1}", domain, this.Url.Action("Details", "modules", new { id = d.Id })));
-            data.Data.Items.ForEach(d => d.EditUrl = string.Format("{0}{1}", domain, this.Url.Action("Edit", "modules", new { id = d.Id })));
+            //data.Data.Items.ForEach(d => d.DetailsUrl = string.Format("{0}{1}", domain, this.Url.Action("Details", "modules", new { id = d.Id })));
+            //data.Data.Items.ForEach(d => d.EditUrl = string.Format("{0}{1}", domain, this.Url.Action("Edit", "modules", new { id = d.Id })));
             return data;
         }
 
@@ -89,7 +90,7 @@ namespace Swastka.IO.Cms.Api.Controllers
         [Route("{pageSize:int?}/{pageIndex:int?}/{keyword}/{description}")]
         [Route("{pageSize:int?}/{pageIndex:int?}/{orderBy}/{direction}/{keyword}")]
         [Route("{pageSize:int?}/{pageIndex:int?}/{orderBy}/{direction}/{keyword}/{description}")]
-        public async Task<RepositoryResponse<PaginationModel<ModuleListItemViewModel>>> Search(
+        public async Task<RepositoryResponse<PaginationModel<InfoModuleViewModel>>> Search(
             string keyword = null,
             string description = null,
             int? pageSize = null, int? pageIndex = null, string orderBy = "Id"
@@ -99,7 +100,7 @@ namespace Swastka.IO.Cms.Api.Controllers
             model.Specificulture == _lang
             && (string.IsNullOrWhiteSpace(keyword) || (model.Title.Contains(keyword)))
             && (string.IsNullOrWhiteSpace(description) || (model.Description.Contains(description)));
-            return await ModuleListItemViewModel.Repository.GetModelListByAsync(predicate, orderBy, direction, pageSize, pageIndex); // base.Search(predicate, orderBy, direction, pageSize, pageIndex, keyword);
+            return await InfoModuleViewModel.Repository.GetModelListByAsync(predicate, orderBy, direction, pageSize, pageIndex); // base.Search(predicate, orderBy, direction, pageSize, pageIndex, keyword);
         }
     }
 }

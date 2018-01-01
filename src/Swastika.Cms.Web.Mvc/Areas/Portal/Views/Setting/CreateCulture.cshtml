@@ -1,6 +1,6 @@
 @model Swastika.Cms.Lib.ViewModels.CultureViewModel
 @{
-    ViewData["Title"] = LocalizerService.GetLocalString("Create Culture",ViewBag.culture);
+    ViewData["Title"] = Swastika.Cms.Lib.Services.ApplicationConfigService.Instance.GetLocalString("Create Culture",ViewBag.culture);
     Layout = "~/Areas/Portal/Views/Shared/_Layout.cshtml";
 }
 

@@ -53,12 +53,12 @@ namespace Swastika.Cms.Lib.ViewModels.Info
         public int Type { get; set; }
         [JsonProperty("createdDateTime")]
         public DateTime CreatedDateTime { get; set; }
-        [JsonProperty("updatedDateTime")]
-        public DateTime? UpdatedDateTime { get; set; }
         [JsonProperty("createdBy")]
         public string CreatedBy { get; set; }
-        [JsonProperty("updatedBy")]
-        public string UpdatedBy { get; set; }
+        [JsonProperty("lastModified")]
+        public DateTime? LastModified { get; set; }
+        [JsonProperty("modifiedBy")]
+        public string ModifiedBy { get; set; }
         [JsonProperty("isVisible")]
         public bool IsVisible { get; set; }
         [JsonProperty("isDeleted")]

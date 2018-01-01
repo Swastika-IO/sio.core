@@ -6,6 +6,9 @@ using Swastika.IO.Domain.Core.ViewModels;
 using Swastika.Cms.Lib.ViewModels.Info;
 using Microsoft.Data.OData.Query;
 using System;
+using System.Collections.Generic;
+using static Swastika.Cms.Lib.SWCmsConstants;
+using System.Linq;
 
 namespace Swastika.Cms.Lib.ViewModels.FrontEnd
 {
@@ -26,10 +29,12 @@ namespace Swastika.Cms.Lib.ViewModels.FrontEnd
         [JsonProperty("fields")]
         public string Fields { get; set; }
         [JsonProperty("type")]
-        public int Type { get; set; }
+        public CateType Type { get; set; }
 
         [JsonProperty("icon")]
         public string Icon { get; set; }
+        [JsonProperty("cssClass")]
+        public string CssClass { get; set; }
         [JsonProperty("staticUrl")]
         public string StaticUrl { get; set; }
         [JsonProperty("excerpt")]
@@ -73,7 +78,8 @@ namespace Swastika.Cms.Lib.ViewModels.FrontEnd
         public TemplateViewModel View { get; set; }
         [JsonProperty("articles")]
         public PaginationModel<InfoArticleViewModel> Articles { get; set; } = new PaginationModel<InfoArticleViewModel>();
-
+        [JsonProperty("modules")]
+        public List<FEModuleViewModel> Modules { get; set; } // Get All Module
         #endregion
 
         #endregion
@@ -93,17 +99,80 @@ namespace Swastika.Cms.Lib.ViewModels.FrontEnd
         #region Overrides
 
         public override void ExpandView(SiocCmsContext _context = null, IDbContextTransaction _transaction = null)
+        {           
+            switch (Type)
+            {
+                case CateType.Home:
+                    GetSubModules(_context, _transaction);
+                    break;
+                case CateType.Blank:
+                    break;
+                case CateType.Article:
+                    break;
+                case CateType.Modules:
+                    GetSubModules(_context, _transaction);
+                    break;
+                case CateType.List:
+                    GetSubArticles(_context, _transaction);
+                    break;
+
+                default:
+                    break;
+            }
+        }
+
+        #endregion
+
+        #region Expands
+
+        #region Async
+
+        #endregion
+
+        #region Sync
+
+        void GetSubModules(SiocCmsContext _context = null, IDbContextTransaction _transaction = null)
+        {
+            var getNavs = CategoryModuleViewModel.Repository.GetModelListBy(
+                m => m.CategoryId == Id && m.Specificulture == Specificulture
+                , _context, _transaction);
+            if (getNavs.IsSucceed)
+            {
+                Modules = new List<FEModuleViewModel>();
+                foreach (var nav in getNavs.Data)
+                {
+                    var getModule = FEModuleViewModel.Repository.GetSingleModel(
+                        m => m.Id == nav.ModuleId && nav.Specificulture == Specificulture
+                        , _context, _transaction);
+                    if (getModule.IsSucceed)
+                    {
+                        Modules.Add(getModule.Data);
+                    }
+                }
+
+            }
+        }
+
+        void GetSubArticles(SiocCmsContext _context = null, IDbContextTransaction _transaction = null)
         {
             var getArticles = InfoArticleViewModel.GetModelListByCategory(Id, Specificulture, SWCmsConstants.Default.OrderBy, OrderByDirection.Ascending
-                , _context: _context, _transaction: _transaction
-                );
+               , _context: _context, _transaction: _transaction
+               );
             if (getArticles.IsSucceed)
             {
                 Articles = getArticles.Data;
             }
         }
 
+
+        #endregion
+
+        public FEModuleViewModel GetModule(string name)
+        {
+            return Modules.FirstOrDefault(m => m.Name == name);
+        }
+
         #endregion
     }
-    
+
 }

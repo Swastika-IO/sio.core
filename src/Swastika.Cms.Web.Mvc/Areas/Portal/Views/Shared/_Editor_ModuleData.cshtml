@@ -2,7 +2,7 @@
     For more information on enabling MVC for empty projects, visit http://go.microsoft.com/fwlink/?LinkID=397860
 *@
 @{
-    Swastika.Cms.Lib.ViewModels.ModuleDataValueViewModel Model = (Swastika.Cms.Lib.ViewModels.ModuleDataValueViewModel)this.ViewData["Model"];
+    Swastika.Cms.Lib.ViewModels.Info.ModuleDataValueViewModel Model = (Swastika.Cms.Lib.ViewModels.Info.ModuleDataValueViewModel)this.ViewData["Model"];
     string name = (string)this.ViewData["Name"];
     int index = (int)this.ViewData["Index"];
     string inputId = string.Format("{0}_{1}__StringValue", name, index);
@@ -46,6 +46,11 @@
                         <option value="fa fa fa-paper-plane-o" data-content="<span><i class='fa fa fa-paper-plane-o'></i></span>"></option>
                         <option value="fa fa fa-users" data-content="<span><i class='fa fa fa-users'></i></span>"></option>
                         <option value="fa fa fa-ticket" data-content="<span><i class='fa fa fa-ticket'></i></span>"></option>
+
+                        <option value="now-ui-icons objects_globe" data-content="<span><i class='fa fa-1x now-ui-icons objects_globe'></i></span>"></option>
+                        <option value="now-ui-icons tech_watch-time" data-content="<span><i class='fa fa-1x now-ui-icons tech_watch-time'></i></span>"></option>
+                        <option value="now-ui-icons education_atom" data-content="<span><i class='fa fa-1x now-ui-icons education_atom'></i></span>"></option>
+
                     </select>
                 </div>
                 break;

@@ -16,13 +16,14 @@ namespace Swastika.Cms.Mvc.Areas.Portal.Controllers
     [Route("{culture}/Portal/setting")]
     public class SettingController : BaseController<SettingController>
     {
-        private readonly ApplicationConfigService _appService;
+        //private readonly ApplicationConfigService _appService;
         public SettingController(IHostingEnvironment env
             //, IStringLocalizer<SharedResource> localizer
-            , ApplicationConfigService service)
+            //, ApplicationConfigService service
+            )
             : base(env)
         {
-            _appService = service;
+            //_appService = service;
         }
 
 
@@ -71,7 +72,7 @@ namespace Swastika.Cms.Mvc.Areas.Portal.Controllers
                 var result = await ttsConfiguration.SaveModelAsync();// ConfigurationViewModel.Repository.CreateModelAsync(ttsConfiguration);
                 if (result.IsSucceed)
                 {
-                    _appService.Refresh();
+                    ApplicationConfigService.Instance.Refresh();
                     return RedirectToAction("Configurations");
                 }
                 else
@@ -100,7 +101,7 @@ namespace Swastika.Cms.Mvc.Areas.Portal.Controllers
             {
                 return NotFound();
             }
-            return View(ttsConfiguration);
+            return View(ttsConfiguration.Data);
         }
 
         // POST: Configuration/Edit/5
@@ -124,7 +125,7 @@ namespace Swastika.Cms.Mvc.Areas.Portal.Controllers
                     var result = await ttsConfiguration.SaveModelAsync(); //_repo.EditModelAsync(ttsConfiguration.ParseModel());
                     if (result.IsSucceed)
                     {
-                        _appService.Refresh();
+                        ApplicationConfigService.Instance.Refresh();
                     }
                 }
                 catch (DbUpdateConcurrencyException)
@@ -149,7 +150,7 @@ namespace Swastika.Cms.Mvc.Areas.Portal.Controllers
             var result = await ConfigurationViewModel.Repository.RemoveModelAsync(m => m.Keyword == id && m.Specificulture == _lang);
             if (result.IsSucceed)
             {
-                _appService.Refresh();
+                ApplicationConfigService.Instance.Refresh();
             }
             return RedirectToAction("Configurations");
         }

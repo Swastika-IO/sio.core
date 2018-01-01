@@ -1,4 +1,4 @@
-@model Swastika.Cms.Lib.ViewModels.CategoryFEViewModel
+@model Swastika.Cms.Lib.ViewModels.FrontEnd.FECategoryViewModel
 @{
     var listTags = Model.Articles.Items.Where(a => !string.IsNullOrEmpty(a.Tags)).Select(a => a.Tags).ToList();
     string tags = string.Empty;
@@ -48,7 +48,7 @@
                                 </h3>
                                 <a class="btn btn-primary readmore"
                                    asp-action="ArticleDetails" asp-route-id="@article.Id" asp-route-SeoTitle="@article.SeoName">
-                                    @LocalizerService.GetLocalString("Read More", culture) <i class="fa fa-angle-right"></i>
+                                    @Swastika.Cms.Lib.Services.ApplicationConfigService.Instance.GetLocalString("Read More", culture) <i class="fa fa-angle-right"></i>
                                 </a>
                             </div>
                         </div>

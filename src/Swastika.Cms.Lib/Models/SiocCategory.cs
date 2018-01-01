@@ -21,6 +21,7 @@ namespace Swastika.Cms.Lib.Models
         public DateTime CreatedDateTime { get; set; }
         public string Excerpt { get; set; }
         public string Icon { get; set; }
+        public string CssClass { get; set; }
         public string Image { get; set; }
         public bool IsDeleted { get; set; }
         public bool? IsVisible { get; set; }
@@ -35,8 +36,8 @@ namespace Swastika.Cms.Lib.Models
         public string Template { get; set; }
         public string Title { get; set; }
         public int Type { get; set; }
-        public string UpdatedBy { get; set; }
-        public DateTime? UpdatedDateTime { get; set; }
+        public string ModifiedBy { get; set; }
+        public DateTime? LastModified { get; set; }
         public int? Views { get; set; }
 
         public SiocCulture SpecificultureNavigation { get; set; }

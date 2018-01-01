@@ -86,11 +86,9 @@ namespace Swastika.Cms.Lib.Repositories
 
         public bool DeleteTemplate(string name, string templateFolder)
         {
-            string folder = templateFolder.ToString();
             string fullPath = SWCmsHelper.GetFullPath(new string[]
             {
-                SWCmsConstants.Parameters.TemplatesFolder,
-                folder,
+                templateFolder,
                 name + SWCmsConstants.Parameters.TemplateExtension
             });
             if (File.Exists(fullPath))
@@ -134,7 +132,10 @@ namespace Swastika.Cms.Lib.Repositories
             {
                 if (!string.IsNullOrEmpty(file.Filename))
                 {
-
+                    if (!Directory.Exists(file.FileFolder))
+                    {
+                        Directory.CreateDirectory(file.FileFolder);
+                    }
                     string fileName = SWCmsHelper.GetFullPath(new string[] { file.FileFolder, file.Filename + file.Extension }); //string.Format(file.FileFolder, file.Filename);
                     //var logPath = System.IO.Path.GetTempFileName();
                     using (var writer = File.CreateText(fileName))

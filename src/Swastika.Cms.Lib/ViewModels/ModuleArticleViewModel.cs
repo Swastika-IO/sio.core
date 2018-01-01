@@ -9,7 +9,10 @@ namespace Swastika.Cms.Lib.ViewModels
         public ModuleArticleViewModel(SiocModuleArticle model, SiocCmsContext _context = null, IDbContextTransaction _transaction = null) : base(model, _context, _transaction)
         {
         }
+        public ModuleArticleViewModel(): base()
+        {
 
+        }
         public string ArticleId { get; set; }
         public int ModuleId { get; set; }
         //public string Specificulture { get; set; }

@@ -9,6 +9,7 @@ using Swastika.Cms.Lib.ViewModels;
 using Swastika.Cms.Lib.Models;
 using Swastika.Cms.Lib;
 using Swastika.Cms.Lib.ViewModels.Info;
+using Swastika.Cms.Lib.ViewModels.BackEnd;
 
 namespace Swastika.Cms.Mvc.Areas.Portal.Controllers
 {
@@ -29,7 +30,7 @@ namespace Swastika.Cms.Mvc.Areas.Portal.Controllers
         [Route("Index/{pageSize:int?}/{pageIndex:int?}")]
         public async Task<IActionResult> Index(string keyword, int pageSize = 10, int pageIndex = 0)
         {
-            var pagingPages = await CategoryListItemViewModel.Repository.GetModelListByAsync(
+            var pagingPages = await InfoCategoryViewModel.Repository.GetModelListByAsync(
                 cate => cate.Specificulture == _lang && 
                     (string.IsNullOrEmpty(keyword) || cate.Title.Contains(keyword))
                 , "Priority", OrderByDirection.Ascending
@@ -42,7 +43,7 @@ namespace Swastika.Cms.Mvc.Areas.Portal.Controllers
         public IActionResult Create()
         {
             //ViewData["Specificulture"] = new SelectList(_context.TtsCulture, "Specificulture", "Specificulture");
-            var ttsMenu = new CategoryBEViewModel(new SiocCategory()
+            var ttsMenu = new BECategoryViewModel(new SiocCategory()
             {
                 Specificulture = _lang,
                 CreatedBy = User.Identity.Name,
@@ -57,11 +58,11 @@ namespace Swastika.Cms.Mvc.Areas.Portal.Controllers
         [Route("Create")]
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create(CategoryBEViewModel ttsMenu)
+        public async Task<IActionResult> Create(BECategoryViewModel ttsMenu)
         {
             if (ModelState.IsValid)
             {
-                var result = await ttsMenu.SaveModelAsync();
+                var result = await ttsMenu.SaveModelAsync(true);
                 if (result.IsSucceed)
                 {
                     return RedirectToAction("Index");
@@ -84,7 +85,7 @@ namespace Swastika.Cms.Mvc.Areas.Portal.Controllers
                 return NotFound();
             }
 
-            var getCategory = await CategoryBEViewModel.Repository.GetSingleModelAsync(
+            var getCategory = await BECategoryViewModel.Repository.GetSingleModelAsync(
                 m => m.Id == id && m.Specificulture == _lang
                 );
             if (!getCategory.IsSucceed)
@@ -101,7 +102,7 @@ namespace Swastika.Cms.Mvc.Areas.Portal.Controllers
         [Route("Edit/{id}/{pageName}")]
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, CategoryBEViewModel ttsMenu)
+        public async Task<IActionResult> Edit(int id, BECategoryViewModel ttsMenu)
         {
             if (id != ttsMenu.Id)
             {
@@ -112,7 +113,7 @@ namespace Swastika.Cms.Mvc.Areas.Portal.Controllers
             {
                 try
                 {
-                    var result = await ttsMenu.SaveModelAsync();
+                    var result = await ttsMenu.SaveModelAsync(true);
                     if (result.IsSucceed)
                     {
                         return RedirectToAction("Index");
@@ -125,7 +126,7 @@ namespace Swastika.Cms.Mvc.Areas.Portal.Controllers
                 }
                 catch (DbUpdateConcurrencyException)
                 {
-                    if (!CategoryBEViewModel.Repository.CheckIsExists(
+                    if (!BECategoryViewModel.Repository.CheckIsExists(
                         m => m.Id == ttsMenu.Id))
                     {
                         return NotFound();
@@ -145,7 +146,7 @@ namespace Swastika.Cms.Mvc.Areas.Portal.Controllers
         [Route("Delete/{id}")]
         public async Task<IActionResult> Delete(int? id)
         {
-            var ttsMenu = await CategoryBEViewModel.Repository.RemoveModelAsync(
+            var ttsMenu = await BECategoryViewModel.Repository.RemoveModelAsync(
                 m => m.Id == id && m.Specificulture == _lang);          
             return RedirectToAction("Index");
         }

@@ -9,7 +9,7 @@
     string currentPageName = ViewContext.RouteData.Values["PageName"] == null ? string.Empty : ViewContext.RouteData.Values["PageName"].ToString();
     string currentSeoTitle = ViewContext.RouteData.Values["SeoTitle"] == null ? string.Empty : ViewContext.RouteData.Values["SeoTitle"].ToString();
     
-var currentCulture = LocalizerService.GetCulture(ViewBag.culture); //ViewContext.RouteData.Values["culture"].ToString();
+var currentCulture = Swastika.Cms.Lib.Services.ApplicationConfigService.Instance.GetCulture(ViewBag.culture); //ViewContext.RouteData.Values["culture"].ToString();
 
 }
 
@@ -23,7 +23,7 @@ var currentCulture = LocalizerService.GetCulture(ViewBag.culture); //ViewContext
         <strong>Language</strong>
     </li>
 
-    @foreach (var culture in LocalizerService.ListSupportedCulture)
+    @foreach (var culture in Swastika.Cms.Lib.Services.ApplicationConfigService.Instance.ListSupportedCulture)
     {
         <li>
             <a class="dropdown-item"
@@ -39,7 +39,7 @@ var currentCulture = LocalizerService.GetCulture(ViewBag.culture); //ViewContext
 
 </ul>*@
 <div class="btn-group btn-group-sm btn-culture" role="group" aria-label="..." style="margin-left: 10px;">
-     @foreach (var culture in LocalizerService.GetSupportedCultures())
+     @foreach (var culture in Swastika.Cms.Lib.Services.ApplicationConfigService.Instance.GetSupportedCultures())
      {
          string cl = (currentCulture.Specificulture == culture.Specificulture ? "active" : string.Empty);
         <a class="btn btn-default @cl"

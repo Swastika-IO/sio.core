@@ -1,0 +1,58 @@
+@model Swastika.Cms.Lib.ViewModels.Info.InfoThemeViewModel
+
+@{
+    ViewData["Title"] = "Create Configuration";
+    Layout = "~/Areas/Portal/Views/Shared/_Layout.cshtml";
+}
+
+<!-- Main content -->
+<section class="content container-fluid">
+    <form asp-controller="@ViewContext.RouteData.Values["controller"].ToString()"
+          asp-action="@ViewContext.RouteData.Values["action"].ToString()">
+        <div class="row">
+
+            <section class="col-lg-9">
+                @await Html.PartialAsync("_Editable", Model)
+            </section>
+            <section class="col-lg-3">
+                @await Html.PartialAsync("EditableSides/_EditableSide_Actions", Model)
+            </section>
+
+        </div>
+    </form>
+</section>
+<!-- /.content -->
+@section Scripts{ 
+    <script>
+    $('#file-asset').on('change', function () {
+        var img = document.querySelector('#file-asset').files[0];
+        var folder = $(this).attr('folder');
+        if (img !== null) {
+            var name = img.name.split('.')[0];
+            var arr = img.name.split('.');
+            var ext = '.' + arr[arr.length - 1];
+
+            var reader = new FileReader();
+            reader.readAsDataURL(img);
+            reader.onload = function () {
+                //var index = reader.result.indexOf(',') + 1;
+                var base64 = reader.result; //.substring(index);
+                var obj = {
+                    fileFolder: folder,
+                    filename: name,
+                    extension: ext,
+                    fileStream: base64
+                };
+                $('#asset').find('.fileFolder').val(obj.fileFolder);
+                $('#asset').find('.filename').val(obj.filename);
+                $('#asset').find('.extension').val(obj.extension);
+                $('#asset').find('.fileStream').val(obj.fileStream);             
+            };
+            reader.onerror = function (error) {
+
+            };
+        }
+    });
+</script>
+
+}

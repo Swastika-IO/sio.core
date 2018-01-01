@@ -1,5 +1,5 @@
 @*@inject IViewLocalizer Localizer*@
-@model Swastika.Cms.Lib.ViewModels.ModuleWithDataViewModel
+@model Swastika.Cms.Lib.ViewModels.FrontEnd.FEModuleViewModel
 
 @if (Model != null && Model.Data.TotalItems > 0)
 {
@@ -23,12 +23,12 @@
                                     <div class="row justify-content-md-center">
                                         <div class="col-md-12" style="text-align: center;">
                                             <h1 class="animation animated-item-1" style="color:#333;background-color: rgba(255, 255, 255, 0.5);">
-                                                @LocalizerService.GetLocalString("Bạn cần gì từ TTS ASIA?", ViewBag.culture)
+                                                @Swastika.Cms.Lib.Services.ApplicationConfigService.Instance.GetLocalString("Bạn cần gì từ TTS ASIA?", ViewBag.culture)
                                             </h1>
                                             <form role="form" asp-controller="Home" asp-action="Search">
                                                 <div class="input-group">
                                                     <span class="input-group-addon"><i class="fa fa-search"></i></span>
-                                                    <input type="text" name="keyword" class="form-control input-lg" autocomplete="off" placeholder='@LocalizerService.GetLocalString("Tìm kiếm thông tin", ViewBag.culture)'>
+                                                    <input type="text" name="keyword" class="form-control input-lg" autocomplete="off" placeholder='@Swastika.Cms.Lib.Services.ApplicationConfigService.Instance.GetLocalString("Tìm kiếm thông tin", ViewBag.culture)'>
                                                 </div>
 
 
@@ -63,7 +63,7 @@
                                         @if (!string.IsNullOrWhiteSpace(url))
                                         {
                                             /* if nav to link have value*/
-                                            <a class="btn-slide animation animated-item-3" target="_blank" href="@url">@LocalizerService.GetLocalString("View", ViewBag.culture)</a>
+                                            <a class="btn-slide animation animated-item-3" target="_blank" href="@url">@Swastika.Cms.Lib.Services.ApplicationConfigService.Instance.GetLocalString("View", ViewBag.culture)</a>
                                         }
                                     </div>
                                 </div>
@@ -89,7 +89,7 @@
             <form role="form" asp-controller="Home" asp-action="Search">
                 <div class="input-group">
                     <span class="input-group-addon"><i class="fa fa-search"></i></span>
-                    <input type="text" name="keyword" class="form-control input-lg" autocomplete="off" placeholder='@LocalizerService.GetLocalString("Tìm kiếm thông tin tour...", ViewBag.culture)'>
+                    <input type="text" name="keyword" class="form-control input-lg" autocomplete="off" placeholder='@Swastika.Cms.Lib.Services.ApplicationConfigService.Instance.GetLocalString("Tìm kiếm thông tin tour...", ViewBag.culture)'>
                 </div>
 
 

@@ -12,10 +12,12 @@ namespace Swastika.IO.Core.Server.Controllers
   {
     private const string SessionKeyIsApp = "_IsApp";
     private const string RequestQueryIsApp = "app";
-    private readonly ApplicationConfigService _appService;
-    public HomeController(ApplicationConfigService service)
+    //private readonly ApplicationConfigService _appService;
+    public HomeController(
+      //ApplicationConfigService service
+      )
     {
-      this._appService = service;
+      //this._appService = service;
     }
 
     [HttpGet]

@@ -25,7 +25,6 @@ namespace Swastika.Cms.Lib.ViewModels
             set { }
         }
         public string FileFolder { get; set; }
-        [Required]
         public string Filename { get; set; }
         public string Extension { get; set; }
         public string Content { get; set; }

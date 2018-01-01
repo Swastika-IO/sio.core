@@ -8,6 +8,17 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="wwwroot\lib\**" />
+    <Content Remove="wwwroot\lib\**" />
+    <EmbeddedResource Remove="wwwroot\lib\**" />
+    <None Remove="wwwroot\lib\**" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Remove="tsconfig.json" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="JWT" Version="3.2.0-beta" />
     <PackageReference Include="Microsoft.AspNetCore.All" Version="2.0.3" />
     <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="2.0.1" />
@@ -115,7 +126,7 @@
     <None Include="Areas\Portal\Views\Shared\_Pagination.cshtml" />
     <None Include="Areas\Portal\Views\Shared\_ValidationScriptsPartial.cshtml" />
     <None Include="Areas\Portal\Views\Shared\_ViewByFieldType.cshtml" />
-    <None Include="Areas\Portal\Views\Template\Index.cshtml" />
+    <None Include="Areas\Portal\Views\Theme\Index.cshtml" />
     <None Include="Areas\Portal\Views\_BlankTemplate.cshtml" />
     <None Include="Areas\Portal\Views\_ViewImports.cshtml" />
     <None Include="Areas\Portal\Views\_ViewStart.cshtml" />

@@ -19,15 +19,16 @@ namespace Swastika.Cms.Mvc.Areas.Portal.Controllers
     [Route("{culture}/Portal/Module")]
     public class ModuleController : BaseController<ModuleController>
     {
-        private ApplicationConfigService _appService;
+        //private ApplicationConfigService _appService;
 
         public ModuleController(IHostingEnvironment env
             //, IStringLocalizer<PortalController> moduleLocalizer
             //, IStringLocalizer<SharedResource> localizer
-            , ApplicationConfigService appService)
+            //, ApplicationConfigService appService
+            )
             : base(env)
         {
-            _appService = appService;
+            //_appService = appService;
         }
 
 
@@ -92,7 +93,7 @@ namespace Swastika.Cms.Mvc.Areas.Portal.Controllers
             {
                 return RedirectToAction("Index");
             }
-            return View(Module);
+            return View(Module.Data);
         }
 
         // POST: Module/Edit/5
@@ -163,7 +164,7 @@ namespace Swastika.Cms.Mvc.Areas.Portal.Controllers
         //[Route("AjaxAddModuleData/{moduleId}")]
         //public async Task<IActionResult> AjaxAddModuleData(int moduleId)
         //{
-        //    var getModule = await ModuleListItemViewModel.Repository.GetSingleModelAsync
+        //    var getModule = await InfoModuleViewModel.Repository.GetSingleModelAsync
         //        (m => m.Id == moduleId && m.Specificulture == _lang);
         //    if (getModule.IsSucceed)
         //    {
@@ -266,7 +267,7 @@ namespace Swastika.Cms.Mvc.Areas.Portal.Controllers
         [Route("AddModuleData/{id:int}")]
         public async Task<IActionResult> AddModuleData(int id)
         {
-            var getModule = await ModuleListItemViewModel.Repository.GetSingleModelAsync(
+            var getModule = await InfoModuleViewModel.Repository.GetSingleModelAsync(
                 m => m.Id == id && m.Specificulture == _lang);
             if (getModule.IsSucceed)
             {
@@ -275,7 +276,7 @@ namespace Swastika.Cms.Mvc.Areas.Portal.Controllers
                 {
                     Id = Guid.NewGuid().ToString("N"),
                     ModuleId = id,
-                    Specificulture = _lang,
+                    Specificulture = _lang,                    
                     Fields = getModule.Data.Fields
                 });
                 return View(ModuleData);
@@ -316,11 +317,11 @@ namespace Swastika.Cms.Mvc.Areas.Portal.Controllers
         {
             var ModuleData = await InfoModuleDataViewModel.Repository.GetSingleModelAsync(
                 m => m.Id == dataId && m.Specificulture == _lang);
-            if (ModuleData == null)
+            if (!ModuleData.IsSucceed)
             {
                 return RedirectToAction("Index");
             }
-            return View(ModuleData);
+            return View(ModuleData.Data);
         }
 
         // POST: ModuleData/EditModuleData/5
@@ -369,7 +370,7 @@ namespace Swastika.Cms.Mvc.Areas.Portal.Controllers
             var getData = await InfoModuleDataViewModel.Repository.GetSingleModelAsync(m => m.Id == id);
             if (getData.IsSucceed)
             {
-                var result = await InfoModuleDataViewModel.Repository.RemoveModelAsync(m => m.Id == id && m.Specificulture== _lang);
+                var result = await getData.Data.RemoveModelAsync();
                 if (result.IsSucceed)
                 {
                     return RedirectToAction("Details", new RouteValueDictionary(new

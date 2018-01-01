@@ -10,6 +10,7 @@ using Swastika.Cms.Lib.ViewModels.Info;
 using Swastika.Cms.Lib.ViewModels;
 using Swastika.Cms.Lib;
 using Swastika.Cms.Lib.ViewModels.BackEnd;
+using Swastika.Cms.Lib.ViewModels.FrontEnd;
 
 namespace Swastika.Cms.Mvc.Controllers
 {
@@ -21,16 +22,17 @@ namespace Swastika.Cms.Mvc.Controllers
         //private readonly string lang;
         //private readonly IStringLocalizer<HomeController> _homeLocalizer;
         //private readonly IStringLocalizer<SharedResource> _localizer;
-        private readonly ApplicationConfigService _appService;
+        //private readonly ApplicationConfigService _appService;
         public HomeController(IHostingEnvironment env
             //, IStringLocalizer<HomeController> homeLocalizer
             //, IStringLocalizer<SharedResource> localizer
-            , ApplicationConfigService service)
+            //, ApplicationConfigService service
+            )
             : base(env)
         {
             //_localizer = localizer;
             //_homeLocalizer = homeLocalizer;
-            _appService = service;
+            //_appService = service;
         }
 
         [HttpPost]
@@ -58,9 +60,12 @@ namespace Swastika.Cms.Mvc.Controllers
             if (string.IsNullOrEmpty(pageName) || pageName == "Home")
             {
                 //CategoryViewModel page = CategoryRepository.GetInstance().GetFEHomeModel(p => p.Type == (int)SWCmsConstants.CateType.Home && p.Specificulture == _lang);
-                var getPage = CategoryFEViewModel.Repository.GetSingleModel(p => p.Type == (int)SWCmsConstants.CateType.Home && p.Specificulture == _lang);
+                var getPage = FECategoryViewModel.Repository.GetSingleModel(p => p.Type == (int)SWCmsConstants.CateType.Home && p.Specificulture == _lang);
                 if (getPage.IsSucceed)
                 {
+                    var getTemplate = InfoTemplateViewModel.Repository.GetSingleModel(
+                        t => getPage.Data.Template.Contains(t.FileName) && getPage.Data.Template.Contains(t.FileFolder));
+                    ViewBag.pageClass = getPage.Data.CssClass;
                     return View(getPage.Data);
                 }
                 else
@@ -71,12 +76,11 @@ namespace Swastika.Cms.Mvc.Controllers
             }
             else
             {
-                var getPage = CategoryFEViewModel.Repository.GetSingleModel(
+                var getPage = FECategoryViewModel.Repository.GetSingleModel(
                     p => p.SeoName == pageName && p.Specificulture == _lang);
                 if (getPage.IsSucceed)
                 {
-
-                    
+                    ViewBag.pageClass = getPage.Data.CssClass;
                     return View(getPage.Data);
                 }
                 else
@@ -93,7 +97,7 @@ namespace Swastika.Cms.Mvc.Controllers
         [Route("List/{pageName}/{pageSize:int?}/{pageIndex:int?}")]
         public IActionResult List(string pageName, int pageIndex = 0, int pageSize = 10)
         {
-            var getPage = CategoryFEViewModel.Repository.GetSingleModel(
+            var getPage = FECategoryViewModel.Repository.GetSingleModel(
                 p => p.Type == (int)SWCmsConstants.CateType.Home && p.Specificulture == _lang);
             //= CategoryRepository.GetInstance().GetFEListModel(p => p.SeoTitle == pageName && p.Specificulture == _lang, _lang, pageSize, pageIndex);
             if (getPage.IsSucceed)
@@ -112,10 +116,10 @@ namespace Swastika.Cms.Mvc.Controllers
         [HttpPost, HttpGet]
         public async System.Threading.Tasks.Task<IActionResult> Search(int pageIndex = 0, int pageSize = 10, string keyword = null)
         {
-            //List<CategoryFEViewModel> categories = new List<CategoryFEViewModel>();
+            //List<FECategoryViewModel> categories = new List<FECategoryViewModel>();
             //if (pageIndex == 0)
             //{
-            //    categories = await CategoryFEViewModel.Repository.GetModelListByAsync(
+            //    categories = await FECategoryViewModel.Repository.GetModelListByAsync(
             //        cate => cate.Specificulture == _lang
             //       && !cate.IsDeleted
             //       && cate.Type== (int)SWCmsConstants.CateType.Article
@@ -140,10 +144,10 @@ namespace Swastika.Cms.Mvc.Controllers
         [HttpPost, HttpGet]
         public async System.Threading.Tasks.Task<IActionResult> Tag(int pageIndex = 0, int pageSize = 10, string keyword = null)
         {
-            //List<CategoryFEViewModel> categories = new List<CategoryFEViewModel>();
+            //List<FECategoryViewModel> categories = new List<FECategoryViewModel>();
             //if (pageIndex == 0)
             //{
-            //    categories = await CategoryFEViewModel.Repository.GetModelListByAsync(
+            //    categories = await FECategoryViewModel.Repository.GetModelListByAsync(
             //        cate => cate.Specificulture == _lang
             //       && !cate.IsDeleted
             //       && (string.IsNullOrEmpty(keyword) || cate.Tags.Contains(keyword))
@@ -162,7 +166,7 @@ namespace Swastika.Cms.Mvc.Controllers
         [Route("Article/{pageName}")]
         public IActionResult Article(string pageName)
         {
-            var getPage = CategoryFEViewModel.Repository.GetSingleModel(
+            var getPage = FECategoryViewModel.Repository.GetSingleModel(
                 p => p.Type == (int)SWCmsConstants.CateType.Home && p.Specificulture == _lang);
             //CategoryRepository.GetInstance().GetFEHomeModel(p => p.SeoTitle == pageName && p.Specificulture == _lang);
             if (getPage.IsSucceed)
