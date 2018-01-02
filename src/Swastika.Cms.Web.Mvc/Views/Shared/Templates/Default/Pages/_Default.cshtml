@@ -1,0 +1,39 @@
+@model Swastika.Cms.Lib.ViewModels.FrontEnd.FECategoryViewModel
+
+<section id="blog" class="container">
+    <div class="center">
+        <h2>@Model.Title</h2>
+        <p class="lead">@Model.Excerpt</p>
+    </div>
+
+    <div class="blog">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="blog-item">
+                    @if (!string.IsNullOrEmpty(Model.Image))
+                    {
+                        <img class="img-responsive img-blog" src="@Model.Image" alt="" />
+                    }
+                    <div class="row">                        
+                        <div class="col-xs-12 col-sm-12 blog-content">
+                            @Html.Raw(Model.Content)
+                        </div>
+                    </div>
+                </div><!--/.blog-item-->
+                @Html.Partial("_Comments_Facebook")
+
+            </div><!--/.col-md-8-->
+            <!--aside class="col-md-4">
+
+                @Html.Partial("Widgets/_Categories")
+                @await Html.PartialAsync("Widgets/_Tags", Model
+                , new ViewDataDictionary(this.ViewData)
+                {
+                    { "Tags", Model.Tags} })
+            </aside-->
+
+        </div><!--/.row-->
+
+    </div><!--/.blog-->
+
+</section><!--/#blog-->

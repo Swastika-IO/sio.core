@@ -1,5 +1,5 @@
 @using Swastika.IO.Domain.Core.ViewModels;
-@model PaginationModel<Swastika.Cms.Lib.ViewModels.BackEnd.BEArticleViewModel>
+@model PaginationModel<Swastika.Cms.Lib.ViewModels.Info.InfoArticleViewModel>
 
 @{
     ViewData["Title"] = "Articles";
@@ -50,7 +50,7 @@
             </tfoot>
             <tbody>
                 @foreach (var item in Model.Items)
-                {
+                {                    
                     <tr>
                         <td class="col-md-3">
                             @Html.DisplayFor(modelItem => item.Title)

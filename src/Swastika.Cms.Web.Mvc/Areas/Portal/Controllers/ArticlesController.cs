@@ -160,7 +160,7 @@ namespace Swastika.Cms.Mvc.Areas.Portal.Controllers
             {
                 try
                 {
-                    var result = await article.SaveModelAsync();
+                    var result = await article.SaveModelAsync(true);
                     if (result.IsSucceed)
                     {
                         if (categoryId.HasValue)

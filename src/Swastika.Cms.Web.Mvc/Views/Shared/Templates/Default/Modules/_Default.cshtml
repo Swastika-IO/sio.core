@@ -1,0 +1,48 @@
+@model Swastika.Cms.Lib.ViewModels.FrontEnd.FEModuleViewModel
+
+@if (Model != null && Model.Data.TotalItems > 0)
+{
+    <section>
+     <div class="center hidden">
+            <h2>@Model.Title</h2>
+            <p class="lead">@Model.Description</p>
+        </div>
+        <div class="container">
+            
+            <div class="row">
+
+                @foreach (var item in Model.Data.Items)
+                {
+                    <!--
+                        // Get Value By field name ("Image" => "image")    
+                        string img = item.GetValue<string>("image");
+                    -->
+                    
+                }
+            </div><!--/.carousel-inner-->
+        </div>
+    </section><!--/#main -->
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

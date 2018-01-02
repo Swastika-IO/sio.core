@@ -113,11 +113,7 @@ namespace Swastika.Cms.Lib.ViewModels.Info
                 }
                 result.IsSucceed = result.IsSucceed && saveResult.IsSucceed;
             }
-            return result;
-        }
-        public override RepositoryResponse<InfoThemeViewModel> SaveModel(bool isSaveSubModels = false, SiocCmsContext _context = null, IDbContextTransaction _transaction = null)
-        {
-            var result = base.SaveModel(isSaveSubModels, _context, _transaction);
+
             if (IsActived)
             {
                 ConfigurationViewModel config = (ConfigurationViewModel.Repository.GetSingleModel(
@@ -136,7 +132,7 @@ namespace Swastika.Cms.Lib.ViewModels.Info
                 }
                 else
                 {
-                    config.Value = Name;
+                    config.Value = parent.Name;
                 }
                 var saveConfigResult = config.SaveModel(false, _context, _transaction);
                 if (!saveConfigResult.IsSucceed)
@@ -161,7 +157,7 @@ namespace Swastika.Cms.Lib.ViewModels.Info
                 }
                 else
                 {
-                    configId.Value = Id.ToString();
+                    configId.Value = parent.Id.ToString();
                 }
                 var saveResult = configId.SaveModel(false, _context, _transaction);
                 if (!saveResult.IsSucceed)
@@ -171,8 +167,10 @@ namespace Swastika.Cms.Lib.ViewModels.Info
                 result.IsSucceed = result.IsSucceed && saveResult.IsSucceed;
 
             }
+
             return result;
         }
+          
         #endregion
 
         #region Async
@@ -211,30 +209,25 @@ namespace Swastika.Cms.Lib.ViewModels.Info
                 }
                 result.IsSucceed = result.IsSucceed && saveResult.IsSucceed;
             }
-            return result;
-        }
-        public override async Task<RepositoryResponse<InfoThemeViewModel>> SaveModelAsync(bool isSaveSubModels = false, SiocCmsContext _context = null, IDbContextTransaction _transaction = null)
-        {
-            var result = await base.SaveModelAsync(isSaveSubModels, _context, _transaction);
             if (IsActived)
             {
-                ConfigurationViewModel config =( await ConfigurationViewModel.Repository.GetSingleModelAsync(
+                ConfigurationViewModel config = (await ConfigurationViewModel.Repository.GetSingleModelAsync(
                     c => c.Keyword == SWCmsConstants.ConfigurationKeyword.Theme, _context, _transaction)).Data;
-                if (config==null)
+                if (config == null)
                 {
                     config = new ConfigurationViewModel()
-                        {
-                            Keyword = SWCmsConstants.ConfigurationKeyword.Theme,
-                            Specificulture = Specificulture,
-                            Category = SWCmsConstants.ConfigurationType.User,
-                            DataType = SWCmsConstants.DataType.String,
-                            Description = "Cms Theme",
-                            Value = Name
-                        };
+                    {
+                        Keyword = SWCmsConstants.ConfigurationKeyword.Theme,
+                        Specificulture = Specificulture,
+                        Category = SWCmsConstants.ConfigurationType.User,
+                        DataType = SWCmsConstants.DataType.String,
+                        Description = "Cms Theme",
+                        Value = Name
+                    };
                 }
                 else
                 {
-                    config.Value = Name;
+                    config.Value = parent.Name;
                 }
                 var saveConfigResult = await config.SaveModelAsync(false, _context, _transaction);
                 if (!saveConfigResult.IsSucceed)
@@ -254,9 +247,9 @@ namespace Swastika.Cms.Lib.ViewModels.Info
                         Category = SWCmsConstants.ConfigurationType.User,
                         DataType = SWCmsConstants.DataType.String,
                         Description = "Cms Theme Id",
-                        Value = Id.ToString()
+                        Value = parent.Id.ToString()
                     };
-                   
+
                 }
                 else
                 {
@@ -269,8 +262,10 @@ namespace Swastika.Cms.Lib.ViewModels.Info
                 }
                 result.IsSucceed = result.IsSucceed && saveResult.IsSucceed;
             }
+
             return result;
         }
+       
         #endregion
         #endregion
     }

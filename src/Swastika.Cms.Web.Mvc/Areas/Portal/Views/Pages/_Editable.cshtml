@@ -273,16 +273,18 @@
         </div>
         <!-- /.tab-pane -->
         <div class="tab-pane @isHidden" id="tab_layout">
-            @Html.Partial("_Editor_Code", Model.View, new ViewDataDictionary(this.ViewData)
-               {
-               {
-                       "Files", Model.Templates
-                   },
-                   {
-                       "Name", "View"
-                   }
+            @Html.Partial("_Editor_Code", Model.View, 
+                new ViewDataDictionary(this.ViewData)
+                {
+                    {
+                        "Files", Model.Templates
+                    },
+                    {
+                        "Name", "View"
+                    }
 
-                })
+                }
+            )
             @* <input asp-for="View.Filename" class="form-control"/>
 
                 <div class="form-control" id="code-editor" asp-for="View.Content"></div>*@
