@@ -9,9 +9,11 @@
     int nextPage = Model.PageIndex == Model.TotalPage - 1 ? Model.PageIndex : Model.PageIndex + 1;
     toValue = toValue > Model.TotalItems ? Model.TotalItems : toValue;
     string href = string.Format("{0}://{1}{2}", Context.Request.Scheme, Context.Request.Host, Url.Action());
+    
 }
 
 <div class="box-body">
+   
     <table class="table table-hover table-striped dataTable">
         <thead>
             <tr>
@@ -58,7 +60,7 @@
                     </td>
                     <td class="col-md-4">
                         
-                        <a asp-controller="Template" asp-action="Index" asp-route-templateId="@item.Id" 
+                        <a asp-controller="Template" asp-action="Index" asp-route-folder="Layouts" asp-route-templateId="@item.Id" 
                                class="link">
                             @Html.Raw(item.Name)
                         </a>

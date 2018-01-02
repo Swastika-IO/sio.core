@@ -24,7 +24,7 @@ namespace Swastika.Cms.Mvc.Areas.Portal.Controllers
         public IActionResult Index(string folder)
         {
             folder = folder ?? SWCmsConstants.FileFolder.Images;
-            var templates = FileRepository.Instance.GetFiles(folder);
+            var templates = FileRepository.Instance.GetUploadFiles(folder);
             ViewBag.folder = folder;
             return View(templates);
         }

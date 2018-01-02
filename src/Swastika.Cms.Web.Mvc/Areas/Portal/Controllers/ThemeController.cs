@@ -150,7 +150,11 @@ namespace Swastika.Cms.Mvc.Areas.Portal.Controllers
         [Route("Delete/{id}")]
         public async Task<IActionResult> Delete(int? id)
         {
-            var template = await InfoThemeViewModel.Repository.RemoveModelAsync(m => m.Id == id);
+            var template = await InfoThemeViewModel.Repository.GetSingleModelAsync(m => m.Id == id);
+            if (template.IsSucceed)
+            {
+                await template.Data.RemoveModelAsync(true);
+            }
             return RedirectToAction("Index");
         }
     }

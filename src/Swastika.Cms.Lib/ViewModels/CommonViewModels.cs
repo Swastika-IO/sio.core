@@ -15,6 +15,7 @@ namespace Swastika.Cms.Lib.ViewModels
 
     public class FileViewModel
     {
+
         public string FullPath
         {
             get
@@ -24,6 +25,7 @@ namespace Swastika.Cms.Lib.ViewModels
             }
             set { }
         }
+        public string FolderName { get; set; }
         public string FileFolder { get; set; }
         public string Filename { get; set; }
         public string Extension { get; set; }

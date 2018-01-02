@@ -9,9 +9,20 @@
     int nextPage = Model.PageIndex == Model.TotalPage - 1 ? Model.PageIndex : Model.PageIndex + 1;
     toValue = toValue > Model.TotalItems ? Model.TotalItems : toValue;
     string href = string.Format("{0}://{1}{2}", Context.Request.Scheme, Context.Request.Host, Url.Action());
+    var folders = Enum.GetNames(typeof(Swastika.Cms.Lib.SWCmsConstants.TemplateFolderEnum)).ToList();
 }
-
+<div class="container">
+        @foreach (var folder in folders)
+        {
+        <a asp-controller="Template" asp-action="Index" asp-route-folder="@folder" 
+           asp-route-templateId="@ViewContext.RouteData.Values["templateId"]"
+           class="btn btn-info">
+            @folder
+        </a>
+        }
+    </div>
 <div class="box-body">
+     
     <a asp-action="Create" asp-route-templateId="@ViewBag.templateId" class="btn btn-sm btn-success d-inline-block "> <i class="fa fa-plus"></i></a>
     <div class="table-responsive mailbox-messages">
         <table class="table table-hover table-striped ">

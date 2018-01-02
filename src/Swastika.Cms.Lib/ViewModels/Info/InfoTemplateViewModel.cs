@@ -121,21 +121,17 @@ namespace Swastika.Cms.Lib.ViewModels.Info
             }
             return result;
         }
-        public override RepositoryResponse<InfoTemplateViewModel> SaveModel(bool isSaveSubModels = false, SiocCmsContext _context = null, IDbContextTransaction _transaction = null)
-        {
 
-            var result = base.SaveModel(isSaveSubModels, _context, _transaction);
-            if (result.IsSucceed)
+        public override RepositoryResponse<bool> SaveSubModels(SiocTemplate parent, SiocCmsContext _context = null, IDbContextTransaction _transaction = null)
+        {
+            TemplateRepository.Instance.SaveTemplate(new TemplateViewModel()
             {
-                TemplateRepository.Instance.SaveTemplate(new TemplateViewModel()
-                {
-                    Filename = FileName,
-                    Extension = Extension,
-                    Content = Content,
-                    FileFolder = FileFolder
-                });
-            }
-            return result;
+                Filename = FileName,
+                Extension = Extension,
+                Content = Content,
+                FileFolder = FileFolder
+            });
+            return new RepositoryResponse<bool>() { IsSucceed = true };
         }
 
         #endregion
@@ -149,23 +145,17 @@ namespace Swastika.Cms.Lib.ViewModels.Info
             }
             return result;
         }
-        public override async Task<RepositoryResponse<InfoTemplateViewModel>> SaveModelAsync(bool isSaveSubModels = false, SiocCmsContext _context = null, IDbContextTransaction _transaction = null)
+
+        public override async Task<RepositoryResponse<bool>> SaveSubModelsAsync(SiocTemplate parent, SiocCmsContext _context = null, IDbContextTransaction _transaction = null)
         {
-            var result = await base.SaveModelAsync(isSaveSubModels, _context, _transaction);
-            if (result.IsSucceed)
+            TemplateRepository.Instance.SaveTemplate(new TemplateViewModel()
             {
-                if (result.IsSucceed)
-                {
-                    TemplateRepository.Instance.SaveTemplate(new TemplateViewModel()
-                    {
-                        Filename = FileName,
-                        Extension = Extension,
-                        Content = Content,
-                        FileFolder = FileFolder
-                    });
-                }
-            }
-            return result;
+                Filename = FileName,
+                Extension = Extension,
+                Content = Content,
+                FileFolder = FileFolder
+            });
+            return new RepositoryResponse<bool>() { IsSucceed = true };
         }
 
         #endregion

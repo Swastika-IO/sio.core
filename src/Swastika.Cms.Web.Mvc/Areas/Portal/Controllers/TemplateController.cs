@@ -28,12 +28,13 @@ namespace Swastika.Cms.Mvc.Areas.Portal.Controllers
         [Route("{templateId:int}")]
         [Route("{templateId:int}/{pageSize:int?}/{pageIndex:int?}/{keyword}")]
         [Route("{templateId:int}/{pageSize:int?}/{pageIndex:int?}")]
-        [Route("Index/{templateId:int}/{pageSize:int?}/{pageIndex:int?}/{keyword}")]
-        [Route("Index/{templateId:int}/{pageSize:int?}/{pageIndex:int?}")]
-        public async Task<IActionResult> Index(int templateId, int pageSize = 10, int pageIndex = 0, string keyword = null)
+        [Route("Index/{templateId:int}/{folder}/{pageSize:int?}/{pageIndex:int?}/{keyword}")]
+        [Route("Index/{templateId:int}/{folder}/{pageSize:int?}/{pageIndex:int?}")]
+        public async Task<IActionResult> Index(int templateId,string folder, int pageSize = 10, int pageIndex = 0, string keyword = null)
         {
            var getTemplateFile = await InfoTemplateViewModel.Repository.GetModelListByAsync(
                 template => template.TemplateId == templateId 
+                && template.FolderType == folder
                 && (string.IsNullOrEmpty(keyword) || template.FileName.Contains(keyword)),
                 "CreatedDateTime", OrderByDirection.Descending,
                 pageSize, pageIndex);
@@ -74,7 +75,7 @@ namespace Swastika.Cms.Mvc.Areas.Portal.Controllers
             if (ModelState.IsValid)
             {
                 template.CreatedDateTime = DateTime.UtcNow;
-                var result = await template.SaveModelAsync();
+                var result = await template.SaveModelAsync(true);
                 if (result.IsSucceed)
                 {
                     return RedirectToAction("Index", new { templateId = template.TemplateId });
@@ -123,7 +124,7 @@ namespace Swastika.Cms.Mvc.Areas.Portal.Controllers
                 {
                     template.ModifiedBy = User.Identity.Name;
                     template.LastModified = DateTime.UtcNow;
-                    var result = await template.SaveModelAsync();
+                    var result = await template.SaveModelAsync(true);
                     if (result.IsSucceed)
                     {
                         return RedirectToAction("Index", new { templateId = template.TemplateId });
