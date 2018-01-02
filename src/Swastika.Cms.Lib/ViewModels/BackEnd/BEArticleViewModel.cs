@@ -190,7 +190,7 @@ namespace Swastika.Cms.Lib.ViewModels.BackEnd
             this.Templates = this.Templates ?? 
                 InfoTemplateViewModel.Repository.GetModelListBy(
                 t => t.Template.Name == ActivedTemplate && t.FolderType == this.TemplateFolderType).Data;
-            this.View = Templates.FirstOrDefault(t => !string.IsNullOrEmpty(this.Template) && this.Template.Contains(t.FileName + t.Extension));
+            this.View = Templates.FirstOrDefault();
             if (this.View == null)
             {
                 this.View = new InfoTemplateViewModel()
