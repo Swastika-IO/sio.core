@@ -102,6 +102,7 @@ namespace Swastika.Cms.Lib.ViewModels.FrontEnd
                 Data = getDataResult.Data;
             }
             var getArticles = InfoArticleViewModel.GetModelListByModule(Id, Specificulture, SWCmsConstants.Default.OrderBy, OrderByDirection.Ascending
+                , 4, 0
                 , _context: _context, _transaction: _transaction
                 );
             if (getArticles.IsSucceed)

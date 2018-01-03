@@ -50,7 +50,7 @@ namespace Swastika.Cms.Lib.ViewModels.BackEnd
         public PaginationModel<InfoModuleDataViewModel> Data { get; set; } = new PaginationModel<InfoModuleDataViewModel>();
         [JsonProperty("columns")]
         public List<ModuleFieldViewModel> Columns { get; set; }
-        
+
         [JsonProperty("articles")]
         public PaginationModel<InfoArticleViewModel> Articles { get; set; } = new PaginationModel<InfoArticleViewModel>();
 
@@ -105,7 +105,7 @@ namespace Swastika.Cms.Lib.ViewModels.BackEnd
         #region Overrides
         public override SiocModule ParseModel()
         {
-            if (Id==0)
+            if (Id == 0)
             {
                 Id = InfoModuleViewModel.Repository.Count().Data + 1;
             }
@@ -145,7 +145,8 @@ namespace Swastika.Cms.Lib.ViewModels.BackEnd
             //Get Templates
             this.Templates = this.Templates ?? InfoTemplateViewModel.Repository.GetModelListBy(
                 t => t.Template.Name == ActivedTemplate && t.FolderType == this.TemplateFolderType).Data;
-            this.View = Templates.FirstOrDefault();// t => !string.IsNullOrEmpty(this.Template) && this.Template.Contains(t.FileName + t.Extension));
+            this.View = Templates.FirstOrDefault(t => !string.IsNullOrEmpty(this.Template) && this.Template.Contains(t.FileName + t.Extension));
+            this.View = View ?? Templates.FirstOrDefault();
             if (this.View == null)
             {
                 this.View = new InfoTemplateViewModel()
@@ -159,12 +160,12 @@ namespace Swastika.Cms.Lib.ViewModels.BackEnd
                     ModifiedBy = ModifiedBy,
                     Content = "<div></div>"
                 };
-                this.Template = SWCmsHelper.GetFullPath(new string[]
-                {
+            }
+            this.Template = SWCmsHelper.GetFullPath(new string[]
+               {
                     this.View?.FileFolder
                     , this.View?.FileName
-                });
-            }
+               });
 
             var getDataResult = InfoModuleDataViewModel.Repository
                 .GetModelListBy(m => m.ModuleId == Id && m.Specificulture == Specificulture
@@ -188,7 +189,7 @@ namespace Swastika.Cms.Lib.ViewModels.BackEnd
 
         #region Async
         public override Task<RepositoryResponse<bool>> RemoveModelAsync(bool isRemoveRelatedModels = false, SiocCmsContext _context = null, IDbContextTransaction _transaction = null)
-        {            
+        {
             return base.RemoveModelAsync(isRemoveRelatedModels, _context, _transaction);
         }
 

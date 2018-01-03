@@ -8,9 +8,13 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Views\Shared\Templates\**" />
     <Compile Remove="wwwroot\lib\**" />
+    <Content Remove="Views\Shared\Templates\**" />
     <Content Remove="wwwroot\lib\**" />
+    <EmbeddedResource Remove="Views\Shared\Templates\**" />
     <EmbeddedResource Remove="wwwroot\lib\**" />
+    <None Remove="Views\Shared\Templates\**" />
     <None Remove="wwwroot\lib\**" />
   </ItemGroup>
 

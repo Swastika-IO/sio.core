@@ -190,7 +190,8 @@ namespace Swastika.Cms.Lib.ViewModels.BackEnd
             this.Templates = this.Templates ?? 
                 InfoTemplateViewModel.Repository.GetModelListBy(
                 t => t.Template.Name == ActivedTemplate && t.FolderType == this.TemplateFolderType).Data;
-            this.View = Templates.FirstOrDefault();
+            this.View = Templates.FirstOrDefault(t => !string.IsNullOrEmpty(this.Template) && this.Template.Contains(t.FileName + t.Extension));
+            this.View = View ?? Templates.FirstOrDefault();
             if (this.View == null)
             {
                 this.View = new InfoTemplateViewModel()
@@ -204,12 +205,13 @@ namespace Swastika.Cms.Lib.ViewModels.BackEnd
                     ModifiedBy = ModifiedBy,
                     Content = "<div></div>"
                 };
-                this.Template = SWCmsHelper.GetFullPath(new string[]
-                {
+            }
+            this.Template = SWCmsHelper.GetFullPath(new string[]
+               {
                     this.View?.FileFolder
                     , this.View?.FileName
-                });
-            }
+               });
+
 
             var getCateArticle = CommonRepository.Instance.GetCategoryArticleNav(Id, Specificulture, _context, _transaction);
             if (getCateArticle.IsSucceed)
@@ -599,8 +601,15 @@ namespace Swastika.Cms.Lib.ViewModels.BackEnd
         {
             if (string.IsNullOrEmpty(this.SeoName))
             {
-                this.SeoName = SEOHelper.GetSEOString(this.Title);
+                this.SeoName = SEOHelper.GetSEOString(this.Title);                
             }
+            int i = 1;
+            string name = SeoName;
+            while (InfoArticleViewModel.Repository.CheckIsExists(a => a.SeoName == name && a.Specificulture == Specificulture && a.Id !=Id))
+            {
+                name = SeoName + "_" + i;
+            }
+            SeoName = name;
 
             if (string.IsNullOrEmpty(this.SeoTitle))
             {

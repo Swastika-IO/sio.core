@@ -163,7 +163,7 @@ namespace Swastika.Cms.Mvc.Controllers
             return View(getArticles.Data);
         }
 
-        [Route("Article/{pageName}")]
+        [Route("page/{pageName}")]
         public IActionResult Article(string pageName)
         {
             var getPage = FECategoryViewModel.Repository.GetSingleModel(
@@ -179,11 +179,11 @@ namespace Swastika.Cms.Mvc.Controllers
             }
         }
 
-        [Route("ArticleDetails/{id}/{SeoTitle}")]
-        public IActionResult ArticleDetails(string id, string SeoTitle)
+        [Route("article/{SeoName}")]
+        public IActionResult ArticleDetails(string SeoName)
         {
-            var getArticle = BEArticleViewModel.Repository.GetSingleModel(
-                a => a.Id == id && a.Specificulture == _lang);
+            var getArticle = FEArticleViewModel.Repository.GetSingleModel(
+                a => a.SeoName == SeoName && a.Specificulture == _lang);
             //ArticleRepository.GetInstance().GetSingleModel(a => a.Id == id && a.Specificulture == _lang, SWCmsConstants.ViewModelType.FrontEnd);
             if (getArticle.IsSucceed)
             {

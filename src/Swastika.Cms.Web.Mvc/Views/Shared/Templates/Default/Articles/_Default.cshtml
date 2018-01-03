@@ -29,7 +29,7 @@
 
                     @foreach (var childModule in Model.Modules)
                     {
-                        Html.RenderPartial(childModule.Module.Template, childModule.Module);
+                        Html.RenderPartial(childModule.Template, childModule);
                     }
 
                     @Html.Partial("../Widgets/_Comments_Facebook.cshtml")

@@ -156,6 +156,7 @@ namespace Swastika.Cms.Lib.ViewModels.FrontEnd
         void GetSubArticles(SiocCmsContext _context = null, IDbContextTransaction _transaction = null)
         {
             var getArticles = InfoArticleViewModel.GetModelListByCategory(Id, Specificulture, SWCmsConstants.Default.OrderBy, OrderByDirection.Ascending
+                , 4, 0
                , _context: _context, _transaction: _transaction
                );
             if (getArticles.IsSucceed)

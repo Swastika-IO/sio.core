@@ -218,25 +218,28 @@ namespace Swastika.Cms.Lib.ViewModels.BackEnd
 
             this.Templates = this.Templates ?? InfoTemplateViewModel.Repository.GetModelListBy(
                 t => t.Template.Name == ActivedTemplate && t.FolderType == this.TemplateFolderType).Data;
-            this.View = Templates.FirstOrDefault();// t => !string.IsNullOrEmpty(this.Template) && this.Template.Contains(t.FileName + t.Extension));
+            this.View = Templates.FirstOrDefault(t => !string.IsNullOrEmpty(this.Template) && this.Template.Contains(t.FileName + t.Extension));
+            this.View = View ?? Templates.FirstOrDefault();
             if (this.View == null)
             {
                 this.View = new InfoTemplateViewModel()
                 {
                     Extension = SWCmsConstants.Parameters.TemplateExtension,
-                    FolderType = TemplateFolderType,
                     TemplateId = ApplicationConfigService.Instance.GetLocalInt(SWCmsConstants.ConfigurationKeyword.ThemeId, Specificulture, 0),
                     TemplateName = ActivedTemplate,
+                    FolderType = TemplateFolderType,
                     FileFolder = this.TemplateFolder,
                     FileName = SWCmsConstants.Default.DefaultTemplate,
+                    ModifiedBy = ModifiedBy,
                     Content = "<div></div>"
                 };
-                this.Template = SWCmsHelper.GetFullPath(new string[]
-                {
+            }
+            this.Template = SWCmsHelper.GetFullPath(new string[]
+               {
                     this.View?.FileFolder
                     , this.View?.FileName
-                });
-            }
+               });
+
 
             this.ModuleNavs = GetModuleNavs(_context, _transaction);
             this.ParentNavs = GetParentNavs(_context, _transaction);
@@ -500,7 +503,16 @@ namespace Swastika.Cms.Lib.ViewModels.BackEnd
             if (string.IsNullOrEmpty(this.SeoName))
             {
                 this.SeoName = SEOHelper.GetSEOString(this.Title);
+                
             }
+            int i = 1;
+            string name = SeoName;
+            while (InfoCategoryViewModel.Repository.CheckIsExists(a => a.SeoName == name && a.Specificulture == Specificulture && a.Id != Id))
+            {
+                name = SeoName + "_" + i;
+            }
+            SeoName = name;
+
             if (string.IsNullOrEmpty(this.SeoTitle))
             {
                 this.SeoTitle = SEOHelper.GetSEOString(this.Title);

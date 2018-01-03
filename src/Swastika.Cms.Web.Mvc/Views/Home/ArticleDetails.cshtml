@@ -5,7 +5,8 @@
     ViewData["SeoKeywords"] = Model.SeoKeywords;
     ViewData["SeoDescription"] = Model.SeoDescription;
     string culture = ViewBag.culture;
-    Layout = string.Format("Layouts/{0}", Swastika.Cms.Lib.Services.ApplicationConfigService.Instance.GetLocalString("Layout", culture, "_Layout_Corlate"));// "_Layout_Corlate";
+    Layout = string.Format("Templates/{0}/Layouts/_Layout",
+        Swastika.Cms.Lib.Services.ApplicationConfigService.Instance.GetLocalString(Swastika.Cms.Lib.SWCmsConstants.ConfigurationKeyword.Theme, culture, "Default"));
 }
 
 @if (!string.IsNullOrEmpty(Model.Template))

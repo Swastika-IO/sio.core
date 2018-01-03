@@ -66,7 +66,7 @@ namespace Swastika.Cms.Lib.ViewModels.FrontEnd
 
         #region Views
         [JsonProperty("modules")]
-        public List<FEArticleModuleViewModel> Modules { get; set; }
+        public List<FEModuleViewModel> Modules { get; set; }
         [JsonProperty("domain")]
         public string Domain { get; set; } = "/";
         [JsonProperty("imageUrl")]
@@ -126,10 +126,24 @@ namespace Swastika.Cms.Lib.ViewModels.FrontEnd
 
         public override void ExpandView(SiocCmsContext _context = null, IDbContextTransaction _transaction = null)
         {
-            var getModulesResult = FEArticleModuleViewModel.Repository.GetModelListBy(m => m.ArticleId == Id && m.Specificulture == Specificulture, _context, _transaction);
+            var getModulesResult = FEArticleModuleViewModel.Repository.GetModelListBy(
+                m => m.ArticleId == Id && m.Specificulture == Specificulture
+                , _context, _transaction);
+
             if (getModulesResult.IsSucceed)
             {
-                this.Modules = getModulesResult.Data;
+                this.Modules = new List<FEModuleViewModel>();
+                foreach (var item in getModulesResult.Data)
+                {
+                    var getModules = FEModuleViewModel.Repository.GetSingleModel(
+                        m => m.Id == item.ModuleId && m.Specificulture == item.Specificulture
+                        , _context, _transaction);
+                    if (getModules.IsSucceed)
+                    {
+                        this.Modules.Add(getModules.Data);
+                    }
+                }
+                
             }
         }
 
