@@ -16,6 +16,7 @@ namespace Swastika.Cms.Mvc.Controllers
 {
 
     //[ServiceFilter(typeof(Lib.Attributes.LanguageActionFilter))]
+    [ResponseCache(CacheProfileName = "Default")]
     [Route("{culture}")]
     public class HomeController : BaseController<HomeController>
     {
