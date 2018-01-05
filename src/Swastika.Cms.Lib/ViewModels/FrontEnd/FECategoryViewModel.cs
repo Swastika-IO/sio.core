@@ -79,7 +79,7 @@ namespace Swastika.Cms.Lib.ViewModels.FrontEnd
         [JsonProperty("articles")]
         public PaginationModel<InfoArticleViewModel> Articles { get; set; } = new PaginationModel<InfoArticleViewModel>();
         [JsonProperty("modules")]
-        public List<FEModuleViewModel> Modules { get; set; } // Get All Module
+        public List<FEModuleViewModel> Modules { get; set; } = new List<FEModuleViewModel>(); // Get All Module
         #endregion
 
         #endregion

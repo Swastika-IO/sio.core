@@ -1,4 +1,6 @@
 ﻿using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Mvc;
+using Swastika.Cms.Lib.ViewModels.Info;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -10,6 +12,37 @@ namespace Swastika.Cms.Lib
 {
     public class SWCmsHelper
     {
+        public static List<InfoCategoryViewModel> GetCategory(IUrlHelper Url, string culture, SWCmsConstants.CatePosition position, string activePath = "")
+        {
+
+            var getTopCates = InfoCategoryViewModel.Repository.GetModelListBy
+            (c => c.Specificulture == culture && c.SiocCategoryPosition.Count(
+              p => p.PositionId == (int)position) > 0
+            );
+            var cates = getTopCates.Data ?? new List<InfoCategoryViewModel>();
+            
+            foreach (var cate in cates)
+            {                
+                switch (cate.Type)
+                {
+                    case SWCmsConstants.CateType.Blank:
+                        break;                   
+                    case SWCmsConstants.CateType.StaticUrl:
+                        cate.Href = cate.StaticUrl;
+                        break;
+                    case SWCmsConstants.CateType.Home:
+                    case SWCmsConstants.CateType.List:
+                    case SWCmsConstants.CateType.Article:                        
+                    case SWCmsConstants.CateType.Modules:
+                    default:
+                        cate.Href = Url.RouteUrl("Page", new { culture = culture, pageName = cate.SeoName });
+                        break;
+                }
+                cate.IsActived = cate.Href == activePath;
+            }
+            return cates;
+        }
+
         public static RSAParameters GenerateKey()
         {
             using (var key = new RSACryptoServiceProvider(2048))
@@ -17,6 +50,7 @@ namespace Swastika.Cms.Lib
                 return key.ExportParameters(true);
             }
         }
+        
         public static string GetFullPath(string[] subPaths)
         {
             string result = string.Empty;

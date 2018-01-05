@@ -16,7 +16,7 @@ namespace Swastika.Cms.Lib
         }
         public class Default
         {
-            public const string DefaultTemplateFolder = @"Default";
+            public const string DefaultTemplateFolder = @"Default-Templates";
             public const string DefaultTemplate = @"_Default";
             public const string DefaultTemplateLayout = @"_Layout";
             public const string DefaultTemplateLayoutBody = "<div>@RenderBody();</div>";

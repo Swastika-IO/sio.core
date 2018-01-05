@@ -78,7 +78,7 @@ namespace Swastika.Cms.Mvc.Areas.Portal.Controllers
                 var result = await template.SaveModelAsync(true);
                 if (result.IsSucceed)
                 {
-                    return RedirectToAction("Index", new { templateId = template.TemplateId });
+                    return RedirectToAction("Index", new { templateId = template.TemplateId, folder = template.FolderType });
                 }
                 else
                 {
@@ -127,7 +127,7 @@ namespace Swastika.Cms.Mvc.Areas.Portal.Controllers
                     var result = await template.SaveModelAsync(true);
                     if (result.IsSucceed)
                     {
-                        return RedirectToAction("Index", new { templateId = template.TemplateId });
+                        return RedirectToAction("Index", new { templateId = template.TemplateId, folder = template.FolderType });
                     }
                     else
                     {
@@ -158,7 +158,7 @@ namespace Swastika.Cms.Mvc.Areas.Portal.Controllers
         {
             var template = await InfoTemplateViewModel.Repository.GetSingleModelAsync(m => m.Id == id);
             await template.Data.RemoveModelAsync();
-            return RedirectToAction("Index", new { templateId = template.Data.TemplateId });
+            return RedirectToAction("Index", new { templateId = template.Data.TemplateId, folder = template.Data?.FolderType });
         }
     }
     //public class FileViewModel

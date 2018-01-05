@@ -22,7 +22,7 @@ using Swastika.IO.Identity.Identity.Infrastructure;
 
 namespace Swastika.Cms.Mvc.Controllers
 {
-    [Route("{culture}/account")]
+    [Route("account")]
     public class AccountController : BaseController<AccountController>
     {
         private readonly UserManager<ApplicationUser> _userManager;

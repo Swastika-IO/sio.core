@@ -40,7 +40,7 @@ namespace Swastika.Cms.Lib.ViewModels.Info
         {
             get
             {
-                return CommonHelper.GetFullPath(new string[] { SWCmsConstants.Parameters.TemplatesAssetFolder, Name });
+                return CommonHelper.GetFullPath(new string[] { TemplateFolder, "Assets"});
             }
         }
         [JsonProperty("templateFolder")]
@@ -257,7 +257,7 @@ namespace Swastika.Cms.Lib.ViewModels.Info
             }
             return result;
         }
-        public override async Task<RepositoryResponse<bool>> SaveSubModelsAsync(SiocTheme parent, SiocCmsContext _context = null, IDbContextTransaction _transaction = null)
+        public override Task<RepositoryResponse<bool>> SaveSubModelsAsync(SiocTheme parent, SiocCmsContext _context = null, IDbContextTransaction _transaction = null)
         {
             RepositoryResponse<bool> result = new RepositoryResponse<bool>() { IsSucceed = true };
             
@@ -269,9 +269,8 @@ namespace Swastika.Cms.Lib.ViewModels.Info
                 {
                     FileRepository.Instance.UnZipFile(Asset);
                 }
-            }           
-           
-            return result;
+            }
+            return base.SaveSubModelsAsync(parent, _context, _transaction);
         }
 
         public override async Task<RepositoryResponse<bool>> RemoveRelatedModelsAsync(InfoThemeViewModel view, SiocCmsContext _context = null, IDbContextTransaction _transaction = null)

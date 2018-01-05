@@ -146,7 +146,7 @@ namespace Swastika.Cms.Lib.ViewModels.Info
             return result;
         }
 
-        public override async Task<RepositoryResponse<bool>> SaveSubModelsAsync(SiocTemplate parent, SiocCmsContext _context = null, IDbContextTransaction _transaction = null)
+        public override Task<RepositoryResponse<bool>> SaveSubModelsAsync(SiocTemplate parent, SiocCmsContext _context = null, IDbContextTransaction _transaction = null)
         {
             TemplateRepository.Instance.SaveTemplate(new TemplateViewModel()
             {
@@ -155,7 +155,7 @@ namespace Swastika.Cms.Lib.ViewModels.Info
                 Content = Content,
                 FileFolder = FileFolder
             });
-            return new RepositoryResponse<bool>() { IsSucceed = true };
+            return base.SaveSubModelsAsync(parent, _context, _transaction);
         }
 
         #endregion

@@ -72,7 +72,8 @@ namespace Swastika.Cms.Lib.ViewModels.Info
 
         public List<InfoCategoryViewModel> Childs { get; set; }
         public int TotalArticle { get; set; }
-
+        public string Href { get; set; }
+        public bool IsActived { get; set; }
         #endregion
 
         #endregion

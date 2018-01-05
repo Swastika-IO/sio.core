@@ -3,13 +3,9 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Localization;
 using Microsoft.AspNetCore.Http;
-using System.Linq;
 using Microsoft.Data.OData.Query;
-using Swastika.Cms.Lib.Services;
 using Swastika.Cms.Lib.ViewModels.Info;
-using Swastika.Cms.Lib.ViewModels;
 using Swastika.Cms.Lib;
-using Swastika.Cms.Lib.ViewModels.BackEnd;
 using Swastika.Cms.Lib.ViewModels.FrontEnd;
 
 namespace Swastika.Cms.Mvc.Controllers
@@ -20,6 +16,7 @@ namespace Swastika.Cms.Mvc.Controllers
     [Route("{culture}")]
     public class HomeController : BaseController<HomeController>
     {
+        
         //private readonly string lang;
         //private readonly IStringLocalizer<HomeController> _homeLocalizer;
         //private readonly IStringLocalizer<SharedResource> _localizer;
@@ -72,8 +69,7 @@ namespace Swastika.Cms.Mvc.Controllers
                 else
                 {
                     return RedirectToAction("Index", "Portal", new { culture = _lang});
-                }
-                
+                }                
             }
             else
             {

@@ -289,7 +289,7 @@ namespace Swastika.Cms.Lib.Repositories
             {
                 ZipFile.ExtractToDirectory(fileName, webFolder);
             }
-            catch (Exception e)
+            catch
             {
             }
         }

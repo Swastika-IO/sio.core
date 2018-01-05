@@ -16,6 +16,7 @@ using Swastika.Cms.Mvc.Areas.Portal.Controllers;
 namespace Swastika.Cms.Mvc.Areas.User.Controllers
 {
     [Area("User")]
+    [Route("{culture}/account")]
     public class AccountController : Controller
     {
         private readonly UserManager<ApplicationUser> _userManager;
