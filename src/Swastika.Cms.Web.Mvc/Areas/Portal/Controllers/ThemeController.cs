@@ -11,12 +11,14 @@ using Microsoft.EntityFrameworkCore;
 using System;
 using Swastika.Cms.Lib.Services;
 using Swastika.Cms.Lib;
+using Microsoft.AspNetCore.Http;
 
 namespace Swastika.Cms.Mvc.Areas.Portal.Controllers
 {
     [Microsoft.AspNetCore.Authorization.Authorize]
     [Area("Portal")]
     [Route("{culture}/Portal/Theme")]
+    [RequestSizeLimit(int.MaxValue)]
     public class ThemeController : BaseController<ThemeController>
     {
         //private readonly IViewRenderService _viewRenderService;
@@ -60,12 +62,12 @@ namespace Swastika.Cms.Mvc.Areas.Portal.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [Route("Create")]
         [HttpPost]
-        [ValidateAntiForgeryToken]
+        
         public async Task<IActionResult> Create(InfoThemeViewModel template)
         {
             if (ModelState.IsValid)
             {
-                template.CreatedDateTime = DateTime.UtcNow;
+                template.CreatedDateTime = DateTime.UtcNow;                
                 var result = await template.SaveModelAsync(true);
                 if (result.IsSucceed)
                 {
@@ -106,6 +108,7 @@ namespace Swastika.Cms.Mvc.Areas.Portal.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [Route("Edit/{id}")]
         [HttpPost]
+        [RequestSizeLimit(100000000)]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(int id, InfoThemeViewModel template)
         {

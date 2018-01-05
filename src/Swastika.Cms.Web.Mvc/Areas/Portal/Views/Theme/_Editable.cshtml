@@ -31,11 +31,7 @@
     <div class="form-group">
         <label asp-for="Asset" class="col-md-2 control-label"></label>
         <div class="col-md-10" id="asset">
-            <input type="hidden" asp-for="Asset.Extension" class="extension"/>
-            <input type="hidden" asp-for="Asset.FileFolder" class="fileFolder"/>
-            <input type="hidden" asp-for="Asset.Filename" class="filename"/>
-            <input type="hidden" asp-for="Asset.FileStream" class="fileStream"/>
-            <input type="file" accept="application/zip" id="file-asset" folder="@Model.AssetFolder" class="form-control" />
+            <input type="file" name="Asset" accept="application/zip" id="Asset"class="form-control" />
         </div>
     </div>
     <div class="form-group">

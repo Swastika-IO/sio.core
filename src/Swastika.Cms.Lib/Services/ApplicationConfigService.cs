@@ -73,7 +73,11 @@ namespace Swastika.Cms.Lib.Services
             {
                 foreach (var item in getTemplates.Data)
                 {
-                    item.SaveModel();
+                    try
+                    {
+                        item.SaveModel();
+                    }
+                    catch { }
                 }
             }
         }

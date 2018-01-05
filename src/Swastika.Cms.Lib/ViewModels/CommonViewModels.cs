@@ -20,8 +20,7 @@ namespace Swastika.Cms.Lib.ViewModels
         {
             get
             {
-                string fullPath = string.Format(SWCmsConstants.Parameters.UploadFolder, FileFolder);
-                return string.Format(@"/{0}/{1}.{2}", fullPath.Replace(@"wwwroot/", string.Empty), Filename, Extension);
+                return string.Format(@"/{0}/{1}{2}",FileFolder, Filename, Extension);
             }
             set { }
         }
