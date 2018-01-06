@@ -9,6 +9,7 @@ using System;
 using System.Collections.Generic;
 using static Swastika.Cms.Lib.SWCmsConstants;
 using System.Linq;
+using Swastika.Cms.Lib.Services;
 
 namespace Swastika.Cms.Lib.ViewModels.FrontEnd
 {
@@ -80,6 +81,19 @@ namespace Swastika.Cms.Lib.ViewModels.FrontEnd
         public PaginationModel<InfoArticleViewModel> Articles { get; set; } = new PaginationModel<InfoArticleViewModel>();
         [JsonProperty("modules")]
         public List<FEModuleViewModel> Modules { get; set; } = new List<FEModuleViewModel>(); // Get All Module
+
+        public string TemplatePath
+        {
+            get {
+                return SWCmsHelper.GetFullPath(new string[]
+                {
+                    ""
+                    , SWCmsConstants.Parameters.TemplatesFolder
+                    , ApplicationConfigService.Instance.GetLocalString(SWCmsConstants.ConfigurationKeyword.Theme, Specificulture, SWCmsConstants.Default.DefaultTemplateFolder)
+                    , Template
+                });
+            }
+        }
         #endregion
 
         #endregion
@@ -99,7 +113,7 @@ namespace Swastika.Cms.Lib.ViewModels.FrontEnd
         #region Overrides
 
         public override void ExpandView(SiocCmsContext _context = null, IDbContextTransaction _transaction = null)
-        {           
+        {
             switch (Type)
             {
                 case CateType.Home:

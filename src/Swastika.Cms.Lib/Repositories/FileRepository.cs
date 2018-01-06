@@ -59,12 +59,46 @@ namespace Swastika.Cms.Lib.Repositories
             return result;
         }
 
-        public FileViewModel GetFile(string name, string ext, string FileFolder)
+        public FileViewModel GetUploadFile(string name, string ext, string FileFolder)
         {
             FileViewModel result = null;
 
             string folder = string.Format(SWCmsConstants.Parameters.UploadFolder, FileFolder.ToString());
             string fullPath = string.Format(@"{0}/{1}.{2}", folder, name, ext);
+
+            FileInfo file = new FileInfo(fullPath);
+
+            if (file != null)
+            {
+                try
+                {
+                    using (StreamReader s = file.OpenText())
+                    {
+                        result = new FileViewModel()
+                        {
+                            FileFolder = FileFolder.ToString(),
+                            Filename = file.Name.Substring(0, file.Name.LastIndexOf('.')),
+                            Extension = file.Extension.Remove(0, 1),
+                            Content = s.ReadToEnd()
+                        };
+
+                    }
+                }
+                catch
+                {
+                    // File invalid
+                }
+            }
+
+            result = result ?? new FileViewModel() { FileFolder = FileFolder.ToString() };
+            return result;
+        }
+
+        public FileViewModel GetFile(string name, string ext, string FileFolder)
+        {
+            FileViewModel result = null;
+
+            string fullPath = string.Format(@"{0}/{1}{2}", FileFolder, name, ext);
 
             FileInfo file = new FileInfo(fullPath);
 

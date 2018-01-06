@@ -10,9 +10,19 @@
     ViewData["SeoKeywords"] = Model.SeoKeywords;
     ViewData["SeoDescription"] = Model.SeoDescription;
 }
-@if (!string.IsNullOrEmpty(Model.Template))
+@if (!string.IsNullOrEmpty(Model.TemplatePath))
 {
-    @Html.Partial(Model.Template, Model)
+    
+    
+    try
+    {
+        @Html.Partial(Model.TemplatePath, Model)
+    }
+    catch
+    {
+
+        <p class="danger text-center has-error">Unable load template</p>
+    }
 }
 else
 {

@@ -12,6 +12,7 @@ using System;
 using Swastika.Cms.Lib.Services;
 using Swastika.Cms.Lib;
 using Microsoft.AspNetCore.Http;
+using Swastika.Cms.Lib.ViewModels.BackEnd;
 
 namespace Swastika.Cms.Mvc.Areas.Portal.Controllers
 {
@@ -49,7 +50,7 @@ namespace Swastika.Cms.Mvc.Areas.Portal.Controllers
         [Route("Create")]
         public IActionResult Create()
         {
-            var template = new InfoThemeViewModel()
+            var template = new BEThemeViewModel()
             {
                 CreatedBy = User.Identity.Name,
                 Specificulture = _lang
@@ -63,7 +64,7 @@ namespace Swastika.Cms.Mvc.Areas.Portal.Controllers
         [Route("Create")]
         [HttpPost]
         
-        public async Task<IActionResult> Create(InfoThemeViewModel template)
+        public async Task<IActionResult> Create(BEThemeViewModel template)
         {
             if (ModelState.IsValid)
             {
@@ -90,7 +91,7 @@ namespace Swastika.Cms.Mvc.Areas.Portal.Controllers
                 return NotFound();
             }
 
-            var template = await InfoThemeViewModel.Repository.GetSingleModelAsync(m => m.Id == id);
+            var template = await BEThemeViewModel.Repository.GetSingleModelAsync(m => m.Id == id);
             if (!template.IsSucceed)
             {
                 return NotFound();
@@ -110,7 +111,7 @@ namespace Swastika.Cms.Mvc.Areas.Portal.Controllers
         [HttpPost]
         [RequestSizeLimit(100000000)]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, InfoThemeViewModel template)
+        public async Task<IActionResult> Edit(int id, BEThemeViewModel template)
         {
             if (id != template.Id)
             {
@@ -134,7 +135,7 @@ namespace Swastika.Cms.Mvc.Areas.Portal.Controllers
                 }
                 catch (DbUpdateConcurrencyException)
                 {
-                    if (!InfoThemeViewModel.Repository.CheckIsExists(m => m.Id == template.Id))
+                    if (!BEThemeViewModel.Repository.CheckIsExists(m => m.Id == template.Id))
                     {
                         return NotFound();
                     }
@@ -153,7 +154,7 @@ namespace Swastika.Cms.Mvc.Areas.Portal.Controllers
         [Route("Delete/{id}")]
         public async Task<IActionResult> Delete(int? id)
         {
-            var template = await InfoThemeViewModel.Repository.GetSingleModelAsync(m => m.Id == id);
+            var template = await BEThemeViewModel.Repository.GetSingleModelAsync(m => m.Id == id);
             if (template.IsSucceed)
             {
                 await template.Data.RemoveModelAsync(true);

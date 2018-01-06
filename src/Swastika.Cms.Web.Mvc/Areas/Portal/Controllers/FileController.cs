@@ -34,7 +34,7 @@ namespace Swastika.Cms.Mvc.Areas.Portal.Controllers
         [Route("Edit/{folder}/{name}/{ext}")]
         public IActionResult Edit(string folder, string name, string ext)
         {           
-            var template = FileRepository.Instance.GetFile(name, ext, folder);
+            var template = FileRepository.Instance.GetUploadFile(name, ext, folder);
             if (template == null)
             {
                 return RedirectToAction("", new {  folder });

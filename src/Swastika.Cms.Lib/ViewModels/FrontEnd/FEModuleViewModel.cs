@@ -13,6 +13,7 @@ using Swastika.Cms.Lib.Repositories;
 using Microsoft.Data.OData.Query;
 using System;
 using static Swastika.Cms.Lib.SWCmsConstants;
+using Swastika.Cms.Lib.Services;
 
 namespace Swastika.Cms.Lib.ViewModels.FrontEnd
 {
@@ -54,7 +55,19 @@ namespace Swastika.Cms.Lib.ViewModels.FrontEnd
         public List<TemplateViewModel> Templates { get; set; }
         [JsonProperty("articles")]
         public PaginationModel<InfoArticleViewModel> Articles { get; set; } = new PaginationModel<InfoArticleViewModel>();
-
+        public string TemplatePath
+        {
+            get
+            {
+                return SWCmsHelper.GetFullPath(new string[]
+                {
+                    ""
+                    , SWCmsConstants.Parameters.TemplatesFolder
+                    , ApplicationConfigService.Instance.GetLocalString(SWCmsConstants.ConfigurationKeyword.Theme, Specificulture, SWCmsConstants.Default.DefaultTemplateFolder)
+                    , Template
+                });
+            }
+        }
         #endregion
 
         #endregion

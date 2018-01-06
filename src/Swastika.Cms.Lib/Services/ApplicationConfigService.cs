@@ -1,4 +1,5 @@
 ﻿using Swastika.Cms.Lib.ViewModels;
+using Swastika.Cms.Lib.ViewModels.BackEnd;
 using Swastika.Cms.Lib.ViewModels.Info;
 using Swastika.Domain.Core.Models;
 using System.Collections.Generic;
@@ -10,7 +11,7 @@ namespace Swastika.Cms.Lib.Services
     {
         public string Culture { get; set; }
         public string Name { get; set; }
-        
+
 
         private static List<ConfigurationViewModel> _listConfiguration;
         public static List<ConfigurationViewModel> ListConfiguration
@@ -67,11 +68,43 @@ namespace Swastika.Cms.Lib.Services
         {
             //_repo = ConfigurationRepository.GetInstance();
             InitCultures();
-            InitConfigurations();           
+            InitConfigurations();
         }
 
-        public void InitTemplates()
+        public void InitSWCms()
         {
+            var getCulture = CultureViewModel.Repository.GetSingleModel(c => c.Specificulture == "vi-vn");
+            if (!getCulture.IsSucceed)
+            {
+                CultureViewModel viCulture = new CultureViewModel()
+                {
+                    Specificulture = "vi-vn",
+                    FullName = "Vietnam",
+                    Description = "Việt Nam",
+                    Icon = "flag-icon-vn",
+                    Alias = "Vietnam"
+                };
+                viCulture.SaveModel();
+            }
+            var getPosition = BEPositionViewModel.Repository.GetModelList();
+            if (!getPosition.IsSucceed || getPosition.Data.Count == 0)
+            {
+                BEPositionViewModel p = new BEPositionViewModel()
+                {
+                    Description = SWCmsConstants.CatePosition.Top.ToString()
+                };
+                p.SaveModel();
+                p = new BEPositionViewModel()
+                {
+                    Description = SWCmsConstants.CatePosition.Left.ToString()
+                };
+                p.SaveModel();
+                p = new BEPositionViewModel()
+                {
+                    Description = SWCmsConstants.CatePosition.Footer.ToString()
+                };
+                p.SaveModel();
+            }
             var getTemplates = InfoTemplateViewModel.Repository.GetModelList();
             if (getTemplates.IsSucceed)
             {
@@ -131,7 +164,7 @@ namespace Swastika.Cms.Lib.Services
                         });
                 }
             }
-           
+
         }
 
         static void InitConfigurations()
@@ -181,7 +214,7 @@ namespace Swastika.Cms.Lib.Services
         public int GetLocalInt(string key, string culture, int defaultValue)
         {
             var config = ListConfiguration.FirstOrDefault(c => c.Keyword == key && c.Specificulture == culture);
-            if(!int.TryParse(config?.Value, out int result))
+            if (!int.TryParse(config?.Value, out int result))
             {
                 result = defaultValue;
             }

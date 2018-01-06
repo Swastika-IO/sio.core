@@ -7,6 +7,7 @@ using Newtonsoft.Json;
 using System.ComponentModel.DataAnnotations;
 using Swastika.Common.Helper;
 using Swastika.Cms.Lib;
+using Swastika.Cms.Lib.Services;
 
 namespace Swastika.Cms.Lib.ViewModels.FrontEnd
 {
@@ -105,7 +106,19 @@ namespace Swastika.Cms.Lib.ViewModels.FrontEnd
 
             }
         }
-
+        public string TemplatePath
+        {
+            get
+            {
+                return SWCmsHelper.GetFullPath(new string[]
+                {
+                    ""
+                    , SWCmsConstants.Parameters.TemplatesFolder
+                    , ApplicationConfigService.Instance.GetLocalString(SWCmsConstants.ConfigurationKeyword.Theme, Specificulture, SWCmsConstants.Default.DefaultTemplateFolder)
+                    , Template
+                });
+            }
+        }
         #endregion
 
         #endregion

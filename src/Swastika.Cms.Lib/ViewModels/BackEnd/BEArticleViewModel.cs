@@ -89,9 +89,9 @@ namespace Swastika.Cms.Lib.ViewModels.BackEnd
         #region Template
 
         [JsonProperty("view")]
-        public InfoTemplateViewModel View { get; set; }
+        public BETemplateViewModel View { get; set; }
         [JsonProperty("templates")]
-        public List<InfoTemplateViewModel> Templates { get; set; }// Article Templates
+        public List<BETemplateViewModel> Templates { get; set; }// Article Templates
         [JsonIgnore]
         public string ActivedTemplate
         {
@@ -187,14 +187,14 @@ namespace Swastika.Cms.Lib.ViewModels.BackEnd
             }
 
             //Get Templates
-            this.Templates = this.Templates ?? 
-                InfoTemplateViewModel.Repository.GetModelListBy(
+            this.Templates = this.Templates ??
+                BETemplateViewModel.Repository.GetModelListBy(
                 t => t.Template.Name == ActivedTemplate && t.FolderType == this.TemplateFolderType).Data;
             this.View = Templates.FirstOrDefault(t => !string.IsNullOrEmpty(this.Template) && this.Template.Contains(t.FileName + t.Extension));
             this.View = View ?? Templates.FirstOrDefault();
             if (this.View == null)
             {
-                this.View = new InfoTemplateViewModel()
+                this.View = new BETemplateViewModel()
                 {
                     Extension = SWCmsConstants.Parameters.TemplateExtension,
                     TemplateId = ApplicationConfigService.Instance.GetLocalInt(SWCmsConstants.ConfigurationKeyword.ThemeId, Specificulture, 0),
@@ -254,7 +254,7 @@ namespace Swastika.Cms.Lib.ViewModels.BackEnd
                 Id = Guid.NewGuid().ToString(); //Common.Common.GetBase62(8);
                 CreatedDateTime = DateTime.UtcNow;
             }
-            Template = View != null ? string.Format(@"/{0}/{1}{2}", View.FileFolder, View.FileName, View.Extension) : Template;
+            Template = View != null ? string.Format(@"{0}/{1}{2}", View.FolderType, View.FileName, View.Extension) : Template;
             if (ThumbnailFileStream != null)
             {
                 string folder = SWCmsHelper.GetFullPath(new string[]

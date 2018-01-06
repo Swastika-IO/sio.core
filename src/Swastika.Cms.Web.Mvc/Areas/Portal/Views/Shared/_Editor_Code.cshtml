@@ -1,7 +1,7 @@
 @*
     For more information on enabling MVC for empty projects, visit http://go.microsoft.com/fwlink/?LinkID=397860
 *@
-@model Swastika.Cms.Lib.ViewModels.Info.InfoTemplateViewModel
+@model BETemplateViewModel
 @inject UserManager<ApplicationUser> UserManager
 
 @{
@@ -9,8 +9,8 @@
     string isHidden = ViewBag.IsAdmin ? string.Empty : "hidden";
 }
 @{
-    List<Swastika.Cms.Lib.ViewModels.Info.InfoTemplateViewModel> files = (List<Swastika.Cms.Lib.ViewModels.Info.InfoTemplateViewModel>)this.ViewData["Files"];
-    files = files ?? new List<Swastika.Cms.Lib.ViewModels.Info.InfoTemplateViewModel>();
+    List<BETemplateViewModel> files = (List<BETemplateViewModel>)this.ViewData["Files"];
+    files = files ?? new List<BETemplateViewModel>();
     string name = (string)this.ViewData["Name"];
 
     string inpName_TemplateName = string.IsNullOrEmpty(name) ? "TemplateName" : string.Format("{0}.TemplateName", name);

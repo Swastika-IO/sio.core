@@ -1,16 +1,11 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Text;
 using System.Text.Encodings.Web;
 using System.Text.Unicode;
-using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authentication.Cookies;
-using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http.Features;
-using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
@@ -19,11 +14,8 @@ using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.WebEncoders;
 using Microsoft.IdentityModel.Tokens;
 using Swastika.Cms.Lib.Models;
-using Swastika.Cms.Lib.Repositories;
 using Swastika.Cms.Lib.Services;
 using Swastika.Cms.Web.Mvc.Models.Identity;
-using Swastika.Identity.Data;
-using Swastika.Identity.Models;
 using Swastika.Identity.Services;
 
 namespace Swastika.Cms.Web.Mvc

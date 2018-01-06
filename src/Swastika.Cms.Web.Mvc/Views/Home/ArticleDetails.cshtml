@@ -9,9 +9,22 @@
         Swastika.Cms.Lib.Services.ApplicationConfigService.Instance.GetLocalString(Swastika.Cms.Lib.SWCmsConstants.ConfigurationKeyword.Theme, culture, "Default"));
 }
 
-@if (!string.IsNullOrEmpty(Model.Template))
+@if (!string.IsNullOrEmpty(Model.TemplatePath))
 {
-    @Html.Partial(Model.Template, Model)
+    try
+    {
+        @Html.Partial(Model.TemplatePath, Model)
+    }
+    catch (Exception ex)
+    {
+        <p class="text-center text-danger">
+            Unable to load Template
+        </p>
+        <p>
+            @ex.StackTrace
+        </p>
+
+    }
 }
 else
 {
