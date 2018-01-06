@@ -15,8 +15,9 @@ namespace Swastika.Cms.Web.Mvc
     {
         public static void Main(string[] args)
         {
+            ApplicationConfigService.Instance.InitTemplates();
             BuildWebHost(args).Run();
-            ApplicationConfigService.Instance.Refresh();
+            
         }
 
         public static IWebHost BuildWebHost(string[] args) =>

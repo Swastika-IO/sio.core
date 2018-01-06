@@ -259,3 +259,4 @@ ModelManifest.xml
 /src/Swastika.Chat.Lib
 /src/Swastika.Cms.Lib/Migrations
 /src/Swastika.Cms.Web.Mvc/wwwroot/Uploads
+/src/Swastika.Cms.Web.Mvc/Views/Shared/Templates/Default

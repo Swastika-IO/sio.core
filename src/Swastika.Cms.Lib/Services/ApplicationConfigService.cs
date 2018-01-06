@@ -67,7 +67,11 @@ namespace Swastika.Cms.Lib.Services
         {
             //_repo = ConfigurationRepository.GetInstance();
             InitCultures();
-            InitConfigurations();
+            InitConfigurations();           
+        }
+
+        public void InitTemplates()
+        {
             var getTemplates = InfoTemplateViewModel.Repository.GetModelList();
             if (getTemplates.IsSucceed)
             {
@@ -81,7 +85,6 @@ namespace Swastika.Cms.Lib.Services
                 }
             }
         }
-
 
         public SupportedCulture GetCulture(string specificulture)
         {
