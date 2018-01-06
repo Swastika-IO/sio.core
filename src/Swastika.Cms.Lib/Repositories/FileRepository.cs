@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.IO.Compression;
+using Microsoft.AspNetCore.Http;
 
 namespace Swastika.Cms.Lib.Repositories
 {
@@ -224,6 +225,46 @@ namespace Swastika.Cms.Lib.Repositories
             }
             return result;
         }
+        public List<FileViewModel> GetWebFiles(string folder)
+        {
+            string fullPath = CommonHelper.GetFullPath(new string[] {
+                    SWCmsConstants.Parameters.WebRootPath,
+                    folder
+                });
+
+            if (!Directory.Exists(fullPath))
+            {
+                Directory.CreateDirectory(fullPath);
+            }
+            //DirectoryInfo d = new DirectoryInfo(fullPath);//Assuming Test is your Folder
+            FileInfo[] Files = { };
+            List<FileViewModel> result = new List<FileViewModel>();
+            foreach (string dirPath in Directory.GetDirectories(fullPath, "*",
+                SearchOption.AllDirectories))
+            {
+                DirectoryInfo path = new DirectoryInfo(dirPath);
+                string folderName = path.ToString().Replace(@"\", "/").Replace(SWCmsConstants.Parameters.WebRootPath, string.Empty);
+
+                Files = path.GetFiles();
+                foreach (var file in Files.OrderByDescending(f => f.CreationTimeUtc))
+                {
+                    using (StreamReader s = file.OpenText())
+                    {
+                        result.Add(new FileViewModel()
+                        {
+                            FolderName = path.Name,
+                            FileFolder = folderName,//CommonHelper.GetFullPath(new string[] { folderName, path.Name }),
+                            Filename = file.Name.Substring(0, file.Name.LastIndexOf('.')),
+                            Extension = file.Extension,
+                            Content = s.ReadToEnd()
+
+                        });
+
+                    }
+                }
+            }
+            return result;
+        }
 
         public List<FileViewModel> GetFiles(SWCmsConstants.FileFolder FileFolder)
         {
@@ -281,13 +322,66 @@ namespace Swastika.Cms.Lib.Repositories
             }
         }
 
-        public void UnZipFile(FileViewModel file)
+        public string SaveFile(IFormFile file, string fullPath)
         {
-            string fileName = SWCmsHelper.GetFullPath(new string[] { SWCmsConstants.Parameters.WebRootPath, file.FileFolder, file.Filename + file.Extension });
-            string webFolder = SWCmsHelper.GetFullPath(new string[] { SWCmsConstants.Parameters.WebRootPath, file.FileFolder });
             try
             {
-                ZipFile.ExtractToDirectory(fileName, webFolder);
+                //string fullPath = CommonHelper.GetFullPath(new string[] {
+                //    SWCmsConstants.Parameters.WebRootPath,
+                //    folder
+                //});
+                if (file.Length > 0)
+                {
+                    if (!Directory.Exists(fullPath))
+                    {
+                        Directory.CreateDirectory(fullPath);
+                    }
+                    string filename = file.FileName;// Guid.NewGuid().ToString("N");
+                    string filePath = SWCmsHelper.GetFullPath(new string[] { fullPath, filename });
+                    //var logPath = System.IO.Path.GetTempFileName();
+                    if (File.Exists(filePath))
+                    {
+                        DeleteFile(filePath);
+                    }
+                    using (var stream = new FileStream(filePath, FileMode.Create))
+                    {
+                        file.CopyTo(stream);
+                    }
+                    return filename;
+                }
+                else
+                {
+                    return string.Empty;
+                }
+            }
+            catch
+            {
+                return string.Empty;
+            }
+        }
+        public string SaveWebFile(IFormFile file, string folder)
+        {
+            try
+            {
+                string fullPath = CommonHelper.GetFullPath(new string[] {
+                    SWCmsConstants.Parameters.WebRootPath,
+                    folder
+                });
+                return SaveFile(file, fullPath);
+            }
+            catch
+            {
+                return string.Empty;
+            }
+        }
+        public void UnZipFile(string fileName, string folder)
+        {
+            string filePath = SWCmsHelper.GetFullPath(new string[] { SWCmsConstants.Parameters.WebRootPath, folder, fileName });
+            string webFolder = SWCmsHelper.GetFullPath(new string[]
+            { SWCmsConstants.Parameters.WebRootPath, folder });
+            try
+            {
+                ZipFile.ExtractToDirectory(filePath, webFolder);
             }
             catch
             {

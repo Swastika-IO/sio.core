@@ -11,6 +11,8 @@ using Swastika.IO.Domain.Core.ViewModels;
 using System.Threading.Tasks;
 using Swastika.IO.Common.Helper;
 using Swastika.Cms.Lib.Repositories;
+using Microsoft.AspNetCore.Http;
+using System.Linq;
 
 namespace Swastika.Cms.Lib.ViewModels.Info
 {
@@ -33,14 +35,15 @@ namespace Swastika.Cms.Lib.ViewModels.Info
         #region Views
         [JsonProperty("isActived")]
         public bool IsActived { get; set; }
+
         [JsonProperty("asset")]
-        public FileViewModel Asset { get; set; } = new FileViewModel();
+        public IFormFile Asset { get; set; }// = new FileViewModel();
         [JsonProperty("assetFolder")]
         public string AssetFolder
         {
             get
             {
-                return CommonHelper.GetFullPath(new string[] { TemplateFolder, "Assets"});
+                return CommonHelper.GetFullPath(new string[] { SWCmsConstants.Parameters.TemplatesAssetFolder, Name });
             }
         }
         [JsonProperty("templateFolder")]
@@ -139,7 +142,56 @@ namespace Swastika.Cms.Lib.ViewModels.Info
                     result.IsSucceed = result.IsSucceed && saveResult.IsSucceed;
 
                 }
+                if (Id == 0)
+                {
+                    string defaultFolder = CommonHelper.GetFullPath(new string[] { SWCmsConstants.Parameters.TemplatesFolder, SWCmsConstants.Default.DefaultTemplateFolder });
+                    var files = FileRepository.Instance.CopyDirectory(defaultFolder, TemplateFolder);
+                    foreach (var file in files)
+                    {
+                        if (file.FolderName != "Assets")
+                        {
+                            InfoTemplateViewModel template = new InfoTemplateViewModel()
+                            {
+                                FileFolder = file.FileFolder,
+                                FileName = file.Filename,
+                                Content = file.Content,
+                                Extension = file.Extension,
+                                CreatedDateTime = DateTime.UtcNow,
+                                LastModified = DateTime.UtcNow,
+                                TemplateId = Model.Id,
+                                TemplateName = Model.Name,
+                                FolderType = file.FolderName,
+                                ModifiedBy = CreatedBy
+                            };
+                            template.SaveModel(false, _context, _transaction);
+                        }
+                    }
 
+                }
+                if (Asset != null && Asset.Length > 0)
+                {
+                    var files = FileRepository.Instance.GetWebFiles(AssetFolder);
+                    string strStyles = string.Empty;
+                    foreach (var css in files.Where(f => f.Extension == ".css"))
+                    {
+                        strStyles += string.Format(@"   <link href='{0}/{1}{2}' rel='stylesheet'/>
+", css.FileFolder, css.Filename, css.Extension);
+                    }
+                    string strScripts = string.Empty;
+                    foreach (var js in files.Where(f => f.Extension == ".js"))
+                    {
+                        strScripts += string.Format(@"  <script src='{0}/{1}{2}'></script>
+", js.FileFolder, js.Filename, js.Extension);
+                    }
+                    var layout = InfoTemplateViewModel.Repository.GetSingleModel(
+                        t => t.FileName == "_Layout" && t.TemplateId == Model.Id
+                        , _context, _transaction);
+                    layout.Data.Content = layout.Data.Content.Replace("<!--[STYLES]-->", strStyles + @"
+<!--[STYLES]-->");
+                    layout.Data.Content = layout.Data.Content.Replace("<!--[SCRIPTS]-->", strScripts + @"
+<!--[SCRIPTS]-->");
+                    layout.Data.SaveModel(true, _context, _transaction);
+                }
             }
             return result;
         }
@@ -147,15 +199,14 @@ namespace Swastika.Cms.Lib.ViewModels.Info
         {
             RepositoryResponse<bool> result = new RepositoryResponse<bool>() { IsSucceed = true };
 
-            if (!string.IsNullOrEmpty(Asset.FileStream))
+            if (Asset != null && Asset.Length > 0)
             {
-                Asset.FileFolder = AssetFolder;
-                bool saveAsset = FileRepository.Instance.SaveFile(Asset);
-                if (saveAsset)
+                string filename = FileRepository.Instance.SaveWebFile(Asset, AssetFolder);
+                if (!string.IsNullOrEmpty(filename))
                 {
-                    FileRepository.Instance.UnZipFile(Asset);
+                    FileRepository.Instance.UnZipFile(filename, AssetFolder);
                 }
-            }           
+            }
             return result;
         }
 
@@ -252,7 +303,34 @@ namespace Swastika.Cms.Lib.ViewModels.Info
                             ModifiedBy = CreatedBy
                         };
                         await template.SaveModelAsync(false, _context, _transaction);
+
                     }
+
+                }
+
+                if (Asset != null && Asset.Length > 0)
+                {
+                    var files = FileRepository.Instance.GetWebFiles(AssetFolder);
+                    string strStyles = string.Empty;
+                    foreach (var css in files.Where(f => f.Extension == ".css"))
+                    {
+                        strStyles += string.Format(@"   <link href='{0}/{1}{2}' rel='stylesheet'/>
+", css.FileFolder, css.Filename, css.Extension);
+                    }
+                    string strScripts = string.Empty;
+                    foreach (var js in files.Where(f => f.Extension == ".js"))
+                    {
+                        strScripts += string.Format(@"  <script src='{0}/{1}{2}'></script>
+", js.FileFolder, js.Filename, js.Extension);
+                    }
+                    var layout = InfoTemplateViewModel.Repository.GetSingleModel(
+                        t => t.FileName == "_Layout" && t.TemplateId == Model.Id
+                        , _context, _transaction);
+                    layout.Data.Content = layout.Data.Content.Replace("<!--[STYLES]-->", strStyles + @"
+<!--[STYLES]-->");
+                    layout.Data.Content = layout.Data.Content.Replace("<!--[SCRIPTS]-->", strScripts + @"
+<!--[SCRIPTS]-->");
+                    await layout.Data.SaveModelAsync(true, _context, _transaction);
                 }
             }
             return result;
@@ -260,14 +338,13 @@ namespace Swastika.Cms.Lib.ViewModels.Info
         public override Task<RepositoryResponse<bool>> SaveSubModelsAsync(SiocTheme parent, SiocCmsContext _context = null, IDbContextTransaction _transaction = null)
         {
             RepositoryResponse<bool> result = new RepositoryResponse<bool>() { IsSucceed = true };
-            
-            if (!string.IsNullOrEmpty(Asset.FileStream))
+
+            if (Asset != null && Asset.Length > 0)
             {
-                Asset.FileFolder = AssetFolder;
-                bool saveAsset = FileRepository.Instance.SaveFile(Asset);
-                if (saveAsset)
+                string filename = FileRepository.Instance.SaveWebFile(Asset, AssetFolder);
+                if (!string.IsNullOrEmpty(filename))
                 {
-                    FileRepository.Instance.UnZipFile(Asset);
+                    FileRepository.Instance.UnZipFile(filename, AssetFolder);
                 }
             }
             return base.SaveSubModelsAsync(parent, _context, _transaction);
