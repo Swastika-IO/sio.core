@@ -59,6 +59,36 @@ namespace Swastika.Cms.Lib.Repositories
             return result;
         }
 
+        public FileViewModel GetFile(string filePath, string folder)
+        {
+            FileInfo file = new FileInfo(filePath);
+            FileViewModel result = null;
+            if (file != null)
+            {
+                try
+                {
+                    using (StreamReader s = file.OpenText())
+                    {
+                        result = new FileViewModel()
+                        {
+                            FileFolder = folder,
+                            Filename = file.Name.Substring(0, file.Name.LastIndexOf('.')),
+                            Extension = file.Extension.Remove(0, 1),
+                            Content = s.ReadToEnd()
+                        };
+
+                    }
+                }
+                catch
+                {
+                    // File invalid
+                }
+            }
+
+            result = result ?? new FileViewModel() { FileFolder = folder };
+            return result;
+        }
+
         public FileViewModel GetUploadFile(string name, string ext, string FileFolder)
         {
             FileViewModel result = null;
@@ -224,6 +254,50 @@ namespace Swastika.Cms.Lib.Repositories
             }
             return result;
         }
+        public List<string> GetTopDirectories(string fullPath)
+        {
+            if (!Directory.Exists(fullPath))
+            {
+                Directory.CreateDirectory(fullPath);
+            }
+            List<string> result = new List<string>();
+            foreach (string dirPath in Directory.GetDirectories(fullPath, "*",
+                SearchOption.TopDirectoryOnly))
+            {
+                DirectoryInfo path = new DirectoryInfo(dirPath);
+                result.Add(path.Name);
+            }
+            return result;
+        }
+        public List<FileViewModel> GetTopFiles(string fullPath)
+        {
+            if (!Directory.Exists(fullPath))
+            {
+                Directory.CreateDirectory(fullPath);
+            }
+            DirectoryInfo path = new DirectoryInfo(fullPath);
+            string folderName = path.Name;
+            List<FileViewModel> result = new List<FileViewModel>();
+            var Files = path.GetFiles();
+            foreach (var file in Files.OrderByDescending(f => f.CreationTimeUtc))
+            {
+                using (StreamReader s = file.OpenText())
+                {
+                    result.Add(new FileViewModel()
+                    {
+                        FolderName = string.Empty,
+                        FileFolder = fullPath,
+                        Filename = file.Name.Substring(0, file.Name.LastIndexOf('.')),
+                        Extension = file.Extension,
+                        Content = s.ReadToEnd()
+
+                    });
+
+                }
+            }
+            return result;
+        }
+
         public List<FileViewModel> GetFiles(string fullPath)
         {
             if (!Directory.Exists(fullPath))

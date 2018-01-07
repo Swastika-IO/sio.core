@@ -25,6 +25,10 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Swastika.Messenger.Lib", "S
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Swastika.Cms.Web.Mvc", "Swastika.Cms.Web.Mvc\Swastika.Cms.Web.Mvc.csproj", "{8421C37A-6FA8-44C9-B08D-A9EA28BF8884}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Swastika.Messenger.Spa", "Swastika.Messenger.Spa\Swastika.Messenger.Spa.csproj", "{FCC3121B-1883-47DA-8F14-4DA8570280C5}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Swastika.Messenger.Web", "Swastika.Messenger.Web\Swastika.Messenger.Web.csproj", "{DB15928D-DD02-44BE-B5BE-DA9FADDC4777}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -63,6 +67,14 @@ Global
 		{8421C37A-6FA8-44C9-B08D-A9EA28BF8884}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{8421C37A-6FA8-44C9-B08D-A9EA28BF8884}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{8421C37A-6FA8-44C9-B08D-A9EA28BF8884}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FCC3121B-1883-47DA-8F14-4DA8570280C5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FCC3121B-1883-47DA-8F14-4DA8570280C5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FCC3121B-1883-47DA-8F14-4DA8570280C5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FCC3121B-1883-47DA-8F14-4DA8570280C5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DB15928D-DD02-44BE-B5BE-DA9FADDC4777}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DB15928D-DD02-44BE-B5BE-DA9FADDC4777}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DB15928D-DD02-44BE-B5BE-DA9FADDC4777}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DB15928D-DD02-44BE-B5BE-DA9FADDC4777}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -74,6 +86,8 @@ Global
 		{B815C151-FEF2-429B-9460-B3D5883AFA5D} = {567A1BBC-8230-4B63-B6E2-073C8C8D59D1}
 		{DAF85CD3-B805-4EF2-A57B-635D056BD108} = {B89D1A22-54AC-4A14-9285-CE2AF91B50EB}
 		{8421C37A-6FA8-44C9-B08D-A9EA28BF8884} = {7995F1E6-D8C1-4E09-BB44-056740F208E6}
+		{FCC3121B-1883-47DA-8F14-4DA8570280C5} = {B89D1A22-54AC-4A14-9285-CE2AF91B50EB}
+		{DB15928D-DD02-44BE-B5BE-DA9FADDC4777} = {B89D1A22-54AC-4A14-9285-CE2AF91B50EB}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {07795DAD-40EE-4909-A6F5-320D6B0D3B54}

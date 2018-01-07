@@ -59,13 +59,14 @@ namespace Swastika.Cms.Lib.ViewModels.FrontEnd
         {
             get
             {
-                return SWCmsHelper.GetFullPath(new string[]
-                {
-                    ""
-                    , SWCmsConstants.Parameters.TemplatesFolder
-                    , ApplicationConfigService.Instance.GetLocalString(SWCmsConstants.ConfigurationKeyword.Theme, Specificulture, SWCmsConstants.Default.DefaultTemplateFolder)
-                    , Template
-                });
+                return string.Format("../{0}", Template);
+                //return SWCmsHelper.GetFullPath(new string[]
+                //{
+                //    ""
+                //    , SWCmsConstants.Parameters.TemplatesFolder
+                //    , ApplicationConfigService.Instance.GetLocalString(SWCmsConstants.ConfigurationKeyword.Theme, Specificulture, SWCmsConstants.Default.DefaultTemplateFolder)
+                //    , Template
+                //});
             }
         }
         #endregion

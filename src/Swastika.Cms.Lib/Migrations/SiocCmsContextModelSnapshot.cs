@@ -704,6 +704,9 @@ namespace Swastika.Cms.Lib.Migrations
                     b.Property<DateTime>("CreatedDateTime")
                         .HasColumnType("datetime");
 
+                    b.Property<string>("Image")
+                        .HasMaxLength(250);
+
                     b.Property<string>("Name")
                         .IsRequired()
                         .HasMaxLength(250);

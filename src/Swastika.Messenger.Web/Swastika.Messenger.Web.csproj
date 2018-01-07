@@ -27,7 +27,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\..\..\Swastika-Identity\src\Swastika.IO.Identity\Swastika.IO.Identity.csproj" />
-    <ProjectReference Include="..\Swastika.Chat.Lib\Swastika.Messenger.Lib.csproj" />
+    <ProjectReference Include="..\..\..\Swastika-IO-Core\src\Swastika.Messenger.Lib\Swastika.Messenger.Lib.csproj" />
   </ItemGroup>
 
   <Target Name="DebugRunWebpack" BeforeTargets="Build" Condition=" '$(Configuration)' == 'Debug' And !Exists('wwwroot\dist') ">

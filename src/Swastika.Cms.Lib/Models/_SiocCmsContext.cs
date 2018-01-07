@@ -660,7 +660,8 @@ namespace Swastika.Cms.Lib.Models
                 entity.Property(e => e.Name)
                     .IsRequired()
                     .HasMaxLength(250);
-
+                entity.Property(e => e.Image)
+                  .HasMaxLength(250);
                 entity.Property(e => e.Priority).HasDefaultValueSql("((0))");
             });
         }

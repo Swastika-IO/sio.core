@@ -46,7 +46,7 @@ namespace Swastika.Cms.Web.Mvc
         public void ConfigureServices(IServiceCollection services)
         {
             // Add framework services.
-            
+            ConfigureSignalRServices(services);
             services.AddDbContext<SiocCmsContext>(options =>
                 options.UseSqlServer(Configuration.GetConnectionString("CmsConnection")));
 
@@ -172,7 +172,7 @@ namespace Swastika.Cms.Web.Mvc
         {
             loggerFactory.AddConsole(Configuration.GetSection("Logging"));
             loggerFactory.AddDebug();
-
+            ConfigurationSignalR(app);
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();

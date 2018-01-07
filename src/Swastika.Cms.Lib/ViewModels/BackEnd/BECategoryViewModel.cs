@@ -257,7 +257,7 @@ namespace Swastika.Cms.Lib.ViewModels.BackEnd
         public override RepositoryResponse<bool> SaveSubModels(SiocCategory parent, SiocCmsContext _context = null, IDbContextTransaction _transaction = null)
         {
             bool result = true;
-            var saveTemplate = View.SaveModel(false, _context, _transaction);
+            var saveTemplate = View.SaveModel(true, _context, _transaction);
             if (saveTemplate.IsSucceed)
             {
                 Errors.AddRange(saveTemplate.Errors);
@@ -381,7 +381,7 @@ namespace Swastika.Cms.Lib.ViewModels.BackEnd
         public override async Task<RepositoryResponse<bool>> SaveSubModelsAsync(SiocCategory parent, SiocCmsContext _context = null, IDbContextTransaction _transaction = null)
         {
             bool result = true;
-            var saveTemplate = await View.SaveModelAsync(false, _context, _transaction);
+            var saveTemplate = await View.SaveModelAsync(true, _context, _transaction);
             if (saveTemplate.IsSucceed)
             {
                 Errors.AddRange(saveTemplate.Errors);

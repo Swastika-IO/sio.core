@@ -212,7 +212,13 @@
                                     <li is-active-route asp-controller="Theme" asp-action="Index">
                                         <a asp-controller="Template" asp-action="Index" asp-route-folder="Layouts" asp-route-templateId="@item.Id"
                                            class="link">
-                                            <i class="mi fa-eye"></i> Details
+                                            <i class="mi mi-Package"></i> Templates
+                                        </a>
+                                    </li>
+                                    <li is-active-route asp-controller="Theme" asp-action="Index">
+                                        <a asp-area="Portal" asp-controller="File" asp-action="Theme" asp-route-themeName="@item.Name" asp-route-folder=""
+                                           class="link">
+                                            <i class="mi mi-FileExplorer"></i> Files @item.Name
                                         </a>
                                     </li>
                                     <li is-active-route asp-controllers="Theme" asp-action="Edit" asp-route-id="@item.Id">

@@ -70,7 +70,7 @@ namespace Swastika.Cms.Mvc.Areas.Portal.Controllers
         {
             if (ModelState.IsValid)
             {
-                var result = await Module.SaveModelAsync();
+                var result = await Module.SaveModelAsync(true);
                 if (result.IsSucceed)
                 {
                     return RedirectToAction("Details", new { id = Module.Id });
@@ -113,7 +113,7 @@ namespace Swastika.Cms.Mvc.Areas.Portal.Controllers
             {
                 try
                 {
-                    var result = await Module.SaveModelAsync();
+                    var result = await Module.SaveModelAsync(true);
                     if (result.IsSucceed)
                     {
                         return RedirectToAction("Details", new { id = Module.Id });

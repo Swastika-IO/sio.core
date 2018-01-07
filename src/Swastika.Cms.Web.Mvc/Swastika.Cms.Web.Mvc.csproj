@@ -90,6 +90,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <PackageReference Include="angularjs" Version="1.6.6" />
     <PackageReference Include="JWT" Version="3.2.0-beta" />
     <PackageReference Include="Microsoft.AspNetCore.All" Version="2.0.3" />
     <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="2.0.1" />
@@ -273,6 +274,7 @@
     <ProjectReference Include="..\..\..\Swastika-Identity\src\Swastika.IO.Identity\Swastika.IO.Identity.csproj" />
     <ProjectReference Include="..\Swastika.Cms.Lib\Swastika.IO.Cms.Lib.csproj" />
     <ProjectReference Include="..\Swastika.IO.Core.Lib\Swastika.IO.Core.Lib.csproj" />
+    <ProjectReference Include="..\Swastika.Messenger.Lib\Swastika.Messenger.Lib.csproj" />
     <ProjectReference Include="..\Swastka.Cms.Api\Swastka.IO.Cms.Api.csproj" />
   </ItemGroup>
 

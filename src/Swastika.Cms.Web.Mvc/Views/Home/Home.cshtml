@@ -12,8 +12,8 @@
 }
 @if (!string.IsNullOrEmpty(Model.TemplatePath))
 {
-    
-    
+
+
     try
     {
         @Html.Partial(Model.TemplatePath, Model)
@@ -30,3 +30,4 @@ else
         <h1>@Swastika.Cms.Lib.Services.ApplicationConfigService.Instance.GetLocalString("Please choose template", ViewBag.culture)</h1>
     </section>
 }
+

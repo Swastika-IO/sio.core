@@ -1,11 +1,11 @@
 ﻿<div class="container-fluid">
-    
-       <h1>Send some basic messages</h1>
-    
-     <div class="row">
-         
-         <div class="col-lg-12"  *ngIf="teams != null">             
-             <div class="col-md-4"  *ngIf="teams.items != null">
+
+    <h1>Send some basic messages</h1>
+
+    <div class="row">
+
+        <div class="col-lg-12" *ngIf="teams != null">
+            <div class="col-md-4" *ngIf="teams.items != null">
                 <table class="table-condensed table-hover">
 
                     <tr *ngFor="let item of teams.items; let i = index"
@@ -21,9 +21,9 @@
                     </tr>
                 </table>
             </div>
-         </div>
-     </div>
-     <div class="row" *ngIf="messages != null">
+        </div>
+    </div>
+    <div class="row" *ngIf="messages != null">
         <div class="table-responsive">
             <table class="table table-striped">
                 <thead>
@@ -44,16 +44,16 @@
     <div class="row" *ngIf="activedTeam == null">
         <span>No messages</span>
     </div>
-       <div class="row">
-           <form class="form-inline" (ngSubmit)="sendMessage()" #messageForm="ngForm">
-               <div class="form-group">
-                   <label class="sr-only" for="message">Message</label>
-                   <span>From: {{message.username}}</span>
-                   <input type="text" class="form-control" id="message" placeholder="your message..." 
-                   name="message" [(ngModel)]="message.content" required>
-               </div>
-               <button type="submit" class="btn btn-primary" [disabled]="!messageForm.valid">Send SignalR Message</button>
-           </form>
-       </div>
-        
-   </div>
+    <div class="row">
+        <form class="form-inline" (ngSubmit)="sendMessage()" #messageForm="ngForm">
+            <div class="form-group">
+                <label class="sr-only" for="message">Message</label>
+                <span>From: {{message.username}}</span>
+                <input type="text" class="form-control" id="message" placeholder="your message..."
+                       name="message" [(ngModel)]="message.content" required>
+            </div>
+            <button type="submit" class="btn btn-primary" [disabled]="!messageForm.valid">Send SignalR Message</button>
+        </form>
+    </div>
+
+</div>

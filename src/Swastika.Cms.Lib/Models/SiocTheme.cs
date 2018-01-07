@@ -15,6 +15,7 @@ namespace Swastika.Cms.Lib.Models
         public string CreatedBy { get; set; }
         public DateTime CreatedDateTime { get; set; }
         public string Name { get; set; }
+        public string Image { get; set; }
         public int Priority { get; set; }
 
         public ICollection<SiocFile> SiocFile { get; set; }

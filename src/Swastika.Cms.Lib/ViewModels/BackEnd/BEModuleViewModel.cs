@@ -213,19 +213,17 @@ namespace Swastika.Cms.Lib.ViewModels.BackEnd
             }
             return result;
         }
-
-        public override async Task<RepositoryResponse<BEModuleViewModel>> SaveModelAsync(bool isSaveSubModels = false, SiocCmsContext _context = null, IDbContextTransaction _transaction = null)
+        
+        public override async Task<RepositoryResponse<bool>> SaveSubModelsAsync(SiocModule parent, SiocCmsContext _context = null, IDbContextTransaction _transaction = null)
         {
-            var result = await base.SaveModelAsync(isSaveSubModels, _context, _transaction);
-            if (result.IsSucceed)
+            var saveView = await View.SaveModelAsync(true, _context, _transaction);
+            return new RepositoryResponse<bool>()
             {
-                if (View != null)
-                {
-                    //TemplateRepository.Instance.SaveTemplate(View);
-                    View.SaveModel();
-                }
-            }
-            return result;
+                IsSucceed = saveView.IsSucceed,
+                Data = saveView.IsSucceed,
+                Exception = saveView.Exception,
+                Errors = saveView.Errors
+            };
         }
         #endregion
 
@@ -249,18 +247,16 @@ namespace Swastika.Cms.Lib.ViewModels.BackEnd
             }
             return result;
         }
-        public override RepositoryResponse<BEModuleViewModel> SaveModel(bool isSaveSubModels = false, SiocCmsContext _context = null, IDbContextTransaction _transaction = null)
+        public override RepositoryResponse<bool> SaveSubModels(SiocModule parent, SiocCmsContext _context = null, IDbContextTransaction _transaction = null)
         {
-            var result = base.SaveModel(isSaveSubModels, _context, _transaction);
-            if (result.IsSucceed)
+            var saveView = View.SaveModel(true, _context, _transaction);
+            return new RepositoryResponse<bool>()
             {
-                if (View != null)
-                {
-                    //TemplateRepository.Instance.SaveTemplate(View);
-                    View.SaveModel();
-                }
-            }
-            return result;
+                IsSucceed = saveView.IsSucceed,
+                Data = saveView.IsSucceed,
+                Exception = saveView.Exception,
+                Errors = saveView.Errors
+            };
         }
         #endregion
 
