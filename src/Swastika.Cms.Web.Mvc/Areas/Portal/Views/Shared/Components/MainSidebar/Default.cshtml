@@ -197,6 +197,8 @@
                         </li>
                         @foreach (var item in listAvaiTheme.Data)
                         {
+                            string fileFolder = string.Format("Templates/{0}", item.Name);
+                            string filesUrl = Url.RouteUrl("File", new { culture = ViewBag.culture, folder = fileFolder });
                             <li class="treeview page" is-active-menu
                                 asp-controllers="Theme" asp-action="AddData,EditData,Contents,Edit" asp-route-id="@item.Id">
                                 <a href="#">
@@ -216,9 +218,9 @@
                                         </a>
                                     </li>
                                     <li is-active-route asp-controller="Theme" asp-action="Index">
-                                        <a asp-area="Portal" asp-controller="File" asp-action="Theme" asp-route-themeName="@item.Name" asp-route-folder=""
+                                        <a href="@filesUrl"
                                            class="link">
-                                            <i class="mi mi-FileExplorer"></i> Files @item.Name
+                                            <i class="mi mi-FileExplorer"></i> Files 
                                         </a>
                                     </li>
                                     <li is-active-route asp-controllers="Theme" asp-action="Edit" asp-route-id="@item.Id">

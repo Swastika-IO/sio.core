@@ -8,7 +8,9 @@ namespace Swastika.Cms.Lib
         public const string CONST_DEFAULT_CONNECTION = "CmsConnection";
         public class Parameters
         {
+            
             public const string TemplatesFolder = @"Views/Shared/Templates";
+            public const string FileFolder = @"Content";
             public const string TemplatesAssetFolder = @"Content/Templates";
             public const string TemplateExtension = @".cshtml";
             public const string WebRootPath = @"wwwroot";

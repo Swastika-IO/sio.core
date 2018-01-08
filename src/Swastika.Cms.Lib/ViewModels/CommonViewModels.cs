@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Swastika.IO.Common.Helper;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Text;
@@ -20,7 +21,12 @@ namespace Swastika.Cms.Lib.ViewModels
         {
             get
             {
-                return string.Format(@"/{0}/{1}{2}",FileFolder, Filename, Extension);
+                return CommonHelper.GetFullPath(new string[] {
+                    "",
+                    SWCmsConstants.Parameters.FileFolder,
+                    FileFolder,
+                    string.Format("{0}{1}", Filename, Extension)
+                });                
             }
             set { }
         }

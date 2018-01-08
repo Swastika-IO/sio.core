@@ -20,7 +20,7 @@ namespace Swastika.Cms.Mvc.Areas.Portal.Controllers
             : base(env)
         {
         }
-
+        #region Theme Files
         [Route("Theme/{themeName}")]
         [Route("Theme/{themeName}/{folder}")]
         public IActionResult Theme(string themeName, string folder)
@@ -77,60 +77,6 @@ namespace Swastika.Cms.Mvc.Areas.Portal.Controllers
             return View(template);
         }
 
-        [Route("")]
-        [Route("{folder}")]
-        public IActionResult Index(string folder)
-        {
-            folder = folder ?? SWCmsConstants.FileFolder.Images;
-            var templates = FileRepository.Instance.GetUploadFiles(folder);
-            ViewBag.folder = folder;
-            return View(templates);
-        }
-
-        // GET: article/Edit/5
-        [Route("Edit/{folder}")]
-        [Route("Edit/{folder}/{name}/{ext}")]
-        public IActionResult Edit(string folder, string name, string ext)
-        {
-            var template = FileRepository.Instance.GetFile(name, ext, folder);
-            if (template == null)
-            {
-                return RedirectToAction("", new { folder });
-            }
-            return View(template);
-        }
-
-
-
-        // POST: article/Edit/5
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
-        [Route("Edit/{folder}")]
-        [Route("Edit/{folder}/{name}/{ext}")]
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public IActionResult Edit(FileViewModel template)
-        {
-            if (ModelState.IsValid)
-            {
-                var result = FileRepository.Instance.SaveWebFile(template);
-                if (result)
-                {
-                    return RedirectToAction("", new { folder = template.FileFolder });
-                }
-            }
-            ModelState.AddModelError(string.Empty, "Invalid Model");
-            return View(template);
-        }
-
-        // GET: article/Edit/5
-        [Route("Delete/{folder}/{name}/{ext}")]
-        public IActionResult Delete(string folder, string name, string ext)
-        {
-            var template = FileRepository.Instance.DeleteFile(name, ext, folder);
-            return RedirectToAction("", routeValues: new { folder });
-        }
-
         [Route("DeleteTheme/{themeName}/{folder}/{name}/{ext}")]
         [Route("DeleteTheme/{themeName}/{name}/{ext}")]
         public IActionResult DeleteTheme(string themeName, string folder, string name, string ext)
@@ -148,5 +94,58 @@ namespace Swastika.Cms.Mvc.Areas.Portal.Controllers
             var file = FileRepository.Instance.DeleteFile(filePath);
             return RedirectToAction("Theme", routeValues: new { themeName, folder });
         }
+        #endregion
+
+        [Route("")]
+        public IActionResult Index(string folder)
+        {            
+            var templates = FileRepository.Instance.GetTopFiles(folder);
+            var directories = FileRepository.Instance.GetTopDirectories(folder);
+            ViewData["directories"] = directories;
+            ViewBag.folder = folder;
+            return View(templates);
+        }
+
+        // GET: article/Edit/5
+        [Route("Edit/{name}/{ext}")]
+        public IActionResult Edit(string name, string ext, string folder)
+        {
+            string filename = string.Format("{0}{1}", name, ext);
+            var template = FileRepository.Instance.GetWebFile(filename, folder);
+            if (template == null)
+            {
+                return RedirectToAction("", new { folder });
+            }
+            return View(template);
+        }
+
+
+
+        // GET: article/Edit/5
+        [HttpPost]
+        [Route("Edit/{name}/{ext}")]
+        public IActionResult Edit(FileViewModel template)
+        {
+            if (ModelState.IsValid)
+            {
+                var result = FileRepository.Instance.SaveWebFile(template);
+                if (result)
+                {
+                    return RedirectToAction("", new { folder = template.FileFolder });
+                }
+            }
+            ModelState.AddModelError(string.Empty, "Invalid Model");
+            return View(template);
+        }
+
+        // GET: article/Edit/5
+        [Route("Delete/{name}/{ext}")]
+        public IActionResult Delete(string name, string ext, string folder)
+        {
+            string filename = string.Format("{0}{1}", name, ext);
+            var template = FileRepository.Instance.DeleteWebFile(filename, folder);
+            return RedirectToAction("", routeValues: new { folder });
+        }
+
     }
 }

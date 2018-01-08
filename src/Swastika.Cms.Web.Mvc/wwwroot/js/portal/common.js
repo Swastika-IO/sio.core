@@ -61,7 +61,7 @@
                         fileStream: base64
                     };
                     $.ajax({
-                        url: '/api/files/savefile',
+                        url: '/api/file/uploadFile',
                         type: "POST",
                         data: obj,
                         success: function (result) {
