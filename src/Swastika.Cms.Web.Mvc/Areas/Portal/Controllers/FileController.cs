@@ -27,13 +27,12 @@ namespace Swastika.Cms.Mvc.Areas.Portal.Controllers
         {
             string fullPath = CommonHelper.GetFullPath(new string[]
             {
-                SWCmsConstants.Parameters.WebRootPath,
                 SWCmsConstants.Parameters.TemplatesAssetFolder,
                 themeName,
                 folder
             });
             List<string> directories = FileRepository.Instance.GetTopDirectories(fullPath);
-            List<FileViewModel> files = !string.IsNullOrEmpty(folder)? FileRepository.Instance.GetTopFiles(fullPath)
+            List<FileViewModel> files = !string.IsNullOrEmpty(folder) ? FileRepository.Instance.GetTopFiles(fullPath)
                 : new List<FileViewModel>();
             ViewData["name"] = themeName;
             ViewData["directories"] = directories;
@@ -46,14 +45,36 @@ namespace Swastika.Cms.Mvc.Areas.Portal.Controllers
 
             string fullPath = CommonHelper.GetFullPath(new string[]
           {
-                SWCmsConstants.Parameters.WebRootPath,
                 SWCmsConstants.Parameters.TemplatesAssetFolder,
                 themeName,
                 folder,
                 name
           });
             string filePath = string.Format("{0}{1}", fullPath, ext);
-            return View(FileRepository.Instance.GetFile(filePath, folder));
+            return View(FileRepository.Instance.GetWebFile(filePath, folder));
+        }
+
+        [HttpPost]
+        [Route("EditTheme/{themeName}/{folder}/{name}/{ext}")]
+        public IActionResult Edit(string themeName, string folder, string name, string ext,
+            FileViewModel template)
+        {
+            if (ModelState.IsValid)
+            {
+                template.FileFolder = CommonHelper.GetFullPath(new string[]
+         {
+                SWCmsConstants.Parameters.TemplatesAssetFolder,
+                themeName,
+                folder
+         });
+                var result = FileRepository.Instance.SaveWebFile(template);
+                if (result)
+                {
+                    return RedirectToAction("Theme", new { themeName, folder });
+                }
+            }
+            ModelState.AddModelError(string.Empty, "Invalid Model");
+            return View(template);
         }
 
         [Route("")]
@@ -71,13 +92,15 @@ namespace Swastika.Cms.Mvc.Areas.Portal.Controllers
         [Route("Edit/{folder}/{name}/{ext}")]
         public IActionResult Edit(string folder, string name, string ext)
         {
-            var template = FileRepository.Instance.GetUploadFile(name, ext, folder);
+            var template = FileRepository.Instance.GetFile(name, ext, folder);
             if (template == null)
             {
                 return RedirectToAction("", new { folder });
             }
             return View(template);
         }
+
+
 
         // POST: article/Edit/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
@@ -90,7 +113,7 @@ namespace Swastika.Cms.Mvc.Areas.Portal.Controllers
         {
             if (ModelState.IsValid)
             {
-                var result = FileRepository.Instance.SaveFile(template);
+                var result = FileRepository.Instance.SaveWebFile(template);
                 if (result)
                 {
                     return RedirectToAction("", new { folder = template.FileFolder });

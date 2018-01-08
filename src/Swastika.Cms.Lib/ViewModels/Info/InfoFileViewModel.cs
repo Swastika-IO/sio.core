@@ -94,7 +94,7 @@ namespace Swastika.Cms.Lib.ViewModels.Info
             var result = base.SaveModel(isSaveSubModels, _context, _transaction);
             if (result.IsSucceed)
             {
-                FileRepository.Instance.SaveFile(new FileViewModel()
+                FileRepository.Instance.SaveWebFile(new FileViewModel()
                 {
                     Filename = FileName,
                     Extension = Extension,
@@ -123,7 +123,7 @@ namespace Swastika.Cms.Lib.ViewModels.Info
             {
                 if (result.IsSucceed)
                 {
-                    FileRepository.Instance.SaveFile(new FileViewModel()
+                    FileRepository.Instance.SaveWebFile(new FileViewModel()
                     {
                         Filename = FileName,
                         Extension = Extension,
