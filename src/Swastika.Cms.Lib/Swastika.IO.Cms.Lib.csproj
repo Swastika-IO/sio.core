@@ -6,6 +6,8 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Migrations\20180108040407_First.cs" />
+    <Compile Remove="Migrations\20180108040407_First.Designer.cs" />
     <Compile Remove="Models\AspNetRoleClaims.cs" />
     <Compile Remove="Models\AspNetRoles.cs" />
     <Compile Remove="Models\AspNetUserClaims.cs" />

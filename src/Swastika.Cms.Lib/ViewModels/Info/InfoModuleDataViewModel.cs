@@ -14,6 +14,7 @@ using Swastika.Cms.Lib.Services;
 using Swastika.IO.Domain.Core.ViewModels;
 using Swastika.Cms.Lib.Repositories;
 using System.Threading.Tasks;
+using Swastika.Cms.Lib.ViewModels.FrontEnd;
 
 namespace Swastika.Cms.Lib.ViewModels.Info
 {
@@ -82,7 +83,7 @@ namespace Swastika.Cms.Lib.ViewModels.Info
 
             this.DataProperties = new List<ModuleDataValueViewModel>();
             //Columns = new List<ModuleFieldViewModel>(); // ModuleRepository.GetInstance().GetColumns(m => m.Id == ModuleId && m.Specificulture == Specificulture);
-
+            Fields = InfoModuleViewModel.Repository.GetSingleModel(m => m.Id == ModuleId && m.Specificulture == Specificulture, _context, _transaction).Data.Fields;
             this.Columns = new List<ModuleFieldViewModel>();
             if (!string.IsNullOrEmpty(Fields))
             {
@@ -126,7 +127,7 @@ namespace Swastika.Cms.Lib.ViewModels.Info
                 switch (col.DataType)
                 {
                     case SWCmsConstants.DataType.Int:
-                        dataVal.Value = prop.Value["value"] != null ? prop.Value["value"].Value<int>() : 0;
+                        dataVal.Value = prop.Value["value"].HasValues ? prop.Value["value"].Value<int>() : 0;
                         break;
 
                     case SWCmsConstants.DataType.Boolean:
