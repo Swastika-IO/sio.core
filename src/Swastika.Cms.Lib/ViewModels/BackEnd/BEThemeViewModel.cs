@@ -146,7 +146,7 @@ namespace Swastika.Cms.Lib.ViewModels.BackEnd
                     {
                         if (file.FolderName != "Assets")
                         {
-                            InfoTemplateViewModel template = new InfoTemplateViewModel()
+                            BETemplateViewModel template = new BETemplateViewModel()
                             {
                                 FileFolder = file.FileFolder,
                                 FileName = file.Filename,
@@ -159,7 +159,7 @@ namespace Swastika.Cms.Lib.ViewModels.BackEnd
                                 FolderType = file.FolderName,
                                 ModifiedBy = CreatedBy
                             };
-                            template.SaveModel(false, _context, _transaction);
+                            template.SaveModel(true, _context, _transaction);
                         }
                     }
 
@@ -278,31 +278,7 @@ namespace Swastika.Cms.Lib.ViewModels.BackEnd
                         Errors.AddRange(saveResult.Errors);
                     }
                     result.IsSucceed = result.IsSucceed && saveResult.IsSucceed;
-                }
-                if (Id == 0)
-                {
-                    string defaultFolder = CommonHelper.GetFullPath(new string[] { SWCmsConstants.Parameters.TemplatesFolder, SWCmsConstants.Default.DefaultTemplateFolder });
-                    var files = FileRepository.Instance.CopyDirectory(defaultFolder, TemplateFolder);
-                    foreach (var file in files)
-                    {
-                        InfoTemplateViewModel template = new InfoTemplateViewModel()
-                        {
-                            FileFolder = file.FileFolder,
-                            FileName = file.Filename,
-                            Content = file.Content,
-                            Extension = file.Extension,
-                            CreatedDateTime = DateTime.UtcNow,
-                            LastModified = DateTime.UtcNow,
-                            TemplateId = Model.Id,
-                            TemplateName = Model.Name,
-                            FolderType = file.FolderName,
-                            ModifiedBy = CreatedBy
-                        };
-                        await template.SaveModelAsync(false, _context, _transaction);
-
-                    }
-
-                }
+                }                
 
                 if (Asset != null && Asset.Length > 0)
                 {
@@ -331,7 +307,7 @@ namespace Swastika.Cms.Lib.ViewModels.BackEnd
             }
             return result;
         }
-        public override Task<RepositoryResponse<bool>> SaveSubModelsAsync(SiocTheme parent, SiocCmsContext _context = null, IDbContextTransaction _transaction = null)
+        public override async Task<RepositoryResponse<bool>> SaveSubModelsAsync(SiocTheme parent, SiocCmsContext _context = null, IDbContextTransaction _transaction = null)
         {
             RepositoryResponse<bool> result = new RepositoryResponse<bool>() { IsSucceed = true };
 
@@ -343,7 +319,38 @@ namespace Swastika.Cms.Lib.ViewModels.BackEnd
                     FileRepository.Instance.UnZipFile(filename, AssetFolder);
                 }
             }
-            return base.SaveSubModelsAsync(parent, _context, _transaction);
+            if (Id == 0)
+            {
+                string defaultFolder = CommonHelper.GetFullPath(new string[] { SWCmsConstants.Parameters.TemplatesFolder, SWCmsConstants.Default.DefaultTemplateFolder });
+                var files = FileRepository.Instance.CopyDirectory(defaultFolder, TemplateFolder);
+                foreach (var file in files)
+                {
+                    BETemplateViewModel template = new BETemplateViewModel()
+                    {
+                        FileFolder = file.FileFolder,
+                        FileName = file.Filename,
+                        Content = file.Content,
+                        Extension = file.Extension,
+                        CreatedDateTime = DateTime.UtcNow,
+                        LastModified = DateTime.UtcNow,
+                        TemplateId = Model.Id,
+                        TemplateName = Model.Name,
+                        FolderType = file.FolderName,
+                        ModifiedBy = CreatedBy
+                    };
+                   var saveResult=  await template.SaveModelAsync(true, _context, _transaction);
+                    result.IsSucceed = result.IsSucceed && saveResult.IsSucceed;
+                    if (!saveResult.IsSucceed)
+                    {
+                        result.Exception = saveResult.Exception;
+                        result.Errors.AddRange(saveResult.Errors);
+                        break;
+                    }
+
+                }
+
+            }
+            return result;
         }
 
         public override async Task<RepositoryResponse<bool>> RemoveRelatedModelsAsync(BEThemeViewModel view, SiocCmsContext _context = null, IDbContextTransaction _transaction = null)

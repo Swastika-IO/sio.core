@@ -61,6 +61,15 @@
 
   <ItemGroup>
     <Content Remove="tsconfig.json" />
+    <Content Remove="Views\Home\About.cshtml" />
+    <Content Remove="Views\Home\Article.cshtml" />
+    <Content Remove="Views\Home\ArticleDetails.cshtml" />
+    <Content Remove="Views\Home\Blog.cshtml" />
+    <Content Remove="Views\Home\Contact.cshtml" />
+    <Content Remove="Views\Home\Index.cshtml" />
+    <Content Remove="Views\Home\List.cshtml" />
+    <Content Remove="Views\Home\Tag.cshtml" />
+    <Content Remove="Views\Home\TTS.cshtml" />
     <Content Remove="Views\Shared\Error.cshtml" />
     <Content Remove="Views\Shared\Modules.cshtml" />
     <Content Remove="Views\Shared\RichTextEditor.cshtml" />
@@ -223,9 +232,6 @@
     <None Include="Areas\User\Views\Manage\VerifyPhoneNumber.cshtml" />
     <None Include="Areas\User\Views\_ViewImports.cshtml" />
     <None Include="Areas\User\Views\_ViewStart.cshtml" />
-    <None Include="Views\Home\About.cshtml" />
-    <None Include="Views\Home\Contact.cshtml" />
-    <None Include="Views\Home\Index.cshtml" />
     <None Include="Views\Shared\Templates\Default\Articles\_Default.cshtml" />
     <None Include="Views\Shared\Templates\Default\Forms\_Module_Data_Default.cshtml" />
     <None Include="Views\Shared\Templates\Default\Layouts\_Footer.cshtml" />

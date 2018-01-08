@@ -9,6 +9,7 @@
     <title>Landing Page - Now UI Kit Pro by Creative Tim</title>
     <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0, shrink-to-fit=no' name='viewport' />
     <!--[STYLES]-->
+    @RenderSection("Styles", false)
 </head>
 
 <body class="@this.ViewData["pageClass"]">
@@ -17,6 +18,8 @@
         @RenderBody()
         @await Html.PartialAsync("../Layouts/_Footer.cshtml")
     </div>
-</body>
     <!--[SCRIPTS]-->
+    @RenderSection("Scripts", false)
+</body>
+    
 </html>

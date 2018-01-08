@@ -98,6 +98,7 @@ namespace Swastika.Cms.Lib.Migrations
                         .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
                     CreatedBy = table.Column<string>(maxLength: 250, nullable: false),
                     CreatedDateTime = table.Column<DateTime>(type: "datetime", nullable: false),
+                    Image = table.Column<string>(maxLength: 250, nullable: true),
                     Name = table.Column<string>(maxLength: 250, nullable: false),
                     Priority = table.Column<int>(nullable: false, defaultValueSql: "((0))")
                 },
@@ -154,6 +155,7 @@ namespace Swastika.Cms.Lib.Migrations
                     Content = table.Column<string>(nullable: true),
                     CreatedBy = table.Column<string>(maxLength: 250, nullable: false),
                     CreatedDateTime = table.Column<DateTime>(type: "datetime", nullable: false),
+                    CssClass = table.Column<string>(maxLength: 50, nullable: true),
                     Excerpt = table.Column<string>(nullable: true),
                     Icon = table.Column<string>(maxLength: 50, nullable: true),
                     Image = table.Column<string>(maxLength: 250, nullable: true),

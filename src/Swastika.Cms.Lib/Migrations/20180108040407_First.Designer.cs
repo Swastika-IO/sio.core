@@ -11,8 +11,8 @@ using System;
 namespace Swastika.Cms.Lib.Migrations
 {
     [DbContext(typeof(SiocCmsContext))]
-    [Migration("20180106071327_Add-css")]
-    partial class Addcss
+    [Migration("20180108040407_First")]
+    partial class First
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -704,6 +704,9 @@ namespace Swastika.Cms.Lib.Migrations
 
                     b.Property<DateTime>("CreatedDateTime")
                         .HasColumnType("datetime");
+
+                    b.Property<string>("Image")
+                        .HasMaxLength(250);
 
                     b.Property<string>("Name")
                         .IsRequired()

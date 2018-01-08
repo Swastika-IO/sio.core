@@ -32,6 +32,10 @@ namespace Swastika.Cms.Lib.ViewModels.BackEnd
         public string Extension { get; set; }
         [JsonProperty("content")]
         public string Content { get; set; }
+        [JsonProperty("scripts")]
+        public string Scripts { get; set; }
+        [JsonProperty("styles")]
+        public string Styles { get; set; }
         [JsonProperty("createdDateTime")]
         public DateTime CreatedDateTime { get; set; }
         [JsonProperty("lastModified")]
