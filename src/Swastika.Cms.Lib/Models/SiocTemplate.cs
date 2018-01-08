@@ -7,6 +7,8 @@ namespace Swastika.Cms.Lib.Models
     {
         public int Id { get; set; }
         public string Content { get; set; }
+        public string Scripts { get; set; }
+        public string Styles { get; set; }
         public DateTime CreatedDateTime { get; set; }
         public string Extension { get; set; }
         public string FileFolder { get; set; }

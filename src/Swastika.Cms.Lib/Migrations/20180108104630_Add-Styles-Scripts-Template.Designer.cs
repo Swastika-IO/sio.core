@@ -11,8 +11,8 @@ using System;
 namespace Swastika.Cms.Lib.Migrations
 {
     [DbContext(typeof(SiocCmsContext))]
-    [Migration("20180101082100_First")]
-    partial class First
+    [Migration("20180108104630_Add-Styles-Scripts-Template")]
+    partial class AddStylesScriptsTemplate
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -131,6 +131,9 @@ namespace Swastika.Cms.Lib.Migrations
 
                     b.Property<DateTime>("CreatedDateTime")
                         .HasColumnType("datetime");
+
+                    b.Property<string>("CssClass")
+                        .HasMaxLength(50);
 
                     b.Property<string>("Excerpt");
 
@@ -676,6 +679,14 @@ namespace Swastika.Cms.Lib.Migrations
                         .ValueGeneratedOnAdd()
                         .HasDefaultValueSql("((0))");
 
+                    b.Property<string>("Scripts")
+                        .IsRequired()
+                        .HasColumnType("ntext");
+
+                    b.Property<string>("Styles")
+                        .IsRequired()
+                        .HasColumnType("ntext");
+
                     b.Property<int>("TemplateId");
 
                     b.Property<string>("TemplateName")
@@ -701,6 +712,9 @@ namespace Swastika.Cms.Lib.Migrations
 
                     b.Property<DateTime>("CreatedDateTime")
                         .HasColumnType("datetime");
+
+                    b.Property<string>("Image")
+                        .HasMaxLength(250);
 
                     b.Property<string>("Name")
                         .IsRequired()

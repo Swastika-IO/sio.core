@@ -30,4 +30,9 @@ else
         <h1>@Swastika.Cms.Lib.Services.ApplicationConfigService.Instance.GetLocalString("Please choose template", ViewBag.culture)</h1>
     </section>
 }
-
+@section scripts{
+    @Html.Raw(Model.View?.Scripts)
+}
+@section styles{
+    @Html.Raw(Model.View?.Styles)
+}
