@@ -1,0 +1,39 @@
+﻿
+@model FEArticleViewModel
+@{
+    string culture = ViewBag.culture;
+    //Layout = string.Format("Layouts/{0}", Swastika.Cms.Lib.Services.ApplicationConfigService.Instance.GetLocalString("Layout", culture, "_Layout_Corlate"));// "_Layout_Corlate";
+    Layout = string.Format("Templates/{0}/Layouts/_Layout",
+        Swastika.Cms.Lib.Services.ApplicationConfigService.Instance.GetLocalString(Swastika.Cms.Lib.SWCmsConstants.ConfigurationKeyword.Theme, culture, "Default"));
+    ViewData["Title"] = Model.Title;
+    ViewData["SeoTitle"] = Model.SeoTitle;
+    ViewData["SeoKeywords"] = Model.SeoKeywords;
+    ViewData["SeoDescription"] = Model.SeoDescription;
+}
+
+@if (!string.IsNullOrEmpty(Model.TemplatePath))
+{
+
+    
+    try
+    {
+        @Html.Partial(Model.TemplatePath, Model)
+    }
+    catch
+    {
+
+        <p class="danger text-center has-error">Unable load template</p>
+    }
+}
+else
+{
+    <section class="container">
+        <h1>@Swastika.Cms.Lib.Services.ApplicationConfigService.Instance.GetLocalString("Please choose template", ViewBag.culture)</h1>
+    </section>
+}
+@section scripts{
+    @Html.Raw(Model.View?.Scripts)
+}
+@section styles{
+    @Html.Raw(Model.View?.Styles)
+}

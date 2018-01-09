@@ -63,7 +63,6 @@
     <Content Remove="tsconfig.json" />
     <Content Remove="Views\Home\About.cshtml" />
     <Content Remove="Views\Home\Article.cshtml" />
-    <Content Remove="Views\Home\ArticleDetails.cshtml" />
     <Content Remove="Views\Home\Blog.cshtml" />
     <Content Remove="Views\Home\Contact.cshtml" />
     <Content Remove="Views\Home\Index.cshtml" />

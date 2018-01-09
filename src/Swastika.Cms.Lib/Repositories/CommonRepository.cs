@@ -263,7 +263,8 @@ namespace Swastika.Cms.Lib.Repositories
             {
                 var result = context.SiocModule.Include(cp => cp.SiocArticleModule)
                     .Where(a => a.Specificulture == specificulture 
-                    && a.Type == (int)SWCmsConstants.ModuleType.SubArticle)
+                    //&& a.Type == (int)SWCmsConstants.ModuleType.SubArticle
+                    )
                      .Select(p => new BEArticleModuleViewModel(
                          new SiocArticleModule()
                          {

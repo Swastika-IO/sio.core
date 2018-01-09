@@ -8,6 +8,7 @@ using System.ComponentModel.DataAnnotations;
 using Swastika.Common.Helper;
 using Swastika.Cms.Lib;
 using Swastika.Cms.Lib.Services;
+using Swastika.Cms.Lib.ViewModels.Info;
 
 namespace Swastika.Cms.Lib.ViewModels.FrontEnd
 {
@@ -66,6 +67,8 @@ namespace Swastika.Cms.Lib.ViewModels.FrontEnd
         #endregion
 
         #region Views
+        [JsonProperty("view")]
+        public InfoTemplateViewModel View { get; set; }
         [JsonProperty("modules")]
         public List<FEModuleViewModel> Modules { get; set; }
         [JsonProperty("domain")]
@@ -139,6 +142,7 @@ namespace Swastika.Cms.Lib.ViewModels.FrontEnd
 
         public override void ExpandView(SiocCmsContext _context = null, IDbContextTransaction _transaction = null)
         {
+            this.View = InfoTemplateViewModel.GetTemplateByPath(Template, Specificulture, _context, _transaction).Data;
             var getModulesResult = FEArticleModuleViewModel.Repository.GetModelListBy(
                 m => m.ArticleId == Id && m.Specificulture == Specificulture
                 , _context, _transaction);

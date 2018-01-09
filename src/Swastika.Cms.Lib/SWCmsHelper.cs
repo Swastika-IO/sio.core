@@ -26,6 +26,10 @@ namespace Swastika.Cms.Lib
                 switch (cate.Type)
                 {
                     case SWCmsConstants.CateType.Blank:
+                        foreach (var child in cate.Childs)
+                        {
+                            child.Href = Url.RouteUrl("Page", new { culture = culture, pageName = child.SeoName });
+                        }
                         break;                   
                     case SWCmsConstants.CateType.StaticUrl:
                         cate.Href = cate.StaticUrl;

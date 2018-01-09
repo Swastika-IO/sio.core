@@ -326,11 +326,7 @@ namespace Swastika.Cms.Lib.Repositories
                 SWCmsConstants.Parameters.WebRootPath,
                 SWCmsConstants.Parameters.FileFolder,
                 folder
-             });
-            //if (!Directory.Exists(fullPath))
-            //{
-            //    Directory.CreateDirectory(fullPath);
-            //}
+             });           
             List<FileViewModel> result = new List<FileViewModel>();
             if (Directory.Exists(fullPath))
             {
@@ -347,21 +343,7 @@ namespace Swastika.Cms.Lib.Repositories
                         Filename = file.Name.Substring(0, file.Name.LastIndexOf('.')),
                         Extension = file.Extension,
                         //Content = s.ReadToEnd()
-                    });
-
-                    //using (StreamReader s = file.OpenText())
-                    //{
-                    //    result.Add(new FileViewModel()
-                    //    {
-                    //        FolderName = folderName,
-                    //        FileFolder = folder,
-                    //        Filename = file.Name.Substring(0, file.Name.LastIndexOf('.')),
-                    //        Extension = file.Extension,
-                    //        Content = s.ReadToEnd()
-
-                    //    });
-
-                    //}
+                    });                  
                 }
             }
             return result;
@@ -608,9 +590,15 @@ namespace Swastika.Cms.Lib.Repositories
         }
         public void UnZipFile(string fileName, string folder)
         {
-            string filePath = SWCmsHelper.GetFullPath(new string[] { SWCmsConstants.Parameters.WebRootPath, folder, fileName });
+            string filePath = SWCmsHelper.GetFullPath(new string[] {
+                SWCmsConstants.Parameters.WebRootPath,
+                folder,
+                fileName });
             string webFolder = SWCmsHelper.GetFullPath(new string[]
-            { SWCmsConstants.Parameters.WebRootPath, folder });
+            {
+                SWCmsConstants.Parameters.WebRootPath,
+                folder
+            });
             try
             {
                 ZipFile.ExtractToDirectory(filePath, webFolder);
