@@ -118,7 +118,7 @@ namespace Swastika.Cms.Lib.ViewModels.BackEnd
             //{
             //    FileName += Extension;
             //}
-            Content = Content.Trim();
+            Content = Content?.Trim();
             Scripts = Scripts?.Trim();
             Styles = Styles?.Trim();
             return base.ParseModel();

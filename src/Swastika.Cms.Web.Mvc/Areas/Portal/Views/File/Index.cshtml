@@ -48,11 +48,11 @@
                                 <th class="col-sm-2">
                                     Name
                                 </th>
-                                <th>
+                                <th class="col-sm-6">
                                     FullPath
                                 </th>
-                                <th class="col-sm-4">
-                                    Content
+                                <th class="col-sm-2">
+                                    Preview
                                 </th>
                                 <th></th>
                             </tr>
@@ -76,19 +76,19 @@
                                         @Html.DisplayFor(modelItem => item.Filename)
                                     </td>
                                     <td>
-                                        <input value="@item.FullPath" onclick="this.select()" />
+                                        <input value="@item.FullPath" onclick="this.select()" class="form-control" />
                                     </td>
                                     <td>
                                         @if (imgExts.Contains(item.Extension))
                                         {
                                             <img width="50" src="@item.FullPath" />
                                         }
-                                        else if (txtExts.Contains(item.Extension))
+                                        @*else if (txtExts.Contains(item.Extension))
                                         {
                                             <div class="container-code-editor">
                                                 <div class="form-control code-editor">@item.Content</div>
                                             </div>
-                                        }
+                                        }*@
                                     </td>
                                     <td>
 
@@ -99,8 +99,7 @@
                                                asp-route-ext="@item.Extension"
                                                asp-route-folder="@item.FileFolder"
                                                class="btn btn-sm btn-warning d-inline-block "><i class="fa fa-pencil"></i></a>
-                                            @*<a asp-area="" asp-controller="Home" asp-action="ArticleDetails" asp-route-id="@item.Id" asp-route-SeoTitle="@item.SeoTitle"
-                                                target="_blank" class="btn btn-sm btn-info"> <i class="fa fa-eye"></i> </a>*@
+                                            <a target="_blank" href="@item.FullPath" class="btn btn-sm btn-info"> <i class="fa fa-eye"></i> </a>
                                             <a asp-action="Delete"
                                                asp-route-name="@item.Filename"
                                                asp-route-ext="@item.Extension"
