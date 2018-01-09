@@ -11,17 +11,17 @@
     var folders = Enum.GetNames(typeof(Swastika.Cms.Lib.SWCmsConstants.TemplateFolderEnum)).ToList();
 }
 <div class="container">
-        @foreach (var folder in folders)
-        {
-        <a asp-controller="Template" asp-action="Index" asp-route-folder="@folder" 
+    @foreach (var folder in folders)
+    {
+        <a asp-controller="Template" asp-action="Index" asp-route-folder="@folder"
            asp-route-templateId="@ViewContext.RouteData.Values["templateId"]"
            class="btn btn-info">
             @folder
         </a>
-        }
-    </div>
+    }
+</div>
 <div class="box-body">
-     
+
     <a asp-action="Create" asp-route-templateId="@ViewBag.templateId" class="btn btn-sm btn-success d-inline-block "> <i class="fa fa-plus"></i></a>
     <div class="table-responsive mailbox-messages">
         <table class="table table-hover table-striped ">
@@ -43,35 +43,37 @@
             <tbody>
 
                 @foreach (var item in Model.Items)
-            {
-                <tr>
-                    <td><input type="checkbox"></td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.FileFolder)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.FileName)
-                    </td>
+                {
+                    <tr>
+                        <td><input type="checkbox"></td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.FileFolder)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.FileName)
+                        </td>
 
-                    <td>
-                        <div class="form-control code-editor" style="height:150px;">@item.Content</div>
-                    </td>
-                    <td>
+                        <td>
+                            <div class="container-code-editor">
+                                <div class="form-control code-editor">@item.Content</div>
+                            </div>
+                        </td>
+                        <td>
 
-                    <td>
-                        <div class="btn-block">
-                            <a asp-action="Edit" asp-route-id="@item.Id" class="btn btn-sm btn-warning d-inline-block "> <i class="fa fa-pencil"></i></a>
-                            <a asp-action="Delete" asp-route-id="@item.Id" class="btn btn-sm btn-danger d-inline-block" data-popout="true" data-toggle="confirmation" data-singleton="true"> <i class="fa fa-remove"></i> </a>
-                        </div>
-                    </td>
-                </tr>
-        }
+                        <td>
+                            <div class="btn-block">
+                                <a asp-action="Edit" asp-route-id="@item.Id" class="btn btn-sm btn-warning d-inline-block "> <i class="fa fa-pencil"></i></a>
+                                <a asp-action="Delete" asp-route-id="@item.Id" class="btn btn-sm btn-danger d-inline-block" data-popout="true" data-toggle="confirmation" data-singleton="true"> <i class="fa fa-remove"></i> </a>
+                            </div>
+                        </td>
+                    </tr>
+                }
             </tbody>
         </table>
         <!-- /.table -->
     </div>
     @await Html.PartialAsync("_Pagination", Model
-                    , new ViewDataDictionary(this.Vi‌​ewData)
-                    {
+                        , new ViewDataDictionary(this.Vi‌​ewData)
+                        {
 { "PageSize", Model.PageSize}, { "PageIndex", Model.PageIndex }, { "TotalPage", Model.TotalPage } })
 </div>

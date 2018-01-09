@@ -7,6 +7,7 @@ using Swastika.IO.Domain.Core.ViewModels;
 using Swastika.Cms.Lib.Repositories;
 using System.Threading.Tasks;
 using Swastika.IO.Common.Helper;
+using Swastika.Cms.Lib.Services;
 
 namespace Swastika.Cms.Lib.ViewModels.Info
 {
@@ -32,6 +33,10 @@ namespace Swastika.Cms.Lib.ViewModels.Info
         public string Extension { get; set; }
         [JsonProperty("content")]
         public string Content { get; set; }
+        [JsonProperty("scripts")]
+        public string Scripts { get; set; }
+        [JsonProperty("styles")]
+        public string Styles { get; set; }
         [JsonProperty("createdDateTime")]
         public DateTime CreatedDateTime { get; set; }
         [JsonProperty("lastModified")]
@@ -76,6 +81,34 @@ namespace Swastika.Cms.Lib.ViewModels.Info
 
         #endregion
 
-        
+        #region Expands
+
+        /// <summary>
+        /// Gets the template by path.
+        /// </summary>
+        /// <param name="path">The path.</param> Ex: "Pages/_Home"
+        /// <returns></returns>
+        public static RepositoryResponse<InfoTemplateViewModel> GetTemplateByPath(string path, string culture
+            , SiocCmsContext _context = null, IDbContextTransaction _transaction = null) 
+        {
+            RepositoryResponse<InfoTemplateViewModel> result = new RepositoryResponse<InfoTemplateViewModel>();
+            string[] temp = path.Split('/');
+            if (temp.Length<2)
+            {
+                result.IsSucceed = false;
+                result.Errors.Add("Template Not Found");
+            }
+            else
+            {
+                int activeThemeId = ApplicationConfigService.Instance.GetLocalInt(
+                    SWCmsConstants.ConfigurationKeyword.ThemeId, culture, 0);
+
+                result = Repository.GetSingleModel(t => t.FolderType == temp[0] && t.FileName == temp[1].Split('.')[0] && t.TemplateId == activeThemeId
+                    , _context, _transaction);
+            }
+            return result;
+        }
+
+        #endregion
     }
 }

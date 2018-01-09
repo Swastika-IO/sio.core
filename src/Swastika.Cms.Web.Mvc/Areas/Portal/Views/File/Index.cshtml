@@ -80,18 +80,20 @@
                                         <td>
                                             @if (imgExts.Contains(item.Extension))
                                             {
-                                                <img width="50px" src="@item.FullPath" />
+                                                <img width="50" src="@item.FullPath" />
                                             }
                                             else if (txtExts.Contains(item.Extension))
                                             {
-                                                <div class="form-control code-editor" style="height:150px;">@item.Content</div>
+                                                <div class="container-code-editor">
+                                                    <div class="form-control code-editor">@item.Content</div>
+                                                </div>
                                             }
                                         </td>
                                         <td>
 
                                         <td>
                                             <div class="btn-block">
-                                                <a asp-action="Edit"                                                   
+                                                <a asp-action="Edit"
                                                    asp-route-name="@item.Filename"
                                                    asp-route-ext="@item.Extension"
                                                    asp-route-folder="@item.FileFolder"

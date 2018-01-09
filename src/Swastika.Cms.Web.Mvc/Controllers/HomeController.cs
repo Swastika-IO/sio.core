@@ -59,10 +59,8 @@ namespace Swastika.Cms.Mvc.Controllers
             {
                 //CategoryViewModel page = CategoryRepository.GetInstance().GetFEHomeModel(p => p.Type == (int)SWCmsConstants.CateType.Home && p.Specificulture == _lang);
                 var getPage = FECategoryViewModel.Repository.GetSingleModel(p => p.Type == (int)SWCmsConstants.CateType.Home && p.Specificulture == _lang);
-                if (getPage.IsSucceed)
+                if (getPage.IsSucceed && getPage.Data.View!=null)
                 {
-                    var getTemplate = InfoTemplateViewModel.Repository.GetSingleModel(
-                        t => getPage.Data.Template.Contains(t.FileName) && getPage.Data.Template.Contains(t.FileFolder));
                     ViewBag.pageClass = getPage.Data.CssClass;
                     return View(getPage.Data);
                 }
@@ -75,7 +73,7 @@ namespace Swastika.Cms.Mvc.Controllers
             {
                 var getPage = FECategoryViewModel.Repository.GetSingleModel(
                     p => p.SeoName == pageName && p.Specificulture == _lang);
-                if (getPage.IsSucceed)
+                if (getPage.IsSucceed && getPage.Data.View != null)
                 {
                     ViewBag.pageClass = getPage.Data.CssClass;
                     return View(getPage.Data);

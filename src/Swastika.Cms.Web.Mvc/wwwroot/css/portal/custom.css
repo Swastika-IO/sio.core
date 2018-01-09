@@ -60,3 +60,8 @@ div[data-role="editor-toolbar"] {
         top: 120px;
     }
 }
+
+.container-code-editor {
+    max-height: 500px;
+    overflow: auto;
+}
