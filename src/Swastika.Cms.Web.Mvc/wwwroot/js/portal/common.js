@@ -2,7 +2,7 @@
 
 (function ($) {
     SW.Common = {
-        codeEditor: null,
+        templateEditor: null,
         edtModule: '',
         loadFiles: async function (container) {
             $.ajax({
@@ -142,28 +142,36 @@
 
             // Init Code editor
             $.each($('.code-editor'), function (i, e) {
+                var container = $(this);
                 var editor = ace.edit(e);
                 editor.setTheme("ace/theme/chrome");
-                editor.setReadOnly(true);
+                //editor.setReadOnly(true);
                 editor.session.setMode("ace/mode/csharp");
-                editor.session.setUseWrapMode(true);
-            })
-            if ($('#code-editor').length > 0) {
-                SW.Common.codeEditor = ace.edit("code-editor");
-                SW.Common.codeEditor.setTheme("ace/theme/chrome");
-                SW.Common.codeEditor.session.setMode("ace/mode/csharp");
-                SW.Common.codeEditor.session.setUseWrapMode(true);
-                SW.Common.codeEditor.setOptions({
+                editor.session.setUseWrapMode(true);  
+                editor.setOptions({
                     maxLines: Infinity
                 });
-                SW.Common.codeEditor.getSession().on('change', function (e) {
+                editor.getSession().on('change', function (e) {
                     // e.type, etc
-                    $('#code-editor').parent().find('.code-content').val(SW.Common.codeEditor.getValue());
+                    $(container).parent().find('.code-content').val(editor.getValue());
+                });
+            })
+            if ($('#code-editor').length > 0) {
+                SW.Common.templateEditor = ace.edit("code-editor");
+                SW.Common.templateEditor.setTheme("ace/theme/chrome");
+                SW.Common.templateEditor.session.setMode("ace/mode/csharp");
+                SW.Common.templateEditor.session.setUseWrapMode(true);
+                SW.Common.templateEditor.setOptions({
+                    maxLines: Infinity
+                });
+                SW.Common.templateEditor.getSession().on('change', function (e) {
+                    // e.type, etc
+                    $('#code-editor').parent().find('.code-content').val(SW.Common.templateEditor.getValue());
                 });
             }
             $('#sel-template').on('change', function () {
 
-                SW.Common.codeEditor.setValue($(this).val());
+                SW.Common.templateEditor.setValue($(this).val());
                 $('.sel-filename').val(($(this).find('option:selected').text()))
             })
             var selVal = $('.selectpicker').data('val');

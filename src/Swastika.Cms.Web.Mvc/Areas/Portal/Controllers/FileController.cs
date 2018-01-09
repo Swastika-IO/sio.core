@@ -6,6 +6,7 @@ using Swastika.Cms.Lib.Repositories;
 using Swastika.Cms.Lib;
 using Swastika.IO.Common.Helper;
 using System.Collections.Generic;
+using Microsoft.AspNetCore.Http;
 
 namespace Swastika.Cms.Mvc.Areas.Portal.Controllers
 {
@@ -105,6 +106,21 @@ namespace Swastika.Cms.Mvc.Areas.Portal.Controllers
             ViewBag.folder = folder;
             return View(templates);
         }
+        [HttpPost]
+        [Route("")]
+        public IActionResult Index(string folder, IFormFile file)
+        {
+            if (file != null && file.Length > 0)
+            {
+                string filename = FileRepository.Instance.SaveWebFile(file, folder);               
+            }
+            var files = FileRepository.Instance.GetTopFiles(folder);
+            var directories = FileRepository.Instance.GetTopDirectories(folder);
+            ViewData["directories"] = directories;
+            ViewBag.folder = folder;
+            return View(files);
+        }
+
 
         // GET: article/Edit/5
         [Route("Edit/{name}/{ext}")]

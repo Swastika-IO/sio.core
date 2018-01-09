@@ -97,7 +97,7 @@ namespace Swastika.Cms.Web.Mvc.Areas.Portal.Controllers
                         ExpiresUtc = DateTime.UtcNow.AddDays(30)
                     });
                     _logger.LogInformation(1, "User logged in.");
-                    return Redirect(returnUrl);
+                    return RedirectToLocal(returnUrl);
                 }
             }
 

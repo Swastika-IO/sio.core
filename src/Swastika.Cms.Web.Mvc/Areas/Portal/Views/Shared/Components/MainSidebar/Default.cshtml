@@ -19,7 +19,7 @@
     var listAvaiTheme = InfoThemeViewModel.Repository.GetModelList();
     //CategoryRepository.GetInstance().GetModelListBy(m => m.Specificulture == ViewContext.RouteData.Values["culture"].ToString());
     var searchTypes = new SelectList(Enum.GetNames(typeof(SWCmsConstants.SearchType)).ToList());
-
+    var directories = FileRepository.Instance.GetTopDirectories(string.Empty);
     string searchType = ViewBag.searchKeyword;
 }
 
@@ -246,6 +246,16 @@
                         <li is-active-route asp-controller="File" asp-action=",Index">
                             <a asp-area="Portal" asp-controller="File" asp-action="Index"><i class="mi mi-Color"></i> Folders</a>
                         </li>
+                        @foreach (var folder in directories)
+                        {
+                            string dirPath = string.Format("/{0}", folder);
+                            string href = Url.RouteUrl("File", new { culture = ViewBag.culture, folder = dirPath });
+                            <li>
+                                <a href="@href"><i class="mi mi-Folder"></i> @folder</a>
+                            </li>
+                        }
+
+
                     </ul>
                 </li>
                 <li class="treeview" is-active-menu asp-controllers="Setting">

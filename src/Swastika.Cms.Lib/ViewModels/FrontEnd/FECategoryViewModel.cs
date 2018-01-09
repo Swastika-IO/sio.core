@@ -76,7 +76,7 @@ namespace Swastika.Cms.Lib.ViewModels.FrontEnd
         #region Views
 
         [JsonProperty("view")]
-        public TemplateViewModel View { get; set; }
+        public InfoTemplateViewModel View { get; set; }
         [JsonProperty("articles")]
         public PaginationModel<InfoArticleViewModel> Articles { get; set; } = new PaginationModel<InfoArticleViewModel>();
         [JsonProperty("modules")]
@@ -114,24 +114,29 @@ namespace Swastika.Cms.Lib.ViewModels.FrontEnd
 
         public override void ExpandView(SiocCmsContext _context = null, IDbContextTransaction _transaction = null)
         {
-            switch (Type)
+            this.View = InfoTemplateViewModel.GetTemplateByPath(Template, Specificulture, _context, _transaction).Data;
+            if (View != null)
             {
-                case CateType.Home:
-                    GetSubModules(_context, _transaction);
-                    break;
-                case CateType.Blank:
-                    break;
-                case CateType.Article:
-                    break;
-                case CateType.Modules:
-                    GetSubModules(_context, _transaction);
-                    break;
-                case CateType.List:
-                    GetSubArticles(_context, _transaction);
-                    break;
 
-                default:
-                    break;
+                switch (Type)
+                {
+                    case CateType.Home:
+                        GetSubModules(_context, _transaction);
+                        break;
+                    case CateType.Blank:
+                        break;
+                    case CateType.Article:
+                        break;
+                    case CateType.Modules:
+                        GetSubModules(_context, _transaction);
+                        break;
+                    case CateType.List:
+                        GetSubArticles(_context, _transaction);
+                        break;
+
+                    default:
+                        break;
+                }
             }
         }
 
@@ -160,7 +165,12 @@ namespace Swastika.Cms.Lib.ViewModels.FrontEnd
                         , _context, _transaction);
                     if (getModule.IsSucceed)
                     {
-                        Modules.Add(getModule.Data);
+                        if (getModule.Data.View!=null)
+                        {
+                            View.Scripts += getModule.Data.View.Scripts;
+                            View.Styles += getModule.Data.View.Styles;
+                            Modules.Add(getModule.Data);
+                        }                        
                     }
                 }
 
@@ -174,7 +184,7 @@ namespace Swastika.Cms.Lib.ViewModels.FrontEnd
                , _context: _context, _transaction: _transaction
                );
             if (getArticles.IsSucceed)
-            {
+            {                
                 Articles = getArticles.Data;
             }
         }

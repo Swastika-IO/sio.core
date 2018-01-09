@@ -34,14 +34,14 @@
                     </span>
                     <input asp-for="Password" class="form-control" placeholder="Password..." />
                 </div>
-                @*<div class="input-group form-group-no-border input-lg ">
-                        <div class="checkbox">
-                            <label asp-for="RememberMe" class="">
-                                <input asp-for="RememberMe" />
-                                @Html.DisplayNameFor(m => m.RememberMe)
-                            </label>
-                        </div>
-                    </div>*@
+                <div class="input-group form-group-no-border input-lg ">
+                    <div class="">
+                        <label asp-for="RememberMe" class="">
+                            <input asp-for="RememberMe" />
+                            @Html.DisplayNameFor(m => m.RememberMe)
+                        </label>
+                    </div>
+                </div>
             </div>
             <div class="footer text-center">
                 <button type="submit" class="btn btn-primary btn-round btn-lg btn-block">Log in</button>
@@ -50,7 +50,7 @@
                 <h6>
                     <a href="/vi-vn/portal/auth/register" class="link">Create Account</a>
                 </h6>
-            </div>            
+            </div>
         </form>
     </div>
 </div>

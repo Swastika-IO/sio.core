@@ -141,7 +141,8 @@ namespace Swastika.Cms.Lib.ViewModels.BackEnd
                 if (Id == 0)
                 {
                     string defaultFolder = CommonHelper.GetFullPath(new string[] { SWCmsConstants.Parameters.TemplatesFolder, SWCmsConstants.Default.DefaultTemplateFolder });
-                    var files = FileRepository.Instance.CopyDirectory(defaultFolder, TemplateFolder);
+                    bool copyResult = FileRepository.Instance.CopyDirectory(defaultFolder, TemplateFolder);
+                    var files = copyResult ? FileRepository.Instance.GetFilesWithContent(TemplateFolder) : new System.Collections.Generic.List<FileViewModel>();
                     foreach (var file in files)
                     {
                         if (file.FolderName != "Assets")
@@ -322,7 +323,8 @@ namespace Swastika.Cms.Lib.ViewModels.BackEnd
             if (Id == 0)
             {
                 string defaultFolder = CommonHelper.GetFullPath(new string[] { SWCmsConstants.Parameters.TemplatesFolder, SWCmsConstants.Default.DefaultTemplateFolder });
-                var files = FileRepository.Instance.CopyDirectory(defaultFolder, TemplateFolder);
+                bool copyResult = FileRepository.Instance.CopyDirectory(defaultFolder, TemplateFolder);
+                var files = copyResult ? FileRepository.Instance.GetFilesWithContent(TemplateFolder): new System.Collections.Generic.List<FileViewModel>();
                 foreach (var file in files)
                 {
                     BETemplateViewModel template = new BETemplateViewModel()
