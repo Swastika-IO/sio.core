@@ -245,8 +245,9 @@ namespace Swastika.Cms.Lib.Repositories
             if (Directory.Exists(folderPath))
             {
                 Directory.Delete(folderPath, true);
+                return true;
             }
-            return true;
+            return false;
         }
         public bool CopyDirectory(string srcPath, string desPath)
         {
@@ -578,7 +579,6 @@ namespace Swastika.Cms.Lib.Repositories
             {
                 string fullPath = CommonHelper.GetFullPath(new string[] {
                     SWCmsConstants.Parameters.WebRootPath,
-                    SWCmsConstants.Parameters.FileFolder,
                     folder
                 });
                 return SaveFile(file, fullPath);

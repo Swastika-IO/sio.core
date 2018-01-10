@@ -65,7 +65,7 @@ namespace Swastika.Cms.Lib.ViewModels.BackEnd
         {
             get
             {
-                return ApplicationConfigService.Instance.GetLocalString(SWCmsConstants.ConfigurationKeyword.Theme, Specificulture, SWCmsConstants.Default.DefaultTemplateFolder);
+                return GlobalConfigurationService.Instance.GetLocalString(SWCmsConstants.ConfigurationKeyword.Theme, Specificulture, SWCmsConstants.Default.DefaultTemplateFolder);
             }
         }
         [JsonIgnore]
@@ -124,7 +124,7 @@ namespace Swastika.Cms.Lib.ViewModels.BackEnd
         public override void ExpandView(SiocCmsContext _context = null, IDbContextTransaction _transaction = null)
         {
             IsClone = true;
-            ListSupportedCulture = ApplicationConfigService.ListSupportedCulture;
+            ListSupportedCulture = GlobalConfigurationService.ListSupportedCulture;
             this.ListSupportedCulture.ForEach(c => c.IsSupported =
            (Id == 0 && c.Specificulture == Specificulture)
            || Repository.CheckIsExists(a => a.Id == Id && a.Specificulture == c.Specificulture, _context, _transaction)
@@ -153,7 +153,7 @@ namespace Swastika.Cms.Lib.ViewModels.BackEnd
                 this.View = new BETemplateViewModel()
                 {
                     Extension = SWCmsConstants.Parameters.TemplateExtension,
-                    TemplateId = ApplicationConfigService.Instance.GetLocalInt(SWCmsConstants.ConfigurationKeyword.ThemeId, Specificulture, 0),
+                    TemplateId = GlobalConfigurationService.Instance.GetLocalInt(SWCmsConstants.ConfigurationKeyword.ThemeId, Specificulture, 0),
                     TemplateName = ActivedTemplate,
                     FolderType = TemplateFolderType,
                     FileFolder = this.TemplateFolder,

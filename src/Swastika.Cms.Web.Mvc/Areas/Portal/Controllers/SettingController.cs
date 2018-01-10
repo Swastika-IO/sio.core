@@ -16,10 +16,10 @@ namespace Swastika.Cms.Mvc.Areas.Portal.Controllers
     [Route("{culture}/Portal/setting")]
     public class SettingController : BaseController<SettingController>
     {
-        //private readonly ApplicationConfigService _appService;
+        //private readonly GlobalConfigurationService _appService;
         public SettingController(IHostingEnvironment env
             //, IStringLocalizer<SharedResource> localizer
-            //, ApplicationConfigService service
+            //, GlobalConfigurationService service
             )
             : base(env)
         {
@@ -35,10 +35,10 @@ namespace Swastika.Cms.Mvc.Areas.Portal.Controllers
         {
             PaginationModel<ConfigurationViewModel> pagingPages = new PaginationModel<ConfigurationViewModel>()
             {
-                Items = ApplicationConfigService.ListConfiguration.Where(m => m.Specificulture == _lang).ToList(),
+                Items = GlobalConfigurationService.ListConfiguration.Where(m => m.Specificulture == _lang).ToList(),
                 PageIndex = 0,
-                PageSize = ApplicationConfigService.ListConfiguration.Count(m => m.Specificulture == _lang),
-                TotalItems = ApplicationConfigService.ListConfiguration.Count(m => m.Specificulture == _lang),
+                PageSize = GlobalConfigurationService.ListConfiguration.Count(m => m.Specificulture == _lang),
+                TotalItems = GlobalConfigurationService.ListConfiguration.Count(m => m.Specificulture == _lang),
                 TotalPage = 1
             };
             //  await ConfigurationRepository.GetInstance().GetModelListByAsync(m=> m.Specificulture == _lang,
@@ -72,7 +72,7 @@ namespace Swastika.Cms.Mvc.Areas.Portal.Controllers
                 var result = await ttsConfiguration.SaveModelAsync();// ConfigurationViewModel.Repository.CreateModelAsync(ttsConfiguration);
                 if (result.IsSucceed)
                 {
-                    ApplicationConfigService.Instance.Refresh();
+                    GlobalConfigurationService.Instance.Refresh();
                     return RedirectToAction("Configurations");
                 }
                 else
@@ -125,7 +125,7 @@ namespace Swastika.Cms.Mvc.Areas.Portal.Controllers
                     var result = await ttsConfiguration.SaveModelAsync(); //_repo.EditModelAsync(ttsConfiguration.ParseModel());
                     if (result.IsSucceed)
                     {
-                        ApplicationConfigService.Instance.Refresh();
+                        GlobalConfigurationService.Instance.Refresh();
                     }
                 }
                 catch (DbUpdateConcurrencyException)
@@ -150,7 +150,7 @@ namespace Swastika.Cms.Mvc.Areas.Portal.Controllers
             var result = await ConfigurationViewModel.Repository.RemoveModelAsync(m => m.Keyword == id && m.Specificulture == _lang);
             if (result.IsSucceed)
             {
-                ApplicationConfigService.Instance.Refresh();
+                GlobalConfigurationService.Instance.Refresh();
             }
             return RedirectToAction("Configurations");
         }

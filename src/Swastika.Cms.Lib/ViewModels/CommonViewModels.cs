@@ -6,6 +6,17 @@ using System.Text;
 
 namespace Swastika.Cms.Lib.ViewModels
 {
+    public class InitCmsViewModel
+    {
+        [Required]
+        public string DataBaseServer { get; set; }
+        [Required]
+        public string DataBaseName { get; set; }
+        [Required]
+        public string DataBaseUser { get; set; }
+        [Required]
+        public string DataBasePassword { get; set; }
+    }
     public class FileStreamViewModel
     {
         public string Base64 { get; set; }

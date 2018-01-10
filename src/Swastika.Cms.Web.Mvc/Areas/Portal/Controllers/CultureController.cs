@@ -14,9 +14,9 @@ namespace Swastika.Cms.Mvc.Areas.Portal.Controllers
     [Route("{culture}/Portal/Culture")]
     public class CultureController : BaseController<CultureController>
     {
-        //private readonly ApplicationConfigService _appService;
+        //private readonly GlobalConfigurationService _appService;
         public CultureController(IHostingEnvironment env
-            //, ApplicationConfigService service
+            //, GlobalConfigurationService service
             )
             : base(env)
         {
@@ -71,7 +71,7 @@ namespace Swastika.Cms.Mvc.Areas.Portal.Controllers
                 var result = await vmCulture.SaveModelAsync();
                 if (result.IsSucceed)
                 {
-                    ApplicationConfigService.Instance.RefreshCultures();
+                    GlobalConfigurationService.Instance.RefreshCultures();
                 }
                 return RedirectToAction("Index");
             }
@@ -115,7 +115,7 @@ namespace Swastika.Cms.Mvc.Areas.Portal.Controllers
                     var result = await culture.SaveModelAsync();
                     if (result.IsSucceed)
                     {
-                        ApplicationConfigService.Instance.RefreshCultures();
+                        GlobalConfigurationService.Instance.RefreshCultures();
                     }
                 }
                 catch (DbUpdateConcurrencyException)

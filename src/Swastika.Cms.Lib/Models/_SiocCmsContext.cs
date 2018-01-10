@@ -2,6 +2,7 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.Extensions.Configuration;
+using Swastika.Cms.Lib.Services;
 
 namespace Swastika.Cms.Lib.Models
 {
@@ -50,7 +51,9 @@ namespace Swastika.Cms.Lib.Models
                 .Build();
 
             // define the database to use
-            optionsBuilder.UseSqlServer(config.GetConnectionString(SWCmsConstants.CONST_DEFAULT_CONNECTION));
+            
+                optionsBuilder.UseSqlServer(GlobalConfigurationService.Instance.ConnectionString);
+            
         }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)

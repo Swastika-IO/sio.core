@@ -9,7 +9,7 @@
 @if (!string.IsNullOrEmpty(tags) && listTag.Count > 0)
 {
 <div class="widget tags">
-    <h3>@Swastika.Cms.Lib.Services.ApplicationConfigService.Instance.GetLocalString("Tag Cloud", culture)</h3>
+    <h3>@Swastika.Cms.Lib.Services.GlobalConfigurationService.Instance.GetLocalString("Tag Cloud", culture)</h3>
     <ul class="tag-cloud">
         @foreach (var tag in listTag)
         {
