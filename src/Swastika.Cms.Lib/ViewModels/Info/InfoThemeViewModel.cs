@@ -46,7 +46,7 @@ namespace Swastika.Cms.Lib.ViewModels.Info
                 return CommonHelper.GetFullPath(new string[] {
                     SWCmsConstants.Parameters.FileFolder,
                     SWCmsConstants.Parameters.TemplatesAssetFolder,
-                    TemplateName });
+                    Name });
             }
         }
         [JsonProperty("templateFolder")]
