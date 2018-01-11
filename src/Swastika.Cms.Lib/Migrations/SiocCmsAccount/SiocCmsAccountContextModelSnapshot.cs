@@ -2,11 +2,7 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
-using Microsoft.EntityFrameworkCore.Migrations;
-using Microsoft.EntityFrameworkCore.Storage;
-using Microsoft.EntityFrameworkCore.Storage.Internal;
 using Swastika.Cms.Lib.Models.Account;
-using Swastika.Identity.Identity;
 using System;
 
 namespace Swastika.Cms.Lib.Migrations.SiocCmsAccount

@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage;
 using Microsoft.EntityFrameworkCore.Storage.Internal;
 using Swastika.Cms.Lib.Models.Account;
-using Swastika.Identity.Identity;
+using Swastika.Identity;
 using System;
 
 namespace Swastika.Cms.Lib.Migrations.SiocCmsAccount

@@ -12,6 +12,7 @@ namespace Swastika.Cms.Lib.Repositories
 {
     public class FileRepository
     {
+        public string CurrentDirectory { get; set; }
         /// <summary>
         /// The instance
         /// </summary>
@@ -51,6 +52,7 @@ namespace Swastika.Cms.Lib.Repositories
         /// </summary>
         private FileRepository()
         {
+            CurrentDirectory = Environment.CurrentDirectory;
         }
         public FileViewModel GetFile(string FilePath, List<FileViewModel> Files, string FileFolder)
         {
@@ -61,7 +63,7 @@ namespace Swastika.Cms.Lib.Repositories
 
         public FileViewModel GetWebFile(string filename, string folder)
         {
-            string fullPath = CommonHelper.GetFullPath(new string[] 
+            string fullPath = CommonHelper.GetFullPath(new string[]
             {
                 SWCmsConstants.Parameters.WebRootPath,
                 SWCmsConstants.Parameters.FileFolder,
@@ -136,7 +138,7 @@ namespace Swastika.Cms.Lib.Repositories
 
         public bool DeleteWebFolder(string folderPath)
         {
-            string fullPath = CommonHelper.GetFullPath(new string[] 
+            string fullPath = CommonHelper.GetFullPath(new string[]
             { SWCmsConstants.Parameters.WebRootPath,
                 folderPath
             });
@@ -188,7 +190,7 @@ namespace Swastika.Cms.Lib.Repositories
         {
             FileViewModel result = null;
 
-            string fullPath = string.Format(@"{0}/{1}{2}", FileFolder, name, ext);
+            string fullPath = Path.Combine(CurrentDirectory, FileFolder, string.Format("{0}{1}", name, ext));
 
             FileInfo file = new FileInfo(fullPath);
 
@@ -201,8 +203,8 @@ namespace Swastika.Cms.Lib.Repositories
                         result = new FileViewModel()
                         {
                             FileFolder = FileFolder.ToString(),
-                            Filename = file.Name.Substring(0, file.Name.LastIndexOf('.')),
-                            Extension = file.Extension.Remove(0, 1),
+                            Filename = name,
+                            Extension = ext,
                             Content = s.ReadToEnd()
                         };
 
@@ -239,7 +241,7 @@ namespace Swastika.Cms.Lib.Repositories
             return true;
         }
 
-        
+
         public bool DeleteFolder(string folderPath)
         {
             if (Directory.Exists(folderPath))
@@ -327,7 +329,7 @@ namespace Swastika.Cms.Lib.Repositories
                 SWCmsConstants.Parameters.WebRootPath,
                 SWCmsConstants.Parameters.FileFolder,
                 folder
-             });           
+             });
             List<FileViewModel> result = new List<FileViewModel>();
             if (Directory.Exists(fullPath))
             {
@@ -344,7 +346,7 @@ namespace Swastika.Cms.Lib.Repositories
                         Filename = file.Name.Substring(0, file.Name.LastIndexOf('.')),
                         Extension = file.Extension,
                         //Content = s.ReadToEnd()
-                    });                  
+                    });
                 }
             }
             return result;
@@ -571,6 +573,35 @@ namespace Swastika.Cms.Lib.Repositories
             catch
             {
                 return string.Empty;
+            }
+        }
+        public bool SaveFile(FileViewModel file)
+        {
+            try
+            {
+                if (!string.IsNullOrEmpty(file.Content))
+                {
+                    string folder = Path.Combine(CurrentDirectory, file.FileFolder);
+                    if (!Directory.Exists(folder))
+                    {
+                        Directory.CreateDirectory(file.FileFolder);
+                    }
+                    string fileName = SWCmsHelper.GetFullPath(new string[] { folder, file.Filename + file.Extension }); //string.Format(file.FileFolder, file.Filename);
+                    //var logPath = System.IO.Path.GetTempFileName();
+                    using (var writer = File.CreateText(fileName))
+                    {
+                        writer.WriteLine(file.Content); //or .Write(), if you wish
+                        return true;
+                    }
+                }
+                else
+                {
+                    return false;
+                }
+            }
+            catch
+            {
+                return false;
             }
         }
         public string SaveWebFile(IFormFile file, string folder)
