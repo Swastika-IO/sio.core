@@ -103,15 +103,15 @@ namespace Swastika.Cms.Lib.Services
             //InitConfigurations();
         }
         public bool InitConnectionString()
-        {                //if (string.IsNullOrEmpty(_connectionString))
+        {
             {
                 try
-                {                    
+                {
                     if (string.IsNullOrEmpty(ConnectionString))
                     {
                         ConnectionString = GetConfigConnectionKey();
 
-                        
+
                         if (string.IsNullOrEmpty(ConnectionString))
                         {
                             //Get Remote cnn string here (in future)
@@ -155,9 +155,9 @@ namespace Swastika.Cms.Lib.Services
                 {
                     context = new SiocCmsContext();
                     context.Database.Migrate();
-                    
+
                     transaction = context.Database.BeginTransaction();
-                                    
+
                     var getConnectionString = BEParameterViewModel.Repository.GetSingleModel(
                         c => c.Name == SWCmsConstants.ConfigurationKeyword.ConnectionString,
                         _context: context, _transaction: transaction);
@@ -271,9 +271,6 @@ namespace Swastika.Cms.Lib.Services
             InitCultures();
             InitConfigurations();
         }
-
-
-
 
         public void RefreshCultures()
         {

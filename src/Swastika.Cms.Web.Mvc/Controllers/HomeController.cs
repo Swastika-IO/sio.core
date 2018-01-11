@@ -47,8 +47,7 @@ namespace Swastika.Cms.Mvc.Controllers
             return LocalRedirect(returnUrl);
         }
 
-        [Route("")]
-        //[Route("Home")]
+        [Route("Home")]
         [Route("{pageName}")]
         //[Route("Index")]
         //[Route("{pageName}")]
@@ -56,11 +55,7 @@ namespace Swastika.Cms.Mvc.Controllers
         [Route("{pageName}/{pageSize:int?}/{pageIndex:int?}")]
         public IActionResult Home(string pageName, int pageIndex, int pageSize = 10)
         {
-            if (!GlobalConfigurationService.Instance.IsInit)
-            {
-                return RedirectToAction("Init", "Portal", new { culture = "vi-vn"});
-                
-            }
+          
             // Home Page
             if (string.IsNullOrEmpty(pageName) || pageName == "Home")
             {

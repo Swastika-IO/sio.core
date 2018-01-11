@@ -209,7 +209,7 @@ namespace Swastika.Cms.Web.Mvc
                   template: "api/{culture=vi-vn}/{area:exists}/{controller=Portal}/{action=Index}");
                 routes.MapRoute(
                     name: "default",
-                    template: "{culture=vi-vn}/{controller=Home}/{action=Index}/{id?}");
+                    template: "{culture=vi-vn}/{controller=InitCms}/{action=Index}/{id?}");
                 routes.MapRoute(
                   name: "Page",
                   template: "{culture=vi-vn}/{pageName}");

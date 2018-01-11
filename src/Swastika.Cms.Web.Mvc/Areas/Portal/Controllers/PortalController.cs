@@ -10,7 +10,7 @@ using Swastika.Cms.Lib.Services;
 
 namespace Swastika.Cms.Mvc.Areas.Portal.Controllers
 {
-    
+
     [Area("Portal")]
     [Route("{culture}/Portal")]
     public class PortalController : BaseController<PortalController>
@@ -44,11 +44,10 @@ namespace Swastika.Cms.Mvc.Areas.Portal.Controllers
                 string cnnString = string.Format("Server={0};Database={1};UID={2};Pwd={3};MultipleActiveResultSets=true"
                     , model.DataBaseServer, model.DataBaseName, model.DataBaseUser, model.DataBasePassword);
                 GlobalConfigurationService.Instance.ConnectionString = cnnString;
-                
                 GlobalConfigurationService.Instance.InitSWCms();
                 if (GlobalConfigurationService.Instance.IsInit)
                 {
-                    return Redirect("/");
+                    return Redirect(string.Format("/{0}", SWCmsConstants.Default.Specificulture));
                 }
             }
             return View(model);
@@ -69,10 +68,10 @@ namespace Swastika.Cms.Mvc.Areas.Portal.Controllers
                     ViewData["Articles"] = await InfoArticleViewModel.Repository.GetModelListByAsync(
                         c => c.Specificulture == _lang && (c.Title.Contains(keyword) || c.Excerpt.Contains(keyword) || c.Content.Contains(keyword)));
                     ViewData["Pages"] = InfoCategoryViewModel.Repository.GetModelListBy(
-                        c => c.Specificulture == _lang 
+                        c => c.Specificulture == _lang
                         && (c.Title.Contains(keyword) || c.Excerpt.Contains(keyword)));
                     ViewData["Modules"] = InfoModuleViewModel.Repository.GetModelListBy(
-                        c => c.Specificulture == _lang && (c.Title.Contains(keyword) || 
+                        c => c.Specificulture == _lang && (c.Title.Contains(keyword) ||
                         c.Description.Contains(keyword)));
                     break;
                 case SWCmsConstants.SearchType.Article:
@@ -85,7 +84,7 @@ namespace Swastika.Cms.Mvc.Areas.Portal.Controllers
                     break;
                 case SWCmsConstants.SearchType.Page:
                     ViewData["Pages"] = InfoCategoryViewModel.Repository.GetModelListBy(
-                        c => c.Specificulture == _lang 
+                        c => c.Specificulture == _lang
                         && (c.Title.Contains(keyword) || c.Excerpt.Contains(keyword)));
                     break;
                 default:

@@ -10,7 +10,7 @@ namespace Swastika.Cms.Web.Mvc
     {
         public static void Main(string[] args)
         {            
-            GlobalConfigurationService.Instance.InitSWCms();                
+                         
             BuildWebHost(args).Run();
             
         }
