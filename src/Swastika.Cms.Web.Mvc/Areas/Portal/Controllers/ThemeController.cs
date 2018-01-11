@@ -76,6 +76,10 @@ namespace Swastika.Cms.Mvc.Areas.Portal.Controllers
                 }
                 else
                 {
+                    foreach (var error in result.Errors)
+                    {
+                        ModelState.AddModelError("", error);
+                    }
                     return View(template);
                 }
             }

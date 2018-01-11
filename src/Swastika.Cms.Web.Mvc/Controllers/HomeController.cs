@@ -46,7 +46,7 @@ namespace Swastika.Cms.Mvc.Controllers
 
             return LocalRedirect(returnUrl);
         }
-
+        [Route("")]
         [Route("Home")]
         [Route("{pageName}")]
         //[Route("Index")]

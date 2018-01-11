@@ -12,18 +12,18 @@ namespace Swastika.Cms.Web.Mvc.Controllers
         {
 
         }
-        [Route("")]
-        [Route("{culture}")]
+        [Route("")]        
         public IActionResult Index()
         {
-            if (!GlobalConfigurationService.Instance.IsInit)
-            {
+            if (string.IsNullOrEmpty(GlobalConfigurationService.Instance.GetConfigConnectionKey()))
+            {                
                 return RedirectToAction("Init", "Portal", new { culture = "vi-vn" });
 
             }
             else
             {
-                return RedirectToAction("Home", "Home", new { culture = _lang });
+                GlobalConfigurationService.Instance.IsInit = true;
+                return RedirectToAction("", "Home", new { culture = _lang });
             }
         }
 

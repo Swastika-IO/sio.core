@@ -2,11 +2,6 @@
 @inject UserManager<ApplicationUser> UserManager
 
 @{
-    ViewBag.IsAdmin = true; // UserManager.GetUserName(User) == "administrator";
-    string isHidden = ViewBag.IsAdmin ? string.Empty : "hidden";
-}
-
-@{
     var types = Html.GetEnumSelectList<Swastika.Cms.Lib.SWCmsConstants.CateType>();
     string img = Model != null ? Model.Image : "http://placehold.it/200x200";
     var templates = new SelectList(Model.Templates, "Filename", "Filename");
@@ -20,7 +15,7 @@
         <li><a href="#tab_languages" data-toggle="tab">Languages</a></li>
         <li><a href="#tab_navs" data-toggle="tab">Navigations</a></li>
        
-        <li class="@isHidden"><a href="#tab_layout" data-toggle="tab">Layout</a></li>
+        <li class=""><a href="#tab_layout" data-toggle="tab">Layout</a></li>
 
         @*<li class="dropdown">
                 <a class="dropdown-toggle" data-toggle="dropdown" href="#">
@@ -272,7 +267,7 @@
 
         </div>
         <!-- /.tab-pane -->
-        <div class="tab-pane @isHidden" id="tab_layout">
+        <div class="tab-pane" id="tab_layout">
             @Html.Partial("_Editor_Code", Model.View, 
                 new ViewDataDictionary(this.ViewData)
                 {

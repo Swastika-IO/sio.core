@@ -7,10 +7,9 @@ using Microsoft.Extensions.Localization;
 using Microsoft.AspNetCore.Routing;
 using Swastika.Cms.Mvc.Areas.Portal.Controllers;
 using Swastika.Cms.Mvc.Controllers;
-using Swastika.Domain.Core.ViewModels;
-using Swastika.Cms.Lib.ViewModels;
 using Swastika.Cms.Lib.ViewModels.BackEnd;
 using Microsoft.Data.OData.Query;
+using Swastika.Cms.Lib.ViewModels.Info;
 
 namespace TTS.Web.Areas.Portal.Controllers.Apis
 {
@@ -143,220 +142,233 @@ namespace TTS.Web.Areas.Portal.Controllers.Apis
             return RedirectToAction("Index");
         }
 
-        
-        //#region Ajax Functions
+
+        #region Ajax Functions
 
 
-        //[HttpGet]
-        //[Route("AjaxAddModuleData/{moduleId}")]
-        //public async Task<IActionResult> AjaxAddModuleData(int moduleId)
-        //{
-        //    var module = await _repo.GetSingleModelAsync(m => m.Id == moduleId && m.Specificulture == _lang, Constants.ViewModelType.BackEnd);
-        //    if (module != null)
-        //    {
-        //        var ModuleData = new ModuleDataViewModel(_lang, module.Columns)
-        //        {
-        //            Id = Guid.NewGuid().ToString("N"),
-        //            ModuleId = moduleId,
-        //            Specificulture = _lang,
-        //            Fields = module.Fields
-        //        };
-        //        return PartialView("_ModuleData", ModuleData);
-        //    }
-        //    else
-        //    {
-        //        return NotFound();
-        //    }
-        //}
+        [HttpGet]
+        [Route("AjaxAddModuleData/{moduleId}")]
+        public async Task<IActionResult> AjaxAddModuleData(int moduleId)
+        {
+            var getModule = await InfoModuleViewModel.Repository.GetSingleModelAsync(
+                m => m.Id == moduleId && m.Specificulture == _lang);
+            if (getModule.IsSucceed)
+            {
+                var module = getModule.Data;
+                var ModuleData = new InfoModuleDataViewModel(
+                    new Swastika.Cms.Lib.Models.SiocModuleData()
+                {
+                    Id = Guid.NewGuid().ToString("N"),
+                    ModuleId = moduleId,
+                    Specificulture = _lang,
+                    Fields = module.Fields
+                });
+                return PartialView("_ModuleData", ModuleData);
+            }
+            else
+            {
+                return NotFound();
+            }
+        }
 
-        //// POST: ModuleData/Create
-        //// To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        //// more details see http://go.microsoft.com/fwlink/?LinkId=317598.
-        //[Route("AjaxSaveModuleData")]
-        //[HttpPost]
-        //[ValidateAntiForgeryToken]
-        //public async Task<IActionResult> AjaxSaveModuleData(ModuleDataViewModel ModuleData)
-        //{
-        //    if (ModelState.IsValid)
-        //    {
-        //        ModuleData.CreatedDate = DateTime.UtcNow;
-        //        var result = await ModuleData.SaveModelAsync();
-        //        if (result.IsSucceed)
-        //        {
-        //            return PartialView("_ModuleData_Record", result.Data);
-        //        }
-        //        else
-        //        {
-        //            throw new Exception(result.Ex.StackTrace);
-        //        }
-        //    }
-        //    return View(ModuleData);
-        //}
+        // POST: ModuleData/Create
+        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
+        // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
+        [Route("AjaxSaveModuleData")]
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> AjaxSaveModuleData(InfoModuleDataViewModel ModuleData)
+        {
+            if (ModelState.IsValid)
+            {
+                ModuleData.CreatedDateTime = DateTime.UtcNow;
+                var result = await ModuleData.SaveModelAsync();
+                if (result.IsSucceed)
+                {
+                    return PartialView("_ModuleData_Record", result.Data);
+                }
+                else
+                {
+                    throw new Exception(result.Exception.StackTrace);
+                }
+            }
+            return View(ModuleData);
+        }
 
-        //[Route("AjaxAtiveModuleData/{articleId}/{dataId}/{isActived:bool}")]
-        //[HttpGet]
-        //public async Task<bool> AjaxAtiveModuleData(string articleId, string dataId, bool isActived)
-        //{
-        //    var data = await ModuleDataRepository.GetInstance().GetSingleModelAsync(d => d.Id == dataId && d.Specificulture == _lang);
-        //    if (data != null)
-        //    {
-        //        data.ArticleId = isActived ? articleId : null;
-        //        var result = await ModuleDataRepository.GetInstance().SaveModelAsync(data);
-        //        return result.IsSucceed;
-        //    }
-        //    else
-        //    {
-        //        return false;
-        //    }
-        //}
+        [Route("AjaxAtiveModuleData/{articleId}/{dataId}/{isActived:bool}")]
+        [HttpGet]
+        public async Task<bool> AjaxAtiveModuleData(string articleId, string dataId, bool isActived)
+        {
+            var getData = await InfoModuleDataViewModel.Repository.GetSingleModelAsync(
+                d => d.Id == dataId && d.Specificulture == _lang);
+            if (getData.IsSucceed)
+            {
+                var data = getData.Data;
+                data.ArticleId = isActived ? articleId : null;
+                var result = await InfoModuleDataViewModel.Repository.SaveModelAsync(data);
+                return result.IsSucceed;
+            }
+            else
+            {
+                return false;
+            }
+        }
 
-        //[Route("AjaxEditModuleData/{dataId}")]
-        //public async Task<IActionResult> AjaxEditModuleData(string dataId)
-        //{
-        //    var data = await ModuleDataRepository.GetInstance().GetSingleModelAsync(d => d.Id == dataId && d.Specificulture == _lang);
-        //    if (data != null)
-        //    {
-        //        return PartialView("_ModuleData", data);
-        //    }
-        //    else
-        //    {
-        //        return NotFound();
-        //    }
-        //}
-
-
-        //#endregion
-
-        //#region Module Details Handler
-
-
-        //// GET: Portal/Modules
-        //[Route("Details/{id}")]
-        //[Route("Details/{id}/{pageSize:int?}/{pageIndex:int?}/{keyword}")]
-        //public async Task<IActionResult> Details(int id, int pageSize = 10, int pageIndex = 0, string keyword = null)
-        //{
-        //    ModuleViewModel module = await _repo.GetSingleModelAsync(m => m.Specificulture == _lang && m.Id == id, Constants.ViewModelType.FrontEnd);
-        //    if (module != null)
-        //    {
-        //        module.Data = await ModuleDataRepository.GetInstance().GetModelListByAsync(d => d.ModuleId == id && d.Specificulture == _lang, d => d.CreatedDate, "asc", pageIndex, pageSize, Constants.ViewModelType.FrontEnd);
-        //        module.Articles = await ArticleRepository.GetInstance().GetModelListByModuleAsync(id, _lang, pageIndex, pageSize);
-        //        return View(module);
-        //    }
-        //    else
-        //    {
-        //        return RedirectToAction("Index");
-        //    }
-        //}
-
-        //// GET: Portal/ModuleDatas/AddModuleData
-        //[Route("AddModuleData/{id:int}")]
-        //public async Task<IActionResult> AddModuleData(int id)
-        //{
-        //    var module = await _repo.GetSingleModelAsync(m => m.Id == id && m.Specificulture == _lang, Constants.ViewModelType.BackEnd);
-        //    if (module != null)
-        //    {
-        //        var ModuleData = new ModuleDataViewModel(_lang, module.Columns)
-        //        {
-        //            Id = Guid.NewGuid().ToString("N"),
-        //            ModuleId = id,
-        //            Specificulture = _lang,
-        //            Fields = module.Fields
-        //        };
-        //        return View(ModuleData);
-        //    }
-        //    else
-        //    {
-        //        return NotFound();
-        //    }
-        //}
-
-        //// POST: ModuleData/Create
-        //// To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        //// more details see http://go.microsoft.com/fwlink/?LinkId=317598.
-        //[Route("AddModuleData/{id:int}")]
-        //[HttpPost]
-        //[ValidateAntiForgeryToken]
-        //public async Task<IActionResult> AddModuleData(ModuleDataViewModel ModuleData)
-        //{
-        //    if (ModelState.IsValid)
-        //    {
-        //        ModuleData.CreatedDate = DateTime.UtcNow;
-        //        var result = await ModuleData.SaveModelAsync();
-        //        if (result.IsSucceed)
-        //        {
-        //            return RedirectToAction("Details", new RouteValueDictionary(new { id = ModuleData.ModuleId }));
-        //        }
-        //        else
-        //        {
-        //            throw new Exception(result.Ex.StackTrace);
-        //        }
-        //    }
-        //    return View(ModuleData);
-        //}
-
-        //// GET: ModuleData/Edit/5
-        //[Route("EditModuleData/{id}/{dataId}")]
-        //public async Task<IActionResult> EditModuleData(int id, string dataId)
-        //{
-        //    var ModuleData = await ModuleDataRepository.GetInstance().GetSingleModelAsync(m => m.Id == dataId, Constants.ViewModelType.BackEnd);
-        //    if (ModuleData == null)
-        //    {
-        //        return RedirectToAction("Index");
-        //    }
-        //    return View(ModuleData);
-        //}
-
-        //// POST: ModuleData/EditModuleData/5
-        //// To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        //// more details see http://go.microsoft.com/fwlink/?LinkId=317598.
-        //[Route("EditModuleData/{id}/{dataId}")]
-        //[HttpPost]
-        //[ValidateAntiForgeryToken]
-        //public async Task<IActionResult> EditModuleData(ModuleDataViewModel ModuleData)
-        //{
-        //    if (ModelState.IsValid)
-        //    {
-        //        try
-        //        {
-        //            var result = await ModuleData.SaveModelAsync();
-        //            if (result.IsSucceed)
-        //            {
-        //                return RedirectToAction("Details", new RouteValueDictionary(new { id = ModuleData.ModuleId }));
-        //            }
-        //            else
-        //            {
-        //                ModelState.AddModelError(string.Empty, result.Ex.Message);
-        //                return View(ModuleData);
-        //            }
-        //        }
-        //        catch (DbUpdateConcurrencyException)
-        //        {
-        //            if (!ModuleDataRepository.GetInstance().CheckIsExists(m => m.Id == ModuleData.Id))
-        //            {
-        //                return NotFound();
-        //            }
-        //            else
-        //            {
-        //                throw;
-        //            }
-        //        }
-        //        //return RedirectToAction("Index");
-        //    }
-        //    return View(ModuleData);
-        //}
-        //[Route("DeleteModuleData/{id}")]
-        //public async Task<IActionResult> DeleteModuleData(string id)
-        //{
-        //    var data = await ModuleDataRepository.GetInstance().GetSingleModelAsync(m => m.Id == id);
-        //    if (data != null)
-        //    {
-        //        await ModuleDataRepository.GetInstance().RemoveModelAsync(m => m.Id == id);
-        //    }
+        [Route("AjaxEditModuleData/{dataId}")]
+        public async Task<IActionResult> AjaxEditModuleData(string dataId)
+        {
+            var getData = await InfoModuleDataViewModel.Repository.GetSingleModelAsync(
+                d => d.Id == dataId && d.Specificulture == _lang);
+            if (getData.IsSucceed)
+            {
+                var data = getData.Data;
+                return PartialView("_ModuleData", data);
+            }
+            else
+            {
+                return NotFound();
+            }
+        }
 
 
-        //    return RedirectToAction("Details", new RouteValueDictionary(new { id = data.ModuleId }));
-        //}
+        #endregion
 
-        //#endregion
+        #region Module Details Handler
+
+
+        // GET: Portal/Modules
+        [Route("Details/{id}")]
+        [Route("Details/{id}/{pageSize:int?}/{pageIndex:int?}/{keyword}")]
+        public async Task<IActionResult> Details(int id, int pageSize = 10, int pageIndex = 0, string keyword = null)
+        {
+            var getModule = await BEModuleViewModel.Repository.GetSingleModelAsync(
+                m => m.Specificulture == _lang && m.Id == id);
+            if (getModule.IsSucceed)
+            {
+                return View(getModule.Data);
+            }
+            else
+            {
+                return RedirectToAction("Index");
+            }
+        }
+
+        // GET: Portal/ModuleDatas/AddModuleData
+        [Route("AddModuleData/{id:int}")]
+        public async Task<IActionResult> AddModuleData(int id)
+        {
+            var getModule = await InfoModuleViewModel.Repository.GetSingleModelAsync(
+                m => m.Id == id && m.Specificulture == _lang);
+            if (getModule.IsSucceed)
+            {
+                var module = getModule.Data;
+                var ModuleData = new InfoModuleDataViewModel(
+                    new Swastika.Cms.Lib.Models.SiocModuleData()
+
+                {
+                    Id = Guid.NewGuid().ToString("N"),
+                    ModuleId = id,
+                    Specificulture = _lang,
+                    Fields = module.Fields
+                });
+                return View(ModuleData);
+            }
+            else
+            {
+                return NotFound();
+            }
+        }
+
+        // POST: ModuleData/Create
+        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
+        // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
+        [Route("AddModuleData/{id:int}")]
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> AddModuleData(InfoModuleDataViewModel ModuleData)
+        {
+            if (ModelState.IsValid)
+            {
+                ModuleData.CreatedDateTime = DateTime.UtcNow;
+                var result = await ModuleData.SaveModelAsync();
+                if (result.IsSucceed)
+                {
+                    return RedirectToAction("Details", new RouteValueDictionary(new { id = ModuleData.ModuleId }));
+                }
+                else
+                {
+                    throw new Exception(result.Exception.StackTrace);
+                }
+            }
+            return View(ModuleData);
+        }
+
+        // GET: ModuleData/Edit/5
+        [Route("EditModuleData/{id}/{dataId}")]
+        public async Task<IActionResult> EditModuleData(int id, string dataId)
+        {
+            var getModuleData = await InfoModuleDataViewModel.Repository.GetSingleModelAsync(
+                m => m.Id == dataId);
+            if (getModuleData.IsSucceed)
+            {
+                return View(getModuleData.Data);
+            }
+            return RedirectToAction("Index");
+        }
+
+        // POST: ModuleData/EditModuleData/5
+        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
+        // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
+        [Route("EditModuleData/{id}/{dataId}")]
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> EditModuleData(InfoModuleDataViewModel ModuleData)
+        {
+            if (ModelState.IsValid)
+            {
+                try
+                {
+                    var result = await ModuleData.SaveModelAsync();
+                    if (result.IsSucceed)
+                    {
+                        return RedirectToAction("Details", new RouteValueDictionary(
+                            new { id = ModuleData.ModuleId }));
+                    }
+                    else
+                    {
+                        ModelState.AddModelError(string.Empty, result.Exception.Message);
+                        return View(ModuleData);
+                    }
+                }
+                catch (DbUpdateConcurrencyException)
+                {
+                    if (!InfoModuleDataViewModel.Repository.CheckIsExists(m => m.Id == ModuleData.Id))
+                    {
+                        return NotFound();
+                    }
+                    else
+                    {
+                        throw;
+                    }
+                }
+                //return RedirectToAction("Index");
+            }
+            return View(ModuleData);
+        }
+        [Route("DeleteModuleData/{id}")]
+        public async Task<IActionResult> DeleteModuleData(string id)
+        {
+            var getData = await InfoModuleDataViewModel.Repository.GetSingleModelAsync(
+                m => m.Id == id);
+            if (getData.IsSucceed)
+            {
+                await InfoModuleDataViewModel.Repository.RemoveModelAsync(m => m.Id == id);
+            }
+
+
+            return RedirectToAction("Details", new RouteValueDictionary(new { id = id}));
+        }
+
+        #endregion
     }
 }

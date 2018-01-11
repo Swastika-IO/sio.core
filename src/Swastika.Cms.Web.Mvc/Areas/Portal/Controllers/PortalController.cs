@@ -7,6 +7,8 @@ using Swastika.Cms.Lib;
 using Swastika.Cms.Lib.ViewModels;
 using Swastika.Cms.Lib.ViewModels.Info;
 using Swastika.Cms.Lib.Services;
+using Swastika.Cms.Lib.Repositories;
+using Newtonsoft.Json.Linq;
 
 namespace Swastika.Cms.Mvc.Areas.Portal.Controllers
 {
@@ -47,7 +49,15 @@ namespace Swastika.Cms.Mvc.Areas.Portal.Controllers
                 GlobalConfigurationService.Instance.InitSWCms();
                 if (GlobalConfigurationService.Instance.IsInit)
                 {
-                    return Redirect(string.Format("/{0}", SWCmsConstants.Default.Specificulture));
+                    var settings = FileRepository.Instance.GetFile("appsettings",".json", string.Empty);
+                    if (settings!=null)
+                    {
+                        JObject jsonSettings = JObject.Parse(settings.Content);
+                        jsonSettings["ConnectionStrings"][SWCmsConstants.CONST_DEFAULT_CONNECTION] = cnnString;
+                        settings.Content = jsonSettings.ToString(Newtonsoft.Json.Formatting.None);
+                        FileRepository.Instance.SaveFile(settings);
+                    }
+                    return RedirectToAction("Create", "Theme", new { culture = SWCmsConstants.Default.Specificulture });
                 }
             }
             return View(model);
