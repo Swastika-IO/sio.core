@@ -61,8 +61,9 @@ namespace Swastika.Cms.Web.Mvc
             });
 
             services.Configure<JWTSettings>(Configuration.GetSection("JWTSettings"));
-            Swastika.Identity.Startup.ConfigIdentity(services, Configuration);
-            
+            //Swastika.Identity.Startup.ConfigIdentity(services, Configuration);
+            ConfigIdentity(services, Configuration); //Cms Config
+
             //PasswordOptions pOpt = new PasswordOptions()
             //{
             //    RequireDigit = false,

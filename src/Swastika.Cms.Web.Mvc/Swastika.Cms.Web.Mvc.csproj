@@ -61,14 +61,14 @@
 
   <ItemGroup>
     <Content Remove="tsconfig.json" />
-    <Content Remove="Views\Cms\About.cshtml" />
-    <Content Remove="Views\Cms\Article.cshtml" />
-    <Content Remove="Views\Cms\Blog.cshtml" />
-    <Content Remove="Views\Cms\Contact.cshtml" />
-    <Content Remove="Views\Cms\Index.cshtml" />
-    <Content Remove="Views\Cms\List.cshtml" />
-    <Content Remove="Views\Cms\Tag.cshtml" />
-    <Content Remove="Views\Cms\TTS.cshtml" />
+    <Content Remove="Views\Home\About.cshtml" />
+    <Content Remove="Views\Home\Article.cshtml" />
+    <Content Remove="Views\Home\Blog.cshtml" />
+    <Content Remove="Views\Home\Contact.cshtml" />
+    <Content Remove="Views\Home\Index.cshtml" />
+    <Content Remove="Views\Home\List.cshtml" />
+    <Content Remove="Views\Home\Tag.cshtml" />
+    <Content Remove="Views\Home\TTS.cshtml" />
     <Content Remove="Views\Shared\Error.cshtml" />
     <Content Remove="Views\Shared\Modules.cshtml" />
     <Content Remove="Views\Shared\RichTextEditor.cshtml" />

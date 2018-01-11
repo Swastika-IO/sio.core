@@ -2,10 +2,12 @@
 using Microsoft.EntityFrameworkCore.Storage;
 using Microsoft.Extensions.Configuration;
 using Swastika.Cms.Lib.Models;
+using Swastika.Cms.Lib.Models.Account;
 using Swastika.Cms.Lib.Repositories;
 using Swastika.Cms.Lib.ViewModels;
 using Swastika.Cms.Lib.ViewModels.BackEnd;
 using Swastika.Domain.Core.Models;
+using Swastika.Identity.Data;
 using Swastika.IO.Common.Helper;
 using System.Collections.Generic;
 using System.Linq;
@@ -102,6 +104,18 @@ namespace Swastika.Cms.Lib.Services
             //InitCultures();
             //InitConfigurations();
         }
+        public string GetConnectionString()
+        {
+            if (!string.IsNullOrEmpty(ConnectionString))
+            {
+                return ConnectionString;
+            }
+            else
+            {
+                InitConnectionString();
+                return ConnectionString;
+            }
+        }
         public bool InitConnectionString()
         {
             {
@@ -148,14 +162,16 @@ namespace Swastika.Cms.Lib.Services
         public void InitSWCms()
         {
             SiocCmsContext context = null;
+            SiocCmsAccountContext accountContext = null;
             IDbContextTransaction transaction = null;
             try
             {
                 if (InitConnectionString())
                 {
                     context = new SiocCmsContext();
+                    accountContext = new SiocCmsAccountContext();
                     context.Database.Migrate();
-
+                    accountContext.Database.Migrate();
                     transaction = context.Database.BeginTransaction();
 
                     var getConnectionString = BEParameterViewModel.Repository.GetSingleModel(
@@ -250,6 +266,10 @@ namespace Swastika.Cms.Lib.Services
                 if (context != null)
                 {
                     context.Dispose();
+                }
+                if (accountContext!=null)
+                {
+                    accountContext.Dispose();
                 }
 
             }
