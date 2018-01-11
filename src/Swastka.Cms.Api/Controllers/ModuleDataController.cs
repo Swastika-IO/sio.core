@@ -8,7 +8,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
 using System.Threading.Tasks;
-using Swastika.IO.Domain.Core.ViewModels;
+using Swastika.Domain.Core.ViewModels;
 using Swastika.Api.Controllers;
 using Swastika.Cms.Lib.ViewModels.Info;
 

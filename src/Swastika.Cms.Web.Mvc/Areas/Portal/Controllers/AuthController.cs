@@ -18,7 +18,7 @@ using Swastika.Identity.Data;
 using Swastika.Identity.Models;
 using Swastika.Identity.Models.AccountViewModels;
 using Swastika.Identity.Services;
-using Swastika.IO.Identity.Identity.Infrastructure;
+using Swastika.Identity.Infrastructure;
 
 namespace Swastika.Cms.Web.Mvc.Areas.Portal.Controllers
 {

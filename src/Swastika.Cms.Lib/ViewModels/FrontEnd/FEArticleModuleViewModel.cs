@@ -5,7 +5,7 @@ using Swastika.Cms.Lib.Models;
 using Swastika.Domain.Data.ViewModels;
 using Microsoft.EntityFrameworkCore.Storage;
 using Newtonsoft.Json;
-using Swastika.IO.Common.Helper;
+using Swastika.Common.Helper;
 
 namespace Swastika.Cms.Lib.ViewModels.FrontEnd
 {

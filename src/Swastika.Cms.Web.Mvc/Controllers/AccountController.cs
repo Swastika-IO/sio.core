@@ -18,7 +18,7 @@ using System;
 using Swastika.Identity.Repositories;
 using Swastika.Cms.Web.Mvc.Models.Identity;
 using Microsoft.Extensions.Options;
-using Swastika.IO.Identity.Identity.Infrastructure;
+using Swastika.Identity.Infrastructure;
 
 namespace Swastika.Cms.Mvc.Controllers
 {

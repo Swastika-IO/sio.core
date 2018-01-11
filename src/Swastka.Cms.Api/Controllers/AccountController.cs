@@ -12,15 +12,15 @@ using System.Security.Claims;
 using System.IdentityModel.Tokens.Jwt;
 using Microsoft.IdentityModel.Tokens;
 using Swastika.Cms.Lib;
-using Swastika.IO.Identity.Identity.Models.AccountViewModels;
+using Swastika.Identity.Models.AccountViewModels;
 using Swastika.Cms.Lib.ViewModels;
 using System.Security.Principal;
-using Swastika.IO.Domain.Core.ViewModels;
+using Swastika.Domain.Core.ViewModels;
 using Swastika.Api.Controllers;
-using Swastika.IO.Identity.Identity.Infrastructure;
+using Swastika.Identity.Infrastructure;
 using System.Collections.Generic;
 
-namespace Swastika.IO.Core.Controllers
+namespace Swastika.Core.Controllers
 {
     [Route("api/{culture}/apiaccount")]
     public class ApiAccountController : BaseApiController

@@ -3,7 +3,7 @@ using Swastika.Domain.Data.ViewModels;
 using Swastika.Cms.Lib.Models;
 using Swastika.Cms.Lib.Services;
 using System.ComponentModel.DataAnnotations;
-using Swastika.IO.Domain.Core.ViewModels;
+using Swastika.Domain.Core.ViewModels;
 using System.Threading.Tasks;
 
 namespace Swastika.Cms.Lib.ViewModels

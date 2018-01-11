@@ -10,6 +10,6 @@ Update-database -Context MessengerContext
 
 Scaffold-DbContext "Server=115.77.190.113,4444;Database=test_msg;UID=sa;Pwd=sqlP@ssw0rd;MultipleActiveResultSets=true" Microsoft.EntityFrameworkCore.SqlServer -OutputDir Models -force
 
-swastika.io:3333
+Swastika.:3333
 smileway\hoang.nguyen
 1234qwe@

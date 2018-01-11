@@ -7,7 +7,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using Swastika.Cms.Lib.Services;
-using Swastika.IO.Common.Helper;
+using Swastika.Common.Helper;
 
 namespace Swastika.Cms.Lib.ViewModels
 {

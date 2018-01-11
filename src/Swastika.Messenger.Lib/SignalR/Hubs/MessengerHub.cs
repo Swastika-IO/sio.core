@@ -1,13 +1,13 @@
 ﻿using Messenger.Lib.Helpers;
 using Microsoft.AspNetCore.SignalR;
-using Swastika.IO.Domain.Core.ViewModels;
+using Swastika.Domain.Core.ViewModels;
 using Swastika.Messenger.Lib.ViewModels.Hub;
 using Swastika.Messenger.Lib.ViewModels.Messenger;
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using System.Linq;
-using Swastika.IO.UI.Core.SignalR;
+using Swastika.UI.Core.SignalR;
 
 namespace Messenger.Lib.SignalR.Hubs
 {
@@ -40,7 +40,7 @@ namespace Messenger.Lib.SignalR.Hubs
             {
                 result.ResponseKey = action;
                 var user = result.Data;
-                Users.Add(new Swastika.IO.Domain.Core.Models.SignalRClient()
+                Users.Add(new Swastika.Domain.Core.Models.SignalRClient()
                 {
                     UserId = user.Id,
                     NickName = user.Name,

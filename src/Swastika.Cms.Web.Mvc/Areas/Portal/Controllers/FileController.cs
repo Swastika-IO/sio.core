@@ -4,7 +4,7 @@ using Microsoft.AspNetCore.Hosting;
 using Swastika.Cms.Lib.ViewModels;
 using Swastika.Cms.Lib.Repositories;
 using Swastika.Cms.Lib;
-using Swastika.IO.Common.Helper;
+using Swastika.Common.Helper;
 using System.Collections.Generic;
 using Microsoft.AspNetCore.Http;
 

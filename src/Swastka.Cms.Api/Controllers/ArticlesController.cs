@@ -4,7 +4,7 @@ using Swastika.Cms.Lib.Models;
 using System;
 using System.Linq.Expressions;
 using System.Threading.Tasks;
-using Swastika.IO.Domain.Core.ViewModels;
+using Swastika.Domain.Core.ViewModels;
 using Swastika.Api.Controllers;
 using Swastika.Cms.Lib.ViewModels.BackEnd;
 using Swastika.Cms.Lib.ViewModels.FrontEnd;
