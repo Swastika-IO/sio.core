@@ -26,7 +26,14 @@ namespace Swastka.Cms.Web
         {
             app.UseAuthentication();
 
-            app.UseMvc();
+            app.UseMvc(routes =>
+            {
+
+                routes.MapRoute(
+                    name: "apiRoute",
+                    template: "api/{culture=vi-vn}/{area:exists}/{controller=Portal}/{action=Index}");
+
+            });
         }
     }
 }

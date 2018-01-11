@@ -17,7 +17,7 @@ namespace Swastka.Cms.Api.Controllers
     //[Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme
     //    //, Policy = "AddEditUser"
     //    )]
-    [Route("api/{culture}/apiarticles")]
+    [Route("api/{culture}/articles")]
     public class ApiArticlesController :
         BaseApiController<SiocCmsContext, SiocArticle>
     {
@@ -138,7 +138,7 @@ namespace Swastka.Cms.Api.Controllers
 
         // GET api/articles
         [HttpGet]
-        [Authorize]
+        //[Authorize]
         [Route("")]
         [Route("{pageSize:int?}/{pageIndex:int?}")]
         [Route("{orderBy}/{direction}")]
