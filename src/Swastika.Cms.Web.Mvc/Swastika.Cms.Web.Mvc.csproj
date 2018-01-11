@@ -57,6 +57,7 @@
 
   <ItemGroup>
     <Compile Remove="Areas\User\Controllers\AccountController.cs" />
+    <Compile Remove="Controllers\DefaultController.cs" />
   </ItemGroup>
 
   <ItemGroup>
