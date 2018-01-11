@@ -194,7 +194,7 @@ namespace Swastika.Cms.Lib.ViewModels.BackEnd
             this.View = View ?? Templates.FirstOrDefault();
             if (this.View == null)
             {
-                this.View = new BETemplateViewModel()
+                this.View = new BETemplateViewModel(new SiocTemplate() 
                 {
                     Extension = SWCmsConstants.Parameters.TemplateExtension,
                     TemplateId = GlobalConfigurationService.Instance.GetLocalInt(SWCmsConstants.ConfigurationKeyword.ThemeId, Specificulture, 0),
@@ -204,7 +204,7 @@ namespace Swastika.Cms.Lib.ViewModels.BackEnd
                     FileName = SWCmsConstants.Default.DefaultTemplate,
                     ModifiedBy = ModifiedBy,
                     Content = "<div></div>"
-                };
+                });
             }
             this.Template = SWCmsHelper.GetFullPath(new string[]
                {
