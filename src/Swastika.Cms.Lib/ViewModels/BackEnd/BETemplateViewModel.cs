@@ -131,16 +131,6 @@ namespace Swastika.Cms.Lib.ViewModels.BackEnd
             return base.ParseModel();
         }
 
-        public override void Validate(SiocCmsContext _context = null, IDbContextTransaction _transaction = null)
-        {
-            base.Validate(_context, _transaction);
-            if (Repository.CheckIsExists(t => Id == 0 && t.FileName == FileName && t.FileFolder == FileFolder && t.Extension == Extension))
-            {
-                IsValid = false;
-                Errors.Add("File Name existed");
-            }
-        }
-
         #endregion
         #region Async
         public override RepositoryResponse<bool> RemoveModel(bool isRemoveRelatedModels = false, SiocCmsContext _context = null, IDbContextTransaction _transaction = null)

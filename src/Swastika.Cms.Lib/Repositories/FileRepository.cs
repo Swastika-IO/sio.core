@@ -223,7 +223,7 @@ namespace Swastika.Cms.Lib.Repositories
         public bool DeleteFile(string name, string extension, string FileFolder)
         {
             string folder = string.Format(SWCmsConstants.Parameters.UploadFolder, FileFolder);
-            string fullPath = string.Format(@"{0}/{1}.{2}", folder, name, extension);
+            string fullPath = string.Format(@"{0}/{1}{2}", folder, name, extension);
 
             if (File.Exists(fullPath))
             {
