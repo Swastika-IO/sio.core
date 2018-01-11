@@ -50,7 +50,7 @@ namespace Swastika.IO.Admin
 
 
       // Add Singleton Configs App Configs (load from db)
-      services.AddSingleton<ApplicationConfigService>();
+      services.AddSingleton<GlobalConfigurationService>();
     }
 
     // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

@@ -117,7 +117,7 @@ namespace Swastika.Cms.Lib.ViewModels.FrontEnd
                 {
                     ""
                     , SWCmsConstants.Parameters.TemplatesFolder
-                    , ApplicationConfigService.Instance.GetLocalString(SWCmsConstants.ConfigurationKeyword.Theme, Specificulture, SWCmsConstants.Default.DefaultTemplateFolder)
+                    , GlobalConfigurationService.Instance.GetLocalString(SWCmsConstants.ConfigurationKeyword.Theme, Specificulture, SWCmsConstants.Default.DefaultTemplateFolder)
                     , Template
                 });
             }

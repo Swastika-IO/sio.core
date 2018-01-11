@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc.Filters;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Swastika.IO.Common.Helper;
+using Swastika.Cms.Lib.Services;
 
 namespace Swastika.Cms.Mvc.Controllers
 {
@@ -33,8 +34,15 @@ namespace Swastika.Cms.Mvc.Controllers
 
         public override void OnActionExecuting(ActionExecutingContext context)
         {
-            GetLanguage();
-            base.OnActionExecuting(context);
+            if (GlobalConfigurationService.Instance.IsInit)
+            {
+
+                GetLanguage();
+
+                base.OnActionExecuting(context);
+            }
+
+            
         }
         protected void GetLanguage()
         {

@@ -99,7 +99,7 @@ namespace Swastika.Cms.Mvc.Areas.Portal.Controllers
             else
             {
                 template.Data.Specificulture = _lang;
-                template.Data.IsActived = template.Data.Name == ApplicationConfigService.Instance.GetLocalString(SWCmsConstants.ConfigurationKeyword.Theme, _lang, SWCmsConstants.Default.DefaultTemplateFolder);
+                template.Data.IsActived = template.Data.Name == GlobalConfigurationService.Instance.GetLocalString(SWCmsConstants.ConfigurationKeyword.Theme, _lang, SWCmsConstants.Default.DefaultTemplateFolder);
             }
             return View(template.Data);
         }

@@ -77,7 +77,7 @@ namespace Swastika.Cms.Lib.ViewModels.Info
         public override void ExpandView(SiocCmsContext _context = null, IDbContextTransaction _transaction = null)
         {
             IsClone = true;
-            ListSupportedCulture = ApplicationConfigService.ListSupportedCulture;
+            ListSupportedCulture = GlobalConfigurationService.ListSupportedCulture;
 
             var objValue = Value != null ? JObject.Parse(Value) : new JObject();
 

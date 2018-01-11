@@ -19,12 +19,12 @@ namespace Swastika.Cms.Mvc.Areas.Portal.Controllers
     [Route("{culture}/Portal/Module")]
     public class ModuleController : BaseController<ModuleController>
     {
-        //private ApplicationConfigService _appService;
+        //private GlobalConfigurationService _appService;
 
         public ModuleController(IHostingEnvironment env
             //, IStringLocalizer<PortalController> moduleLocalizer
             //, IStringLocalizer<SharedResource> localizer
-            //, ApplicationConfigService appService
+            //, GlobalConfigurationService appService
             )
             : base(env)
         {

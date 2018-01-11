@@ -103,6 +103,7 @@ namespace Swastika.Cms.Lib
         }
         public class ConfigurationKeyword
         {
+            public const string ConnectionString = "ConnectionString";
             public const string Theme = "Theme";
             public const string ThemeId = "ThemeId";
         }

@@ -103,7 +103,11 @@ namespace Swastika.Cms.Lib.ViewModels.BackEnd
         public override void ExpandView(SiocCmsContext _context = null, IDbContextTransaction _transaction = null)
         {
             var file = FileRepository.Instance.GetFile(FileName, Extension, FileFolder);
-            Content = file.Content;
+            if (!string.IsNullOrWhiteSpace(file?.Content))
+            {
+                Content = file.Content;
+            }
+
         }
         public override SiocTemplate ParseModel()
         {
@@ -138,7 +142,7 @@ namespace Swastika.Cms.Lib.ViewModels.BackEnd
         }
 
         #endregion
-        #region Sync
+        #region Async
         public override RepositoryResponse<bool> RemoveModel(bool isRemoveRelatedModels = false, SiocCmsContext _context = null, IDbContextTransaction _transaction = null)
         {
             var result = base.RemoveModel(isRemoveRelatedModels, _context, _transaction);
@@ -158,9 +162,8 @@ namespace Swastika.Cms.Lib.ViewModels.BackEnd
                 Content = Content,
                 FileFolder = FileFolder
             });
-            return new RepositoryResponse<bool>() { IsSucceed = true };
+            return base.SaveSubModels(parent, _context, _transaction);
         }
-
         #endregion
         #region Async
         public override async Task<RepositoryResponse<bool>> RemoveModelAsync(bool isRemoveRelatedModels = false, SiocCmsContext _context = null, IDbContextTransaction _transaction = null)

@@ -103,7 +103,7 @@ namespace Swastika.Cms.Lib.ViewModels.Info
             }
             else
             {
-                int activeThemeId = ApplicationConfigService.Instance.GetLocalInt(
+                int activeThemeId = GlobalConfigurationService.Instance.GetLocalInt(
                     SWCmsConstants.ConfigurationKeyword.ThemeId, culture, 0);
 
                 result = Repository.GetSingleModel(t => t.FolderType == temp[0] && t.FileName == temp[1].Split('.')[0] && t.TemplateId == activeThemeId

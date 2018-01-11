@@ -7,6 +7,7 @@ using Microsoft.Data.OData.Query;
 using Swastika.Cms.Lib.ViewModels.Info;
 using Swastika.Cms.Lib;
 using Swastika.Cms.Lib.ViewModels.FrontEnd;
+using Swastika.Cms.Lib.Services;
 
 namespace Swastika.Cms.Mvc.Controllers
 {
@@ -20,17 +21,18 @@ namespace Swastika.Cms.Mvc.Controllers
         //private readonly string lang;
         //private readonly IStringLocalizer<HomeController> _homeLocalizer;
         //private readonly IStringLocalizer<SharedResource> _localizer;
-        //private readonly ApplicationConfigService _appService;
+        //private readonly GlobalConfigurationService _appService;
         public HomeController(IHostingEnvironment env
             //, IStringLocalizer<HomeController> homeLocalizer
             //, IStringLocalizer<SharedResource> localizer
-            //, ApplicationConfigService service
+            //, GlobalConfigurationService service
             )
             : base(env)
         {
             //_localizer = localizer;
             //_homeLocalizer = homeLocalizer;
             //_appService = service;
+           
         }
 
         [HttpPost]
@@ -54,6 +56,11 @@ namespace Swastika.Cms.Mvc.Controllers
         [Route("{pageName}/{pageSize:int?}/{pageIndex:int?}")]
         public IActionResult Home(string pageName, int pageIndex, int pageSize = 10)
         {
+            if (!GlobalConfigurationService.Instance.IsInit)
+            {
+                return RedirectToAction("Init", "Portal", new { culture = "vi-vn"});
+                
+            }
             // Home Page
             if (string.IsNullOrEmpty(pageName) || pageName == "Home")
             {

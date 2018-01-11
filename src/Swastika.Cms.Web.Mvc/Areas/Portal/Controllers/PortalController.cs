@@ -6,10 +6,11 @@ using Microsoft.AspNetCore.Hosting;
 using Swastika.Cms.Lib;
 using Swastika.Cms.Lib.ViewModels;
 using Swastika.Cms.Lib.ViewModels.Info;
+using Swastika.Cms.Lib.Services;
 
 namespace Swastika.Cms.Mvc.Areas.Portal.Controllers
 {
-    [Authorize]
+    
     [Area("Portal")]
     [Route("{culture}/Portal")]
     public class PortalController : BaseController<PortalController>
@@ -26,6 +27,32 @@ namespace Swastika.Cms.Mvc.Areas.Portal.Controllers
             //return View();
         }
 
+        [HttpGet]
+        [Route("init")]
+        public IActionResult Init()
+        {
+            var model = new InitCmsViewModel();
+            return View(model);
+        }
+
+        [HttpPost]
+        [Route("init")]
+        public IActionResult Init(InitCmsViewModel model)
+        {
+            if (ModelState.IsValid)
+            {
+                string cnnString = string.Format("Server={0};Database={1};UID={2};Pwd={3};MultipleActiveResultSets=true"
+                    , model.DataBaseServer, model.DataBaseName, model.DataBaseUser, model.DataBasePassword);
+                GlobalConfigurationService.Instance.ConnectionString = cnnString;
+                
+                GlobalConfigurationService.Instance.InitSWCms();
+                if (GlobalConfigurationService.Instance.IsInit)
+                {
+                    return Redirect("/");
+                }
+            }
+            return View(model);
+        }
 
         /// <summary>
         /// Searches the specified keyword.

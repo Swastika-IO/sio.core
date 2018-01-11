@@ -1,0 +1,47 @@
+﻿
+@model InitCmsViewModel
+@{
+    ViewData["Title"] = "Init";
+    Layout = "~/Areas/Portal/Views/Shared/NowUI/_BoxLayout.cshtml";
+}
+
+<div class="col-md-4 content-center">
+    <div class="card card-login card-plain">
+        <form asp-area="Portal" asp-controller="Portal" asp-action="Init" method="post" class="form-horizontal">
+            <div class="header header-primary text-center">
+                <div class="logo-container">
+                    <img src="~/lib/now-ui-kit-v1.0.1/assets/img/now-logo.png" alt="">
+                </div>
+            </div>
+            <div class="content">
+                <div class="input-group form-group-no-border input-lg">
+                    <span class="input-group-addon">
+                        <i class="now-ui-icons users_circle-08"></i>
+                    </span>
+                    <input asp-for="DataBaseServer" class="form-control" placeholder="DataBaseServer...">
+                </div>
+                <div class="input-group form-group-no-border input-lg">
+                    <span class="input-group-addon">
+                        <i class="now-ui-icons ui-1_lock-circle-open"></i>
+                    </span>
+                    <input asp-for="DataBaseName" class="form-control" placeholder="DataBaseName..." />
+                </div>
+                <div class="input-group form-group-no-border input-lg">
+                    <span class="input-group-addon">
+                        <i class="now-ui-icons users_circle-08"></i>
+                    </span>
+                    <input asp-for="DataBaseUser" class="form-control" placeholder="DataBaseUser...">
+                </div>
+                <div class="input-group form-group-no-border input-lg">
+                    <span class="input-group-addon">
+                        <i class="now-ui-icons ui-1_lock-circle-open"></i>
+                    </span>
+                    <input asp-for="DataBasePassword" type="password" class="form-control" placeholder="DataBasePassword..." />
+                </div>
+            </div>
+            <div class="footer text-center">
+                <button type="submit" class="btn btn-primary btn-round btn-lg btn-block">Log in</button>
+            </div>
+        </form>
+    </div>
+</div>

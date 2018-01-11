@@ -1,13 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore;
+﻿using Microsoft.AspNetCore;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.Configuration;
-using Microsoft.Extensions.Logging;
+using Swastika.Cms.Lib;
 using Swastika.Cms.Lib.Services;
 
 namespace Swastika.Cms.Web.Mvc
@@ -15,12 +9,8 @@ namespace Swastika.Cms.Web.Mvc
     public class Program
     {
         public static void Main(string[] args)
-        {
-            using(Lib.Models.SiocCmsContext context = new Lib.Models.SiocCmsContext())
-            {
-                context.Database.Migrate();
-            }
-            ApplicationConfigService.Instance.InitSWCms();
+        {            
+            GlobalConfigurationService.Instance.InitSWCms();                
             BuildWebHost(args).Run();
             
         }
