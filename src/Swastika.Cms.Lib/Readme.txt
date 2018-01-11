@@ -44,6 +44,6 @@ Scaffold-DbContext "Server=.\sqlexpress;Database=sw_cms;UID=sa;Pwd=1234qwe@;Mult
             optionsBuilder.UseSqlServer(config.GetConnectionString(SWCmsConstants.CONST_DEFAULT_CONNECTION));
         }
 
-swastika.io:3333
+Swastika.:3333
 smileway\hoang.nguyen
 1234qwe@

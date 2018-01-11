@@ -6,7 +6,7 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc.Filters;
 using Microsoft.AspNetCore.Mvc.Rendering;
-using Swastika.IO.Common.Helper;
+using Swastika.Common.Helper;
 using Swastika.Cms.Lib.Services;
 
 namespace Swastika.Cms.Mvc.Controllers

@@ -4,7 +4,7 @@ using Microsoft.AspNetCore.Mvc;
 using Swastika.Cms.Mvc.Controllers;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.EntityFrameworkCore;
-using Swastika.IO.Domain.Core.ViewModels;
+using Swastika.Domain.Core.ViewModels;
 using Swastika.Cms.Lib.ViewModels;
 using Swastika.Cms.Lib.Models;
 using Swastika.Cms.Lib.Services;

@@ -6,7 +6,7 @@ using Swastika.Cms.Mvc.Controllers;
 using Microsoft.AspNetCore.Hosting;
 using System.Linq;
 using Microsoft.Data.OData.Query;
-using Swastika.IO.Domain.Core.ViewModels;
+using Swastika.Domain.Core.ViewModels;
 using Swastika.Cms.Lib.Models;
 using Swastika.Cms.Lib.ViewModels.Info;
 using Swastika.Cms.Lib.ViewModels.BackEnd;

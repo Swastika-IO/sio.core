@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore.Storage;
 using Newtonsoft.Json;
 using System.ComponentModel.DataAnnotations;
 using Swastika.Cms.Lib;
-using Swastika.IO.Domain.Core.ViewModels;
+using Swastika.Domain.Core.ViewModels;
 using System.Threading.Tasks;
 using Microsoft.Data.OData.Query;
 using Microsoft.EntityFrameworkCore;

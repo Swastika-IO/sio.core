@@ -9,7 +9,7 @@ using System.ComponentModel.DataAnnotations;
 using Newtonsoft.Json.Linq;
 using Swastika.Cms.Lib.Services;
 using Swastika.Cms.Lib.Repositories;
-using Swastika.IO.Domain.Core.ViewModels;
+using Swastika.Domain.Core.ViewModels;
 using Swastika.Common.Helper;
 using System.Threading.Tasks;
 using Swastika.Domain.Core.Models;

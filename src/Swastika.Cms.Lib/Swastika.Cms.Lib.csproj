@@ -1,0 +1,41 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+    <RootNamespace>Swastika.Cms.Lib</RootNamespace>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Remove="Models\AspNetRoleClaims.cs" />
+    <Compile Remove="Models\AspNetRoles.cs" />
+    <Compile Remove="Models\AspNetUserClaims.cs" />
+    <Compile Remove="Models\AspNetUserLogins.cs" />
+    <Compile Remove="Models\AspNetUserRoles.cs" />
+    <Compile Remove="Models\AspNetUsers.cs" />
+    <Compile Remove="Models\AspNetUserTokens.cs" />
+    <Compile Remove="Models\BaseConfiguration.cs" />
+    <Compile Remove="Models\Clients.cs" />
+    <Compile Remove="Models\RefreshTokens.cs" />
+    <Compile Remove="Models\Stag_swastika_ioContext.cs" />
+    <Compile Remove="Repositories\AuthRepository.cs" />
+    <Compile Remove="Repositories\AuthRepository1.cs" />
+    <Compile Remove="ViewModels\AccessTokenViewModel.cs" />
+    <Compile Remove="ViewModels\ArticleModuleViewModels.cs" />
+    <Compile Remove="ViewModels\ArticleViewModels.cs" />
+    <Compile Remove="ViewModels\BackEnd\_BlankViewModel.cs" />
+    <Compile Remove="ViewModels\BlankViewModel.cs" />
+    <Compile Remove="ViewModels\CategoryViewModels.cs" />
+    <Compile Remove="ViewModels\ModuleViewModels.cs" />
+    <Compile Remove="ViewModels\_BlankViewModel.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="2.0.1" />
+    <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="2.0.1" />
+    <PackageReference Include="Microsoft.Extensions.Configuration" Version="2.0.0" />
+    <PackageReference Include="Microsoft.IdentityModel.Tokens" Version="5.1.5" />
+    <PackageReference Include="Swastika" Version="0.0.2" />
+    <PackageReference Include="Swastika.Identity" Version="0.0.2" />
+  </ItemGroup>
+
+</Project>

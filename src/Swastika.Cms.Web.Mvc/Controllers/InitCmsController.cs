@@ -5,14 +5,15 @@ using Swastika.Cms.Mvc.Controllers;
 
 namespace Swastika.Cms.Web.Mvc.Controllers
 {
-    [Route("{culture}")]
+    
     public class InitCmsController : BaseController<InitCmsController>
     {
         public InitCmsController(IHostingEnvironment env) : base(env)
         {
 
         }
-
+        [Route("")]
+        [Route("{culture}")]
         public IActionResult Index()
         {
             if (!GlobalConfigurationService.Instance.IsInit)

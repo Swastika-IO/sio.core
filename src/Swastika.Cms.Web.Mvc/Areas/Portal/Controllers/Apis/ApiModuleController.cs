@@ -7,7 +7,7 @@ using Microsoft.Extensions.Localization;
 using Microsoft.AspNetCore.Routing;
 using Swastika.Cms.Mvc.Areas.Portal.Controllers;
 using Swastika.Cms.Mvc.Controllers;
-using Swastika.IO.Domain.Core.ViewModels;
+using Swastika.Domain.Core.ViewModels;
 using Swastika.Cms.Lib.ViewModels;
 using Swastika.Cms.Lib.ViewModels.BackEnd;
 using Microsoft.Data.OData.Query;

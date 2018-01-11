@@ -3,10 +3,10 @@ using Swastika.Cms.Lib.Models;
 using Swastika.Domain.Data.ViewModels;
 using Microsoft.EntityFrameworkCore.Storage;
 using Newtonsoft.Json;
-using Swastika.IO.Domain.Core.ViewModels;
+using Swastika.Domain.Core.ViewModels;
 using Swastika.Cms.Lib.Repositories;
 using System.Threading.Tasks;
-using Swastika.IO.Common.Helper;
+using Swastika.Common.Helper;
 using Swastika.Cms.Lib.Services;
 
 namespace Swastika.Cms.Lib.ViewModels.Info

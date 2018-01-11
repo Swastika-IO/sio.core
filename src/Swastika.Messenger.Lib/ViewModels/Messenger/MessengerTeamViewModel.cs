@@ -5,7 +5,7 @@ using Swastika.Messenger.Lib.Models;
 using Swastika.Domain.Data.ViewModels;
 using Microsoft.EntityFrameworkCore.Storage;
 using Newtonsoft.Json;
-using Swastika.IO.Common.Helper;
+using Swastika.Common.Helper;
 using Messenger.Lib.Helpers;
 
 namespace Swastika.Messenger.Lib.ViewModels.Messenger

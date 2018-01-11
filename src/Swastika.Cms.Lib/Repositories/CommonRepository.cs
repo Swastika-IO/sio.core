@@ -6,7 +6,7 @@ using Swastika.Domain.Core.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using Swastika.IO.Domain.Core.ViewModels;
+using Swastika.Domain.Core.ViewModels;
 using Swastika.Cms.Lib.ViewModels.Info;
 using Swastika.Cms.Lib.ViewModels.BackEnd;
 
