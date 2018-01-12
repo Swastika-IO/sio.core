@@ -9,7 +9,18 @@ namespace Swastika.Cms.Lib.Models.Account
 {
     public partial class SiocCmsAccountContext : ApplicationDbContext
     {
-       
+        /// <summary>
+        /// Initializes a new instance of the <see cref="ApplicationDbContext" /> class.
+        /// </summary>
+        /// <param name="options">The options.</param>
+        public SiocCmsAccountContext(DbContextOptions<ApplicationDbContext> options)
+                    : base(options)
+        {
+        }
+
+        public SiocCmsAccountContext()
+        {
+        }
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             var config = new ConfigurationBuilder()
@@ -17,12 +28,13 @@ namespace Swastika.Cms.Lib.Models.Account
                 .AddJsonFile(Common.Utility.Const.CONST_FILE_APPSETTING)
                 .Build();
 
-            // define the database to use
+            
 
-            optionsBuilder.UseSqlServer(GlobalConfigurationService.Instance.GetConnectionString());
+                optionsBuilder.UseSqlServer(GlobalConfigurationService.Instance.GetConnectionString());
+
             //optionsBuilder.UseSqlServer(config.GetConnectionString("AccountConnection"));
 
         }
-        
+
     }
 }

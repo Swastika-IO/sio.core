@@ -47,7 +47,7 @@ namespace Swastika.Cms.Mvc.Areas.Portal.Controllers
                 if (!model.IsUseLocal)
                 {
 
-                     cnnString = string.Format("Server={0};Database={1};UID={2};Pwd={3};MultipleActiveResultSets=true"
+                     cnnString = string.Format("Server={0};Database={1};UID={2};Pwd={3};MultipleActiveResultSets=true;Provider=System.Data.SqlClient"
                         , model.DataBaseServer, model.DataBaseName, model.DataBaseUser, model.DataBasePassword);
                     
                 }

@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Identity;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Swastika.Cms.Lib.Models.Account;
@@ -10,7 +11,9 @@ namespace Swastika.Cms.Web.Mvc
     {
         public static void ConfigIdentity(IServiceCollection services, IConfigurationRoot Configuration)
         {
-            services.AddDbContext<SiocCmsAccountContext>();
+            
+            services.AddDbContext<SiocCmsAccountContext>(options =>
+                options.UseSqlServer(Configuration.GetConnectionString("CmsConnection")));
 
             PasswordOptions pOpt = new PasswordOptions()
             {
