@@ -4,7 +4,7 @@ Swastika I/O is free, open source and cross-platform CMS based on ASP.NET Core. 
 
 ## Screenshot:  
 
-# Admin Portal
+### Admin Portal
 ![Swastika I/O Admin Portal Bootstrap 4](https://swastika-io.github.io/Swastika-IO-Admin/img/screen.png "Swastika I/O Admin Portal Bootstrap 4")
 
 ## Getting Started
@@ -18,9 +18,9 @@ Note: This project is under heavy construction and is not intended for general p
 What things you need to install the software and how to install them
 
 * [.NET](https://www.microsoft.com/net/core) - .NET Core framework
-* [Node.js®](https://nodejs.org/en/download/) - Node.js® framework
 * [Visual Studio Community 2017](https://www.visualstudio.com/downloads/) - Free, fully-featured IDE for students, open-source and individual developers
 * [SQL Server 2016+](https://www.microsoft.com/en-us/sql-server/sql-server-editions-express) - Database server
+
 
 ### Installing
 
@@ -111,3 +111,9 @@ This project is licensed under the GPL-3.0 License - see the [LICENSE.md](LICENS
 * Hat tip to anyone who's code was used
 * Inspiration
 * etc
+
+## Thanks to
+
+This project has been developed using:
+* [Creative Tim](https://www.creative-tim.com/)
+* [BrowserStack](https://www.browserstack.com/)
