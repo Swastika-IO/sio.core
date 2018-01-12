@@ -18,9 +18,9 @@ Note: This project is under heavy construction and is not intended for general p
 What things you need to install the software and how to install them
 
 * [.NET](https://www.microsoft.com/net/core) - .NET Core framework
-* [Node.js®](https://nodejs.org/en/download/) - Node.js® framework
 * [Visual Studio Community 2017](https://www.visualstudio.com/downloads/) - Free, fully-featured IDE for students, open-source and individual developers
 * [SQL Server 2016+](https://www.microsoft.com/en-us/sql-server/sql-server-editions-express) - Database server
+
 
 ### Installing
 

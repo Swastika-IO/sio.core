@@ -1,11 +1,8 @@
-﻿@*
-    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
-*@
+﻿<ul class="navbar-nav sw-navbar-nav flex-row">
+    <li class="nav-item"><a class="nav-link" href="#">@this.ViewContext.RouteData.Values["area"].ToString()</a></li>
+    <span class="oi oi-chevron-right breadcrumb-item"></span>
+    <li class="nav-item"><a class="nav-link" href="#">@this.ViewContext.RouteData.Values["controller"].ToString()</a></li>
+    <span class="oi oi-chevron-right breadcrumb-item"></span>
+    <li class="nav-item active"><span class="nav-link">@this.ViewContext.RouteData.Values["action"].ToString()</span></li>
 
-@{
-}
-<ol class="breadcrumb">
-    <li><a href="#"><i class="fa fa-dashboard"></i> @this.ViewContext.RouteData.Values["area"].ToString()</a></li>
-    <li><a href="#">@this.ViewContext.RouteData.Values["controller"].ToString()</a></li>
-    <li class="active">@this.ViewContext.RouteData.Values["action"].ToString()</li>
-</ol>
+</ul>

@@ -3,7 +3,7 @@
 @inject UserManager<ApplicationUser> UserManager
 
 @{
-    ViewBag.IsAdmin = true; // UserManager.GetUserName(User) == "administrator";
+    ViewBag.IsAdmin = true;
 }
 <!doctype html>
 <html lang="en">
@@ -18,11 +18,10 @@
     <!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb" crossorigin="anonymous"> -->
 
 
-    <link rel="stylesheet" href="./css/portal.white.min.css">
-    <link href="./font/css/open-iconic-bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="~/css/portal/portal.white.min.css">
+    <link href="~/css/open-iconic/open-iconic-bootstrap.min.css" rel="stylesheet">
 
-    <style>
-    </style>
+    @RenderSection("Styles", required: false)
 </head>
 
 <body>
@@ -30,7 +29,7 @@
     <header class="navbar navbar-expand flex-column flex-md-row sw-navbar">
 
         <a class="navbar-brand mr-0 mr-md-2" href="/" aria-label="Swastika I/O">
-            <img src="img/swastika-io-logo-blue.png" alt="Kiwi standing on oval" width="35px">
+            <img src="~/css/portal/img/swastika-io-logo-blue.png" alt="Kiwi standing on oval" width="35px">
         </a>
 
         <button type="button" id="sidebarCollapse" class="btn btn-link">
@@ -39,16 +38,8 @@
 
 
         <div class="navbar-nav-scroll">
-
-            <ul class="navbar-nav sw-navbar-nav flex-row">
-                <li class="nav-item">
-                    <a class="nav-link" href="/" onclick="">Articles</a>
-                </li>
-                <span class="oi oi-chevron-right breadcrumb-item"></span>
-                <li class="nav-item">
-                    <a class="nav-link active" href="/" onclick="">Create</a>
-                </li>
-            </ul>
+            @await Component.InvokeAsync(typeof(Swastika.Cms.Mvc.Areas.Portal.ViewComponents.Breadcrumbs))
+            
         </div>
 
         <ul class="navbar-nav flex-row ml-md-auto d-none d-md-flex">
@@ -105,634 +96,14 @@
     <div class="container-fluid wrapper">
         <div class="row flex-xl-nowrap">
             <!-- Sidebar Holder -->
-            <div id="sidebar" class="sw-sidebar">
-                <form class="sw-search d-flex align-items-center">
-                    <input type="search" class="form-control" id="search-input" placeholder="Search..." aria-label="Search for..." autocomplete="off">
-                    <button class="btn btn-link sw-search-docs-toggle d-md-none p-0 ml-3" type="button" data-toggle="collapse" data-target="#sw-docs-nav"
-                            aria-controls="sw-docs-nav" aria-expanded="false" aria-label="Toggle docs navigation">
-                        <svg xmlns="http://www.w3.org/2000/svg" viewbox="0 0 30 30" width="30" height="30" focusable="false">
-                            <title>Menu</title>
-                            <path stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-miterlimit="10" d="M4 7h22M4 15h22M4 23h22" />
-                        </svg>
 
-                    </button>
-                </form>
+            @await Component.InvokeAsync(typeof(Swastika.Cms.Mvc.Areas.Portal.ViewComponents.MainSidebar))
 
-
-                <ul class="collapse sw-links" id="sw-docs-nav" data-children=".sw-toc-item">
-                    <li class="sw-toc-item">
-                        <a class="sw-toc-link" href="#">
-                            <span class="oi oi-dashboard"></span>
-                            <span class="text">Dashboard</span>
-                        </a>
-                    </li>
-                    <li class="sw-toc-item">
-                        <a class="sw-toc-link" data-toggle="collapse" data-parent="#sw-docs-nav" href="#collapseArticleSubMenus" role="button" aria-expanded="false"
-                           aria-controls="collapseArticleSubMenus">
-                            <span class="oi oi-document"></span>
-                            <span class="text">Articles</span>
-                            <div class="btn-group btn-group-sm" role="group" aria-label="Basic example">
-                                <button type="button" class="btn btn-light">
-                                    <span class="oi oi-plus"></span>
-                                </button>
-                                <button type="button" class="btn btn-light">
-                                    <span class="oi oi-list"></span>
-                                </button>
-                                <button type="button" class="btn btn-light">
-                                    <span class="oi oi-clipboard"></span>
-                                </button>
-                            </div>
-
-                        </a>
-                        <ul id="collapseArticleSubMenus" class="collapse list-unstyled" role="tabpanel">
-                            <li class="active sw-sidenav-active">
-                                <a href="#">
-                                    <span class="oi oi-plus"></span>
-                                    <span class="text">Create Article</span>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="#">
-                                    <span class="oi oi-list"></span>
-                                    <span class="text">List Article</span>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="#">
-                                    <span class="oi oi-clipboard"></span>
-                                    <span class="text">Draft</span>
-                                </a>
-                            </li>
-
-                            <li class="hide-on-sb-inactive">
-                                <a href="#">
-                                    <span class="oi oi-copywriting"></span>
-                                    <span class="text">Article...</span>
-                                    <div class="btn-group btn-group-sm" role="group" aria-label="Basic example">
-                                        <button type="button" class="btn btn-link">
-                                            <span class="oi oi-plus"></span>
-                                        </button>
-                                        <button type="button" class="btn btn-link">
-                                            <span class="oi oi-list"></span>
-                                        </button>
-                                        <button type="button" class="btn btn-link">
-                                            <span class="oi oi-pencil"></span>
-                                        </button>
-                                    </div>
-                                </a>
-                            </li>
-                            <li class="hide-on-sb-inactive">
-                                <a href="#">
-                                    <span class="oi oi-copywriting"></span>
-                                    <span class="text">Article...</span>
-                                    <div class="btn-group btn-group-sm" role="group" aria-label="Basic example">
-                                        <button type="button" class="btn btn-link">
-                                            <span class="oi oi-plus"></span>
-                                        </button>
-                                        <button type="button" class="btn btn-link">
-                                            <span class="oi oi-list"></span>
-                                        </button>
-                                        <button type="button" class="btn btn-link">
-                                            <span class="oi oi-pencil"></span>
-                                        </button>
-                                    </div>
-                                </a>
-                            </li>
-                            <li class="hide-on-sb-inactive">
-                                <a href="#">
-                                    <span class="oi oi-copywriting"></span>
-                                    <span class="text">Article...</span>
-                                    <div class="btn-group btn-group-sm" role="group" aria-label="Basic example">
-                                        <button type="button" class="btn btn-link">
-                                            <span class="oi oi-plus"></span>
-                                        </button>
-                                        <button type="button" class="btn btn-link">
-                                            <span class="oi oi-list"></span>
-                                        </button>
-                                        <button type="button" class="btn btn-link">
-                                            <span class="oi oi-pencil"></span>
-                                        </button>
-                                    </div>
-                                </a>
-                            </li>
-                            <li class="hide-on-sb-inactive">
-                                <a href="#">
-                                    <span class="oi oi-copywriting"></span>
-                                    <span class="text">Article...</span>
-                                    <div class="btn-group btn-group-sm" role="group" aria-label="Basic example">
-                                        <button type="button" class="btn btn-link">
-                                            <span class="oi oi-plus"></span>
-                                        </button>
-                                        <button type="button" class="btn btn-link">
-                                            <span class="oi oi-list"></span>
-                                        </button>
-                                        <button type="button" class="btn btn-link">
-                                            <span class="oi oi-pencil"></span>
-                                        </button>
-                                    </div>
-                                </a>
-                            </li>
-                        </ul>
-                    </li>
-                    <li class="sw-toc-item">
-                        <a class="sw-toc-link" data-toggle="collapse" data-parent="#sw-docs-nav" href="#collapsePageSubMenus" role="button" aria-expanded="false"
-                           aria-controls="collapsePageSubMenus">
-                            <span class="oi oi-browser"></span>
-                            <span class="text">Pages</span>
-                            <div class="btn-group btn-group-sm" role="group" aria-label="Basic example">
-                                <button type="button" class="btn btn-light">
-                                    <span class="oi oi-plus"></span>
-                                </button>
-                                <button type="button" class="btn btn-light">
-                                    <span class="oi oi-list"></span>
-                                </button>
-                                <button type="button" class="btn btn-light">
-                                    <span class="oi oi-clipboard"></span>
-                                </button>
-                            </div>
-                        </a>
-                        <ul id="collapsePageSubMenus" class="collapse list-unstyled" role="tabpanel">
-                            <li class="active sw-sidenav-active">
-                                <a href="#">
-                                    <span class="oi oi-plus"></span>
-                                    <span class="text">Create Article</span>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="#">
-                                    <span class="oi oi-list"></span>
-                                    <span class="text">List Article</span>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="#">
-                                    <span class="oi oi-pencil"></span>
-                                    <span class="text">Draft</span>
-                                </a>
-                            </li>
-
-                            <li class="hide-on-sb-inactive">
-                                <a href="#">
-                                    <span class="oi oi-fork"></span>
-                                    <span class="text">About us...</span>
-                                    <div class="btn-group btn-group-sm" role="group" aria-label="Basic example">
-                                        <button type="button" class="btn btn-link">
-                                            <span class="oi oi-plus"></span>
-                                        </button>
-                                        <button type="button" class="btn btn-link">
-                                            <span class="oi oi-list"></span>
-                                        </button>
-                                        <button type="button" class="btn btn-link">
-                                            <span class="oi oi-pencil"></span>
-                                        </button>
-                                    </div>
-                                </a>
-                            </li>
-                            <li class="hide-on-sb-inactive">
-                                <a href="#">
-                                    <span class="oi oi-fork"></span>
-                                    <span class="text">About us...</span>
-                                    <div class="btn-group btn-group-sm" role="group" aria-label="Basic example">
-                                        <button type="button" class="btn btn-link">
-                                            <span class="oi oi-plus"></span>
-                                        </button>
-                                        <button type="button" class="btn btn-link">
-                                            <span class="oi oi-list"></span>
-                                        </button>
-                                        <button type="button" class="btn btn-link">
-                                            <span class="oi oi-pencil"></span>
-                                        </button>
-                                    </div>
-                                </a>
-                            </li>
-                            <li class="hide-on-sb-inactive">
-                                <a href="#">
-                                    <span class="oi oi-fork"></span>
-                                    <span class="text">About us...</span>
-                                    <div class="btn-group btn-group-sm" role="group" aria-label="Basic example">
-                                        <button type="button" class="btn btn-link">
-                                            <span class="oi oi-plus"></span>
-                                        </button>
-                                        <button type="button" class="btn btn-link">
-                                            <span class="oi oi-list"></span>
-                                        </button>
-                                        <button type="button" class="btn btn-link">
-                                            <span class="oi oi-pencil"></span>
-                                        </button>
-                                    </div>
-                                </a>
-                            </li>
-                        </ul>
-                    </li>
-                    <li class="sw-toc-item">
-                        <a class="sw-toc-link" data-toggle="collapse" data-parent="#sw-docs-nav" href="#collapseModuleSubMenus" aria-expanded="false"
-                           aria-controls="collapseModuleSubMenus">
-                            <span class="oi oi-puzzle-piece"></span>
-                            <span class="text">Modules</span>
-                            <div class="btn-group btn-group-sm" role="group" aria-label="Basic example">
-                                <button type="button" class="btn btn-light">
-                                    <span class="oi oi-plus"></span>
-                                </button>
-                                <button type="button" class="btn btn-light">
-                                    <span class="oi oi-list"></span>
-                                </button>
-                                <button type="button" class="btn btn-light">
-                                    <span class="oi oi-clipboard"></span>
-                                </button>
-                            </div>
-                        </a>
-                        <ul id="collapseModuleSubMenus" class="collapse list-unstyled">
-                            <li class="active sw-sidenav-active">
-                                <a href="#">
-                                    <span class="oi oi-plus"></span>
-                                    <span class="text">Create Article</span>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="#">
-                                    <span class="oi oi-list"></span>
-                                    <span class="text">List Article</span>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="#">
-                                    <span class="oi oi-pencil"></span>
-                                    <span class="text">Draft</span>
-                                </a>
-                            </li>
-                            <li class="hide-on-sb-inactive">
-                                <a href="#">
-                                    <span class="oi oi-puzzle-piece"></span>
-                                    <span class="text">About us...</span>
-                                    <div class="btn-group btn-group-sm" role="group" aria-label="Basic example">
-                                        <button type="button" class="btn btn-link">
-                                            <span class="oi oi-plus"></span>
-                                        </button>
-                                        <button type="button" class="btn btn-link">
-                                            <span class="oi oi-list"></span>
-                                        </button>
-                                        <button type="button" class="btn btn-link">
-                                            <span class="oi oi-pencil"></span>
-                                        </button>
-                                    </div>
-                                </a>
-                            </li>
-                            <li class="hide-on-sb-inactive">
-                                <a href="#">
-                                    <span class="oi oi-puzzle-piece"></span>
-                                    <span class="text">About us...</span>
-                                    <div class="btn-group btn-group-sm" role="group" aria-label="Basic example">
-                                        <button type="button" class="btn btn-link">
-                                            <span class="oi oi-plus"></span>
-                                        </button>
-                                        <button type="button" class="btn btn-link">
-                                            <span class="oi oi-list"></span>
-                                        </button>
-                                        <button type="button" class="btn btn-link">
-                                            <span class="oi oi-pencil"></span>
-                                        </button>
-                                    </div>
-                                </a>
-                            </li>
-                            <li class="hide-on-sb-inactive">
-                                <a href="#">
-                                    <span class="oi oi-puzzle-piece"></span>
-                                    <span class="text">About us...</span>
-                                    <div class="btn-group btn-group-sm" role="group" aria-label="Basic example">
-                                        <button type="button" class="btn btn-link">
-                                            <span class="oi oi-plus"></span>
-                                        </button>
-                                        <button type="button" class="btn btn-link">
-                                            <span class="oi oi-list"></span>
-                                        </button>
-                                        <button type="button" class="btn btn-link">
-                                            <span class="oi oi-pencil"></span>
-                                        </button>
-                                    </div>
-                                </a>
-                            </li>
-                        </ul>
-                    </li>
-                    <li class="sw-toc-item">
-                        <a class="sw-toc-link" data-toggle="collapse" data-parent="#sw-docs-nav" href="#collapseAppearanceSubMenus" aria-expanded="false"
-                           aria-controls="collapseAppearanceSubMenus">
-                            <span class="oi oi-brush"></span>
-                            <span class="text">Themes</span>
-                            <div class="btn-group btn-group-sm" role="group" aria-label="Basic example">
-                                <button type="button" class="btn btn-light">
-                                    <span class="oi oi-plus"></span>
-                                </button>
-                                <button type="button" class="btn btn-light">
-                                    <span class="oi oi-list"></span>
-                                </button>
-                                <button type="button" class="btn btn-light">
-                                    <span class="oi oi-clipboard"></span>
-                                </button>
-                            </div>
-                        </a>
-                        <ul id="collapseAppearanceSubMenus" class="collapse list-unstyled">
-                            <li class="active sw-sidenav-active">
-                                <a href="#">
-                                    <span class="oi oi-plus"></span>
-                                    <span class="text">Create Theme</span>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="#">
-                                    <span class="oi oi-list"></span>
-                                    <span class="text">List Theme</span>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="#">
-                                    <span class="oi oi-pencil"></span>
-                                    <span class="text">Draft</span>
-                                </a>
-                            </li>
-
-                            <li class="hide-on-sb-inactive">
-                                <a href="#">
-                                    <span class="oi oi-layers"></span>
-                                    <span class="text">About us...</span>
-                                    <div class="btn-group btn-group-sm" role="group" aria-label="Basic example">
-                                        <button type="button" class="btn btn-link">
-                                            <span class="oi oi-plus"></span>
-                                        </button>
-                                        <button type="button" class="btn btn-link">
-                                            <span class="oi oi-list"></span>
-                                        </button>
-                                        <button type="button" class="btn btn-link">
-                                            <span class="oi oi-pencil"></span>
-                                        </button>
-                                    </div>
-                                </a>
-                            </li>
-                        </ul>
-                    </li>
-                    <li class="sw-toc-item">
-                        <a class="sw-toc-link" data-toggle="collapse" data-parent="#sw-docs-nav" href="#collapseFileSubMenus" aria-expanded="false"
-                           aria-controls="collapseFileSubMenus">
-                            <span class="oi oi-image"></span>
-                            <span class="text">Medias</span>
-                            <div class="btn-group btn-group-sm" role="group" aria-label="Basic example">
-                                <button type="button" class="btn btn-light">
-                                    <span class="oi oi-plus"></span>
-                                </button>
-                                <button type="button" class="btn btn-light">
-                                    <span class="oi oi-list"></span>
-                                </button>
-                                <button type="button" class="btn btn-light">
-                                    <span class="oi oi-clipboard"></span>
-                                </button>
-                            </div>
-                        </a>
-                        <ul id="collapseFileSubMenus" class="collapse list-unstyled">
-                            <li class="active sw-sidenav-active">
-                                <a href="#">
-                                    <span class="oi oi-image"></span>
-                                    <span class="text">Medias</span>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="#">
-                                    <span class="oi oi-file"></span>
-                                    <span class="text">Files</span>
-                                </a>
-                            </li>
-                        </ul>
-                    </li>
-                    <li class="sw-toc-item">
-                        <a class="sw-toc-link" data-toggle="collapse" data-parent="#sw-docs-nav" href="#collapseSettingSubMenus" aria-expanded="false"
-                           aria-controls="collapseSettingSubMenus">
-                            <span class="oi oi-wrench"></span>
-                            <span class="text">Settings</span>
-                        </a>
-                        <ul id="collapseSettingSubMenus" class="collapse list-unstyled">
-                            <li class="active sw-sidenav-active">
-                                <a href="#">
-                                    <span class="oi oi-list"></span>
-                                    <span class="text">Configurations</span>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="#">
-                                    <span class="oi oi-globe"></span>
-                                    <span class="text">Cultures</span>
-                                </a>
-                            </li>
-                        </ul>
-                    </li>
-                    <li class="sw-toc-item"></li>
-                    <li class="sw-toc-item"></li>
-                </ul>
-            </div>
-
+            <!-- /.Sidebar Holder -->
             <main class="py-md-3 px-md-4 sw-content" role="main">
-                <!-- <div class="row">
-                  <div class="col-sm-8">
-                    <h1 class="sw-title" id="content">Dashboard</h1>
-                  </div>
-                  <div class="col-sm-4">
-                    <nav aria-label="breadcrumb" role="navigation">
-                      <ol class="breadcrumb">
-                        <li class="breadcrumb-item pull-right">
-                          <a href="#">Home</a>
-                        </li>
-                        <li class="breadcrumb-item pull-right">
-                          <a href="#">Library</a>
-                        </li>
-                        <li class="breadcrumb-item pull-right active" aria-current="page">Data</li>
-                      </ol>
-                    </nav>
-                  </div>
-                </div> -->
-                <!-- https://bootstrapious.com/tutorial/sidebar/index4.html -->
-                <div class="row sortable">
-                    <div class="col-sm-3">
-                        <div class="card draggable1">
-                            <div class="card-body">
-                                <h4 class="card-title">Draggable 1</h4>
-                                <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-                                <a href="#" class="btn btn-primary">Go somewhere</a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-sm-3">
-                        <div class="card draggable1">
-                            <div class="card-body">
-                                <h4 class="card-title">Draggable 2</h4>
-                                <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-                                <a href="#" class="btn btn-primary">Go somewhere</a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-sm-3">
-                        <div class="card draggable1">
-                            <div class="card-body">
-                                <h4 class="card-title">Draggable 3</h4>
-                                <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-                                <a href="#" class="btn btn-primary">Go somewhere</a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-sm-3">
-                        <div class="card draggable1">
-                            <div class="card-body">
-                                <h4 class="card-title">Draggable 4</h4>
-                                <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-                                <a href="#" class="btn btn-primary">Go somewhere</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-sm-6">
-                        <div class="card">
-                            <div class="card-body">
-                                <h4 class="card-title">Special title treatment</h4>
-                                <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-                                <a href="#" class="btn btn-primary">Go somewhere</a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-sm-6">
-                        <div class="card">
-                            <div class="card-body">
-                                <h4 class="card-title">Special title treatment</h4>
-                                <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-                                <a href="#" class="btn btn-primary">Go somewhere</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-sm-12">
-                        <div class="card draggable-header">
-                            <div class="card-header">
-                                Featured
-                                <button type="button" id="sidebarCollapse" class="btn btn-link move">
-                                    <span class="oi oi-move"></span>
-                                </button>
-                            </div>
-                            <div class="card-body">
-                                <h4 class="card-title">Special title treatment</h4>
-                                <form>
-                                    <div class="form-group">
-                                        <label for="exampleInputEmail1">Email address</label>
-                                        <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email">
-                                        <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="exampleInputPassword1">Password</label>
-                                        <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
-                                    </div>
-                                    <div class="form-check">
-                                        <label class="form-check-label">
-                                            <input type="checkbox" class="form-check-input"> Check me out
-                                        </label>
-                                    </div>
-                                    <button type="submit" class="btn btn-primary">Submit</button>
-                                </form>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-sm-12">
-                        <div class="card">
-                            <div class="card-header">
-                                Featured
-                            </div>
-                            <div class="card-body">
-                                <h4 class="card-title">Special title treatment</h4>
-                                <div class="input-group">
-                                    <span class="input-group-addon" id="basic-addon1">@</span>
-                                    <input type="text" class="form-control" placeholder="Username" aria-label="Username" aria-describedby="basic-addon1">
-                                </div>
-                                <br>
-                                <div class="input-group">
-                                    <input type="text" class="form-control" placeholder="Recipient's username" aria-label="Recipient's username" aria-describedby="basic-addon2">
-                                    <span class="input-group-addon" id="basic-addon2">@example.com</span>
-                                </div>
-                                <br>
-                                <label for="basic-url">Your vanity URL</label>
-                                <div class="input-group">
-                                    <span class="input-group-addon" id="basic-addon3">https://example.com/users/</span>
-                                    <input type="text" class="form-control" id="basic-url" aria-describedby="basic-addon3">
-                                </div>
-                                <br>
-                                <div class="input-group">
-                                    <span class="input-group-addon">$</span>
-                                    <input type="text" class="form-control" aria-label="Amount (to the nearest dollar)">
-                                    <span class="input-group-addon">.00</span>
-                                </div>
-                                <br>
-                                <div class="input-group">
-                                    <span class="input-group-addon">$</span>
-                                    <span class="input-group-addon">0.00</span>
-                                    <input type="text" class="form-control" aria-label="Amount (to the nearest dollar)">
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-sm-12">
-                        <div class="card">
-                            <div class="card-header">
-                                Featured
-                            </div>
-                            <div class="card-body">
-                                <h4 class="card-title">Special title treatment</h4>
-                                <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-                                <a href="#" class="btn btn-primary">Go somewhere</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-sm-12">
-                        <div class="card">
-                            <div class="card-header">
-                                Featured
-                            </div>
-                            <div class="card-body">
-                                <h4 class="card-title">Special title treatment</h4>
-                                <table class="table">
-                                    <thead>
-                                        <tr>
-                                            <th scope="col">#</th>
-                                            <th scope="col">First Name</th>
-                                            <th scope="col">Last Name</th>
-                                            <th scope="col">Username</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <tr>
-                                            <th scope="row">1</th>
-                                            <td>Mark</td>
-                                            <td>Otto</td>
-                                            <td>@mdo</td>
-                                        </tr>
-                                        <tr>
-                                            <th scope="row">2</th>
-                                            <td>Jacob</td>
-                                            <td>Thornton</td>
-                                            <td>@fat</td>
-                                        </tr>
-                                        <tr>
-                                            <th scope="row">3</th>
-                                            <td>Larry</td>
-                                            <td>the Bird</td>
-                                            <td>@twitter</td>
-                                        </tr>
-                                    </tbody>
-                                </table>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
+                <form enctype="multipart/form-data" onsubmit="return false" asp-action="@ViewContext.RouteData.Values["action"].ToString()">
+                    @RenderBody()
+                </form>
             </main>
         </div>
     </div>
@@ -748,7 +119,89 @@
             crossorigin="anonymous"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js" integrity="sha384-alpBpkh1PFOepccYVYDB4do5UnbKysX5WZXm3XxPqe5iKTfUKjNkCk9SaVuEZflJ"
             crossorigin="anonymous"></script>
-    <script src="./js/portal.white.js"></script>
+    <script src="~/js/portal/portal.white.js"></script>
+
+    @RenderSection("Scripts", required: false)
+
+
+    <div class="modal modal-danger fade" id="modal-error">
+        <div class="modal-dialog modal-lg">
+            <form id="frm-data" asp-controller="ApiModule" asp-action="AjaxSaveModuleData">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                        <h4 class="modal-title">Edit</h4>
+                    </div>
+                    <div class="modal-body">
+
+                    </div>
+                    <div class="modal-footer">
+                        <a class="btn btn- btn-primary btn-warning" data-dismiss="modal">Close</a>
+                    </div>
+                </div>
+                <!-- /.modal-content -->
+            </form>
+        </div>
+        <!-- /.modal-dialog -->
+    </div>
+
+    <div class="modal modal-default fade" id="modal-files">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <div class="col-md-11">
+                        <h2 class="modal-title">Upload file</h2>
+                    </div>
+                    <div class="col-md-1">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                </div>
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-lg-10">
+                            <div class="col-lg-4">
+
+                                <input type="file" id="file" />
+                            </div>
+                        </div>
+                        <div class="col-lg-2" style="margin-bottom: 10px;">
+                            <a href="#" class="btn btn-success btn-block" onclick="SW.Common.loadFileStream('Images')">Submit file...</a>
+                        </div>
+                    </div>
+                    <table class="table table-condensed">
+                        <thead>
+                            <tr>
+                                <th>
+                                    Folder
+                                </th>
+                                <th>
+                                    Name
+                                </th>
+                                <th>
+                                    FullPath
+                                </th>
+                                <th>
+                                    Content
+                                </th>
+                            </tr>
+                        </thead>
+                        <tbody></tbody>
+                    </table>
+                </div>
+                <div class="modal-footer">
+                    <a class="btn btn- btn-primary btn-warning" data-dismiss="modal">Close</a>
+                </div>
+            </div>
+            <!-- /.modal-content -->
+        </div>
+        <!-- /.modal-dialog -->
+    </div>
+
+    @RenderSection("Modals", required: false)
 </body>
 
 </html>
