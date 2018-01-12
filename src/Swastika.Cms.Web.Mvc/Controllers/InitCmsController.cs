@@ -12,7 +12,8 @@ namespace Swastika.Cms.Web.Mvc.Controllers
         {
 
         }
-        [Route("")]        
+        [Route("")]
+        [Route("{culture}")]
         public IActionResult Index()
         {
             if (string.IsNullOrEmpty(GlobalConfigurationService.Instance.GetConfigConnectionKey()))

@@ -8,14 +8,11 @@ namespace Swastika.Cms.Lib.ViewModels
 {
     public class InitCmsViewModel
     {
-        [Required]
         public string DataBaseServer { get; set; }
-        [Required]
         public string DataBaseName { get; set; }
-        [Required]
         public string DataBaseUser { get; set; }
-        [Required]
         public string DataBasePassword { get; set; }
+        public bool IsUseLocal { get; set; }
     }
     public class FileStreamViewModel
     {

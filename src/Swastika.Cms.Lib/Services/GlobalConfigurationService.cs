@@ -126,16 +126,16 @@ namespace Swastika.Cms.Lib.Services
                         ConnectionString = GetConfigConnectionKey();
 
 
-                        if (string.IsNullOrEmpty(ConnectionString))
-                        {
-                            //Get Remote cnn string here (in future)
-                            var getConnectionString = BEParameterViewModel.Repository.GetSingleModel(
-                        c => c.Name == SWCmsConstants.ConfigurationKeyword.ConnectionString);
-                            if (getConnectionString.IsSucceed)
-                            {
-                                ConnectionString = getConnectionString.Data.Value;
-                            }
-                        }
+                        //if (string.IsNullOrEmpty(ConnectionString))
+                        //{
+                        //    //Get Remote cnn string here (in future)
+                        //    var getConnectionString = BEParameterViewModel.Repository.GetSingleModel(
+                        //c => c.Name == SWCmsConstants.ConfigurationKeyword.ConnectionString);
+                        //    if (getConnectionString.IsSucceed)
+                        //    {
+                        //        ConnectionString = getConnectionString.Data.Value;
+                        //    }
+                        //}
                         return !string.IsNullOrEmpty(ConnectionString);
                     }
                     else

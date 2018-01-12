@@ -13,7 +13,15 @@
                     <img src="~/lib/now-ui-kit-v1.0.1/assets/img/now-logo.png" alt="">
                 </div>
             </div>
-            <div class="content">
+            <div class="content">                
+                <div class="input-group form-group-no-border input-lg ">
+                    <div class="">
+                        <label asp-for="IsUseLocal" class="">
+                            <input asp-for="IsUseLocal" />
+                            @Html.DisplayNameFor(m => m.IsUseLocal)
+                        </label>
+                    </div>
+                </div>
                 <div class="input-group form-group-no-border input-lg">
                     <span class="input-group-addon">
                         <i class="now-ui-icons users_circle-08"></i>

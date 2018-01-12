@@ -43,14 +43,25 @@ namespace Swastika.Cms.Mvc.Areas.Portal.Controllers
         {
             if (ModelState.IsValid)
             {
-                string cnnString = string.Format("Server={0};Database={1};UID={2};Pwd={3};MultipleActiveResultSets=true"
-                    , model.DataBaseServer, model.DataBaseName, model.DataBaseUser, model.DataBasePassword);
+                string cnnString = string.Empty;
+                if (!model.IsUseLocal)
+                {
+
+                     cnnString = string.Format("Server={0};Database={1};UID={2};Pwd={3};MultipleActiveResultSets=true"
+                        , model.DataBaseServer, model.DataBaseName, model.DataBaseUser, model.DataBasePassword);
+                    
+                }
+                else
+                {
+                    cnnString = "Server=(localdb)\\mssqllocaldb;Database=aspnet-Swastika.Cms.Db;Trusted_Connection=True;MultipleActiveResultSets=true";
+                }
+
                 GlobalConfigurationService.Instance.ConnectionString = cnnString;
                 GlobalConfigurationService.Instance.InitSWCms();
                 if (GlobalConfigurationService.Instance.IsInit)
                 {
-                    var settings = FileRepository.Instance.GetFile("appsettings",".json", string.Empty);
-                    if (settings!=null)
+                    var settings = FileRepository.Instance.GetFile("appsettings", ".json", string.Empty);
+                    if (settings != null)
                     {
                         JObject jsonSettings = JObject.Parse(settings.Content);
                         jsonSettings["ConnectionStrings"][SWCmsConstants.CONST_DEFAULT_CONNECTION] = cnnString;
