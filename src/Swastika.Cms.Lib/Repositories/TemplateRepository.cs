@@ -1,14 +1,9 @@
-﻿using Swastika.Common;
-using Swastika.Common.Helper;
-using Swastika.Domain.Core.Models;
-using Swastika.Cms.Lib;
+﻿using Swastika.Common.Helper;
 using Swastika.Cms.Lib.ViewModels;
-using Swastika.Common.Helper;
 using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using System.Text;
 
 namespace Swastika.Cms.Lib.Repositories
 {

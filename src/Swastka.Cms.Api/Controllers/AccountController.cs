@@ -12,7 +12,6 @@ using System.Security.Claims;
 using System.IdentityModel.Tokens.Jwt;
 using Microsoft.IdentityModel.Tokens;
 using Swastika.Cms.Lib;
-using Swastika.Identity.Models.AccountViewModels;
 using Swastika.Cms.Lib.ViewModels;
 using System.Security.Principal;
 using Swastika.Domain.Core.ViewModels;
