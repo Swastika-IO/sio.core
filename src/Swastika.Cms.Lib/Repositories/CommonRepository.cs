@@ -293,8 +293,9 @@ namespace Swastika.Cms.Lib.Repositories
                 }
                 return new RepositoryResponse<List<BEArticleModuleViewModel>>()
                 {
-                    IsSucceed = true,
+                    IsSucceed = false,
                     Data = null,
+                    Errors = new List<string>() { ex.Message },
                     Exception = ex
                 };
             }

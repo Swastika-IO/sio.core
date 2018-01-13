@@ -49,14 +49,19 @@ namespace Swastika.Cms.Lib.ViewModels.BackEnd
         #endregion
 
         #region Overrides
+
         public override void ExpandView(SiocCmsContext _context = null, IDbContextTransaction _transaction = null)
         {
-            var getModuleResult = FEModuleViewModel.Repository.GetSingleModel(m => m.Id == ModuleId && m.Specificulture == Specificulture);
+            var getModuleResult = FEModuleViewModel.GetBy(
+                m => m.Id == ModuleId && m.Specificulture == Specificulture
+                , articleId: ArticleId
+                , _context:_context, _transaction: _transaction);
             if (getModuleResult.IsSucceed)
             {
                 this.Module = getModuleResult.Data;
             }
         }
+
         public override RepositoryResponse<bool> RemoveRelatedModels(BEArticleModuleViewModel view, SiocCmsContext _context = null, IDbContextTransaction _transaction = null)
         {
             return InfoModuleDataViewModel.Repository.RemoveListModel(d => d.ArticleId == view.ArticleId

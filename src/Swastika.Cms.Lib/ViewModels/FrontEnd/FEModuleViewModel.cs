@@ -3,17 +3,15 @@ using Swastika.Cms.Lib.Models;
 using Swastika.Domain.Data.ViewModels;
 using Microsoft.EntityFrameworkCore.Storage;
 using Newtonsoft.Json;
-using Swastika.Cms.Lib;
 using Swastika.Domain.Core.ViewModels;
 using Newtonsoft.Json.Linq;
 using Swastika.Common.Helper;
-using Swastika.Cms.Lib.ViewModels;
 using Swastika.Cms.Lib.ViewModels.Info;
 using Swastika.Cms.Lib.Repositories;
 using Microsoft.Data.OData.Query;
 using System;
 using static Swastika.Cms.Lib.SWCmsConstants;
-using Swastika.Cms.Lib.Services;
+using System.Linq.Expressions;
 
 namespace Swastika.Cms.Lib.ViewModels.FrontEnd
 {
@@ -71,6 +69,8 @@ namespace Swastika.Cms.Lib.ViewModels.FrontEnd
         }
         #endregion
 
+        public string ArticleId { get; set; }
+        public int CategoryId { get; set; }
         #endregion
 
         #region Contructors
@@ -106,16 +106,19 @@ namespace Swastika.Cms.Lib.ViewModels.FrontEnd
 
             this.Templates = Templates ?? TemplateRepository.Instance.GetTemplates(SWCmsConstants.TemplateFolder.Modules);
 
-            var getDataResult = InfoModuleDataViewModel.Repository
-                .GetModelListBy(m => m.ModuleId == Id && m.Specificulture == Specificulture
-                , "Priority", OrderByDirection.Ascending, null, null
-                , _context, _transaction);
-            if (getDataResult.IsSucceed)
-            {
-                getDataResult.Data.JsonItems = new List<JObject>();
-                getDataResult.Data.Items.ForEach(d => getDataResult.Data.JsonItems.Add(d.JItem));
-                Data = getDataResult.Data;
-            }
+            //var getDataResult = InfoModuleDataViewModel.Repository
+            //    .GetModelListBy(m => m.ModuleId == Id && m.Specificulture == Specificulture
+            //    , "Priority", OrderByDirection.Ascending, null, null
+            //    , _context, _transaction);
+            //if (getDataResult.IsSucceed)
+            //{
+            //    getDataResult.Data.JsonItems = new List<JObject>();
+            //    getDataResult.Data.Items.ForEach(d => getDataResult.Data.JsonItems.Add(d.JItem));
+            //    Data = getDataResult.Data;
+            //}
+
+            //LoadData(ArticleId, CategoryId, _context: _context, _transaction: _transaction);
+
             var getArticles = InfoArticleViewModel.GetModelListByModule(Id, Specificulture, SWCmsConstants.Default.OrderBy, OrderByDirection.Ascending
                 , 4, 0
                 , _context: _context, _transaction: _transaction
@@ -129,8 +132,21 @@ namespace Swastika.Cms.Lib.ViewModels.FrontEnd
         #endregion
         #region Expand
 
-        public void LoadData(string articleId = null, int? categoryId = null
-            , int? pageSize = null, int? pageIndex = 0
+        public static RepositoryResponse<FEModuleViewModel> GetBy(
+            Expression<Func<SiocModule, bool>> predicate, string articleId = null, int categoryId = 0
+             , SiocCmsContext _context = null, IDbContextTransaction _transaction = null)
+        {
+            var result = Repository.GetSingleModel(predicate, _context, _transaction);
+            if (result.IsSucceed)
+            {
+                result.Data.ArticleId = articleId;
+                result.Data.CategoryId = categoryId;
+                result.Data.LoadData();
+            }
+            return result;
+        }
+
+        public void LoadData(int? pageSize = null, int? pageIndex = 0
             , SiocCmsContext _context = null, IDbContextTransaction _transaction = null)
         {
 
@@ -147,14 +163,14 @@ namespace Swastika.Cms.Lib.ViewModels.FrontEnd
                 case SWCmsConstants.ModuleType.SubPage:
                     getDataResult = InfoModuleDataViewModel.Repository
                        .GetModelListBy(m => m.ModuleId == Id && m.Specificulture == Specificulture
-                       && (m.CategoryId == categoryId)
+                       && (m.CategoryId == CategoryId)
                        , "Priority", OrderByDirection.Ascending, pageSize, pageIndex
                        , _context, _transaction);
                     break;
                 case SWCmsConstants.ModuleType.SubArticle:
                     getDataResult = InfoModuleDataViewModel.Repository
                        .GetModelListBy(m => m.ModuleId == Id && m.Specificulture == Specificulture
-                       && (m.ArticleId == articleId)
+                       && (m.ArticleId == ArticleId)
                        , "Priority", OrderByDirection.Ascending, pageSize, pageIndex
                        , _context, _transaction);
                     break;

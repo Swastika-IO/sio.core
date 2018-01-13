@@ -86,6 +86,10 @@ namespace Swastika.Cms.Lib.ViewModels.BackEnd
         }
 
         #endregion
+        //Parent Article Id
+        public string  ArticleId { get; set; }
+        //Parent Category Id
+        public int CategoryId { get; set; }
         #endregion
 
         #endregion
@@ -115,7 +119,7 @@ namespace Swastika.Cms.Lib.ViewModels.BackEnd
                     c => !string.IsNullOrEmpty(c.Name)))) : new JArray();
             Fields = arrField.ToString(Newtonsoft.Json.Formatting.None);
 
-            
+
 
             return base.ParseModel();
         }
@@ -213,7 +217,7 @@ namespace Swastika.Cms.Lib.ViewModels.BackEnd
             }
             return result;
         }
-        
+
         public override async Task<RepositoryResponse<bool>> SaveSubModelsAsync(SiocModule parent, SiocCmsContext _context = null, IDbContextTransaction _transaction = null)
         {
             var saveView = await View.SaveModelAsync(true, _context, _transaction);
@@ -260,6 +264,10 @@ namespace Swastika.Cms.Lib.ViewModels.BackEnd
         }
         #endregion
 
+
+        #endregion
+
+        #region Expands
 
         #endregion
     }

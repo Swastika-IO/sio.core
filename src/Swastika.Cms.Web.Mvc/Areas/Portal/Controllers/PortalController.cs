@@ -1,6 +1,5 @@
 ﻿using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Authorization;
 using Swastika.Cms.Mvc.Controllers;
 using Microsoft.AspNetCore.Hosting;
 using Swastika.Cms.Lib;
@@ -47,7 +46,7 @@ namespace Swastika.Cms.Mvc.Areas.Portal.Controllers
                 if (!model.IsUseLocal)
                 {
 
-                     cnnString = string.Format("Server={0};Database={1};UID={2};Pwd={3};MultipleActiveResultSets=true;Provider=System.Data.SqlClient"
+                     cnnString = string.Format("Server={0};Database={1};UID={2};Pwd={3};MultipleActiveResultSets=true;"
                         , model.DataBaseServer, model.DataBaseName, model.DataBaseUser, model.DataBasePassword);
                     
                 }
