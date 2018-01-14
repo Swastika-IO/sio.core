@@ -54,10 +54,10 @@
             @foreach (var item in Model.Items)
             {
                 <tr>
-                    <td class="col-md-3">
+                    <td>
                         @Html.DisplayFor(modelItem => item.Priority)
                     </td>
-                    <td class="col-md-4">
+                    <td>
                         
                         <a asp-controller="Template" asp-action="Index" asp-route-folder="Layouts" asp-route-templateId="@item.Id" 
                                class="link">

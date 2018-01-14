@@ -49,10 +49,10 @@
                     @foreach (var item in articles)
                 {
                 <tr>
-                    <td class="col-md-3">
+                    <td>
                         @Html.DisplayFor(modelItem => item.Title)
                     </td>
-                    <td class="col-md-4">
+                    <td>
                         @Html.Raw(item.Excerpt)
                     </td>
 
