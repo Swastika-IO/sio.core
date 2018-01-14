@@ -112,10 +112,10 @@
             
             //Enable iCheck plugin for checkboxes
             //iCheck for checkbox and radio inputs
-            $('input[type="checkbox"]').iCheck({
-                checkboxClass: 'icheckbox_square-blue',
-                radioClass: 'iradio_square-blue'
-            });
+            //$('input[type="checkbox"]').iCheck({
+            //    checkboxClass: 'icheckbox_square-blue',
+            //    radioClass: 'iradio_square-blue'
+            //});
             $("input[type='checkbox']").on('ifChanged', function (e) {
                 $(this).val(e.target.checked === true);
             });
