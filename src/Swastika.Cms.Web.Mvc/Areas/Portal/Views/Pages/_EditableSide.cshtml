@@ -11,8 +11,57 @@
     string img = Model != null ? Model.Image : "http://placehold.it/200x200";
 }
 
+<div class="card">
+    <div class="card-header">
+        Page Type
+    </div>
+    <div class="card-body">
+
+        <select asp-for="Type" class="form-control" asp-items="@types"></select>
+        <span asp-validation-for="Type" class="text-danger"></span>
+
+        @{
+        foreach (var type in types)
+        {
+
+            <label class="custom-control custom-radio d-block">
+                <input asp-for="Type" type="radio" value="@type.Value" class="custom-control-input" /> 
+                <span class="custom-control-indicator"></span>
+                <span class="custom-control-description">@type.Text</span>
+            </label>
+    }
+        }
+    </div>
+</div>
+
+<div class="card">
+    <div class="card-header">
+        Languages
+    </div>
+    <div class="card-body">
+
+            @for (int i = 0; i < Model.ListSupportedCulture.Count; i++)
+    {
+
+
+        <label class="custom-control custom-checkbox d-block">
+            <input type="checkbox" asp-for="@Model.ListSupportedCulture[i].IsSupported" class="custom-control-input" required="">
+            <input type="hidden" asp-for="@Model.ListSupportedCulture[i].Specificulture" />
+            <span class="custom-control-indicator"></span>
+            <span class="custom-control-description">
+                <i class="flag-icon h5 @Model.ListSupportedCulture[i].Icon" style="margin-right: 5px;margin-left: 10px;"></i> @Model.ListSupportedCulture[i].FullName
+            </span>
+        </label>
+        
+}
+
+        <input type="hidden" asp-for="Specificulture" />
+
+    </div>
+</div>
 
 @await Html.PartialAsync("EditableSides/_EditableSide_Actions")
+
 <div class="box box-solid">
     <div class="box-header with-border">
         <h3 class="box-title">Publish</h3>
@@ -63,9 +112,16 @@
             <input asp-for="Icon" class="form-control" />
             <span asp-validation-for="Icon" class="text-danger"></span>
         </div>
-         <div class="form-group">
-            <input asp-for="IsDeleted" />
-            <label asp-for="IsDeleted"></label>
+        <div class="form-group">
+
+            <label class="custom-control custom-checkbox d-block">
+                <input type="checkbox" asp-for="IsDeleted" class="custom-control-input" required="">
+                <input type="hidden" asp-for="IsDeleted" />
+                <span class="custom-control-indicator"></span>
+                <span class="custom-control-description">
+                    Is Deleted?
+                </span>
+            </label>
         </div>
 
     </div>
@@ -74,30 +130,6 @@
 </div>
 
 
-<div class="box box-solid">
-    <div class="box-header with-border">
-        <h3 class="box-title"><label asp-for="Type" class="control-label"></label></h3>
-        <div class="box-tools">
-            <button type="button" class="btn btn-box-tool" data-widget="collapse">
-                <i class="fa fa-minus"></i>
-            </button>
-        </div>
-    </div>
-    <div class="box-body no-padding">
-        <div class="form-group">
-            <ul class="nav nav-pills nav-stacked">
-                <li style="position: relative;display: block;padding: 10px 15px;">
-                    <div class="form-group">
-
-                        <select asp-for="Type" class="form-control" asp-items="@types"></select>
-                        <span asp-validation-for="Type" class="text-danger"></span>
-                    </div>
-                </li>
-            </ul>
-        </div>
-    </div>
-    <!-- /.box-body -->
-</div>
 
 <div class="box box-solid">
     <div class="box-header with-border">

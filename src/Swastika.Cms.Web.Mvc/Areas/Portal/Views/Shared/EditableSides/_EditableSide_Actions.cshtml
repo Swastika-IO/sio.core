@@ -1,3 +1,15 @@
+@*<div class="row">
+    <div class="col-sm-12">
+        <div class="form-group">
+            <div class="btn-group" role="group" aria-label="Basic example">
+                <button type="button" class="btn btn-primary" onclick="this.form.submit()">Save</button>
+                <a asp-area="Portal" asp-controller="@ViewContext.RouteData.Values["controller"].ToString()" asp-action="" class="btn btn-warning">Discard</a>
+                
+            </div>
+        </div>
+    </div>
+</div>
+
 <div class="box box-solid">
     <div class="box-header with-border">
         <h3 class="box-title">Actions</h3>
@@ -17,10 +29,9 @@
 
     <div class="box-footer">
         <div class="pull-right">
-            @*<button type="button" class="btn btn-default"><i class="fa fa-pencil"></i> Draft</button>*@
             <button type="button" onclick="this.form.submit()" class="btn btn-primary"><i class="fa fa-envelope-o"></i> Save</button>
         </div>
         <a asp-area="Portal" asp-controller="@ViewContext.RouteData.Values["controller"].ToString()" asp-action="" class="btn btn-danger" data-popout="true" data-toggle="confirmation" data-singleton="true"><i class="fa fa-times"></i> Discard</a>
     </div>
     <!-- /.box-footer -->
-</div>
+</div>*@

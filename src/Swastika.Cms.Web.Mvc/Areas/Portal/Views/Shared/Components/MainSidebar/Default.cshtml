@@ -65,7 +65,7 @@
                 </div>
             </div>
             <ul id="collapseArticleSubMenus" class="collapse list-unstyled" role="tabpanel">
-                <li class="active sw-sidenav-active">
+                <li>
                     <a asp-area="Portal" asp-controller="Articles" asp-action="Create" class="sw-toc-sub-link">
                         <span class="oi oi-plus"></span>
                         <span class="text">Create Article</span>
@@ -122,7 +122,7 @@
                 </div>
             </div>
             <ul id="collapsePageSubMenus" class="collapse list-unstyled" role="tabpanel">
-                <li class="active sw-sidenav-active">
+                <li>
                     <a asp-area="Portal" asp-controller="Pages" asp-action="Create" class="sw-toc-sub-link">
                         <span class="oi oi-plus"></span>
                         <span class="text">Create Article</span>
@@ -195,7 +195,7 @@
                 </div>
             </div>
             <ul id="collapseModuleSubMenus" class="collapse list-unstyled">
-                <li class="active sw-sidenav-active">
+                <li>
                     <a is-active-route asp-controller="Module" asp-action="Create" class="sw-toc-sub-link">
                         <span class="oi oi-plus"></span>
                         <span class="text">Create Module</span>
@@ -250,7 +250,7 @@
                 </div>
             </div>
             <ul id="collapseAppearanceSubMenus" class="collapse list-unstyled">
-                <li class="active sw-sidenav-active">
+                <li>
                     <a asp-area="Portal" asp-controller="Theme" asp-action="Create" class="sw-toc-sub-link">
                         <span class="oi oi-plus"></span>
                         <span class="text">Create Theme</span>
@@ -302,7 +302,7 @@
                 </div>
             </div>
             <ul id="collapseFileSubMenus" class="collapse list-unstyled">
-                <li class="active sw-sidenav-active">
+                <li>
                     <a href="#" class="sw-toc-sub-link">
                         <span class="oi oi-image"></span>
                         <span class="text">Medias</span>
@@ -318,7 +318,7 @@
                 {
                     string dirPath = string.Format("/{0}", folder);
                     string href = Url.RouteUrl("File", new { culture = ViewBag.culture, folder = dirPath });
-                    <li class="active sw-sidenav-active">
+                    <li>
                         <a href="@href" class="sw-toc-sub-link">
                             <span class="oi oi-folder"></span>
                             <span class="text">@folder</span>

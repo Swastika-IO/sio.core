@@ -176,10 +176,12 @@
             })
             var selVal = $('.selectpicker').data('val');
             $('.selectpicker').selectpicker('val', selVal);
-            $('[data-toggle=confirmation]').confirmation({
-                rootSelector: '[data-toggle=confirmation]',
-                container: 'body'
-            });
+
+            // TODO: ERROR with bootstrap 4
+            //$('[data-toggle=confirmation]').confirmation({
+            //    rootSelector: '[data-toggle=confirmation]',
+            //    container: 'body'
+            //});
         },
         //folder : 'Modules/Banners'
         uploadImage: function (file, container) {

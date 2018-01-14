@@ -6,6 +6,7 @@
     <TypeScriptToolsVersion>2.5</TypeScriptToolsVersion>
     <MvcRazorExcludeRefAssembliesFromPublish>false</MvcRazorExcludeRefAssembliesFromPublish>
     <MvcRazorCompileOnPublish>false</MvcRazorCompileOnPublish>
+    <PublishWithAspNetCoreTargetManifest>false</PublishWithAspNetCoreTargetManifest>
   </PropertyGroup>
 
   <ItemGroup>

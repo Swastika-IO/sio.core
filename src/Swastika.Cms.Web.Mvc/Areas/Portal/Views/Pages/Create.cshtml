@@ -2,7 +2,7 @@
 @{
     ViewData["Title"] = "Create Page";
     ViewData["Description"] = "Manage site navigations and menus";
-    Layout = "~/Areas/Portal/Views/Shared/_Layout.cshtml";
+    //Layout = "~/Areas/Portal/Views/Shared/_Layout.cshtml";
 }
 
 @section Styles
@@ -13,11 +13,43 @@
 <form enctype="multipart/form-data" asp-action="@ViewContext.RouteData.Values["action"].ToString()">
     <!-- Main content -->
     <section class="content container-fluid">
+
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="card sw-nav-action">
+                    <div class="card-body">
+
+                        <div class="row">
+                            <div class="col-sm-3 text-center">
+                                <button type="button" onclick="this.form.submit()" class="btn btn-link btn-block">
+                                    <span class="oi oi-cloud-upload"></span> PUBLISH
+                                </button>
+                            </div>
+                            <div class="col-sm-3 text-center">
+                                <button type="button" class="btn btn-link">
+                                    <span class="oi oi-eye"></span> PREVIEW
+                                </button>
+                            </div>
+                            <div class="col-sm-3 text-center">
+                                <button type="button" class="btn btn-link">
+                                    <span class="oi oi-clipboard"></span> DRAFT
+                                </button>
+                            </div>
+                            <div class="col-sm-3 text-center">
+                                <button type="button" class="btn btn-link">
+                                    <span class="oi oi-timer"></span> SCHEDULER
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
         <div class="row">
             <section class="col-lg-9">
                 @await Html.PartialAsync("_Editable", Model)
             </section>
-            <section class="col-lg-3">                
+            <section class="col-lg-3">
                 @await Html.PartialAsync("_EditableSide", Model)
             </section>
         </div>
@@ -28,7 +60,4 @@
 @section Scripts
 {
     
-    <script>
-       
-    </script>
 }

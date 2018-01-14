@@ -88,11 +88,14 @@
                     </td>
                    
                     <td>
-                        <a asp-action="Edit" asp-route-id="@item.Id" class="btn btn-sm btn-warning"> <i class="fa fa-pencil"></i></a>
-                        <a asp-area="" asp-controller="Home" asp-action="Home" asp-route-pageName="@item.SeoName"
-                           target="_blank" class="btn btn-sm btn-info"><i class="fa fa-eye"></i></a>
-                        <a asp-action="Delete" asp-route-id="@item.Id" class="btn btn-sm btn-danger" data-popout="true" data-toggle="confirmation" data-singleton="true"> <i class="fa fa-remove"></i> </a>
-                    </td>
+                        <div class="btn-group btn-group-sm" role="group" aria-label="Basic example">
+                            <a asp-action="Edit" asp-route-id="@item.Id" class="btn btn-warning"> <span class="oi oi-pencil"></span></a>
+                            <a asp-area="" asp-controller="Home" asp-action="Home" asp-route-pageName="@item.SeoName"
+                               target="_blank" class="btn btn-info"><span class="oi oi-eye"></span></a>
+                            <a asp-action="Delete" asp-route-id="@item.Id" class="btn btn-danger" data-popout="true" data-toggle="confirmation" data-singleton="true"> <span class="oi oi-x"></span> </a>
+
+                        </div>
+                        </td>
                 </tr>
             }
         </tbody>
