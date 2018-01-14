@@ -190,9 +190,7 @@ namespace Swastika.Cms.Lib.ViewModels.BackEnd
             this.Templates = this.Templates ??
                 BETemplateViewModel.Repository.GetModelListBy(
                 t => t.Template.Name == ActivedTemplate && t.FolderType == this.TemplateFolderType).Data;
-            this.View = Templates.FirstOrDefault(
-                t => !string.IsNullOrEmpty(this.Template) 
-                && this.Template.Contains(t.FileName + t.Extension));
+            this.View = Templates.FirstOrDefault(t => !string.IsNullOrEmpty(this.Template) && this.Template.Contains(t.FileName + t.Extension));
             this.View = View ?? Templates.FirstOrDefault();
             if (this.View == null)
             {
@@ -240,13 +238,12 @@ namespace Swastika.Cms.Lib.ViewModels.BackEnd
             this.ActivedModules = new List<FEModuleViewModel>();
             foreach (var module in this.ModuleNavs.Where(m => m.IsActived))
             {
-                this.ActivedModules.Add(module.Module);
-                //var getModule = FEModuleViewModel.Repository.GetSingleModel(m => m.Id == module.ModuleId && m.Specificulture == module.Specificulture, _context, _transaction);
-                //if (getModule.IsSucceed)
-                //{
-                //    this.ActivedModules.Add(getModule.Data);
-                //    this.ActivedModules.ForEach(m => m.LoadData(Id));
-                //}
+                var getModule = FEModuleViewModel.Repository.GetSingleModel(m => m.Id == module.ModuleId && m.Specificulture == module.Specificulture, _context, _transaction);
+                if (getModule.IsSucceed)
+                {
+                    this.ActivedModules.Add(getModule.Data);
+                    this.ActivedModules.ForEach(m => m.LoadData(Id));
+                }
             }
         }
 

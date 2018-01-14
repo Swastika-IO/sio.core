@@ -36,11 +36,7 @@ namespace Swastka.IO.Cms.Api.Controllers
         [Route("byArticle/{id}/{articleId}")]
         public async Task<RepositoryResponse<FEModuleViewModel>> GetByArticle(int id, string articleId = null)
         {
-            var result = await FEModuleViewModel.Repository.GetSingleModelAsync(model => model.Id == id && model.Specificulture == _lang);
-            if (result.IsSucceed)
-            {
-                result.Data.LoadData(articleId: articleId);
-            }
+            var result = await FEModuleViewModel.Repository.GetSingleModelAsync(model => model.Id == id && model.Specificulture == _lang);            
             return result;
         }
 
