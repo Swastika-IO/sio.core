@@ -89,15 +89,15 @@
                                                    asp-route-folder="@item.FolderName"
                                                    asp-route-name="@item.Filename"
                                                    asp-route-ext="@item.Extension"
-                                                   class="btn btn-sm btn-warning d-inline-block "><i class="fa fa-pencil"></i></a>
+                                                   class="btn btn-sm btn-warning d-inline-block "><span class="oi oi-pencil"></span></a>
                                                 @*<a asp-area="" asp-controller="Home" asp-action="ArticleDetails" asp-route-id="@item.Id" asp-route-SeoTitle="@item.SeoTitle"
-                                                    target="_blank" class="btn btn-sm btn-info"> <i class="fa fa-eye"></i> </a>*@
+                                                    target="_blank" class="btn btn-sm btn-info"> <span class="oi oi-eye"></span> </a>*@
                                                 <a asp-action="DeleteTheme"
                                                    asp-route-folder="@item.FolderName"
                                                    asp-route-themeName="@name"
                                                    asp-route-name="@item.Filename"
                                                    asp-route-ext="@item.Extension"
-                                                   class="btn btn-sm btn-danger d-inline-block" data-popout="true" data-toggle="confirmation" data-singleton="true"><i class="fa fa-remove"></i></a>
+                                                   class="btn btn-sm btn-danger d-inline-block" data-popout="true" data-toggle="confirmation" data-singleton="true"><span class="oi oi-x"></span></a>
                                             </div>
                                         </td>
                                     </tr>

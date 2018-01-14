@@ -66,10 +66,10 @@
                     <td>
                         <div class="btn-block">
                             <a asp-controller="Articles" asp-action="Edit" asp-route-id="@item.Id" asp-route-categoryId="@ViewBag.categoryId"
-                               class="btn btn-sm btn-warning d-inline-block "><i class="fa fa-pencil"></i></a>
+                               class="btn btn-sm btn-warning d-inline-block "><span class="oi oi-pencil"></span></a>
                             <a asp-area="" asp-controller="Home" asp-action="ArticleDetails" asp-route-id="@item.Id" asp-route-SeoTitle="@item.SeoTitle"
-                               target="_blank" class="btn btn-sm btn-info"><i class="fa fa-eye"></i></a>
-                            <a asp-controller="Articles" asp-action="Recycle" asp-route-id="@item.Id" class="btn btn-sm btn-danger d-inline-block" data-popout="true" data-toggle="confirmation" data-singleton="true"> <i class="fa fa-remove"></i> </a>
+                               target="_blank" class="btn btn-sm btn-info"><span class="oi oi-eye"></span></a>
+                            <a asp-controller="Articles" asp-action="Recycle" asp-route-id="@item.Id" class="btn btn-sm btn-danger d-inline-block" data-popout="true" data-toggle="confirmation" data-singleton="true"> <span class="oi oi-x"></span> </a>
                         </div>
                     </td>
                 </tr>
@@ -138,10 +138,10 @@
                         @Html.DisplayFor(modelItem => item.Priority)
                     </td>
                     <td>
-                        <a asp-controller="Pages" asp-action="Edit" asp-route-id="@item.Id" class="btn btn-sm btn-warning"> <i class="fa fa-pencil"></i></a>
+                        <a asp-controller="Pages" asp-action="Edit" asp-route-id="@item.Id" class="btn btn-sm btn-warning"> <span class="oi oi-pencil"></span></a>
                         <a asp-controller="Pages" asp-area="" asp-controller="Home" asp-action="Home" asp-route-pageName="@item.SeoTitle"
-                           target="_blank" class="btn btn-sm btn-info"><i class="fa fa-eye"></i></a>
-                        <a asp-controller="Pages" asp-action="Delete" asp-route-id="@item.Id" class="btn btn-sm btn-danger" data-popout="true" data-toggle="confirmation" data-singleton="true"> <i class="fa fa-remove"></i> </a>
+                           target="_blank" class="btn btn-sm btn-info"><span class="oi oi-eye"></span></a>
+                        <a asp-controller="Pages" asp-action="Delete" asp-route-id="@item.Id" class="btn btn-sm btn-danger" data-popout="true" data-toggle="confirmation" data-singleton="true"> <span class="oi oi-x"></span> </a>
                     </td>
                 </tr>
                 }
@@ -197,10 +197,10 @@
                                     @Html.DisplayFor(modelItem => item.Title)
                                 </td>
                                 <td>
-                                    <a asp-controller="Module" asp-action="Edit" asp-route-id="@item.Id" class="btn btn-sm btn-warning"> <i class="fa fa-pencil"></i></a>
+                                    <a asp-controller="Module" asp-action="Edit" asp-route-id="@item.Id" class="btn btn-sm btn-warning"> <span class="oi oi-pencil"></span></a>
                                     <a asp-controller="Module" asp-action="Details" asp-route-id="@item.Id"
-                                       class="btn btn-sm btn-info"><i class="fa fa-eye"></i></a>
-                                    <a asp-controller="Module" asp-action="Delete" asp-route-id="@item.Id" class="btn btn-sm btn-danger" data-popout="true" data-toggle="confirmation" data-singleton="true" data-btn-ok-class="btn-danger btn-sm" data-btn-cancel-class="btn-success btn-sm" data-content="This can be undo!"> <i class="fa fa-remove"></i> </a>
+                                       class="btn btn-sm btn-info"><span class="oi oi-eye"></span></a>
+                                    <a asp-controller="Module" asp-action="Delete" asp-route-id="@item.Id" class="btn btn-sm btn-danger" data-popout="true" data-toggle="confirmation" data-singleton="true" data-btn-ok-class="btn-danger btn-sm" data-btn-cancel-class="btn-success btn-sm" data-content="This can be undo!"> <span class="oi oi-x"></span> </a>
                                 </td>
                             </tr>
                         }

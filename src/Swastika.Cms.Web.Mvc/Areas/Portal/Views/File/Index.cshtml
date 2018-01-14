@@ -98,12 +98,12 @@
                                                asp-route-name="@item.Filename"
                                                asp-route-ext="@item.Extension"
                                                asp-route-folder="@item.FileFolder"
-                                               class="btn btn-sm btn-warning d-inline-block "><i class="fa fa-pencil"></i></a>
-                                            <a target="_blank" href="@item.FullPath" class="btn btn-sm btn-info"> <i class="fa fa-eye"></i> </a>
+                                               class="btn btn-sm btn-warning d-inline-block "><span class="oi oi-pencil"></span></a>
+                                            <a target="_blank" href="@item.FullPath" class="btn btn-sm btn-info"> <span class="oi oi-eye"></span> </a>
                                             <a asp-action="Delete"
                                                asp-route-name="@item.Filename"
                                                asp-route-ext="@item.Extension"
-                                               asp-route-folder="@item.FileFolder" class="btn btn-sm btn-danger d-inline-block" data-popout="true" data-toggle="confirmation" data-singleton="true"><i class="fa fa-remove"></i></a>
+                                               asp-route-folder="@item.FileFolder" class="btn btn-sm btn-danger d-inline-block" data-popout="true" data-toggle="confirmation" data-singleton="true"><span class="oi oi-x"></span></a>
                                         </div>
                                     </td>
                                 </tr>

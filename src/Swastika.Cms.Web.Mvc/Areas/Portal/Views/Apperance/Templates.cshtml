@@ -57,10 +57,10 @@
 
                         <td>
                             <div class="btn-block">
-                                <a asp-action="EditTemplate" asp-route-folder="@folder" asp-route-name="@item.Filename" class="btn btn-sm btn-warning d-inline-block "> <i class="fa fa-pencil"></i></a>
+                                <a asp-action="EditTemplate" asp-route-folder="@folder" asp-route-name="@item.Filename" class="btn btn-sm btn-warning d-inline-block "> <span class="oi oi-pencil"></span></a>
                                 @*<a asp-area="" asp-controller="Home" asp-action="ArticleDetails" asp-route-id="@item.Id" asp-route-SeoTitle="@item.SeoTitle"
-                                    target="_blank" class="btn btn-sm btn-info"> <i class="fa fa-eye"></i> </a>*@
-                                <a asp-action="DeleteTemplate" asp-route-folder="@folder" asp-route-name="@item.Filename" class="btn btn-sm btn-danger d-inline-block" data-popout="true" data-toggle="confirmation" data-singleton="true"> <i class="fa fa-remove"></i> </a>
+                                    target="_blank" class="btn btn-sm btn-info"> <span class="oi oi-eye"></span> </a>*@
+                                <a asp-action="DeleteTemplate" asp-route-folder="@folder" asp-route-name="@item.Filename" class="btn btn-sm btn-danger d-inline-block" data-popout="true" data-toggle="confirmation" data-singleton="true"> <span class="oi oi-x"></span> </a>
                             </div>
                         </td>
                     </tr>
