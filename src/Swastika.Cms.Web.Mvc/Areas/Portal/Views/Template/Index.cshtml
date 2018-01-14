@@ -1,7 +1,7 @@
 ﻿@model PaginationModel<InfoTemplateViewModel>
 @{
     ViewData["Title"] = "Template";
-    Layout = "~/Areas/Portal/Views/Shared/_Layout.cshtml";
+    //Layout = "~/Areas/Portal/Views/Shared/_Layout.cshtml";
     int fromValue = Model.PageIndex * @Model.PageSize + 1;
     int toValue = fromValue + Model.PageSize - 1;
     int prevPage = Model.PageIndex > 0 ? Model.PageIndex - 1 : 0;

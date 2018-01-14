@@ -2,7 +2,7 @@
 @model BEModuleViewModel
 @{
     ViewData["Title"] = "Module " + Model.Name;
-    Layout = "~/Areas/Portal/Views/Shared/_Layout.cshtml";
+    //Layout = "~/Areas/Portal/Views/Shared/_Layout.cshtml";
     var Data = Model.Data;
 
     int fromValue = Data.PageIndex * Data.PageSize + 1;

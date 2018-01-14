@@ -1,14 +1,14 @@
 ﻿@model PaginationModel<InfoThemeViewModel>
 @{
     ViewData["Title"] = "Template";
-    Layout = "~/Areas/Portal/Views/Shared/_Layout.cshtml";
+    //Layout = "~/Areas/Portal/Views/Shared/_Layout.cshtml";
     int fromValue = Model.PageIndex * @Model.PageSize + 1;
     int toValue = fromValue + Model.PageSize - 1;
     int prevPage = Model.PageIndex > 0 ? Model.PageIndex - 1 : 0;
     int nextPage = Model.PageIndex == Model.TotalPage - 1 ? Model.PageIndex : Model.PageIndex + 1;
     toValue = toValue > Model.TotalItems ? Model.TotalItems : toValue;
     string href = string.Format("{0}://{1}{2}", Context.Request.Scheme, Context.Request.Host, Url.Action());
-    
+
 }
 
 <div class="box-body">
