@@ -7,11 +7,10 @@
 }
 
 <!-- Main content -->
-<section class="content container-fluid">    
+<section class="content container-fluid">
     <form asp-action="@ViewContext.RouteData.Values["action"].ToString()"
           asp-route-categoryId="@ViewBag.categoryId"
-          enctype="multipart/form-data"
-          >
+          enctype="multipart/form-data">
         <div class="row">
 
             <section class="col-lg-9">
@@ -30,7 +29,7 @@
 @section Scripts{
     <script>
         $(document).ready(function
-            () {
+                () {
 
             $('.AddObject').click(function (e) {
                 var i = $(".field-row").length;
