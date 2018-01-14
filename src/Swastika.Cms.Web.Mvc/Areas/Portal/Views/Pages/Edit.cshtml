@@ -8,8 +8,8 @@
 
 @section Styles
 {
-    <link href="~/lib/icheck-1.x/skins/square/square.css" rel="stylesheet">
-    <link href="~/lib/icheck-1.x/skins/square/blue.css" rel="stylesheet">
+    @*<link href="~/lib/icheck-1.x/skins/square/square.css" rel="stylesheet">
+    <link href="~/lib/icheck-1.x/skins/square/blue.css" rel="stylesheet">*@
 
 }
 <form enctype="multipart/form-data" asp-action="@ViewContext.RouteData.Values["action"].ToString()">
@@ -29,15 +29,15 @@
 
 @section Scripts
 {
-    <script src="~/lib/icheck-1.x/icheck.min.js"></script>
+    @*<script src="~/lib/icheck-1.x/icheck.min.js"></script>
     <script>
         $(function () {
             //Enable iCheck plugin for checkboxes
             //iCheck for checkbox and radio inputs
-            $('input[type="checkbox"]').iCheck({
-                checkboxClass: 'icheckbox_square-blue',
-                radioClass: 'iradio_square-blue'
-            });
+            //$('input[type="checkbox"]').iCheck({
+            //    checkboxClass: 'icheckbox_square-blue',
+            //    radioClass: 'iradio_square-blue'
+            //});
         });
-    </script>
+    </script>*@
 }
