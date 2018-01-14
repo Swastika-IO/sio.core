@@ -7,8 +7,10 @@
 @using Swastika.Cms.Lib.ViewModels
 @using Swastika.Cms.Lib.ViewModels.Info
 @using Swastika.Cms.Lib;
+
 @inject SignInManager<ApplicationUser> SignInManager
 @inject UserManager<ApplicationUser> UserManager
+
 @{
     var getListAvailbleModules = Swastika.Cms.Lib.ViewModels.Info.InfoModuleViewModel.Repository.GetModelListBy(
         m => m.Specificulture == ViewContext.RouteData.Values["culture"].ToString());
@@ -22,14 +24,6 @@
     var directories = FileRepository.Instance.GetTopDirectories(string.Empty);
     string searchType = ViewBag.searchKeyword;
 }
-
-@*
-    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
-*@
-
-@{
-}
-
 
 <div id="sidebar" class="sw-sidebar">
     <form asp-area="Portal" asp-controller="Portal" asp-action="Search" method="post" class="sw-search d-flex align-items-center">
@@ -168,6 +162,15 @@
                                     </a>
                                 </div>
                             }
+                            else
+                            {
+
+                                <div class="btn-group btn-group-sm" role="group" aria-label="Basic example">
+                                    <a asp-area="Portal" asp-controller="Pages" asp-action="Edit" asp-route-id="@cate.Id" asp-route-pageName="@cate.SeoTitle" class="btn btn-link">
+                                        <span class="oi oi-pencil"></span>
+                                    </a>
+                                </div>
+                            }
                         </div>
                     </li>
                 }
@@ -234,7 +237,7 @@
         </li>
         <li class="sw-toc-item">
             <div class="sw-toc-link" data-toggle="collapse" data-parent="#sw-docs-nav" href="#collapseAppearanceSubMenus" aria-expanded="false"
-               aria-controls="collapseAppearanceSubMenus">
+                 aria-controls="collapseAppearanceSubMenus">
                 <span class="oi oi-brush"></span>
                 <span class="text">Themes</span>
                 <div class="btn-group btn-group-sm" role="group" aria-label="Basic example">
@@ -286,7 +289,7 @@
         </li>
         <li class="sw-toc-item">
             <div class="sw-toc-link" data-toggle="collapse" data-parent="#sw-docs-nav" href="#collapseFileSubMenus" aria-expanded="false"
-               aria-controls="collapseFileSubMenus">
+                 aria-controls="collapseFileSubMenus">
                 <span class="oi oi-image"></span>
                 <span class="text">Medias</span>
                 <div class="btn-group btn-group-sm" role="group" aria-label="Basic example">
@@ -326,7 +329,7 @@
         </li>
         <li class="sw-toc-item">
             <div class="sw-toc-link" data-toggle="collapse" data-parent="#sw-docs-nav" href="#collapseSettingSubMenus" aria-expanded="false"
-               aria-controls="collapseSettingSubMenus">
+                 aria-controls="collapseSettingSubMenus">
                 <span class="oi oi-wrench"></span>
                 <span class="text">Settings</span>
                 <div class="btn-group btn-group-sm" role="group" aria-label="Basic example">
