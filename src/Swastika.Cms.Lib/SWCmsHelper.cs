@@ -35,8 +35,8 @@ namespace Swastika.Cms.Lib
                         cate.Href = cate.StaticUrl;
                         break;
                     case SWCmsConstants.CateType.Home:
-                        cate.Href = string.Format("/{0}", culture);
-                        break;
+                        //cate.Href = string.Format("/{0}", culture);
+                        //break;
                     case SWCmsConstants.CateType.List:
                     case SWCmsConstants.CateType.Article:                        
                     case SWCmsConstants.CateType.Modules:

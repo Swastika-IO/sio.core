@@ -29,8 +29,8 @@ namespace Swastika.Cms.Lib.Models.Account
                 .Build();
 
             
-
                 optionsBuilder.UseSqlServer(GlobalConfigurationService.Instance.GetConnectionString());
+                
 
             //optionsBuilder.UseSqlServer(config.GetConnectionString("AccountConnection"));
 

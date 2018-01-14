@@ -202,7 +202,7 @@ namespace Swastika.Cms.Lib.ViewModels.BackEnd
             Template = View != null ? string.Format(@"{0}/{1}{2}", View.FolderType, View.FileName, View.Extension) : Template;
             if (Id == 0)
             {
-                Id = FECategoryViewModel.Repository.Count().Data + 1;
+                Id = FECategoryViewModel.Repository.Max(c=>c.Id).Data + 1;
                 CreatedDateTime = DateTime.UtcNow;
             }
             return base.ParseModel();

@@ -65,3 +65,7 @@ div[data-role="editor-toolbar"] {
     max-height: 500px;
     overflow: auto;
 }
+
+.sw-content{
+    width:100%;
+}

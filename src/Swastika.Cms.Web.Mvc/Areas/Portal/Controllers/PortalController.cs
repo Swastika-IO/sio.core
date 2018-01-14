@@ -64,7 +64,7 @@ namespace Swastika.Cms.Mvc.Areas.Portal.Controllers
                     {
                         JObject jsonSettings = JObject.Parse(settings.Content);
                         jsonSettings["ConnectionStrings"][SWCmsConstants.CONST_DEFAULT_CONNECTION] = cnnString;
-                        settings.Content = jsonSettings.ToString(Newtonsoft.Json.Formatting.None);
+                        settings.Content = jsonSettings.ToString();
                         FileRepository.Instance.SaveFile(settings);
                     }
                     return RedirectToAction("Create", "Theme", new { culture = SWCmsConstants.Default.Specificulture });
