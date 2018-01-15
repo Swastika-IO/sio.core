@@ -11,11 +11,13 @@
     ViewData["Title"] = "Log in";
     ViewData["ReturnUrl"] = "/";
     Layout = "~/Areas/Portal/Views/Shared/NowUI/_BoxLayout.cshtml";
+    string returnUrl = ViewData["ReturnUrl"].ToString();
 }
 
 <div class="col-md-4 content-center">
     <div class="card card-login card-plain">
-        <form asp-area="Portal" asp-controller="Auth" asp-action="Login" asp-route-returnurl="@ViewData["ReturnUrl"]" method="post" class="form-horizontal">
+        <form asp-area="Portal" asp-controller="Auth" asp-action="Login" method="post" class="form-horizontal">
+            <input type="hidden" asp-for="ReturnUrl"/>
             <div class="header header-primary text-center">
                 <div class="logo-container">
                     <img src="~/lib/now-ui-kit-v1.0.1/assets/img/now-logo.png" alt="">

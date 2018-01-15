@@ -56,11 +56,11 @@
     <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="2.0.1" />
     <PackageReference Include="Microsoft.Extensions.Configuration" Version="2.0.0" />
     <PackageReference Include="Microsoft.IdentityModel.Tokens" Version="5.1.5" />
-    <PackageReference Include="Swastika.Identity" Version="0.0.2" />
   </ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\..\..\Swastika-Heart\src\Swastika\Swastika.csproj" />
+    <ProjectReference Include="..\..\..\Swastika-Identity\src\Swastika.Identity\Swastika.Identity.csproj" />
   </ItemGroup>
 
 </Project>

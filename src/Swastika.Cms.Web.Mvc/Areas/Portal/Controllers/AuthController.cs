@@ -60,8 +60,11 @@ namespace Swastika.Cms.Web.Mvc.Areas.Portal.Controllers
             // Clear the existing external cookie to ensure a clean login process
             await HttpContext.SignOutAsync(IdentityConstants.ExternalScheme);
             await this._signInManager.SignOutAsync();
-            ViewData["ReturnUrl"] = returnUrl;
-            return View();
+            LoginViewModel model = new LoginViewModel()
+            {
+                ReturnUrl = returnUrl ?? "/"
+            };
+            return View(model);
         }
 
         //
@@ -70,9 +73,8 @@ namespace Swastika.Cms.Web.Mvc.Areas.Portal.Controllers
         [HttpPost]
         [AllowAnonymous]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Login(LoginViewModel model, string returnUrl = null)
+        public async Task<IActionResult> Login(LoginViewModel model)
         {
-            ViewData["ReturnUrl"] = returnUrl;
             if (ModelState.IsValid)
             {
                 // This doesn't count login failures towards account lockout
@@ -97,7 +99,7 @@ namespace Swastika.Cms.Web.Mvc.Areas.Portal.Controllers
                         ExpiresUtc = DateTime.UtcNow.AddDays(30)
                     });
                     _logger.LogInformation(1, "User logged in.");
-                    return RedirectToLocal(returnUrl);
+                    return RedirectToLocal(model.ReturnUrl);
                 }
             }
 
@@ -112,9 +114,10 @@ namespace Swastika.Cms.Web.Mvc.Areas.Portal.Controllers
         [AllowAnonymous]
         public IActionResult Register(string returnUrl = null)
         {
-            ViewData["ReturnUrl"] = returnUrl;
+
             RegisterViewModel model = new RegisterViewModel()
             {
+                ReturnUrl = returnUrl ?? "/",
                 UserClaims = IdentityBasedData.UserClaims.Select(c => new SelectListItem
                 {
                     Text = c,
