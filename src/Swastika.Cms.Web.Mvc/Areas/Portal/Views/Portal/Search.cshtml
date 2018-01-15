@@ -26,22 +26,22 @@
             </div>
         </div>
         <div class="box-body">
-            <table class="table table-hover table-striped dataTable">
+            <table class="table table-hover table-striped dataTable" cellspacing="0">
                 <thead>
                     <tr>
-                        <th>
+                        <th scope="col">
                             Title
                         </th>
-                        <th>
+                        <th scope="col">
                             Excerpt
                         </th>
-                        <th>
+                        <th scope="col">
                             Type
                         </th>
-                        <th>
+                        <th scope="col">
                             CreatedBy
                         </th>
-                        <th></th>
+                        <th scope="col"></th>
                     </tr>
                 </thead>
 
@@ -64,7 +64,7 @@
                     </td>
 
                     <td>
-                        <div class="btn-block">
+                        <div class="btn-group btn-group-sm" role="group" aria-label="Actions">
                             <a asp-controller="Articles" asp-action="Edit" asp-route-id="@item.Id" asp-route-categoryId="@ViewBag.categoryId"
                                class="btn btn-sm btn-warning d-inline-block "><span class="oi oi-pencil"></span></a>
                             <a asp-area="" asp-controller="Home" asp-action="ArticleDetails" asp-route-id="@item.Id" asp-route-SeoTitle="@item.SeoTitle"
@@ -95,26 +95,26 @@
             </div>
         </div>
         <div class="box-body">
-            <table class="table table-hover table-striped dataTable">
+            <table class="table table-hover table-striped dataTable" cellspacing="0">
                 <thead>
                     <tr>
-                        <th></th>
+                        <th scope="col"></th>
                         <th class="col-md-3">
                             Title
                         </th>
                         <th class="col-md-4">
                             Description
                         </th>
-                        <th>
+                        <th scope="col">
                             Type
                         </th>
-                        <th>
+                        <th scope="col">
                             CreatedBy
                         </th>
-                        <th>
+                        <th scope="col">
                             Priority
                         </th>
-                        <th></th>
+                        <th scope="col"></th>
                     </tr>
                 </thead>
                 <tbody>
@@ -164,20 +164,20 @@
         </div>
         <div class="box-body">
             <div class="table-responsive mailbox-messages" style="height:500px;">
-                <table class="table table-hover table-striped dataTable">
+                <table class="table table-hover table-striped dataTable" cellspacing="0">
                     <thead>
                         <tr>
-                            <th></th>
-                            <th>
+                            <th scope="col"></th>
+                            <th scope="col">
                                 Name
                             </th>
-                            <th>
+                            <th scope="col">
                                 Template
                             </th>
-                            <th>
+                            <th scope="col">
                                 Title
                             </th>
-                            <th></th>
+                            <th scope="col"></th>
                         </tr>
                     </thead>
                     <tbody>

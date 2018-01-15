@@ -16,7 +16,7 @@
 <!-- Main content -->
 <div class="box-body">
     @await Html.PartialAsync("_Pagination", Model, new ViewDataDictionary(this.Vi‌​ewData) { { "PageSize", Model.PageSize }, { "PageIndex", Model.PageIndex }, { "TotalPage", Model.TotalPage } })
-    <table class="table table-hover table-striped dataTable">
+    <table class="table table-hover table-striped dataTable" cellspacing="0">
         <thead class="thead-light">
             <tr>
                 <th scope="col">
@@ -38,7 +38,7 @@
                     Created By
                 </th>
 
-                <th>Actions</th>
+                <th scope="col">Actions</th>
             </tr>
         </thead>
         <tbody>
@@ -65,7 +65,7 @@
                     </td>
 
                     <td>
-                        <div class="btn-group btn-group-sm" role="group" aria-label="Basic example">
+                        <div class="btn-group btn-group-sm" role="group" aria-label="Actions">
                             <a asp-action="Edit" asp-route-id="@item.Id" class="btn btn-warning"> <span class="oi oi-pencil"></span></a>
                             <a asp-area="" asp-controller="Home" asp-action="Home" asp-route-pageName="@item.SeoName" target="_blank" class="btn btn-info"><span class="oi oi-eye"></span></a>
                             <a asp-action="Delete" asp-route-id="@item.Id" class="btn btn-danger" data-popout="true" data-toggle="confirmation" data-singleton="true"> <span class="oi oi-x"></span> </a>
@@ -78,26 +78,26 @@
 
         <tfoot>
             <tr>
-                <th>
+                <th scope="col">
                     Priority
                 </th>
-                <th>
+                <th scope="col">
                     Id
                 </th>
-                <th>
+                <th scope="col">
                     Title
                 </th>
-                <th>
+                <th scope="col">
                     Description
                 </th>
-                <th>
+                <th scope="col">
                     Type
                 </th>
-                <th>
+                <th scope="col">
                     Created By
                 </th>
 
-                <th>Actions</th>
+                <th scope="col">Actions</th>
             </tr>
         </tfoot>
     </table>
