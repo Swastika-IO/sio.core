@@ -100,7 +100,7 @@
                 }
             });
 
-            // not work with BS 4
+            // not work with BS 4 (using now http://bootstrap-tagsinput.github.io/bootstrap-tagsinput/examples/)
             //$(".tags")
             //    .on('tokenfield:createdtoken', function (e) {
             //        //$('.tags').val($('.tags').tokenfield('getTokensList'));
@@ -112,6 +112,7 @@
             //    .on('tokenfield:removedtoken', function (e) {
             //        //$('.tags').val($('.tags').tokenfield('getTokensList'));
             //    }).tokenfield();
+            
             
             //Enable iCheck plugin for checkboxes
             //iCheck for checkbox and radio inputs

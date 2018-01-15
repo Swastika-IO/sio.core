@@ -1,14 +1,10 @@
-@*
-    For more information on enabling MVC for empty projects, visit http://go.microsoft.com/fwlink/?LinkID=397860
-*@
 @model BETemplateViewModel
 @inject UserManager<ApplicationUser> UserManager
 
 @{
-    ViewBag.IsAdmin = true; // true;// UserManager.GetUserName(User) == "administrator";
+    ViewBag.IsAdmin = true;
     string isHidden = ViewBag.IsAdmin ? string.Empty : "hidden";
-}
-@{
+
     List<BETemplateViewModel> files = (List<BETemplateViewModel>)this.ViewData["Files"];
     files = files ?? new List<BETemplateViewModel>();
     string name = (string)this.ViewData["Name"];
@@ -55,40 +51,50 @@
 
     var templates = new SelectList(files, "Content", "FileName");
 }
+
 <div>
-    @if (files.Count > 0)
-    {
-        <select asp-for="FileName" asp-items="@templates" id="sel-template" class="form-control">
-            <option value="<div></div>">--- Seclect Template Layout ---</option>
-        </select>
-    }
-    @*<input id="@inputId" name="@inputName" value="@Model.Filename" class="form-control sel-filename"/>*@
-    <input type="hidden" id="@inpId_TemplateName" name="@inpName_TemplateName" value="@Model.TemplateName">
-    <input type="hidden" id="@inpId_TemplateId" name="@inpName_TemplateId" value="@Model.TemplateId">
-    <input type="hidden" id="@inpId_Id" name="@inpName_Id" value="@Model.Id">
-    <input type="hidden" id="@inpId_FileFolder" name="@inpName_FileFolder" value="@Model.FileFolder">
-    <input type="hidden" id="@inpId_Extension" name="@inpName_Extension" value="@Model.Extension">
-    <input type="hidden" id="@inpId_CreatedDateTime" name="@inpName_CreatedDateTime" value="@Model.CreatedDateTime">
-    <input type="hidden" id="@inpId_LastModified" name="@inpName_LastModified" value="@Model.LastModified">
-    <input type="hidden" id="@inpId_ModifiedBy" name="@inpName_ModifiedBy" value="@Model.ModifiedBy">
+    <div class="form-group">
+        <div class="input-group mb-3">
+            @if (files.Count > 0)
+            {
+                <select asp-for="FileName" asp-items="@templates" id="sel-template" class="btn btn-outline-secondary custom-select col-sm-3">
+                    <option value="<div></div>">--- Seclect Template Layout ---</option>
+                </select>
+            }
+            @*<input id="@inputId" name="@inputName" value="@Model.Filename" class="form-control sel-filename"/>*@
+            <input type="hidden" id="@inpId_TemplateName" name="@inpName_TemplateName" value="@Model.TemplateName">
+            <input type="hidden" id="@inpId_TemplateId" name="@inpName_TemplateId" value="@Model.TemplateId">
+            <input type="hidden" id="@inpId_Id" name="@inpName_Id" value="@Model.Id">
+            <input type="hidden" id="@inpId_FileFolder" name="@inpName_FileFolder" value="@Model.FileFolder">
+            <input type="hidden" id="@inpId_Extension" name="@inpName_Extension" value="@Model.Extension">
+            <input type="hidden" id="@inpId_CreatedDateTime" name="@inpName_CreatedDateTime" value="@Model.CreatedDateTime">
+            <input type="hidden" id="@inpId_LastModified" name="@inpName_LastModified" value="@Model.LastModified">
+            <input type="hidden" id="@inpId_ModifiedBy" name="@inpName_ModifiedBy" value="@Model.ModifiedBy">
 
 
-    <input class="form-control sel-filename" type="text" id="@inpId_Filename" name="@inpName_Filename" value="@Model.FileName">
+            <input class="form-control sel-filename" type="text" id="@inpId_Filename" name="@inpName_Filename" value="@Model.FileName">
+        </div>
 
-    <div class="container-code-editor">
-        <div class="form-control" id="code-editor">@Model.Content</div>
-        <input class="form-control code-content" type="hidden" id="@inpId_Content" name="@inpName_Content" value="@Model.Content">
+        <div class="container-code-editor">
+            <div class="form-control" id="code-editor">@Model.Content</div>
+            <input class="form-control code-content" type="hidden" id="@inpId_Content" name="@inpName_Content" value="@Model.Content">
+        </div>
+    </div>
+    <div class="form-group">
+        Scripts
+        <div class="container-code-editor">
+
+            <div class="form-control code-editor">@Model.Scripts</div>
+            <input class="form-control code-content" type="hidden" id="@inpId_Scripts" name="@inpName_Scripts" value="@Model.Scripts">
+        </div>
+    </div>
+    <div class="form-group">
+        Styles
+        <div class="container-code-editor">
+
+            <div class="form-control code-editor">@Model.Styles</div>
+            <input class="form-control code-content" type="hidden" id="@inpId_Styles" name="@inpName_Styles" value="@Model.Styles">
+        </div>
     </div>
 
-    <div class="container-code-editor">
-        Scripts<br />
-        <div class="form-control code-editor">@Model.Scripts</div>
-        <input class="form-control code-content" type="hidden" id="@inpId_Scripts" name="@inpName_Scripts" value="@Model.Scripts">
     </div>
-    <div class="container-code-editor">
-        Styles<br />
-        <div class="form-control code-editor">@Model.Styles</div>
-        <input class="form-control code-content" type="hidden" id="@inpId_Styles" name="@inpName_Styles" value="@Model.Styles">
-    </div>
-
-</div>

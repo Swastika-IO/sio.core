@@ -23,25 +23,24 @@
             </div>
             <div class="card-body">
 
-                <div class="form-horizontal">
                     <div class="form-group">
-                        <label asp-for="Title" class="col-md-2 control-label"></label>
-                        <div class="col-md-10">
-                            <input asp-for="Title" class="form-control" />
+                        @*<label asp-for="Title" class="col-md-2 control-label"></label>
+                        <div class="col-md-10">*@
+                            <input asp-for="Title" class="form-control form-control-lg" placeholder="Enter your article title here..." />
                             <span asp-validation-for="Title" class="text-danger"></span>
-                        </div>
+                        @*</div>*@
                     </div>
 
                     <div class="form-group">
-                        <label asp-for="Excerpt" class="col-md-2 control-label"></label>
-                        <div class="col-md-10">
-                            <textarea asp-for="Excerpt" class="form-control"></textarea>
+                        @*<label asp-for="Excerpt" class="col-md-2 control-label"></label>
+                        <div class="col-md-10">*@
+                            <textarea asp-for="Excerpt" class="form-control" placeholder="Excerpt"></textarea>
                             <span asp-validation-for="Excerpt" class="text-danger"></span>
-                        </div>
+                        @*</div>*@
                     </div>
                     <div class="form-group">
-                        <label asp-for="Content" class="col-md-2 control-label"></label>
-                        <div class="col-md-10">
+                        @*<label asp-for="Content" class="col-md-2 control-label"></label>
+                        <div class="col-md-10">*@
                             <textarea asp-for="Content" class="form-control"></textarea>
                             <script>
                                 // Replace the <textarea id="FullContent"> with a CKEditor
@@ -49,10 +48,9 @@
                                 CKEDITOR.replace('Content');
                             </script>
                             <span asp-validation-for="Content" class="text-danger"></span>
-                        </div>
+                        @*</div>*@
                     </div>
 
-                </div>
             </div>
         </div>
     </div>
@@ -96,16 +94,26 @@
                         <div class="form-group">
                             <div class="col-md-offset-2 col-md-10">
                                 <div class="checkbox">
-                                    <input asp-for="IsVisible" />
-                                    <label asp-for="IsVisible"></label>
+                                    <label asp-for="IsVisible" class="custom-control custom-checkbox d-block">
+                                        <input asp-for="IsVisible" class="custom-control-input" />
+                                        <span class="custom-control-indicator"></span>
+                                        <span class="custom-control-description">
+                                            Is visible
+                                        </span>
+                                    </label>
                                 </div>
                             </div>
                         </div>
                         <div class="form-group">
                             <div class="col-md-offset-2 col-md-10">
                                 <div class="checkbox">
-                                    <input asp-for="IsDeleted" />
-                                    <label asp-for="IsDeleted"></label>
+                                    <label asp-for="IsDeleted" class="custom-control custom-checkbox d-block">
+                                        <input asp-for="IsDeleted" class="custom-control-input" />
+                                        <span class="custom-control-indicator"></span>
+                                        <span class="custom-control-description">
+                                            Is deleted
+                                        </span>
+                                    </label>
                                 </div>
                             </div>
                         </div>
@@ -120,7 +128,7 @@
                         <div class="form-group">
                             <label asp-for="Tags" class="col-md-2 control-label"></label>
                             <div class="col-md-10">
-                                <input asp-for="Tags" class="form-control tags" />
+                                <input asp-for="Tags" class="form-control tags" data-role="tagsinput" />
                                 <span asp-validation-for="Tags" class="text-danger"></span>
                             </div>
                         </div>
@@ -168,7 +176,7 @@
                                     @for (int i = 0; i < Model.Categories.Count; i++)
                                     {
                                         <li class="col-sm-4">
-                                            <input type="checkbox" asp-for="@Model.Categories[i].IsActived" />
+                                            <input type="checkbox" asp-for="@Model.Categories[i].IsActived" class="custom-control-input" />
                                             <label asp-for="@Model.Categories[i].IsActived">@Model.Categories[i].Description</label>
                                             <input type="hidden" asp-for="@Model.Categories[i].Specificulture" />
                                             <input type="hidden" asp-for="@Model.Categories[i].ArticleId" />
@@ -187,7 +195,7 @@
                                     @for (int i = 0; i < Model.Modules.Count; i++)
                                     {
                                         <li class="col-sm-4">
-                                            <input type="checkbox" asp-for="@Model.Modules[i].IsActived" />
+                                            <input type="checkbox" asp-for="@Model.Modules[i].IsActived" class="custom-control-input" />
                                             <label asp-for="@Model.Modules[i].IsActived">@Model.Modules[i].Description</label>
                                             <input type="hidden" asp-for="@Model.Modules[i].Specificulture" />
                                             <input type="hidden" asp-for="@Model.Modules[i].ArticleId" />
@@ -208,7 +216,7 @@
                                     @for (int i = 0; i < Model.ModuleNavs.Count; i++)
                                     {
                                         <li class="col-sm-4">
-                                            <input type="checkbox" asp-for="@Model.ModuleNavs[i].IsActived" data-module-id="@Model.ModuleNavs[i].ModuleId" class="cb-active-module" />
+                                            <input type="checkbox" asp-for="@Model.ModuleNavs[i].IsActived" data-module-id="@Model.ModuleNavs[i].ModuleId" class="cb-active-module custom-control-input" />
                                             <label asp-for="@Model.ModuleNavs[i].IsActived">@Model.ModuleNavs[i].Description</label>
                                             <input type="hidden" asp-for="@Model.ModuleNavs[i].Specificulture" />
                                             <input type="hidden" asp-for="@Model.ModuleNavs[i].ArticleId" />
@@ -229,7 +237,7 @@
                                     <h1>@module.Title</h1>
                                     @*<a href="#" class="btn btn-success AddObject" moduleId="@module.Id">Add new</a>*@
                                     <table class="table table-hover table-striped" id="module-@module.Id">
-                                        <thead>
+                                        <thead class="thead-light">
                                             <tr>
                                                 @foreach (var col in module.Columns.Where(c => c.IsDisplay))
                                                 {
@@ -301,63 +309,4 @@ new ViewDataDictionary(this.Vi‌​ewData) { { "DataType", prop.DataType }, { "
         </div>
     </div>
 </div>
-
-
-<!-- Custom Tabs -->
-<div class="nav-tabs-custom">
-    <ul class="nav nav-tabs">
-        <li class="active"><a href="#tab_info" data-toggle="tab">Content</a></li>
-        <li class=""><a href="#tab_seos" data-toggle="tab">SEO</a></li>
-        <li class=""><a href="#tab_languages" data-toggle="tab">Languages</a></li>
-        <li class=""><a href="#tab_layout" data-toggle="tab">Layout</a></li>
-        <li class=""><a href="#tab_parents" data-toggle="tab">Parents</a></li>
-        <li class=""><a href="#tab_custom_modules" data-toggle="tab">Modules</a></li>
-    </ul>
-
-    <div class="tab-content">
-
-        <div class="tab-pane active" id="tab_info"></div>
-
-        <div class="tab-pane" id="tab_seos">
-            <div class="form-horizontal">
-
-            </div>
-        </div>
-        <!-- /.tab-pane -->
-        <div class="tab-pane" id="tab_languages">
-            <ul class="nav nav-pills nav-stacked">
-                @for (int i = 0; i < Model.ListSupportedCulture.Count; i++)
-                {
-
-                    <li style="position: relative;padding: 10px 15px;float:left;">
-                        <label class="form-check-label">
-                            <input type="checkbox" asp-for="@Model.ListSupportedCulture[i].IsSupported" />
-                            <input type="hidden" asp-for="@Model.ListSupportedCulture[i].Specificulture" />
-                            <i class="flag-icon h5 @Model.ListSupportedCulture[i].Icon" style="margin-right: 5px;margin-left: 10px;"></i> @Model.ListSupportedCulture[i].Specificulture
-                        </label>
-                    </li>
-                }
-            </ul>
-            <input type="hidden" asp-for="Specificulture" />
-        </div>
-        <div class="tab-pane" id="tab_layout">
-            <div class="form-horizontal">
-            </div>
-        </div>
-
-        <div class="tab-pane" id="tab_parents">
-            <div class="form-horizontal">
-            </div>
-        </div>
-
-        <div class="tab-pane" id="tab_custom_modules">
-            <div class="form-horizontal">
-            </div>
-        </div>
-    </div>
-
-
-</div>
-
-
 
