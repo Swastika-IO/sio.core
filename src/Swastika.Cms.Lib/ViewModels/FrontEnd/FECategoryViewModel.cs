@@ -79,6 +79,8 @@ namespace Swastika.Cms.Lib.ViewModels.FrontEnd
         public InfoTemplateViewModel View { get; set; }
         [JsonProperty("articles")]
         public PaginationModel<InfoArticleViewModel> Articles { get; set; } = new PaginationModel<InfoArticleViewModel>();
+        [JsonProperty("products")]
+        public PaginationModel<InfoProductViewModel> Products { get; set; } = new PaginationModel<InfoProductViewModel>();
         [JsonProperty("modules")]
         public List<FEModuleViewModel> Modules { get; set; } = new List<FEModuleViewModel>(); // Get All Module
 
@@ -133,7 +135,9 @@ namespace Swastika.Cms.Lib.ViewModels.FrontEnd
                     case CateType.List:
                         GetSubArticles(_context, _transaction);
                         break;
-
+                    case CateType.ListProduct:
+                        GetSubProducts(_context, _transaction);
+                        break;
                     default:
                         break;
                 }
@@ -189,6 +193,17 @@ namespace Swastika.Cms.Lib.ViewModels.FrontEnd
             }
         }
 
+        void GetSubProducts(SiocCmsContext _context = null, IDbContextTransaction _transaction = null)
+        {
+            var getProducts = InfoProductViewModel.GetModelListByCategory(Id, Specificulture, SWCmsConstants.Default.OrderBy, OrderByDirection.Ascending
+                , 4, 0
+               , _context: _context, _transaction: _transaction
+               );
+            if (getProducts.IsSucceed)
+            {
+                Products = getProducts.Data;
+            }
+        }
 
         #endregion
 

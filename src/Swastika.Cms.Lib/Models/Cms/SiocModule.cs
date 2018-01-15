@@ -30,6 +30,7 @@ namespace Swastika.Cms.Lib.Models.Cms
         public ICollection<SiocArticleModule> SiocArticleModule { get; set; }
         public ICollection<SiocCategoryModule> SiocCategoryModule { get; set; }
         public ICollection<SiocModuleArticle> SiocModuleArticle { get; set; }
+        public ICollection<SiocModuleProduct> SiocModuleProduct { get; set; }
         public ICollection<SiocModuleAttributeSet> SiocModuleAttributeSet { get; set; }
         public ICollection<SiocModuleData> SiocModuleData { get; set; }
         public ICollection<SiocProductModule> SiocProductModule { get; set; }

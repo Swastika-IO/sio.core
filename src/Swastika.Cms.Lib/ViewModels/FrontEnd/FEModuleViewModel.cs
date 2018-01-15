@@ -53,6 +53,8 @@ namespace Swastika.Cms.Lib.ViewModels.FrontEnd
         public List<TemplateViewModel> Templates { get; set; }
         [JsonProperty("articles")]
         public PaginationModel<InfoArticleViewModel> Articles { get; set; } = new PaginationModel<InfoArticleViewModel>();
+        [JsonProperty("products")]
+        public PaginationModel<InfoProductViewModel> Products { get; set; } = new PaginationModel<InfoProductViewModel>();
         public string TemplatePath
         {
             get
@@ -127,13 +129,22 @@ namespace Swastika.Cms.Lib.ViewModels.FrontEnd
             {
                 Articles = getArticles.Data;
             }
+
+            var getProducts = InfoProductViewModel.GetModelListByModule(Id, Specificulture, SWCmsConstants.Default.OrderBy, OrderByDirection.Ascending
+               , 4, 0
+               , _context: _context, _transaction: _transaction
+               );
+            if (getProducts.IsSucceed)
+            {
+                Products = getProducts.Data;
+            }
         }
 
         #endregion
         #region Expand
 
         public static RepositoryResponse<FEModuleViewModel> GetBy(
-            Expression<Func<SiocModule, bool>> predicate, string articleId = null, int categoryId = 0
+            Expression<Func<SiocModule, bool>> predicate, string articleId = null, string productId = null, int categoryId = 0
              , SiocCmsContext _context = null, IDbContextTransaction _transaction = null)
         {
             var result = Repository.GetSingleModel(predicate, _context, _transaction);

@@ -44,7 +44,10 @@ namespace Swastika.Cms.Lib
                         cate.Href = Url.RouteUrl("Page", new { culture = culture, pageName = cate.SeoName });
                         break;
                 }
-                cate.IsActived = cate.Href == activePath;
+                cate.IsActived = (
+                    cate.Href == activePath || 
+                    (cate.Type== SWCmsConstants.CateType.Home && activePath== string.Format("/{0}/Home", culture))
+                    );
             }
             return cates;
         }

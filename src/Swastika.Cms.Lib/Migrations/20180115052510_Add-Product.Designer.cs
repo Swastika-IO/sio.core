@@ -11,9 +11,10 @@ using System;
 namespace Swastika.Cms.Lib.Migrations
 {
     [DbContext(typeof(SiocCmsContext))]
-    partial class SiocCmsContextModelSnapshot : ModelSnapshot
+    [Migration("20180115052510_Add-Product")]
+    partial class AddProduct
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -614,9 +615,6 @@ namespace Swastika.Cms.Lib.Migrations
                         .ValueGeneratedOnAdd()
                         .HasDefaultValueSql("((0))");
 
-                    b.Property<string>("ProductId")
-                        .HasMaxLength(50);
-
                     b.Property<DateTime?>("UpdatedDateTime")
                         .HasColumnType("datetime");
 
@@ -630,28 +628,7 @@ namespace Swastika.Cms.Lib.Migrations
 
                     b.HasIndex("ModuleId", "CategoryId", "Specificulture");
 
-                    b.HasIndex("ModuleId", "ProductId", "Specificulture");
-
                     b.ToTable("sioc_module_data");
-                });
-
-            modelBuilder.Entity("Swastika.Cms.Lib.Models.Cms.SiocModuleProduct", b =>
-                {
-                    b.Property<string>("ProductId")
-                        .HasMaxLength(50);
-
-                    b.Property<int>("ModuleId");
-
-                    b.Property<string>("Specificulture")
-                        .HasMaxLength(10);
-
-                    b.HasKey("ProductId", "ModuleId", "Specificulture");
-
-                    b.HasIndex("ModuleId", "Specificulture");
-
-                    b.HasIndex("ProductId", "Specificulture");
-
-                    b.ToTable("sioc_module_product");
                 });
 
             modelBuilder.Entity("Swastika.Cms.Lib.Models.Cms.SiocParameter", b =>
@@ -1047,28 +1024,15 @@ namespace Swastika.Cms.Lib.Migrations
                         .HasConstraintName("FK_TTS_Module_Data_TTS_Module")
                         .OnDelete(DeleteBehavior.Cascade);
 
+                    b.HasOne("Swastika.Cms.Lib.Models.Cms.SiocArticleModule", "SiocArticleModule")
+                        .WithMany("SiocModuleData")
+                        .HasForeignKey("ModuleId", "ArticleId", "Specificulture")
+                        .HasConstraintName("FK_TTS_Module_Data_TTS_Article_Module");
+
                     b.HasOne("Swastika.Cms.Lib.Models.Cms.SiocCategoryModule", "SiocCategoryModule")
                         .WithMany("SiocModuleData")
                         .HasForeignKey("ModuleId", "CategoryId", "Specificulture")
                         .HasConstraintName("FK_TTS_Module_Data_TTS_Category_Module");
-
-                    b.HasOne("Swastika.Cms.Lib.Models.Cms.SiocArticleModule", "SiocArticleModule")
-                        .WithMany("SiocModuleData")
-                        .HasForeignKey("ModuleId", "ProductId", "Specificulture")
-                        .HasConstraintName("FK_TTS_Module_Data_TTS_Product_Module");
-                });
-
-            modelBuilder.Entity("Swastika.Cms.Lib.Models.Cms.SiocModuleProduct", b =>
-                {
-                    b.HasOne("Swastika.Cms.Lib.Models.Cms.SiocModule", "SiocModule")
-                        .WithMany("SiocModuleProduct")
-                        .HasForeignKey("ModuleId", "Specificulture")
-                        .HasConstraintName("FK_TTS_Module_Product_TTS_Module");
-
-                    b.HasOne("Swastika.Cms.Lib.Models.Cms.SiocProduct", "SiocProduct")
-                        .WithMany("SiocModuleProduct")
-                        .HasForeignKey("ProductId", "Specificulture")
-                        .HasConstraintName("FK_TTS_Module_Product_TTS_Product");
                 });
 
             modelBuilder.Entity("Swastika.Cms.Lib.Models.Cms.SiocProduct", b =>

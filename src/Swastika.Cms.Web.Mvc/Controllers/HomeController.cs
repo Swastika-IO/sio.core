@@ -192,5 +192,21 @@ namespace Swastika.Cms.Mvc.Controllers
             }            
         }
 
+        [Route("product/{SeoName}")]
+        public IActionResult ProductDetails(string SeoName)
+        {
+            var getProduct = FEProductViewModel.Repository.GetSingleModel(
+                a => a.SeoName == SeoName && a.Specificulture == _lang);
+            //ProductRepository.GetInstance().GetSingleModel(a => a.Id == id && a.Specificulture == _lang, SWCmsConstants.ViewModelType.FrontEnd);
+            if (getProduct.IsSucceed)
+            {
+                return View(getProduct.Data);
+            }
+            else
+            {
+                return Redirect(string.Format("/{0}", _lang));
+            }
+        }
+
     }
 }
