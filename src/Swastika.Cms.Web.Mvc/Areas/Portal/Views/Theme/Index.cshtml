@@ -13,41 +13,41 @@
 
 <div class="box-body">
    
-    <table class="table table-hover table-striped dataTable">
+    <table class="table table-hover table-striped dataTable" cellspacing="0">
         <thead>
             <tr>
-                <th>
+                <th scope="col">
                     Priority
                 </th>
-                <th>
+                <th scope="col">
                     Name
                 </th>
-                <th>
+                <th scope="col">
                     CreatedDate
                 </th>
 
-                <th>
+                <th scope="col">
                     CreatedBy
                 </th>
-                <th></th>
+                <th scope="col"></th>
             </tr>
         </thead>
         <tfoot>
              <tr>
-                <th>
+                <th scope="col">
                     Priority
                 </th>
-                <th>
+                <th scope="col">
                     Name
                 </th>
-                <th>
+                <th scope="col">
                     CreatedDate
                 </th>
 
-                <th>
+                <th scope="col">
                     CreatedBy
                 </th>
-                <th></th>
+                <th scope="col"></th>
             </tr>
         </tfoot>
         <tbody>
@@ -73,7 +73,7 @@
                     </td>
 
                     <td>
-                        <div class="btn-block">
+                        <div class="btn-group btn-group-sm" role="group" aria-label="Actions">
                             <a asp-controller="Theme" asp-action="Edit" asp-route-id="@item.Id" 
                                class="btn btn-sm btn-warning d-inline-block "><span class="oi oi-pencil"></span></a>
                             <a asp-area="Portal" asp-controller="Theme" asp-action="Delete" asp-route-id="@item.Id"

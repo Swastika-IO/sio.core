@@ -38,20 +38,20 @@
                         <table class="table table-hover table-striped">
                             <thead>
                                 <tr>
-                                    <th></th>
-                                    <th>
+                                    <th scope="col"></th>
+                                    <th scope="col">
                                         Folder
                                     </th>
-                                    <th>
+                                    <th scope="col">
                                         Name
                                     </th>
-                                    <th>
+                                    <th scope="col">
                                         FullPath
                                     </th>
-                                    <th class="col-sm-4">
+                                    <th scope="col">
                                         Content
                                     </th>
-                                    <th></th>
+                                    <th scope="col"></th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -82,7 +82,7 @@
                                         <td>
 
                                         <td>
-                                            <div class="btn-block">
+                                            <div class="btn-group btn-group-sm" role="group" aria-label="Actions">
                                                 <a asp-area="Portal"
                                                    asp-action="EditTheme"
                                                    asp-route-themeName="@name"

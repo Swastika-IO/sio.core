@@ -11,39 +11,39 @@
     toValue = toValue > Model.TotalItems ? Model.TotalItems : toValue;
 }
 <div class="box-body">
-    <table class="table table-hover table-striped dataTable">
+    <table class="table table-hover table-striped dataTable" cellspacing="0">
         <thead>
             <tr>
-                <th>
+                <th scope="col">
                     Id
                 </th>
-                <th>
+                <th scope="col">
                     Name
                 </th>
-                <th>
+                <th scope="col">
                     Template
                 </th>
-                <th>
+                <th scope="col">
                     Title
                 </th>
-                <th></th>
+                <th scope="col"></th>
             </tr>
         </thead>
         <tfoot>
             <tr>
-                <th>
+                <th scope="col">
                     Id
                 </th>
-                <th>
+                <th scope="col">
                     Name
                 </th>
-                <th>
+                <th scope="col">
                     Template
                 </th>
-                <th>
+                <th scope="col">
                     Title
                 </th>
-                <th></th>
+                <th scope="col"></th>
             </tr>
         </tfoot>
         <tbody>
@@ -64,7 +64,7 @@
                     </td>
 
                     <td>
-                        <div class="btn-block">
+                        <div class="btn-group btn-group-sm" role="group" aria-label="Actions">
                             <a asp-action="Edit" asp-route-id="@item.Id" class="btn btn-sm btn-warning"> <span class="oi oi-pencil"></span></a>
                             <a asp-action="Details" asp-route-id="@item.Id"
                                class="btn btn-sm btn-info"><span class="oi oi-eye"></span></a>
@@ -111,17 +111,17 @@
             <table class="table table-hover table-striped">
                 <thead>
                     <tr>
-                        <th></th>
-                        <th>
+                        <th scope="col"></th>
+                        <th scope="col">
                             Name
                         </th>
-                        <th>
+                        <th scope="col">
                             Template
                         </th>
-                        <th>
+                        <th scope="col">
                             Title
                         </th>
-                        <th></th>
+                        <th scope="col"></th>
                     </tr>
                 </thead>
                 <tbody>

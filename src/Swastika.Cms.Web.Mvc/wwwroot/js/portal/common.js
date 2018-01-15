@@ -34,7 +34,8 @@
                         "searching": true,
                         "ordering": true,
                         "info": false,
-                        "autoWidth": true
+                        "autoWidth": true,
+                        "rowReorder": true
                     });
                 },
                 error: function (err) {
@@ -98,17 +99,19 @@
 
                 }
             });
-            $(".tags")
-                .on('tokenfield:createdtoken', function (e) {
-                    //$('.tags').val($('.tags').tokenfield('getTokensList'));
-                })
 
-                .on('tokenfield:edittoken', function (e) {                    
-                })
+            // not work with BS 4
+            //$(".tags")
+            //    .on('tokenfield:createdtoken', function (e) {
+            //        //$('.tags').val($('.tags').tokenfield('getTokensList'));
+            //    })
 
-                .on('tokenfield:removedtoken', function (e) {
-                    //$('.tags').val($('.tags').tokenfield('getTokensList'));
-                }).tokenfield();
+            //    .on('tokenfield:edittoken', function (e) {                    
+            //    })
+
+            //    .on('tokenfield:removedtoken', function (e) {
+            //        //$('.tags').val($('.tags').tokenfield('getTokensList'));
+            //    }).tokenfield();
             
             //Enable iCheck plugin for checkboxes
             //iCheck for checkbox and radio inputs
@@ -120,7 +123,7 @@
                 $(this).val(e.target.checked === true);
             });
 
-            $(".select2").select2();
+            //$(".select2").select2();
 
 
             $('.dataTable').DataTable({
@@ -130,11 +133,12 @@
                 "searching": true,
                 "ordering": true,
                 "info": false,
-                "autoWidth": true
+                "autoWidth": true,
+                "rowReorder": true
             });
-            $('.dataTable tr').on('click', function () {
-                $(this).toggleClass('selected');
-            })
+            //$('.dataTable tr').on('click', function () {
+            //    $(this).toggleClass('selected');
+            //})
 
             $('.custom-file .custom-file-val').on('change', function () {
                 $(this).parent('.custom-file').find('img').attr('src', $(this).val());
@@ -174,8 +178,10 @@
                 SW.Common.templateEditor.setValue($(this).val());
                 $('.sel-filename').val(($(this).find('option:selected').text()))
             })
+
             var selVal = $('.selectpicker').data('val');
-            $('.selectpicker').selectpicker('val', selVal);
+            // TODO: ERROR with bootstrap 4
+            //$('.selectpicker').selectpicker('val', selVal);
 
             // TODO: ERROR with bootstrap 4
             //$('[data-toggle=confirmation]').confirmation({
