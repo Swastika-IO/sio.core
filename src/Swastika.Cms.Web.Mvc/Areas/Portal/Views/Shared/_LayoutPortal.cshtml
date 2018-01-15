@@ -13,11 +13,7 @@
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-
-    <!-- Bootstrap CSS -->
-    <!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb" crossorigin="anonymous"> -->
-
-
+    
     <link rel="stylesheet" href="~/css/portal/portal.white.min.css">
     <link href="~/css/open-iconic/open-iconic-bootstrap.min.css" rel="stylesheet">
 
@@ -26,6 +22,7 @@
     <link href="~/lib/bootstrap-tags/tokenfield-typeahead.min.css" rel="stylesheet" />
 
     <link href="~/lib/DataTables/datatables.min.css" rel="stylesheet" />
+    <link href="~/lib/bootstrap4-tagsinput-4.1.2/tagsinput.css" rel="stylesheet" />
 
     <style>
         .sw-content{
@@ -128,8 +125,8 @@
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script src="https://code.jquery.com/ui/1.12.0/jquery-ui.min.js" integrity="sha256-eGE6blurk5sHj+rmkfsGYeKyZx3M4bG+ZlFyA7Kns7E=" crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js" integrity="sha384-vFJXuSJphROIrBnz7yo7oB41mKfc8JzQZiCq4NCceLEaO4IHwicKwpJf9c9IpFgh" crossorigin="anonymous"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js" integrity="sha384-alpBpkh1PFOepccYVYDB4do5UnbKysX5WZXm3XxPqe5iKTfUKjNkCk9SaVuEZflJ" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.3/js/bootstrap.min.js" integrity="sha384-a5N7Y/aK3qNeh15eJKGWxsqtnX/wWdSZSKp+81YjTmS15nvnvxKHuzaWwXHDli+4" crossorigin="anonymous"></script>
     <script src="~/js/portal/portal.white.js"></script>
 
 
@@ -145,9 +142,10 @@
     <script src="~/lib/ace/src/mode-csharp.js"></script>
     <script src="~/lib/ace/src/theme-chrome.js"></script>
 
-    @*<script src="~/lib/icheck-1.x/icheck.min.js"></script>*@
+    <script src="~/lib/bootstrap4-tagsinput-4.1.2/tagsinput.js"></script>
 
-    <script src="~/lib/select2-4.0.3/dist/js/select2.full.min.js"></script>
+    @*<script src="~/lib/icheck-1.x/icheck.min.js"></script>*@
+    @*<script src="~/lib/select2-4.0.3/dist/js/select2.full.min.js"></script>*@
 
     @RenderSection("Scripts", required: false)
 
@@ -206,7 +204,7 @@
                         </div>
                     </div>
                     <table class="table table-condensed">
-                        <thead>
+                        <thead class="thead-light">
                             <tr>
                                 <th>
                                     Folder

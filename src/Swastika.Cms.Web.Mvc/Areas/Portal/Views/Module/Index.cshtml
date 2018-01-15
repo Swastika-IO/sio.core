@@ -12,7 +12,7 @@
 }
 <div class="box-body">
     <table class="table table-hover table-striped dataTable" cellspacing="0">
-        <thead>
+        <thead class="thead-light">
             <tr>
                 <th scope="col">
                     Id
@@ -67,7 +67,7 @@
                         <div class="btn-group btn-group-sm" role="group" aria-label="Actions">
                             <a asp-action="Edit" asp-route-id="@item.Id" class="btn btn-sm btn-warning"> <span class="oi oi-pencil"></span></a>
                             <a asp-action="Details" asp-route-id="@item.Id"
-                               class="btn btn-sm btn-info"><span class="oi oi-eye"></span></a>
+                               class="btn btn-sm btn-info"><span class="oi oi-list"></span></a>
                             <a asp-action="Delete" asp-route-id="@item.Id" class="btn btn-sm btn-danger" data-popout="true" data-toggle="confirmation" data-singleton="true" data-btn-ok-class="btn-danger btn-sm" data-btn-cancel-class="btn-success btn-sm" data-content="This can be undo!"> <span class="oi oi-x"></span> </a>
                         </div>
                     </td>
@@ -109,7 +109,7 @@
         </div>
         <div class="table-responsive mailbox-messages" style="height:500px;">
             <table class="table table-hover table-striped">
-                <thead>
+                <thead class="thead-light">
                     <tr>
                         <th scope="col"></th>
                         <th scope="col">
