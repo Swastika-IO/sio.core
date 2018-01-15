@@ -34,7 +34,8 @@
                         "searching": true,
                         "ordering": true,
                         "info": false,
-                        "autoWidth": true
+                        "autoWidth": true,
+                        "rowReorder": true
                     });
                 },
                 error: function (err) {
@@ -135,9 +136,9 @@
                 "autoWidth": true,
                 "rowReorder": true
             });
-            $('.dataTable tr').on('click', function () {
-                $(this).toggleClass('selected');
-            })
+            //$('.dataTable tr').on('click', function () {
+            //    $(this).toggleClass('selected');
+            //})
 
             $('.custom-file .custom-file-val').on('change', function () {
                 $(this).parent('.custom-file').find('img').attr('src', $(this).val());
