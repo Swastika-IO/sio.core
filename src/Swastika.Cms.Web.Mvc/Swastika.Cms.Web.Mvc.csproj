@@ -116,6 +116,7 @@
     <Folder Include="Areas\Portal\Models\" />
     <Folder Include="Areas\User\Models\" />
     <Folder Include="Views\Admin\" />
+    <Folder Include="wwwroot\lib\" />
   </ItemGroup>
 
   <ItemGroup>
@@ -203,7 +204,6 @@
     <None Include="Areas\Portal\Views\Shared\_Editor_Code.cshtml" />
     <None Include="Areas\Portal\Views\Shared\_Editor_ModuleData.cshtml" />
     <None Include="Areas\Portal\Views\Shared\_Layout.cshtml" />
-    <None Include="Areas\Portal\Views\Shared\_Layout_Add_Edit.cshtml" />
     <None Include="Areas\Portal\Views\Shared\_LoginPartial.cshtml" />
     <None Include="Areas\Portal\Views\Shared\_Pagination.cshtml" />
     <None Include="Areas\Portal\Views\Shared\_ValidationScriptsPartial.cshtml" />

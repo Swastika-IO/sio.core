@@ -15,8 +15,6 @@
 }
 <!-- Main content -->
 <div class="box-body">
-    <div class="row">
-        <div class="col-sm-12">
             <table class="table table-hover table-striped dataTable">
                 <thead class="thead-light">
                     <tr>
@@ -102,8 +100,6 @@
                     </tr>
                 </tfoot>
             </table>
-        </div>
-    </div>
         @await Html.PartialAsync("_Pagination", Model , new ViewDataDictionary(this.Vi‌​ewData) {{ "PageSize", Model.PageSize}, { "PageIndex", Model.PageIndex }, { "TotalPage", Model.TotalPage } })
     </div>
 
