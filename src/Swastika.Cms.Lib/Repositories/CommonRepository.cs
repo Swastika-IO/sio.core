@@ -9,6 +9,7 @@ using System.Linq;
 using Swastika.Domain.Core.ViewModels;
 using Swastika.Cms.Lib.ViewModels.Info;
 using Swastika.Cms.Lib.ViewModels.BackEnd;
+using Swastika.Cms.Lib.ViewModels.Navigation;
 
 namespace Swastika.Cms.Lib.Repositories
 {
@@ -35,6 +36,8 @@ namespace Swastika.Cms.Lib.Repositories
                 return instance;
             }
         }
+
+        #region Article
 
         #region Category-Article Navigator
 
@@ -363,6 +366,343 @@ namespace Swastika.Cms.Lib.Repositories
                 }
             }
         }
+
+        #endregion
+
+        #endregion
+
+        #region Product
+
+        #region Category-Product Navigator
+
+
+        public RepositoryResponse<List<NavCategoryProductViewModel>> GetCategoryProductNav(string ProductId, string specificulture
+            , SiocCmsContext _context = null, IDbContextTransaction _transaction = null)
+        {
+            SiocCmsContext context = _context ?? new SiocCmsContext();
+            var transaction = _transaction ?? context.Database.BeginTransaction();
+            try
+            {
+                var result = context.SiocCategory.Include(cp => cp.SiocCategoryProduct)
+                    .Where(a => a.Specificulture == specificulture 
+                    && a.Type == (int)SWCmsConstants.CateType.ListProduct)
+                    .Select(p => new NavCategoryProductViewModel(
+                        new SiocCategoryProduct()
+                        {
+                            ProductId = ProductId,
+                            CategoryId = p.Id,
+                            Specificulture = specificulture
+                        },
+                        _context, _transaction)
+                    {
+                        IsActived = p.SiocCategoryProduct.Count(cp => cp.ProductId == ProductId && cp.Specificulture == specificulture) > 0,
+                        Description = p.Title
+                    });
+                return new RepositoryResponse<List<NavCategoryProductViewModel>>()
+                {
+                    IsSucceed = true,
+                    Data = result.ToList()
+                };
+            }
+            catch (Exception ex)
+            {
+                if (_transaction == null)
+                {
+                    transaction.Rollback();
+                }
+                return new RepositoryResponse<List<NavCategoryProductViewModel>>()
+                {
+                    IsSucceed = true,
+                    Data = null,
+                    Exception = ex
+                };
+            }
+            finally
+            {
+                if (_context == null)
+                {
+                    //if current Context is Root
+                    transaction.Dispose();
+                    context.Dispose();
+                }
+            }
+        }
+
+        public async System.Threading.Tasks.Task<RepositoryResponse<List<NavCategoryProductViewModel>>> GetCategoryProductNavAsync(string ProductId, string specificulture
+           , SiocCmsContext _context = null, IDbContextTransaction _transaction = null)
+        {
+            SiocCmsContext context = _context ?? new SiocCmsContext();
+            var transaction = _transaction ?? context.Database.BeginTransaction();
+            try
+            {
+                var result = context.SiocCategory.Include(cp => cp.SiocCategoryProduct).Where(a => a.Specificulture == specificulture && a.Type == (int)SWCmsConstants.CateType.List)
+                    .Select(p => new NavCategoryProductViewModel(
+                        new SiocCategoryProduct()
+                        {
+                            ProductId = ProductId,
+                            CategoryId = p.Id,
+                            Specificulture = specificulture
+                        },
+                        _context, _transaction)
+                    {
+                        IsActived = p.SiocCategoryProduct.Count(cp => cp.ProductId == ProductId && cp.Specificulture == specificulture) > 0,
+                        Description = p.Title
+                    });
+                return new RepositoryResponse<List<NavCategoryProductViewModel>>()
+                {
+                    IsSucceed = true,
+                    Data = await result.ToListAsync()
+                };
+            }
+            catch (Exception ex)
+            {
+                if (_transaction == null)
+                {
+                    transaction.Rollback();
+                }
+                return new RepositoryResponse<List<NavCategoryProductViewModel>>()
+                {
+                    IsSucceed = true,
+                    Data = null,
+                    Exception = ex
+                };
+            }
+            finally
+            {
+                if (_context == null)
+                {
+                    //if current Context is Root
+                    transaction.Dispose();
+                    context.Dispose();
+                }
+            }
+        }
+
+        #endregion
+
+        #region Module-Product Navigator
+
+
+        public RepositoryResponse<List<ModuleProductViewModel>> GetModuleProductNav(string ProductId, string specificulture
+            , SiocCmsContext _context = null, IDbContextTransaction _transaction = null)
+        {
+            SiocCmsContext context = _context ?? new SiocCmsContext();
+            var transaction = _transaction ?? context.Database.BeginTransaction();
+            try
+            {
+                var result = context.SiocModule.Include(cp => cp.SiocModuleProduct)
+                    .Where(a => a.Specificulture == specificulture
+                    && a.Type == (int)SWCmsConstants.ModuleType.Root)
+                     .Select(p => new ModuleProductViewModel(
+                         new SiocModuleProduct()
+                         {
+                             ProductId = ProductId,
+                             ModuleId = p.Id,
+                             Specificulture = specificulture
+                         },
+                         _context, _transaction)
+                     {
+                         IsActived = p.SiocModuleProduct.Count(cp => cp.ProductId == ProductId && cp.Specificulture == specificulture) > 0,
+                         Description = p.Title
+                     });
+                return new RepositoryResponse<List<ModuleProductViewModel>>()
+                {
+                    IsSucceed = true,
+                    Data = result.ToList()
+                };
+            }
+            catch (Exception ex)
+            {
+                if (_transaction == null)
+                {
+                    transaction.Rollback();
+                }
+                return new RepositoryResponse<List<ModuleProductViewModel>>()
+                {
+                    IsSucceed = true,
+                    Data = null,
+                    Exception = ex
+                };
+            }
+            finally
+            {
+                if (_context == null)
+                {
+                    //if current Context is Root
+                    transaction.Dispose();
+                    context.Dispose();
+                }
+            }
+        }
+
+        public async System.Threading.Tasks.Task<RepositoryResponse<List<ModuleProductViewModel>>> GetModuleProductNavAsync(string ProductId, string specificulture
+           , SiocCmsContext _context = null, IDbContextTransaction _transaction = null)
+        {
+            SiocCmsContext context = _context ?? new SiocCmsContext();
+            var transaction = _transaction ?? context.Database.BeginTransaction();
+            try
+            {
+                var result = context.SiocModule.Include(cp => cp.SiocModuleProduct)
+                    .Where(a => a.Specificulture == specificulture
+                    && a.Type == (int)SWCmsConstants.ModuleType.Root)
+                    .Select(p => new ModuleProductViewModel(
+                        new SiocModuleProduct()
+                        {
+                            ProductId = ProductId,
+                            ModuleId = p.Id,
+                            Specificulture = specificulture
+                        },
+                        _context, _transaction)
+                    {
+                        IsActived = p.SiocModuleProduct.Count(cp => cp.ProductId == ProductId && cp.Specificulture == specificulture) > 0,
+                        Description = p.Title
+                    });
+                return new RepositoryResponse<List<ModuleProductViewModel>>()
+                {
+                    IsSucceed = true,
+                    Data = await result.ToListAsync()
+                };
+            }
+            catch (Exception ex)
+            {
+                if (_transaction == null)
+                {
+                    transaction.Rollback();
+                }
+                return new RepositoryResponse<List<ModuleProductViewModel>>()
+                {
+                    IsSucceed = true,
+                    Data = null,
+                    Exception = ex
+                };
+            }
+            finally
+            {
+                if (_context == null)
+                {
+                    //if current Context is Root
+                    transaction.Dispose();
+                    context.Dispose();
+                }
+            }
+        }
+
+        #endregion
+
+        #region Product-Module Navigator
+
+
+        public RepositoryResponse<List<NavProductModuleViewModel>> GetProductModuleNav(string ProductId, string specificulture
+            , SiocCmsContext _context = null, IDbContextTransaction _transaction = null)
+        {
+            SiocCmsContext context = _context ?? new SiocCmsContext();
+            var transaction = _transaction ?? context.Database.BeginTransaction();
+            try
+            {
+                var result = context.SiocModule.Include(cp => cp.SiocProductModule)
+                    .Where(a => a.Specificulture == specificulture
+                    && a.Type == (int)SWCmsConstants.ModuleType.SubProduct
+                    )
+                     .Select(p => new NavProductModuleViewModel(
+                         new SiocProductModule()
+                         {
+                             ProductId = ProductId,
+                             ModuleId = p.Id,
+                             Specificulture = specificulture,
+                         },
+
+                         _context, _transaction)
+                     {
+
+                         IsActived = p.SiocProductModule.Count(cp => cp.ProductId == ProductId && cp.Specificulture == specificulture) > 0,
+                         Description = p.Title
+                     });
+                return new RepositoryResponse<List<NavProductModuleViewModel>>()
+                {
+                    IsSucceed = true,
+                    Data = result.ToList()
+                };
+            }
+            catch (Exception ex)
+            {
+                if (_transaction == null)
+                {
+                    transaction.Rollback();
+                }
+                return new RepositoryResponse<List<NavProductModuleViewModel>>()
+                {
+                    IsSucceed = false,
+                    Data = null,
+                    Errors = new List<string>() { ex.Message },
+                    Exception = ex
+                };
+            }
+            finally
+            {
+                if (_context == null)
+                {
+                    //if current Context is Root
+                    transaction.Dispose();
+                    context.Dispose();
+                }
+            }
+        }
+
+        public async System.Threading.Tasks.Task<RepositoryResponse<List<NavProductModuleViewModel>>> GetProductModuleNavAsync(string ProductId, string specificulture
+           , SiocCmsContext _context = null, IDbContextTransaction _transaction = null)
+        {
+            SiocCmsContext context = _context ?? new SiocCmsContext();
+            var transaction = _transaction ?? context.Database.BeginTransaction();
+            try
+            {
+                var result = context.SiocModule.Include(cp => cp.SiocProductModule)
+                    .Where(a => a.Specificulture == specificulture
+                    && a.Type == (int)SWCmsConstants.ModuleType.SubProduct)
+                    .Select(p => new NavProductModuleViewModel(
+                        new SiocProductModule()
+                        {
+                            ProductId = ProductId,
+                            ModuleId = p.Id,
+                            Specificulture = specificulture,
+
+                        },
+
+                        _context, _transaction)
+                    {
+                        IsActived = p.SiocProductModule.Count(cp => cp.ProductId == ProductId && cp.Specificulture == specificulture) > 0,
+                        Description = p.Title
+                    });
+                return new RepositoryResponse<List<NavProductModuleViewModel>>()
+                {
+                    IsSucceed = true,
+                    Data = await result.ToListAsync()
+                };
+            }
+            catch (Exception ex)
+            {
+                if (_transaction == null)
+                {
+                    transaction.Rollback();
+                }
+                return new RepositoryResponse<List<NavProductModuleViewModel>>()
+                {
+                    IsSucceed = true,
+                    Data = null,
+                    Exception = ex
+                };
+            }
+            finally
+            {
+                if (_context == null)
+                {
+                    //if current Context is Root
+                    transaction.Dispose();
+                    context.Dispose();
+                }
+            }
+        }
+
+        #endregion
 
         #endregion
     }

@@ -92,6 +92,7 @@ namespace Swastika.Cms.Lib
             Root,
             SubPage,
             SubArticle,
+            SubProduct,
         }
         public class TemplateFolder
         {
@@ -118,6 +119,7 @@ namespace Swastika.Cms.Lib
             Pages,
             Modules,
             Articles,
+            Products,
             Widgets
         }
 
@@ -147,7 +149,8 @@ namespace Swastika.Cms.Lib
             List = 2,
             Home = 3,
             StaticUrl = 4,
-            Modules = 5
+            Modules = 5,
+            ListProduct
         }
 
         public enum CatePosition

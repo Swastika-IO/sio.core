@@ -40,5 +40,6 @@ namespace Swastika.Cms.Lib.Models.Cms
         public SiocCulture SpecificultureNavigation { get; set; }
         public ICollection<SiocCategoryProduct> SiocCategoryProduct { get; set; }
         public ICollection<SiocProductModule> SiocProductModule { get; set; }
+        public ICollection<SiocModuleProduct> SiocModuleProduct { get; set; }
     }
 }

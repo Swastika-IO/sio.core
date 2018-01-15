@@ -17,8 +17,8 @@
     </div>
     <div class="card-body">
 
-        <select asp-for="Type" class="form-control" asp-items="@types"></select>
-        <span asp-validation-for="Type" class="text-danger"></span>
+        @*<select asp-for="Type" class="form-control" asp-items="@types"></select>
+        <span asp-validation-for="Type" class="text-danger"></span>*@
 
         @{
         foreach (var type in types)

@@ -6,11 +6,13 @@
       -webkit-animation: fadeInUp 400ms;
       animation: fadeInUp 400ms;
   }
+
   #portfolio .row {
     margin-left: -10px;
     margin-right: -10px;
   }
 }
+
 /* md */
 @media (min-width: 992px) and (max-width: 1199px) {
   
@@ -295,9 +297,5 @@
 
 
 }
-
-
-
-
 
 

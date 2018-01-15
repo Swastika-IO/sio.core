@@ -22,6 +22,7 @@ namespace Swastika.Cms.Lib.Models.Cms
         public virtual DbSet<SiocFile> SiocFile { get; set; }
         public virtual DbSet<SiocModule> SiocModule { get; set; }
         public virtual DbSet<SiocModuleArticle> SiocModuleArticle { get; set; }
+        public virtual DbSet<SiocModuleProduct> SiocModuleProduct { get; set; }
         public virtual DbSet<SiocModuleAttributeSet> SiocModuleAttributeSet { get; set; }
         public virtual DbSet<SiocModuleAttributeValue> SiocModuleAttributeValue { get; set; }
         public virtual DbSet<SiocModuleData> SiocModuleData { get; set; }
@@ -497,6 +498,33 @@ namespace Swastika.Cms.Lib.Models.Cms
                     .HasConstraintName("FK_TTS_Module_Article_TTS_Module");
             });
 
+            modelBuilder.Entity<SiocModuleProduct>(entity =>
+            {
+                entity.HasKey(e => new { e.ProductId, e.ModuleId, e.Specificulture });
+
+                entity.ToTable("sioc_module_product");
+
+                entity.HasIndex(e => new { e.ProductId, e.Specificulture });
+
+                entity.HasIndex(e => new { e.ModuleId, e.Specificulture });
+
+                entity.Property(e => e.ProductId).HasMaxLength(50);
+
+                entity.Property(e => e.Specificulture).HasMaxLength(10);
+
+                entity.HasOne(d => d.SiocProduct)
+                    .WithMany(p => p.SiocModuleProduct)
+                    .HasForeignKey(d => new { d.ProductId, d.Specificulture })
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("FK_TTS_Module_Product_TTS_Product");
+
+                entity.HasOne(d => d.SiocModule)
+                    .WithMany(p => p.SiocModuleProduct)
+                    .HasForeignKey(d => new { d.ModuleId, d.Specificulture })
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("FK_TTS_Module_Product_TTS_Module");
+            });
+
             modelBuilder.Entity<SiocModuleAttributeSet>(entity =>
             {
                 entity.HasKey(e => new { e.Id, e.ModuleId, e.Specificulture });
@@ -575,6 +603,8 @@ namespace Swastika.Cms.Lib.Models.Cms
 
                 entity.HasIndex(e => new { e.ModuleId, e.ArticleId, e.Specificulture });
 
+                entity.HasIndex(e => new { e.ModuleId, e.ProductId, e.Specificulture });
+
                 entity.HasIndex(e => new { e.ModuleId, e.CategoryId, e.Specificulture });
 
                 entity.Property(e => e.Id).HasMaxLength(50);
@@ -582,6 +612,8 @@ namespace Swastika.Cms.Lib.Models.Cms
                 entity.Property(e => e.Specificulture).HasMaxLength(10);
 
                 entity.Property(e => e.ArticleId).HasMaxLength(50);
+
+                entity.Property(e => e.ProductId).HasMaxLength(50);
 
                 entity.Property(e => e.CreatedDateTime).HasColumnType("datetime");
 
@@ -602,6 +634,11 @@ namespace Swastika.Cms.Lib.Models.Cms
                     .WithMany(p => p.SiocModuleData)
                     .HasForeignKey(d => new { d.ModuleId, d.ArticleId, d.Specificulture })
                     .HasConstraintName("FK_TTS_Module_Data_TTS_Article_Module");
+
+                entity.HasOne(d => d.SiocArticleModule)
+                   .WithMany(p => p.SiocModuleData)
+                   .HasForeignKey(d => new { d.ModuleId, d.ProductId, d.Specificulture })
+                   .HasConstraintName("FK_TTS_Module_Data_TTS_Product_Module");
 
                 entity.HasOne(d => d.SiocCategoryModule)
                     .WithMany(p => p.SiocModuleData)

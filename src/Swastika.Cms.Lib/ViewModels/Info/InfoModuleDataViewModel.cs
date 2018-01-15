@@ -34,6 +34,8 @@ namespace Swastika.Cms.Lib.ViewModels.Info
         public string Value { get; set; }
         [JsonProperty("articleId")]
         public string ArticleId { get; set; }
+        [JsonProperty("productId")]
+        public string ProductId { get; set; }
         [JsonProperty("categoryId")]
         public int? CategoryId { get; set; }
         [JsonProperty("createdDateTime")]

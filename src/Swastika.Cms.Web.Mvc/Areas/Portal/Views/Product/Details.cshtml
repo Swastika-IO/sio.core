@@ -1,0 +1,105 @@
+@model InfoProductViewModel
+
+@{
+    ViewData["Title"] = "Details";
+    //Layout = "~/Areas/Portal/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>TtsProduct</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Image)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Image)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Title)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Title)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Excerpt)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Excerpt)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Content)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Content)
+        </dd>
+       
+        <dt>
+            @Html.DisplayNameFor(model => model.SeoTitle)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.SeoTitle)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.SeoDescription)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.SeoDescription)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.SeoKeywords)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.SeoKeywords)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Source)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Source)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Views)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Views)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Type)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Type)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.CreatedDateTime)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.CreatedDateTime)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.CreatedBy)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.CreatedBy)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.IsVisible)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.IsVisible)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.IsDeleted)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.IsDeleted)
+        </dd>
+        
+    </dl>
+</div>
+<div>
+    @Html.ActionLink("Edit", "Edit", new { /* id = Model.PrimaryKey */ }) |
+    <a asp-action="Index">Back to List</a>
+</div>

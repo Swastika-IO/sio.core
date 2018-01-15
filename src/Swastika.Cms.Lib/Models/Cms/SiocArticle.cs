@@ -39,6 +39,6 @@ namespace Swastika.Cms.Lib.Models.Cms
         public SiocCulture SpecificultureNavigation { get; set; }
         public ICollection<SiocArticleModule> SiocArticleModule { get; set; }
         public ICollection<SiocCategoryArticle> SiocCategoryArticle { get; set; }
-        public ICollection<SiocModuleArticle> SiocModuleArticle { get; set; }
+        public ICollection<SiocModuleArticle> SiocModuleArticle { get; set; }        
     }
 }

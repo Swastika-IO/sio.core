@@ -1,0 +1,55 @@
+@model BEProductViewModel
+
+@{
+    ViewData["Title"] = "Edit";
+    //Layout = "~/Areas/Portal/Views/Shared/_Layout.cshtml";
+}
+
+<!-- Main content -->
+<section class="content container-fluid">
+    <div class="row">
+        <form asp-controller="@ViewContext.RouteData.Values["controller"].ToString()"
+              asp-action="@ViewContext.RouteData.Values["action"].ToString()"
+              asp-route-id="@Model.Id"
+              asp-route-categoryId="@ViewBag.categoryId"
+              >
+            <section class="col-lg-9">
+                @await Html.PartialAsync("_Editable", Model)
+            </section>
+            <section class="col-lg-3">
+                @await Html.PartialAsync("_EditableSide", Model)
+            </section>
+        </form>
+    </div>
+</section>
+<!-- /.content -->
+
+@section Scripts{    
+}
+
+@section Modals{
+    <div class="modal fade" id="modal-data">
+        <div class="modal-dialog modal-lg">
+            <form id="frm-data" asp-controller="Module" asp-action="AjaxSaveModuleData">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                        <h4 class="modal-title">Edit</h4>
+                    </div>
+                    <div class="modal-body">
+
+                    </div>
+                    <div class="modal-footer">
+                        <a class="btn btn-default pull-left" data-dismiss="modal">Close</a>
+                        <a class="btn btn-primary btn-save-data">Save changes</a>
+                    </div>
+                </div>
+                <!-- /.modal-content -->
+            </form>
+        </div>
+        <!-- /.modal-dialog -->
+    </div>
+    <!-- /.modal -->
+}
