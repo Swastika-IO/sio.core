@@ -1,11 +1,16 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace Swastika.Cms.Lib.Models
+namespace Swastika.Cms.Lib.Models.Cms
 {
-    public partial class SiocModuleData
+    public partial class SiocModuleAttributeSet
     {
-        public string Id { get; set; }
+        public SiocModuleAttributeSet()
+        {
+            SiocModuleAttributeValue = new HashSet<SiocModuleAttributeValue>();
+        }
+
+        public Guid Id { get; set; }
         public int ModuleId { get; set; }
         public string Specificulture { get; set; }
         public string ArticleId { get; set; }
@@ -19,5 +24,6 @@ namespace Swastika.Cms.Lib.Models
         public SiocArticleModule SiocArticleModule { get; set; }
         public SiocCategoryModule SiocCategoryModule { get; set; }
         public SiocModule SiocModule { get; set; }
+        public ICollection<SiocModuleAttributeValue> SiocModuleAttributeValue { get; set; }
     }
 }

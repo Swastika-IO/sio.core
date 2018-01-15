@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace Swastika.Cms.Lib.Models
+namespace Swastika.Cms.Lib.Models.Cms
 {
     public partial class SiocConfiguration
     {

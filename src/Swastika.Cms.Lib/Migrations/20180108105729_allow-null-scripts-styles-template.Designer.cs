@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage;
 using Microsoft.EntityFrameworkCore.Storage.Internal;
-using Swastika.Cms.Lib.Models;
+using Swastika.Cms.Lib.Models.Cms;
 using System;
 
 namespace Swastika.Cms.Lib.Migrations

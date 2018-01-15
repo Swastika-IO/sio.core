@@ -10,6 +10,7 @@ using Swastika.Cms.Mvc.Controllers;
 using Swastika.Cms.Lib.ViewModels.BackEnd;
 using Microsoft.Data.OData.Query;
 using Swastika.Cms.Lib.ViewModels.Info;
+using Swastika.Cms.Lib.Models.Cms;
 
 namespace TTS.Web.Areas.Portal.Controllers.Apis
 {
@@ -156,7 +157,7 @@ namespace TTS.Web.Areas.Portal.Controllers.Apis
             {
                 var module = getModule.Data;
                 var ModuleData = new InfoModuleDataViewModel(
-                    new Swastika.Cms.Lib.Models.SiocModuleData()
+                    new SiocModuleData()
                 {
                     Id = Guid.NewGuid().ToString("N"),
                     ModuleId = moduleId,
@@ -263,7 +264,7 @@ namespace TTS.Web.Areas.Portal.Controllers.Apis
             {
                 var module = getModule.Data;
                 var ModuleData = new InfoModuleDataViewModel(
-                    new Swastika.Cms.Lib.Models.SiocModuleData()
+                    new SiocModuleData()
 
                 {
                     Id = Guid.NewGuid().ToString("N"),

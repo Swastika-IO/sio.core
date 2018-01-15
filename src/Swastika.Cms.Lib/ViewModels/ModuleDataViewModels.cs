@@ -1,6 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore.Storage;
 using Newtonsoft.Json.Linq;
-using Swastika.Cms.Lib.Models;
+using Swastika.Cms.Lib.Models.Cms;
 using Swastika.Common;
 using Swastika.Domain.Data.ViewModels;
 using System;

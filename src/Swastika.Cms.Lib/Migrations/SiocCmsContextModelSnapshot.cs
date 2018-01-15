@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage;
 using Microsoft.EntityFrameworkCore.Storage.Internal;
-using Swastika.Cms.Lib.Models;
+using Swastika.Cms.Lib.Models.Cms;
 using System;
 
 namespace Swastika.Cms.Lib.Migrations
@@ -20,7 +20,7 @@ namespace Swastika.Cms.Lib.Migrations
                 .HasAnnotation("ProductVersion", "2.0.1-rtm-125")
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-            modelBuilder.Entity("Swastika.Cms.Lib.Models.SiocArticle", b =>
+            modelBuilder.Entity("Swastika.Cms.Lib.Models.Cms.SiocArticle", b =>
                 {
                     b.Property<string>("Id")
                         .HasMaxLength(50);
@@ -92,7 +92,7 @@ namespace Swastika.Cms.Lib.Migrations
                     b.ToTable("sioc_article");
                 });
 
-            modelBuilder.Entity("Swastika.Cms.Lib.Models.SiocArticleModule", b =>
+            modelBuilder.Entity("Swastika.Cms.Lib.Models.Cms.SiocArticleModule", b =>
                 {
                     b.Property<int>("ModuleId");
 
@@ -115,7 +115,7 @@ namespace Swastika.Cms.Lib.Migrations
                     b.ToTable("sioc_article_module");
                 });
 
-            modelBuilder.Entity("Swastika.Cms.Lib.Models.SiocCategory", b =>
+            modelBuilder.Entity("Swastika.Cms.Lib.Models.Cms.SiocCategory", b =>
                 {
                     b.Property<int>("Id");
 
@@ -194,7 +194,7 @@ namespace Swastika.Cms.Lib.Migrations
                     b.ToTable("sioc_category");
                 });
 
-            modelBuilder.Entity("Swastika.Cms.Lib.Models.SiocCategoryArticle", b =>
+            modelBuilder.Entity("Swastika.Cms.Lib.Models.Cms.SiocCategoryArticle", b =>
                 {
                     b.Property<string>("ArticleId")
                         .HasMaxLength(50);
@@ -213,7 +213,7 @@ namespace Swastika.Cms.Lib.Migrations
                     b.ToTable("sioc_category_article");
                 });
 
-            modelBuilder.Entity("Swastika.Cms.Lib.Models.SiocCategoryCategory", b =>
+            modelBuilder.Entity("Swastika.Cms.Lib.Models.Cms.SiocCategoryCategory", b =>
                 {
                     b.Property<int>("Id");
 
@@ -231,7 +231,7 @@ namespace Swastika.Cms.Lib.Migrations
                     b.ToTable("sioc_category_category");
                 });
 
-            modelBuilder.Entity("Swastika.Cms.Lib.Models.SiocCategoryModule", b =>
+            modelBuilder.Entity("Swastika.Cms.Lib.Models.Cms.SiocCategoryModule", b =>
                 {
                     b.Property<int>("ModuleId");
 
@@ -253,7 +253,7 @@ namespace Swastika.Cms.Lib.Migrations
                     b.ToTable("sioc_category_module");
                 });
 
-            modelBuilder.Entity("Swastika.Cms.Lib.Models.SiocCategoryPosition", b =>
+            modelBuilder.Entity("Swastika.Cms.Lib.Models.Cms.SiocCategoryPosition", b =>
                 {
                     b.Property<int>("PositionId");
 
@@ -272,7 +272,26 @@ namespace Swastika.Cms.Lib.Migrations
                     b.ToTable("sioc_category_position");
                 });
 
-            modelBuilder.Entity("Swastika.Cms.Lib.Models.SiocComment", b =>
+            modelBuilder.Entity("Swastika.Cms.Lib.Models.Cms.SiocCategoryProduct", b =>
+                {
+                    b.Property<string>("ProductId")
+                        .HasMaxLength(50);
+
+                    b.Property<int>("CategoryId");
+
+                    b.Property<string>("Specificulture")
+                        .HasMaxLength(10);
+
+                    b.HasKey("ProductId", "CategoryId", "Specificulture");
+
+                    b.HasIndex("CategoryId", "Specificulture");
+
+                    b.HasIndex("ProductId", "Specificulture");
+
+                    b.ToTable("sioc_category_product");
+                });
+
+            modelBuilder.Entity("Swastika.Cms.Lib.Models.Cms.SiocComment", b =>
                 {
                     b.Property<Guid>("Id");
 
@@ -309,7 +328,7 @@ namespace Swastika.Cms.Lib.Migrations
                     b.ToTable("sioc_comment");
                 });
 
-            modelBuilder.Entity("Swastika.Cms.Lib.Models.SiocConfiguration", b =>
+            modelBuilder.Entity("Swastika.Cms.Lib.Models.Cms.SiocConfiguration", b =>
                 {
                     b.Property<string>("Keyword")
                         .HasMaxLength(250);
@@ -334,7 +353,7 @@ namespace Swastika.Cms.Lib.Migrations
                     b.ToTable("sioc_configuration");
                 });
 
-            modelBuilder.Entity("Swastika.Cms.Lib.Models.SiocCopy", b =>
+            modelBuilder.Entity("Swastika.Cms.Lib.Models.Cms.SiocCopy", b =>
                 {
                     b.Property<string>("Culture")
                         .HasMaxLength(10);
@@ -352,7 +371,7 @@ namespace Swastika.Cms.Lib.Migrations
                     b.ToTable("sioc_copy");
                 });
 
-            modelBuilder.Entity("Swastika.Cms.Lib.Models.SiocCulture", b =>
+            modelBuilder.Entity("Swastika.Cms.Lib.Models.Cms.SiocCulture", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd();
@@ -386,7 +405,7 @@ namespace Swastika.Cms.Lib.Migrations
                     b.ToTable("sioc_culture");
                 });
 
-            modelBuilder.Entity("Swastika.Cms.Lib.Models.SiocFile", b =>
+            modelBuilder.Entity("Swastika.Cms.Lib.Models.Cms.SiocFile", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd();
@@ -435,7 +454,7 @@ namespace Swastika.Cms.Lib.Migrations
                     b.ToTable("sioc_file");
                 });
 
-            modelBuilder.Entity("Swastika.Cms.Lib.Models.SiocModule", b =>
+            modelBuilder.Entity("Swastika.Cms.Lib.Models.Cms.SiocModule", b =>
                 {
                     b.Property<int>("Id");
 
@@ -475,7 +494,7 @@ namespace Swastika.Cms.Lib.Migrations
                     b.ToTable("sioc_module");
                 });
 
-            modelBuilder.Entity("Swastika.Cms.Lib.Models.SiocModuleArticle", b =>
+            modelBuilder.Entity("Swastika.Cms.Lib.Models.Cms.SiocModuleArticle", b =>
                 {
                     b.Property<string>("ArticleId")
                         .HasMaxLength(50);
@@ -494,7 +513,7 @@ namespace Swastika.Cms.Lib.Migrations
                     b.ToTable("sioc_module_article");
                 });
 
-            modelBuilder.Entity("Swastika.Cms.Lib.Models.SiocModuleAttributeSet", b =>
+            modelBuilder.Entity("Swastika.Cms.Lib.Models.Cms.SiocModuleAttributeSet", b =>
                 {
                     b.Property<Guid>("Id");
 
@@ -535,7 +554,7 @@ namespace Swastika.Cms.Lib.Migrations
                     b.ToTable("sioc_module_attribute_set");
                 });
 
-            modelBuilder.Entity("Swastika.Cms.Lib.Models.SiocModuleAttributeValue", b =>
+            modelBuilder.Entity("Swastika.Cms.Lib.Models.Cms.SiocModuleAttributeValue", b =>
                 {
                     b.Property<Guid>("Id");
 
@@ -569,7 +588,7 @@ namespace Swastika.Cms.Lib.Migrations
                     b.ToTable("sioc_module_attribute_value");
                 });
 
-            modelBuilder.Entity("Swastika.Cms.Lib.Models.SiocModuleData", b =>
+            modelBuilder.Entity("Swastika.Cms.Lib.Models.Cms.SiocModuleData", b =>
                 {
                     b.Property<string>("Id")
                         .HasMaxLength(50);
@@ -611,7 +630,7 @@ namespace Swastika.Cms.Lib.Migrations
                     b.ToTable("sioc_module_data");
                 });
 
-            modelBuilder.Entity("Swastika.Cms.Lib.Models.SiocParameter", b =>
+            modelBuilder.Entity("Swastika.Cms.Lib.Models.Cms.SiocParameter", b =>
                 {
                     b.Property<string>("Name")
                         .HasMaxLength(256);
@@ -626,7 +645,7 @@ namespace Swastika.Cms.Lib.Migrations
                     b.ToTable("sioc_parameter");
                 });
 
-            modelBuilder.Entity("Swastika.Cms.Lib.Models.SiocPosition", b =>
+            modelBuilder.Entity("Swastika.Cms.Lib.Models.Cms.SiocPosition", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd();
@@ -640,7 +659,109 @@ namespace Swastika.Cms.Lib.Migrations
                     b.ToTable("sioc_position");
                 });
 
-            modelBuilder.Entity("Swastika.Cms.Lib.Models.SiocTemplate", b =>
+            modelBuilder.Entity("Swastika.Cms.Lib.Models.Cms.SiocProduct", b =>
+                {
+                    b.Property<string>("Id")
+                        .HasMaxLength(50);
+
+                    b.Property<string>("Specificulture")
+                        .HasMaxLength(10);
+
+                    b.Property<string>("Content");
+
+                    b.Property<string>("CreatedBy")
+                        .HasMaxLength(250);
+
+                    b.Property<DateTime>("CreatedDateTime")
+                        .HasColumnType("datetime");
+
+                    b.Property<string>("Excerpt");
+
+                    b.Property<string>("Icon");
+
+                    b.Property<string>("Image")
+                        .HasMaxLength(250);
+
+                    b.Property<bool>("IsDeleted");
+
+                    b.Property<bool>("IsVisible");
+
+                    b.Property<DateTime?>("LastModified")
+                        .HasColumnType("datetime");
+
+                    b.Property<string>("ModifiedBy")
+                        .HasMaxLength(250);
+
+                    b.Property<double>("Price")
+                        .ValueGeneratedOnAdd()
+                        .HasDefaultValueSql("((0))");
+
+                    b.Property<string>("PriceUnit")
+                        .HasMaxLength(10);
+
+                    b.Property<string>("SeoDescription")
+                        .HasMaxLength(4000);
+
+                    b.Property<string>("SeoKeywords")
+                        .HasMaxLength(4000);
+
+                    b.Property<string>("SeoName")
+                        .HasMaxLength(500)
+                        .IsUnicode(false);
+
+                    b.Property<string>("SeoTitle")
+                        .HasMaxLength(4000);
+
+                    b.Property<string>("Source")
+                        .HasMaxLength(250);
+
+                    b.Property<string>("Tags")
+                        .HasMaxLength(500);
+
+                    b.Property<string>("Template")
+                        .HasMaxLength(250);
+
+                    b.Property<string>("Thumbnail")
+                        .HasMaxLength(250);
+
+                    b.Property<string>("Title")
+                        .HasMaxLength(4000);
+
+                    b.Property<int>("Type");
+
+                    b.Property<int?>("Views");
+
+                    b.HasKey("Id", "Specificulture");
+
+                    b.HasIndex("Specificulture");
+
+                    b.ToTable("sioc_product");
+                });
+
+            modelBuilder.Entity("Swastika.Cms.Lib.Models.Cms.SiocProductModule", b =>
+                {
+                    b.Property<int>("ModuleId");
+
+                    b.Property<string>("ProductId")
+                        .HasMaxLength(50);
+
+                    b.Property<string>("Specificulture")
+                        .HasMaxLength(10);
+
+                    b.Property<int>("Position");
+
+                    b.Property<int>("Priority");
+
+                    b.HasKey("ModuleId", "ProductId", "Specificulture");
+
+                    b.HasIndex("ModuleId", "Specificulture");
+
+                    b.HasIndex("ProductId", "Specificulture");
+
+                    b.ToTable("sioc_product_module");
+                });
+
+            modelBuilder.Entity("Swastika.Cms.Lib.Models.Cms.SiocTemplate", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd();
@@ -698,7 +819,7 @@ namespace Swastika.Cms.Lib.Migrations
                     b.ToTable("sioc_template");
                 });
 
-            modelBuilder.Entity("Swastika.Cms.Lib.Models.SiocTheme", b =>
+            modelBuilder.Entity("Swastika.Cms.Lib.Models.Cms.SiocTheme", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd();
@@ -726,95 +847,108 @@ namespace Swastika.Cms.Lib.Migrations
                     b.ToTable("sioc_theme");
                 });
 
-            modelBuilder.Entity("Swastika.Cms.Lib.Models.SiocArticle", b =>
+            modelBuilder.Entity("Swastika.Cms.Lib.Models.Cms.SiocArticle", b =>
                 {
-                    b.HasOne("Swastika.Cms.Lib.Models.SiocCulture", "SpecificultureNavigation")
+                    b.HasOne("Swastika.Cms.Lib.Models.Cms.SiocCulture", "SpecificultureNavigation")
                         .WithMany("SiocArticle")
                         .HasForeignKey("Specificulture")
                         .HasConstraintName("FK_TTS_Article_TTS_Culture")
                         .HasPrincipalKey("Specificulture");
                 });
 
-            modelBuilder.Entity("Swastika.Cms.Lib.Models.SiocArticleModule", b =>
+            modelBuilder.Entity("Swastika.Cms.Lib.Models.Cms.SiocArticleModule", b =>
                 {
-                    b.HasOne("Swastika.Cms.Lib.Models.SiocArticle", "SiocArticle")
+                    b.HasOne("Swastika.Cms.Lib.Models.Cms.SiocArticle", "SiocArticle")
                         .WithMany("SiocArticleModule")
                         .HasForeignKey("ArticleId", "Specificulture")
                         .HasConstraintName("FK_TTS_Article_Module_TTS_Article");
 
-                    b.HasOne("Swastika.Cms.Lib.Models.SiocModule", "SiocModule")
+                    b.HasOne("Swastika.Cms.Lib.Models.Cms.SiocModule", "SiocModule")
                         .WithMany("SiocArticleModule")
                         .HasForeignKey("ModuleId", "Specificulture")
                         .HasConstraintName("FK_TTS_Article_Module_TTS_Module1")
                         .OnDelete(DeleteBehavior.Cascade);
                 });
 
-            modelBuilder.Entity("Swastika.Cms.Lib.Models.SiocCategory", b =>
+            modelBuilder.Entity("Swastika.Cms.Lib.Models.Cms.SiocCategory", b =>
                 {
-                    b.HasOne("Swastika.Cms.Lib.Models.SiocCulture", "SpecificultureNavigation")
+                    b.HasOne("Swastika.Cms.Lib.Models.Cms.SiocCulture", "SpecificultureNavigation")
                         .WithMany("SiocCategory")
                         .HasForeignKey("Specificulture")
                         .HasConstraintName("FK_TTS_Category_TTS_Culture")
                         .HasPrincipalKey("Specificulture");
                 });
 
-            modelBuilder.Entity("Swastika.Cms.Lib.Models.SiocCategoryArticle", b =>
+            modelBuilder.Entity("Swastika.Cms.Lib.Models.Cms.SiocCategoryArticle", b =>
                 {
-                    b.HasOne("Swastika.Cms.Lib.Models.SiocArticle", "SiocArticle")
+                    b.HasOne("Swastika.Cms.Lib.Models.Cms.SiocArticle", "SiocArticle")
                         .WithMany("SiocCategoryArticle")
                         .HasForeignKey("ArticleId", "Specificulture")
                         .HasConstraintName("FK_TTS_Category_Article_TTS_Article");
 
-                    b.HasOne("Swastika.Cms.Lib.Models.SiocCategory", "SiocCategory")
+                    b.HasOne("Swastika.Cms.Lib.Models.Cms.SiocCategory", "SiocCategory")
                         .WithMany("SiocCategoryArticle")
                         .HasForeignKey("CategoryId", "Specificulture")
                         .HasConstraintName("FK_TTS_Category_Article_TTS_Category");
                 });
 
-            modelBuilder.Entity("Swastika.Cms.Lib.Models.SiocCategoryCategory", b =>
+            modelBuilder.Entity("Swastika.Cms.Lib.Models.Cms.SiocCategoryCategory", b =>
                 {
-                    b.HasOne("Swastika.Cms.Lib.Models.SiocCategory", "SiocCategory")
+                    b.HasOne("Swastika.Cms.Lib.Models.Cms.SiocCategory", "SiocCategory")
                         .WithMany("SiocCategoryCategorySiocCategory")
                         .HasForeignKey("Id", "Specificulture")
                         .HasConstraintName("FK_TTS_Category_Category_TTS_Category");
 
-                    b.HasOne("Swastika.Cms.Lib.Models.SiocCategory", "SiocCategoryNavigation")
+                    b.HasOne("Swastika.Cms.Lib.Models.Cms.SiocCategory", "SiocCategoryNavigation")
                         .WithMany("SiocCategoryCategorySiocCategoryNavigation")
                         .HasForeignKey("ParentId", "Specificulture")
                         .HasConstraintName("FK_TTS_Category_Category_TTS_Category1");
                 });
 
-            modelBuilder.Entity("Swastika.Cms.Lib.Models.SiocCategoryModule", b =>
+            modelBuilder.Entity("Swastika.Cms.Lib.Models.Cms.SiocCategoryModule", b =>
                 {
-                    b.HasOne("Swastika.Cms.Lib.Models.SiocCategory", "SiocCategory")
+                    b.HasOne("Swastika.Cms.Lib.Models.Cms.SiocCategory", "SiocCategory")
                         .WithMany("SiocCategoryModule")
                         .HasForeignKey("CategoryId", "Specificulture")
                         .HasConstraintName("FK_TTS_Category_Module_TTS_Category");
 
-                    b.HasOne("Swastika.Cms.Lib.Models.SiocModule", "SiocModule")
+                    b.HasOne("Swastika.Cms.Lib.Models.Cms.SiocModule", "SiocModule")
                         .WithMany("SiocCategoryModule")
                         .HasForeignKey("ModuleId", "Specificulture")
                         .HasConstraintName("FK_TTS_Menu_Module_TTS_Module1")
                         .OnDelete(DeleteBehavior.Cascade);
                 });
 
-            modelBuilder.Entity("Swastika.Cms.Lib.Models.SiocCategoryPosition", b =>
+            modelBuilder.Entity("Swastika.Cms.Lib.Models.Cms.SiocCategoryPosition", b =>
                 {
-                    b.HasOne("Swastika.Cms.Lib.Models.SiocPosition", "Position")
+                    b.HasOne("Swastika.Cms.Lib.Models.Cms.SiocPosition", "Position")
                         .WithMany("SiocCategoryPosition")
                         .HasForeignKey("PositionId")
                         .HasConstraintName("FK_TTS_Category_Position_TTS_Position")
                         .OnDelete(DeleteBehavior.Cascade);
 
-                    b.HasOne("Swastika.Cms.Lib.Models.SiocCategory", "SiocCategory")
+                    b.HasOne("Swastika.Cms.Lib.Models.Cms.SiocCategory", "SiocCategory")
                         .WithMany("SiocCategoryPosition")
                         .HasForeignKey("CategoryId", "Specificulture")
                         .HasConstraintName("FK_TTS_Category_Position_TTS_Category");
                 });
 
-            modelBuilder.Entity("Swastika.Cms.Lib.Models.SiocConfiguration", b =>
+            modelBuilder.Entity("Swastika.Cms.Lib.Models.Cms.SiocCategoryProduct", b =>
                 {
-                    b.HasOne("Swastika.Cms.Lib.Models.SiocCulture", "SpecificultureNavigation")
+                    b.HasOne("Swastika.Cms.Lib.Models.Cms.SiocCategory", "SiocCategory")
+                        .WithMany("SiocCategoryProduct")
+                        .HasForeignKey("CategoryId", "Specificulture")
+                        .HasConstraintName("FK_TTS_Category_Product_TTS_Category");
+
+                    b.HasOne("Swastika.Cms.Lib.Models.Cms.SiocProduct", "SiocProduct")
+                        .WithMany("SiocCategoryProduct")
+                        .HasForeignKey("ProductId", "Specificulture")
+                        .HasConstraintName("FK_TTS_Category_Product_TTS_Product");
+                });
+
+            modelBuilder.Entity("Swastika.Cms.Lib.Models.Cms.SiocConfiguration", b =>
+                {
+                    b.HasOne("Swastika.Cms.Lib.Models.Cms.SiocCulture", "SpecificultureNavigation")
                         .WithMany("SiocConfiguration")
                         .HasForeignKey("Specificulture")
                         .HasConstraintName("FK_Sioc_Configuration_Sioc_Culture")
@@ -822,17 +956,17 @@ namespace Swastika.Cms.Lib.Migrations
                         .OnDelete(DeleteBehavior.Cascade);
                 });
 
-            modelBuilder.Entity("Swastika.Cms.Lib.Models.SiocFile", b =>
+            modelBuilder.Entity("Swastika.Cms.Lib.Models.Cms.SiocFile", b =>
                 {
-                    b.HasOne("Swastika.Cms.Lib.Models.SiocTheme", "Theme")
+                    b.HasOne("Swastika.Cms.Lib.Models.Cms.SiocTheme", "Theme")
                         .WithMany("SiocFile")
                         .HasForeignKey("ThemeId")
                         .HasConstraintName("FK_sioc_file_sioc_template");
                 });
 
-            modelBuilder.Entity("Swastika.Cms.Lib.Models.SiocModule", b =>
+            modelBuilder.Entity("Swastika.Cms.Lib.Models.Cms.SiocModule", b =>
                 {
-                    b.HasOne("Swastika.Cms.Lib.Models.SiocCulture", "SpecificultureNavigation")
+                    b.HasOne("Swastika.Cms.Lib.Models.Cms.SiocCulture", "SpecificultureNavigation")
                         .WithMany("SiocModule")
                         .HasForeignKey("Specificulture")
                         .HasConstraintName("FK_TTS_Module_TTS_Culture")
@@ -840,69 +974,92 @@ namespace Swastika.Cms.Lib.Migrations
                         .OnDelete(DeleteBehavior.Cascade);
                 });
 
-            modelBuilder.Entity("Swastika.Cms.Lib.Models.SiocModuleArticle", b =>
+            modelBuilder.Entity("Swastika.Cms.Lib.Models.Cms.SiocModuleArticle", b =>
                 {
-                    b.HasOne("Swastika.Cms.Lib.Models.SiocArticle", "SiocArticle")
+                    b.HasOne("Swastika.Cms.Lib.Models.Cms.SiocArticle", "SiocArticle")
                         .WithMany("SiocModuleArticle")
                         .HasForeignKey("ArticleId", "Specificulture")
                         .HasConstraintName("FK_TTS_Module_Article_TTS_Article");
 
-                    b.HasOne("Swastika.Cms.Lib.Models.SiocModule", "SiocModule")
+                    b.HasOne("Swastika.Cms.Lib.Models.Cms.SiocModule", "SiocModule")
                         .WithMany("SiocModuleArticle")
                         .HasForeignKey("ModuleId", "Specificulture")
                         .HasConstraintName("FK_TTS_Module_Article_TTS_Module");
                 });
 
-            modelBuilder.Entity("Swastika.Cms.Lib.Models.SiocModuleAttributeSet", b =>
+            modelBuilder.Entity("Swastika.Cms.Lib.Models.Cms.SiocModuleAttributeSet", b =>
                 {
-                    b.HasOne("Swastika.Cms.Lib.Models.SiocModule", "SiocModule")
+                    b.HasOne("Swastika.Cms.Lib.Models.Cms.SiocModule", "SiocModule")
                         .WithMany("SiocModuleAttributeSet")
                         .HasForeignKey("ModuleId", "Specificulture")
                         .HasConstraintName("FK_TTS_Module_Attribute_set_TTS_Module")
                         .OnDelete(DeleteBehavior.Cascade);
 
-                    b.HasOne("Swastika.Cms.Lib.Models.SiocArticleModule", "SiocArticleModule")
+                    b.HasOne("Swastika.Cms.Lib.Models.Cms.SiocArticleModule", "SiocArticleModule")
                         .WithMany("SiocModuleAttributeSet")
                         .HasForeignKey("ModuleId", "ArticleId", "Specificulture")
                         .HasConstraintName("FK_TTS_Module_Attribute_set_TTS_Article_Module");
 
-                    b.HasOne("Swastika.Cms.Lib.Models.SiocCategoryModule", "SiocCategoryModule")
+                    b.HasOne("Swastika.Cms.Lib.Models.Cms.SiocCategoryModule", "SiocCategoryModule")
                         .WithMany("SiocModuleAttributeSet")
                         .HasForeignKey("ModuleId", "CategoryId", "Specificulture")
                         .HasConstraintName("FK_TTS_Module_Attribute_set_TTS_Category_Module");
                 });
 
-            modelBuilder.Entity("Swastika.Cms.Lib.Models.SiocModuleAttributeValue", b =>
+            modelBuilder.Entity("Swastika.Cms.Lib.Models.Cms.SiocModuleAttributeValue", b =>
                 {
-                    b.HasOne("Swastika.Cms.Lib.Models.SiocModuleAttributeSet", "SiocModuleAttributeSet")
+                    b.HasOne("Swastika.Cms.Lib.Models.Cms.SiocModuleAttributeSet", "SiocModuleAttributeSet")
                         .WithMany("SiocModuleAttributeValue")
                         .HasForeignKey("AttributeSetId", "ModuleId", "Specificulture")
                         .HasConstraintName("FK_sioc_module_attribute_value_sioc_module_attribute_set")
                         .OnDelete(DeleteBehavior.Cascade);
                 });
 
-            modelBuilder.Entity("Swastika.Cms.Lib.Models.SiocModuleData", b =>
+            modelBuilder.Entity("Swastika.Cms.Lib.Models.Cms.SiocModuleData", b =>
                 {
-                    b.HasOne("Swastika.Cms.Lib.Models.SiocModule", "SiocModule")
+                    b.HasOne("Swastika.Cms.Lib.Models.Cms.SiocModule", "SiocModule")
                         .WithMany("SiocModuleData")
                         .HasForeignKey("ModuleId", "Specificulture")
                         .HasConstraintName("FK_TTS_Module_Data_TTS_Module")
                         .OnDelete(DeleteBehavior.Cascade);
 
-                    b.HasOne("Swastika.Cms.Lib.Models.SiocArticleModule", "SiocArticleModule")
+                    b.HasOne("Swastika.Cms.Lib.Models.Cms.SiocArticleModule", "SiocArticleModule")
                         .WithMany("SiocModuleData")
                         .HasForeignKey("ModuleId", "ArticleId", "Specificulture")
                         .HasConstraintName("FK_TTS_Module_Data_TTS_Article_Module");
 
-                    b.HasOne("Swastika.Cms.Lib.Models.SiocCategoryModule", "SiocCategoryModule")
+                    b.HasOne("Swastika.Cms.Lib.Models.Cms.SiocCategoryModule", "SiocCategoryModule")
                         .WithMany("SiocModuleData")
                         .HasForeignKey("ModuleId", "CategoryId", "Specificulture")
                         .HasConstraintName("FK_TTS_Module_Data_TTS_Category_Module");
                 });
 
-            modelBuilder.Entity("Swastika.Cms.Lib.Models.SiocTemplate", b =>
+            modelBuilder.Entity("Swastika.Cms.Lib.Models.Cms.SiocProduct", b =>
                 {
-                    b.HasOne("Swastika.Cms.Lib.Models.SiocTheme", "Template")
+                    b.HasOne("Swastika.Cms.Lib.Models.Cms.SiocCulture", "SpecificultureNavigation")
+                        .WithMany("SiocProduct")
+                        .HasForeignKey("Specificulture")
+                        .HasConstraintName("FK_TTS_Product_TTS_Culture")
+                        .HasPrincipalKey("Specificulture");
+                });
+
+            modelBuilder.Entity("Swastika.Cms.Lib.Models.Cms.SiocProductModule", b =>
+                {
+                    b.HasOne("Swastika.Cms.Lib.Models.Cms.SiocModule", "SiocModule")
+                        .WithMany("SiocProductModule")
+                        .HasForeignKey("ModuleId", "Specificulture")
+                        .HasConstraintName("FK_TTS_Product_Module_TTS_Module1")
+                        .OnDelete(DeleteBehavior.Cascade);
+
+                    b.HasOne("Swastika.Cms.Lib.Models.Cms.SiocProduct", "SiocProduct")
+                        .WithMany("SiocProductModule")
+                        .HasForeignKey("ProductId", "Specificulture")
+                        .HasConstraintName("FK_TTS_Product_Module_TTS_Product");
+                });
+
+            modelBuilder.Entity("Swastika.Cms.Lib.Models.Cms.SiocTemplate", b =>
+                {
+                    b.HasOne("Swastika.Cms.Lib.Models.Cms.SiocTheme", "Template")
                         .WithMany("SiocTemplate")
                         .HasForeignKey("TemplateId")
                         .HasConstraintName("FK_sioc_template_file_sioc_template");

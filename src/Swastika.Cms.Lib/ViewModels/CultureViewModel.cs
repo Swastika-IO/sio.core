@@ -1,4 +1,4 @@
-﻿using Swastika.Cms.Lib.Models;
+﻿using Swastika.Cms.Lib.Models.Cms;
 using Microsoft.EntityFrameworkCore.Storage;
 
 namespace Swastika.Cms.Lib.ViewModels

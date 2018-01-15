@@ -11,6 +11,7 @@ using Swastika.Cms.Lib.ViewModels.BackEnd;
 using Swastika.Cms.Lib.Models;
 using Swastika.Cms.Lib.ViewModels;
 using Swastika.Cms.Lib.Services;
+using Swastika.Cms.Lib.Models.Cms;
 
 namespace Swastika.Cms.Mvc.Areas.Portal.Controllers
 {

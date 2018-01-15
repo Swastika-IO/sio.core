@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace Swastika.Cms.Lib.Models
+namespace Swastika.Cms.Lib.Models.Cms
 {
     public partial class SiocCulture
     {
@@ -11,6 +11,7 @@ namespace Swastika.Cms.Lib.Models
             SiocCategory = new HashSet<SiocCategory>();
             SiocConfiguration = new HashSet<SiocConfiguration>();
             SiocModule = new HashSet<SiocModule>();
+            SiocProduct = new HashSet<SiocProduct>();
         }
 
         public int Id { get; set; }
@@ -25,5 +26,6 @@ namespace Swastika.Cms.Lib.Models
         public ICollection<SiocCategory> SiocCategory { get; set; }
         public ICollection<SiocConfiguration> SiocConfiguration { get; set; }
         public ICollection<SiocModule> SiocModule { get; set; }
+        public ICollection<SiocProduct> SiocProduct { get; set; }
     }
 }

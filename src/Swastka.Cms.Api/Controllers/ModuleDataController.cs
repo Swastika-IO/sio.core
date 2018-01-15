@@ -1,7 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.Data.OData.Query;
 using Newtonsoft.Json.Linq;
-using Swastika.Cms.Lib.Models;
 using Swastika.Cms.Lib.ViewModels;
 using System;
 using System.Collections.Generic;
@@ -11,6 +10,7 @@ using System.Threading.Tasks;
 using Swastika.Domain.Core.ViewModels;
 using Swastika.Api.Controllers;
 using Swastika.Cms.Lib.ViewModels.Info;
+using Swastika.Cms.Lib.Models.Cms;
 
 namespace Swastka.Cms.Api.Controllers
 {

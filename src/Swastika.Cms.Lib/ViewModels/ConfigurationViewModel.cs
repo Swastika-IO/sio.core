@@ -1,6 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore.Storage;
 using Swastika.Domain.Data.ViewModels;
-using Swastika.Cms.Lib.Models;
+using Swastika.Cms.Lib.Models.Cms;
 using Swastika.Cms.Lib.Services;
 using System.ComponentModel.DataAnnotations;
 using Swastika.Domain.Core.ViewModels;

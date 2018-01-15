@@ -1,7 +1,5 @@
 ﻿using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
-using Swastika.Cms.Lib.Models;
-using Swastika.Cms.Lib.ViewModels;
 using Microsoft.Data.OData.Query;
 using System.Linq.Expressions;
 using System;
@@ -9,6 +7,7 @@ using Swastika.Domain.Core.ViewModels;
 using Swastika.Api.Controllers;
 using Swastika.Cms.Lib.ViewModels.FrontEnd;
 using Swastika.Cms.Lib.ViewModels.Info;
+using Swastika.Cms.Lib.Models.Cms;
 
 namespace Swastka.IO.Cms.Api.Controllers
 {

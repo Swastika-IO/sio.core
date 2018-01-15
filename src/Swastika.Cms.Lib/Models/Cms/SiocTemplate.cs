@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace Swastika.Cms.Lib.Models
+namespace Swastika.Cms.Lib.Models.Cms
 {
-    public partial class SiocFile
+    public partial class SiocTemplate
     {
         public int Id { get; set; }
         public string Content { get; set; }
@@ -15,9 +15,11 @@ namespace Swastika.Cms.Lib.Models
         public DateTime? LastModified { get; set; }
         public string ModifiedBy { get; set; }
         public int Priority { get; set; }
-        public int? ThemeId { get; set; }
-        public string ThemeName { get; set; }
+        public int TemplateId { get; set; }
+        public string TemplateName { get; set; }
+        public string Scripts { get; set; }
+        public string Styles { get; set; }
 
-        public SiocTheme Theme { get; set; }
+        public SiocTheme Template { get; set; }
     }
 }

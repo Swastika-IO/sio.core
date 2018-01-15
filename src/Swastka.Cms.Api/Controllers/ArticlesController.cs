@@ -1,6 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.Data.OData.Query;
-using Swastika.Cms.Lib.Models;
 using System;
 using System.Linq.Expressions;
 using System.Threading.Tasks;
@@ -9,8 +8,7 @@ using Swastika.Api.Controllers;
 using Swastika.Cms.Lib.ViewModels.BackEnd;
 using Swastika.Cms.Lib.ViewModels.FrontEnd;
 using Swastika.Cms.Lib.ViewModels.Info;
-using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Swastika.Cms.Lib.Models.Cms;
 
 namespace Swastka.Cms.Api.Controllers
 {
