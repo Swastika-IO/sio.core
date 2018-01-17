@@ -57,8 +57,12 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Compile Remove="Areas\Portal\Controllers\Apis\ModuleApiController.cs" />
+    <Compile Remove="Areas\Portal\Controllers\ApperanceController.cs" />
     <Compile Remove="Areas\User\Controllers\AccountController.cs" />
+    <Compile Remove="Controllers\AdminController.cs" />
     <Compile Remove="Controllers\DefaultController.cs" />
+    <Compile Remove="Controllers\ManageController.cs" />
   </ItemGroup>
 
   <ItemGroup>
@@ -105,6 +109,7 @@
     <PackageReference Include="Microsoft.AspNetCore.All" Version="2.0.5" />
     <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="2.0.1" />
     <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="2.0.2" />
+    <PackageReference Include="Swashbuckle.AspNetCore" Version="1.1.0" />
   </ItemGroup>
 
   <ItemGroup>

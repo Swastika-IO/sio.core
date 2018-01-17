@@ -24,6 +24,7 @@ namespace Swastika.Cms.Mvc.Areas.Portal.Controllers
         }
 
         // GET: Portal/Cultures
+        [HttpGet]
         [Route("Index")]
         [Route("{pageSize:int?}/{pageIndex:int?}/{keyword}")]
         [Route("Index/{pageSize:int?}/{pageIndex:int?}/{keyword}")]
@@ -34,6 +35,7 @@ namespace Swastika.Cms.Mvc.Areas.Portal.Controllers
         }
 
         // GET: Culture/Details/5
+        [HttpGet]
         [Route("Details/{id}")]
         public async Task<IActionResult> Details(int? id)
         {
@@ -52,6 +54,7 @@ namespace Swastika.Cms.Mvc.Areas.Portal.Controllers
         }
 
         // GET: Culture/Create
+        [HttpGet]
         [Route("Create")]
         public IActionResult Create()
         {
@@ -79,6 +82,7 @@ namespace Swastika.Cms.Mvc.Areas.Portal.Controllers
         }
 
         // GET: Culture/Edit/5
+        [HttpGet]
         [Route("Edit/{id}")]
         public async Task<IActionResult> Edit(int? id)
         {
@@ -135,6 +139,7 @@ namespace Swastika.Cms.Mvc.Areas.Portal.Controllers
         }
 
         // GET: Culture/Delete/5
+        [HttpGet]
         [Route("Delete/{id}")]
         public async Task<IActionResult> Delete(int? id)
         {

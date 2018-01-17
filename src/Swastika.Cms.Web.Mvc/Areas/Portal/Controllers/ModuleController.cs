@@ -34,6 +34,7 @@ namespace Swastika.Cms.Mvc.Areas.Portal.Controllers
 
 
         // GET: Portal/Modules
+        [HttpGet]
         [Route("Index")]
         [Route("")]
         [Route("{pageSize:int?}/{pageIndex:int?}/{keyword}")]
@@ -51,6 +52,7 @@ namespace Swastika.Cms.Mvc.Areas.Portal.Controllers
         }
 
         // GET: Portal/Modules/Create
+        [HttpGet]
         [Route("Create")]
         public IActionResult Create()
         {
@@ -85,6 +87,7 @@ namespace Swastika.Cms.Mvc.Areas.Portal.Controllers
         }
 
         // GET: Module/Edit/5
+        [HttpGet]
         [Route("Edit/{id}")]
         public async Task<IActionResult> Edit(int id)
         {
@@ -144,6 +147,7 @@ namespace Swastika.Cms.Mvc.Areas.Portal.Controllers
         }
 
 
+        [HttpGet]
         [Route("Delete/{id}")]
         public async Task<IActionResult> Delete(int id)
         {
@@ -151,6 +155,7 @@ namespace Swastika.Cms.Mvc.Areas.Portal.Controllers
             return RedirectToAction("Index");
         }
 
+        [HttpGet]
         [Route("AddEmptyField/{index}")]
         public IActionResult AddEmptyField(int index)
         {
@@ -246,6 +251,7 @@ namespace Swastika.Cms.Mvc.Areas.Portal.Controllers
 
 
         // GET: Portal/Modules
+        [HttpGet]
         [Route("Details/{id}")]
         [Route("Details/{id}/{pageSize:int?}/{pageIndex:int?}")]
         [Route("Details/{id}/{pageSize:int?}/{pageIndex:int?}/{keyword}")]
@@ -265,6 +271,7 @@ namespace Swastika.Cms.Mvc.Areas.Portal.Controllers
         }
 
         // GET: Portal/ModuleDatas/AddModuleData
+        [HttpGet]
         [Route("AddModuleData/{id:int}")]
         public async Task<IActionResult> AddModuleData(int id)
         {
@@ -313,6 +320,7 @@ namespace Swastika.Cms.Mvc.Areas.Portal.Controllers
         }
 
         // GET: ModuleData/Edit/5
+        [HttpGet]
         [Route("EditModuleData/{id}/{dataId}")]
         public async Task<IActionResult> EditModuleData(int id, string dataId)
         {
@@ -365,6 +373,8 @@ namespace Swastika.Cms.Mvc.Areas.Portal.Controllers
             }
             return View(ModuleData);
         }
+
+        [HttpGet]
         [Route("DeleteModuleData/{id}")]
         public async Task<IActionResult> DeleteModuleData(string id)
         {

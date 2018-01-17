@@ -18,6 +18,7 @@ using Swastika.Cms.Lib.Models.Cms;
 using Swastika.Cms.Lib.Services;
 using Swastika.Cms.Web.Mvc.Models.Identity;
 using Swastika.Identity.Services;
+using Swashbuckle.AspNetCore.Swagger;
 
 namespace Swastika.Cms.Web.Mvc
 {
@@ -128,7 +129,7 @@ namespace Swastika.Cms.Web.Mvc
             services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
                 .AddCookie(
                 options =>
-                {                    
+                {
                     // Cookie settings
                     options.Cookie.HttpOnly = true;
                     options.Cookie.Expiration = TimeSpan.FromDays(150);
@@ -141,8 +142,8 @@ namespace Swastika.Cms.Web.Mvc
                 {
                     opt.TokenValidationParameters = tokenValidationParameters;
                 });
-           
-            
+
+
 
             // Add application services.
             services.AddTransient<Swastika.Identity.Services.IEmailSender, AuthEmailMessageSender>();
@@ -166,6 +167,12 @@ namespace Swastika.Cms.Web.Mvc
                         Location = ResponseCacheLocation.None,
                         NoStore = true
                     });
+            });
+
+            // Register the Swagger generator, defining one or more Swagger documents
+            services.AddSwaggerGen(c =>
+            {
+                c.SwaggerDoc("v1", new Info { Title = "My API", Version = "v1" });
             });
         }
 
@@ -192,11 +199,20 @@ namespace Swastika.Cms.Web.Mvc
 
             app.UseStaticFiles();
             app.UseAuthentication();
-            
+
 
             //app.UseIdentity();
 
             // Add external authentication middleware below. To configure them please see https://go.microsoft.com/fwlink/?LinkID=532715
+
+            // Enable middleware to serve generated Swagger as a JSON endpoint.
+            app.UseSwagger();
+
+            // Enable middleware to serve swagger-ui (HTML, JS, CSS, etc.), specifying the Swagger JSON endpoint.
+            app.UseSwaggerUI(c =>
+            {
+                c.SwaggerEndpoint("/swagger/v1/swagger.json", "My API V1");
+            });
 
             app.UseMvc(routes =>
             {

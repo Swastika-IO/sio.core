@@ -25,6 +25,7 @@ namespace TTS.Web.Areas.Portal.Controllers.Apis
 
 
         // GET: Portal/Modules
+        [HttpGet]
         [Route("Index")]
         [Route("")]
         [Route("{pageSize:int?}/{pageIndex:int?}/{keyword}")]
@@ -41,6 +42,7 @@ namespace TTS.Web.Areas.Portal.Controllers.Apis
         }
 
         // GET: Portal/Modules/Create
+        [HttpGet]
         [Route("Create")]
         public IActionResult Create()
         {
@@ -76,6 +78,7 @@ namespace TTS.Web.Areas.Portal.Controllers.Apis
         }
 
         // GET: Module/Edit/5
+        [HttpGet]
         [Route("Edit/{id}")]
         public async Task<IActionResult> Edit(int id)
         {
@@ -136,6 +139,7 @@ namespace TTS.Web.Areas.Portal.Controllers.Apis
         }
 
 
+        [HttpGet]
         [Route("Delete/{id}")]
         public async Task<IActionResult> Delete(int id)
         {
@@ -215,6 +219,7 @@ namespace TTS.Web.Areas.Portal.Controllers.Apis
             }
         }
 
+        [HttpGet]
         [Route("AjaxEditModuleData/{dataId}")]
         public async Task<IActionResult> AjaxEditModuleData(string dataId)
         {
@@ -238,6 +243,7 @@ namespace TTS.Web.Areas.Portal.Controllers.Apis
 
 
         // GET: Portal/Modules
+        [HttpGet]
         [Route("Details/{id}")]
         [Route("Details/{id}/{pageSize:int?}/{pageIndex:int?}/{keyword}")]
         public async Task<IActionResult> Details(int id, int pageSize = 10, int pageIndex = 0, string keyword = null)
@@ -255,6 +261,7 @@ namespace TTS.Web.Areas.Portal.Controllers.Apis
         }
 
         // GET: Portal/ModuleDatas/AddModuleData
+        [HttpGet]
         [Route("AddModuleData/{id:int}")]
         public async Task<IActionResult> AddModuleData(int id)
         {
@@ -305,6 +312,7 @@ namespace TTS.Web.Areas.Portal.Controllers.Apis
         }
 
         // GET: ModuleData/Edit/5
+        [HttpGet]
         [Route("EditModuleData/{id}/{dataId}")]
         public async Task<IActionResult> EditModuleData(int id, string dataId)
         {
@@ -356,6 +364,7 @@ namespace TTS.Web.Areas.Portal.Controllers.Apis
             }
             return View(ModuleData);
         }
+        [HttpGet]
         [Route("DeleteModuleData/{id}")]
         public async Task<IActionResult> DeleteModuleData(string id)
         {

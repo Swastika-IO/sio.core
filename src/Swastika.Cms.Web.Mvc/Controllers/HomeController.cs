@@ -46,7 +46,8 @@ namespace Swastika.Cms.Mvc.Controllers
 
             return LocalRedirect(returnUrl);
         }
-        
+
+        [HttpGet]
         [Route("Home")]
         [Route("{pageName}")]
         //[Route("Index")]
@@ -89,6 +90,7 @@ namespace Swastika.Cms.Mvc.Controllers
 
         }
 
+        [HttpGet]
         [Route("List/{pageName}")]
         [Route("List/{pageName}/{pageIndex:int?}")]
         [Route("List/{pageName}/{pageSize:int?}/{pageIndex:int?}")]
@@ -107,6 +109,7 @@ namespace Swastika.Cms.Mvc.Controllers
             }
             
         }
+        [HttpGet]
         [Route("Search")]
         [Route("Search/{keyword}")]
         [Route("Search/{pageSize:int?}/{pageIndex:int?}/{keyword}")]
@@ -136,6 +139,7 @@ namespace Swastika.Cms.Mvc.Controllers
             return View(getArticles.Data);
         }
 
+        [HttpGet]
         [Route("Tag/{keyword}")]
         [Route("Tag/{pageSize:int?}/{pageIndex:int?}/{keyword}")]
         [HttpPost, HttpGet]
@@ -160,6 +164,7 @@ namespace Swastika.Cms.Mvc.Controllers
             return View(getArticles.Data);
         }
 
+        [HttpGet]
         [Route("page/{pageName}")]
         public IActionResult Article(string pageName)
         {
@@ -176,6 +181,7 @@ namespace Swastika.Cms.Mvc.Controllers
             }
         }
 
+        [HttpGet]
         [Route("article/{SeoName}")]
         public IActionResult ArticleDetails(string SeoName)
         {
@@ -192,6 +198,7 @@ namespace Swastika.Cms.Mvc.Controllers
             }            
         }
 
+        [HttpGet]
         [Route("product/{SeoName}")]
         public IActionResult ProductDetails(string SeoName)
         {

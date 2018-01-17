@@ -29,6 +29,7 @@ namespace Swastika.Cms.Mvc.Areas.Portal.Controllers
 
 
         #region Configurations
+        [HttpGet]
         [Route("")]
         [Route("Configurations")]
         [Route("generals")]
@@ -48,6 +49,7 @@ namespace Swastika.Cms.Mvc.Areas.Portal.Controllers
             return View(pagingPages);
         }
         // GET: Configuration/Create
+        [HttpGet]
         [Route("Configurations/Create")]
         public IActionResult CreateConfiguration()
         {
@@ -88,6 +90,7 @@ namespace Swastika.Cms.Mvc.Areas.Portal.Controllers
         }
 
         // GET: Configuration/Edit/5
+        [HttpGet]
         [Route("Configurations/Edit/{id}")]
         public async Task<IActionResult> EditConfiguration(string id)
         {
@@ -145,6 +148,7 @@ namespace Swastika.Cms.Mvc.Areas.Portal.Controllers
             return View(ttsConfiguration);
         }
 
+        [HttpGet]
         [Route("Configurations/Delete/{id}")]
         public async Task<IActionResult> DeleteConfiguration(string id)
         {

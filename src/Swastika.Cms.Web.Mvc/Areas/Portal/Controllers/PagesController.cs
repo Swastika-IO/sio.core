@@ -27,6 +27,7 @@ namespace Swastika.Cms.Mvc.Areas.Portal.Controllers
         }
 
         //[Route("/portal/pages")]
+        [HttpGet]
         [Route("{pageSize:int?}/{pageIndex:int?}")]
         [Route("Index/{pageSize:int?}/{pageIndex:int?}")]
         public async Task<IActionResult> Index(string keyword, int pageSize = 10, int pageIndex = 0)
@@ -40,6 +41,7 @@ namespace Swastika.Cms.Mvc.Areas.Portal.Controllers
             return View(pagingPages.Data);
         }
 
+        [HttpGet]
         [Route("Create")]
         public IActionResult Create()
         {
@@ -77,6 +79,7 @@ namespace Swastika.Cms.Mvc.Areas.Portal.Controllers
         }
 
         // GET: TtsMenu/Edit/5
+        [HttpGet]
         [Route("Edit/{id}")]
         [Route("Edit/{id}/{pageName}")]
         public async Task<IActionResult> Edit(int? id, string pageName)
@@ -144,6 +147,7 @@ namespace Swastika.Cms.Mvc.Areas.Portal.Controllers
             return View(ttsMenu);
         }
 
+        [HttpGet]
         [Route("Delete/{id}")]
         public async Task<IActionResult> Delete(int? id)
         {
@@ -152,6 +156,7 @@ namespace Swastika.Cms.Mvc.Areas.Portal.Controllers
             return RedirectToAction("Index");
         }
 
+        [HttpGet]
         [Route("Contents/{id}")]
         [Route("Contents/{id}/{pageSize}/{pageIndex}/{orderBy}/{pageName}")]
         [Route("Contents/{id}/{pageName}")]

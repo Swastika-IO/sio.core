@@ -217,7 +217,7 @@ namespace Swastika.Core.Controllers
         //{
         //    return await RefreshTokenViewModel.LogoutOther(refreshTokenId);
         //}
-
+        /*
         [HttpGet]
         [AllowAnonymous]
         public async Task<IActionResult> LoginWith2fa(bool rememberMe, string returnUrl = null)
@@ -572,32 +572,9 @@ namespace Swastika.Core.Controllers
             return new JsonResult("Could not create token");
         }
 
-        private string GenerateToken(ApplicationUser user, DateTime expires, string refreshToken)
-        {
-            var handler = new JwtSecurityTokenHandler();
-            List<Claim> claims = ExtendedClaimsProvider.GetClaims(user).ToList();
-            claims.AddRange(new[]
-                {
-                    new Claim("Id", user.Id.ToString()),
-                    new Claim("RefreshToken", refreshToken)
-                });
-            ClaimsIdentity identity = new ClaimsIdentity(
-                new GenericIdentity(user.UserName, "TokenAuth"),
-                claims
-            );            
+        
 
-            var securityToken = handler.CreateToken(new SecurityTokenDescriptor
-            {
-                Issuer = SWCmsConstants.AuthConfiguration.AuthTokenIssuer,
-                Audience = SWCmsConstants.AuthConfiguration.Audience,
-                SigningCredentials = SWCmsConstants.AuthConfiguration.SigningCredentials,
-                Subject = identity,
-                IssuedAt = expires.AddSeconds(-SWCmsConstants.AuthConfiguration.AuthCookieExpiration),
-                Expires = expires
-            });
-            return handler.WriteToken(securityToken);
-        }
-
+        */
         private AccessTokenViewModel GenerateAccessToken(ApplicationUser user)
         {
             string refreshToken = Guid.NewGuid().ToString();
@@ -648,6 +625,31 @@ namespace Swastika.Core.Controllers
                 Expires = dtExpired,
             };
             return token;
+        }
+        private string GenerateToken(ApplicationUser user, DateTime expires, string refreshToken)
+        {
+            var handler = new JwtSecurityTokenHandler();
+            List<Claim> claims = ExtendedClaimsProvider.GetClaims(user).ToList();
+            claims.AddRange(new[]
+                {
+                    new Claim("Id", user.Id.ToString()),
+                    new Claim("RefreshToken", refreshToken)
+                });
+            ClaimsIdentity identity = new ClaimsIdentity(
+                new GenericIdentity(user.UserName, "TokenAuth"),
+                claims
+            );
+
+            var securityToken = handler.CreateToken(new SecurityTokenDescriptor
+            {
+                Issuer = SWCmsConstants.AuthConfiguration.AuthTokenIssuer,
+                Audience = SWCmsConstants.AuthConfiguration.Audience,
+                SigningCredentials = SWCmsConstants.AuthConfiguration.SigningCredentials,
+                Subject = identity,
+                IssuedAt = expires.AddSeconds(-SWCmsConstants.AuthConfiguration.AuthCookieExpiration),
+                Expires = expires
+            });
+            return handler.WriteToken(securityToken);
         }
     }
 }

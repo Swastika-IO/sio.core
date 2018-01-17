@@ -13,7 +13,7 @@ namespace Swastika.Cms.Mvc.Areas.Portal.Controllers
     [Microsoft.AspNetCore.Authorization.Authorize]
     [Area("Portal")]
     [Route("{culture}/Portal/File")]
-    public class FileController : BaseController<ApperanceController>
+    public class FileController : BaseController<FileController>
     {
         public FileController(IHostingEnvironment env
             //, IStringLocalizer<SharedResource> localizer
@@ -22,6 +22,7 @@ namespace Swastika.Cms.Mvc.Areas.Portal.Controllers
         {
         }
         #region Theme Files
+        [HttpGet]
         [Route("Theme/{themeName}")]
         [Route("Theme/{themeName}/{folder}")]
         public IActionResult Theme(string themeName, string folder)
@@ -40,6 +41,7 @@ namespace Swastika.Cms.Mvc.Areas.Portal.Controllers
             return View(files);
         }
 
+        [HttpGet]
         [Route("EditTheme/{themeName}/{folder}/{name}/{ext}")]
         public IActionResult EditTheme(string themeName, string folder, string name, string ext)
         {
@@ -78,6 +80,7 @@ namespace Swastika.Cms.Mvc.Areas.Portal.Controllers
             return View(template);
         }
 
+        [HttpGet]
         [Route("DeleteTheme/{themeName}/{folder}/{name}/{ext}")]
         [Route("DeleteTheme/{themeName}/{name}/{ext}")]
         public IActionResult DeleteTheme(string themeName, string folder, string name, string ext)
@@ -97,6 +100,7 @@ namespace Swastika.Cms.Mvc.Areas.Portal.Controllers
         }
         #endregion
 
+        [HttpGet]
         [Route("")]
         public IActionResult Index(string folder)
         {            
@@ -123,6 +127,7 @@ namespace Swastika.Cms.Mvc.Areas.Portal.Controllers
 
 
         // GET: article/Edit/5
+        [HttpGet]
         [Route("Edit/{name}/{ext}")]
         public IActionResult Edit(string name, string ext, string folder)
         {
@@ -155,6 +160,7 @@ namespace Swastika.Cms.Mvc.Areas.Portal.Controllers
         }
 
         // GET: article/Edit/5
+        [HttpGet]
         [Route("Delete/{name}/{ext}")]
         public IActionResult Delete(string name, string ext, string folder)
         {
