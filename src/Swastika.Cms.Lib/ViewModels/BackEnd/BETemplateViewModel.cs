@@ -102,11 +102,11 @@ namespace Swastika.Cms.Lib.ViewModels.BackEnd
 
         public override void ExpandView(SiocCmsContext _context = null, IDbContextTransaction _transaction = null)
         {
-            var file = FileRepository.Instance.GetFile(FileName, Extension, FileFolder);
-            if (!string.IsNullOrWhiteSpace(file?.Content))
-            {
-                Content = file.Content;
-            }
+            //var file = FileRepository.Instance.GetFile(FileName, Extension, FileFolder);
+            //if (!string.IsNullOrWhiteSpace(file?.Content))
+            //{
+            //    Content = file.Content;
+            //}
 
         }
         public override SiocTemplate ParseModel()

@@ -87,27 +87,33 @@ namespace Swastika.Cms.Mvc.Areas.Portal.Controllers
             switch (searchType)
             {
                 case SWCmsConstants.SearchType.All:
-                    ViewData["Articles"] = await InfoArticleViewModel.Repository.GetModelListByAsync(
-                        c => c.Specificulture == _lang && (c.Title.Contains(keyword) || c.Excerpt.Contains(keyword) || c.Content.Contains(keyword)));
-                    ViewData["Pages"] = InfoCategoryViewModel.Repository.GetModelListBy(
+                    ViewData["Articles"] = (await InfoArticleViewModel.Repository.GetModelListByAsync(
+                        c => c.Specificulture == _lang && (c.Title.Contains(keyword) || c.Excerpt.Contains(keyword) || c.Content.Contains(keyword)))
+                        ).Data;
+                    ViewData["Pages"] = (InfoCategoryViewModel.Repository.GetModelListBy(
                         c => c.Specificulture == _lang
-                        && (c.Title.Contains(keyword) || c.Excerpt.Contains(keyword)));
-                    ViewData["Modules"] = InfoModuleViewModel.Repository.GetModelListBy(
+                        && (c.Title.Contains(keyword) || c.Excerpt.Contains(keyword)))
+                        ).Data;
+                    ViewData["Modules"] = (InfoModuleViewModel.Repository.GetModelListBy(
                         c => c.Specificulture == _lang && (c.Title.Contains(keyword) ||
-                        c.Description.Contains(keyword)));
+                        c.Description.Contains(keyword)))
+                        ).Data;
                     break;
                 case SWCmsConstants.SearchType.Article:
-                    ViewData["Articles"] = await InfoArticleViewModel.Repository.GetModelListByAsync(
-                        c => c.Specificulture == _lang && (c.Title.Contains(keyword) || c.Excerpt.Contains(keyword) || c.Content.Contains(keyword)));
+                    ViewData["Articles"] = (await InfoArticleViewModel.Repository.GetModelListByAsync(
+                        c => c.Specificulture == _lang && (c.Title.Contains(keyword) || c.Excerpt.Contains(keyword) || c.Content.Contains(keyword)))
+                        ).Data;
                     break;
                 case SWCmsConstants.SearchType.Module:
-                    ViewData["Modules"] = InfoModuleViewModel.Repository.GetModelListBy(
-                        c => c.Specificulture == _lang && (c.Title.Contains(keyword) || c.Description.Contains(keyword)));
+                    ViewData["Modules"] = (InfoModuleViewModel.Repository.GetModelListBy(
+                        c => c.Specificulture == _lang && (c.Title.Contains(keyword) || c.Description.Contains(keyword)))
+                        ).Data;
                     break;
                 case SWCmsConstants.SearchType.Page:
-                    ViewData["Pages"] = InfoCategoryViewModel.Repository.GetModelListBy(
+                    ViewData["Pages"] = (InfoCategoryViewModel.Repository.GetModelListBy(
                         c => c.Specificulture == _lang
-                        && (c.Title.Contains(keyword) || c.Excerpt.Contains(keyword)));
+                        && (c.Title.Contains(keyword) || c.Excerpt.Contains(keyword)))
+                        ).Data;
                     break;
                 default:
                     break;

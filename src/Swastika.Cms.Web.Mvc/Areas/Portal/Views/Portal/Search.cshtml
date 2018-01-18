@@ -67,7 +67,7 @@
                         <div class="btn-group btn-group-sm" role="group" aria-label="Actions">
                             <a asp-controller="Articles" asp-action="Edit" asp-route-id="@item.Id" asp-route-categoryId="@ViewBag.categoryId"
                                class="btn btn-sm btn-warning d-inline-block "><span class="oi oi-pencil"></span></a>
-                            <a asp-area="" asp-controller="Home" asp-action="ArticleDetails" asp-route-id="@item.Id" asp-route-SeoTitle="@item.SeoTitle"
+                            <a asp-area="" asp-controller="Home" asp-action="ArticleDetails" asp-route-id="@item.Id" asp-route-SeoName="@item.SeoName"
                                target="_blank" class="btn btn-sm btn-info"><span class="oi oi-eye"></span></a>
                             <a asp-controller="Articles" asp-action="Recycle" asp-route-id="@item.Id" class="btn btn-sm btn-danger d-inline-block" data-popout="true" data-toggle="confirmation" data-singleton="true"> <span class="oi oi-x"></span> </a>
                         </div>
@@ -139,7 +139,7 @@
                     </td>
                     <td>
                         <a asp-controller="Pages" asp-action="Edit" asp-route-id="@item.Id" class="btn btn-sm btn-warning"> <span class="oi oi-pencil"></span></a>
-                        <a asp-controller="Pages" asp-area="" asp-controller="Home" asp-action="Home" asp-route-pageName="@item.SeoTitle"
+                        <a asp-controller="Pages" asp-area="" asp-controller="Home" asp-action="Home" asp-route-pageName="@item.SeoName"
                            target="_blank" class="btn btn-sm btn-info"><span class="oi oi-eye"></span></a>
                         <a asp-controller="Pages" asp-action="Delete" asp-route-id="@item.Id" class="btn btn-sm btn-danger" data-popout="true" data-toggle="confirmation" data-singleton="true"> <span class="oi oi-x"></span> </a>
                     </td>

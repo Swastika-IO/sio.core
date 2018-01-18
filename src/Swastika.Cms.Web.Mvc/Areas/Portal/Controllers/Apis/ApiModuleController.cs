@@ -153,26 +153,26 @@ namespace TTS.Web.Areas.Portal.Controllers.Apis
 
         [HttpGet]
         [Route("AjaxAddModuleData/{moduleId}")]
-        public async Task<IActionResult> AjaxAddModuleData(int moduleId)
+        public async Task<InfoModuleDataViewModel> AjaxAddModuleData(int moduleId)
         {
-            var getModule = await InfoModuleViewModel.Repository.GetSingleModelAsync(
+            string _lang = RouteData.Values["culture"].ToString();
+            var module = await BEModuleViewModel.Repository.GetSingleModelAsync(
                 m => m.Id == moduleId && m.Specificulture == _lang);
-            if (getModule.IsSucceed)
+            if (module.IsSucceed)
             {
-                var module = getModule.Data;
-                var ModuleData = new InfoModuleDataViewModel(
-                    new SiocModuleData()
+                var ModuleData = new InfoModuleDataViewModel()
                 {
                     Id = Guid.NewGuid().ToString("N"),
                     ModuleId = moduleId,
                     Specificulture = _lang,
-                    Fields = module.Fields
-                });
-                return PartialView("_ModuleData", ModuleData);
+
+                    Fields = module.Data?.Fields
+                };
+                return ModuleData;
             }
             else
             {
-                return NotFound();
+                return null;
             }
         }
 

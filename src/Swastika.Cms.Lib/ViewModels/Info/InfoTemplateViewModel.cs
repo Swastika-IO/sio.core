@@ -31,8 +31,8 @@ namespace Swastika.Cms.Lib.ViewModels.Info
         public string FileName { get; set; }
         [JsonProperty("extension")]
         public string Extension { get; set; }
-        [JsonProperty("content")]
-        public string Content { get; set; }
+        //[JsonProperty("content")]
+        //public string Content { get; set; }
         [JsonProperty("scripts")]
         public string Scripts { get; set; }
         [JsonProperty("styles")]
