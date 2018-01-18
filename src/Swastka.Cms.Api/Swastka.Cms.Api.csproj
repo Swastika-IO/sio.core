@@ -5,7 +5,12 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Controllers\AccountController.cs" />
+    <Compile Remove="Controllers\ArticlesController.cs" />
     <Compile Remove="Controllers\BaseApiController.cs" />
+    <Compile Remove="Controllers\ClaimsController.cs" />
+    <Compile Remove="Controllers\ModuleDataController.cs" />
+    <Compile Remove="Controllers\ModulesController.cs" />
   </ItemGroup>
 
   <ItemGroup>

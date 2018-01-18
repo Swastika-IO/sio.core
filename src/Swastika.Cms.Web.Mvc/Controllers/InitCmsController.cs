@@ -12,6 +12,7 @@ namespace Swastika.Cms.Web.Mvc.Controllers
         {
 
         }
+        [HttpGet]
         [Route("")]
         [Route("{culture}")]
         public IActionResult Index()

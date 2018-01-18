@@ -50,6 +50,7 @@ namespace Swastika.Cms.Mvc.Areas.Portal.Controllers
         }
 
         // GET: Portal/Articles/Draft
+        [HttpGet]
         [Route("Draft")]
         [Route("Draft/{pageSize:int?}/{pageIndex:int?}/{keyword}")]
         public async Task<IActionResult> Draft(int pageSize = 10, int pageIndex = 0, string keyword = null)
@@ -65,6 +66,7 @@ namespace Swastika.Cms.Mvc.Areas.Portal.Controllers
         }
 
         // GET: Portal/Articles/Create
+        [HttpGet]
         [Route("Create")]
         [Route("Create/{categoryId:int}")]
         public IActionResult Create(int? categoryId = null)
@@ -124,6 +126,7 @@ namespace Swastika.Cms.Mvc.Areas.Portal.Controllers
         }
 
         // GET: article/Edit/5
+        [HttpGet]
         [Route("Edit/{id}")]
         [Route("Edit/{id}/{categoryId:int}")]
         public async Task<IActionResult> Edit(string id = null, int? categoryId = null)
@@ -195,6 +198,7 @@ namespace Swastika.Cms.Mvc.Areas.Portal.Controllers
             return View(article);
         }
 
+        [HttpGet]
         [Route("Recycle/{id}")]
         public async Task<IActionResult> Recycle(string id)
         {
@@ -220,6 +224,7 @@ namespace Swastika.Cms.Mvc.Areas.Portal.Controllers
 
         }
 
+        [HttpGet]
         [Route("Restore/{id}")]
         public async Task<IActionResult> Restore(string id)
         {
@@ -245,6 +250,7 @@ namespace Swastika.Cms.Mvc.Areas.Portal.Controllers
         }
 
 
+        [HttpGet]
         [Route("Delete/{id}")]
         public async Task<IActionResult> Delete(string id)
         {

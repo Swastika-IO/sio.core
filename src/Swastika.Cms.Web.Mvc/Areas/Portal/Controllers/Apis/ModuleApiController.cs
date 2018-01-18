@@ -10,6 +10,7 @@ namespace TTS.Web.Areas.Portal.Controllers.Apis
     [Route("api/{culture}/Portal/Module")]
     public class ModuleApiController : Controller
     {
+        [HttpGet]
         [Route("AjaxAddModuleData/{moduleId}")]
         public async Task<InfoModuleDataViewModel> AjaxAddModuleData(int moduleId)
         {

@@ -21,6 +21,7 @@ namespace Swastika.Cms.Mvc.Areas.Portal.Controllers
         {
         }
 
+        [HttpGet]
         [Route("")]
         public IActionResult Index()
         {
@@ -79,6 +80,7 @@ namespace Swastika.Cms.Mvc.Areas.Portal.Controllers
         /// <param name="keyword">The keyword.</param>
         /// <param name="searchType">Type of the search Ex: All / Article / Module / Page .</param>
         /// <returns></returns>
+        [HttpGet, HttpPost]
         [Route("Search")]
         public async Task<IActionResult> Search(string keyword, SWCmsConstants.SearchType searchType)
         {

@@ -32,6 +32,7 @@ namespace Swastika.Cms.Mvc.Areas.Portal.Controllers
         {
         }
 
+        [HttpGet]
         [Route("")]
         [Route("{pageSize:int?}/{pageIndex:int?}/{keyword}")]
         [Route("{pageSize:int?}/{pageIndex:int?}")]
@@ -47,6 +48,7 @@ namespace Swastika.Cms.Mvc.Areas.Portal.Controllers
             return View(getTemplate.Data);
         }
 
+        [HttpGet]
         [Route("Create")]
         public IActionResult Create()
         {
@@ -87,6 +89,7 @@ namespace Swastika.Cms.Mvc.Areas.Portal.Controllers
         }
 
         // GET: TtsMenu/Edit/5
+        [HttpGet]
         [Route("Edit/{id}")]
         public async Task<IActionResult> Edit(int? id)
         {
@@ -155,6 +158,7 @@ namespace Swastika.Cms.Mvc.Areas.Portal.Controllers
             return View(template);
         }
 
+        [HttpGet]
         [Route("Delete/{id}")]
         public async Task<IActionResult> Delete(int? id)
         {
