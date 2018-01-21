@@ -1,0 +1,210 @@
+﻿@**@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <link rel="apple-touch-icon" sizes="76x76" href="~/lib/now-ui-kit-v1.0.1/assets/img/apple-icon.png">
+    <link rel="icon" type="image/png" href="~/lib/now-ui-kit-v1.0.1/assets/img/favicon.png">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <title>Login Page - Now Ui Kit by Creative Tim</title>
+    <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0, shrink-to-fit=no' name='viewport' />
+    <!--     Fonts and icons     -->
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700,200" rel="stylesheet" />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css" />
+    <environment names="Development,Staging,Production">
+        <!-- CSS Files -->
+        <link href="~/lib/now-ui-kit-v1.0.1/assets/css/bootstrap.min.css" rel="stylesheet" />
+        <link href="~/lib/now-ui-kit-v1.0.1/assets/css/now-ui-kit.css" rel="stylesheet" />
+        <!-- CSS Just for demo purpose, don't include it in your project -->
+        <link href="~/lib/now-ui-kit-v1.0.1/assets/css/demo.css" rel="stylesheet" />
+    </environment>
+
+    @*@Html.Raw(JavaScriptSnippet.FullScript)*@
+</head>
+
+
+<body class="signup-page">
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg bg-white navbar-absolute navbar-transparent">
+        <div class="container">
+            <div class="navbar-translate">
+                <a class="navbar-brand" href="http://demos.creative-tim.com/now-ui-kit-pro/presentation.html" rel="tooltip" title="Designed by Invision. Coded by Creative Tim" data-placement="bottom" target="_blank">
+                    Now Ui Kit Pro
+                </a>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navigation" aria-controls="navigation-index" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-bar bar1"></span>
+                    <span class="navbar-toggler-bar bar2"></span>
+                    <span class="navbar-toggler-bar bar3"></span>
+                </button>
+            </div>
+            <div class="collapse navbar-collapse" data-nav-image="../assets/img/blurred-image-1.jpg" data-color="orange">
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="../index.html" target="_blank">
+                            <i class="now-ui-icons design_app"></i>
+                            <p>Components</p>
+                        </a>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a href="#" class="nav-link dropdown-toggle" id="navbarDropdownMenuLink" data-toggle="dropdown">
+                            <i class="now-ui-icons files_paper" aria-hidden="true"></i>
+                            <p>Sections</p>
+                        </a>
+                        <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownMenuLink">
+                            <a class="dropdown-item" href="../sections.html#headers">
+                                <i class="now-ui-icons shopping_box"></i> Headers
+                            </a>
+                            <a class="dropdown-item" href="../sections.html#features">
+                                <i class="now-ui-icons ui-2_settings-90"></i> Features
+                            </a>
+                            <a class="dropdown-item" href="../sections.html#blogs">
+                                <i class="now-ui-icons text_align-left"></i> Blogs
+                            </a>
+                            <a class="dropdown-item" href="../sections.html#teams">
+                                <i class="now-ui-icons sport_user-run"></i> Teams
+                            </a>
+                            <a class="dropdown-item" href="../sections.html#projects">
+                                <i class="now-ui-icons education_paper"></i> Projects
+                            </a>
+                            <a class="dropdown-item" href="../sections.html#pricing">
+                                <i class="now-ui-icons business_money-coins"></i> Pricing
+                            </a>
+                            <a class="dropdown-item" href="../sections.html#testimonials">
+                                <i class="now-ui-icons ui-2_chat-round"></i> Testimonials
+                            </a>
+                            <a class="dropdown-item" href="../sections.html#contactus">
+                                <i class="now-ui-icons tech_mobile"></i> Contact Us
+                            </a>
+                        </div>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a href="#" class="nav-link dropdown-toggle" id="navbarDropdownMenuLink" data-toggle="dropdown">
+                            <i class="now-ui-icons design_image" aria-hidden="true"></i>
+                            <p>Examples</p>
+                        </a>
+                        <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownMenuLink">
+                            <a class="dropdown-item" href="../examples/about-us.html">
+                                <i class="now-ui-icons business_bulb-63"></i> About-us
+                            </a>
+                            <a class="dropdown-item" href="../examples/blog-post.html">
+                                <i class="now-ui-icons text_align-left"></i> Blog Post
+                            </a>
+                            <a class="dropdown-item" href="../examples/blog-posts.html">
+                                <i class="now-ui-icons design_bullet-list-67"></i> Blog Posts
+                            </a>
+                            <a class="dropdown-item" href="../examples/contact-us.html">
+                                <i class="now-ui-icons location_pin"></i> Contact Us
+                            </a>
+                            <a class="dropdown-item" href="../examples/landing-page.html">
+                                <i class="now-ui-icons education_paper"></i> Landing Page
+                            </a>
+                            <a class="dropdown-item" href="../examples/login-page.html">
+                                <i class="now-ui-icons users_circle-08"></i> Login Page
+                            </a>
+                            <a class="dropdown-item" href="../examples/pricing.html">
+                                <i class="now-ui-icons business_money-coins"></i> Pricing
+                            </a>
+                            <a class="dropdown-item" href="../examples/ecommerce.html">
+                                <i class="now-ui-icons shopping_shop"></i> Ecommerce Page
+                            </a>
+                            <a class="dropdown-item" href="../examples/product-page.html">
+                                <i class="now-ui-icons shopping_bag-16"></i> Product Page
+                            </a>
+                            <a class="dropdown-item" href="../examples/profile-page.html">
+                                <i class="now-ui-icons users_single-02"></i> Profile Page
+                            </a>
+                            <a class="dropdown-item" href="../examples/signup-page.html">
+                                <i class="now-ui-icons tech_mobile"></i> Signup Page
+                            </a>
+                        </div>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link btn btn-primary" href="https://www.creative-tim.com/product/now-ui-kit-pro" target="_blank">
+                            <p>Buy Now</p>
+                        </a>
+                    </li>
+                    <!-- <li class="nav-item">
+                        <a class="nav-link" rel="tooltip" title="Follow us on Twitter" data-placement="bottom" href="https://twitter.com/CreativeTim" target="_blank">
+                            <i class="fa fa-twitter"></i>
+                            <p class="hidden-lg-up">Twitter</p>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" rel="tooltip" title="Like us on Facebook" data-placement="bottom" href="https://www.facebook.com/CreativeTim" target="_blank">
+                            <i class="fa fa-facebook-square"></i>
+                            <p class="hidden-lg-up">Facebook</p>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" rel="tooltip" title="Follow us on Instagram" data-placement="bottom" href="https://www.instagram.com/CreativeTimOfficial" target="_blank">
+                            <i class="fa fa-instagram"></i>
+                            <p class="hidden-lg-up">Instagram</p>
+                        </a>
+                    </li> -->
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <!-- End Navbar -->
+    <div class="page-header section-image">
+        <div class="page-header-image" style="background-image:url(/lib/now-ui-kit-v1.0.1/assets/img/bg18.jpg)"></div>
+        <div class="content-center">
+            @RenderBody()
+        </div>
+        <footer class="footer ">
+            <div class="container">
+                <nav>
+                    <ul>
+                        <li>
+                            <a href="https://www.creative-tim.com">
+                                Creative Tim
+                            </a>
+                        </li>
+                        <li>
+                            <a href="http://presentation.creative-tim.com">
+                                About Us
+                            </a>
+                        </li>
+                        <li>
+                            <a href="http://blog.creative-tim.com">
+                                Blog
+                            </a>
+                        </li>
+                        <li>
+                            <a href="https://www.creative-tim.com/license">
+                                License
+                            </a>
+                        </li>
+                    </ul>
+                </nav>
+                <div class="copyright">
+                    &copy;
+                    <script>
+                        document.write(new Date().getFullYear())
+                    </script>, Designed by
+                    <a href="http://www.invisionapp.com" target="_blank">Invision</a>. Coded by
+                    <a href="https://www.creative-tim.com" target="_blank">Creative Tim</a>.
+                </div>
+            </div>
+        </footer>
+    </div>
+</body>s
+
+<environment names="Development">
+    <!--   Core JS Files   -->
+    <script src="~/lib/now-ui-kit-v1.0.1/assets/js/core/jquery.3.2.1.min.js" type="text/javascript"></script>
+    <script src="~/lib/now-ui-kit-v1.0.1/assets/js/core/tether.min.js" type="text/javascript"></script>
+    <script src="~/lib/now-ui-kit-v1.0.1/assets/js/core/bootstrap.min.js" type="text/javascript"></script>
+    <!--  Plugin for Switches, full documentation here: http://www.jque.re/plugins/version3/bootstrap.switch/ -->
+    <script src="~/lib/now-ui-kit-v1.0.1/assets/js/plugins/bootstrap-switch.js"></script>
+    <!--  Plugin for the Sliders, full documentation here: http://refreshless.com/nouislider/ -->
+    <script src="~/lib/now-ui-kit-v1.0.1/assets/js/plugins/nouislider.min.js" type="text/javascript"></script>
+    <!--  Plugin for the DatePicker, full documentation here: https://github.com/uxsolutions/bootstrap-datepicker -->
+    <script src="~/lib/now-ui-kit-v1.0.1/assets/js/plugins/bootstrap-datepicker.js" type="text/javascript"></script>
+    <!-- Control Center for Now Ui Kit: parallax effects, scripts for the example pages etc -->
+    <script src="~/lib/now-ui-kit-v1.0.1/assets/js/now-ui-kit.js" type="text/javascript"></script>
+</environment>
+
+@RenderSection("Scripts", required: false)
+</html>

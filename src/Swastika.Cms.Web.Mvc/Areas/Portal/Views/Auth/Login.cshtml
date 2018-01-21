@@ -17,10 +17,10 @@
 <div class="col-md-4 content-center">
     <div class="card card-login card-plain">
         <form asp-area="Portal" asp-controller="Auth" asp-action="Login" method="post" class="form-horizontal">
-            <input type="hidden" asp-for="ReturnUrl"/>
+            <input type="hidden" asp-for="ReturnUrl" />
             <div class="header header-primary text-center">
                 <div class="logo-container">
-                    <img src="~/lib/now-ui-kit-v1.0.1/assets/img/now-logo.png" alt="">
+                    <img src="~/images/swastika-io-logo-white.svg" alt="">
                 </div>
             </div>
             <div class="content">
@@ -28,29 +28,39 @@
                     <span class="input-group-addon">
                         <i class="now-ui-icons users_circle-08"></i>
                     </span>
-                    <input asp-for="UserName" class="form-control" placeholder="UserName...">
+                    <input asp-for="UserName" class="form-control" placeholder="UserName..." autocomplete="off">
                 </div>
                 <div class="input-group form-group-no-border input-lg">
                     <span class="input-group-addon">
                         <i class="now-ui-icons ui-1_lock-circle-open"></i>
                     </span>
-                    <input asp-for="Password" class="form-control" placeholder="Password..." />
-                </div>
-                <div class="input-group form-group-no-border input-lg ">
-                    <div class="">
-                        <label asp-for="RememberMe" class="">
-                            <input asp-for="RememberMe" />
-                            @Html.DisplayNameFor(m => m.RememberMe)
-                        </label>
-                    </div>
+                    <input asp-for="Password" class="form-control" placeholder="Password..." autocomplete="off" />
                 </div>
             </div>
             <div class="footer text-center">
-                <button type="submit" class="btn btn-primary btn-round btn-lg btn-block">Log in</button>
+                <div class="form-group">
+                    <button type="submit" class="btn btn-primary btn-round btn-lg btn-block">Log in</button>
+                </div>
+                <div class="form-group checkbox">
+                    <style>
+                        .RememberMe:before {
+                            background-color: white !important;
+                        }
+                    </style>
+                    <input asp-for="RememberMe" type="checkbox" />
+                    <label asp-for="RememberMe" class="RememberMe">
+                        @Html.DisplayNameFor(m => m.RememberMe)
+                    </label>
+                </div>
             </div>
             <div class="pull-left">
                 <h6>
-                    <a href="/vi-vn/portal/auth/register" class="link">Create Account</a>
+                    <a href="/vi-vn/portal/auth/register" class="link footer-link">Create Account</a>
+                </h6>
+            </div>
+            <div class="pull-right">
+                <h6>
+                    <a href="#pablo" class="link footer-link">Need Help?</a>
                 </h6>
             </div>
         </form>
