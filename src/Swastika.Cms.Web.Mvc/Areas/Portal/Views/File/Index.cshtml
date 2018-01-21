@@ -33,18 +33,6 @@
     
         </div>
     </div>
-    @if (!string.IsNullOrEmpty(folder))
-    {
-        <div class="row">
-
-            <div class="col-lg-12">
-                <a href="@prvUrl" class="btn btn-link"><span class="oi oi-arrow-left"></span> Back to previous folder</a>
-            </div>
-            @*<div class="col-lg-2" style="margin-bottom: 10px;">
-                    <a asp-action="EditFile" asp-route-folder="@folder" asp-route-name="" class="btn btn-success btn-block"> <i class="fa fa-plus"></i> Add</a>
-                </div>*@
-        </div>
-    }
     <div class="row">
         <div class="col-md-12">
             <table class="table table-sm table-hover table-striped">
@@ -63,60 +51,70 @@
                     </tr>
                 </thead>
                 <tbody>
+
+                    @if (!string.IsNullOrEmpty(folder))
+    {
+                <tr>
+                    <td>
+                        <span class="oi oi-arrow-thick-left"></span> <strong><a href="@prvUrl" class="">Back...</a></strong>
+                    </td>
+                    <td colspan="3"></td>
+                </tr>
+}
                     @foreach (var path in subFolders)
-                    {
-                        string dirPath = string.Format("{0}/{1}", folder, path);
-                        string href = Url.RouteUrl("File", new { culture = ViewBag.culture, folder = dirPath });
-                        <tr>
-                            <td>
-                                <a href="@href"><i class="mi mi-Folder"></i> @path</a>
-                            </td>
-                            <td colspan="3"></td>
-                        </tr>
-                    }
+    {
+        string dirPath = string.Format("{0}/{1}", folder, path);
+        string href = Url.RouteUrl("File", new { culture = ViewBag.culture, folder = dirPath });
+                <tr>
+                    <td>
+                        <span class="oi oi-folder"></span> <strong><a href="@href" class="">@path</a></strong>
+</td>
+                    <td colspan="3"></td>
+                </tr>
+}
                     @foreach (var item in Model)
-                    {
-                        <tr>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.Filename)
-                            </td>
-                            <td>
-                                <input value="@item.FullPath" onclick="this.select()" class="form-control" />
-                            </td>
-                            <td>
+    {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Filename)
+                    </td>
+                    <td>
+                        <input value="@item.FullPath" onclick="this.select()" class="form-control form-control-sm" readonly />
+                    </td>
+                    <td>
 
-                                @if (imgExts.Contains(item.Extension))
-                                {
-                                    <img width="50" src="@item.FullPath" />
-                                }
-                                else
-                                {
-                                    <span>-</span>
-                                }
-                                @*else if (txtExts.Contains(item.Extension))
-                                    {
-                                        <div class="container-code-editor">
-                                            <div class="form-control code-editor">@item.Content</div>
-                                        </div>
-                                    }*@
-                            </td>
+                        @if (imgExts.Contains(item.Extension))
+        {
+                <img width="50" src="@item.FullPath" />
+}
+else
+{
+                <span>-</span>
+}
+                        @*else if (txtExts.Contains(item.Extension))
+            {
+                <div class="container-code-editor">
+                    <div class="form-control code-editor">@item.Content</div>
+                </div>
+            }*@
+                    </td>
 
-                            <td>
-                                <div class="btn-group btn-group-sm" role="group" aria-label="Actions">
-                                    <a asp-action="Edit"
-                                       asp-route-name="@item.Filename"
-                                       asp-route-ext="@item.Extension"
-                                       asp-route-folder="@item.FileFolder"
-                                       class="btn btn-sm btn-warning d-inline-block "><span class="oi oi-pencil"></span></a>
-                                    <a target="_blank" href="@item.FullPath" class="btn btn-sm btn-info"> <span class="oi oi-eye"></span> </a>
-                                    <a asp-action="Delete"
-                                       asp-route-name="@item.Filename"
-                                       asp-route-ext="@item.Extension"
-                                       asp-route-folder="@item.FileFolder" class="btn btn-sm btn-danger d-inline-block" data-popout="true" data-toggle="confirmation" data-singleton="true"><span class="oi oi-x"></span></a>
-                                </div>
-                            </td>
-                        </tr>
-                    }
+                    <td>
+                        <div class="btn-group btn-group-sm" role="group" aria-label="Actions">
+                            <a asp-action="Edit"
+                               asp-route-name="@item.Filename"
+                               asp-route-ext="@item.Extension"
+                               asp-route-folder="@item.FileFolder"
+                               class="btn btn-sm btn-warning d-inline-block "><span class="oi oi-pencil"></span></a>
+                            <a target="_blank" href="@item.FullPath" class="btn btn-sm btn-info"> <span class="oi oi-eye"></span> </a>
+                            <a asp-action="Delete"
+                               asp-route-name="@item.Filename"
+                               asp-route-ext="@item.Extension"
+                               asp-route-folder="@item.FileFolder" class="btn btn-sm btn-danger d-inline-block" data-popout="true" data-toggle="confirmation" data-singleton="true"><span class="oi oi-x"></span></a>
+                        </div>
+                    </td>
+                </tr>
+}
                 </tbody>
             </table>
             <!-- /.table -->
