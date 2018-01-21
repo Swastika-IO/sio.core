@@ -1,0 +1,51 @@
+@model BETemplateViewModel
+@{
+    var lst = new SelectList(Enum.GetNames(typeof(Swastika.Cms.Lib.SWCmsConstants.TemplateFolderEnum)).ToList());
+}
+
+<div class="card">
+    <div class="card-header">
+        Info
+    </div>
+    <div class="card-body">
+
+        <div class="form-group">
+            <label asp-for="ModifiedBy" class="control-label"></label>
+            <input asp-for="ModifiedBy" class="form-control" readonly />
+        </div>
+        <div class="form-group">
+            <label asp-for="Priority" class="control-label"></label>
+            <input asp-for="Priority" class="form-control" />
+            <span asp-validation-for="Priority" class="text-danger"></span>
+        </div>
+
+    </div>
+</div>
+
+<div class="card">
+    <div class="card-header">
+        <label asp-for="FolderType"></label>
+    </div>
+    <div class="card-body">
+
+        <div class="form-group">
+            @*<select asp-for="FolderType" class="form-control" asp-items="@lst"></select>*@
+
+
+            @{
+                foreach (var type in lst)
+                {
+
+                    <div class="custom-control custom-radio">
+                        <input asp-for="FolderType" type="radio" value="@type.Text" class="custom-control-input" id="pageType_@type.Text" />
+                        <label class="custom-control-label" for="pageType_@type.Text">@type.Text</label>
+                    </div>
+                }
+            }
+
+            <span asp-validation-for="FolderType" class="text-danger"></span>
+        </div>
+
+
+    </div>
+</div>
