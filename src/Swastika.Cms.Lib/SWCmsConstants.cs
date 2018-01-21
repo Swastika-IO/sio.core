@@ -169,7 +169,8 @@ namespace Swastika.Cms.Lib
             CodeEditor = 4,
             Html = 5,
             TextArea = 6,
-            Boolean = 7
+            Boolean = 7,
+            MdTextArea = 8
         }
     }
 }

@@ -145,13 +145,21 @@
                 $(this).parent('.custom-file').find('img').attr('src', $(this).val());
             });
 
+            $('.markdown-edito').tuiEditor({
+                initialEditType: 'markdown',
+                previewStyle: 'vertical',
+                height: '300px'
+            });
+
+            
+
             // Init Code editor
             $.each($('.code-editor'), function (i, e) {
                 var container = $(this);
                 var editor = ace.edit(e);
                 editor.setTheme("ace/theme/chrome");
                 //editor.setReadOnly(true);
-                editor.session.setMode("ace/mode/csharp");
+                editor.session.setMode("ace/mode/razor");
                 editor.session.setUseWrapMode(true);  
                 editor.setOptions({
                     maxLines: Infinity
@@ -164,7 +172,7 @@
             if ($('#code-editor').length > 0) {
                 SW.Common.templateEditor = ace.edit("code-editor");
                 SW.Common.templateEditor.setTheme("ace/theme/chrome");
-                SW.Common.templateEditor.session.setMode("ace/mode/csharp");
+                SW.Common.templateEditor.session.setMode("ace/mode/razor");
                 SW.Common.templateEditor.session.setUseWrapMode(true);
                 SW.Common.templateEditor.setOptions({
                     maxLines: Infinity
