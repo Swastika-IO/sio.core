@@ -23,33 +23,33 @@
             </div>
             <div class="card-body">
 
-                    <div class="form-group">
-                        @*<label asp-for="Title" class="col-md-2 control-label"></label>
+                <div class="form-group">
+                    @*<label asp-for="Title" class="col-md-2 control-label"></label>
                         <div class="col-md-10">*@
-                            <input asp-for="Title" class="form-control form-control-lg" placeholder="Enter your article title here..." />
-                            <span asp-validation-for="Title" class="text-danger"></span>
-                        @*</div>*@
-                    </div>
+                    <input asp-for="Title" class="form-control form-control-lg" placeholder="Enter your article title here..." />
+                    <span asp-validation-for="Title" class="text-danger"></span>
+                    @*</div>*@
+                </div>
 
-                    <div class="form-group">
-                        @*<label asp-for="Excerpt" class="col-md-2 control-label"></label>
+                <div class="form-group">
+                    @*<label asp-for="Excerpt" class="col-md-2 control-label"></label>
                         <div class="col-md-10">*@
-                            <textarea asp-for="Excerpt" class="form-control" placeholder="Excerpt"></textarea>
-                            <span asp-validation-for="Excerpt" class="text-danger"></span>
-                        @*</div>*@
-                    </div>
-                    <div class="form-group">
-                        @*<label asp-for="Content" class="col-md-2 control-label"></label>
+                    <textarea asp-for="Excerpt" class="form-control" placeholder="Excerpt"></textarea>
+                    <span asp-validation-for="Excerpt" class="text-danger"></span>
+                    @*</div>*@
+                </div>
+                <div class="form-group">
+                    @*<label asp-for="Content" class="col-md-2 control-label"></label>
                         <div class="col-md-10">*@
-                            <textarea asp-for="Content" class="form-control"></textarea>
-                            <script>
-                                // Replace the <textarea id="FullContent"> with a CKEditor
-                                // instance, using default configuration.
-                                CKEDITOR.replace('Content');
-                            </script>
-                            <span asp-validation-for="Content" class="text-danger"></span>
-                        @*</div>*@
-                    </div>
+                    <textarea asp-for="Content" class="form-control"></textarea>
+                    <script>
+                        // Replace the <textarea id="FullContent"> with a CKEditor
+                        // instance, using default configuration.
+                        CKEDITOR.replace('Content');
+                    </script>
+                    <span asp-validation-for="Content" class="text-danger"></span>
+                    @*</div>*@
+                </div>
 
             </div>
         </div>
@@ -92,28 +92,20 @@
                             </div>
                         </div>
                         <div class="form-group">
-                            <div class="col-md-offset-2 col-md-10">
-                                <div class="checkbox">
-                                    <label asp-for="IsVisible" class="custom-control custom-checkbox d-block">
-                                        <input asp-for="IsVisible" class="custom-control-input" />
-                                        <span class="custom-control-indicator"></span>
-                                        <span class="custom-control-description">
-                                            Is visible
-                                        </span>
+                            <div class="col-md-offset-2">
+                                <div class="custom-control custom-checkbox">
+                                    <input type="checkbox" asp-for="IsVisible" class="custom-control-input" required="">
+                                    <label class="custom-control-label" asp-for="IsVisible">
+                                        IsVisible
                                     </label>
                                 </div>
                             </div>
                         </div>
                         <div class="form-group">
-                            <div class="col-md-offset-2 col-md-10">
-                                <div class="checkbox">
-                                    <label asp-for="IsDeleted" class="custom-control custom-checkbox d-block">
-                                        <input asp-for="IsDeleted" class="custom-control-input" />
-                                        <span class="custom-control-indicator"></span>
-                                        <span class="custom-control-description">
-                                            Is deleted
-                                        </span>
-                                    </label>
+                            <div class="col-md-offset-2">
+                                <div class="custom-control custom-checkbox">
+                                    <input type="checkbox" asp-for="IsDeleted" class="custom-control-input" required="">
+                                    <label class="custom-control-label" asp-for="IsDeleted"></label>
                                 </div>
                             </div>
                         </div>
@@ -175,13 +167,24 @@
                                 <ul class="nav">
                                     @for (int i = 0; i < Model.Categories.Count; i++)
                                     {
-                                        <li class="col-sm-4">
-                                            <input type="checkbox" asp-for="@Model.Categories[i].IsActived" class="custom-control-input" />
-                                            <label asp-for="@Model.Categories[i].IsActived">@Model.Categories[i].Description</label>
-                                            <input type="hidden" asp-for="@Model.Categories[i].Specificulture" />
-                                            <input type="hidden" asp-for="@Model.Categories[i].ArticleId" />
-                                            <input type="hidden" asp-for="@Model.Categories[i].CategoryId" />
+                                        <li class="col-sm-6">
+
+
+                                            <div asp-for="@Model.Categories[i].IsActived" class="custom-control custom-checkbox">
+
+                                                <input type="checkbox" asp-for="@Model.Categories[i].IsActived"
+                                                       class="custom-control-input" />
+
+                                                <input type="hidden" asp-for="@Model.Categories[i].Specificulture" />
+                                                <input type="hidden" asp-for="@Model.Categories[i].CategoryId" />
+                                                <input type="hidden" asp-for="@Model.Categories[i].ArticleId" />
+                                                <label class="custom-control-label" for="checkboxCategories_@Model.Categories[i].ArticleId">
+                                                    @Model.Categories[i].Description <a asp-area="Portal" asp-controller="Module" asp-action="Details" asp-route-id="@Model.Categories[i].ArticleId" style="display:initial;padding:0;" target="_blank">
+                                                    </a>
+                                                </label>
+                                            </div>
                                         </li>
+
                                     }
                                 </ul>
                             </div>
@@ -194,12 +197,19 @@
                                 <ul class="nav">
                                     @for (int i = 0; i < Model.Modules.Count; i++)
                                     {
-                                        <li class="col-sm-4">
-                                            <input type="checkbox" asp-for="@Model.Modules[i].IsActived" class="custom-control-input" />
-                                            <label asp-for="@Model.Modules[i].IsActived">@Model.Modules[i].Description</label>
-                                            <input type="hidden" asp-for="@Model.Modules[i].Specificulture" />
-                                            <input type="hidden" asp-for="@Model.Modules[i].ArticleId" />
-                                            <input type="hidden" asp-for="@Model.Modules[i].ModuleId" />
+                                        <li class="col-sm-6">
+                                            <div class="custom-control custom-checkbox">
+                                                <input type="checkbox" asp-for="@Model.Modules[i].IsActived"
+                                                       class="custom-control-input" />
+                                                <label class="custom-control-label" asp-for="@Model.Modules[i].IsActived">
+                                                    @Model.Modules[i].Description
+                                                </label>
+                                                <input type="hidden" asp-for="@Model.Modules[i].Specificulture" />
+                                                <input type="hidden" asp-for="@Model.Modules[i].ArticleId" />
+                                                <input type="hidden" asp-for="@Model.Modules[i].ModuleId" />
+                                                
+                                            </div>
+
                                         </li>
                                     }
                                 </ul>
@@ -215,12 +225,14 @@
                                 <ul class="nav">
                                     @for (int i = 0; i < Model.ModuleNavs.Count; i++)
                                     {
-                                        <li class="col-sm-4">
+                                        <li class="col-sm-6">
+                                            <div class="custom-control custom-checkbox">
                                             <input type="checkbox" asp-for="@Model.ModuleNavs[i].IsActived" data-module-id="@Model.ModuleNavs[i].ModuleId" class="cb-active-module custom-control-input" />
-                                            <label asp-for="@Model.ModuleNavs[i].IsActived">@Model.ModuleNavs[i].Description</label>
+                                            <label class="custom-control-label" asp-for="@Model.ModuleNavs[i].IsActived">@Model.ModuleNavs[i].Description</label>
                                             <input type="hidden" asp-for="@Model.ModuleNavs[i].Specificulture" />
                                             <input type="hidden" asp-for="@Model.ModuleNavs[i].ArticleId" />
                                             <input type="hidden" asp-for="@Model.ModuleNavs[i].ModuleId" />
+                                                </div>
                                         </li>
                                     }
                                 </ul>
@@ -288,15 +300,15 @@ new ViewDataDictionary(this.Vi‌​ewData) { { "DataType", prop.DataType }, { "
                             <div class="col-md-10">
 
                                 @Html.Partial("_Editor_Code", Model.View, new ViewDataDictionary(this.ViewData)
-                                                                       {
-                                                                       {
-                                                                               "Files", Model.Templates
-                                                                           },
-                                                                           {
-                                                                               "Name", "View"
-                                                                           }
+                                                                                                                                                                           {
+                                                                                                                                                                           {
+                                                                                                                                                                                   "Files", Model.Templates
+                                                                                                                                                                               },
+                                                                                                                                                                               {
+                                                                                                                                                                                   "Name", "View"
+                                                                                                                                                                               }
 
-                                                                        })
+                                                                                                                                                                            })
                                 @* <input asp-for="View.Filename" class="form-control"/>
 
                                     <div class="form-control" id="code-editor" asp-for="View.Content"></div>*@

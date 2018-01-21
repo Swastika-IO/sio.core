@@ -31,7 +31,7 @@ namespace Swastika.Cms.Lib.ViewModels.BackEnd
 
         #region Views
         [JsonProperty("module")]
-        public FEModuleViewModel Module { get; set; }
+        public BEModuleViewModel Module { get; set; }
         #endregion
 
         #endregion
@@ -52,7 +52,7 @@ namespace Swastika.Cms.Lib.ViewModels.BackEnd
 
         public override void ExpandView(SiocCmsContext _context = null, IDbContextTransaction _transaction = null)
         {
-            var getModuleResult = FEModuleViewModel.GetBy(
+            var getModuleResult = BEModuleViewModel.GetBy(
                 m => m.Id == ModuleId && m.Specificulture == Specificulture
                 , articleId: ArticleId
                 , _context:_context, _transaction: _transaction);

@@ -78,6 +78,20 @@ namespace Swastika.Cms.Mvc.Controllers
                     p => p.SeoName == pageName && p.Specificulture == _lang);
                 if (getPage.IsSucceed && getPage.Data.View != null)
                 {
+                    if (getPage.Data.Type == SWCmsConstants.CateType.List)
+                    {
+                        getPage.Data.Articles.Items.ForEach(a =>
+                        {
+                            a.DetailsUrl = SWCmsHelper.GetRouterUrl("Article", new { a.SeoName }, Request, Url);
+                        });
+                    }
+                    if (getPage.Data.Type == SWCmsConstants.CateType.ListProduct)
+                    {
+                        getPage.Data.Products.Items.ForEach(p =>
+                        {
+                            p.DetailsUrl = SWCmsHelper.GetRouterUrl("Product", new { p.SeoName }, Request, Url);
+                        });
+                    }
                     ViewBag.pageClass = getPage.Data.CssClass;
                     return View(getPage.Data);
                 }

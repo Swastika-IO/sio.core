@@ -255,6 +255,7 @@ namespace Swastika.Cms.Lib.Services
             // TODO: Add more specific exeption types instead of Exception only
             catch
             {
+                IsInit = false;
                 if (transaction != null)
                 {
                     transaction.Rollback();

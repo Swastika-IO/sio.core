@@ -28,9 +28,13 @@ namespace Swastika.Cms.Lib.Models.Account
                 .AddJsonFile(Common.Utility.Const.CONST_FILE_APPSETTING)
                 .Build();
 
-            
-                optionsBuilder.UseSqlServer(GlobalConfigurationService.Instance.GetConnectionString());
-                
+            string cnn = GlobalConfigurationService.Instance.GetConnectionString();
+            if (string.IsNullOrEmpty(cnn))
+            {
+                cnn = "Server=(localdb)\\mssqllocaldb;Database=aspnet-Swastika.Cms.Db;Trusted_Connection=True;MultipleActiveResultSets=true";
+            }
+            optionsBuilder.UseSqlServer(cnn);
+
 
             //optionsBuilder.UseSqlServer(config.GetConnectionString("AccountConnection"));
 

@@ -47,46 +47,23 @@
     <div class="card-body">
 
         @*<select asp-for="Type" class="form-control" asp-items="@types"></select>
-        <span asp-validation-for="Type" class="text-danger"></span>*@
+            <span asp-validation-for="Type" class="text-danger"></span>*@
 
         @{
             foreach (var type in types)
             {
 
-        <div class="custom-control custom-radio">
-            <input asp-for="Type" type="radio" value="@type.Value" class="custom-control-input" id="pageType_@type.Value" />
-            <label class="custom-control-label" for="pageType_@type.Value">@type.Text</label>
-        </div>
+                <div class="custom-control custom-radio">
+                    <input asp-for="Type" type="radio" value="@type.Value" class="custom-control-input" id="pageType_@type.Value" />
+                    <label class="custom-control-label" for="pageType_@type.Value">@type.Text</label>
+                </div>
             }
         }
     </div>
 </div>
 
-<div class="card">
-    <div class="card-header">
-        Languages
-    </div>
-    <div class="card-body">
-
-        @for (int i = 0; i < Model.ListSupportedCulture.Count; i++)
-        {
-
-
-        <div class="custom-control custom-checkbox">
-            <input type="checkbox" asp-for="@Model.ListSupportedCulture[i].IsSupported" class="custom-control-input" required="" id="checkboxCulture_@Model.ListSupportedCulture[i].Specificulture">
-            <input type="hidden" asp-for="@Model.ListSupportedCulture[i].Specificulture" />
-            <label class="custom-control-label" for="checkboxCulture_@Model.ListSupportedCulture[i].Specificulture">
-                <i class="flag-icon h5 @Model.ListSupportedCulture[i].Icon" style="margin-right: 5px;margin-left: 10px;"></i> @Model.ListSupportedCulture[i].Specificulture
-            </label>
-        </div>
-
-}
-
-        <input type="hidden" asp-for="Specificulture" />
-
-        </div>
-</div>
-
+@Html.Partial("EditableSides/_EditableSide_Cultures", Model.ListSupportedCulture)
+<input type="hidden" asp-for="Specificulture" />
 
 <div class="card">
     <div class="card-header">

@@ -237,6 +237,9 @@ namespace Swastika.Cms.Web.Mvc
                 routes.MapRoute(
                  name: "Article",
                  template: "{culture=vi-vn}/article/{seoName}");
+                routes.MapRoute(
+                 name: "Product",
+                 template: "{culture=vi-vn}/product/{seoName}");
 
             });
         }

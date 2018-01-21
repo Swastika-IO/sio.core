@@ -15,6 +15,7 @@
             <input type="hidden" asp-for="Id" />
             <input type="hidden" asp-for="Specificulture" />
 
+
             <div class="form-group">
                 <div class="col-md-2">
                     <label asp-for="Columns" class="control-label"></label>
@@ -66,6 +67,26 @@
                     <span asp-validation-for="Name" class="text-danger"></span>
                 </div>
             </div>
+
+             <div class="form-group ">
+                <div class="col-md-2">
+                    <label asp-for="Title" class="control-label"></label>
+                </div>
+                <div class="col-md-10">
+                    <input asp-for="Title" class="form-control" />
+                    <span asp-validation-for="Title" class="text-danger"></span>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-md-2">
+                    <label asp-for="Description" class="control-label"></label>
+                </div>
+                <div class="col-md-10">
+                    <input asp-for="Description" class="form-control" />
+                    <span asp-validation-for="Description" class="text-danger"></span>
+                </div>
+            </div>
+
             <div class="form-group">
                 <div class="col-md-2">
                     <label asp-for="Type" class="control-label"></label>
@@ -99,25 +120,7 @@
                 </div>
             </div>
 
-            <div class="form-group ">
-                <div class="col-md-2">
-                    <label asp-for="Title" class="control-label"></label>
-                </div>
-                <div class="col-md-10">
-                    <input asp-for="Title" class="form-control" />
-                    <span asp-validation-for="Title" class="text-danger"></span>
-                </div>
-            </div>
-            <div class="form-group">
-                <div class="col-md-2">
-                    <label asp-for="Description" class="control-label"></label>
-                </div>
-                <div class="col-md-10">
-                    <input asp-for="Description" class="form-control" />
-                    <span asp-validation-for="Description" class="text-danger"></span>
-                </div>
-            </div>
-
+           
         </div>
 
     </div>

@@ -1,33 +1,26 @@
-
 @model List<Swastika.Domain.Core.Models.SupportedCulture>
-@{ 
-    var ListSupportedCulture = Model;
-    string culture = ViewBag.culture;
-}
-<div class="box box-solid">
-    <div class="box-header with-border">
-        <h3 class="box-title"><lable>@Swastika.Cms.Lib.Services.GlobalConfigurationService.Instance.GetLocalString("Cultures", ViewBag.culture)</label></h3>
-        <div class="box-tools">
-            <button type="button" class="btn btn-box-tool" data-widget="collapse">
-                <i class="fa fa-minus"></i>
-            </button>
-        </div>
+<div class="card">
+    <div class="card-header">
+        Languages
     </div>
-    <div class="box-body no-padding">
-        <ul class="nav nav-pills nav-stacked">
-            @for (int i = 0; i < ListSupportedCulture.Count; i++)
-            {
-                <li style="position: relative;display: block;padding: 10px 15px;">
-                    <label class="form-check-label">
-                        <input type="checkbox" asp-for="@ListSupportedCulture[i].IsSupported" />
-                        <input type="hidden" asp-for="@ListSupportedCulture[i].Specificulture" />
-                        <i class="flag-icon @ListSupportedCulture[i].Icon"></i> @ListSupportedCulture[i].Specificulture
-                    </label>
-                </li>
-            }
+    <div class="card-body">
 
-        </ul>
+        @for (int i = 0; i < Model.Count; i++)
+        {
+
+
+            <div class="custom-control custom-checkbox">
+                <input type="checkbox" asp-for="@Model[i].IsSupported" class="custom-control-input" required="" 
+                       id="ListSupportedCulture_@Model[i].Specificulture">
+                <input type="hidden" asp-for="@Model[i].Specificulture" />
+                <label class="custom-control-label" for="ListSupportedCulture_@Model[i].Specificulture">
+                    <i class="flag-icon h5 @Model[i].Icon" style="margin-right: 5px;margin-left: 10px;"></i> @Model[i].Specificulture
+                </label>
+            </div>
+
+        }
+
+
+
     </div>
-    <!-- /.box-body -->
-
 </div>

@@ -185,7 +185,7 @@
                 <li>
                     <a asp-area="Portal" asp-controller="Pages" asp-action="Create" class="sw-toc-sub-link">
                         <span class="oi oi-plus"></span>
-                        <span class="text">Create Article</span>
+                        <span class="text">Create Page</span>
                     </a>
                 </li>
                 <li>
@@ -208,7 +208,7 @@
                         <div class="sw-toc-sub-link">
                             <span class="oi oi-fork"></span>
                             <span class="text">@cate.Title</span>
-                            @if (cate.Type == SWCmsConstants.CateType.List)
+                            @if (cate.Type == SWCmsConstants.CateType.List || cate.Type== SWCmsConstants.CateType.ListProduct)
                             {
                                 <div class="btn-group btn-group-sm" role="group" aria-label="Basic example">
                                     <a asp-area="Portal" asp-controller="Articles" asp-action="Create" asp-route-categoryId="@cate.Id" class="btn btn-link">

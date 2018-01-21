@@ -1,15 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using Swastika.Cms.Lib.Models.Cms;
+﻿using Swastika.Cms.Lib.Models.Cms;
 using Swastika.Domain.Data.ViewModels;
 using Microsoft.EntityFrameworkCore.Storage;
 using Newtonsoft.Json;
-using Swastika.Common.Helper;
 using Swastika.Domain.Core.ViewModels;
 using Swastika.Cms.Lib.ViewModels.Info;
 using System.Threading.Tasks;
 using Swastika.Cms.Lib.ViewModels.FrontEnd;
+using Swastika.Cms.Lib.ViewModels.BackEnd;
 
 namespace Swastika.Cms.Lib.ViewModels.Navigation
 {
@@ -31,7 +28,7 @@ namespace Swastika.Cms.Lib.ViewModels.Navigation
 
         #region Views
         [JsonProperty("module")]
-        public FEModuleViewModel Module { get; set; }
+        public BEModuleViewModel Module { get; set; }
         #endregion
 
         #endregion
@@ -52,7 +49,7 @@ namespace Swastika.Cms.Lib.ViewModels.Navigation
 
         public override void ExpandView(SiocCmsContext _context = null, IDbContextTransaction _transaction = null)
         {
-            var getModuleResult = FEModuleViewModel.GetBy(
+            var getModuleResult = BEModuleViewModel.GetBy(
                 m => m.Id == ModuleId && m.Specificulture == Specificulture
                 , productId: ProductId
                 , _context:_context, _transaction: _transaction);

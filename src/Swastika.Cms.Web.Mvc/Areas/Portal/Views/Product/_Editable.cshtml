@@ -33,7 +33,7 @@
                         </div>
                     </div>
 
-                     <div class="form-group">
+                    <div class="form-group">
                         <label asp-for="Price" class="col-md-2 control-label"></label>
                         <div class="col-md-10">
                             <input asp-for="Price" class="form-control" />
@@ -41,7 +41,7 @@
                         </div>
                     </div>
 
-                     <div class="form-group">
+                    <div class="form-group">
                         <label asp-for="PriceUnit" class="col-md-2 control-label"></label>
                         <div class="col-md-10">
                             <select asp-for="Type" class="form-control" asp-items="@priceUnits"></select>
@@ -184,13 +184,26 @@
                                 <ul class="nav">
                                     @for (int i = 0; i < Model.Categories.Count; i++)
                                     {
-                                        <li class="col-sm-4">
-                                            <input type="checkbox" asp-for="@Model.Categories[i].IsActived" />
-                                            <label asp-for="@Model.Categories[i].IsActived">@Model.Categories[i].Description</label>
-                                            <input type="hidden" asp-for="@Model.Categories[i].Specificulture" />
-                                            <input type="hidden" asp-for="@Model.Categories[i].ProductId" />
-                                            <input type="hidden" asp-for="@Model.Categories[i].CategoryId" />
+                                        <li class="col-sm-6">
+
+
+                                            <div asp-for="@Model.Categories[i].IsActived" class="custom-control custom-checkbox">
+
+                                                <input type="checkbox" asp-for="@Model.Categories[i].IsActived"
+                                                       class="custom-control-input" />
+
+                                                <input type="hidden" asp-for="@Model.Categories[i].Specificulture" />
+                                                <input type="hidden" asp-for="@Model.Categories[i].CategoryId" />
+                                                <input type="hidden" asp-for="@Model.Categories[i].ProductId" />
+                                                <label class="custom-control-label" for="checkboxCategories_@Model.Categories[i].ProductId">
+                                                    @Model.Categories[i].Description 
+                                                    <a asp-area="Portal" asp-controller="Module" asp-action="Details" 
+                                                                                        asp-route-id="@Model.Categories[i].ProductId" style="display:initial;padding:0;" target="_blank">
+                                                    </a>
+                                                </label>
+                                            </div>
                                         </li>
+
                                     }
                                 </ul>
                             </div>
@@ -203,12 +216,19 @@
                                 <ul class="nav">
                                     @for (int i = 0; i < Model.Modules.Count; i++)
                                     {
-                                        <li class="col-sm-4">
-                                            <input type="checkbox" asp-for="@Model.Modules[i].IsActived" />
-                                            <label asp-for="@Model.Modules[i].IsActived">@Model.Modules[i].Description</label>
-                                            <input type="hidden" asp-for="@Model.Modules[i].Specificulture" />
-                                            <input type="hidden" asp-for="@Model.Modules[i].ProductId" />
-                                            <input type="hidden" asp-for="@Model.Modules[i].ModuleId" />
+                                        <li class="col-sm-6">
+                                            <div class="custom-control custom-checkbox">
+                                                <input type="checkbox" asp-for="@Model.Modules[i].IsActived"
+                                                       class="custom-control-input" />
+                                                <label class="custom-control-label" asp-for="@Model.Modules[i].IsActived">
+                                                    @Model.Modules[i].Description
+                                                </label>
+                                                <input type="hidden" asp-for="@Model.Modules[i].Specificulture" />
+                                                <input type="hidden" asp-for="@Model.Modules[i].ProductId" />
+                                                <input type="hidden" asp-for="@Model.Modules[i].ModuleId" />
+
+                                            </div>
+
                                         </li>
                                     }
                                 </ul>
@@ -224,12 +244,14 @@
                                 <ul class="nav">
                                     @for (int i = 0; i < Model.ModuleNavs.Count; i++)
                                     {
-                                        <li class="col-sm-4">
-                                            <input type="checkbox" asp-for="@Model.ModuleNavs[i].IsActived" data-module-id="@Model.ModuleNavs[i].ModuleId" class="cb-active-module" />
-                                            <label asp-for="@Model.ModuleNavs[i].IsActived">@Model.ModuleNavs[i].Description</label>
-                                            <input type="hidden" asp-for="@Model.ModuleNavs[i].Specificulture" />
-                                            <input type="hidden" asp-for="@Model.ModuleNavs[i].ProductId" />
-                                            <input type="hidden" asp-for="@Model.ModuleNavs[i].ModuleId" />
+                                        <li class="col-sm-6">
+                                            <div class="custom-control custom-checkbox">
+                                                <input type="checkbox" asp-for="@Model.ModuleNavs[i].IsActived" data-module-id="@Model.ModuleNavs[i].ModuleId" class="cb-active-module custom-control-input" />
+                                                <label class="custom-control-label" asp-for="@Model.ModuleNavs[i].IsActived">@Model.ModuleNavs[i].Description</label>
+                                                <input type="hidden" asp-for="@Model.ModuleNavs[i].Specificulture" />
+                                                <input type="hidden" asp-for="@Model.ModuleNavs[i].ProductId" />
+                                                <input type="hidden" asp-for="@Model.ModuleNavs[i].ModuleId" />
+                                            </div>
                                         </li>
                                     }
                                 </ul>
@@ -246,7 +268,7 @@
                                     <h1>@module.Title</h1>
                                     @*<a href="#" class="btn btn-success AddObject" moduleId="@module.Id">Add new</a>*@
                                     <table class="table table-hover table-striped" id="module-@module.Id">
-                                        <thead>
+                                        <thead class="thead-light">
                                             <tr>
                                                 @foreach (var col in module.Columns.Where(c => c.IsDisplay))
                                                 {
@@ -261,14 +283,14 @@
                                         <tbody>
                                             @foreach (var item in module.Data.Items)
                                             {
-                                                bool isActived = item.ProductId == Model.Id;
+                                                bool isActived = item.ArticleId == Model.Id;
                                                 <tr id="data-@item.Id" dataId="data-@item.Id">
                                                     @foreach (var col in module.Columns.Where(c => c.IsDisplay))
                                                     {
                                                         var prop = item.GetDataProperty(col.Name);
                                                         <td>
                                                             @{Html.RenderPartial("_ViewByFieldType",
-new ViewDataDictionary(this.Vi‌​ewData) { { "DataType", prop.DataType }, { "Value", prop.Value } });
+                                          new ViewDataDictionary(this.Vi‌​ewData) { { "DataType", prop.DataType }, { "Value", prop.Value } });
                                                             }
                                                         </td>
                                                     }
@@ -297,15 +319,15 @@ new ViewDataDictionary(this.Vi‌​ewData) { { "DataType", prop.DataType }, { "
                             <div class="col-md-10">
 
                                 @Html.Partial("_Editor_Code", Model.View, new ViewDataDictionary(this.ViewData)
-                                                                       {
-                                                                       {
-                                                                               "Files", Model.Templates
-                                                                           },
-                                                                           {
-                                                                               "Name", "View"
-                                                                           }
+                                                                                               {
+                                                                                               {
+                                                                                                       "Files", Model.Templates
+                                                                                                   },
+                                                                                                   {
+                                                                                                       "Name", "View"
+                                                                                                   }
 
-                                                                        })
+                                                                                                })
                                 @* <input asp-for="View.Filename" class="form-control"/>
 
                                     <div class="form-control" id="code-editor" asp-for="View.Content"></div>*@
@@ -379,88 +401,88 @@ new ViewDataDictionary(this.Vi‌​ewData) { { "DataType", prop.DataType }, { "
 
 
 <script>
-        window.onload = function() {
+    window.onload = function () {
 
-            $('.AddObject').click(function (e) {
-                var i = $(".field-row").length;
-                var moduleId = $(this).attr('moduleId');
-                $('.btn-save-data').attr('moduleId', moduleId);
-                $.ajax({
-                    url: '/vi-vn/Portal/Module/AjaxAddModuleData/' + moduleId,
-                    success: function (data) {
-                        //$('#Table > tbody').append(data);
-                        $('#modal-data .modal-body').html(data);
-                        $('#modal-data').modal('show')
-                    },
-                    error: function (a, b, c) {
-                        alert(a + " " + b + " " + c);
-                    }
-                });
+        $('.AddObject').click(function (e) {
+            var i = $(".field-row").length;
+            var moduleId = $(this).attr('moduleId');
+            $('.btn-save-data').attr('moduleId', moduleId);
+            $.ajax({
+                url: '/vi-vn/Portal/Module/AjaxAddModuleData/' + moduleId,
+                success: function (data) {
+                    //$('#Table > tbody').append(data);
+                    $('#modal-data .modal-body').html(data);
+                    $('#modal-data').modal('show')
+                },
+                error: function (a, b, c) {
+                    alert(a + " " + b + " " + c);
+                }
             });
+        });
 
-            $(document).on('click', '.btn-edit-data', function () {
+        $(document).on('click', '.btn-edit-data', function () {
 
-                var dataId = $(this).attr('dataId');
-                $('.btn-save-data').attr('dataId', 'data-' + dataId);
-                $.ajax({
-                    url: '/vi-vn/Portal/Module/AjaxEditModuleData/' + dataId,
-                    success: function (data) {
-                        //$('#Table > tbody').append(data);
-                        console.log(data);
-                        $('#modal-data .modal-body').html(data);
-                        $('#modal-data').modal('show');
-                    },
-                    error: function (a, b, c) {
-                        alert(a + " " + b + " " + c);
-                    }
-                });
+            var dataId = $(this).attr('dataId');
+            $('.btn-save-data').attr('dataId', 'data-' + dataId);
+            $.ajax({
+                url: '/vi-vn/Portal/Module/AjaxEditModuleData/' + dataId,
+                success: function (data) {
+                    //$('#Table > tbody').append(data);
+                    console.log(data);
+                    $('#modal-data .modal-body').html(data);
+                    $('#modal-data').modal('show');
+                },
+                error: function (a, b, c) {
+                    alert(a + " " + b + " " + c);
+                }
             });
+        });
 
-            $(document).on('click', '.btn-save-data', function (e) {
+        $(document).on('click', '.btn-save-data', function (e) {
 
-                var container = $('#module-' + $(this).attr('moduleId'));
-                var dataId = $(this).attr('dataId');
-                e.preventDefault();
-                var frm = $('#frm-data');
-                var url = '/vi-vn/Portal/Module/AjaxSaveModuleData';
-                //SW.Common.ajaxSubmitForm(frm, url);
-                var data = frm.serialize();
-                $.ajax({
-                    type: 'Post',
-                    url: '/vi-vn/Portal/Module/AjaxSaveModuleData', //frm.attr('action'),
-                    data: data,
-                    success: function (data) {
-                        if (dataId != '') {
-                            $('#' + dataId).replaceWith(data);
-                        } else {
-                            $(container).find('tbody').append(data);
+            var container = $('#module-' + $(this).attr('moduleId'));
+            var dataId = $(this).attr('dataId');
+            e.preventDefault();
+            var frm = $('#frm-data');
+            var url = '/vi-vn/Portal/Module/AjaxSaveModuleData';
+            //SW.Common.ajaxSubmitForm(frm, url);
+            var data = frm.serialize();
+            $.ajax({
+                type: 'Post',
+                url: '/vi-vn/Portal/Module/AjaxSaveModuleData', //frm.attr('action'),
+                data: data,
+                success: function (data) {
+                    if (dataId != '') {
+                        $('#' + dataId).replaceWith(data);
+                    } else {
+                        $(container).find('tbody').append(data);
 
-                        }
-
-                        $('#modal-data').modal('hide');
-                    },
-                    error: function (data) {
-                        SW.Common.showError(data.toSource());
-                    },
-                });
-            });
-
-            $(document).on('ifChanged', '.cb-active-data', function (e) {
-                var productId = $('#Id').val();
-                var dataId = $(this).attr('dataId');
-                $.ajax({
-                    type: 'GET',
-                    url: '/vi-vn/Portal/Module/AjaxAtiveModuleData/' + productId + '/' + dataId + '/' + $(this).is(':checked'),
-                    success: function (data) {
-                    },
-                    error: function (a, b, c) {
-                        alert(a + " " + b + " " + c);
                     }
-                });
-            })
-            $(document).on('ifChanged', '.cb-active-module', function (e) {
-                var moduleid = $(this).data('module-id');
-                $('.module-data-' + moduleid).toggleClass('hidden');
-            })
-        }
-    </script>
+
+                    $('#modal-data').modal('hide');
+                },
+                error: function (data) {
+                    SW.Common.showError(data.toSource());
+                },
+            });
+        });
+
+        $(document).on('ifChanged', '.cb-active-data', function (e) {
+            var productId = $('#Id').val();
+            var dataId = $(this).attr('dataId');
+            $.ajax({
+                type: 'GET',
+                url: '/vi-vn/Portal/Module/AjaxAtiveModuleData/' + productId + '/' + dataId + '/' + $(this).is(':checked'),
+                success: function (data) {
+                },
+                error: function (a, b, c) {
+                    alert(a + " " + b + " " + c);
+                }
+            });
+        })
+        $(document).on('ifChanged', '.cb-active-module', function (e) {
+            var moduleid = $(this).data('module-id');
+            $('.module-data-' + moduleid).toggleClass('hidden');
+        })
+    }
+</script>

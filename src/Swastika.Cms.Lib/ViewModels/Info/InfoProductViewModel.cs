@@ -11,6 +11,7 @@ using System.Threading.Tasks;
 using Microsoft.Data.OData.Query;
 using Microsoft.EntityFrameworkCore;
 using System.Linq;
+using Microsoft.AspNetCore.Http;
 
 namespace Swastika.Cms.Lib.ViewModels.Info
 {
@@ -111,6 +112,8 @@ namespace Swastika.Cms.Lib.ViewModels.Info
             }
         }
 
+        [JsonProperty("detailsUrl")]
+        public string DetailsUrl { get; set; }
         #endregion
 
         #endregion
@@ -139,6 +142,7 @@ namespace Swastika.Cms.Lib.ViewModels.Info
             var transaction = _transaction ?? context.Database.BeginTransaction();
             try
             {
+                
                 var query = context.SiocCategoryProduct.Include(ac => ac.SiocProduct)
                     .Where(ac =>
                     ac.CategoryId == categoryId && ac.Specificulture == specificulture
