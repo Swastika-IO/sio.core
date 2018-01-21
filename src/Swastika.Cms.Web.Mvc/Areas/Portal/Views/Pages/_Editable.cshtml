@@ -187,8 +187,8 @@
                                                 <input type="hidden" asp-for="@Model.ModuleNavs[i].CategoryId" />
                                                 <input type="hidden" asp-for="@Model.ModuleNavs[i].ModuleId" />
                                                 <label class="custom-control-label" for="checkboxModuleNavs_@Model.ModuleNavs[i].ModuleId">
-                                                    @Model.ModuleNavs[i].Description <a asp-area="Portal" asp-controller="Module" asp-action="Details" asp-route-id="@Model.ModuleNavs[i].ModuleId" style="display:initial;padding:0;" target="_blank">
-                                                        [+]
+                                                    @Model.ModuleNavs[i].Description <a asp-area="Portal" asp-controller="Module" asp-action="Details" asp-route-id="@Model.ModuleNavs[i].ModuleId" class="btn btn-light btn-sm" target="_blank">
+                                                                                         <span class="oi oi-eye"></span>
                                                     </a>
                                                 </label>
                                             </div>

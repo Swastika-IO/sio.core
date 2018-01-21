@@ -5,29 +5,29 @@
     //Layout = "~/Areas/Portal/Views/Shared/_Layout.cshtml";
 }
 
-<!-- Main content -->
-<section class="content container-fluid">
-    <div class="row">
-        <form asp-controller="@ViewContext.RouteData.Values["controller"].ToString()"
-              asp-action="@ViewContext.RouteData.Values["action"].ToString()"
-              asp-route-id="@Model.Id"
-              asp-route-categoryId="@ViewBag.categoryId"
-              >
-            <section class="col-lg-9">
+<form asp-controller="@ViewContext.RouteData.Values["controller"].ToString()"
+      asp-action="@ViewContext.RouteData.Values["action"].ToString()"
+      asp-route-id="@Model.Id"
+      asp-route-categoryId="@ViewBag.categoryId">
+    <!-- Main content -->
+    <section class="content container-fluid">
+        @await Html.PartialAsync("EditableSides/_Editable_ActionsBar")
+        <div class="row">
+            <section class="col-lg-8">
                 @await Html.PartialAsync("_Editable", Model)
             </section>
-            <section class="col-lg-3">
+            <section class="col-lg-4">
                 @await Html.PartialAsync("_EditableSide", Model)
             </section>
-        </form>
-    </div>
-</section>
-<!-- /.content -->
+        </div>
+    </section>
+    <!-- /.content -->
+</form>
 
 @section Scripts{
     <script>
         $(document).ready(function
-            () {
+                    () {
 
             $('.AddObject').click(function (e) {
                 var i = $(".field-row").length;

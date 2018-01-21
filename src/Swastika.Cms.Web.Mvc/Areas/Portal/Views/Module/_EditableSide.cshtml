@@ -1,36 +1,40 @@
 @model BEModuleViewModel
 
 @{
-    var types = Html.GetEnumSelectList<Swastika.Cms.Lib.SWCmsConstants.CateType>();
+
+    var moduleTypes = Html.GetEnumSelectList<Swastika.Cms.Lib.SWCmsConstants.ModuleType>();
+    //var types = Html.GetEnumSelectList<Swastika.Cms.Lib.SWCmsConstants.CateType>();
     //string img = Model != null ? Model.Image : "http://placehold.it/200x200";
 }
 
 @await Html.PartialAsync("EditableSides/_EditableSide_Actions")
 
-<div class="box box-solid">
-    <div class="box-header with-border">
-        <h3 class="box-title"><label asp-for="Specificulture" class="control-label"></label></h3>
-        <div class="box-tools">
-            <button type="button" class="btn btn-box-tool" data-widget="collapse">
-                <i class="fa fa-minus"></i>
-            </button>
-        </div>
+@Html.Partial("EditableSides/_EditableSide_Cultures", Model.ListSupportedCulture)
+<input type="hidden" asp-for="Specificulture" />
+
+
+<div class="card">
+    <div class="card-header">
+        <label asp-for="Type" class="control-label"></label>
     </div>
-    <div class="box-body no-padding">
-        <ul class="nav nav-pills nav-stacked">
-            @for (int i = 0; i < Model.ListSupportedCulture.Count; i++)
+    <div class="card-body">
+
+        <div class="form-group">
+
+            @*<select asp-for="Type" class="form-control" asp-items="@moduleTypes"></select>*@
+
+
+            @{
+            foreach (var type in moduleTypes)
             {
-                <li style="position: relative;display: block;padding: 10px 15px;">
-                    <label class="form-check-label">
-                        <input type="checkbox" asp-for="@Model.ListSupportedCulture[i].IsSupported" />
-                        <input type="hidden" asp-for="@Model.ListSupportedCulture[i].Specificulture" />
-                        <i class="flag-icon @Model.ListSupportedCulture[i].Icon"></i> @Model.ListSupportedCulture[i].Specificulture
-                    </label>
-                </li>
+                <div class="custom-control custom-radio">
+                    <input asp-for="Type" type="radio" value="@type.Value" class="custom-control-input" id="pageType_@type.Value" />
+                    <label class="custom-control-label" for="pageType_@type.Value">@type.Text</label>
+                </div>
+            }
             }
 
-        </ul>
+            <span asp-validation-for="Type" class="text-danger"></span>
+        </div>
     </div>
-    <!-- /.box-body -->
-
 </div>

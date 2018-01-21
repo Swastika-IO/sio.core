@@ -15,11 +15,12 @@
 <form enctype="multipart/form-data" asp-action="@ViewContext.RouteData.Values["action"].ToString()">
     <!-- Main content -->
     <section class="content container-fluid">
+        @await Html.PartialAsync("EditableSides/_Editable_ActionsBar")
         <div class="row">
-            <section class="col-lg-9">
+            <section class="col-lg-8">
                 @await Html.PartialAsync("_Editable", Model)
             </section>
-            <section class="col-lg-3">
+            <section class="col-lg-4">
                 @await Html.PartialAsync("_EditableSide", Model)
             </section>
         </div>

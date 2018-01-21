@@ -111,7 +111,7 @@
             @await Component.InvokeAsync(typeof(Swastika.Cms.Mvc.Areas.Portal.ViewComponents.MainSidebar))
 
             <!-- /.Sidebar Holder -->
-            <main class="py-md-3 px-md-4 sw-content" role="main">
+            <main class="py-md-3 px-md-2 sw-content" role="main">
                 <form enctype="multipart/form-data" onsubmit="return false" asp-action="@ViewContext.RouteData.Values["action"].ToString()">
                     @RenderBody()
                 </form>

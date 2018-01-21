@@ -9,123 +9,98 @@
 
 <div class="card">
     <div class="card-header">
-        Languages
+        Info
     </div>
     <div class="card-body">
 
-        @for (int i = 0; i < Model.ListSupportedCulture.Count; i++)
-        {
+        <div class="form-group">
+            <label asp-for="CreatedDateTime" class="control-label"></label>
+            <div class="input-group mb-3">
+                <div class="input-group-prepend">
+                    <span class="input-group-text" id="basic-addon1"><span class="oi oi-calendar"></span></span>
+                </div>
+                <input asp-for="CreatedDateTime" type="text" class="form-control" readonly />
+            </div>
+            <span asp-validation-for="CreatedDateTime" class="text-danger"></span>
+        </div>
 
-
-            <label class="custom-control custom-checkbox d-block">
-                <input type="checkbox" asp-for="@Model.ListSupportedCulture[i].IsSupported" class="custom-control-input" required="">
-                <input type="hidden" asp-for="@Model.ListSupportedCulture[i].Specificulture" />
-                <span class="custom-control-indicator"></span>
-                <span class="custom-control-description">
-                    <i class="flag-icon h5 @Model.ListSupportedCulture[i].Icon" style="margin-right: 5px;margin-left: 10px;"></i> @Model.ListSupportedCulture[i].Specificulture
-                </span>
-            </label>
-
-        }
-
-        <input type="hidden" asp-for="Specificulture" />
-
+        <div class="form-group">
+            <label asp-for="CreatedBy" class="control-label"></label>
+            <div class="input-group mb-3">
+                <div class="input-group-prepend">
+                    <span class="input-group-text" id="basic-addon1"><span class="oi oi-person"></span></span>
+                </div>
+                <input asp-for="CreatedBy" class="form-control" readonly />
+            </div>
+            <span asp-validation-for="CreatedBy" class="text-danger"></span>
+        </div>
     </div>
 </div>
 
-@await Html.PartialAsync("EditableSides/_EditableSide_Actions")
+@Html.Partial("EditableSides/_EditableSide_Cultures", Model.ListSupportedCulture)
+<input type="hidden" asp-for="Specificulture" />
 
-<div class="box box-solid">
-    <div class="box-header with-border">
-        <h3 class="box-title">Feature Image</h3>
-        <div class="box-tools">
-            <button type="button" class="btn btn-box-tool" data-widget="collapse">
-                <i class="fa fa-minus"></i>
-            </button>
-        </div>
+<div class="card">
+    <div class="card-header">
+        <label asp-for="Icon"></label>
     </div>
-    <div class="box-body">
+    <div class="card-body">
         <div class="form-group">
-            <label asp-for="Icon" class="col-md-2 control-label"></label>
+
             <span asp-validation-for="Icon" class="text-danger"></span>
-            <div class="col-md-10">
-                <select asp-for="@Model.Icon" class="form-control selectpicker">
-                    <option value="">Select Icon</option>
-                    <option value="fa fa-envelope" data-content="<span><i class='fa fa-1x fa-envelope'></i></span>"></option>
+            <select asp-for="@Model.Icon" class="form-control selectpicker">
+                <option value="">Select Icon</option>
+                <option value="fa fa-envelope" data-content="<span><i class='fa fa-1x fa-envelope'></i></span>"></option>
 
-                    <option value="fa fa-facebook" data-content="<span><i class='fa fa-1x fa-facebook'></i></span>"></option>
-                    <option value="fa fa-twitter" data-content="<span><i class='fa fa-1x fa-twitter'></i></span>"></option>
-                    <option value="fa fa-linkedin" data-content="<span><i class='fa fa-1x fa-linkedin'></i></span>"></option>
-                    <option value="fa fa-skype" data-content="<span><i class='fa fa-1x fa-skype'></i></span>"></option>
+                <option value="fa fa-facebook" data-content="<span><i class='fa fa-1x fa-facebook'></i></span>"></option>
+                <option value="fa fa-twitter" data-content="<span><i class='fa fa-1x fa-twitter'></i></span>"></option>
+                <option value="fa fa-linkedin" data-content="<span><i class='fa fa-1x fa-linkedin'></i></span>"></option>
+                <option value="fa fa-skype" data-content="<span><i class='fa fa-1x fa-skype'></i></span>"></option>
 
-                    <option value="fa fa fa-car" data-content="<span><i class='fa fa fa-car'></i></span>"></option>
-                    <option value="fa fa fa-building" data-content="<span><i class='fa fa-building'></i></span>"></option>
-                    <option value="fa fa fa-language" data-content="<span><i class='fa fa-language'></i></span>"></option>
-                    <option value="fa fa fa-paper-plane-o" data-content="<span><i class='fa fa fa-paper-plane-o'></i></span>"></option>
-                    <option value="fa fa fa-users" data-content="<span><i class='fa fa fa-users'></i></span>"></option>
-                    <option value="fa fa fa-ticket" data-content="<span><i class='fa fa fa-ticket'></i></span>"></option>
-                </select>
-            </div>
+                <option value="fa fa fa-car" data-content="<span><i class='fa fa fa-car'></i></span>"></option>
+                <option value="fa fa fa-building" data-content="<span><i class='fa fa-building'></i></span>"></option>
+                <option value="fa fa fa-language" data-content="<span><i class='fa fa-language'></i></span>"></option>
+                <option value="fa fa fa-paper-plane-o" data-content="<span><i class='fa fa fa-paper-plane-o'></i></span>"></option>
+                <option value="fa fa fa-users" data-content="<span><i class='fa fa fa-users'></i></span>"></option>
+                <option value="fa fa fa-ticket" data-content="<span><i class='fa fa fa-ticket'></i></span>"></option>
+            </select>
         </div>
     </div>
-    <!-- /.box-body -->
 </div>
 
-<div class="box box-solid">
-    <div class="box-header with-border">
-        <h3 class="box-title">Feature Image</h3>
-        <div class="box-tools">
-            <button type="button" class="btn btn-box-tool" data-widget="collapse">
-                <i class="fa fa-minus"></i>
-            </button>
-        </div>
+<div class="card">
+    <div class="card-header">
+        Feature image
     </div>
-    <div class="box-body">
-
+    <div class="card-body">
         <div class="form-group">
-            <label asp-for="Image" class="col-md-2 control-label"></label>
             <span asp-validation-for="Image" class="text-danger"></span>
-            <div class="col-md-10">
-
-                <label class="custom-file">
-                    <img src="@img" name="pic" class="custom-file-img " accept="image/*" />
-                    <input type="file" name="pic" class="custom-file-input">
-                    <input type="hidden" value="Products/@Model.SeoTitle" class="folder-val" />
-                    <input type="text" asp-for="Image" class="form-control custom-file-val">
-                    <span class="custom-file-control">Browse</span>
-                </label>
-            </div>
+            <label class="custom-file">
+                <input type="hidden" value="Articles/@Model.SeoTitle" class="folder-val" />
+                <input type="file" name="pic" class="custom-file-input">
+                <img src="@img" name="pic" class="custom-file-img " accept="image/*" width="100%" />
+                <input type="text" asp-for="Image" class="form-control custom-file-val">
+                <span class="custom-file-control">Upload image</span>
+            </label>
         </div>
     </div>
-    <!-- /.box-body -->
 </div>
 
 
-<div class="box box-solid">
-    <div class="box-header with-border">
-        <h3 class="box-title">Thumbnail Image</h3>
-        <div class="box-tools">
-            <button type="button" class="btn btn-box-tool" data-widget="collapse">
-                <i class="fa fa-minus"></i>
-            </button>
-        </div>
+<div class="card">
+    <div class="card-header">
+        Thumbnail image
     </div>
-    <div class="box-body">
-
+    <div class="card-body">
         <div class="form-group">
-            <label asp-for="Thumbnail" class="col-md-2 control-label"></label>
             <span asp-validation-for="Thumbnail" class="text-danger"></span>
-            <div class="col-md-10">
-
-                <label class="custom-file">
-                    <img src="@thumb" name="pic" class="custom-file-img " accept="image/*" />
-                    <input type="file" name="pic" class="custom-file-input">
-                    <input type="hidden" value="Products/@Model.SeoTitle" class="folder-val" />
-                    <input type="text" asp-for="Thumbnail" class="form-control custom-file-val">
-                    <span class="custom-file-control">Browse</span>
-                </label>
-            </div>
+            <label class="custom-file">
+                <input type="hidden" value="Articles/@Model.SeoTitle" class="folder-val" />
+                <input type="file" name="pic" class="custom-file-input">
+                <img src="@thumb" name="pic" class="custom-file-img " accept="image/*" width="100%" />
+                <input type="text" asp-for="Thumbnail" class="form-control custom-file-val">
+                <span class="custom-file-control">Upload image</span>
+            </label>
         </div>
     </div>
-    <!-- /.box-body -->
 </div>
