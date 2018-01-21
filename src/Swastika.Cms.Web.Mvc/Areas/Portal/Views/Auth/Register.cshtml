@@ -157,16 +157,6 @@
     </div>
 </div>
 
-<div class="col-md-4 content-center">
-    <div class="card card-profile card-plain">
-        <form asp-controller="Auth" asp-action="Register" asp-route-returnurl="@ViewData[" ReturnUrl"]" method="post" class="form-horizontal">
-            <input type="hidden" asp-for="ReturnUrl" />
-            <div class="content">
-                
-            </div>
-        </form>
-    </div>
-</div>
 @section Scripts {
     @{ await Html.RenderPartialAsync("_ValidationScriptsPartial"); }
 }

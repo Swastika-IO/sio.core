@@ -41,14 +41,15 @@
                 <div class="form-group">
                     <button type="submit" class="btn btn-primary btn-round btn-lg btn-block">Log in</button>
                 </div>
-                <div class="form-group checkbox">
+                <div class="form-check">
                     <style>
                         .RememberMe:before {
                             background-color: white !important;
                         }
                     </style>
-                    <input asp-for="RememberMe" type="checkbox" />
-                    <label asp-for="RememberMe" class="RememberMe">
+                    <label asp-for="RememberMe" class="form-check-label RememberMe">
+                        <input asp-for="RememberMe" type="checkbox" class="form-check-input" />
+                        <span class="form-check-sign"></span>
                         @Html.DisplayNameFor(m => m.RememberMe)
                     </label>
                 </div>
