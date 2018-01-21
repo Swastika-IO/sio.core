@@ -12,13 +12,13 @@ using Swastika.Cms.Lib.Models.Cms;
 namespace Swastka.IO.Cms.Api.Controllers
 {
     [Produces("application/json")]
-    [Route("api/{culture}/Modules")]
-    public class ApiModulesController :
+    [Route("api/{culture}/module")]
+    public class ApiModuleController :
         BaseApiController<SiocCmsContext, SiocArticle>
     {
         // GET api/articles/id
         [HttpGet]
-        [Route("full/{id}")]
+        [Route("details/{id}")]
         public async Task<RepositoryResponse<FEModuleViewModel>> Details(int id)
         {
             var result = await FEModuleViewModel.Repository.GetSingleModelAsync(model => model.Id == id && model.Specificulture == _lang);
@@ -63,10 +63,10 @@ namespace Swastka.IO.Cms.Api.Controllers
 
         // GET api/modules
         [HttpGet]
-        [Route("")]
-        [Route("{pageSize:int?}/{pageIndex:int?}")]
-        [Route("{orderBy}/{direction}")]
-        [Route("{pageSize:int?}/{pageIndex:int?}/{orderBy}/{direction}")]
+        [Route("list")]
+        [Route("list/{pageSize:int?}/{pageIndex:int?}")]
+        [Route("list/{orderBy}/{direction}")]
+        [Route("list/{pageSize:int?}/{pageIndex:int?}/{orderBy}/{direction}")]
         public async Task<RepositoryResponse<PaginationModel<InfoModuleViewModel>>> Get(
             int? pageSize = 15, int? pageIndex = 0, string orderBy = "Id"
             , OrderByDirection direction = OrderByDirection.Ascending)
@@ -80,11 +80,11 @@ namespace Swastka.IO.Cms.Api.Controllers
 
         // GET api/modules
         [HttpGet]
-        [Route("{keyword}")]
-        [Route("{pageSize:int?}/{pageIndex:int?}/{keyword}")]
-        [Route("{pageSize:int?}/{pageIndex:int?}/{keyword}/{description}")]
-        [Route("{pageSize:int?}/{pageIndex:int?}/{orderBy}/{direction}/{keyword}")]
-        [Route("{pageSize:int?}/{pageIndex:int?}/{orderBy}/{direction}/{keyword}/{description}")]
+        [Route("search/{keyword}")]
+        [Route("search/{pageSize:int?}/{pageIndex:int?}/{keyword}")]
+        [Route("search/{pageSize:int?}/{pageIndex:int?}/{keyword}/{description}")]
+        [Route("search/{pageSize:int?}/{pageIndex:int?}/{orderBy}/{direction}/{keyword}")]
+        [Route("search/{pageSize:int?}/{pageIndex:int?}/{orderBy}/{direction}/{keyword}/{description}")]
         public async Task<RepositoryResponse<PaginationModel<InfoModuleViewModel>>> Search(
             string keyword = null,
             string description = null,

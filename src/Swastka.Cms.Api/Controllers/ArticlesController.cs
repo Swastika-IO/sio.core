@@ -9,14 +9,15 @@ using Swastika.Cms.Lib.ViewModels.BackEnd;
 using Swastika.Cms.Lib.ViewModels.FrontEnd;
 using Swastika.Cms.Lib.ViewModels.Info;
 using Swastika.Cms.Lib.Models.Cms;
+using Swastika.Cms.Lib;
 
 namespace Swastka.Cms.Api.Controllers
 {
     //[Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme
     //    //, Policy = "AddEditUser"
     //    )]
-    [Route("api/{culture}/articles")]
-    public class ApiArticlesController :
+    [Route("api/{culture}/article")]
+    public class ApiArticleController :
         BaseApiController<SiocCmsContext, SiocArticle>
     {
         // POST api/articles
@@ -39,7 +40,7 @@ namespace Swastka.Cms.Api.Controllers
 
         // GET api/articles/id
         [HttpGet]
-        [Route("{id}")]
+        [Route("details/{id}")]
         public async Task<RepositoryResponse<FEArticleViewModel>> Details(string id)
         {
             var result = await FEArticleViewModel.Repository.GetSingleModelAsync(model => model.Id == id && model.Specificulture == _lang); //base.GetAsync(model => model.Id == id);
@@ -137,25 +138,35 @@ namespace Swastka.Cms.Api.Controllers
         // GET api/articles
         [HttpGet]
         //[Authorize]
-        [Route("")]
-        [Route("{pageSize:int?}/{pageIndex:int?}")]
-        [Route("{orderBy}/{direction}")]
-        [Route("{pageSize:int?}/{pageIndex:int?}/{orderBy}/{direction}")]
+        [Route("list")]
+        [Route("list/{pageSize:int?}/{pageIndex:int?}")]
+        [Route("list/{orderBy}/{direction}")]
+        [Route("list/{pageSize:int?}/{pageIndex:int?}/{orderBy}/{direction}")]
         public async Task<RepositoryResponse<PaginationModel<InfoArticleViewModel>>> Get(
             int? pageSize = 15, int? pageIndex = 0, string orderBy = "Id"
             , OrderByDirection direction = OrderByDirection.Ascending)
         {
             var data = await InfoArticleViewModel.Repository.GetModelListByAsync(
                 m => !m.IsDeleted && m.Specificulture == _lang, orderBy, direction, pageSize, pageIndex); //base.Get(orderBy, direction, pageSize, pageIndex);
-              
+            if (data.IsSucceed)
+            {
+                data.Data.Items.ForEach(a =>
+                {
+                    a.DetailsUrl = SWCmsHelper.GetRouterUrl("Article", new {  a.SeoName }, Request, Url);
+                 ;
+                }
+                );
+
+                
+            }
             return data;
         }
 
         // GET api/articles
         [HttpGet]
-        [Route("{keyword}")]
-        [Route("{pageSize:int?}/{pageIndex:int?}/{keyword}")]
-        [Route("{pageSize:int?}/{pageIndex:int?}/{orderBy}/{direction}/{keyword}")]
+        [Route("search/{keyword}")]
+        [Route("search/{pageSize:int?}/{pageIndex:int?}/{keyword}")]
+        [Route("search/{pageSize:int?}/{pageIndex:int?}/{orderBy}/{direction}/{keyword}")]
         public async Task<RepositoryResponse<PaginationModel<InfoArticleViewModel>>> Search(
             string keyword = null, int? pageSize = null, int? pageIndex = null, string orderBy = "Id"
             , OrderByDirection direction = OrderByDirection.Ascending)

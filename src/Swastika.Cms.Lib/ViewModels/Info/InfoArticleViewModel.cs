@@ -106,7 +106,8 @@ namespace Swastika.Cms.Lib.ViewModels.Info
 
             }
         }
-
+        [JsonProperty("detailsUrl")]
+        public string DetailsUrl { get; set; }
         #endregion
 
         #endregion

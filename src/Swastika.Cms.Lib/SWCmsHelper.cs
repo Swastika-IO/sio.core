@@ -51,7 +51,12 @@ namespace Swastika.Cms.Lib
             }
             return cates;
         }
-
+        public static string GetRouterUrl(string routerName, object routeValues, HttpRequest request, IUrlHelper Url)
+        {
+            return string.Format("{0}://{1}{2}", request.Scheme, request.Host,
+                        Url.RouteUrl("Article", routeValues)
+                        );
+        }
         public static RSAParameters GenerateKey()
         {
             using (var key = new RSACryptoServiceProvider(2048))

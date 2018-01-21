@@ -84,7 +84,7 @@ namespace Swastika.Cms.Lib.ViewModels.BackEnd
         [JsonProperty("moduleNavs")]
         public List<NavProductModuleViewModel> ModuleNavs { get; set; } // Children Modules
         [JsonProperty("activedModules")]
-        public List<FEModuleViewModel> ActivedModules { get; set; } // Children Modules
+        public List<BEModuleViewModel> ActivedModules { get; set; } // Children Modules
         [JsonProperty("listTag")]
         public JArray ListTag { get; set; } = new JArray();
         [JsonProperty("imageFileStream")]
@@ -240,10 +240,10 @@ namespace Swastika.Cms.Lib.ViewModels.BackEnd
             (string.IsNullOrEmpty(Id) && c.Specificulture == Specificulture)
             || Repository.CheckIsExists(a => a.Id == Id && a.Specificulture == c.Specificulture, _context, _transaction)
             );
-            this.ActivedModules = new List<FEModuleViewModel>();
+            this.ActivedModules = new List<BEModuleViewModel>();
             foreach (var module in this.ModuleNavs.Where(m => m.IsActived))
             {
-                var getModule = FEModuleViewModel.Repository.GetSingleModel(m => m.Id == module.ModuleId && m.Specificulture == module.Specificulture, _context, _transaction);
+                var getModule = BEModuleViewModel.Repository.GetSingleModel(m => m.Id == module.ModuleId && m.Specificulture == module.Specificulture, _context, _transaction);
                 if (getModule.IsSucceed)
                 {
                     this.ActivedModules.Add(getModule.Data);

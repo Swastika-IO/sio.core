@@ -14,6 +14,8 @@ using Swastika.Domain.Core.Models;
 using System.Threading.Tasks;
 using Swastika.Cms.Lib.Services;
 using System;
+using System.Linq.Expressions;
+using static Swastika.Cms.Lib.SWCmsConstants;
 
 namespace Swastika.Cms.Lib.ViewModels.BackEnd
 {
@@ -36,7 +38,7 @@ namespace Swastika.Cms.Lib.ViewModels.BackEnd
         [JsonProperty("fields")]
         public string Fields { get; set; }
         [JsonProperty("type")]
-        public int Type { get; set; }
+        public ModuleType Type { get; set; }
         [JsonProperty("lastModified")]
         public DateTime? LastModified { get; set; }
         [JsonProperty("modifiedBy")]
@@ -266,8 +268,63 @@ namespace Swastika.Cms.Lib.ViewModels.BackEnd
 
 
         #endregion
+        #region Expand
 
-        #region Expands
+        public static RepositoryResponse<BEModuleViewModel> GetBy(
+            Expression<Func<SiocModule, bool>> predicate, string articleId = null, string productId = null, int categoryId = 0
+             , SiocCmsContext _context = null, IDbContextTransaction _transaction = null)
+        {
+            var result = Repository.GetSingleModel(predicate, _context, _transaction);
+            if (result.IsSucceed)
+            {
+                result.Data.ArticleId = articleId;
+                result.Data.CategoryId = categoryId;
+                result.Data.LoadData();
+            }
+            return result;
+        }
+
+        public void LoadData(string articleId = null, int? categoryId = null
+            , int? pageSize = null, int? pageIndex = 0
+            , SiocCmsContext _context = null, IDbContextTransaction _transaction = null)
+        {
+
+            RepositoryResponse<PaginationModel<InfoModuleDataViewModel>> getDataResult = new RepositoryResponse<PaginationModel<InfoModuleDataViewModel>>();
+
+            switch (Type)
+            {
+                case SWCmsConstants.ModuleType.Root:
+                    getDataResult = InfoModuleDataViewModel.Repository
+                       .GetModelListBy(m => m.ModuleId == Id && m.Specificulture == Specificulture
+                       , "Priority", OrderByDirection.Ascending, pageSize, pageIndex
+                       , _context, _transaction);
+                    break;
+                case SWCmsConstants.ModuleType.SubPage:
+                    getDataResult = InfoModuleDataViewModel.Repository
+                       .GetModelListBy(m => m.ModuleId == Id && m.Specificulture == Specificulture
+                       && (m.CategoryId == categoryId)
+                       , "Priority", OrderByDirection.Ascending, pageSize, pageIndex
+                       , _context, _transaction);
+                    break;
+                case SWCmsConstants.ModuleType.SubArticle:
+                    getDataResult = InfoModuleDataViewModel.Repository
+                       .GetModelListBy(m => m.ModuleId == Id && m.Specificulture == Specificulture
+                       && (m.ArticleId == articleId)
+                       , "Priority", OrderByDirection.Ascending, pageSize, pageIndex
+                       , _context, _transaction);
+                    break;
+                default:
+                    break;
+            }
+
+            if (getDataResult.IsSucceed)
+            {
+                getDataResult.Data.JsonItems = new List<JObject>();
+                getDataResult.Data.Items.ForEach(d => getDataResult.Data.JsonItems.Add(d.JItem));
+                Data = getDataResult.Data;
+            }
+        }
+
 
         #endregion
     }

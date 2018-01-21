@@ -47,10 +47,10 @@ namespace Swastika.Cms.Lib.ViewModels.FrontEnd
         public InfoTemplateViewModel View { get; set; }
         [JsonProperty("data")]
         public PaginationModel<InfoModuleDataViewModel> Data { get; set; } = new PaginationModel<InfoModuleDataViewModel>();
-        [JsonProperty("columns")]
-        public List<ModuleFieldViewModel> Columns { get; set; }
-        [JsonProperty("templates")]
-        public List<TemplateViewModel> Templates { get; set; }
+        //[JsonProperty("columns")]
+        //public List<ModuleFieldViewModel> Columns { get; set; }
+        //[JsonProperty("templates")]
+        //public List<TemplateViewModel> Templates { get; set; }
         [JsonProperty("articles")]
         public PaginationModel<InfoArticleViewModel> Articles { get; set; } = new PaginationModel<InfoArticleViewModel>();
         [JsonProperty("products")]
@@ -92,21 +92,21 @@ namespace Swastika.Cms.Lib.ViewModels.FrontEnd
         public override void ExpandView(SiocCmsContext _context = null, IDbContextTransaction _transaction = null)
         {
             this.View = InfoTemplateViewModel.GetTemplateByPath(Template, Specificulture, _context, _transaction).Data;
-            Columns = new List<ModuleFieldViewModel>();
-            JArray arrField = !string.IsNullOrEmpty(Fields) ? JArray.Parse(Fields) : new JArray();
-            foreach (var field in arrField)
-            {
-                ModuleFieldViewModel thisField = new ModuleFieldViewModel()
-                {
-                    Name = CommonHelper.ParseJsonPropertyName(field["Name"].ToString()),
-                    DataType = (SWCmsConstants.DataType)(int)field["DataType"],
-                    Width = field["Width"] != null ? field["Width"].Value<int>() : 3,
-                    IsDisplay = field["IsDisplay"] != null ? field["IsDisplay"].Value<bool>() : true
-                };
-                Columns.Add(thisField);
-            }
+            //Columns = new List<ModuleFieldViewModel>();
+            //JArray arrField = !string.IsNullOrEmpty(Fields) ? JArray.Parse(Fields) : new JArray();
+            //foreach (var field in arrField)
+            //{
+            //    ModuleFieldViewModel thisField = new ModuleFieldViewModel()
+            //    {
+            //        Name = CommonHelper.ParseJsonPropertyName(field["Name"].ToString()),
+            //        DataType = (SWCmsConstants.DataType)(int)field["DataType"],
+            //        Width = field["Width"] != null ? field["Width"].Value<int>() : 3,
+            //        IsDisplay = field["IsDisplay"] != null ? field["IsDisplay"].Value<bool>() : true
+            //    };
+            //    Columns.Add(thisField);
+            //}
 
-            this.Templates = Templates ?? TemplateRepository.Instance.GetTemplates(SWCmsConstants.TemplateFolder.Modules);
+            //this.Templates = Templates ?? TemplateRepository.Instance.GetTemplates(SWCmsConstants.TemplateFolder.Modules);
 
             var getDataResult = InfoModuleDataViewModel.Repository
                 .GetModelListBy(m => m.ModuleId == Id && m.Specificulture == Specificulture
