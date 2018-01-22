@@ -4,25 +4,25 @@
           $('#sidebar').toggleClass('active');
         });
   
-        //$(".sortable").sortable({
-        //  revert: true
-        //});
-        //$(".draggable").draggable({
-        //  cursor: "move",
-        //  cursorAt: { top: 56, left: 56 },
-        //  connectToSortable: ".sortable",
-        //  helper: "clone",
-        //  revert: "invalid"
-        //});
-        //$(".draggable-header").draggable({
-        //  cursor: "move",
-        //  cursorAt: { top: 56, left: 56 },
-        //  connectToSortable: ".sortable",
-        //  handle: ".card-header",
-        //  helper: "clone",
-        //  revert: "invalid"
-        //});
-        //$("ul, li").disableSelection();
+        $(".sortable").sortable({
+          revert: true
+        });
+        $(".draggable").draggable({
+          cursor: "move",
+          cursorAt: { top: 56, left: 56 },
+          connectToSortable: ".sortable",
+          helper: "clone",
+          revert: "invalid"
+        });
+        $(".draggable-header").draggable({
+          cursor: "move",
+          cursorAt: { top: 56, left: 56 },
+          connectToSortable: ".sortable",
+          handle: ".card-header",
+          helper: "clone",
+          revert: "invalid"
+        });
+        $("ul, li").disableSelection();
 
         // $(window).on("scroll",function(){
         //     var wn = $(window).scrollTop();

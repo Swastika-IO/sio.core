@@ -1,7 +1,4 @@
-﻿@*
-    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
-*@
-@using Swastika.Cms.Lib.ViewModels;
+﻿@using Swastika.Cms.Lib.ViewModels;
 @using Swastika.Cms.Lib.Repositories;
 @using Microsoft.AspNetCore.Identity
 @using Swastika.Cms.Lib.ViewModels
@@ -39,15 +36,15 @@
     </form>
 
 
-    <ul class="collapse sw-links" id="sw-docs-nav" data-children=".sw-toc-item">
+    <ul class="sw-links" id="sw-docs-nav" data-children=".sw-toc-item">
         <li class="sw-toc-item">
-            <a class="sw-toc-link" href="#">
+            <a class="sw-toc-link" data-target="#">
                 <span class="oi oi-dashboard"></span>
                 <span class="text">Dashboard</span>
             </a>
         </li>
         <li class="sw-toc-item" is-active-menu asp-controllers="Articles">
-            <div class="sw-toc-link" data-toggle="collapse" data-parent="#sw-docs-nav" href="#collapseArticleSubMenus" role="button" aria-expanded="false"
+            <div class="sw-toc-link" data-toggle="collapse" data-target="#collapseArticleSubMenus" role="button" aria-expanded="false"
                  aria-controls="collapseArticleSubMenus">
                 <span class="oi oi-document"></span>
                 <span class="text">Articles</span>
@@ -64,7 +61,7 @@
                     </a>
                 </div>
             </div>
-            <ul id="collapseArticleSubMenus" class="collapse list-unstyled" role="tabpanel">
+            <ul id="collapseArticleSubMenus" class="collapse list-unstyled" role="tabpanel" data-parent="#sw-docs-nav" >
                 <li>
                     <a asp-area="Portal" asp-controller="Articles" asp-action="Create" class="sw-toc-sub-link">
                         <span class="oi oi-plus"></span>
@@ -106,7 +103,7 @@
         </li>
 
         <li class="sw-toc-item" is-active-menu asp-controllers="Product">
-            <div class="sw-toc-link" data-toggle="collapse" data-parent="#sw-docs-nav" href="#collapseProductSubMenus" role="button" aria-expanded="false"
+            <div class="sw-toc-link" data-toggle="collapse" data-target="#collapseProductSubMenus" role="button" aria-expanded="false"
                  aria-controls="collapseProductSubMenus">
                 <span class="oi oi-box"></span>
                 <span class="text">Product</span>
@@ -123,7 +120,7 @@
                     </a>
                 </div>
             </div>
-            <ul id="collapseProductSubMenus" class="collapse list-unstyled" role="tabpanel">
+            <ul id="collapseProductSubMenus" class="collapse list-unstyled" role="tabpanel" data-parent="#sw-docs-nav" >
                 <li>
                     <a asp-area="Portal" asp-controller="Product" asp-action="Create" class="sw-toc-sub-link">
                         <span class="oi oi-plus"></span>
@@ -165,7 +162,7 @@
         </li>
 
         <li class="sw-toc-item" is-active-route asp-controller="Pages" asp-action="Create">
-            <div class="sw-toc-link" data-toggle="collapse" data-parent="#sw-docs-nav" href="#collapsePageSubMenus" role="button" aria-expanded="false"
+            <div class="sw-toc-link" data-toggle="collapse" data-target="#collapsePageSubMenus" role="button" aria-expanded="false"
                  aria-controls="collapsePageSubMenus">
                 <span class="oi oi-browser"></span>
                 <span class="text">Pages</span>
@@ -181,7 +178,7 @@
                     </a>
                 </div>
             </div>
-            <ul id="collapsePageSubMenus" class="collapse list-unstyled" role="tabpanel">
+            <ul id="collapsePageSubMenus" class="collapse list-unstyled" role="tabpanel" data-parent="#sw-docs-nav">
                 <li>
                     <a asp-area="Portal" asp-controller="Pages" asp-action="Create" class="sw-toc-sub-link">
                         <span class="oi oi-plus"></span>
@@ -239,7 +236,7 @@
         </li>
 
         <li class="sw-toc-item" is-active-menu asp-controllers="Module">
-            <div class="sw-toc-link" data-toggle="collapse" data-parent="#sw-docs-nav" href="#collapseModuleSubMenus" aria-expanded="false"
+            <div class="sw-toc-link" data-toggle="collapse" data-target="#collapseModuleSubMenus" aria-expanded="false"
                  aria-controls="collapseModuleSubMenus">
                 <span class="oi oi-puzzle-piece"></span>
                 <span class="text">Modules</span>
@@ -255,7 +252,7 @@
                     </a>
                 </div>
             </div>
-            <ul id="collapseModuleSubMenus" class="collapse list-unstyled">
+            <ul id="collapseModuleSubMenus" class="collapse list-unstyled" data-parent="#sw-docs-nav">
                 <li>
                     <a is-active-route asp-controller="Module" asp-action="Create" class="sw-toc-sub-link">
                         <span class="oi oi-plus"></span>
@@ -269,7 +266,7 @@
                     </a>
                 </li>
                 <li>
-                    <a href="#" class="sw-toc-sub-link">
+                    <a data-target="#" class="sw-toc-sub-link">
                         <span class="oi oi-clipboard"></span>
                         <span class="text">Draft</span>
                     </a>
@@ -297,7 +294,7 @@
             </ul>
         </li>
         <li class="sw-toc-item">
-            <div class="sw-toc-link" data-toggle="collapse" data-parent="#sw-docs-nav" href="#collapseAppearanceSubMenus" aria-expanded="false"
+            <div class="sw-toc-link" data-toggle="collapse" data-target="#collapseAppearanceSubMenus" aria-expanded="false"
                  aria-controls="collapseAppearanceSubMenus">
                 <span class="oi oi-brush"></span>
                 <span class="text">Themes</span>
@@ -310,7 +307,7 @@
                     </a>
                 </div>
             </div>
-            <ul id="collapseAppearanceSubMenus" class="collapse list-unstyled">
+            <ul id="collapseAppearanceSubMenus" class="collapse list-unstyled" data-parent="#sw-docs-nav">
                 <li>
                     <a asp-area="Portal" asp-controller="Theme" asp-action="Create" class="sw-toc-sub-link">
                         <span class="oi oi-plus"></span>
@@ -349,7 +346,7 @@
             </ul>
         </li>
         <li class="sw-toc-item">
-            <div class="sw-toc-link" data-toggle="collapse" data-parent="#sw-docs-nav" href="#collapseFileSubMenus" aria-expanded="false"
+            <div class="sw-toc-link" data-toggle="collapse" data-target="#collapseFileSubMenus" aria-expanded="false"
                  aria-controls="collapseFileSubMenus">
                 <span class="oi oi-image"></span>
                 <span class="text">Medias</span>
@@ -362,9 +359,9 @@
                     </a>
                 </div>
             </div>
-            <ul id="collapseFileSubMenus" class="collapse list-unstyled">
+            <ul id="collapseFileSubMenus" class="collapse list-unstyled" data-parent="#sw-docs-nav">
                 <li>
-                    <a href="#" class="sw-toc-sub-link">
+                    <a data-target="#" class="sw-toc-sub-link">
                         <span class="oi oi-image"></span>
                         <span class="text">Medias</span>
                     </a>
@@ -389,7 +386,7 @@
             </ul>
         </li>
         <li class="sw-toc-item">
-            <div class="sw-toc-link" data-toggle="collapse" data-parent="#sw-docs-nav" href="#collapseSettingSubMenus" aria-expanded="false"
+            <div class="sw-toc-link" data-toggle="collapse" data-target="#collapseSettingSubMenus" aria-expanded="false"
                  aria-controls="collapseSettingSubMenus">
                 <span class="oi oi-wrench"></span>
                 <span class="text">Settings</span>
@@ -402,7 +399,7 @@
                     </a>
                 </div>
             </div>
-            <ul id="collapseSettingSubMenus" class="collapse list-unstyled">
+            <ul id="collapseSettingSubMenus" class="collapse list-unstyled" data-parent="#sw-docs-nav">
                 <li class="">
                     <div class="sw-toc-sub-link">
                         <span class="oi oi-list"></span>
