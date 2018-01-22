@@ -144,15 +144,7 @@
             $('.custom-file .custom-file-val').on('change', function () {
                 $(this).parent('.custom-file').find('img').attr('src', $(this).val());
             });
-
-            $('.markdown-edito').tuiEditor({
-                initialEditType: 'markdown',
-                previewStyle: 'vertical',
-                height: '300px'
-            });
-
             
-
             // Init Code editor
             $.each($('.code-editor'), function (i, e) {
                 var container = $(this);
