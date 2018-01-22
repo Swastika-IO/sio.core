@@ -76,7 +76,7 @@ namespace Swastika.Cms.Lib.ViewModels.FrontEnd
         #region Views
 
         [JsonProperty("view")]
-        public InfoTemplateViewModel View { get; set; }
+        public FETemplateViewModel View { get; set; }
         [JsonProperty("articles")]
         public PaginationModel<InfoArticleViewModel> Articles { get; set; } = new PaginationModel<InfoArticleViewModel>();
         [JsonProperty("products")]
@@ -116,7 +116,7 @@ namespace Swastika.Cms.Lib.ViewModels.FrontEnd
 
         public override void ExpandView(SiocCmsContext _context = null, IDbContextTransaction _transaction = null)
         {
-            this.View = InfoTemplateViewModel.GetTemplateByPath(Template, Specificulture, _context, _transaction).Data;
+            this.View = FETemplateViewModel.GetTemplateByPath(Template, Specificulture, _context, _transaction).Data;
             if (View != null)
             {
 

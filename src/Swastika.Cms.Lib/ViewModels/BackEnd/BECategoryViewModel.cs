@@ -257,8 +257,9 @@ namespace Swastika.Cms.Lib.ViewModels.BackEnd
         {
             bool result = true;
             var saveTemplate = View.SaveModel(true, _context, _transaction);
-            if (saveTemplate.IsSucceed)
+            if (!saveTemplate.IsSucceed)
             {
+                Exception = saveTemplate.Exception;
                 Errors.AddRange(saveTemplate.Errors);
             }
             result = result && saveTemplate.IsSucceed;
@@ -274,6 +275,7 @@ namespace Swastika.Cms.Lib.ViewModels.BackEnd
                         result = result && saveResult.IsSucceed;
                         if (!result)
                         {
+                            Exception = saveResult.Exception;
                             Errors.AddRange(saveResult.Errors);
                         }
                     }
@@ -283,6 +285,7 @@ namespace Swastika.Cms.Lib.ViewModels.BackEnd
                         result = result && saveResult.IsSucceed;
                         if (!result)
                         {
+                            Exception = saveResult.Exception;
                             Errors.AddRange(saveResult.Errors);
                         }
                     }
@@ -300,6 +303,7 @@ namespace Swastika.Cms.Lib.ViewModels.BackEnd
                         result = result && saveResult.IsSucceed;
                         if (!result)
                         {
+                            Exception = saveResult.Exception;
                             Errors.AddRange(saveResult.Errors);
                         }
                     }
@@ -309,6 +313,7 @@ namespace Swastika.Cms.Lib.ViewModels.BackEnd
                         result = result && saveResult.IsSucceed;
                         if (!result)
                         {
+                            Exception = saveResult.Exception;
                             Errors.AddRange(saveResult.Errors);
                         }
                     }
@@ -326,6 +331,7 @@ namespace Swastika.Cms.Lib.ViewModels.BackEnd
                         result = result && saveResult.IsSucceed;
                         if (!result)
                         {
+                            Exception = saveResult.Exception;
                             Errors.AddRange(saveResult.Errors);
                         }
                     }
@@ -335,6 +341,7 @@ namespace Swastika.Cms.Lib.ViewModels.BackEnd
                         result = result && saveResult.IsSucceed;
                         if (!result)
                         {
+                            Exception = saveResult.Exception;
                             Errors.AddRange(saveResult.Errors);
                         }
                     }
@@ -352,6 +359,7 @@ namespace Swastika.Cms.Lib.ViewModels.BackEnd
                         result = result && saveResult.IsSucceed;
                         if (!result)
                         {
+                            Exception = saveResult.Exception;
                             Errors.AddRange(saveResult.Errors);
                         }
                     }
@@ -361,6 +369,7 @@ namespace Swastika.Cms.Lib.ViewModels.BackEnd
                         result = result && saveResult.IsSucceed;
                         if (!result)
                         {
+                            Exception = saveResult.Exception;
                             Errors.AddRange(saveResult.Errors);
                         }
                     }
@@ -381,8 +390,9 @@ namespace Swastika.Cms.Lib.ViewModels.BackEnd
         {
             bool result = true;
             var saveTemplate = await View.SaveModelAsync(true, _context, _transaction);
-            if (saveTemplate.IsSucceed)
+            if (!saveTemplate.IsSucceed)
             {
+                Exception = saveTemplate.Exception;
                 Errors.AddRange(saveTemplate.Errors);
             }
             result = result && saveTemplate.IsSucceed;
@@ -398,6 +408,7 @@ namespace Swastika.Cms.Lib.ViewModels.BackEnd
                         result = result && saveResult.IsSucceed;
                         if (!result)
                         {
+                            Exception = saveResult.Exception;
                             Errors.AddRange(saveResult.Errors);
                         }
                     }
@@ -407,6 +418,7 @@ namespace Swastika.Cms.Lib.ViewModels.BackEnd
                         result = result && saveResult.IsSucceed;
                         if (!result)
                         {
+                            Exception = saveResult.Exception;
                             Errors.AddRange(saveResult.Errors);
                         }
                     }
@@ -424,6 +436,7 @@ namespace Swastika.Cms.Lib.ViewModels.BackEnd
                         result = result && saveResult.IsSucceed;
                         if (!result)
                         {
+                            Exception = saveResult.Exception;
                             Errors.AddRange(saveResult.Errors);
                         }
                     }
@@ -433,6 +446,7 @@ namespace Swastika.Cms.Lib.ViewModels.BackEnd
                         result = result && saveResult.IsSucceed;
                         if (!result)
                         {
+                            Exception = saveResult.Exception;
                             Errors.AddRange(saveResult.Errors);
                         }
                     }
@@ -450,6 +464,7 @@ namespace Swastika.Cms.Lib.ViewModels.BackEnd
                         result = result && saveResult.IsSucceed;
                         if (!result)
                         {
+                            Exception = saveResult.Exception;
                             Errors.AddRange(saveResult.Errors);
                         }
                     }
@@ -459,6 +474,7 @@ namespace Swastika.Cms.Lib.ViewModels.BackEnd
                         result = result && saveResult.IsSucceed;
                         if (!result)
                         {
+                            Exception = saveResult.Exception;
                             Errors.AddRange(saveResult.Errors);
                         }
                     }
@@ -476,6 +492,7 @@ namespace Swastika.Cms.Lib.ViewModels.BackEnd
                         result = result && saveResult.IsSucceed;
                         if (!result)
                         {
+                            Exception = saveResult.Exception;
                             Errors.AddRange(saveResult.Errors);
                         }
                     }
@@ -485,6 +502,7 @@ namespace Swastika.Cms.Lib.ViewModels.BackEnd
                         result = result && saveResult.IsSucceed;
                         if (!result)
                         {
+                            Exception = saveResult.Exception;
                             Errors.AddRange(saveResult.Errors);
                         }
                     }

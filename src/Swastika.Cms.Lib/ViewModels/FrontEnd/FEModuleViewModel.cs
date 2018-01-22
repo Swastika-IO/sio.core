@@ -44,7 +44,7 @@ namespace Swastika.Cms.Lib.ViewModels.FrontEnd
         #region Views
 
         [JsonProperty("view")]
-        public InfoTemplateViewModel View { get; set; }
+        public FETemplateViewModel View { get; set; }
         [JsonProperty("data")]
         public PaginationModel<InfoModuleDataViewModel> Data { get; set; } = new PaginationModel<InfoModuleDataViewModel>();
         //[JsonProperty("columns")]
@@ -91,7 +91,7 @@ namespace Swastika.Cms.Lib.ViewModels.FrontEnd
 
         public override void ExpandView(SiocCmsContext _context = null, IDbContextTransaction _transaction = null)
         {
-            this.View = InfoTemplateViewModel.GetTemplateByPath(Template, Specificulture, _context, _transaction).Data;
+            this.View = FETemplateViewModel.GetTemplateByPath(Template, Specificulture, _context, _transaction).Data;
             //Columns = new List<ModuleFieldViewModel>();
             //JArray arrField = !string.IsNullOrEmpty(Fields) ? JArray.Parse(Fields) : new JArray();
             //foreach (var field in arrField)
