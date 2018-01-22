@@ -74,6 +74,8 @@ namespace Swastika.Cms.Lib.ViewModels.Info
         public int TotalArticle { get; set; }
         public string Href { get; set; }
         public bool IsActived { get; set; }
+        public string DetailsUrl { get; set; }
+        public string Domain { get; set; }
         #endregion
 
         #endregion
