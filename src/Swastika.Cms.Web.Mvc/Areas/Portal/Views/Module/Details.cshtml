@@ -20,7 +20,7 @@
                 <tr>
                     @foreach (var col in Model.Columns.Where(c => c.IsDisplay))
                     {
-                    <th class="col-sm-@col.Width">
+                    <th>
                         @col.Name
                     </th>
                     }
@@ -31,11 +31,11 @@
             <tfoot>
                 <tr>
                     @foreach (var col in Model.Columns.Where(c => c.IsDisplay))
-                    {
-                    <th class="col-sm-@col.Width">
-                        @col.Name
-                    </th>
-                    }
+    {
+                <th>
+                    @col.Name
+                </th>
+}
                     <th>Priority</th>
                     <th></th>
                 </tr>

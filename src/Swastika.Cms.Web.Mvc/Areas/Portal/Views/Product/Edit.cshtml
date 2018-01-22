@@ -7,20 +7,21 @@
 
 <!-- Main content -->
 <section class="content container-fluid">
-    <div class="row">
-        <form asp-controller="@ViewContext.RouteData.Values["controller"].ToString()"
-              asp-action="@ViewContext.RouteData.Values["action"].ToString()"
-              asp-route-id="@Model.Id"
-              asp-route-categoryId="@ViewBag.categoryId"
-              >
+
+    <form asp-controller="@ViewContext.RouteData.Values["controller"].ToString()"
+          asp-action="@ViewContext.RouteData.Values["action"].ToString()"
+          asp-route-id="@Model.Id"
+          asp-route-categoryId="@ViewBag.categoryId">
+        @await Html.PartialAsync("EditableSides/_Editable_ActionsBar")
+        <div class="row">
             <section class="col-lg-9">
                 @await Html.PartialAsync("_Editable", Model)
             </section>
             <section class="col-lg-3">
                 @await Html.PartialAsync("_EditableSide", Model)
             </section>
-        </form>
-    </div>
+        </div>
+    </form>
 </section>
 <!-- /.content -->
 

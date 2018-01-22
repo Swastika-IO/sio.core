@@ -10,6 +10,8 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Areas\Portal\Data\**" />
+    <Compile Remove="Areas\Portal\Models\**" />
     <Compile Remove="Areas\User\Models\AccountViewModels\**" />
     <Compile Remove="Views\Admin\**" />
     <Compile Remove="Views\Shared\Articles\**" />
@@ -25,6 +27,8 @@
     <Compile Remove="Views\Shared\Templates\Now-UI-Kit-PRO\**" />
     <Compile Remove="Views\Shared\Widgets\**" />
     <Compile Remove="wwwroot\lib\**" />
+    <Content Remove="Areas\Portal\Data\**" />
+    <Content Remove="Areas\Portal\Models\**" />
     <Content Remove="Areas\User\Models\AccountViewModels\**" />
     <Content Remove="Views\Admin\**" />
     <Content Remove="Views\Shared\Articles\**" />
@@ -40,6 +44,8 @@
     <Content Remove="Views\Shared\Templates\Now-UI-Kit-PRO\**" />
     <Content Remove="Views\Shared\Widgets\**" />
     <Content Remove="wwwroot\lib\**" />
+    <EmbeddedResource Remove="Areas\Portal\Data\**" />
+    <EmbeddedResource Remove="Areas\Portal\Models\**" />
     <EmbeddedResource Remove="Areas\User\Models\AccountViewModels\**" />
     <EmbeddedResource Remove="Views\Admin\**" />
     <EmbeddedResource Remove="Views\Shared\Articles\**" />
@@ -55,6 +61,8 @@
     <EmbeddedResource Remove="Views\Shared\Templates\Now-UI-Kit-PRO\**" />
     <EmbeddedResource Remove="Views\Shared\Widgets\**" />
     <EmbeddedResource Remove="wwwroot\lib\**" />
+    <None Remove="Areas\Portal\Data\**" />
+    <None Remove="Areas\Portal\Models\**" />
     <None Remove="Areas\User\Models\AccountViewModels\**" />
     <None Remove="Views\Admin\**" />
     <None Remove="Views\Shared\Articles\**" />
@@ -133,8 +141,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Areas\Portal\Data\" />
-    <Folder Include="Areas\Portal\Models\" />
     <Folder Include="Areas\User\Models\" />
     <Folder Include="wwwroot\lib\" />
   </ItemGroup>
