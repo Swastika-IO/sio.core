@@ -11,6 +11,8 @@
     <form asp-action="@ViewContext.RouteData.Values["action"].ToString()"
           asp-route-categoryId="@ViewBag.categoryId"
           enctype="multipart/form-data">
+
+        @await Html.PartialAsync("EditableSides/_Editable_ActionsBar")
         <div class="row">
 
             <section class="col-lg-9">
