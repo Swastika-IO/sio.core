@@ -33,6 +33,11 @@ namespace Swastika.Cms.Lib.ViewModels.BackEnd
         public string Extension { get; set; }
         [JsonProperty("content")]
         public string Content { get; set; }
+        [JsonIgnore]
+        [JsonProperty("mobileContent")]
+        public string MobileContent { get; set; } = "{}";
+        [JsonProperty("spaContent")]
+        public string SpaContent { get; set; } = "";
         [JsonProperty("scripts")]
         public string Scripts { get; set; }
         [JsonProperty("styles")]
@@ -79,8 +84,11 @@ namespace Swastika.Cms.Lib.ViewModels.BackEnd
                 });
             }
         }
+
+        [JsonProperty("mobileView")]
+        public JObject MobileView { get { return !string.IsNullOrEmpty(MobileContent)? JObject.Parse(MobileContent): new JObject(); } }
         #endregion
-        public JObject MobileStyle { get; set; }
+
         #endregion
 
         #region Contructors
@@ -108,12 +116,12 @@ namespace Swastika.Cms.Lib.ViewModels.BackEnd
             //{
             //    Content = file.Content;
             //}
-            var file = FileRepository.Instance.GetFile("Style", ".Json", FileFolder);
-            if (!string.IsNullOrWhiteSpace(file?.Content))
-            {
-                string json = file.Content.Replace("\r\n", "").Trim();
-                MobileStyle = JObject.Parse(json);
-            }
+            //var file = FileRepository.Instance.GetFile("Style", ".Json", FileFolder);
+            //if (!string.IsNullOrWhiteSpace(file?.Content))
+            //{
+            //    string json = file.Content.Replace("\r\n", "").Trim();
+            //    MobileContent= JObject.Parse(json);
+            //}
 
         }
         public override SiocTemplate ParseModel()

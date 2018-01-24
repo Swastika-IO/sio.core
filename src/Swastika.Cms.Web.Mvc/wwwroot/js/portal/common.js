@@ -21,11 +21,11 @@
                         else {
                             html += '<td>' + val.filename + '</td>';
                         }
-                        html += '<td><input onClick="this.select();" class="form-control" value="' + location.origin+ val.fullPath + '"/></td>';                       
+                        html += '<td><input onClick="this.select();" class="form-control" value="' + location.origin + val.fullPath + '"/></td>';
                         html += '</tr>';
                         container.find('tbody').append(html);
                     });
-                    
+
                     container.DataTable({
                         "paging": true,
                         "pageLength": 5,
@@ -45,13 +45,13 @@
         },
         loadFileStream: async function (folder) {
             var img = document.querySelector('#file').files[0];
-            
+
             if (img !== null) {
                 var name = img.name.split('.')[0];
                 var ext = img.name.split('.')[1];
 
                 var reader = new FileReader();
-                reader.readAsDataURL(img);                
+                reader.readAsDataURL(img);
                 reader.onload = function () {
                     //var index = reader.result.indexOf(',') + 1;
                     var base64 = reader.result; //.substring(index);
@@ -78,10 +78,10 @@
                 reader.onerror = function (error) {
 
                 };
-            }           
+            }
         },
         init: async function () {
-            
+
             $("#modal-files").on('show.bs.modal', function () {
                 var container = $("#modal-files").find('table');
                 SW.Common.loadFiles(container);
@@ -112,8 +112,8 @@
             //    .on('tokenfield:removedtoken', function (e) {
             //        //$('.tags').val($('.tags').tokenfield('getTokensList'));
             //    }).tokenfield();
-            
-            
+
+
             //Enable iCheck plugin for checkboxes
             //iCheck for checkbox and radio inputs
             //$('input[type="checkbox"]').iCheck({
@@ -144,15 +144,21 @@
             $('.custom-file .custom-file-val').on('change', function () {
                 $(this).parent('.custom-file').find('img').attr('src', $(this).val());
             });
-            
+
             // Init Code editor
             $.each($('.code-editor'), function (i, e) {
                 var container = $(this);
                 var editor = ace.edit(e);
+                if (container.hasClass('json')) {
+                    editor.session.setMode("ace/mode/json");
+                }
+                else {
+                    editor.session.setMode("ace/mode/razor");
+                }
                 editor.setTheme("ace/theme/chrome");
                 //editor.setReadOnly(true);
-                editor.session.setMode("ace/mode/razor");
-                editor.session.setUseWrapMode(true);  
+
+                editor.session.setUseWrapMode(true);
                 editor.setOptions({
                     maxLines: Infinity
                 });

@@ -816,6 +816,10 @@ namespace Swastika.Cms.Lib.Migrations
                     b.Property<DateTime?>("LastModified")
                         .HasColumnType("datetime");
 
+                    b.Property<string>("MobileContent")
+                        .IsRequired()
+                        .HasColumnType("ntext");
+
                     b.Property<string>("ModifiedBy")
                         .HasMaxLength(250);
 
@@ -824,6 +828,10 @@ namespace Swastika.Cms.Lib.Migrations
                         .HasDefaultValueSql("((0))");
 
                     b.Property<string>("Scripts")
+                        .HasColumnType("ntext");
+
+                    b.Property<string>("SpaContent")
+                        .IsRequired()
                         .HasColumnType("ntext");
 
                     b.Property<string>("Styles")

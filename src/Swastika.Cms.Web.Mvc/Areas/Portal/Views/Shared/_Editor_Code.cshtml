@@ -42,6 +42,12 @@
     string inpName_Content = string.IsNullOrEmpty(name) ? "Content" : string.Format("{0}.Content", name);
     string inpId_Content = string.IsNullOrEmpty(name) ? "Content" : string.Format("{0}_Content", name);
 
+    string inpName_MobileContent = string.IsNullOrEmpty(name) ? "MobileContent" : string.Format("{0}.MobileContent", name);
+    string inpId_MobileContent = string.IsNullOrEmpty(name) ? "MobileContent" : string.Format("{0}_MobileContent", name);
+
+    string inpName_SpaContent = string.IsNullOrEmpty(name) ? "SpaContent" : string.Format("{0}.SpaContent", name);
+    string inpId_SpaContent = string.IsNullOrEmpty(name) ? "SpaContent" : string.Format("{0}_SpaContent", name);
+
     string inpName_Scripts = string.IsNullOrEmpty(name) ? "Scripts" : string.Format("{0}.Scripts", name);
     string inpId_Scripts = string.IsNullOrEmpty(name) ? "Scripts" : string.Format("{0}_Scripts", name);
 
@@ -80,22 +86,39 @@
             <div class="form-control" id="code-editor">@Model.Content</div>
             <input class="form-control code-content" type="hidden" id="@inpId_Content" name="@inpName_Content" value="@Model.Content">
         </div>
-    </div>
-    <div class="form-group">
-        Scripts
-        <div class="container-code-editor">
+        <div class="form-group">
+            Scripts
+            <div class="container-code-editor">
 
-            <div class="form-control code-editor">@Model.Scripts</div>
-            <input class="form-control code-content" type="hidden" id="@inpId_Scripts" name="@inpName_Scripts" value="@Model.Scripts">
+                <div class="form-control code-editor">@Model.Scripts</div>
+                <input class="form-control code-content" type="hidden" id="@inpId_Scripts" name="@inpName_Scripts" value="@Model.Scripts">
+            </div>
+        </div>
+        <div class="form-group">
+            Styles
+            <div class="container-code-editor">
+
+                <div class="form-control code-editor">@Model.Styles</div>
+                <input class="form-control code-content" type="hidden" id="@inpId_Styles" name="@inpName_Styles" value="@Model.Styles">
+            </div>
+        </div>
+        <div class="form-group">
+            MobileContent
+            <div class="container-code-editor">
+
+                <div class="form-control code-editor json">@Model.MobileContent</div>
+                <input class="form-control code-content" type="hidden" id="@inpId_MobileContent" name="@inpName_MobileContent" value="@Model.MobileContent">
+            </div>
+        </div>
+        <div class="form-group">
+            SpaContent
+            <div class="container-code-editor">
+
+                <div class="form-control code-editor">@Model.SpaContent</div>
+                <input class="form-control code-content" type="hidden" id="@inpId_SpaContent" name="@inpName_SpaContent" value="@Model.SpaContent">
+            </div>
         </div>
     </div>
-    <div class="form-group">
-        Styles
-        <div class="container-code-editor">
 
-            <div class="form-control code-editor">@Model.Styles</div>
-            <input class="form-control code-content" type="hidden" id="@inpId_Styles" name="@inpName_Styles" value="@Model.Styles">
-        </div>
-    </div>
 
-    </div>
+</div>

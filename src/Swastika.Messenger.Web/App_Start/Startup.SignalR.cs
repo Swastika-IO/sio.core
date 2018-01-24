@@ -1,8 +1,5 @@
-﻿using Swastika.Messenger.Lib.SignalR.Hubs;
-using Microsoft.AspNetCore.Builder;
-using Microsoft.AspNetCore.Sockets;
+﻿using Microsoft.AspNetCore.Builder;
 using Microsoft.Extensions.DependencyInjection;
-using System;
 using Messenger.Lib.SignalR.Hubs;
 
 namespace Swastika.Messenger.Web

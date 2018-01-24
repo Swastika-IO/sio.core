@@ -753,6 +753,14 @@ namespace Swastika.Cms.Lib.Models.Cms
                     .IsRequired()
                     .HasColumnType("ntext");
 
+                entity.Property(e => e.MobileContent)
+                    .IsRequired()
+                    .HasColumnType("ntext");
+
+                entity.Property(e => e.SpaContent)
+                    .IsRequired()
+                    .HasColumnType("ntext");
+
                 entity.Property(e => e.CreatedDateTime).HasColumnType("datetime");
 
                 entity.Property(e => e.Extension)

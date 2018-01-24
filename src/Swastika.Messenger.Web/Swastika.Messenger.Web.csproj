@@ -27,7 +27,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\..\Swastika-IO-Core\src\Swastika.Messenger.Lib\Swastika.Messenger.Lib.csproj" />
+    <ProjectReference Include="..\Swastika.Messenger.Lib\Swastika.Messenger.Lib.csproj" />
   </ItemGroup>
 
   <Target Name="DebugRunWebpack" BeforeTargets="Build" Condition=" '$(Configuration)' == 'Debug' And !Exists('wwwroot\dist') ">
