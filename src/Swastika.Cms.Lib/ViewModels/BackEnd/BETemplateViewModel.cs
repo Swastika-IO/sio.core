@@ -7,6 +7,7 @@ using Swastika.Domain.Core.ViewModels;
 using Swastika.Cms.Lib.Repositories;
 using System.Threading.Tasks;
 using Swastika.Common.Helper;
+using Newtonsoft.Json.Linq;
 
 namespace Swastika.Cms.Lib.ViewModels.BackEnd
 {
@@ -79,7 +80,7 @@ namespace Swastika.Cms.Lib.ViewModels.BackEnd
             }
         }
         #endregion
-
+        public JObject MobileStyle { get; set; }
         #endregion
 
         #region Contructors
@@ -107,6 +108,12 @@ namespace Swastika.Cms.Lib.ViewModels.BackEnd
             //{
             //    Content = file.Content;
             //}
+            var file = FileRepository.Instance.GetFile("Style", ".Json", FileFolder);
+            if (!string.IsNullOrWhiteSpace(file?.Content))
+            {
+                string json = file.Content.Replace("\r\n", "").Trim();
+                MobileStyle = JObject.Parse(json);
+            }
 
         }
         public override SiocTemplate ParseModel()
