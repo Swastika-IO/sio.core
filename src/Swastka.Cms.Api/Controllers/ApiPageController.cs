@@ -91,7 +91,7 @@ namespace Swastka.IO.Cms.Api.Controllers
         #region Post
 
         // POST api/category
-        [HttpPost]
+        [HttpPost, HttpOptions]
         [Route("save")]
         public async Task<RepositoryResponse<BECategoryViewModel>> Post([FromBody]BECategoryViewModel model)
         {
@@ -109,7 +109,7 @@ namespace Swastka.IO.Cms.Api.Controllers
         }
 
         // GET api/category
-        [HttpPost]
+        [HttpPost, HttpOptions]
         [Route("list")]
         public async Task<RepositoryResponse<PaginationModel<InfoCategoryViewModel>>> GetList(RequestPaging request)
         {

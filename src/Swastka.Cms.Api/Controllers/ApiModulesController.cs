@@ -98,7 +98,7 @@ namespace Swastka.IO.Cms.Api.Controllers
         #region Post
 
         // GET api/modules
-        [HttpPost]
+        [HttpPost, HttpOptions]
         [Route("list")]
         public async Task<RepositoryResponse<PaginationModel<InfoModuleViewModel>>> GetList(RequestPaging request)
         {
@@ -125,7 +125,7 @@ namespace Swastka.IO.Cms.Api.Controllers
         }
 
         // GET api/articles/id
-        [HttpPost]
+        [HttpPost, HttpOptions]
         [Route("addToArticle")]
         public async Task<RepositoryResponse<bool>> AddToArticle([FromBody]BEArticleModuleViewModel view)
         {
@@ -146,7 +146,7 @@ namespace Swastka.IO.Cms.Api.Controllers
         }
 
         // POST api/module
-        [HttpPost]
+        [HttpPost, HttpOptions]
         [Route("save")]
         public async Task<RepositoryResponse<BEModuleViewModel>> Post([FromBody]BEModuleViewModel model)
         {

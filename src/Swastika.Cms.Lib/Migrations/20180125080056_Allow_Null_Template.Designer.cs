@@ -11,9 +11,10 @@ using System;
 namespace Swastika.Cms.Lib.Migrations
 {
     [DbContext(typeof(SiocCmsContext))]
-    partial class SiocCmsContextModelSnapshot : ModelSnapshot
+    [Migration("20180125080056_Allow_Null_Template")]
+    partial class Allow_Null_Template
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

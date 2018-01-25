@@ -55,7 +55,7 @@ namespace Swastika.Cms.Lib.Models.Cms
 
             // define the database to use
 
-            optionsBuilder.UseSqlServer(GlobalConfigurationService.Instance.GetConnectionString());
+            optionsBuilder.UseSqlServer("Server=115.77.190.113,4444;Database=sw_cms_new;UID=sa;Pwd=sqlP@ssw0rd;MultipleActiveResultSets=true;");// (GlobalConfigurationService.Instance.GetConnectionString());
 
         }
 
@@ -754,11 +754,9 @@ namespace Swastika.Cms.Lib.Models.Cms
                     .HasColumnType("ntext");
 
                 entity.Property(e => e.MobileContent)
-                    .IsRequired()
                     .HasColumnType("ntext");
 
                 entity.Property(e => e.SpaContent)
-                    .IsRequired()
                     .HasColumnType("ntext");
 
                 entity.Property(e => e.CreatedDateTime).HasColumnType("datetime");

@@ -11,9 +11,10 @@ using System;
 namespace Swastika.Cms.Lib.Migrations
 {
     [DbContext(typeof(SiocCmsContext))]
-    partial class SiocCmsContextModelSnapshot : ModelSnapshot
+    [Migration("20180124124047_Add_Template_Mobile_Spa")]
+    partial class Add_Template_Mobile_Spa
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -817,6 +818,7 @@ namespace Swastika.Cms.Lib.Migrations
                         .HasColumnType("datetime");
 
                     b.Property<string>("MobileContent")
+                        .IsRequired()
                         .HasColumnType("ntext");
 
                     b.Property<string>("ModifiedBy")
@@ -830,6 +832,7 @@ namespace Swastika.Cms.Lib.Migrations
                         .HasColumnType("ntext");
 
                     b.Property<string>("SpaContent")
+                        .IsRequired()
                         .HasColumnType("ntext");
 
                     b.Property<string>("Styles")

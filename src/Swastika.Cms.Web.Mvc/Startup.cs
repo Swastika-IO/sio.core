@@ -182,6 +182,7 @@ namespace Swastika.Cms.Web.Mvc
             loggerFactory.AddConsole(Configuration.GetSection("Logging"));
             loggerFactory.AddDebug();
             ConfigurationSignalR(app);
+            app.UseCors(option => { option.AllowAnyMethod(); option.AllowAnyOrigin(); option.AllowAnyHeader(); });
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();

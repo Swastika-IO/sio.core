@@ -203,7 +203,7 @@ namespace Swastka.Cms.Api.Controllers
         #region Post
 
         // POST api/articles
-        [HttpPost]
+        [HttpPost, HttpOptions]
         [Route("save")]
         public async Task<RepositoryResponse<BEArticleViewModel>> Post([FromBody]BEArticleViewModel model)
         {
@@ -222,7 +222,7 @@ namespace Swastka.Cms.Api.Controllers
 
 
         // GET api/articles
-        [HttpPost]
+        [HttpPost, HttpOptions]
         [Route("list")]
         public async Task<RepositoryResponse<PaginationModel<InfoArticleViewModel>>> GetList(RequestPaging request)
         {
