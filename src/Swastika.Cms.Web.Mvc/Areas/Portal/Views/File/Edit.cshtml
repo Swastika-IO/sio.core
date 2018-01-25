@@ -11,15 +11,15 @@
     <form asp-controller="@ViewContext.RouteData.Values["controller"].ToString()"
           asp-action="@ViewContext.RouteData.Values["action"].ToString()"
           asp-route-folder="@Model.FileFolder"
-          asp-route-name="@Model.Filename"
-          >
+          asp-route-name="@Model.Filename">
+        @await Html.PartialAsync("EditableSides/_Editable_ActionsBar")
         <div class="row" style="position:relative;">
-            <section class="col-lg-9">
+            <section class="col-lg-12">
                 @await Html.PartialAsync("_Editable_File", Model)
             </section>
-            <section class="col-lg-3 edit-side">
+            @*<section class="col-lg-3 edit-side">
                 @await Html.PartialAsync("EditableSides/_EditableSide_Actions")
-            </section>
+            </section>*@
         </div>
     </form>
 </section>
