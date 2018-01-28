@@ -179,28 +179,38 @@
                         </style>
                         <div class="form-group">
                             <label asp-for="ModuleNavs" class="control-label">Module Navigations</label>
-                            <div class="form-check col-md-10">
+                            <div class="form-check col-md-12">
                                 <ul class="nav sortable">
                                     @for (int i = 0; i < Model.ModuleNavs.OrderBy(n => n.Priority).ToList().Count; i++)
                                     {
-                                        <li id="module_@Model.ModuleNavs[i].ModuleId" module-priority="@Model.ModuleNavs[i].Priority" class="col-sm-12 " style="padding:5px;cursor:move;border: 1px solid #c5c5c5;background: #f6f6f6; font-weight: normal; color: #454545; margin-bottom:2px; ">
+                                    <li id="module_@Model.ModuleNavs[i].ModuleId" module-priority="@Model.ModuleNavs[i].Priority" class="col-sm-12 " style="">
+                                        <div class="row">
+                                            <div class="col-1" style="cursor:move;"><span class="oi oi-move"></span></div>
+                                            <div class="col-1">
+                                                <input type="text" asp-for="@Model.ModuleNavs[i].Priority" class="mod-priority form-control form-control-sm d-inline" style="width:40px;" />
+                                            </div>
+                                            <div class="col-9">
 
-                                            <div asp-for="@Model.ModuleNavs[i].IsActived" style="margin-left: 10px;" class="custom-control custom-checkbox">
-                                                <span class="oi oi-move"></span>
-                                                <input type="text" asp-for="@Model.ModuleNavs[i].Priority" class="mod-priority" style="width:40px;" />
-                                                <input type="checkbox" asp-for="@Model.ModuleNavs[i].IsActived" class="custom-control-input" id="checkboxModuleNavs_@Model.ModuleNavs[i].ModuleId" />
-
-                                                <input type="hidden" asp-for="@Model.ModuleNavs[i].Specificulture" />
-                                                <input type="hidden" asp-for="@Model.ModuleNavs[i].CategoryId" />
-                                                <input type="hidden" asp-for="@Model.ModuleNavs[i].ModuleId" />
-                                                <label class="custom-control-label" for="checkboxModuleNavs_@Model.ModuleNavs[i].ModuleId">
-                                                    @Model.ModuleNavs[i].Description <a asp-area="Portal" asp-controller="Module" asp-action="Details" asp-route-id="@Model.ModuleNavs[i].ModuleId" class="btn btn-light btn-sm" target="_blank">
-                                                        <span class="oi oi-eye"></span>
-                                                    </a>
-                                                </label>
+                                                <span asp-for="@Model.ModuleNavs[i].IsActived" style="margin-left: 10px;" class="switch switch-sm">
+                                                    <input type="checkbox" asp-for="@Model.ModuleNavs[i].IsActived" class="switch" id="checkboxModuleNavs_@Model.ModuleNavs[i].ModuleId" />
+                                                    <label for="checkboxModuleNavs_@Model.ModuleNavs[i].ModuleId">
+                                                        @Model.ModuleNavs[i].Description
+                                                    </label>
+                                                </span>
                                             </div>
 
-                                        </li>
+                                            <div class="col-1">
+
+                                                <a asp-area="Portal" asp-controller="Module" asp-action="Details" asp-route-id="@Model.ModuleNavs[i].ModuleId" class="btn btn-light btn-sm" target="_blank">
+                                                    <span class="oi oi-eye"></span>
+                                                </a>
+                                            </div>
+                                        </div>
+
+                                        <input type="hidden" asp-for="@Model.ModuleNavs[i].Specificulture" />
+                                        <input type="hidden" asp-for="@Model.ModuleNavs[i].CategoryId" />
+                                        <input type="hidden" asp-for="@Model.ModuleNavs[i].ModuleId" />
+                                    </li>
                                     }
 
                                 </ul>
