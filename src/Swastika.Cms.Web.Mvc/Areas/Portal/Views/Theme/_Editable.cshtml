@@ -31,15 +31,10 @@
                 </div>
 
                 <div class="form-group">
-                    <label asp-for="Priority"></label>
-                    <input asp-for="Priority" class="form-control" />
-                    <span asp-validation-for="Priority" class="text-danger"></span>
-                </div>
-                <div class="form-group">
-                    <span class="switch">
-                        <input type="checkbox" asp-for="IsActived" class="switch" required="" />
-                        <label asp-for="IsActived">Activated</label>
-                    </span>
+                    <div class="custom-control custom-checkbox">
+                        <input type="checkbox" class="custom-control-input" asp-for="IsActived">
+                        <label class="custom-control-label" asp-for="IsActived">Activate this theme to be default</label>
+                    </div>
                 </div>
 
             </div>

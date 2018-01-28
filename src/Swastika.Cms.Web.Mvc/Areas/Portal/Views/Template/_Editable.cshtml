@@ -22,22 +22,20 @@
                 <input type="hidden" asp-for="LastModified" />
 
                 <div class="form-group">
-                    <label asp-for="AssetFolder" class="control-label"></label>
-                        <input asp-for="AssetFolder" onclick="this.select()" class="form-control" />
+                    <label asp-for="AssetFolder" class="control-label">Asset folder path</label>
+                        <input asp-for="AssetFolder" onclick="this.select()" class="form-control" readonly />
                 </div>
                 <div class="form-group">
-                    <label asp-for="TemplateFolder" class="control-label"></label>
-                        <input asp-for="TemplateFolder" onclick="this.select()" class="form-control" />
+                    <label asp-for="TemplateFolder" class="control-label">Template folder path</label>
+                        <input asp-for="TemplateFolder" onclick="this.select()" class="form-control" readonly />
                 </div>
-                <div class="form-group">
+                @*<div class="form-group">
                     <label asp-for="FileName" class="control-label"></label>
                         <input asp-for="FileName" class="form-control" />
                         <span asp-validation-for="FileName" class="text-danger"></span>
-                </div>
+                </div>*@
                 <div class="form-group">
-                    <label asp-for="Content" class="control-label"></label>
-
-
+                    <label asp-for="FileName" class="control-label">File Name</label>
                         @Html.Partial("_Editor_Code", Model, new ViewDataDictionary(this.ViewData)
                        {
                        {
