@@ -1,0 +1,29 @@
+@model BEThemeViewModel
+<div class="card">
+    <div class="card-header">
+        Info
+    </div>
+    <div class="card-body">
+
+        <div class="form-group">
+            <label asp-for="CreatedDateTime" class="control-label">Created DateTime</label>
+            <div class="input-group mb-3">
+                <div class="input-group-prepend">
+                    <span class="input-group-text" id="basic-addon1"><span class="oi oi-calendar"></span></span>
+                </div>
+                <input asp-for="CreatedDateTime" type="text" class="form-control" readonly />
+            </div>
+            <span asp-validation-for="CreatedDateTime" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <label asp-for="CreatedBy" class="control-label">Created By</label>
+            <div class="input-group mb-3">
+                <div class="input-group-prepend">
+                    <span class="input-group-text" id="basic-addon1"><span class="oi oi-person"></span></span>
+                </div>
+                <input asp-for="CreatedBy" class="form-control" readonly />
+            </div>
+            <span asp-validation-for="CreatedBy" class="text-danger"></span>
+        </div>
+    </div>
+</div>
