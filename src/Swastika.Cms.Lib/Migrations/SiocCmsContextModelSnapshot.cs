@@ -423,7 +423,7 @@ namespace Swastika.Cms.Lib.Migrations
 
                     b.Property<string>("FileFolder")
                         .IsRequired()
-                        .HasMaxLength(50);
+                        .HasMaxLength(250);
 
                     b.Property<string>("FileName")
                         .IsRequired()
@@ -803,7 +803,7 @@ namespace Swastika.Cms.Lib.Migrations
 
                     b.Property<string>("FileFolder")
                         .IsRequired()
-                        .HasMaxLength(50);
+                        .HasMaxLength(250);
 
                     b.Property<string>("FileName")
                         .IsRequired()

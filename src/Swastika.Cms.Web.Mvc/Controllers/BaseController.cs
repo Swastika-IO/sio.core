@@ -34,15 +34,12 @@ namespace Swastika.Cms.Mvc.Controllers
 
         public override void OnActionExecuting(ActionExecutingContext context)
         {
-            if (GlobalConfigurationService.Instance.IsInit)
+            if (!string.IsNullOrEmpty(GlobalConfigurationService.Instance.GetConnectionString()))
             {
-
                 GetLanguage();
-
-                base.OnActionExecuting(context);
             }
+            base.OnActionExecuting(context);
 
-            
         }
         protected void GetLanguage()
         {

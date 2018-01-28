@@ -343,7 +343,8 @@ namespace Swastika.Cms.Lib.Repositories
                     {
                         FolderName = folderName,
                         FileFolder = folder,
-                        Filename = file.Name.Substring(0, file.Name.LastIndexOf('.')),
+
+                        Filename = file.Name.Substring(0, file.Name.LastIndexOf('.')>=0? file.Name.LastIndexOf('.'):0),
                         Extension = file.Extension,
                         //Content = s.ReadToEnd()
                     });

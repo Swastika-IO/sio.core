@@ -25,21 +25,6 @@ namespace Swastika.Cms.Lib.Services
         {
             get
             {
-                //if (string.IsNullOrEmpty(_connectionString))
-                //{
-                //    try
-                //    {
-                //        var getConnectionString = ConfigurationViewModel.Repository.GetSingleModel(
-                //    c => c.Keyword == SWCmsConstants.ConfigurationKeyword.ConnectionString);
-                //        if (getConnectionString.IsSucceed)
-                //        {
-                //            _connectionString = getConnectionString.Data.Value;
-                //        }
-                //    }
-                //    catch
-                //    {
-                //    }
-                //}
                 return _connectionString;
             }
             set

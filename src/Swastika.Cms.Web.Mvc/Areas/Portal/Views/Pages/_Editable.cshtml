@@ -133,6 +133,7 @@
                                             <input type="hidden" asp-for="@Model.ParentNavs[i].Specificulture" />
                                             <input type="hidden" asp-for="@Model.ParentNavs[i].Id" />
                                             <input type="hidden" asp-for="@Model.ParentNavs[i].ParentId" />
+                                            <input type="hidden" asp-for="@Model.ParentNavs[i].Priority" />
                                             <label class="custom-control-label" for="checkboxParentNavs_@Model.ParentNavs[i].Id">
                                                 @Model.ParentNavs[i].Description
                                             </label>
@@ -158,6 +159,7 @@
 
                                                 <input type="hidden" asp-for="@Model.ChildNavs[i].Specificulture" />
                                                 <input type="hidden" asp-for="@Model.ChildNavs[i].Id" />
+                                                <input type="hidden" asp-for="@Model.ChildNavs[i].Priority" />
                                                 <input type="hidden" asp-for="@Model.ChildNavs[i].ParentId" />
                                                 <label class="custom-control-label" for="checkboxChildNavs_@Model.ChildNavs[i].Id">
                                                     @Model.ChildNavs[i].Description
@@ -185,6 +187,7 @@
 
                                                 <input type="hidden" asp-for="@Model.ModuleNavs[i].Specificulture" />
                                                 <input type="hidden" asp-for="@Model.ModuleNavs[i].CategoryId" />
+                                                <input type="hidden" asp-for="@Model.ModuleNavs[i].Priority" />
                                                 <input type="hidden" asp-for="@Model.ModuleNavs[i].ModuleId" />
                                                 <label class="custom-control-label" for="checkboxModuleNavs_@Model.ModuleNavs[i].ModuleId">
                                                     @Model.ModuleNavs[i].Description <a asp-area="Portal" asp-controller="Module" asp-action="Details" asp-route-id="@Model.ModuleNavs[i].ModuleId" class="btn btn-light btn-sm" target="_blank">
@@ -213,6 +216,7 @@
                                                 <input type="checkbox" asp-for="@Model.PositionNavs[i].IsActived" class="custom-control-input" id="checkboxPositionNavs_@Model.PositionNavs[i].PositionId" />
                                                 <input type="hidden" asp-for="@Model.PositionNavs[i].Specificulture" />
                                                 <input type="hidden" asp-for="@Model.PositionNavs[i].CategoryId" />
+                                                <<input type="hidden" asp-for="@Model.PositionNavs[i].Priority" />
                                                 <input type="hidden" asp-for="@Model.PositionNavs[i].PositionId" />
                                                 <input type="hidden" asp-for="@Model.PositionNavs[i].Description" />
                                                 <label class="custom-control-label" for="checkboxPositionNavs_@Model.PositionNavs[i].PositionId">

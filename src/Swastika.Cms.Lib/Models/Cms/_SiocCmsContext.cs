@@ -412,7 +412,7 @@ namespace Swastika.Cms.Lib.Models.Cms
 
                 entity.Property(e => e.FileFolder)
                     .IsRequired()
-                    .HasMaxLength(50);
+                    .HasMaxLength(250);
 
                 entity.Property(e => e.FileName)
                     .IsRequired()
@@ -767,7 +767,7 @@ namespace Swastika.Cms.Lib.Models.Cms
 
                 entity.Property(e => e.FileFolder)
                     .IsRequired()
-                    .HasMaxLength(50);
+                    .HasMaxLength(250);
 
                 entity.Property(e => e.FileName)
                     .IsRequired()

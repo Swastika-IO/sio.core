@@ -6,8 +6,11 @@
 }
 <!-- Main content -->
 <section class="content container-fluid">
+    
     <form asp-controller="@ViewContext.RouteData.Values["controller"].ToString()"
           asp-action="@ViewContext.RouteData.Values["action"].ToString()">
+        @if (Model != null)
+        {
 
         @await Html.PartialAsync("EditableSides/_Editable_ActionsBar")
         <div class="row">
@@ -19,6 +22,7 @@
                 @await Html.PartialAsync("EditableSides/_EditableSide_Cultures", Model.ListSupportedCulture)
             </section>
         </div>
+        }
     </form>
 </section>
 <!-- /.content -->

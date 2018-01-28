@@ -276,14 +276,25 @@ namespace Swastika.Cms.Lib.ViewModels.FrontEnd
             if (element != null)
             {
 
-                ComponentType = "View";
+                
                 StyleName = element.Attribute("class")?.Value;
                 
                 DataSource = new List<MobileComponent>();
                 var subElements = element.Elements();
                 if (subElements.Count()>0)
                 {
-                    DataType = "Component";
+                    switch (element.Name.LocalName)
+                    {
+                        case "loop":
+                            ComponentType = "View";
+                            DataValue = element.Attribute("data")?.Value.Replace("Model.", "@Model.").Replace("{{", "").Replace("}}", "");
+                            DataType = "object_array";
+                            break;                        
+                        default:
+                            ComponentType = "View";
+                            DataType = "component";
+                            break;
+                    }
                     foreach (var subElement in subElements)
                     {
                         DataSource.Add(new MobileComponent(subElement));
@@ -291,9 +302,20 @@ namespace Swastika.Cms.Lib.ViewModels.FrontEnd
                 }
                 else
                 {
-                    DataType = "Object";
-
-                    DataValue = element.Value.Trim().Replace("Model.","").Replace("{{","").Replace("}}","");
+                    switch (element.Name.LocalName)
+                    {                        
+                        case "img":
+                            ComponentType = "Image";
+                            DataType = "image_url";
+                            DataValue = element.Attribute("src")?.Value.Replace("Model.", "@Model.").Replace("{{", "").Replace("}}", "");
+                            break;
+                        default:
+                            ComponentType = "Text";
+                            DataType = "object";
+                            DataValue = element.Value.Trim().Replace("Model.", "@Model.").Replace("{{", "").Replace("}}", "");
+                            break;
+                    }
+                    
                 }
 
             }
