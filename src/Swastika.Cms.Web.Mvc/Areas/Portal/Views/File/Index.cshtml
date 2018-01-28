@@ -27,10 +27,16 @@
     </div>
     <div class="row">
         <div class="col">
-            <input type="hidden" id="folder" name="folder" value="@folder" />
-            <input type="file" name="file" id="file" class="btn" />
-            <button type="button" onclick="this.form.submit()" class="btn btn-primary"><i class="fa fa-envelope-o"></i> Save</button>
-    
+            <div class="input-group">
+                <div class="custom-file">
+                    <input type="file" name="file" id="file" class="btn" />
+                    <input type="file" class="custom-file-input" name="file" id="file">
+                    <label class="custom-file-label" for="inputGroupFile04">Choose file</label>
+                </div>
+                <div class="input-group-append">
+                    <button type="button" onclick="this.form.submit()" class="btn btn-primary"><i class="fa fa-envelope-o"></i> Upload</button>
+                </div>
+            </div>
         </div>
     </div>
     <div class="row">

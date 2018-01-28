@@ -87,7 +87,7 @@
                 SW.Common.loadFiles(container);
             });
 
-            $('.custom-file .custom-file-input').on('blur', function () {
+            $('.custom-file .custom-file-input').change(function () {
                 var file = this.files[0];
                 if (file !== undefined && file !== null) {
 
