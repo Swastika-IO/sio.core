@@ -11,103 +11,105 @@
     <div class="col-sm-12">
         <div class="card">
             <div class="card-header">
-                Module Attributes (<label asp-for="Columns" class="control-label"></label>)
+                General
             </div>
             <div class="card-body">
-
-                <input type="hidden" asp-for="Id" />
-                <input type="hidden" asp-for="Specificulture" />
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                <div class="form-group ">
+                    @*<label asp-for="Title" class="control-label"></label>*@
+                    <input asp-for="Title" class="form-control form-control-lg" placeholder="Enter your module title here..." />
+                    <span asp-validation-for="Title" class="text-danger"></span>
+                </div>
                 <div class="form-group">
-
-                    <a href="#" id="AddObject" class="btn btn-primary btn-sm">@Swastika.Cms.Lib.Services.GlobalConfigurationService.Instance.GetLocalString("Add New", ViewBag.culture)</a>
-
+                    <label asp-for="Name" class="control-label">System Module Name</label>
+                    <input asp-for="Name" class="form-control" />
+                    <span asp-validation-for="Name" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Description" class="control-label"></label>
+                    <textarea asp-for="Description" class="form-control"></textarea>
+                    <span asp-validation-for="Description" class="text-danger"></span>
                 </div>
 
-                <table class="table table-sm table-hover table-striped" id="Table">
-                    <thead class="thead-light">
-                        <tr>
-                            <th>Name</th>
-                            <th>DataType</th>
-                            <th>Width</th>
-                            <th>IsDisplay</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        @for (int i = 0; i < Model.Columns.Count; i++)
-                        {
-                        <tr class="field-row">
-                            <td>
-                                <input asp-for="@Model.Columns[i].Name" class="form-control" />
-                            </td>
-                            <td>
-                                <select asp-for="@Model.Columns[i].DataType" class="form-control" asp-items="@types"></select>
-                            </td>
-                            <td>
-                                <input asp-for="@Model.Columns[i].Width" class="form-control" />
-                            </td>
-                            <td>
-                                <label class="form-check-label">
-                                    <input type="checkbox" asp-for="@Model.Columns[i].IsDisplay" class="form-check" />
-                                </label>
-                            </td>
-                        </tr>
-                        }
-                    </tbody>
-                </table>
             </div>
         </div>
     </div>
 </div>
-
 
 <div class="row">
     <div class="col-sm-12">
         <div class="card">
             <div class="card-header">
-                General
+                Module Attributes (<label asp-for="Columns" class="control-label"></label>)
+                <button id="AddObject" class="btn btn-primary btn-sm float-right">@Swastika.Cms.Lib.Services.GlobalConfigurationService.Instance.GetLocalString("Add New", ViewBag.culture)</button>
+
             </div>
             <div class="card-body">
-                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-                <div class="form-group">
-                        <label asp-for="Name" class="control-label"></label>
-                        <input asp-for="Name" class="form-control" />
-                        <span asp-validation-for="Name" class="text-danger"></span>
-                </div>
 
-                <div class="form-group ">
-                        <label asp-for="Title" class="control-label"></label>
-                        <input asp-for="Title" class="form-control" />
-                        <span asp-validation-for="Title" class="text-danger"></span>
-                </div>
-                <div class="form-group">
-                        <label asp-for="Description" class="control-label"></label>
-                        <textarea asp-for="Description" class="form-control"></textarea>
-                        <span asp-validation-for="Description" class="text-danger"></span>
-                </div>
+                <input type="hidden" asp-for="Id" />
+                <input type="hidden" asp-for="Specificulture" />
 
-                <div class="form-group">
-                        <label asp-for="Template" class="control-label"></label>
-
-                        @Html.Partial("_Editor_Code", Model.View, new ViewDataDictionary(this.ViewData){
+                <table class="table table-sm table-hover" id="Table">
+                    <thead class="thead-light">
+                        <tr>
+                            <th>Name</th>
+                            <th>Data Type</th>
+                            <th>Width</th>
+                            <th>Display</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @for (int i = 0; i < Model.Columns.Count; i++)
                         {
-                                "Files", Model.Templates
-                            },
-                            {
-                                "Name", "View"
-                            }
-
-                        })
-                        @* <input asp-for="View.Filename" class="form-control"/>
-
-                <div class="form-control" id="code-editor" asp-for="View.Content"></div>*@
-                        <span asp-validation-for="Template" class="text-danger"></span>
-                </div>
-    
+                            <tr class="field-row">
+                                <td>
+                                    <input asp-for="@Model.Columns[i].Name" class="form-control form-control-sm" />
+                                </td>
+                                <td>
+                                    <select asp-for="@Model.Columns[i].DataType" class="form-control form-control-sm" asp-items="@types"></select>
+                                </td>
+                                <td>
+                                    <input asp-for="@Model.Columns[i].Width" class="form-control form-control-sm" />
+                                </td>
+                                <td>
+                                    <span class="switch switch-sm">
+                                        <input type="checkbox" class="switch" asp-for="@Model.Columns[i].IsDisplay">
+                                        <label asp-for="@Model.Columns[i].IsDisplay">&nbsp;</label>
+                                    </span>
+                                    @*<label class="form-check-label">
+                                            <input type="checkbox" asp-for="@Model.Columns[i].IsDisplay" class="form-check" />
+                                        </label>*@
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
 
             </div>
         </div>
     </div>
 </div>
+
+
+
+<div class="form-group">
+    <label asp-for="Template" class="control-label"></label>
+
+    @Html.Partial("_Editor_Code", Model.View, new ViewDataDictionary(this.ViewData){
+        {
+                "Files", Model.Templates
+            },
+            {
+                "Name", "View"
+            }
+
+        })
+    @* <input asp-for="View.Filename" class="form-control"/>
+
+        <div class="form-control" id="code-editor" asp-for="View.Content"></div>*@
+    <span asp-validation-for="Template" class="text-danger"></span>
+</div>
+
 
 
 @section scripts{

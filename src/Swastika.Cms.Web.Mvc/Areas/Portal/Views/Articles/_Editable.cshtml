@@ -83,25 +83,20 @@
 
                 <div class="tab-content" id="pills-tabContent">
                     <div class="tab-pane fade active show" id="pills-general" role="tabpanel" aria-labelledby="pills-general-tab">
-
+                        <div class="form-group">
+                            <span class="switch">
+                                <input type="checkbox" asp-for="IsVisible" class="switch" required="">
+                                <label asp-for="IsVisible">Visible</label>
+                            </span>
+                            <span class="switch">
+                                <input type="checkbox" asp-for="IsDeleted" class="switch" required="">
+                                <label asp-for="IsDeleted">Deleted</label>
+                            </span>
+                        </div>
                         <div class="form-group">
                             <label asp-for="Priority" class="control-label"></label>
                             <input asp-for="Priority" class="form-control" />
                             <span asp-validation-for="Priority" class="text-danger"></span>
-                        </div>
-                        <div class="form-group">
-                            <div class="custom-control custom-checkbox">
-                                <input type="checkbox" asp-for="IsVisible" class="custom-control-input" required="">
-                                <label class="custom-control-label" asp-for="IsVisible">
-                                    IsVisible
-                                </label>
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <div class="custom-control custom-checkbox">
-                                <input type="checkbox" asp-for="IsDeleted" class="custom-control-input" required="">
-                                <label class="custom-control-label" asp-for="IsDeleted"></label>
-                            </div>
                         </div>
 
                         <div class="form-group">
@@ -160,7 +155,7 @@
                                                 <input type="hidden" asp-for="@Model.Categories[i].Specificulture" />
                                                 <input type="hidden" asp-for="@Model.Categories[i].CategoryId" />
                                                 <input type="hidden" asp-for="@Model.Categories[i].ArticleId" />
-                                                <label class="custom-control-label" for="checkboxCategories_@Model.Categories[i].ArticleId">
+                                                <label class="custom-control-label" asp-for="@Model.Categories[i].IsActived">
                                                     @Model.Categories[i].Description <a asp-area="Portal" asp-controller="Module" asp-action="Details" asp-route-id="@Model.Categories[i].ArticleId" style="display:initial;padding:0;" target="_blank">
                                                     </a>
                                                 </label>

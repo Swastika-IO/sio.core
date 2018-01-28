@@ -9,11 +9,15 @@ namespace Swastika.Cms.Web.Mvc
 {
     public partial class Startup
     {
-        public static void ConfigIdentity(IServiceCollection services, IConfigurationRoot Configuration)
+        public static void ConfigIdentity(IServiceCollection services, IConfigurationRoot Configuration, string connectionString)
         {
-            
+            if (!string.IsNullOrEmpty(connectionString))
+            {
+                connectionString = "Server=(localdb)\\mssqllocaldb;Database=aspnet-Swastika.Cms.Db;Trusted_Connection=True;MultipleActiveResultSets=true";
+            }
+
             services.AddDbContext<SiocCmsAccountContext>(options =>
-                options.UseSqlServer(Configuration.GetConnectionString("CmsConnection")));
+                options.UseSqlServer(connectionString));
 
             PasswordOptions pOpt = new PasswordOptions()
             {

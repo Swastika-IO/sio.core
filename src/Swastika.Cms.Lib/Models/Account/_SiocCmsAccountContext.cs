@@ -29,11 +29,12 @@ namespace Swastika.Cms.Lib.Models.Account
                 .Build();
 
             string cnn = GlobalConfigurationService.Instance.GetConnectionString();
-            if (string.IsNullOrEmpty(cnn))
+            if (!string.IsNullOrEmpty(cnn))
             {
-                cnn = "Server=(localdb)\\mssqllocaldb;Database=aspnet-Swastika.Cms.Db;Trusted_Connection=True;MultipleActiveResultSets=true";
+                //cnn = "Server=(localdb)\\mssqllocaldb;Database=aspnet-Swastika.Cms.Db;Trusted_Connection=True;MultipleActiveResultSets=true";
+                optionsBuilder.UseSqlServer(cnn);
             }
-            optionsBuilder.UseSqlServer(cnn);
+            
 
 
             //optionsBuilder.UseSqlServer(config.GetConnectionString("AccountConnection"));

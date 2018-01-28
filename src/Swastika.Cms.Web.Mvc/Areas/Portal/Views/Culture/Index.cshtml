@@ -11,87 +11,73 @@
     toValue = toValue > Model.TotalItems ? Model.TotalItems : toValue;
 }
 
-<div class="box-body no-padding">
-    <div class="mailbox-controls">
-        <!-- Check all button -->
-        <button type="button" class="btn btn-default btn-sm checkbox-toggle">
-            <i class="fa fa-square-o"></i>
-        </button>
+<div class="box-body">
+    <div class="pull-right">
+        @*@fromValue  - @toValue
+            / @Model.TotalItems*@
         <div class="btn-group">
-            <button type="button" class="btn btn-default btn-sm"><i class="fa fa-trash-o"></i></button>
-            <button type="button" class="btn btn-default btn-sm"><i class="fa fa-reply"></i></button>
-            <button type="button" class="btn btn-default btn-sm"><i class="fa fa-share"></i></button>
+            <a asp-route-pageSize="@Model.PageSize" asp-route-pageIndex="@prevPage" class="btn btn-default btn-sm"><span class="oi oi-chevron-left"></span></a>
+            <a asp-route-pageSize="@Model.PageSize" asp-route-pageIndex="@nextPage" class="btn btn-default btn-sm"><span class="oi oi-chevron-right"></span></a>
         </div>
         <!-- /.btn-group -->
-        <button type="button" class="btn btn-default btn-sm"><i class="fa fa-refresh"></i></button>
-        <div class="pull-right">
-            @fromValue  - @toValue
-            / @Model.TotalItems
-            <div class="btn-group">
-                <a asp-route-pageSize="@Model.PageSize" asp-route-pageIndex="@prevPage" class="btn btn-default btn-sm"><i class="fa fa-chevron-left"></i></a>
-                <a asp-route-pageSize="@Model.PageSize" asp-route-pageIndex="@nextPage" class="btn btn-default btn-sm"><i class="fa fa-chevron-right"></i></a>
-            </div>
-            <!-- /.btn-group -->
-        </div>
-        <!-- /.pull-right -->
     </div>
-    <div class="table-responsive mailbox-messages" style="height:500px;">
-        <table class="table">
-            <thead class="thead-light">
+    <table class="table table-hover table-striped dataTable" cellspacing="0">
+        <thead class="thead-light">
+            <tr>
+                <th scope="col">
+                    Icon
+                </th>
+                <th scope="col">
+                    Specificulture
+                </th>
+                <th scope="col">
+                    Lcid
+                </th>
+                <th scope="col">
+                    Alias
+                </th>
+                <th scope="col">
+                    FullName
+                </th>
+                <th scope="col">
+                    Description
+                </th>
+
+                <th scope="col"></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model.Items)
+            {
                 <tr>
-                    <th>
-                        Icon
-                    </th>
-                    <th>
-                        Specificulture
-                    </th>
-                    <th>
-                        Lcid
-                    </th>
-                    <th>
-                        Alias
-                    </th>
-                    <th>
-                        FullName
-                    </th>
-                    <th>
-                        Description
-                    </th>
+                    <td>
+                        <i class="flag-icon @item.Icon"></i>
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Specificulture)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Lcid)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Alias)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.FullName)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Description)
+                    </td>
 
-                    <th></th>
-                </tr>
-            </thead>
-            <tbody>
-                @foreach (var item in Model.Items)
-                {
-                    <tr>
-                        <td>
-                            <i class="flag-icon @item.Icon"></i>
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.Specificulture)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.Lcid)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.Alias)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.FullName)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.Description)
-                        </td>
-
-                        <td>
+                    <td>
+                        <div class="btn-group btn-group-sm" role="group" aria-label="Actions">
                             <a asp-action="Edit" asp-route-id="@item.Id" class="btn btn-sm btn-warning"> <span class="oi oi-pencil"></span></a>
                             @*<a asp-action="Details" asp-route-id="@item.Id" class="btn btn-sm btn-info"> <span class="oi oi-eye"></span> </a>*@
                             <a asp-action="Delete" asp-route-id="@item.Id" class="btn btn-sm btn-danger" data-popout="true" data-toggle="confirmation" data-singleton="true"> <span class="oi oi-x"></span> </a>
-                        </td>
-                    </tr>
-                }
-            </tbody>
-        </table>
-    </div>
+                        </div>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
 </div>

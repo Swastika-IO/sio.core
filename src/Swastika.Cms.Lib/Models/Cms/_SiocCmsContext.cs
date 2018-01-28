@@ -55,7 +55,7 @@ namespace Swastika.Cms.Lib.Models.Cms
 
             // define the database to use
 
-            optionsBuilder.UseSqlServer("Server=115.77.190.113,4444;Database=sw_cms_new;UID=sa;Pwd=sqlP@ssw0rd;MultipleActiveResultSets=true;");// (GlobalConfigurationService.Instance.GetConnectionString());
+            optionsBuilder.UseSqlServer(GlobalConfigurationService.Instance.GetConnectionString());
 
         }
 

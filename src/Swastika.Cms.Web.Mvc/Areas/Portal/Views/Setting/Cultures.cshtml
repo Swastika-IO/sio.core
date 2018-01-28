@@ -11,25 +11,25 @@
     <table class="table table-hover table-striped dataTable" cellspacing="0">
         <thead class="thead-light">
             <tr>
-                <th>
+                <th scope="col">
                     @Swastika.Cms.Lib.Services.GlobalConfigurationService.Instance.GetLocalString("Icon", culture)
                 </th>
-                <th>
+                <th scope="col">
                     @Swastika.Cms.Lib.Services.GlobalConfigurationService.Instance.GetLocalString("Specificulture", culture)
                 </th>
-                <th>
+                <th scope="col">
                     @Swastika.Cms.Lib.Services.GlobalConfigurationService.Instance.GetLocalString("Lcid", culture)
                 </th>
-                <th>
+                <th scope="col">
                     @Swastika.Cms.Lib.Services.GlobalConfigurationService.Instance.GetLocalString("Alias", culture)
                 </th>
-                <th>
+                <th scope="col">
                     @Swastika.Cms.Lib.Services.GlobalConfigurationService.Instance.GetLocalString("FullName", culture)
                 </th>
-                <th>
+                <th scope="col">
                     @Swastika.Cms.Lib.Services.GlobalConfigurationService.Instance.GetLocalString("Description", culture)
                 </th>
-                <th></th>
+                <th scope="col"></th>
             </tr>
         </thead>
 
@@ -55,11 +55,12 @@
                     <td>
                         @Html.DisplayFor(modelItem => item.Description)
                     </td>
-
                     <td>
-                        <a asp-action="EditCulture" asp-route-id="@item.Id" class="btn btn-sm btn-warning"> <span class="oi oi-pencil"></span></a>
-                        @*<a asp-action="Details" asp-route-id="@item.Id" class="btn btn-sm btn-info"> <span class="oi oi-eye"></span> </a>*@
-                        <a asp-action="DeleteCulture" asp-route-id="@item.Id" class="btn btn-sm btn-danger" data-popout="true" data-toggle="confirmation" data-singleton="true"> <span class="oi oi-x"></span> </a>
+                        <div class="btn-group btn-group-sm" role="group" aria-label="Actions">
+                            <a asp-action="EditCulture" asp-route-id="@item.Id" class="btn btn-sm btn-warning"> <span class="oi oi-pencil"></span></a>
+                            @*<a asp-action="Details" asp-route-id="@item.Id" class="btn btn-sm btn-info"> <span class="oi oi-eye"></span> </a>*@
+                            <a asp-action="DeleteCulture" asp-route-id="@item.Id" class="btn btn-sm btn-danger" data-popout="true" data-toggle="confirmation" data-singleton="true"> <span class="oi oi-x"></span> </a>
+                        </div>
                     </td>
                 </tr>
             }
