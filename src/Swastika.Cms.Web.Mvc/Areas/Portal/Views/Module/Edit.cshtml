@@ -23,18 +23,5 @@
 </section>
 <!-- /.content -->
 @section scripts{
-    <script>
-        $('#AddObject').click(function () {
-            var i = $(".field-row").length;
-            $.ajax({
-                url: '/vi-vn/Portal/Module/AddEmptyField/' + i,
-                success: function (data) {
-                    $('#Table > tbody').append(data);
-                },
-                error: function (a, b, c) {
-                    alert(a + " " + b + " " + c);
-                }
-            });
-        });
-    </script>
+    
 }

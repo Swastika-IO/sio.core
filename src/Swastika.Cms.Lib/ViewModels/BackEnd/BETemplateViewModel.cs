@@ -85,8 +85,7 @@ namespace Swastika.Cms.Lib.ViewModels.BackEnd
             }
         }
 
-        [JsonProperty("mobileView")]
-        public JObject MobileView { get { return !string.IsNullOrEmpty(MobileContent)? JObject.Parse(MobileContent): new JObject(); } }
+       
         #endregion
 
         #endregion

@@ -246,7 +246,7 @@ namespace Swastika.Cms.Lib.ViewModels.Info
                 new JProperty("categoryId", CategoryId),
                 new JProperty("createdDateTime", CreatedDateTime)
             };
-            result.Add(new JProperty("model", model));
+            //result.Add(new JProperty("model", model));
             return result;
 
         }

@@ -53,7 +53,7 @@ namespace Swastika.Cms.Mvc.Areas.Portal.Controllers
                 }
                 else
                 {
-                    cnnString = "Server=(localdb)\\mssqllocaldb;Database=aspnet-Swastika.Cms.Db;Trusted_Connection=True;MultipleActiveResultSets=true";
+                    cnnString = "Server=(localdb)\\mssqllocaldb;Database=aspnet-swastika-v1.Cms.Db;Trusted_Connection=True;MultipleActiveResultSets=true";
                 }
 
                 GlobalConfigurationService.Instance.ConnectionString = cnnString;
