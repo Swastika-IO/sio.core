@@ -24,33 +24,38 @@
                     <thead class="thead-light">
                         <tr>
                             <th>Name</th>
-                            <th>DataType</th>
+                            <th>Data Type</th>
                             <th>Width</th>
-                            <th>IsDisplay</th>
+                            <th>Display</th>
                         </tr>
                     </thead>
                     <tbody>
                         @for (int i = 0; i < Model.Columns.Count; i++)
-                        {
-                            <tr class="field-row">
-                                <td>
-                                    <input asp-for="@Model.Columns[i].Name" class="form-control" />
-                                </td>
-                                <td>
-                                    <select asp-for="@Model.Columns[i].DataType" class="form-control" asp-items="@types"></select>
-                                </td>
-                                <td>
-                                    <input asp-for="@Model.Columns[i].Width" class="form-control" />
-                                </td>
-                                <td>
-                                    <label class="form-check-label">
-                                        <input type="checkbox" asp-for="@Model.Columns[i].IsDisplay" class="form-check" />
-                                    </label>
-                                </td>
-                            </tr>
-                        }
+            {
+                <tr class="field-row">
+                    <td>
+                        <input asp-for="@Model.Columns[i].Name" class="form-control form-control-sm" />
+                    </td>
+                    <td>
+                        <select asp-for="@Model.Columns[i].DataType" class="form-control form-control-sm" asp-items="@types"></select>
+                    </td>
+                    <td>
+                        <input asp-for="@Model.Columns[i].Width" class="form-control form-control-sm" />
+                    </td>
+                    <td>
+                            <span class="switch switch-sm">
+                                <input type="checkbox" class="switch" asp-for="@Model.Columns[i].IsDisplay">
+                                <label asp-for="@Model.Columns[i].IsDisplay">&nbsp;</label>
+                            </span>
+                        @*<label class="form-check-label">
+                    <input type="checkbox" asp-for="@Model.Columns[i].IsDisplay" class="form-check" />
+                </label>*@
+                    </td>
+                </tr>
+}
                     </tbody>
                 </table>
+
             </div>
         </div>
     </div>

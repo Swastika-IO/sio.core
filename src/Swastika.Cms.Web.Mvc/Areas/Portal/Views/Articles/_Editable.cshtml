@@ -160,7 +160,7 @@
                                                 <input type="hidden" asp-for="@Model.Categories[i].Specificulture" />
                                                 <input type="hidden" asp-for="@Model.Categories[i].CategoryId" />
                                                 <input type="hidden" asp-for="@Model.Categories[i].ArticleId" />
-                                                <label class="custom-control-label" for="checkboxCategories_@Model.Categories[i].ArticleId">
+                                                <label class="custom-control-label" asp-for="@Model.Categories[i].IsActived">
                                                     @Model.Categories[i].Description <a asp-area="Portal" asp-controller="Module" asp-action="Details" asp-route-id="@Model.Categories[i].ArticleId" style="display:initial;padding:0;" target="_blank">
                                                     </a>
                                                 </label>
