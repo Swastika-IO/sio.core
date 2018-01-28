@@ -214,7 +214,7 @@
                             <div class="col-1">
                                 <input type="text" asp-for="@Model.ModuleNavs[i].Priority" class="mod-priority form-control form-control-sm d-inline" style="width:40px;" />
                             </div>
-                            <div class="col-9">
+                            <div class="col-8">
 
                                 <span asp-for="@Model.ModuleNavs[i].IsActived" style="margin-left: 10px;" class="switch switch-sm">
                                     <input type="checkbox" asp-for="@Model.ModuleNavs[i].IsActived" class="switch" id="checkboxModuleNavs_@Model.ModuleNavs[i].ModuleId" />
@@ -224,11 +224,21 @@
                                 </span>
                             </div>
 
-                            <div class="col-1">
-
-                                <a asp-area="Portal" asp-controller="Module" asp-action="Details" asp-route-id="@Model.ModuleNavs[i].ModuleId" class="btn btn-light btn-sm" target="_blank">
+                            <div class="col-2">
+                                <div class="btn-group btn-group-sm" role="group" aria-label="Basic example">
+                                    <a asp-area="Portal" asp-controller="Module" asp-action="AddModuleData" asp-route-id="@Model.ModuleNavs[i].ModuleId" class="btn btn-light btn-sm text-secondary" target="_blank">
+                                        <span class="oi oi-plus"></span>
+                                    </a>
+                                    <a asp-area="Portal" asp-controller="Module" asp-action="Details" asp-route-id="@Model.ModuleNavs[i].ModuleId" class="btn btn-light btn-sm text-secondary" target="_blank">
+                                        <span class="oi oi-list"></span>
+                                    </a>
+                                    <a asp-area="Portal" asp-controller="Module" asp-action="Edit" asp-route-id="@Model.ModuleNavs[i].ModuleId" class="btn btn-light btn-sm text-secondary" target="_blank">
+                                        <span class="oi oi-pencil"></span>
+                                    </a>
+                                </div>
+                                @*<a asp-area="Portal" asp-controller="Module" asp-action="Details" asp-route-id="@Model.ModuleNavs[i].ModuleId" class="btn btn-light btn-sm" target="_blank">
                                     <span class="oi oi-eye"></span>
-                                </a>
+                                </a>*@
                             </div>
                         </div>
 
