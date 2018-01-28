@@ -124,7 +124,7 @@ namespace Swastika.Cms.Lib.Models.Cms
                 entity.Property(e => e.ArticleId).HasMaxLength(50);
 
                 entity.Property(e => e.Specificulture).HasMaxLength(10);
-
+                entity.Property(e => e.Priority).HasDefaultValueSql("((0))");
                 entity.HasOne(d => d.SiocArticle)
                     .WithMany(p => p.SiocArticleModule)
                     .HasForeignKey(d => new { d.ArticleId, d.Specificulture })
@@ -204,7 +204,7 @@ namespace Swastika.Cms.Lib.Models.Cms
                 entity.Property(e => e.ArticleId).HasMaxLength(50);
 
                 entity.Property(e => e.Specificulture).HasMaxLength(10);
-
+                entity.Property(e => e.Priority).HasDefaultValueSql("((0))");
                 entity.HasOne(d => d.SiocArticle)
                     .WithMany(p => p.SiocCategoryArticle)
                     .HasForeignKey(d => new { d.ArticleId, d.Specificulture })
@@ -229,7 +229,7 @@ namespace Swastika.Cms.Lib.Models.Cms
                 entity.HasIndex(e => new { e.ParentId, e.Specificulture });
 
                 entity.Property(e => e.Specificulture).HasMaxLength(10);
-
+                entity.Property(e => e.Priority).HasDefaultValueSql("((0))");
                 entity.HasOne(d => d.SiocCategory)
                     .WithMany(p => p.SiocCategoryCategorySiocCategory)
                     .HasForeignKey(d => new { d.Id, d.Specificulture })
@@ -254,7 +254,7 @@ namespace Swastika.Cms.Lib.Models.Cms
                 entity.HasIndex(e => new { e.ModuleId, e.Specificulture });
 
                 entity.Property(e => e.Specificulture).HasMaxLength(10);
-
+                entity.Property(e => e.Priority).HasDefaultValueSql("((0))");
                 entity.HasOne(d => d.SiocCategory)
                     .WithMany(p => p.SiocCategoryModule)
                     .HasForeignKey(d => new { d.CategoryId, d.Specificulture })
@@ -278,7 +278,7 @@ namespace Swastika.Cms.Lib.Models.Cms
                 entity.Property(e => e.Specificulture).HasMaxLength(10);
 
                 entity.Property(e => e.Description).HasMaxLength(250);
-
+                entity.Property(e => e.Priority).HasDefaultValueSql("((0))");
                 entity.HasOne(d => d.Position)
                     .WithMany(p => p.SiocCategoryPosition)
                     .HasForeignKey(d => d.PositionId)
@@ -300,7 +300,7 @@ namespace Swastika.Cms.Lib.Models.Cms
                 entity.Property(e => e.ProductId).HasMaxLength(50);
 
                 entity.Property(e => e.Specificulture).HasMaxLength(10);
-
+                entity.Property(e => e.Priority).HasDefaultValueSql("((0))");
                 entity.HasOne(d => d.SiocCategory)
                     .WithMany(p => p.SiocCategoryProduct)
                     .HasForeignKey(d => new { d.CategoryId, d.Specificulture })
@@ -484,7 +484,7 @@ namespace Swastika.Cms.Lib.Models.Cms
                 entity.Property(e => e.ArticleId).HasMaxLength(50);
 
                 entity.Property(e => e.Specificulture).HasMaxLength(10);
-
+                entity.Property(e => e.Priority).HasDefaultValueSql("((0))");
                 entity.HasOne(d => d.SiocArticle)
                     .WithMany(p => p.SiocModuleArticle)
                     .HasForeignKey(d => new { d.ArticleId, d.Specificulture })
@@ -511,7 +511,7 @@ namespace Swastika.Cms.Lib.Models.Cms
                 entity.Property(e => e.ProductId).HasMaxLength(50);
 
                 entity.Property(e => e.Specificulture).HasMaxLength(10);
-
+                entity.Property(e => e.Priority).HasDefaultValueSql("((0))");
                 entity.HasOne(d => d.SiocProduct)
                     .WithMany(p => p.SiocModuleProduct)
                     .HasForeignKey(d => new { d.ProductId, d.Specificulture })

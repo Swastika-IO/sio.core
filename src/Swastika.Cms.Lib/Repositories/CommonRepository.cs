@@ -50,7 +50,8 @@ namespace Swastika.Cms.Lib.Repositories
             try
             {
                 var result = context.SiocCategory.Include(cp => cp.SiocCategoryArticle)
-                    .Where(a => a.Specificulture == specificulture && a.Type == (int)SWCmsConstants.CateType.List)
+                    .Where(a => a.Specificulture == specificulture 
+                    && (a.Type == (int)SWCmsConstants.CateType.List || a.Type == (int)SWCmsConstants.CateType.Home))
                     .Select(p => new CategoryArticleViewModel(
                         new SiocCategoryArticle()
                         {

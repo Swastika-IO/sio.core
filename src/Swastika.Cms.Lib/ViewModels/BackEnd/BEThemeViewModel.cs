@@ -153,7 +153,7 @@ namespace Swastika.Cms.Lib.ViewModels.BackEnd
                     result.IsSucceed = result.IsSucceed && saveResult.IsSucceed;
                 }
 
-                if (Asset != null && Asset.Length > 0)
+                if (Asset != null && Asset.Length > 0 && Id == 0)
                 {
                     var files = FileRepository.Instance.GetWebFiles(AssetFolder);
                     string strStyles = string.Empty;
@@ -181,7 +181,7 @@ namespace Swastika.Cms.Lib.ViewModels.BackEnd
 {1}
 <!--[SCRIPTS]-->"
                         , strScripts, DateTime.Now.ToShortDateString()));
-                       
+
                     layout.Data.SaveModel(true, _context, _transaction);
                 }
             }
@@ -307,9 +307,9 @@ namespace Swastika.Cms.Lib.ViewModels.BackEnd
                         Errors.AddRange(saveResult.Errors);
                     }
                     result.IsSucceed = result.IsSucceed && saveResult.IsSucceed;
-                }                
+                }
 
-                if (Asset != null && Asset.Length > 0)
+                if (Asset != null && Asset.Length > 0 && Id == 0)
                 {
                     var files = FileRepository.Instance.GetWebFiles(AssetFolder);
                     string strStyles = string.Empty;
@@ -359,7 +359,7 @@ namespace Swastika.Cms.Lib.ViewModels.BackEnd
             {
                 string defaultFolder = CommonHelper.GetFullPath(new string[] { SWCmsConstants.Parameters.TemplatesFolder, SWCmsConstants.Default.DefaultTemplateFolder });
                 bool copyResult = FileRepository.Instance.CopyDirectory(defaultFolder, TemplateFolder);
-                var files = copyResult ? FileRepository.Instance.GetFilesWithContent(TemplateFolder): new System.Collections.Generic.List<FileViewModel>();
+                var files = copyResult ? FileRepository.Instance.GetFilesWithContent(TemplateFolder) : new System.Collections.Generic.List<FileViewModel>();
                 foreach (var file in files)
                 {
                     BETemplateViewModel template = new BETemplateViewModel(
@@ -376,7 +376,7 @@ namespace Swastika.Cms.Lib.ViewModels.BackEnd
                             FolderType = file.FolderName,
                             ModifiedBy = CreatedBy
                         });
-                   var saveResult=  await template.SaveModelAsync(true, _context, _transaction);
+                    var saveResult = await template.SaveModelAsync(true, _context, _transaction);
                     result.IsSucceed = result.IsSucceed && saveResult.IsSucceed;
                     if (!saveResult.IsSucceed)
                     {

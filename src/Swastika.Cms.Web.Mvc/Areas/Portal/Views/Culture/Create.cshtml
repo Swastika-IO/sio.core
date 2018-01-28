@@ -8,7 +8,7 @@
     <form asp-controller="@ViewContext.RouteData.Values["controller"].ToString()"
           asp-action="@ViewContext.RouteData.Values["action"].ToString()">
         <div class="row">
-
+            @await Html.PartialAsync("EditableSides/_Editable_ActionsBar")
             <section class="col-lg-9">
                 @await Html.PartialAsync("_Editable", Model)
             </section>

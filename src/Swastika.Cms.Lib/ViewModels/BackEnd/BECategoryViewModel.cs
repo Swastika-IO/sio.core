@@ -202,7 +202,7 @@ namespace Swastika.Cms.Lib.ViewModels.BackEnd
             Template = View != null ? string.Format(@"{0}/{1}{2}", View.FolderType, View.FileName, View.Extension) : Template;
             if (Id == 0)
             {
-                Id = FECategoryViewModel.Repository.Max(c=>c.Id).Data + 1;
+                Id = FECategoryViewModel.Repository.Max(c => c.Id).Data + 1;
                 CreatedDateTime = DateTime.UtcNow;
             }
             return base.ParseModel();
@@ -574,20 +574,25 @@ namespace Swastika.Cms.Lib.ViewModels.BackEnd
         {
             var query = context.SiocModule
                 .Include(cp => cp.SiocCategoryModule)
-                .Where(Module => Module.Specificulture == Specificulture)
-                .Select(Module => new CategoryModuleViewModel()
+                .Where(module => module.Specificulture == Specificulture)
+                .Select(module => new CategoryModuleViewModel()
                 {
                     CategoryId = Id,
-                    ModuleId = Module.Id,
+                    ModuleId = module.Id,
                     Specificulture = Specificulture,
-                    Description = Module.Title,
-                    IsActived = context.SiocCategoryModule.Count(
-                        m => m.ModuleId == Module.Id && m.CategoryId == Id && m.Specificulture == Specificulture) > 0
+                    Description = module.Title,
+
                 });
-
-            var result = query.OrderBy(m => m.Priority).ToList();
-
-            return result;
+             
+            var result = query.ToList();
+            result.ForEach(nav =>
+            {
+                var currentNav = context.SiocCategoryModule.FirstOrDefault(
+                        m => m.ModuleId == nav.ModuleId && m.CategoryId == Id && m.Specificulture == Specificulture);
+                nav.Priority = currentNav?.Priority;
+                nav.IsActived = currentNav != null;
+            });
+            return result.OrderBy(m => m.Priority).ToList();
         }
 
         public List<CategoryCategoryViewModel> GetParentNavs(SiocCmsContext context, IDbContextTransaction transaction)
@@ -602,13 +607,19 @@ namespace Swastika.Cms.Lib.ViewModels.BackEnd
                     ParentId = Category.Id,
                     Specificulture = Specificulture,
                     Description = Category.Title,
-                    IsActived = context.SiocCategoryCategory.Count(
-                        m => m.ParentId == Category.Id && m.Id == Id && m.Specificulture == Specificulture) > 0
                 });
 
-            var result = query.OrderBy(m => m.Priority).ToList();
+            
 
-            return result;
+            var result = query.ToList();
+            result.ForEach(nav =>
+            {
+                var currentNav = context.SiocCategoryCategory.FirstOrDefault(
+                        m => m.ParentId == nav.Id && m.Id == Id && m.Specificulture == Specificulture);
+                nav.Priority = currentNav?.Priority;
+                nav.IsActived = currentNav != null;
+            });
+            return result.OrderBy(m => m.Priority).ToList();
         }
 
         public List<CategoryCategoryViewModel> GetChildNavs(SiocCmsContext context, IDbContextTransaction transaction)
@@ -623,13 +634,17 @@ namespace Swastika.Cms.Lib.ViewModels.BackEnd
                     ParentId = Id,
                     Specificulture = Specificulture,
                     Description = Category.Title,
-                    IsActived = context.SiocCategoryCategory.Count(
-                        m => m.ParentId == Id && m.Id == Category.Id && m.Specificulture == Specificulture) > 0
                 });
-
-            var result = query.OrderBy(m => m.Priority).ToList();
-
-            return result;
+            
+            var result = query.ToList();
+            result.ForEach(nav =>
+            {
+                var currentNav = context.SiocCategoryCategory.FirstOrDefault(
+                        m => m.ParentId == Id && m.Id == nav.Id && m.Specificulture == Specificulture);
+                nav.Priority = currentNav?.Priority;
+                nav.IsActived = currentNav != null;
+            });
+            return result.OrderBy(m => m.Priority).ToList();
         }
 
         #endregion

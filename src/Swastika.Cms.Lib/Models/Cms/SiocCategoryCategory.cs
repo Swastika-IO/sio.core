@@ -8,6 +8,7 @@ namespace Swastika.Cms.Lib.Models.Cms
         public int Id { get; set; }
         public int ParentId { get; set; }
         public string Specificulture { get; set; }
+        public int Priority { get; set; }
 
         public SiocCategory SiocCategory { get; set; }
         public SiocCategory SiocCategoryNavigation { get; set; }
