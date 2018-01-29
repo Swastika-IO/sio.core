@@ -10,6 +10,7 @@ using Swastika.Cms.Lib.ViewModels.Info;
 using Swastika.Cms.Lib.Models.Cms;
 using Swastika.Cms.Lib.ViewModels.BackEnd;
 using Swastika.Cms.Lib;
+using System.Collections.Generic;
 
 namespace Swastka.IO.Cms.Api.Controllers
 {
@@ -107,6 +108,26 @@ namespace Swastka.IO.Cms.Api.Controllers
             return new RepositoryResponse<BECategoryViewModel>();
 
         }
+
+        // POST api/category
+        [HttpPost, HttpOptions]
+        [Route("save/{id}")]
+        public async Task<RepositoryResponse<bool>> SaveFields(int id, [FromBody]List<EntityField> fields)
+        {
+            if (fields != null)
+            {
+                foreach (var property in fields)
+                {
+                    var result = await InfoCategoryViewModel.Repository.UpdateFieldsAsync(c => c.Id == id, fields);
+
+                    return result;
+                }
+               
+            }
+            return new RepositoryResponse<bool>();
+
+        }
+
 
         // GET api/category
         [HttpPost, HttpOptions]

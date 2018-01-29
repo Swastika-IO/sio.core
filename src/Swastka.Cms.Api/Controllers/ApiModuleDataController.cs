@@ -44,6 +44,25 @@ namespace Swastka.Cms.Api.Controllers
             return await vmData.SaveModelAsync();
         }
 
+        // POST api/category
+        [HttpPost, HttpOptions]
+        [Route("save/{id}")]
+        public async Task<RepositoryResponse<bool>> SaveFields(string id, [FromBody]List<EntityField> fields)
+        {
+            if (fields != null)
+            {
+                foreach (var property in fields)
+                {
+                    var result = await InfoModuleDataViewModel.Repository.UpdateFieldsAsync(c => c.Id == id, fields);
+
+                    return result;
+                }
+
+            }
+            return new RepositoryResponse<bool>();
+
+        }
+
         // GET api/articles/id
         [HttpGet]
         [Route("details/{id}")]
