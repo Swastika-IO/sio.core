@@ -19,29 +19,18 @@
                 <input type="hidden" asp-for="Specificulture" />
 
                 <div class="form-group">
-                    @*<label asp-for="Title" class="control-label"></label>*@
                     <input asp-for="Title" class="form-control form-control-lg" placeholder="Enter your page title here..." />
                     <span asp-validation-for="Title" class="text-danger"></span>
                 </div>
 
                 <div class="form-group">
-                    @*<div class="col-md-2">
-                            <label asp-for="Excerpt" class="control-label"></label>
-                        </div>*@
                     <textarea asp-for="Excerpt" class="form-control" placeholder="Excerpt"></textarea>
                     <span asp-validation-for="Excerpt" class="text-danger"></span>
                 </div>
 
                 <div class="form-group">
-                    @*<div class="col-md-2">
-                            <label asp-for="Content" class="control-label"></label>
-                        </div>*@
-                    <textarea asp-for="Content" class="form-control"></textarea>
-                    <script>
-                        // Replace the <textarea id="FullContent"> with a CKEditor
-                        // instance, using default configuration.
-                        CKEDITOR.replace('Content');
-                    </script>
+                    <input type="hidden" asp-for="Content" />
+                    <div class="editor-content"></div>
                     <span asp-validation-for="Content" class="text-danger"></span>
                 </div>
             </div>
@@ -207,7 +196,7 @@
                                             <div class="row">
                                                 <div class="col-1" style="cursor:move;"><span class="oi oi-move"></span></div>
                                                 <div class="col-1">
-                                                    <input type="text" asp-for="@Model.ModuleNavs[i].Priority" class="item-priority form-control form-control-sm d-inline" style="width:40px;"/>
+                                                    <input type="text" asp-for="@Model.ModuleNavs[i].Priority" class="item-priority form-control form-control-sm d-inline" style="width:40px;" />
                                                 </div>
                                                 <div class="col-8">
 
@@ -246,16 +235,16 @@
                     <div class="tab-pane fade" id="pills-layout" role="tabpanel" aria-labelledby="pills-layout-tab">
 
                         @Html.Partial("_Editor_Code", Model.View,
-                                 new ViewDataDictionary(this.ViewData)
-                                 {
-                                            {
-                                                "Files", Model.Templates
-                                            },
-                                            {
-                                                "Name", "View"
-                                            }
+                                                                    new ViewDataDictionary(this.ViewData)
+                                                                    {
+                                                                                                                                {
+                                                                                                                                    "Files", Model.Templates
+                                                                                                                                },
+                                                                                                                                {
+                                                                                                                                    "Name", "View"
+                                                                                                                                }
 
-                                 })
+                                                                    })
                         @* <input asp-for="View.Filename" class="form-control" />
 
                             <div class="form-control" id="code-editor" asp-for="View.Content"></div>*@

@@ -5,6 +5,13 @@
     //Layout = "~/Areas/Portal/Views/Shared/_Layout.cshtml";
 }
 
+@section Styles
+    {
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.7.1/katex.min.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/monokai-sublime.min.css" />
+    <link href="~/lib/quill/quill.snow.css" rel="stylesheet" />
+}
+
 <form asp-controller="@ViewContext.RouteData.Values["controller"].ToString()"
       asp-action="@ViewContext.RouteData.Values["action"].ToString()"
       asp-route-id="@Model.Id"
@@ -26,8 +33,26 @@
 
 @section Scripts{
     <script>
-        $(document).ready(function
-                    () {
+        $(document).ready(function () {
+
+            // QUILL Edtior setup
+            var quill = new Quill('.editor-content', {
+                placeholder: 'Compose an epic...',
+                theme: 'snow'
+            });
+            console.log($('#Content').val());
+            quill.setContents($('#Content').val());
+            quill.on('editor-change', function (eventName, ...args) {
+                if (eventName === 'text-change') {
+                    // args[0] will be delta
+                    //alert('text-change');
+                    $('#Content').val(quill.getContents());
+                    console.log(quill.getContents());
+                } else if (eventName === 'selection-change') {
+                    // args[0] will be old range
+                    // alert('selection-change');
+                }
+            });
 
             $('.AddObject').click(function (e) {
                 var i = $(".field-row").length;
@@ -126,7 +151,6 @@
                         <h4 class="modal-title">Edit</h4>
                     </div>
                     <div class="modal-body">
-
                     </div>
                     <div class="modal-footer">
                         <a class="btn btn-default pull-left" data-dismiss="modal">Close</a>

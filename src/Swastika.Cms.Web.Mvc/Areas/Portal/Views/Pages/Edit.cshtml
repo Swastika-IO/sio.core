@@ -8,9 +8,9 @@
 
 @section Styles
 {
-    @*<link href="~/lib/icheck-1.x/skins/square/square.css" rel="stylesheet">
-    <link href="~/lib/icheck-1.x/skins/square/blue.css" rel="stylesheet">*@
-
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.7.1/katex.min.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/monokai-sublime.min.css" />
+    <link href="~/lib/quill/quill.snow.css" rel="stylesheet" />
 }
 <form enctype="multipart/form-data" asp-action="@ViewContext.RouteData.Values["action"].ToString()">
     <!-- Main content -->
@@ -28,17 +28,30 @@
     <!-- /.content -->
 </form>
 
-@section Scripts
-{
-    @*<script src="~/lib/icheck-1.x/icheck.min.js"></script>
+@section Scripts {
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.7.1/katex.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+    <script src="~/lib/quill/quill.min.js"></script>
     <script>
-        $(function () {
-            //Enable iCheck plugin for checkboxes
-            //iCheck for checkbox and radio inputs
-            //$('input[type="checkbox"]').iCheck({
-            //    checkboxClass: 'icheckbox_square-blue',
-            //    radioClass: 'iradio_square-blue'
-            //});
-        });
-    </script>*@
+
+        $(document).ready(function () {
+            var quill = new Quill('.editor-content', {
+                placeholder: 'Compose an epic...',
+                theme: 'snow'
+            });
+            console.log($('#Content').val());
+            quill.setContents($('#Content').val());
+            quill.on('editor-change', function (eventName, ...args) {
+                if (eventName === 'text-change') {
+                    // args[0] will be delta
+                    //alert('text-change');
+                    $('#Content').val(quill.getContents());
+                    console.log(quill.getContents());
+                } else if (eventName === 'selection-change') {
+                    // args[0] will be old range
+                    // alert('selection-change');
+                }
+            });
+        }
+    </script>
 }

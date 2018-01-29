@@ -197,7 +197,7 @@
     <None Include="Areas\Portal\Views\Pages\Contents.cshtml" />
     <None Include="Areas\Portal\Views\Pages\Create.cshtml" />
     <None Include="Areas\Portal\Views\Pages\Edit.cshtml" />
-    <None Include="Areas\Portal\Views\Pages\Index.cshtml" />
+    <None Include="Areas\Portal\Views\Pages\IndexOld.cshtml" />
     <None Include="Areas\Portal\Views\Pages\_Editable.cshtml" />
     <None Include="Areas\Portal\Views\Pages\_EditableSide.cshtml" />
     <None Include="Areas\Portal\Views\Portal\About.cshtml" />

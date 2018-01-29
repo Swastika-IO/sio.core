@@ -6,12 +6,18 @@
     string img = Model != null ? Model.ImageUrl : "http://placehold.it/200x200";
 }
 
+@section Styles
+    {
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.7.1/katex.min.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/monokai-sublime.min.css" />
+    <link href="~/lib/quill/quill.snow.css" rel="stylesheet" />
+}
+
 <!-- Main content -->
 <section class="content container-fluid">
     <form asp-action="@ViewContext.RouteData.Values["action"].ToString()"
           asp-route-categoryId="@ViewBag.categoryId"
           enctype="multipart/form-data">
-
 
         @await Html.PartialAsync("EditableSides/_Editable_ActionsBar")
         <div class="row">
@@ -21,7 +27,6 @@
             <section class="col-lg-3">
                 @await Html.PartialAsync("_EditableSide", Model)
             </section>
-
         </div>
     </form>
 </section>
@@ -29,9 +34,33 @@
 <!-- /.box-body -->
 
 @section Scripts{
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.7.1/katex.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+    <script src="~/lib/quill/quill.min.js"></script>
     <script>
-        $(document).ready(function
-                () {
+        
+        $(document).ready(function () {
+
+            // QUILL Edtior setup
+            var quill = new Quill('.editor-content', {
+                placeholder: 'Compose an epic...',
+                theme: 'snow'
+            });
+            console.log($('#Content').val());
+            quill.setContents($('#Content').val());
+            quill.on('editor-change', function (eventName, ...args) {
+                if (eventName === 'text-change') {
+                    // args[0] will be delta
+                    //alert('text-change');
+                    $('#Content').val(quill.getContents());
+                    console.log(quill.getContents());
+                } else if (eventName === 'selection-change') {
+                    // args[0] will be old range
+                    // alert('selection-change');
+                }
+            });
+
 
             $('.AddObject').click(function (e) {
                 var i = $(".field-row").length;
@@ -110,6 +139,7 @@
                     }
                 });
             })
+
             $(document).on('ifChanged', '.cb-active-module', function (e) {
                 var moduleid = $(this).data('module-id');
                 $('.module-data-' + moduleid).toggleClass('hidden');
@@ -130,7 +160,6 @@
                         <h4 class="modal-title">Edit</h4>
                     </div>
                     <div class="modal-body">
-
                     </div>
                     <div class="modal-footer">
                         <a class="btn btn-default pull-left" data-dismiss="modal">Close</a>
