@@ -68,7 +68,13 @@ namespace Swastika.Cms.Lib
                     "Delete User"
                 };
         }
-
+        public class JWTSettings
+        {
+            public const string SECRET_KEY = "swastika-secret-key";
+            public const string ISSUER = "http://localhost:58510/";
+            public const string AUDIENCE = "http://localhost:58510/";
+            public const int EXPIRED_IN = 10;// MINUTES
+        }
      
         public class FileFolder
         {

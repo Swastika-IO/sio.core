@@ -1,9 +1,17 @@
-﻿using Microsoft.AspNetCore.Identity;
+﻿using Microsoft.AspNetCore.Authentication.Cookies;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.IdentityModel.Tokens;
+using Swastika.Cms.Lib;
 using Swastika.Cms.Lib.Models.Account;
+using Swastika.Cms.Web.Mvc.Models.Identity;
 using Swastika.Identity.Models;
+using System;
+using System.Text;
+using System.Threading.Tasks;
 
 namespace Swastika.Cms.Web.Mvc
 {
@@ -51,6 +59,74 @@ namespace Swastika.Cms.Web.Mvc
              ;
 
         }
+        public static void ConfigJWTToken(IServiceCollection services, IConfigurationRoot Configuration)
+        {
 
+            services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
+                    .AddJwtBearer(options =>
+                    {
+                        options.TokenValidationParameters =
+                             new TokenValidationParameters
+                             {
+                                 ValidateIssuer = false,
+                                 ValidateAudience = false,
+                                 ValidateLifetime = true,
+                                 ValidateIssuerSigningKey = true,
+
+                                 ValidIssuer = SWCmsConstants.JWTSettings.ISSUER,
+                                 ValidAudience = SWCmsConstants.JWTSettings.AUDIENCE,
+                                 IssuerSigningKey =
+                                  JwtSecurityKey.Create(SWCmsConstants.JWTSettings.SECRET_KEY)
+                             };
+                        //options.Events = new JwtBearerEvents
+                        //{
+                        //    OnAuthenticationFailed = context =>
+                        //    {
+                        //        Console.WriteLine("OnAuthenticationFailed: " + context.Exception.Message);
+                        //        return Task.CompletedTask;
+                        //    },
+                        //    OnTokenValidated = context =>
+                        //    {
+                        //        Console.WriteLine("OnTokenValidated: " + context.SecurityToken);
+                        //        return Task.CompletedTask;
+                        //    }
+                        //};
+                    });
+        }
+        public static void ConfigCookieAuth(IServiceCollection services, IConfigurationRoot Configuration)
+        {
+            services.ConfigureApplicationCookie(options =>
+            {
+                // Cookie settings
+                options.Cookie.HttpOnly = true;
+                options.Cookie.Expiration = TimeSpan.FromDays(150);
+                options.LoginPath = "/vi-vn/Portal/Auth/Login"; // If the LoginPath is not set here, ASP.NET Core will default to /Account/Login
+                options.LogoutPath = "/vi-vn/Portal/Auth/Logout"; // If the LogoutPath is not set here, ASP.NET Core will default to /Account/Logout
+                options.AccessDeniedPath = "/"; // If the AccessDeniedPath is not set here, ASP.NET Core will default to /Account/AccessDenied
+                options.SlidingExpiration = true;
+            });
+
+
+
+            services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
+                .AddCookie(
+                options =>
+                {
+                    // Cookie settings
+                    options.Cookie.HttpOnly = true;
+                    options.Cookie.Expiration = TimeSpan.FromDays(150);
+                    options.LoginPath = "/vi-vn/Portal/Auth/Login"; // If the LoginPath is not set here, ASP.NET Core will default to /Account/Login
+                    options.LogoutPath = "/vi-vn/Portal/Auth/Logout"; // If the LogoutPath is not set here, ASP.NET Core will default to /Account/Logout
+                    options.AccessDeniedPath = "/"; // If the AccessDeniedPath is not set here, ASP.NET Core will default to /Account/AccessDenied
+                    options.SlidingExpiration = true;
+                });
+        }
+        public static class JwtSecurityKey
+        {
+            public static SymmetricSecurityKey Create(string secret)
+            {
+                return new SymmetricSecurityKey(Encoding.ASCII.GetBytes(secret));
+            }
+        }
     }
 }

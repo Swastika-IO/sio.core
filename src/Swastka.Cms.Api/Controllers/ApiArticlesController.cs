@@ -11,12 +11,15 @@ using Swastika.Cms.Lib.ViewModels.Info;
 using Swastika.Cms.Lib.Models.Cms;
 using Swastika.Cms.Lib;
 using System.Collections.Generic;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 
 namespace Swastka.Cms.Api.Controllers
 {
     //[Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme
     //    //, Policy = "AddEditUser"
     //    )]
+    [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
     [Route("api/{culture}/article")]
     public class ApiArticleController :
         BaseApiController<SiocCmsContext, SiocArticle>
@@ -241,6 +244,7 @@ namespace Swastka.Cms.Api.Controllers
         }
 
         // GET api/articles
+        
         [HttpPost, HttpOptions]
         [Route("list")]
         public async Task<RepositoryResponse<PaginationModel<InfoArticleViewModel>>> GetList(RequestPaging request)

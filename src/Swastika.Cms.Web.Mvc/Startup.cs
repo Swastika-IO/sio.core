@@ -62,86 +62,13 @@ namespace Swastika.Cms.Web.Mvc
                 options.MultipartBodyLengthLimit = 100000000;
             });
 
-            services.Configure<JWTSettings>(Configuration.GetSection("JWTSettings"));
-            //Swastika.Identity.Startup.ConfigIdentity(services, Configuration);
-            ConfigIdentity(services, Configuration, Configuration.GetConnectionString("CmsConnection")); //Cms Config
+            
+            Swastika.Identity.Startup.ConfigIdentity(services, Configuration, Configuration.GetConnectionString("CmsConnection"));
+            //ConfigIdentity(services, Configuration, Configuration.GetConnectionString("CmsConnection")); //Cms Config
 
-            //PasswordOptions pOpt = new PasswordOptions()
-            //{
-            //    RequireDigit = false,
-            //    RequiredLength = 6,
-            //    RequireLowercase = false,
-            //    RequireNonAlphanumeric = false,
-            //    RequireUppercase = false
-            //};
-
-            //services.AddIdentity<ApplicationUser, IdentityRole>(options =>
-            //{
-            //    options.Password = pOpt;
-
-            //})
-            //    .AddEntityFrameworkStores<ApplicationDbContext>()
-            //    .AddDefaultTokenProviders()
-            //    .AddUserManager<AuthRepository>();
-
-
-
-            //services.AddAuthorization(options =>
-            //{
-            //    options.AddPolicy("AddEditUser", policy =>
-            //    {
-            //        policy.RequireClaim("Add User", "Add User");
-            //        policy.RequireClaim("Edit User", "Edit User");
-            //    });
-            //    options.AddPolicy("DeleteUser", policy => policy.RequireClaim("Delete User", "Delete User"));
-            //});
-
-
-            services.ConfigureApplicationCookie(options =>
-            {
-                // Cookie settings
-                options.Cookie.HttpOnly = true;
-                options.Cookie.Expiration = TimeSpan.FromDays(150);
-                options.LoginPath = "/vi-vn/Portal/Auth/Login"; // If the LoginPath is not set here, ASP.NET Core will default to /Account/Login
-                options.LogoutPath = "/vi-vn/Portal/Auth/Logout"; // If the LogoutPath is not set here, ASP.NET Core will default to /Account/Logout
-                options.AccessDeniedPath = "/"; // If the AccessDeniedPath is not set here, ASP.NET Core will default to /Account/AccessDenied
-                options.SlidingExpiration = true;
-            });
-
-            var secretKey = Configuration.GetSection("JWTSettings:SecretKey").Value;
-            var issuer = Configuration.GetSection("JWTSettings:Issuer").Value;
-            var audience = Configuration.GetSection("JWTSettings:Audience").Value;
-            var signingKey = new SymmetricSecurityKey(Encoding.ASCII.GetBytes(secretKey));
-            var tokenValidationParameters = new TokenValidationParameters
-            {
-                ValidateIssuerSigningKey = true,
-                IssuerSigningKey = signingKey,
-
-                // Validate the JWT Issuer (iss) claim
-                ValidateIssuer = true,
-                ValidIssuer = issuer,
-
-                // Validate the JWT Audience (aud) claim
-                ValidateAudience = true,
-                ValidAudience = audience
-            };
-
-            services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
-                .AddCookie(
-                options =>
-                {
-                    // Cookie settings
-                    options.Cookie.HttpOnly = true;
-                    options.Cookie.Expiration = TimeSpan.FromDays(150);
-                    options.LoginPath = "/vi-vn/Portal/Auth/Login"; // If the LoginPath is not set here, ASP.NET Core will default to /Account/Login
-                    options.LogoutPath = "/vi-vn/Portal/Auth/Logout"; // If the LogoutPath is not set here, ASP.NET Core will default to /Account/Logout
-                    options.AccessDeniedPath = "/"; // If the AccessDeniedPath is not set here, ASP.NET Core will default to /Account/AccessDenied
-                    options.SlidingExpiration = true;
-                })
-                .AddJwtBearer(opt =>
-                {
-                    opt.TokenValidationParameters = tokenValidationParameters;
-                });
+            //ConfigCookieAuth(services, Configuration);
+            ConfigJWTToken(services, Configuration);
+               
 
 
 
@@ -161,12 +88,12 @@ namespace Swastika.Cms.Web.Mvc
                     {
                         Duration = 60
                     });
-                options.CacheProfiles.Add("Never",
-                    new CacheProfile()
-                    {
-                        Location = ResponseCacheLocation.None,
-                        NoStore = true
-                    });
+                //options.CacheProfiles.Add("Never",
+                //    new CacheProfile()
+                //    {
+                //        Location = ResponseCacheLocation.None,
+                //        NoStore = true
+                //    });
             });
 
             // Register the Swagger generator, defining one or more Swagger documents
