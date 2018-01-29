@@ -15,7 +15,6 @@
         prvFolder = idx > 0 ? folder.Substring(0, idx) : string.Empty;
     }
 
-
     string prvUrl = Url.RouteUrl("File", new { culture = ViewBag.culture, folder = prvFolder });
 }
 
@@ -23,9 +22,8 @@
     <div class="row">
         <div class="col-lg-12">
         </div>
-
     </div>
-    <div class="row">
+    <div class="row mb-1">
         <div class="col">
             <div class="input-group">
                 <div class="custom-file">
@@ -41,8 +39,8 @@
     </div>
     <div class="row">
         <div class="col-md-12">
-            <table class="table table-sm table-hover table-striped">
-                <thead class="thead-light">
+            <table class="table table-sm table-hover">
+                <thead class="thead-dark">
                     <tr>
                         <th scope="col">
                             Name
@@ -59,72 +57,71 @@
                 <tbody>
 
                     @if (!string.IsNullOrEmpty(folder))
-    {
-                <tr>
-                    <td>
-                        <span class="oi oi-arrow-thick-left"></span> <strong><a href="@prvUrl" class="">Back...</a></strong>
-                    </td>
-                    <td colspan="3"></td>
-                </tr>
-}
+                    {
+                        <tr>
+                            <td>
+                                <span class="oi oi-arrow-thick-left"></span> <strong><a href="@prvUrl" class="">Back...</a></strong>
+                            </td>
+                            <td colspan="3"></td>
+                        </tr>
+                    }
                     @foreach (var path in subFolders)
-    {
-        string dirPath = string.Format("{0}/{1}", folder, path);
-        string href = Url.RouteUrl("File", new { culture = ViewBag.culture, folder = dirPath });
-                <tr>
-                    <td>
-                        <span class="oi oi-folder"></span> <strong><a href="@href" class="">@path</a></strong>
-</td>
-                    <td colspan="3"></td>
-                </tr>
-}
+                    {
+                        string dirPath = string.Format("{0}/{1}", folder, path);
+                        string href = Url.RouteUrl("File", new { culture = ViewBag.culture, folder = dirPath });
+                        <tr>
+                            <td class="text-primary">
+                                <span class="oi oi-folder"></span> <a href="@href" class="text-primary">@path</a>
+                            </td>
+                            <td colspan="3"></td>
+                        </tr>
+                    }
                     @foreach (var item in Model)
-    {
-                <tr>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.Filename)
-                    </td>
-                    <td>
-                        <input value="@item.FullPath" onclick="this.select()" class="form-control form-control-sm" readonly />
-                    </td>
-                    <td>
+                    {
+                        <tr>
+                            <td class="text-secondary">
+                                <span class="oi oi-file"></span>  @Html.DisplayFor(modelItem => item.Filename)@Html.DisplayFor(modelItem => item.Extension)
+                            </td>
+                            <td>
+                                <input value="@item.FullPath" onclick="this.select()" class="form-control form-control-sm" readonly />
+                            </td>
+                            <td>
 
-                        @if (imgExts.Contains(item.Extension))
-        {
-                <img width="50" src="@item.FullPath" />
-}
-else
-{
-                <span>-</span>
-}
-                        @*else if (txtExts.Contains(item.Extension))
-            {
-                <div class="container-code-editor">
-                    <div class="form-control code-editor">@item.Content</div>
-                </div>
-            }*@
-                    </td>
+                                @if (imgExts.Contains(item.Extension))
+                                {
+                                    <img width="50" src="@item.FullPath" />
+                                }
+                                else
+                                {
+                                    <span>-</span>
+                                }
+                                @*else if (txtExts.Contains(item.Extension))
+                                    {
+                                        <div class="container-code-editor">
+                                            <div class="form-control code-editor">@item.Content</div>
+                                        </div>
+                                    }*@
+                            </td>
 
-                    <td>
-                        <div class="btn-group btn-group-sm" role="group" aria-label="Actions">
-                            <a asp-action="Edit"
-                               asp-route-name="@item.Filename"
-                               asp-route-ext="@item.Extension"
-                               asp-route-folder="@item.FileFolder"
-                               class="btn btn-sm btn-warning d-inline-block "><span class="oi oi-pencil"></span></a>
-                            <a target="_blank" href="@item.FullPath" class="btn btn-sm btn-info"> <span class="oi oi-eye"></span> </a>
-                            <a asp-action="Delete"
-                               asp-route-name="@item.Filename"
-                               asp-route-ext="@item.Extension"
-                               asp-route-folder="@item.FileFolder" class="btn btn-sm btn-danger d-inline-block" data-popout="true" data-toggle="confirmation" data-singleton="true"><span class="oi oi-x"></span></a>
-                        </div>
-                    </td>
-                </tr>
-}
+                            <td>
+                                <div class="btn-group btn-group-sm" role="group" aria-label="Actions">
+                                    <a asp-action="Edit"
+                                       asp-route-name="@item.Filename"
+                                       asp-route-ext="@item.Extension"
+                                       asp-route-folder="@item.FileFolder"
+                                       class="btn btn-sm btn-warning d-inline-block "><span class="oi oi-pencil"></span></a>
+                                    <a target="_blank" href="@item.FullPath" class="btn btn-sm btn-info"> <span class="oi oi-eye"></span> </a>
+                                    <a asp-action="Delete"
+                                       asp-route-name="@item.Filename"
+                                       asp-route-ext="@item.Extension"
+                                       asp-route-folder="@item.FileFolder" class="btn btn-sm btn-danger d-inline-block" data-popout="true" data-toggle="confirmation" data-singleton="true"><span class="oi oi-x"></span></a>
+                                </div>
+                            </td>
+                        </tr>
+                    }
                 </tbody>
             </table>
             <!-- /.table -->
         </div>
-
     </div>
 </div>

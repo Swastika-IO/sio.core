@@ -74,7 +74,7 @@
                                 var prop = Data.Items[i].GetDataProperty(col.Name);
                                 <td>
                                     @{Html.RenderPartial("_ViewByFieldType",
-                  new ViewDataDictionary(this.Vi‌​ewData) { { "DataType", prop.DataType }, { "Value", prop.Value } });
+                    new ViewDataDictionary(this.Vi‌​ewData) { { "DataType", prop.DataType }, { "Value", prop.Value } });
                                     }
                                 </td>
                             }
@@ -185,7 +185,7 @@
                 <tbody></tbody>
             </table>
             @await Html.PartialAsync("_Pagination", Model, new ViewDataDictionary(this.Vi‌​ewData)
-               {
+           {
 { "PageSize", Model.Articles.PageSize}, { "PageIndex", Model.Articles.PageIndex }, { "TotalPage", Model.Articles.TotalPage } })
         }
     </form>
