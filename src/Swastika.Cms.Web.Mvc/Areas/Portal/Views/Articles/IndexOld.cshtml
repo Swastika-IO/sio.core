@@ -1,0 +1,91 @@
+﻿@using Swastika.Domain.Core.ViewModels;
+@model PaginationModel<Swastika.Cms.Lib.ViewModels.Info.InfoArticleViewModel>
+
+@{
+    ViewData["Title"] = "Articles";
+    //Layout = "~/Areas/Portal/Views/Shared/_Layout.cshtml";
+    int fromValue = Model.PageIndex * @Model.PageSize + 1;
+    int toValue = fromValue + Model.PageSize - 1;
+    int prevPage = Model.PageIndex > 0 ? Model.PageIndex - 1 : 0;
+    int nextPage = Model.PageIndex == Model.TotalPage - 1 ? Model.PageIndex : Model.PageIndex + 1;
+    toValue = toValue > Model.TotalItems ? Model.TotalItems : toValue;
+    string href = string.Format("{0}://{1}{2}", Context.Request.Scheme, Context.Request.Host, Url.Action());
+}
+
+<div class="box-body">
+    <table class="table table-hover table-striped dataTable" cellspacing="0">
+        <thead class="thead-light">
+            <tr>
+                <th scope="col">
+                    Title
+                </th>
+                <th scope="col">
+                    Excerpt
+                </th>
+                <th scope="col">
+                    Type
+                </th>
+                <th scope="col">
+                    CreatedBy
+                </th>
+                <th scope="col"></th>
+            </tr>
+        </thead>
+        <tfoot>
+            <tr>
+                <th scope="col">
+                    Title
+                </th>
+                <th scope="col">
+                    Excerpt
+                </th>
+                <th scope="col">
+                    Type
+                </th>
+                <th scope="col">
+                    CreatedBy
+                </th>
+                <th scope="col"></th>
+            </tr>
+        </tfoot>
+        <tbody>
+            @foreach (var item in Model.Items)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Title)
+                    </td>
+                    <td>
+                        @Html.Raw(item.Excerpt)
+                    </td>
+
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Type)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.CreatedBy)
+                    </td>
+
+                    <td>
+                        <div class="btn-group btn-group-sm" role="group" aria-label="Actions">
+                            <a asp-controller="Articles" asp-action="Edit" asp-route-id="@item.Id" asp-route-categoryId="@ViewBag.categoryId"
+                               class="btn btn-sm btn-warning d-inline-block "><span class="oi oi-pencil"></span></a>
+                            <a asp-area="" asp-controller="Home" asp-action="ArticleDetails" asp-route-SeoName="@item.SeoName"
+                               target="_blank" class="btn btn-sm btn-info"><span class="oi oi-eye"></span></a>
+                            <a  asp-area="Portal" asp-controller="Articles" asp-action="Recycle" asp-route-id="@item.Id" 
+                               class="btn btn-sm btn-danger d-inline-block" data-popout="true" data-toggle="confirmation" data-singleton="true"> <span class="oi oi-x"></span> </a>
+                            
+                        </div>
+                    </td>
+                </tr>
+            }
+        </tbody>
+
+        <tbody></tbody>
+    </table>
+    @await Html.PartialAsync("_Pagination", Model
+        , new ViewDataDictionary(this.Vi‌​ewData)
+        {
+{ "PageSize", Model.PageSize}, { "PageIndex", Model.PageIndex }, { "TotalPage", Model.TotalPage } })
+</div>
+<!-- /.box-body -->

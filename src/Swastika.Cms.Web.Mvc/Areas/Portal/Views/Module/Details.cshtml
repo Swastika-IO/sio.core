@@ -12,150 +12,182 @@
     toValue = toValue > Data.TotalItems ? Data.TotalItems : toValue;
 }
 
-<div class="box-body">
-    @if (Model.Data.TotalItems > 0)
-    {
-        <table class="table table-hover table-striped dataTable" cellspacing="0">
-            <thead class="thead-light">
-                <tr>
-                    @foreach (var col in Model.Columns.Where(c => c.IsDisplay))
+<section class="content container-fluid">
+    <form enctype="multipart/form-data" asp-action="@ViewContext.RouteData.Values["action"].ToString()">
+
+        <div class="row mb-1">
+            <div class="col-sm-3 text-center">
+                <button type="button" onclick="this.form.submit()" class="btn btn-primary btn-block">
+                    <span class="oi oi-cloud-upload"></span> SAVE
+                </button>
+            </div>
+        </div>
+        @if (Model.Data.TotalItems > 0)
+        {
+            <table class="table table-sm table-hover" cellspacing="0">
+                <thead class="thead-dark">
+                    <tr>
+                        <th scope="col">
+                            <span class="oi oi-move"></span>
+                        </th>
+                        <th scope="col">
+                            <span class="oi oi-sort-ascending"></span>
+                        </th>
+                        @foreach (var col in Model.Columns.Where(c => c.IsDisplay))
+                        {
+                            <th>
+                                @col.Name
+                            </th>
+                        }
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tfoot>
+                    <tr>
+                        <th scope="col">
+                            <span class="oi oi-move"></span>
+                        </th>
+                        <th scope="col">
+                            <span class="oi oi-sort-ascending"></span>
+                        </th>
+                        @foreach (var col in Model.Columns.Where(c => c.IsDisplay))
+                        {
+                            <th>
+                                @col.Name
+                            </th>
+                        }
+                        <th>Actions</th>
+                    </tr>
+                </tfoot>
+                <tbody class="sortable">
+                    @for (int i = 0; i < Data.Items.OrderBy(n => n.Priority).ToList().Count; i++)
                     {
-                    <th>
-                        @col.Name
-                    </th>
-                    }
-                    <th>Priority</th>
-                    <th></th>
-                </tr>
-            </thead>
-            <tfoot>
-                <tr>
-                    @foreach (var col in Model.Columns.Where(c => c.IsDisplay))
-    {
-                <th>
-                    @col.Name
-                </th>
-}
-                    <th>Priority</th>
-                    <th></th>
-                </tr>
-            </tfoot>
-            <tbody>
-                @foreach (var item in Data.Items)
-                {
-                <tr>
-                    @foreach (var col in Model.Columns.Where(c => c.IsDisplay))
-                    {
-                        var prop = item.GetDataProperty(col.Name);
-                        <td>
-                            @{Html.RenderPartial("_ViewByFieldType",
-                                    new ViewDataDictionary(this.Vi‌​ewData) { { "DataType", prop.DataType }, { "Value", prop.Value } });
+                        <tr class="sortable-item">
+                            <td style="cursor:move;">
+                                <span class="oi oi-move"></span>
+                            </td>
+                            <td>
+                                <input type="text" asp-for="@Data.Items[i].Priority" class="item-priority form-control form-control-sm d-inline" style="width:40px;" />
+                            </td>
+                            @foreach (var col in Model.Columns.Where(c => c.IsDisplay))
+                            {
+                                var prop = Data.Items[i].GetDataProperty(col.Name);
+                                <td>
+                                    @{Html.RenderPartial("_ViewByFieldType",
+                  new ViewDataDictionary(this.Vi‌​ewData) { { "DataType", prop.DataType }, { "Value", prop.Value } });
+                                    }
+                                </td>
                             }
-                        </td>
-                                    }
-                    <td>@item.Priority</td>
-                    <td>
-                        <a asp-action="EditModuleData" asp-route-id="@item.ModuleId" asp-route-dataId="@item.Id" class="btn btn-sm btn-warning"> <span class="oi oi-pencil"></span></a>
-                        <a asp-action="DeleteModuleData" asp-route-id="@item.Id" class="btn btn-sm btn-danger" data-popout="true" data-toggle="confirmation" data-singleton="true"> <span class="oi oi-x"></span> </a>
-                    </td>
-                </tr>
-                                    }
-            </tbody>
+                            <td>
+                                <div class="btn-group btn-group-sm" role="group" aria-label="Actions">
+                                    <a asp-action="EditModuleData" asp-route-id="@Data.Items[i].ModuleId" asp-route-dataId="@Data.Items[i].Id" class="btn btn-sm btn-warning"> <span class="oi oi-pencil"></span></a>
+                                    <a asp-action="DeleteModuleData" asp-route-id="@Data.Items[i].Id" class="btn btn-sm btn-danger" data-popout="true" data-toggle="confirmation" data-singleton="true"> <span class="oi oi-x"></span> </a>
+                                </div>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
 
-            <tbody></tbody>
-        </table>
-        @await Html.PartialAsync("_Pagination", Model
-                                        , new ViewDataDictionary(this.Vi‌​ewData)
-                                        {
-        { "PageSize", Model.Data.PageSize}, { "PageIndex", Model.Data.PageIndex }, { "TotalPage", Model.Data.TotalPage } })
-                                }
+                <tbody></tbody>
+            </table>
+            @await Html.PartialAsync("_Pagination", Model, new ViewDataDictionary(this.Vi‌​ewData){
+{ "PageSize", Model.Data.PageSize}, { "PageIndex", Model.Data.PageIndex }, { "TotalPage", Model.Data.TotalPage } })
+        }
 
-    @if (Model.Articles.TotalItems > 0)
-    {
+        @if (Model.Articles.TotalItems > 0)
+        {
 
-        <table class="table table-hover table-striped dataTable" cellspacing="0">
-            <thead class="thead-light">
-                <tr>
-                    <th>
-                        Priority
-                    </th>
-                    <th>
-                        Title
-                    </th>
-                    <th>
-                        Excerpt
-                    </th>
+            <table class="table table-sm table-hover" cellspacing="0">
+                <thead class="thead-dark">
+                    <tr>
+                        <th scope="col">
+                            <span class="oi oi-move"></span>
+                        </th>
+                        <th scope="col">
+                            <span class="oi oi-sort-ascending"></span>
+                        </th>
+                        <th>
+                            Title
+                        </th>
+                        <th>
+                            Excerpt
+                        </th>
 
-                    <th>
-                        Type
-                    </th>
-                    <th>
-                        CreatedBy
-                    </th>
-                    <th></th>
-                </tr>
-            </thead>
-            <tfoot>
-                <tr>
-                    <th>
-                        Priority
-                    </th>
-                    <th>
-                        Title
-                    </th>
-                    <th>
-                        Excerpt
-                    </th>
-                    
-                    <th>
-                        Type
-                    </th>
-                    <th>
-                        CreatedBy
-                    </th>
-                    <th></th>
-                </tr>
-            </tfoot>
-            <tbody>
-                @foreach (var item in Model.Articles.Items)
-                {
-                <tr>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.Priority)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.Title)
-                    </td>
-                    <td>
-                        @Html.Raw(item.Excerpt)
-                    </td>
+                        <th>
+                            Type
+                        </th>
+                        <th>
+                            CreatedBy
+                        </th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tfoot>
+                    <tr>
+                        <th scope="col">
+                            <span class="oi oi-move"></span>
+                        </th>
+                        <th scope="col">
+                            <span class="oi oi-sort-ascending"></span>
+                        </th>
+                        <th>
+                            Title
+                        </th>
+                        <th>
+                            Excerpt
+                        </th>
 
-                    <td>
-                        @Html.DisplayFor(modelItem => item.Type)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.CreatedBy)
-                    </td>
+                        <th>
+                            Type
+                        </th>
+                        <th>
+                            CreatedBy
+                        </th>
+                        <th></th>
+                    </tr>
+                </tfoot>
+                <tbody class="sortable">
+                    @for (int i = 0; i < Model.Articles.Items.OrderBy(n => n.Priority).ToList().Count; i++)
+                    {
+                        <tr class="sortable-item">
+                            <td style="cursor:move;">
+                                <span class="oi oi-move"></span>
+                            </td>
+                            <td>
+                                <input type="text" asp-for="@Model.Articles.Items[i].Priority" class="item-priority form-control form-control-sm d-inline" style="width:40px;" />
+                            </td>
+                            <td>
+                                @Model.Articles.Items[i].Title
+                            </td>
+                            <td>
+                                @Model.Articles.Items[i].Excerpt
+                            </td>
 
-                    <td>
-                        <div class="btn-group btn-group-sm" role="group" aria-label="Actions">
-                            <a href="/@ViewBag.culture/Portal/Articles/Edit/@item.Id"
-                               class="btn btn-sm btn-warning"><span class="oi oi-pencil"></span></a>
-                            @*<a asp-action="Details" asp-route-id="@item.Id" class="btn btn-sm btn-info"> <span class="oi oi-eye"></span> </a>*@
-                            <a href="/@ViewBag.culture/Portal/Articles/Recycle/@item.Id" class="btn btn-sm btn-danger" data-popout="true" data-toggle="confirmation" data-singleton="true"> <span class="oi oi-x"></span> </a>
-                        </div>
-                    </td>
-                </tr>
-                }
-            </tbody>
+                            <td>
+                                @Model.Articles.Items[i].Type
+                            </td>
+                            <td>
+                                @Model.Articles.Items[i].CreatedBy
+                            </td>
 
-            <tbody></tbody>
-        </table>
-        @await Html.PartialAsync("_Pagination", Model
-                                        , new ViewDataDictionary(this.Vi‌​ewData)
-                                        {
-        { "PageSize", Model.Articles.PageSize}, { "PageIndex", Model.Articles.PageIndex }, { "TotalPage", Model.Articles.TotalPage } })
-    }
+                            <td>
+                                <div class="btn-group btn-group-sm" role="group" aria-label="Actions">
+                                    <a href="/@ViewBag.culture/Portal/Articles/Edit/@Model.Articles.Items[i].Id"
+                                       class="btn btn-sm btn-warning"><span class="oi oi-pencil"></span></a>
+                                    @*<a asp-action="Details" asp-route-id="@item.Id" class="btn btn-sm btn-info"> <span class="oi oi-eye"></span> </a>*@
+                                    <a href="/@ViewBag.culture/Portal/Articles/Recycle/@Model.Articles.Items[i].Id" class="btn btn-sm btn-danger" data-popout="true" data-toggle="confirmation" data-singleton="true"> <span class="oi oi-x"></span> </a>
+                                </div>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
 
-</div>
+                <tbody></tbody>
+            </table>
+            @await Html.PartialAsync("_Pagination", Model, new ViewDataDictionary(this.Vi‌​ewData)
+               {
+{ "PageSize", Model.Articles.PageSize}, { "PageIndex", Model.Articles.PageIndex }, { "TotalPage", Model.Articles.TotalPage } })
+        }
+    </form>
+</section>
 <!-- /.mail-box-messages -->

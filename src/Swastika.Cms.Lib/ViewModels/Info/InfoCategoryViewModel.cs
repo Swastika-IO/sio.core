@@ -1,11 +1,11 @@
-﻿using Swastika.Cms.Lib.Models.Cms;
-using Swastika.Domain.Data.ViewModels;
+﻿using Microsoft.Data.OData.Query;
 using Microsoft.EntityFrameworkCore.Storage;
 using Newtonsoft.Json;
-using System.Linq;
-using Microsoft.Data.OData.Query;
+using Swastika.Cms.Lib.Models.Cms;
+using Swastika.Domain.Data.ViewModels;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace Swastika.Cms.Lib.ViewModels.Info
 {
@@ -15,34 +15,47 @@ namespace Swastika.Cms.Lib.ViewModels.Info
         #region Properties
 
         #region Models
+
         [JsonProperty("id")]
         public int Id { get; set; }
+
         [JsonProperty("name")]
         public string Name { get; set; }
+
         [JsonProperty("template")]
         public string Template { get; set; }
+
         [JsonProperty("title")]
         public string Title { get; set; }
+
         [JsonProperty("fields")]
         public string Fields { get; set; }
+
         [JsonProperty("type")]
         public SWCmsConstants.CateType Type { get; set; }
+
         [JsonProperty("icon")]
         public string Icon { get; set; }
+
         [JsonProperty("cssClass")]
         public string CssClass { get; set; }
+
         [JsonProperty("staticUrl")]
         public string StaticUrl { get; set; }
+
         [JsonProperty("excerpt")]
         public string Excerpt { get; set; }
+
         [JsonProperty("image")]
         public string Image { get; set; }
+
         //[JsonProperty("content")]
         //public string Content { get; set; }
         //[JsonProperty("views")]
         //public int? Views { get; set; }
         [JsonProperty("seoName")]
         public string SeoName { get; set; }
+
         //[JsonProperty("seoTitle")]
         //public string SeoTitle { get; set; }
         //[JsonProperty("seoDescription")]
@@ -51,22 +64,29 @@ namespace Swastika.Cms.Lib.ViewModels.Info
         //public string SeoKeywords { get; set; }
         [JsonProperty("level")]
         public int? Level { get; set; }
+
         [JsonProperty("createdDateTime")]
         public DateTime CreatedDateTime { get; set; }
+
         [JsonProperty("updatedDateTime")]
         public DateTime? UpdatedDateTime { get; set; }
+
         [JsonProperty("createdBy")]
         public string CreatedBy { get; set; }
+
         [JsonProperty("updatedBy")]
         public string UpdatedBy { get; set; }
+
         [JsonProperty("isVisible")]
         public bool? IsVisible { get; set; }
+
         [JsonProperty("isDeleted")]
         public bool IsDeleted { get; set; }
+
         [JsonProperty("tags")]
         public string Tags { get; set; }
 
-        #endregion
+        #endregion Models
 
         #region Views
 
@@ -76,9 +96,10 @@ namespace Swastika.Cms.Lib.ViewModels.Info
         public bool IsActived { get; set; }
         public string DetailsUrl { get; set; }
         public string Domain { get; set; }
-        #endregion
 
-        #endregion
+        #endregion Views
+
+        #endregion Properties
 
         #region Contructors
 
@@ -90,7 +111,7 @@ namespace Swastika.Cms.Lib.ViewModels.Info
         {
         }
 
-        #endregion
+        #endregion Contructors
 
         #region Overrides
 
@@ -111,10 +132,8 @@ namespace Swastika.Cms.Lib.ViewModels.Info
             {
                 TotalArticle = getSubArticles.Data.TotalItems;
             }
-
         }
 
-        #endregion
+        #endregion Overrides
     }
-
 }

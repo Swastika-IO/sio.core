@@ -1,0 +1,102 @@
+﻿@using Swastika.Domain.Core.ViewModels;
+@using Swastika.Domain.Core.Models
+@using Swastika.Domain.Core.ViewModels;
+@model PaginationModel<Swastika.Cms.Lib.ViewModels.Info.InfoCategoryViewModel>
+@{
+    ViewData["Title"] = "Pages";
+    ViewData["Description"] = "Manage site navigations and menus";
+    //Layout = "~/Areas/Portal/Views/Shared/_Layout.cshtml";
+    int fromValue = Model.PageIndex * @Model.PageSize + 1;
+    int toValue = fromValue + Model.PageSize;
+    int prevPage = Model.PageIndex > 0 ? Model.PageIndex - 1 : 0;
+    int nextPage = Model.PageIndex == Model.TotalPage - 1 ? Model.PageIndex : Model.PageIndex + 1;
+    toValue = toValue > Model.TotalItems ? Model.TotalItems : toValue;
+}
+<!-- Main content -->
+<div class="box-body">
+
+    <table class="table table-hover table-striped dataTable" cellspacing="0">
+        <thead class="thead-light">
+            <tr>
+                <th scope="col">
+                    Priority
+                </th>
+                <th scope="col">
+                    Id
+                </th>
+                <th scope="col">
+                    Title
+                </th>
+                <th scope="col">
+                    Description
+                </th>
+                <th scope="col">
+                    Type
+                </th>
+                <th scope="col">
+                    Created By
+                </th>
+                <th scope="col">Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model.Items)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Priority)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Id)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Title)
+                    </td>
+                    <td>
+                        @Html.Raw(item.Excerpt)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Type)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.CreatedBy)
+                    </td>
+
+                    <td>
+                        <div class="btn-group btn-group-sm" role="group" aria-label="Actions">
+                            <a asp-action="Edit" asp-route-id="@item.Id" class="btn btn-warning"> <span class="oi oi-pencil"></span></a>
+                            <a asp-area="" asp-controller="Home" asp-route-pageName="@item.SeoName" target="_blank" class="btn btn-info"><span class="oi oi-eye"></span></a>
+                            <a asp-action="Delete" asp-route-id="@item.Id" class="btn btn-danger" data-popout="true" data-toggle="confirmation" data-singleton="true"> <span class="oi oi-x"></span> </a>
+                        </div>
+                    </td>
+                </tr>
+            }
+        </tbody>
+
+        <tfoot>
+            <tr>
+                <th scope="col">
+                    Priority
+                </th>
+                <th scope="col">
+                    Id
+                </th>
+                <th scope="col">
+                    Title
+                </th>
+                <th scope="col">
+                    Description
+                </th>
+                <th scope="col">
+                    Type
+                </th>
+                <th scope="col">
+                    Created By
+                </th>
+
+                <th scope="col">Actions</th>
+            </tr>
+        </tfoot>
+    </table>
+    @await Html.PartialAsync("_Pagination", Model, new ViewDataDictionary(this.Vi‌​ewData) { { "PageSize", Model.PageSize }, { "PageIndex", Model.PageIndex }, { "TotalPage", Model.TotalPage } })
+</div>

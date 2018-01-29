@@ -73,47 +73,47 @@
                 <div class="tab-content" id="pills-tabContent">
                     <div class="tab-pane fade active show" id="pills-general" role="tabpanel" aria-labelledby="pills-general-tab">
 
-                            <div class="form-group">
-                                        <label asp-for="StaticUrl" class="control-label">Static URL</label>
-                                        <input asp-for="StaticUrl" class="form-control" />
-                                        <span asp-validation-for="StaticUrl" class="text-danger"></span>
-                            </div>
-                            <div class="form-group">
-                                        <label asp-for="CssClass" class="control-label">CSS class names</label>
-                                        <input asp-for="CssClass" class="form-control" />
-                                        <span asp-validation-for="CssClass" class="text-danger"></span>
-                            </div>
-                            <div class="form-group">
-                                <label asp-for="Priority" class="control-label"></label>
-                                        <input asp-for="Priority" class="form-control" />
-                                        <span asp-validation-for="Priority" class="text-danger"></span>
-                            </div>
-                            <div class="form-group">
-                                    <label asp-for="Tags" class="control-label"></label>
-                                    <input asp-for="Tags" class="form-control tags" data-role="tagsinput" />
-                                    <span asp-validation-for="Tags" class="text-danger"></span>
-                            </div>
+                        <div class="form-group">
+                            <label asp-for="StaticUrl" class="control-label">Static URL</label>
+                            <input asp-for="StaticUrl" class="form-control" />
+                            <span asp-validation-for="StaticUrl" class="text-danger"></span>
+                        </div>
+                        <div class="form-group">
+                            <label asp-for="CssClass" class="control-label">CSS class names</label>
+                            <input asp-for="CssClass" class="form-control" />
+                            <span asp-validation-for="CssClass" class="text-danger"></span>
+                        </div>
+                        <div class="form-group">
+                            <label asp-for="Priority" class="control-label"></label>
+                            <input asp-for="Priority" class="form-control" />
+                            <span asp-validation-for="Priority" class="text-danger"></span>
+                        </div>
+                        <div class="form-group">
+                            <label asp-for="Tags" class="control-label"></label>
+                            <input asp-for="Tags" class="form-control tags" data-role="tagsinput" />
+                            <span asp-validation-for="Tags" class="text-danger"></span>
+                        </div>
                     </div>
                     <div class="tab-pane fade" id="pills-seo" role="tabpanel" aria-labelledby="pills-seo-tab">
                         <div class="form-group">
-                                <label asp-for="SeoName" class="control-label">SEO Name</label>
-                                <input asp-for="SeoName" class="form-control" />
-                                <span asp-validation-for="SeoName" class="text-danger"></span>
+                            <label asp-for="SeoName" class="control-label">SEO Name</label>
+                            <input asp-for="SeoName" class="form-control" />
+                            <span asp-validation-for="SeoName" class="text-danger"></span>
                         </div>
                         <div class="form-group">
-                                <label asp-for="SeoTitle" class="control-label">SEO Title</label>
-                                <input asp-for="SeoTitle" class="form-control" />
-                                <span asp-validation-for="SeoTitle" class="text-danger"></span>
+                            <label asp-for="SeoTitle" class="control-label">SEO Title</label>
+                            <input asp-for="SeoTitle" class="form-control" />
+                            <span asp-validation-for="SeoTitle" class="text-danger"></span>
                         </div>
                         <div class="form-group">
-                                <label asp-for="SeoDescription" class="control-label">SEO Description</label>
-                                <input asp-for="SeoDescription" class="form-control" />
-                                <span asp-validation-for="SeoDescription" class="text-danger"></span>
+                            <label asp-for="SeoDescription" class="control-label">SEO Description</label>
+                            <input asp-for="SeoDescription" class="form-control" />
+                            <span asp-validation-for="SeoDescription" class="text-danger"></span>
                         </div>
                         <div class="form-group">
-                                <label asp-for="SeoKeywords" class="control-label">SEO keywords</label>
-                                <input asp-for="SeoKeywords" class="form-control" />
-                                <span asp-validation-for="SeoKeywords" class="text-danger"></span>
+                            <label asp-for="SeoKeywords" class="control-label">SEO keywords</label>
+                            <input asp-for="SeoKeywords" class="form-control" />
+                            <span asp-validation-for="SeoKeywords" class="text-danger"></span>
                         </div>
                     </div>
                     <div class="tab-pane fade" id="pills-navigations" role="tabpanel" aria-labelledby="pills-navigations-tab">
@@ -123,25 +123,23 @@
                             <div class="form-check col-md-10">
                                 <ul class="nav">
                                     @for (int i = 0; i < Model.ParentNavs.Count; i++)
-                {
-                    <li class="col-sm-4">
+                                    {
+                                        <li class="col-sm-4">
 
-                        <div asp-for="@Model.ParentNavs[i].IsActived" style="margin-left: 10px;" class="custom-control custom-checkbox">
+                                            <div asp-for="@Model.ParentNavs[i].IsActived" style="margin-left: 10px;" class="custom-control custom-checkbox">
 
-                            <input type="checkbox" asp-for="@Model.ParentNavs[i].IsActived" class="custom-control-input" id="checkboxParentNavs_@Model.ParentNavs[i].Id" />
+                                                <input type="checkbox" asp-for="@Model.ParentNavs[i].IsActived" class="custom-control-input" id="checkboxParentNavs_@Model.ParentNavs[i].Id" />
 
-                            <input type="hidden" asp-for="@Model.ParentNavs[i].Specificulture" />
-                            <input type="hidden" asp-for="@Model.ParentNavs[i].Id" />
-                            <input type="hidden" asp-for="@Model.ParentNavs[i].ParentId" />
-                            <input type="hidden" asp-for="@Model.ParentNavs[i].Priority" />
-                            <label class="custom-control-label" for="checkboxParentNavs_@Model.ParentNavs[i].Id">
-                                @Model.ParentNavs[i].Description
-                            </label>
-                        </div>
-
-                    </li>
-}
-
+                                                <input type="hidden" asp-for="@Model.ParentNavs[i].Specificulture" />
+                                                <input type="hidden" asp-for="@Model.ParentNavs[i].Id" />
+                                                <input type="hidden" asp-for="@Model.ParentNavs[i].ParentId" />
+                                                <input type="hidden" asp-for="@Model.ParentNavs[i].Priority" />
+                                                <label class="custom-control-label" for="checkboxParentNavs_@Model.ParentNavs[i].Id">
+                                                    @Model.ParentNavs[i].Description
+                                                </label>
+                                            </div>
+                                        </li>
+                                    }
                                 </ul>
                             </div>
                         </div>
@@ -151,24 +149,22 @@
                             <div class="form-check col-md-10">
                                 <ul class="nav">
                                     @for (int i = 0; i < Model.ChildNavs.Count; i++)
-                {
-                    <li class="col-sm-4">
-                        <div asp-for="@Model.ChildNavs[i].IsActived" style="margin-left: 10px;" class="custom-control custom-checkbox">
+                                    {
+                                        <li class="col-sm-4">
+                                            <div asp-for="@Model.ChildNavs[i].IsActived" style="margin-left: 10px;" class="custom-control custom-checkbox">
 
-                            <input type="checkbox" asp-for="@Model.ChildNavs[i].IsActived" class="custom-control-input" id="checkboxChildNavs_@Model.ChildNavs[i].Id" />
+                                                <input type="checkbox" asp-for="@Model.ChildNavs[i].IsActived" class="custom-control-input" id="checkboxChildNavs_@Model.ChildNavs[i].Id" />
 
-                            <input type="hidden" asp-for="@Model.ChildNavs[i].Specificulture" />
-                            <input type="hidden" asp-for="@Model.ChildNavs[i].Id" />
-                            <input type="hidden" asp-for="@Model.ChildNavs[i].Priority" />
-                            <input type="hidden" asp-for="@Model.ChildNavs[i].ParentId" />
-                            <label class="custom-control-label" for="checkboxChildNavs_@Model.ChildNavs[i].Id">
-                                @Model.ChildNavs[i].Description
-                            </label>
-                        </div>
-
-                    </li>
-}
-
+                                                <input type="hidden" asp-for="@Model.ChildNavs[i].Specificulture" />
+                                                <input type="hidden" asp-for="@Model.ChildNavs[i].Id" />
+                                                <input type="hidden" asp-for="@Model.ChildNavs[i].Priority" />
+                                                <input type="hidden" asp-for="@Model.ChildNavs[i].ParentId" />
+                                                <label class="custom-control-label" for="checkboxChildNavs_@Model.ChildNavs[i].Id">
+                                                    @Model.ChildNavs[i].Description
+                                                </label>
+                                            </div>
+                                        </li>
+                                    }
                                 </ul>
                             </div>
                         </div>
@@ -178,22 +174,21 @@
                             <div class="form-check col-md-10">
                                 <ul class="nav">
                                     @for (int i = 0; i < Model.PositionNavs.Count; i++)
-                {
-                    <li class="col-sm-4">
-                        <div asp-for="@Model.PositionNavs[i].IsActived" style="margin-left: 10px;" class="custom-control custom-checkbox">
-                            <input type="checkbox" asp-for="@Model.PositionNavs[i].IsActived" class="custom-control-input" id="checkboxPositionNavs_@Model.PositionNavs[i].PositionId" />
-                            <input type="hidden" asp-for="@Model.PositionNavs[i].Specificulture" />
-                            <input type="hidden" asp-for="@Model.PositionNavs[i].CategoryId" />
-                            <input type="hidden" asp-for="@Model.PositionNavs[i].Priority" />
-                            <input type="hidden" asp-for="@Model.PositionNavs[i].PositionId" />
-                            <input type="hidden" asp-for="@Model.PositionNavs[i].Description" />
-                            <label class="custom-control-label" for="checkboxPositionNavs_@Model.PositionNavs[i].PositionId">
-                                @Model.PositionNavs[i].Description
-                            </label>
-                        </div>
-                    </li>
-}
-
+                                    {
+                                        <li class="col-sm-4">
+                                            <div asp-for="@Model.PositionNavs[i].IsActived" style="margin-left: 10px;" class="custom-control custom-checkbox">
+                                                <input type="checkbox" asp-for="@Model.PositionNavs[i].IsActived" class="custom-control-input" id="checkboxPositionNavs_@Model.PositionNavs[i].PositionId" />
+                                                <input type="hidden" asp-for="@Model.PositionNavs[i].Specificulture" />
+                                                <input type="hidden" asp-for="@Model.PositionNavs[i].CategoryId" />
+                                                <input type="hidden" asp-for="@Model.PositionNavs[i].Priority" />
+                                                <input type="hidden" asp-for="@Model.PositionNavs[i].PositionId" />
+                                                <input type="hidden" asp-for="@Model.PositionNavs[i].Description" />
+                                                <label class="custom-control-label" for="checkboxPositionNavs_@Model.PositionNavs[i].PositionId">
+                                                    @Model.PositionNavs[i].Description
+                                                </label>
+                                            </div>
+                                        </li>
+                                    }
                                 </ul>
                             </div>
                         </div>
@@ -207,71 +202,64 @@
                             <div class="form-check col-md-12">
                                 <ul class="nav sortable">
                                     @for (int i = 0; i < Model.ModuleNavs.OrderBy(n => n.Priority).ToList().Count; i++)
-                {
-                    <li id="module_@Model.ModuleNavs[i].ModuleId" module-priority="@Model.ModuleNavs[i].Priority" class="col-sm-12 " style="">
-                        <div class="row">
-                            <div class="col-1" style="cursor:move;"><span class="oi oi-move"></span></div>
-                            <div class="col-1">
-                                <input type="text" asp-for="@Model.ModuleNavs[i].Priority" class="mod-priority form-control form-control-sm d-inline" style="width:40px;" />
-                            </div>
-                            <div class="col-8">
+                                    {
+                                        <li id="module_@Model.ModuleNavs[i].ModuleId" class="col-sm-12 sortable-item">
+                                            <div class="row">
+                                                <div class="col-1" style="cursor:move;"><span class="oi oi-move"></span></div>
+                                                <div class="col-1">
+                                                    <input type="text" asp-for="@Model.ModuleNavs[i].Priority" class="item-priority form-control form-control-sm d-inline" style="width:40px;"/>
+                                                </div>
+                                                <div class="col-8">
 
-                                <span asp-for="@Model.ModuleNavs[i].IsActived" style="margin-left: 10px;" class="switch switch-sm">
-                                    <input type="checkbox" asp-for="@Model.ModuleNavs[i].IsActived" class="switch" id="checkboxModuleNavs_@Model.ModuleNavs[i].ModuleId" />
-                                    <label for="checkboxModuleNavs_@Model.ModuleNavs[i].ModuleId">
-                                        @Model.ModuleNavs[i].Description
-                                    </label>
-                                </span>
-                            </div>
+                                                    <span asp-for="@Model.ModuleNavs[i].IsActived" style="margin-left: 10px;" class="switch switch-sm">
+                                                        <input type="checkbox" asp-for="@Model.ModuleNavs[i].IsActived" class="switch" id="checkboxModuleNavs_@Model.ModuleNavs[i].ModuleId" />
+                                                        <label for="checkboxModuleNavs_@Model.ModuleNavs[i].ModuleId">
+                                                            @Model.ModuleNavs[i].Description
+                                                        </label>
+                                                    </span>
+                                                </div>
 
-                            <div class="col-2">
-                                <div class="btn-group btn-group-sm" role="group" aria-label="Basic example">
-                                    <a asp-area="Portal" asp-controller="Module" asp-action="AddModuleData" asp-route-id="@Model.ModuleNavs[i].ModuleId" class="btn btn-light btn-sm text-secondary" target="_blank">
-                                        <span class="oi oi-plus"></span>
-                                    </a>
-                                    <a asp-area="Portal" asp-controller="Module" asp-action="Details" asp-route-id="@Model.ModuleNavs[i].ModuleId" class="btn btn-light btn-sm text-secondary" target="_blank">
-                                        <span class="oi oi-list"></span>
-                                    </a>
-                                    <a asp-area="Portal" asp-controller="Module" asp-action="Edit" asp-route-id="@Model.ModuleNavs[i].ModuleId" class="btn btn-light btn-sm text-secondary" target="_blank">
-                                        <span class="oi oi-pencil"></span>
-                                    </a>
-                                </div>
-                                @*<a asp-area="Portal" asp-controller="Module" asp-action="Details" asp-route-id="@Model.ModuleNavs[i].ModuleId" class="btn btn-light btn-sm" target="_blank">
-                                    <span class="oi oi-eye"></span>
-                                </a>*@
-                            </div>
-                        </div>
+                                                <div class="col-2">
+                                                    <div class="btn-group btn-group-sm" role="group" aria-label="Basic example">
+                                                        <a asp-area="Portal" asp-controller="Module" asp-action="AddModuleData" asp-route-id="@Model.ModuleNavs[i].ModuleId" class="btn btn-light btn-sm text-secondary" target="_blank">
+                                                            <span class="oi oi-plus"></span>
+                                                        </a>
+                                                        <a asp-area="Portal" asp-controller="Module" asp-action="Details" asp-route-id="@Model.ModuleNavs[i].ModuleId" class="btn btn-light btn-sm text-secondary" target="_blank">
+                                                            <span class="oi oi-list"></span>
+                                                        </a>
+                                                        <a asp-area="Portal" asp-controller="Module" asp-action="Edit" asp-route-id="@Model.ModuleNavs[i].ModuleId" class="btn btn-light btn-sm text-secondary" target="_blank">
+                                                            <span class="oi oi-pencil"></span>
+                                                        </a>
+                                                    </div>
+                                                </div>
+                                            </div>
 
-                        <input type="hidden" asp-for="@Model.ModuleNavs[i].Specificulture" />
-                        <input type="hidden" asp-for="@Model.ModuleNavs[i].CategoryId" />
-                        <input type="hidden" asp-for="@Model.ModuleNavs[i].ModuleId" />
-                    </li>
-}
-
+                                            <input type="hidden" asp-for="@Model.ModuleNavs[i].Specificulture" />
+                                            <input type="hidden" asp-for="@Model.ModuleNavs[i].CategoryId" />
+                                            <input type="hidden" asp-for="@Model.ModuleNavs[i].ModuleId" />
+                                        </li>
+                                    }
                                 </ul>
                             </div>
                         </div>
-
-
                     </div>
                     <div class="tab-pane fade" id="pills-layout" role="tabpanel" aria-labelledby="pills-layout-tab">
 
                         @Html.Partial("_Editor_Code", Model.View,
-                            new ViewDataDictionary(this.ViewData)
-                            {
-                                {
-                                    "Files", Model.Templates
-                                },
-                                {
-                                    "Name", "View"
-                                }
+                                 new ViewDataDictionary(this.ViewData)
+                                 {
+                                            {
+                                                "Files", Model.Templates
+                                            },
+                                            {
+                                                "Name", "View"
+                                            }
 
-                            })
-                        @* <input asp-for="View.Filename" class="form-control"/>
+                                 })
+                        @* <input asp-for="View.Filename" class="form-control" />
 
                             <div class="form-control" id="code-editor" asp-for="View.Content"></div>*@
                         <span asp-validation-for="Template" class="text-danger"></span>
-
                     </div>
                 </div>
             </div>

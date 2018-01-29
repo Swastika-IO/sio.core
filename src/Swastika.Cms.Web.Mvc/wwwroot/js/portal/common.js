@@ -31,11 +31,11 @@
                         "pageLength": 5,
                         "lengthChange": false,
                         "select": true,
-                        "searching": true,
+                        "searching": false,
                         "ordering": true,
                         "info": false,
-                        "autoWidth": true,
-                        "rowReorder": true
+                        "autoWidth": true//,
+                        //"rowReorder": true
                     });
                 },
                 error: function (err) {
@@ -130,12 +130,12 @@
             $('.dataTable').DataTable({
                 "paging": false,
                 "lengthChange": false,
-                "select": true,
-                "searching": true,
+                //"select": true,
+                "searching": false,
                 "ordering": true,
                 "info": false,
-                "autoWidth": true,
-                "rowReorder": true
+                "autoWidth": true//,
+                //"rowReorder": true
             });
             //$('.dataTable tr').on('click', function () {
             //    $(this).toggleClass('selected');
