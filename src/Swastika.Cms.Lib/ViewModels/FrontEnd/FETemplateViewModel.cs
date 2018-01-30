@@ -270,30 +270,29 @@ namespace Swastika.Cms.Lib.ViewModels.FrontEnd
         public string DataType { get; set; }
         public string DataValue { get; set; }
         public List<MobileComponent> DataSource { get; set; }
-        
+
         public MobileComponent(XElement element)
         {
             if (element != null)
             {
 
-                
+
                 StyleName = element.Attribute("class")?.Value;
-                
+
                 DataSource = new List<MobileComponent>();
                 var subElements = element.Elements();
-                if (subElements.Count()>0)
+                if (subElements.Count() > 0)
                 {
-                    switch (element.Name.LocalName)
+                    if (element.Attribute("data") != null)
                     {
-                        case "loop":
-                            ComponentType = "View";
-                            DataValue = element.Attribute("data")?.Value.Replace("Model.", "@Model.").Replace("{{", "").Replace("}}", "");
-                            DataType = "object_array";
-                            break;                        
-                        default:
-                            ComponentType = "View";
-                            DataType = "component";
-                            break;
+                        ComponentType = "View";
+                        DataValue = element.Attribute("data")?.Value.Replace("Model.", "@Model.").Replace("{{", "").Replace("}}", "");
+                        DataType = "object_array";
+                    }
+                    else
+                    {
+                        ComponentType = "View";
+                        DataType = "component";
                     }
                     foreach (var subElement in subElements)
                     {
@@ -303,7 +302,7 @@ namespace Swastika.Cms.Lib.ViewModels.FrontEnd
                 else
                 {
                     switch (element.Name.LocalName)
-                    {                        
+                    {
                         case "img":
                             ComponentType = "Image";
                             DataType = "image_url";
@@ -315,7 +314,7 @@ namespace Swastika.Cms.Lib.ViewModels.FrontEnd
                             DataValue = element.Value.Trim().Replace("Model.", "@Model.").Replace("{{", "").Replace("}}", "");
                             break;
                     }
-                    
+
                 }
 
             }
