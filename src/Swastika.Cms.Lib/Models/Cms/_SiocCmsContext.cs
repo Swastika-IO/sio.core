@@ -102,7 +102,7 @@ namespace Swastika.Cms.Lib.Models.Cms
                 entity.Property(e => e.Thumbnail).HasMaxLength(250);
 
                 entity.Property(e => e.Title).HasMaxLength(4000);
-
+                entity.Property(e => e.Priority).HasDefaultValueSql("((0))");
                 entity.HasOne(d => d.SpecificultureNavigation)
                     .WithMany(p => p.SiocArticle)
                     .HasPrincipalKey(p => p.Specificulture)

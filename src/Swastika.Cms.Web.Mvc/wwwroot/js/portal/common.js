@@ -76,12 +76,10 @@
                     console.log(obj);
                 };
                 reader.onerror = function (error) {
-
                 };
             }
         },
         init: async function () {
-
             $("#modal-files").on('show.bs.modal', function () {
                 var container = $("#modal-files").find('table');
                 SW.Common.loadFiles(container);
@@ -90,13 +88,10 @@
             $('.custom-file .custom-file-input').change(function () {
                 var file = this.files[0];
                 if (file !== undefined && file !== null) {
-
                     var container = $(this).parent('.custom-file');
                     //SW.Common.getBase64(file, $('.custom-file')).then(result => console.log(result));
                     //await SW.Common.getBase64(file).then(result => console.log(result));
                     var fileName = SW.Common.uploadImage(file, container);
-
-
                 }
             });
 
@@ -106,13 +101,12 @@
             //        //$('.tags').val($('.tags').tokenfield('getTokensList'));
             //    })
 
-            //    .on('tokenfield:edittoken', function (e) {                    
+            //    .on('tokenfield:edittoken', function (e) {
             //    })
 
             //    .on('tokenfield:removedtoken', function (e) {
             //        //$('.tags').val($('.tags').tokenfield('getTokensList'));
             //    }).tokenfield();
-
 
             //Enable iCheck plugin for checkboxes
             //iCheck for checkbox and radio inputs
@@ -125,7 +119,6 @@
             });
 
             //$(".select2").select2();
-
 
             $('.dataTable').DataTable({
                 "paging": false,
@@ -181,7 +174,6 @@
                 });
             }
             $('#sel-template').on('change', function () {
-
                 SW.Common.templateEditor.setValue($(this).val());
                 $('.sel-filename').val(($(this).find('option:selected').text()))
             })
@@ -198,20 +190,20 @@
         },
         //folder : 'Modules/Banners'
         uploadImage: function (file, container) {
-            // Create FormData object  
+            // Create FormData object
             var files = new FormData();
             var folder = container.find('.folder-val').val();
-            // Looping over all files and add it to FormData object  
+            // Looping over all files and add it to FormData object
             files.append(file.name, file);
 
-            // Adding one more key to FormData object  
+            // Adding one more key to FormData object
             files.append('fileFolder', folder);
 
             $.ajax({
                 url: '/api/tts/UploadImage',
                 type: "POST",
-                contentType: false, // Not to set any content header  
-                processData: false, // Not to process data  
+                contentType: false, // Not to set any content header
+                processData: false, // Not to process data
                 data: files,
                 success: function (result) {
                     container.find('.custom-file-val').val(result);
@@ -234,7 +226,7 @@
             $.ajax({
                 url: url,
                 type: 'POST',
-                processData: true, // Not to process data  
+                processData: true, // Not to process data
                 data: form.serialize(),
                 success: function (data) {
                     console.log('Submission was successful.');
@@ -247,7 +239,6 @@
             });
         },
         getApiResult: async function (req) {
-
             //req.Authorization = authService.authentication.token;
             var headers = {
                 'Content-Type': 'application/json'
@@ -256,7 +247,7 @@
             req.headers = headers;
             return $.ajax(req).done(function (results) {
                 if (results.data.responseKey === 'NotAuthorized') {
-                    //Try again with new token from previous Request (optional)                
+                    //Try again with new token from previous Request (optional)
                     setTimeout(function () {
                         headers = {
                             'Content-Type': 'application/json',
@@ -292,7 +283,6 @@
                 });
         },
         getPagingTable: function (obj, title, headers) {
-
             /// Example: var table = SW.Common.getPagingTable(obj, 'Header Title', ['Col 1', null, 'Col 2', 'Col 3', null, 'Col 4']);
 
             var items = obj['items'];
@@ -329,13 +319,11 @@
             });
             table.appendChild(thead);
 
-
             if (items.length > 0) {
                 var paging = document.createElement("paging");
                 paging.className = 'pagination';
 
                 items.forEach(function (item) {
-
                     var trContent = document.createElement('tr');
                     var i = 0;
                     headers.forEach(function (header) {
@@ -368,7 +356,6 @@
         },
         getBase64: async function (file, container) {
             if (file !== null) {
-
                 var reader = new FileReader();
                 reader.readAsDataURL(file);
                 reader.onload = function () {
@@ -477,7 +464,6 @@
             if (currentUser) {
                 return $.parseJSON(currentUser);
             }
-
         },
 
         toErrorsArray: function (data) {

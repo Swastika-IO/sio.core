@@ -53,6 +53,10 @@ namespace Swastika.Cms.Lib.Migrations
                     b.Property<string>("ModifiedBy")
                         .HasMaxLength(250);
 
+                    b.Property<int>("Priority")
+                        .ValueGeneratedOnAdd()
+                        .HasDefaultValueSql("((0))");
+
                     b.Property<string>("SeoDescription")
                         .HasMaxLength(4000);
 
@@ -206,7 +210,7 @@ namespace Swastika.Cms.Lib.Migrations
                     b.Property<string>("Specificulture")
                         .HasMaxLength(10);
 
-                    b.Property<int>("Priority")
+                    b.Property<int?>("Priority")
                         .ValueGeneratedOnAdd()
                         .HasDefaultValueSql("((0))");
 

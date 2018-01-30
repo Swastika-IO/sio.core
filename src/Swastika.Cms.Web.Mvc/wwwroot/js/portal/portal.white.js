@@ -9,13 +9,38 @@ $(document).ready(function () {
             //create the array that hold the positions...
             var order = [];
             //loop trought each li...
-            $('.sortable .sortable-item').each(function (e) {
+            $('.sortable .sortable-item').each(function (i, e) {
                 //add each li position to the array...
                 // the +1 is for make it start from 1 instead of 0
                 //order.push($(this).attr('id') + '=' + ($(this).index() + 1));
-                $(this).find('.item-priority').val($(this).index() + 1);
+                $(e).find('.item-priority').val($(e).index() + 1);
                 //alert($(this).attr('module-priority'));
+
+                var model = $(e).attr('sort-model');
+                var modelId = $(e).attr('sort-model-id');
+                if (model !== undefined && modelId !== undefined) {
+                    var data = [{
+                        "propertyName": "Priority",
+                        "propertyValue": $(e).index() + 1
+                    }];
+                    var settings = {
+                        "async": true,
+                        "crossDomain": true,
+                        "url": "/api/vi-vn/" + model + "/save/" + modelId,
+                        "method": "POST",
+                        "headers": {
+                            "Content-Type": "application/json"
+                        },
+                        "processData": false,
+                        "data": JSON.stringify(data)
+                    }
+
+                    $.ajax(settings).done(function (response) {
+                        console.log(response);
+                    });
+                }
             });
+
             // join the array as single variable...
             var positions = order.join(';')
             //use the variable as you need!

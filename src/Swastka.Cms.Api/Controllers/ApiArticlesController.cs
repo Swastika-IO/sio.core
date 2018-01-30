@@ -19,7 +19,7 @@ namespace Swastka.Cms.Api.Controllers
     //[Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme
     //    //, Policy = "AddEditUser"
     //    )]
-    [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
+    //[Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
     [Route("api/{culture}/article")]
     public class ApiArticleController :
         BaseApiController<SiocCmsContext, SiocArticle>

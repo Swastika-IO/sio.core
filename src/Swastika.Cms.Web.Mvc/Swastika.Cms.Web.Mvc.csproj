@@ -90,6 +90,11 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Content Remove="Areas\Portal\Views\Articles\IndexOld.cshtml" />
+    <Content Remove="Areas\Portal\Views\Module\DetailsOld.cshtml" />
+    <Content Remove="Areas\Portal\Views\Module\IndexOld.cshtml" />
+    <Content Remove="Areas\Portal\Views\Pages\IndexOld.cshtml" />
+    <Content Remove="Areas\Portal\Views\Shared\_Del_Editor.cshtml" />
     <Content Remove="tsconfig.json" />
     <Content Remove="Views\Home\About.cshtml" />
     <Content Remove="Views\Home\Article.cshtml" />
@@ -197,7 +202,6 @@
     <None Include="Areas\Portal\Views\Pages\Contents.cshtml" />
     <None Include="Areas\Portal\Views\Pages\Create.cshtml" />
     <None Include="Areas\Portal\Views\Pages\Edit.cshtml" />
-    <None Include="Areas\Portal\Views\Pages\IndexOld.cshtml" />
     <None Include="Areas\Portal\Views\Pages\_Editable.cshtml" />
     <None Include="Areas\Portal\Views\Pages\_EditableSide.cshtml" />
     <None Include="Areas\Portal\Views\Portal\About.cshtml" />
@@ -226,7 +230,6 @@
     <None Include="Areas\Portal\Views\Shared\EditableSides\_EditableSide_Actions.cshtml" />
     <None Include="Areas\Portal\Views\Shared\EditableSides\_EditableSide_Cultures.cshtml" />
     <None Include="Areas\Portal\Views\Shared\Error.cshtml" />
-    <None Include="Areas\Portal\Views\Shared\_Editor.cshtml" />
     <None Include="Areas\Portal\Views\Shared\_Editor_Code.cshtml" />
     <None Include="Areas\Portal\Views\Shared\_Editor_ModuleData.cshtml" />
     <None Include="Areas\Portal\Views\Shared\_Layout.cshtml" />

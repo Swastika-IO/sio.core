@@ -14,7 +14,7 @@ namespace Swastika.Cms.Lib
             public const string TemplatesAssetFolder = @"Templates";
             public const string TemplateExtension = @".cshtml";
             public const string WebRootPath = @"wwwroot";
-            public const string UploadFolder = @"Uploads";
+            public const string UploadFolder = @"Content/Uploads";
         }
         public class Default
         {

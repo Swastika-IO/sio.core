@@ -72,7 +72,7 @@
             <tbody class="sortable">
                 @for (int i = 0; i < Model.Items.OrderBy(n => n.Priority).ToList().Count; i++)
                 {
-                    <tr class="sortable-item">
+                    <tr class="sortable-item" sort-model="article" sort-model-id="@Model.Items[i].Id">
                         <td style="cursor:move;">
                             <span class="oi oi-move"></span>
                         </td>
