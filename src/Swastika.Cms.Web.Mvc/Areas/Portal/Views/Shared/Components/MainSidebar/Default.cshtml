@@ -31,15 +31,14 @@
                 <title>Menu</title>
                 <path stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-miterlimit="10" d="M4 7h22M4 15h22M4 23h22" />
             </svg>
-
         </button>
     </form>
-
 
     <ul class="sw-links" id="sw-docs-nav" data-children=".sw-toc-item">
         <li class="sw-toc-item">
             <a class="sw-toc-link" data-target="#">
-                <span class="oi oi-dashboard"></span>
+                @*<span class="oi oi-dashboard"></span>*@
+                <i class="mi mi-SpeedHigh"></i>
                 <span class="text">Dashboard</span>
             </a>
         </li>
@@ -61,7 +60,7 @@
                     </a>
                 </div>
             </div>
-            <ul id="collapseArticleSubMenus" class="collapse list-unstyled" role="tabpanel" data-parent="#sw-docs-nav" >
+            <ul id="collapseArticleSubMenus" class="collapse list-unstyled" role="tabpanel" data-parent="#sw-docs-nav">
                 <li>
                     <a asp-area="Portal" asp-controller="Articles" asp-action="Create" class="sw-toc-sub-link">
                         <span class="oi oi-plus"></span>
@@ -99,7 +98,6 @@
                     </div>
                 </li>
             </ul>
-
         </li>
 
         <li class="sw-toc-item" is-active-menu asp-controllers="Product">
@@ -120,7 +118,7 @@
                     </a>
                 </div>
             </div>
-            <ul id="collapseProductSubMenus" class="collapse list-unstyled" role="tabpanel" data-parent="#sw-docs-nav" >
+            <ul id="collapseProductSubMenus" class="collapse list-unstyled" role="tabpanel" data-parent="#sw-docs-nav">
                 <li>
                     <a asp-area="Portal" asp-controller="Product" asp-action="Create" class="sw-toc-sub-link">
                         <span class="oi oi-plus"></span>
@@ -158,7 +156,6 @@
                     </div>
                 </li>
             </ul>
-
         </li>
 
         <li class="sw-toc-item" is-active-route asp-controller="Pages" asp-action="Create">
@@ -198,14 +195,13 @@
                     </a>
                 </li>
 
-
                 @foreach (var cate in listAvaiPage)
                 {
                     <li class="hide-on-sb-inactive" is-active-menu asp-controllers="Pages" asp-action="AddData,EditData,Contents,Edit" asp-route-id="@cate.Id">
                         <div class="sw-toc-sub-link">
                             <span class="oi oi-fork"></span>
                             <span class="text">@cate.Title</span>
-                            @if (cate.Type == SWCmsConstants.CateType.List || cate.Type== SWCmsConstants.CateType.ListProduct)
+                            @if (cate.Type == SWCmsConstants.CateType.List || cate.Type == SWCmsConstants.CateType.ListProduct)
                             {
                                 <div class="btn-group btn-group-sm" role="group" aria-label="Basic example">
                                     <a asp-area="Portal" asp-controller="Articles" asp-action="Create" asp-route-categoryId="@cate.Id" class="btn btn-link">
@@ -231,7 +227,6 @@
                         </div>
                     </li>
                 }
-
             </ul>
         </li>
 
@@ -435,4 +430,3 @@
         <li class="sw-toc-item"></li>
     </ul>
 </div>
-
