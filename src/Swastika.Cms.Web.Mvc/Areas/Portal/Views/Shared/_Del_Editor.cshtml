@@ -1,0 +1,109 @@
+@*
+    For more information on enabling MVC for empty projects, visit http://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+    Swastika.Cms.Lib.SWCmsConstants.DataType type = (Swastika.Cms.Lib.SWCmsConstants.DataType)this.ViewData["DataType"];
+    IConvertible value = (IConvertible)this.ViewData["Value"];
+    string inputId = (string)this.ViewData["Id"];
+    string inputName = (string)this.ViewData["Name"];
+
+}
+
+@section Styles
+    {
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.7.1/katex.min.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/monokai-sublime.min.css" />
+    <link href="~/lib/quill/quill.snow.css" rel="stylesheet" />
+}
+
+@switch (type)
+{
+    case Swastika.Cms.Lib.SWCmsConstants.DataType.Image:
+        string img = Model != null ? "" : "http://placehold.it/200x200";
+        <label class="custom-file">
+            @*<a href="javascript:void(0)" class="link danger lnk-remove">Remove</a>*@
+            <img src="@img" name="pic" class="custom-file-img image" accept="image/*" />
+            <input type="file" id="file" name="pic" class="custom-file-input">
+            <input type="hidden" class="folder-val" value="@inputId" />
+            <input type="text" id="@inputId" name="@inputName" value="@value" class="custom-file-val form-control" />
+            <span class="custom-file-control">Browse</span>
+        </label>
+
+        break;
+    case Swastika.Cms.Lib.SWCmsConstants.DataType.Icon:
+        <div class="no-margin no-padding col-md-3">
+            <select class="form-control selectpicker" id="@inputId" name="@inputName" value="@value">
+                <option value="fa fa-envelope" data-content="<span><i class='fa fa-1x fa-envelope'></i></span>"></option>
+
+                <option value="fa fa-facebook" data-content="<span><i class='fa fa-1x fa-facebook'></i></span>"></option>
+                <option value="fa fa-twitter" data-content="<span><i class='fa fa-1x fa-twitter'></i></span>"></option>
+                <option value="fa fa-linkedin" data-content="<span><i class='fa fa-1x fa-linkedin'></i></span>"></option>
+                <option value="fa fa-skype" data-content="<span><i class='fa fa-1x fa-skype'></i></span>"></option>
+
+                <option value="fa fa fa-car" data-content="<span><i class='fa fa fa-car'></i></span>"></option>
+                <option value="fa fa fa-building" data-content="<span><i class='fa fa-building'></i></span>"></option>
+                <option value="fa fa fa-language" data-content="<span><i class='fa fa-language'></i></span>"></option>
+                <option value="fa fa fa-paper-plane-o" data-content="<span><i class='fa fa fa-paper-plane-o'></i></span>"></option>
+                <option value="fa fa fa-users" data-content="<span><i class='fa fa fa-users'></i></span>"></option>
+                <option value="fa fa fa-ticket" data-content="<span><i class='fa fa fa-ticket'></i></span>"></option>
+            </select>
+        </div>
+        break;
+    case Swastika.Cms.Lib.SWCmsConstants.DataType.Html:
+        <div class="editor-container">
+            @*<textarea id="@inputId" name="@inputName" class="form-control">@value</textarea>
+                <script>
+                    var editor = CKEDITOR.replace('@inputId');
+                    editor.on('change', function (e) {
+                        $('#@inputId').val(e.editor.getData());
+                    })
+                </script>*@
+
+            <input type="hidden" id="@inputId" name="@inputName" />
+            <div class="editor-content"></div>
+        </div>
+        break;
+    case Swastika.Cms.Lib.SWCmsConstants.DataType.TextArea:
+        <textarea id="@inputId" name="@inputName" class="form-control">@value</textarea>
+        break;
+    case Swastika.Cms.Lib.SWCmsConstants.DataType.Boolean:
+        value = value ?? false;
+        <label class="form-check-label">
+            <input class="form-check"
+                   data-val="@value" data-val-required="The IsDisplay field is required."
+                   type="checkbox" value="true"
+                   id="@inputId" name="@inputName" />
+        </label>
+
+        break;
+    default:
+        <input class="form-control" type="text" id="@inputId" name="@inputName" value="@value">
+        break;
+}
+
+@section Scripts {
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.7.1/katex.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+    <script src="~/lib/quill/quill.min.js"></script>
+    <script>
+
+        $(document).ready(function () {
+            var quill = new Quill('.editor-content', {
+                placeholder: 'Compose an epic...',
+                theme: 'snow'
+            });
+            quill.setContents($('#@inputId').val());
+            quill.on('editor-change', function (eventName, ...args) {
+                if (eventName === 'text-change') {
+                    // args[0] will be delta
+                    //alert('text-change');
+                    $('#@inputId').val(quill.getContents());
+                    console.log(quill.getContents());
+                } else if (eventName === 'selection-change') {
+                    // args[0] will be old range
+                    // alert('selection-change');
+                }
+            });
+        }
+    </script>
+}
