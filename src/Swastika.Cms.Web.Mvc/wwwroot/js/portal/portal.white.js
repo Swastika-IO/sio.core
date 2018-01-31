@@ -3,6 +3,11 @@ $(document).ready(function () {
         $('#sidebar').toggleClass('active');
     });
 
+
+    $("#sw-docs-nav li a").click(function () {
+        $(this).children("span").toggleClass('oi-chevron-right').toggleClass('oi-chevron-bottom');
+    });
+
     $(".sortable").sortable({
         revert: true,
         update: function (event, ui) {
