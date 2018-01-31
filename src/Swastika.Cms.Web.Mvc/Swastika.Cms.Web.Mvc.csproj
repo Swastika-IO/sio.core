@@ -43,7 +43,7 @@
     <Content Remove="Views\Shared\Templates\Modus\**" />
     <Content Remove="Views\Shared\Templates\Now-UI-Kit-PRO\**" />
     <Content Remove="Views\Shared\Widgets\**" />
-    <Content Remove="wwwroot\lib\**" />
+    <!--<Content Remove="wwwroot\lib\**" />-->
     <EmbeddedResource Remove="Areas\Portal\Data\**" />
     <EmbeddedResource Remove="Areas\Portal\Models\**" />
     <EmbeddedResource Remove="Areas\User\Models\AccountViewModels\**" />
@@ -95,6 +95,7 @@
     <Content Remove="Areas\Portal\Views\Module\IndexOld.cshtml" />
     <Content Remove="Areas\Portal\Views\Pages\IndexOld.cshtml" />
     <Content Remove="Areas\Portal\Views\Shared\_Del_Editor.cshtml" />
+    <Content Remove="Areas\Portal\Views\Shared\_Layout.cshtml" />
     <Content Remove="tsconfig.json" />
     <Content Remove="Views\Home\About.cshtml" />
     <Content Remove="Views\Home\Article.cshtml" />
@@ -232,7 +233,6 @@
     <None Include="Areas\Portal\Views\Shared\Error.cshtml" />
     <None Include="Areas\Portal\Views\Shared\_Editor_Code.cshtml" />
     <None Include="Areas\Portal\Views\Shared\_Editor_ModuleData.cshtml" />
-    <None Include="Areas\Portal\Views\Shared\_Layout.cshtml" />
     <None Include="Areas\Portal\Views\Shared\_LoginPartial.cshtml" />
     <None Include="Areas\Portal\Views\Shared\_Pagination.cshtml" />
     <None Include="Areas\Portal\Views\Shared\_ValidationScriptsPartial.cshtml" />
