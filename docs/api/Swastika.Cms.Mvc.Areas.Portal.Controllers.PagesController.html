@@ -1,0 +1,1041 @@
+﻿<!DOCTYPE html>
+<!--[if IE]><![endif]-->
+<html>
+  
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>Class PagesController
+   </title>
+    <meta name="viewport" content="width=device-width">
+    <meta name="title" content="Class PagesController
+   ">
+    <meta name="generator" content="docfx 2.30.0.0">
+    
+    <link rel="shortcut icon" href="../favicon.ico">
+    <link rel="stylesheet" href="../styles/docfx.vendor.css">
+    <link rel="stylesheet" href="../styles/docfx.css">
+    <link rel="stylesheet" href="../styles/main.css">
+    <meta property="docfx:navrel" content="../toc.html">
+    <meta property="docfx:tocrel" content="toc.html">
+    
+    
+    
+  </head>
+  <body data-spy="scroll" data-target="#affix">
+    <div id="wrapper">
+      <header>
+        
+        <nav id="autocollapse" class="navbar navbar-inverse ng-scope" role="navigation">
+          <div class="container">
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+              
+              <a class="navbar-brand" href="../index.html">
+                <img id="logo" class="svg" src="../logo.svg" alt="">
+              </a>
+            </div>
+            <div class="collapse navbar-collapse" id="navbar">
+              <form class="navbar-form navbar-right" role="search" id="search">
+                <div class="form-group">
+                  <input type="text" class="form-control" id="search-query" placeholder="Search" autocomplete="off">
+                </div>
+              </form>
+            </div>
+          </div>
+        </nav>
+        
+        <div class="subnav navbar navbar-default">
+          <div class="container hide-when-search" id="breadcrumb">
+            <ul class="breadcrumb">
+              <li></li>
+            </ul>
+          </div>
+        </div>
+      </header>
+      <div role="main" class="container body-content hide-when-search">
+        
+        <div class="sidenav hide-when-search">
+          <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle">Show / Hide Table of Contents</a>
+          <div class="sidetoggle collapse" id="sidetoggle">
+            <div id="sidetoc"></div>
+          </div>
+        </div>
+        <div class="article row grid-right">
+          <div class="col-md-10">
+            <article class="content wrap" id="_content" data-uid="Swastika.Cms.Mvc.Areas.Portal.Controllers.PagesController">
+  
+  
+  <h1 id="Swastika_Cms_Mvc_Areas_Portal_Controllers_PagesController" data-uid="Swastika.Cms.Mvc.Areas.Portal.Controllers.PagesController" class="text-break">Class PagesController
+  </h1>
+  <div class="markdown level0 summary"></div>
+  <div class="markdown level0 conceptual"></div>
+  <div class="inheritance">
+    <h5>Inheritance</h5>
+    <div class="level0"><span class="xref">System.Object</span></div>
+    <div class="level1"><span class="xref">Microsoft.AspNetCore.Mvc.ControllerBase</span></div>
+    <div class="level2"><span class="xref">Microsoft.AspNetCore.Mvc.Controller</span></div>
+    <div class="level3"><a class="xref" href="Swastika.Cms.Mvc.Controllers.BaseController-1.html">BaseController</a>&lt;<a class="xref" href="Swastika.Cms.Mvc.Areas.Portal.Controllers.PagesController.html">PagesController</a>&gt;</div>
+    <div class="level4"><span class="xref">PagesController</span></div>
+  </div>
+  <div classs="implements">
+    <h5>Implements</h5>
+    <div><span class="xref">Microsoft.AspNetCore.Mvc.Filters.IActionFilter</span></div>
+    <div><span class="xref">Microsoft.AspNetCore.Mvc.Filters.IAsyncActionFilter</span></div>
+    <div><span class="xref">Microsoft.AspNetCore.Mvc.Filters.IFilterMetadata</span></div>
+    <div><span class="xref">System.IDisposable</span></div>
+  </div>
+  <div class="inheritedMembers">
+    <h5>Inherited Members</h5>
+    <div>
+      <a class="xref" href="Swastika.Cms.Mvc.Controllers.BaseController-1.html#Swastika_Cms_Mvc_Controllers_BaseController_1_ViewContext">BaseController&lt;PagesController&gt;.ViewContext</a>
+    </div>
+    <div>
+      <a class="xref" href="Swastika.Cms.Mvc.Controllers.BaseController-1.html#Swastika_Cms_Mvc_Controllers_BaseController_1__lang">BaseController&lt;PagesController&gt;._lang</a>
+    </div>
+    <div>
+      <a class="xref" href="Swastika.Cms.Mvc.Controllers.BaseController-1.html#Swastika_Cms_Mvc_Controllers_BaseController_1__domain">BaseController&lt;PagesController&gt;._domain</a>
+    </div>
+    <div>
+      <a class="xref" href="Swastika.Cms.Mvc.Controllers.BaseController-1.html#Swastika_Cms_Mvc_Controllers_BaseController_1__env">BaseController&lt;PagesController&gt;._env</a>
+    </div>
+    <div>
+      <a class="xref" href="Swastika.Cms.Mvc.Controllers.BaseController-1.html#Swastika_Cms_Mvc_Controllers_BaseController_1_OnActionExecuting_Microsoft_AspNetCore_Mvc_Filters_ActionExecutingContext_">BaseController&lt;PagesController&gt;.OnActionExecuting(ActionExecutingContext)</a>
+    </div>
+    <div>
+      <a class="xref" href="Swastika.Cms.Mvc.Controllers.BaseController-1.html#Swastika_Cms_Mvc_Controllers_BaseController_1_GetLanguage">BaseController&lt;PagesController&gt;.GetLanguage()</a>
+    </div>
+    <div>
+      <a class="xref" href="Swastika.Cms.Mvc.Controllers.BaseController-1.html#Swastika_Cms_Mvc_Controllers_BaseController_1_UploadListFileAsync_System_String_">BaseController&lt;PagesController&gt;.UploadListFileAsync(String)</a>
+    </div>
+    <div>
+      <a class="xref" href="Swastika.Cms.Mvc.Controllers.BaseController-1.html#Swastika_Cms_Mvc_Controllers_BaseController_1_UploadFileAsync_Microsoft_AspNetCore_Http_IFormFile_System_String_">BaseController&lt;PagesController&gt;.UploadFileAsync(IFormFile, String)</a>
+    </div>
+    <div>
+      <span class="xref">Microsoft.AspNetCore.Mvc.Controller.View()</span>
+    </div>
+    <div>
+      <span class="xref">Microsoft.AspNetCore.Mvc.Controller.View(System.String)</span>
+    </div>
+    <div>
+      <span class="xref">Microsoft.AspNetCore.Mvc.Controller.View(System.Object)</span>
+    </div>
+    <div>
+      <span class="xref">Microsoft.AspNetCore.Mvc.Controller.View(System.String, System.Object)</span>
+    </div>
+    <div>
+      <span class="xref">Microsoft.AspNetCore.Mvc.Controller.PartialView()</span>
+    </div>
+    <div>
+      <span class="xref">Microsoft.AspNetCore.Mvc.Controller.PartialView(System.String)</span>
+    </div>
+    <div>
+      <span class="xref">Microsoft.AspNetCore.Mvc.Controller.PartialView(System.Object)</span>
+    </div>
+    <div>
+      <span class="xref">Microsoft.AspNetCore.Mvc.Controller.PartialView(System.String, System.Object)</span>
+    </div>
+    <div>
+      <span class="xref">Microsoft.AspNetCore.Mvc.Controller.ViewComponent(System.String)</span>
+    </div>
+    <div>
+      <span class="xref">Microsoft.AspNetCore.Mvc.Controller.ViewComponent(System.Type)</span>
+    </div>
+    <div>
+      <span class="xref">Microsoft.AspNetCore.Mvc.Controller.ViewComponent(System.String, System.Object)</span>
+    </div>
+    <div>
+      <span class="xref">Microsoft.AspNetCore.Mvc.Controller.ViewComponent(System.Type, System.Object)</span>
+    </div>
+    <div>
+      <span class="xref">Microsoft.AspNetCore.Mvc.Controller.Json(System.Object)</span>
+    </div>
+    <div>
+      <span class="xref">Microsoft.AspNetCore.Mvc.Controller.Json(System.Object, Newtonsoft.Json.JsonSerializerSettings)</span>
+    </div>
+    <div>
+      <span class="xref">Microsoft.AspNetCore.Mvc.Controller.OnActionExecuted(Microsoft.AspNetCore.Mvc.Filters.ActionExecutedContext)</span>
+    </div>
+    <div>
+      <span class="xref">Microsoft.AspNetCore.Mvc.Controller.OnActionExecutionAsync(Microsoft.AspNetCore.Mvc.Filters.ActionExecutingContext, Microsoft.AspNetCore.Mvc.Filters.ActionExecutionDelegate)</span>
+    </div>
+    <div>
+      <span class="xref">Microsoft.AspNetCore.Mvc.Controller.Dispose()</span>
+    </div>
+    <div>
+      <span class="xref">Microsoft.AspNetCore.Mvc.Controller.Dispose(System.Boolean)</span>
+    </div>
+    <div>
+      <span class="xref">Microsoft.AspNetCore.Mvc.Controller.ViewData</span>
+    </div>
+    <div>
+      <span class="xref">Microsoft.AspNetCore.Mvc.Controller.TempData</span>
+    </div>
+    <div>
+      <span class="xref">Microsoft.AspNetCore.Mvc.Controller.ViewBag</span>
+    </div>
+    <div>
+      <span class="xref">Microsoft.AspNetCore.Mvc.ControllerBase.StatusCode(System.Int32)</span>
+    </div>
+    <div>
+      <span class="xref">Microsoft.AspNetCore.Mvc.ControllerBase.StatusCode(System.Int32, System.Object)</span>
+    </div>
+    <div>
+      <span class="xref">Microsoft.AspNetCore.Mvc.ControllerBase.Content(System.String)</span>
+    </div>
+    <div>
+      <span class="xref">Microsoft.AspNetCore.Mvc.ControllerBase.Content(System.String, System.String)</span>
+    </div>
+    <div>
+      <span class="xref">Microsoft.AspNetCore.Mvc.ControllerBase.Content(System.String, System.String, System.Text.Encoding)</span>
+    </div>
+    <div>
+      <span class="xref">Microsoft.AspNetCore.Mvc.ControllerBase.Content(System.String, Microsoft.Net.Http.Headers.MediaTypeHeaderValue)</span>
+    </div>
+    <div>
+      <span class="xref">Microsoft.AspNetCore.Mvc.ControllerBase.NoContent()</span>
+    </div>
+    <div>
+      <span class="xref">Microsoft.AspNetCore.Mvc.ControllerBase.Ok()</span>
+    </div>
+    <div>
+      <span class="xref">Microsoft.AspNetCore.Mvc.ControllerBase.Ok(System.Object)</span>
+    </div>
+    <div>
+      <span class="xref">Microsoft.AspNetCore.Mvc.ControllerBase.Redirect(System.String)</span>
+    </div>
+    <div>
+      <span class="xref">Microsoft.AspNetCore.Mvc.ControllerBase.RedirectPermanent(System.String)</span>
+    </div>
+    <div>
+      <span class="xref">Microsoft.AspNetCore.Mvc.ControllerBase.RedirectPreserveMethod(System.String)</span>
+    </div>
+    <div>
+      <span class="xref">Microsoft.AspNetCore.Mvc.ControllerBase.RedirectPermanentPreserveMethod(System.String)</span>
+    </div>
+    <div>
+      <span class="xref">Microsoft.AspNetCore.Mvc.ControllerBase.LocalRedirect(System.String)</span>
+    </div>
+    <div>
+      <span class="xref">Microsoft.AspNetCore.Mvc.ControllerBase.LocalRedirectPermanent(System.String)</span>
+    </div>
+    <div>
+      <span class="xref">Microsoft.AspNetCore.Mvc.ControllerBase.LocalRedirectPreserveMethod(System.String)</span>
+    </div>
+    <div>
+      <span class="xref">Microsoft.AspNetCore.Mvc.ControllerBase.LocalRedirectPermanentPreserveMethod(System.String)</span>
+    </div>
+    <div>
+      <span class="xref">Microsoft.AspNetCore.Mvc.ControllerBase.RedirectToAction(System.String)</span>
+    </div>
+    <div>
+      <span class="xref">Microsoft.AspNetCore.Mvc.ControllerBase.RedirectToAction(System.String, System.Object)</span>
+    </div>
+    <div>
+      <span class="xref">Microsoft.AspNetCore.Mvc.ControllerBase.RedirectToAction(System.String, System.String)</span>
+    </div>
+    <div>
+      <span class="xref">Microsoft.AspNetCore.Mvc.ControllerBase.RedirectToAction(System.String, System.String, System.Object)</span>
+    </div>
+    <div>
+      <span class="xref">Microsoft.AspNetCore.Mvc.ControllerBase.RedirectToAction(System.String, System.String, System.String)</span>
+    </div>
+    <div>
+      <span class="xref">Microsoft.AspNetCore.Mvc.ControllerBase.RedirectToAction(System.String, System.String, System.Object, System.String)</span>
+    </div>
+    <div>
+      <span class="xref">Microsoft.AspNetCore.Mvc.ControllerBase.RedirectToActionPreserveMethod(System.String, System.String, System.Object, System.String)</span>
+    </div>
+    <div>
+      <span class="xref">Microsoft.AspNetCore.Mvc.ControllerBase.RedirectToActionPermanent(System.String)</span>
+    </div>
+    <div>
+      <span class="xref">Microsoft.AspNetCore.Mvc.ControllerBase.RedirectToActionPermanent(System.String, System.Object)</span>
+    </div>
+    <div>
+      <span class="xref">Microsoft.AspNetCore.Mvc.ControllerBase.RedirectToActionPermanent(System.String, System.String)</span>
+    </div>
+    <div>
+      <span class="xref">Microsoft.AspNetCore.Mvc.ControllerBase.RedirectToActionPermanent(System.String, System.String, System.String)</span>
+    </div>
+    <div>
+      <span class="xref">Microsoft.AspNetCore.Mvc.ControllerBase.RedirectToActionPermanent(System.String, System.String, System.Object)</span>
+    </div>
+    <div>
+      <span class="xref">Microsoft.AspNetCore.Mvc.ControllerBase.RedirectToActionPermanent(System.String, System.String, System.Object, System.String)</span>
+    </div>
+    <div>
+      <span class="xref">Microsoft.AspNetCore.Mvc.ControllerBase.RedirectToActionPermanentPreserveMethod(System.String, System.String, System.Object, System.String)</span>
+    </div>
+    <div>
+      <span class="xref">Microsoft.AspNetCore.Mvc.ControllerBase.RedirectToRoute(System.String)</span>
+    </div>
+    <div>
+      <span class="xref">Microsoft.AspNetCore.Mvc.ControllerBase.RedirectToRoute(System.Object)</span>
+    </div>
+    <div>
+      <span class="xref">Microsoft.AspNetCore.Mvc.ControllerBase.RedirectToRoute(System.String, System.Object)</span>
+    </div>
+    <div>
+      <span class="xref">Microsoft.AspNetCore.Mvc.ControllerBase.RedirectToRoute(System.String, System.String)</span>
+    </div>
+    <div>
+      <span class="xref">Microsoft.AspNetCore.Mvc.ControllerBase.RedirectToRoute(System.String, System.Object, System.String)</span>
+    </div>
+    <div>
+      <span class="xref">Microsoft.AspNetCore.Mvc.ControllerBase.RedirectToRoutePreserveMethod(System.String, System.Object, System.String)</span>
+    </div>
+    <div>
+      <span class="xref">Microsoft.AspNetCore.Mvc.ControllerBase.RedirectToRoutePermanent(System.String)</span>
+    </div>
+    <div>
+      <span class="xref">Microsoft.AspNetCore.Mvc.ControllerBase.RedirectToRoutePermanent(System.Object)</span>
+    </div>
+    <div>
+      <span class="xref">Microsoft.AspNetCore.Mvc.ControllerBase.RedirectToRoutePermanent(System.String, System.Object)</span>
+    </div>
+    <div>
+      <span class="xref">Microsoft.AspNetCore.Mvc.ControllerBase.RedirectToRoutePermanent(System.String, System.String)</span>
+    </div>
+    <div>
+      <span class="xref">Microsoft.AspNetCore.Mvc.ControllerBase.RedirectToRoutePermanent(System.String, System.Object, System.String)</span>
+    </div>
+    <div>
+      <span class="xref">Microsoft.AspNetCore.Mvc.ControllerBase.RedirectToRoutePermanentPreserveMethod(System.String, System.Object, System.String)</span>
+    </div>
+    <div>
+      <span class="xref">Microsoft.AspNetCore.Mvc.ControllerBase.RedirectToPage(System.String)</span>
+    </div>
+    <div>
+      <span class="xref">Microsoft.AspNetCore.Mvc.ControllerBase.RedirectToPage(System.String, System.Object)</span>
+    </div>
+    <div>
+      <span class="xref">Microsoft.AspNetCore.Mvc.ControllerBase.RedirectToPage(System.String, System.String)</span>
+    </div>
+    <div>
+      <span class="xref">Microsoft.AspNetCore.Mvc.ControllerBase.RedirectToPage(System.String, System.String, System.Object)</span>
+    </div>
+    <div>
+      <span class="xref">Microsoft.AspNetCore.Mvc.ControllerBase.RedirectToPage(System.String, System.String, System.String)</span>
+    </div>
+    <div>
+      <span class="xref">Microsoft.AspNetCore.Mvc.ControllerBase.RedirectToPage(System.String, System.String, System.Object, System.String)</span>
+    </div>
+    <div>
+      <span class="xref">Microsoft.AspNetCore.Mvc.ControllerBase.RedirectToPagePermanent(System.String)</span>
+    </div>
+    <div>
+      <span class="xref">Microsoft.AspNetCore.Mvc.ControllerBase.RedirectToPagePermanent(System.String, System.Object)</span>
+    </div>
+    <div>
+      <span class="xref">Microsoft.AspNetCore.Mvc.ControllerBase.RedirectToPagePermanent(System.String, System.String)</span>
+    </div>
+    <div>
+      <span class="xref">Microsoft.AspNetCore.Mvc.ControllerBase.RedirectToPagePermanent(System.String, System.String, System.String)</span>
+    </div>
+    <div>
+      <span class="xref">Microsoft.AspNetCore.Mvc.ControllerBase.RedirectToPagePermanent(System.String, System.String, System.Object, System.String)</span>
+    </div>
+    <div>
+      <span class="xref">Microsoft.AspNetCore.Mvc.ControllerBase.RedirectToPagePreserveMethod(System.String, System.String, System.Object, System.String)</span>
+    </div>
+    <div>
+      <span class="xref">Microsoft.AspNetCore.Mvc.ControllerBase.RedirectToPagePermanentPreserveMethod(System.String, System.String, System.Object, System.String)</span>
+    </div>
+    <div>
+      <span class="xref">Microsoft.AspNetCore.Mvc.ControllerBase.File(System.Byte[], System.String)</span>
+    </div>
+    <div>
+      <span class="xref">Microsoft.AspNetCore.Mvc.ControllerBase.File(System.Byte[], System.String, System.String)</span>
+    </div>
+    <div>
+      <span class="xref">Microsoft.AspNetCore.Mvc.ControllerBase.File(System.Byte[], System.String, System.Nullable&lt;System.DateTimeOffset&gt;, Microsoft.Net.Http.Headers.EntityTagHeaderValue)</span>
+    </div>
+    <div>
+      <span class="xref">Microsoft.AspNetCore.Mvc.ControllerBase.File(System.Byte[], System.String, System.String, System.Nullable&lt;System.DateTimeOffset&gt;, Microsoft.Net.Http.Headers.EntityTagHeaderValue)</span>
+    </div>
+    <div>
+      <span class="xref">Microsoft.AspNetCore.Mvc.ControllerBase.File(System.IO.Stream, System.String)</span>
+    </div>
+    <div>
+      <span class="xref">Microsoft.AspNetCore.Mvc.ControllerBase.File(System.IO.Stream, System.String, System.String)</span>
+    </div>
+    <div>
+      <span class="xref">Microsoft.AspNetCore.Mvc.ControllerBase.File(System.IO.Stream, System.String, System.Nullable&lt;System.DateTimeOffset&gt;, Microsoft.Net.Http.Headers.EntityTagHeaderValue)</span>
+    </div>
+    <div>
+      <span class="xref">Microsoft.AspNetCore.Mvc.ControllerBase.File(System.IO.Stream, System.String, System.String, System.Nullable&lt;System.DateTimeOffset&gt;, Microsoft.Net.Http.Headers.EntityTagHeaderValue)</span>
+    </div>
+    <div>
+      <span class="xref">Microsoft.AspNetCore.Mvc.ControllerBase.File(System.String, System.String)</span>
+    </div>
+    <div>
+      <span class="xref">Microsoft.AspNetCore.Mvc.ControllerBase.File(System.String, System.String, System.String)</span>
+    </div>
+    <div>
+      <span class="xref">Microsoft.AspNetCore.Mvc.ControllerBase.File(System.String, System.String, System.Nullable&lt;System.DateTimeOffset&gt;, Microsoft.Net.Http.Headers.EntityTagHeaderValue)</span>
+    </div>
+    <div>
+      <span class="xref">Microsoft.AspNetCore.Mvc.ControllerBase.File(System.String, System.String, System.String, System.Nullable&lt;System.DateTimeOffset&gt;, Microsoft.Net.Http.Headers.EntityTagHeaderValue)</span>
+    </div>
+    <div>
+      <span class="xref">Microsoft.AspNetCore.Mvc.ControllerBase.PhysicalFile(System.String, System.String)</span>
+    </div>
+    <div>
+      <span class="xref">Microsoft.AspNetCore.Mvc.ControllerBase.PhysicalFile(System.String, System.String, System.String)</span>
+    </div>
+    <div>
+      <span class="xref">Microsoft.AspNetCore.Mvc.ControllerBase.PhysicalFile(System.String, System.String, System.Nullable&lt;System.DateTimeOffset&gt;, Microsoft.Net.Http.Headers.EntityTagHeaderValue)</span>
+    </div>
+    <div>
+      <span class="xref">Microsoft.AspNetCore.Mvc.ControllerBase.PhysicalFile(System.String, System.String, System.String, System.Nullable&lt;System.DateTimeOffset&gt;, Microsoft.Net.Http.Headers.EntityTagHeaderValue)</span>
+    </div>
+    <div>
+      <span class="xref">Microsoft.AspNetCore.Mvc.ControllerBase.Unauthorized()</span>
+    </div>
+    <div>
+      <span class="xref">Microsoft.AspNetCore.Mvc.ControllerBase.NotFound()</span>
+    </div>
+    <div>
+      <span class="xref">Microsoft.AspNetCore.Mvc.ControllerBase.NotFound(System.Object)</span>
+    </div>
+    <div>
+      <span class="xref">Microsoft.AspNetCore.Mvc.ControllerBase.BadRequest()</span>
+    </div>
+    <div>
+      <span class="xref">Microsoft.AspNetCore.Mvc.ControllerBase.BadRequest(System.Object)</span>
+    </div>
+    <div>
+      <span class="xref">Microsoft.AspNetCore.Mvc.ControllerBase.BadRequest(Microsoft.AspNetCore.Mvc.ModelBinding.ModelStateDictionary)</span>
+    </div>
+    <div>
+      <span class="xref">Microsoft.AspNetCore.Mvc.ControllerBase.Created(System.String, System.Object)</span>
+    </div>
+    <div>
+      <span class="xref">Microsoft.AspNetCore.Mvc.ControllerBase.Created(System.Uri, System.Object)</span>
+    </div>
+    <div>
+      <span class="xref">Microsoft.AspNetCore.Mvc.ControllerBase.CreatedAtAction(System.String, System.Object)</span>
+    </div>
+    <div>
+      <span class="xref">Microsoft.AspNetCore.Mvc.ControllerBase.CreatedAtAction(System.String, System.Object, System.Object)</span>
+    </div>
+    <div>
+      <span class="xref">Microsoft.AspNetCore.Mvc.ControllerBase.CreatedAtAction(System.String, System.String, System.Object, System.Object)</span>
+    </div>
+    <div>
+      <span class="xref">Microsoft.AspNetCore.Mvc.ControllerBase.CreatedAtRoute(System.String, System.Object)</span>
+    </div>
+    <div>
+      <span class="xref">Microsoft.AspNetCore.Mvc.ControllerBase.CreatedAtRoute(System.Object, System.Object)</span>
+    </div>
+    <div>
+      <span class="xref">Microsoft.AspNetCore.Mvc.ControllerBase.CreatedAtRoute(System.String, System.Object, System.Object)</span>
+    </div>
+    <div>
+      <span class="xref">Microsoft.AspNetCore.Mvc.ControllerBase.Accepted()</span>
+    </div>
+    <div>
+      <span class="xref">Microsoft.AspNetCore.Mvc.ControllerBase.Accepted(System.Object)</span>
+    </div>
+    <div>
+      <span class="xref">Microsoft.AspNetCore.Mvc.ControllerBase.Accepted(System.Uri)</span>
+    </div>
+    <div>
+      <span class="xref">Microsoft.AspNetCore.Mvc.ControllerBase.Accepted(System.String)</span>
+    </div>
+    <div>
+      <span class="xref">Microsoft.AspNetCore.Mvc.ControllerBase.Accepted(System.String, System.Object)</span>
+    </div>
+    <div>
+      <span class="xref">Microsoft.AspNetCore.Mvc.ControllerBase.Accepted(System.Uri, System.Object)</span>
+    </div>
+    <div>
+      <span class="xref">Microsoft.AspNetCore.Mvc.ControllerBase.AcceptedAtAction(System.String)</span>
+    </div>
+    <div>
+      <span class="xref">Microsoft.AspNetCore.Mvc.ControllerBase.AcceptedAtAction(System.String, System.String)</span>
+    </div>
+    <div>
+      <span class="xref">Microsoft.AspNetCore.Mvc.ControllerBase.AcceptedAtAction(System.String, System.Object)</span>
+    </div>
+    <div>
+      <span class="xref">Microsoft.AspNetCore.Mvc.ControllerBase.AcceptedAtAction(System.String, System.String, System.Object)</span>
+    </div>
+    <div>
+      <span class="xref">Microsoft.AspNetCore.Mvc.ControllerBase.AcceptedAtAction(System.String, System.Object, System.Object)</span>
+    </div>
+    <div>
+      <span class="xref">Microsoft.AspNetCore.Mvc.ControllerBase.AcceptedAtAction(System.String, System.String, System.Object, System.Object)</span>
+    </div>
+    <div>
+      <span class="xref">Microsoft.AspNetCore.Mvc.ControllerBase.AcceptedAtRoute(System.Object)</span>
+    </div>
+    <div>
+      <span class="xref">Microsoft.AspNetCore.Mvc.ControllerBase.AcceptedAtRoute(System.String)</span>
+    </div>
+    <div>
+      <span class="xref">Microsoft.AspNetCore.Mvc.ControllerBase.AcceptedAtRoute(System.String, System.Object)</span>
+    </div>
+    <div>
+      <span class="xref">Microsoft.AspNetCore.Mvc.ControllerBase.AcceptedAtRoute(System.Object, System.Object)</span>
+    </div>
+    <div>
+      <span class="xref">Microsoft.AspNetCore.Mvc.ControllerBase.AcceptedAtRoute(System.String, System.Object, System.Object)</span>
+    </div>
+    <div>
+      <span class="xref">Microsoft.AspNetCore.Mvc.ControllerBase.Challenge()</span>
+    </div>
+    <div>
+      <span class="xref">Microsoft.AspNetCore.Mvc.ControllerBase.Challenge(System.String[])</span>
+    </div>
+    <div>
+      <span class="xref">Microsoft.AspNetCore.Mvc.ControllerBase.Challenge(Microsoft.AspNetCore.Authentication.AuthenticationProperties)</span>
+    </div>
+    <div>
+      <span class="xref">Microsoft.AspNetCore.Mvc.ControllerBase.Challenge(Microsoft.AspNetCore.Authentication.AuthenticationProperties, System.String[])</span>
+    </div>
+    <div>
+      <span class="xref">Microsoft.AspNetCore.Mvc.ControllerBase.Forbid()</span>
+    </div>
+    <div>
+      <span class="xref">Microsoft.AspNetCore.Mvc.ControllerBase.Forbid(System.String[])</span>
+    </div>
+    <div>
+      <span class="xref">Microsoft.AspNetCore.Mvc.ControllerBase.Forbid(Microsoft.AspNetCore.Authentication.AuthenticationProperties)</span>
+    </div>
+    <div>
+      <span class="xref">Microsoft.AspNetCore.Mvc.ControllerBase.Forbid(Microsoft.AspNetCore.Authentication.AuthenticationProperties, System.String[])</span>
+    </div>
+    <div>
+      <span class="xref">Microsoft.AspNetCore.Mvc.ControllerBase.SignIn(System.Security.Claims.ClaimsPrincipal, System.String)</span>
+    </div>
+    <div>
+      <span class="xref">Microsoft.AspNetCore.Mvc.ControllerBase.SignIn(System.Security.Claims.ClaimsPrincipal, Microsoft.AspNetCore.Authentication.AuthenticationProperties, System.String)</span>
+    </div>
+    <div>
+      <span class="xref">Microsoft.AspNetCore.Mvc.ControllerBase.SignOut(System.String[])</span>
+    </div>
+    <div>
+      <span class="xref">Microsoft.AspNetCore.Mvc.ControllerBase.SignOut(Microsoft.AspNetCore.Authentication.AuthenticationProperties, System.String[])</span>
+    </div>
+    <div>
+      <span class="xref">Microsoft.AspNetCore.Mvc.ControllerBase.TryUpdateModelAsync&lt;TModel&gt;(TModel)</span>
+    </div>
+    <div>
+      <span class="xref">Microsoft.AspNetCore.Mvc.ControllerBase.TryUpdateModelAsync&lt;TModel&gt;(TModel, System.String)</span>
+    </div>
+    <div>
+      <span class="xref">Microsoft.AspNetCore.Mvc.ControllerBase.TryUpdateModelAsync&lt;TModel&gt;(TModel, System.String, Microsoft.AspNetCore.Mvc.ModelBinding.IValueProvider)</span>
+    </div>
+    <div>
+      <span class="xref">Microsoft.AspNetCore.Mvc.ControllerBase.TryUpdateModelAsync&lt;TModel&gt;(TModel, System.String, System.Linq.Expressions.Expression&lt;System.Func&lt;TModel, System.Object&gt;&gt;[])</span>
+    </div>
+    <div>
+      <span class="xref">Microsoft.AspNetCore.Mvc.ControllerBase.TryUpdateModelAsync&lt;TModel&gt;(TModel, System.String, System.Func&lt;Microsoft.AspNetCore.Mvc.ModelBinding.ModelMetadata, System.Boolean&gt;)</span>
+    </div>
+    <div>
+      <span class="xref">Microsoft.AspNetCore.Mvc.ControllerBase.TryUpdateModelAsync&lt;TModel&gt;(TModel, System.String, Microsoft.AspNetCore.Mvc.ModelBinding.IValueProvider, System.Linq.Expressions.Expression&lt;System.Func&lt;TModel, System.Object&gt;&gt;[])</span>
+    </div>
+    <div>
+      <span class="xref">Microsoft.AspNetCore.Mvc.ControllerBase.TryUpdateModelAsync&lt;TModel&gt;(TModel, System.String, Microsoft.AspNetCore.Mvc.ModelBinding.IValueProvider, System.Func&lt;Microsoft.AspNetCore.Mvc.ModelBinding.ModelMetadata, System.Boolean&gt;)</span>
+    </div>
+    <div>
+      <span class="xref">Microsoft.AspNetCore.Mvc.ControllerBase.TryUpdateModelAsync(System.Object, System.Type, System.String)</span>
+    </div>
+    <div>
+      <span class="xref">Microsoft.AspNetCore.Mvc.ControllerBase.TryUpdateModelAsync(System.Object, System.Type, System.String, Microsoft.AspNetCore.Mvc.ModelBinding.IValueProvider, System.Func&lt;Microsoft.AspNetCore.Mvc.ModelBinding.ModelMetadata, System.Boolean&gt;)</span>
+    </div>
+    <div>
+      <span class="xref">Microsoft.AspNetCore.Mvc.ControllerBase.TryValidateModel(System.Object)</span>
+    </div>
+    <div>
+      <span class="xref">Microsoft.AspNetCore.Mvc.ControllerBase.TryValidateModel(System.Object, System.String)</span>
+    </div>
+    <div>
+      <span class="xref">Microsoft.AspNetCore.Mvc.ControllerBase.HttpContext</span>
+    </div>
+    <div>
+      <span class="xref">Microsoft.AspNetCore.Mvc.ControllerBase.Request</span>
+    </div>
+    <div>
+      <span class="xref">Microsoft.AspNetCore.Mvc.ControllerBase.Response</span>
+    </div>
+    <div>
+      <span class="xref">Microsoft.AspNetCore.Mvc.ControllerBase.RouteData</span>
+    </div>
+    <div>
+      <span class="xref">Microsoft.AspNetCore.Mvc.ControllerBase.ModelState</span>
+    </div>
+    <div>
+      <span class="xref">Microsoft.AspNetCore.Mvc.ControllerBase.ControllerContext</span>
+    </div>
+    <div>
+      <span class="xref">Microsoft.AspNetCore.Mvc.ControllerBase.MetadataProvider</span>
+    </div>
+    <div>
+      <span class="xref">Microsoft.AspNetCore.Mvc.ControllerBase.ModelBinderFactory</span>
+    </div>
+    <div>
+      <span class="xref">Microsoft.AspNetCore.Mvc.ControllerBase.Url</span>
+    </div>
+    <div>
+      <span class="xref">Microsoft.AspNetCore.Mvc.ControllerBase.ObjectValidator</span>
+    </div>
+    <div>
+      <span class="xref">Microsoft.AspNetCore.Mvc.ControllerBase.User</span>
+    </div>
+    <div>
+      <span class="xref">System.Object.Equals(System.Object)</span>
+    </div>
+    <div>
+      <span class="xref">System.Object.Equals(System.Object, System.Object)</span>
+    </div>
+    <div>
+      <span class="xref">System.Object.GetHashCode()</span>
+    </div>
+    <div>
+      <span class="xref">System.Object.GetType()</span>
+    </div>
+    <div>
+      <span class="xref">System.Object.MemberwiseClone()</span>
+    </div>
+    <div>
+      <span class="xref">System.Object.ReferenceEquals(System.Object, System.Object)</span>
+    </div>
+    <div>
+      <span class="xref">System.Object.ToString()</span>
+    </div>
+  </div>
+  <h6><strong>Namespace</strong>: <a class="xref" href="Swastika.Cms.Mvc.Areas.Portal.Controllers.html">Swastika.Cms.Mvc.Areas.Portal.Controllers</a></h6>
+  <h6><strong>Assembly</strong>: Swastika.Cms.Web.Mvc.dll</h6>
+  <h5 id="Swastika_Cms_Mvc_Areas_Portal_Controllers_PagesController_syntax">Syntax</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">[Authorize]
+[Area(&quot;Portal&quot;)]
+[Route(&quot;{culture}/Portal/Pages&quot;)]
+public class PagesController : BaseController&lt;PagesController&gt;, IActionFilter, IAsyncActionFilter, IFilterMetadata, IDisposable</code></pre>
+  </div>
+  <h3 id="constructors">Constructors
+  </h3>
+  
+  
+  <a id="Swastika_Cms_Mvc_Areas_Portal_Controllers_PagesController__ctor_" data-uid="Swastika.Cms.Mvc.Areas.Portal.Controllers.PagesController.#ctor*"></a>
+  <h4 id="Swastika_Cms_Mvc_Areas_Portal_Controllers_PagesController__ctor_Microsoft_AspNetCore_Hosting_IHostingEnvironment_" data-uid="Swastika.Cms.Mvc.Areas.Portal.Controllers.PagesController.#ctor(Microsoft.AspNetCore.Hosting.IHostingEnvironment)">PagesController(IHostingEnvironment)</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public PagesController(IHostingEnvironment env)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">Microsoft.AspNetCore.Hosting.IHostingEnvironment</span></td>
+        <td><span class="parametername">env</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h3 id="methods">Methods
+  </h3>
+  
+  
+  <a id="Swastika_Cms_Mvc_Areas_Portal_Controllers_PagesController_Contents_" data-uid="Swastika.Cms.Mvc.Areas.Portal.Controllers.PagesController.Contents*"></a>
+  <h4 id="Swastika_Cms_Mvc_Areas_Portal_Controllers_PagesController_Contents_System_Int32_System_String_System_Nullable_System_Int32__System_Nullable_System_Int32__System_String_" data-uid="Swastika.Cms.Mvc.Areas.Portal.Controllers.PagesController.Contents(System.Int32,System.String,System.Nullable{System.Int32},System.Nullable{System.Int32},System.String)">Contents(Int32, String, Nullable&lt;Int32&gt;, Nullable&lt;Int32&gt;, String)</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">[HttpGet]
+[Route(&quot;Contents/{id}&quot;)]
+[Route(&quot;Contents/{id}/{pageSize}/{pageIndex}/{orderBy}/{pageName}&quot;)]
+[Route(&quot;Contents/{id}/{pageName}&quot;)]
+public Task&lt;IActionResult&gt; Contents(int id, string pageName, int ? pageSize, int ? pageIndex, string orderBy = &quot;1234qwe@&quot;)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Int32</span></td>
+        <td><span class="parametername">id</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.String</span></td>
+        <td><span class="parametername">pageName</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.Nullable</span>&lt;<span class="xref">System.Int32</span>&gt;</td>
+        <td><span class="parametername">pageSize</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.Nullable</span>&lt;<span class="xref">System.Int32</span>&gt;</td>
+        <td><span class="parametername">pageIndex</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.String</span></td>
+        <td><span class="parametername">orderBy</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Threading.Tasks.Task</span>&lt;<span class="xref">Microsoft.AspNetCore.Mvc.IActionResult</span>&gt;</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
+  <a id="Swastika_Cms_Mvc_Areas_Portal_Controllers_PagesController_Create_" data-uid="Swastika.Cms.Mvc.Areas.Portal.Controllers.PagesController.Create*"></a>
+  <h4 id="Swastika_Cms_Mvc_Areas_Portal_Controllers_PagesController_Create" data-uid="Swastika.Cms.Mvc.Areas.Portal.Controllers.PagesController.Create">Create()</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">[HttpGet]
+[Route(&quot;Create&quot;)]
+public IActionResult Create()</code></pre>
+  </div>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">Microsoft.AspNetCore.Mvc.IActionResult</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
+  <a id="Swastika_Cms_Mvc_Areas_Portal_Controllers_PagesController_Create_" data-uid="Swastika.Cms.Mvc.Areas.Portal.Controllers.PagesController.Create*"></a>
+  <h4 id="Swastika_Cms_Mvc_Areas_Portal_Controllers_PagesController_Create_Swastika_Cms_Lib_ViewModels_BackEnd_BECategoryViewModel_" data-uid="Swastika.Cms.Mvc.Areas.Portal.Controllers.PagesController.Create(Swastika.Cms.Lib.ViewModels.BackEnd.BECategoryViewModel)">Create(BECategoryViewModel)</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">[Route(&quot;Create&quot;)]
+[HttpPost]
+[ValidateAntiForgeryToken]
+public Task&lt;IActionResult&gt; Create(BECategoryViewModel ttsMenu)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Swastika.Cms.Lib.ViewModels.BackEnd.BECategoryViewModel.html">BECategoryViewModel</a></td>
+        <td><span class="parametername">ttsMenu</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Threading.Tasks.Task</span>&lt;<span class="xref">Microsoft.AspNetCore.Mvc.IActionResult</span>&gt;</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
+  <a id="Swastika_Cms_Mvc_Areas_Portal_Controllers_PagesController_Delete_" data-uid="Swastika.Cms.Mvc.Areas.Portal.Controllers.PagesController.Delete*"></a>
+  <h4 id="Swastika_Cms_Mvc_Areas_Portal_Controllers_PagesController_Delete_System_Nullable_System_Int32__" data-uid="Swastika.Cms.Mvc.Areas.Portal.Controllers.PagesController.Delete(System.Nullable{System.Int32})">Delete(Nullable&lt;Int32&gt;)</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">[HttpGet]
+[Route(&quot;Delete/{id}&quot;)]
+public Task&lt;IActionResult&gt; Delete(int ? id)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Nullable</span>&lt;<span class="xref">System.Int32</span>&gt;</td>
+        <td><span class="parametername">id</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Threading.Tasks.Task</span>&lt;<span class="xref">Microsoft.AspNetCore.Mvc.IActionResult</span>&gt;</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
+  <a id="Swastika_Cms_Mvc_Areas_Portal_Controllers_PagesController_Edit_" data-uid="Swastika.Cms.Mvc.Areas.Portal.Controllers.PagesController.Edit*"></a>
+  <h4 id="Swastika_Cms_Mvc_Areas_Portal_Controllers_PagesController_Edit_System_Int32_Swastika_Cms_Lib_ViewModels_BackEnd_BECategoryViewModel_" data-uid="Swastika.Cms.Mvc.Areas.Portal.Controllers.PagesController.Edit(System.Int32,Swastika.Cms.Lib.ViewModels.BackEnd.BECategoryViewModel)">Edit(Int32, BECategoryViewModel)</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">[Route(&quot;Edit/{id}&quot;)]
+[Route(&quot;Edit/{id}/{pageName}&quot;)]
+[HttpPost]
+[ValidateAntiForgeryToken]
+public Task&lt;IActionResult&gt; Edit(int id, BECategoryViewModel ttsMenu)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Int32</span></td>
+        <td><span class="parametername">id</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="Swastika.Cms.Lib.ViewModels.BackEnd.BECategoryViewModel.html">BECategoryViewModel</a></td>
+        <td><span class="parametername">ttsMenu</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Threading.Tasks.Task</span>&lt;<span class="xref">Microsoft.AspNetCore.Mvc.IActionResult</span>&gt;</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
+  <a id="Swastika_Cms_Mvc_Areas_Portal_Controllers_PagesController_Edit_" data-uid="Swastika.Cms.Mvc.Areas.Portal.Controllers.PagesController.Edit*"></a>
+  <h4 id="Swastika_Cms_Mvc_Areas_Portal_Controllers_PagesController_Edit_System_Nullable_System_Int32__System_String_" data-uid="Swastika.Cms.Mvc.Areas.Portal.Controllers.PagesController.Edit(System.Nullable{System.Int32},System.String)">Edit(Nullable&lt;Int32&gt;, String)</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">[HttpGet]
+[Route(&quot;Edit/{id}&quot;)]
+[Route(&quot;Edit/{id}/{pageName}&quot;)]
+public Task&lt;IActionResult&gt; Edit(int ? id, string pageName)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Nullable</span>&lt;<span class="xref">System.Int32</span>&gt;</td>
+        <td><span class="parametername">id</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.String</span></td>
+        <td><span class="parametername">pageName</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Threading.Tasks.Task</span>&lt;<span class="xref">Microsoft.AspNetCore.Mvc.IActionResult</span>&gt;</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
+  <a id="Swastika_Cms_Mvc_Areas_Portal_Controllers_PagesController_Index_" data-uid="Swastika.Cms.Mvc.Areas.Portal.Controllers.PagesController.Index*"></a>
+  <h4 id="Swastika_Cms_Mvc_Areas_Portal_Controllers_PagesController_Index_System_String_System_Int32_System_Int32_" data-uid="Swastika.Cms.Mvc.Areas.Portal.Controllers.PagesController.Index(System.String,System.Int32,System.Int32)">Index(String, Int32, Int32)</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">[HttpGet]
+[Route(&quot;{pageSize:int?}/{pageIndex:int?}&quot;)]
+[Route(&quot;Index/{pageSize:int?}/{pageIndex:int?}&quot;)]
+public Task&lt;IActionResult&gt; Index(string keyword, int pageSize = 10, int pageIndex = 0)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.String</span></td>
+        <td><span class="parametername">keyword</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.Int32</span></td>
+        <td><span class="parametername">pageSize</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.Int32</span></td>
+        <td><span class="parametername">pageIndex</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Threading.Tasks.Task</span>&lt;<span class="xref">Microsoft.AspNetCore.Mvc.IActionResult</span>&gt;</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h3 id="implements">Implements</h3>
+  <div>
+      <span class="xref">Microsoft.AspNetCore.Mvc.Filters.IActionFilter</span>
+  </div>
+  <div>
+      <span class="xref">Microsoft.AspNetCore.Mvc.Filters.IAsyncActionFilter</span>
+  </div>
+  <div>
+      <span class="xref">Microsoft.AspNetCore.Mvc.Filters.IFilterMetadata</span>
+  </div>
+  <div>
+      <span class="xref">System.IDisposable</span>
+  </div>
+</article>
+          </div>
+          
+          <div class="hidden-sm col-md-2" role="complementary">
+            <div class="sideaffix">
+              <div class="contribution">
+                <ul class="nav">
+                </ul>
+              </div>
+              <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix" id="affix">
+              <!-- <p><a class="back-to-top" href="#top">Back to top</a><p> -->
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <footer>
+        <div class="grad-bottom"></div>
+        <div class="footer">
+          <div class="container">
+            <span class="pull-right">
+              <a href="#top">Back to top</a>
+            </span>
+            
+            <span>Copyright © 2015-2017 Microsoft<br>Generated by <strong>DocFX</strong></span>
+          </div>
+        </div>
+      </footer>
+    </div>
+    
+    <script type="text/javascript" src="../styles/docfx.vendor.js"></script>
+    <script type="text/javascript" src="../styles/docfx.js"></script>
+    <script type="text/javascript" src="../styles/main.js"></script>
+  </body>
+</html>

@@ -1,0 +1,586 @@
+﻿<!DOCTYPE html>
+<!--[if IE]><![endif]-->
+<html>
+  
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>Class ApiModuleController
+   </title>
+    <meta name="viewport" content="width=device-width">
+    <meta name="title" content="Class ApiModuleController
+   ">
+    <meta name="generator" content="docfx 2.30.0.0">
+    
+    <link rel="shortcut icon" href="../favicon.ico">
+    <link rel="stylesheet" href="../styles/docfx.vendor.css">
+    <link rel="stylesheet" href="../styles/docfx.css">
+    <link rel="stylesheet" href="../styles/main.css">
+    <meta property="docfx:navrel" content="../toc.html">
+    <meta property="docfx:tocrel" content="toc.html">
+    
+    
+    
+  </head>
+  <body data-spy="scroll" data-target="#affix">
+    <div id="wrapper">
+      <header>
+        
+        <nav id="autocollapse" class="navbar navbar-inverse ng-scope" role="navigation">
+          <div class="container">
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+              
+              <a class="navbar-brand" href="../index.html">
+                <img id="logo" class="svg" src="../logo.svg" alt="">
+              </a>
+            </div>
+            <div class="collapse navbar-collapse" id="navbar">
+              <form class="navbar-form navbar-right" role="search" id="search">
+                <div class="form-group">
+                  <input type="text" class="form-control" id="search-query" placeholder="Search" autocomplete="off">
+                </div>
+              </form>
+            </div>
+          </div>
+        </nav>
+        
+        <div class="subnav navbar navbar-default">
+          <div class="container hide-when-search" id="breadcrumb">
+            <ul class="breadcrumb">
+              <li></li>
+            </ul>
+          </div>
+        </div>
+      </header>
+      <div role="main" class="container body-content hide-when-search">
+        
+        <div class="sidenav hide-when-search">
+          <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle">Show / Hide Table of Contents</a>
+          <div class="sidetoggle collapse" id="sidetoggle">
+            <div id="sidetoc"></div>
+          </div>
+        </div>
+        <div class="article row grid-right">
+          <div class="col-md-10">
+            <article class="content wrap" id="_content" data-uid="Swastka.IO.Cms.Api.Controllers.ApiModuleController">
+  
+  
+  <h1 id="Swastka_IO_Cms_Api_Controllers_ApiModuleController" data-uid="Swastka.IO.Cms.Api.Controllers.ApiModuleController" class="text-break">Class ApiModuleController
+  </h1>
+  <div class="markdown level0 summary"></div>
+  <div class="markdown level0 conceptual"></div>
+  <div class="inheritance">
+    <h5>Inheritance</h5>
+    <div class="level0"><span class="xref">System.Object</span></div>
+    <div class="level1"><span class="xref">ApiModuleController</span></div>
+  </div>
+  <h6><strong>Namespace</strong>: <a class="xref" href="Swastka.IO.Cms.Api.Controllers.html">Swastka.IO.Cms.Api.Controllers</a></h6>
+  <h6><strong>Assembly</strong>: Swastka.Cms.Api.dll</h6>
+  <h5 id="Swastka_IO_Cms_Api_Controllers_ApiModuleController_syntax">Syntax</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">[Produces(&quot;application/json&quot;, new string[]{})]
+[Route(&quot;api/{culture}/module&quot;)]
+public class ApiModuleController : BaseApiController&lt;SiocCmsContext, SiocArticle&gt;</code></pre>
+  </div>
+  <h3 id="methods">Methods
+  </h3>
+  
+  
+  <a id="Swastka_IO_Cms_Api_Controllers_ApiModuleController_AddToArticle_" data-uid="Swastka.IO.Cms.Api.Controllers.ApiModuleController.AddToArticle*"></a>
+  <h4 id="Swastka_IO_Cms_Api_Controllers_ApiModuleController_AddToArticle_Swastika_Cms_Lib_ViewModels_BackEnd_BEArticleModuleViewModel_" data-uid="Swastka.IO.Cms.Api.Controllers.ApiModuleController.AddToArticle(Swastika.Cms.Lib.ViewModels.BackEnd.BEArticleModuleViewModel)">AddToArticle(BEArticleModuleViewModel)</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">[HttpPost]
+[HttpOptions]
+[Route(&quot;addToArticle&quot;)]
+public Task&lt;RepositoryResponse&lt;bool&gt;&gt; AddToArticle([FromBody] BEArticleModuleViewModel view)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Swastika.Cms.Lib.ViewModels.BackEnd.BEArticleModuleViewModel.html">BEArticleModuleViewModel</a></td>
+        <td><span class="parametername">view</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Threading.Tasks.Task</span>&lt;<span class="xref">RepositoryResponse</span>&lt;<span class="xref">System.Boolean</span>&gt;&gt;</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
+  <a id="Swastka_IO_Cms_Api_Controllers_ApiModuleController_BEDetails_" data-uid="Swastka.IO.Cms.Api.Controllers.ApiModuleController.BEDetails*"></a>
+  <h4 id="Swastka_IO_Cms_Api_Controllers_ApiModuleController_BEDetails_System_Int32_" data-uid="Swastka.IO.Cms.Api.Controllers.ApiModuleController.BEDetails(System.Int32)">BEDetails(Int32)</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">[HttpGet]
+[Route(&quot;details/backend/{id}&quot;)]
+public Task&lt;RepositoryResponse&lt;BEModuleViewModel&gt;&gt; BEDetails(int id)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Int32</span></td>
+        <td><span class="parametername">id</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Threading.Tasks.Task</span>&lt;<span class="xref">RepositoryResponse</span>&lt;<a class="xref" href="Swastika.Cms.Lib.ViewModels.BackEnd.BEModuleViewModel.html">BEModuleViewModel</a>&gt;&gt;</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
+  <a id="Swastka_IO_Cms_Api_Controllers_ApiModuleController_Details_" data-uid="Swastka.IO.Cms.Api.Controllers.ApiModuleController.Details*"></a>
+  <h4 id="Swastka_IO_Cms_Api_Controllers_ApiModuleController_Details_System_Int32_" data-uid="Swastka.IO.Cms.Api.Controllers.ApiModuleController.Details(System.Int32)">Details(Int32)</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">[HttpGet]
+[Route(&quot;details/{id}&quot;)]
+public Task&lt;RepositoryResponse&lt;FEModuleViewModel&gt;&gt; Details(int id)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Int32</span></td>
+        <td><span class="parametername">id</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Threading.Tasks.Task</span>&lt;<span class="xref">RepositoryResponse</span>&lt;<a class="xref" href="Swastika.Cms.Lib.ViewModels.FrontEnd.FEModuleViewModel.html">FEModuleViewModel</a>&gt;&gt;</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
+  <a id="Swastka_IO_Cms_Api_Controllers_ApiModuleController_Get_" data-uid="Swastka.IO.Cms.Api.Controllers.ApiModuleController.Get*"></a>
+  <h4 id="Swastka_IO_Cms_Api_Controllers_ApiModuleController_Get_System_Nullable_System_Int32__System_Nullable_System_Int32__System_String_Microsoft_Data_OData_Query_OrderByDirection_" data-uid="Swastka.IO.Cms.Api.Controllers.ApiModuleController.Get(System.Nullable{System.Int32},System.Nullable{System.Int32},System.String,Microsoft.Data.OData.Query.OrderByDirection)">Get(Nullable&lt;Int32&gt;, Nullable&lt;Int32&gt;, String, OrderByDirection)</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">[HttpGet]
+[Route(&quot;list&quot;)]
+[Route(&quot;list/{pageSize:int?}/{pageIndex:int?}&quot;)]
+[Route(&quot;list/{orderBy}/{direction}&quot;)]
+[Route(&quot;list/{pageSize:int?}/{pageIndex:int?}/{orderBy}/{direction}&quot;)]
+public Task&lt;RepositoryResponse&lt;PaginationModel&lt;InfoModuleViewModel&gt;&gt;&gt; Get(int ? pageSize, int ? pageIndex, string orderBy = &quot;Id&quot;, OrderByDirection direction = OrderByDirection.Ascending)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Nullable</span>&lt;<span class="xref">System.Int32</span>&gt;</td>
+        <td><span class="parametername">pageSize</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.Nullable</span>&lt;<span class="xref">System.Int32</span>&gt;</td>
+        <td><span class="parametername">pageIndex</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.String</span></td>
+        <td><span class="parametername">orderBy</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><span class="xref">Microsoft.Data.OData.Query.OrderByDirection</span></td>
+        <td><span class="parametername">direction</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Threading.Tasks.Task</span>&lt;<span class="xref">RepositoryResponse</span>&lt;<span class="xref">PaginationModel</span>&lt;<a class="xref" href="Swastika.Cms.Lib.ViewModels.Info.InfoModuleViewModel.html">InfoModuleViewModel</a>&gt;&gt;&gt;</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
+  <a id="Swastka_IO_Cms_Api_Controllers_ApiModuleController_GetByArticle_" data-uid="Swastka.IO.Cms.Api.Controllers.ApiModuleController.GetByArticle*"></a>
+  <h4 id="Swastka_IO_Cms_Api_Controllers_ApiModuleController_GetByArticle_System_Int32_System_String_" data-uid="Swastka.IO.Cms.Api.Controllers.ApiModuleController.GetByArticle(System.Int32,System.String)">GetByArticle(Int32, String)</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">[HttpGet]
+[Route(&quot;byArticle/{id}&quot;)]
+[Route(&quot;byArticle/{id}/{articleId}&quot;)]
+public Task&lt;RepositoryResponse&lt;FEModuleViewModel&gt;&gt; GetByArticle(int id, string articleId = null)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Int32</span></td>
+        <td><span class="parametername">id</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.String</span></td>
+        <td><span class="parametername">articleId</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Threading.Tasks.Task</span>&lt;<span class="xref">RepositoryResponse</span>&lt;<a class="xref" href="Swastika.Cms.Lib.ViewModels.FrontEnd.FEModuleViewModel.html">FEModuleViewModel</a>&gt;&gt;</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
+  <a id="Swastka_IO_Cms_Api_Controllers_ApiModuleController_GetList_" data-uid="Swastka.IO.Cms.Api.Controllers.ApiModuleController.GetList*"></a>
+  <h4 id="Swastka_IO_Cms_Api_Controllers_ApiModuleController_GetList_RequestPaging_" data-uid="Swastka.IO.Cms.Api.Controllers.ApiModuleController.GetList(RequestPaging)">GetList(RequestPaging)</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">[HttpPost]
+[HttpOptions]
+[Route(&quot;list&quot;)]
+public Task&lt;RepositoryResponse&lt;PaginationModel&lt;InfoModuleViewModel&gt;&gt;&gt; GetList(RequestPaging request)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">RequestPaging</span></td>
+        <td><span class="parametername">request</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Threading.Tasks.Task</span>&lt;<span class="xref">RepositoryResponse</span>&lt;<span class="xref">PaginationModel</span>&lt;<a class="xref" href="Swastika.Cms.Lib.ViewModels.Info.InfoModuleViewModel.html">InfoModuleViewModel</a>&gt;&gt;&gt;</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
+  <a id="Swastka_IO_Cms_Api_Controllers_ApiModuleController_Post_" data-uid="Swastka.IO.Cms.Api.Controllers.ApiModuleController.Post*"></a>
+  <h4 id="Swastka_IO_Cms_Api_Controllers_ApiModuleController_Post_Swastika_Cms_Lib_ViewModels_BackEnd_BEModuleViewModel_" data-uid="Swastka.IO.Cms.Api.Controllers.ApiModuleController.Post(Swastika.Cms.Lib.ViewModels.BackEnd.BEModuleViewModel)">Post(BEModuleViewModel)</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">[HttpPost]
+[HttpOptions]
+[Route(&quot;save&quot;)]
+public Task&lt;RepositoryResponse&lt;BEModuleViewModel&gt;&gt; Post([FromBody] BEModuleViewModel model)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Swastika.Cms.Lib.ViewModels.BackEnd.BEModuleViewModel.html">BEModuleViewModel</a></td>
+        <td><span class="parametername">model</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Threading.Tasks.Task</span>&lt;<span class="xref">RepositoryResponse</span>&lt;<a class="xref" href="Swastika.Cms.Lib.ViewModels.BackEnd.BEModuleViewModel.html">BEModuleViewModel</a>&gt;&gt;</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
+  <a id="Swastka_IO_Cms_Api_Controllers_ApiModuleController_SaveFields_" data-uid="Swastka.IO.Cms.Api.Controllers.ApiModuleController.SaveFields*"></a>
+  <h4 id="Swastka_IO_Cms_Api_Controllers_ApiModuleController_SaveFields_System_Int32_System_Collections_Generic_List_EntityField__" data-uid="Swastka.IO.Cms.Api.Controllers.ApiModuleController.SaveFields(System.Int32,System.Collections.Generic.List{EntityField})">SaveFields(Int32, List&lt;EntityField&gt;)</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">[HttpPost]
+[HttpOptions]
+[Route(&quot;save/{id}&quot;)]
+public Task&lt;RepositoryResponse&lt;bool&gt;&gt; SaveFields(int id, [FromBody] List&lt;EntityField&gt; fields)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Int32</span></td>
+        <td><span class="parametername">id</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.Collections.Generic.List</span>&lt;<span class="xref">EntityField</span>&gt;</td>
+        <td><span class="parametername">fields</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Threading.Tasks.Task</span>&lt;<span class="xref">RepositoryResponse</span>&lt;<span class="xref">System.Boolean</span>&gt;&gt;</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
+  <a id="Swastka_IO_Cms_Api_Controllers_ApiModuleController_Search_" data-uid="Swastka.IO.Cms.Api.Controllers.ApiModuleController.Search*"></a>
+  <h4 id="Swastka_IO_Cms_Api_Controllers_ApiModuleController_Search_System_String_System_String_System_Nullable_System_Int32__System_Nullable_System_Int32__System_String_Microsoft_Data_OData_Query_OrderByDirection_" data-uid="Swastka.IO.Cms.Api.Controllers.ApiModuleController.Search(System.String,System.String,System.Nullable{System.Int32},System.Nullable{System.Int32},System.String,Microsoft.Data.OData.Query.OrderByDirection)">Search(String, String, Nullable&lt;Int32&gt;, Nullable&lt;Int32&gt;, String, OrderByDirection)</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">[HttpGet]
+[Route(&quot;search/{keyword}&quot;)]
+[Route(&quot;search/{pageSize:int?}/{pageIndex:int?}/{keyword}&quot;)]
+[Route(&quot;search/{pageSize:int?}/{pageIndex:int?}/{keyword}/{description}&quot;)]
+[Route(&quot;search/{pageSize:int?}/{pageIndex:int?}/{orderBy}/{direction}/{keyword}&quot;)]
+[Route(&quot;search/{pageSize:int?}/{pageIndex:int?}/{orderBy}/{direction}/{keyword}/{description}&quot;)]
+public Task&lt;RepositoryResponse&lt;PaginationModel&lt;InfoModuleViewModel&gt;&gt;&gt; Search(string keyword = null, string description = null, int ? pageSize = default (int ? ), int ? pageIndex = default (int ? ), string orderBy = &quot;Id&quot;, OrderByDirection direction = OrderByDirection.Ascending)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.String</span></td>
+        <td><span class="parametername">keyword</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.String</span></td>
+        <td><span class="parametername">description</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.Nullable</span>&lt;<span class="xref">System.Int32</span>&gt;</td>
+        <td><span class="parametername">pageSize</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.Nullable</span>&lt;<span class="xref">System.Int32</span>&gt;</td>
+        <td><span class="parametername">pageIndex</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.String</span></td>
+        <td><span class="parametername">orderBy</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><span class="xref">Microsoft.Data.OData.Query.OrderByDirection</span></td>
+        <td><span class="parametername">direction</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Threading.Tasks.Task</span>&lt;<span class="xref">RepositoryResponse</span>&lt;<span class="xref">PaginationModel</span>&lt;<a class="xref" href="Swastika.Cms.Lib.ViewModels.Info.InfoModuleViewModel.html">InfoModuleViewModel</a>&gt;&gt;&gt;</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+</article>
+          </div>
+          
+          <div class="hidden-sm col-md-2" role="complementary">
+            <div class="sideaffix">
+              <div class="contribution">
+                <ul class="nav">
+                </ul>
+              </div>
+              <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix" id="affix">
+              <!-- <p><a class="back-to-top" href="#top">Back to top</a><p> -->
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <footer>
+        <div class="grad-bottom"></div>
+        <div class="footer">
+          <div class="container">
+            <span class="pull-right">
+              <a href="#top">Back to top</a>
+            </span>
+            
+            <span>Copyright © 2015-2017 Microsoft<br>Generated by <strong>DocFX</strong></span>
+          </div>
+        </div>
+      </footer>
+    </div>
+    
+    <script type="text/javascript" src="../styles/docfx.vendor.js"></script>
+    <script type="text/javascript" src="../styles/docfx.js"></script>
+    <script type="text/javascript" src="../styles/main.js"></script>
+  </body>
+</html>
