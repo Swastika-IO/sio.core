@@ -5,7 +5,7 @@ $(document).ready(function () {
 
 
     $("#sw-docs-nav li a").click(function () {
-        $(this).children("span").toggleClass('oi-chevron-right').toggleClass('oi-chevron-bottom');
+        $(this).children("span.oi").toggleClass('oi-chevron-right').toggleClass('oi-chevron-bottom');
     });
 
     $(".sortable").sortable({
