@@ -58,12 +58,42 @@ namespace Swastika.Cms.Lib.ViewModels.FrontEnd
         #region Overrides
 
         #region Common
-        
-        #endregion
-        
-        
 
         #endregion
-        
+
+
+
+        #endregion
+        #region Expands
+
+        /// <summary>
+        /// Gets the template by path.
+        /// </summary>
+        /// <param name="path">The path.</param> Ex: "Pages/_Home"
+        /// <returns></returns>
+        public static RepositoryResponse<SpaTemplateViewModel> GetTemplateByPath(string path, string culture
+            , SiocCmsContext _context = null, IDbContextTransaction _transaction = null)
+        {
+            RepositoryResponse<SpaTemplateViewModel> result = new RepositoryResponse<SpaTemplateViewModel>();
+            string[] temp = path.Split('/');
+            if (temp.Length < 2)
+            {
+                result.IsSucceed = false;
+                result.Errors.Add("Template Not Found");
+            }
+            else
+            {
+                int activeThemeId = GlobalConfigurationService.Instance.GetLocalInt(
+                    SWCmsConstants.ConfigurationKeyword.ThemeId, culture, 0);
+
+                result = Repository.GetSingleModel(t => t.FolderType == temp[0] && t.FileName == temp[1].Split('.')[0] && t.TemplateId == activeThemeId
+                    , _context, _transaction);
+            }
+            return result;
+        }
+
+
+        #endregion
+
     }
 }

@@ -70,7 +70,7 @@ namespace Swastika.Cms.Lib.ViewModels.FrontEnd
 
         public override void ExpandView(SiocCmsContext _context = null, IDbContextTransaction _transaction = null)
         {
-            //this.View = SpaTemplateViewModel.GetTemplateByPath(Template, Specificulture, _context, _transaction).Data;
+            this.View = SpaTemplateViewModel.GetTemplateByPath(Template, Specificulture, _context, _transaction).Data;
             //Columns = new List<ModuleFieldViewModel>();
             //JArray arrField = !string.IsNullOrEmpty(Fields) ? JArray.Parse(Fields) : new JArray();
             //foreach (var field in arrField)
