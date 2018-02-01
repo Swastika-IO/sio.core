@@ -81,6 +81,7 @@ namespace Swastika.Cms.Web.Mvc
 
             services.AddScoped<IViewRenderService, ViewRenderService>();
 
+            services.AddRouting(options => options.LowercaseUrls = true);
             services.AddMvc(options =>
             {
                 options.CacheProfiles.Add("Default",
