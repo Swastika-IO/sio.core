@@ -73,6 +73,8 @@ namespace Swastika.Cms.Lib.Models.Cms
 
                 entity.Property(e => e.Specificulture).HasMaxLength(10);
 
+                entity.Property(e => e.Priority).HasDefaultValueSql("((0))");
+
                 entity.Property(e => e.CreatedBy).HasMaxLength(250);
 
                 entity.Property(e => e.CreatedDateTime).HasColumnType("datetime");
