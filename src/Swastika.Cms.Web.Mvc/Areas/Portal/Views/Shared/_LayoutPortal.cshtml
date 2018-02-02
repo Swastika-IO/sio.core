@@ -17,7 +17,6 @@
     <link href="~/css/open-iconic/open-iconic-bootstrap.min.css" rel="stylesheet">
     <link href="~/lib/micon/css/micon.min.css" rel="stylesheet" />
 
-    
     <link href="~/lib/bootstrap4-tagsinput-4.1.2/tagsinput.css" rel="stylesheet" />
 
     <link href="~/lib/Trumbowyg-2.9.0/ui/trumbowyg.min.css" rel="stylesheet" />
@@ -48,6 +47,23 @@
                 <form enctype="multipart/form-data" onsubmit="return false" asp-action="@ViewContext.RouteData.Values["action"].ToString()">
                     @RenderBody()
                 </form>
+
+                <footer class="footer">
+                    <div class="container">
+                        <nav>
+                            <p class="copyright text-center">
+                                ©
+                                <script>
+                                    document.write(new Date().getFullYear())
+                                </script>
+                                <a href="http://www.swastika.io">Swastika I/O</a>, made with <span class="mi-stack mi-lg">
+                                    <i class="mi mi-HeartFill mi-stack-1x  text-danger"></i>
+                                    <i class="mi mi-Heart mi-stack-1x"></i>
+                                </span> for a better web
+                            </p>
+                        </nav>
+                    </div>
+                </footer>
             </main>
         </div>
     </div>
