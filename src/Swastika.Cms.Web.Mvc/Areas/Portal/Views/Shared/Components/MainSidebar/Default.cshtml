@@ -61,9 +61,9 @@
                     </a>
                 </div>
             </div>
-            <div class="sw-toc-link">
-                <i class="mi mi-ReadingList mi-lg mi-fw" data-toggle="collapse" data-target="#collapseArticleSubMenus" role="button" aria-expanded="false"
-                   aria-controls="collapseArticleSubMenus"></i>
+            <div class="sw-toc-link" data-toggle="collapse" data-target="#collapseArticleSubMenus" role="button" aria-expanded="false"
+                   aria-controls="collapseArticleSubMenus">
+                <i class="mi mi-ReadingList mi-lg mi-fw"></i>
                 <span class="text">Articles</span>
             </div>
             <ul id="collapseArticleSubMenus" class="collapse list-unstyled" role="tabpanel" data-parent="#sw-docs-nav">
@@ -226,7 +226,7 @@
                     <li class="hide-on-sb-inactive" is-active-menu asp-controllers="Pages" asp-action="AddData,EditData,Contents,Edit" asp-route-id="@cate.Id">
                         <div class="sw-toc-sub-link mb-1">
                             <i class="mi mi-Page mi-fw"></i>
-                            <span class="text">@cate.Title</span>
+                            <span class="text">@(cate.Title.Length >= 15 ? cate.Title.Substring(0, 15) + "..." : cate.Title)</span>
                             <div class="inner">
                                 @if (cate.Type == SWCmsConstants.CateType.List || cate.Type == SWCmsConstants.CateType.ListProduct)
                                 {
@@ -308,7 +308,7 @@
                     <li class="hide-on-sb-inactive">
                         <div class="sw-toc-sub-link mb-1">
                             <i class="mi mi-Component mi-fw"></i>
-                            <span class="text">@module.Title</span>
+                            <span class="text">@(module.Title.Length >= 15 ? module.Title.Substring(0, 15) + "...": module.Title)</span>
 
                             <div class="inner">
                                 <div class="btn-group btn-group-sm" role="group" aria-label="Basic example">
