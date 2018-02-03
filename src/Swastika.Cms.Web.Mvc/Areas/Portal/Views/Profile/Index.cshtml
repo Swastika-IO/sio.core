@@ -1,7 +1,175 @@
 ﻿@model IndexViewModel
+@inject UserManager<ApplicationUser> UserManager
 @{
     ViewData["Title"] = "Manage your account";
 }
+
+<style>
+    .card {
+        border-radius: 4px;
+        background-color: #fff;
+        margin-bottom: 30px;
+    }
+
+        .card .card-image {
+            width: 100%;
+            overflow: hidden;
+            height: 260px;
+            border-radius: 4px 4px 0 0;
+            position: relative;
+            -webkit-transform-style: preserve-3d;
+            transform-style: preserve-3d;
+        }
+
+    .card-user .card-image {
+        height: 110px;
+    }
+
+    .card .card-image img {
+        width: 100%;
+    }
+
+    .card-user .card-body {
+        min-height: 240px;
+    }
+
+    .card .card-body {
+        padding: 15px 15px 10px;
+    }
+
+    .card-body {
+        -ms-flex: 1 1 auto;
+        flex: 1 1 auto;
+        padding: 1.25rem;
+    }
+
+    .card-user .author {
+        text-align: center;
+        text-transform: none;
+        margin-top: -70px;
+    }
+
+    .card .author {
+        font-size: 12px;
+        font-weight: 600;
+        text-transform: uppercase;
+    }
+
+    .card-user .avatar.border-gray {
+        border-color: #eee;
+    }
+
+    .card .avatar {
+        width: 30px;
+        height: 30px;
+        overflow: hidden;
+        border-radius: 50%;
+        margin-right: 5px;
+    }
+
+    .card-user .avatar {
+        width: 124px;
+        height: 124px;
+        border: 5px solid #fff;
+        position: relative;
+        margin-bottom: 15px;
+    }
+
+    img {
+        vertical-align: middle;
+        border-style: none;
+    }
+</style>
+
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-8">
+            <div class="card">
+                <!----> <div class="card-header"><h4 class="card-title">Edit Profile</h4></div> <div class="card-body">
+                    <form>
+                        <div class="row">
+                            <div class="col-md-5">
+                                <div class="form-group">
+                                    <label class="control-label">
+                                        Company
+                                    </label> <!----> <input aria-describedby="addon-right addon-left" type="text" disabled="disabled" placeholder="Light dashboard" class="form-control">  <!---->
+                                </div>
+                            </div> <div class="col-md-3">
+                                <div class="form-group">
+                                    <label class="control-label">
+                                        Username
+                                    </label> <!----> <input aria-describedby="addon-right addon-left" type="text" placeholder="Username" class="form-control">  <!---->
+                                </div>
+                            </div> <div class="col-md-4">
+                                <div class="form-group">
+                                    <label class="control-label">
+                                        Email
+                                    </label> <!----> <input aria-describedby="addon-right addon-left" type="email" placeholder="Email" class="form-control">  <!---->
+                                </div>
+                            </div>
+                        </div> <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label class="control-label">
+                                        First Name
+                                    </label> <!----> <input aria-describedby="addon-right addon-left" type="text" placeholder="First Name" class="form-control">  <!---->
+                                </div>
+                            </div> <div class="col-md-6">
+                                <div class="form-group">
+                                    <label class="control-label">
+                                        Last Name
+                                    </label> <!----> <input aria-describedby="addon-right addon-left" type="text" placeholder="Last Name" class="form-control">  <!---->
+                                </div>
+                            </div>
+                        </div> <div class="row">
+                            <div class="col-md-12">
+                                <div class="form-group">
+                                    <label class="control-label">
+                                        Address
+                                    </label> <!----> <input aria-describedby="addon-right addon-left" type="text" placeholder="Home Address" class="form-control">  <!---->
+                                </div>
+                            </div>
+                        </div> <div class="row">
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label class="control-label">
+                                        City
+                                    </label> <!----> <input aria-describedby="addon-right addon-left" type="text" placeholder="City" class="form-control">  <!---->
+                                </div>
+                            </div> <div class="col-md-4">
+                                <div class="form-group">
+                                    <label class="control-label">
+                                        Country
+                                    </label> <!----> <input aria-describedby="addon-right addon-left" type="text" placeholder="Country" class="form-control">  <!---->
+                                </div>
+                            </div> <div class="col-md-4">
+                                <div class="form-group">
+                                    <label class="control-label">
+                                        Postal Code
+                                    </label> <!----> <input aria-describedby="addon-right addon-left" type="number" placeholder="ZIP Code" class="form-control">  <!---->
+                                </div>
+                            </div>
+                        </div> <div class="row"><div class="col-md-12"><div class="form-group"><label>About Me</label> <textarea rows="5" placeholder="Here can be your description" class="form-control border-input"></textarea></div></div></div> <div class="text-center">
+                            <button type="submit" class="btn btn-info btn-fill float-right">
+                                Update Profile
+                            </button>
+                        </div> <div class="clearfix"></div>
+                    </form>
+                </div> <!---->
+            </div>
+        </div> <div class="col-md-4">
+            <div class="card card-user">
+                <div class="card-image"><img src="https://www.lifeofpix.com/wp-content/uploads/2017/02/sdc13894.jpg" alt="..."></div> <!----> <div class="card-body">
+                    <div class="author"><a href="#"><img src="https://avatars1.githubusercontent.com/u/3785721?s=124&v=4" alt="..." class="avatar border-gray" width="120px"> <h4 class="title">Huy Nguyen<br> <small>@UserManager.GetUserName(User)</small></h4></a></div> <p class="description text-center">
+                        "Lamborghini Mercy <br>
+                        Your chick she so thirsty <br>
+                        I'm in that two seat Lambo"
+                    </p>
+                </div> <div class="card-footer"><hr> <div class="text-center"><button href="#" class="btn btn-simple"><i class="fa fa-facebook-square"></i></button> <button href="#" class="btn btn-simple"><i class="fa fa-twitter"></i></button> <button href="#" class="btn btn-simple"><i class="fa fa-google-plus-square"></i></button></div></div>
+            </div>
+        </div>
+    </div>
+</div>
 
 <p class="text-success">@ViewData["StatusMessage"]</p>
 
