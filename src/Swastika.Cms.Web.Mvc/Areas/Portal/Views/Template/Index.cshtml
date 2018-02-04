@@ -10,7 +10,7 @@
     string href = string.Format("{0}://{1}{2}", Context.Request.Scheme, Context.Request.Host, Url.Action());
     var folders = Enum.GetNames(typeof(Swastika.Cms.Lib.SWCmsConstants.TemplateFolderEnum)).ToList();
 }
-<section class="container container-fluid">
+<section class="content container-fluid">
     <div class="row mb-1">
         <div class="col-sm-12">
             <a asp-action="Create" asp-route-templateId="@ViewBag.templateId" class="btn btn-primary"><span class="oi oi-plus"></span> Add template</a>
