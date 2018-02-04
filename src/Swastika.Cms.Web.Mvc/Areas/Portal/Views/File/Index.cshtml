@@ -19,24 +19,37 @@
 }
 
 <div class="content container-fluid">
+
     <div class="row">
-        <div class="col-lg-12">
-        </div>
-    </div>
-    <div class="row mb-1">
-        <div class="col">
-            <div class="input-group">
-                <div class="custom-file">
-                    <input type="file" name="file" id="file" class="btn" />
-                    <input type="file" class="custom-file-input" name="file" id="file">
-                    <label class="custom-file-label" for="inputGroupFile04">Choose file</label>
+        <div class="col-md-12 d-flex justify-content-end">
+            <div class="btn-toolbar mb-3" role="toolbar" aria-label="Toolbar with button groups">
+                <div class="input-group mr-2">
+                    <div class="custom-file">
+                        <input type="file" class="custom-file-input" name="file" id="file">
+                        <label class="custom-file-label" for="file">Choose file</label>
+                    </div>
                 </div>
-                <div class="input-group-append">
-                    <button type="button" onclick="this.form.submit()" class="btn btn-primary"><i class="fa fa-envelope-o"></i> Upload</button>
+                <div class="btn-group mr-2" role="group" aria-label="First group">
+                    <button type="button" onclick="this.form.submit()" class="btn btn-secondary"><i class="mi mi-Upload"></i> Upload</button>
                 </div>
             </div>
         </div>
     </div>
+
+    @*<div class="row mb-1">
+            <div class="col">
+                <div class="input-group">
+                    <div class="custom-file">
+                        <input type="file" name="file" id="file" class="btn" />
+                        <input type="file" class="custom-file-input" name="file" id="file">
+                        <label class="custom-file-label" for="inputGroupFile04">Choose file</label>
+                    </div>
+                    <div class="input-group-append">
+                        <button type="button" onclick="this.form.submit()" class="btn btn-primary"><i class="fa fa-envelope-o"></i> Upload</button>
+                    </div>
+                </div>
+            </div>
+        </div>*@
     <div class="row">
         <div class="col-md-12">
             <table class="table table-sm table-hover">

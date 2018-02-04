@@ -34,17 +34,17 @@
     </form>
 
     <ul class="sw-links" id="sw-docs-nav" data-children=".sw-toc-item">
+        <!-- DASHBOARD -->
         <li class="sw-toc-item mt-1 mb-1">
             <a asp-area="Portal" asp-controller="Dashboard" asp-action="Index" class="sw-toc-link">
                 <i class="mi mi-Tiles mi-lg mi-fw"></i>
                 <span class="text">Dashboard</span>
             </a>
         </li>
-        <li class="sw-toc-item mt-1 mb-1 mb-1" is-active-menu asp-controllers="Articles">
-            <div class="sw-toc-link">
-                <i class="mi mi-ReadingList mi-lg mi-fw"></i>
-                <span class="text">Articles</span>
 
+        <!-- ARTICLE -->
+        <li class="sw-toc-item mt-1 mb-1 mb-1" is-active-menu asp-controllers="Articles">
+            <div class="inner">
                 <div class="btn-group btn-group-sm" role="group" aria-label="Basic example">
                     <a asp-area="Portal" asp-controller="Articles" asp-action="Create" class="btn btn-light">
                         <span class="oi oi-plus"></span>
@@ -60,6 +60,11 @@
                         <span class="oi oi-chevron-right"></span>
                     </a>
                 </div>
+            </div>
+            <div class="sw-toc-link" data-toggle="collapse" data-target="#collapseArticleSubMenus" role="button" aria-expanded="false"
+                 aria-controls="collapseArticleSubMenus">
+                <i class="mi mi-ReadingList mi-lg mi-fw"></i>
+                <span class="text">Articles</span>
             </div>
             <ul id="collapseArticleSubMenus" class="collapse list-unstyled" role="tabpanel" data-parent="#sw-docs-nav">
                 <li>
@@ -85,27 +90,28 @@
                     <div class="sw-toc-sub-link mb-1">
                         <i class="mi mi-ReadingList mi-fw"></i>
                         <span class="text">Article...</span>
-                        <div class="btn-group btn-group-sm" role="group" aria-label="Basic example">
-                            <a class="btn btn-light">
-                                <span class="oi oi-plus"></span>
-                            </a>
-                            <a class="btn btn-light">
-                                <span class="oi oi-list"></span>
-                            </a>
-                            <a class="btn btn-light">
-                                <span class="oi oi-pencil"></span>
-                            </a>
+                        <div class="inner">
+                            <div class="btn-group btn-group-sm" role="group" aria-label="Basic example">
+                                <a class="btn btn-light">
+                                    <span class="oi oi-plus"></span>
+                                </a>
+                                <a class="btn btn-light">
+                                    <span class="oi oi-list"></span>
+                                </a>
+                                <a class="btn btn-light">
+                                    <span class="oi oi-pencil"></span>
+                                </a>
+                            </div>
                         </div>
                     </div>
                 </li>
             </ul>
         </li>
 
+        <!-- PRODUCT -->
         <li class="sw-toc-item mt-1 mb-1" is-active-menu asp-controllers="Product">
-            <div class="sw-toc-link">
-                <i class="mi mi-Package mi-lg mi-fw"></i>
-                <span class="text">Product</span>
 
+            <div class="inner">
                 <div class="btn-group btn-group-sm" role="group" aria-label="Basic example">
                     <a asp-area="Portal" asp-controller="Product" asp-action="Create" class="btn btn-light">
                         <span class="oi oi-plus"></span>
@@ -121,6 +127,11 @@
                         <span class="oi oi-chevron-right"></span>
                     </a>
                 </div>
+            </div>
+            <div class="sw-toc-link" data-toggle="collapse" data-target="#collapseProductSubMenus" role="button" aria-expanded="false"
+                 aria-controls="collapseProductSubMenus">
+                <i class="mi mi-Package mi-lg mi-fw"></i>
+                <span class="text">Product</span>
             </div>
             <ul id="collapseProductSubMenus" class="collapse list-unstyled" role="tabpanel" data-parent="#sw-docs-nav">
                 <li>
@@ -146,26 +157,29 @@
                     <div class="sw-toc-sub-link mb-1">
                         <i class="mi mi-Package mi-fw"></i>
                         <span class="text">Product...</span>
-                        <div class="btn-group btn-group-sm" role="group" aria-label="Basic example">
-                            <a class="btn btn-light">
-                                <span class="oi oi-plus"></span>
-                            </a>
-                            <a class="btn btn-light">
-                                <span class="oi oi-list"></span>
-                            </a>
-                            <a class="btn btn-light">
-                                <span class="oi oi-pencil"></span>
-                            </a>
+
+                        <div class="inner">
+                            <div class="btn-group btn-group-sm" role="group" aria-label="Basic example">
+                                <a class="btn btn-light">
+                                    <span class="oi oi-plus"></span>
+                                </a>
+                                <a class="btn btn-light">
+                                    <span class="oi oi-list"></span>
+                                </a>
+                                <a class="btn btn-light">
+                                    <span class="oi oi-pencil"></span>
+                                </a>
+                            </div>
                         </div>
                     </div>
                 </li>
             </ul>
         </li>
 
+        <!-- PAGES -->
         <li class="sw-toc-item mt-1 mb-1" is-active-route asp-controller="Pages" asp-action="Create">
-            <div class="sw-toc-link">
-                <i class="mi mi-Page mi-lg mi-fw"></i>
-                <span class="text">Pages</span>
+
+            <div class="inner">
                 <div class="btn-group btn-group-sm" role="group" aria-label="Basic example">
                     <a asp-area="Portal" asp-controller="Pages" asp-action="Create" class="btn btn-light">
                         <span class="oi oi-plus"></span>
@@ -181,6 +195,11 @@
                         <span class="oi oi-chevron-right"></span>
                     </a>
                 </div>
+            </div>
+            <div class="sw-toc-link" data-toggle="collapse" data-target="#collapsePageSubMenus" role="button" aria-expanded="false"
+                 aria-controls="collapsePageSubMenus">
+                <i class="mi mi-Page mi-lg mi-fw"></i>
+                <span class="text">Pages</span>
             </div>
             <ul id="collapsePageSubMenus" class="collapse list-unstyled" role="tabpanel" data-parent="#sw-docs-nav">
                 <li>
@@ -203,44 +222,47 @@
                 </li>
 
                 @foreach (var cate in listAvaiPage)
-            {
-                <li class="hide-on-sb-inactive" is-active-menu asp-controllers="Pages" asp-action="AddData,EditData,Contents,Edit" asp-route-id="@cate.Id">
-                    <div class="sw-toc-sub-link mb-1">
-                        @if (cate.Type == SWCmsConstants.CateType.List || cate.Type == SWCmsConstants.CateType.ListProduct)
-                    {
-                        <div class="btn-group btn-group-sm" role="group" aria-label="Basic example">
-                            <a asp-area="Portal" asp-controller="Articles" asp-action="Create" asp-route-categoryId="@cate.Id" class="btn btn-light">
-                                <span class="oi oi-plus"></span>
-                            </a>
-                            <a asp-area="Portal" asp-controller="Pages" asp-action="Contents" asp-route-id="@cate.Id" asp-route-pagename="@cate.SeoName" class="btn btn-light">
-                                <span class="oi oi-list"></span>
-                            </a>
-                            <a asp-area="Portal" asp-controller="Pages" asp-action="Edit" asp-route-id="@cate.Id" asp-route-pageName="@cate.SeoName" class="btn btn-light">
-                                <span class="oi oi-pencil"></span>
-                            </a>
-                        </div>
-                }
-                else
                 {
+                    <li class="hide-on-sb-inactive" is-active-menu asp-controllers="Pages" asp-action="AddData,EditData,Contents,Edit" asp-route-id="@cate.Id">
+                        <div class="sw-toc-sub-link mb-1">
+                            <i class="mi mi-Page mi-fw"></i>
+                            <span class="text">@(cate.Title.Length >= 15 ? cate.Title.Substring(0, 15) + "..." : cate.Title)</span>
+                            <div class="inner">
+                                @if (cate.Type == SWCmsConstants.CateType.List || cate.Type == SWCmsConstants.CateType.ListProduct)
+                                {
 
-                    <div class="btn-group btn-group-sm" role="group" aria-label="Basic example">
-                        <a asp-area="Portal" asp-controller="Pages" asp-action="Edit" asp-route-id="@cate.Id" asp-route-pageName="@cate.SeoName" class="btn btn-light">
-                            <span class="oi oi-pencil"></span>
-                        </a>
-                    </div>
-            }
-                        <i class="mi mi-Page mi-fw"></i>
-                        <span class="text">@cate.Title</span>
-                    </div>
-                </li>
-        }
+                                    <div class="btn-group btn-group-sm" role="group" aria-label="Basic example">
+                                        <a asp-area="Portal" asp-controller="Articles" asp-action="Create" asp-route-categoryId="@cate.Id" class="btn btn-light">
+                                            <span class="oi oi-plus"></span>
+                                        </a>
+                                        <a asp-area="Portal" asp-controller="Pages" asp-action="Contents" asp-route-id="@cate.Id" asp-route-pagename="@cate.SeoName" class="btn btn-light">
+                                            <span class="oi oi-list"></span>
+                                        </a>
+                                        <a asp-area="Portal" asp-controller="Pages" asp-action="Edit" asp-route-id="@cate.Id" asp-route-pageName="@cate.SeoName" class="btn btn-light">
+                                            <span class="oi oi-pencil"></span>
+                                        </a>
+                                    </div>
+                                }
+                                else
+                                {
+
+                                    <div class="btn-group btn-group-sm" role="group" aria-label="Basic example">
+                                        <a asp-area="Portal" asp-controller="Pages" asp-action="Edit" asp-route-id="@cate.Id" asp-route-pageName="@cate.SeoName" class="btn btn-light">
+                                            <span class="oi oi-pencil"></span>
+                                        </a>
+                                    </div>
+                                }
+                            </div>
+                        </div>
+                    </li>
+                }
             </ul>
         </li>
 
+        <!-- MODULE -->
         <li class="sw-toc-item mt-1 mb-1" is-active-menu asp-controllers="Module">
-            <div class="sw-toc-link">
-                <i class="mi mi-AdjustHologram mi-lg mi-fw mi-pulse"></i>
-                <span class="text">Modules</span>
+
+            <div class="inner">
                 <div class="btn-group btn-group-sm" role="group" aria-label="Basic example">
                     <a is-active-route asp-controller="Module" asp-action="Create" class="btn btn-light">
                         <span class="oi oi-plus"></span>
@@ -256,6 +278,11 @@
                         <span class="oi oi-chevron-right"></span>
                     </a>
                 </div>
+            </div>
+            <div class="sw-toc-link" data-toggle="collapse" data-target="#collapseModuleSubMenus" aria-expanded="false"
+                 aria-controls="collapseModuleSubMenus">
+                <i class="mi mi-AdjustHologram mi-lg mi-fw mi-pulse"></i>
+                <span class="text">Modules</span>
             </div>
             <ul id="collapseModuleSubMenus" class="collapse list-unstyled" data-parent="#sw-docs-nav">
                 <li>
@@ -277,31 +304,35 @@
                     </a>
                 </li>
                 @foreach (var module in listAvaiModule)
-            {
-                <li class="hide-on-sb-inactive">
-                    <div class="sw-toc-sub-link mb-1">
-                        <div class="btn-group btn-group-sm" role="group" aria-label="Basic example">
-                            <a asp-area="Portal" asp-controller="Module" asp-action="AddModuleData" asp-route-id="@module.Id" class="btn btn-light">
-                                <span class="oi oi-plus"></span>
-                            </a>
-                            <a asp-area="Portal" asp-controller="Module" asp-action="Details" asp-route-id="@module.Id" class="btn btn-light">
-                                <span class="oi oi-list"></span>
-                            </a>
-                            <a asp-area="Portal" asp-controller="Module" asp-action="Edit" asp-route-id="@module.Id" class="btn btn-light">
-                                <span class="oi oi-pencil"></span>
-                            </a>
+                {
+                    <li class="hide-on-sb-inactive">
+                        <div class="sw-toc-sub-link mb-1">
+                            <i class="mi mi-Component mi-fw"></i>
+                            <span class="text">@(module.Title.Length >= 15 ? module.Title.Substring(0, 15) + "..." : module.Title)</span>
+
+                            <div class="inner">
+                                <div class="btn-group btn-group-sm" role="group" aria-label="Basic example">
+                                    <a asp-area="Portal" asp-controller="Module" asp-action="AddModuleData" asp-route-id="@module.Id" class="btn btn-light">
+                                        <span class="oi oi-plus"></span>
+                                    </a>
+                                    <a asp-area="Portal" asp-controller="Module" asp-action="Details" asp-route-id="@module.Id" class="btn btn-light">
+                                        <span class="oi oi-list"></span>
+                                    </a>
+                                    <a asp-area="Portal" asp-controller="Module" asp-action="Edit" asp-route-id="@module.Id" class="btn btn-light">
+                                        <span class="oi oi-pencil"></span>
+                                    </a>
+                                </div>
+                            </div>
                         </div>
-                        <i class="mi mi-Component mi-fw"></i>
-                        <span class="text">@module.Title</span>
-                    </div>
-                </li>
-        }
+                    </li>
+                }
             </ul>
         </li>
+
+        <!-- THEME -->
         <li class="sw-toc-item mt-1 mb-1">
-            <div class="sw-toc-link">
-                <i class="mi mi-Personalize mi-lg mi-fw"></i>
-                <span class="text">Themes</span>
+
+            <div class="inner">
                 <div class="btn-group btn-group-sm" role="group" aria-label="Basic example">
                     <a asp-area="Portal" asp-controller="Theme" asp-action="Create" class="btn btn-light">
                         <span class="oi oi-plus"></span>
@@ -314,6 +345,11 @@
                         <span class="oi oi-chevron-right"></span>
                     </a>
                 </div>
+            </div>
+            <div class="sw-toc-link" data-toggle="collapse" data-target="#collapseAppearanceSubMenus" aria-expanded="false"
+                 aria-controls="collapseAppearanceSubMenus">
+                <i class="mi mi-Personalize mi-lg mi-fw"></i>
+                <span class="text">Themes</span>
             </div>
             <ul id="collapseAppearanceSubMenus" class="collapse list-unstyled" data-parent="#sw-docs-nav">
                 <li>
@@ -330,38 +366,41 @@
                 </li>
 
                 @foreach (var item in listAvaiTheme.Data)
-            {
-                string fileFolder = string.Format("Templates/{0}", item.Name);
-                string filesUrl = Url.RouteUrl("File", new { culture = ViewBag.culture, folder = fileFolder });
-                <li class="hide-on-sb-inactive" is-active-menu asp-controllers="Theme" asp-action="AddData,EditData,Contents,Edit" asp-route-id="@item.Id">
-                    <div class="sw-toc-sub-link mb-1">
-                        <i class="mi mi-Color mi-fw"></i>
-                        <span class="text">@item.Name</span>
-                        <div class="btn-group btn-group-sm" role="group" aria-label="Basic example">
-                            <a asp-controller="Template" asp-action="Index" asp-route-folder="Layouts" asp-route-templateId="@item.Id" class="btn btn-light">
-                                <span class="oi oi-brush"></span>
-                            </a>
-                            <a href="@filesUrl" class="btn btn-light">
-                                <span class="oi oi-file"></span>
-                            </a>
-                            <a asp-area="Portal" asp-controller="Theme" asp-action="Edit" asp-route-id="@item.Id" class="btn btn-light">
-                                <span class="oi oi-pencil"></span>
-                            </a>
+                {
+                    string fileFolder = string.Format("Templates/{0}", item.Name);
+                    string filesUrl = Url.RouteUrl("File", new { culture = ViewBag.culture, folder = fileFolder });
+                    <li class="hide-on-sb-inactive" is-active-menu asp-controllers="Theme" asp-action="AddData,EditData,Contents,Edit" asp-route-id="@item.Id">
+                        <div class="sw-toc-sub-link mb-1">
+                            <i class="mi mi-Color mi-fw"></i>
+                            <span class="text">@item.Name</span>
+
+                            <div class="inner">
+                                <div class="btn-group btn-group-sm" role="group" aria-label="Basic example">
+                                    <a asp-controller="Template" asp-action="Index" asp-route-folder="Layouts" asp-route-templateId="@item.Id" class="btn btn-light">
+                                        <span class="oi oi-brush"></span>
+                                    </a>
+                                    <a href="@filesUrl" class="btn btn-light">
+                                        <span class="oi oi-file"></span>
+                                    </a>
+                                    <a asp-area="Portal" asp-controller="Theme" asp-action="Edit" asp-route-id="@item.Id" class="btn btn-light">
+                                        <span class="oi oi-pencil"></span>
+                                    </a>
+                                </div>
+                            </div>
                         </div>
-                    </div>
-                </li>
-        }
+                    </li>
+                }
             </ul>
         </li>
+
+        <!-- MEDIA -->
         <li class="sw-toc-item mt-1 mb-1">
-            <div class="sw-toc-link">
-                <i class="mi mi-Photo2 mi-lg mi-fw"></i>
-                <span class="text">Medias</span>
+            <div class="inner">
                 <div class="btn-group btn-group-sm" role="group" aria-label="Basic example">
-                    <a class="btn btn-light">
+                    <a asp-area="Portal" asp-controller="Media" asp-action="Index" class="btn btn-light">
                         <span class="oi oi-image"></span>
                     </a>
-                    <a class="btn btn-light">
+                    <a asp-area="Portal" asp-controller="File" asp-action="Index" class="btn btn-light">
                         <span class="oi oi-file"></span>
                     </a>
                     <a href="#" class="btn btn-light" data-toggle="collapse" data-target="#collapseFileSubMenus" aria-expanded="false"
@@ -370,11 +409,16 @@
                     </a>
                 </div>
             </div>
+            <div class="sw-toc-link" data-toggle="collapse" data-target="#collapseFileSubMenus" aria-expanded="false"
+                 aria-controls="collapseFileSubMenus">
+                <i class="mi mi-Photo2 mi-lg mi-fw"></i>
+                <span class="text">Media</span>
+            </div>
             <ul id="collapseFileSubMenus" class="collapse list-unstyled" data-parent="#sw-docs-nav">
                 <li>
-                    <a data-target="#" class="sw-toc-sub-link mb-1">
+                    <a asp-area="Portal" asp-controller="Media" asp-action="Index" class="sw-toc-sub-link mb-1">
                         <i class="mi mi-Photo2 mi-fw"></i>
-                        <span class="text">Medias</span>
+                        <span class="text">Library</span>
                     </a>
                 </li>
                 <li>
@@ -384,23 +428,23 @@
                     </a>
                 </li>
                 @foreach (var folder in directories)
-            {
-                string dirPath = string.Format("/{0}", folder);
-                string href = Url.RouteUrl("File", new { culture = ViewBag.culture, folder = dirPath });
-                <li>
-                    <a href="@href" class="sw-toc-sub-link mb-1">
-                        <span class="oi oi-folder"></span>
-                        <span class="text">@folder</span>
-                    </a>
-                </li>
-        }
+                {
+                    string dirPath = string.Format("/{0}", folder);
+                    string href = Url.RouteUrl("File", new { culture = ViewBag.culture, folder = dirPath });
+                    <li>
+                        <a href="@href" class="sw-toc-sub-link mb-1">
+                            <i class="mi mi-Folder"></i>
+                            <span class="text">@folder</span>
+                        </a>
+                    </li>
+                }
             </ul>
         </li>
 
+        <!-- TEAM -->
         <li class="sw-toc-item mt-1 mb-1">
-            <div class="sw-toc-link">
-                <i class="mi mi-Contact mi-lg mi-fw"></i>
-                <span class="text">Team</span>
+
+            <div class="inner">
                 <div class="btn-group btn-group-sm" role="group" aria-label="Basic example">
                     <a asp-area="Portal" asp-controller="Team" asp-action="Create" class="btn btn-light">
                         <span class="oi oi-plus"></span>
@@ -413,6 +457,11 @@
                         <span class="oi oi-chevron-right"></span>
                     </a>
                 </div>
+            </div>
+            <div class="sw-toc-link" data-toggle="collapse" data-target="#collapseTeamSubMenus" aria-expanded="false"
+                 aria-controls="collapseTeamSubMenus">
+                <i class="mi mi-Contact mi-lg mi-fw"></i>
+                <span class="text">Team</span>
             </div>
             <ul id="collapseTeamSubMenus" class="collapse list-unstyled" data-parent="#sw-docs-nav">
                 <li>
@@ -429,10 +478,11 @@
                 </li>
             </ul>
         </li>
+
+        <!-- SETTING -->
         <li class="sw-toc-item mt-1 mb-1">
-            <div class="sw-toc-link">
-                <i class="mi mi-Settings mi-lg mi-fw mi-spin"></i>
-                <span class="text">Settings</span>
+
+            <div class="inner">
                 <div class="btn-group btn-group-sm" role="group" aria-label="Basic example">
                     <a class="btn btn-light">
                         <span class="oi oi-list"></span>
@@ -446,19 +496,26 @@
                     </a>
                 </div>
             </div>
+            <div class="sw-toc-link" data-toggle="collapse" data-target="#collapseSettingSubMenus" aria-expanded="false"
+                 aria-controls="collapseSettingSubMenus">
+                <i class="mi mi-Settings mi-lg mi-fw mi-spin"></i>
+                <span class="text">Settings</span>
+            </div>
             <ul id="collapseSettingSubMenus" class="collapse list-unstyled" data-parent="#sw-docs-nav">
                 <li class="">
                     <div class="sw-toc-sub-link mb-1">
                         <i class="mi mi-Repair mi-fw"></i>
                         <span class="text">Configurations</span>
 
-                        <div class="btn-group btn-group-sm" role="group" aria-label="Basic example">
-                            <a asp-area="Portal" asp-controller="Setting" asp-action="CreateConfiguration" class="btn btn-light">
-                                <span class="oi oi-plus"></span>
-                            </a>
-                            <a asp-area="Portal" asp-controller="Setting" asp-action="Configurations" class="btn btn-light">
-                                <span class="oi oi-list"></span>
-                            </a>
+                        <div class="inner">
+                            <div class="btn-group btn-group-sm" role="group" aria-label="Basic example">
+                                <a asp-area="Portal" asp-controller="Setting" asp-action="CreateConfiguration" class="btn btn-light">
+                                    <span class="oi oi-plus"></span>
+                                </a>
+                                <a asp-area="Portal" asp-controller="Setting" asp-action="Configurations" class="btn btn-light">
+                                    <span class="oi oi-list"></span>
+                                </a>
+                            </div>
                         </div>
                     </div>
                 </li>
@@ -481,13 +538,16 @@
                     <div class="sw-toc-sub-link mb-1">
                         <i class="mi mi-World mi-fw"></i>
                         <span class="text">Cultures</span>
-                        <div class="btn-group btn-group-sm" role="group" aria-label="Basic example">
-                            <a asp-area="Portal" asp-controller="Culture" asp-action="Create" class="btn btn-light">
-                                <span class="oi oi-plus"></span>
-                            </a>
-                            <a asp-area="Portal" asp-controller="Culture" asp-action="Index" class="btn btn-light">
-                                <span class="oi oi-list"></span>
-                            </a>
+
+                        <div class="inner">
+                            <div class="btn-group btn-group-sm" role="group" aria-label="Basic example">
+                                <a asp-area="Portal" asp-controller="Culture" asp-action="Create" class="btn btn-light">
+                                    <span class="oi oi-plus"></span>
+                                </a>
+                                <a asp-area="Portal" asp-controller="Culture" asp-action="Index" class="btn btn-light">
+                                    <span class="oi oi-list"></span>
+                                </a>
+                            </div>
                         </div>
                     </div>
                 </li>

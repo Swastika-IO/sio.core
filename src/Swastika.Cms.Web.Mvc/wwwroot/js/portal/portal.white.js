@@ -3,6 +3,9 @@ $(document).ready(function () {
         $('#sidebar').toggleClass('active');
     });
 
+    $('[data-toggle="tooltip"]').tooltip({
+        delay: { "show": 500, "hide": 100 }
+    });
 
     $("#sw-docs-nav li a").click(function () {
         $(this).children("span.oi").toggleClass('oi-chevron-right').toggleClass('oi-chevron-bottom');

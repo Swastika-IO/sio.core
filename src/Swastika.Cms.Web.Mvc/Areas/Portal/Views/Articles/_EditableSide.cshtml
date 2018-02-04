@@ -6,7 +6,6 @@
     var templates = new SelectList(Model.Templates, "Filename", "Filename");
 }
 
-
 <div class="card">
     <div class="card-header">
         Info
@@ -85,7 +84,6 @@
     </div>
 </div>
 
-
 <div class="card">
     <div class="card-header">
         Thumbnail image
@@ -103,7 +101,6 @@
     </div>
 </div>
 
-
 @*<div class="card">
         <div class="card-header">
             Languages
@@ -112,7 +109,6 @@
 
             @for (int i = 0; i < Model.ListSupportedCulture.Count; i++)
             {
-
 
                 <label class="custom-control custom-checkbox d-block">
                     <input type="checkbox" asp-for="@Model.ListSupportedCulture[i].IsSupported" class="custom-control-input" required="">
@@ -126,7 +122,6 @@
             }
 
             <input type="hidden" asp-for="Specificulture" />
-
         </div>
     </div>*@
 
@@ -161,7 +156,6 @@
         </div>
         <!-- /.box-body -->
     </div>
-
 
     <div class="box box-solid">
         <div class="box-header with-border">
