@@ -95,7 +95,6 @@
     <Content Remove="Areas\Portal\Views\Module\IndexOld.cshtml" />
     <Content Remove="Areas\Portal\Views\Pages\IndexOld.cshtml" />
     <Content Remove="Areas\Portal\Views\Shared\Components\HeaderNavbar\DefaultOld.cshtml" />
-    <Content Remove="Areas\Portal\Views\Shared\_Del_Editor.cshtml" />
     <Content Remove="Areas\Portal\Views\Shared\_Layout.cshtml" />
     <Content Remove="tsconfig.json" />
     <Content Remove="Views\Home\About.cshtml" />

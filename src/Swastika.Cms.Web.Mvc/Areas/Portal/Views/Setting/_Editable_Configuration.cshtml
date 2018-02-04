@@ -17,7 +17,7 @@
         <label asp-for="Value" class="col-md-2 control-label"></label>
         <div class="col-md-10">
             @Html.Partial("_Editor",
-                new ViewDataDictionary(this.Vi‌​ewData) {
+                     new ViewDataDictionary(this.Vi‌​ewData) {
                 {
                 "DataType", Model.DataType
                 },
@@ -31,8 +31,8 @@
 
                 "Id","Value"
                 }
-                }
-                )
+                     }
+                     )
 
             <span asp-validation-for="Value" class="text-danger"></span>
         </div>
@@ -49,9 +49,19 @@
     <div class="form-group">
         <label asp-for="DataType" class="col-md-2 control-label"></label>
         <div class="col-md-10">
-            <select asp-for="DataType" class="form-control" asp-items="@types" ></select>
+            <select asp-for="DataType" class="form-control" asp-items="@types"></select>
             <span asp-validation-for="DataType" class="text-danger"></span>
         </div>
     </div>
 </div>
 
+
+@section Scripts{
+    <script>
+        $(document).ready(function () {
+
+            $('.editor-content').trumbowyg();
+            
+        })
+    </script>
+}
