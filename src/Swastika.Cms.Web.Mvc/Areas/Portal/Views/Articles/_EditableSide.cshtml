@@ -6,7 +6,6 @@
     var templates = new SelectList(Model.Templates, "Filename", "Filename");
 }
 
-
 <div class="card">
     <div class="card-header">
         Info
@@ -75,7 +74,7 @@
     <div class="card-body p-0" style="background:url(/images/upload-image-thumbnail.png) no-repeat center; ">
         @*<label asp-for="Image" class="control-label"></label>*@
         <span asp-validation-for="Image" class="text-danger"></span>
-        <label class="custom-file" style="min-height:150px; cursor:pointer;">
+        <label class="custom-file" style="min-height:150px; cursor:pointer;border: 2px dashed;">
             <img src="@img" name="pic" class="custom-file-img " accept="image/*" width="100%" />
             <input type="hidden" value="Articles/@Model.SeoTitle" class="folder-val" />
             <input type="file" name="pic" class="custom-file-input">
@@ -85,7 +84,6 @@
     </div>
 </div>
 
-
 <div class="card">
     <div class="card-header">
         Thumbnail image
@@ -93,7 +91,7 @@
     <div class="card-body p-0" style="background:url(/images/upload-image-thumbnail.png) no-repeat center; ">
         @*<label asp-for="Image" class="control-label"></label>*@
         <span asp-validation-for="Thumbnail" class="text-danger"></span>
-        <label class="custom-file" style="min-height:150px; cursor:pointer;">
+        <label class="custom-file" style="min-height:150px; cursor:pointer;border: 2px dashed;">
             <img src="@thumb" name="pic" class="custom-file-img " accept="image/*" width="100%" />
             <input type="hidden" value="Articles/@Model.SeoTitle" class="folder-val" />
             <input type="file" name="pic" class="custom-file-input">
@@ -103,7 +101,6 @@
     </div>
 </div>
 
-
 @*<div class="card">
         <div class="card-header">
             Languages
@@ -112,7 +109,6 @@
 
             @for (int i = 0; i < Model.ListSupportedCulture.Count; i++)
             {
-
 
                 <label class="custom-control custom-checkbox d-block">
                     <input type="checkbox" asp-for="@Model.ListSupportedCulture[i].IsSupported" class="custom-control-input" required="">
@@ -126,7 +122,6 @@
             }
 
             <input type="hidden" asp-for="Specificulture" />
-
         </div>
     </div>*@
 
@@ -161,7 +156,6 @@
         </div>
         <!-- /.box-body -->
     </div>
-
 
     <div class="box box-solid">
         <div class="box-header with-border">

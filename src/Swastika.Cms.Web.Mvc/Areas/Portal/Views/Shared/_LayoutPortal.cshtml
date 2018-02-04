@@ -132,11 +132,11 @@
     </div>
 
     <div class="modal modal-default fade show" id="modal-files">
-        <div class="modal-dialog modal-lg">
+        <div class="modal-dialog modal-lg modal-dialog-centered" style="max-width: 95%;">
             <div class="modal-content">
                 <div class="modal-header">
                     <div class="col-md-11">
-                        <h2 class="modal-title">Upload file</h2>
+                        <h5 class="modal-title" id="exampleModalLabel"><i class="mi mi-Media"></i> Quick media upload</h5>
                     </div>
                     <div class="col-md-1">
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
@@ -146,29 +146,43 @@
                 </div>
                 <div class="modal-body">
                     <div class="row">
-                        <div class="col-lg-10">
-                            <div class="col-lg-4">
-
-                                <input type="file" id="file" />
+                        <div class="col-md-12 d-flex justify-content-end">
+                            <div class="btn-toolbar mb-3" role="toolbar" aria-label="Toolbar with button groups">
+                                <div class="input-group mr-2">
+                                    <div class="custom-file">
+                                        <input type="file" class="custom-file-input" name="file" id="file">
+                                        <label class="custom-file-label" for="file">Choose file</label>
+                                    </div>
+                                </div>
+                                <div class="btn-group mr-2" role="group" aria-label="First group">
+                                    <button type="button" onclick="SW.Common.loadFileStream('Images')" class="btn btn-secondary"><i class="mi mi-Upload"></i> Upload</button>
+                                </div>
                             </div>
                         </div>
-                        <div class="col-lg-2" style="margin-bottom: 10px;">
-                            <a href="#" class="btn btn-success btn-block" onclick="SW.Common.loadFileStream('Images')">Submit file...</a>
-                        </div>
                     </div>
-                    <table class="table table-condensed">
+                    @*<div class="row">
+                            <div class="col-lg-10">
+                                <div class="col-lg-4">
+                                    <input type="file" id="file" />
+                                </div>
+                            </div>
+                            <div class="col-lg-2" style="margin-bottom: 10px;">
+                                <a href="#" class="btn btn-success btn-block" onclick="SW.Common.loadFileStream('Images')">Submit file...</a>
+                            </div>
+                        </div>*@
+                    <table class="table table-sm table-condensed">
                         <thead class="thead-light">
                             <tr>
-                                <th>
+                                <th scope="col">
                                     Folder
                                 </th>
-                                <th>
+                                <th scope="col">
                                     Name
                                 </th>
-                                <th>
+                                <th scope="col">
                                     FullPath
                                 </th>
-                                <th>
+                                <th scope="col">
                                     Content
                                 </th>
                             </tr>
@@ -176,9 +190,9 @@
                         <tbody></tbody>
                     </table>
                 </div>
-                <div class="modal-footer">
-                    <a class="btn btn- btn-primary btn-warning" data-dismiss="modal">Close</a>
-                </div>
+                @*<div class="modal-footer">
+                        <a class="btn btn- btn-primary btn-warning" data-dismiss="modal">Close</a>
+                    </div>*@
             </div>
             <!-- /.modal-content -->
         </div>

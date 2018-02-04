@@ -129,7 +129,7 @@
                 </div>
             </div>
             <div class="sw-toc-link" data-toggle="collapse" data-target="#collapseProductSubMenus" role="button" aria-expanded="false"
-                   aria-controls="collapseProductSubMenus">
+                 aria-controls="collapseProductSubMenus">
                 <i class="mi mi-Package mi-lg mi-fw"></i>
                 <span class="text">Product</span>
             </div>
@@ -197,7 +197,7 @@
                 </div>
             </div>
             <div class="sw-toc-link" data-toggle="collapse" data-target="#collapsePageSubMenus" role="button" aria-expanded="false"
-                   aria-controls="collapsePageSubMenus">
+                 aria-controls="collapsePageSubMenus">
                 <i class="mi mi-Page mi-lg mi-fw"></i>
                 <span class="text">Pages</span>
             </div>
@@ -280,7 +280,7 @@
                 </div>
             </div>
             <div class="sw-toc-link" data-toggle="collapse" data-target="#collapseModuleSubMenus" aria-expanded="false"
-                   aria-controls="collapseModuleSubMenus">
+                 aria-controls="collapseModuleSubMenus">
                 <i class="mi mi-AdjustHologram mi-lg mi-fw mi-pulse"></i>
                 <span class="text">Modules</span>
             </div>
@@ -347,7 +347,7 @@
                 </div>
             </div>
             <div class="sw-toc-link" data-toggle="collapse" data-target="#collapseAppearanceSubMenus" aria-expanded="false"
-                   aria-controls="collapseAppearanceSubMenus">
+                 aria-controls="collapseAppearanceSubMenus">
                 <i class="mi mi-Personalize mi-lg mi-fw"></i>
                 <span class="text">Themes</span>
             </div>
@@ -397,10 +397,10 @@
         <li class="sw-toc-item mt-1 mb-1">
             <div class="inner">
                 <div class="btn-group btn-group-sm" role="group" aria-label="Basic example">
-                    <a class="btn btn-light">
+                    <a asp-area="Portal" asp-controller="Media" asp-action="Index" class="btn btn-light">
                         <span class="oi oi-image"></span>
                     </a>
-                    <a class="btn btn-light">
+                    <a asp-area="Portal" asp-controller="File" asp-action="Index" class="btn btn-light">
                         <span class="oi oi-file"></span>
                     </a>
                     <a href="#" class="btn btn-light" data-toggle="collapse" data-target="#collapseFileSubMenus" aria-expanded="false"
@@ -410,15 +410,15 @@
                 </div>
             </div>
             <div class="sw-toc-link" data-toggle="collapse" data-target="#collapseFileSubMenus" aria-expanded="false"
-                   aria-controls="collapseFileSubMenus">
+                 aria-controls="collapseFileSubMenus">
                 <i class="mi mi-Photo2 mi-lg mi-fw"></i>
-                <span class="text">Medias</span>
+                <span class="text">Media</span>
             </div>
             <ul id="collapseFileSubMenus" class="collapse list-unstyled" data-parent="#sw-docs-nav">
                 <li>
-                    <a data-target="#" class="sw-toc-sub-link mb-1">
+                    <a asp-area="Portal" asp-controller="Media" asp-action="Index" class="sw-toc-sub-link mb-1">
                         <i class="mi mi-Photo2 mi-fw"></i>
-                        <span class="text">Medias</span>
+                        <span class="text">Library</span>
                     </a>
                 </li>
                 <li>
@@ -433,7 +433,7 @@
                     string href = Url.RouteUrl("File", new { culture = ViewBag.culture, folder = dirPath });
                     <li>
                         <a href="@href" class="sw-toc-sub-link mb-1">
-                            <span class="oi oi-folder"></span>
+                            <i class="mi mi-Folder"></i>
                             <span class="text">@folder</span>
                         </a>
                     </li>
@@ -459,7 +459,7 @@
                 </div>
             </div>
             <div class="sw-toc-link" data-toggle="collapse" data-target="#collapseTeamSubMenus" aria-expanded="false"
-                   aria-controls="collapseTeamSubMenus">
+                 aria-controls="collapseTeamSubMenus">
                 <i class="mi mi-Contact mi-lg mi-fw"></i>
                 <span class="text">Team</span>
             </div>
@@ -497,7 +497,7 @@
                 </div>
             </div>
             <div class="sw-toc-link" data-toggle="collapse" data-target="#collapseSettingSubMenus" aria-expanded="false"
-                   aria-controls="collapseSettingSubMenus">
+                 aria-controls="collapseSettingSubMenus">
                 <i class="mi mi-Settings mi-lg mi-fw mi-spin"></i>
                 <span class="text">Settings</span>
             </div>
