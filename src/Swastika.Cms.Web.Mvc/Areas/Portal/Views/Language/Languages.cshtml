@@ -12,36 +12,44 @@
 
 }
 
-<div class="box-body">
-
-    <div class="btn-group btn-group-sm" role="group" aria-label="Basic example">
-        <a asp-area="Portal" asp-controller="Language" asp-action="CreateLanguage" class="btn btn-light">
-            <span class="oi oi-plus"></span>
-        </a>
-        <a asp-area="Portal" asp-controller="Language" asp-action="Languages" class="btn btn-light">
-            <span class="oi oi-list"></span>
-        </a>
+<section class="content container-fluid">
+    <div class="row">
+        <div class="col-md-8">
+            <div class="btn-toolbar mb-3" role="toolbar" aria-label="Toolbar with button groups">
+                <div class="btn-group mr-2" role="group" aria-label="First group">
+                    <a asp-area="Portal" asp-controller="Language" asp-action="CreateLanguage" class="btn btn-secondary">
+                        <i class="mi mi-Add"></i>
+                    </a>
+                    <a asp-area="Portal" asp-controller="Language" asp-action="Languages" class="btn btn-secondary">
+                        <i class="mi mi-Edit"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+        </div>
     </div>
-    <table class="table table-hover table-striped dataTable" cellspacing="0">
+
+    <table class="table table-sm table-hover" cellspacing="0">
         <thead class="thead-light">
             <tr>
-                <th>
+                <th scope="col">
                     @Swastika.Cms.Lib.Services.GlobalLanguageService.Instance.GetLocalString("Keyword", culture)
                 </th>
-                <th>
+                <th scope="col">
                     @Swastika.Cms.Lib.Services.GlobalLanguageService.Instance.GetLocalString("Specificulture", culture)
                 </th>
-                <th>
+                <th scope="col">
                     @Swastika.Cms.Lib.Services.GlobalLanguageService.Instance.GetLocalString("Description", culture)
                 </th>
-                <th>
+                <th scope="col">
                     @Swastika.Cms.Lib.Services.GlobalLanguageService.Instance.GetLocalString("Value", culture)
                 </th>
-                <th>
+                <th scope="col">
                     @Swastika.Cms.Lib.Services.GlobalLanguageService.Instance.GetLocalString("DataType", culture)
                 </th>
 
-                <th></th>
+                <th scope="col"></th>
             </tr>
         </thead>
 
@@ -60,7 +68,7 @@
                     </td>
                     <td>
                         @{Html.RenderPartial("_ViewByFieldType",
-                      new ViewDataDictionary(this.Vi‌​ewData) { { "DataType", item.DataType }, { "Value", item.Value } });
+                                      new ViewDataDictionary(this.Vi‌​ewData) { { "DataType", item.DataType }, { "Value", item.Value } });
                         }
                     </td>
                     <td>
@@ -80,5 +88,4 @@
             }
         </tbody>
     </table>
-
-</div>
+</section>

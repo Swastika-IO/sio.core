@@ -13,17 +13,26 @@
 }
 
 <section class="content container-fluid">
-    <div class="btn-group btn-group-sm" role="group" aria-label="Basic example">
-        <a asp-area="Portal" asp-controller="Module" asp-action="AddModuleData" asp-route-id="@Model.Id" class="btn btn-light">
-            <span class="oi oi-plus"></span>
-        </a>
-        <a asp-area="Portal" asp-controller="Module" asp-action="Details" asp-route-id="@Model.Id" class="btn btn-light">
-            <span class="oi oi-list"></span>
-        </a>
-        <a asp-area="Portal" asp-controller="Module" asp-action="Edit" asp-route-id="@Model.Id" class="btn btn-light">
-            <span class="oi oi-pencil"></span>
-        </a>
+    <div class="row">
+        <div class="col-md-8">
+            <div class="btn-toolbar mb-3" role="toolbar" aria-label="Toolbar with button groups">
+                <div class="btn-group mr-2" role="group" aria-label="First group">
+                    <a asp-area="Portal" asp-controller="Module" asp-action="AddModuleData" asp-route-id="@Model.Id" class="btn btn-secondary">
+                        <i class="mi mi-Add"></i>
+                    </a>
+                    @*<a asp-area="Portal" asp-controller="Module" asp-action="Details" asp-route-id="@Model.Id" class="btn btn-secondary">
+                            <span class="oi oi-list"></span>
+                        </a>*@
+                    <a asp-area="Portal" asp-controller="Module" asp-action="Edit" asp-route-id="@Model.Id" class="btn btn-secondary">
+                        <i class="mi mi-Edit"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+        </div>
     </div>
+
     <form enctype="multipart/form-data" asp-action="@ViewContext.RouteData.Values["action"].ToString()">
 
         @if (Model.Data.TotalItems > 0)
@@ -39,11 +48,11 @@
                         </th>
                         @foreach (var col in Model.Columns.Where(c => c.IsDisplay))
                         {
-                            <th>
+                            <th scope="col">
                                 @col.Name
                             </th>
                         }
-                        <th>Actions</th>
+                        <th scope="col">Actions</th>
                     </tr>
                 </thead>
                 <tfoot>
@@ -56,11 +65,11 @@
                         </th>
                         @foreach (var col in Model.Columns.Where(c => c.IsDisplay))
                         {
-                            <th>
+                            <th scope="col">
                                 @col.Name
                             </th>
                         }
-                        <th>Actions</th>
+                        <th scope="col">Actions</th>
                     </tr>
                 </tfoot>
                 <tbody class="sortable">
@@ -78,7 +87,7 @@
                                 var prop = Data.Items[i].GetDataProperty(col.Name);
                                 <td>
                                     @{Html.RenderPartial("_ViewByFieldType",
-                      new ViewDataDictionary(this.Vi‌​ewData) { { "DataType", prop.DataType }, { "Value", prop.Value } });
+                                          new ViewDataDictionary(this.Vi‌​ewData) { { "DataType", prop.DataType }, { "Value", prop.Value } });
                                     }
                                 </td>
                             }
@@ -110,20 +119,20 @@
                         <th scope="col">
                             <span class="oi oi-sort-ascending"></span>
                         </th>
-                        <th>
+                        <th scope="col">
                             Title
                         </th>
-                        <th>
+                        <th scope="col">
                             Excerpt
                         </th>
 
-                        <th>
+                        <th scope="col">
                             Type
                         </th>
-                        <th>
+                        <th scope="col">
                             CreatedBy
                         </th>
-                        <th></th>
+                        <th scope="col"></th>
                     </tr>
                 </thead>
                 <tfoot>
@@ -134,20 +143,20 @@
                         <th scope="col">
                             <span class="oi oi-sort-ascending"></span>
                         </th>
-                        <th>
+                        <th scope="col">
                             Title
                         </th>
-                        <th>
+                        <th scope="col">
                             Excerpt
                         </th>
 
-                        <th>
+                        <th scope="col">
                             Type
                         </th>
-                        <th>
+                        <th scope="col">
                             CreatedBy
                         </th>
-                        <th></th>
+                        <th scope="col"></th>
                     </tr>
                 </tfoot>
                 <tbody class="sortable">
@@ -189,7 +198,7 @@
                 <tbody></tbody>
             </table>
             @await Html.PartialAsync("_Pagination", Model, new ViewDataDictionary(this.Vi‌​ewData)
-       {
+{
 { "PageSize", Model.Articles.PageSize}, { "PageIndex", Model.Articles.PageIndex }, { "TotalPage", Model.Articles.TotalPage } })
         }
     </form>

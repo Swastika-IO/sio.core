@@ -11,7 +11,7 @@
     toValue = toValue > Model.TotalItems ? Model.TotalItems : toValue;
 }
 
-<div class="box-body">
+<section class="content container-fluid">
     <div class="pull-right">
         @*@fromValue  - @toValue
             / @Model.TotalItems*@
@@ -21,7 +21,8 @@
         </div>
         <!-- /.btn-group -->
     </div>
-    <table class="table table-hover table-striped dataTable" cellspacing="0">
+
+    <table class="table table-sm table-hover" cellspacing="0">
         <thead class="thead-light">
             <tr>
                 <th scope="col">
@@ -43,7 +44,9 @@
                     Description
                 </th>
 
-                <th scope="col"></th>
+                <th scope="col" width="5%">
+                    Actions
+                </th>
             </tr>
         </thead>
         <tbody>
@@ -51,7 +54,7 @@
             {
                 <tr>
                     <td>
-                        <i class="flag-icon @item.Icon"></i>
+                        <i class="flag-icon @item.Icon" style="font-size: x-large;"></i>
                     </td>
                     <td>
                         @Html.DisplayFor(modelItem => item.Specificulture)
@@ -71,13 +74,13 @@
 
                     <td>
                         <div class="btn-group btn-group-sm" role="group" aria-label="Actions">
-                            <a asp-action="Edit" asp-route-id="@item.Id" class="btn btn-sm btn-warning"> <span class="oi oi-pencil"></span></a>
+                            <a asp-action="Edit" asp-route-id="@item.Id" class="btn btn-sm btn-light"> <span class="oi oi-pencil text-primary"></span></a>
                             @*<a asp-action="Details" asp-route-id="@item.Id" class="btn btn-sm btn-info"> <span class="oi oi-eye"></span> </a>*@
-                            <a asp-action="Delete" asp-route-id="@item.Id" class="btn btn-sm btn-danger" data-popout="true" data-toggle="confirmation" data-singleton="true"> <span class="oi oi-x"></span> </a>
+                            <a asp-action="Delete" asp-route-id="@item.Id" class="btn btn-sm btn-light" data-popout="true" data-toggle="confirmation" data-singleton="true"> <span class="oi oi-x text-danger"></span> </a>
                         </div>
                     </td>
                 </tr>
             }
         </tbody>
     </table>
-</div>
+</section>
