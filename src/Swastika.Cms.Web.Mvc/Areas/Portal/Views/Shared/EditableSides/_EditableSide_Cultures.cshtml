@@ -6,26 +6,25 @@
     <div class="card-body">
         <div class="form-group">
             @for (int i = 0; i < Model.Count; i++)
-    {
+            {
 
-        <span class="switch">
-            <input type="hidden" asp-for="@Model[i].Specificulture" />
-            <input type="checkbox" asp-for="@Model[i].IsSupported" class="switch" required="">
-            <label class="switch" asp-for="@Model[i].IsSupported">
-                <i class="flag-icon h5 @Model[i].Icon" style="margin-right: 5px;margin-left: 10px;"></i> @Model[i].Specificulture
-            </label>
-        </span>
-}
+                <span class="switch">
+                    <input type="hidden" asp-for="@Model[i].Specificulture" />
+                    <input type="checkbox" asp-for="@Model[i].IsSupported" class="switch" required="">
+                    <label class="switch" asp-for="@Model[i].IsSupported">
+                        <i class="flag-icon @Model[i].Icon" style=""></i> @Model[i].Specificulture
+                    </label>
+                </span>
+            }
         </div>
     </div>
 </div>
 
-
 @*<div class="custom-control custom-checkbox">
-    <input type="checkbox" asp-for="@Model[i].IsSupported" class="custom-control-input" required=""
-           id="ListSupportedCulture_@Model[i].Specificulture">
-    <input type="hidden" asp-for="@Model[i].Specificulture" />
-    <label class="custom-control-label" for="ListSupportedCulture_@Model[i].Specificulture">
-        <i class="flag-icon h5 @Model[i].Icon" style="margin-right: 5px;margin-left: 10px;"></i> @Model[i].Specificulture
-    </label>
-</div>*@
+        <input type="checkbox" asp-for="@Model[i].IsSupported" class="custom-control-input" required=""
+               id="ListSupportedCulture_@Model[i].Specificulture">
+        <input type="hidden" asp-for="@Model[i].Specificulture" />
+        <label class="custom-control-label" for="ListSupportedCulture_@Model[i].Specificulture">
+            <i class="flag-icon h5 @Model[i].Icon" style="margin-right: 5px;margin-left: 10px;"></i> @Model[i].Specificulture
+        </label>
+    </div>*@
