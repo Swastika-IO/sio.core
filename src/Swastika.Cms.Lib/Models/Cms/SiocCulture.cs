@@ -10,6 +10,7 @@ namespace Swastika.Cms.Lib.Models.Cms
             SiocArticle = new HashSet<SiocArticle>();
             SiocCategory = new HashSet<SiocCategory>();
             SiocConfiguration = new HashSet<SiocConfiguration>();
+            SiocLanguage = new HashSet<SiocLanguage>();
             SiocModule = new HashSet<SiocModule>();
             SiocProduct = new HashSet<SiocProduct>();
         }
@@ -25,6 +26,7 @@ namespace Swastika.Cms.Lib.Models.Cms
         public ICollection<SiocArticle> SiocArticle { get; set; }
         public ICollection<SiocCategory> SiocCategory { get; set; }
         public ICollection<SiocConfiguration> SiocConfiguration { get; set; }
+        public ICollection<SiocLanguage> SiocLanguage { get; set; }
         public ICollection<SiocModule> SiocModule { get; set; }
         public ICollection<SiocProduct> SiocProduct { get; set; }
     }

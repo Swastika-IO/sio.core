@@ -93,14 +93,14 @@
     <label asp-for="Template" class="control-label"></label>
 
     @Html.Partial("_Editor_Code", Model.View, new ViewDataDictionary(this.ViewData){
-        {
-                "Files", Model.Templates
-            },
-            {
-                "Name", "View"
-            }
+{
+        "Files", Model.Templates
+    },
+    {
+        "Name", "View"
+    }
 
-        })
+})
     @* <input asp-for="View.Filename" class="form-control"/>
 
         <div class="form-control" id="code-editor" asp-for="View.Content"></div>*@
@@ -108,9 +108,8 @@
 </div>
 
 
-
-@section scripts{
-    <script>
+<script>
+    window.onload = function () {
         $('#AddObject').click(function () {
             var i = $(".field-row").length;
             $.ajax({
@@ -123,5 +122,6 @@
                 }
             });
         });
-    </script>
-}
+        
+    }
+</script>

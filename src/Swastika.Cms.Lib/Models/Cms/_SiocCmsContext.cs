@@ -17,6 +17,7 @@ namespace Swastika.Cms.Lib.Models.Cms
         public virtual DbSet<SiocCategoryProduct> SiocCategoryProduct { get; set; }
         public virtual DbSet<SiocComment> SiocComment { get; set; }
         public virtual DbSet<SiocConfiguration> SiocConfiguration { get; set; }
+        public virtual DbSet<SiocLanguage> SiocLanguage { get; set; }
         public virtual DbSet<SiocCopy> SiocCopy { get; set; }
         public virtual DbSet<SiocCulture> SiocCulture { get; set; }
         public virtual DbSet<SiocFile> SiocFile { get; set; }
@@ -356,6 +357,29 @@ namespace Swastika.Cms.Lib.Models.Cms
                     .HasPrincipalKey(p => p.Specificulture)
                     .HasForeignKey(d => d.Specificulture)
                     .HasConstraintName("FK_Sioc_Configuration_Sioc_Culture");
+            });
+
+            modelBuilder.Entity<SiocLanguage>(entity =>
+            {
+                entity.HasKey(e => new { e.Keyword, e.Specificulture });
+
+                entity.ToTable("sioc_language");
+
+                entity.HasIndex(e => e.Specificulture);
+
+                entity.Property(e => e.Keyword).HasMaxLength(250);
+
+                entity.Property(e => e.Specificulture).HasMaxLength(10);
+
+                entity.Property(e => e.Category).HasMaxLength(250);
+
+                entity.Property(e => e.Description).HasMaxLength(250);
+
+                entity.HasOne(d => d.SpecificultureNavigation)
+                    .WithMany(p => p.SiocLanguage)
+                    .HasPrincipalKey(p => p.Specificulture)
+                    .HasForeignKey(d => d.Specificulture)
+                    .HasConstraintName("FK_Sioc_Language_Sioc_Culture");
             });
 
             modelBuilder.Entity<SiocCopy>(entity =>

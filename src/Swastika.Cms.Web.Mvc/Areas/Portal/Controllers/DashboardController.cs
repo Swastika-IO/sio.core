@@ -30,11 +30,11 @@ namespace Swastika.Cms.Mvc.Areas.Portal.Controllers
         [HttpGet]
         [Route("{Dashboardize:int?}/{pageIndex:int?}")]
         [Route("Index/{Dashboardize:int?}/{pageIndex:int?}")]
-        public async Task<IActionResult> Index(string keyword, int Dashboardize = 10, int pageIndex = 0)
+        public IActionResult Index(string keyword, int Dashboardize = 10, int pageIndex = 0)
         {
-            
+
             return View();
         }
-        
+
     }
 }

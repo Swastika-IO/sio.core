@@ -13,6 +13,17 @@
 }
 
 <section class="content container-fluid">
+    <div class="btn-group btn-group-sm" role="group" aria-label="Basic example">
+        <a asp-area="Portal" asp-controller="Module" asp-action="AddModuleData" asp-route-id="@Model.Id" class="btn btn-light">
+            <span class="oi oi-plus"></span>
+        </a>
+        <a asp-area="Portal" asp-controller="Module" asp-action="Details" asp-route-id="@Model.Id" class="btn btn-light">
+            <span class="oi oi-list"></span>
+        </a>
+        <a asp-area="Portal" asp-controller="Module" asp-action="Edit" asp-route-id="@Model.Id" class="btn btn-light">
+            <span class="oi oi-pencil"></span>
+        </a>
+    </div>
     <form enctype="multipart/form-data" asp-action="@ViewContext.RouteData.Values["action"].ToString()">
 
         @if (Model.Data.TotalItems > 0)
@@ -67,7 +78,7 @@
                                 var prop = Data.Items[i].GetDataProperty(col.Name);
                                 <td>
                                     @{Html.RenderPartial("_ViewByFieldType",
-                    new ViewDataDictionary(this.Vi‌​ewData) { { "DataType", prop.DataType }, { "Value", prop.Value } });
+                      new ViewDataDictionary(this.Vi‌​ewData) { { "DataType", prop.DataType }, { "Value", prop.Value } });
                                     }
                                 </td>
                             }
@@ -178,7 +189,7 @@
                 <tbody></tbody>
             </table>
             @await Html.PartialAsync("_Pagination", Model, new ViewDataDictionary(this.Vi‌​ewData)
-           {
+       {
 { "PageSize", Model.Articles.PageSize}, { "PageIndex", Model.Articles.PageIndex }, { "TotalPage", Model.Articles.TotalPage } })
         }
     </form>
