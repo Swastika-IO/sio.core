@@ -6,7 +6,6 @@
     var templates = new SelectList(Model.Templates, "Filename", "Filename");
 }
 
-
 <div class="row">
     <div class="col-sm-12">
         <div class="card">
@@ -30,39 +29,45 @@
                     <textarea asp-for="Description" class="form-control  editor-content"></textarea>
                     <span asp-validation-for="Description" class="text-danger"></span>
                 </div>
-
             </div>
         </div>
     </div>
 </div>
-
 <div class="row">
     <div class="col-sm-12">
         <div class="card">
             <div class="card-header">
                 Module Attributes (<label asp-for="Columns" class="control-label"></label>)
                 <button id="AddObject" class="btn btn-primary btn-sm float-right">@Swastika.Cms.Lib.Services.GlobalConfigurationService.Instance.GetLocalString("Add New", ViewBag.culture)</button>
-
             </div>
             <div class="card-body">
-
                 <input type="hidden" asp-for="Id" />
                 <input type="hidden" asp-for="Specificulture" />
-
                 <table class="table table-sm table-hover" id="Table">
                     <thead class="thead-light">
                         <tr>
-                            <th>Priority</th>
+                            <th scope="col">
+                                <span class="oi oi-move"></span>
+                            </th>
+                            <th scope="col">
+                                <span class="oi oi-sort-ascending"></span>
+                            </th>
                             <th>Name</th>
                             <th>Data Type</th>
                             <th>Width</th>
                             <th>Display</th>
                         </tr>
                     </thead>
-                    <tbody>
+                    <tbody class="sortable">
                         @for (int i = 0; i < Model.Columns.Count; i++)
                         {
-                            <tr class="field-row">
+                            <tr class="sortable-item">
+                                <td style="cursor:move;">
+                                    <span class="oi oi-move"></span>
+                                </td>
+                                <td>
+                                    <input type="text" asp-for="@Model.Columns[i].Priority" class="item-priority form-control form-control-sm d-inline" style="width:40px;" />
+                                </td>
                                 <td>
                                     <input type="text" asp-for="@Model.Columns[i].Priority" class="item-priority form-control form-control-sm d-inline" style="width:40px;" />
                                 </td>
@@ -85,32 +90,27 @@
                         }
                     </tbody>
                 </table>
-
             </div>
         </div>
     </div>
 </div>
 
-
-
 <div class="form-group">
     <label asp-for="Template" class="control-label"></label>
-
     @Html.Partial("_Editor_Code", Model.View, new ViewDataDictionary(this.ViewData){
 {
-        "Files", Model.Templates
-    },
-    {
-        "Name", "View"
-    }
+"Files", Model.Templates
+},
+{
+"Name", "View"
+}
 
 })
-    @* <input asp-for="View.Filename" class="form-control"/>
+    @* <input asp-for="View.Filename" class="form-control" />
 
         <div class="form-control" id="code-editor" asp-for="View.Content"></div>*@
     <span asp-validation-for="Template" class="text-danger"></span>
 </div>
-
 
 <script>
     window.onload = function () {
@@ -126,6 +126,6 @@
                 }
             });
         });
-        
+
     }
 </script>

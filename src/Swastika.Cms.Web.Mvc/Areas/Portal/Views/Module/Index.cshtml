@@ -13,136 +13,145 @@
 
 <section class="content container-fluid">
     <form enctype="multipart/form-data" asp-action="@ViewContext.RouteData.Values["action"].ToString()">
-
-        <div class="row">
-            <div class="col-md-8">
-                <div class="btn-toolbar mb-3" role="toolbar" aria-label="Toolbar with button groups">
-                    <div class="btn-group mr-2" role="group" aria-label="First group">
-                        <a asp-area="Portal" asp-controller="Module" asp-action="Create" class="btn btn-secondary"><i class="mi mi-Add"></i></a>
-                        <a asp-area="Portal" asp-controller="Module" asp-action="Index" class="btn btn-secondary"><i class="mi mi-List"></i></a>
-                        <a asp-area="Portal" asp-controller="Module" asp-action="Draft" class="btn btn-secondary"><i class="mi mi-Paste"></i></a>
-                    </div>
-                    <div class="btn-group mr-2" role="group" aria-label="Button group with nested dropdown">
-                        <div class="btn-group" role="group">
-                            <button id="btnGroupDrop1" type="button" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                All types
-                            </button>
-                            <div class="dropdown-menu" aria-labelledby="btnGroupDrop1">
-                                <a class="dropdown-item" href="#">All types</a>
-                                <a class="dropdown-item" href="#">Images</a>
-                                <a class="dropdown-item" href="#">Audios</a>
-                                <a class="dropdown-item" href="#">Videos</a>
-                                <a class="dropdown-item" href="#">Documents</a>
-                                <a class="dropdown-item" href="#">Zips</a>
-                                <a class="dropdown-item" href="#">Others</a>
+        @if (Model.Items.Count > 0)
+        {
+            <div class="row">
+                <div class="col-md-8">
+                    <div class="btn-toolbar mb-3" role="toolbar" aria-label="Toolbar with button groups">
+                        <div class="btn-group mr-2" role="group" aria-label="First group">
+                            <a asp-area="Portal" asp-controller="Module" asp-action="Create" class="btn btn-secondary"><i class="mi mi-Add"></i></a>
+                            <a asp-area="Portal" asp-controller="Module" asp-action="Index" class="btn btn-secondary"><i class="mi mi-List"></i></a>
+                            <a asp-area="Portal" asp-controller="Module" asp-action="Draft" class="btn btn-secondary"><i class="mi mi-Paste"></i></a>
+                        </div>
+                        <div class="btn-group mr-2" role="group" aria-label="Button group with nested dropdown">
+                            <div class="btn-group" role="group">
+                                <button id="btnGroupDrop1" type="button" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    All types
+                                </button>
+                                <div class="dropdown-menu" aria-labelledby="btnGroupDrop1">
+                                    <a class="dropdown-item" href="#">All types</a>
+                                    <a class="dropdown-item" href="#">Images</a>
+                                    <a class="dropdown-item" href="#">Audios</a>
+                                    <a class="dropdown-item" href="#">Videos</a>
+                                    <a class="dropdown-item" href="#">Documents</a>
+                                    <a class="dropdown-item" href="#">Zips</a>
+                                    <a class="dropdown-item" href="#">Others</a>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                    <div class="btn-group mr-2" role="group" aria-label="Button group with nested dropdown">
-                        <div class="btn-group" role="group">
-                            <button id="btnGroupDrop1" type="button" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                All times
-                            </button>
-                            <div class="dropdown-menu" aria-labelledby="btnGroupDrop1">
-                                <a class="dropdown-item" href="#">Jan 2018</a>
-                                <a class="dropdown-item" href="#">Dec 2017</a>
-                                <a class="dropdown-item" href="#">Nov 2017</a>
+                        <div class="btn-group mr-2" role="group" aria-label="Button group with nested dropdown">
+                            <div class="btn-group" role="group">
+                                <button id="btnGroupDrop1" type="button" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    All times
+                                </button>
+                                <div class="dropdown-menu" aria-labelledby="btnGroupDrop1">
+                                    <a class="dropdown-item" href="#">Jan 2018</a>
+                                    <a class="dropdown-item" href="#">Dec 2017</a>
+                                    <a class="dropdown-item" href="#">Nov 2017</a>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
-            </div>
-            <div class="col-md-4">
-                <div class="input-group">
-                    <div class="input-group-prepend">
-                        <div class="input-group-text" id="btnGroupAddon"><i class="mi mi-Search" style="top:0;"></i></div>
+                <div class="col-md-4">
+                    <div class="input-group">
+                        <div class="input-group-prepend">
+                            <div class="input-group-text" id="btnGroupAddon"><i class="mi mi-Search" style="top:0;"></i></div>
+                        </div>
+                        <input type="text" class="form-control" placeholder="Search......" aria-label="Search......" aria-describedby="btnGroupAddon">
                     </div>
-                    <input type="text" class="form-control" placeholder="Search......" aria-label="Search......" aria-describedby="btnGroupAddon">
                 </div>
             </div>
-        </div>
-        <table class="table table-sm table-hover" cellspacing="0">
-            <thead class="thead-light">
-                <tr>
-                    <th scope="col">
-                        <span class="oi oi-move"></span>
-                    </th>
-                    <th scope="col">
-                        <span class="oi oi-sort-ascending"></span>
-                    </th>
-                    @*<th scope="col">
-                            Id
-                        </th>*@
-                    <th scope="col">
-                        Title
-                    </th>
-                    <th scope="col">
-                        Name
-                    </th>
-                    <th scope="col">
-                        Image
-                    </th>
-                    <th scope="col" style="width:5%;">
-                        Actions
-                    </th>
-                </tr>
-            </thead>
-            @*<tfoot>
+            <table class="table table-sm table-hover" cellspacing="0">
+                <thead class="thead-light">
                     <tr>
                         <th scope="col">
-                            Id
+                            <span class="oi oi-move"></span>
+                        </th>
+                        <th scope="col">
+                            <span class="oi oi-sort-ascending"></span>
+                        </th>
+                        @*<th scope="col">
+                                Id
+                            </th>*@
+                        <th scope="col">
+                            Title
                         </th>
                         <th scope="col">
                             Name
                         </th>
                         <th scope="col">
-                            Template File
+                            Image
                         </th>
-                        <th scope="col">
-                            Title
+                        <th scope="col" style="width:5%;">
+                            Actions
                         </th>
-                        <th scope="col"></th>
                     </tr>
-                </tfoot>*@
-            <tbody class="sortable">
-                @for (int i = 0; i < Model.Items.OrderBy(n => n.Priority).ToList().Count; i++)
-                {
+                </thead>
+                @*<tfoot>
+                        <tr>
+                            <th scope="col">
+                                Id
+                            </th>
+                            <th scope="col">
+                                Name
+                            </th>
+                            <th scope="col">
+                                Template File
+                            </th>
+                            <th scope="col">
+                                Title
+                            </th>
+                            <th scope="col"></th>
+                        </tr>
+                    </tfoot>*@
+                <tbody class="sortable">
+                    @for (int i = 0; i < Model.Items.OrderBy(n => n.Priority).ToList().Count; i++)
+                    {
 
-                    <tr class="sortable-item">
-                        <td style="cursor:move;">
-                            <span class="oi oi-move"></span>
-                        </td>
-                        <td>
-                            <input type="text" asp-for="@Model.Items[i].Priority" class="item-priority form-control form-control-sm d-inline" style="width:40px;" />
-                        </td>
-                        @*<td>
-                                @Html.DisplayFor(modelItem => item.Id)
-                            </td>*@
-                        <td>
-                            @Model.Items[i].Title
-                        </td>
-                        <td>
-                            @Model.Items[i].Name
-                        </td>
-                        <td>
-                            <img src="@Model.Items[i].Image" height="50"/>
-                        </td>
+                        <tr class="sortable-item">
+                            <td style="cursor:move;">
+                                <span class="oi oi-move"></span>
+                            </td>
+                            <td>
+                                <input type="text" asp-for="@Model.Items[i].Priority" class="item-priority form-control form-control-sm d-inline" style="width:40px;" />
+                            </td>
+                            @*<td>
+                                    @Html.DisplayFor(modelItem => item.Id)
+                                </td>*@
+                            <td>
+                                @Model.Items[i].Title
+                            </td>
+                            <td>
+                                @Model.Items[i].Name
+                            </td>
+                            <td>
+                                <img src="@Model.Items[i].Image" height="50" />
+                            </td>
 
-                        <td>
-                            <div class="btn-group btn-group-sm" role="group" aria-label="Actions">
-                                <a asp-action="Edit" asp-route-id="@Model.Items[i].Id" class="btn btn-sm btn-light"> <span class="oi oi-pencil text-primary"></span></a>
+                            <td>
+                                <div class="btn-group btn-group-sm" role="group" aria-label="Actions">
+                                    <a asp-action="Edit" asp-route-id="@Model.Items[i].Id" class="btn btn-sm btn-light"> <span class="oi oi-pencil text-primary"></span></a>
 
-                                <a asp-action="Details" asp-route-id="@Model.Items[i].Id"
-                                   class="btn btn-sm btn-light"><span class="oi oi-list text-info"></span></a>
-                                <a asp-action="Delete" asp-route-id="@Model.Items[i].Id" class="btn btn-sm btn-light" data-popout="true" data-toggle="confirmation" data-singleton="true" data-btn-ok-class="btn-danger btn-sm" data-btn-cancel-class="btn-success btn-sm" data-content="This can be undo!"> <span class="oi oi-x text-danger"></span> </a>
-                            </div>
-                        </td>
-                    </tr>
-                }
-            </tbody>
+                                    <a asp-action="Details" asp-route-id="@Model.Items[i].Id"
+                                       class="btn btn-sm btn-light"><span class="oi oi-list text-info"></span></a>
+                                    <a asp-action="Delete" asp-route-id="@Model.Items[i].Id" class="btn btn-sm btn-light" data-popout="true" data-toggle="confirmation" data-singleton="true" data-btn-ok-class="btn-danger btn-sm" data-btn-cancel-class="btn-success btn-sm" data-content="This can be undo!"> <span class="oi oi-x text-danger"></span> </a>
+                                </div>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
 
-            <tbody></tbody>
-        </table>
+                <tbody></tbody>
+            </table>
+
+        }
+        else
+        {
+            <div class="alert alert-warning" role="alert">
+                No module added yet! Please add your first module <a asp-area="Portal" asp-controller="Module" asp-action="Create" class="">here</a>.
+            </div>
+        }
         @await Html.PartialAsync("_Pagination", Model, new ViewDataDictionary(this.Vi‌​ewData) { { "PageSize", Model.PageSize }, { "PageIndex", Model.PageIndex }, { "TotalPage", Model.TotalPage } })
     </form>
 </section>
