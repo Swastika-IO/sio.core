@@ -13,30 +13,29 @@
 }
 
 <section class="content container-fluid">
-    <div class="row">
-        <div class="col-md-8">
-            <div class="btn-toolbar mb-3" role="toolbar" aria-label="Toolbar with button groups">
-                <div class="btn-group mr-2" role="group" aria-label="First group">
-                    <a asp-area="Portal" asp-controller="Module" asp-action="AddModuleData" asp-route-id="@Model.Id" class="btn btn-secondary">
-                        <i class="mi mi-Add"></i>
-                    </a>
-                    @*<a asp-area="Portal" asp-controller="Module" asp-action="Details" asp-route-id="@Model.Id" class="btn btn-secondary">
-                            <span class="oi oi-list"></span>
-                        </a>*@
-                    <a asp-area="Portal" asp-controller="Module" asp-action="Edit" asp-route-id="@Model.Id" class="btn btn-secondary">
-                        <i class="mi mi-Edit"></i>
-                    </a>
-                </div>
-            </div>
-        </div>
-        <div class="col-md-4">
-        </div>
-    </div>
-
     <form enctype="multipart/form-data" asp-action="@ViewContext.RouteData.Values["action"].ToString()">
-
         @if (Model.Data.TotalItems > 0)
         {
+            <div class="row">
+                <div class="col-md-8">
+                    <div class="btn-toolbar mb-3" role="toolbar" aria-label="Toolbar with button groups">
+                        <div class="btn-group mr-2" role="group" aria-label="First group">
+                            <a asp-area="Portal" asp-controller="Module" asp-action="AddModuleData" asp-route-id="@Model.Id" class="btn btn-secondary">
+                                <i class="mi mi-Add"></i>
+                            </a>
+                            @*<a asp-area="Portal" asp-controller="Module" asp-action="Details" asp-route-id="@Model.Id" class="btn btn-secondary">
+                                    <span class="oi oi-list"></span>
+                                </a>*@
+                            <a asp-area="Portal" asp-controller="Module" asp-action="Edit" asp-route-id="@Model.Id" class="btn btn-secondary">
+                                <i class="mi mi-Edit"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                </div>
+            </div>
+
             <table class="table table-sm table-hover" cellspacing="0">
                 <thead class="thead-light">
                     <tr>
@@ -87,7 +86,7 @@
                                 var prop = Data.Items[i].GetDataProperty(col.Name);
                                 <td>
                                     @{Html.RenderPartial("_ViewByFieldType",
-                                          new ViewDataDictionary(this.Vi‌​ewData) { { "DataType", prop.DataType }, { "Value", prop.Value } });
+                                                    new ViewDataDictionary(this.Vi‌​ewData) { { "DataType", prop.DataType }, { "Value", prop.Value } });
                                     }
                                 </td>
                             }
@@ -103,8 +102,14 @@
 
                 <tbody></tbody>
             </table>
-            @await Html.PartialAsync("_Pagination", Model, new ViewDataDictionary(this.Vi‌​ewData){
-{ "PageSize", Model.Data.PageSize}, { "PageIndex", Model.Data.PageIndex }, { "TotalPage", Model.Data.TotalPage } })
+            @await Html.PartialAsync("_Pagination", Model, new ViewDataDictionary(this.Vi‌​ewData) { { "PageSize", Model.Data.PageSize }, { "PageIndex", Model.Data.PageIndex }, { "TotalPage", Model.Data.TotalPage } })
+
+        }
+        else
+        {
+            <div class="alert alert-warning" role="alert">
+                No module data added yet! Please add your first module data <a asp-area="Portal" asp-controller="Module" asp-action="AddModuleData" asp-route-id="@Model.Id">here</a>.
+            </div>
         }
 
         @if (Model.Articles.TotalItems > 0)
