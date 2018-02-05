@@ -17,9 +17,10 @@ namespace Swastika.Cms.Web.Mvc
 {
     public partial class Startup
     {
-        public static void ConfigIdentity(IServiceCollection services, IConfigurationRoot Configuration, string connectionString)
+        public static void ConfigIdentity(IServiceCollection services, IConfigurationRoot Configuration, string connectionName)
         {
-            if (!string.IsNullOrEmpty(connectionString))
+            string connectionString = Configuration.GetConnectionString(connectionName);
+            if (string.IsNullOrEmpty(connectionString))
             {
                 connectionString = "Server=(localdb)\\mssqllocaldb;Database=aspnet-Swastika.Cms.Db;Trusted_Connection=True;MultipleActiveResultSets=true";
             }

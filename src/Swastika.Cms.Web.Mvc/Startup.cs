@@ -63,8 +63,8 @@ namespace Swastika.Cms.Web.Mvc
             });
 
             
-            Swastika.Identity.Startup.ConfigIdentity(services, Configuration, Configuration.GetConnectionString("CmsConnection"));
-            //ConfigIdentity(services, Configuration, Configuration.GetConnectionString("CmsConnection")); //Cms Config
+            //Swastika.Identity.Startup.ConfigIdentity(services, Configuration, "CmsConnection");
+            ConfigIdentity(services, Configuration, Configuration.GetConnectionString("CmsConnection")); //Cms Config
 
             ConfigCookieAuth(services, Configuration);
             ConfigJWTToken(services, Configuration);

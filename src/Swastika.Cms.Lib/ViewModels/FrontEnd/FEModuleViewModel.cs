@@ -25,6 +25,8 @@ namespace Swastika.Cms.Lib.ViewModels.FrontEnd
         public int Id { get; set; }
         [JsonProperty("name")]
         public string Name { get; set; }
+        [JsonProperty("image")]
+        public string Image { get; set; }
         [JsonProperty("template")]
         public string Template { get; set; }
         [JsonProperty("title")]

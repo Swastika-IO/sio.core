@@ -277,3 +277,90 @@ new ViewDataDictionary(this.Vi‌​ewData) { { "DataType", prop.DataType }, { "
         </div>
     </div>
 </div>
+<script>
+    window.onload = function () {
+        $('.AddObject').click(function (e) {
+            var i = $(".field-row").length;
+            var moduleId = $(this).attr('moduleId');
+            $('.btn-save-data').attr('moduleId', moduleId);
+            $.ajax({
+                url: '/vi-vn/Portal/Module/AjaxAddModuleData/' + moduleId,
+                success: function (data) {
+                    //$('#Table > tbody').append(data);
+                    $('#modal-data .modal-body').html(data);
+                    $('#modal-data').modal('show')
+                },
+                error: function (a, b, c) {
+                    alert(a + " " + b + " " + c);
+                }
+            });
+        });
+
+        $(document).on('click', '.btn-edit-data', function () {
+
+            var dataId = $(this).attr('dataId');
+            $('.btn-save-data').attr('dataId', 'data-' + dataId);
+            $.ajax({
+                url: '/vi-vn/Portal/Module/AjaxEditModuleData/' + dataId,
+                success: function (data) {
+                    //$('#Table > tbody').append(data);
+                    console.log(data);
+                    $('#modal-data .modal-body').html(data);
+                    $('#modal-data').modal('show');
+                },
+                error: function (a, b, c) {
+                    alert(a + " " + b + " " + c);
+                }
+            });
+        });
+
+        $(document).on('click', '.btn-save-data', function (e) {
+
+            var container = $('#module-' + $(this).attr('moduleId'));
+            var dataId = $(this).attr('dataId');
+            e.preventDefault();
+            var frm = $('#frm-data');
+            var url = '/vi-vn/Portal/Module/AjaxSaveModuleData';
+            //SW.Common.ajaxSubmitForm(frm, url);
+            var data = frm.serialize();
+            $.ajax({
+                type: 'Post',
+                url: '/vi-vn/Portal/Module/AjaxSaveModuleData', //frm.attr('action'),
+                data: data,
+                success: function (data) {
+                    if (dataId != '') {
+                        $('#' + dataId).replaceWith(data);
+                    } else {
+                        $(container).find('tbody').append(data);
+
+                    }
+
+                    $('#modal-data').modal('hide');
+                },
+                error: function (data) {
+                    SW.Common.showError(data.toSource());
+                },
+            });
+        });
+
+        $(document).on('ifChanged', '.cb-active-data', function (e) {
+            var articleId = $('#Id').val();
+            var dataId = $(this).attr('dataId');
+            $.ajax({
+                type: 'GET',
+                url: '/vi-vn/Portal/Module/AjaxAtiveModuleData/' + articleId + '/' + dataId + '/' + $(this).is(':checked'),
+                success: function (data) {
+                },
+                error: function (a, b, c) {
+                    alert(a + " " + b + " " + c);
+                }
+            });
+        })
+
+        $(document).on('ifChanged', '.cb-active-module', function (e) {
+            var moduleid = $(this).data('module-id');
+            $('.module-data-' + moduleid).toggleClass('hidden');
+        });
+
+    }
+</script>
