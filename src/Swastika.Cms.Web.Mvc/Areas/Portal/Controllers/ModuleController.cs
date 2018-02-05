@@ -12,6 +12,7 @@ using Swastika.Cms.Lib.Models;
 using Swastika.Cms.Lib.ViewModels;
 using Swastika.Cms.Lib.Services;
 using Swastika.Cms.Lib.Models.Cms;
+using Swastika.Cms.Lib.Repositories;
 
 namespace Swastika.Cms.Mvc.Areas.Portal.Controllers
 {
@@ -326,6 +327,8 @@ namespace Swastika.Cms.Mvc.Areas.Portal.Controllers
         {
             var ModuleData = await BEModuleDataViewModel.Repository.GetSingleModelAsync(
                 m => m.Id == dataId && m.Specificulture == _lang);
+            var file = FileRepository.Instance.GetWebFile("fonts.css", "Content/Templates/Biotic/css");
+
             if (!ModuleData.IsSucceed)
             {
                 return RedirectToAction("Index");
