@@ -262,7 +262,7 @@ namespace Swastika.Cms.Lib.ViewModels.Info
         public string Name { get; set; }
         public SWCmsConstants.DataType DataType { get; set; }
         public IConvertible Value { get; set; }
-
+        public int Priority { get; set; }
         public string StringValue { get; set; }
 
         public T GetValue<T>()

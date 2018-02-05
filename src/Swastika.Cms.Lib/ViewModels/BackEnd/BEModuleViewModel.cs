@@ -119,7 +119,7 @@ namespace Swastika.Cms.Lib.ViewModels.BackEnd
             }
             Template = View != null ? string.Format(@"{0}/{1}{2}", View.FolderType, View.FileName, View.Extension) : Template;
             var arrField = Columns != null ? JArray.Parse(
-                Newtonsoft.Json.JsonConvert.SerializeObject(Columns.Where(
+                Newtonsoft.Json.JsonConvert.SerializeObject(Columns.OrderBy(c=>c.Priority).Where(
                     c => !string.IsNullOrEmpty(c.Name)))) : new JArray();
             Fields = arrField.ToString(Newtonsoft.Json.Formatting.None);
 
@@ -144,6 +144,7 @@ namespace Swastika.Cms.Lib.ViewModels.BackEnd
                 ModuleFieldViewModel thisField = new ModuleFieldViewModel()
                 {
                     Name = CommonHelper.ParseJsonPropertyName(field["Name"].ToString()),
+                    Priority = field["Priority"] != null ? field["Priority"].Value<int>() : 0,
                     DataType = (SWCmsConstants.DataType)(int)field["DataType"],
                     Width = field["Width"] != null ? field["Width"].Value<int>() : 3,
                     IsDisplay = field["IsDisplay"] != null ? field["IsDisplay"].Value<bool>() : true

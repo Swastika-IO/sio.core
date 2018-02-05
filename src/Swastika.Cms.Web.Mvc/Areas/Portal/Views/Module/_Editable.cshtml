@@ -52,6 +52,7 @@
                 <table class="table table-sm table-hover" id="Table">
                     <thead class="thead-light">
                         <tr>
+                            <th>Priority</th>
                             <th>Name</th>
                             <th>Data Type</th>
                             <th>Width</th>
@@ -62,6 +63,9 @@
                         @for (int i = 0; i < Model.Columns.Count; i++)
                         {
                             <tr class="field-row">
+                                <td>
+                                    <input type="text" asp-for="@Model.Columns[i].Priority" class="item-priority form-control form-control-sm d-inline" style="width:40px;" />
+                                </td>
                                 <td>
                                     <input asp-for="@Model.Columns[i].Name" class="form-control form-control-sm" />
                                 </td>
