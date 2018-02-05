@@ -280,7 +280,7 @@ namespace Swastika.Cms.Mvc.Areas.Portal.Controllers
                 m => m.Id == id && m.Specificulture == _lang);
             if (getModule.IsSucceed)
             {
-                var ModuleData = new InfoModuleDataViewModel(
+                var ModuleData = new BEModuleDataViewModel(
                     new SiocModuleData()
                 {
                     Id = Guid.NewGuid().ToString("N"),
