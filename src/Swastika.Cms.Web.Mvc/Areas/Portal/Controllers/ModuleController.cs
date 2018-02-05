@@ -276,7 +276,7 @@ namespace Swastika.Cms.Mvc.Areas.Portal.Controllers
         [Route("AddModuleData/{id:int}")]
         public async Task<IActionResult> AddModuleData(int id)
         {
-            var getModule = await InfoModuleViewModel.Repository.GetSingleModelAsync(
+            var getModule = await BEModuleDataViewModel.Repository.GetSingleModelAsync(
                 m => m.Id == id && m.Specificulture == _lang);
             if (getModule.IsSucceed)
             {
@@ -342,7 +342,7 @@ namespace Swastika.Cms.Mvc.Areas.Portal.Controllers
         [Route("EditModuleData/{id}/{dataId}")]
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> EditModuleData(InfoModuleDataViewModel ModuleData)
+        public async Task<IActionResult> EditModuleData(BEModuleDataViewModel ModuleData)
         {
             if (ModelState.IsValid)
             {
