@@ -1,7 +1,7 @@
 @model BEModuleViewModel
 
 @{
-
+    string img = Model != null ? Model.Image : "http://placehold.it/200x200";
     var moduleTypes = Html.GetEnumSelectList<Swastika.Cms.Lib.SWCmsConstants.ModuleType>();
     //var types = Html.GetEnumSelectList<Swastika.Cms.Lib.SWCmsConstants.CateType>();
     //string img = Model != null ? Model.Image : "http://placehold.it/200x200";

@@ -19,8 +19,7 @@
                     @await Html.PartialAsync("_Editable", Model)
                 </section>
                 <section class="col-lg-3">
-                    @await Html.PartialAsync("EditableSides/_EditableSide_Actions", Model)
-                    @await Html.PartialAsync("EditableSides/_EditableSide_Cultures", Model.ListSupportedCulture)
+                    @await Html.PartialAsync("_EditableSide", Model)
                 </section>
             </div>
         }
