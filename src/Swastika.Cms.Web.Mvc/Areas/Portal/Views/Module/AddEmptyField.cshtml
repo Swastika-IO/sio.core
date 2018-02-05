@@ -2,7 +2,13 @@
 @{
     var types = Html.GetEnumSelectList<Swastika.Cms.Lib.SWCmsConstants.DataType>();
 }
-<tr class="field-row">
+<tr class="sortable-item">
+    <td style="cursor:move;">
+        <span class="oi oi-move"></span>
+    </td>
+    <td>
+        <input type="text" id="Columns_@ViewData["Index"]__Priority" name="Columns[@ViewData["Index"]].Priority" value="@Model.Priority" class="item-priority form-control form-control-sm d-inline" style="width:40px;" />
+    </td>
     <td>
         <input class="form-control form-control-sm" type="text" id="Columns_@ViewData["Index"]__Name" name="Columns[@ViewData["Index"]].Name" value="@Model.Name">
     </td>
