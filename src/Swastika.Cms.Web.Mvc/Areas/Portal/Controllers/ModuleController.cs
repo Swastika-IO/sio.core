@@ -276,7 +276,7 @@ namespace Swastika.Cms.Mvc.Areas.Portal.Controllers
         [Route("AddModuleData/{id:int}")]
         public async Task<IActionResult> AddModuleData(int id)
         {
-            var getModule = await BEModuleDataViewModel.Repository.GetSingleModelAsync(
+            var getModule = await InfoModuleViewModel.Repository.GetSingleModelAsync(
                 m => m.Id == id && m.Specificulture == _lang);
             if (getModule.IsSucceed)
             {
