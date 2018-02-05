@@ -13,104 +13,108 @@
 
 <section class="content container-fluid">
     <form enctype="multipart/form-data" asp-action="@ViewContext.RouteData.Values["action"].ToString()">
-
-        <table class="table table-sm table-hover" cellspacing="0">
-            <thead class="thead-light">
-                <tr>
-                    <th scope="col">
-                        <span class="oi oi-move"></span>
-                    </th>
-                    <th scope="col">
-                        <span class="oi oi-sort-ascending"></span>
-                    </th>
-                    <th scope="col">
-                        Name
-                    </th>
-                    <th scope="col">
-                        Created Date
-                    </th>
-
-                    <th scope="col">
-                        Created By
-                    </th>
-                    <th scope="col">Actions</th>
-                </tr>
-            </thead>
-            <tfoot>
-                <tr>
-                    <th scope="col">
-                        <span class="oi oi-move"></span>
-                    </th>
-                    <th scope="col">
-                        <span class="oi oi-sort-ascending"></span>
-                    </th>
-                    <th scope="col">
-                        Name
-                    </th>
-                    <th scope="col">
-                        Created By
-                    </th>
-                    <th scope="col">
-                        Created Date
-                    </th>
-
-                    <th scope="col" width="5%">Actions</th>
-                </tr>
-            </tfoot>
-            <tbody class="sortable">
-                @for (int i = 0; i < Model.Items.OrderBy(n => n.Priority).ToList().Count; i++)
-                {
-                    string fileFolder = string.Format("Templates/{0}", Model.Items[i].Name);
-                    string filesUrl = Url.RouteUrl("File", new { culture = ViewBag.culture, folder = fileFolder });
-
-                    <tr class="sortable-item">
-                        <td style="cursor:move;">
+        @if (Model.Items.Count > 0)
+        {
+            <table class="table table-sm table-hover" cellspacing="0">
+                <thead class="thead-light">
+                    <tr>
+                        <th scope="col">
                             <span class="oi oi-move"></span>
-                        </td>
-                        <td>
-                            <input type="text" asp-for="@Model.Items[i].Priority" class="item-priority form-control form-control-sm d-inline" style="width:40px;" />
-                        </td>
-                        <td>
+                        </th>
+                        <th scope="col">
+                            <span class="oi oi-sort-ascending"></span>
+                        </th>
+                        <th scope="col">
+                            Name
+                        </th>
+                        <th scope="col">
+                            Created Date
+                        </th>
 
-                            <a asp-controller="Template" asp-action="Index" asp-route-folder="Layouts" asp-route-templateId="@Model.Items[i].Id"
-                               class="link">
-                                @Model.Items[i].Name
-                            </a>
-                        </td>
-                        <td>
-                            @Model.Items[i].CreatedBy
-                        </td>
-
-                        <td>
-                            @Model.Items[i].CreatedDateTime
-                        </td>
-
-                        <td>
-                            <div class="btn-group btn-group-sm" role="group" aria-label="Actions">
-                                <a asp-controller="Theme" asp-action="Edit" asp-route-id="@Model.Items[i].Id"
-                                   class="btn btn-sm btn-light d-inline-block "><span class="oi oi-pencil text-primary"></span></a>
-                                <a href="@filesUrl" class="btn btn-light">
-                                    <span class="oi oi-file text-secondary"></span>
-                                </a>
-                                <a asp-area="Portal" asp-controller="Theme" asp-action="Delete" asp-route-id="@Model.Items[i].Id"
-                                   class="btn btn-sm btn-light d-inline-block" data-popout="true" data-toggle="confirmation" data-singleton="true"><span class="oi oi-x text-danger"></span></a>
-                            </div>
-                        </td>
+                        <th scope="col">
+                            Created By
+                        </th>
+                        <th scope="col">Actions</th>
                     </tr>
-                }
-            </tbody>
+                </thead>
+                <tfoot>
+                    <tr>
+                        <th scope="col">
+                            <span class="oi oi-move"></span>
+                        </th>
+                        <th scope="col">
+                            <span class="oi oi-sort-ascending"></span>
+                        </th>
+                        <th scope="col">
+                            Name
+                        </th>
+                        <th scope="col">
+                            Created By
+                        </th>
+                        <th scope="col">
+                            Created Date
+                        </th>
 
-            <tbody></tbody>
-        </table>
-        @await Html.PartialAsync("_Pagination", Model
-                                                                                         , new ViewDataDictionary(this.Vi‌​ewData)
-                                                                                         {
-{ "PageSize", Model.PageSize}, { "PageIndex", Model.PageIndex }, { "TotalPage", Model.TotalPage } })
+                        <th scope="col" width="5%">Actions</th>
+                    </tr>
+                </tfoot>
+                <tbody class="sortable">
+                    @for (int i = 0; i < Model.Items.OrderBy(n => n.Priority).ToList().Count; i++)
+                    {
+                        string fileFolder = string.Format("Templates/{0}", Model.Items[i].Name);
+                        string filesUrl = Url.RouteUrl("File", new { culture = ViewBag.culture, folder = fileFolder });
+
+                        <tr class="sortable-item">
+                            <td style="cursor:move;">
+                                <span class="oi oi-move"></span>
+                            </td>
+                            <td>
+                                <input type="text" asp-for="@Model.Items[i].Priority" class="item-priority form-control form-control-sm d-inline" style="width:40px;" />
+                            </td>
+                            <td>
+
+                                <a asp-controller="Template" asp-action="Index" asp-route-folder="Layouts" asp-route-templateId="@Model.Items[i].Id"
+                                   class="link">
+                                    @Model.Items[i].Name
+                                </a>
+                            </td>
+                            <td>
+                                @Model.Items[i].CreatedBy
+                            </td>
+
+                            <td>
+                                @Model.Items[i].CreatedDateTime
+                            </td>
+
+                            <td>
+                                <div class="btn-group btn-group-sm" role="group" aria-label="Actions">
+                                    <a asp-controller="Theme" asp-action="Edit" asp-route-id="@Model.Items[i].Id"
+                                       class="btn btn-sm btn-light d-inline-block "><span class="oi oi-pencil text-primary"></span></a>
+                                    <a href="@filesUrl" class="btn btn-light">
+                                        <span class="oi oi-file text-secondary"></span>
+                                    </a>
+                                    <a asp-area="Portal" asp-controller="Theme" asp-action="Delete" asp-route-id="@Model.Items[i].Id"
+                                       class="btn btn-sm btn-light d-inline-block" data-popout="true" data-toggle="confirmation" data-singleton="true"><span class="oi oi-x text-danger"></span></a>
+                                </div>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+
+                <tbody></tbody>
+            </table>
+        }
+        else
+        {
+            <div class="alert alert-warning" role="alert">
+                No theme added and set to be default theme yet! Please add theme <a asp-area="Portal" asp-controller="Theme" asp-action="Create" class="">here</a>.
+            </div>
+        }
+        @await Html.PartialAsync("_Pagination", Model, new ViewDataDictionary(this.Vi‌​ewData) { { "PageSize", Model.PageSize }, { "PageIndex", Model.PageIndex }, { "TotalPage", Model.TotalPage } })
     </form>
 </section>
 
-@section Scripts
-    {
+@section Scripts{
     <script>
         $(document).ready(function () {
             $('#sel-template').on('change', function () {
