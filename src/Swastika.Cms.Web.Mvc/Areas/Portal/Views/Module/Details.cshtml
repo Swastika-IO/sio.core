@@ -1,7 +1,7 @@
 ﻿@using Swastika.Domain.Core.ViewModels;
 @model BEModuleViewModel
 @{
-    ViewData["Title"] = "Module " + Model.Name;
+    ViewData["Title"] = "Module [" + Model.Name + "]";
     //Layout = "~/Areas/Portal/Views/Shared/_Layout.cshtml";
     var Data = Model.Data;
 
@@ -36,6 +36,8 @@
                 <div class="col-md-4">
                 </div>
             </div>
+
+            <h4 class="">Module [@Model.Name] data items</h4>
 
             <table class="table table-sm table-hover" cellspacing="0">
                 <thead class="thead-light">
@@ -87,7 +89,7 @@
                                 var prop = Data.Items[i].GetDataProperty(col.Name);
                                 <td>
                                     @{Html.RenderPartial("_ViewByFieldType",
-                                                new ViewDataDictionary(this.Vi‌​ewData) { { "dataType", prop.DataType }, { "Value", prop.Value } });
+                                                                              new ViewDataDictionary(this.Vi‌​ewData) { { "dataType", prop.DataType }, { "Value", prop.Value } });
                                     }
                                 </td>
                             }
@@ -109,13 +111,14 @@
         else
         {
             <div class="alert alert-warning" role="alert">
-                No module data added yet! Please add your first module data <a asp-area="Portal" asp-controller="Module" asp-action="AddModuleData" asp-route-id="@Model.Id">here</a>.
+                No module data added for [<strong>@Model.Name</strong>] module yet! Please add your first module data <a asp-area="Portal" asp-controller="Module" asp-action="AddModuleData" asp-route-id="@Model.Id">here</a>.
             </div>
         }
 
         @if (Model.Articles.TotalItems > 0)
         {
 
+            <h4 class="">Module [@Model.Name] related articles</h4>
             <table class="table table-sm table-hover" cellspacing="0">
                 <thead class="thead-light">
                     <tr>
@@ -200,12 +203,14 @@
                         </tr>
                     }
                 </tbody>
-
-                <tbody></tbody>
             </table>
-            @await Html.PartialAsync("_Pagination", Model, new ViewDataDictionary(this.Vi‌​ewData)
-{
-{ "PageSize", Model.Articles.PageSize}, { "PageIndex", Model.Articles.PageIndex }, { "TotalPage", Model.Articles.TotalPage } })
+            @await Html.PartialAsync("_Pagination", Model, new ViewDataDictionary(this.Vi‌​ewData) { { "PageSize", Model.Articles.PageSize }, { "PageIndex", Model.Articles.PageIndex }, { "TotalPage", Model.Articles.TotalPage } })
+        }
+        else
+        {
+            <div class="alert alert-warning" role="alert">
+                No related article added for [<strong>@Model.Name</strong>] module yet! Please add your first related article <a asp-area="Portal" asp-controller="Articles" asp-action="Create" asp-route-id="@Model.Id">here</a>.
+            </div>
         }
     </form>
 </section>

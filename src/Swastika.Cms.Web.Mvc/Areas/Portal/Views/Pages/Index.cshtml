@@ -162,6 +162,7 @@
                 </tbody>
             </table>
 
+            @await Html.PartialAsync("_Pagination", Model, new ViewDataDictionary(this.Vi‌​ewData) { { "PageSize", Model.PageSize }, { "PageIndex", Model.PageIndex }, { "TotalPage", Model.TotalPage } })
         }
         else
         {
@@ -169,6 +170,5 @@
                 No page added and set to be "Home" page type yet! Please add home page <a asp-area="Portal" asp-controller="Pages" asp-action="Create" class="">here</a>.
             </div>
         }
-        @await Html.PartialAsync("_Pagination", Model, new ViewDataDictionary(this.Vi‌​ewData) { { "PageSize", Model.PageSize }, { "PageIndex", Model.PageIndex }, { "TotalPage", Model.TotalPage } })
     </form>
 </section>

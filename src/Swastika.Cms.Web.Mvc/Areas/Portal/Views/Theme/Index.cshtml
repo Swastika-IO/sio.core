@@ -15,26 +15,59 @@
     <form enctype="multipart/form-data" asp-action="@ViewContext.RouteData.Values["action"].ToString()">
         @if (Model.Items.Count > 0)
         {
+
+            <div class="row">
+                <div class="col-md-8">
+                    <div class="btn-toolbar mb-3" role="toolbar" aria-label="Toolbar with button groups">
+                        <div class="btn-group mr-2" role="group" aria-label="First group">
+                            <a asp-area="Portal" asp-controller="Theme" asp-action="Create" class="btn btn-secondary"><i class="mi mi-Add"></i></a>
+                            <a asp-area="Portal" asp-controller="Theme" asp-action="Index" class="btn btn-secondary"><i class="mi mi-List"></i></a>
+                            @*<a asp-area="Portal" asp-controller="Pages" asp-action="Draft" class="btn btn-secondary"><i class="mi mi-Paste"></i></a>*@
+                        </div>
+                        <div class="btn-group mr-2" role="group" aria-label="Button group with nested dropdown">
+                            <div class="btn-group" role="group">
+                                <button id="btnGroupDrop1" type="button" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    All times
+                                </button>
+                                <div class="dropdown-menu" aria-labelledby="btnGroupDrop1">
+                                    <a class="dropdown-item" href="#">Jan 2018</a>
+                                    <a class="dropdown-item" href="#">Dec 2017</a>
+                                    <a class="dropdown-item" href="#">Nov 2017</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="input-group">
+                        <div class="input-group-prepend">
+                            <div class="input-group-text" id="btnGroupAddon"><i class="mi mi-Search" style="top:0;"></i></div>
+                        </div>
+                        <input type="text" class="form-control" placeholder="Search......" aria-label="Search......" aria-describedby="btnGroupAddon">
+                    </div>
+                </div>
+            </div>
             <table class="table table-sm table-hover" cellspacing="0">
                 <thead class="thead-light">
                     <tr>
-                        <th scope="col">
+                        <th scope="col" width="5%">
                             <span class="oi oi-move"></span>
                         </th>
-                        <th scope="col">
+                        <th scope="col" width="5%">
                             <span class="oi oi-sort-ascending"></span>
                         </th>
                         <th scope="col">
                             Name
                         </th>
-                        <th scope="col">
-                            Created Date
-                        </th>
-
-                        <th scope="col">
+                        <th scope="col" width="15%">
                             Created By
                         </th>
-                        <th scope="col">Actions</th>
+                        <th scope="col" width="15%">
+                            Created Date
+                        </th>
+                        <th scope="col" width="5%" class="text-right">
+                            Actions
+                        </th>
                     </tr>
                 </thead>
                 <tfoot>
@@ -55,7 +88,9 @@
                             Created Date
                         </th>
 
-                        <th scope="col" width="5%">Actions</th>
+                        <th scope="col" width="5%" class="text-right">
+                            Actions
+                        </th>
                     </tr>
                 </tfoot>
                 <tbody class="sortable">
@@ -100,9 +135,9 @@
                         </tr>
                     }
                 </tbody>
-
-                <tbody></tbody>
             </table>
+
+            @await Html.PartialAsync("_Pagination", Model, new ViewDataDictionary(this.Vi‌​ewData) { { "PageSize", Model.PageSize }, { "PageIndex", Model.PageIndex }, { "TotalPage", Model.TotalPage } })
         }
         else
         {
@@ -110,7 +145,6 @@
                 No theme added and set to be default theme yet! Please add theme <a asp-area="Portal" asp-controller="Theme" asp-action="Create" class="">here</a>.
             </div>
         }
-        @await Html.PartialAsync("_Pagination", Model, new ViewDataDictionary(this.Vi‌​ewData) { { "PageSize", Model.PageSize }, { "PageIndex", Model.PageIndex }, { "TotalPage", Model.TotalPage } })
     </form>
 </section>
 

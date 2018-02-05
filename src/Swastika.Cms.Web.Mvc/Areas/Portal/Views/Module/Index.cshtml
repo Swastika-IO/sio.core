@@ -65,10 +65,10 @@
             <table class="table table-sm table-hover" cellspacing="0">
                 <thead class="thead-light">
                     <tr>
-                        <th scope="col">
+                        <th scope="col" width="5%">
                             <span class="oi oi-move"></span>
                         </th>
-                        <th scope="col">
+                        <th scope="col" width="5%">
                             <span class="oi oi-sort-ascending"></span>
                         </th>
                         @*<th scope="col">
@@ -144,7 +144,7 @@
 
                 <tbody></tbody>
             </table>
-
+            @await Html.PartialAsync("_Pagination", Model, new ViewDataDictionary(this.Vi‌​ewData) { { "PageSize", Model.PageSize }, { "PageIndex", Model.PageIndex }, { "TotalPage", Model.TotalPage } })
         }
         else
         {
@@ -152,7 +152,6 @@
                 No module added yet! Please add your first module <a asp-area="Portal" asp-controller="Module" asp-action="Create" class="">here</a>.
             </div>
         }
-        @await Html.PartialAsync("_Pagination", Model, new ViewDataDictionary(this.Vi‌​ewData) { { "PageSize", Model.PageSize }, { "PageIndex", Model.PageIndex }, { "TotalPage", Model.TotalPage } })
     </form>
 </section>
 <!-- /.box-body -->
