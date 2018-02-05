@@ -2,7 +2,7 @@
     For more information on enabling MVC for empty projects, visit http://go.microsoft.com/fwlink/?LinkID=397860
 *@
 @{
-    Swastika.Cms.Lib.ViewModels.Info.ModuleDataValueViewModel Model = (Swastika.Cms.Lib.ViewModels.Info.ModuleDataValueViewModel)this.ViewData["Model"];
+    ModuleDataValueViewModel Model = (ModuleDataValueViewModel)this.ViewData["Model"];
     string name = (string)this.ViewData["Name"];
     int index = (int)this.ViewData["Index"];
     string inputId = string.Format("{0}_{1}__StringValue", name, index);

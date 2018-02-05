@@ -87,7 +87,7 @@
                                 var prop = Data.Items[i].GetDataProperty(col.Name);
                                 <td>
                                     @{Html.RenderPartial("_ViewByFieldType",
-                                          new ViewDataDictionary(this.Vi‌​ewData) { { "DataType", prop.DataType }, { "Value", prop.Value } });
+                                          new ViewDataDictionary(this.Vi‌​ewData) { { "dataType", prop.DataType }, { "Value", prop.Value } });
                                     }
                                 </td>
                             }
