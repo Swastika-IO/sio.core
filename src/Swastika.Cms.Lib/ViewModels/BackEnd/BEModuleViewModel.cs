@@ -143,11 +143,11 @@ namespace Swastika.Cms.Lib.ViewModels.BackEnd
             {
                 ModuleFieldViewModel thisField = new ModuleFieldViewModel()
                 {
-                    Name = CommonHelper.ParseJsonPropertyName(field["Name"].ToString()),
-                    Priority = field["Priority"] != null ? field["Priority"].Value<int>() : 0,
-                    DataType = (SWCmsConstants.DataType)(int)field["DataType"],
-                    Width = field["Width"] != null ? field["Width"].Value<int>() : 3,
-                    IsDisplay = field["IsDisplay"] != null ? field["IsDisplay"].Value<bool>() : true
+                    Name = CommonHelper.ParseJsonPropertyName(field["name"].ToString()),
+                    Priority = field["priority"] != null ? field["priority"].Value<int>() : 0,
+                    DataType = (SWCmsConstants.DataType)(int)field["dataType"],
+                    Width = field["width"] != null ? field["width"].Value<int>() : 3,
+                    IsDisplay = field["isDisplay"] != null ? field["isDisplay"].Value<bool>() : true
                 };
                 Columns.Add(thisField);
             }

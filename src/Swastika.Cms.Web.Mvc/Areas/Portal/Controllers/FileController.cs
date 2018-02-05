@@ -116,6 +116,7 @@ namespace Swastika.Cms.Mvc.Areas.Portal.Controllers
         {
             if (file != null && file.Length > 0)
             {
+
                 string filename = FileRepository.Instance.SaveWebFile(file, folder);               
             }
             var files = FileRepository.Instance.GetTopFiles(folder);

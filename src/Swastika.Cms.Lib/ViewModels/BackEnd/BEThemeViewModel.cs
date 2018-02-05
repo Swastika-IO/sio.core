@@ -172,15 +172,11 @@ namespace Swastika.Cms.Lib.ViewModels.BackEnd
                         t => t.FileName == "_Layout" && t.TemplateId == Model.Id
                         , _context, _transaction);
                     layout.Data.Content = layout.Data.Content.Replace("<!--[STYLES]-->"
-                        , string.Format(@"{0}
-{1}
-<!--[STYLES]-->"
-                        , strStyles, DateTime.Now.ToShortDateString()));
+                        , string.Format(@"{0}"
+                        , strStyles));
                     layout.Data.Content = layout.Data.Content.Replace("<!--[SCRIPTS]-->"
-                        , string.Format(@"{0}
-{1}
-<!--[SCRIPTS]-->"
-                        , strScripts, DateTime.Now.ToShortDateString()));
+                        , string.Format(@"{0}"
+                        , strScripts));
 
                     layout.Data.SaveModel(true, _context, _transaction);
                 }
@@ -328,15 +324,11 @@ namespace Swastika.Cms.Lib.ViewModels.BackEnd
                         t => t.FileName == "_Layout" && t.TemplateId == Model.Id
                         , _context, _transaction);
                     layout.Data.Content = layout.Data.Content.Replace("<!--[STYLES]-->"
-                        , string.Format(@"{0}
-{1}
-<!--[STYLES]-->"
-                        , strStyles, DateTime.Now.ToShortDateString()));
+                        , string.Format(@"{0}"
+                        , strStyles));
                     layout.Data.Content = layout.Data.Content.Replace("<!--[SCRIPTS]-->"
-                        , string.Format(@"{0}
-{1}
-<!--[SCRIPTS]-->"
-                        , strScripts, DateTime.Now.ToShortDateString()));
+                        , string.Format(@"{0}"
+                        , strScripts));
 
                     await layout.Data.SaveModelAsync(true, _context, _transaction);
                 }

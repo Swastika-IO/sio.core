@@ -95,10 +95,11 @@ namespace Swastika.Cms.Lib.ViewModels.Info
                 {
                     ModuleFieldViewModel thisField = new ModuleFieldViewModel()
                     {
-                        Name = CommonHelper.ParseJsonPropertyName(field["Name"].ToString()),
-                        DataType = (SWCmsConstants.DataType)(int)field["DataType"],
-                        Width = field["Width"] != null ? field["Width"].Value<int>() : 3,
-                        IsDisplay = field["IsDisplay"] != null ? field["IsDisplay"].Value<bool>() : true
+                        Name = CommonHelper.ParseJsonPropertyName(field["name"].ToString()),
+                        DataType = (SWCmsConstants.DataType)(int)field["dataType"],
+                        Priority = field["priority"] != null ? field["priority"].Value<int>() : 0,
+                        Width = field["width"] != null ? field["width"].Value<int>() : 3,
+                        IsDisplay = field["isDisplay"] != null ? field["isDisplay"].Value<bool>() : true
                     };
                     this.Columns.Add(thisField);
                 }
@@ -256,20 +257,5 @@ namespace Swastika.Cms.Lib.ViewModels.Info
 
     }
 
-    public class ModuleDataValueViewModel
-    {
-        public int ModuleId { get; set; }
-        public string Name { get; set; }
-        public SWCmsConstants.DataType DataType { get; set; }
-        public IConvertible Value { get; set; }
-        public int Priority { get; set; }
-        public string StringValue { get; set; }
-
-        public T GetValue<T>()
-        {
-            return this.Value != null ? (T)Value : default(T);
-        }
-
-    }
     
 }
