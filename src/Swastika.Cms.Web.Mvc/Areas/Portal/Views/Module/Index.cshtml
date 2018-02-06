@@ -109,7 +109,7 @@
                     @for (int i = 0; i < Model.Items.OrderBy(n => n.Priority).ToList().Count; i++)
                     {
 
-                        <tr class="sortable-item">
+                        <tr class="sortable-item" sort-model="module" sort-model-id="@Model.Items[i].Id">
                             <td style="cursor:move;">
                                 <span class="oi oi-move"></span>
                             </td>
@@ -131,10 +131,12 @@
 
                             <td>
                                 <div class="btn-group btn-group-sm" role="group" aria-label="Actions">
-                                    <a asp-action="Edit" asp-route-id="@Model.Items[i].Id" class="btn btn-sm btn-light"> <span class="oi oi-pencil text-primary"></span></a>
-
+                                    <a asp-area="Portal" asp-controller="Module" asp-action="AddModuleData" asp-route-id="@Model.Items[i].Id" class="btn btn-light">
+                                        <span class="oi oi-plus text-primary"></span>
+                                    </a>
                                     <a asp-action="Details" asp-route-id="@Model.Items[i].Id"
                                        class="btn btn-sm btn-light"><span class="oi oi-list text-info"></span></a>
+                                    <a asp-action="Edit" asp-route-id="@Model.Items[i].Id" class="btn btn-sm btn-light"> <span class="oi oi-pencil text-secondary"></span></a>
                                     <a asp-action="Delete" asp-route-id="@Model.Items[i].Id" class="btn btn-sm btn-light" data-popout="true" data-toggle="confirmation" data-singleton="true" data-btn-ok-class="btn-danger btn-sm" data-btn-cancel-class="btn-success btn-sm" data-content="This can be undo!"> <span class="oi oi-x text-danger"></span> </a>
                                 </div>
                             </td>

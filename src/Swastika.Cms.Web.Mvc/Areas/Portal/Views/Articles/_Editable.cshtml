@@ -258,11 +258,11 @@ new ViewDataDictionary(this.Vi‌​ewData) { { "DataType", prop.DataType }, { "
 
                                 @Html.Partial("_Editor_Code", Model.View, new ViewDataDictionary(this.ViewData){
 {
-                            "Files", Model.Templates
-                        },
-                        {
-                            "Name", "View"
-                        }
+                                                "Files", Model.Templates
+                                            },
+                                            {
+                                                "Name", "View"
+                                            }
 
 })
                                 @* <input asp-for="View.Filename" class="form-control" />
@@ -280,7 +280,7 @@ new ViewDataDictionary(this.Vi‌​ewData) { { "DataType", prop.DataType }, { "
 <script>
     window.onload = function () {
         $('.AddObject').click(function (e) {
-            var i = $(".field-row").length;
+            var i = $(".module-column").length;
             var moduleId = $(this).attr('moduleId');
             $('.btn-save-data').attr('moduleId', moduleId);
             $.ajax({

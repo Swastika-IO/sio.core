@@ -27,44 +27,42 @@
                 <div class="form-horizontal">
                     <div class="form-group">
                         <label asp-for="Title" class="control-label"></label>
-                            <input asp-for="Title" class="form-control" />
-                            <span asp-validation-for="Title" class="text-danger"></span>
+                        <input asp-for="Title" class="form-control" />
+                        <span asp-validation-for="Title" class="text-danger"></span>
                     </div>
 
                     <div class="form-group">
                         <label asp-for="Price" class="control-label"></label>
-                            <input asp-for="Price" class="form-control" />
-                            <span asp-validation-for="Price" class="text-danger"></span>
+                        <input asp-for="Price" class="form-control" />
+                        <span asp-validation-for="Price" class="text-danger"></span>
                     </div>
 
                     <div class="form-group">
                         <label asp-for="PriceUnit" class="control-label"></label>
-                            <select asp-for="Type" class="form-control" asp-items="@priceUnits"></select>
-                            <span asp-validation-for="PriceUnit" class="text-danger"></span>
+                        <select asp-for="Type" class="form-control" asp-items="@priceUnits"></select>
+                        <span asp-validation-for="PriceUnit" class="text-danger"></span>
                     </div>
 
                     <div class="form-group">
                         <label asp-for="Excerpt" class="control-label"></label>
-                            <textarea asp-for="Excerpt" class="form-control"></textarea>
-                            <span asp-validation-for="Excerpt" class="text-danger"></span>
+                        <textarea asp-for="Excerpt" class="form-control"></textarea>
+                        <span asp-validation-for="Excerpt" class="text-danger"></span>
                     </div>
                     <div class="form-group">
                         <label asp-for="Content" class="control-label"></label>
-                            <textarea asp-for="Content" class="form-control"></textarea>
-                            <script>
-                                // Replace the <textarea id="FullContent"> with a CKEditor
-                                // instance, using default configuration.
-                                CKEDITOR.replace('Content');
-                            </script>
-                            <span asp-validation-for="Content" class="text-danger"></span>
+                        <textarea asp-for="Content" class="form-control"></textarea>
+                        <script>
+                            // Replace the <textarea id="FullContent"> with a CKEditor
+                            // instance, using default configuration.
+                            CKEDITOR.replace('Content');
+                        </script>
+                        <span asp-validation-for="Content" class="text-danger"></span>
                     </div>
-
                 </div>
             </div>
         </div>
     </div>
 </div>
-
 
 <div class="row">
     <div class="col-sm-12">
@@ -95,55 +93,54 @@
 
                         <div class="form-group">
                             <label asp-for="Priority" class="control-label"></label>
-                                <input asp-for="Priority" class="form-control" />
-                                <span asp-validation-for="Priority" class="text-danger"></span>
+                            <input asp-for="Priority" class="form-control" />
+                            <span asp-validation-for="Priority" class="text-danger"></span>
                         </div>
                         <div class="form-group">
-                                <div class="checkbox">
-                                    <input asp-for="IsVisible" />
-                                    <label asp-for="IsVisible"></label>
-                                </div>
+                            <div class="checkbox">
+                                <input asp-for="IsVisible" />
+                                <label asp-for="IsVisible"></label>
+                            </div>
                         </div>
                         <div class="form-group">
-                                <div class="checkbox">
-                                    <input asp-for="IsDeleted" />
-                                    <label asp-for="IsDeleted"></label>
-                                </div>
+                            <div class="checkbox">
+                                <input asp-for="IsDeleted" />
+                                <label asp-for="IsDeleted"></label>
+                            </div>
                         </div>
 
                         <div class="form-group">
                             <label asp-for="Source" class="control-label"></label>
-                                <input asp-for="Source" class="form-control" />
-                                <span asp-validation-for="Source" class="text-danger"></span>
+                            <input asp-for="Source" class="form-control" />
+                            <span asp-validation-for="Source" class="text-danger"></span>
                         </div>
                         <div class="form-group">
                             <label asp-for="Tags" class="control-label"></label>
-                                <input asp-for="Tags" class="form-control tags" />
-                                <span asp-validation-for="Tags" class="text-danger"></span>
+                            <input asp-for="Tags" class="form-control tags" />
+                            <span asp-validation-for="Tags" class="text-danger"></span>
                         </div>
-
                     </div>
                     <div class="tab-pane fade" id="pills-seo" role="tabpanel" aria-labelledby="pills-seo-tab">
 
                         <div class="form-group">
                             <label asp-for="SeoName" class="control-label"></label>
-                                <input asp-for="SeoName" class="form-control" />
-                                <span asp-validation-for="SeoName" class="text-danger"></span>
+                            <input asp-for="SeoName" class="form-control" />
+                            <span asp-validation-for="SeoName" class="text-danger"></span>
                         </div>
                         <div class="form-group">
                             <label asp-for="SeoTitle" class="control-label"></label>
-                                <input asp-for="SeoTitle" class="form-control" />
-                                <span asp-validation-for="SeoTitle" class="text-danger"></span>
+                            <input asp-for="SeoTitle" class="form-control" />
+                            <span asp-validation-for="SeoTitle" class="text-danger"></span>
                         </div>
                         <div class="form-group">
                             <label asp-for="SeoDescription" class="control-label"></label>
-                                <input asp-for="SeoDescription" class="form-control" />
-                                <span asp-validation-for="SeoDescription" class="text-danger"></span>
+                            <input asp-for="SeoDescription" class="form-control" />
+                            <span asp-validation-for="SeoDescription" class="text-danger"></span>
                         </div>
                         <div class="form-group">
                             <label asp-for="SeoKeywords" class="control-label"></label>
-                                <input asp-for="SeoKeywords" class="form-control" />
-                                <span asp-validation-for="SeoKeywords" class="text-danger"></span>
+                            <input asp-for="SeoKeywords" class="form-control" />
+                            <span asp-validation-for="SeoKeywords" class="text-danger"></span>
                         </div>
                     </div>
                     <div class="tab-pane fade" id="pills-parents" role="tabpanel" aria-labelledby="pills-parents-tab">
@@ -158,7 +155,6 @@
                                     {
                                         <li class="col-sm-6">
 
-
                                             <div asp-for="@Model.Categories[i].IsActived" class="custom-control custom-checkbox">
 
                                                 <input type="checkbox" asp-for="@Model.Categories[i].IsActived"
@@ -168,9 +164,9 @@
                                                 <input type="hidden" asp-for="@Model.Categories[i].CategoryId" />
                                                 <input type="hidden" asp-for="@Model.Categories[i].ProductId" />
                                                 <label class="custom-control-label" for="checkboxCategories_@Model.Categories[i].ProductId">
-                                                    @Model.Categories[i].Description 
-                                                    <a asp-area="Portal" asp-controller="Module" asp-action="Details" 
-                                                                                        asp-route-id="@Model.Categories[i].ProductId" style="display:initial;padding:0;" target="_blank">
+                                                    @Model.Categories[i].Description
+                                                    <a asp-area="Portal" asp-controller="Module" asp-action="Details"
+                                                       asp-route-id="@Model.Categories[i].ProductId" style="display:initial;padding:0;" target="_blank">
                                                     </a>
                                                 </label>
                                             </div>
@@ -198,15 +194,12 @@
                                                 <input type="hidden" asp-for="@Model.Modules[i].Specificulture" />
                                                 <input type="hidden" asp-for="@Model.Modules[i].ProductId" />
                                                 <input type="hidden" asp-for="@Model.Modules[i].ModuleId" />
-
                                             </div>
-
                                         </li>
                                     }
                                 </ul>
                             </div>
                         </div>
-
                     </div>
                     <div class="tab-pane fade" id="pills-modules" role="tabpanel" aria-labelledby="pills-modules-tab">
 
@@ -262,7 +255,7 @@
                                                         var prop = item.GetDataProperty(col.Name);
                                                         <td>
                                                             @{Html.RenderPartial("_ViewByFieldType",
-                                          new ViewDataDictionary(this.Vi‌​ewData) { { "DataType", prop.DataType }, { "Value", prop.Value } });
+                                            new ViewDataDictionary(this.Vi‌​ewData) { { "DataType", prop.DataType }, { "Value", prop.Value } });
                                                             }
                                                         </td>
                                                     }
@@ -285,19 +278,19 @@
                     <div class="tab-pane fade" id="pills-layout" role="tabpanel" aria-labelledby="pills-layout-tab">
                         <div class="form-group">
                             <label asp-for="Template" class="control-label"></label>
-                                @Html.Partial("_Editor_Code", Model.View, new ViewDataDictionary(this.ViewData){
-                                {
-                                        "Files", Model.Templates
-                                    },
-                                    {
-                                        "Name", "View"
-                                    }
+                            @Html.Partial("_Editor_Code", Model.View, new ViewDataDictionary(this.ViewData){
+                                                {
+                                                        "Files", Model.Templates
+                                                    },
+                                                    {
+                                                        "Name", "View"
+                                                    }
 
-                                })
-                                @* <input asp-for="View.Filename" class="form-control"/>
+                                                })
+                            @* <input asp-for="View.Filename" class="form-control" />
 
-                                    <div class="form-control" id="code-editor" asp-for="View.Content"></div>*@
-                                <span asp-validation-for="Template" class="text-danger"></span>
+                                <div class="form-control" id="code-editor" asp-for="View.Content"></div>*@
+                            <span asp-validation-for="Template" class="text-danger"></span>
                         </div>
                     </div>
                 </div>
@@ -306,12 +299,11 @@
     </div>
 </div>
 
-
 <script>
     window.onload = function () {
 
         $('.AddObject').click(function (e) {
-            var i = $(".field-row").length;
+            var i = $(".module-column").length;
             var moduleId = $(this).attr('moduleId');
             $('.btn-save-data').attr('moduleId', moduleId);
             $.ajax({
