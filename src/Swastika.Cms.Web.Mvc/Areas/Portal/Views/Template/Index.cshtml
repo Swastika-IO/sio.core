@@ -1,6 +1,6 @@
 ﻿@model PaginationModel<InfoTemplateViewModel>
 @{
-    ViewData["Title"] = "Template";
+    ViewData["Title"] = "Template layout";
     //Layout = "~/Areas/Portal/Views/Shared/_Layout.cshtml";
     int fromValue = Model.PageIndex * @Model.PageSize + 1;
     int toValue = fromValue + Model.PageSize - 1;
@@ -11,42 +11,94 @@
     var folders = Enum.GetNames(typeof(Swastika.Cms.Lib.SWCmsConstants.TemplateFolderEnum)).ToList();
 }
 <section class="content container-fluid">
-    <div class="row mb-1">
-        <div class="col-sm-12">
-            <a asp-action="Create" asp-route-templateId="@ViewBag.templateId" class="btn btn-primary"><span class="oi oi-plus"></span> Add template</a>
-            <div class="btn-group">
-                <button type="button" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    Template Folders
-                </button>
-                <div class="dropdown-menu">
-                    @foreach (var folder in folders)
-                    {
+    @*<div class="row mb-1">
+            <div class="col-sm-12">
+                <a asp-action="Create" asp-route-templateId="@ViewBag.templateId" class="btn btn-primary"><span class="oi oi-plus"></span> Add template</a>
+                <div class="btn-group">
+                    <button type="button" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Template Folders
+                    </button>
+                    <div class="dropdown-menu">
+                        @foreach (var folder in folders)
+                        {
 
-                        <a asp-controller="Template" asp-action="Index" asp-route-folder="@folder"
-                           asp-route-templateId="@ViewContext.RouteData.Values["templateId"]"
-                           class="dropdown-item">
-                            @folder
-                        </a>
+                            <a asp-controller="Template" asp-action="Index" asp-route-folder="@folder"
+                               asp-route-templateId="@ViewContext.RouteData.Values["templateId"]"
+                               class="dropdown-item">
+                                @folder
+                            </a>
 
-                    }
+                        }
+                    </div>
                 </div>
+            </div>
+        </div>*@
+    <div class="row">
+        <div class="col-md-8">
+            <div class="btn-toolbar mb-3" role="toolbar" aria-label="Toolbar with button groups">
+                <div class="btn-group mr-2" role="group" aria-label="First group">
+                    <a asp-action="Create" asp-route-templateId="@ViewBag.templateId" class="btn btn-secondary"><i class="mi mi-Add"></i></a>
+                    @*<a asp-area="Portal" asp-controller="Pages" asp-action="Index" class="btn btn-secondary"><i class="mi mi-List"></i></a>
+                        <a asp-area="Portal" asp-controller="Pages" asp-action="Draft" class="btn btn-secondary"><i class="mi mi-Paste"></i></a>*@
+                </div>
+                <div class="btn-group mr-2" role="group" aria-label="Button group with nested dropdown">
+                    <div class="btn-group" role="group">
+                        <button id="btnGroupDrop1" type="button" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            Template Folders
+                        </button>
+                        <div class="dropdown-menu" aria-labelledby="btnGroupDrop1">
+                            @foreach (var folder in folders)
+                            {
+
+                                <a asp-controller="Template" asp-action="Index" asp-route-folder="@folder"
+                                   asp-route-templateId="@ViewContext.RouteData.Values["templateId"]"
+                                   class="dropdown-item">
+                                    @folder
+                                </a>
+
+                            }
+                        </div>
+                    </div>
+                </div>
+                <div class="btn-group mr-2" role="group" aria-label="Button group with nested dropdown">
+                    <div class="btn-group" role="group">
+                        <button id="btnGroupDrop1" type="button" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            All times
+                        </button>
+                        <div class="dropdown-menu" aria-labelledby="btnGroupDrop1">
+                            <a class="dropdown-item" href="#">Jan 2018</a>
+                            <a class="dropdown-item" href="#">Dec 2017</a>
+                            <a class="dropdown-item" href="#">Nov 2017</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="input-group">
+                <div class="input-group-prepend">
+                    <div class="input-group-text" id="btnGroupAddon"><i class="mi mi-Search" style="top:0;"></i></div>
+                </div>
+                <input type="text" class="form-control" placeholder="Search......" aria-label="Search......" aria-describedby="btnGroupAddon">
             </div>
         </div>
     </div>
     <table class="table table-sm table-hover" cellspacing="0">
         <thead class="thead-light">
             <tr>
-                <th></th>
-                <th>
-                    Name
+                @*<th></th>*@
+                <th scope="col">
+                    Template Name
                 </th>
-                <th>
-                    Folder
+                <th scope="col">
+                    Folder path
                 </th>
-                <th>
-                    CreatedDate
+                <th scope="col" style="width: 10%;">
+                    Created Date
                 </th>
-                <th></th>
+                <th scope="col" style="width: 5%;">
+                    Actions
+                </th>
             </tr>
         </thead>
         <tbody>
@@ -54,7 +106,7 @@
             @foreach (var item in Model.Items)
             {
                 <tr>
-                    <td><input type="checkbox"></td>
+                    @*<td><input type="checkbox"></td>*@
                     <td>
                         @Html.DisplayFor(modelItem => item.FileName)
                     </td>
@@ -67,8 +119,8 @@
                     </td>
                     <td>
                         <div class="btn-group btn-group-sm" role="group" aria-label="Actions">
-                            <a asp-action="Edit" asp-route-id="@item.Id" class="btn btn-sm btn-warning d-inline-block "> <span class="oi oi-pencil"></span></a>
-                            <a asp-action="Delete" asp-route-id="@item.Id" class="btn btn-sm btn-danger d-inline-block" data-popout="true" data-toggle="confirmation" data-singleton="true"> <span class="oi oi-x"></span> </a>
+                            <a asp-action="Edit" asp-route-id="@item.Id" class="btn btn-sm btn-light d-inline-block "> <span class="oi oi-pencil text-primary"></span></a>
+                            <a asp-action="Delete" asp-route-id="@item.Id" class="btn btn-sm btn-light d-inline-block" data-popout="true" data-toggle="confirmation" data-singleton="true"> <span class="oi oi-x text-danger"></span> </a>
                         </div>
                     </td>
                 </tr>
@@ -77,7 +129,7 @@
     </table>
     <!-- /.table -->
     @await Html.PartialAsync("_Pagination", Model
-                                                                 , new ViewDataDictionary(this.Vi‌​ewData)
-                                                                 {
+                                                                                                                                                     , new ViewDataDictionary(this.Vi‌​ewData)
+                                                                                                                                                     {
 { "PageSize", Model.PageSize}, { "PageIndex", Model.PageIndex }, { "TotalPage", Model.TotalPage } })
 </section>

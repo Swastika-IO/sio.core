@@ -33,7 +33,6 @@ namespace Swastika.Cms.Mvc.Areas.Portal.Controllers
             //_appService = appService;
         }
 
-
         // GET: Portal/Modules
         [HttpGet]
         [Route("Index")]
@@ -42,7 +41,7 @@ namespace Swastika.Cms.Mvc.Areas.Portal.Controllers
         [Route("Index/{pageSize:int?}/{pageIndex:int?}/{keyword}")]
         public async Task<IActionResult> Index(int pageSize = 10, int pageIndex = 0, string keyword = null)
         {
-            var pagingPages = await 
+            var pagingPages = await
                 InfoModuleViewModel.Repository.GetModelListByAsync(
                 m => m.Specificulture == _lang
                     && (string.IsNullOrEmpty(keyword) || m.Name.Contains(keyword)),
@@ -65,7 +64,7 @@ namespace Swastika.Cms.Mvc.Areas.Portal.Controllers
         }
 
         // POST: Module/Create
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
+        // To protect from overposting attacks, please enable the specific properties you want to bind to, for
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [Route("Create")]
         [HttpPost]
@@ -92,7 +91,7 @@ namespace Swastika.Cms.Mvc.Areas.Portal.Controllers
         [Route("Edit/{id}")]
         public async Task<IActionResult> Edit(int id)
         {
-            var Module = await BEModuleViewModel.Repository.GetSingleModelAsync(m => 
+            var Module = await BEModuleViewModel.Repository.GetSingleModelAsync(m =>
             m.Id == id && m.Specificulture == _lang);
             if (Module == null)
             {
@@ -102,7 +101,7 @@ namespace Swastika.Cms.Mvc.Areas.Portal.Controllers
         }
 
         // POST: Module/Edit/5
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
+        // To protect from overposting attacks, please enable the specific properties you want to bind to, for
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [Route("Edit/{id}")]
         [HttpPost]
@@ -147,7 +146,6 @@ namespace Swastika.Cms.Mvc.Areas.Portal.Controllers
             return View(Module);
         }
 
-
         [HttpGet]
         [Route("Delete/{id}")]
         public async Task<IActionResult> Delete(int id)
@@ -166,7 +164,6 @@ namespace Swastika.Cms.Mvc.Areas.Portal.Controllers
 
         //#region Ajax Functions
 
-
         //[HttpGet]
         //[Route("AjaxAddModuleData/{moduleId}")]
         //public async Task<IActionResult> AjaxAddModuleData(int moduleId)
@@ -175,7 +172,7 @@ namespace Swastika.Cms.Mvc.Areas.Portal.Controllers
         //        (m => m.Id == moduleId && m.Specificulture == _lang);
         //    if (getModule.IsSucceed)
         //    {
-        //        var ModuleData = new InfoModuleDataViewModel( 
+        //        var ModuleData = new InfoModuleDataViewModel(
         //            new SiocModuleData() {
         //                Id = Guid.NewGuid().ToString("N"),
         //                ModuleId = moduleId,
@@ -191,7 +188,7 @@ namespace Swastika.Cms.Mvc.Areas.Portal.Controllers
         //}
 
         //// POST: ModuleData/Create
-        //// To protect from overposting attacks, please enable the specific properties you want to bind to, for 
+        //// To protect from overposting attacks, please enable the specific properties you want to bind to, for
         //// more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         //[Route("AjaxSaveModuleData")]
         //[HttpPost]
@@ -245,11 +242,9 @@ namespace Swastika.Cms.Mvc.Areas.Portal.Controllers
         //    }
         //}
 
-
         //#endregion
 
         #region Module Details Handler
-
 
         // GET: Portal/Modules
         [HttpGet]
@@ -282,12 +277,12 @@ namespace Swastika.Cms.Mvc.Areas.Portal.Controllers
             {
                 var ModuleData = new BEModuleDataViewModel(
                     new SiocModuleData()
-                {
-                    Id = Guid.NewGuid().ToString("N"),
-                    ModuleId = id,
-                    Specificulture = _lang,                    
-                    Fields = getModule.Data.Fields
-                });
+                    {
+                        Id = Guid.NewGuid().ToString("N"),
+                        ModuleId = id,
+                        Specificulture = _lang,
+                        Fields = getModule.Data.Fields
+                    });
                 return View(ModuleData);
             }
             else
@@ -297,7 +292,7 @@ namespace Swastika.Cms.Mvc.Areas.Portal.Controllers
         }
 
         // POST: ModuleData/Create
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
+        // To protect from overposting attacks, please enable the specific properties you want to bind to, for
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [Route("AddModuleData/{id:int}")]
         [HttpPost]
@@ -337,7 +332,7 @@ namespace Swastika.Cms.Mvc.Areas.Portal.Controllers
         }
 
         // POST: ModuleData/EditModuleData/5
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
+        // To protect from overposting attacks, please enable the specific properties you want to bind to, for
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [Route("EditModuleData/{id}/{dataId}")]
         [HttpPost]
@@ -396,17 +391,13 @@ namespace Swastika.Cms.Mvc.Areas.Portal.Controllers
                 {
                     return RedirectToAction("Index");
                 }
-                
             }
             else
             {
                 return RedirectToAction("Index");
             }
-
-
-           
         }
 
-        #endregion
+        #endregion Module Details Handler
     }
 }
