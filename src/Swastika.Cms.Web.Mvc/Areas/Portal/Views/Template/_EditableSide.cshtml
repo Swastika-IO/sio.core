@@ -10,27 +10,24 @@
     <div class="card-body">
 
         <div class="form-group">
-            <label asp-for="ModifiedBy" class="control-label"></label>
+            <label asp-for="ModifiedBy" class="control-label">Modified By</label>
             <input asp-for="ModifiedBy" class="form-control" readonly />
         </div>
-        <div class="form-group">
-            <label asp-for="Priority" class="control-label"></label>
-            <input asp-for="Priority" class="form-control" />
-            <span asp-validation-for="Priority" class="text-danger"></span>
-        </div>
-
+        @*<div class="form-group">
+                <label asp-for="Priority" class="control-label"></label>
+                <input asp-for="Priority" class="form-control" />
+                <span asp-validation-for="Priority" class="text-danger"></span>
+            </div>*@
     </div>
 </div>
 
 <div class="card">
     <div class="card-header">
-        <label asp-for="FolderType"></label>
+        <label asp-for="FolderType">Folder Type</label>
     </div>
     <div class="card-body">
-
         <div class="form-group">
             @*<select asp-for="FolderType" class="form-control" asp-items="@lst"></select>*@
-
 
             @{
                 foreach (var type in lst)
@@ -42,10 +39,7 @@
                     </div>
                 }
             }
-
             <span asp-validation-for="FolderType" class="text-danger"></span>
         </div>
-
-
     </div>
 </div>

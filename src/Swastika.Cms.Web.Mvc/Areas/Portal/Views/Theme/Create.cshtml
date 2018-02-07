@@ -1,13 +1,12 @@
 @model BEThemeViewModel
 
 @{
-    ViewData["Title"] = "Create Configuration";
+    ViewData["Title"] = "Add themes";
     //Layout = "~/Areas/Portal/Views/Shared/_Layout.cshtml";
 }
 
 <!-- Main content -->
 <section class="content container-fluid">
-
 
     @await Html.PartialAsync("EditableSides/_Editable_ActionsBar")
     <div class="row">
@@ -17,41 +16,40 @@
         <section class="col-lg-3">
             @await Html.PartialAsync("_EditableSide", Model)
         </section>
-
     </div>
 </section>
 <!-- /.content -->
-@section Scripts{ 
+@section Scripts{
     <script>
-    $('#file-asset').on('change', function () {
-        var img = document.querySelector('#file-asset').files[0];
-        var folder = $(this).attr('folder');
-        if (img !== null) {
-            var name = img.name.split('.')[0];
-            var arr = img.name.split('.');
-            var ext = '.' + arr[arr.length - 1];
+        $('#file-asset').on('change', function () {
+            var img = document.querySelector('#file-asset').files[0];
+            var folder = $(this).attr('folder');
+            if (img !== null) {
+                var name = img.name.split('.')[0];
+                var arr = img.name.split('.');
+                var ext = '.' + arr[arr.length - 1];
 
-            var reader = new FileReader();
-            reader.readAsDataURL(img);
-            reader.onload = function () {
-                //var index = reader.result.indexOf(',') + 1;
-                var base64 = reader.result; //.substring(index);
-                var obj = {
-                    fileFolder: folder,
-                    filename: name,
-                    extension: ext,
-                    fileStream: base64
+                var reader = new FileReader();
+                reader.readAsDataURL(img);
+                reader.onload = function () {
+                    //var index = reader.result.indexOf(',') + 1;
+                    var base64 = reader.result; //.substring(index);
+                    var obj = {
+                        fileFolder: folder,
+                        filename: name,
+                        extension: ext,
+                        fileStream: base64
+                    };
+                    $('#asset').find('.fileFolder').val(obj.fileFolder);
+                    $('#asset').find('.filename').val(obj.filename);
+                    $('#asset').find('.extension').val(obj.extension);
+                    $('#asset').find('.fileStream').val(obj.fileStream);
                 };
-                $('#asset').find('.fileFolder').val(obj.fileFolder);
-                $('#asset').find('.filename').val(obj.filename);
-                $('#asset').find('.extension').val(obj.extension);
-                $('#asset').find('.fileStream').val(obj.fileStream);             
-            };
-            reader.onerror = function (error) {
+                reader.onerror = function (error) {
 
-            };
-        }
-    });
-</script>
+                };
+            }
+        });
+    </script>
 
 }

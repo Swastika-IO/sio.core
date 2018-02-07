@@ -15,27 +15,27 @@
 <section class="content container-fluid">
     <form enctype="multipart/form-data" asp-action="@ViewContext.RouteData.Values["action"].ToString()">
 
-        @if (Model.Data.TotalItems > 0)
-        {
-            <div class="row">
-                <div class="col-md-8">
-                    <div class="btn-toolbar mb-3" role="toolbar" aria-label="Toolbar with button groups">
-                        <div class="btn-group mr-2" role="group" aria-label="First group">
-                            <a asp-area="Portal" asp-controller="Module" asp-action="AddModuleData" asp-route-id="@Model.Id" class="btn btn-secondary">
-                                <i class="mi mi-Add"></i>
-                            </a>
-                            @*<a asp-area="Portal" asp-controller="Module" asp-action="Details" asp-route-id="@Model.Id" class="btn btn-secondary">
-                                    <span class="oi oi-list"></span>
-                                </a>*@
-                            <a asp-area="Portal" asp-controller="Module" asp-action="Edit" asp-route-id="@Model.Id" class="btn btn-secondary">
-                                <i class="mi mi-Edit"></i>
-                            </a>
-                        </div>
+        <div class="row">
+            <div class="col-md-8">
+                <div class="btn-toolbar mb-3" role="toolbar" aria-label="Toolbar with button groups">
+                    <div class="btn-group mr-2" role="group" aria-label="First group">
+                        <a asp-area="Portal" asp-controller="Module" asp-action="AddModuleData" asp-route-id="@Model.Id" class="btn btn-secondary">
+                            <i class="mi mi-Add"></i>
+                        </a>
+                        @*<a asp-area="Portal" asp-controller="Module" asp-action="Details" asp-route-id="@Model.Id" class="btn btn-secondary">
+                                <span class="oi oi-list"></span>
+                            </a>*@
+                        <a asp-area="Portal" asp-controller="Module" asp-action="Edit" asp-route-id="@Model.Id" class="btn btn-secondary">
+                            <i class="mi mi-Edit"></i>
+                        </a>
                     </div>
                 </div>
-                <div class="col-md-4">
-                </div>
             </div>
+            <div class="col-md-4">
+            </div>
+        </div>
+        @if (Model.Data.TotalItems > 0)
+        {
 
             <h5 class="">Module [@Model.Name] data items</h5>
 

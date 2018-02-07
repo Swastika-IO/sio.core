@@ -175,8 +175,16 @@
             }
             $('#sel-template').on('change', function () {
                 SW.Common.templateEditor.setValue($(this).val());
-                $('.sel-filename').val(($(this).find('option:selected').text()))
-            })
+                var templateName = $(this).find('option:selected').text();
+                if (templateName == "[ NEW TEMPLATE ]") {
+                    $('.sel-filename').attr('value', ''); // use attr instead of val to fix bug value not change https://stackoverflow.com/questions/11873721/jquery-val-change-doesnt-change-input-value
+                } else {
+                    $('.sel-filename').attr('value', templateName);
+                }
+            });
+            $('.sel-filename').on('change', function () {
+                $('.sel-filename').attr('value', $(this).val());
+            });
 
             var selVal = $('.selectpicker').data('val');
             // TODO: ERROR with bootstrap 4
