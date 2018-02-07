@@ -10,6 +10,7 @@ using Swastika.Cms.Lib.ViewModels.Info;
 using Swastika.Cms.Lib.Models.Cms;
 using Swastika.Cms.Lib.ViewModels.BackEnd;
 using System.Collections.Generic;
+using Newtonsoft.Json.Linq;
 
 namespace Swastka.IO.Cms.Api.Controllers
 {
@@ -33,15 +34,26 @@ namespace Swastka.IO.Cms.Api.Controllers
             return result;
         }
 
-        // GET api/articles/id
+        // GET api/module/details/spa/1
         [HttpGet]
-        [Route("details/backend/{id}")]
-        public async Task<RepositoryResponse<BEModuleViewModel>> BEDetails(int id)
+        [Route("details/{viewType}/{id}")]
+        public async Task<JObject> DetailsByType(string viewType, int id)
         {
-            var result = await BEModuleViewModel.Repository.GetSingleModelAsync(model => model.Id == id && model.Specificulture == _lang);
-            if (result.IsSucceed)
+            JObject result = new JObject();
+            switch (viewType)
             {
-                result.Data.LoadData();
+                case "spa":
+                    var spaResult = await SpaModuleViewModel.Repository.GetSingleModelAsync(model => model.Id == id && model.Specificulture == _lang);
+                    result = JObject.FromObject(spaResult);
+                    break;
+                case "be":
+                    var beResult = await BEModuleViewModel.Repository.GetSingleModelAsync(model => model.Id == id && model.Specificulture == _lang);
+                    result = JObject.FromObject(beResult);
+                    break;
+                default:
+                    var feResult = await FEModuleViewModel.Repository.GetSingleModelAsync(model => model.Id == id && model.Specificulture == _lang);
+                    result = JObject.FromObject(feResult);
+                    break;
             }
             return result;
         }

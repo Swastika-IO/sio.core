@@ -91,8 +91,10 @@ namespace Swastika.Cms.Lib.ViewModels.BackEnd
 
         #endregion
         //Parent Article Id
+        [JsonProperty("articleId")]
         public string  ArticleId { get; set; }
         //Parent Category Id
+        [JsonProperty("categoryId")]
         public int CategoryId { get; set; }
         #endregion
 

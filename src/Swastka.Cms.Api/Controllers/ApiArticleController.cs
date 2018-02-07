@@ -11,8 +11,8 @@ using Swastika.Cms.Lib.ViewModels.Info;
 using Swastika.Cms.Lib.Models.Cms;
 using Swastika.Cms.Lib;
 using System.Collections.Generic;
-using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Newtonsoft.Json.Linq;
+using Swastika.Cms.Lib.ViewModels.Spa;
 
 namespace Swastka.Cms.Api.Controllers
 {
@@ -25,28 +25,27 @@ namespace Swastka.Cms.Api.Controllers
         BaseApiController<SiocCmsContext, SiocArticle>
     {
         #region Get
+        
         // GET api/articles/id
         [HttpGet]
-        [Route("details/{id}")]
-        public async Task<RepositoryResponse<FEArticleViewModel>> Details(string id)
+        [Route("details/{viewType}/{id}")]
+        public async Task<JObject> BEDetails(string viewType, string id)
         {
-            var result = await FEArticleViewModel.Repository.GetSingleModelAsync(model => model.Id == id && model.Specificulture == _lang); //base.GetAsync(model => model.Id == id);
-            if (result.IsSucceed)
+            JObject result = new JObject();
+            switch (viewType)
             {
-                result.Data.Domain = this._domain;
-            }
-            return result;
-        }
-
-        // GET api/articles/id
-        [HttpGet]
-        [Route("details/backend/{id}")]
-        public async Task<RepositoryResponse<BEArticleViewModel>> BEDetails(string id)
-        {
-            var result = await BEArticleViewModel.Repository.GetSingleModelAsync(model => model.Id == id && model.Specificulture == _lang); //base.GetAsync(model => model.Id == id);
-            if (result.IsSucceed)
-            {
-                result.Data.Domain = this._domain;
+                case "spa":
+                    var spaResult = await SpaArticleViewModel.Repository.GetSingleModelAsync(model => model.Id == id && model.Specificulture == _lang);
+                    result = JObject.FromObject(spaResult);
+                    break;
+                case "be":
+                    var beResult = await BEArticleViewModel.Repository.GetSingleModelAsync(model => model.Id == id && model.Specificulture == _lang);
+                    result = JObject.FromObject(beResult);
+                    break;
+                default:
+                    var feResult = await FEArticleViewModel.Repository.GetSingleModelAsync(model => model.Id == id && model.Specificulture == _lang);
+                    result = JObject.FromObject(feResult);
+                    break;
             }
             return result;
         }

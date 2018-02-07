@@ -1,16 +1,13 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using Swastika.Cms.Lib.Models;
 using Swastika.Domain.Data.ViewModels;
 using Microsoft.EntityFrameworkCore.Storage;
 using Newtonsoft.Json;
-using Swastika.IO.Common.Helper;
+using Swastika.Cms.Lib.Models.Cms;
 
-namespace Swastika.Cms.Lib.ViewModels.Cms
+namespace Swastika.Cms.Lib.ViewModels.BackEnd
 {
-    public class _BlankViewModel
-        : ViewModelBase<SiocCmsContext, SiocArticle, _BlankViewModel>
+    public class BlankViewModel
+        : ViewModelBase<SiocCmsContext, SiocBlank, BlankViewModel>
     {
         #region Properties
         //[JsonProperty("id")]
@@ -27,11 +24,11 @@ namespace Swastika.Cms.Lib.ViewModels.Cms
 
         #region Contructors
 
-        public _BlankViewModel() : base()
+        public BlankViewModel() : base()
         {
         }
 
-        public _BlankViewModel(SiocArticle model, SiocCmsContext _context = null, IDbContextTransaction _transaction = null) : base(model, _context, _transaction)
+        public BlankViewModel(SiocBlank model, SiocCmsContext _context = null, IDbContextTransaction _transaction = null) : base(model, _context, _transaction)
         {
         }
 
