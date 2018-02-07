@@ -19,9 +19,9 @@ namespace Swastika.Cms.Lib.Models.Cms
         public string TemplateName { get; set; }
         public string Scripts { get; set; }
         public string Styles { get; set; }
-
         public string MobileContent { get; set; }
         public string SpaContent { get; set; }
+
         public SiocTheme Template { get; set; }
     }
 }

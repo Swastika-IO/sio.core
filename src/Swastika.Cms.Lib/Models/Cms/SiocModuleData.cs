@@ -9,13 +9,13 @@ namespace Swastika.Cms.Lib.Models.Cms
         public int ModuleId { get; set; }
         public string Specificulture { get; set; }
         public string ArticleId { get; set; }
-        public string ProductId { get; set; }
         public int? CategoryId { get; set; }
         public DateTime CreatedDateTime { get; set; }
         public string Fields { get; set; }
         public int Priority { get; set; }
         public DateTime? UpdatedDateTime { get; set; }
         public string Value { get; set; }
+        public string ProductId { get; set; }
 
         public SiocArticleModule SiocArticleModule { get; set; }
         public SiocCategoryModule SiocCategoryModule { get; set; }

@@ -8,6 +8,7 @@ namespace Swastika.Cms.Lib.Models.Cms
     public partial class SiocCmsContext : DbContext
     {
         public virtual DbSet<SiocArticle> SiocArticle { get; set; }
+        public virtual DbSet<SiocArticleMedia> SiocArticleMedia { get; set; }
         public virtual DbSet<SiocArticleModule> SiocArticleModule { get; set; }
         public virtual DbSet<SiocCategory> SiocCategory { get; set; }
         public virtual DbSet<SiocCategoryArticle> SiocCategoryArticle { get; set; }
@@ -17,19 +18,21 @@ namespace Swastika.Cms.Lib.Models.Cms
         public virtual DbSet<SiocCategoryProduct> SiocCategoryProduct { get; set; }
         public virtual DbSet<SiocComment> SiocComment { get; set; }
         public virtual DbSet<SiocConfiguration> SiocConfiguration { get; set; }
-        public virtual DbSet<SiocLanguage> SiocLanguage { get; set; }
         public virtual DbSet<SiocCopy> SiocCopy { get; set; }
         public virtual DbSet<SiocCulture> SiocCulture { get; set; }
         public virtual DbSet<SiocFile> SiocFile { get; set; }
+        public virtual DbSet<SiocLanguage> SiocLanguage { get; set; }
+        public virtual DbSet<SiocMedia> SiocMedia { get; set; }
         public virtual DbSet<SiocModule> SiocModule { get; set; }
         public virtual DbSet<SiocModuleArticle> SiocModuleArticle { get; set; }
-        public virtual DbSet<SiocModuleProduct> SiocModuleProduct { get; set; }
         public virtual DbSet<SiocModuleAttributeSet> SiocModuleAttributeSet { get; set; }
         public virtual DbSet<SiocModuleAttributeValue> SiocModuleAttributeValue { get; set; }
         public virtual DbSet<SiocModuleData> SiocModuleData { get; set; }
+        public virtual DbSet<SiocModuleProduct> SiocModuleProduct { get; set; }
         public virtual DbSet<SiocParameter> SiocParameter { get; set; }
         public virtual DbSet<SiocPosition> SiocPosition { get; set; }
         public virtual DbSet<SiocProduct> SiocProduct { get; set; }
+        public virtual DbSet<SiocProductMedia> SiocProductMedia { get; set; }
         public virtual DbSet<SiocProductModule> SiocProductModule { get; set; }
         public virtual DbSet<SiocTemplate> SiocTemplate { get; set; }
         public virtual DbSet<SiocTheme> SiocTheme { get; set; }
@@ -74,8 +77,6 @@ namespace Swastika.Cms.Lib.Models.Cms
 
                 entity.Property(e => e.Specificulture).HasMaxLength(10);
 
-                entity.Property(e => e.Priority).HasDefaultValueSql("((0))");
-
                 entity.Property(e => e.CreatedBy).HasMaxLength(250);
 
                 entity.Property(e => e.CreatedDateTime).HasColumnType("datetime");
@@ -85,6 +86,8 @@ namespace Swastika.Cms.Lib.Models.Cms
                 entity.Property(e => e.LastModified).HasColumnType("datetime");
 
                 entity.Property(e => e.ModifiedBy).HasMaxLength(250);
+
+                entity.Property(e => e.Priority).HasDefaultValueSql("((0))");
 
                 entity.Property(e => e.SeoDescription).HasMaxLength(4000);
 
@@ -105,12 +108,36 @@ namespace Swastika.Cms.Lib.Models.Cms
                 entity.Property(e => e.Thumbnail).HasMaxLength(250);
 
                 entity.Property(e => e.Title).HasMaxLength(4000);
+
                 entity.HasOne(d => d.SpecificultureNavigation)
                     .WithMany(p => p.SiocArticle)
                     .HasPrincipalKey(p => p.Specificulture)
                     .HasForeignKey(d => d.Specificulture)
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_TTS_Article_TTS_Culture");
+            });
+
+            modelBuilder.Entity<SiocArticleMedia>(entity =>
+            {
+                entity.HasKey(e => new { e.MediaId, e.ArticleId, e.Specificulture });
+
+                entity.ToTable("sioc_article_media");
+
+                entity.Property(e => e.ArticleId).HasMaxLength(50);
+
+                entity.Property(e => e.Specificulture).HasMaxLength(10);
+
+                entity.HasOne(d => d.SiocArticle)
+                    .WithMany(p => p.SiocArticleMedia)
+                    .HasForeignKey(d => new { d.ArticleId, d.Specificulture })
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("FK_sioc_article_media_sioc_article");
+
+                entity.HasOne(d => d.SiocMedia)
+                    .WithMany(p => p.SiocArticleMedia)
+                    .HasForeignKey(d => new { d.MediaId, d.Specificulture })
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("FK_sioc_article_media_sioc_media");
             });
 
             modelBuilder.Entity<SiocArticleModule>(entity =>
@@ -126,7 +153,9 @@ namespace Swastika.Cms.Lib.Models.Cms
                 entity.Property(e => e.ArticleId).HasMaxLength(50);
 
                 entity.Property(e => e.Specificulture).HasMaxLength(10);
+
                 entity.Property(e => e.Priority).HasDefaultValueSql("((0))");
+
                 entity.HasOne(d => d.SiocArticle)
                     .WithMany(p => p.SiocArticleModule)
                     .HasForeignKey(d => new { d.ArticleId, d.Specificulture })
@@ -206,7 +235,9 @@ namespace Swastika.Cms.Lib.Models.Cms
                 entity.Property(e => e.ArticleId).HasMaxLength(50);
 
                 entity.Property(e => e.Specificulture).HasMaxLength(10);
+
                 entity.Property(e => e.Priority).HasDefaultValueSql("((0))");
+
                 entity.HasOne(d => d.SiocArticle)
                     .WithMany(p => p.SiocCategoryArticle)
                     .HasForeignKey(d => new { d.ArticleId, d.Specificulture })
@@ -231,7 +262,9 @@ namespace Swastika.Cms.Lib.Models.Cms
                 entity.HasIndex(e => new { e.ParentId, e.Specificulture });
 
                 entity.Property(e => e.Specificulture).HasMaxLength(10);
+
                 entity.Property(e => e.Priority).HasDefaultValueSql("((0))");
+
                 entity.HasOne(d => d.SiocCategory)
                     .WithMany(p => p.SiocCategoryCategorySiocCategory)
                     .HasForeignKey(d => new { d.Id, d.Specificulture })
@@ -256,7 +289,9 @@ namespace Swastika.Cms.Lib.Models.Cms
                 entity.HasIndex(e => new { e.ModuleId, e.Specificulture });
 
                 entity.Property(e => e.Specificulture).HasMaxLength(10);
+
                 entity.Property(e => e.Priority).HasDefaultValueSql("((0))");
+
                 entity.HasOne(d => d.SiocCategory)
                     .WithMany(p => p.SiocCategoryModule)
                     .HasForeignKey(d => new { d.CategoryId, d.Specificulture })
@@ -280,7 +315,9 @@ namespace Swastika.Cms.Lib.Models.Cms
                 entity.Property(e => e.Specificulture).HasMaxLength(10);
 
                 entity.Property(e => e.Description).HasMaxLength(250);
+
                 entity.Property(e => e.Priority).HasDefaultValueSql("((0))");
+
                 entity.HasOne(d => d.Position)
                     .WithMany(p => p.SiocCategoryPosition)
                     .HasForeignKey(d => d.PositionId)
@@ -299,10 +336,16 @@ namespace Swastika.Cms.Lib.Models.Cms
 
                 entity.ToTable("sioc_category_product");
 
+                entity.HasIndex(e => new { e.CategoryId, e.Specificulture });
+
+                entity.HasIndex(e => new { e.ProductId, e.Specificulture });
+
                 entity.Property(e => e.ProductId).HasMaxLength(50);
 
                 entity.Property(e => e.Specificulture).HasMaxLength(10);
+
                 entity.Property(e => e.Priority).HasDefaultValueSql("((0))");
+
                 entity.HasOne(d => d.SiocCategory)
                     .WithMany(p => p.SiocCategoryProduct)
                     .HasForeignKey(d => new { d.CategoryId, d.Specificulture })
@@ -356,29 +399,6 @@ namespace Swastika.Cms.Lib.Models.Cms
                     .HasPrincipalKey(p => p.Specificulture)
                     .HasForeignKey(d => d.Specificulture)
                     .HasConstraintName("FK_Sioc_Configuration_Sioc_Culture");
-            });
-
-            modelBuilder.Entity<SiocLanguage>(entity =>
-            {
-                entity.HasKey(e => new { e.Keyword, e.Specificulture });
-
-                entity.ToTable("sioc_language");
-
-                entity.HasIndex(e => e.Specificulture);
-
-                entity.Property(e => e.Keyword).HasMaxLength(250);
-
-                entity.Property(e => e.Specificulture).HasMaxLength(10);
-
-                entity.Property(e => e.Category).HasMaxLength(250);
-
-                entity.Property(e => e.Description).HasMaxLength(250);
-
-                entity.HasOne(d => d.SpecificultureNavigation)
-                    .WithMany(p => p.SiocLanguage)
-                    .HasPrincipalKey(p => p.Specificulture)
-                    .HasForeignKey(d => d.Specificulture)
-                    .HasConstraintName("FK_Sioc_Language_Sioc_Culture");
             });
 
             modelBuilder.Entity<SiocCopy>(entity =>
@@ -461,6 +481,66 @@ namespace Swastika.Cms.Lib.Models.Cms
                     .HasConstraintName("FK_sioc_file_sioc_template");
             });
 
+            modelBuilder.Entity<SiocLanguage>(entity =>
+            {
+                entity.HasKey(e => new { e.Keyword, e.Specificulture });
+
+                entity.ToTable("sioc_language");
+
+                entity.HasIndex(e => e.Specificulture);
+
+                entity.Property(e => e.Keyword).HasMaxLength(250);
+
+                entity.Property(e => e.Specificulture).HasMaxLength(10);
+
+                entity.Property(e => e.Category).HasMaxLength(250);
+
+                entity.Property(e => e.Description).HasMaxLength(250);
+
+                entity.HasOne(d => d.SpecificultureNavigation)
+                    .WithMany(p => p.SiocLanguage)
+                    .HasPrincipalKey(p => p.Specificulture)
+                    .HasForeignKey(d => d.Specificulture)
+                    .HasConstraintName("FK_Sioc_Language_Sioc_Culture");
+            });
+
+            modelBuilder.Entity<SiocMedia>(entity =>
+            {
+                entity.HasKey(e => new { e.Id, e.Specificulture });
+
+                entity.ToTable("sioc_media");
+
+                entity.Property(e => e.Id).ValueGeneratedOnAdd();
+
+                entity.Property(e => e.Specificulture)
+                    .HasMaxLength(10)
+                    .HasDefaultValueSql("(N'vi-vn')");
+
+                entity.Property(e => e.CreatedDateTime).HasColumnType("datetime");
+
+                entity.Property(e => e.Extension)
+                    .IsRequired()
+                    .HasMaxLength(50);
+
+                entity.Property(e => e.FileFolder)
+                    .IsRequired()
+                    .HasMaxLength(250);
+
+                entity.Property(e => e.FileName)
+                    .IsRequired()
+                    .HasMaxLength(250);
+
+                entity.Property(e => e.FileType)
+                    .IsRequired()
+                    .HasMaxLength(50);
+
+                entity.Property(e => e.LastModified).HasColumnType("datetime");
+
+                entity.Property(e => e.ModifiedBy).HasMaxLength(250);
+
+                entity.Property(e => e.Priority).HasDefaultValueSql("((0))");
+            });
+
             modelBuilder.Entity<SiocModule>(entity =>
             {
                 entity.HasKey(e => new { e.Id, e.Specificulture });
@@ -473,9 +553,9 @@ namespace Swastika.Cms.Lib.Models.Cms
 
                 entity.Property(e => e.Description).HasMaxLength(500);
 
-                entity.Property(e => e.Image).HasMaxLength(250);
-
                 entity.Property(e => e.Fields).HasMaxLength(4000);
+
+                entity.Property(e => e.Image).HasMaxLength(250);
 
                 entity.Property(e => e.LastModified).HasColumnType("datetime");
 
@@ -511,7 +591,9 @@ namespace Swastika.Cms.Lib.Models.Cms
                 entity.Property(e => e.ArticleId).HasMaxLength(50);
 
                 entity.Property(e => e.Specificulture).HasMaxLength(10);
+
                 entity.Property(e => e.Priority).HasDefaultValueSql("((0))");
+
                 entity.HasOne(d => d.SiocArticle)
                     .WithMany(p => p.SiocModuleArticle)
                     .HasForeignKey(d => new { d.ArticleId, d.Specificulture })
@@ -523,33 +605,6 @@ namespace Swastika.Cms.Lib.Models.Cms
                     .HasForeignKey(d => new { d.ModuleId, d.Specificulture })
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_TTS_Module_Article_TTS_Module");
-            });
-
-            modelBuilder.Entity<SiocModuleProduct>(entity =>
-            {
-                entity.HasKey(e => new { e.ProductId, e.ModuleId, e.Specificulture });
-
-                entity.ToTable("sioc_module_product");
-
-                entity.HasIndex(e => new { e.ProductId, e.Specificulture });
-
-                entity.HasIndex(e => new { e.ModuleId, e.Specificulture });
-
-                entity.Property(e => e.ProductId).HasMaxLength(50);
-
-                entity.Property(e => e.Specificulture).HasMaxLength(10);
-                entity.Property(e => e.Priority).HasDefaultValueSql("((0))");
-                entity.HasOne(d => d.SiocProduct)
-                    .WithMany(p => p.SiocModuleProduct)
-                    .HasForeignKey(d => new { d.ProductId, d.Specificulture })
-                    .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK_TTS_Module_Product_TTS_Product");
-
-                entity.HasOne(d => d.SiocModule)
-                    .WithMany(p => p.SiocModuleProduct)
-                    .HasForeignKey(d => new { d.ModuleId, d.Specificulture })
-                    .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK_TTS_Module_Product_TTS_Module");
             });
 
             modelBuilder.Entity<SiocModuleAttributeSet>(entity =>
@@ -630,17 +685,15 @@ namespace Swastika.Cms.Lib.Models.Cms
 
                 entity.HasIndex(e => new { e.ModuleId, e.ArticleId, e.Specificulture });
 
-                entity.HasIndex(e => new { e.ModuleId, e.ProductId, e.Specificulture });
-
                 entity.HasIndex(e => new { e.ModuleId, e.CategoryId, e.Specificulture });
+
+                entity.HasIndex(e => new { e.ModuleId, e.ProductId, e.Specificulture });
 
                 entity.Property(e => e.Id).HasMaxLength(50);
 
                 entity.Property(e => e.Specificulture).HasMaxLength(10);
 
                 entity.Property(e => e.ArticleId).HasMaxLength(50);
-
-                entity.Property(e => e.ProductId).HasMaxLength(50);
 
                 entity.Property(e => e.CreatedDateTime).HasColumnType("datetime");
 
@@ -650,6 +703,8 @@ namespace Swastika.Cms.Lib.Models.Cms
 
                 entity.Property(e => e.Priority).HasDefaultValueSql("((0))");
 
+                entity.Property(e => e.ProductId).HasMaxLength(50);
+
                 entity.Property(e => e.UpdatedDateTime).HasColumnType("datetime");
 
                 entity.HasOne(d => d.SiocModule)
@@ -657,20 +712,44 @@ namespace Swastika.Cms.Lib.Models.Cms
                     .HasForeignKey(d => new { d.ModuleId, d.Specificulture })
                     .HasConstraintName("FK_TTS_Module_Data_TTS_Module");
 
-                entity.HasOne(d => d.SiocArticleModule)
-                    .WithMany(p => p.SiocModuleData)
-                    .HasForeignKey(d => new { d.ModuleId, d.ArticleId, d.Specificulture })
-                    .HasConstraintName("FK_TTS_Module_Data_TTS_Article_Module");
-
-                entity.HasOne(d => d.SiocArticleModule)
-                   .WithMany(p => p.SiocModuleData)
-                   .HasForeignKey(d => new { d.ModuleId, d.ProductId, d.Specificulture })
-                   .HasConstraintName("FK_TTS_Module_Data_TTS_Product_Module");
-
                 entity.HasOne(d => d.SiocCategoryModule)
                     .WithMany(p => p.SiocModuleData)
                     .HasForeignKey(d => new { d.ModuleId, d.CategoryId, d.Specificulture })
                     .HasConstraintName("FK_TTS_Module_Data_TTS_Category_Module");
+
+                entity.HasOne(d => d.SiocArticleModule)
+                    .WithMany(p => p.SiocModuleData)
+                    .HasForeignKey(d => new { d.ModuleId, d.ProductId, d.Specificulture })
+                    .HasConstraintName("FK_TTS_Module_Data_TTS_Product_Module");
+            });
+
+            modelBuilder.Entity<SiocModuleProduct>(entity =>
+            {
+                entity.HasKey(e => new { e.ProductId, e.ModuleId, e.Specificulture });
+
+                entity.ToTable("sioc_module_product");
+
+                entity.HasIndex(e => new { e.ModuleId, e.Specificulture });
+
+                entity.HasIndex(e => new { e.ProductId, e.Specificulture });
+
+                entity.Property(e => e.ProductId).HasMaxLength(50);
+
+                entity.Property(e => e.Specificulture).HasMaxLength(10);
+
+                entity.Property(e => e.Priority).HasDefaultValueSql("((0))");
+
+                entity.HasOne(d => d.SiocModule)
+                    .WithMany(p => p.SiocModuleProduct)
+                    .HasForeignKey(d => new { d.ModuleId, d.Specificulture })
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("FK_TTS_Module_Product_TTS_Module");
+
+                entity.HasOne(d => d.SiocProduct)
+                    .WithMany(p => p.SiocModuleProduct)
+                    .HasForeignKey(d => new { d.ProductId, d.Specificulture })
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("FK_TTS_Module_Product_TTS_Product");
             });
 
             modelBuilder.Entity<SiocParameter>(entity =>
@@ -700,6 +779,8 @@ namespace Swastika.Cms.Lib.Models.Cms
                 entity.HasKey(e => new { e.Id, e.Specificulture });
 
                 entity.ToTable("sioc_product");
+
+                entity.HasIndex(e => e.Specificulture);
 
                 entity.Property(e => e.Id).HasMaxLength(50);
 
@@ -747,11 +828,38 @@ namespace Swastika.Cms.Lib.Models.Cms
                     .HasConstraintName("FK_TTS_Product_TTS_Culture");
             });
 
+            modelBuilder.Entity<SiocProductMedia>(entity =>
+            {
+                entity.HasKey(e => new { e.MediaId, e.ProductId, e.Specificulture });
+
+                entity.ToTable("sioc_product_media");
+
+                entity.Property(e => e.ProductId).HasMaxLength(50);
+
+                entity.Property(e => e.Specificulture).HasMaxLength(10);
+
+                entity.HasOne(d => d.SiocMedia)
+                    .WithMany(p => p.SiocProductMedia)
+                    .HasForeignKey(d => new { d.MediaId, d.Specificulture })
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("FK_sioc_product_media_sioc_media");
+
+                entity.HasOne(d => d.SiocProduct)
+                    .WithMany(p => p.SiocProductMedia)
+                    .HasForeignKey(d => new { d.ProductId, d.Specificulture })
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("FK_sioc_product_media_sioc_product");
+            });
+
             modelBuilder.Entity<SiocProductModule>(entity =>
             {
                 entity.HasKey(e => new { e.ModuleId, e.ProductId, e.Specificulture });
 
                 entity.ToTable("sioc_product_module");
+
+                entity.HasIndex(e => new { e.ModuleId, e.Specificulture });
+
+                entity.HasIndex(e => new { e.ProductId, e.Specificulture });
 
                 entity.Property(e => e.ProductId).HasMaxLength(50);
 
@@ -780,12 +888,6 @@ namespace Swastika.Cms.Lib.Models.Cms
                     .IsRequired()
                     .HasColumnType("ntext");
 
-                entity.Property(e => e.MobileContent)
-                    .HasColumnType("ntext");
-
-                entity.Property(e => e.SpaContent)
-                    .HasColumnType("ntext");
-
                 entity.Property(e => e.CreatedDateTime).HasColumnType("datetime");
 
                 entity.Property(e => e.Extension)
@@ -806,11 +908,15 @@ namespace Swastika.Cms.Lib.Models.Cms
 
                 entity.Property(e => e.LastModified).HasColumnType("datetime");
 
+                entity.Property(e => e.MobileContent).HasColumnType("ntext");
+
                 entity.Property(e => e.ModifiedBy).HasMaxLength(250);
 
                 entity.Property(e => e.Priority).HasDefaultValueSql("((0))");
 
                 entity.Property(e => e.Scripts).HasColumnType("ntext");
+
+                entity.Property(e => e.SpaContent).HasColumnType("ntext");
 
                 entity.Property(e => e.Styles).HasColumnType("ntext");
 

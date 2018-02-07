@@ -8,6 +8,8 @@ namespace Swastika.Cms.Lib.Models.Cms
         public SiocProduct()
         {
             SiocCategoryProduct = new HashSet<SiocCategoryProduct>();
+            SiocModuleProduct = new HashSet<SiocModuleProduct>();
+            SiocProductMedia = new HashSet<SiocProductMedia>();
             SiocProductModule = new HashSet<SiocProductModule>();
         }
 
@@ -19,12 +21,12 @@ namespace Swastika.Cms.Lib.Models.Cms
         public string Excerpt { get; set; }
         public string Icon { get; set; }
         public string Image { get; set; }
-        public double Price { get; set; }
-        public string PriceUnit { get; set; }
         public bool IsDeleted { get; set; }
         public bool IsVisible { get; set; }
         public DateTime? LastModified { get; set; }
         public string ModifiedBy { get; set; }
+        public double Price { get; set; }
+        public string PriceUnit { get; set; }
         public string SeoDescription { get; set; }
         public string SeoKeywords { get; set; }
         public string SeoName { get; set; }
@@ -39,7 +41,8 @@ namespace Swastika.Cms.Lib.Models.Cms
 
         public SiocCulture SpecificultureNavigation { get; set; }
         public ICollection<SiocCategoryProduct> SiocCategoryProduct { get; set; }
-        public ICollection<SiocProductModule> SiocProductModule { get; set; }
         public ICollection<SiocModuleProduct> SiocModuleProduct { get; set; }
+        public ICollection<SiocProductMedia> SiocProductMedia { get; set; }
+        public ICollection<SiocProductModule> SiocProductModule { get; set; }
     }
 }
