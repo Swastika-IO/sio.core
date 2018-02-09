@@ -85,7 +85,7 @@
                 SW.Common.loadFiles(container);
             });
 
-            $('.custom-file .custom-file-input').change(function () {
+            $(document).on('change', '.custom-file .custom-file-input', function () {
                 var file = this.files[0];
                 if (file !== undefined && file !== null) {
                     var container = $(this).parent('.custom-file');

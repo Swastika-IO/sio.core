@@ -8,6 +8,7 @@ using Swastika.Cms.Lib.Repositories;
 using System.Threading.Tasks;
 using Swastika.Common.Helper;
 using Newtonsoft.Json.Linq;
+using System.ComponentModel.DataAnnotations;
 
 namespace Swastika.Cms.Lib.ViewModels.BackEnd
 {
@@ -31,6 +32,7 @@ namespace Swastika.Cms.Lib.ViewModels.BackEnd
         public string FileName { get; set; }
         [JsonProperty("extension")]
         public string Extension { get; set; }
+        [Required]
         [JsonProperty("content")]
         public string Content { get; set; }
         [JsonIgnore]

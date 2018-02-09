@@ -19,7 +19,7 @@ using Swastika.Cms.Lib.ViewModels.FrontEnd;
 namespace Swastika.Cms.Lib.ViewModels.BackEnd
 {
     public class BEArticleViewModel
-        : ViewModelBase<SiocCmsContext, SiocArticle , BEArticleViewModel>
+        : ViewModelBase<SiocCmsContext, SiocArticle, BEArticleViewModel>
     {
         #region Properties
 
@@ -32,6 +32,9 @@ namespace Swastika.Cms.Lib.ViewModels.BackEnd
         public string Thumbnail { get; set; }
         [JsonProperty("image")]
         public string Image { get; set; }
+        [JsonIgnore]
+        [JsonProperty("extraProperties")]
+        public string ExtraProperties { get; set; } = "[]";
         [JsonProperty("icon")]
         public string Icon { get; set; }
         [Required]
@@ -51,7 +54,7 @@ namespace Swastika.Cms.Lib.ViewModels.BackEnd
         public string SeoKeywords { get; set; }
         [JsonProperty("source")]
         public string Source { get; set; }
-        [JsonProperty("views")]        
+        [JsonProperty("views")]
         public int? Views { get; set; }
         [JsonProperty("type")]
         public int Type { get; set; }
@@ -86,6 +89,9 @@ namespace Swastika.Cms.Lib.ViewModels.BackEnd
         public FileStreamViewModel ImageFileStream { get; set; }
         [JsonProperty("thumbnailFileStream")]
         public FileStreamViewModel ThumbnailFileStream { get; set; }
+
+        public List<ExtraProperty> Properties { get; set; }
+
         #region Template
 
         [JsonProperty("view")]
@@ -185,7 +191,15 @@ namespace Swastika.Cms.Lib.ViewModels.BackEnd
             {
                 ListTag = JArray.Parse(this.Tags);
             }
-
+            Properties = new List<ExtraProperty>();
+            if (!string.IsNullOrEmpty(ExtraProperties))
+            {
+                JArray arr = JArray.Parse(ExtraProperties);
+                foreach (JObject item in arr)
+                {
+                    Properties.Add(item.ToObject<ExtraProperty>());
+                }
+            }
             //Get Templates
             this.Templates = this.Templates ??
                 BETemplateViewModel.Repository.GetModelListBy(
@@ -194,7 +208,7 @@ namespace Swastika.Cms.Lib.ViewModels.BackEnd
             this.View = View ?? Templates.FirstOrDefault();
             if (this.View == null)
             {
-                this.View = new BETemplateViewModel(new SiocTemplate() 
+                this.View = new BETemplateViewModel(new SiocTemplate()
                 {
                     Extension = SWCmsConstants.Parameters.TemplateExtension,
                     TemplateId = GlobalConfigurationService.Instance.GetLocalInt(SWCmsConstants.ConfigurationKeyword.ThemeId, Specificulture, 0),
@@ -254,6 +268,17 @@ namespace Swastika.Cms.Lib.ViewModels.BackEnd
                 Id = Guid.NewGuid().ToString(); //Common.Common.GetBase62(8);
                 CreatedDateTime = DateTime.UtcNow;
             }
+
+            if (Properties.Count > 0)
+            {
+                JArray arrProperties = new JArray();
+                foreach (var p in Properties.OrderBy(p=>p.Priority))
+                {
+                    arrProperties.Add(JObject.FromObject(p));
+                }
+                ExtraProperties = arrProperties.ToString(Formatting.None);
+            }
+
             Template = View != null ? string.Format(@"{0}/{1}{2}", View.FolderType, View.FileName, View.Extension) : Template;
             if (ThumbnailFileStream != null)
             {
@@ -298,13 +323,14 @@ namespace Swastika.Cms.Lib.ViewModels.BackEnd
             , SiocCmsContext _context = null, IDbContextTransaction _transaction = null)
         {
             bool result = true;
-            
+
             try
             {
                 var saveTemplate = await View.SaveModelAsync(false, _context, _transaction);
                 if (saveTemplate.IsSucceed)
                 {
                     Errors.AddRange(saveTemplate.Errors);
+                    Exception = saveTemplate.Exception;
                 }
                 result = result && saveTemplate.IsSucceed;
                 if (result)
@@ -490,7 +516,7 @@ namespace Swastika.Cms.Lib.ViewModels.BackEnd
             return result;
         }
 
-       
+
 
         public override async Task<RepositoryResponse<bool>> RemoveRelatedModelsAsync(BEArticleViewModel view, SiocCmsContext _context = null, IDbContextTransaction _transaction = null)
         {
@@ -574,7 +600,7 @@ namespace Swastika.Cms.Lib.ViewModels.BackEnd
                 }
                 result = result && saveTemplate.IsSucceed;
 
-                
+
                 return new RepositoryResponse<bool>()
                 {
                     IsSucceed = result,
@@ -601,11 +627,11 @@ namespace Swastika.Cms.Lib.ViewModels.BackEnd
         {
             if (string.IsNullOrEmpty(this.SeoName))
             {
-                this.SeoName = SEOHelper.GetSEOString(this.Title);                
+                this.SeoName = SEOHelper.GetSEOString(this.Title);
             }
             int i = 1;
             string name = SeoName;
-            while (InfoArticleViewModel.Repository.CheckIsExists(a => a.SeoName == name && a.Specificulture == Specificulture && a.Id !=Id))
+            while (InfoArticleViewModel.Repository.CheckIsExists(a => a.SeoName == name && a.Specificulture == Specificulture && a.Id != Id))
             {
                 name = SeoName + "_" + i;
             }

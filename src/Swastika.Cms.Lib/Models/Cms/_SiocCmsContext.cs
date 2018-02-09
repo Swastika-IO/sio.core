@@ -82,6 +82,8 @@ namespace Swastika.Cms.Lib.Models.Cms
                 entity.Property(e => e.CreatedDateTime).HasColumnType("datetime");
 
                 entity.Property(e => e.Image).HasMaxLength(250);
+                entity.Property(e => e.ExtraProperties)
+                   .HasColumnType("ntext");
 
                 entity.Property(e => e.LastModified).HasColumnType("datetime");
 
@@ -791,6 +793,8 @@ namespace Swastika.Cms.Lib.Models.Cms
                 entity.Property(e => e.CreatedDateTime).HasColumnType("datetime");
 
                 entity.Property(e => e.Image).HasMaxLength(250);
+
+                entity.Property(e => e.ExtraProperties).HasColumnType("ntext");
 
                 entity.Property(e => e.LastModified).HasColumnType("datetime");
 

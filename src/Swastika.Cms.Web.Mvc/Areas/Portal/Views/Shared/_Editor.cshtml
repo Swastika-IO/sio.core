@@ -16,11 +16,11 @@
 @switch (type)
 {
     case Swastika.Cms.Lib.SWCmsConstants.DataType.Image:
-        string img = Model != null ? "" : "http://placehold.it/200x200";
+        string img = value != null ? value.ToString() : "http://placehold.it/200x200";
         <label class="custom-file">
             @*<a href="javascript:void(0)" class="link danger lnk-remove">Remove</a>*@
             <img src="@img" name="pic" class="custom-file-img image" accept="image/*" />
-            <input type="file" id="file" name="pic" class="custom-file-input">
+            <input type="file" name="pic" class="custom-file-input">
             <input type="hidden" class="folder-val" value="@inputId" />
             <input type="text" id="@inputId" name="@inputName" value="@value" class="custom-file-val form-control" />
             <span class="custom-file-control">Browse</span>

@@ -11,6 +11,8 @@ using Swastika.Cms.Lib.Models;
 using Swastika.Cms.Lib.ViewModels.Info;
 using Swastika.Cms.Lib.ViewModels.BackEnd;
 using Swastika.Cms.Lib.Models.Cms;
+using Swastika.Cms.Lib.ViewModels;
+using Swastika.Cms.Lib;
 
 namespace Swastika.Cms.Mvc.Areas.Portal.Controllers
 {
@@ -88,6 +90,25 @@ namespace Swastika.Cms.Mvc.Areas.Portal.Controllers
             }
             ViewBag.categoryId = categoryId;
             return View(vmArticle);
+        }
+        [HttpGet]
+        [Route("AddEmptyProperty/{index}")]
+        public IActionResult AddEmptyProperty(int index)
+        {
+            ViewData["Index"] = index;
+            return PartialView(new ExtraProperty());
+        }
+
+        [HttpPost]
+        [Route("GetEditor")]
+        public IActionResult GetEditor(int index, SWCmsConstants.DataType type, string id, string name, string value)
+        {
+            ViewData["Id"] = id;
+            ViewData["Name"] = name;
+            ViewData["DataType"] = type;
+            ViewData["Value"] = value;
+            ViewData["Index"] = index;
+            return PartialView("_Editor");
         }
 
         // POST: article/Create

@@ -73,17 +73,39 @@ namespace Swastika.Cms.Lib.ViewModels
     }
     public class ModuleDataValueViewModel
     {
+        [JsonProperty("moduleId")]
         public int ModuleId { get; set; }
+        [JsonProperty("name")]
         public string Name { get; set; }
+        [JsonProperty("dataType")]
         public SWCmsConstants.DataType DataType { get; set; }
+        [JsonProperty("value")]
         public IConvertible Value { get; set; }
-
+        [JsonProperty("stringValue")]
         public string StringValue { get; set; }
 
         public T GetValue<T>()
         {
             return this.Value != null ? (T)Value : default(T);
         }
+
+    }
+
+    public class ExtraProperty
+    {
+        [JsonProperty("priority")]
+        public int Priority { get; set; }
+        [JsonProperty("name")]
+        public string Name { get; set; }
+        [JsonProperty("dataType")]
+        public SWCmsConstants.DataType DataType { get; set; }
+        [JsonProperty("value")]
+        public string Value { get; set; }
+
+        //public T GetValue<T>()
+        //{
+        //    return this.Value != null ? (T)Value : default(T);
+        //}
 
     }
     public class AccessTokenViewModel

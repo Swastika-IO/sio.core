@@ -1,0 +1,32 @@
+@model Swastika.Cms.Lib.ViewModels.ExtraProperty
+@{
+    var types = Html.GetEnumSelectList<Swastika.Cms.Lib.SWCmsConstants.DataType>();
+    int index = (int) ViewData["Index"];
+}
+<tr class="sortable-item">
+    <td style="cursor:move;">
+        <span class="oi oi-move"></span>
+    </td>
+    <td>
+        <input class="prop-priority item-priority form-control form-control-sm d-inline" style="width:40px;" type="text"
+               id="Properties_@ViewData["Index"]__Priority" name="Properties[@ViewData["Index"]].Priority" value="@(index +1)" />
+    </td>
+    <td>
+        <input class="prop-name form-control form-control-sm" type="text"
+               id="Properties_@ViewData["Index"]__Name" name="Properties[@ViewData["Index"]].Name" value="@Model.Name">
+    </td>
+    <td>
+        <select class="prop-data-type form-control form-control-sm"
+                id="Properties_@ViewData["Index"]__DataType" name="Properties[@ViewData["Index"]].DataType" asp-items="@types"></select>
+    </td>
+    <td class="prop-value-container" data-name="Properties[@ViewData["Index"]].Value" data-id="Properties_@ViewData["Index"]__Value"
+        data-value="@Model.Value">
+            <input class="form-control form-control-sm" type="text"
+                   id="Properties_@ViewData["Index"]__Value" name="Properties[@ViewData["Index"]].Value" value="@Model.Value">
+    </td>
+</tr>
+<script>
+    window.onload = function () {
+       
+    }
+</script>
