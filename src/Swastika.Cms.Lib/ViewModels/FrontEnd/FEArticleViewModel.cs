@@ -9,6 +9,7 @@ using Swastika.Common.Helper;
 using Swastika.Cms.Lib;
 using Swastika.Cms.Lib.Services;
 using Swastika.Cms.Lib.ViewModels.Info;
+using System.Linq;
 
 namespace Swastika.Cms.Lib.ViewModels.FrontEnd
 {
@@ -27,6 +28,9 @@ namespace Swastika.Cms.Lib.ViewModels.FrontEnd
         public string Thumbnail { get; set; }
         [JsonProperty("image")]
         public string Image { get; set; }
+        [JsonIgnore]
+        [JsonProperty("extraProperties")]
+        public string ExtraProperties { get; set; } = "[]";
         [JsonProperty("icon")]
         public string Icon { get; set; }
         [Required]
@@ -122,6 +126,8 @@ namespace Swastika.Cms.Lib.ViewModels.FrontEnd
                 });
             }
         }
+
+        public List<ExtraProperty> Properties { get; set; }
         #endregion
 
         #endregion
@@ -188,6 +194,12 @@ namespace Swastika.Cms.Lib.ViewModels.FrontEnd
             {
                 this.SeoKeywords = SEOHelper.GetSEOString(this.Title);
             }
+        }
+
+        private string GetPropertyValue(string name)
+        {
+            var prop = Properties.FirstOrDefault(p => p.Name.ToLower() == name.ToLower());
+            return prop?.Value;
         }
         #endregion
 
