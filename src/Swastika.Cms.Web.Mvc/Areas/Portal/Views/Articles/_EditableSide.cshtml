@@ -11,9 +11,18 @@
         Info
     </div>
     <div class="card-body">
-
         <div class="form-group">
-            <label asp-for="CreatedDateTime" class="control-label"></label>
+            <span class="switch">
+                <input type="checkbox" asp-for="IsVisible" class="switch">
+                <label asp-for="IsVisible">Publish</label>
+            </span>
+            @*<span class="switch">
+                    <input type="checkbox" asp-for="IsDeleted" class="switch">
+                    <label asp-for="IsDeleted">Deleted</label>
+                </span>*@
+        </div>
+        <div class="form-group">
+            <label asp-for="CreatedDateTime" class="control-label">Created Date Time</label>
             <div class="input-group mb-3">
                 <div class="input-group-prepend">
                     <span class="input-group-text" id="basic-addon1"><i class="mi mi-Calendar"></i></span>
@@ -24,7 +33,7 @@
         </div>
 
         <div class="form-group">
-            <label asp-for="CreatedBy" class="control-label"></label>
+            <label asp-for="CreatedBy" class="control-label">Created By</label>
             <div class="input-group mb-3">
                 <div class="input-group-prepend">
                     <span class="input-group-text" id="basic-addon1"><i class="mi mi-Contact"></i></span>
@@ -111,7 +120,7 @@
             {
 
                 <label class="custom-control custom-checkbox d-block">
-                    <input type="checkbox" asp-for="@Model.ListSupportedCulture[i].IsSupported" class="custom-control-input" required="">
+                    <input type="checkbox" asp-for="@Model.ListSupportedCulture[i].IsSupported" class="custom-control-input">
                     <input type="hidden" asp-for="@Model.ListSupportedCulture[i].Specificulture" />
                     <span class="custom-control-indicator"></span>
                     <span class="custom-control-description">

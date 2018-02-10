@@ -234,7 +234,7 @@ m => m.Specificulture == ViewContext.RouteData.Values["culture"].ToString());
                                 {
 
                                     <div class="btn-group btn-group-sm" role="group" aria-label="Basic example">
-                                        <a asp-area="Portal" asp-controller="Articles" asp-action="Create" asp-route-categoryId="@cate.Id" class="btn btn-light">
+                                        <a asp-area="Portal" asp-controller="Pages" asp-action="Create" asp-route-categoryId="@cate.Id" class="btn btn-light">
                                             <span class="oi oi-plus"></span>
                                         </a>
                                         <a asp-area="Portal" asp-controller="Pages" asp-action="Contents" asp-route-id="@cate.Id" asp-route-pagename="@cate.SeoName" class="btn btn-light">
@@ -283,7 +283,7 @@ m => m.Specificulture == ViewContext.RouteData.Values["culture"].ToString());
             </div>
             <div class="sw-toc-link" data-toggle="collapse" data-target="#collapseModuleSubMenus" aria-expanded="false"
                  aria-controls="collapseModuleSubMenus">
-                <i class="mi mi-AdjustHologram mi-lg mi-fw mi-pulse"></i>
+                <i class="mi mi-ResolutionLegacy mi-lg mi-fw"></i>
                 <span class="text">@translator.Get("Modules")</span>
             </div>
             <ul id="collapseModuleSubMenus" class="collapse list-unstyled" data-parent="#sw-docs-nav">

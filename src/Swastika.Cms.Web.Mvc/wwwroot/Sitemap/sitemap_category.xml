@@ -1,0 +1,641 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml-stylesheet type="text/xsl" href="//www.smileway.tv/sitemap.xsl"?>
+<urlset xmlns:xhtml="http://www.w3.org/1999/xhtml" xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <url>
+    <lastmod>2015-02-01</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.3</priority>
+    <loc>http://www.smileway.tv/en/music/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="http://www.smileway.tv/en/music/" />
+  </url>
+  <url>
+    <lastmod>2015-02-01</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.3</priority>
+    <loc>http://www.smileway.tv/en/comedy/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="http://www.smileway.tv/en/comedy/" />
+  </url>
+  <url>
+    <lastmod>2015-02-01</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.3</priority>
+    <loc>http://www.smileway.tv/en/film/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="http://www.smileway.tv/en/film/" />
+  </url>
+  <url>
+    <lastmod>2015-02-01</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.3</priority>
+    <loc>http://www.smileway.tv/en/entertainment/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="http://www.smileway.tv/en/entertainment/" />
+  </url>
+  <url>
+    <lastmod>2015-02-01</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.3</priority>
+    <loc>http://www.smileway.tv/en/gaming/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="http://www.smileway.tv/en/gaming/" />
+  </url>
+  <url>
+    <lastmod>2015-02-01</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.3</priority>
+    <loc>http://www.smileway.tv/en/beauty-fashion/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="http://www.smileway.tv/en/beauty-fashion/" />
+  </url>
+  <url>
+    <lastmod>2015-02-01</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.3</priority>
+    <loc>http://www.smileway.tv/en/automotive/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="http://www.smileway.tv/en/automotive/" />
+  </url>
+  <url>
+    <lastmod>2015-02-01</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.3</priority>
+    <loc>http://www.smileway.tv/en/sports/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="http://www.smileway.tv/en/sports/" />
+  </url>
+  <url>
+    <lastmod>2015-02-01</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.3</priority>
+    <loc>http://www.smileway.tv/en/how-to-diy/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="http://www.smileway.tv/en/how-to-diy/" />
+  </url>
+  <url>
+    <lastmod>2015-02-01</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.3</priority>
+    <loc>http://www.smileway.tv/en/tech/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="http://www.smileway.tv/en/tech/" />
+  </url>
+  <url>
+    <lastmod>2015-02-01</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.3</priority>
+    <loc>http://www.smileway.tv/en/science-education/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="http://www.smileway.tv/en/science-education/" />
+  </url>
+  <url>
+    <lastmod>2015-02-01</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.3</priority>
+    <loc>http://www.smileway.tv/en/from-tv/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="http://www.smileway.tv/en/from-tv/" />
+  </url>
+  <url>
+    <lastmod>2015-02-01</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.3</priority>
+    <loc>http://www.smileway.tv/en/anime-cartoon/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="http://www.smileway.tv/en/anime-cartoon/" />
+  </url>
+  <url>
+    <lastmod>2015-02-01</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.3</priority>
+    <loc>http://www.smileway.tv/es/musica/</loc>
+    <xhtml:link rel="alternate" hreflang="es" href="http://www.smileway.tv/es/musica/" />
+  </url>
+  <url>
+    <lastmod>2015-02-01</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.3</priority>
+    <loc>http://www.smileway.tv/es/comedia/</loc>
+    <xhtml:link rel="alternate" hreflang="es" href="http://www.smileway.tv/es/comedia/" />
+  </url>
+  <url>
+    <lastmod>2015-02-01</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.3</priority>
+    <loc>http://www.smileway.tv/es/cine/</loc>
+    <xhtml:link rel="alternate" hreflang="es" href="http://www.smileway.tv/es/cine/" />
+  </url>
+  <url>
+    <lastmod>2015-02-01</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.3</priority>
+    <loc>http://www.smileway.tv/es/entretenimiento/</loc>
+    <xhtml:link rel="alternate" hreflang="es" href="http://www.smileway.tv/es/entretenimiento/" />
+  </url>
+  <url>
+    <lastmod>2015-02-01</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.3</priority>
+    <loc>http://www.smileway.tv/es/juegos/</loc>
+    <xhtml:link rel="alternate" hreflang="es" href="http://www.smileway.tv/es/juegos/" />
+  </url>
+  <url>
+    <lastmod>2015-02-01</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.3</priority>
+    <loc>http://www.smileway.tv/es/belleza-moda/</loc>
+    <xhtml:link rel="alternate" hreflang="es" href="http://www.smileway.tv/es/belleza-moda/" />
+  </url>
+  <url>
+    <lastmod>2015-02-01</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.3</priority>
+    <loc>http://www.smileway.tv/es/visto-en-tv/</loc>
+    <xhtml:link rel="alternate" hreflang="es" href="http://www.smileway.tv/es/visto-en-tv/" />
+  </url>
+  <url>
+    <lastmod>2015-02-01</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.3</priority>
+    <loc>http://www.smileway.tv/es/motor/</loc>
+    <xhtml:link rel="alternate" hreflang="es" href="http://www.smileway.tv/es/motor/" />
+  </url>
+  <url>
+    <lastmod>2015-02-01</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.3</priority>
+    <loc>http://www.smileway.tv/es/anime-cartoon/</loc>
+    <xhtml:link rel="alternate" hreflang="es" href="http://www.smileway.tv/es/anime-cartoon/" />
+  </url>
+  <url>
+    <lastmod>2015-02-01</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.3</priority>
+    <loc>http://www.smileway.tv/es/deportes/</loc>
+    <xhtml:link rel="alternate" hreflang="es" href="http://www.smileway.tv/es/deportes/" />
+  </url>
+  <url>
+    <lastmod>2015-02-01</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.3</priority>
+    <loc>http://www.smileway.tv/es/consejos-tutoriales/</loc>
+    <xhtml:link rel="alternate" hreflang="es" href="http://www.smileway.tv/es/consejos-tutoriales/" />
+  </url>
+  <url>
+    <lastmod>2015-02-01</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.3</priority>
+    <loc>http://www.smileway.tv/es/tecnologia/</loc>
+    <xhtml:link rel="alternate" hreflang="es" href="http://www.smileway.tv/es/tecnologia/" />
+  </url>
+  <url>
+    <lastmod>2015-02-01</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.3</priority>
+    <loc>http://www.smileway.tv/es/ciencia-educacion/</loc>
+    <xhtml:link rel="alternate" hreflang="es" href="http://www.smileway.tv/es/ciencia-educacion/" />
+  </url>
+  <url>
+    <lastmod>2015-02-01</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.3</priority>
+    <loc>http://www.smileway.tv/fr/musique/</loc>
+    <xhtml:link rel="alternate" hreflang="fr" href="http://www.smileway.tv/fr/musique/" />
+  </url>
+  <url>
+    <lastmod>2015-02-01</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.3</priority>
+    <loc>http://www.smileway.tv/fr/humour/</loc>
+    <xhtml:link rel="alternate" hreflang="fr" href="http://www.smileway.tv/fr/humour/" />
+  </url>
+  <url>
+    <lastmod>2015-02-01</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.3</priority>
+    <loc>http://www.smileway.tv/fr/cinema/</loc>
+    <xhtml:link rel="alternate" hreflang="fr" href="http://www.smileway.tv/fr/cinema/" />
+  </url>
+  <url>
+    <lastmod>2015-02-01</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.3</priority>
+    <loc>http://www.smileway.tv/fr/divertissement/</loc>
+    <xhtml:link rel="alternate" hreflang="fr" href="http://www.smileway.tv/fr/divertissement/" />
+  </url>
+  <url>
+    <lastmod>2015-02-01</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.3</priority>
+    <loc>http://www.smileway.tv/fr/jeux/</loc>
+    <xhtml:link rel="alternate" hreflang="fr" href="http://www.smileway.tv/fr/jeux/" />
+  </url>
+  <url>
+    <lastmod>2015-02-01</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.3</priority>
+    <loc>http://www.smileway.tv/fr/mode-et-beaute/</loc>
+    <xhtml:link rel="alternate" hreflang="fr" href="http://www.smileway.tv/fr/mode-et-beaute/" />
+  </url>
+  <url>
+    <lastmod>2015-02-01</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.3</priority>
+    <loc>http://www.smileway.tv/fr/auto-moto/</loc>
+    <xhtml:link rel="alternate" hreflang="fr" href="http://www.smileway.tv/fr/auto-moto/" />
+  </url>
+  <url>
+    <lastmod>2015-02-01</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.3</priority>
+    <loc>http://www.smileway.tv/fr/astuces-tutoriels/</loc>
+    <xhtml:link rel="alternate" hreflang="fr" href="http://www.smileway.tv/fr/astuces-tutoriels/" />
+  </url>
+  <url>
+    <lastmod>2015-02-01</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.3</priority>
+    <loc>http://www.smileway.tv/fr/technologie/</loc>
+    <xhtml:link rel="alternate" hreflang="fr" href="http://www.smileway.tv/fr/technologie/" />
+  </url>
+  <url>
+    <lastmod>2015-02-01</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.3</priority>
+    <loc>http://www.smileway.tv/fr/science-education/</loc>
+    <xhtml:link rel="alternate" hreflang="fr" href="http://www.smileway.tv/fr/science-education/" />
+  </url>
+  <url>
+    <lastmod>2015-02-01</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.3</priority>
+    <loc>http://www.smileway.tv/fr/emissions-tv/</loc>
+    <xhtml:link rel="alternate" hreflang="fr" href="http://www.smileway.tv/fr/emissions-tv/" />
+  </url>
+  <url>
+    <lastmod>2015-02-01</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.3</priority>
+    <loc>http://www.smileway.tv/fr/animation/</loc>
+    <xhtml:link rel="alternate" hreflang="fr" href="http://www.smileway.tv/fr/animation/" />
+  </url>
+  <url>
+    <lastmod>2015-02-01</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.3</priority>
+    <loc>http://www.smileway.tv/it/musica/</loc>
+    <xhtml:link rel="alternate" hreflang="it" href="http://www.smileway.tv/it/musica/" />
+  </url>
+  <url>
+    <lastmod>2015-02-01</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.3</priority>
+    <loc>http://www.smileway.tv/it/umorismo/</loc>
+    <xhtml:link rel="alternate" hreflang="it" href="http://www.smileway.tv/it/umorismo/" />
+  </url>
+  <url>
+    <lastmod>2015-02-01</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.3</priority>
+    <loc>http://www.smileway.tv/it/film/</loc>
+    <xhtml:link rel="alternate" hreflang="it" href="http://www.smileway.tv/it/film/" />
+  </url>
+  <url>
+    <lastmod>2015-02-01</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.3</priority>
+    <loc>http://www.smileway.tv/it/intrattenimento/</loc>
+    <xhtml:link rel="alternate" hreflang="it" href="http://www.smileway.tv/it/intrattenimento/" />
+  </url>
+  <url>
+    <lastmod>2015-02-01</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.3</priority>
+    <loc>http://www.smileway.tv/it/giochi/</loc>
+    <xhtml:link rel="alternate" hreflang="it" href="http://www.smileway.tv/it/giochi/" />
+  </url>
+  <url>
+    <lastmod>2015-02-01</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.3</priority>
+    <loc>http://www.smileway.tv/it/moda-bellezza/</loc>
+    <xhtml:link rel="alternate" hreflang="it" href="http://www.smileway.tv/it/moda-bellezza/" />
+  </url>
+  <url>
+    <lastmod>2015-02-01</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.3</priority>
+    <loc>http://www.smileway.tv/it/dalla-tv/</loc>
+    <xhtml:link rel="alternate" hreflang="it" href="http://www.smileway.tv/it/dalla-tv/" />
+  </url>
+  <url>
+    <lastmod>2015-02-01</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.3</priority>
+    <loc>http://www.smileway.tv/it/auto-motori/</loc>
+    <xhtml:link rel="alternate" hreflang="it" href="http://www.smileway.tv/it/auto-motori/" />
+  </url>
+  <url>
+    <lastmod>2015-02-01</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.3</priority>
+    <loc>http://www.smileway.tv/it/animazione/</loc>
+    <xhtml:link rel="alternate" hreflang="it" href="http://www.smileway.tv/it/animazione/" />
+  </url>
+  <url>
+    <lastmod>2015-02-01</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.3</priority>
+    <loc>http://www.smileway.tv/it/sport/</loc>
+    <xhtml:link rel="alternate" hreflang="it" href="http://www.smileway.tv/it/sport/" />
+  </url>
+  <url>
+    <lastmod>2015-02-01</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.3</priority>
+    <loc>http://www.smileway.tv/it/guide-pratiche-fai-da-te/</loc>
+    <xhtml:link rel="alternate" hreflang="it" href="http://www.smileway.tv/it/guide-pratiche-fai-da-te/" />
+  </url>
+  <url>
+    <lastmod>2015-02-01</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.3</priority>
+    <loc>http://www.smileway.tv/it/tecnologia/</loc>
+    <xhtml:link rel="alternate" hreflang="it" href="http://www.smileway.tv/it/tecnologia/" />
+  </url>
+  <url>
+    <lastmod>2015-02-01</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.3</priority>
+    <loc>http://www.smileway.tv/it/scienza-istruzione/</loc>
+    <xhtml:link rel="alternate" hreflang="it" href="http://www.smileway.tv/it/scienza-istruzione/" />
+  </url>
+  <url>
+    <lastmod>2015-02-01</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.3</priority>
+    <loc>http://www.smileway.tv/ja/ongaku/</loc>
+    <xhtml:link rel="alternate" hreflang="ja" href="http://www.smileway.tv/ja/ongaku/" />
+  </url>
+  <url>
+    <lastmod>2015-02-01</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.3</priority>
+    <loc>http://www.smileway.tv/ja/comedy/</loc>
+    <xhtml:link rel="alternate" hreflang="ja" href="http://www.smileway.tv/ja/comedy/" />
+  </url>
+  <url>
+    <lastmod>2015-02-01</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.3</priority>
+    <loc>http://www.smileway.tv/ja/eiga/</loc>
+    <xhtml:link rel="alternate" hreflang="ja" href="http://www.smileway.tv/ja/eiga/" />
+  </url>
+  <url>
+    <lastmod>2015-02-01</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.3</priority>
+    <loc>http://www.smileway.tv/ja/game/</loc>
+    <xhtml:link rel="alternate" hreflang="ja" href="http://www.smileway.tv/ja/game/" />
+  </url>
+  <url>
+    <lastmod>2015-02-01</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.3</priority>
+    <loc>http://www.smileway.tv/ja/engei/</loc>
+    <xhtml:link rel="alternate" hreflang="ja" href="http://www.smileway.tv/ja/engei/" />
+  </url>
+  <url>
+    <lastmod>2015-02-01</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.3</priority>
+    <loc>http://www.smileway.tv/ja/beauty-fashion/</loc>
+    <xhtml:link rel="alternate" hreflang="ja" href="http://www.smileway.tv/ja/beauty-fashion/" />
+  </url>
+  <url>
+    <lastmod>2015-02-01</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.3</priority>
+    <loc>http://www.smileway.tv/ja/jidousha/</loc>
+    <xhtml:link rel="alternate" hreflang="ja" href="http://www.smileway.tv/ja/jidousha/" />
+  </url>
+  <url>
+    <lastmod>2015-02-01</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.3</priority>
+    <loc>http://www.smileway.tv/ja/sports/</loc>
+    <xhtml:link rel="alternate" hreflang="ja" href="http://www.smileway.tv/ja/sports/" />
+  </url>
+  <url>
+    <lastmod>2015-02-01</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.3</priority>
+    <loc>http://www.smileway.tv/ja/how-to-diy/</loc>
+    <xhtml:link rel="alternate" hreflang="ja" href="http://www.smileway.tv/ja/how-to-diy/" />
+  </url>
+  <url>
+    <lastmod>2015-02-01</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.3</priority>
+    <loc>http://www.smileway.tv/ja/gijutsu/</loc>
+    <xhtml:link rel="alternate" hreflang="ja" href="http://www.smileway.tv/ja/gijutsu/" />
+  </url>
+  <url>
+    <lastmod>2015-02-01</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.3</priority>
+    <loc>http://www.smileway.tv/ja/kagaku-kyouiku/</loc>
+    <xhtml:link rel="alternate" hreflang="ja" href="http://www.smileway.tv/ja/kagaku-kyouiku/" />
+  </url>
+  <url>
+    <lastmod>2015-02-01</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.3</priority>
+    <loc>http://www.smileway.tv/ja/terebibangumi/</loc>
+    <xhtml:link rel="alternate" hreflang="ja" href="http://www.smileway.tv/ja/terebibangumi/" />
+  </url>
+  <url>
+    <lastmod>2015-02-01</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.3</priority>
+    <loc>http://www.smileway.tv/ja/anime-manga/</loc>
+    <xhtml:link rel="alternate" hreflang="ja" href="http://www.smileway.tv/ja/anime-manga/" />
+  </url>
+  <url>
+    <lastmod>2015-02-01</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.3</priority>
+    <loc>http://www.smileway.tv/ja/ryouri-kenkou/</loc>
+    <xhtml:link rel="alternate" hreflang="ja" href="http://www.smileway.tv/ja/ryouri-kenkou/" />
+  </url>
+  <url>
+    <lastmod>2015-02-01</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.3</priority>
+    <loc>http://www.smileway.tv/ko/eum-ag/</loc>
+    <xhtml:link rel="alternate" hreflang="ko" href="http://www.smileway.tv/ko/eum-ag/" />
+  </url>
+  <url>
+    <lastmod>2015-02-01</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.3</priority>
+    <loc>http://www.smileway.tv/ko/komig-yumeo/</loc>
+    <xhtml:link rel="alternate" hreflang="ko" href="http://www.smileway.tv/ko/komig-yumeo/" />
+  </url>
+  <url>
+    <lastmod>2015-02-01</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.3</priority>
+    <loc>http://www.smileway.tv/ko/yeonghwa/</loc>
+    <xhtml:link rel="alternate" hreflang="ko" href="http://www.smileway.tv/ko/yeonghwa/" />
+  </url>
+  <url>
+    <lastmod>2015-02-01</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.3</priority>
+    <loc>http://www.smileway.tv/ko/entertainment/</loc>
+    <xhtml:link rel="alternate" hreflang="ko" href="http://www.smileway.tv/ko/entertainment/" />
+  </url>
+  <url>
+    <lastmod>2015-02-01</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.3</priority>
+    <loc>http://www.smileway.tv/ko/geim/</loc>
+    <xhtml:link rel="alternate" hreflang="ko" href="http://www.smileway.tv/ko/geim/" />
+  </url>
+  <url>
+    <lastmod>2015-02-01</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.3</priority>
+    <loc>http://www.smileway.tv/ko/beauty-paesyeon/</loc>
+    <xhtml:link rel="alternate" hreflang="ko" href="http://www.smileway.tv/ko/beauty-paesyeon/" />
+  </url>
+  <url>
+    <lastmod>2015-02-01</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.3</priority>
+    <loc>http://www.smileway.tv/ko/jadongcha/</loc>
+    <xhtml:link rel="alternate" hreflang="ko" href="http://www.smileway.tv/ko/jadongcha/" />
+  </url>
+  <url>
+    <lastmod>2015-02-01</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.3</priority>
+    <loc>http://www.smileway.tv/ko/seupocheu/</loc>
+    <xhtml:link rel="alternate" hreflang="ko" href="http://www.smileway.tv/ko/seupocheu/" />
+  </url>
+  <url>
+    <lastmod>2015-02-01</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.3</priority>
+    <loc>http://www.smileway.tv/ko/how-to-diy/</loc>
+    <xhtml:link rel="alternate" hreflang="ko" href="http://www.smileway.tv/ko/how-to-diy/" />
+  </url>
+  <url>
+    <lastmod>2015-02-01</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.3</priority>
+    <loc>http://www.smileway.tv/ko/gisul/</loc>
+    <xhtml:link rel="alternate" hreflang="ko" href="http://www.smileway.tv/ko/gisul/" />
+  </url>
+  <url>
+    <lastmod>2015-02-01</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.3</priority>
+    <loc>http://www.smileway.tv/ko/gwahag-gyoyug/</loc>
+    <xhtml:link rel="alternate" hreflang="ko" href="http://www.smileway.tv/ko/gwahag-gyoyug/" />
+  </url>
+  <url>
+    <lastmod>2015-02-01</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.3</priority>
+    <loc>http://www.smileway.tv/ko/tv-peulogeulaem/</loc>
+    <xhtml:link rel="alternate" hreflang="ko" href="http://www.smileway.tv/ko/tv-peulogeulaem/" />
+  </url>
+  <url>
+    <lastmod>2015-02-01</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.3</priority>
+    <loc>http://www.smileway.tv/ko/anime-manhwa/</loc>
+    <xhtml:link rel="alternate" hreflang="ko" href="http://www.smileway.tv/ko/anime-manhwa/" />
+  </url>
+  <url>
+    <lastmod>2015-02-01</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.3</priority>
+    <loc>http://www.smileway.tv/ru/muzyka/</loc>
+    <xhtml:link rel="alternate" hreflang="ru" href="http://www.smileway.tv/ru/muzyka/" />
+  </url>
+  <url>
+    <lastmod>2015-02-01</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.3</priority>
+    <loc>http://www.smileway.tv/ru/yumor/</loc>
+    <xhtml:link rel="alternate" hreflang="ru" href="http://www.smileway.tv/ru/yumor/" />
+  </url>
+  <url>
+    <lastmod>2015-02-01</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.3</priority>
+    <loc>http://www.smileway.tv/ru/filmy/</loc>
+    <xhtml:link rel="alternate" hreflang="ru" href="http://www.smileway.tv/ru/filmy/" />
+  </url>
+  <url>
+    <lastmod>2015-02-01</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.3</priority>
+    <loc>http://www.smileway.tv/ru/razvlecheniya/</loc>
+    <xhtml:link rel="alternate" hreflang="ru" href="http://www.smileway.tv/ru/razvlecheniya/" />
+  </url>
+  <url>
+    <lastmod>2015-02-01</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.3</priority>
+    <loc>http://www.smileway.tv/ru/igry/</loc>
+    <xhtml:link rel="alternate" hreflang="ru" href="http://www.smileway.tv/ru/igry/" />
+  </url>
+  <url>
+    <lastmod>2015-02-01</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.3</priority>
+    <loc>http://www.smileway.tv/ru/avtomobili/</loc>
+    <xhtml:link rel="alternate" hreflang="ru" href="http://www.smileway.tv/ru/avtomobili/" />
+  </url>
+  <url>
+    <lastmod>2015-02-01</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.3</priority>
+    <loc>http://www.smileway.tv/ru/krasota-moda/</loc>
+    <xhtml:link rel="alternate" hreflang="ru" href="http://www.smileway.tv/ru/krasota-moda/" />
+  </url>
+  <url>
+    <lastmod>2015-02-01</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.3</priority>
+    <loc>http://www.smileway.tv/ru/sport/</loc>
+    <xhtml:link rel="alternate" hreflang="ru" href="http://www.smileway.tv/ru/sport/" />
+  </url>
+  <url>
+    <lastmod>2015-02-01</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.3</priority>
+    <loc>http://www.smileway.tv/ru/sdelay-sam/</loc>
+    <xhtml:link rel="alternate" hreflang="ru" href="http://www.smileway.tv/ru/sdelay-sam/" />
+  </url>
+  <url>
+    <lastmod>2015-02-01</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.3</priority>
+    <loc>http://www.smileway.tv/ru/tekhnologii/</loc>
+    <xhtml:link rel="alternate" hreflang="ru" href="http://www.smileway.tv/ru/tekhnologii/" />
+  </url>
+  <url>
+    <lastmod>2015-02-01</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.3</priority>
+    <loc>http://www.smileway.tv/ru/nauka-obrazovaniye/</loc>
+    <xhtml:link rel="alternate" hreflang="ru" href="http://www.smileway.tv/ru/nauka-obrazovaniye/" />
+  </url>
+  <url>
+    <lastmod>2015-02-01</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.3</priority>
+    <loc>http://www.smileway.tv/ru/s-televideniya/</loc>
+    <xhtml:link rel="alternate" hreflang="ru" href="http://www.smileway.tv/ru/s-televideniya/" />
+  </url>
+  <url>
+    <lastmod>2015-02-01</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.3</priority>
+    <loc>http://www.smileway.tv/ru/multfilmy/</loc>
+    <xhtml:link rel="alternate" hreflang="ru" href="http://www.smileway.tv/ru/multfilmy/" />
+  </url>
+</urlset>

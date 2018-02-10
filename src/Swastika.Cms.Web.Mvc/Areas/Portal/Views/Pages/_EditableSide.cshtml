@@ -18,6 +18,16 @@
     <div class="card-body">
 
         <div class="form-group">
+            <span class="switch">
+                <input type="checkbox" asp-for="IsVisible" class="switch">
+                <label asp-for="IsVisible">Publish</label>
+            </span>
+            @*<span class="switch">
+                    <input type="checkbox" asp-for="IsDeleted" class="switch">
+                    <label asp-for="IsDeleted">Deleted</label>
+                </span>*@
+        </div>
+        <div class="form-group">
             <label asp-for="CreatedDateTime" class="control-label">Created DateTime</label>
             <div class="input-group mb-3">
                 <div class="input-group-prepend">
@@ -122,7 +132,7 @@
             <div class="form-group">
 
                 <label class="custom-control custom-checkbox d-block">
-                    <input type="checkbox" asp-for="IsDeleted" class="custom-control-input" required="">
+                    <input type="checkbox" asp-for="IsDeleted" class="custom-control-input">
                     <input type="hidden" asp-for="IsDeleted" />
                     <span class="custom-control-indicator"></span>
                     <span class="custom-control-description">
