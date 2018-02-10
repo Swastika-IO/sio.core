@@ -180,19 +180,29 @@
                                             {
                                                 <li class="col-sm-6">
 
-                                                    <div asp-for="@Model.Categories[i].IsActived" class="custom-control custom-checkbox">
-
-                                                        <input type="checkbox" asp-for="@Model.Categories[i].IsActived"
-                                                               class="custom-control-input" />
-
-                                                        <input type="hidden" asp-for="@Model.Categories[i].Specificulture" />
-                                                        <input type="hidden" asp-for="@Model.Categories[i].CategoryId" />
-                                                        <input type="hidden" asp-for="@Model.Categories[i].ArticleId" />
-                                                        <label class="custom-control-label" asp-for="@Model.Categories[i].IsActived">
-                                                            @Model.Categories[i].Description <a asp-area="Portal" asp-controller="Module" asp-action="Details" asp-route-id="@Model.Categories[i].ArticleId" style="display:initial;padding:0;" target="_blank">
-                                                            </a>
+                                                    <input type="hidden" asp-for="@Model.Categories[i].Specificulture" />
+                                                    <input type="hidden" asp-for="@Model.Categories[i].CategoryId" />
+                                                    <input type="hidden" asp-for="@Model.Categories[i].ArticleId" />
+                                                    <span class="switch switch-sm">
+                                                        <input type="checkbox" asp-for="@Model.Categories[i].IsActived" class="switch">
+                                                        <label class="switch" asp-for="@Model.Categories[i].IsActived">
+                                                            @Model.Categories[i].Description
                                                         </label>
-                                                    </div>
+                                                    </span>
+
+                                                    @*<div asp-for="@Model.Categories[i].IsActived" class="custom-control custom-checkbox">
+
+                                                            <input type="checkbox" asp-for="@Model.Categories[i].IsActived"
+                                                                   class="custom-control-input" />
+
+                                                            <input type="hidden" asp-for="@Model.Categories[i].Specificulture" />
+                                                            <input type="hidden" asp-for="@Model.Categories[i].CategoryId" />
+                                                            <input type="hidden" asp-for="@Model.Categories[i].ArticleId" />
+                                                            <label class="custom-control-label" asp-for="@Model.Categories[i].IsActived">
+                                                                @Model.Categories[i].Description <a asp-area="Portal" asp-controller="Module" asp-action="Details" asp-route-id="@Model.Categories[i].ArticleId" style="display:initial;padding:0;" target="_blank">
+                                                                </a>
+                                                            </label>
+                                                        </div>*@
                                                 </li>
 
                                             }
@@ -207,16 +217,25 @@
                                             @for (int i = 0; i < Model.Modules.Count; i++)
                                             {
                                                 <li class="col-sm-6">
-                                                    <div class="custom-control custom-checkbox">
-                                                        <input type="checkbox" asp-for="@Model.Modules[i].IsActived"
-                                                               class="custom-control-input" />
-                                                        <label class="custom-control-label" asp-for="@Model.Modules[i].IsActived">
+                                                    <input type="hidden" asp-for="@Model.Modules[i].Specificulture" />
+                                                    <input type="hidden" asp-for="@Model.Modules[i].ArticleId" />
+                                                    <input type="hidden" asp-for="@Model.Modules[i].ModuleId" />
+                                                    <span class="switch switch-sm">
+                                                        <input type="checkbox" asp-for="@Model.Modules[i].IsActived" class="switch">
+                                                        <label class="switch" asp-for="@Model.Modules[i].IsActived">
                                                             @Model.Modules[i].Description
                                                         </label>
-                                                        <input type="hidden" asp-for="@Model.Modules[i].Specificulture" />
-                                                        <input type="hidden" asp-for="@Model.Modules[i].ArticleId" />
-                                                        <input type="hidden" asp-for="@Model.Modules[i].ModuleId" />
-                                                    </div>
+                                                    </span>
+                                                    @*<div class="custom-control custom-checkbox">
+                                                            <input type="checkbox" asp-for="@Model.Modules[i].IsActived"
+                                                                   class="custom-control-input" />
+                                                            <label class="custom-control-label" asp-for="@Model.Modules[i].IsActived">
+                                                                @Model.Modules[i].Description
+                                                            </label>
+                                                            <input type="hidden" asp-for="@Model.Modules[i].Specificulture" />
+                                                            <input type="hidden" asp-for="@Model.Modules[i].ArticleId" />
+                                                            <input type="hidden" asp-for="@Model.Modules[i].ModuleId" />
+                                                        </div>*@
                                                 </li>
                                             }
                                         </ul>
@@ -287,13 +306,22 @@
                                     @for (int i = 0; i < Model.ModuleNavs.Count; i++)
                                     {
                                         <li class="col-sm-6">
-                                            <div class="custom-control custom-checkbox">
-                                                <input type="checkbox" asp-for="@Model.ModuleNavs[i].IsActived" data-module-id="@Model.ModuleNavs[i].ModuleId" class="cb-active-module custom-control-input" />
-                                                <label class="custom-control-label" asp-for="@Model.ModuleNavs[i].IsActived">@Model.ModuleNavs[i].Description</label>
-                                                <input type="hidden" asp-for="@Model.ModuleNavs[i].Specificulture" />
-                                                <input type="hidden" asp-for="@Model.ModuleNavs[i].ArticleId" />
-                                                <input type="hidden" asp-for="@Model.ModuleNavs[i].ModuleId" />
-                                            </div>
+                                            <input type="hidden" asp-for="@Model.ModuleNavs[i].Specificulture" />
+                                            <input type="hidden" asp-for="@Model.ModuleNavs[i].ArticleId" />
+                                            <input type="hidden" asp-for="@Model.ModuleNavs[i].ModuleId" />
+                                            <span class="switch switch-sm">
+                                                <input type="checkbox" asp-for="@Model.ModuleNavs[i].IsActived" class="switch">
+                                                <label class="switch" asp-for="@Model.ModuleNavs[i].IsActived">
+                                                    @Model.ModuleNavs[i].Description
+                                                </label>
+                                            </span>
+                                            @*<div class="custom-control custom-checkbox">
+                                                    <input type="checkbox" asp-for="@Model.ModuleNavs[i].IsActived" data-module-id="@Model.ModuleNavs[i].ModuleId" class="cb-active-module custom-control-input" />
+                                                    <label class="custom-control-label" asp-for="@Model.ModuleNavs[i].IsActived">@Model.ModuleNavs[i].Description</label>
+                                                    <input type="hidden" asp-for="@Model.ModuleNavs[i].Specificulture" />
+                                                    <input type="hidden" asp-for="@Model.ModuleNavs[i].ArticleId" />
+                                                    <input type="hidden" asp-for="@Model.ModuleNavs[i].ModuleId" />
+                                                </div>*@
                                         </li>
                                     }
                                 </ul>
