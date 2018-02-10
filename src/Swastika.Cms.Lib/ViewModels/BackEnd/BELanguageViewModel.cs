@@ -82,16 +82,16 @@ namespace Swastika.Cms.Lib.ViewModels.BackEnd
             return result;
         }
 
-        public override RepositoryResponse<List<BELanguageViewModel>> Clone(List<SupportedCulture> cloneCultures, SiocCmsContext _context = null, IDbContextTransaction _transaction = null)
+        public override RepositoryResponse<List<BELanguageViewModel>> Clone(SiocLanguage model, List<SupportedCulture> cloneCultures, SiocCmsContext _context = null, IDbContextTransaction _transaction = null)
         {
-            Model.Value = Model.Keyword;
-            return base.Clone(cloneCultures, _context, _transaction);
+            model.Value = Model.Keyword;
+            return base.Clone(model, cloneCultures, _context, _transaction);
         }
 
-        public override Task<RepositoryResponse<List<BELanguageViewModel>>> CloneAsync(List<SupportedCulture> cloneCultures, SiocCmsContext _context = null, IDbContextTransaction _transaction = null)
+        public override Task<RepositoryResponse<List<BELanguageViewModel>>> CloneAsync(SiocLanguage model, List<SupportedCulture> cloneCultures, SiocCmsContext _context = null, IDbContextTransaction _transaction = null)
         {
-            Model.Value = Model.Keyword;
-            return base.CloneAsync(cloneCultures, _context, _transaction);
+            model.Value = Model.Keyword;
+            return base.CloneAsync(model, cloneCultures, _context, _transaction);
         }
         #endregion
     }

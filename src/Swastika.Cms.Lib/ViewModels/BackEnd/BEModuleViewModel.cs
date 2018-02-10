@@ -210,7 +210,7 @@ namespace Swastika.Cms.Lib.ViewModels.BackEnd
             RepositoryResponse<bool> result = new RepositoryResponse<bool>() { IsSucceed = true };
             foreach (var data in parent.Data.Items)
             {
-                var cloneData = await data.CloneAsync(cloneCultures, _context, _transaction);
+                var cloneData = await data.CloneAsync(data.Model, cloneCultures, _context, _transaction);
                 if (cloneData.IsSucceed)
                 {
                     result.IsSucceed = cloneData.IsSucceed;
@@ -244,7 +244,7 @@ namespace Swastika.Cms.Lib.ViewModels.BackEnd
             RepositoryResponse<bool> result = new RepositoryResponse<bool>() { IsSucceed = true };
             foreach (var data in parent.Data.Items)
             {
-                var cloneData = data.Clone(cloneCultures, _context, _transaction);
+                var cloneData = data.Clone(data.Model, cloneCultures, _context, _transaction);
                 if (cloneData.IsSucceed)
                 {
                     result.IsSucceed = cloneData.IsSucceed;

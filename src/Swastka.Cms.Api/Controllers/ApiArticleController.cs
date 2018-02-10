@@ -13,6 +13,7 @@ using Swastika.Cms.Lib;
 using System.Collections.Generic;
 using Newtonsoft.Json.Linq;
 using Swastika.Cms.Lib.ViewModels.Spa;
+using Microsoft.AspNetCore.Hosting;
 
 namespace Swastka.Cms.Api.Controllers
 {
@@ -24,8 +25,11 @@ namespace Swastka.Cms.Api.Controllers
     public class ApiArticleController :
         BaseApiController<SiocCmsContext, SiocArticle>
     {
+        public ApiArticleController(IHostingEnvironment env) : base(env)
+        {
+        }
         #region Get
-        
+
         // GET api/articles/id
         [HttpGet]
         [Route("details/{viewType}/{id}")]

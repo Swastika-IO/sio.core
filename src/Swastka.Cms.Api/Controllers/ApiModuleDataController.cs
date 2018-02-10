@@ -11,6 +11,7 @@ using Swastika.Domain.Core.ViewModels;
 using Swastika.Api.Controllers;
 using Swastika.Cms.Lib.ViewModels.Info;
 using Swastika.Cms.Lib.Models.Cms;
+using Microsoft.AspNetCore.Hosting;
 
 namespace Swastka.Cms.Api.Controllers
 {
@@ -18,6 +19,9 @@ namespace Swastka.Cms.Api.Controllers
     public class ApiModuleDataController :
         BaseApiController<SiocCmsContext, SiocModule>
     {
+        public ApiModuleDataController(IHostingEnvironment env) : base(env)
+        {
+        }
 
         [HttpPost]
         [Route("save")]

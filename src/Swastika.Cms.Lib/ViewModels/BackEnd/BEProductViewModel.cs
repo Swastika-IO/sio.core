@@ -468,12 +468,12 @@ namespace Swastika.Cms.Lib.ViewModels.BackEnd
             foreach (var module in ActivedModules)
             {
                 module.ParseModel();
-                var cloneModule = await module.CloneAsync(cloneCultures, _context, _transaction);
+                var cloneModule = await module.CloneAsync(module.Model, cloneCultures, _context, _transaction);
                 if (cloneModule.IsSucceed)
                 {
                     var moduleNav = ModuleNavs.FirstOrDefault(m => m.ModuleId == module.Id &&
                         m.ProductId == Id && m.Specificulture == module.Specificulture);
-                    var cloneNav = await moduleNav.CloneAsync(cloneCultures, _context, _transaction);
+                    var cloneNav = await moduleNav.CloneAsync(moduleNav.Model, cloneCultures, _context, _transaction);
                     if (cloneNav.IsSucceed)
                     {
                         result.IsSucceed = cloneNav.IsSucceed;

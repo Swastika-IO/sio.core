@@ -254,7 +254,7 @@
             files.append('fileFolder', folder);
 
             $.ajax({
-                url: '/api/tts/UploadImage',
+                url: '/api/vi-vn/media/upload', //'/api/tts/UploadImage',
                 type: "POST",
                 contentType: false, // Not to set any content header
                 processData: false, // Not to process data
