@@ -9,8 +9,10 @@
 @inject UserManager<ApplicationUser> UserManager
 
 @{
+    var translator = SWCmsHelper.GetTranslator(ViewBag.culture);
+
     var getListAvailbleModules = Swastika.Cms.Lib.ViewModels.Info.InfoModuleViewModel.Repository.GetModelListBy(
-        m => m.Specificulture == ViewContext.RouteData.Values["culture"].ToString());
+m => m.Specificulture == ViewContext.RouteData.Values["culture"].ToString());
     var listAvaiModule = getListAvailbleModules.Data;
     // ModuleRepository.GetInstance().GetModelListBy(m => m.Specificulture == ViewContext.RouteData.Values["culture"].ToString());
     var getAvailableCategories = Swastika.Cms.Lib.ViewModels.Info.InfoCategoryViewModel.Repository.GetModelListBy(m => m.Specificulture == ViewContext.RouteData.Values["culture"].ToString());
@@ -38,7 +40,7 @@
         <li class="sw-toc-item mt-1 mb-1">
             <a asp-area="Portal" asp-controller="Dashboard" asp-action="Index" class="sw-toc-link">
                 <i class="mi mi-Tiles mi-lg mi-fw"></i>
-                <span class="text">Dashboard</span>
+                <span class="text">@translator.Get("Dashboard")</span>
             </a>
         </li>
 
@@ -64,7 +66,7 @@
             <div class="sw-toc-link" data-toggle="collapse" data-target="#collapseArticleSubMenus" role="button" aria-expanded="false"
                  aria-controls="collapseArticleSubMenus">
                 <i class="mi mi-ReadingList mi-lg mi-fw"></i>
-                <span class="text">Articles</span>
+                <span class="text">@translator.Get("Articles")</span>
             </div>
             <ul id="collapseArticleSubMenus" class="collapse list-unstyled" role="tabpanel" data-parent="#sw-docs-nav">
                 <li>
@@ -131,7 +133,7 @@
             <div class="sw-toc-link" data-toggle="collapse" data-target="#collapseProductSubMenus" role="button" aria-expanded="false"
                  aria-controls="collapseProductSubMenus">
                 <i class="mi mi-Package mi-lg mi-fw"></i>
-                <span class="text">Product</span>
+                <span class="text">@translator.Get("Products")</span>
             </div>
             <ul id="collapseProductSubMenus" class="collapse list-unstyled" role="tabpanel" data-parent="#sw-docs-nav">
                 <li>
@@ -199,7 +201,7 @@
             <div class="sw-toc-link" data-toggle="collapse" data-target="#collapsePageSubMenus" role="button" aria-expanded="false"
                  aria-controls="collapsePageSubMenus">
                 <i class="mi mi-Page mi-lg mi-fw"></i>
-                <span class="text">Pages</span>
+                <span class="text">@translator.Get("Pages")</span>
             </div>
             <ul id="collapsePageSubMenus" class="collapse list-unstyled" role="tabpanel" data-parent="#sw-docs-nav">
                 <li>
@@ -282,7 +284,7 @@
             <div class="sw-toc-link" data-toggle="collapse" data-target="#collapseModuleSubMenus" aria-expanded="false"
                  aria-controls="collapseModuleSubMenus">
                 <i class="mi mi-AdjustHologram mi-lg mi-fw mi-pulse"></i>
-                <span class="text">Modules</span>
+                <span class="text">@translator.Get("Modules")</span>
             </div>
             <ul id="collapseModuleSubMenus" class="collapse list-unstyled" data-parent="#sw-docs-nav">
                 <li>
@@ -349,7 +351,7 @@
             <div class="sw-toc-link" data-toggle="collapse" data-target="#collapseAppearanceSubMenus" aria-expanded="false"
                  aria-controls="collapseAppearanceSubMenus">
                 <i class="mi mi-Personalize mi-lg mi-fw"></i>
-                <span class="text">Themes</span>
+                <span class="text">@translator.Get("Themes")</span>
             </div>
             <ul id="collapseAppearanceSubMenus" class="collapse list-unstyled" data-parent="#sw-docs-nav">
                 <li>
@@ -412,7 +414,7 @@
             <div class="sw-toc-link" data-toggle="collapse" data-target="#collapseFileSubMenus" aria-expanded="false"
                  aria-controls="collapseFileSubMenus">
                 <i class="mi mi-Photo2 mi-lg mi-fw"></i>
-                <span class="text">Media</span>
+                <span class="text">@translator.Get("Media")</span>
             </div>
             <ul id="collapseFileSubMenus" class="collapse list-unstyled" data-parent="#sw-docs-nav">
                 <li>
@@ -461,7 +463,7 @@
             <div class="sw-toc-link" data-toggle="collapse" data-target="#collapseTeamSubMenus" aria-expanded="false"
                  aria-controls="collapseTeamSubMenus">
                 <i class="mi mi-Contact mi-lg mi-fw"></i>
-                <span class="text">Team</span>
+                <span class="text">@translator.Get("Team")</span>
             </div>
             <ul id="collapseTeamSubMenus" class="collapse list-unstyled" data-parent="#sw-docs-nav">
                 <li>
@@ -499,7 +501,7 @@
             <div class="sw-toc-link" data-toggle="collapse" data-target="#collapseSettingSubMenus" aria-expanded="false"
                  aria-controls="collapseSettingSubMenus">
                 <i class="mi mi-Settings mi-lg mi-fw mi-spin"></i>
-                <span class="text">Settings</span>
+                <span class="text">@translator.Get("Settings")</span>
             </div>
             <ul id="collapseSettingSubMenus" class="collapse list-unstyled" data-parent="#sw-docs-nav">
                 <li>

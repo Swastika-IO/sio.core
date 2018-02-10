@@ -30,8 +30,7 @@ namespace Swastika.Cms.Web.Mvc.Areas.Portal.Controllers
         #region Languages
         [HttpGet]
         [Route("")]
-        [Route("Languages")]
-        [Route("generals")]
+        [Route("list")]
         public IActionResult Languages()
         {
             PaginationModel<BELanguageViewModel> pagingPages = new PaginationModel<BELanguageViewModel>()
@@ -47,9 +46,9 @@ namespace Swastika.Cms.Web.Mvc.Areas.Portal.Controllers
             //pageSize, pageIndex, Swastika.Cms.Lib.SWCmsConstants.ViewModelType.FrontEnd);
             return View(pagingPages);
         }
-        // GET: Language/Create
+        // GET: Create
         [HttpGet]
-        [Route("Languages/Create")]
+        [Route("Create")]
         public IActionResult CreateLanguage()
         {
             BELanguageViewModel ttsLanguage = new BELanguageViewModel(
@@ -64,7 +63,7 @@ namespace Swastika.Cms.Web.Mvc.Areas.Portal.Controllers
         // POST: Language/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
-        [Route("Languages/Create")]
+        [Route("Create")]
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> CreateLanguage(BELanguageViewModel ttsLanguage)
@@ -79,6 +78,16 @@ namespace Swastika.Cms.Web.Mvc.Areas.Portal.Controllers
                 }
                 else
                 {
+                    if (result.Exception != null)
+                    {
+                        ModelState.AddModelError(string.Empty, result.Exception?.Message);
+                    }
+
+                    foreach (var error in result.Errors)
+                    {
+                        ModelState.AddModelError(string.Empty, error);
+                    }
+
                     return View(ttsLanguage);
                 }
             }
@@ -90,7 +99,7 @@ namespace Swastika.Cms.Web.Mvc.Areas.Portal.Controllers
 
         // GET: Language/Edit/5
         [HttpGet]
-        [Route("Languages/Edit/{id}")]
+        [Route("Edit/{id}")]
         public async Task<IActionResult> EditLanguage(string id)
         {
             if (id == null)
@@ -110,25 +119,31 @@ namespace Swastika.Cms.Web.Mvc.Areas.Portal.Controllers
         // POST: Language/Edit/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
-        [Route("Languages/Edit/{id}")]
+        [Route("Edit/{id}")]
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> EditLanguage(string id, BELanguageViewModel ttsLanguage)
         {
-            if (id != ttsLanguage.Keyword)
-            {
-                return NotFound();
-            }
-
             if (ModelState.IsValid)
             {
                 try
                 {
-
                     var result = await ttsLanguage.SaveModelAsync(); //_repo.EditModelAsync(ttsLanguage.ParseModel());
                     if (result.IsSucceed)
                     {
                         GlobalLanguageService.Instance.Refresh();
+                    }
+                    else
+                    {
+                        if (result.Exception != null)
+                        {
+                            ModelState.AddModelError(string.Empty, result.Exception?.Message);
+                        }
+
+                        foreach (var error in result.Errors)
+                        {
+                            ModelState.AddModelError(string.Empty, error);
+                        }
                     }
                 }
                 catch (DbUpdateConcurrencyException)
@@ -148,7 +163,7 @@ namespace Swastika.Cms.Web.Mvc.Areas.Portal.Controllers
         }
 
         [HttpGet]
-        [Route("Languages/Delete/{id}")]
+        [Route("Delete/{id}")]
         public async Task<IActionResult> DeleteLanguage(string id)
         {
             var result = await BELanguageViewModel.Repository.RemoveModelAsync(m => m.Keyword == id && m.Specificulture == _lang);

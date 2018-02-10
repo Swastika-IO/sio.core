@@ -92,11 +92,11 @@ namespace Swastika.Cms.Mvc.Areas.Portal.Controllers
             }
 
             var ttsCulture = await CultureViewModel.Repository.GetSingleModelAsync(m => m.Id == id);
-            if (ttsCulture == null)
+            if (!ttsCulture.IsSucceed)
             {
                 return NotFound();
             }
-            return View(ttsCulture);
+            return View(ttsCulture.Data);
         }
 
         // POST: Culture/Edit/5

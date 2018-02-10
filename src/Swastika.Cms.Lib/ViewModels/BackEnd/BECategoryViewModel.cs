@@ -581,7 +581,7 @@ namespace Swastika.Cms.Lib.ViewModels.BackEnd
                     ModuleId = module.Id,
                     Specificulture = Specificulture,
                     Description = module.Title,
-
+                    Image = module.Image
                 });
              
             var result = query.ToList();

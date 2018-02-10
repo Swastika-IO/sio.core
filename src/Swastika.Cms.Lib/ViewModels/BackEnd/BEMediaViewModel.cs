@@ -5,6 +5,8 @@ using Newtonsoft.Json;
 using Swastika.Cms.Lib.Models.Cms;
 using Swastika.Domain.Core.ViewModels;
 using System.Linq.Expressions;
+using Swastika.Cms.Lib.Repositories;
+using System.Threading.Tasks;
 
 namespace Swastika.Cms.Lib.ViewModels.BackEnd
 {
@@ -51,11 +53,29 @@ namespace Swastika.Cms.Lib.ViewModels.BackEnd
         #endregion
 
         #region Overrides
+        public override RepositoryResponse<bool> RemoveModel(bool isRemoveRelatedModels = false, SiocCmsContext _context = null, IDbContextTransaction _transaction = null)
+        {
+            var result =base.RemoveModel(isRemoveRelatedModels, _context, _transaction);
+            if (result.IsSucceed)
+            {
+                FileRepository.Instance.DeleteFile(FileName, Extension, FileFolder);
+            }
+            return result;
+        }
 
+        public override async Task<RepositoryResponse<bool>> RemoveModelAsync(bool isRemoveRelatedModels = false, SiocCmsContext _context = null, IDbContextTransaction _transaction = null)
+        {
+            var result = await base.RemoveModelAsync(isRemoveRelatedModels, _context, _transaction);
+            if (result.IsSucceed)
+            {
+                FileRepository.Instance.DeleteFile(FileName, Extension, FileFolder);
+            }
+            return result;
+        }
         #endregion
 
         #region Expands
-       
+
         #endregion
 
     }

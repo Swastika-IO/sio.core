@@ -1,8 +1,10 @@
 ﻿using Microsoft.EntityFrameworkCore.Storage;
+using Newtonsoft.Json.Linq;
 using Swastika.Cms.Lib.Models.Cms;
 using Swastika.Cms.Lib.ViewModels;
 using Swastika.Cms.Lib.ViewModels.BackEnd;
 using Swastika.Domain.Core.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -10,11 +12,28 @@ namespace Swastika.Cms.Lib.Services
 {
     public class GlobalLanguageService
     {
+        /// <summary>
+        /// The synchronize root
+        /// </summary>
+        private static object syncRoot = new Object();
+
         private static string _connectionString;
         public string Culture { get; set; }
         public string Name { get; set; }
         public bool IsInit { get; set; }
+        private static JObject _translator { get; set; }
 
+        public JObject Translator
+        {
+            get
+            {
+                return _translator;
+            }
+            set
+            {
+                _translator = value;
+            }
+        }
         public string ConnectionString
         {
             get
@@ -66,8 +85,13 @@ namespace Swastika.Cms.Lib.Services
             {
                 if (_instance == null)
                 {
-                    _instance = new GlobalLanguageService();
+                    lock (syncRoot)
+                    {
+                        if (_instance == null)
+                            _instance = new GlobalLanguageService();
+                    }
                 }
+
                 return _instance;
             }
             set
@@ -80,7 +104,7 @@ namespace Swastika.Cms.Lib.Services
         public GlobalLanguageService()
         {
             //_repo = LanguageRepository.GetInstance();
-            //InitCultures();
+            InitCultures();
             //InitLanguages();
         }
      
@@ -104,13 +128,14 @@ namespace Swastika.Cms.Lib.Services
         {
             InitCultures();
         }
-
+        
         static void InitCultures(SiocCmsContext _context = null, IDbContextTransaction _transaction = null)
         {
             var getCultures = CultureViewModel.Repository.GetModelList(_context, _transaction);
             _listSupportedLanguage = new List<SupportedCulture>();
             if (getCultures.IsSucceed)
             {
+                 _translator = new JObject();
                 foreach (var culture in getCultures.Data)
                 {
                     _listSupportedLanguage.Add(
@@ -124,6 +149,15 @@ namespace Swastika.Cms.Lib.Services
                             Id = culture.Id,
                             Lcid = culture.Lcid
                         });
+
+                    var getLanguages = BELanguageViewModel.Repository.GetModelListBy(l => l.Specificulture == culture.Specificulture, _context, _transaction);
+
+                    JObject temp = new JObject();
+                    foreach (var item in getLanguages.Data)
+                    {
+                        temp.Add(new JProperty(item.Keyword, item.Value));
+                    }
+                    _translator.Add(new JProperty(culture.Specificulture, temp));
                 }
             }
 
@@ -133,6 +167,11 @@ namespace Swastika.Cms.Lib.Services
         {
             var getLanguages = BELanguageViewModel.Repository.GetModelList(_context, _transaction);
             _listLanguage = getLanguages.Data ?? new List<BELanguageViewModel>();
+        }
+
+        public string Translate(string culture, string key)
+        {
+            return Translator[culture][key]?.ToString() ?? key;
         }
 
         public bool UpdateLanguage(string key, string culture, string value)
@@ -145,6 +184,7 @@ namespace Swastika.Cms.Lib.Services
 
             if (result.IsSucceed)
             {
+                Translator[culture][key] = value;
                 return true;
             }
             else
@@ -181,6 +221,19 @@ namespace Swastika.Cms.Lib.Services
                 result = defaultValue;
             }
             return result;
+        }
+    }
+
+    public class Translator
+    {
+        public string Culture { get; set; }
+        public Translator(string culture)
+        {
+            this.Culture = culture; 
+        }
+        public string Get(string key)
+        {
+            return GlobalLanguageService.Instance.Translator[Culture][key]?.ToString() ?? key;
         }
     }
 }

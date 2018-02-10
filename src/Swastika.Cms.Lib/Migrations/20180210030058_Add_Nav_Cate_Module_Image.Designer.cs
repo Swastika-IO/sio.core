@@ -11,9 +11,10 @@ using System;
 namespace Swastika.Cms.Lib.Migrations
 {
     [DbContext(typeof(SiocCmsContext))]
-    partial class SiocCmsContextModelSnapshot : ModelSnapshot
+    [Migration("20180210030058_Add_Nav_Cate_Module_Image")]
+    partial class Add_Nav_Cate_Module_Image
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

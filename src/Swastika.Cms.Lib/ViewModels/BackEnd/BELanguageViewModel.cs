@@ -5,6 +5,8 @@ using System.ComponentModel.DataAnnotations;
 using Swastika.Domain.Core.ViewModels;
 using System.Threading.Tasks;
 using Swastika.Cms.Lib.Services;
+using Swastika.Domain.Core.Models;
+using System.Collections.Generic;
 
 namespace Swastika.Cms.Lib.ViewModels.BackEnd
 {
@@ -38,10 +40,7 @@ namespace Swastika.Cms.Lib.ViewModels.BackEnd
         {
             IsClone = true;
             ListSupportedCulture = GlobalLanguageService.ListSupportedCulture;
-            this.ListSupportedCulture.ForEach(c => c.IsSupported =
-            (string.IsNullOrEmpty(Keyword) && c.Specificulture == Specificulture)
-            || Repository.CheckIsExists(a => a.Keyword == Keyword && a.Specificulture == c.Specificulture, _context, _transaction)
-            );
+            this.ListSupportedCulture.ForEach(c => c.IsSupported = true);
         }
 
         public override RepositoryResponse<BELanguageViewModel> SaveModel(bool isSaveSubModels = false, SiocCmsContext _context = null, IDbContextTransaction _transaction = null)
@@ -62,6 +61,37 @@ namespace Swastika.Cms.Lib.ViewModels.BackEnd
                 GlobalLanguageService.Instance.Refresh();
             }
             return result;
+        }
+
+        public override RepositoryResponse<bool> RemoveModel(bool isRemoveRelatedModels = false, SiocCmsContext _context = null, IDbContextTransaction _transaction = null)
+        {
+            var result = base.RemoveModel(isRemoveRelatedModels, _context, _transaction);
+            if (result.IsSucceed)
+            {
+                GlobalLanguageService.Instance.Refresh();
+            }
+            return result;
+        }
+        public override async Task<RepositoryResponse<bool>> RemoveModelAsync(bool isRemoveRelatedModels = false, SiocCmsContext _context = null, IDbContextTransaction _transaction = null)
+        {
+            var result = await base.RemoveModelAsync(isRemoveRelatedModels, _context, _transaction);
+            if (result.IsSucceed)
+            {
+                GlobalLanguageService.Instance.Refresh();
+            }
+            return result;
+        }
+
+        public override RepositoryResponse<List<BELanguageViewModel>> Clone(List<SupportedCulture> cloneCultures, SiocCmsContext _context = null, IDbContextTransaction _transaction = null)
+        {
+            Model.Value = Model.Keyword;
+            return base.Clone(cloneCultures, _context, _transaction);
+        }
+
+        public override Task<RepositoryResponse<List<BELanguageViewModel>>> CloneAsync(List<SupportedCulture> cloneCultures, SiocCmsContext _context = null, IDbContextTransaction _transaction = null)
+        {
+            Model.Value = Model.Keyword;
+            return base.CloneAsync(cloneCultures, _context, _transaction);
         }
         #endregion
     }

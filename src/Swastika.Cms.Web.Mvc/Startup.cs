@@ -78,6 +78,7 @@ namespace Swastika.Cms.Web.Mvc
 
             // Add Singleton Configs App Configs (load from db)
             services.AddSingleton<GlobalConfigurationService>();
+            services.AddSingleton<GlobalLanguageService>();
 
             services.AddScoped<IViewRenderService, ViewRenderService>();
 

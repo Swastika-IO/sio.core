@@ -288,6 +288,8 @@ namespace Swastika.Cms.Lib.Models.Cms
 
                 entity.HasIndex(e => new { e.CategoryId, e.Specificulture });
 
+                entity.Property(e => e.Image).HasMaxLength(250);
+
                 entity.HasIndex(e => new { e.ModuleId, e.Specificulture });
 
                 entity.Property(e => e.Specificulture).HasMaxLength(10);

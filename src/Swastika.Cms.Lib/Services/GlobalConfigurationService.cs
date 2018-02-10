@@ -11,6 +11,7 @@ using Swastika.Identity.Data;
 using Swastika.Common.Helper;
 using System.Collections.Generic;
 using System.Linq;
+using Newtonsoft.Json.Linq;
 
 namespace Swastika.Cms.Lib.Services
 {
@@ -20,7 +21,7 @@ namespace Swastika.Cms.Lib.Services
         public string Culture { get; set; }
         public string Name { get; set; }
         public bool IsInit { get; set; }
-
+       
         public string ConnectionString
         {
             get
@@ -48,6 +49,9 @@ namespace Swastika.Cms.Lib.Services
                 _listConfiguration = value;
             }
         }
+
+
+
 
         private static List<SupportedCulture> _listSupportedLanguage;
         public static List<SupportedCulture> ListSupportedCulture
@@ -253,7 +257,7 @@ namespace Swastika.Cms.Lib.Services
                 {
                     context.Dispose();
                 }
-                if (accountContext!=null)
+                if (accountContext != null)
                 {
                     accountContext.Dispose();
                 }
@@ -289,6 +293,7 @@ namespace Swastika.Cms.Lib.Services
             _listSupportedLanguage = new List<SupportedCulture>();
             if (getCultures.IsSucceed)
             {
+               
                 foreach (var culture in getCultures.Data)
                 {
                     _listSupportedLanguage.Add(
@@ -302,6 +307,8 @@ namespace Swastika.Cms.Lib.Services
                             Id = culture.Id,
                             Lcid = culture.Lcid
                         });
+
+                   
                 }
             }
 

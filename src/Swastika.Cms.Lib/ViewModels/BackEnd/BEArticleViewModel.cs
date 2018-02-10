@@ -327,7 +327,7 @@ namespace Swastika.Cms.Lib.ViewModels.BackEnd
             try
             {
                 var saveTemplate = await View.SaveModelAsync(false, _context, _transaction);
-                if (saveTemplate.IsSucceed)
+                if (!saveTemplate.IsSucceed)
                 {
                     Errors.AddRange(saveTemplate.Errors);
                     Exception = saveTemplate.Exception;
@@ -485,7 +485,7 @@ namespace Swastika.Cms.Lib.ViewModels.BackEnd
         }
         public override async Task<RepositoryResponse<bool>> CloneSubModelsAsync(BEArticleViewModel parent, List<SupportedCulture> cloneCultures, SiocCmsContext _context = null, IDbContextTransaction _transaction = null)
         {
-            RepositoryResponse<bool> result = new RepositoryResponse<bool>() { };
+            RepositoryResponse<bool> result = new RepositoryResponse<bool>() { IsSucceed = true };
             foreach (var module in ActivedModules)
             {
                 module.ParseModel();

@@ -176,7 +176,7 @@
             $('#sel-template').on('change', function () {
                 SW.Common.templateEditor.setValue($(this).val());
                 var templateName = $(this).find('option:selected').text();
-                if (templateName == "[ NEW TEMPLATE ]") {
+                if (templateName === "[ NEW TEMPLATE ]") {
                     $('.sel-filename').attr('value', ''); // use attr instead of val to fix bug value not change https://stackoverflow.com/questions/11873721/jquery-val-change-doesnt-change-input-value
                 } else {
                     $('.sel-filename').attr('value', templateName);

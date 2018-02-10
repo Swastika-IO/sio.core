@@ -197,10 +197,14 @@ namespace Swastika.Cms.Mvc.Controllers
 
         [HttpGet]
         [Route("article/{SeoName}")]
-        public IActionResult ArticleDetails(string SeoName)
-        {
+        [Route("article/{CateSeoName}/{SeoName}")]
+
+        public IActionResult ArticleDetails(string SeoName, string CateSeoName = null)
+        {         
+            
             var getArticle = FEArticleViewModel.Repository.GetSingleModel(
                 a => a.SeoName == SeoName && a.Specificulture == _lang);
+            ViewData["CateSeoName"] = CateSeoName;
             //ArticleRepository.GetInstance().GetSingleModel(a => a.Id == id && a.Specificulture == _lang, SWCmsConstants.ViewModelType.FrontEnd);
             if (getArticle.IsSucceed)
             {

@@ -1,6 +1,7 @@
 ﻿@inject UserManager<ApplicationUser> UserManager
 
 @{
+    var cultures = LocalizerService.GetSupportedCultures();
 }
 
 <a class="navbar-brand mr-0 mr-md-2" href="/" aria-label="Swastika I/O">
@@ -27,8 +28,11 @@
             <i class="mi mi-World"></i>
         </a>
         <div class="dropdown-menu dropdown-menu-right" aria-labelledby="sw-versions">
-            <a class="dropdown-item active" href="/vi-vn/Portal/"><span class="flag-icon flag-icon-vn"></span> Tiếng Việt</a>
-            <a class="dropdown-item" href="/en-us/Portal/"><span class="flag-icon flag-icon-us"></span> English</a>
+            @foreach (var culture in cultures)
+                    {
+                        string cl = ViewBag.culture == culture.Specificulture ? "active" : string.Empty;
+                <a class="dropdown-item @cl" href="/@culture.Specificulture/Portal/"><span class="flag-icon @culture.Icon"></span> @culture.FullName</a>
+            }
         </div>
     </li>
     <li class="nav-item dropdown mr-2">

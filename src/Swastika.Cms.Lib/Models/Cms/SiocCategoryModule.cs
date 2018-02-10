@@ -13,6 +13,7 @@ namespace Swastika.Cms.Lib.Models.Cms
 
         public int ModuleId { get; set; }
         public int CategoryId { get; set; }
+        public string Image { get; set; }
         public string Specificulture { get; set; }
         public int Position { get; set; }
         public int Priority { get; set; }

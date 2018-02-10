@@ -1,5 +1,7 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Newtonsoft.Json.Linq;
+using Swastika.Cms.Lib.Services;
 using Swastika.Cms.Lib.ViewModels.Info;
 using System;
 using System.Collections.Generic;
@@ -11,6 +13,11 @@ namespace Swastika.Cms.Lib
 {
     public class SWCmsHelper
     {
+        public static Translator GetTranslator(string culture)
+        {
+            Translator t = new Translator(culture);
+            return t;// GlobalLanguageService.Instance.Translator[culture].ToObject<JObject>();
+        }
         public static RSAParameters GenerateKey()
         {
             using (var key = new RSACryptoServiceProvider(2048))
