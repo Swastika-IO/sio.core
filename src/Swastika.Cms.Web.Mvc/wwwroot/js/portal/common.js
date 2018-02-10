@@ -391,14 +391,12 @@
                 return context[func].apply(this, args);
             }
         },
-
         delayExecuteFunction: function (time, callbackFunctionName, params) {
             var timer = setInterval(function () {
                 CEPT.Global.executeFunctionByName(callbackFunctionName, window, params);
                 clearInterval(timer);
             }, time);
         },
-
         prettyJsonObj: function (obj) {
             return JSON.stringify(obj, null, '\t');
         },
@@ -428,6 +426,7 @@
             var currentTime = new Date();
             return currentTime.toTimeString();
         },
+
         getQueryVariable: function (variable) {
             var query = window.location.search.substring(1),
                 vars = query.split("&"),

@@ -1,0 +1,53 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml-stylesheet type="text/xsl" href="//www.smileway.tv/sitemap.xsl"?>
+<urlset xmlns:xhtml="http://www.w3.org/1999/xhtml" xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <url>
+    <lastmod>2015-02-01</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.3</priority>
+    <loc>http://www.smileway.tv/en/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="http://www.smileway.tv/en/" />
+  </url>
+  <url>
+    <lastmod>2015-02-01</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.3</priority>
+    <loc>http://www.smileway.tv/es/</loc>
+    <xhtml:link rel="alternate" hreflang="es" href="http://www.smileway.tv/es/" />
+  </url>
+  <url>
+    <lastmod>2015-02-01</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.3</priority>
+    <loc>http://www.smileway.tv/fr/</loc>
+    <xhtml:link rel="alternate" hreflang="fr" href="http://www.smileway.tv/fr/" />
+  </url>
+  <url>
+    <lastmod>2015-02-01</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.3</priority>
+    <loc>http://www.smileway.tv/it/</loc>
+    <xhtml:link rel="alternate" hreflang="it" href="http://www.smileway.tv/it/" />
+  </url>
+  <url>
+    <lastmod>2015-02-01</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.3</priority>
+    <loc>http://www.smileway.tv/ja/</loc>
+    <xhtml:link rel="alternate" hreflang="ja" href="http://www.smileway.tv/ja/" />
+  </url>
+  <url>
+    <lastmod>2015-02-01</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.3</priority>
+    <loc>http://www.smileway.tv/ko/</loc>
+    <xhtml:link rel="alternate" hreflang="ko" href="http://www.smileway.tv/ko/" />
+  </url>
+  <url>
+    <lastmod>2015-02-01</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.3</priority>
+    <loc>http://www.smileway.tv/ru/</loc>
+    <xhtml:link rel="alternate" hreflang="ru" href="http://www.smileway.tv/ru/" />
+  </url>
+</urlset>
