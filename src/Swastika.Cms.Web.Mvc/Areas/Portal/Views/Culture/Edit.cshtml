@@ -6,17 +6,17 @@
 
 }
 
- <section class="content container-fluid">
+<section class="content container-fluid">
     <form asp-controller="@ViewContext.RouteData.Values["controller"].ToString()"
           asp-action="@ViewContext.RouteData.Values["action"].ToString()">
         <div class="row">
             @await Html.PartialAsync("EditableSides/_Editable_ActionsBar")
-            <section class="col-lg-9">
+            <section class="col-lg-12">
                 @await Html.PartialAsync("_Editable", Model)
             </section>
-            <section class="col-lg-3">
-                @await Html.PartialAsync(@"EditableSides\_EditableSide_Actions", Model)
-            </section>
+            @*<section class="col-lg-3">
+                    @await Html.PartialAsync(@"EditableSides\_EditableSide_Actions", Model)
+                </section>*@
         </div>
     </form>
 </section>
