@@ -10,9 +10,9 @@
 
                 <span class="switch switch-sm">
                     <input type="hidden" asp-for="@Model[i].Specificulture" />
-                    <input type="checkbox" asp-for="@Model[i].IsSupported" class="switch" required="">
+                    <input type="checkbox" asp-for="@Model[i].IsSupported" class="switch">
                     <label class="switch" asp-for="@Model[i].IsSupported">
-                        <i class="flag-icon @Model[i].Icon" style=""></i> @Model[i].Specificulture
+                        <i class="flag-icon @Model[i].Icon" style=""></i> @Model[i].FullName
                     </label>
                 </span>
             }
@@ -21,7 +21,7 @@
 </div>
 
 @*<div class="custom-control custom-checkbox">
-        <input type="checkbox" asp-for="@Model[i].IsSupported" class="custom-control-input" required=""
+        <input type="checkbox" asp-for="@Model[i].IsSupported" class="custom-control-input"
                id="ListSupportedCulture_@Model[i].Specificulture">
         <input type="hidden" asp-for="@Model[i].Specificulture" />
         <label class="custom-control-label" for="ListSupportedCulture_@Model[i].Specificulture">
