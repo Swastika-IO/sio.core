@@ -251,7 +251,7 @@ namespace Swastika.Cms.Lib.ViewModels.Info
                 var query = context.SiocModuleProduct.Include(ac => ac.SiocProduct)
                     .Where(ac =>
                     ac.ModuleId == ModuleId && ac.Specificulture == specificulture
-                    && ac.Status == (int)SWStatus.Published).Select(ac => ac.SiocProduct);
+                    && (ac.Status == (int)SWStatus.Published || ac.Status == (int)SWStatus.Preview)).Select(ac => ac.SiocProduct);
                 PaginationModel<InfoProductViewModel> result = Repository.ParsePagingQuery(
                     query, orderByPropertyName
                     , direction,

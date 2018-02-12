@@ -19,10 +19,10 @@
     {
         @Html.Partial(Model.TemplatePath, Model)
     }
-    catch
+    catch (Exception ex)
     {
 
-        <p class="danger text-center has-error">Unable load template</p>
+        <p class="danger text-center has-error">@ex.StackTrace</p>
     }
 }
 else

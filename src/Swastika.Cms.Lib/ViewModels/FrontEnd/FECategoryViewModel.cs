@@ -80,7 +80,7 @@ namespace Swastika.Cms.Lib.ViewModels.FrontEnd
         [JsonProperty("articles")]
         public PaginationModel<InfoArticleViewModel> Articles { get; set; } = new PaginationModel<InfoArticleViewModel>();
         [JsonProperty("products")]
-        public PaginationModel<InfoProductViewModel> Products { get; set; } = new PaginationModel<InfoProductViewModel>();
+        public PaginationModel<NavCategoryProductViewModel> Products { get; set; } = new PaginationModel<NavCategoryProductViewModel>();
         [JsonProperty("modules")]
         public List<FEModuleViewModel> Modules { get; set; } = new List<FEModuleViewModel>(); // Get All Module
 
@@ -195,8 +195,10 @@ namespace Swastika.Cms.Lib.ViewModels.FrontEnd
 
         void GetSubProducts(SiocCmsContext _context = null, IDbContextTransaction _transaction = null)
         {
-            var getProducts = InfoProductViewModel.GetModelListByCategory(Id, Specificulture, SWCmsConstants.Default.OrderBy, OrderByDirection.Ascending
-                , 4, 0
+            var getProducts = NavCategoryProductViewModel.Repository.GetModelListBy(
+               m => m.CategoryId == Id && m.Specificulture == Specificulture
+           , SWCmsConstants.Default.OrderBy, OrderByDirection.Ascending
+           , null, null
                , _context: _context, _transaction: _transaction
                );
             if (getProducts.IsSucceed)

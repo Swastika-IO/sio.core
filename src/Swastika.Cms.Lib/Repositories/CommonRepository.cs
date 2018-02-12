@@ -484,7 +484,7 @@ namespace Swastika.Cms.Lib.Repositories
         #region Module-Product Navigator
 
 
-        public RepositoryResponse<List<ModuleProductViewModel>> GetModuleProductNav(string ProductId, string specificulture
+        public RepositoryResponse<List<NavModuleProductViewModel>> GetModuleProductNav(string ProductId, string specificulture
             , SiocCmsContext _context = null, IDbContextTransaction _transaction = null)
         {
             SiocCmsContext context = _context ?? new SiocCmsContext();
@@ -494,7 +494,7 @@ namespace Swastika.Cms.Lib.Repositories
                 var result = context.SiocModule.Include(cp => cp.SiocModuleProduct)
                     .Where(a => a.Specificulture == specificulture
                     && a.Type == (int)SWCmsConstants.ModuleType.Root)
-                     .Select(p => new ModuleProductViewModel(
+                     .Select(p => new NavModuleProductViewModel(
                          new SiocModuleProduct()
                          {
                              ProductId = ProductId,
@@ -506,7 +506,7 @@ namespace Swastika.Cms.Lib.Repositories
                          IsActived = p.SiocModuleProduct.Count(cp => cp.ProductId == ProductId && cp.Specificulture == specificulture) > 0,
                          Description = p.Title
                      });
-                return new RepositoryResponse<List<ModuleProductViewModel>>()
+                return new RepositoryResponse<List<NavModuleProductViewModel>>()
                 {
                     IsSucceed = true,
                     Data = result.ToList()
@@ -518,7 +518,7 @@ namespace Swastika.Cms.Lib.Repositories
                 {
                     transaction.Rollback();
                 }
-                return new RepositoryResponse<List<ModuleProductViewModel>>()
+                return new RepositoryResponse<List<NavModuleProductViewModel>>()
                 {
                     IsSucceed = true,
                     Data = null,
@@ -536,7 +536,7 @@ namespace Swastika.Cms.Lib.Repositories
             }
         }
 
-        public async System.Threading.Tasks.Task<RepositoryResponse<List<ModuleProductViewModel>>> GetModuleProductNavAsync(string ProductId, string specificulture
+        public async System.Threading.Tasks.Task<RepositoryResponse<List<NavModuleProductViewModel>>> GetModuleProductNavAsync(string ProductId, string specificulture
            , SiocCmsContext _context = null, IDbContextTransaction _transaction = null)
         {
             SiocCmsContext context = _context ?? new SiocCmsContext();
@@ -546,7 +546,7 @@ namespace Swastika.Cms.Lib.Repositories
                 var result = context.SiocModule.Include(cp => cp.SiocModuleProduct)
                     .Where(a => a.Specificulture == specificulture
                     && a.Type == (int)SWCmsConstants.ModuleType.Root)
-                    .Select(p => new ModuleProductViewModel(
+                    .Select(p => new NavModuleProductViewModel(
                         new SiocModuleProduct()
                         {
                             ProductId = ProductId,
@@ -558,7 +558,7 @@ namespace Swastika.Cms.Lib.Repositories
                         IsActived = p.SiocModuleProduct.Count(cp => cp.ProductId == ProductId && cp.Specificulture == specificulture) > 0,
                         Description = p.Title
                     });
-                return new RepositoryResponse<List<ModuleProductViewModel>>()
+                return new RepositoryResponse<List<NavModuleProductViewModel>>()
                 {
                     IsSucceed = true,
                     Data = await result.ToListAsync()
@@ -570,7 +570,7 @@ namespace Swastika.Cms.Lib.Repositories
                 {
                     transaction.Rollback();
                 }
-                return new RepositoryResponse<List<ModuleProductViewModel>>()
+                return new RepositoryResponse<List<NavModuleProductViewModel>>()
                 {
                     IsSucceed = true,
                     Data = null,

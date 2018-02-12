@@ -90,7 +90,7 @@ namespace Swastika.Cms.Mvc.Controllers
                     {
                         getPage.Data.Products.Items.ForEach(p =>
                         {
-                            p.DetailsUrl = SWCmsHelper.GetRouterUrl("Product", new { p.SeoName }, Request, Url);
+                            p.Product.DetailsUrl = SWCmsHelper.GetRouterUrl("Product", new { p.Product.SeoName }, Request, Url);
                         });
                     }
                     ViewBag.pageClass = getPage.Data.CssClass;

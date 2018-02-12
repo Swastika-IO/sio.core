@@ -137,7 +137,7 @@ namespace Swastika.Cms.Lib
             public const string DefaultTemplateFolder = @"Default-Templates";
             public const string DefaultTemplateLayout = @"_Layout";
             public const string DefaultTemplateLayoutBody = "<div>@RenderBody();</div>";
-            public const string OrderBy = @"1234qwe@";
+            public const string OrderBy = @"Priority";
             public const int PageSizeArticle = 20;
             public const string Password = @"1234qwe@";
             public const string Specificulture = @"vi-vn";

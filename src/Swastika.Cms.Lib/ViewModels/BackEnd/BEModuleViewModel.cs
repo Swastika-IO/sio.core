@@ -58,6 +58,9 @@ namespace Swastika.Cms.Lib.ViewModels.BackEnd
         [JsonProperty("articles")]
         public PaginationModel<InfoArticleViewModel> Articles { get; set; } = new PaginationModel<InfoArticleViewModel>();
 
+        [JsonProperty("products")]
+        public PaginationModel<NavModuleProductViewModel> Products { get; set; } = new PaginationModel<NavModuleProductViewModel>();
+
         #region Template
 
         [JsonProperty("view")]
@@ -92,7 +95,7 @@ namespace Swastika.Cms.Lib.ViewModels.BackEnd
         #endregion
         //Parent Article Id
         [JsonProperty("articleId")]
-        public string  ArticleId { get; set; }
+        public string ArticleId { get; set; }
         //Parent Category Id
         [JsonProperty("categoryId")]
         public int CategoryId { get; set; }
@@ -121,7 +124,7 @@ namespace Swastika.Cms.Lib.ViewModels.BackEnd
             }
             Template = View != null ? string.Format(@"{0}/{1}{2}", View.FolderType, View.FileName, View.Extension) : Template;
             var arrField = Columns != null ? JArray.Parse(
-                Newtonsoft.Json.JsonConvert.SerializeObject(Columns.OrderBy(c=>c.Priority).Where(
+                Newtonsoft.Json.JsonConvert.SerializeObject(Columns.OrderBy(c => c.Priority).Where(
                     c => !string.IsNullOrEmpty(c.Name)))) : new JArray();
             Fields = arrField.ToString(Newtonsoft.Json.Formatting.None);
 
@@ -195,6 +198,17 @@ namespace Swastika.Cms.Lib.ViewModels.BackEnd
             if (getArticles.IsSucceed)
             {
                 Articles = getArticles.Data;
+            }
+
+            var getProducts = NavModuleProductViewModel.Repository.GetModelListBy(
+                m => m.ModuleId == Id && m.Specificulture == Specificulture
+            , SWCmsConstants.Default.OrderBy, OrderByDirection.Ascending
+            , null, null
+                , _context: _context, _transaction: _transaction
+                );
+            if (getProducts.IsSucceed)
+            {
+                Products = getProducts.Data;
             }
         }
 

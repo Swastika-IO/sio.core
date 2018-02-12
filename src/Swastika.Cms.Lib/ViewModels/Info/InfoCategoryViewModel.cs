@@ -93,6 +93,8 @@ namespace Swastika.Cms.Lib.ViewModels.Info
         public List<InfoCategoryViewModel> Childs { get; set; }
         [JsonProperty("totalArticle")]
         public int TotalArticle { get; set; }
+        [JsonProperty("totalProduct")]
+        public int TotalProduct { get; set; }
         [JsonProperty("href")]
         public string Href { get; set; }
         [JsonProperty("isActived")]
@@ -136,6 +138,14 @@ namespace Swastika.Cms.Lib.ViewModels.Info
             if (countArticle.IsSucceed)
             {
                 TotalArticle = countArticle.Data;
+            }
+
+            var countProduct = NavCategoryProductViewModel.Repository.Count(c => c.CategoryId == Id && c.Specificulture == Specificulture
+               , _context: _context, _transaction: _transaction);
+
+            if (countProduct.IsSucceed)
+            {
+                TotalProduct = countProduct.Data;
             }
         }
 

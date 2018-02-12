@@ -83,7 +83,7 @@ namespace Swastika.Cms.Lib.ViewModels.BackEnd
         [JsonProperty("categories")]
         public List<NavCategoryProductViewModel> Categories { get; set; }
         [JsonProperty("modules")]
-        public List<ModuleProductViewModel> Modules { get; set; } // Parent to Modules
+        public List<NavModuleProductViewModel> Modules { get; set; } // Parent to Modules
         [JsonProperty("moduleNavs")]
         public List<NavProductModuleViewModel> ModuleNavs { get; set; } // Children Modules
         [JsonProperty("activedModules")]

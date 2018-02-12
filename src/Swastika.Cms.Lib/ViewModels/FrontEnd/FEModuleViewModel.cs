@@ -56,7 +56,7 @@ namespace Swastika.Cms.Lib.ViewModels.FrontEnd
         [JsonProperty("articles")]
         public PaginationModel<InfoArticleViewModel> Articles { get; set; } = new PaginationModel<InfoArticleViewModel>();
         [JsonProperty("products")]
-        public PaginationModel<InfoProductViewModel> Products { get; set; } = new PaginationModel<InfoProductViewModel>();
+        public PaginationModel<NavModuleProductViewModel> Products { get; set; } = new PaginationModel<NavModuleProductViewModel>();
         public string TemplatePath
         {
             get
@@ -132,10 +132,12 @@ namespace Swastika.Cms.Lib.ViewModels.FrontEnd
                 Articles = getArticles.Data;
             }
 
-            var getProducts = InfoProductViewModel.GetModelListByModule(Id, Specificulture, SWCmsConstants.Default.OrderBy, OrderByDirection.Ascending
-               , 4, 0
-               , _context: _context, _transaction: _transaction
-               );
+            var getProducts = NavModuleProductViewModel.Repository.GetModelListBy(
+                m => m.ModuleId == Id && m.Specificulture == Specificulture
+            , SWCmsConstants.Default.OrderBy, OrderByDirection.Ascending
+            , null, null
+                , _context: _context, _transaction: _transaction
+                );
             if (getProducts.IsSucceed)
             {
                 Products = getProducts.Data;

@@ -1,15 +1,16 @@
 ﻿using Swastika.Cms.Lib.Models.Cms;
 using Swastika.Domain.Data.ViewModels;
 using Microsoft.EntityFrameworkCore.Storage;
+using Swastika.Cms.Lib.ViewModels.Info;
 
 namespace Swastika.Cms.Lib.ViewModels
 {
-    public class ModuleProductViewModel: ViewModelBase<SiocCmsContext, SiocModuleProduct, ModuleProductViewModel>
+    public class NavModuleProductViewModel : ViewModelBase<SiocCmsContext, SiocModuleProduct, NavModuleProductViewModel>
     {
-        public ModuleProductViewModel(SiocModuleProduct model, SiocCmsContext _context = null, IDbContextTransaction _transaction = null) : base(model, _context, _transaction)
+        public NavModuleProductViewModel(SiocModuleProduct model, SiocCmsContext _context = null, IDbContextTransaction _transaction = null) : base(model, _context, _transaction)
         {
         }
-        public ModuleProductViewModel(): base()
+        public NavModuleProductViewModel() : base()
         {
 
         }
@@ -18,8 +19,21 @@ namespace Swastika.Cms.Lib.ViewModels
         //public string Specificulture { get; set; }
         public bool IsActived { get; set; }
         public string Description { get; set; }
-
+        #region Views
+        public InfoProductViewModel Product { get; set; }
+        #endregion
         #region Override
+
+        public override void ExpandView(SiocCmsContext _context = null, IDbContextTransaction _transaction = null)
+        {
+            var getProduct = InfoProductViewModel.Repository.GetSingleModel(p => p.Id == ProductId && p.Specificulture == Specificulture
+                , _context: _context, _transaction: _transaction
+            );
+            if (getProduct.IsSucceed)
+            {
+                Product = getProduct.Data;
+            }
+        }
 
         #region Async
 

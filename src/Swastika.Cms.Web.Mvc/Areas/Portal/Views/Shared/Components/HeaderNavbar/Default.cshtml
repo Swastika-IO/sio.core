@@ -67,6 +67,11 @@
     </li>
 </ul>
 <a href="/vi-vn/portal/profile" title="@UserManager.GetUserName(User)">
-    <img class="rounded-circle sw-avatar" alt="200x200" src="~/images/upload-image-thumbnail.png" data-holder-rendered="true"
-         style="width: 36px; height: 36px;">
+    @Html.GravatarImage(
+                await UserManager.GetEmailAsync(appuser),
+                size: 36,
+                defaultImage: GravatarHtmlHelper.DefaultImage.Identicon,
+                rating: GravatarHtmlHelper.Rating.PG,
+                cssClass: "rounded-circle sw-avatar"
+            )
 </a>

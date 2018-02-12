@@ -162,6 +162,15 @@ namespace Swastika.Cms.Mvc.Areas.Portal.Controllers
             return PartialView(new ModuleFieldViewModel() { Width = 2, IsDisplay = true });
         }
 
+        [HttpGet]
+        [Route("Delete/Product-Nav/{id}/{productId}")]
+        public async Task<IActionResult> DeleteNav(int id, string productId)
+        {
+            var Module = await NavModuleProductViewModel.Repository.RemoveModelAsync(
+                m => m.ModuleId == id && m.ProductId == productId && m.Specificulture == _lang);
+            return RedirectToAction("Details", new { id });
+        }
+
         //#region Ajax Functions
 
         //[HttpGet]

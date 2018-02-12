@@ -49,6 +49,20 @@ namespace Swastika.Cms.Mvc.Areas.Portal.Controllers
         }
 
         [HttpGet]
+        [Route("SyncFromLocal/{id}")]
+        public async Task<IActionResult> SyncFromLocal(int id)
+        {
+            var getTemplate = await BETemplateViewModel.Repository.GetModelListByAsync(
+                 template => template.TemplateId == id);
+            foreach (var item in getTemplate.Data)
+            {
+                await item.SaveModelAsync();
+            }
+            return RedirectToAction("Index");
+        }
+
+
+        [HttpGet]
         [Route("Create")]
         public IActionResult Create()
         {

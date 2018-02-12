@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json.Linq;
 using Swastika.Cms.Lib.Services;
+using Swastika.Cms.Lib.ViewModels.FrontEnd;
 using Swastika.Cms.Lib.ViewModels.Info;
 using System;
 using System.Collections.Generic;
@@ -24,6 +25,11 @@ namespace Swastika.Cms.Lib
             {
                 return key.ExportParameters(true);
             }
+        }
+        public static FEModuleViewModel GetModule(string name, string culture)
+        {
+            var getModule = FEModuleViewModel.Repository.GetSingleModel(m => m.Name == name);
+            return getModule.Data;
         }
 
         public static List<InfoCategoryViewModel> GetCategory(IUrlHelper Url, string culture, SWCmsConstants.CatePosition position, string activePath = "")
@@ -66,6 +72,47 @@ namespace Swastika.Cms.Lib
             }
             return cates;
         }
+
+        public static List<InfoCategoryViewModel> GetCategory(IUrlHelper Url, string culture, SWCmsConstants.CateType cateType, string activePath = "")
+        {
+            var getTopCates = InfoCategoryViewModel.Repository.GetModelListBy
+            (c => c.Specificulture == culture && c.Type == (int)cateType
+            );
+            var cates = getTopCates.Data ?? new List<InfoCategoryViewModel>();
+
+            foreach (var cate in cates)
+            {
+                switch (cate.Type)
+                {
+                    case SWCmsConstants.CateType.Blank:
+                        foreach (var child in cate.Childs)
+                        {
+                            child.Href = Url.RouteUrl("Page", new { culture = culture, pageName = child.SeoName });
+                        }
+                        break;
+
+                    case SWCmsConstants.CateType.StaticUrl:
+                        cate.Href = cate.StaticUrl;
+                        break;
+
+                    case SWCmsConstants.CateType.Home:
+                    //cate.Href = string.Format("/{0}", culture);
+                    //break;
+                    case SWCmsConstants.CateType.List:
+                    case SWCmsConstants.CateType.Article:
+                    case SWCmsConstants.CateType.Modules:
+                    default:
+                        cate.Href = Url.RouteUrl("Page", new { culture = culture, pageName = cate.SeoName });
+                        break;
+                }
+                cate.IsActived = (
+                    cate.Href == activePath ||
+                    (cate.Type == SWCmsConstants.CateType.Home && activePath == string.Format("/{0}/Home", culture))
+                    );
+            }
+            return cates;
+        }
+
 
         public static string GetFullPath(string[] subPaths)
         {
