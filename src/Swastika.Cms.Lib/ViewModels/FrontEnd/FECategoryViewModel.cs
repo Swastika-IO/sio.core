@@ -79,7 +79,7 @@ namespace Swastika.Cms.Lib.ViewModels.FrontEnd
         [JsonProperty("view")]
         public FETemplateViewModel View { get; set; }
         [JsonProperty("articles")]
-        public PaginationModel<InfoArticleViewModel> Articles { get; set; } = new PaginationModel<InfoArticleViewModel>();
+        public PaginationModel<NavCategoryArticleViewModel> Articles { get; set; } = new PaginationModel<NavCategoryArticleViewModel>();
         [JsonProperty("products")]
         public PaginationModel<NavCategoryProductViewModel> Products { get; set; } = new PaginationModel<NavCategoryProductViewModel>();
         [JsonProperty("modules")]
@@ -87,7 +87,8 @@ namespace Swastika.Cms.Lib.ViewModels.FrontEnd
 
         public string TemplatePath
         {
-            get {
+            get
+            {
                 return SWCmsHelper.GetFullPath(new string[]
                 {
                     ""
@@ -163,19 +164,19 @@ namespace Swastika.Cms.Lib.ViewModels.FrontEnd
             if (getNavs.IsSucceed)
             {
                 Modules = new List<FEModuleViewModel>();
-                foreach (var nav in getNavs.Data.OrderBy(n=>n.Priority).ToList())
+                foreach (var nav in getNavs.Data.OrderBy(n => n.Priority).ToList())
                 {
                     var getModule = FEModuleViewModel.Repository.GetSingleModel(
                         m => m.Id == nav.ModuleId && nav.Specificulture == Specificulture
                         , _context, _transaction);
                     if (getModule.IsSucceed)
                     {
-                        if (getModule.Data.View!=null)
+                        if (getModule.Data.View != null)
                         {
                             View.Scripts += getModule.Data.View.Scripts;
                             View.Styles += getModule.Data.View.Styles;
                             Modules.Add(getModule.Data);
-                        }                        
+                        }
                     }
                 }
 
@@ -184,12 +185,13 @@ namespace Swastika.Cms.Lib.ViewModels.FrontEnd
 
         void GetSubArticles(SiocCmsContext _context = null, IDbContextTransaction _transaction = null)
         {
-            var getArticles = InfoArticleViewModel.GetModelListByCategory(Id, Specificulture, SWCmsConstants.Default.OrderBy, OrderByDirection.Ascending
+            var getArticles = NavCategoryArticleViewModel.Repository.GetModelListBy(
+                n => n.CategoryId == Id && n.Specificulture == Specificulture, SWCmsConstants.Default.OrderBy, OrderByDirection.Ascending
                 , 4, 0
                , _context: _context, _transaction: _transaction
                );
             if (getArticles.IsSucceed)
-            {                
+            {
                 Articles = getArticles.Data;
             }
         }

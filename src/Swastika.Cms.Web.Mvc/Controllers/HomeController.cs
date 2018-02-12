@@ -83,7 +83,7 @@ namespace Swastika.Cms.Mvc.Controllers
                     {
                         getPage.Data.Articles.Items.ForEach(a =>
                         {
-                            a.DetailsUrl = SWCmsHelper.GetRouterUrl("Article", new { a.SeoName }, Request, Url);
+                            a.Article.DetailsUrl = SWCmsHelper.GetRouterUrl("Article", new { a.Article.SeoName }, Request, Url);
                         });
                     }
                     if (getPage.Data.Type == SWCmsConstants.CateType.ListProduct)
