@@ -94,6 +94,10 @@
     <Content Remove="Areas\Portal\Views\Module\DetailsOld.cshtml" />
     <Content Remove="Areas\Portal\Views\Module\IndexOld.cshtml" />
     <Content Remove="Areas\Portal\Views\Pages\IndexOld.cshtml" />
+    <Content Remove="Areas\Portal\Views\Setting\CreateCulture.cshtml" />
+    <Content Remove="Areas\Portal\Views\Setting\Cultures.cshtml" />
+    <Content Remove="Areas\Portal\Views\Setting\EditCulture.cshtml" />
+    <Content Remove="Areas\Portal\Views\Setting\_Editable_Culture.cshtml" />
     <Content Remove="Areas\Portal\Views\Shared\Components\HeaderNavbar\DefaultOld.cshtml" />
     <Content Remove="Areas\Portal\Views\Shared\_Layout.cshtml" />
     <Content Remove="tsconfig.json" />
@@ -217,12 +221,8 @@
     <None Include="Areas\Portal\Views\Profile\VerifyPhoneNumber.cshtml" />
     <None Include="Areas\Portal\Views\Setting\Configurations.cshtml" />
     <None Include="Areas\Portal\Views\Setting\CreateConfiguration.cshtml" />
-    <None Include="Areas\Portal\Views\Setting\CreateCulture.cshtml" />
-    <None Include="Areas\Portal\Views\Setting\Cultures.cshtml" />
     <None Include="Areas\Portal\Views\Setting\EditConfiguration.cshtml" />
-    <None Include="Areas\Portal\Views\Setting\EditCulture.cshtml" />
     <None Include="Areas\Portal\Views\Setting\_Editable_Configuration.cshtml" />
-    <None Include="Areas\Portal\Views\Setting\_Editable_Culture.cshtml" />
     <None Include="Areas\Portal\Views\Shared\Components\Breadcrumbs\Default.cshtml" />
     <None Include="Areas\Portal\Views\Shared\Components\ControlSidebar\Default.cshtml" />
     <None Include="Areas\Portal\Views\Shared\Components\HeaderNavbar\Default.cshtml" />

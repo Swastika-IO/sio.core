@@ -22,22 +22,32 @@ namespace Swastika.Cms.Lib.ViewModels.Info
         #region Properties
 
         #region Models
+
         [JsonProperty("id")]
         public int Id { get; set; }
+
         [JsonProperty("name")]
         public string Name { get; set; }
+
+        [JsonProperty("image")]
+        public string Image { get; set; }
+
         [JsonProperty("createdBy")]
         public string CreatedBy { get; set; }
+
         [JsonProperty("createdDateTime")]
         public DateTime CreatedDateTime { get; set; }
-        #endregion
+
+        #endregion Models
 
         #region Views
+
         [JsonProperty("isActived")]
         public bool IsActived { get; set; }
 
         [JsonProperty("asset")]
         public IFormFile Asset { get; set; }// = new FileViewModel();
+
         [JsonProperty("assetFolder")]
         public string AssetFolder
         {
@@ -49,6 +59,7 @@ namespace Swastika.Cms.Lib.ViewModels.Info
                     Name });
             }
         }
+
         [JsonProperty("templateFolder")]
         public string TemplateFolder
         {
@@ -57,9 +68,10 @@ namespace Swastika.Cms.Lib.ViewModels.Info
                 return CommonHelper.GetFullPath(new string[] { SWCmsConstants.Parameters.TemplatesFolder, Name });
             }
         }
-        #endregion
 
-        #endregion
+        #endregion Views
+
+        #endregion Properties
 
         #region Contructors
 
@@ -73,6 +85,6 @@ namespace Swastika.Cms.Lib.ViewModels.Info
         {
         }
 
-        #endregion
+        #endregion Contructors
     }
 }

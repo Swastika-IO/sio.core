@@ -85,6 +85,8 @@
                 SW.Common.loadFiles(container);
             });
 
+            $('[data-toggle="popover"]').popover();
+
             $(".sortable").sortable({
                 revert: true,
                 update: function (event, ui) {

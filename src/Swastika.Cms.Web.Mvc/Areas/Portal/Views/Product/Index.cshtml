@@ -12,83 +12,240 @@
     string href = string.Format("{0}://{1}{2}", Context.Request.Scheme, Context.Request.Host, Url.Action());
 }
 
-<div class="box-body">
-    <table class="table table-hover table-striped dataTable" cellspacing="0">
-        <thead>
-            <tr>
-                <th scope="col">
-                    Title
-                </th>
-                <th scope="col">
-                    Image
-                </th>
-                <th scope="col">
-                    Type
-                </th>
-                <th scope="col">
-                    CreatedBy
-                </th>
-                <th scope="col"></th>
-            </tr>
-        </thead>
-        <tfoot>
-            <tr>
-                <th scope="col">
-                    Title
-                </th>
-                <th scope="col">
-                    Image
-                </th>
-                <th scope="col">
-                    Type
-                </th>
-                <th scope="col">
-                    CreatedBy
-                </th>
-                <th scope="col"></th>
-            </tr>
-        </tfoot>
-        <tbody>
-            @foreach (var item in Model.Items)
-            {
-            <tr>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Title)
-                </td>
-                <td>
-                    <small>
-                        <img src="@item.Image" height="50" />
-                    </small>
-                </td>
-
-                <td>
-                    @Html.DisplayFor(modelItem => item.Type)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.CreatedBy)
-                </td>
-
-                <td>
-                    <div class="btn-group btn-group-sm" role="group" aria-label="Actions">
-                        <a asp-controller="Product" asp-action="Edit" asp-route-id="@item.Id" asp-route-categoryId="@ViewBag.categoryId"
-                           class="btn btn-sm btn-warning d-inline-block "><span class="oi oi-pencil"></span></a>
-                        <a asp-area="" asp-controller="Home" asp-action="ProductDetails"
-                           asp-route-SeoName="@item.SeoName"
-                           target="_blank" class="btn btn-sm btn-info"><span class="oi oi-eye"></span></a>
-                        <a asp-area="Portal" asp-controller="Product" asp-action="Recycle" asp-route-id="@item.Id"
-                           class="btn btn-sm btn-danger d-inline-block" data-popout="true" data-toggle="confirmation" data-singleton="true"><span class="oi oi-x"></span></a>
-
-                    </div>
-                </td>
-            </tr>
-            }
-        </tbody>
-
-        <tbody></tbody>
-    </table>
-    @await Html.PartialAsync("_Pagination", Model
-        , new ViewDataDictionary(this.Vi‌​ewData)
+<section class="content container-fluid">
+    <form enctype="multipart/form-data" asp-action="@ViewContext.RouteData.Values["action"].ToString()">
+        @if (Model.Items.Count > 0)
         {
-{ "PageSize", Model.PageSize}, { "PageIndex", Model.PageIndex }, { "TotalPage", Model.TotalPage } })
-</div>
+            <div class="row">
+                <div class="col-md-8">
+                    <div class="btn-toolbar mb-3" role="toolbar" aria-label="Toolbar with button groups">
+                        <div class="btn-group mr-2" role="group" aria-label="First group">
+                            <a asp-area="Portal" asp-controller="Product" asp-action="Create" class="btn btn-secondary"><i class="mi mi-Add"></i></a>
+                            <a asp-area="Portal" asp-controller="Product" asp-action="Index" class="btn btn-secondary"><i class="mi mi-List"></i></a>
+                            <a asp-area="Portal" asp-controller="Product" asp-action="Draft" class="btn btn-secondary"><i class="mi mi-Paste"></i></a>
+                        </div>
+                        <div class="btn-group mr-2" role="group" aria-label="Button group with nested dropdown">
+                            <div class="btn-group" role="group">
+                                <button id="btnGroupDrop1" type="button" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    All types
+                                </button>
+                                <div class="dropdown-menu" aria-labelledby="btnGroupDrop1">
+                                    <a class="dropdown-item" href="#">All types</a>
+                                    <a class="dropdown-item" href="#">Images</a>
+                                    <a class="dropdown-item" href="#">Audios</a>
+                                    <a class="dropdown-item" href="#">Videos</a>
+                                    <a class="dropdown-item" href="#">Documents</a>
+                                    <a class="dropdown-item" href="#">Zips</a>
+                                    <a class="dropdown-item" href="#">Others</a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="btn-group mr-2" role="group" aria-label="Button group with nested dropdown">
+                            <div class="btn-group" role="group">
+                                <button id="btnGroupDrop1" type="button" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    All times
+                                </button>
+                                <div class="dropdown-menu" aria-labelledby="btnGroupDrop1">
+                                    <a class="dropdown-item" href="#">Jan 2018</a>
+                                    <a class="dropdown-item" href="#">Dec 2017</a>
+                                    <a class="dropdown-item" href="#">Nov 2017</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="input-group">
+                        <div class="input-group-prepend">
+                            <div class="input-group-text" id="btnGroupAddon"><i class="mi mi-Search" style="top:0;"></i></div>
+                        </div>
+                        <input type="text" class="form-control" placeholder="Search......" aria-label="Search......" aria-describedby="btnGroupAddon">
+                    </div>
+                </div>
+            </div>
+            <table class="table table-sm table-hover" cellspacing="0">
+                <thead class="thead-light">
+                    <tr>
+                        <th scope="col" width="5%">
+                            <span class="oi oi-move"></span>
+                        </th>
+                        <th scope="col" width="5%">
+                            <span class="oi oi-sort-ascending"></span>
+                        </th>
+                        <th scope="col">
+                            Title
+                        </th>
+                        <th scope="col">
+                            Excerpt
+                        </th>
+                        <th scope="col" width="5%">
+                            Type
+                        </th>
+                        <th scope="col" width="10%">
+                            Created By
+                        </th>
+                        <th scope="col" width="5%" class="text-right">
+                            Actions
+                        </th>
+                    </tr>
+                </thead>
+                @*<tfoot>
+                        <tr>
+                            <th scope="col">
+                                <span class="oi oi-move"></span>
+                            </th>
+                            <th scope="col">
+                                <span class="oi oi-sort-ascending"></span>
+                            </th>
+                            <th scope="col">
+                                Title
+                            </th>
+                            <th scope="col">
+                                Excerpt
+                            </th>
+                            <th scope="col">
+                                Type
+                            </th>
+                            <th scope="col">
+                                CreatedBy
+                            </th>
+                            <th scope="col"></th>
+                        </tr>
+                    </tfoot>*@
+                <tbody class="sortable">
+                    @for (int i = 0; i < Model.Items.OrderBy(n => n.Priority).ToList().Count; i++)
+                    {
+                        <tr class="sortable-item" sort-model="Product" sort-model-id="@Model.Items[i].Id">
+                            <td style="cursor:move;">
+                                <span class="oi oi-move"></span>
+                            </td>
+                            <td>
+                                <input type="text" asp-for="@Model.Items[i].Priority" class="item-priority form-control form-control-sm d-inline" style="width:40px;" />
+                            </td>
+                            <td>
+                                <small>
+                                    @Model.Items[i].Title
+                                </small>
+                            </td>
+                            <td>
+                                <small>
+                                    @Model.Items[i].Excerpt
+                                </small>
+                            </td>
+
+                            <td>
+                                @Model.Items[i].Type
+                            </td>
+                            <td>
+                                @Model.Items[i].CreatedBy
+                            </td>
+
+                            <td>
+                                <div class="btn-group btn-group-sm" role="group" aria-label="Actions">
+                                    <a asp-controller="Product" asp-action="Edit" asp-route-id="@Model.Items[i].Id" asp-route-categoryId="@ViewBag.categoryId"
+                                       class="btn btn-sm btn-light d-inline-block "><span class="oi oi-pencil text-primary"></span></a>
+                                    <a asp-area="" asp-controller="Home" asp-action="ProductDetails" asp-route-SeoName="@Model.Items[i].SeoName"
+                                       target="_blank" class="btn btn-sm btn-light"><span class="oi oi-eye text-info"></span></a>
+                                    @*<a asp-area="Portal" asp-controller="Products" asp-action="Recycle" asp-route-id="@Model.Items[i].Id"
+                                        class="btn btn-sm btn-light d-inline-block" data-popout="true" data-toggle="confirmation" data-singleton="true"><span class="oi oi-x text-danger"></span></a>*@
+
+                                    <button class="btn btn-light del-popover" data-toggle="popover" title="Confirmation!" data-trigger="focus"
+                                            data-content='<a asp-area="Portal" asp-controller="Products" asp-action="Recycle" asp-route-id="@Model.Items[i].Id" class="btn btn btn-danger">Yes, I want to delete!</a>' data-html="true">
+                                        <span class="oi oi-x text-danger"></span>
+                                    </button>
+                                </div>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+
+            @await Html.PartialAsync("_Pagination", Model, new ViewDataDictionary(this.Vi‌​ewData) { { "PageSize", Model.PageSize }, { "PageIndex", Model.PageIndex }, { "TotalPage", Model.TotalPage } })
+
+        }
+        else
+        {
+            <div class="alert alert-warning" role="alert">
+                No Product added yet! Please add your first Product <a asp-area="Portal" asp-controller="Products" asp-action="Create" class="">here</a>.
+            </div>
+        }
+    </form>
+</section>
+<!-- /.box-body -->
+@*<div class="box-body">
+        <table class="table table-hover table-striped dataTable" cellspacing="0">
+            <thead>
+                <tr>
+                    <th scope="col">
+                        Title
+                    </th>
+                    <th scope="col">
+                        Excerpt
+                    </th>
+                    <th scope="col">
+                        Type
+                    </th>
+                    <th scope="col">
+                        CreatedBy
+                    </th>
+                    <th scope="col"></th>
+                </tr>
+            </thead>
+            <tfoot>
+                <tr>
+                    <th scope="col">
+                        Title
+                    </th>
+                    <th scope="col">
+                        Excerpt
+                    </th>
+                    <th scope="col">
+                        Type
+                    </th>
+                    <th scope="col">
+                        CreatedBy
+                    </th>
+                    <th scope="col"></th>
+                </tr>
+            </tfoot>
+            <tbody>
+                @foreach (var item in Model.Items)
+                {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Title)
+                        </td>
+                        <td>
+                            @Html.Raw(item.Excerpt)
+                        </td>
+
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Type)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.CreatedBy)
+                        </td>
+
+                        <td>
+                            <div class="btn-group btn-group-sm" role="group" aria-label="Actions">
+                                <a asp-controller="Product" asp-action="Edit" asp-route-id="@item.Id" asp-route-categoryId="@ViewBag.categoryId"
+                                   class="btn btn-sm btn-warning d-inline-block "><span class="oi oi-pencil"></span></a>
+                                <a asp-area="" asp-controller="Home" asp-action="ProductDetails"
+                                   asp-route-SeoName="@item.SeoName"
+                                   target="_blank" class="btn btn-sm btn-info"><span class="oi oi-eye"></span></a>
+                                <a asp-area="Portal" asp-controller="Product" asp-action="Recycle" asp-route-id="@item.Id"
+                                   class="btn btn-sm btn-danger d-inline-block" data-popout="true" data-toggle="confirmation" data-singleton="true"><span class="oi oi-x"></span></a>
+                            </div>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+
+            <tbody></tbody>
+        </table>
+        @await Html.PartialAsync("_Pagination", Model
+                            , new ViewDataDictionary(this.Vi‌​ewData)
+                            {
+    { "PageSize", Model.PageSize}, { "PageIndex", Model.PageIndex }, { "TotalPage", Model.TotalPage } })
+    </div>*@
 <!-- /.box-body -->

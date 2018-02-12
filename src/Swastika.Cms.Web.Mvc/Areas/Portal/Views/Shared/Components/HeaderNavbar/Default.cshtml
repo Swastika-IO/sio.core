@@ -6,6 +6,8 @@
     string currentArea = ViewContext.RouteData.Values["Area"] == null ? string.Empty : ViewContext.RouteData.Values["Area"].ToString();
     string currentId = ViewContext.RouteData.Values["Id"] == null ? string.Empty : ViewContext.RouteData.Values["Id"].ToString();
     var cultures = LanguageService.GetSupportedCultures();
+
+    ApplicationUser appuser = await UserManager.FindByIdAsync(UserManager.GetUserId(User));
 }
 
 <a class="navbar-brand mr-0 mr-md-2" href="/" aria-label="Swastika I/O">
