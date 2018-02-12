@@ -21,8 +21,6 @@ namespace Swastika.Cms.Lib.Models.Cms
         public string Excerpt { get; set; }
         public string Icon { get; set; }
         public string Image { get; set; }
-        public string ExtraProperties { get; set; }
-        public int Status { get; set; }
         public DateTime? LastModified { get; set; }
         public string ModifiedBy { get; set; }
         public string SeoDescription { get; set; }
@@ -37,6 +35,8 @@ namespace Swastika.Cms.Lib.Models.Cms
         public int Type { get; set; }
         public int? Views { get; set; }
         public int Priority { get; set; }
+        public string ExtraProperties { get; set; }
+        public int Status { get; set; }
 
         public SiocCulture SpecificultureNavigation { get; set; }
         public ICollection<SiocArticleMedia> SiocArticleMedia { get; set; }

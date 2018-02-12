@@ -3,7 +3,7 @@ using Swastika.Domain.Data.ViewModels;
 using Microsoft.EntityFrameworkCore.Storage;
 using Swastika.Cms.Lib.ViewModels.Info;
 
-namespace Swastika.Cms.Lib.ViewModels
+namespace Swastika.Cms.Lib.ViewModels.Navigation
 {
     public class NavModuleProductViewModel : ViewModelBase<SiocCmsContext, SiocModuleProduct, NavModuleProductViewModel>
     {

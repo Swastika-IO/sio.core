@@ -35,6 +35,18 @@ namespace Swastika.Cms.Lib.ViewModels.BackEnd
         #endregion
 
         #region Views
+        [JsonProperty("fullPath")]
+        public string FullPath
+        {
+            get
+            {
+                return SWCmsHelper.GetFullPath(new string[]{
+                    "",
+                    FileFolder,
+                    $"{FileName}{Extension}"
+                });
+            }
+        }
 
         #endregion
 
@@ -46,7 +58,7 @@ namespace Swastika.Cms.Lib.ViewModels.BackEnd
         {
         }
 
-        public BEMediaViewModel(SiocMedia model, SiocCmsContext _context = null, IDbContextTransaction _transaction = null) 
+        public BEMediaViewModel(SiocMedia model, SiocCmsContext _context = null, IDbContextTransaction _transaction = null)
             : base(model, _context, _transaction)
         {
         }
@@ -54,29 +66,35 @@ namespace Swastika.Cms.Lib.ViewModels.BackEnd
         #endregion
 
         #region Overrides
+        public override SiocMedia ParseModel()
+        {
+            if (Id == 0)
+            {
+                Id = BEMediaViewModel.Repository.Max(c => c.Id).Data + 1;
+                CreatedDateTime = DateTime.UtcNow;
+            }
+            return base.ParseModel();
+        }
         public override void ExpandView(SiocCmsContext _context = null, IDbContextTransaction _transaction = null)
         {
             IsClone = true;
             ListSupportedCulture = GlobalLanguageService.ListSupportedCulture;
             this.ListSupportedCulture.ForEach(c => c.IsSupported = true);
         }
-        public override RepositoryResponse<bool> RemoveModel(bool isRemoveRelatedModels = false, SiocCmsContext _context = null, IDbContextTransaction _transaction = null)
+      
+        public override RepositoryResponse<bool> RemoveRelatedModels(BEMediaViewModel view, SiocCmsContext _context = null, IDbContextTransaction _transaction = null)
         {
-            var result =base.RemoveModel(isRemoveRelatedModels, _context, _transaction);
-            if (result.IsSucceed)
-            {
-                FileRepository.Instance.DeleteFile(FileName, Extension, FileFolder);
-            }
+            var result = new RepositoryResponse<bool>();
+
+            result.IsSucceed = FileRepository.Instance.DeleteFile(FileName, Extension, FileFolder);
             return result;
         }
 
-        public override async Task<RepositoryResponse<bool>> RemoveModelAsync(bool isRemoveRelatedModels = false, SiocCmsContext _context = null, IDbContextTransaction _transaction = null)
+        public override async Task<RepositoryResponse<bool>> RemoveRelatedModelsAsync(BEMediaViewModel view, SiocCmsContext _context = null, IDbContextTransaction _transaction = null)
         {
-            var result = await base.RemoveModelAsync(isRemoveRelatedModels, _context, _transaction);
-            if (result.IsSucceed)
-            {
-                FileRepository.Instance.DeleteFile(FileName, Extension, FileFolder);
-            }
+            var result = new RepositoryResponse<bool>();
+
+            result.IsSucceed = FileRepository.Instance.DeleteFile(FileName, Extension, FileFolder);
             return result;
         }
         #endregion

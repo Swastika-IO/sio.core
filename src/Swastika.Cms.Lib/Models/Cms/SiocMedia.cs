@@ -13,11 +13,11 @@ namespace Swastika.Cms.Lib.Models.Cms
 
         public int Id { get; set; }
         public string Specificulture { get; set; }
+        public DateTime CreatedDateTime { get; set; }
         public string Extension { get; set; }
         public string FileFolder { get; set; }
         public string FileName { get; set; }
         public string FileType { get; set; }
-        public DateTime CreatedDateTime { get; set; }
         public DateTime? LastModified { get; set; }
         public string ModifiedBy { get; set; }
         public int Priority { get; set; }

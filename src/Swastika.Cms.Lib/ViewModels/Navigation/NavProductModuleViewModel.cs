@@ -20,13 +20,13 @@ namespace Swastika.Cms.Lib.ViewModels.Navigation
         public string ProductId { get; set; }
         [JsonProperty("moduleId")]
         public int ModuleId { get; set; }
-        [JsonProperty("isActived")]
-        public bool IsActived { get; set; }
         [JsonProperty("description")]
         public string Description { get; set; }
         #endregion
 
         #region Views
+        [JsonProperty("isActived")]
+        public bool IsActived { get; set; }
         [JsonProperty("module")]
         public BEModuleViewModel Module { get; set; }
         #endregion

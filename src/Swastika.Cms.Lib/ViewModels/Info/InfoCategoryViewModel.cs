@@ -2,6 +2,7 @@
 using Microsoft.EntityFrameworkCore.Storage;
 using Newtonsoft.Json;
 using Swastika.Cms.Lib.Models.Cms;
+using Swastika.Cms.Lib.ViewModels.Navigation;
 using Swastika.Domain.Data.ViewModels;
 using System;
 using System.Collections.Generic;
@@ -132,7 +133,7 @@ namespace Swastika.Cms.Lib.ViewModels.Info
             {
                 Childs = getChilds.Data;
             }
-            var countArticle = CategoryArticleViewModel.Repository.Count(c => c.CategoryId == Id && c.Specificulture == Specificulture
+            var countArticle = NavCategoryArticleViewModel.Repository.Count(c => c.CategoryId == Id && c.Specificulture == Specificulture
                 , _context: _context, _transaction: _transaction);
             
             if (countArticle.IsSucceed)

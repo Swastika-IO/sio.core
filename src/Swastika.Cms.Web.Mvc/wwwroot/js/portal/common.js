@@ -149,7 +149,29 @@
                     var container = $(this).parent('.custom-file');
                     //SW.Common.getBase64(file, $('.custom-file')).then(result => console.log(result));
                     //await SW.Common.getBase64(file).then(result => console.log(result));
+                    if ($(this).hasClass('auto-upload')) {
+                        var fileName = SW.Common.uploadImage(file, container);
+                    }
+                    else {
+                        SW.Common.getBase64(file, $(container)).then(result => {
+                            container.find('.custom-file-val').val(result);
+                            container.find('.custom-file-img').attr('src', result);
+
+                        }
+                        );
+                    }
+                }
+            });
+
+            $(document).on('click', '.model-media .btn-upload', function () {
+                var container = $(this).parents('.model-media').first().find('.custom-file').first();
+                var file = $('.model-media .custom-file-input').first().prop('files')[0];
+                if (file !== undefined && file !== null) {
+
+                    //SW.Common.getBase64(file, $('.custom-file')).then(result => console.log(result));
+                    //await SW.Common.getBase64(file).then(result => console.log(result));
                     var fileName = SW.Common.uploadImage(file, container);
+                    //$('.upload-image-modal-lg').dialog('close');
                 }
             });
 

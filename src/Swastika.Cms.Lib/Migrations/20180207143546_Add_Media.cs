@@ -13,8 +13,7 @@ namespace Swastika.Cms.Lib.Migrations
                 name: "sioc_media",
                 columns: table => new
                 {
-                    Id = table.Column<int>(nullable: false)
-                        .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
+                    Id = table.Column<int>(nullable: false),
                     Specificulture = table.Column<string>(maxLength: 10, nullable: false, defaultValueSql: "(N'vi-vn')"),
                     CreatedDateTime = table.Column<DateTime>(type: "datetime", nullable: false),
                     Extension = table.Column<string>(maxLength: 50, nullable: false),

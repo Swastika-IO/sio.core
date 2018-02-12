@@ -12,6 +12,7 @@ using Microsoft.Data.OData.Query;
 using System;
 using static Swastika.Cms.Lib.SWCmsConstants;
 using System.Linq.Expressions;
+using Swastika.Cms.Lib.ViewModels.Navigation;
 
 namespace Swastika.Cms.Lib.ViewModels.FrontEnd
 {

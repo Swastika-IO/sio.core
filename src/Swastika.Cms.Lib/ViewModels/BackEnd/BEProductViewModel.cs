@@ -86,6 +86,8 @@ namespace Swastika.Cms.Lib.ViewModels.BackEnd
         public List<NavModuleProductViewModel> Modules { get; set; } // Parent to Modules
         [JsonProperty("moduleNavs")]
         public List<NavProductModuleViewModel> ModuleNavs { get; set; } // Children Modules
+        [JsonProperty("mediaNavs")]
+        public List<NavProductMediaViewModel> MediaNavs { get; set; }
         [JsonProperty("activedModules")]
         public List<BEModuleViewModel> ActivedModules { get; set; } // Children Modules
         [JsonProperty("listTag")]
@@ -248,6 +250,12 @@ namespace Swastika.Cms.Lib.ViewModels.BackEnd
                 this.ModuleNavs = getProductModule.Data;
             }
 
+            var getProductMedia = NavProductMediaViewModel.Repository.GetModelListBy(n => n.ProductId == Id && n.Specificulture == Specificulture, _context, _transaction);
+            if (getProductMedia.IsSucceed)
+            {
+                MediaNavs = getProductMedia.Data;
+            }
+
             this.ListSupportedCulture.ForEach(c => c.IsSupported =
             (string.IsNullOrEmpty(Id) && c.Specificulture == Specificulture)
             || Repository.CheckIsExists(a => a.Id == Id && a.Specificulture == c.Specificulture, _context, _transaction)
@@ -328,6 +336,7 @@ namespace Swastika.Cms.Lib.ViewModels.BackEnd
             
             try
             {
+                // Save Template
                 var saveTemplate = await View.SaveModelAsync(false, _context, _transaction);
                 if (saveTemplate.IsSucceed)
                 {
@@ -336,6 +345,7 @@ namespace Swastika.Cms.Lib.ViewModels.BackEnd
                 result = result && saveTemplate.IsSucceed;
                 if (result)
                 {
+                    // Save Parent Category
                     foreach (var item in Categories)
                     {
                         item.ProductId = Id;
@@ -362,6 +372,7 @@ namespace Swastika.Cms.Lib.ViewModels.BackEnd
 
                 if (result)
                 {
+                    // Save Parent Modules
                     foreach (var item in Modules)
                     {
                         item.ProductId = Id;
@@ -388,6 +399,7 @@ namespace Swastika.Cms.Lib.ViewModels.BackEnd
 
                 if (result)
                 {
+                    // Save Children Category
                     foreach (var item in ModuleNavs)
                     {
                         item.ProductId = Id;
@@ -464,6 +476,29 @@ namespace Swastika.Cms.Lib.ViewModels.BackEnd
                     }
                 }
 
+                if (result)
+                {
+                    foreach (var navMedia in MediaNavs)
+                    {
+                        if (navMedia.IsActived)
+                        {
+                            navMedia.ProductId = parent.Id;
+                            var saveResult = await navMedia.SaveModelAsync(false, _context, _transaction);
+                        }
+                        else
+                        {
+                            navMedia.ProductId = parent.Id;
+                            var saveResult = await navMedia.RemoveModelAsync(false, _context, _transaction);
+                            result = saveResult.IsSucceed;
+                            if (!result)
+                            {
+                                Errors.AddRange(saveResult.Errors);
+                                Exception = saveResult.Exception;
+                            }
+                        }
+                    }
+                }
+
                 return new RepositoryResponse<bool>()
                 {
                     IsSucceed = result,
@@ -484,6 +519,7 @@ namespace Swastika.Cms.Lib.ViewModels.BackEnd
                 };
             }
         }
+
         public override async Task<RepositoryResponse<bool>> CloneSubModelsAsync(BEProductViewModel parent, List<SupportedCulture> cloneCultures, SiocCmsContext _context = null, IDbContextTransaction _transaction = null)
         {
             RepositoryResponse<bool> result = new RepositoryResponse<bool>() { };
@@ -590,23 +626,183 @@ namespace Swastika.Cms.Lib.ViewModels.BackEnd
 
 
         public override RepositoryResponse<bool> SaveSubModels(SiocProduct parent, SiocCmsContext _context = null, IDbContextTransaction _transaction = null)
+
         {
             bool result = true;
+
             try
             {
+                // Save Template
                 var saveTemplate = View.SaveModel(false, _context, _transaction);
                 if (saveTemplate.IsSucceed)
                 {
                     Errors.AddRange(saveTemplate.Errors);
                 }
                 result = result && saveTemplate.IsSucceed;
+                if (result)
+                {
+                    // Save Parent Category
+                    foreach (var item in Categories)
+                    {
+                        item.ProductId = Id;
+                        if (item.IsActived)
+                        {
+                            var saveResult = item.SaveModel(false, _context, _transaction);
+                            result = result && saveResult.IsSucceed;
+                            if (!result)
+                            {
+                                Errors.AddRange(saveResult.Errors);
+                            }
+                        }
+                        else
+                        {
+                            var saveResult = item.RemoveModel(false, _context, _transaction);
+                            result = result && saveResult.IsSucceed;
+                            if (!result)
+                            {
+                                Errors.AddRange(saveResult.Errors);
+                            }
+                        }
+                    }
+                }
 
-                
+                if (result)
+                {
+                    // Save Parent Modules
+                    foreach (var item in Modules)
+                    {
+                        item.ProductId = Id;
+                        if (item.IsActived)
+                        {
+                            var saveResult = item.SaveModel(false, _context, _transaction);
+                            result = result && saveResult.IsSucceed;
+                            if (!result)
+                            {
+                                Errors.AddRange(saveResult.Errors);
+                            }
+                        }
+                        else
+                        {
+                            var saveResult = item.RemoveModel(false, _context, _transaction);
+                            result = result && saveResult.IsSucceed;
+                            if (!result)
+                            {
+                                Errors.AddRange(saveResult.Errors);
+                            }
+                        }
+                    }
+                }
+
+                if (result)
+                {
+                    // Save Children Category
+                    foreach (var item in ModuleNavs)
+                    {
+                        item.ProductId = Id;
+                        if (item.IsActived)
+                        {
+                            var saveResult = item.SaveModel(false, _context, _transaction);
+                        }
+                        else
+                        {
+                            var saveResult = item.RemoveModel(true, _context, _transaction);
+                            result = saveResult.IsSucceed;
+                            if (!result)
+                            {
+                                Errors.AddRange(saveResult.Errors);
+                                Exception = saveResult.Exception;
+                            }
+                        }
+                    }
+                }
+
+                //save submodules data
+                if (result)
+                {
+                    foreach (var module in ActivedModules)
+                    {
+                        module.Data.Items = new List<InfoModuleDataViewModel>();
+                        foreach (var data in module.Data.JsonItems)
+                        {
+
+                            SiocModuleData model = new SiocModuleData()
+                            {
+                                Id = data.Value<string>("id") ?? Guid.NewGuid().ToString(),
+                                Specificulture = module.Specificulture,
+                                ProductId = Id,
+                                ModuleId = module.Id,
+                                Fields = module.Fields,
+                                CreatedDateTime = DateTime.UtcNow,
+                                UpdatedDateTime = DateTime.UtcNow
+                            };
+
+                            List<ModuleFieldViewModel> cols = module.Columns;
+                            JObject val = new JObject();
+
+                            foreach (JProperty prop in data.Properties())
+                            {
+                                var col = cols.FirstOrDefault(c => c.Name == prop.Name);
+                                if (col != null)
+                                {
+
+                                    JObject fieldVal = new JObject
+                                    {
+                                        new JProperty("dataType", col.DataType),
+                                        new JProperty("value", prop.Value)
+                                    };
+                                    val.Add(new JProperty(prop.Name, fieldVal));
+                                }
+                            }
+                            model.Value = val.ToString(Newtonsoft.Json.Formatting.None);
+
+                            var vmData = new InfoModuleDataViewModel(model);
+
+                            var saveResult = vmData.SaveModel(false, _context, _transaction);
+                            if (saveResult.IsSucceed)
+                            {
+                                module.Data.Items.Add(vmData);
+                            }
+                            else
+                            {
+                                Errors.AddRange(saveResult.Errors);
+                                Exception = saveResult.Exception;
+                            }
+                            result = result && saveResult.IsSucceed;
+                        }
+                    }
+                }
+
+                if (result)
+                {
+                    foreach (var navMedia in MediaNavs)
+                    {
+                        if (navMedia.IsActived)
+                        {
+                            navMedia.ProductId = parent.Id;
+                            var saveResult = navMedia.SaveModel(false, _context, _transaction);
+                        }
+                        else
+                        {
+                            navMedia.ProductId = parent.Id;
+                            var saveResult = navMedia.RemoveModel(false, _context, _transaction);
+                            result = saveResult.IsSucceed;
+                            if (!result)
+                            {
+                                Errors.AddRange(saveResult.Errors);
+                                Exception = saveResult.Exception;
+                            }
+                        }
+                    }
+                }
+
                 return new RepositoryResponse<bool>()
                 {
                     IsSucceed = result,
-                    Data = result
+                    Data = result,
+                    Errors = Errors,
+                    Exception = Exception
                 };
+
             }
             catch (Exception ex)
             {

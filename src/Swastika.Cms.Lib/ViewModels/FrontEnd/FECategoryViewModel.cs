@@ -10,6 +10,7 @@ using System.Collections.Generic;
 using static Swastika.Cms.Lib.SWCmsConstants;
 using System.Linq;
 using Swastika.Cms.Lib.Services;
+using Swastika.Cms.Lib.ViewModels.Navigation;
 
 namespace Swastika.Cms.Lib.ViewModels.FrontEnd
 {

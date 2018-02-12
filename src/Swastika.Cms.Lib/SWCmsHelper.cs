@@ -47,7 +47,7 @@ namespace Swastika.Cms.Lib
                     case SWCmsConstants.CateType.Blank:
                         foreach (var child in cate.Childs)
                         {
-                            child.Href = Url.RouteUrl("Page", new { culture = culture, pageName = child.SeoName });
+                            child.Href = Url.RouteUrl("Page", new {  culture, pageName = child.SeoName });
                         }
                         break;
 
@@ -62,7 +62,7 @@ namespace Swastika.Cms.Lib
                     case SWCmsConstants.CateType.Article:
                     case SWCmsConstants.CateType.Modules:
                     default:
-                        cate.Href = Url.RouteUrl("Page", new { culture = culture, pageName = cate.SeoName });
+                        cate.Href = Url.RouteUrl("Page", new {  culture, pageName = cate.SeoName });
                         break;
                 }
                 cate.IsActived = (
@@ -87,7 +87,7 @@ namespace Swastika.Cms.Lib
                     case SWCmsConstants.CateType.Blank:
                         foreach (var child in cate.Childs)
                         {
-                            child.Href = Url.RouteUrl("Page", new { culture = culture, pageName = child.SeoName });
+                            child.Href = Url.RouteUrl("Page", new {  culture, pageName = child.SeoName });
                         }
                         break;
 
@@ -102,7 +102,7 @@ namespace Swastika.Cms.Lib
                     case SWCmsConstants.CateType.Article:
                     case SWCmsConstants.CateType.Modules:
                     default:
-                        cate.Href = Url.RouteUrl("Page", new { culture = culture, pageName = cate.SeoName });
+                        cate.Href = Url.RouteUrl("Page", new {  culture, pageName = cate.SeoName });
                         break;
                 }
                 cate.IsActived = (

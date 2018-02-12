@@ -5,55 +5,55 @@ using Swastika.Cms.Lib.ViewModels.Info;
 
 namespace Swastika.Cms.Lib.ViewModels.Navigation
 {
-    public class NavCategoryProductViewModel 
-        : ViewModelBase<SiocCmsContext, SiocCategoryProduct, NavCategoryProductViewModel>
+    public class NavCategoryArticleViewModel 
+        : ViewModelBase<SiocCmsContext, SiocCategoryArticle, NavCategoryArticleViewModel>
     {
-        public NavCategoryProductViewModel(SiocCategoryProduct model, SiocCmsContext _context = null, IDbContextTransaction _transaction = null)
+        public NavCategoryArticleViewModel(SiocCategoryArticle model, SiocCmsContext _context = null, IDbContextTransaction _transaction = null)
             : base(model, _context, _transaction)
         {
         }
-        public NavCategoryProductViewModel(): base()
+        public NavCategoryArticleViewModel(): base()
         {
 
         }
 
-        public string ProductId { get; set; }
+        public string ArticleId { get; set; }
         public int CategoryId { get; set; }
         //public string Specificulture { get; set; }
         public bool IsActived { get; set; }
         public string Description { get; set; }
         #region Views
-        public InfoProductViewModel Product { get; set; }
+        public InfoArticleViewModel Article { get; set; }
         #endregion
         #region overrides
 
         public override void ExpandView(SiocCmsContext _context = null, IDbContextTransaction _transaction = null)
         {
-            var getProduct = InfoProductViewModel.Repository.GetSingleModel(p => p.Id == ProductId && p.Specificulture == Specificulture
+            var getArticle = InfoArticleViewModel.Repository.GetSingleModel(p => p.Id == ArticleId && p.Specificulture == Specificulture
                 , _context: _context, _transaction: _transaction
             );
-            if (getProduct.IsSucceed)
+            if (getArticle.IsSucceed)
             {
-                Product = getProduct.Data;
+                Article = getArticle.Data;
             }
         }
         #region Async
 
-        //public override async Task<RepositoryResponse<CategoryProductViewModel>> CloneAsync(string desSpecificulture, SiocCmsContext _context = null, IDbContextTransaction _transaction = null)
+        //public override async Task<RepositoryResponse<CategoryArticleViewModel>> CloneAsync(string desSpecificulture, SiocCmsContext _context = null, IDbContextTransaction _transaction = null)
         //{
-        //    //Check is destinate cate and product already defined in des culture
+        //    //Check is destinate cate and article already defined in des culture
         //    bool isValidDes = CategoryListItemViewModel.Repository.CheckIsExists(
         //        c => c.Id == this.CategoryId && c.Specificulture == desSpecificulture, _context, _transaction)
         //    && CategoryListItemViewModel.Repository.CheckIsExists(
         //        c => c.Id == this.CategoryId && c.Specificulture == desSpecificulture, _context, _transaction);
-        //    RepositoryResponse<CategoryProductViewModel> result = new RepositoryResponse<CategoryProductViewModel>();
+        //    RepositoryResponse<CategoryArticleViewModel> result = new RepositoryResponse<CategoryArticleViewModel>();
 
         //    if (isValidDes)
         //    {
-        //        var data = new CategoryProductViewModel(
-        //            new SiocCategoryProduct()
+        //        var data = new CategoryArticleViewModel(
+        //            new SiocCategoryArticle()
         //            {
-        //                ProductId = this.ProductId,
+        //                ArticleId = this.ArticleId,
         //                Specificulture = desSpecificulture,
         //                CategoryId = this.CategoryId
         //            },

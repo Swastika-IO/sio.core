@@ -22,6 +22,7 @@
     <Compile Remove="ViewModels\CategoryViewModels.cs" />
     <Compile Remove="ViewModels\ModuleDataViewModels.cs" />
     <Compile Remove="ViewModels\ModuleViewModels.cs" />
+    <Compile Remove="ViewModels\Navigation\_BlankViewModel.cs" />
     <Compile Remove="ViewModels\_BlankViewModel.cs" />
   </ItemGroup>
 
