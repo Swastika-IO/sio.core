@@ -156,7 +156,6 @@
                         SW.Common.getBase64(file, $(container)).then(result => {
                             container.find('.custom-file-val').val(result);
                             container.find('.custom-file-img').attr('src', result);
-
                         }
                         );
                     }
@@ -167,13 +166,25 @@
                 var container = $(this).parents('.model-media').first().find('.custom-file').first();
                 var file = $('.model-media .custom-file-input').first().prop('files')[0];
                 if (file !== undefined && file !== null) {
-
                     //SW.Common.getBase64(file, $('.custom-file')).then(result => console.log(result));
                     //await SW.Common.getBase64(file).then(result => console.log(result));
                     var fileName = SW.Common.uploadImage(file, container);
-                    //$('.upload-image-modal-lg').dialog('close');
+                    if (fileName != "") {
+                        $('.upload-image-modal-lg').modal('toggle');
+                    }
                 }
             });
+
+            $(".image-preview-modal-lg").on('show.bs.modal', function (event) {
+                var button = $(event.relatedTarget) // Button that triggered the modal
+                var recipient = button.data('imgsrc') // Extract info from data-* attributes
+                // If necessary, you could initiate an AJAX request here (and then do the updating in a callback).
+                // Update the modal's content. We'll use jQuery here, but you could use a data binding library or other methods instead.
+                var modal = $(this)
+                //modal.find('.modal-title').text('New message to ' + recipient)
+                //modal.find('.modal-body input').val(recipient)
+                modal.find('.modal-body .img-fluid').attr('src', recipient);
+            })
 
             // not work with BS 4 (using now http://bootstrap-tagsinput.github.io/bootstrap-tagsinput/examples/)
             //$(".tags")
