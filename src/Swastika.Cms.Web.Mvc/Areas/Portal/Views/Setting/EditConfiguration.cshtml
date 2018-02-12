@@ -11,11 +11,12 @@
           asp-action="@ViewContext.RouteData.Values["action"].ToString()">
         <div class="row">
 
+            @await Html.PartialAsync("EditableSides/_Editable_ActionsBar")
             <section class="col-lg-9">
                 @await Html.PartialAsync("_Editable_Configuration", Model)
             </section>
             <section class="col-lg-3">
-                @await Html.PartialAsync("EditableSides/_EditableSide_Actions", Model)
+                @await Html.PartialAsync(@"EditableSides\_EditableSide_Actions", Model)
                 @await Html.PartialAsync("EditableSides/_EditableSide_Cultures", Model.ListSupportedCulture)
             </section>
 

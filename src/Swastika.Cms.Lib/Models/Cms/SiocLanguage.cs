@@ -11,7 +11,8 @@ namespace Swastika.Cms.Lib.Models.Cms
         public int DataType { get; set; }
         public string Description { get; set; }
         public string Value { get; set; }
-
+        public int Priority { get; set; }
+        public int Status { get; set; }
         public SiocCulture SpecificultureNavigation { get; set; }
     }
 }

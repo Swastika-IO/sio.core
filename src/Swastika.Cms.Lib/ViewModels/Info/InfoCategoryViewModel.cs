@@ -89,12 +89,17 @@ namespace Swastika.Cms.Lib.ViewModels.Info
         #endregion Models
 
         #region Views
-
+        [JsonProperty("childs")]
         public List<InfoCategoryViewModel> Childs { get; set; }
+        [JsonProperty("totalArticle")]
         public int TotalArticle { get; set; }
+        [JsonProperty("href")]
         public string Href { get; set; }
+        [JsonProperty("isActived")]
         public bool IsActived { get; set; }
+        [JsonProperty("detailsUrl")]
         public string DetailsUrl { get; set; }
+        [JsonProperty("domain")]
         public string Domain { get; set; }
 
         #endregion Views
@@ -125,12 +130,12 @@ namespace Swastika.Cms.Lib.ViewModels.Info
             {
                 Childs = getChilds.Data;
             }
-            var getSubArticles = InfoArticleViewModel.GetModelListByCategory(
-                Id, Specificulture, SWCmsConstants.Default.OrderBy, OrderByDirection.Ascending
+            var countArticle = CategoryArticleViewModel.Repository.Count(c => c.CategoryId == Id && c.Specificulture == Specificulture
                 , _context: _context, _transaction: _transaction);
-            if (getSubArticles.IsSucceed)
+            
+            if (countArticle.IsSucceed)
             {
-                TotalArticle = getSubArticles.Data.TotalItems;
+                TotalArticle = countArticle.Data;
             }
         }
 

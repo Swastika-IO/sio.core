@@ -33,6 +33,9 @@ namespace Swastika.Cms.Lib.ViewModels.BackEnd
         public string Thumbnail { get; set; }
         [JsonProperty("image")]
         public string Image { get; set; }
+        [JsonIgnore]
+        [JsonProperty("extraProperties")]
+        public string ExtraProperties { get; set; } = "[]";
         [JsonProperty("price")]
         public double Price { get; set; }
         [JsonProperty("priceUnit")]
@@ -161,7 +164,8 @@ namespace Swastika.Cms.Lib.ViewModels.BackEnd
 
             }
         }
-
+        [JsonProperty("properties")]
+        public List<ExtraProperty> Properties { get; set; }
 
         #endregion
 
@@ -184,13 +188,21 @@ namespace Swastika.Cms.Lib.ViewModels.BackEnd
         public override void ExpandView(SiocCmsContext _context = null, IDbContextTransaction _transaction = null)
         {
             IsClone = true;
-            ListSupportedCulture = GlobalConfigurationService.ListSupportedCulture;
+            ListSupportedCulture = GlobalLanguageService.ListSupportedCulture;
 
             if (!string.IsNullOrEmpty(this.Tags))
             {
                 ListTag = JArray.Parse(this.Tags);
             }
-
+            Properties = new List<ExtraProperty>();
+            if (!string.IsNullOrEmpty(ExtraProperties))
+            {
+                JArray arr = JArray.Parse(ExtraProperties);
+                foreach (JObject item in arr)
+                {
+                    Properties.Add(item.ToObject<ExtraProperty>());
+                }
+            }
             //Get Templates
             this.Templates = this.Templates ??
                 BETemplateViewModel.Repository.GetModelListBy(
@@ -259,6 +271,16 @@ namespace Swastika.Cms.Lib.ViewModels.BackEnd
                 Id = Guid.NewGuid().ToString(); //Common.Common.GetBase62(8);
                 CreatedDateTime = DateTime.UtcNow;
             }
+            if (Properties.Count > 0)
+            {
+                JArray arrProperties = new JArray();
+                foreach (var p in Properties.OrderBy(p => p.Priority))
+                {
+                    arrProperties.Add(JObject.FromObject(p));
+                }
+                ExtraProperties = arrProperties.ToString(Formatting.None);
+            }
+
             Template = View != null ? string.Format(@"{0}/{1}{2}", View.FolderType, View.FileName, View.Extension) : Template;
             if (ThumbnailFileStream != null)
             {

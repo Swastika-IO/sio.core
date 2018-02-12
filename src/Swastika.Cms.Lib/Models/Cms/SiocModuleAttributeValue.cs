@@ -14,6 +14,8 @@ namespace Swastika.Cms.Lib.Models.Cms
         public string Name { get; set; }
         public string Title { get; set; }
         public int Width { get; set; }
+        public int Priority { get; set; }
+        public int Status { get; set; }
 
         public SiocModuleAttributeSet SiocModuleAttributeSet { get; set; }
     }

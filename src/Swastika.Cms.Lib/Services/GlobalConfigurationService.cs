@@ -53,22 +53,22 @@ namespace Swastika.Cms.Lib.Services
 
 
 
-        private static List<SupportedCulture> _listSupportedLanguage;
-        public static List<SupportedCulture> ListSupportedCulture
-        {
-            get
-            {
-                if (_listSupportedLanguage == null)
-                {
-                    InitCultures();
-                }
-                return _listSupportedLanguage;
-            }
-            set
-            {
-                _listSupportedLanguage = value;
-            }
-        }
+        //private static List<SupportedCulture> _listSupportedLanguage;
+        //public static List<SupportedCulture> ListSupportedCulture
+        //{
+        //    get
+        //    {
+        //        if (_listSupportedLanguage == null)
+        //        {
+        //            InitCultures();
+        //        }
+        //        return _listSupportedLanguage;
+        //    }
+        //    set
+        //    {
+        //        _listSupportedLanguage = value;
+        //    }
+        //}
         private static GlobalConfigurationService _instance;
         public static GlobalConfigurationService Instance
         {
@@ -235,7 +235,7 @@ namespace Swastika.Cms.Lib.Services
                             }
                         }
                     }
-                    InitCultures(context, transaction);
+                    GlobalLanguageService.Instance.RefreshCultures(context, transaction);
                     InitConfigurations(context, transaction);
                     transaction.Commit();
                     IsInit = true;
@@ -266,53 +266,53 @@ namespace Swastika.Cms.Lib.Services
 
         }
 
-        public SupportedCulture GetCulture(string specificulture)
-        {
-            return ListSupportedCulture.FirstOrDefault(c => c.Specificulture == specificulture);
-        }
+        //public SupportedCulture GetCulture(string specificulture)
+        //{
+        //    return ListSupportedCulture.FirstOrDefault(c => c.Specificulture == specificulture);
+        //}
 
-        public List<SupportedCulture> GetSupportedCultures()
-        {
-            return ListSupportedCulture;
-        }
+        //public List<SupportedCulture> GetSupportedCultures()
+        //{
+        //    return ListSupportedCulture;
+        //}
 
         public void Refresh()
         {
-            InitCultures();
+            //InitCultures();
             InitConfigurations();
         }
 
-        public void RefreshCultures()
-        {
-            InitCultures();
-        }
+        //public void RefreshCultures()
+        //{
+        //    InitCultures();
+        //}
 
-        static void InitCultures(SiocCmsContext _context = null, IDbContextTransaction _transaction = null)
-        {
-            var getCultures = CultureViewModel.Repository.GetModelList(_context, _transaction);
-            _listSupportedLanguage = new List<SupportedCulture>();
-            if (getCultures.IsSucceed)
-            {
+        //static void InitCultures(SiocCmsContext _context = null, IDbContextTransaction _transaction = null)
+        //{
+        //    var getCultures = CultureViewModel.Repository.GetModelList(_context, _transaction);
+        //    _listSupportedLanguage = new List<SupportedCulture>();
+        //    if (getCultures.IsSucceed)
+        //    {
                
-                foreach (var culture in getCultures.Data)
-                {
-                    _listSupportedLanguage.Add(
-                        new SupportedCulture()
-                        {
-                            Icon = culture.Icon,
-                            Specificulture = culture.Specificulture,
-                            Alias = culture.Alias,
-                            FullName = culture.FullName,
-                            Description = culture.FullName,
-                            Id = culture.Id,
-                            Lcid = culture.Lcid
-                        });
+        //        foreach (var culture in getCultures.Data)
+        //        {
+        //            _listSupportedLanguage.Add(
+        //                new SupportedCulture()
+        //                {
+        //                    Icon = culture.Icon,
+        //                    Specificulture = culture.Specificulture,
+        //                    Alias = culture.Alias,
+        //                    FullName = culture.FullName,
+        //                    Description = culture.FullName,
+        //                    Id = culture.Id,
+        //                    Lcid = culture.Lcid
+        //                });
 
                    
-                }
-            }
+        //        }
+        //    }
 
-        }
+        //}
 
         static void InitConfigurations(SiocCmsContext _context = null, IDbContextTransaction _transaction = null)
         {

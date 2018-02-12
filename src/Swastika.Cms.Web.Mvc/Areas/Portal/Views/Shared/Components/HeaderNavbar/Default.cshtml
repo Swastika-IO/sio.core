@@ -1,7 +1,11 @@
 ﻿@inject UserManager<ApplicationUser> UserManager
 
 @{
-    var cultures = LocalizerService.GetSupportedCultures();
+    string currentController = ViewContext.RouteData.Values["Controller"] == null ? string.Empty : ViewContext.RouteData.Values["Controller"].ToString();
+    string currentAction = ViewContext.RouteData.Values["Action"] == null ? string.Empty : ViewContext.RouteData.Values["Action"].ToString();
+    string currentArea = ViewContext.RouteData.Values["Area"] == null ? string.Empty : ViewContext.RouteData.Values["Area"].ToString();
+    string currentId = ViewContext.RouteData.Values["Id"] == null ? string.Empty : ViewContext.RouteData.Values["Id"].ToString();
+    var cultures = LanguageService.GetSupportedCultures();
 }
 
 <a class="navbar-brand mr-0 mr-md-2" href="/" aria-label="Swastika I/O">
@@ -29,9 +33,15 @@
         </a>
         <div class="dropdown-menu dropdown-menu-right" aria-labelledby="sw-versions">
             @foreach (var culture in cultures)
-                    {
-                        string cl = ViewBag.culture == culture.Specificulture ? "active" : string.Empty;
-                <a class="dropdown-item @cl" href="/@culture.Specificulture/Portal/"><span class="flag-icon @culture.Icon"></span> @culture.FullName</a>
+            {
+                string cl = ViewBag.culture == culture.Specificulture ? "active" : string.Empty;
+                <a asp-route-culture="@culture.Specificulture"
+                   asp-area="@currentArea"
+                   asp-controller="@currentController"
+                   asp-action="@currentAction"
+                   asp-route-id="@currentId" class="dropdown-item @cl">
+                    <span class="flag-icon @culture.Icon"></span> @culture.Description
+                </a>
             }
         </div>
     </li>
@@ -55,6 +65,6 @@
     </li>
 </ul>
 <a href="/vi-vn/portal/profile" title="@UserManager.GetUserName(User)">
-    <img class="rounded-circle sw-avatar" alt="200x200" src="https://avatars1.githubusercontent.com/u/3785721?s=40&v=4" data-holder-rendered="true"
+    <img class="rounded-circle sw-avatar" alt="200x200" src="~/images/upload-image-thumbnail.png" data-holder-rendered="true"
          style="width: 36px; height: 36px;">
 </a>

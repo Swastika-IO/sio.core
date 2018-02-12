@@ -15,6 +15,7 @@ using System.Threading.Tasks;
 using Swastika.Domain.Core.Models;
 using Swastika.Cms.Lib.ViewModels.Info;
 using Swastika.Cms.Lib.ViewModels.FrontEnd;
+using static Swastika.Cms.Lib.SWCmsConstants;
 
 namespace Swastika.Cms.Lib.ViewModels.BackEnd
 {
@@ -89,11 +90,11 @@ namespace Swastika.Cms.Lib.ViewModels.BackEnd
         public FileStreamViewModel ImageFileStream { get; set; }
         [JsonProperty("thumbnailFileStream")]
         public FileStreamViewModel ThumbnailFileStream { get; set; }
-
+        [JsonProperty("properties")]
         public List<ExtraProperty> Properties { get; set; }
 
         #region Template
-
+        
         [JsonProperty("view")]
         public BETemplateViewModel View { get; set; }
         [JsonProperty("templates")]
@@ -185,7 +186,7 @@ namespace Swastika.Cms.Lib.ViewModels.BackEnd
         public override void ExpandView(SiocCmsContext _context = null, IDbContextTransaction _transaction = null)
         {
             IsClone = true;
-            ListSupportedCulture = GlobalConfigurationService.ListSupportedCulture;
+            ListSupportedCulture = GlobalLanguageService.ListSupportedCulture;
 
             if (!string.IsNullOrEmpty(this.Tags))
             {

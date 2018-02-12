@@ -15,7 +15,7 @@
         case Swastika.Cms.Lib.SWCmsConstants.DataType.Image:
             string strValue = (string)value;
             string img = !string.IsNullOrEmpty(strValue) ? strValue : "http://placehold.it/50x50";
-            <img src="@img" style="max-width:100%" />
+            <img src="@img"/>
             break;
         case Swastika.Cms.Lib.SWCmsConstants.DataType.Icon:
             <i class="fa-2x @value"></i>

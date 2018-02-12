@@ -2,7 +2,7 @@
 
 @{
     ViewData["Title"] = "Search Results";
-    Layout = string.Format("Layouts/{0}", Swastika.Cms.Lib.Services.ApplicationConfigService.Instance.GetLocalString("Layout", ViewBag.culture, "_Layout_Corlate"));// "_Layout_Corlate";
+    var translator = SWCmsHelper.GetTranslator(ViewBag.culture);
     List<Swastika.Cms.Lib.ViewModels.FrontEnd.FECategoryViewModel> categories = ViewData["Categories"] as List<Swastika.Cms.Lib.ViewModels.FrontEnd.FECategoryViewModel>;
 }
 
@@ -39,7 +39,7 @@
                                     <a class="btn btn-primary readmore"
                                        asp-route-culture="@ViewBag.culture" asp-controller="Home"
                                        asp-action="Home" asp-route-pageName="@cate.SeoTitle">
-                                        @Swastika.Cms.Lib.Services.ApplicationConfigService.Instance.GetLocalString("Read More", ViewBag.culture) <i class="fa fa-angle-right"></i>
+                                        @translator.Get("Read More") <i class="fa fa-angle-right"></i>
                                     </a>
                                 </div>
                             </div>
@@ -60,11 +60,11 @@
                             </div>
 
                             <div class="col-xs-12 col-sm-10 blog-content">
-                                <a asp-action="ArticleDetails" asp-route-id="@article.Id" asp-route-SeoTitle="@article.SeoTitle">
+                                <a asp-action="ArticleDetails" asp-route-id="@article.Id" asp-route-SeoName="@article.SeoName">
                                     <img class="img-responsive img-blog" src="@article.Image" width="100%" alt="" />
                                 </a>
                                 <h2>
-                                    <a asp-action="ArticleDetails" asp-route-id="@article.Id" asp-route-SeoTitle="@article.SeoTitle">
+                                    <a asp-action="ArticleDetails" asp-route-id="@article.Id" asp-route-SeoName="@article.SeoName">
                                         @article.Title
                                     </a>
                                 </h2>
@@ -72,7 +72,7 @@
                                     @article.Excerpt
                                 </h3>
                                 <a class="btn btn-primary readmore"
-                                   asp-action="ArticleDetails" asp-route-id="@article.Id" asp-route-SeoTitle="@article.SeoTitle">
+                                   asp-action="ArticleDetails" asp-route-id="@article.Id" asp-route-SeoName="@article.SeoName">
                                     Read More <i class="fa fa-angle-right"></i>
                                 </a>
                             </div>
@@ -102,10 +102,10 @@
                     <form role="form" asp-controller="Home" asp-action="Search">
                         <input type="text" name="keyword"
                                class="form-control search_box" autocomplete="off"
-                               placeholder='@Swastika.Cms.Lib.Services.ApplicationConfigService.Instance.GetLocalString("Tìm kiếm thông tin", ViewBag.culture)'>
+                               placeholder='@translator.Get("Tìm kiếm thông tin")'>
                     </form>
                 </div><!--/.search-->
-                @Html.Partial("Widgets/_Categories")
+                
 
             </aside>
         </div><!--/.row-->

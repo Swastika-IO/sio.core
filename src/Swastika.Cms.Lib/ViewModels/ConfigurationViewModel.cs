@@ -37,7 +37,7 @@ namespace Swastika.Cms.Lib.ViewModels
         public override void ExpandView(SiocCmsContext _context = null, IDbContextTransaction _transaction = null)
         {
             IsClone = true;
-            ListSupportedCulture = GlobalConfigurationService.ListSupportedCulture;
+            ListSupportedCulture = GlobalLanguageService.ListSupportedCulture;
             this.ListSupportedCulture.ForEach(c => c.IsSupported =
             (string.IsNullOrEmpty(Keyword) && c.Specificulture == Specificulture)
             || Repository.CheckIsExists(a => a.Keyword == Keyword && a.Specificulture == c.Specificulture, _context, _transaction)

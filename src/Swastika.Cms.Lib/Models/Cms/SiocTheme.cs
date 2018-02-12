@@ -17,6 +17,7 @@ namespace Swastika.Cms.Lib.Models.Cms
         public string Image { get; set; }
         public string Name { get; set; }
         public int Priority { get; set; }
+        public int Status { get; set; }
 
         public ICollection<SiocFile> SiocFile { get; set; }
         public ICollection<SiocTemplate> SiocTemplate { get; set; }

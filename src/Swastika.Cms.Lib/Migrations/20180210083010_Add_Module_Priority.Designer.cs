@@ -11,9 +11,10 @@ using System;
 namespace Swastika.Cms.Lib.Migrations
 {
     [DbContext(typeof(SiocCmsContext))]
-    partial class SiocCmsContextModelSnapshot : ModelSnapshot
+    [Migration("20180210083010_Add_Module_Priority")]
+    partial class Add_Module_Priority
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -46,6 +47,10 @@ namespace Swastika.Cms.Lib.Migrations
                     b.Property<string>("Image")
                         .HasMaxLength(250);
 
+                    b.Property<bool>("IsDeleted");
+
+                    b.Property<bool>("IsVisible");
+
                     b.Property<DateTime?>("LastModified")
                         .HasColumnType("datetime");
 
@@ -71,10 +76,6 @@ namespace Swastika.Cms.Lib.Migrations
 
                     b.Property<string>("Source")
                         .HasMaxLength(250);
-
-                    b.Property<int>("Status")
-                        .ValueGeneratedOnAdd()
-                        .HasDefaultValueSql("((1))");
 
                     b.Property<string>("Tags")
                         .HasMaxLength(500);
@@ -111,13 +112,7 @@ namespace Swastika.Cms.Lib.Migrations
 
                     b.Property<int>("Position");
 
-                    b.Property<int>("Priority")
-                        .ValueGeneratedOnAdd()
-                        .HasDefaultValueSql("((0))");
-
-                    b.Property<int>("Status")
-                        .ValueGeneratedOnAdd()
-                        .HasDefaultValueSql("((1))");
+                    b.Property<int>("Priority");
 
                     b.HasKey("MediaId", "ArticleId", "Specificulture");
 
@@ -143,10 +138,6 @@ namespace Swastika.Cms.Lib.Migrations
                     b.Property<int>("Priority")
                         .ValueGeneratedOnAdd()
                         .HasDefaultValueSql("((0))");
-
-                    b.Property<int>("Status")
-                        .ValueGeneratedOnAdd()
-                        .HasDefaultValueSql("((1))");
 
                     b.HasKey("ModuleId", "ArticleId", "Specificulture");
 
@@ -184,6 +175,10 @@ namespace Swastika.Cms.Lib.Migrations
                     b.Property<string>("Image")
                         .HasMaxLength(250);
 
+                    b.Property<bool>("IsDeleted");
+
+                    b.Property<bool?>("IsVisible");
+
                     b.Property<DateTime?>("LastModified")
                         .HasColumnType("datetime");
 
@@ -211,10 +206,6 @@ namespace Swastika.Cms.Lib.Migrations
 
                     b.Property<string>("StaticUrl")
                         .HasMaxLength(250);
-
-                    b.Property<int>("Status")
-                        .ValueGeneratedOnAdd()
-                        .HasDefaultValueSql("((1))");
 
                     b.Property<string>("Tags")
                         .HasMaxLength(500);
@@ -250,10 +241,6 @@ namespace Swastika.Cms.Lib.Migrations
                         .ValueGeneratedOnAdd()
                         .HasDefaultValueSql("((0))");
 
-                    b.Property<int>("Status")
-                        .ValueGeneratedOnAdd()
-                        .HasDefaultValueSql("((1))");
-
                     b.HasKey("ArticleId", "CategoryId", "Specificulture");
 
                     b.HasIndex("ArticleId", "Specificulture");
@@ -275,10 +262,6 @@ namespace Swastika.Cms.Lib.Migrations
                     b.Property<int>("Priority")
                         .ValueGeneratedOnAdd()
                         .HasDefaultValueSql("((0))");
-
-                    b.Property<int>("Status")
-                        .ValueGeneratedOnAdd()
-                        .HasDefaultValueSql("((1))");
 
                     b.HasKey("Id", "ParentId", "Specificulture");
 
@@ -307,10 +290,6 @@ namespace Swastika.Cms.Lib.Migrations
                         .ValueGeneratedOnAdd()
                         .HasDefaultValueSql("((0))");
 
-                    b.Property<int>("Status")
-                        .ValueGeneratedOnAdd()
-                        .HasDefaultValueSql("((1))");
-
                     b.HasKey("ModuleId", "CategoryId", "Specificulture");
 
                     b.HasIndex("CategoryId", "Specificulture");
@@ -336,10 +315,6 @@ namespace Swastika.Cms.Lib.Migrations
                         .ValueGeneratedOnAdd()
                         .HasDefaultValueSql("((0))");
 
-                    b.Property<int>("Status")
-                        .ValueGeneratedOnAdd()
-                        .HasDefaultValueSql("((1))");
-
                     b.HasKey("PositionId", "CategoryId", "Specificulture");
 
                     b.HasIndex("CategoryId", "Specificulture");
@@ -360,10 +335,6 @@ namespace Swastika.Cms.Lib.Migrations
                     b.Property<int>("Priority")
                         .ValueGeneratedOnAdd()
                         .HasDefaultValueSql("((0))");
-
-                    b.Property<int>("Status")
-                        .ValueGeneratedOnAdd()
-                        .HasDefaultValueSql("((1))");
 
                     b.HasKey("ProductId", "CategoryId", "Specificulture");
 
@@ -400,14 +371,6 @@ namespace Swastika.Cms.Lib.Migrations
 
                     b.Property<bool?>("IsVisible");
 
-                    b.Property<int>("Priority")
-                        .ValueGeneratedOnAdd()
-                        .HasDefaultValueSql("((0))");
-
-                    b.Property<int>("Status")
-                        .ValueGeneratedOnAdd()
-                        .HasDefaultValueSql("((1))");
-
                     b.Property<string>("UpdatedBy")
                         .HasMaxLength(250);
 
@@ -435,14 +398,6 @@ namespace Swastika.Cms.Lib.Migrations
                     b.Property<string>("Description")
                         .HasMaxLength(250);
 
-                    b.Property<int>("Priority")
-                        .ValueGeneratedOnAdd()
-                        .HasDefaultValueSql("((0))");
-
-                    b.Property<int>("Status")
-                        .ValueGeneratedOnAdd()
-                        .HasDefaultValueSql("((1))");
-
                     b.Property<string>("Value");
 
                     b.HasKey("Keyword", "Specificulture");
@@ -462,14 +417,6 @@ namespace Swastika.Cms.Lib.Migrations
 
                     b.Property<string>("Note")
                         .HasMaxLength(250);
-
-                    b.Property<int>("Priority")
-                        .ValueGeneratedOnAdd()
-                        .HasDefaultValueSql("((0))");
-
-                    b.Property<int>("Status")
-                        .ValueGeneratedOnAdd()
-                        .HasDefaultValueSql("((1))");
 
                     b.Property<string>("Value");
 
@@ -499,17 +446,9 @@ namespace Swastika.Cms.Lib.Migrations
                         .HasColumnName("LCID")
                         .HasMaxLength(50);
 
-                    b.Property<int>("Priority")
-                        .ValueGeneratedOnAdd()
-                        .HasDefaultValueSql("((0))");
-
                     b.Property<string>("Specificulture")
                         .IsRequired()
                         .HasMaxLength(10);
-
-                    b.Property<int>("Status")
-                        .ValueGeneratedOnAdd()
-                        .HasDefaultValueSql("((1))");
 
                     b.HasKey("Id");
 
@@ -554,13 +493,7 @@ namespace Swastika.Cms.Lib.Migrations
                     b.Property<string>("ModifiedBy")
                         .HasMaxLength(250);
 
-                    b.Property<int>("Priority")
-                        .ValueGeneratedOnAdd()
-                        .HasDefaultValueSql("((0))");
-
-                    b.Property<int>("Status")
-                        .ValueGeneratedOnAdd()
-                        .HasDefaultValueSql("((1))");
+                    b.Property<int>("Priority");
 
                     b.Property<int?>("ThemeId");
 
@@ -590,14 +523,6 @@ namespace Swastika.Cms.Lib.Migrations
 
                     b.Property<string>("Description")
                         .HasMaxLength(250);
-
-                    b.Property<int>("Priority")
-                        .ValueGeneratedOnAdd()
-                        .HasDefaultValueSql("((0))");
-
-                    b.Property<int>("Status")
-                        .ValueGeneratedOnAdd()
-                        .HasDefaultValueSql("((1))");
 
                     b.Property<string>("Value");
 
@@ -647,10 +572,6 @@ namespace Swastika.Cms.Lib.Migrations
                         .ValueGeneratedOnAdd()
                         .HasDefaultValueSql("((0))");
 
-                    b.Property<int>("Status")
-                        .ValueGeneratedOnAdd()
-                        .HasDefaultValueSql("((1))");
-
                     b.HasKey("Id", "Specificulture");
 
                     b.ToTable("sioc_media");
@@ -686,10 +607,6 @@ namespace Swastika.Cms.Lib.Migrations
                         .ValueGeneratedOnAdd()
                         .HasDefaultValueSql("((0))");
 
-                    b.Property<int>("Status")
-                        .ValueGeneratedOnAdd()
-                        .HasDefaultValueSql("((1))");
-
                     b.Property<string>("Template")
                         .HasMaxLength(250);
 
@@ -720,10 +637,6 @@ namespace Swastika.Cms.Lib.Migrations
                     b.Property<int>("Priority")
                         .ValueGeneratedOnAdd()
                         .HasDefaultValueSql("((0))");
-
-                    b.Property<int>("Status")
-                        .ValueGeneratedOnAdd()
-                        .HasDefaultValueSql("((1))");
 
                     b.HasKey("ArticleId", "ModuleId", "Specificulture");
 
@@ -758,10 +671,6 @@ namespace Swastika.Cms.Lib.Migrations
                     b.Property<int>("Priority")
                         .ValueGeneratedOnAdd()
                         .HasDefaultValueSql("((0))");
-
-                    b.Property<int>("Status")
-                        .ValueGeneratedOnAdd()
-                        .HasDefaultValueSql("((1))");
 
                     b.Property<DateTime?>("UpdatedDateTime")
                         .HasColumnType("datetime");
@@ -798,14 +707,6 @@ namespace Swastika.Cms.Lib.Migrations
 
                     b.Property<string>("Name")
                         .HasMaxLength(250);
-
-                    b.Property<int>("Priority")
-                        .ValueGeneratedOnAdd()
-                        .HasDefaultValueSql("((0))");
-
-                    b.Property<int>("Status")
-                        .ValueGeneratedOnAdd()
-                        .HasDefaultValueSql("((1))");
 
                     b.Property<string>("Title")
                         .HasMaxLength(250);
@@ -850,10 +751,6 @@ namespace Swastika.Cms.Lib.Migrations
                     b.Property<string>("ProductId")
                         .HasMaxLength(50);
 
-                    b.Property<int>("Status")
-                        .ValueGeneratedOnAdd()
-                        .HasDefaultValueSql("((1))");
-
                     b.Property<DateTime?>("UpdatedDateTime")
                         .HasColumnType("datetime");
 
@@ -886,10 +783,6 @@ namespace Swastika.Cms.Lib.Migrations
                         .ValueGeneratedOnAdd()
                         .HasDefaultValueSql("((0))");
 
-                    b.Property<int>("Status")
-                        .ValueGeneratedOnAdd()
-                        .HasDefaultValueSql("((1))");
-
                     b.HasKey("ProductId", "ModuleId", "Specificulture");
 
                     b.HasIndex("ModuleId", "Specificulture");
@@ -905,14 +798,6 @@ namespace Swastika.Cms.Lib.Migrations
                         .HasMaxLength(256);
 
                     b.Property<string>("Description");
-
-                    b.Property<int>("Priority")
-                        .ValueGeneratedOnAdd()
-                        .HasDefaultValueSql("((0))");
-
-                    b.Property<int>("Status")
-                        .ValueGeneratedOnAdd()
-                        .HasDefaultValueSql("((1))");
 
                     b.Property<string>("Value")
                         .IsRequired();
@@ -930,14 +815,6 @@ namespace Swastika.Cms.Lib.Migrations
                     b.Property<string>("Description")
                         .IsRequired()
                         .HasMaxLength(250);
-
-                    b.Property<int>("Priority")
-                        .ValueGeneratedOnAdd()
-                        .HasDefaultValueSql("((0))");
-
-                    b.Property<int>("Status")
-                        .ValueGeneratedOnAdd()
-                        .HasDefaultValueSql("((1))");
 
                     b.HasKey("Id");
 
@@ -970,6 +847,10 @@ namespace Swastika.Cms.Lib.Migrations
                     b.Property<string>("Image")
                         .HasMaxLength(250);
 
+                    b.Property<bool>("IsDeleted");
+
+                    b.Property<bool>("IsVisible");
+
                     b.Property<DateTime?>("LastModified")
                         .HasColumnType("datetime");
 
@@ -982,10 +863,6 @@ namespace Swastika.Cms.Lib.Migrations
 
                     b.Property<string>("PriceUnit")
                         .HasMaxLength(10);
-
-                    b.Property<int>("Priority")
-                        .ValueGeneratedOnAdd()
-                        .HasDefaultValueSql("((0))");
 
                     b.Property<string>("SeoDescription")
                         .HasMaxLength(4000);
@@ -1002,10 +879,6 @@ namespace Swastika.Cms.Lib.Migrations
 
                     b.Property<string>("Source")
                         .HasMaxLength(250);
-
-                    b.Property<int>("Status")
-                        .ValueGeneratedOnAdd()
-                        .HasDefaultValueSql("((1))");
 
                     b.Property<string>("Tags")
                         .HasMaxLength(500);
@@ -1042,13 +915,7 @@ namespace Swastika.Cms.Lib.Migrations
 
                     b.Property<int>("Position");
 
-                    b.Property<int>("Priority")
-                        .ValueGeneratedOnAdd()
-                        .HasDefaultValueSql("((0))");
-
-                    b.Property<int>("Status")
-                        .ValueGeneratedOnAdd()
-                        .HasDefaultValueSql("((1))");
+                    b.Property<int>("Priority");
 
                     b.HasKey("MediaId", "ProductId", "Specificulture");
 
@@ -1071,13 +938,7 @@ namespace Swastika.Cms.Lib.Migrations
 
                     b.Property<int>("Position");
 
-                    b.Property<int>("Priority")
-                        .ValueGeneratedOnAdd()
-                        .HasDefaultValueSql("((0))");
-
-                    b.Property<int>("Status")
-                        .ValueGeneratedOnAdd()
-                        .HasDefaultValueSql("((1))");
+                    b.Property<int>("Priority");
 
                     b.HasKey("ModuleId", "ProductId", "Specificulture");
 
@@ -1135,10 +996,6 @@ namespace Swastika.Cms.Lib.Migrations
                     b.Property<string>("SpaContent")
                         .HasColumnType("ntext");
 
-                    b.Property<int>("Status")
-                        .ValueGeneratedOnAdd()
-                        .HasDefaultValueSql("((1))");
-
                     b.Property<string>("Styles")
                         .HasColumnType("ntext");
 
@@ -1178,10 +1035,6 @@ namespace Swastika.Cms.Lib.Migrations
                     b.Property<int>("Priority")
                         .ValueGeneratedOnAdd()
                         .HasDefaultValueSql("((0))");
-
-                    b.Property<int>("Status")
-                        .ValueGeneratedOnAdd()
-                        .HasDefaultValueSql("((1))");
 
                     b.HasKey("Id");
 

@@ -16,6 +16,9 @@ namespace Swastika.Cms.Lib.Models.Cms
         public bool? IsReviewed { get; set; }
         public bool? IsVisible { get; set; }
         public string UpdatedBy { get; set; }
+        public int Status { get; set; }
+        public int Priority { get; set; }
+
         public DateTime? UpdatedDateTime { get; set; }
     }
 }

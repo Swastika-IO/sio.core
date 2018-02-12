@@ -1,16 +1,15 @@
 ﻿using System;
-using System.Collections.Generic;
 using Swastika.Cms.Lib.Models.Cms;
 using Swastika.Domain.Data.ViewModels;
 using Microsoft.EntityFrameworkCore.Storage;
 using Newtonsoft.Json;
 using System.ComponentModel.DataAnnotations;
-using Swastika.Cms.Lib;
 using Swastika.Domain.Core.ViewModels;
 using System.Threading.Tasks;
 using Microsoft.Data.OData.Query;
 using Microsoft.EntityFrameworkCore;
 using System.Linq;
+using static Swastika.Common.Utility.Enums;
 
 namespace Swastika.Cms.Lib.ViewModels.Info
 {
@@ -139,7 +138,7 @@ namespace Swastika.Cms.Lib.ViewModels.Info
                 var query = context.SiocCategoryArticle.Include(ac => ac.SiocArticle)
                     .Where(ac =>
                     ac.CategoryId == categoryId && ac.Specificulture == specificulture
-                    && !ac.SiocArticle.IsDeleted && ac.SiocArticle.IsVisible).Select(ac => ac.SiocArticle);
+                    && ac.Status == (int)SWStatus.Published).Select(ac => ac.SiocArticle);
                 PaginationModel<InfoArticleViewModel> result = await Repository.ParsePagingQueryAsync(
                     query, orderByPropertyName
                     , direction,
@@ -193,7 +192,7 @@ namespace Swastika.Cms.Lib.ViewModels.Info
                 var query = context.SiocCategoryArticle.Include(ac => ac.SiocArticle)
                     .Where(ac =>
                     ac.CategoryId == categoryId && ac.Specificulture == specificulture
-                    && !ac.SiocArticle.IsDeleted && ac.SiocArticle.IsVisible).Select(ac => ac.SiocArticle);
+                    && ac.Status == (int)SWStatus.Published).Select(ac => ac.SiocArticle);
                 PaginationModel<InfoArticleViewModel> result = Repository.ParsePagingQuery(
                     query, orderByPropertyName
                     , direction,
@@ -246,7 +245,7 @@ namespace Swastika.Cms.Lib.ViewModels.Info
                 var query = context.SiocModuleArticle.Include(ac => ac.SiocArticle)
                     .Where(ac =>
                     ac.ModuleId == ModuleId && ac.Specificulture == specificulture
-                    && !ac.SiocArticle.IsDeleted && ac.SiocArticle.IsVisible).Select(ac => ac.SiocArticle);
+                    && ac.Status == (int)SWStatus.Published).Select(ac => ac.SiocArticle);
                 PaginationModel<InfoArticleViewModel> result = Repository.ParsePagingQuery(
                     query, orderByPropertyName
                     , direction,

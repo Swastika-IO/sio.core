@@ -45,7 +45,7 @@ namespace Swastika.Cms.Mvc.Areas.Portal.Controllers
                 InfoModuleViewModel.Repository.GetModelListByAsync(
                 m => m.Specificulture == _lang
                     && (string.IsNullOrEmpty(keyword) || m.Name.Contains(keyword)),
-                "Name", OrderByDirection.Ascending,
+                "Priority", OrderByDirection.Ascending,
                 pageSize, pageIndex);
 
             return View(pagingPages.Data);

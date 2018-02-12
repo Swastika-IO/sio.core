@@ -97,6 +97,7 @@
                                     <div class="card-body">
                                         <input type="hidden" asp-for="Id" />
                                         <input type="hidden" asp-for="Specificulture" />
+                                        <input type="hidden" asp-for="Priority" />
                                         <table class="table table-sm table-hover" id="tbl-properties">
                                             <thead class="thead-light">
                                                 <tr>
@@ -113,24 +114,24 @@
                                             </thead>
                                             <tbody class="sortable">
                                                 @for (int i = 0; i < Model.Properties.Count; i++)
-                                                {
-                                                    <tr class="sortable-item article-property">
-                                                        <td style="cursor:move;">
-                                                            <span class="oi oi-move"></span>
-                                                        </td>
-                                                        <td>
-                                                            <input type="text" asp-for="@Model.Properties[i].Priority" class="item-priority form-control form-control-sm d-inline" style="width:40px;" />
-                                                        </td>
-                                                        <td>
-                                                            <input asp-for="@Model.Properties[i].Name" class="form-control form-control-sm" />
-                                                        </td>
-                                                        <td>
-                                                            <select asp-for="@Model.Properties[i].DataType" class="form-control form-control-sm prop-data-type" asp-items="@types"></select>
-                                                        </td>
-                                                        <td class="prop-value-container" data-index="@i" data-name="Properties[@i].Value" data-id="Properties_@(i)__Value"
-                                                            data-value="@(Model.Properties[i].Value)"></td>
-                                                    </tr>
-                                                }
+            {
+                                    <tr class="sortable-item article-property">
+                                        <td style="cursor:move;">
+                                            <span class="oi oi-move"></span>
+                                        </td>
+                                        <td>
+                                            <input type="text" asp-for="@Model.Properties[i].Priority" class="item-priority form-control form-control-sm d-inline" style="width:40px;" />
+                                        </td>
+                                        <td>
+                                            <input asp-for="@Model.Properties[i].Name" class="form-control form-control-sm" />
+                                        </td>
+                                        <td>
+                                            <select asp-for="@Model.Properties[i].DataType" class="form-control form-control-sm prop-data-type" asp-items="@types"></select>
+                                        </td>
+                                        <td class="prop-value-container" data-index="@i" data-name="Properties[@i].Value" data-id="Properties_@(i)__Value"
+                                            data-value="@(Model.Properties[i].Value)"></td>
+                                    </tr>
+}
                                             </tbody>
                                         </table>
                                     </div>

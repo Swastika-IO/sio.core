@@ -9,5 +9,7 @@ namespace Swastika.Cms.Lib.Models.Cms
         public string Keyword { get; set; }
         public string Note { get; set; }
         public string Value { get; set; }
+        public int Priority { get; set; }
+        public int Status { get; set; }
     }
 }

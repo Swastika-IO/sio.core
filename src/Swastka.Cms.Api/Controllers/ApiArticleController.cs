@@ -14,6 +14,7 @@ using System.Collections.Generic;
 using Newtonsoft.Json.Linq;
 using Swastika.Cms.Lib.ViewModels.Spa;
 using Microsoft.AspNetCore.Hosting;
+using static Swastika.Common.Utility.Enums;
 
 namespace Swastka.Cms.Api.Controllers
 {
@@ -137,7 +138,7 @@ namespace Swastka.Cms.Api.Controllers
             , OrderByDirection direction = OrderByDirection.Ascending)
         {
             var data = await InfoArticleViewModel.Repository.GetModelListByAsync(
-                m => !m.IsDeleted && m.Specificulture == _lang, orderBy, direction, pageSize, pageIndex); //base.Get(orderBy, direction, pageSize, pageIndex);
+                m => m.Status != (int)SWStatus.Deleted && m.Specificulture == _lang, orderBy, direction, pageSize, pageIndex); //base.Get(orderBy, direction, pageSize, pageIndex);
             if (data.IsSucceed)
             {
                 data.Data.Items.ForEach(a =>
@@ -163,7 +164,7 @@ namespace Swastka.Cms.Api.Controllers
         {
             Expression<Func<SiocArticle, bool>> predicate = model =>
             model.Specificulture == _lang
-            && !model.IsDeleted
+            && model.Status != (int)SWStatus.Deleted
             && (
             string.IsNullOrWhiteSpace(keyword)
                 || (model.Title.Contains(keyword) || model.Content.Contains(keyword))
@@ -191,7 +192,7 @@ namespace Swastka.Cms.Api.Controllers
             Expression<Func<SiocArticle, bool>> predicate = model =>
             model.Specificulture == _lang
 
-            && model.IsDeleted
+            && model.Status != (int)SWStatus.Deleted
             && (
             string.IsNullOrWhiteSpace(keyword)
                 || (model.Title.Contains(keyword) || model.Content.Contains(keyword))
@@ -257,7 +258,7 @@ namespace Swastka.Cms.Api.Controllers
             {
                 
                 var data = await InfoArticleViewModel.Repository.GetModelListByAsync(
-                m => !m.IsDeleted && m.Specificulture == _lang, request.OrderBy, request.Direction, request.PageSize, request.PageIndex); 
+                m => m.Status != (int)SWStatus.Deleted && m.Specificulture == _lang, request.OrderBy, request.Direction, request.PageSize, request.PageIndex); 
                 if (data.IsSucceed)
                 {
                     data.Data.Items.ForEach(a =>

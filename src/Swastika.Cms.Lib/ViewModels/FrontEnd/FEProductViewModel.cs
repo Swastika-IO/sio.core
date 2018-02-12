@@ -28,6 +28,9 @@ namespace Swastika.Cms.Lib.ViewModels.FrontEnd
         public string Thumbnail { get; set; }
         [JsonProperty("image")]
         public string Image { get; set; }
+        [JsonIgnore]
+        [JsonProperty("extraProperties")]
+        public string ExtraProperties { get; set; } = "[]";
         [JsonProperty("price")]
         public double Price { get; set; }
         [JsonProperty("priceUnit")]
@@ -127,6 +130,8 @@ namespace Swastika.Cms.Lib.ViewModels.FrontEnd
                 });
             }
         }
+        [JsonProperty("properties")]
+        public List<ExtraProperty> Properties { get; set; }
         #endregion
 
         #endregion

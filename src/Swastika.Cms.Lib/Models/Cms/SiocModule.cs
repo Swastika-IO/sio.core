@@ -20,9 +20,11 @@ namespace Swastika.Cms.Lib.Models.Cms
         public string Specificulture { get; set; }
         public string Description { get; set; }
         public string Fields { get; set; }
+        public int Priority { get; set; }
         public DateTime? LastModified { get; set; }
         public string ModifiedBy { get; set; }
         public string Name { get; set; }
+        public int Status { get; set; }
         public string Template { get; set; }
         public string Title { get; set; }
         public int Type { get; set; }

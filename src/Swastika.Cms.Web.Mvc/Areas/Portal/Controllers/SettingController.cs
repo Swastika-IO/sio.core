@@ -116,11 +116,7 @@ namespace Swastika.Cms.Mvc.Areas.Portal.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> EditConfiguration(string id, ConfigurationViewModel ttsConfiguration)
         {
-            if (id != ttsConfiguration.Keyword)
-            {
-                return NotFound();
-            }
-
+            
             if (ModelState.IsValid)
             {
                 try

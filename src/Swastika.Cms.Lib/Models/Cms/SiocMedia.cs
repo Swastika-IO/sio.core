@@ -21,6 +21,7 @@ namespace Swastika.Cms.Lib.Models.Cms
         public DateTime? LastModified { get; set; }
         public string ModifiedBy { get; set; }
         public int Priority { get; set; }
+        public int Status { get; set; }
 
         public ICollection<SiocArticleMedia> SiocArticleMedia { get; set; }
         public ICollection<SiocProductMedia> SiocProductMedia { get; set; }

@@ -11,6 +11,7 @@ using Swastika.Cms.Lib.Models.Cms;
 using Swastika.Cms.Lib.ViewModels.BackEnd;
 using Swastika.Cms.Lib;
 using System.Collections.Generic;
+using static Swastika.Common.Utility.Enums;
 
 namespace Swastka.IO.Cms.Api.Controllers
 {
@@ -118,7 +119,7 @@ namespace Swastka.IO.Cms.Api.Controllers
             {
                 foreach (var property in fields)
                 {
-                    var result = await InfoCategoryViewModel.Repository.UpdateFieldsAsync(c => c.Id == id, fields);
+                    var result = await InfoCategoryViewModel.Repository.UpdateFieldsAsync(c => c.Id == id && c.Specificulture == _lang, fields);
 
                     return result;
                 }
@@ -139,7 +140,7 @@ namespace Swastka.IO.Cms.Api.Controllers
             {
 
                 var data = await InfoCategoryViewModel.Repository.GetModelListByAsync(
-                m => !m.IsDeleted && m.Specificulture == _lang, request.OrderBy, request.Direction, request.PageSize, request.PageIndex);
+                m => m.Status != (int)SWStatus.Deleted && m.Specificulture == _lang, request.OrderBy, request.Direction, request.PageSize, request.PageIndex);
                 if (data.IsSucceed)
                 {
                     data.Data.Items.ForEach(a =>

@@ -9,6 +9,7 @@ namespace Swastika.Cms.Lib.Models.Cms
         public int CategoryId { get; set; }
         public string Specificulture { get; set; }
         public int Priority { get; set; }
+        public int Status { get; set; }
 
         public SiocCategory SiocCategory { get; set; }
         public SiocProduct SiocProduct { get; set; }

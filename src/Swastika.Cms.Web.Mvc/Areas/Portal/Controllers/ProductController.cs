@@ -11,6 +11,7 @@ using Swastika.Cms.Lib.Models;
 using Swastika.Cms.Lib.ViewModels.Info;
 using Swastika.Cms.Lib.ViewModels.BackEnd;
 using Swastika.Cms.Lib.Models.Cms;
+using static Swastika.Common.Utility.Enums;
 
 namespace Swastika.Cms.Mvc.Areas.Portal.Controllers
 {
@@ -41,7 +42,7 @@ namespace Swastika.Cms.Mvc.Areas.Portal.Controllers
             RepositoryResponse<PaginationModel<InfoProductViewModel>> getProduct = 
                 await InfoProductViewModel.Repository.GetModelListByAsync(
                 product => product.Specificulture == _lang
-                    && !product.IsDeleted
+                    && product.Status != (int)SWStatus.Deleted
                     && (string.IsNullOrEmpty(keyword) || product.Title.Contains(keyword)),
                 "Priority", OrderByDirection.Ascending
                 , pageSize, pageIndex);
@@ -58,7 +59,7 @@ namespace Swastika.Cms.Mvc.Areas.Portal.Controllers
             var getProduct = await InfoProductViewModel.Repository.GetModelListByAsync(
                 product => product.Specificulture == _lang &&
                     (string.IsNullOrEmpty(keyword) || product.Title.Contains(keyword))
-                    && product.IsDeleted,
+                    && product.Status != (int)SWStatus.Deleted,
                 "CreatedDateTime", OrderByDirection.Descending,
                 pageSize, pageIndex);
 
@@ -72,8 +73,7 @@ namespace Swastika.Cms.Mvc.Areas.Portal.Controllers
         public IActionResult Create(int? categoryId = null)
         {           
             var vmProduct = new BEProductViewModel( new SiocProduct() 
-            {
-                IsVisible = true,
+            {               
                 Specificulture = _lang,              
                 CreatedBy = User.Identity.Name,
                 CreatedDateTime = DateTime.UtcNow

@@ -124,9 +124,9 @@ namespace Swastika.Cms.Lib.Services
             InitLanguages();
         }
 
-        public void RefreshCultures()
+        public void RefreshCultures(SiocCmsContext _context = null, IDbContextTransaction _transaction = null)
         {
-            InitCultures();
+            InitCultures(_context, _transaction);
         }
         
         static void InitCultures(SiocCmsContext _context = null, IDbContextTransaction _transaction = null)

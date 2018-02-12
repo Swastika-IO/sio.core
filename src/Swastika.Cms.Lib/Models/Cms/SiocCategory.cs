@@ -24,8 +24,7 @@ namespace Swastika.Cms.Lib.Models.Cms
         public string Excerpt { get; set; }
         public string Icon { get; set; }
         public string Image { get; set; }
-        public bool IsDeleted { get; set; }
-        public bool? IsVisible { get; set; }
+        public int Status { get; set; }
         public DateTime? LastModified { get; set; }
         public int? Level { get; set; }
         public string ModifiedBy { get; set; }

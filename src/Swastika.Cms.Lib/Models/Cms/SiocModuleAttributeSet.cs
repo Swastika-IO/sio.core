@@ -20,6 +20,7 @@ namespace Swastika.Cms.Lib.Models.Cms
         public int Priority { get; set; }
         public DateTime? UpdatedDateTime { get; set; }
         public string Value { get; set; }
+        public int Status { get; set; }
 
         public SiocArticleModule SiocArticleModule { get; set; }
         public SiocCategoryModule SiocCategoryModule { get; set; }

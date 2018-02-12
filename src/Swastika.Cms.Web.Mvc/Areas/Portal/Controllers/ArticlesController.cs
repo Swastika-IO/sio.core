@@ -7,12 +7,12 @@ using Microsoft.AspNetCore.Hosting;
 using System.Linq;
 using Microsoft.Data.OData.Query;
 using Swastika.Domain.Core.ViewModels;
-using Swastika.Cms.Lib.Models;
 using Swastika.Cms.Lib.ViewModels.Info;
 using Swastika.Cms.Lib.ViewModels.BackEnd;
 using Swastika.Cms.Lib.Models.Cms;
 using Swastika.Cms.Lib.ViewModels;
 using Swastika.Cms.Lib;
+using static Swastika.Common.Utility.Enums;
 
 namespace Swastika.Cms.Mvc.Areas.Portal.Controllers
 {
@@ -43,7 +43,7 @@ namespace Swastika.Cms.Mvc.Areas.Portal.Controllers
             RepositoryResponse<PaginationModel<InfoArticleViewModel>> getArticles = 
                 await InfoArticleViewModel.Repository.GetModelListByAsync(
                 article => article.Specificulture == _lang
-                    && !article.IsDeleted
+                    && article.Status != (int)SWStatus.Deleted
                     && (string.IsNullOrEmpty(keyword) || article.Title.Contains(keyword)),
                 "Priority", OrderByDirection.Ascending
                 , pageSize, pageIndex);
@@ -60,7 +60,7 @@ namespace Swastika.Cms.Mvc.Areas.Portal.Controllers
             var getArticles = await InfoArticleViewModel.Repository.GetModelListByAsync(
                 article => article.Specificulture == _lang &&
                     (string.IsNullOrEmpty(keyword) || article.Title.Contains(keyword))
-                    && article.IsDeleted,
+                    && article.Status == (int)SWStatus.Draft,
                 "CreatedDateTime", OrderByDirection.Descending,
                 pageSize, pageIndex);
 
@@ -73,13 +73,15 @@ namespace Swastika.Cms.Mvc.Areas.Portal.Controllers
         [Route("Create/{categoryId:int}")]
         public IActionResult Create(int? categoryId = null)
         {           
-            var vmArticle = new BEArticleViewModel( new SiocArticle() 
+            var vmArticle = new BEArticleViewModel(new SiocArticle()
             {
-                IsVisible = true,
-                Specificulture = _lang,              
+                Specificulture = _lang,
                 CreatedBy = User.Identity.Name,
                 CreatedDateTime = DateTime.UtcNow
-            });
+            })
+            {
+                Status = SWStatus.Preview
+            };
             if (categoryId.HasValue)
             {
                 var activeCate = vmArticle.Categories.FirstOrDefault(c => c.CategoryId == categoryId);

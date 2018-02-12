@@ -1,17 +1,15 @@
 ﻿using System;
-using System.Collections.Generic;
 using Swastika.Cms.Lib.Models.Cms;
 using Swastika.Domain.Data.ViewModels;
 using Microsoft.EntityFrameworkCore.Storage;
 using Newtonsoft.Json;
 using System.ComponentModel.DataAnnotations;
-using Swastika.Cms.Lib;
 using Swastika.Domain.Core.ViewModels;
 using System.Threading.Tasks;
 using Microsoft.Data.OData.Query;
 using Microsoft.EntityFrameworkCore;
 using System.Linq;
-using Microsoft.AspNetCore.Http;
+using static Swastika.Common.Utility.Enums;
 
 namespace Swastika.Cms.Lib.ViewModels.Info
 {
@@ -146,7 +144,7 @@ namespace Swastika.Cms.Lib.ViewModels.Info
                 var query = context.SiocCategoryProduct.Include(ac => ac.SiocProduct)
                     .Where(ac =>
                     ac.CategoryId == categoryId && ac.Specificulture == specificulture
-                    && !ac.SiocProduct.IsDeleted && ac.SiocProduct.IsVisible).Select(ac => ac.SiocProduct);
+                    && ac.Status == (int)SWStatus.Published).Select(ac => ac.SiocProduct);
                 PaginationModel<InfoProductViewModel> result = await Repository.ParsePagingQueryAsync(
                     query, orderByPropertyName
                     , direction,
@@ -200,7 +198,7 @@ namespace Swastika.Cms.Lib.ViewModels.Info
                 var query = context.SiocCategoryProduct.Include(ac => ac.SiocProduct)
                     .Where(ac =>
                     ac.CategoryId == categoryId && ac.Specificulture == specificulture
-                    && !ac.SiocProduct.IsDeleted && ac.SiocProduct.IsVisible).Select(ac => ac.SiocProduct);
+                    && ac.Status == (int)SWStatus.Published).Select(ac => ac.SiocProduct);
                 PaginationModel<InfoProductViewModel> result = Repository.ParsePagingQuery(
                     query, orderByPropertyName
                     , direction,
@@ -253,7 +251,7 @@ namespace Swastika.Cms.Lib.ViewModels.Info
                 var query = context.SiocModuleProduct.Include(ac => ac.SiocProduct)
                     .Where(ac =>
                     ac.ModuleId == ModuleId && ac.Specificulture == specificulture
-                    && !ac.SiocProduct.IsDeleted && ac.SiocProduct.IsVisible).Select(ac => ac.SiocProduct);
+                    && ac.Status == (int)SWStatus.Published).Select(ac => ac.SiocProduct);
                 PaginationModel<InfoProductViewModel> result = Repository.ParsePagingQuery(
                     query, orderByPropertyName
                     , direction,

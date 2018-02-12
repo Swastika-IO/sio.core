@@ -173,10 +173,13 @@ namespace Swastika.Cms.Lib
         public class TemplateFolder
         {
             public const string Articles = "Articles";
+            public const string Products = "Products";
             public const string Layouts = "Layouts";
             public const string Modules = "Modules";
             public const string Pages = "Pages";
             public const string Widgets = "Widgets";
         }
+
+       
     }
 }

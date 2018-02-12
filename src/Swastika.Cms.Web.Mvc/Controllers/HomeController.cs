@@ -8,6 +8,7 @@ using Swastika.Cms.Lib.ViewModels.Info;
 using Swastika.Cms.Lib;
 using Swastika.Cms.Lib.ViewModels.FrontEnd;
 using Swastika.Cms.Lib.Services;
+using static Swastika.Common.Utility.Enums;
 
 namespace Swastika.Cms.Mvc.Controllers
 {
@@ -123,7 +124,7 @@ namespace Swastika.Cms.Mvc.Controllers
             }
             
         }
-        [HttpGet]
+
         [Route("Search")]
         [Route("Search/{keyword}")]
         [Route("Search/{pageSize:int?}/{pageIndex:int?}/{keyword}")]
@@ -142,7 +143,7 @@ namespace Swastika.Cms.Mvc.Controllers
             //}
             var getArticles = await InfoArticleViewModel.Repository.GetModelListByAsync(
                article => article.Specificulture == _lang
-                   && !article.IsDeleted
+                   && article.Status != (int)SWStatus.Deleted
                    && ( 
                         string.IsNullOrEmpty(keyword) || article.Title.Contains(keyword) 
                         || (article.Excerpt !=null &&  article.Excerpt.Contains(keyword))
@@ -170,7 +171,7 @@ namespace Swastika.Cms.Mvc.Controllers
             //}
             var getArticles = await InfoArticleViewModel.Repository.GetModelListByAsync(
                cate => cate.Specificulture == _lang
-                   && !cate.IsDeleted
+                   && cate.Status != (int)SWStatus.Deleted
                    && (string.IsNullOrEmpty(keyword) || cate.Tags.Contains(keyword)),
                "CreatedDateTime", OrderByDirection.Descending,
                pageSize, pageIndex);
@@ -218,10 +219,12 @@ namespace Swastika.Cms.Mvc.Controllers
 
         [HttpGet]
         [Route("product/{SeoName}")]
-        public IActionResult ProductDetails(string SeoName)
+        [Route("product/{CateSeoName}/{SeoName}")]
+        public IActionResult ProductDetails(string SeoName, string CateSeoName = null)
         {
             var getProduct = FEProductViewModel.Repository.GetSingleModel(
                 a => a.SeoName == SeoName && a.Specificulture == _lang);
+            ViewData["CateSeoName"] = CateSeoName;
             //ProductRepository.GetInstance().GetSingleModel(a => a.Id == id && a.Specificulture == _lang, SWCmsConstants.ViewModelType.FrontEnd);
             if (getProduct.IsSucceed)
             {

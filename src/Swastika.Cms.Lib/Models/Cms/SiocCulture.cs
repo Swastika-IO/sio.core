@@ -22,6 +22,8 @@ namespace Swastika.Cms.Lib.Models.Cms
         public string Icon { get; set; }
         public string Lcid { get; set; }
         public string Specificulture { get; set; }
+        public int Priority { get; set; }
+        public int Status { get; set; }
 
         public ICollection<SiocArticle> SiocArticle { get; set; }
         public ICollection<SiocCategory> SiocCategory { get; set; }

@@ -10,6 +10,7 @@ using Swastika.Cms.Lib;
 using Swastika.Cms.Lib.Services;
 using Swastika.Cms.Lib.ViewModels.Info;
 using System.Linq;
+using Newtonsoft.Json.Linq;
 
 namespace Swastika.Cms.Lib.ViewModels.FrontEnd
 {
@@ -149,6 +150,16 @@ namespace Swastika.Cms.Lib.ViewModels.FrontEnd
         public override void ExpandView(SiocCmsContext _context = null, IDbContextTransaction _transaction = null)
         {
             this.View = FETemplateViewModel.GetTemplateByPath(Template, Specificulture, _context, _transaction).Data;
+            Properties = new List<ExtraProperty>();
+            if (!string.IsNullOrEmpty(ExtraProperties))
+            {
+                JArray arr = JArray.Parse(ExtraProperties);
+                foreach (JObject item in arr)
+                {
+                    Properties.Add(item.ToObject<ExtraProperty>());
+                }
+            }
+
             var getModulesResult = FEArticleModuleViewModel.Repository.GetModelListBy(
                 m => m.ArticleId == Id && m.Specificulture == Specificulture
                 , _context, _transaction);

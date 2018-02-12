@@ -94,7 +94,7 @@ namespace Swastika.Cms.Mvc.Areas.Portal.Controllers
                 );
             if (!getCategory.IsSucceed)
             {
-                return NotFound();
+                return RedirectToAction("Index");
             }
             return View(getCategory.Data);
         }
