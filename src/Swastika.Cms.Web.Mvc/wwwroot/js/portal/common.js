@@ -85,7 +85,17 @@
                 SW.Common.loadFiles(container);
             });
 
-            $('[data-toggle="popover"]').popover();
+            $('[data-toggle="popover"]').popover({
+                html: true,
+                content: function () {
+                    var content = $(this).next('.popover-body');
+                    return $(content).html();
+                },
+                title: function () {
+                    var title = $(this).attr("data-popover-content");
+                    return $(title).children(".popover-heading").html();
+                }
+            });
 
             $(".sortable").sortable({
                 revert: true,

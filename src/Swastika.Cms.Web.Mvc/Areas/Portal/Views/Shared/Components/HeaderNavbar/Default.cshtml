@@ -68,10 +68,10 @@
 </ul>
 <a href="/vi-vn/portal/profile" title="@UserManager.GetUserName(User)">
     @Html.GravatarImage(
-                await UserManager.GetEmailAsync(appuser),
-                size: 36,
-                defaultImage: GravatarHtmlHelper.DefaultImage.Identicon,
-                rating: GravatarHtmlHelper.Rating.PG,
-                cssClass: "rounded-circle sw-avatar"
-            )
+                    await UserManager.GetEmailAsync(appuser),
+                    size: 36,
+                    defaultImage: GravatarHtmlHelper.DefaultImage.Identicon,
+                    rating: GravatarHtmlHelper.Rating.PG,
+                    cssClass: "rounded-circle sw-avatar"
+                )
 </a>

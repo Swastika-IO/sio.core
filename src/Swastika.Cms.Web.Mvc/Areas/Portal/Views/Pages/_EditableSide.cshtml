@@ -8,6 +8,7 @@
 
 @{
     var types = Html.GetEnumSelectList<Swastika.Cms.Lib.SWCmsConstants.CateType>();
+    var status = Html.GetEnumSelectList<Swastika.Common.Utility.Enums.SWStatus>();
     string img = Model != null ? Model.Image : "http://placehold.it/200x200";
 }
 
@@ -16,17 +17,30 @@
         Info
     </div>
     <div class="card-body">
-
         <div class="form-group">
-            <span class="switch">
-                <input type="checkbox" asp-for="IsVisible" class="switch">
-                <label asp-for="IsVisible">Publish</label>
-            </span>
-            @*<span class="switch">
-                    <input type="checkbox" asp-for="IsDeleted" class="switch">
-                    <label asp-for="IsDeleted">Deleted</label>
-                </span>*@
+
+            @{
+                foreach (var stat in status)
+                {
+
+                    <div class="custom-control custom-radio">
+                        <input asp-for="Status" type="radio" value="@stat.Value" class="custom-control-input" id="pageType_@stat.Value" />
+                        <label class="custom-control-label" for="pageType_@stat.Value">@stat.Text</label>
+                    </div>
+                }
+            }
         </div>
+        @*
+                <div class="form-group">
+                    <span class="switch">
+                    <input type="checkbox" asp-for="IsVisible" class="switch">
+                    <label asp-for="IsVisible">Publish</label>
+                </span>
+                <span class="switch">
+                        <input type="checkbox" asp-for="IsDeleted" class="switch">
+                        <label asp-for="IsDeleted">Deleted</label>
+                    </span>
+            </div>*@
         <div class="form-group">
             <label asp-for="CreatedDateTime" class="control-label">Created DateTime</label>
             <div class="input-group mb-3">

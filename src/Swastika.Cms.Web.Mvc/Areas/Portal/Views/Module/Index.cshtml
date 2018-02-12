@@ -139,10 +139,12 @@
                                     <a asp-action="Edit" asp-route-id="@Model.Items[i].Id" class="btn btn-sm btn-light"> <span class="oi oi-pencil text-secondary"></span></a>
                                     @*<a asp-action="Delete" asp-route-id="@Model.Items[i].Id" class="btn btn-sm btn-light" data-popout="true" data-toggle="confirmation" data-singleton="true" data-btn-ok-class="btn-danger btn-sm" data-btn-cancel-class="btn-success btn-sm" data-content="This can be undo!"> <span class="oi oi-x text-danger"></span> </a>*@
 
-                                    <button class="btn btn-light del-popover" data-toggle="popover" title="Confirmation!" data-trigger="focus"
-                                            data-content='<a asp-action="Delete" asp-route-id="@Model.Items[i].Id" class="btn btn btn-danger">Yes, I want to delete!</a>' data-html="true">
+                                    <button class="btn btn-light del-popover" data-toggle="popover" title="Confirmation!" data-trigger="focus" data-html="true">
                                         <span class="oi oi-x text-danger"></span>
                                     </button>
+                                    <div class="popover-body d-none">
+                                        <a asp-action="Delete" asp-route-id="@Model.Items[i].Id" class="btn btn btn-danger">Yes, I want to delete!</a>
+                                    </div>
                                 </div>
                             </td>
                         </tr>
