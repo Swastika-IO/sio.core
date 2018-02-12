@@ -105,7 +105,7 @@ namespace Swastka.Cms.Api.Controllers
 
         [Route("upload")]
         [HttpPost]
-        public async Task<string> UploadAsync([FromForm] string fileFolder)
+        public async Task<RepositoryResponse<BEMediaViewModel>> UploadAsync([FromForm] string fileFolder)
         {
             var files = Request.Form.Files;
 
@@ -126,12 +126,12 @@ namespace Swastka.Cms.Api.Controllers
                     CreatedDateTime = DateTime.UtcNow,
                     FileType = fileUpload.ContentType.Split('/')[0]
                 });
-                media.SaveModel();
-                return fileName;
+                //media.SaveModel();
+                return media.SaveModel(); ;
             }
             else
             {
-                return string.Empty;
+                return new RepositoryResponse<BEMediaViewModel>();
             }
         }
 

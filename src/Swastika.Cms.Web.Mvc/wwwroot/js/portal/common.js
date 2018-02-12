@@ -305,8 +305,8 @@
                 processData: false, // Not to process data
                 data: files,
                 success: function (result) {
-                    container.find('.custom-file-val').val(result);
-                    container.find('.custom-file-img').attr('src', result);
+                    container.find('.custom-file-val').val(result.data.fullPath);
+                    container.find('.custom-file-img').attr('src', result.data.fullPath);
                     return result;
                 },
                 error: function (err) {

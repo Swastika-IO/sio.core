@@ -209,8 +209,12 @@ namespace Swastika.Cms.Lib.ViewModels.BackEnd
             this.Templates = this.Templates ??
                 BETemplateViewModel.Repository.GetModelListBy(
                 t => t.Template.Name == ActivedTemplate && t.FolderType == this.TemplateFolderType).Data;
-            this.View = Templates.FirstOrDefault(t => !string.IsNullOrEmpty(this.Template) && this.Template.Contains(t.FileName + t.Extension));
+            if (!string.IsNullOrEmpty(Template))
+            {
+                this.View = Templates.FirstOrDefault(t => Template.Contains(t.FileName));
+            }
             this.View = View ?? Templates.FirstOrDefault();
+
             if (this.View == null)
             {
                 this.View = new BETemplateViewModel(new SiocTemplate() 
