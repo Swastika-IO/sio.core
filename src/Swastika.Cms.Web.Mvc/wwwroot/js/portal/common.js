@@ -184,7 +184,6 @@
                 //modal.find('.modal-title').text('New message to ' + recipient)
                 //modal.find('.modal-body input').val(recipient)
                 modal.find('.modal-body .img-fluid').attr('src', recipient);
-                alert(recipient);
             })
 
             // not work with BS 4 (using now http://bootstrap-tagsinput.github.io/bootstrap-tagsinput/examples/)
