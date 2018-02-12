@@ -1,20 +1,37 @@
 @model BEProductViewModel
 @{
-    var types = Html.GetEnumSelectList<Swastika.Cms.Lib.SWCmsConstants.CateType>();
+    var status = Html.GetEnumSelectList<Swastika.Common.Utility.Enums.SWStatus>();
     string img = Model != null ? Model.Image : "http://placehold.it/200x200";
     string thumb = Model != null ? Model.Thumbnail : "http://placehold.it/200x200";
     var templates = new SelectList(Model.Templates, "Filename", "Filename");
 }
-
 
 <div class="card">
     <div class="card-header">
         Info
     </div>
     <div class="card-body">
-
         <div class="form-group">
-            <label asp-for="CreatedDateTime" class="control-label"></label>
+            @{
+                foreach (var stat in status)
+                {
+                    <div class="custom-control custom-radio">
+                        <input asp-for="Status" type="radio" value="@stat.Text" class="custom-control-input" id="pageType_@stat.Value" />
+                        <label class="custom-control-label" for="pageType_@stat.Value">@stat.Text</label>
+                    </div>
+                }
+            }
+            @*<span class="switch">
+                    <input type="checkbox" asp-for="IsVisible" class="switch">
+                    <label asp-for="IsVisible">Publish</label>
+                </span>
+                <span class="switch">
+                        <input type="checkbox" asp-for="IsDeleted" class="switch">
+                        <label asp-for="IsDeleted">Deleted</label>
+                    </span>*@
+        </div>
+        <div class="form-group">
+            <label asp-for="CreatedDateTime" class="control-label">Created Date Time</label>
             <div class="input-group mb-3">
                 <div class="input-group-prepend">
                     <span class="input-group-text" id="basic-addon1"><i class="mi mi-Calendar"></i></span>
@@ -25,7 +42,7 @@
         </div>
 
         <div class="form-group">
-            <label asp-for="CreatedBy" class="control-label"></label>
+            <label asp-for="CreatedBy" class="control-label">Created By</label>
             <div class="input-group mb-3">
                 <div class="input-group-prepend">
                     <span class="input-group-text" id="basic-addon1"><i class="mi mi-Contact"></i></span>
@@ -72,35 +89,118 @@
     <div class="card-header">
         Feature image
     </div>
-    <div class="card-body">
-        <div class="form-group">
-            <span asp-validation-for="Image" class="text-danger"></span>
-            <label class="custom-file">
-                <input type="hidden" value="Articles/@Model.SeoTitle" class="folder-val" />
-                <input type="file" name="pic" class="custom-file-input">
-                <img src="@img" name="pic" class="custom-file-img " accept="image/*" width="100%" />
-                <input type="text" asp-for="Image" class="form-control custom-file-val">
-                <span class="custom-file-control">Upload image</span>
-            </label>
-        </div>
+    <div class="card-body p-0" style="background:url(/images/upload-image-thumbnail.png) no-repeat center; ">
+        @*<label asp-for="Image" class="control-label"></label>*@
+        <span asp-validation-for="Image" class="text-danger"></span>
+        <label class="custom-file" style="min-height:150px; cursor:pointer;">
+            <img src="@img" name="pic" class="custom-file-img " accept="image/*" width="100%" />
+            <input type="hidden" value="Products/@Model.SeoTitle" class="folder-val" />
+            <input type="file" name="pic" class="custom-file-input">
+            <input type="text" asp-for="Image" class="form-control custom-file-val d-none">
+            @*<span class="btn btn-primary custom-file-control">Browse</span>*@
+        </label>
     </div>
 </div>
-
 
 <div class="card">
     <div class="card-header">
         Thumbnail image
     </div>
-    <div class="card-body">
-        <div class="form-group">
-            <span asp-validation-for="Thumbnail" class="text-danger"></span>
-            <label class="custom-file">
-                <input type="hidden" value="Articles/@Model.SeoTitle" class="folder-val" />
-                <input type="file" name="pic" class="custom-file-input">
-                <img src="@thumb" name="pic" class="custom-file-img " accept="image/*" width="100%" />
-                <input type="text" asp-for="Thumbnail" class="form-control custom-file-val">
-                <span class="custom-file-control">Upload image</span>
-            </label>
-        </div>
+    <div class="card-body p-0" style="background:url(/images/upload-image-thumbnail.png) no-repeat center; ">
+        @*<label asp-for="Image" class="control-label"></label>*@
+        <span asp-validation-for="Thumbnail" class="text-danger"></span>
+        <label class="custom-file" style="min-height:150px; cursor:pointer;">
+            <img src="@thumb" name="pic" class="custom-file-img " accept="image/*" width="100%" />
+            <input type="hidden" value="Products/@Model.SeoTitle" class="folder-val" />
+            <input type="file" name="pic" class="custom-file-input">
+            <input type="text" asp-for="Thumbnail" class="form-control custom-file-val d-none">
+            @*<span class="btn btn-primary custom-file-control">Browse</span>*@
+        </label>
     </div>
 </div>
+
+@*<div class="card">
+        <div class="card-header">
+            Languages
+        </div>
+        <div class="card-body">
+
+            @for (int i = 0; i < Model.ListSupportedCulture.Count; i++)
+            {
+
+                <label class="custom-control custom-checkbox d-block">
+                    <input type="checkbox" asp-for="@Model.ListSupportedCulture[i].IsSupported" class="custom-control-input">
+                    <input type="hidden" asp-for="@Model.ListSupportedCulture[i].Specificulture" />
+                    <span class="custom-control-indicator"></span>
+                    <span class="custom-control-description">
+                        <i class="flag-icon h5 @Model.ListSupportedCulture[i].Icon" style="margin-right: 5px;margin-left: 10px;"></i> @Model.ListSupportedCulture[i].Specificulture
+                    </span>
+                </label>
+
+            }
+
+            <input type="hidden" asp-for="Specificulture" />
+        </div>
+    </div>*@
+
+@await Html.PartialAsync("EditableSides/_EditableSide_Actions")
+
+@*
+    <div class="box box-solid">
+        <div class="box-header with-border">
+            <h3 class="box-title">Feature Image</h3>
+            <div class="box-tools">
+                <button type="button" class="btn btn-box-tool" data-widget="collapse">
+                    <i class="fa fa-minus"></i>
+                </button>
+            </div>
+        </div>
+        <div class="box-body">
+
+            <div class="form-group">
+                <label asp-for="Image" class="col-md-2 control-label"></label>
+                <span asp-validation-for="Image" class="text-danger"></span>
+                <div class="col-md-10">
+
+                    <label class="custom-file">
+                        <img src="@img" name="pic" class="custom-file-img " accept="image/*" />
+                        <input type="file" name="pic" class="custom-file-input">
+                        <input type="hidden" value="Products/@Model.SeoTitle" class="folder-val" />
+                        <input type="text" asp-for="Image" class="form-control custom-file-val">
+                        <span class="custom-file-control">Browse</span>
+                    </label>
+                </div>
+            </div>
+        </div>
+        <!-- /.box-body -->
+    </div>
+
+    <div class="box box-solid">
+        <div class="box-header with-border">
+            <h3 class="box-title">Thumbnail Image</h3>
+            <div class="box-tools">
+                <button type="button" class="btn btn-box-tool" data-widget="collapse">
+                    <i class="fa fa-minus"></i>
+                </button>
+            </div>
+        </div>
+        <div class="box-body">
+
+            <div class="form-group">
+                <label asp-for="Thumbnail" class="col-md-2 control-label"></label>
+                <span asp-validation-for="Thumbnail" class="text-danger"></span>
+                <div class="col-md-10">
+
+                    <label class="custom-file">
+                        <img src="@thumb" name="pic" class="custom-file-img " accept="image/*" />
+                        <input type="file" name="pic" class="custom-file-input">
+                        <input type="hidden" value="Products/@Model.SeoTitle" class="folder-val" />
+                        <input type="text" asp-for="Thumbnail" class="form-control custom-file-val">
+                        <span class="custom-file-control">Browse</span>
+                    </label>
+                </div>
+            </div>
+        </div>
+        <!-- /.box-body -->
+    </div>
+*@

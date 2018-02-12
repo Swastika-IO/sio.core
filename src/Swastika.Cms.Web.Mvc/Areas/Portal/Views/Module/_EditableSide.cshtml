@@ -22,7 +22,7 @@
                 {
 
                     <div class="custom-control custom-radio">
-                        <input asp-for="Status" type="radio" value="@stat.Value" class="custom-control-input" id="pageType_@stat.Value" />
+                        <input asp-for="Status" type="radio" value="@stat.Text" class="custom-control-input" id="pageType_@stat.Value" />
                         <label class="custom-control-label" for="pageType_@stat.Value">@stat.Text</label>
                     </div>
                 }
@@ -53,8 +53,8 @@
                 foreach (var type in moduleTypes)
                 {
                     <div class="custom-control custom-radio">
-                        <input asp-for="Type" type="radio" value="@type.Value" class="custom-control-input" id="pageType_@type.Value" />
-                        <label class="custom-control-label" for="pageType_@type.Value">@type.Text</label>
+                        <input asp-for="Type" type="radio" value="@type.Text" class="custom-control-input" id="pageType_@type.Text" />
+                        <label class="custom-control-label" for="pageType_@type.Text">@type.Text</label>
                     </div>
                 }
             }

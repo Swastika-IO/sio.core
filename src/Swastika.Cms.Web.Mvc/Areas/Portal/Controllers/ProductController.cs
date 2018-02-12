@@ -72,12 +72,15 @@ namespace Swastika.Cms.Mvc.Areas.Portal.Controllers
         [Route("Create/{categoryId:int}")]
         public IActionResult Create(int? categoryId = null)
         {           
-            var vmProduct = new BEProductViewModel( new SiocProduct() 
-            {               
-                Specificulture = _lang,              
+            var vmProduct = new BEProductViewModel(new SiocProduct()
+            {
+                Specificulture = _lang,
                 CreatedBy = User.Identity.Name,
                 CreatedDateTime = DateTime.UtcNow
-            });
+            })
+            {
+                Status = SWStatus.Preview
+            };
             if (categoryId.HasValue)
             {
                 var activeCate = vmProduct.Categories.FirstOrDefault(c => c.CategoryId == categoryId);
