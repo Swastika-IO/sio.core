@@ -100,7 +100,7 @@
                     </td>
                     <td>
                         @{Html.RenderPartial("_ViewByFieldType",
-                                                      new ViewDataDictionary(this.Vi‌​ewData) { { "DataType", item.DataType }, { "Value", item.Value } });
+                                                          new ViewDataDictionary(this.Vi‌​ewData) { { "DataType", item.DataType }, { "Value", item.Value } });
                         }
                     </td>
                     <td>
@@ -117,10 +117,12 @@
                                     <span class="oi oi-x text-danger"></span>
                                 </a>*@
 
-                            <button class="btn btn-light del-popover" data-toggle="popover" title="Confirmation!" data-trigger="focus"
-                                    data-content='<a asp-action="DeleteConfiguration" asp-route-id="@item.Keyword" class="btn btn btn-danger">Yes, I want to delete!</a>' data-html="true">
+                            <button class="btn btn-light del-popover" data-toggle="popover" title="Confirmation!" data-trigger="focus" data-html="true">
                                 <span class="oi oi-x text-danger"></span>
                             </button>
+                            <div class="popover-body d-none">
+                                <a asp-action="DeleteConfiguration" asp-route-id="@item.Keyword" class="btn btn btn-danger">Yes, I want to delete!</a>
+                            </div>
                         </div>
                     </td>
                 </tr>
