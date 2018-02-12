@@ -16,6 +16,7 @@ using Swastika.Domain.Core.Models;
 using Swastika.Cms.Lib.ViewModels.Info;
 using Swastika.Cms.Lib.ViewModels.FrontEnd;
 using static Swastika.Cms.Lib.SWCmsConstants;
+using Swastika.Cms.Lib.ViewModels.Navigation;
 
 namespace Swastika.Cms.Lib.ViewModels.BackEnd
 {
@@ -82,6 +83,8 @@ namespace Swastika.Cms.Lib.ViewModels.BackEnd
         public List<ModuleArticleViewModel> Modules { get; set; } // Parent to Modules
         [JsonProperty("moduleNavs")]
         public List<BEArticleModuleViewModel> ModuleNavs { get; set; } // Children Modules
+        [JsonProperty("mediaNavs")]
+        public List<NavArticleMediaViewModel> MediaNavs { get; set; }
         [JsonProperty("activedModules")]
         public List<BEModuleViewModel> ActivedModules { get; set; } // Children Modules
         [JsonProperty("listTag")]
@@ -245,6 +248,13 @@ namespace Swastika.Cms.Lib.ViewModels.BackEnd
             {
                 this.ModuleNavs = getArticleModule.Data;
             }
+
+            var getArticleMedia = NavArticleMediaViewModel.Repository.GetModelListBy(n => n.ArticleId == Id && n.Specificulture == Specificulture, _context, _transaction);
+            if (getArticleMedia.IsSucceed)
+            {
+                MediaNavs = getArticleMedia.Data;
+            }
+
 
             this.ListSupportedCulture.ForEach(c => c.IsSupported =
             (string.IsNullOrEmpty(Id) && c.Specificulture == Specificulture)
@@ -464,6 +474,31 @@ namespace Swastika.Cms.Lib.ViewModels.BackEnd
                     }
                 }
 
+
+                if (result)
+                {
+                    foreach (var navMedia in MediaNavs)
+                    {
+                        if (navMedia.IsActived)
+                        {
+                            navMedia.ArticleId = parent.Id;
+                            var saveResult = await navMedia.SaveModelAsync(false, _context, _transaction);
+                        }
+                        else
+                        {
+                            navMedia.ArticleId = parent.Id;
+                            var saveResult = await navMedia.RemoveModelAsync(false, _context, _transaction);
+                            result = saveResult.IsSucceed;
+                            if (!result)
+                            {
+                                Errors.AddRange(saveResult.Errors);
+                                Exception = saveResult.Exception;
+                            }
+                        }
+                    }
+                }
+
+
                 return new RepositoryResponse<bool>()
                 {
                     IsSucceed = result,
@@ -592,21 +627,179 @@ namespace Swastika.Cms.Lib.ViewModels.BackEnd
         public override RepositoryResponse<bool> SaveSubModels(SiocArticle parent, SiocCmsContext _context = null, IDbContextTransaction _transaction = null)
         {
             bool result = true;
+
             try
             {
                 var saveTemplate = View.SaveModel(false, _context, _transaction);
-                if (saveTemplate.IsSucceed)
+                if (!saveTemplate.IsSucceed)
                 {
                     Errors.AddRange(saveTemplate.Errors);
+                    Exception = saveTemplate.Exception;
                 }
                 result = result && saveTemplate.IsSucceed;
+                if (result)
+                {
+                    foreach (var item in Categories)
+                    {
+                        item.ArticleId = Id;
+                        if (item.IsActived)
+                        {
+                            var saveResult = item.SaveModel(false, _context, _transaction);
+                            result = result && saveResult.IsSucceed;
+                            if (!result)
+                            {
+                                Errors.AddRange(saveResult.Errors);
+                            }
+                        }
+                        else
+                        {
+                            var saveResult = item.RemoveModel(false, _context, _transaction);
+                            result = result && saveResult.IsSucceed;
+                            if (!result)
+                            {
+                                Errors.AddRange(saveResult.Errors);
+                            }
+                        }
+                    }
+                }
+
+                if (result)
+                {
+                    foreach (var item in Modules)
+                    {
+                        item.ArticleId = Id;
+                        if (item.IsActived)
+                        {
+                            var saveResult = item.SaveModel(false, _context, _transaction);
+                            result = result && saveResult.IsSucceed;
+                            if (!result)
+                            {
+                                Errors.AddRange(saveResult.Errors);
+                            }
+                        }
+                        else
+                        {
+                            var saveResult = item.RemoveModel(false, _context, _transaction);
+                            result = result && saveResult.IsSucceed;
+                            if (!result)
+                            {
+                                Errors.AddRange(saveResult.Errors);
+                            }
+                        }
+                    }
+                }
+
+                if (result)
+                {
+                    foreach (var item in ModuleNavs)
+                    {
+                        item.ArticleId = Id;
+                        if (item.IsActived)
+                        {
+                            var saveResult = item.SaveModel(false, _context, _transaction);
+                        }
+                        else
+                        {
+                            var saveResult = item.RemoveModel(true, _context, _transaction);
+                            result = saveResult.IsSucceed;
+                            if (!result)
+                            {
+                                Errors.AddRange(saveResult.Errors);
+                                Exception = saveResult.Exception;
+                            }
+                        }
+                    }
+                }
+
+                //save submodules data
+                if (result)
+                {
+                    foreach (var module in ActivedModules)
+                    {
+                        module.Data.Items = new List<InfoModuleDataViewModel>();
+                        foreach (var data in module.Data.JsonItems)
+                        {
+
+                            SiocModuleData model = new SiocModuleData()
+                            {
+                                Id = data.Value<string>("id") ?? Guid.NewGuid().ToString(),
+                                Specificulture = module.Specificulture,
+                                ArticleId = Id,
+                                ModuleId = module.Id,
+                                Fields = module.Fields,
+                                CreatedDateTime = DateTime.UtcNow,
+                                UpdatedDateTime = DateTime.UtcNow
+                            };
+
+                            List<ModuleFieldViewModel> cols = module.Columns;
+                            JObject val = new JObject();
+
+                            foreach (JProperty prop in data.Properties())
+                            {
+                                var col = cols.FirstOrDefault(c => c.Name == prop.Name);
+                                if (col != null)
+                                {
+
+                                    JObject fieldVal = new JObject
+                                    {
+                                        new JProperty("dataType", col.DataType),
+                                        new JProperty("value", prop.Value)
+                                    };
+                                    val.Add(new JProperty(prop.Name, fieldVal));
+                                }
+                            }
+                            model.Value = val.ToString(Newtonsoft.Json.Formatting.None);
+
+                            var vmData = new InfoModuleDataViewModel(model);
+
+                            var saveResult = vmData.SaveModel(false, _context, _transaction);
+                            if (saveResult.IsSucceed)
+                            {
+                                module.Data.Items.Add(vmData);
+                            }
+                            else
+                            {
+                                Errors.AddRange(saveResult.Errors);
+                                Exception = saveResult.Exception;
+                            }
+                            result = result && saveResult.IsSucceed;
+                        }
+                    }
+                }
+
+
+                if (result)
+                {
+                    foreach (var navMedia in MediaNavs)
+                    {
+                        if (navMedia.IsActived)
+                        {
+                            navMedia.ArticleId = parent.Id;
+                            var saveResult = navMedia.SaveModel(false, _context, _transaction);
+                        }
+                        else
+                        {
+                            navMedia.ArticleId = parent.Id;
+                            var saveResult = navMedia.RemoveModel(false, _context, _transaction);
+                            result = saveResult.IsSucceed;
+                            if (!result)
+                            {
+                                Errors.AddRange(saveResult.Errors);
+                                Exception = saveResult.Exception;
+                            }
+                        }
+                    }
+                }
 
 
                 return new RepositoryResponse<bool>()
                 {
                     IsSucceed = result,
-                    Data = result
+                    Data = result,
+                    Errors = Errors,
+                    Exception = Exception
                 };
+
             }
             catch (Exception ex)
             {

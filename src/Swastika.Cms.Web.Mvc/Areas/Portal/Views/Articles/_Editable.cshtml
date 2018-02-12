@@ -117,24 +117,24 @@
                                             </thead>
                                             <tbody class="sortable">
                                                 @for (int i = 0; i < Model.Properties.Count; i++)
-            {
-                                    <tr class="sortable-item article-property">
-                                        <td style="cursor:move;">
-                                            <span class="oi oi-move"></span>
-                                        </td>
-                                        <td>
-                                            <input type="text" asp-for="@Model.Properties[i].Priority" class="item-priority form-control form-control-sm d-inline" style="width:40px;" />
-                                        </td>
-                                        <td>
-                                            <input asp-for="@Model.Properties[i].Name" class="form-control form-control-sm" />
-                                        </td>
-                                        <td>
-                                            <select asp-for="@Model.Properties[i].DataType" class="form-control form-control-sm prop-data-type" asp-items="@types"></select>
-                                        </td>
-                                        <td class="prop-value-container" data-index="@i" data-name="Properties[@i].Value" data-id="Properties_@(i)__Value"
-                                            data-value="@(Model.Properties[i].Value)"></td>
-                                    </tr>
-}
+                                                {
+                                                    <tr class="sortable-item article-property">
+                                                        <td style="cursor:move;">
+                                                            <span class="oi oi-move"></span>
+                                                        </td>
+                                                        <td>
+                                                            <input type="text" asp-for="@Model.Properties[i].Priority" class="item-priority form-control form-control-sm d-inline" style="width:40px;" />
+                                                        </td>
+                                                        <td>
+                                                            <input asp-for="@Model.Properties[i].Name" class="form-control form-control-sm" />
+                                                        </td>
+                                                        <td>
+                                                            <select asp-for="@Model.Properties[i].DataType" class="form-control form-control-sm prop-data-type" asp-items="@types"></select>
+                                                        </td>
+                                                        <td class="prop-value-container" data-index="@i" data-name="Properties[@i].Value" data-id="Properties_@(i)__Value"
+                                                            data-value="@(Model.Properties[i].Value)"></td>
+                                                    </tr>
+                                                }
                                             </tbody>
                                         </table>
                                     </div>
@@ -393,6 +393,23 @@
                     </div>
                     <div class="tab-pane fade" id="pills-media" role="tabpanel" aria-labelledby="pills-media-tab">
                         <section class="content container-fluid">
+                            <div class="row media-navs">
+                                @foreach (var item in Model.MediaNavs)
+                                {
+                                    <div class="card">
+                                        <span class="switch switch-sm" style="position: absolute;top: 10px;">
+                                            <input type="checkbox" class="switch" data-val="true" data-val-required="The IsActived field is required."
+                                                   id="Media_Image_@item.MediaId" name="Media_Image_@item.MediaId" value="@item.IsActived">
+                                            <label class="switch" for="Media_Image_@item.MediaId">
+                                                @item.Media.FileName
+                                            </label>
+                                        </span>
+                                        <a href="#" data-toggle="modal" data-target=".image-preview-modal-lg">
+                                            <img class="card-img-top" src="@item.Media.FullPath" alt="Card image cap">
+                                        </a>
+                                    </div>
+                                }
+                            </div>
                             <div class="row">
                                 <div class="col-md-8">
                                     <div class="btn-toolbar mb-3" role="toolbar" aria-label="Toolbar with button groups">
@@ -442,138 +459,18 @@
                             </div>
 
                             <div class="card-columns" style="column-count: 4 !important;column-gap: 0.75rem;">
-                                <div class="card">
-                                    <span class="switch switch-sm" style="position: absolute;top: 10px;">
-                                        <input type="checkbox" class="switch" data-val="true" data-val-required="The IsActived field is required." id="Media_Image_0" name="Media_Image_0" value="true">
-                                        <label class="switch" for="Media_Image_0">
-                                            Image title...
-                                        </label>
-                                    </span>
-                                    <a href="#" data-toggle="modal" data-target=".image-preview-modal-lg">
-                                        <img class="card-img-top" src="data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%22245%22%20height%3D%22160%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20245%20160%22%20preserveAspectRatio%3D%22none%22%3E%3Cdefs%3E%3Cstyle%20type%3D%22text%2Fcss%22%3E%23holder_1615fd2f087%20text%20%7B%20fill%3Argba(255%2C255%2C255%2C.75)%3Bfont-weight%3Anormal%3Bfont-family%3AHelvetica%2C%20monospace%3Bfont-size%3A12pt%20%7D%20%3C%2Fstyle%3E%3C%2Fdefs%3E%3Cg%20id%3D%22holder_1615fd2f087%22%3E%3Crect%20width%3D%22245%22%20height%3D%22160%22%20fill%3D%22%23777%22%3E%3C%2Frect%3E%3Cg%3E%3Ctext%20x%3D%2291.7578125%22%20y%3D%2285.1%22%3E245x160%3C%2Ftext%3E%3C%2Fg%3E%3C%2Fg%3E%3C%2Fsvg%3E" alt="Card image cap">
-                                    </a>
-                                </div>
-                                <div class="card">
-                                    <span class="switch switch-sm" style="position: absolute;top: 10px;">
-                                        <input type="checkbox" class="switch" data-val="true" data-val-required="The IsActived field is required." id="Media_Image_0" name="Media_Image_0" value="true">
-                                        <label class="switch" for="Media_Image_0">
-                                            Image title...
-                                        </label>
-                                    </span>
-                                    <a href="#" data-toggle="modal" data-target=".image-preview-modal-lg">
-                                        <img class="card-img-top" src="data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%22245%22%20height%3D%22160%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20245%20160%22%20preserveAspectRatio%3D%22none%22%3E%3Cdefs%3E%3Cstyle%20type%3D%22text%2Fcss%22%3E%23holder_1615fd2f087%20text%20%7B%20fill%3Argba(255%2C255%2C255%2C.75)%3Bfont-weight%3Anormal%3Bfont-family%3AHelvetica%2C%20monospace%3Bfont-size%3A12pt%20%7D%20%3C%2Fstyle%3E%3C%2Fdefs%3E%3Cg%20id%3D%22holder_1615fd2f087%22%3E%3Crect%20width%3D%22245%22%20height%3D%22160%22%20fill%3D%22%23777%22%3E%3C%2Frect%3E%3Cg%3E%3Ctext%20x%3D%2291.7578125%22%20y%3D%2285.1%22%3E245x160%3C%2Ftext%3E%3C%2Fg%3E%3C%2Fg%3E%3C%2Fsvg%3E" alt="Card image cap">
-                                    </a>
-                                </div>
-                                <div class="card">
-                                    <span class="switch switch-sm" style="position: absolute;top: 10px;">
-                                        <input type="checkbox" class="switch" data-val="true" data-val-required="The IsActived field is required." id="Media_Image_0" name="Media_Image_0" value="true">
-                                        <label class="switch" for="Media_Image_0">
-                                            Image title...
-                                        </label>
-                                    </span>
-                                    <a href="#" data-toggle="modal" data-target=".image-preview-modal-lg">
-                                        <img class="card-img-top" src="data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%22245%22%20height%3D%22160%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20245%20160%22%20preserveAspectRatio%3D%22none%22%3E%3Cdefs%3E%3Cstyle%20type%3D%22text%2Fcss%22%3E%23holder_1615fd2f087%20text%20%7B%20fill%3Argba(255%2C255%2C255%2C.75)%3Bfont-weight%3Anormal%3Bfont-family%3AHelvetica%2C%20monospace%3Bfont-size%3A12pt%20%7D%20%3C%2Fstyle%3E%3C%2Fdefs%3E%3Cg%20id%3D%22holder_1615fd2f087%22%3E%3Crect%20width%3D%22245%22%20height%3D%22160%22%20fill%3D%22%23777%22%3E%3C%2Frect%3E%3Cg%3E%3Ctext%20x%3D%2291.7578125%22%20y%3D%2285.1%22%3E245x160%3C%2Ftext%3E%3C%2Fg%3E%3C%2Fg%3E%3C%2Fsvg%3E" alt="Card image cap">
-                                    </a>
-                                </div>
-                                <div class="card">
-                                    <span class="switch switch-sm" style="position: absolute;top: 10px;">
-                                        <input type="checkbox" class="switch" data-val="true" data-val-required="The IsActived field is required." id="Media_Image_0" name="Media_Image_0" value="true">
-                                        <label class="switch" for="Media_Image_0">
-                                            Image title...
-                                        </label>
-                                    </span>
-                                    <a href="#" data-toggle="modal" data-target=".image-preview-modal-lg">
-                                        <img class="card-img-top" src="data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%22245%22%20height%3D%22160%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20245%20160%22%20preserveAspectRatio%3D%22none%22%3E%3Cdefs%3E%3Cstyle%20type%3D%22text%2Fcss%22%3E%23holder_1615fd2f087%20text%20%7B%20fill%3Argba(255%2C255%2C255%2C.75)%3Bfont-weight%3Anormal%3Bfont-family%3AHelvetica%2C%20monospace%3Bfont-size%3A12pt%20%7D%20%3C%2Fstyle%3E%3C%2Fdefs%3E%3Cg%20id%3D%22holder_1615fd2f087%22%3E%3Crect%20width%3D%22245%22%20height%3D%22160%22%20fill%3D%22%23777%22%3E%3C%2Frect%3E%3Cg%3E%3Ctext%20x%3D%2291.7578125%22%20y%3D%2285.1%22%3E245x160%3C%2Ftext%3E%3C%2Fg%3E%3C%2Fg%3E%3C%2Fsvg%3E" alt="Card image cap">
-                                    </a>
-                                </div>
-                                <div class="card">
-                                    <span class="switch switch-sm" style="position: absolute;top: 10px;">
-                                        <input type="checkbox" class="switch" data-val="true" data-val-required="The IsActived field is required." id="Media_Image_0" name="Media_Image_0" value="true">
-                                        <label class="switch" for="Media_Image_0">
-                                            Image title...
-                                        </label>
-                                    </span>
-                                    <a href="#" data-toggle="modal" data-target=".image-preview-modal-lg">
-                                        <img class="card-img-top" src="data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%22245%22%20height%3D%22160%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20245%20160%22%20preserveAspectRatio%3D%22none%22%3E%3Cdefs%3E%3Cstyle%20type%3D%22text%2Fcss%22%3E%23holder_1615fd2f087%20text%20%7B%20fill%3Argba(255%2C255%2C255%2C.75)%3Bfont-weight%3Anormal%3Bfont-family%3AHelvetica%2C%20monospace%3Bfont-size%3A12pt%20%7D%20%3C%2Fstyle%3E%3C%2Fdefs%3E%3Cg%20id%3D%22holder_1615fd2f087%22%3E%3Crect%20width%3D%22245%22%20height%3D%22160%22%20fill%3D%22%23777%22%3E%3C%2Frect%3E%3Cg%3E%3Ctext%20x%3D%2291.7578125%22%20y%3D%2285.1%22%3E245x160%3C%2Ftext%3E%3C%2Fg%3E%3C%2Fg%3E%3C%2Fsvg%3E" alt="Card image cap">
-                                    </a>
-                                </div>
-                                <div class="card">
-                                    <span class="switch switch-sm" style="position: absolute;top: 10px;">
-                                        <input type="checkbox" class="switch" data-val="true" data-val-required="The IsActived field is required." id="Media_Image_0" name="Media_Image_0" value="true">
-                                        <label class="switch" for="Media_Image_0">
-                                            Image title...
-                                        </label>
-                                    </span>
-                                    <a href="#" data-toggle="modal" data-target=".image-preview-modal-lg">
-                                        <img class="card-img-top" src="data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%22245%22%20height%3D%22160%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20245%20160%22%20preserveAspectRatio%3D%22none%22%3E%3Cdefs%3E%3Cstyle%20type%3D%22text%2Fcss%22%3E%23holder_1615fd2f087%20text%20%7B%20fill%3Argba(255%2C255%2C255%2C.75)%3Bfont-weight%3Anormal%3Bfont-family%3AHelvetica%2C%20monospace%3Bfont-size%3A12pt%20%7D%20%3C%2Fstyle%3E%3C%2Fdefs%3E%3Cg%20id%3D%22holder_1615fd2f087%22%3E%3Crect%20width%3D%22245%22%20height%3D%22160%22%20fill%3D%22%23777%22%3E%3C%2Frect%3E%3Cg%3E%3Ctext%20x%3D%2291.7578125%22%20y%3D%2285.1%22%3E245x160%3C%2Ftext%3E%3C%2Fg%3E%3C%2Fg%3E%3C%2Fsvg%3E" alt="Card image cap">
-                                    </a>
-                                </div>
-                                <div class="card">
-                                    <span class="switch switch-sm" style="position: absolute;top: 10px;">
-                                        <input type="checkbox" class="switch" data-val="true" data-val-required="The IsActived field is required." id="Media_Image_0" name="Media_Image_0" value="true">
-                                        <label class="switch" for="Media_Image_0">
-                                            Image title...
-                                        </label>
-                                    </span>
-                                    <a href="#" data-toggle="modal" data-target=".image-preview-modal-lg">
-                                        <img class="card-img-top" src="data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%22245%22%20height%3D%22160%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20245%20160%22%20preserveAspectRatio%3D%22none%22%3E%3Cdefs%3E%3Cstyle%20type%3D%22text%2Fcss%22%3E%23holder_1615fd2f087%20text%20%7B%20fill%3Argba(255%2C255%2C255%2C.75)%3Bfont-weight%3Anormal%3Bfont-family%3AHelvetica%2C%20monospace%3Bfont-size%3A12pt%20%7D%20%3C%2Fstyle%3E%3C%2Fdefs%3E%3Cg%20id%3D%22holder_1615fd2f087%22%3E%3Crect%20width%3D%22245%22%20height%3D%22160%22%20fill%3D%22%23777%22%3E%3C%2Frect%3E%3Cg%3E%3Ctext%20x%3D%2291.7578125%22%20y%3D%2285.1%22%3E245x160%3C%2Ftext%3E%3C%2Fg%3E%3C%2Fg%3E%3C%2Fsvg%3E" alt="Card image cap">
-                                    </a>
-                                </div>
-                                <div class="card">
-                                    <span class="switch switch-sm" style="position: absolute;top: 10px;">
-                                        <input type="checkbox" class="switch" data-val="true" data-val-required="The IsActived field is required." id="Media_Image_0" name="Media_Image_0" value="true">
-                                        <label class="switch" for="Media_Image_0">
-                                            Image title...
-                                        </label>
-                                    </span>
-                                    <a href="#" data-toggle="modal" data-target=".image-preview-modal-lg">
-                                        <img class="card-img-top" src="data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%22245%22%20height%3D%22160%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20245%20160%22%20preserveAspectRatio%3D%22none%22%3E%3Cdefs%3E%3Cstyle%20type%3D%22text%2Fcss%22%3E%23holder_1615fd2f087%20text%20%7B%20fill%3Argba(255%2C255%2C255%2C.75)%3Bfont-weight%3Anormal%3Bfont-family%3AHelvetica%2C%20monospace%3Bfont-size%3A12pt%20%7D%20%3C%2Fstyle%3E%3C%2Fdefs%3E%3Cg%20id%3D%22holder_1615fd2f087%22%3E%3Crect%20width%3D%22245%22%20height%3D%22160%22%20fill%3D%22%23777%22%3E%3C%2Frect%3E%3Cg%3E%3Ctext%20x%3D%2291.7578125%22%20y%3D%2285.1%22%3E245x160%3C%2Ftext%3E%3C%2Fg%3E%3C%2Fg%3E%3C%2Fsvg%3E" alt="Card image cap">
-                                    </a>
-                                </div>
-                                <div class="card">
-                                    <span class="switch switch-sm" style="position: absolute;top: 10px;">
-                                        <input type="checkbox" class="switch" data-val="true" data-val-required="The IsActived field is required." id="Media_Image_0" name="Media_Image_0" value="true">
-                                        <label class="switch" for="Media_Image_0">
-                                            Image title...
-                                        </label>
-                                    </span>
-                                    <a href="#" data-toggle="modal" data-target=".image-preview-modal-lg">
-                                        <img class="card-img-top" src="data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%22245%22%20height%3D%22160%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20245%20160%22%20preserveAspectRatio%3D%22none%22%3E%3Cdefs%3E%3Cstyle%20type%3D%22text%2Fcss%22%3E%23holder_1615fd2f087%20text%20%7B%20fill%3Argba(255%2C255%2C255%2C.75)%3Bfont-weight%3Anormal%3Bfont-family%3AHelvetica%2C%20monospace%3Bfont-size%3A12pt%20%7D%20%3C%2Fstyle%3E%3C%2Fdefs%3E%3Cg%20id%3D%22holder_1615fd2f087%22%3E%3Crect%20width%3D%22245%22%20height%3D%22160%22%20fill%3D%22%23777%22%3E%3C%2Frect%3E%3Cg%3E%3Ctext%20x%3D%2291.7578125%22%20y%3D%2285.1%22%3E245x160%3C%2Ftext%3E%3C%2Fg%3E%3C%2Fg%3E%3C%2Fsvg%3E" alt="Card image cap">
-                                    </a>
-                                </div>
-                                <div class="card">
-                                    <span class="switch switch-sm" style="position: absolute;top: 10px;">
-                                        <input type="checkbox" class="switch" data-val="true" data-val-required="The IsActived field is required." id="Media_Image_0" name="Media_Image_0" value="true">
-                                        <label class="switch" for="Media_Image_0">
-                                            Image title...
-                                        </label>
-                                    </span>
-                                    <a href="#" data-toggle="modal" data-target=".image-preview-modal-lg">
-                                        <img class="card-img-top" src="data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%22245%22%20height%3D%22160%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20245%20160%22%20preserveAspectRatio%3D%22none%22%3E%3Cdefs%3E%3Cstyle%20type%3D%22text%2Fcss%22%3E%23holder_1615fd2f087%20text%20%7B%20fill%3Argba(255%2C255%2C255%2C.75)%3Bfont-weight%3Anormal%3Bfont-family%3AHelvetica%2C%20monospace%3Bfont-size%3A12pt%20%7D%20%3C%2Fstyle%3E%3C%2Fdefs%3E%3Cg%20id%3D%22holder_1615fd2f087%22%3E%3Crect%20width%3D%22245%22%20height%3D%22160%22%20fill%3D%22%23777%22%3E%3C%2Frect%3E%3Cg%3E%3Ctext%20x%3D%2291.7578125%22%20y%3D%2285.1%22%3E245x160%3C%2Ftext%3E%3C%2Fg%3E%3C%2Fg%3E%3C%2Fsvg%3E" alt="Card image cap">
-                                    </a>
-                                </div>
-                                <div class="card">
-                                    <span class="switch switch-sm" style="position: absolute;top: 10px;">
-                                        <input type="checkbox" class="switch" data-val="true" data-val-required="The IsActived field is required." id="Media_Image_0" name="Media_Image_0" value="true">
-                                        <label class="switch" for="Media_Image_0">
-                                            Image title...
-                                        </label>
-                                    </span>
-                                    <a href="#" data-toggle="modal" data-target=".image-preview-modal-lg">
-                                        <img class="card-img-top" src="data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%22245%22%20height%3D%22160%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20245%20160%22%20preserveAspectRatio%3D%22none%22%3E%3Cdefs%3E%3Cstyle%20type%3D%22text%2Fcss%22%3E%23holder_1615fd2f087%20text%20%7B%20fill%3Argba(255%2C255%2C255%2C.75)%3Bfont-weight%3Anormal%3Bfont-family%3AHelvetica%2C%20monospace%3Bfont-size%3A12pt%20%7D%20%3C%2Fstyle%3E%3C%2Fdefs%3E%3Cg%20id%3D%22holder_1615fd2f087%22%3E%3Crect%20width%3D%22245%22%20height%3D%22160%22%20fill%3D%22%23777%22%3E%3C%2Frect%3E%3Cg%3E%3Ctext%20x%3D%2291.7578125%22%20y%3D%2285.1%22%3E245x160%3C%2Ftext%3E%3C%2Fg%3E%3C%2Fg%3E%3C%2Fsvg%3E" alt="Card image cap">
-                                    </a>
-                                </div>
-                                <div class="card">
-                                    <span class="switch switch-sm" style="position: absolute;top: 10px;">
-                                        <input type="checkbox" class="switch" data-val="true" data-val-required="The IsActived field is required." id="Media_Image_0" name="Media_Image_0" value="true">
-                                        <label class="switch" for="Media_Image_0">
-                                            Image title...
-                                        </label>
-                                    </span>
-                                    <a href="#" data-toggle="modal" data-target=".image-preview-modal-lg">
-                                        <img class="card-img-top" src="data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%22245%22%20height%3D%22160%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20245%20160%22%20preserveAspectRatio%3D%22none%22%3E%3Cdefs%3E%3Cstyle%20type%3D%22text%2Fcss%22%3E%23holder_1615fd2f087%20text%20%7B%20fill%3Argba(255%2C255%2C255%2C.75)%3Bfont-weight%3Anormal%3Bfont-family%3AHelvetica%2C%20monospace%3Bfont-size%3A12pt%20%7D%20%3C%2Fstyle%3E%3C%2Fdefs%3E%3Cg%20id%3D%22holder_1615fd2f087%22%3E%3Crect%20width%3D%22245%22%20height%3D%22160%22%20fill%3D%22%23777%22%3E%3C%2Frect%3E%3Cg%3E%3Ctext%20x%3D%2291.7578125%22%20y%3D%2285.1%22%3E245x160%3C%2Ftext%3E%3C%2Fg%3E%3C%2Fg%3E%3C%2Fsvg%3E" alt="Card image cap">
-                                    </a>
-                                </div>
+                                @*<div class="card">
+                                        <span class="switch switch-sm" style="position: absolute;top: 10px;">
+                                            <input type="checkbox" class="switch" data-val="true" data-val-required="The IsActived field is required." id="Media_Image_0" name="Media_Image_0" value="true">
+                                            <label class="switch" for="Media_Image_0">
+                                                Image title...
+                                            </label>
+                                        </span>
+                                        <a href="#" data-toggle="modal" data-target=".image-preview-modal-lg">
+                                            <img class="card-img-top" src="data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%22245%22%20height%3D%22160%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20245%20160%22%20preserveAspectRatio%3D%22none%22%3E%3Cdefs%3E%3Cstyle%20type%3D%22text%2Fcss%22%3E%23holder_1615fd2f087%20text%20%7B%20fill%3Argba(255%2C255%2C255%2C.75)%3Bfont-weight%3Anormal%3Bfont-family%3AHelvetica%2C%20monospace%3Bfont-size%3A12pt%20%7D%20%3C%2Fstyle%3E%3C%2Fdefs%3E%3Cg%20id%3D%22holder_1615fd2f087%22%3E%3Crect%20width%3D%22245%22%20height%3D%22160%22%20fill%3D%22%23777%22%3E%3C%2Frect%3E%3Cg%3E%3Ctext%20x%3D%2291.7578125%22%20y%3D%2285.1%22%3E245x160%3C%2Ftext%3E%3C%2Fg%3E%3C%2Fg%3E%3C%2Fsvg%3E" alt="Card image cap">
+                                        </a>
+                                    </div>*@
+
                             </div>
                             <nav aria-label="Page navigation">
                                 <ul class="pagination pull-right">
@@ -614,7 +511,7 @@
                             </div>
                             <div class="modal fade upload-image-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
                                 <div class="modal-dialog modal-lg modal-dialog-centered">
-                                    <div class="modal-content">
+                                    <div class="modal-content model-media">
                                         <div class="modal-header">
                                             <h5 class="modal-title">Upload media</h5>
                                             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
@@ -625,13 +522,13 @@
                                             <span class="text-danger"></span>
                                             <label class="custom-file" style="min-height:150px; cursor:pointer; border: 2px dashed;">
                                                 <img src="" name="pic" class="custom-file-img " accept="image/*" width="100%" />
-                                                <input type="hidden" value="Media/" class="folder-val" />
+                                                <input type="hidden" value="Media" class="folder-val" />
                                                 <input type="file" name="pic" class="custom-file-input">
                                                 <input type="text" class="form-control custom-file-val d-none">
                                             </label>
                                         </div>
                                         <div class="modal-footer">
-                                            <button type="button" class="btn btn-primary"><i class="mi mi-Upload"></i> Upload</button>
+                                            <button type="button" class="btn btn-primary btn-upload"><i class="mi mi-Upload"></i> Upload</button>
                                             <button type="button" class="btn btn-secondary" data-dismiss="modal"><i class="mi mi-Cancel"></i> Dismiss</button>
                                         </div>
                                     </div>
@@ -766,6 +663,46 @@
             });
         });
         $('.prop-data-type').change();
+
+        var settings = {
+            "async": true,
+            "crossDomain": true,
+            "url": "/api/vi-vn/media/list",
+            "method": "POST",
+            "headers": {
+                "Content-Type": "application/x-www-form-urlencoded"
+            },
+            "data": {
+                "pageSize": "4",
+                "pageIndex": "0",
+                "orderBy": "title",
+                "direction": "1",
+                "keyword": ""
+            }
+        }
+
+        $.ajax(settings).done(function (response) {
+            var container = $('.card-columns');
+            $(container).empty();
+            var html = '';
+            $.each(response.data.items, function (i, e) {
+
+                html += ' <div class="card" data-media-id="' + e.id + '"> \
+                            <span class="switch switch-sm" style= "position: absolute;top: 10px;" > \
+                                <input type="checkbox" class="switch" data-val="true" data-val-required="The IsActived field is required." id="Media_Image_'+ e.id + '" name="Media_Image_' + e.id + '" value="' + e.isActived + '">\
+                                    <label class="switch" for="Media_Image_'+ e.id + '">\
+                                        \
+                                                    </label>\
+                                                </span>\
+                                <a href="#" data-toggle="modal" data-target=".image-preview-modal-lg">\
+                                    <img class="card-img-top" src="'+ e.fullPath + '" alt="Card image cap">\
+                                                </a>\
+                        </div>';
+
+            })
+            $(container).append(html);
+
+        });
     }
 </script>
 <script>

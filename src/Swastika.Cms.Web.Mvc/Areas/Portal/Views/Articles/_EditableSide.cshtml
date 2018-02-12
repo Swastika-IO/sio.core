@@ -1,6 +1,5 @@
 @model BEArticleViewModel
 @{
-    var types = Html.GetEnumSelectList<Swastika.Cms.Lib.SWCmsConstants.CateType>();
     var status = Html.GetEnumSelectList<Swastika.Common.Utility.Enums.SWStatus>();
     string img = Model != null ? Model.Image : "http://placehold.it/200x200";
     string thumb = Model != null ? Model.Thumbnail : "http://placehold.it/200x200";
@@ -13,13 +12,11 @@
     </div>
     <div class="card-body">
         <div class="form-group">
-
             @{
                 foreach (var stat in status)
                 {
-
                     <div class="custom-control custom-radio">
-                        <input asp-for="Status" type="radio" value="@stat.Value" class="custom-control-input" id="pageType_@stat.Value" />
+                        <input asp-for="Status" type="radio" value="@stat.Text" class="custom-control-input" id="pageType_@stat.Value" />
                         <label class="custom-control-label" for="pageType_@stat.Value">@stat.Text</label>
                     </div>
                 }
