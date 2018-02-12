@@ -120,7 +120,12 @@
                         <div class="btn-group btn-group-sm" role="group" aria-label="Actions">
                             <a asp-action="Edit" asp-route-id="@item.Id" class="btn btn-sm btn-light"> <span class="oi oi-pencil text-primary"></span></a>
                             @*<a asp-action="Details" asp-route-id="@item.Id" class="btn btn-sm btn-info"> <span class="oi oi-eye"></span> </a>*@
-                            <a asp-action="Delete" asp-route-id="@item.Id" class="btn btn-sm btn-light" data-popout="true" data-toggle="confirmation" data-singleton="true"> <span class="oi oi-x text-danger"></span> </a>
+                            @*<a asp-action="Delete" asp-route-id="@item.Id" class="btn btn-sm btn-light" data-popout="true" data-toggle="confirmation" data-singleton="true"> <span class="oi oi-x text-danger"></span> </a>*@
+
+                            <button class="btn btn-light del-popover" data-toggle="popover" title="Confirmation!" data-trigger="focus"
+                                    data-content='<a asp-action="Delete" asp-route-id="@item.Id" class="btn btn btn-danger">Yes, I want to delete!</a>' data-html="true">
+                                <span class="oi oi-x text-danger"></span>
+                            </button>
                         </div>
                     </td>
                 </tr>
