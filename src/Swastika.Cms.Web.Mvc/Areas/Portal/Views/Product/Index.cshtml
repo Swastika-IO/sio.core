@@ -146,8 +146,13 @@
                                        class="btn btn-sm btn-light d-inline-block "><span class="oi oi-pencil text-primary"></span></a>
                                     <a asp-area="" asp-controller="Home" asp-action="ProductDetails" asp-route-SeoName="@Model.Items[i].SeoName"
                                        target="_blank" class="btn btn-sm btn-light"><span class="oi oi-eye text-info"></span></a>
-                                    <a asp-area="Portal" asp-controller="Products" asp-action="Recycle" asp-route-id="@Model.Items[i].Id"
-                                       class="btn btn-sm btn-light d-inline-block" data-popout="true" data-toggle="confirmation" data-singleton="true"><span class="oi oi-x text-danger"></span></a>
+                                    @*<a asp-area="Portal" asp-controller="Products" asp-action="Recycle" asp-route-id="@Model.Items[i].Id"
+                                        class="btn btn-sm btn-light d-inline-block" data-popout="true" data-toggle="confirmation" data-singleton="true"><span class="oi oi-x text-danger"></span></a>*@
+
+                                    <button class="btn btn-light del-popover" data-toggle="popover" title="Confirmation!" data-trigger="focus"
+                                            data-content='<a asp-area="Portal" asp-controller="Products" asp-action="Recycle" asp-route-id="@Model.Items[i].Id" class="btn btn btn-danger">Yes, I want to delete!</a>' data-html="true">
+                                        <span class="oi oi-x text-danger"></span>
+                                    </button>
                                 </div>
                             </td>
                         </tr>

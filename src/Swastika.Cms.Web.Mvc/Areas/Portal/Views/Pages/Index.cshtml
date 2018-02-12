@@ -12,7 +12,11 @@
     int nextPage = Model.PageIndex == Model.TotalPage - 1 ? Model.PageIndex : Model.PageIndex + 1;
     toValue = toValue > Model.TotalItems ? Model.TotalItems : toValue;
 }
-
+<script type="text/javascript">
+    function confirm_delete() {
+        return confirm('are you sure?');
+    }
+</script>
 <!-- Main content -->
 <section class="content container-fluid">
     <form enctype="multipart/form-data" asp-action="@ViewContext.RouteData.Values["action"].ToString()">
@@ -154,7 +158,8 @@
                                 <div class="btn-group btn-group-sm" role="group" aria-label="Actions">
                                     <a asp-action="Edit" asp-route-id="@Model.Items[i].Id" class="btn btn-light"> <span class="oi oi-pencil text-primary"></span></a>
                                     <a asp-area="" asp-controller="Home" asp-route-pageName="@Model.Items[i].SeoName" target="_blank" class="btn btn-light"><span class="oi oi-eye text-info"></span></a>
-                                    <a asp-action="Delete" asp-route-id="@Model.Items[i].Id" class="btn btn-light" data-popout="true" data-toggle="confirmation" data-singleton="true"> <span class="oi oi-x text-danger"></span> </a>
+                                    @*<a asp-action="Delete" asp-route-id="@Model.Items[i].Id" class="btn btn-light" data-popout="true" data-toggle="confirmation" data-singleton="true"> <span class="oi oi-x text-danger"></span> </a>*@
+                                    <button class="btn btn-light del-popover" data-toggle="popover" title="Confirmation!" data-trigger="focus" data-content='<a asp-action="Delete" asp-route-id="@Model.Items[i].Id" class="btn btn btn-danger">Yes, I want to delete!</a>' data-html="true"> <span class="oi oi-x text-danger"></span> </button>
                                 </div>
                             </td>
                         </tr>
