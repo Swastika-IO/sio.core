@@ -2,6 +2,7 @@
 using Swastika.Domain.Data.ViewModels;
 using Microsoft.EntityFrameworkCore.Storage;
 using Swastika.Cms.Lib.ViewModels.Info;
+using Newtonsoft.Json;
 
 namespace Swastika.Cms.Lib.ViewModels.Navigation
 {
@@ -17,10 +18,16 @@ namespace Swastika.Cms.Lib.ViewModels.Navigation
 
         }
 
+        [JsonProperty("articleId")]
         public string ArticleId { get; set; }
+        [JsonProperty("categoryId")]
         public int CategoryId { get; set; }
         //public string Specificulture { get; set; }
+        [JsonProperty("isActived")]
         public bool IsActived { get; set; }
+        [JsonProperty("image")]
+        public string Image { get; set; }
+        [JsonProperty("description")]
         public string Description { get; set; }
         #region Views
         public InfoArticleViewModel Article { get; set; }

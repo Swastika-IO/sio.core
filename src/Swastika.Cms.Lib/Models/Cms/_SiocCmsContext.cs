@@ -129,6 +129,11 @@ namespace Swastika.Cms.Lib.Models.Cms
 
                 entity.Property(e => e.ArticleId).HasMaxLength(50);
 
+                entity.Property(e => e.Image).HasMaxLength(250);
+
+                entity.Property(e => e.Description).HasMaxLength(250);
+
+
                 entity.Property(e => e.Specificulture).HasMaxLength(10);
 
                 entity.Property(e => e.Priority).HasDefaultValueSql("((0))");
@@ -159,6 +164,10 @@ namespace Swastika.Cms.Lib.Models.Cms
                 entity.HasIndex(e => new { e.ModuleId, e.Specificulture });
 
                 entity.Property(e => e.ArticleId).HasMaxLength(50);
+
+                entity.Property(e => e.Image).HasMaxLength(250);
+
+                entity.Property(e => e.Description).HasMaxLength(250);
 
                 entity.Property(e => e.Specificulture).HasMaxLength(10);
 
@@ -244,6 +253,10 @@ namespace Swastika.Cms.Lib.Models.Cms
 
                 entity.HasIndex(e => new { e.CategoryId, e.Specificulture });
 
+                entity.Property(e => e.Image).HasMaxLength(250);
+
+                entity.Property(e => e.Description).HasMaxLength(250);
+
                 entity.Property(e => e.ArticleId).HasMaxLength(50);
 
                 entity.Property(e => e.Specificulture).HasMaxLength(10);
@@ -275,6 +288,10 @@ namespace Swastika.Cms.Lib.Models.Cms
 
                 entity.HasIndex(e => new { e.ParentId, e.Specificulture });
 
+                entity.Property(e => e.Image).HasMaxLength(250);
+
+                entity.Property(e => e.Description).HasMaxLength(250);
+
                 entity.Property(e => e.Specificulture).HasMaxLength(10);
 
                 entity.Property(e => e.Priority).HasDefaultValueSql("((0))");
@@ -303,6 +320,8 @@ namespace Swastika.Cms.Lib.Models.Cms
                 entity.HasIndex(e => new { e.CategoryId, e.Specificulture });
 
                 entity.Property(e => e.Image).HasMaxLength(250);
+
+                entity.Property(e => e.Description).HasMaxLength(250);
 
                 entity.HasIndex(e => new { e.ModuleId, e.Specificulture });
 
@@ -361,6 +380,10 @@ namespace Swastika.Cms.Lib.Models.Cms
                 entity.HasIndex(e => new { e.CategoryId, e.Specificulture });
 
                 entity.HasIndex(e => new { e.ProductId, e.Specificulture });
+
+                entity.Property(e => e.Image).HasMaxLength(250);
+
+                entity.Property(e => e.Description).HasMaxLength(250);
 
                 entity.Property(e => e.ProductId).HasMaxLength(50);
 
@@ -655,6 +678,10 @@ namespace Swastika.Cms.Lib.Models.Cms
 
                 entity.Property(e => e.Specificulture).HasMaxLength(10);
 
+                entity.Property(e => e.Image).HasMaxLength(250);
+
+                entity.Property(e => e.Description).HasMaxLength(250);
+
                 entity.Property(e => e.Priority).HasDefaultValueSql("((0))");
 
                 entity.Property(e => e.Status).HasDefaultValueSql("((1))");
@@ -808,6 +835,10 @@ namespace Swastika.Cms.Lib.Models.Cms
 
                 entity.Property(e => e.ProductId).HasMaxLength(50);
 
+                entity.Property(e => e.Image).HasMaxLength(250);
+
+                entity.Property(e => e.Description).HasMaxLength(250);
+
                 entity.Property(e => e.Specificulture).HasMaxLength(10);
 
                 entity.Property(e => e.Priority).HasDefaultValueSql("((0))");
@@ -925,6 +956,10 @@ namespace Swastika.Cms.Lib.Models.Cms
 
                 entity.Property(e => e.ProductId).HasMaxLength(50);
 
+                entity.Property(e => e.Image).HasMaxLength(250);
+
+                entity.Property(e => e.Description).HasMaxLength(250);
+
                 entity.Property(e => e.Specificulture).HasMaxLength(10);
 
                 entity.Property(e => e.Priority).HasDefaultValueSql("((0))");
@@ -953,6 +988,10 @@ namespace Swastika.Cms.Lib.Models.Cms
                 entity.HasIndex(e => new { e.ModuleId, e.Specificulture });
 
                 entity.HasIndex(e => new { e.ProductId, e.Specificulture });
+
+                entity.Property(e => e.Image).HasMaxLength(250);
+
+                entity.Property(e => e.Description).HasMaxLength(250);
 
                 entity.Property(e => e.ProductId).HasMaxLength(50);
 

@@ -25,6 +25,8 @@ namespace Swastika.Cms.Lib.ViewModels.BackEnd
         public int ModuleId { get; set; }
         [JsonProperty("isActived")]
         public bool IsActived { get; set; }
+        [JsonProperty("Image")]
+        public string Image { get; set; }
         [JsonProperty("description")]
         public string Description { get; set; }
         #endregion

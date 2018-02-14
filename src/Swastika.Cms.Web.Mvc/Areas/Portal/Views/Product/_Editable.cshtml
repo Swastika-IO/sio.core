@@ -685,7 +685,10 @@
 
                     html += ' <div class="card" data-media-id="' + e.id + '"> \
                             <span class="switch switch-sm" style= "position: absolute;top: 10px;" > \
-                                <input type="checkbox" class="switch" data-val="true" data-val-required="The IsActived field is required." id="Media_Image_'+ e.id + '" name="Media_Image_' + e.id + '" value="' + e.isActived + '">\
+                                <input type="checkbox" class="switch cb-media" data-media-id="' + e.id + '"\
+                                    data-val-required="The IsActived field is required."\
+                                        id = "Media_Image_'+ e.id + '" name= "MediaNavs[' + e.id + ']"\
+                                    value = "' + e.isActived + '" >\
                                     <label class="switch" for="Media_Image_'+ e.id + '">\
                                         \
                                                     </label>\
@@ -695,7 +698,7 @@
                                                 </a>\
                         </div>';
 
-                })
+                });
                 $(container).append(html);
                 var pagination = $('.pagination');
                 console.log($(pagination).html);
@@ -741,7 +744,11 @@
                 }
             }
         });
-
+        $(document).on('change', '.cb-media', function () {
+            if ($(this).is(':checked')) {
+                alert($(this).data('media-id'));
+            }
+        })
         loadMedia();
     }
 </script>

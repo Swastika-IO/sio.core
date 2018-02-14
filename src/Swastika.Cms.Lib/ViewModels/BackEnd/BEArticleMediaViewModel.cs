@@ -22,9 +22,11 @@ namespace Swastika.Cms.Lib.ViewModels.BackEnd
         [JsonProperty("articleId")]
         public string ArticleId { get; set; }
         [JsonProperty("mediaId")]
-        public int MediaId { get; set; }
+        public int MediaId { get; set; }        
         [JsonProperty("isActived")]
         public bool IsActived { get; set; }
+        [JsonProperty("image")]
+        public string Image { get; set; }
         [JsonProperty("description")]
         public string Description { get; set; }
         #endregion

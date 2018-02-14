@@ -20,7 +20,10 @@ namespace Swastika.Cms.Lib.ViewModels.Navigation
         public string ProductId { get; set; }
         [JsonProperty("position")]
         public int Position { get; set; }
-
+        [JsonProperty("image")]
+        public string Image { get; set; }
+        [JsonProperty("description")]
+        public string Description { get; set; }
         #endregion
 
         #region Views

@@ -1,6 +1,7 @@
 ﻿using Swastika.Cms.Lib.Models.Cms;
 using Swastika.Domain.Data.ViewModels;
 using Microsoft.EntityFrameworkCore.Storage;
+using Newtonsoft.Json;
 
 namespace Swastika.Cms.Lib.ViewModels
 {
@@ -50,12 +51,16 @@ namespace Swastika.Cms.Lib.ViewModels
         ///   <c>true</c> if this instance is actived; otherwise, <c>false</c>.
         /// </value>
         public bool IsActived { get; set; }
+
+        [JsonProperty("image")]
+        public string Image { get; set; }
         /// <summary>
         /// Gets or sets the description.
         /// </summary>
         /// <value>
         /// The description.
         /// </value>
+        [JsonProperty("description")]
         public string Description { get; set; }
 
 

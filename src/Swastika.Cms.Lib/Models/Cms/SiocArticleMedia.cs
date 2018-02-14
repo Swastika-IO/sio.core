@@ -7,6 +7,8 @@ namespace Swastika.Cms.Lib.Models.Cms
     {
         public int MediaId { get; set; }
         public string ArticleId { get; set; }
+        public string Image { get; set; }
+        public string Description { get; set; }
         public string Specificulture { get; set; }
         public int Position { get; set; }
         public int Priority { get; set; }
