@@ -4,6 +4,7 @@
     ViewData["Title"] = "Blank Template";
     ViewData["Description"] = "Manage site navigations and menus";
     string culture = ViewContext.RouteData.Values["culture"].ToString();
+    var cates = Html.GetEnumSelectList<Swastika.Cms.Lib.SWCmsConstants.ConfigurationCategory>();
     //int fromValue = Model.PageIndex * @Model.PageSize + 1;
     //int toValue = fromValue + Model.PageSize;
     //int prevPage = Model.PageIndex > 0 ? Model.PageIndex - 1 : 0;
@@ -23,9 +24,7 @@
                 </div>
                 <div class="btn-group mr-2" role="group" aria-label="Button group with nested dropdown">
                     <div class="btn-group" role="group">
-                        <button id="btnGroupDrop1" type="button" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            All types
-                        </button>
+                       
                         <div class="dropdown-menu" aria-labelledby="btnGroupDrop1">
                             <a class="dropdown-item" href="#">All types</a>
                             <a class="dropdown-item" href="#">Images</a>

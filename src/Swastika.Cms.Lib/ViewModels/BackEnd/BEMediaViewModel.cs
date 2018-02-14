@@ -26,6 +26,12 @@ namespace Swastika.Cms.Lib.ViewModels.BackEnd
         public string FileName { get; set; }
         [JsonProperty("fileType")]
         public string FileType { get; set; }
+        [JsonProperty("fileSize")]
+        public int FileSize { get; set; }
+        [JsonProperty("title")]
+        public string Title { get; set; }
+        [JsonProperty("description")]
+        public string Description { get; set; }
         [JsonProperty("createdDateTime")]
         public DateTime CreatedDateTime { get; set; }
         [JsonProperty("lastModified")]
@@ -35,13 +41,16 @@ namespace Swastika.Cms.Lib.ViewModels.BackEnd
         #endregion
 
         #region Views
+        [JsonProperty("domain")]
+        public string Domain { get { return GlobalConfigurationService.Instance.GetLocalString("Domain", Specificulture, "/"); } }
+
         [JsonProperty("fullPath")]
         public string FullPath
         {
             get
             {
                 return SWCmsHelper.GetFullPath(new string[]{
-                    "",
+                    Domain,
                     FileFolder,
                     $"{FileName}{Extension}"
                 });

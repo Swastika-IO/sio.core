@@ -162,18 +162,7 @@
                 }
             });
 
-            $(document).on('click', '.model-media .btn-upload', function () {
-                var container = $(this).parents('.model-media').first().find('.custom-file').first();
-                var file = $('.model-media .custom-file-input').first().prop('files')[0];
-                if (file !== undefined && file !== null) {
-                    //SW.Common.getBase64(file, $('.custom-file')).then(result => console.log(result));
-                    //await SW.Common.getBase64(file).then(result => console.log(result));
-                    var fileName = SW.Common.uploadImage(file, container);
-                    if (fileName != "") {
-                        $('.upload-image-modal-lg').modal('toggle');
-                    }
-                }
-            });
+            
 
             $(".image-preview-modal-lg").on('show.bs.modal', function (event) {
                 var button = $(event.relatedTarget) // Button that triggered the modal
@@ -292,12 +281,15 @@
             // Create FormData object
             var files = new FormData();
             var folder = container.find('.folder-val').val();
+            var title = container.find('.title').val();
+            var description = container.find('.description').val();
             // Looping over all files and add it to FormData object
             files.append(file.name, file);
 
             // Adding one more key to FormData object
             files.append('fileFolder', folder);
-
+            files.append('title', title);
+            files.append('description', description);
             $.ajax({
                 url: '/api/vi-vn/media/upload', //'/api/tts/UploadImage',
                 type: "POST",
@@ -471,6 +463,29 @@
             else {
                 return null;
             }
+        },
+        loadMedia: function (callBack, keyword = '', pageSize = 12, pageIndex = 0, orderBy = 'fileName', direction = 0) {
+
+            var settings = {
+                "async": true,
+                "crossDomain": true,
+                "url": "/api/vi-vn/media/list",
+                "method": "POST",
+                "headers": {
+                    "Content-Type": "application/x-www-form-urlencoded"
+                },
+                "data": {
+                    "pageSize": pageSize,
+                    "pageIndex": pageIndex,
+                    "orderBy": orderBy,
+                    "direction": direction,
+                    "keyword": keyword
+                }
+            }
+
+            $.ajax(settings).done(function (response) {
+                callBack(response);
+            });
         },
         executeFunctionByName: function (functionName, args, context) {
             if (functionName !== null) {

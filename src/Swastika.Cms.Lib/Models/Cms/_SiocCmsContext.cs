@@ -559,7 +559,7 @@ namespace Swastika.Cms.Lib.Models.Cms
                 entity.ToTable("sioc_media");
 
                 entity.Property(e => e.Id).ValueGeneratedOnAdd();
-
+               
                 entity.Property(e => e.Specificulture)
                     .HasMaxLength(10)
                     .HasDefaultValueSql("(N'vi-vn')");
@@ -585,6 +585,14 @@ namespace Swastika.Cms.Lib.Models.Cms
                 entity.Property(e => e.FileType)
                     .IsRequired()
                     .HasMaxLength(50);
+
+                entity.Property(e => e.FileSize).HasDefaultValueSql("((0))");
+
+                entity.Property(e => e.Title)
+                    .HasMaxLength(4000);
+
+                entity.Property(e => e.Description)
+                    .HasMaxLength(4000);
 
                 entity.Property(e => e.LastModified).HasColumnType("datetime");
 

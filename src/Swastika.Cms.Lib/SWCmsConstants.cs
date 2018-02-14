@@ -129,8 +129,14 @@ namespace Swastika.Cms.Lib
         {
             public const string System = "System";
             public const string User = "User";
+            
         }
-
+        public enum ConfigurationCategory
+        {
+            PageSize,
+            Site,
+            Email
+        }
         public class Default
         {
             public const string DefaultTemplate = @"_Default";

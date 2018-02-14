@@ -1,6 +1,7 @@
 ﻿@model Swastika.Cms.Lib.ViewModels.ConfigurationViewModel
 @{
     var types = Html.GetEnumSelectList<Swastika.Cms.Lib.SWCmsConstants.DataType>();
+    var cates = Html.GetEnumSelectList<Swastika.Cms.Lib.SWCmsConstants.ConfigurationCategory>();
 }
 
 <div class="row">
@@ -13,6 +14,13 @@
                 <div asp-validation-summary="ModelOnly" class="text-danger"></div>
                 <input type="hidden" asp-for="Specificulture" />
                 <div class="form-group">
+                    <label asp-for="Category" class="control-label"></label>
+                    <div>
+                        <select asp-for="Category" class="form-control" asp-items="@cates"></select>
+                        <span asp-validation-for="Category" class="text-danger"></span>
+                    </div>
+                </div>
+                <div class="form-group">
                     <label asp-for="Keyword" class="control-label"></label>
                     <div>
                         <input asp-for="Keyword" class="form-control" />
@@ -24,7 +32,7 @@
                     <label asp-for="Value" class="control-label"></label>
                     <div>
                         @Html.Partial("_Editor",
-                                                        new ViewDataDictionary(this.Vi‌​ewData) {
+                                                 new ViewDataDictionary(this.Vi‌​ewData) {
                                                     {
                                                     "DataType", Model.DataType
                                                     },
@@ -38,8 +46,8 @@
 
                                                     "Id","Value"
                                                     }
-                                                        }
-                                                        )
+                                                 }
+                                                 )
 
                         <span asp-validation-for="Value" class="text-danger"></span>
                     </div>

@@ -11,9 +11,10 @@ using System;
 namespace Swastika.Cms.Lib.Migrations
 {
     [DbContext(typeof(SiocCmsContext))]
-    partial class SiocCmsContextModelSnapshot : ModelSnapshot
+    [Migration("20180214064202_Add_Media_Fields")]
+    partial class Add_Media_Fields
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -636,7 +637,7 @@ namespace Swastika.Cms.Lib.Migrations
                         .IsRequired()
                         .HasMaxLength(250);
 
-                    b.Property<long>("FileSize")
+                    b.Property<int>("FileSize")
                         .ValueGeneratedOnAdd()
                         .HasDefaultValueSql("((0))");
 

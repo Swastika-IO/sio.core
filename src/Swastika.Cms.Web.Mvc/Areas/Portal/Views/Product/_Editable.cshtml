@@ -452,9 +452,11 @@
                                 <div class="col-md-4">
                                     <div class="input-group">
                                         <div class="input-group-prepend">
-                                            <div class="input-group-text" id="btnGroupAddon"><i class="mi mi-Search" style="top:0;"></i></div>
+                                            <div class="input-group-text " id="btnGroupAddon">
+                                                <i class="mi mi-Search btn-search-media" style="top:0;cursor:pointer;"></i>
+                                            </div>
                                         </div>
-                                        <input type="text" class="form-control" placeholder="Search media items..." aria-label="Search media items..." aria-describedby="btnGroupAddon">
+                                        <input type="text" class="form-control media-keyword" placeholder="Search media items..." aria-label="Search media items..." aria-describedby="btnGroupAddon">
                                     </div>
                                 </div>
                             </div>
@@ -520,7 +522,10 @@
                                         </div>
                                         <div class="modal-body" style="background:url(/images/upload-image-thumbnail.png) no-repeat center; ">
                                             <span class="text-danger"></span>
+
                                             <label class="custom-file" style="min-height:150px; cursor:pointer; border: 2px dashed;">
+                                                <input type="text" value="" class="title form-control" placeholder="Title" />
+                                                <input type="text" value="" class="description form-control" placeholder="Description" />
                                                 <img src="" name="pic" class="custom-file-img " accept="image/*" width="100%" />
                                                 <input type="hidden" value="Media" class="folder-val" />
                                                 <input type="file" name="pic" class="custom-file-input">
@@ -664,30 +669,21 @@
         });
         $('.prop-data-type').change();
 
-        var settings = {
-            "async": true,
-            "crossDomain": true,
-            "url": "/api/vi-vn/media/list",
-            "method": "POST",
-            "headers": {
-                "Content-Type": "application/x-www-form-urlencoded"
-            },
-            "data": {
-                "pageSize": "4",
-                "pageIndex": "0",
-                "orderBy": "title",
-                "direction": "1",
-                "keyword": ""
-            }
-        }
+        function loadMedia(pageIndex = 0) {
+            var keyword = $('.media-keyword').val();
+            var pageSize = 12;
+            var orderBy = 'createdDateTime';
+            var direction = 1;
 
-        $.ajax(settings).done(function (response) {
-            var container = $('.card-columns');
-            $(container).empty();
-            var html = '';
-            $.each(response.data.items, function (i, e) {
+            SW.Common.loadMedia(function (response) {
 
-                html += ' <div class="card" data-media-id="' + e.id + '"> \
+
+                var container = $('.card-columns');
+                $(container).empty();
+                var html = '';
+                $.each(response.data.items, function (i, e) {
+
+                    html += ' <div class="card" data-media-id="' + e.id + '"> \
                             <span class="switch switch-sm" style= "position: absolute;top: 10px;" > \
                                 <input type="checkbox" class="switch" data-val="true" data-val-required="The IsActived field is required." id="Media_Image_'+ e.id + '" name="Media_Image_' + e.id + '" value="' + e.isActived + '">\
                                     <label class="switch" for="Media_Image_'+ e.id + '">\
@@ -699,10 +695,54 @@
                                                 </a>\
                         </div>';
 
-            })
-            $(container).append(html);
+                })
+                $(container).append(html);
+                var pagination = $('.pagination');
+                console.log($(pagination).html);
+                $(pagination).empty();
 
+                for (var i = 0; i < response.data.totalPage; i++) {
+                    var li = document.createElement('li');
+                    var pageIndex = i;
+                    $(li).addClass('page-item');
+
+                    if (i == response.data.pageIndex) {
+                        $(li).addClass('active');
+                    }
+
+                    var a = document.createElement('a');
+                    $(a).attr('href', 'javascript:void(0)');
+                    $(a).addClass('page-link');
+                    $(a).html(i + 1);
+                    $(li).append(a);
+                    $(pagination).append(li);
+                }
+            },
+                keyword, pageSize, pageIndex
+            )
+        }
+
+        $(document).on('click', '.page-link', function () {
+            var pageIndex = $(this).html() - 1;
+            loadMedia(pageIndex);
+        })
+        $('.btn-search-media').on('click', function () { loadMedia(); });
+
+        $(document).on('click', '.model-media .btn-upload', function () {
+            var container = $(this).parents('.model-media').first().find('.custom-file').first();
+            var file = $('.model-media .custom-file-input').first().prop('files')[0];
+            if (file !== undefined && file !== null) {
+                //SW.Common.getBase64(file, $('.custom-file')).then(result => console.log(result));
+                //await SW.Common.getBase64(file).then(result => console.log(result));
+                var fileName = SW.Common.uploadImage(file, container);
+                if (fileName !== "") {
+                    $('.upload-image-modal-lg').modal('toggle');
+                    loadMedia();
+                }
+            }
         });
+
+        loadMedia();
     }
 </script>
 <script>

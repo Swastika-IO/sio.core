@@ -10,6 +10,7 @@ using Swastika.Cms.Lib.Models.Cms;
 using Newtonsoft.Json.Linq;
 using System.Linq;
 using Microsoft.AspNetCore.Hosting;
+using Swastika.Cms.Lib;
 
 namespace Swastka.Cms.Api.Controllers
 {
@@ -105,7 +106,7 @@ namespace Swastka.Cms.Api.Controllers
 
         [Route("upload")]
         [HttpPost]
-        public async Task<RepositoryResponse<BEMediaViewModel>> UploadAsync([FromForm] string fileFolder)
+        public async Task<RepositoryResponse<BEMediaViewModel>> UploadAsync([FromForm] string fileFolder, [FromForm] string title, [FromForm] string description)
         {
             var files = Request.Form.Files;
 
@@ -113,7 +114,7 @@ namespace Swastka.Cms.Api.Controllers
             {
                 var fileUpload = files.FirstOrDefault();
 
-                string folderPath = string.Format("Uploads/{0}", fileFolder);
+                string folderPath = $"{SWCmsConstants.Parameters.UploadFolder}/{fileFolder}/{DateTime.UtcNow.ToString("MMM-yyyy")}"; // string.Format("Uploads/{0}", fileFolder);
                 //return ImageHelper.ResizeImage(Image.FromStream(fileUpload.OpenReadStream()), System.IO.Path.Combine(_env.WebRootPath, folderPath));
                 //var fileName = await Common.UploadFileAsync(filePath, files.FirstOrDefault());
                 var fileName = string.Format("/{0}", await base.UploadFileAsync(files.FirstOrDefault(), folderPath));
@@ -124,7 +125,10 @@ namespace Swastka.Cms.Api.Controllers
                     FileFolder = folderPath,
                     Extension = fileName.Substring(fileName.LastIndexOf('.')),
                     CreatedDateTime = DateTime.UtcNow,
-                    FileType = fileUpload.ContentType.Split('/')[0]
+                    FileType = fileUpload.ContentType.Split('/')[0],
+                    FileSize = fileUpload.Length,
+                    Title = title,
+                    Description = description
                 });
                 //media.SaveModel();
                 return media.SaveModel(); ;
@@ -157,7 +161,6 @@ namespace Swastka.Cms.Api.Controllers
         [Route("list")]
         public async Task<RepositoryResponse<PaginationModel<BEMediaViewModel>>> GetList(RequestPaging request)
         {
-            string domain = string.Format("{0}://{1}", Request.Scheme, Request.Host);
             if (string.IsNullOrEmpty(request.Keyword))
             {
 
@@ -174,6 +177,8 @@ namespace Swastka.Cms.Api.Controllers
             && (string.IsNullOrWhiteSpace(request.Keyword) ||
                 (
                     model.FileName.Contains(request.Keyword)
+                    || model.Title.Contains(request.Keyword)
+                    || model.Description.Contains(request.Keyword)
                 )
                 );
                 var data = await BEMediaViewModel.Repository.GetModelListByAsync(predicate, request.OrderBy, request.Direction, request.PageSize, request.PageIndex);
