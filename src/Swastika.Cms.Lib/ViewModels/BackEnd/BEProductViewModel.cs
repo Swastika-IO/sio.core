@@ -484,21 +484,14 @@ namespace Swastika.Cms.Lib.ViewModels.BackEnd
                 {
                     foreach (var navMedia in MediaNavs)
                     {
-                        if (navMedia.IsActived)
+                        navMedia.ProductId = parent.Id;
+                        navMedia.Specificulture = parent.Specificulture;
+                        var saveResult = await navMedia.SaveModelAsync(false, _context, _transaction);
+                        result = saveResult.IsSucceed;
+                        if (!result)
                         {
-                            navMedia.ProductId = parent.Id;
-                            var saveResult = await navMedia.SaveModelAsync(false, _context, _transaction);
-                        }
-                        else
-                        {
-                            navMedia.ProductId = parent.Id;
-                            var saveResult = await navMedia.RemoveModelAsync(false, _context, _transaction);
-                            result = saveResult.IsSucceed;
-                            if (!result)
-                            {
-                                Errors.AddRange(saveResult.Errors);
-                                Exception = saveResult.Exception;
-                            }
+                            Errors.AddRange(saveResult.Errors);
+                            Exception = saveResult.Exception;
                         }
                     }
                 }
