@@ -180,12 +180,34 @@ namespace Swastika.Cms.Lib.Services
                         cnn.SaveModel(_context: context, _transaction: transaction);
                     }
 
+                    // EN-US
                     var getCulture = CultureViewModel.Repository.GetSingleModel(
-                        c => c.Specificulture == "vi-vn",
-                        _context: context, _transaction: transaction);
+                        c => c.Specificulture == "en-us",
+                        _context: context,
+                        _transaction: transaction);
+
                     if (!getCulture.IsSucceed)
                     {
-                        CultureViewModel viCulture = new CultureViewModel()
+                        CultureViewModel cultureViewModel = new CultureViewModel()
+                        {
+                            Specificulture = "en-us",
+                            FullName = "United States",
+                            Description = "United States",
+                            Icon = "flag-icon-us",
+                            Alias = "US"
+                        };
+                        cultureViewModel.SaveModel(_context: context, _transaction: transaction);
+                    }
+
+                    // VI-VN
+                    getCulture = CultureViewModel.Repository.GetSingleModel(
+                        c => c.Specificulture == "vi-vn",
+                        _context: context,
+                        _transaction: transaction);
+
+                    if (!getCulture.IsSucceed)
+                    {
+                        CultureViewModel cultureViewModel = new CultureViewModel()
                         {
                             Specificulture = "vi-vn",
                             FullName = "Vietnam",
@@ -193,8 +215,9 @@ namespace Swastika.Cms.Lib.Services
                             Icon = "flag-icon-vn",
                             Alias = "Vietnam"
                         };
-                        viCulture.SaveModel(_context: context, _transaction: transaction);
+                        cultureViewModel.SaveModel(_context: context, _transaction: transaction);
                     }
+
                     var getPosition = BEPositionViewModel.Repository.GetModelList(_context: context, _transaction: transaction);
                     if (!getPosition.IsSucceed || getPosition.Data.Count == 0)
                     {

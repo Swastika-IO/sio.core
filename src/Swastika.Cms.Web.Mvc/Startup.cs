@@ -21,7 +21,7 @@ namespace Swastika.Cms.Web.Mvc
 {
     public partial class Startup
     {
-        public const string CONST_ROUTE_DEFAULT_CULTURE = "vi-vn";
+        public const string CONST_ROUTE_DEFAULT_CULTURE = "en-us";
 
         public Startup(IHostingEnvironment env)
         {
