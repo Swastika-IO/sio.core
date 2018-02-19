@@ -10,6 +10,8 @@ namespace Swastka.Cms.Web
 {
     public partial class Startup
     {
+        public const string CONST_ROUTE_DEFAULT_CULTURE = "en-us";
+
         public Startup(IConfiguration configuration)
         {
             Configuration = configuration;
@@ -34,7 +36,7 @@ namespace Swastka.Cms.Web
             {
                 routes.MapRoute(
                     name: "apiRoute",
-                    template: "api/{culture=vi-vn}/{area:exists}/{controller=Portal}/{action=Index}");
+                    template: "api/{culture=" + CONST_ROUTE_DEFAULT_CULTURE + "}/{area:exists}/{controller=Portal}/{action=Index}");
             });
         }
     }

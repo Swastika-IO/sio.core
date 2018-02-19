@@ -100,8 +100,8 @@ namespace Swastika.Cms.Web.Mvc
                 // Cookie settings
                 options.Cookie.HttpOnly = true;
                 options.Cookie.Expiration = TimeSpan.FromDays(150);
-                options.LoginPath = "/vi-vn/Portal/Auth/Login"; // If the LoginPath is not set here, ASP.NET Core will default to /Account/Login
-                options.LogoutPath = "/vi-vn/Portal/Auth/Logout"; // If the LogoutPath is not set here, ASP.NET Core will default to /Account/Logout
+                options.LoginPath = "/" + CONST_ROUTE_DEFAULT_CULTURE + "/Portal/Auth/Login"; // If the LoginPath is not set here, ASP.NET Core will default to /Account/Login
+                options.LogoutPath = "/" + CONST_ROUTE_DEFAULT_CULTURE + "/Portal/Auth/Logout"; // If the LogoutPath is not set here, ASP.NET Core will default to /Account/Logout
                 options.AccessDeniedPath = "/"; // If the AccessDeniedPath is not set here, ASP.NET Core will default to /Account/AccessDenied
                 options.SlidingExpiration = true;
             });
@@ -113,8 +113,8 @@ namespace Swastika.Cms.Web.Mvc
                     // Cookie settings
                     options.Cookie.HttpOnly = true;
                     options.Cookie.Expiration = TimeSpan.FromDays(150);
-                    options.LoginPath = "/vi-vn/Portal/Auth/Login"; // If the LoginPath is not set here, ASP.NET Core will default to /Account/Login
-                    options.LogoutPath = "/vi-vn/Portal/Auth/Logout"; // If the LogoutPath is not set here, ASP.NET Core will default to /Account/Logout
+                    options.LoginPath = "/" + CONST_ROUTE_DEFAULT_CULTURE + "/Portal/Auth/Login"; // If the LoginPath is not set here, ASP.NET Core will default to /Account/Login
+                    options.LogoutPath = "/" + CONST_ROUTE_DEFAULT_CULTURE + "/Portal/Auth/Logout"; // If the LogoutPath is not set here, ASP.NET Core will default to /Account/Logout
                     options.AccessDeniedPath = "/"; // If the AccessDeniedPath is not set here, ASP.NET Core will default to /Account/AccessDenied
                     options.SlidingExpiration = true;
                 });

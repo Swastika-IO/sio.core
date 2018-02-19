@@ -213,7 +213,7 @@ namespace Swastika.Cms.Lib.Services
                             FullName = "Vietnam",
                             Description = "Việt Nam",
                             Icon = "flag-icon-vn",
-                            Alias = "Vietnam"
+                            Alias = "VN"
                         };
                         cultureViewModel.SaveModel(_context: context, _transaction: transaction);
                     }
