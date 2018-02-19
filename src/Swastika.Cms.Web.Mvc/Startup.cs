@@ -11,7 +11,6 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.WebEncoders;
-using Swashbuckle.AspNetCore.Swagger;
 using Swastika.Cms.Lib.Models.Cms;
 using Swastika.Cms.Lib.Services;
 using Swastika.Identity.Services;
@@ -91,11 +90,11 @@ namespace Swastika.Cms.Web.Mvc
                 //    });
             });
 
-            // Register the Swagger generator, defining one or more Swagger documents
-            services.AddSwaggerGen(c =>
-            {
-                c.SwaggerDoc("v1", new Info { Title = "My API", Version = "v1" });
-            });
+            //// Register the Swagger generator, defining one or more Swagger documents
+            //services.AddSwaggerGen(c =>
+            //{
+            //    c.SwaggerDoc("v1", new Info { Title = "My API", Version = "v1" });
+            //});
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -127,14 +126,14 @@ namespace Swastika.Cms.Web.Mvc
 
             // Add external authentication middleware below. To configure them please see https://go.microsoft.com/fwlink/?LinkID=532715
 
-            // Enable middleware to serve generated Swagger as a JSON endpoint.
-            app.UseSwagger();
+            //// Enable middleware to serve generated Swagger as a JSON endpoint.
+            //app.UseSwagger();
 
-            // Enable middleware to serve swagger-ui (HTML, JS, CSS, etc.), specifying the Swagger JSON endpoint.
-            app.UseSwaggerUI(c =>
-            {
-                c.SwaggerEndpoint("/swagger/v1/swagger.json", "My API V1");
-            });
+            //// Enable middleware to serve swagger-ui (HTML, JS, CSS, etc.), specifying the Swagger JSON endpoint.
+            //app.UseSwaggerUI(c =>
+            //{
+            //    c.SwaggerEndpoint("/swagger/v1/swagger.json", "My API V1");
+            //});
 
             app.UseMvc(routes =>
             {
