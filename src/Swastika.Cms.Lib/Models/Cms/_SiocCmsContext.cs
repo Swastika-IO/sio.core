@@ -586,7 +586,7 @@ namespace Swastika.Cms.Lib.Models.Cms
 
                 entity.Property(e => e.Specificulture)
                     .HasMaxLength(10)
-                    .HasDefaultValueSql("(N'vi-vn')");
+                    .HasDefaultValueSql("(N'en-us')");
 
                 entity.Property(e => e.Priority).HasDefaultValueSql("((0))");
 
