@@ -126,7 +126,7 @@ namespace Swastika.Messenger.Lib.SignalR.Hubs
         //        // Update the user list, since thes two are now in a call
         //        SendUserListUpdate();
         //    }
-        //    catch (Exception ex)
+        //    catch (Exception ex) // TODO: Add more specific exeption types instead of Exception only
         //    {
         //        Clients.Client(Context.ConnectionId).InvokeAsync("receiveMessage", ex);
         //    }

@@ -243,8 +243,7 @@ namespace Swastika.Cms.Lib.Services
                     IsInit = true;
                 }
             }
-            // TODO: Add more specific exeption types instead of Exception only
-            catch
+            catch // TODO: Add more specific exeption types instead of Exception only
             {
                 IsInit = false;
                 if (transaction != null)

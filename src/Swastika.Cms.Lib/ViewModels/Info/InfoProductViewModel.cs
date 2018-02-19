@@ -186,8 +186,7 @@ namespace Swastika.Cms.Lib.ViewModels.Info
                     Data = result
                 };
             }
-            // TODO: Add more specific exeption types instead of Exception only
-            catch (Exception ex)
+            catch (Exception ex) // TODO: Add more specific exeption types instead of Exception only
             {
                 Repository.LogErrorMessage(ex);
                 if (_transaction == null)
@@ -240,8 +239,7 @@ namespace Swastika.Cms.Lib.ViewModels.Info
                     Data = result
                 };
             }
-            // TODO: Add more specific exeption types instead of Exception only
-            catch (Exception ex)
+            catch (Exception ex) // TODO: Add more specific exeption types instead of Exception only
             {
                 Repository.LogErrorMessage(ex);
                 if (_transaction == null)
@@ -292,8 +290,7 @@ namespace Swastika.Cms.Lib.ViewModels.Info
                     Data = result
                 };
             }
-            // TODO: Add more specific exeption types instead of Exception only
-            catch (Exception ex)
+            catch (Exception ex) // TODO: Add more specific exeption types instead of Exception only
             {
                 Repository.LogErrorMessage(ex);
                 if (_transaction == null)

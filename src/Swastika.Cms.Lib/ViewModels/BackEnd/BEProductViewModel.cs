@@ -552,7 +552,7 @@ namespace Swastika.Cms.Lib.ViewModels.BackEnd
                     Exception = Exception
                 };
             }
-            catch (Exception ex)
+            catch (Exception ex) // TODO: Add more specific exeption types instead of Exception only
             {
                 result = false;
                 return new RepositoryResponse<bool>()
@@ -842,7 +842,7 @@ namespace Swastika.Cms.Lib.ViewModels.BackEnd
                     Exception = Exception
                 };
             }
-            catch (Exception ex)
+            catch (Exception ex) // TODO: Add more specific exeption types instead of Exception only
             {
                 result = false;
                 return new RepositoryResponse<bool>()

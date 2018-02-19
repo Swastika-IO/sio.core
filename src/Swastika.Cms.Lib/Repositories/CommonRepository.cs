@@ -74,7 +74,7 @@ namespace Swastika.Cms.Lib.Repositories
                     Data = result.ToList()
                 };
             }
-            catch (Exception ex)
+            catch (Exception ex) // TODO: Add more specific exeption types instead of Exception only
             {
                 if (_transaction == null)
                 {
@@ -124,7 +124,7 @@ namespace Swastika.Cms.Lib.Repositories
                     Data = await result.ToListAsync()
                 };
             }
-            catch (Exception ex)
+            catch (Exception ex) // TODO: Add more specific exeption types instead of Exception only
             {
                 if (_transaction == null)
                 {
@@ -180,7 +180,7 @@ namespace Swastika.Cms.Lib.Repositories
                     Data = result.ToList()
                 };
             }
-            catch (Exception ex)
+            catch (Exception ex) // TODO: Add more specific exeption types instead of Exception only
             {
                 if (_transaction == null)
                 {
@@ -232,7 +232,7 @@ namespace Swastika.Cms.Lib.Repositories
                     Data = await result.ToListAsync()
                 };
             }
-            catch (Exception ex)
+            catch (Exception ex) // TODO: Add more specific exeption types instead of Exception only
             {
                 if (_transaction == null)
                 {
@@ -290,7 +290,7 @@ namespace Swastika.Cms.Lib.Repositories
                     Data = result.ToList()
                 };
             }
-            catch (Exception ex)
+            catch (Exception ex) // TODO: Add more specific exeption types instead of Exception only
             {
                 if (_transaction == null)
                 {
@@ -344,7 +344,7 @@ namespace Swastika.Cms.Lib.Repositories
                     Data = await result.ToListAsync()
                 };
             }
-            catch (Exception ex)
+            catch (Exception ex) // TODO: Add more specific exeption types instead of Exception only
             {
                 if (_transaction == null)
                 {
@@ -404,7 +404,7 @@ namespace Swastika.Cms.Lib.Repositories
                     Data = result.ToList()
                 };
             }
-            catch (Exception ex)
+            catch (Exception ex) // TODO: Add more specific exeption types instead of Exception only
             {
                 if (_transaction == null)
                 {
@@ -454,7 +454,7 @@ namespace Swastika.Cms.Lib.Repositories
                     Data = await result.ToListAsync()
                 };
             }
-            catch (Exception ex)
+            catch (Exception ex) // TODO: Add more specific exeption types instead of Exception only
             {
                 if (_transaction == null)
                 {
@@ -510,7 +510,7 @@ namespace Swastika.Cms.Lib.Repositories
                     Data = result.ToList()
                 };
             }
-            catch (Exception ex)
+            catch (Exception ex) // TODO: Add more specific exeption types instead of Exception only
             {
                 if (_transaction == null)
                 {
@@ -562,7 +562,7 @@ namespace Swastika.Cms.Lib.Repositories
                     Data = await result.ToListAsync()
                 };
             }
-            catch (Exception ex)
+            catch (Exception ex) // TODO: Add more specific exeption types instead of Exception only
             {
                 if (_transaction == null)
                 {
@@ -620,7 +620,7 @@ namespace Swastika.Cms.Lib.Repositories
                     Data = result.ToList()
                 };
             }
-            catch (Exception ex)
+            catch (Exception ex) // TODO: Add more specific exeption types instead of Exception only
             {
                 if (_transaction == null)
                 {
@@ -674,7 +674,7 @@ namespace Swastika.Cms.Lib.Repositories
                     Data = await result.ToListAsync()
                 };
             }
-            catch (Exception ex)
+            catch (Exception ex) // TODO: Add more specific exeption types instead of Exception only
             {
                 if (_transaction == null)
                 {
