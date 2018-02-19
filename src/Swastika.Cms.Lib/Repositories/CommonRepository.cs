@@ -46,8 +46,11 @@ namespace Swastika.Cms.Lib.Repositories
 
         #region Category-Article Navigator
 
-        public RepositoryResponse<List<CategoryArticleViewModel>> GetCategoryArticleNav(string articleId, string specificulture
-            , SiocCmsContext _context = null, IDbContextTransaction _transaction = null)
+        public RepositoryResponse<List<CategoryArticleViewModel>> GetCategoryArticleNav(
+            string articleId,
+            string specificulture,
+            SiocCmsContext _context = null,
+            IDbContextTransaction _transaction = null)
         {
             SiocCmsContext context = _context ?? new SiocCmsContext();
             var transaction = _transaction ?? context.Database.BeginTransaction();
@@ -55,7 +58,8 @@ namespace Swastika.Cms.Lib.Repositories
             {
                 var result = context.SiocCategory.Include(cp => cp.SiocCategoryArticle)
                     .Where(a => a.Specificulture == specificulture
-                    && (a.Type == (int)SWCmsConstants.CateType.List || a.Type == (int)SWCmsConstants.CateType.Home))
+                                && (a.Type == (int)SWCmsConstants.CateType.List
+                                || a.Type == (int)SWCmsConstants.CateType.Home))
                     .Select(p => new CategoryArticleViewModel(
                         new SiocCategoryArticle()
                         {
