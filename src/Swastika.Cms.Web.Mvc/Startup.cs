@@ -1,8 +1,7 @@
-﻿using System;
-using System.Text;
-using System.Text.Encodings.Web;
-using System.Text.Unicode;
-using Microsoft.AspNetCore.Authentication.Cookies;
+﻿// Licensed to the Swastika I/O Foundation under one or more agreements.
+// The Swastika I/O Foundation licenses this file to you under the GNU General Public License v3.0 license.
+// See the LICENSE file in the project root for more information.
+
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http.Features;
@@ -12,13 +11,12 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.WebEncoders;
-using Microsoft.IdentityModel.Tokens;
-using Swastika.Cms.Lib.Models;
+using Swashbuckle.AspNetCore.Swagger;
 using Swastika.Cms.Lib.Models.Cms;
 using Swastika.Cms.Lib.Services;
-using Swastika.Cms.Web.Mvc.Models.Identity;
 using Swastika.Identity.Services;
-using Swashbuckle.AspNetCore.Swagger;
+using System.Text.Encodings.Web;
+using System.Text.Unicode;
 
 namespace Swastika.Cms.Web.Mvc
 {
@@ -39,7 +37,6 @@ namespace Swastika.Cms.Web.Mvc
 
             builder.AddEnvironmentVariables();
             Configuration = builder.Build();
-
         }
 
         public IConfigurationRoot Configuration { get; }
@@ -62,15 +59,11 @@ namespace Swastika.Cms.Web.Mvc
                 options.MultipartBodyLengthLimit = 100000000;
             });
 
-            
             //Swastika.Identity.Startup.ConfigIdentity(services, Configuration, "CmsConnection");
             ConfigIdentity(services, Configuration, Configuration.GetConnectionString("CmsConnection")); //Cms Config
 
             ConfigCookieAuth(services, Configuration);
             ConfigJWTToken(services, Configuration);
-               
-
-
 
             // Add application services.
             services.AddTransient<Swastika.Identity.Services.IEmailSender, AuthEmailMessageSender>();
@@ -130,7 +123,6 @@ namespace Swastika.Cms.Web.Mvc
             app.UseStaticFiles();
             app.UseAuthentication();
 
-
             //app.UseIdentity();
 
             // Add external authentication middleware below. To configure them please see https://go.microsoft.com/fwlink/?LinkID=532715
@@ -170,7 +162,6 @@ namespace Swastika.Cms.Web.Mvc
                 routes.MapRoute(
                  name: "Product",
                  template: "{culture=vi-vn}/product/{seoName}");
-
             });
         }
     }

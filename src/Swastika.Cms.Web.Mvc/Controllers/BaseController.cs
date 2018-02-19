@@ -1,13 +1,16 @@
-using System.Collections.Generic;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Mvc;
-using Swastika.Common;
+// Licensed to the Swastika I/O Foundation under one or more agreements.
+// The Swastika I/O Foundation licenses this file to you under the GNU General Public License v3.0 license.
+// See the LICENSE file in the project root for more information.
+
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Filters;
 using Microsoft.AspNetCore.Mvc.Rendering;
-using Swastika.Common.Helper;
 using Swastika.Cms.Lib.Services;
+using Swastika.Common.Helper;
+using System.Collections.Generic;
+using System.Threading.Tasks;
 
 namespace Swastika.Cms.Mvc.Controllers
 {
@@ -17,6 +20,7 @@ namespace Swastika.Cms.Mvc.Controllers
         protected string _lang;
         protected string _domain;
         protected IHostingEnvironment _env;
+
         public BaseController(IHostingEnvironment env)
         {
             _env = env;
@@ -28,7 +32,7 @@ namespace Swastika.Cms.Mvc.Controllers
         //{
         //    _env = env;
         //    string lang = RouteData != null && RouteData.Values["culture"] != null
-        //        ? RouteData.Values["culture"].ToString() : "vi-vn";            
+        //        ? RouteData.Values["culture"].ToString() : "vi-vn";
         //    listCultures = listCultures ?? CultureRepository.GetInstance().GetModelList();
         //}
 
@@ -39,11 +43,10 @@ namespace Swastika.Cms.Mvc.Controllers
                 GetLanguage();
             }
             base.OnActionExecuting(context);
-
         }
+
         protected void GetLanguage()
         {
-
             _lang = RouteData != null && RouteData.Values["culture"] != null
                 ? RouteData.Values["culture"].ToString() : "vi-vn";
             _domain = string.Format("{0}://{1}", Request.Scheme, Request.Host);
@@ -51,6 +54,7 @@ namespace Swastika.Cms.Mvc.Controllers
             //ViewBag.currentCulture = listCultures.FirstOrDefault(c => c.Specificulture == _lang);
             //ViewBag.cultures = listCultures;
         }
+
         protected async Task<List<string>> UploadListFileAsync(string folderPath)
         {
             List<string> result = new List<string>();
@@ -62,10 +66,10 @@ namespace Swastika.Cms.Mvc.Controllers
                 {
                     result.Add(fileName);
                 }
-
             }
             return result;
         }
+
         protected async Task<string> UploadFileAsync(IFormFile file, string folderPath)
         {
             if (file != null && file.Length > 0)

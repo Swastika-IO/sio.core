@@ -1,4 +1,8 @@
-﻿using Microsoft.AspNetCore.Authentication.Cookies;
+﻿// Licensed to the Swastika I/O Foundation under one or more agreements.
+// The Swastika I/O Foundation licenses this file to you under the GNU General Public License v3.0 license.
+// See the LICENSE file in the project root for more information.
+
+using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
@@ -7,11 +11,9 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.IdentityModel.Tokens;
 using Swastika.Cms.Lib;
 using Swastika.Cms.Lib.Models.Account;
-using Swastika.Cms.Web.Mvc.Models.Identity;
 using Swastika.Identity.Models;
 using System;
 using System.Text;
-using System.Threading.Tasks;
 
 namespace Swastika.Cms.Web.Mvc
 {
@@ -40,13 +42,10 @@ namespace Swastika.Cms.Web.Mvc
             services.AddIdentity<ApplicationUser, IdentityRole>(options =>
             {
                 options.Password = pOpt;
-
             })
                 .AddEntityFrameworkStores<SiocCmsAccountContext>()
                 .AddDefaultTokenProviders()
                 .AddUserManager<UserManager<ApplicationUser>>();
-
-
 
             services.AddAuthorization(options =>
             {
@@ -58,11 +57,10 @@ namespace Swastika.Cms.Web.Mvc
                 options.AddPolicy("DeleteUser", policy => policy.RequireClaim("Delete User"));
             })
              ;
-
         }
+
         public static void ConfigJWTToken(IServiceCollection services, IConfigurationRoot Configuration)
         {
-
             services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
                     .AddJwtBearer(options =>
                     {
@@ -94,6 +92,7 @@ namespace Swastika.Cms.Web.Mvc
                         //};
                     });
         }
+
         public static void ConfigCookieAuth(IServiceCollection services, IConfigurationRoot Configuration)
         {
             services.ConfigureApplicationCookie(options =>
@@ -106,8 +105,6 @@ namespace Swastika.Cms.Web.Mvc
                 options.AccessDeniedPath = "/"; // If the AccessDeniedPath is not set here, ASP.NET Core will default to /Account/AccessDenied
                 options.SlidingExpiration = true;
             });
-
-
 
             services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
                 .AddCookie(
@@ -122,6 +119,7 @@ namespace Swastika.Cms.Web.Mvc
                     options.SlidingExpiration = true;
                 });
         }
+
         public static class JwtSecurityKey
         {
             public static SymmetricSecurityKey Create(string secret)
