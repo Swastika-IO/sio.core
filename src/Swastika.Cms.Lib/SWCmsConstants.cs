@@ -29,6 +29,13 @@ namespace Swastika.Cms.Lib
             ListProduct
         }
 
+        public enum ConfigurationCategory
+        {
+            PageSize,
+            Site,
+            Email
+        }
+
         public enum DataType
         {
             String = 0,
@@ -139,13 +146,6 @@ namespace Swastika.Cms.Lib
             public const string User = "User";
         }
 
-        public enum ConfigurationCategory
-        {
-            PageSize,
-            Site,
-            Email
-        }
-
         public class Default
         {
             public const string DefaultTemplate = @"_Default";
@@ -189,10 +189,10 @@ namespace Swastika.Cms.Lib
         public class TemplateFolder
         {
             public const string Articles = "Articles";
-            public const string Products = "Products";
             public const string Layouts = "Layouts";
             public const string Modules = "Modules";
             public const string Pages = "Pages";
+            public const string Products = "Products";
             public const string Widgets = "Widgets";
         }
     }

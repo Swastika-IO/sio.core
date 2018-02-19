@@ -21,6 +21,8 @@ namespace Swastika.Cms.Web.Mvc
 {
     public partial class Startup
     {
+        public const string CONST_ROUTE_DEFAULT_CULTURE = "vi-vn";
+
         public Startup(IHostingEnvironment env)
         {
             var builder = new ConfigurationBuilder()
@@ -46,7 +48,7 @@ namespace Swastika.Cms.Web.Mvc
             // Add framework services.
             ConfigureSignalRServices(services);
             services.AddDbContext<SiocCmsContext>(options =>
-                options.UseSqlServer(Configuration.GetConnectionString("CmsConnection")));
+                options.UseSqlServer(Configuration.GetConnectionString(Swastika.Cms.Lib.SWCmsConstants.CONST_DEFAULT_CONNECTION)));
 
             //When View Page Source That changes only the HTML encoder, leaving the JavaScript and URL encoders with their (ASCII) defaults.
             services.Configure<WebEncoderOptions>(options =>
@@ -59,13 +61,13 @@ namespace Swastika.Cms.Web.Mvc
             });
 
             //Swastika.Identity.Startup.ConfigIdentity(services, Configuration, "CmsConnection");
-            ConfigIdentity(services, Configuration, Configuration.GetConnectionString("CmsConnection")); //Cms Config
+            ConfigIdentity(services, Configuration, Configuration.GetConnectionString(Swastika.Cms.Lib.SWCmsConstants.CONST_DEFAULT_CONNECTION)); //Cms Config
 
             ConfigCookieAuth(services, Configuration);
             ConfigJWTToken(services, Configuration);
 
             // Add application services.
-            services.AddTransient<Swastika.Identity.Services.IEmailSender, AuthEmailMessageSender>();
+            services.AddTransient<IEmailSender, AuthEmailMessageSender>();
             services.AddTransient<ISmsSender, AuthSMSMessageSender>();
 
             // Add Singleton Configs App Configs (load from db)
@@ -139,28 +141,28 @@ namespace Swastika.Cms.Web.Mvc
             {
                 routes.MapRoute(
                     name: "areaRoute",
-                    template: "{culture=vi-vn}/{area:exists}/{controller=Portal}/{action=Index}");
+                    template: "{culture=" + CONST_ROUTE_DEFAULT_CULTURE + "}/{area:exists}/{controller=Portal}/{action=Index}");
                 routes.MapRoute(
                     name: "areaRoute2",
-                    template: "{culture=vi-vn}/{area:exists}/{controller=Portal}/{action=Index}/{id?}");
+                    template: "{culture=" + CONST_ROUTE_DEFAULT_CULTURE + "}/{area:exists}/{controller=Portal}/{action=Index}/{id?}");
                 routes.MapRoute(
-                  name: "apiRoute",
-                  template: "api/{culture=vi-vn}/{area:exists}/{controller=Portal}/{action=Index}");
+                    name: "apiRoute",
+                    template: "api/{culture=" + CONST_ROUTE_DEFAULT_CULTURE + "}/{area:exists}/{controller=Portal}/{action=Index}");
                 routes.MapRoute(
                     name: "default",
-                    template: "{culture=vi-vn}/{controller=InitCms}/{action=Index}/{id?}");
+                    template: "{culture=" + CONST_ROUTE_DEFAULT_CULTURE + "}/{controller=InitCms}/{action=Index}/{id?}");
                 routes.MapRoute(
-                  name: "Page",
-                  template: "{culture=vi-vn}/{pageName}");
+                    name: "Page",
+                    template: "{culture=" + CONST_ROUTE_DEFAULT_CULTURE + "}/{pageName}");
                 routes.MapRoute(
-                 name: "File",
-                 template: "{culture=vi-vn}/Portal/File");
+                    name: "File",
+                    template: "{culture=" + CONST_ROUTE_DEFAULT_CULTURE + "}/Portal/File");
                 routes.MapRoute(
-                 name: "Article",
-                 template: "{culture=vi-vn}/article/{seoName}");
+                    name: "Article",
+                    template: "{culture=" + CONST_ROUTE_DEFAULT_CULTURE + "}/article/{seoName}");
                 routes.MapRoute(
-                 name: "Product",
-                 template: "{culture=vi-vn}/product/{seoName}");
+                    name: "Product",
+                    template: "{culture=" + CONST_ROUTE_DEFAULT_CULTURE + "}/product/{seoName}");
             });
         }
     }
