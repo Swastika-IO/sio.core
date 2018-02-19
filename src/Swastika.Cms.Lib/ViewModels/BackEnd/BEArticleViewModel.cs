@@ -1,22 +1,24 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using Swastika.Cms.Lib.Models.Cms;
-using Swastika.Domain.Data.ViewModels;
+﻿// Licensed to the Swastika I/O Foundation under one or more agreements.
+// The Swastika I/O Foundation licenses this file to you under the GNU General Public License v3.0 license.
+// See the LICENSE file in the project root for more information.
+
 using Microsoft.EntityFrameworkCore.Storage;
 using Newtonsoft.Json;
-using System.ComponentModel.DataAnnotations;
 using Newtonsoft.Json.Linq;
-using Swastika.Cms.Lib.Services;
+using Swastika.Cms.Lib.Models.Cms;
 using Swastika.Cms.Lib.Repositories;
-using Swastika.Domain.Core.ViewModels;
-using Swastika.Common.Helper;
-using System.Threading.Tasks;
-using Swastika.Domain.Core.Models;
+using Swastika.Cms.Lib.Services;
 using Swastika.Cms.Lib.ViewModels.Info;
-using Swastika.Cms.Lib.ViewModels.FrontEnd;
-using static Swastika.Cms.Lib.SWCmsConstants;
 using Swastika.Cms.Lib.ViewModels.Navigation;
+using Swastika.Common.Helper;
+using Swastika.Domain.Core.Models;
+using Swastika.Domain.Core.ViewModels;
+using Swastika.Domain.Data.ViewModels;
+using System;
+using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
+using System.Linq;
+using System.Threading.Tasks;
 
 namespace Swastika.Cms.Lib.ViewModels.BackEnd
 {
@@ -26,82 +28,117 @@ namespace Swastika.Cms.Lib.ViewModels.BackEnd
         #region Properties
 
         #region Models
+
         [JsonProperty("id")]
         public string Id { get; set; }
+
         [JsonProperty("template")]
         public string Template { get; set; }
+
         [JsonProperty("thumbnail")]
         public string Thumbnail { get; set; }
+
         [JsonProperty("image")]
         public string Image { get; set; }
+
         [JsonIgnore]
         [JsonProperty("extraProperties")]
         public string ExtraProperties { get; set; } = "[]";
+
         [JsonProperty("icon")]
         public string Icon { get; set; }
+
         [Required]
         [JsonProperty("title")]
         public string Title { get; set; }
+
         [JsonProperty("excerpt")]
         public string Excerpt { get; set; }
+
         [JsonProperty("content")]
         public string Content { get; set; }
+
         [JsonProperty("seoName")]
         public string SeoName { get; set; }
+
         [JsonProperty("seoTitle")]
         public string SeoTitle { get; set; }
+
         [JsonProperty("seoDescription")]
         public string SeoDescription { get; set; }
+
         [JsonProperty("seoKeywords")]
         public string SeoKeywords { get; set; }
+
         [JsonProperty("source")]
         public string Source { get; set; }
+
         [JsonProperty("views")]
         public int? Views { get; set; }
+
         [JsonProperty("type")]
         public int Type { get; set; }
+
         [JsonProperty("createdDateTime")]
         public DateTime CreatedDateTime { get; set; }
+
         [JsonProperty("createdBy")]
         public string CreatedBy { get; set; }
+
         [JsonProperty("lastModified")]
         public DateTime? LastModified { get; set; }
+
         [JsonProperty("modifiedBy")]
         public string ModifiedBy { get; set; }
+
         [JsonProperty("isVisible")]
         public bool IsVisible { get; set; }
+
         [JsonProperty("isDeleted")]
         public bool IsDeleted { get; set; }
+
         [JsonProperty("tags")]
         public string Tags { get; set; }
-        #endregion
+
+        #endregion Models
 
         #region Views
+
         [JsonProperty("categories")]
         public List<CategoryArticleViewModel> Categories { get; set; }
+
         [JsonProperty("modules")]
         public List<ModuleArticleViewModel> Modules { get; set; } // Parent to Modules
+
         [JsonProperty("moduleNavs")]
         public List<BEArticleModuleViewModel> ModuleNavs { get; set; } // Children Modules
+
         [JsonProperty("mediaNavs")]
         public List<NavArticleMediaViewModel> MediaNavs { get; set; }
+
         [JsonProperty("activedModules")]
         public List<BEModuleViewModel> ActivedModules { get; set; } // Children Modules
+
         [JsonProperty("listTag")]
         public JArray ListTag { get; set; } = new JArray();
+
         [JsonProperty("imageFileStream")]
         public FileStreamViewModel ImageFileStream { get; set; }
+
         [JsonProperty("thumbnailFileStream")]
         public FileStreamViewModel ThumbnailFileStream { get; set; }
+
         [JsonProperty("properties")]
         public List<ExtraProperty> Properties { get; set; }
 
         #region Template
-        
+
         [JsonProperty("view")]
         public BETemplateViewModel View { get; set; }
+
         [JsonProperty("templates")]
         public List<BETemplateViewModel> Templates { get; set; }// Article Templates
+
         [JsonIgnore]
         public string ActivedTemplate
         {
@@ -110,8 +147,10 @@ namespace Swastika.Cms.Lib.ViewModels.BackEnd
                 return GlobalConfigurationService.Instance.GetLocalString(SWCmsConstants.ConfigurationKeyword.Theme, Specificulture, SWCmsConstants.Default.DefaultTemplateFolder);
             }
         }
+
         [JsonIgnore]
         public string TemplateFolderType { get { return SWCmsConstants.TemplateFolderEnum.Articles.ToString(); } }
+
         [JsonProperty("templateFolder")]
         public string TemplateFolder
         {
@@ -127,9 +166,11 @@ namespace Swastika.Cms.Lib.ViewModels.BackEnd
             }
         }
 
-        #endregion
+        #endregion Template
+
         [JsonProperty("domain")]
         public string Domain { get; set; } = "/";
+
         [JsonProperty("imageUrl")]
         public string ImageUrl
         {
@@ -145,9 +186,9 @@ namespace Swastika.Cms.Lib.ViewModels.BackEnd
                 {
                     return Image;
                 }
-
             }
         }
+
         [JsonProperty("thumbnailUrl")]
         public string ThumbnailUrl
         {
@@ -163,14 +204,12 @@ namespace Swastika.Cms.Lib.ViewModels.BackEnd
                 {
                     return Thumbnail;
                 }
-
             }
         }
 
+        #endregion Views
 
-        #endregion
-
-        #endregion
+        #endregion Properties
 
         #region Contructors
 
@@ -182,7 +221,7 @@ namespace Swastika.Cms.Lib.ViewModels.BackEnd
         {
         }
 
-        #endregion
+        #endregion Contructors
 
         #region Overrides
 
@@ -212,7 +251,7 @@ namespace Swastika.Cms.Lib.ViewModels.BackEnd
             {
                 this.View = Templates.FirstOrDefault(t => Template.Contains(t.FileName));
             }
-            
+
             this.View = View ?? Templates.FirstOrDefault();
 
             if (this.View == null)
@@ -234,7 +273,6 @@ namespace Swastika.Cms.Lib.ViewModels.BackEnd
                     this.View?.FileFolder
                     , this.View?.FileName
                });
-
 
             var getCateArticle = CommonRepository.Instance.GetCategoryArticleNav(Id, Specificulture, _context, _transaction);
             if (getCateArticle.IsSucceed)
@@ -259,7 +297,6 @@ namespace Swastika.Cms.Lib.ViewModels.BackEnd
             {
                 MediaNavs = getArticleMedia.Data;
             }
-
 
             this.ListSupportedCulture.ForEach(c => c.IsSupported =
             (string.IsNullOrEmpty(Id) && c.Specificulture == Specificulture)
@@ -288,7 +325,7 @@ namespace Swastika.Cms.Lib.ViewModels.BackEnd
             if (Properties.Count > 0)
             {
                 JArray arrProperties = new JArray();
-                foreach (var p in Properties.OrderBy(p=>p.Priority))
+                foreach (var p in Properties.OrderBy(p => p.Priority))
                 {
                     arrProperties.Add(JObject.FromObject(p));
                 }
@@ -332,7 +369,7 @@ namespace Swastika.Cms.Lib.ViewModels.BackEnd
             return base.ParseModel();
         }
 
-        #region Async Methods        
+        #region Async Methods
 
         public override async Task<RepositoryResponse<bool>> SaveSubModelsAsync(
             SiocArticle parent
@@ -431,7 +468,6 @@ namespace Swastika.Cms.Lib.ViewModels.BackEnd
                         module.Data.Items = new List<InfoModuleDataViewModel>();
                         foreach (var data in module.Data.JsonItems)
                         {
-
                             SiocModuleData model = new SiocModuleData()
                             {
                                 Id = data.Value<string>("id") ?? Guid.NewGuid().ToString(),
@@ -451,7 +487,6 @@ namespace Swastika.Cms.Lib.ViewModels.BackEnd
                                 var col = cols.FirstOrDefault(c => c.Name == prop.Name);
                                 if (col != null)
                                 {
-
                                     JObject fieldVal = new JObject
                                     {
                                         new JProperty("dataType", col.DataType),
@@ -479,7 +514,6 @@ namespace Swastika.Cms.Lib.ViewModels.BackEnd
                     }
                 }
 
-
                 if (result)
                 {
                     foreach (var navMedia in MediaNavs)
@@ -503,7 +537,6 @@ namespace Swastika.Cms.Lib.ViewModels.BackEnd
                     }
                 }
 
-
                 return new RepositoryResponse<bool>()
                 {
                     IsSucceed = result,
@@ -511,7 +544,6 @@ namespace Swastika.Cms.Lib.ViewModels.BackEnd
                     Errors = Errors,
                     Exception = Exception
                 };
-
             }
             catch (Exception ex)
             {
@@ -524,6 +556,7 @@ namespace Swastika.Cms.Lib.ViewModels.BackEnd
                 };
             }
         }
+
         public override async Task<RepositoryResponse<bool>> CloneSubModelsAsync(BEArticleViewModel parent, List<SupportedCulture> cloneCultures, SiocCmsContext _context = null, IDbContextTransaction _transaction = null)
         {
             RepositoryResponse<bool> result = new RepositoryResponse<bool>() { IsSucceed = true };
@@ -546,7 +579,6 @@ namespace Swastika.Cms.Lib.ViewModels.BackEnd
                         result.Errors.AddRange(cloneNav.Errors);
                         result.Exception = cloneNav.Exception;
                     }
-
                 }
                 else
                 {
@@ -556,8 +588,6 @@ namespace Swastika.Cms.Lib.ViewModels.BackEnd
             }
             return result;
         }
-
-
 
         public override async Task<RepositoryResponse<bool>> RemoveRelatedModelsAsync(BEArticleViewModel view, SiocCmsContext _context = null, IDbContextTransaction _transaction = null)
         {
@@ -591,7 +621,8 @@ namespace Swastika.Cms.Lib.ViewModels.BackEnd
             }
             return result;
         }
-        #endregion
+
+        #endregion Async Methods
 
         #region Sync Methods
 
@@ -627,7 +658,6 @@ namespace Swastika.Cms.Lib.ViewModels.BackEnd
             }
             return result;
         }
-
 
         public override RepositoryResponse<bool> SaveSubModels(SiocArticle parent, SiocCmsContext _context = null, IDbContextTransaction _transaction = null)
         {
@@ -724,7 +754,6 @@ namespace Swastika.Cms.Lib.ViewModels.BackEnd
                         module.Data.Items = new List<InfoModuleDataViewModel>();
                         foreach (var data in module.Data.JsonItems)
                         {
-
                             SiocModuleData model = new SiocModuleData()
                             {
                                 Id = data.Value<string>("id") ?? Guid.NewGuid().ToString(),
@@ -744,7 +773,6 @@ namespace Swastika.Cms.Lib.ViewModels.BackEnd
                                 var col = cols.FirstOrDefault(c => c.Name == prop.Name);
                                 if (col != null)
                                 {
-
                                     JObject fieldVal = new JObject
                                     {
                                         new JProperty("dataType", col.DataType),
@@ -772,7 +800,6 @@ namespace Swastika.Cms.Lib.ViewModels.BackEnd
                     }
                 }
 
-
                 if (result)
                 {
                     foreach (var navMedia in MediaNavs)
@@ -796,7 +823,6 @@ namespace Swastika.Cms.Lib.ViewModels.BackEnd
                     }
                 }
 
-
                 return new RepositoryResponse<bool>()
                 {
                     IsSucceed = result,
@@ -804,7 +830,6 @@ namespace Swastika.Cms.Lib.ViewModels.BackEnd
                     Errors = Errors,
                     Exception = Exception
                 };
-
             }
             catch (Exception ex)
             {
@@ -817,12 +842,14 @@ namespace Swastika.Cms.Lib.ViewModels.BackEnd
                 };
             }
         }
-        #endregion
 
-        #endregion
+        #endregion Sync Methods
+
+        #endregion Overrides
 
         #region Expands
-        void GenerateSEO()
+
+        private void GenerateSEO()
         {
             if (string.IsNullOrEmpty(this.SeoName))
             {
@@ -851,7 +878,7 @@ namespace Swastika.Cms.Lib.ViewModels.BackEnd
                 this.SeoKeywords = SEOHelper.GetSEOString(this.Title);
             }
         }
-        #endregion
 
+        #endregion Expands
     }
 }

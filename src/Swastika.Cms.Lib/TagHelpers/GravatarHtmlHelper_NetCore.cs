@@ -1,11 +1,15 @@
-﻿using System;
+﻿// Licensed to the Swastika I/O Foundation under one or more agreements.
+// The Swastika I/O Foundation licenses this file to you under the GNU General Public License v3.0 license.
+// See the LICENSE file in the project root for more information.
+
+using Microsoft.AspNetCore.Html;
+using Microsoft.AspNetCore.Mvc.Rendering;
+using System;
 using System.ComponentModel;
 using System.Linq;
 using System.Reflection;
 using System.Security.Cryptography;
 using System.Text;
-using Microsoft.AspNetCore.Html;
-using Microsoft.AspNetCore.Mvc.Rendering;
 
 /// <summary>
 /// Globally Recognised Avatar - http://gravatar.com
@@ -14,54 +18,63 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 /// This implementation by Andrew Freemantle - http://www.fatlemon.co.uk/
 /// <para>Source, Wiki and Issues: https://github.com/AndrewFreemantle/Gravatar-HtmlHelper </para>
 /// </remarks>
-public static class GravatarHtmlHelper {
-
+public static class GravatarHtmlHelper
+{
     /// <summary>
     /// In addition to allowing you to use your own image, Gravatar has a number of built in options which you can also use as defaults. Most of these work by taking the requested email hash and using it to generate a themed image that is unique to that email address
     /// </summary>
-    public enum DefaultImage {
+    public enum DefaultImage
+    {
         /// <summary>Default Gravatar logo</summary>
         [DescriptionAttribute("")]
         Default,
+
         /// <summary>404 - do not load any image if none is associated with the email hash, instead return an HTTP 404 (File Not Found) response</summary>
         [DescriptionAttribute("404")]
         Http404,
+
         /// <summary>Mystery-Man - a simple, cartoon-style silhouetted outline of a person (does not vary by email hash)</summary>
         [DescriptionAttribute("mm")]
         MysteryMan,
+
         /// <summary>Identicon - a geometric pattern based on an email hash</summary>
         [DescriptionAttribute("identicon")]
         Identicon,
+
         /// <summary>MonsterId - a generated 'monster' with different colors, faces, etc</summary>
         [DescriptionAttribute("monsterid")]
         MonsterId,
+
         /// <summary>Wavatar - generated faces with differing features and backgrounds</summary>
         [DescriptionAttribute("wavatar")]
         Wavatar,
+
         /// <summary>Retro - awesome generated, 8-bit arcade-style pixelated faces</summary>
         [DescriptionAttribute("retro")]
         Retro
     }
 
-
     /// <summary>
     /// Gravatar allows users to self-rate their images so that they can indicate if an image is appropriate for a certain audience. By default, only 'G' rated images are displayed unless you indicate that you would like to see higher ratings
     /// </summary>
-    public enum Rating {
+    public enum Rating
+    {
         /// <summary>Suitable for display on all websites with any audience type</summary>
         [DescriptionAttribute("g")]
         G,
+
         /// <summary>May contain rude gestures, provocatively dressed individuals, the lesser swear words, or mild violence</summary>
         [DescriptionAttribute("pg")]
         PG,
+
         /// <summary>May contain such things as harsh profanity, intense violence, nudity, or hard drug use</summary>
         [DescriptionAttribute("r")]
         R,
+
         /// <summary>May contain hardcore sexual imagery or extremely disturbing violence</summary>
         [DescriptionAttribute("x")]
         X
     }
-
 
     /// <summary>
     /// Returns a Globally Recognised Avatar as an &lt;img /&gt; - http://gravatar.com
@@ -83,8 +96,8 @@ public static class GravatarHtmlHelper {
       Rating rating = Rating.G,
       bool forceSecureRequest = false,
       string cssClass = "gravatar",
-      string alt = "Gravatar image") {
-
+      string alt = "Gravatar image")
+    {
         var imgTag = new TagBuilder("img");
 
         emailAddress = string.IsNullOrEmpty(emailAddress) ? string.Empty : emailAddress.Trim().ToLower();
@@ -108,15 +121,12 @@ public static class GravatarHtmlHelper {
         return imgTag;
     }
 
-
-
-
     /// <summary>
     /// Generates an MD5 hash of the given string
     /// </summary>
     /// <remarks>Source: http://msdn.microsoft.com/en-us/library/system.security.cryptography.md5.aspx </remarks>
-    private static string GetMd5Hash(string input) {
-
+    private static string GetMd5Hash(string input)
+    {
         // Convert the input string to a byte array and compute the hash.
         byte[] data = MD5.Create().ComputeHash(Encoding.UTF8.GetBytes(input));
 
@@ -135,16 +145,14 @@ public static class GravatarHtmlHelper {
         return sBuilder.ToString();
     }
 
-
-
     /// <summary>
     /// Returns the value of a DescriptionAttribute for a given Enum value
     /// </summary>
     /// <remarks>Source: http://blogs.msdn.com/b/abhinaba/archive/2005/10/21/483337.aspx </remarks>
     /// <param name="en"></param>
     /// <returns></returns>
-    private static string GetDescription(this Enum en) {
-
+    private static string GetDescription(this Enum en)
+    {
         Type type = en.GetType();
         MemberInfo[] memInfo = type.GetMember(en.ToString());
 
@@ -158,5 +166,4 @@ public static class GravatarHtmlHelper {
 
         return en.ToString();
     }
-
 }

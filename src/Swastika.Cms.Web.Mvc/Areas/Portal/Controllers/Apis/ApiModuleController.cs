@@ -1,16 +1,20 @@
-using System;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
+// Licensed to the Swastika I/O Foundation under one or more agreements.
+// The Swastika I/O Foundation licenses this file to you under the GNU General Public License v3.0 license.
+// See the LICENSE file in the project root for more information.
+
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.Extensions.Localization;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Routing;
+using Microsoft.Data.OData.Query;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Localization;
+using Swastika.Cms.Lib.Models.Cms;
+using Swastika.Cms.Lib.ViewModels.BackEnd;
+using Swastika.Cms.Lib.ViewModels.Info;
 using Swastika.Cms.Mvc.Areas.Portal.Controllers;
 using Swastika.Cms.Mvc.Controllers;
-using Swastika.Cms.Lib.ViewModels.BackEnd;
-using Microsoft.Data.OData.Query;
-using Swastika.Cms.Lib.ViewModels.Info;
-using Swastika.Cms.Lib.Models.Cms;
+using System;
+using System.Threading.Tasks;
 
 namespace TTS.Web.Areas.Portal.Controllers.Apis
 {
@@ -18,11 +22,9 @@ namespace TTS.Web.Areas.Portal.Controllers.Apis
     [Route("api/{culture}/Portal/Module")]
     public class ApiModuleController : BaseController<ApiModuleController>
     {
-
         public ApiModuleController(IHostingEnvironment env, IStringLocalizer<PortalController> localizer) : base(env)
         {
         }
-
 
         // GET: Portal/Modules
         [HttpGet]
@@ -55,7 +57,7 @@ namespace TTS.Web.Areas.Portal.Controllers.Apis
         }
 
         // POST: Module/Create
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
+        // To protect from overposting attacks, please enable the specific properties you want to bind to, for
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [Route("Create")]
         [HttpPost]
@@ -93,7 +95,7 @@ namespace TTS.Web.Areas.Portal.Controllers.Apis
         }
 
         // POST: Module/Edit/5
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
+        // To protect from overposting attacks, please enable the specific properties you want to bind to, for
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [Route("Edit/{id}")]
         [HttpPost]
@@ -138,7 +140,6 @@ namespace TTS.Web.Areas.Portal.Controllers.Apis
             return View(Module);
         }
 
-
         [HttpGet]
         [Route("Delete/{id}")]
         public async Task<IActionResult> Delete(int id)
@@ -147,9 +148,7 @@ namespace TTS.Web.Areas.Portal.Controllers.Apis
             return RedirectToAction("Index");
         }
 
-
         #region Ajax Functions
-
 
         [HttpGet]
         [Route("AjaxAddModuleData/{moduleId}")]
@@ -177,7 +176,7 @@ namespace TTS.Web.Areas.Portal.Controllers.Apis
         }
 
         // POST: ModuleData/Create
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
+        // To protect from overposting attacks, please enable the specific properties you want to bind to, for
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [Route("AjaxSaveModuleData")]
         [HttpPost]
@@ -236,11 +235,9 @@ namespace TTS.Web.Areas.Portal.Controllers.Apis
             }
         }
 
-
-        #endregion
+        #endregion Ajax Functions
 
         #region Module Details Handler
-
 
         // GET: Portal/Modules
         [HttpGet]
@@ -273,12 +270,12 @@ namespace TTS.Web.Areas.Portal.Controllers.Apis
                 var ModuleData = new InfoModuleDataViewModel(
                     new SiocModuleData()
 
-                {
-                    Id = Guid.NewGuid().ToString("N"),
-                    ModuleId = id,
-                    Specificulture = _lang,
-                    Fields = module.Fields
-                });
+                    {
+                        Id = Guid.NewGuid().ToString("N"),
+                        ModuleId = id,
+                        Specificulture = _lang,
+                        Fields = module.Fields
+                    });
                 return View(ModuleData);
             }
             else
@@ -288,7 +285,7 @@ namespace TTS.Web.Areas.Portal.Controllers.Apis
         }
 
         // POST: ModuleData/Create
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
+        // To protect from overposting attacks, please enable the specific properties you want to bind to, for
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [Route("AddModuleData/{id:int}")]
         [HttpPost]
@@ -326,7 +323,7 @@ namespace TTS.Web.Areas.Portal.Controllers.Apis
         }
 
         // POST: ModuleData/EditModuleData/5
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
+        // To protect from overposting attacks, please enable the specific properties you want to bind to, for
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [Route("EditModuleData/{id}/{dataId}")]
         [HttpPost]
@@ -364,6 +361,7 @@ namespace TTS.Web.Areas.Portal.Controllers.Apis
             }
             return View(ModuleData);
         }
+
         [HttpGet]
         [Route("DeleteModuleData/{id}")]
         public async Task<IActionResult> DeleteModuleData(string id)
@@ -375,10 +373,9 @@ namespace TTS.Web.Areas.Portal.Controllers.Apis
                 await InfoModuleDataViewModel.Repository.RemoveModelAsync(m => m.Id == id);
             }
 
-
-            return RedirectToAction("Details", new RouteValueDictionary(new { id = id}));
+            return RedirectToAction("Details", new RouteValueDictionary(new { id = id }));
         }
 
-        #endregion
+        #endregion Module Details Handler
     }
 }

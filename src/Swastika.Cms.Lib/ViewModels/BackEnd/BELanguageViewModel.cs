@@ -1,12 +1,16 @@
-﻿using Microsoft.EntityFrameworkCore.Storage;
-using Swastika.Domain.Data.ViewModels;
+﻿// Licensed to the Swastika I/O Foundation under one or more agreements.
+// The Swastika I/O Foundation licenses this file to you under the GNU General Public License v3.0 license.
+// See the LICENSE file in the project root for more information.
+
+using Microsoft.EntityFrameworkCore.Storage;
 using Swastika.Cms.Lib.Models.Cms;
-using System.ComponentModel.DataAnnotations;
-using Swastika.Domain.Core.ViewModels;
-using System.Threading.Tasks;
 using Swastika.Cms.Lib.Services;
 using Swastika.Domain.Core.Models;
+using Swastika.Domain.Core.ViewModels;
+using Swastika.Domain.Data.ViewModels;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
+using System.Threading.Tasks;
 
 namespace Swastika.Cms.Lib.ViewModels.BackEnd
 {
@@ -16,11 +20,11 @@ namespace Swastika.Cms.Lib.ViewModels.BackEnd
     {
         [Required]
         public string Keyword { get; set; }
+
         public string Category { get; set; }
         public string Value { get; set; }
         public SWCmsConstants.DataType DataType { get; set; }
         public string Description { get; set; }
-
 
         public BELanguageViewModel() : base()
         {
@@ -31,7 +35,6 @@ namespace Swastika.Cms.Lib.ViewModels.BackEnd
             , SiocCmsContext _context = null, IDbContextTransaction _transaction = null)
             : base(model, _context, _transaction)
         {
-
         }
 
         #region Overrides
@@ -72,6 +75,7 @@ namespace Swastika.Cms.Lib.ViewModels.BackEnd
             }
             return result;
         }
+
         public override async Task<RepositoryResponse<bool>> RemoveModelAsync(bool isRemoveRelatedModels = false, SiocCmsContext _context = null, IDbContextTransaction _transaction = null)
         {
             var result = await base.RemoveModelAsync(isRemoveRelatedModels, _context, _transaction);
@@ -93,6 +97,7 @@ namespace Swastika.Cms.Lib.ViewModels.BackEnd
             model.Value = Model.Keyword;
             return base.CloneAsync(model, cloneCultures, _context, _transaction);
         }
-        #endregion
+
+        #endregion Overrides
     }
 }

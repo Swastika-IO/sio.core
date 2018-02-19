@@ -1,6 +1,9 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿// Licensed to the Swastika I/O Foundation under one or more agreements.
+// The Swastika I/O Foundation licenses this file to you under the GNU General Public License v3.0 license.
+// See the LICENSE file in the project root for more information.
+
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using Newtonsoft.Json.Linq;
 using Swastika.Cms.Lib.Services;
 using Swastika.Cms.Lib.ViewModels.FrontEnd;
 using Swastika.Cms.Lib.ViewModels.Info;
@@ -19,6 +22,7 @@ namespace Swastika.Cms.Lib
             Translator t = new Translator(culture);
             return t;// GlobalLanguageService.Instance.Translator[culture].ToObject<JObject>();
         }
+
         public static RSAParameters GenerateKey()
         {
             using (var key = new RSACryptoServiceProvider(2048))
@@ -26,6 +30,7 @@ namespace Swastika.Cms.Lib
                 return key.ExportParameters(true);
             }
         }
+
         public static FEModuleViewModel GetModule(string name, string culture)
         {
             var getModule = FEModuleViewModel.Repository.GetSingleModel(m => m.Name == name);
@@ -47,7 +52,7 @@ namespace Swastika.Cms.Lib
                     case SWCmsConstants.CateType.Blank:
                         foreach (var child in cate.Childs)
                         {
-                            child.Href = Url.RouteUrl("Page", new {  culture, pageName = child.SeoName });
+                            child.Href = Url.RouteUrl("Page", new { culture, pageName = child.SeoName });
                         }
                         break;
 
@@ -62,7 +67,7 @@ namespace Swastika.Cms.Lib
                     case SWCmsConstants.CateType.Article:
                     case SWCmsConstants.CateType.Modules:
                     default:
-                        cate.Href = Url.RouteUrl("Page", new {  culture, pageName = cate.SeoName });
+                        cate.Href = Url.RouteUrl("Page", new { culture, pageName = cate.SeoName });
                         break;
                 }
                 cate.IsActived = (
@@ -87,7 +92,7 @@ namespace Swastika.Cms.Lib
                     case SWCmsConstants.CateType.Blank:
                         foreach (var child in cate.Childs)
                         {
-                            child.Href = Url.RouteUrl("Page", new {  culture, pageName = child.SeoName });
+                            child.Href = Url.RouteUrl("Page", new { culture, pageName = child.SeoName });
                         }
                         break;
 
@@ -102,7 +107,7 @@ namespace Swastika.Cms.Lib
                     case SWCmsConstants.CateType.Article:
                     case SWCmsConstants.CateType.Modules:
                     default:
-                        cate.Href = Url.RouteUrl("Page", new {  culture, pageName = cate.SeoName });
+                        cate.Href = Url.RouteUrl("Page", new { culture, pageName = cate.SeoName });
                         break;
                 }
                 cate.IsActived = (
@@ -112,7 +117,6 @@ namespace Swastika.Cms.Lib
             }
             return cates;
         }
-
 
         public static string GetFullPath(string[] subPaths)
         {
@@ -137,6 +141,7 @@ namespace Swastika.Cms.Lib
                         Url.RouteUrl(routerName, routeValues)
                         );
         }
+
         public static bool RemoveFile(string filePath)
         {
             bool result = false;
@@ -206,6 +211,7 @@ namespace Swastika.Cms.Lib
                 return false;
             }
         }
+
         public static void WriteBytesToFile(string fullPath, string strBase64)
         {
             string fileData = strBase64.Substring(strBase64.IndexOf(',') + 1);

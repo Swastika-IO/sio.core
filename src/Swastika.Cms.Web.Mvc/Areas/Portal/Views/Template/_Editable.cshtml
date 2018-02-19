@@ -3,7 +3,6 @@
     var lst = new SelectList(Enum.GetNames(typeof(Swastika.Cms.Lib.SWCmsConstants.TemplateFolderEnum)).ToList());
 }
 
-
 <div class="row">
     <div class="col-sm-12">
         <div class="card">
@@ -46,7 +45,7 @@
                            }
 
                         })
-                        @* <input asp-for="View.Filename" class="form-control"/>
+                        @* <input asp-for="View.Filename" class="form-control" />
 
                 <div class="form-control" id="code-editor" asp-for="View.Content"></div>*@
                         <span asp-validation-for="Content" class="text-danger"></span>

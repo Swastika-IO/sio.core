@@ -1,19 +1,22 @@
-﻿using System;
-using Swastika.Cms.Lib.Models.Cms;
-using Swastika.Domain.Data.ViewModels;
+﻿// Licensed to the Swastika I/O Foundation under one or more agreements.
+// The Swastika I/O Foundation licenses this file to you under the GNU General Public License v3.0 license.
+// See the LICENSE file in the project root for more information.
+
 using Microsoft.EntityFrameworkCore.Storage;
 using Newtonsoft.Json;
-using Swastika.Domain.Core.ViewModels;
-using Swastika.Cms.Lib.Repositories;
-using System.Threading.Tasks;
-using Swastika.Common.Helper;
-using Swastika.Cms.Lib.Services;
 using Newtonsoft.Json.Linq;
-using System.Xml;
-using System.Xml.Linq;
-using System.Text.RegularExpressions;
+using Swastika.Cms.Lib.Models.Cms;
+using Swastika.Cms.Lib.Repositories;
+using Swastika.Cms.Lib.Services;
+using Swastika.Common.Helper;
+using Swastika.Domain.Core.ViewModels;
+using Swastika.Domain.Data.ViewModels;
+using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text.RegularExpressions;
+using System.Threading.Tasks;
+using System.Xml.Linq;
 
 namespace Swastika.Cms.Lib.ViewModels.FrontEnd
 {
@@ -23,52 +26,68 @@ namespace Swastika.Cms.Lib.ViewModels.FrontEnd
         #region Properties
 
         #region Models
+
         [JsonIgnore]
         [JsonProperty("id")]
         public int Id { get; set; }
+
         [JsonIgnore]
         [JsonProperty("templateId")]
         public int TemplateId { get; set; }
+
         [JsonIgnore]
         [JsonProperty("templateName")]
         public string TemplateName { get; set; }
+
         [JsonIgnore]
         [JsonProperty("folderType")]
         public string FolderType { get; set; }
+
         [JsonIgnore]
         [JsonProperty("fileFolder")]
         public string FileFolder { get; set; }
+
         [JsonIgnore]
         [JsonProperty("fileName")]
         public string FileName { get; set; }
+
         [JsonIgnore]
         [JsonProperty("extension")]
         public string Extension { get; set; }
+
         [JsonIgnore]
         [JsonProperty("content")]
         public string Content { get; set; }
+
         [JsonIgnore]
         [JsonProperty("mobileContent")]
         public string MobileContent { get; set; }
+
         [JsonProperty("spaContent")]
         public string SpaContent { get; set; }
+
         [JsonProperty("scripts")]
         public string Scripts { get; set; }
+
         [JsonProperty("styles")]
         public string Styles { get; set; }
+
         [JsonIgnore]
         [JsonProperty("createdDateTime")]
         public DateTime CreatedDateTime { get; set; }
+
         [JsonIgnore]
         [JsonProperty("lastModified")]
         public DateTime? LastModified { get; set; }
+
         [JsonIgnore]
         [JsonProperty("modifiedBy")]
         public string ModifiedBy { get; set; }
 
-        #endregion
+        #endregion Models
 
         #region Views
+
         [JsonIgnore]
         [JsonProperty("assetFolder")]
         public string AssetFolder
@@ -81,6 +100,7 @@ namespace Swastika.Cms.Lib.ViewModels.FrontEnd
                     TemplateName });
             }
         }
+
         [JsonIgnore]
         [JsonProperty("templateFolder")]
         public string TemplateFolder
@@ -103,6 +123,7 @@ namespace Swastika.Cms.Lib.ViewModels.FrontEnd
                 });
             }
         }
+
         [JsonIgnore]
         [JsonProperty("spaView")]
         public XElement SpaView
@@ -112,6 +133,7 @@ namespace Swastika.Cms.Lib.ViewModels.FrontEnd
                 return !string.IsNullOrEmpty(SpaContent) ? XElement.Parse(Regex.Replace(SpaContent, "(?<!\r)\n|\r\n|\t", "").Trim()) : new XElement("div");
             }
         }
+
         [JsonProperty("mobileView")]
         public JObject MobileView
         {
@@ -120,6 +142,7 @@ namespace Swastika.Cms.Lib.ViewModels.FrontEnd
                 return !string.IsNullOrEmpty(MobileContent) ? JObject.Parse(MobileContent) : new JObject();
             }
         }
+
         [JsonProperty("mobileComponent")]
         public MobileComponent mobileComponent
         {
@@ -128,9 +151,10 @@ namespace Swastika.Cms.Lib.ViewModels.FrontEnd
                 return new MobileComponent(SpaView);
             }
         }
-        #endregion
 
-        #endregion
+        #endregion Views
+
+        #endregion Properties
 
         #region Contructors
 
@@ -144,7 +168,7 @@ namespace Swastika.Cms.Lib.ViewModels.FrontEnd
         {
         }
 
-        #endregion
+        #endregion Contructors
 
         #region Overrides
 
@@ -157,8 +181,8 @@ namespace Swastika.Cms.Lib.ViewModels.FrontEnd
             //{
             //    Content = file.Content;
             //}
-
         }
+
         public override SiocTemplate ParseModel()
         {
             if (Id == 0)
@@ -181,8 +205,10 @@ namespace Swastika.Cms.Lib.ViewModels.FrontEnd
             return base.ParseModel();
         }
 
-        #endregion
+        #endregion Common
+
         #region Async
+
         public override RepositoryResponse<bool> RemoveModel(bool isRemoveRelatedModels = false, SiocCmsContext _context = null, IDbContextTransaction _transaction = null)
         {
             var result = base.RemoveModel(isRemoveRelatedModels, _context, _transaction);
@@ -204,8 +230,11 @@ namespace Swastika.Cms.Lib.ViewModels.FrontEnd
             });
             return base.SaveSubModels(parent, _context, _transaction);
         }
-        #endregion
+
+        #endregion Async
+
         #region Async
+
         public override async Task<RepositoryResponse<bool>> RemoveModelAsync(bool isRemoveRelatedModels = false, SiocCmsContext _context = null, IDbContextTransaction _transaction = null)
         {
             var result = await base.RemoveModelAsync(isRemoveRelatedModels, _context, _transaction);
@@ -227,9 +256,11 @@ namespace Swastika.Cms.Lib.ViewModels.FrontEnd
             });
             return base.SaveSubModelsAsync(parent, _context, _transaction);
         }
-        #endregion
 
-        #endregion
+        #endregion Async
+
+        #endregion Overrides
+
         #region Expands
 
         /// <summary>
@@ -258,8 +289,7 @@ namespace Swastika.Cms.Lib.ViewModels.FrontEnd
             return result;
         }
 
-
-        #endregion
+        #endregion Expands
     }
 
     public class MobileComponent
@@ -275,8 +305,6 @@ namespace Swastika.Cms.Lib.ViewModels.FrontEnd
         {
             if (element != null)
             {
-
-
                 StyleName = element.Attribute("class")?.Value;
 
                 DataSource = new List<MobileComponent>();
@@ -308,15 +336,14 @@ namespace Swastika.Cms.Lib.ViewModels.FrontEnd
                             DataType = "image_url";
                             DataValue = element.Attribute("src")?.Value.Replace("Model.", "@Model.").Replace("{{", "").Replace("}}", "");
                             break;
+
                         default:
                             ComponentType = "Text";
                             DataType = "object";
                             DataValue = element.Value.Trim().Replace("Model.", "@Model.").Replace("{{", "").Replace("}}", "");
                             break;
                     }
-
                 }
-
             }
         }
     }

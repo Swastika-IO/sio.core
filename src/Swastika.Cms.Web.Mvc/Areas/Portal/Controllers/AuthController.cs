@@ -1,8 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Security.Claims;
-using System.Threading.Tasks;
+﻿// Licensed to the Swastika I/O Foundation under one or more agreements.
+// The Swastika I/O Foundation licenses this file to you under the GNU General Public License v3.0 license.
+// See the LICENSE file in the project root for more information.
+
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Authorization;
@@ -15,10 +14,15 @@ using Microsoft.Extensions.Options;
 using Swastika.Cms.Mvc.Controllers;
 using Swastika.Cms.Web.Mvc.Models.Identity;
 using Swastika.Identity.Data;
+using Swastika.Identity.Infrastructure;
 using Swastika.Identity.Models;
 using Swastika.Identity.Models.AccountViewModels;
 using Swastika.Identity.Services;
-using Swastika.Identity.Infrastructure;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Security.Claims;
+using System.Threading.Tasks;
 
 namespace Swastika.Cms.Web.Mvc.Areas.Portal.Controllers
 {
@@ -48,7 +52,6 @@ namespace Swastika.Cms.Web.Mvc.Areas.Portal.Controllers
             _emailSender = emailSender;
             _smsSender = smsSender;
             _logger = loggerFactory.CreateLogger<AuthController>();
-
         }
 
         // GET: /Account/Login
@@ -114,7 +117,6 @@ namespace Swastika.Cms.Web.Mvc.Areas.Portal.Controllers
         [AllowAnonymous]
         public IActionResult Register(string returnUrl = null)
         {
-
             RegisterViewModel model = new RegisterViewModel()
             {
                 ReturnUrl = returnUrl ?? "/",
@@ -212,6 +214,6 @@ namespace Swastika.Cms.Web.Mvc.Areas.Portal.Controllers
             }
         }
 
-        #endregion
+        #endregion Helpers
     }
 }

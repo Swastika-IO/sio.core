@@ -1,4 +1,7 @@
-﻿using Microsoft.Data.OData.Query;
+﻿// Licensed to the Swastika I/O Foundation under one or more agreements.
+// The Swastika I/O Foundation licenses this file to you under the GNU General Public License v3.0 license.
+// See the LICENSE file in the project root for more information.
+
 using Microsoft.EntityFrameworkCore.Storage;
 using Newtonsoft.Json;
 using Swastika.Cms.Lib.Models.Cms;
@@ -90,18 +93,25 @@ namespace Swastika.Cms.Lib.ViewModels.Info
         #endregion Models
 
         #region Views
+
         [JsonProperty("childs")]
         public List<InfoCategoryViewModel> Childs { get; set; }
+
         [JsonProperty("totalArticle")]
         public int TotalArticle { get; set; }
+
         [JsonProperty("totalProduct")]
         public int TotalProduct { get; set; }
+
         [JsonProperty("href")]
         public string Href { get; set; }
+
         [JsonProperty("isActived")]
         public bool IsActived { get; set; }
+
         [JsonProperty("detailsUrl")]
         public string DetailsUrl { get; set; }
+
         [JsonProperty("domain")]
         public string Domain { get; set; }
 
@@ -135,7 +145,7 @@ namespace Swastika.Cms.Lib.ViewModels.Info
             }
             var countArticle = NavCategoryArticleViewModel.Repository.Count(c => c.CategoryId == Id && c.Specificulture == Specificulture
                 , _context: _context, _transaction: _transaction);
-            
+
             if (countArticle.IsSucceed)
             {
                 TotalArticle = countArticle.Data;

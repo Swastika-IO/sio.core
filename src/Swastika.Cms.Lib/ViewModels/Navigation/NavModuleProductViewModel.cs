@@ -1,7 +1,11 @@
-﻿using Swastika.Cms.Lib.Models.Cms;
-using Swastika.Domain.Data.ViewModels;
+﻿// Licensed to the Swastika I/O Foundation under one or more agreements.
+// The Swastika I/O Foundation licenses this file to you under the GNU General Public License v3.0 license.
+// See the LICENSE file in the project root for more information.
+
 using Microsoft.EntityFrameworkCore.Storage;
+using Swastika.Cms.Lib.Models.Cms;
 using Swastika.Cms.Lib.ViewModels.Info;
+using Swastika.Domain.Data.ViewModels;
 
 namespace Swastika.Cms.Lib.ViewModels.Navigation
 {
@@ -10,18 +14,25 @@ namespace Swastika.Cms.Lib.ViewModels.Navigation
         public NavModuleProductViewModel(SiocModuleProduct model, SiocCmsContext _context = null, IDbContextTransaction _transaction = null) : base(model, _context, _transaction)
         {
         }
+
         public NavModuleProductViewModel() : base()
         {
-
         }
+
         public string ProductId { get; set; }
         public int ModuleId { get; set; }
+
         //public string Specificulture { get; set; }
         public bool IsActived { get; set; }
+
         public string Description { get; set; }
+
         #region Views
+
         public InfoProductViewModel Product { get; set; }
-        #endregion
+
+        #endregion Views
+
         #region Override
 
         public override void ExpandView(SiocCmsContext _context = null, IDbContextTransaction _transaction = null)
@@ -74,15 +85,8 @@ namespace Swastika.Cms.Lib.ViewModels.Navigation
         //    }
         //}
 
-        #endregion
+        #endregion Async
 
-        #region Sync
-
-        #endregion
-
-        #endregion
-        #region Expand
-
-        #endregion
+        #endregion Override
     }
 }

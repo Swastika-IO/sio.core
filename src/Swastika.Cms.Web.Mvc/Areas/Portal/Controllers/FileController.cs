@@ -1,12 +1,16 @@
-﻿using Microsoft.AspNetCore.Mvc;
-using Swastika.Cms.Mvc.Controllers;
+﻿// Licensed to the Swastika I/O Foundation under one or more agreements.
+// The Swastika I/O Foundation licenses this file to you under the GNU General Public License v3.0 license.
+// See the LICENSE file in the project root for more information.
+
 using Microsoft.AspNetCore.Hosting;
-using Swastika.Cms.Lib.ViewModels;
-using Swastika.Cms.Lib.Repositories;
+using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Mvc;
 using Swastika.Cms.Lib;
+using Swastika.Cms.Lib.Repositories;
+using Swastika.Cms.Lib.ViewModels;
+using Swastika.Cms.Mvc.Controllers;
 using Swastika.Common.Helper;
 using System.Collections.Generic;
-using Microsoft.AspNetCore.Http;
 
 namespace Swastika.Cms.Mvc.Areas.Portal.Controllers
 {
@@ -21,7 +25,9 @@ namespace Swastika.Cms.Mvc.Areas.Portal.Controllers
             : base(env)
         {
         }
+
         #region Theme Files
+
         [HttpGet]
         [Route("Theme/{themeName}")]
         [Route("Theme/{themeName}/{folder}")]
@@ -45,7 +51,6 @@ namespace Swastika.Cms.Mvc.Areas.Portal.Controllers
         [Route("EditTheme/{themeName}/{folder}/{name}/{ext}")]
         public IActionResult EditTheme(string themeName, string folder, string name, string ext)
         {
-
             string fullPath = CommonHelper.GetFullPath(new string[]
           {
                 SWCmsConstants.Parameters.TemplatesAssetFolder,
@@ -85,7 +90,6 @@ namespace Swastika.Cms.Mvc.Areas.Portal.Controllers
         [Route("DeleteTheme/{themeName}/{name}/{ext}")]
         public IActionResult DeleteTheme(string themeName, string folder, string name, string ext)
         {
-
             string fullPath = CommonHelper.GetFullPath(new string[]
           {
                 SWCmsConstants.Parameters.WebRootPath,
@@ -98,26 +102,27 @@ namespace Swastika.Cms.Mvc.Areas.Portal.Controllers
             var file = FileRepository.Instance.DeleteFile(filePath);
             return RedirectToAction("Theme", routeValues: new { themeName, folder });
         }
-        #endregion
+
+        #endregion Theme Files
 
         [HttpGet]
         [Route("")]
         public IActionResult Index(string folder)
-        {            
+        {
             var templates = FileRepository.Instance.GetTopFiles(folder);
             var directories = FileRepository.Instance.GetTopDirectories(folder);
             ViewData["directories"] = directories;
             ViewBag.folder = folder;
             return View(templates);
         }
+
         [HttpPost]
         [Route("")]
         public IActionResult Index(string folder, IFormFile file)
         {
             if (file != null && file.Length > 0)
             {
-
-                string filename = FileRepository.Instance.SaveWebFile(file, folder);               
+                string filename = FileRepository.Instance.SaveWebFile(file, folder);
             }
             var files = FileRepository.Instance.GetTopFiles(folder);
             var directories = FileRepository.Instance.GetTopDirectories(folder);
@@ -125,7 +130,6 @@ namespace Swastika.Cms.Mvc.Areas.Portal.Controllers
             ViewBag.folder = folder;
             return View(files);
         }
-
 
         // GET: article/Edit/5
         [HttpGet]
@@ -140,8 +144,6 @@ namespace Swastika.Cms.Mvc.Areas.Portal.Controllers
             }
             return View(template);
         }
-
-
 
         // GET: article/Edit/5
         [HttpPost]
@@ -169,6 +171,5 @@ namespace Swastika.Cms.Mvc.Areas.Portal.Controllers
             var template = FileRepository.Instance.DeleteWebFile(filename, folder);
             return RedirectToAction("", routeValues: new { folder });
         }
-
     }
 }

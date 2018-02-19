@@ -1,13 +1,17 @@
-﻿using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Mvc;
-using Swastika.Cms.Mvc.Controllers;
+﻿// Licensed to the Swastika I/O Foundation under one or more agreements.
+// The Swastika I/O Foundation licenses this file to you under the GNU General Public License v3.0 license.
+// See the LICENSE file in the project root for more information.
+
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using Swastika.Domain.Core.ViewModels;
-using Swastika.Cms.Lib.Services;
 using Swastika.Cms.Lib.Models.Cms;
+using Swastika.Cms.Lib.Services;
 using Swastika.Cms.Lib.ViewModels.BackEnd;
+using Swastika.Cms.Mvc.Controllers;
+using Swastika.Domain.Core.ViewModels;
+using System.Linq;
+using System.Threading.Tasks;
 
 namespace Swastika.Cms.Web.Mvc.Areas.Portal.Controllers
 {
@@ -26,8 +30,8 @@ namespace Swastika.Cms.Web.Mvc.Areas.Portal.Controllers
             //_appService = service;
         }
 
-
         #region Languages
+
         [HttpGet]
         [Route("")]
         [Route("list")]
@@ -46,6 +50,7 @@ namespace Swastika.Cms.Web.Mvc.Areas.Portal.Controllers
             //pageSize, pageIndex, Swastika.Cms.Lib.SWCmsConstants.ViewModelType.FrontEnd);
             return View(pagingPages);
         }
+
         // GET: Create
         [HttpGet]
         [Route("Create")]
@@ -61,7 +66,7 @@ namespace Swastika.Cms.Web.Mvc.Areas.Portal.Controllers
         }
 
         // POST: Language/Create
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
+        // To protect from overposting attacks, please enable the specific properties you want to bind to, for
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [Route("Create")]
         [HttpPost]
@@ -117,7 +122,7 @@ namespace Swastika.Cms.Web.Mvc.Areas.Portal.Controllers
         }
 
         // POST: Language/Edit/5
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
+        // To protect from overposting attacks, please enable the specific properties you want to bind to, for
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [Route("Edit/{id}")]
         [HttpPost]
@@ -173,6 +178,7 @@ namespace Swastika.Cms.Web.Mvc.Areas.Portal.Controllers
             }
             return RedirectToAction("Languages");
         }
-        #endregion
+
+        #endregion Languages
     }
 }

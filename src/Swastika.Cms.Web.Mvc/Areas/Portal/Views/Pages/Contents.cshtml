@@ -11,7 +11,6 @@
     toValue = toValue > Model.TotalItems ? Model.TotalItems : toValue;
 }
 
-
     <div class="box-body">
         <table class="table table-hover table-striped dataTable" cellspacing="0">
             <thead class="thead-light">
@@ -50,7 +49,7 @@
             </tfoot>
             <tbody>
                 @foreach (var item in Model.Items)
-                {                    
+                {
                     <tr>
                         <td>
                             @Html.DisplayFor(modelItem => item.Title)
@@ -81,6 +80,5 @@
 
             <tbody></tbody>
         </table>
-
     </div>
     <!-- /.box-body -->

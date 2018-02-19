@@ -1,5 +1,8 @@
-﻿using Microsoft.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore.Metadata;
+﻿// Licensed to the Swastika I/O Foundation under one or more agreements.
+// The Swastika I/O Foundation licenses this file to you under the GNU General Public License v3.0 license.
+// See the LICENSE file in the project root for more information.
+
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Swastika.Cms.Lib.Services;
 
@@ -60,7 +63,6 @@ namespace Swastika.Cms.Lib.Models.Cms
             // define the database to use
 
             optionsBuilder.UseSqlServer(GlobalConfigurationService.Instance.GetConnectionString());
-
         }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
@@ -132,7 +134,6 @@ namespace Swastika.Cms.Lib.Models.Cms
                 entity.Property(e => e.Image).HasMaxLength(250);
 
                 entity.Property(e => e.Description).HasMaxLength(250);
-
 
                 entity.Property(e => e.Specificulture).HasMaxLength(10);
 
@@ -582,7 +583,7 @@ namespace Swastika.Cms.Lib.Models.Cms
                 entity.ToTable("sioc_media");
 
                 entity.Property(e => e.Id).ValueGeneratedOnAdd();
-               
+
                 entity.Property(e => e.Specificulture)
                     .HasMaxLength(10)
                     .HasDefaultValueSql("(N'vi-vn')");
@@ -620,7 +621,6 @@ namespace Swastika.Cms.Lib.Models.Cms
                 entity.Property(e => e.LastModified).HasColumnType("datetime");
 
                 entity.Property(e => e.ModifiedBy).HasMaxLength(250);
-
             });
 
             modelBuilder.Entity<SiocModule>(entity =>

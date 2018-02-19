@@ -1,11 +1,12 @@
-﻿using Microsoft.AspNetCore.Mvc.Rendering;
+﻿// Licensed to the Swastika I/O Foundation under one or more agreements.
+// The Swastika I/O Foundation licenses this file to you under the GNU General Public License v3.0 license.
+// See the LICENSE file in the project root for more information.
+
+using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.AspNetCore.Mvc.ViewFeatures;
 using Microsoft.AspNetCore.Razor.TagHelpers;
-using Microsoft.AspNetCore.Routing;
-using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
 
 namespace Swastika.Web.Start.TagHelpers
 {
@@ -18,8 +19,10 @@ namespace Swastika.Web.Start.TagHelpers
         /// <remarks>Must be <c>null</c> if <see cref="P:Microsoft.AspNetCore.Mvc.TagHelpers.AnchorTagHelper.Route" /> is non-<c>null</c>.</remarks>
         [HtmlAttributeName("asp-controllers")]
         public string Controllers { get; set; }
+
         [HtmlAttributeName("asp-action")]
         public string Actions { get; set; }
+
         [HtmlAttributeName("asp-route-pagenames")]
         public string PageNames { get; set; }
 
@@ -32,6 +35,7 @@ namespace Swastika.Web.Start.TagHelpers
         [HtmlAttributeNotBound]
         [ViewContext]
         public ViewContext ViewContext { get; set; }
+
         public IDictionary<string, string> RouteValues { get => _routeValues; set => _routeValues = value; }
 
         public override void Process(TagHelperContext context, TagHelperOutput output)
@@ -64,7 +68,7 @@ namespace Swastika.Web.Start.TagHelpers
                     || (
                     activeControllers.Contains(currentController.ToLower()) // Current Controller
                     && activeActions.Contains(currentAction.ToLower()) // Current Action
-                    && (string.IsNullOrEmpty(Id) || id==Id) // Current Details
+                    && (string.IsNullOrEmpty(Id) || id == Id) // Current Details
                     && (string.IsNullOrEmpty(PageNames) || activePageNames.Contains(currentPagename.ToLower()))
                     );
             }

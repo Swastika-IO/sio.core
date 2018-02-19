@@ -1,18 +1,20 @@
-﻿using System.Collections.Generic;
-using Swastika.Cms.Lib.Models.Cms;
-using Swastika.Domain.Data.ViewModels;
+﻿// Licensed to the Swastika I/O Foundation under one or more agreements.
+// The Swastika I/O Foundation licenses this file to you under the GNU General Public License v3.0 license.
+// See the LICENSE file in the project root for more information.
+
+using Microsoft.Data.OData.Query;
 using Microsoft.EntityFrameworkCore.Storage;
 using Newtonsoft.Json;
-using Swastika.Domain.Core.ViewModels;
 using Newtonsoft.Json.Linq;
-using Swastika.Common.Helper;
+using Swastika.Cms.Lib.Models.Cms;
 using Swastika.Cms.Lib.ViewModels.Info;
-using Swastika.Cms.Lib.Repositories;
-using Microsoft.Data.OData.Query;
-using System;
-using static Swastika.Cms.Lib.SWCmsConstants;
-using System.Linq.Expressions;
 using Swastika.Cms.Lib.ViewModels.Navigation;
+using Swastika.Domain.Core.ViewModels;
+using Swastika.Domain.Data.ViewModels;
+using System;
+using System.Collections.Generic;
+using System.Linq.Expressions;
+using static Swastika.Cms.Lib.SWCmsConstants;
 
 namespace Swastika.Cms.Lib.ViewModels.FrontEnd
 {
@@ -22,42 +24,57 @@ namespace Swastika.Cms.Lib.ViewModels.FrontEnd
         #region Properties
 
         #region Models
+
         [JsonProperty("id")]
         public int Id { get; set; }
+
         [JsonProperty("name")]
         public string Name { get; set; }
+
         [JsonProperty("image")]
         public string Image { get; set; }
+
         [JsonProperty("template")]
         public string Template { get; set; }
+
         [JsonProperty("title")]
         public string Title { get; set; }
+
         [JsonProperty("description")]
         public string Description { get; set; }
+
         [JsonProperty("fields")]
         public string Fields { get; set; }
+
         [JsonProperty("type")]
         public ModuleType Type { get; set; }
+
         [JsonProperty("lastModified")]
         public DateTime? LastModified { get; set; }
+
         [JsonProperty("modifiedBy")]
         public string ModifiedBy { get; set; }
-        #endregion
+
+        #endregion Models
 
         #region Views
 
         [JsonProperty("view")]
         public FETemplateViewModel View { get; set; }
+
         [JsonProperty("data")]
         public PaginationModel<InfoModuleDataViewModel> Data { get; set; } = new PaginationModel<InfoModuleDataViewModel>();
+
         //[JsonProperty("columns")]
         //public List<ModuleFieldViewModel> Columns { get; set; }
         //[JsonProperty("templates")]
         //public List<TemplateViewModel> Templates { get; set; }
         [JsonProperty("articles")]
         public PaginationModel<NavModuleArticleViewModel> Articles { get; set; } = new PaginationModel<NavModuleArticleViewModel>();
+
         [JsonProperty("products")]
         public PaginationModel<NavModuleProductViewModel> Products { get; set; } = new PaginationModel<NavModuleProductViewModel>();
+
         public string TemplatePath
         {
             get
@@ -72,11 +89,13 @@ namespace Swastika.Cms.Lib.ViewModels.FrontEnd
                 //});
             }
         }
-        #endregion
+
+        #endregion Views
 
         public string ArticleId { get; set; }
         public int CategoryId { get; set; }
-        #endregion
+
+        #endregion Properties
 
         #region Contructors
 
@@ -88,7 +107,7 @@ namespace Swastika.Cms.Lib.ViewModels.FrontEnd
         {
         }
 
-        #endregion
+        #endregion Contructors
 
         #region Overrides
 
@@ -124,7 +143,7 @@ namespace Swastika.Cms.Lib.ViewModels.FrontEnd
 
             //LoadData(ArticleId, CategoryId, _context: _context, _transaction: _transaction);
 
-            var getArticles = NavModuleArticleViewModel.Repository.GetModelListBy(n=>n.ModuleId == Id && n.Specificulture == Specificulture
+            var getArticles = NavModuleArticleViewModel.Repository.GetModelListBy(n => n.ModuleId == Id && n.Specificulture == Specificulture
             , SWCmsConstants.Default.OrderBy, OrderByDirection.Ascending
                 , 4, 0
                 , _context: _context, _transaction: _transaction
@@ -146,7 +165,8 @@ namespace Swastika.Cms.Lib.ViewModels.FrontEnd
             }
         }
 
-        #endregion
+        #endregion Overrides
+
         #region Expand
 
         public static RepositoryResponse<FEModuleViewModel> GetBy(
@@ -167,7 +187,6 @@ namespace Swastika.Cms.Lib.ViewModels.FrontEnd
             , int? pageSize = null, int? pageIndex = 0
             , SiocCmsContext _context = null, IDbContextTransaction _transaction = null)
         {
-
             RepositoryResponse<PaginationModel<InfoModuleDataViewModel>> getDataResult = new RepositoryResponse<PaginationModel<InfoModuleDataViewModel>>();
 
             switch (Type)
@@ -178,6 +197,7 @@ namespace Swastika.Cms.Lib.ViewModels.FrontEnd
                        , "Priority", OrderByDirection.Ascending, pageSize, pageIndex
                        , _context, _transaction);
                     break;
+
                 case SWCmsConstants.ModuleType.SubPage:
                     getDataResult = InfoModuleDataViewModel.Repository
                        .GetModelListBy(m => m.ModuleId == Id && m.Specificulture == Specificulture
@@ -185,6 +205,7 @@ namespace Swastika.Cms.Lib.ViewModels.FrontEnd
                        , "Priority", OrderByDirection.Ascending, pageSize, pageIndex
                        , _context, _transaction);
                     break;
+
                 case SWCmsConstants.ModuleType.SubArticle:
                     getDataResult = InfoModuleDataViewModel.Repository
                        .GetModelListBy(m => m.ModuleId == Id && m.Specificulture == Specificulture
@@ -192,6 +213,7 @@ namespace Swastika.Cms.Lib.ViewModels.FrontEnd
                        , "Priority", OrderByDirection.Ascending, pageSize, pageIndex
                        , _context, _transaction);
                     break;
+
                 default:
                     break;
             }
@@ -204,8 +226,6 @@ namespace Swastika.Cms.Lib.ViewModels.FrontEnd
             }
         }
 
-
-        #endregion
+        #endregion Expand
     }
-
 }

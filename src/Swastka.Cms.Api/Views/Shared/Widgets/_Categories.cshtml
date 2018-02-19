@@ -14,8 +14,8 @@
             <ul class="blog_category">
                 @foreach (var cate in cates)
                 {
-                    <li><a 
-                           asp-route-culture="@ViewBag.culture" asp-controller="Home" 
+                    <li><a
+                           asp-route-culture="@ViewBag.culture" asp-controller="Home"
                            asp-action="Home" asp-route-pageName="@cate.Seotitle">
                         @cate.Title <span class="badge">@cate.TotalArticle</span></a></li>
                 }

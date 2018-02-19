@@ -1,7 +1,11 @@
-﻿using Microsoft.EntityFrameworkCore.Storage;
+﻿// Licensed to the Swastika I/O Foundation under one or more agreements.
+// The Swastika I/O Foundation licenses this file to you under the GNU General Public License v3.0 license.
+// See the LICENSE file in the project root for more information.
+
+using Microsoft.EntityFrameworkCore.Storage;
 using Swastika.Cms.Lib.Models.Cms;
-using Swastika.Domain.Data.ViewModels;
 using Swastika.Domain.Core.ViewModels;
+using Swastika.Domain.Data.ViewModels;
 
 namespace Swastika.Cms.Lib.ViewModels
 {
@@ -19,7 +23,7 @@ namespace Swastika.Cms.Lib.ViewModels
 
         public override void Validate(SiocCmsContext _context = null, IDbContextTransaction _transaction = null)
         {
-            if (DataType==0)
+            if (DataType == 0)
             {
                 Errors.Add("aaaa");
                 IsValid = false;
@@ -37,6 +41,7 @@ namespace Swastika.Cms.Lib.ViewModels
         {
             return base.RemoveRelatedModels(view, _context, _transaction);
         }
-        #endregion
+
+        #endregion Overrides
     }
 }

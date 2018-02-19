@@ -1,16 +1,10 @@
-﻿using System;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Mvc;
+﻿// Licensed to the Swastika I/O Foundation under one or more agreements.
+// The Swastika I/O Foundation licenses this file to you under the GNU General Public License v3.0 license.
+// See the LICENSE file in the project root for more information.
+
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.EntityFrameworkCore;
+using Microsoft.AspNetCore.Mvc;
 using Swastika.Cms.Mvc.Controllers;
-using Microsoft.Data.OData.Query;
-using Swastika.Cms.Lib.ViewModels;
-using Swastika.Cms.Lib.Models;
-using Swastika.Cms.Lib;
-using Swastika.Cms.Lib.ViewModels.Info;
-using Swastika.Cms.Lib.ViewModels.BackEnd;
-using Swastika.Cms.Lib.Models.Cms;
 
 namespace Swastika.Cms.Mvc.Areas.Portal.Controllers
 {
@@ -32,9 +26,7 @@ namespace Swastika.Cms.Mvc.Areas.Portal.Controllers
         [Route("Index/{Dashboardize:int?}/{pageIndex:int?}")]
         public IActionResult Index(string keyword, int Dashboardize = 10, int pageIndex = 0)
         {
-
             return View();
         }
-
     }
 }

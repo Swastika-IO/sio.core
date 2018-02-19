@@ -1,15 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using Swastika.Cms.Lib.Models.Cms;
-using Swastika.Domain.Data.ViewModels;
+﻿// Licensed to the Swastika I/O Foundation under one or more agreements.
+// The Swastika I/O Foundation licenses this file to you under the GNU General Public License v3.0 license.
+// See the LICENSE file in the project root for more information.
+
 using Microsoft.EntityFrameworkCore.Storage;
 using Newtonsoft.Json;
-using Swastika.Common.Helper;
-using Swastika.Domain.Core.ViewModels;
-using Swastika.Cms.Lib.ViewModels.Info;
-using System.Threading.Tasks;
-using Swastika.Cms.Lib.ViewModels.FrontEnd;
+using Swastika.Cms.Lib.Models.Cms;
+using Swastika.Domain.Data.ViewModels;
 
 namespace Swastika.Cms.Lib.ViewModels.BackEnd
 {
@@ -19,24 +15,32 @@ namespace Swastika.Cms.Lib.ViewModels.BackEnd
         #region Properties
 
         #region Models
+
         [JsonProperty("articleId")]
         public string ArticleId { get; set; }
+
         [JsonProperty("mediaId")]
-        public int MediaId { get; set; }        
+        public int MediaId { get; set; }
+
         [JsonProperty("isActived")]
         public bool IsActived { get; set; }
+
         [JsonProperty("image")]
         public string Image { get; set; }
+
         [JsonProperty("description")]
         public string Description { get; set; }
-        #endregion
+
+        #endregion Models
 
         #region Views
+
         [JsonProperty("media")]
         public BEMediaViewModel Media { get; set; }
-        #endregion
 
-        #endregion
+        #endregion Views
+
+        #endregion Properties
 
         #region Contructors
 
@@ -48,7 +52,7 @@ namespace Swastika.Cms.Lib.ViewModels.BackEnd
         {
         }
 
-        #endregion
+        #endregion Contructors
 
         #region Overrides
 
@@ -57,21 +61,13 @@ namespace Swastika.Cms.Lib.ViewModels.BackEnd
             var getMediaResult = BEMediaViewModel.Repository.GetSingleModel(
                 m => m.Id == MediaId && m.Specificulture == Specificulture
                 && ArticleId == ArticleId
-                , _context:_context, _transaction: _transaction);
+                , _context: _context, _transaction: _transaction);
             if (getMediaResult.IsSucceed)
             {
                 this.Media = getMediaResult.Data;
             }
         }
 
-        #region Async
-      
-        #endregion
-        #endregion
-
-        #region Expands
-
-        #endregion
-
+        #endregion Overrides
     }
 }

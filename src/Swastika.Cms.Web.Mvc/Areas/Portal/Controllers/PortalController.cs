@@ -1,17 +1,20 @@
-﻿using System.Threading.Tasks;
-using Microsoft.AspNetCore.Mvc;
-using Swastika.Cms.Mvc.Controllers;
+﻿// Licensed to the Swastika I/O Foundation under one or more agreements.
+// The Swastika I/O Foundation licenses this file to you under the GNU General Public License v3.0 license.
+// See the LICENSE file in the project root for more information.
+
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Mvc;
+using Newtonsoft.Json.Linq;
 using Swastika.Cms.Lib;
+using Swastika.Cms.Lib.Repositories;
+using Swastika.Cms.Lib.Services;
 using Swastika.Cms.Lib.ViewModels;
 using Swastika.Cms.Lib.ViewModels.Info;
-using Swastika.Cms.Lib.Services;
-using Swastika.Cms.Lib.Repositories;
-using Newtonsoft.Json.Linq;
+using Swastika.Cms.Mvc.Controllers;
+using System.Threading.Tasks;
 
 namespace Swastika.Cms.Mvc.Areas.Portal.Controllers
 {
-
     [Area("Portal")]
     [Route("{culture}/Portal")]
     public class PortalController : BaseController<PortalController>
@@ -46,10 +49,8 @@ namespace Swastika.Cms.Mvc.Areas.Portal.Controllers
                 string cnnString = string.Empty;
                 if (!model.IsUseLocal)
                 {
-
-                     cnnString = string.Format("Server={0};Database={1};UID={2};Pwd={3};MultipleActiveResultSets=true;"
-                        , model.DataBaseServer, model.DataBaseName, model.DataBaseUser, model.DataBasePassword);
-                    
+                    cnnString = string.Format("Server={0};Database={1};UID={2};Pwd={3};MultipleActiveResultSets=true;"
+                       , model.DataBaseServer, model.DataBaseName, model.DataBaseUser, model.DataBasePassword);
                 }
                 else
                 {
@@ -99,22 +100,26 @@ namespace Swastika.Cms.Mvc.Areas.Portal.Controllers
                         c.Description.Contains(keyword)))
                         ).Data;
                     break;
+
                 case SWCmsConstants.SearchType.Article:
                     ViewData["Articles"] = (await InfoArticleViewModel.Repository.GetModelListByAsync(
                         c => c.Specificulture == _lang && (c.Title.Contains(keyword) || c.Excerpt.Contains(keyword) || c.Content.Contains(keyword)))
                         ).Data;
                     break;
+
                 case SWCmsConstants.SearchType.Module:
                     ViewData["Modules"] = (InfoModuleViewModel.Repository.GetModelListBy(
                         c => c.Specificulture == _lang && (c.Title.Contains(keyword) || c.Description.Contains(keyword)))
                         ).Data;
                     break;
+
                 case SWCmsConstants.SearchType.Page:
                     ViewData["Pages"] = (InfoCategoryViewModel.Repository.GetModelListBy(
                         c => c.Specificulture == _lang
                         && (c.Title.Contains(keyword) || c.Excerpt.Contains(keyword)))
                         ).Data;
                     break;
+
                 default:
                     break;
             }

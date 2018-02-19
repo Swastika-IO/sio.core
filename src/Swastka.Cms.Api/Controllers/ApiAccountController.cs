@@ -1,24 +1,22 @@
-﻿using System;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Mvc;
+﻿// Licensed to the Swastika I/O Foundation under one or more agreements.
+// The Swastika I/O Foundation licenses this file to you under the GNU General Public License v3.0 license.
+// See the LICENSE file in the project root for more information.
+
 using Microsoft.AspNetCore.Authorization;
-using Swastika.Identity.Models.AccountViewModels;
-using Swastika.Identity.Models;
 using Microsoft.AspNetCore.Identity;
-using Swastika.Identity.Services;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
-using System.Security.Claims;
-using System.IdentityModel.Tokens.Jwt;
-using Microsoft.IdentityModel.Tokens;
+using Swastika.Api.Controllers;
 using Swastika.Cms.Lib;
 using Swastika.Cms.Lib.ViewModels;
-using System.Security.Principal;
 using Swastika.Domain.Core.ViewModels;
-using Swastika.Api.Controllers;
-using Swastika.Identity.Infrastructure;
-using System.Collections.Generic;
+using Swastika.Identity.Models;
+using Swastika.Identity.Models.AccountViewModels;
+using Swastika.Identity.Services;
 using Swastka.Cms.Api;
+using System;
+using System.Linq;
+using System.Threading.Tasks;
 
 namespace Swastika.Core.Controllers
 {
@@ -69,7 +67,6 @@ namespace Swastika.Core.Controllers
                     model.UserName, model.Password, isPersistent: model.RememberMe, lockoutOnFailure: false);
                 if (result.Succeeded)
                 {
-
                     var user = await _userManager.FindByNameAsync(model.UserName);
                     var token = GenerateAccessToken(user);
                     if (token != null)
@@ -84,9 +81,6 @@ namespace Swastika.Core.Controllers
                     {
                         return loginResult;
                     }
-
-
-
                 }
                 else
                 {
@@ -163,7 +157,6 @@ namespace Swastika.Core.Controllers
                     FirstName = model.FirstName,
                     LastName = model.LastName,
                     JoinDate = DateTime.UtcNow
-
                 };
                 var createResult = await _userManager.CreateAsync(user, password: model.Password);
                 if (createResult.Succeeded)
@@ -183,7 +176,6 @@ namespace Swastika.Core.Controllers
                     {
                         return result;
                     }
-
 
                     //var code = await _userManager.GenerateEmailConfirmationTokenAsync(user);
                     //var callbackUrl = Url.EmailConfirmationLink(user.Id, code, Request.Scheme);
@@ -508,7 +500,6 @@ namespace Swastika.Core.Controllers
             return View();
         }
 
-
         [HttpGet]
         public IActionResult AccessDenied()
         {
@@ -537,7 +528,7 @@ namespace Swastika.Core.Controllers
             }
         }
 
-        #endregion
+        #endregion Helpers
 
         //[AllowAnonymous]
         [HttpPost]
@@ -552,7 +543,6 @@ namespace Swastika.Core.Controllers
                     var result = await _signInManager.CheckPasswordSignInAsync(user, model.Password, false);
                     if (result.Succeeded)
                     {
-
                         var claims = new[]
                         {
           new Claim(JwtRegisteredClaimNames.Sub, user.Email),
@@ -574,14 +564,10 @@ namespace Swastika.Core.Controllers
             return new JsonResult("Could not create token");
         }
 
-        
-
         */
+
         private AccessTokenViewModel GenerateAccessToken(ApplicationUser user)
         {
-
-
-
             //string refreshToken = Guid.NewGuid().ToString();
             //var dtIssued = DateTime.UtcNow;
             //var dtExpired = dtIssued.AddSeconds(SWCmsConstants.AuthConfiguration.AuthCookieExpiration);
@@ -639,6 +625,7 @@ namespace Swastika.Core.Controllers
             };
             return access_token;
         }
+
         //private string GenerateToken(ApplicationUser user, DateTime expires, string refreshToken)
         //{
         //    var handler = new JwtSecurityTokenHandler();

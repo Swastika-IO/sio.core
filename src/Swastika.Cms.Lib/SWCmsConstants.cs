@@ -1,4 +1,8 @@
-﻿using Microsoft.IdentityModel.Tokens;
+﻿// Licensed to the Swastika I/O Foundation under one or more agreements.
+// The Swastika I/O Foundation licenses this file to you under the GNU General Public License v3.0 license.
+// See the LICENSE file in the project root for more information.
+
+using Microsoft.IdentityModel.Tokens;
 using System.Collections.Generic;
 
 namespace Swastika.Cms.Lib
@@ -86,6 +90,7 @@ namespace Swastika.Cms.Lib
             public const int AuthCookieExpiration = 30;
             public const string AuthCookieLoginPath = "";
             public const string AuthCookieLogoutPath = "";
+
             // In Seconds
             public const int AuthCookieRefreshExpiration = 3000;
 
@@ -104,11 +109,14 @@ namespace Swastika.Cms.Lib
             public const string OpenIdClientId = "";
             public const string TwitterKey = "";
             public const string TwitterSecret = "";
+
             // In Seconds
             public static string Audience { get; } = "MyAudience";
+
             public static RsaSecurityKey AuthTokenKey { get; } = new RsaSecurityKey(SWCmsHelper.GenerateKey());
             public static SigningCredentials SigningCredentials { get; } = new SigningCredentials(AuthTokenKey, SecurityAlgorithms.RsaSha256Signature);
             public static string TokenType { get; } = "Bearer";
+
             public static List<string> UserClaims { get; set; }
                 = new List<string>
                 {
@@ -129,14 +137,15 @@ namespace Swastika.Cms.Lib
         {
             public const string System = "System";
             public const string User = "User";
-            
         }
+
         public enum ConfigurationCategory
         {
             PageSize,
             Site,
             Email
         }
+
         public class Default
         {
             public const string DefaultTemplate = @"_Default";
@@ -176,6 +185,7 @@ namespace Swastika.Cms.Lib
             public const string UploadFolder = @"Content/Uploads";
             public const string WebRootPath = @"wwwroot";
         }
+
         public class TemplateFolder
         {
             public const string Articles = "Articles";
@@ -185,7 +195,5 @@ namespace Swastika.Cms.Lib
             public const string Pages = "Pages";
             public const string Widgets = "Widgets";
         }
-
-       
     }
 }

@@ -1,18 +1,18 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿// Licensed to the Swastika I/O Foundation under one or more agreements.
+// The Swastika I/O Foundation licenses this file to you under the GNU General Public License v3.0 license.
+// See the LICENSE file in the project root for more information.
+
 using Microsoft.AspNetCore.Hosting;
-using Swastika.Cms.Mvc.Controllers;
-using System.IO;
-using System.Collections.Generic;
-using Swastika.Cms.Lib.ViewModels;
-using Swastika.Cms.Lib.ViewModels.Info;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.Data.OData.Query;
-using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
-using System;
-using Swastika.Cms.Lib.Services;
 using Swastika.Cms.Lib;
-using Microsoft.AspNetCore.Http;
+using Swastika.Cms.Lib.Services;
 using Swastika.Cms.Lib.ViewModels.BackEnd;
+using Swastika.Cms.Lib.ViewModels.Info;
+using Swastika.Cms.Mvc.Controllers;
+using System;
+using System.Threading.Tasks;
 
 namespace Swastika.Cms.Mvc.Areas.Portal.Controllers
 {
@@ -40,10 +40,10 @@ namespace Swastika.Cms.Mvc.Areas.Portal.Controllers
         [Route("Index/{pageSize:int?}/{pageIndex:int?}")]
         public async Task<IActionResult> Index(int pageSize = 10, int pageIndex = 0, string keyword = null)
         {
-           var getTemplate = await InfoThemeViewModel.Repository.GetModelListByAsync(
-                template => (string.IsNullOrEmpty(keyword) || template.Name.Contains(keyword)),
-                "CreatedDateTime", OrderByDirection.Descending,
-                pageSize, pageIndex);
+            var getTemplate = await InfoThemeViewModel.Repository.GetModelListByAsync(
+                 template => (string.IsNullOrEmpty(keyword) || template.Name.Contains(keyword)),
+                 "CreatedDateTime", OrderByDirection.Descending,
+                 pageSize, pageIndex);
 
             return View(getTemplate.Data);
         }
@@ -61,7 +61,6 @@ namespace Swastika.Cms.Mvc.Areas.Portal.Controllers
             return RedirectToAction("Index");
         }
 
-
         [HttpGet]
         [Route("Create")]
         public IActionResult Create()
@@ -75,16 +74,15 @@ namespace Swastika.Cms.Mvc.Areas.Portal.Controllers
         }
 
         // POST: TtsMenu/Create
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
+        // To protect from overposting attacks, please enable the specific properties you want to bind to, for
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [Route("Create")]
         [HttpPost]
-        
         public async Task<IActionResult> Create(BEThemeViewModel template)
         {
             if (ModelState.IsValid)
             {
-                template.CreatedDateTime = DateTime.UtcNow;                
+                template.CreatedDateTime = DateTime.UtcNow;
                 var result = await template.SaveModelAsync(true);
                 if (result.IsSucceed)
                 {
@@ -126,7 +124,7 @@ namespace Swastika.Cms.Mvc.Areas.Portal.Controllers
         }
 
         // POST: TtsMenu/Edit/5
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
+        // To protect from overposting attacks, please enable the specific properties you want to bind to, for
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [Route("Edit/{id}")]
         [HttpPost]
@@ -184,6 +182,7 @@ namespace Swastika.Cms.Mvc.Areas.Portal.Controllers
             return RedirectToAction("Index");
         }
     }
+
     //public class FileViewModel
     //{
     //    public string Filename { get; set; }

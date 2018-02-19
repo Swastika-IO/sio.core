@@ -3,7 +3,7 @@
 @*
     For more information on enabling MVC for empty projects, visit http://go.microsoft.com/fwlink/?LinkID=397860
 *@
-@{ 
+@{
     string culture = ViewBag.culture;
     var cates = SWCategoryRepository<SWCategoryMenuData>.Instance.GetModelListBy
         (c => c.Specificulture == culture && c.TtsCategoryPosition.Count(
@@ -11,7 +11,6 @@
 
         );
 }
-
 
 <footer id="footer" class="midnight-blue">
     <div class="container">
@@ -68,15 +67,7 @@
 
                     }
                 </ul>
-                
             </div>
         </div>
     </div>
 </footer><!--/#footer-->
-
-
-
-
-
-
-

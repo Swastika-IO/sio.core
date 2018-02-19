@@ -1,16 +1,17 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿// Licensed to the Swastika I/O Foundation under one or more agreements.
+// The Swastika I/O Foundation licenses this file to you under the GNU General Public License v3.0 license.
+// See the LICENSE file in the project root for more information.
+
 using Microsoft.AspNetCore.Hosting;
-using Swastika.Cms.Mvc.Controllers;
-using System.IO;
-using System.Collections.Generic;
-using Swastika.Cms.Lib.ViewModels;
-using Swastika.Cms.Lib.ViewModels.Info;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.Data.OData.Query;
-using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
-using System;
 using Swastika.Cms.Lib;
 using Swastika.Cms.Lib.ViewModels.BackEnd;
+using Swastika.Cms.Lib.ViewModels.Info;
+using Swastika.Cms.Mvc.Controllers;
+using System;
+using System.Threading.Tasks;
 
 namespace Swastika.Cms.Mvc.Areas.Portal.Controllers
 {
@@ -32,14 +33,14 @@ namespace Swastika.Cms.Mvc.Areas.Portal.Controllers
         [Route("{templateId:int}/{pageSize:int?}/{pageIndex:int?}")]
         [Route("Index/{templateId:int}/{folder}/{pageSize:int?}/{pageIndex:int?}/{keyword}")]
         [Route("Index/{templateId:int}/{folder}/{pageSize:int?}/{pageIndex:int?}")]
-        public async Task<IActionResult> Index(int templateId,string folder, int pageSize = 10, int pageIndex = 0, string keyword = null)
+        public async Task<IActionResult> Index(int templateId, string folder, int pageSize = 10, int pageIndex = 0, string keyword = null)
         {
-           var getTemplateFile = await InfoTemplateViewModel.Repository.GetModelListByAsync(
-                template => template.TemplateId == templateId 
-                && template.FolderType == folder
-                && (string.IsNullOrEmpty(keyword) || template.FileName.Contains(keyword)),
-                "CreatedDateTime", OrderByDirection.Descending,
-                pageSize, pageIndex);
+            var getTemplateFile = await InfoTemplateViewModel.Repository.GetModelListByAsync(
+                 template => template.TemplateId == templateId
+                 && template.FolderType == folder
+                 && (string.IsNullOrEmpty(keyword) || template.FileName.Contains(keyword)),
+                 "CreatedDateTime", OrderByDirection.Descending,
+                 pageSize, pageIndex);
             ViewBag.templateId = templateId;
             return View(getTemplateFile.Data);
         }
@@ -64,11 +65,10 @@ namespace Swastika.Cms.Mvc.Areas.Portal.Controllers
             {
                 return NotFound();
             }
-            
         }
 
         // POST: TtsMenu/Create
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
+        // To protect from overposting attacks, please enable the specific properties you want to bind to, for
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [Route("Create/{templateId:int}")]
         [HttpPost]
@@ -110,7 +110,7 @@ namespace Swastika.Cms.Mvc.Areas.Portal.Controllers
         }
 
         // POST: TtsMenu/Edit/5
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
+        // To protect from overposting attacks, please enable the specific properties you want to bind to, for
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [Route("Edit/{id}")]
         [HttpPost]
@@ -166,6 +166,7 @@ namespace Swastika.Cms.Mvc.Areas.Portal.Controllers
             return RedirectToAction("Index", new { templateId = template.Data.TemplateId, folder = template.Data?.FolderType });
         }
     }
+
     //public class FileViewModel
     //{
     //    public string Filename { get; set; }

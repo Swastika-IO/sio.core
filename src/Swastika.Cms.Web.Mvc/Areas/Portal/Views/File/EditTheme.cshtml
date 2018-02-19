@@ -1,10 +1,8 @@
-﻿
-@model Swastika.Cms.Lib.ViewModels.FileViewModel
+﻿@model Swastika.Cms.Lib.ViewModels.FileViewModel
 @{
     ViewData["Title"] = "File - " + Model.FileFolder;
     //Layout = "~/Areas/Portal/Views/Shared/_Layout.cshtml";
 }
-
 
 <!-- Main content -->
 <section class="content container-fluid">
@@ -13,8 +11,7 @@
           asp-route-themeName="@ViewContext.RouteData.Values["themeName"].ToString()"
           asp-route-folder="@ViewContext.RouteData.Values["folder"].ToString()"
           asp-route-name="@ViewContext.RouteData.Values["name"].ToString()"
-          asp-route-ext="@ViewContext.RouteData.Values["ext"].ToString()"
-          >
+          asp-route-ext="@ViewContext.RouteData.Values["ext"].ToString()">
         <div class="row" style="position:relative;">
             <section class="col-lg-9">
                 @await Html.PartialAsync("_Editable_File", Model)

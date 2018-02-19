@@ -21,7 +21,7 @@
                             <img class="img-responsive" src="@thumb" alt="" style="width: 293px;height: 222px;margin:auto;">
                             <div class="overlay">
                                 <div class="recent-work-inner">
-                                    <h3><a 
+                                    <h3><a
                                            asp-action="ArticleDetails" asp-route-id="@article.Id" asp-route-seoTitle="@article.Seotitle">
                                         @article.Title.Substring(0, Math.Min(article.Title.Length,15))</a> </h3>
                                     <p>@article.BriefContent.Substring(0, Math.Min(article.BriefContent.Length,90)) </p>
@@ -31,14 +31,9 @@
                         </div>
                     </div>
                 }
-
             </div>
             <!--/.row-->
         </div>
         <!--/.container-->
     </section><!--/#recent-works-->
 }
-
-
-
-

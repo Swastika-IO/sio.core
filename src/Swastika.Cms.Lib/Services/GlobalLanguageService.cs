@@ -1,4 +1,8 @@
-﻿using Microsoft.EntityFrameworkCore.Storage;
+﻿// Licensed to the Swastika I/O Foundation under one or more agreements.
+// The Swastika I/O Foundation licenses this file to you under the GNU General Public License v3.0 license.
+// See the LICENSE file in the project root for more information.
+
+using Microsoft.EntityFrameworkCore.Storage;
 using Newtonsoft.Json.Linq;
 using Swastika.Cms.Lib.Models.Cms;
 using Swastika.Cms.Lib.ViewModels;
@@ -34,6 +38,7 @@ namespace Swastika.Cms.Lib.Services
                 _translator = value;
             }
         }
+
         public string ConnectionString
         {
             get
@@ -45,7 +50,9 @@ namespace Swastika.Cms.Lib.Services
                 _connectionString = value;
             }
         }
+
         private static List<BELanguageViewModel> _listLanguage;
+
         public static List<BELanguageViewModel> ListLanguage
         {
             get
@@ -63,6 +70,7 @@ namespace Swastika.Cms.Lib.Services
         }
 
         private static List<SupportedCulture> _listSupportedLanguage;
+
         public static List<SupportedCulture> ListSupportedCulture
         {
             get
@@ -78,7 +86,9 @@ namespace Swastika.Cms.Lib.Services
                 _listSupportedLanguage = value;
             }
         }
+
         private static GlobalLanguageService _instance;
+
         public static GlobalLanguageService Instance
         {
             get
@@ -107,7 +117,7 @@ namespace Swastika.Cms.Lib.Services
             InitCultures();
             //InitLanguages();
         }
-     
+
         public SupportedCulture GetCulture(string specificulture)
         {
             return ListSupportedCulture.FirstOrDefault(c => c.Specificulture == specificulture);
@@ -128,14 +138,14 @@ namespace Swastika.Cms.Lib.Services
         {
             InitCultures(_context, _transaction);
         }
-        
-        static void InitCultures(SiocCmsContext _context = null, IDbContextTransaction _transaction = null)
+
+        private static void InitCultures(SiocCmsContext _context = null, IDbContextTransaction _transaction = null)
         {
             var getCultures = CultureViewModel.Repository.GetModelList(_context, _transaction);
             _listSupportedLanguage = new List<SupportedCulture>();
             if (getCultures.IsSucceed)
             {
-                 _translator = new JObject();
+                _translator = new JObject();
                 foreach (var culture in getCultures.Data)
                 {
                     _listSupportedLanguage.Add(
@@ -160,10 +170,9 @@ namespace Swastika.Cms.Lib.Services
                     _translator.Add(new JProperty(culture.Specificulture, temp));
                 }
             }
-
         }
 
-        static void InitLanguages(SiocCmsContext _context = null, IDbContextTransaction _transaction = null)
+        private static void InitLanguages(SiocCmsContext _context = null, IDbContextTransaction _transaction = null)
         {
             var getLanguages = BELanguageViewModel.Repository.GetModelList(_context, _transaction);
             _listLanguage = getLanguages.Data ?? new List<BELanguageViewModel>();
@@ -227,10 +236,12 @@ namespace Swastika.Cms.Lib.Services
     public class Translator
     {
         public string Culture { get; set; }
+
         public Translator(string culture)
         {
-            this.Culture = culture; 
+            this.Culture = culture;
         }
+
         public string Get(string key)
         {
             return GlobalLanguageService.Instance.Translator[Culture][key]?.ToString() ?? key;

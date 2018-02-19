@@ -1,16 +1,20 @@
-﻿using System.Threading.Tasks;
+﻿// Licensed to the Swastika I/O Foundation under one or more agreements.
+// The Swastika I/O Foundation licenses this file to you under the GNU General Public License v3.0 license.
+// See the LICENSE file in the project root for more information.
+
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Data.OData.Query;
-using System.Linq.Expressions;
-using System;
-using Swastika.Domain.Core.ViewModels;
 using Swastika.Api.Controllers;
-using Swastika.Cms.Lib.ViewModels.FrontEnd;
-using Swastika.Cms.Lib.ViewModels.Info;
+using Swastika.Cms.Lib;
 using Swastika.Cms.Lib.Models.Cms;
 using Swastika.Cms.Lib.ViewModels.BackEnd;
-using Swastika.Cms.Lib;
+using Swastika.Cms.Lib.ViewModels.FrontEnd;
+using Swastika.Cms.Lib.ViewModels.Info;
+using Swastika.Domain.Core.ViewModels;
+using System;
 using System.Collections.Generic;
+using System.Linq.Expressions;
+using System.Threading.Tasks;
 using static Swastika.Common.Utility.Enums;
 
 namespace Swastka.IO.Cms.Api.Controllers
@@ -21,6 +25,7 @@ namespace Swastka.IO.Cms.Api.Controllers
         BaseApiController<SiocCmsContext, SiocArticle>
     {
         #region Get
+
         // GET api/category/id
         [HttpGet]
         [Route("details/{id}")]
@@ -88,7 +93,8 @@ namespace Swastka.IO.Cms.Api.Controllers
             && (string.IsNullOrWhiteSpace(description) || (model.Excerpt.Contains(description)));
             return await InfoCategoryViewModel.Repository.GetModelListByAsync(predicate, orderBy, direction, PageSize, PageIndex); // base.Search(predicate, orderBy, direction, PageSize, PageIndex, keyword);
         }
-        #endregion
+
+        #endregion Get
 
         #region Post
 
@@ -107,7 +113,6 @@ namespace Swastka.IO.Cms.Api.Controllers
                 return result;
             }
             return new RepositoryResponse<BECategoryViewModel>();
-
         }
 
         // POST api/category
@@ -123,12 +128,9 @@ namespace Swastka.IO.Cms.Api.Controllers
 
                     return result;
                 }
-               
             }
             return new RepositoryResponse<bool>();
-
         }
-
 
         // GET api/category
         [HttpPost, HttpOptions]
@@ -138,7 +140,6 @@ namespace Swastka.IO.Cms.Api.Controllers
             string domain = string.Format("{0}://{1}", Request.Scheme, Request.Host);
             if (string.IsNullOrEmpty(request.Keyword))
             {
-
                 var data = await InfoCategoryViewModel.Repository.GetModelListByAsync(
                 m => m.Status != (int)SWStatus.Deleted && m.Specificulture == _lang, request.OrderBy, request.Direction, request.PageSize, request.PageIndex);
                 if (data.IsSucceed)
@@ -148,14 +149,10 @@ namespace Swastka.IO.Cms.Api.Controllers
                         a.DetailsUrl = SWCmsHelper.GetRouterUrl(
                             "Page", new { a.SeoName }, Request, Url);
                         a.Domain = domain;
-
                     }
                     );
-
-
                 }
                 return data;
-
             }
             else
             {
@@ -175,14 +172,13 @@ namespace Swastka.IO.Cms.Api.Controllers
                         a.DetailsUrl = SWCmsHelper.GetRouterUrl(
                             "Page", new { a.SeoName }, Request, Url);
                         a.Domain = domain;
-
                     }
                     );
                 }
                 return data;
             }
-
         }
-        #endregion
+
+        #endregion Post
     }
 }

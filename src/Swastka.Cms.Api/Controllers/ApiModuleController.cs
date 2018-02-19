@@ -1,17 +1,21 @@
-﻿using System.Threading.Tasks;
+﻿// Licensed to the Swastika I/O Foundation under one or more agreements.
+// The Swastika I/O Foundation licenses this file to you under the GNU General Public License v3.0 license.
+// See the LICENSE file in the project root for more information.
+
+using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Data.OData.Query;
-using System.Linq.Expressions;
-using System;
-using Swastika.Domain.Core.ViewModels;
+using Newtonsoft.Json.Linq;
 using Swastika.Api.Controllers;
-using Swastika.Cms.Lib.ViewModels.FrontEnd;
-using Swastika.Cms.Lib.ViewModels.Info;
 using Swastika.Cms.Lib.Models.Cms;
 using Swastika.Cms.Lib.ViewModels.BackEnd;
+using Swastika.Cms.Lib.ViewModels.FrontEnd;
+using Swastika.Cms.Lib.ViewModels.Info;
+using Swastika.Domain.Core.ViewModels;
+using System;
 using System.Collections.Generic;
-using Newtonsoft.Json.Linq;
-using Microsoft.AspNetCore.Hosting;
+using System.Linq.Expressions;
+using System.Threading.Tasks;
 
 namespace Swastka.IO.Cms.Api.Controllers
 {
@@ -23,6 +27,7 @@ namespace Swastka.IO.Cms.Api.Controllers
         public ApiModuleController(IHostingEnvironment env) : base(env)
         {
         }
+
         #region Get
 
         // GET api/articles/id
@@ -50,10 +55,12 @@ namespace Swastka.IO.Cms.Api.Controllers
                     var spaResult = await SpaModuleViewModel.Repository.GetSingleModelAsync(model => model.Id == id && model.Specificulture == _lang);
                     result = JObject.FromObject(spaResult);
                     break;
+
                 case "be":
                     var beResult = await BEModuleViewModel.Repository.GetSingleModelAsync(model => model.Id == id && model.Specificulture == _lang);
                     result = JObject.FromObject(beResult);
                     break;
+
                 default:
                     var feResult = await FEModuleViewModel.Repository.GetSingleModelAsync(model => model.Id == id && model.Specificulture == _lang);
                     result = JObject.FromObject(feResult);
@@ -61,7 +68,6 @@ namespace Swastka.IO.Cms.Api.Controllers
             }
             return result;
         }
-
 
         // GET api/articles/id
         [HttpGet]
@@ -110,7 +116,7 @@ namespace Swastka.IO.Cms.Api.Controllers
             return await InfoModuleViewModel.Repository.GetModelListByAsync(predicate, orderBy, direction, pageSize, pageIndex); // base.Search(predicate, orderBy, direction, pageSize, pageIndex, keyword);
         }
 
-        #endregion
+        #endregion Get
 
         #region Post
 
@@ -130,15 +136,14 @@ namespace Swastka.IO.Cms.Api.Controllers
             {
                 Expression<Func<SiocModule, bool>> predicate = model =>
             model.Specificulture == _lang
-            && (string.IsNullOrWhiteSpace(request.Keyword) || 
-                ( 
+            && (string.IsNullOrWhiteSpace(request.Keyword) ||
+                (
                     model.Title.Contains(request.Keyword)
                     || model.Description.Contains(request.Keyword)
                 )
                 );
                 return await InfoModuleViewModel.Repository.GetModelListByAsync(predicate, request.OrderBy, request.Direction, request.PageSize, request.PageIndex);
             }
-
         }
 
         // GET api/articles/id
@@ -159,7 +164,6 @@ namespace Swastka.IO.Cms.Api.Controllers
             {
                 return await view.RemoveModelAsync();
             }
-
         }
 
         // POST api/module
@@ -174,7 +178,6 @@ namespace Swastka.IO.Cms.Api.Controllers
                 return result;
             }
             return new RepositoryResponse<BEModuleViewModel>();
-
         }
 
         // POST api/category
@@ -190,14 +193,10 @@ namespace Swastka.IO.Cms.Api.Controllers
 
                     return result;
                 }
-
             }
             return new RepositoryResponse<bool>();
-
         }
-        #endregion
 
-
-
+        #endregion Post
     }
 }
