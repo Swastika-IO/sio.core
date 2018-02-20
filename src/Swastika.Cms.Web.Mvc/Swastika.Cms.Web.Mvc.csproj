@@ -267,7 +267,6 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Swastika.Cms.Lib\Swastika.Cms.Lib.csproj" />
-    <ProjectReference Include="..\Swastika.Messenger.Lib\Swastika.Messenger.Lib.csproj" />
     <ProjectReference Include="..\Swastka.Cms.Api\Swastka.Cms.Api.csproj" />
   </ItemGroup>
 
