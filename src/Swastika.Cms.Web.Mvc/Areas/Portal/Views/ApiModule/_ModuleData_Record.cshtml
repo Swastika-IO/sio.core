@@ -6,11 +6,9 @@
         {
             var prop = Model.GetDataProperty(col.Name);
             <td>
-                @{Html.RenderPartial("_ViewByFieldType",
-                new ViewDataDictionary(this.Vi‌​ewData) { { "Model", prop } });
-                }
+                @{Html.RenderPartial("_ViewByFieldType", new ViewDataDictionary(this.Vi‌​ewData) { { "Model", prop } }); }
             </td>
-                    }
+        }
         <td>
             <input type="checkbox" class="cb-active-data" dataId="@Model.Id" />
         </td>

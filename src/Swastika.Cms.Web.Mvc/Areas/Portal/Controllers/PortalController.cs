@@ -96,8 +96,8 @@ namespace Swastika.Cms.Mvc.Areas.Portal.Controllers
                         && (c.Title.Contains(keyword) || c.Excerpt.Contains(keyword)))
                         ).Data;
                     ViewData["Modules"] = (InfoModuleViewModel.Repository.GetModelListBy(
-                        c => c.Specificulture == _lang && (c.Title.Contains(keyword) ||
-                        c.Description.Contains(keyword)))
+                        c => c.Specificulture == _lang && (c.Title.Contains(keyword)
+                        || c.Description.Contains(keyword)))
                         ).Data;
                     break;
 

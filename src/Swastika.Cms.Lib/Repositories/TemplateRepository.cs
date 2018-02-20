@@ -21,16 +21,14 @@ namespace Swastika.Cms.Lib.Repositories
         /// <summary>
         /// The synchronize root
         /// </summary>
-        private static object syncRoot = new Object();
+        private static readonly object syncRoot = new Object();
 
         /// <summary>
         /// Gets the instance.
         /// </summary>
         /// <returns></returns>
-        public static TemplateRepository Instance
-        {
-            get
-            {
+        public static TemplateRepository Instance {
+            get {
                 if (instance == null)
                 {
                     lock (syncRoot)
@@ -52,10 +50,8 @@ namespace Swastika.Cms.Lib.Repositories
 
         public TemplateViewModel GetTemplate(string templatePath, List<TemplateViewModel> templates, string templateFolder)
         {
-            var result = templates.FirstOrDefault(
-                v => !string.IsNullOrEmpty(templatePath) && v.Filename == templatePath.Replace(@"\", "/").Split('/')[1]);
-            result = result ?? new TemplateViewModel() { FileFolder = templateFolder.ToString() };
-            return result;
+            var result = templates.Find(v => !string.IsNullOrEmpty(templatePath) && v.Filename == templatePath.Replace(@"\", "/").Split('/')[1]);
+            return result ?? new TemplateViewModel() { FileFolder = templateFolder };
         }
 
         public TemplateViewModel GetTemplate(string name, string templateFolder)
@@ -77,8 +73,7 @@ namespace Swastika.Cms.Lib.Repositories
                     };
                 }
             }
-            result = result ?? new TemplateViewModel() { FileFolder = templateFolder.ToString() };
-            return result;
+            return result ?? new TemplateViewModel() { FileFolder = templateFolder };
         }
 
         public bool DeleteTemplate(string name, string templateFolder)

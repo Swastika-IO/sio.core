@@ -28,16 +28,11 @@ namespace Swastika.Cms.Mvc.TagHelpers
 
         /// <summary>Additional parameters for the route.</summary>
         [HtmlAttributeName("asp-all-route-data", DictionaryAttributePrefix = "asp-route-")]
-        public IDictionary<string, string> RouteValues
-        {
-            get
-            {
-                if (this._routeValues == null)
-                    this._routeValues = (IDictionary<string, string>)new Dictionary<string, string>((IEqualityComparer<string>)StringComparer.OrdinalIgnoreCase);
-                return this._routeValues;
+        public IDictionary<string, string> RouteValues {
+            get {
+                return this._routeValues ?? (this._routeValues = (IDictionary<string, string>)new Dictionary<string, string>((IEqualityComparer<string>)StringComparer.OrdinalIgnoreCase));
             }
-            set
-            {
+            set {
                 this._routeValues = value;
             }
         }
@@ -78,8 +73,8 @@ namespace Swastika.Cms.Mvc.TagHelpers
 
             foreach (KeyValuePair<string, string> routeValue in RouteValues)
             {
-                if (!ViewContext.RouteData.Values.ContainsKey(routeValue.Key) ||
-                    ViewContext.RouteData.Values[routeValue.Key].ToString() != routeValue.Value)
+                if (!ViewContext.RouteData.Values.ContainsKey(routeValue.Key)
+                    || ViewContext.RouteData.Values[routeValue.Key].ToString() != routeValue.Value)
                 {
                     return false;
                 }
@@ -100,7 +95,7 @@ namespace Swastika.Cms.Mvc.TagHelpers
             {
                 output.Attributes.SetAttribute("class", classAttr.Value == null
                     ? "active"
-                    : classAttr.Value.ToString() + " active");
+                    : classAttr.Value + " active");
             }
         }
     }

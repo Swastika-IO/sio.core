@@ -70,10 +70,7 @@ namespace Swastika.Cms.Lib
                         cate.Href = Url.RouteUrl("Page", new { culture, pageName = cate.SeoName });
                         break;
                 }
-                cate.IsActived = (
-                    cate.Href == activePath ||
-                    (cate.Type == SWCmsConstants.CateType.Home && activePath == string.Format("/{0}/Home", culture))
-                    );
+                cate.IsActived = (cate.Href == activePath || (cate.Type == SWCmsConstants.CateType.Home && activePath == string.Format("/{0}/Home", culture)));
             }
             return cates;
         }
@@ -111,8 +108,7 @@ namespace Swastika.Cms.Lib
                         break;
                 }
                 cate.IsActived = (
-                    cate.Href == activePath ||
-                    (cate.Type == SWCmsConstants.CateType.Home && activePath == string.Format("/{0}/Home", culture))
+                    cate.Href == activePath || (cate.Type == SWCmsConstants.CateType.Home && activePath == string.Format("/{0}/Home", culture))
                     );
             }
             return cates;

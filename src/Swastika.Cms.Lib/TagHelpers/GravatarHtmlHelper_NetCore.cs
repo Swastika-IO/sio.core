@@ -79,6 +79,7 @@ public static class GravatarHtmlHelper
     /// <summary>
     /// Returns a Globally Recognised Avatar as an &lt;img /&gt; - http://gravatar.com
     /// </summary>
+    /// <param name="htmlHelper"></param>
     /// <param name="emailAddress">Email Address for the Gravatar</param>
     /// <param name="defaultImage">Default image if user hasn't created a Gravatar</param>
     /// <param name="size">Size in pixels (default: 80)</param>
@@ -86,6 +87,8 @@ public static class GravatarHtmlHelper
     /// <param name="forceDefaultImage">Prefer the default image over the users own Gravatar</param>
     /// <param name="rating">Gravatar content rating (note that Gravatars are self-rated)</param>
     /// <param name="forceSecureRequest">Always do secure (https) requests</param>
+    /// <param name="cssClass"></param>
+    /// <param name="alt"></param>
     public static IHtmlContent GravatarImage(
       this IHtmlHelper htmlHelper,
       string emailAddress,
@@ -124,6 +127,7 @@ public static class GravatarHtmlHelper
     /// <summary>
     /// Generates an MD5 hash of the given string
     /// </summary>
+    /// <param name="input"></param>
     /// <remarks>Source: http://msdn.microsoft.com/en-us/library/system.security.cryptography.md5.aspx </remarks>
     private static string GetMd5Hash(string input)
     {
@@ -156,12 +160,12 @@ public static class GravatarHtmlHelper
         Type type = en.GetType();
         MemberInfo[] memInfo = type.GetMember(en.ToString());
 
-        if (memInfo != null && memInfo.Length > 0)
+        if (memInfo?.Length > 0)
         {
             var attrs = memInfo[0].GetCustomAttributes(typeof(DescriptionAttribute), false);
 
-            if (attrs != null && attrs.Count() > 0)
-                return ((DescriptionAttribute)attrs.First()).Description;
+            if (attrs?.Length > 0)
+                return ((DescriptionAttribute)attrs[0]).Description;
         }
 
         return en.ToString();

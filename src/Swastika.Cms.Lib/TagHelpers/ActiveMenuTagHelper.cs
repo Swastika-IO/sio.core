@@ -13,8 +13,6 @@ namespace Swastika.Web.Start.TagHelpers
     [HtmlTargetElement(Attributes = "is-active-menu")]
     public class ActiveMenuTagHelper : TagHelper
     {
-        private IDictionary<string, string> _routeValues;
-
         /// <summary>The name of the controller.</summary>
         /// <remarks>Must be <c>null</c> if <see cref="P:Microsoft.AspNetCore.Mvc.TagHelpers.AnchorTagHelper.Route" /> is non-<c>null</c>.</remarks>
         [HtmlAttributeName("asp-controllers")]
@@ -36,7 +34,7 @@ namespace Swastika.Web.Start.TagHelpers
         [ViewContext]
         public ViewContext ViewContext { get; set; }
 
-        public IDictionary<string, string> RouteValues { get => _routeValues; set => _routeValues = value; }
+        public IDictionary<string, string> RouteValues { get; set; }
 
         public override void Process(TagHelperContext context, TagHelperOutput output)
         {
@@ -101,7 +99,7 @@ namespace Swastika.Web.Start.TagHelpers
             {
                 output.Attributes.SetAttribute("class", classAttr.Value == null
                     ? "active"
-                    : classAttr.Value.ToString() + " active");
+                    : classAttr.Value + " active");
             }
         }
     }

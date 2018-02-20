@@ -64,7 +64,7 @@ namespace Swastika.Cms.Lib.Services
                     new HtmlHelperOptions()
                 );
 
-                await viewResult.View.RenderAsync(viewContext);
+                await viewResult.View.RenderAsync(viewContext).ConfigureAwait(false);
                 return sw.ToString();
             }
         }

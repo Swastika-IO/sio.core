@@ -54,18 +54,18 @@ namespace Swastika.Cms.Mvc.Areas.Portal.Controllers
                 : message == ManageMessageId.RemovePhoneSuccess ? "Your phone number was removed."
                 : "";
 
-            var user = await GetCurrentUserAsync();
+            var user = await GetCurrentUserAsync().ConfigureAwait(false);
             if (user == null)
             {
                 return View("Error");
             }
             var model = new IndexViewModel
             {
-                HasPassword = await _userManager.HasPasswordAsync(user),
-                PhoneNumber = await _userManager.GetPhoneNumberAsync(user),
-                TwoFactor = await _userManager.GetTwoFactorEnabledAsync(user),
-                Logins = await _userManager.GetLoginsAsync(user),
-                BrowserRemembered = await _signInManager.IsTwoFactorClientRememberedAsync(user)
+                HasPassword = await _userManager.HasPasswordAsync(user).ConfigureAwait(false),
+                PhoneNumber = await _userManager.GetPhoneNumberAsync(user).ConfigureAwait(false),
+                TwoFactor = await _userManager.GetTwoFactorEnabledAsync(user).ConfigureAwait(false),
+                Logins = await _userManager.GetLoginsAsync(user).ConfigureAwait(false),
+                BrowserRemembered = await _signInManager.IsTwoFactorClientRememberedAsync(user).ConfigureAwait(false)
             };
             return View(model);
         }
@@ -77,13 +77,13 @@ namespace Swastika.Cms.Mvc.Areas.Portal.Controllers
         public async Task<IActionResult> RemoveLogin(RemoveLoginViewModel account)
         {
             ManageMessageId? message = ManageMessageId.Error;
-            var user = await GetCurrentUserAsync();
+            var user = await GetCurrentUserAsync().ConfigureAwait(false);
             if (user != null)
             {
-                var result = await _userManager.RemoveLoginAsync(user, account.LoginProvider, account.ProviderKey);
+                var result = await _userManager.RemoveLoginAsync(user, account.LoginProvider, account.ProviderKey).ConfigureAwait(false);
                 if (result.Succeeded)
                 {
-                    await _signInManager.SignInAsync(user, isPersistent: false);
+                    await _signInManager.SignInAsync(user, isPersistent: false).ConfigureAwait(false);
                     message = ManageMessageId.RemoveLoginSuccess;
                 }
             }
@@ -108,14 +108,14 @@ namespace Swastika.Cms.Mvc.Areas.Portal.Controllers
                 return View(model);
             }
             // Generate the token and send it
-            var user = await GetCurrentUserAsync();
+            var user = await GetCurrentUserAsync().ConfigureAwait(false);
             if (user == null)
             {
                 return View("Error");
             }
-            var code = await _userManager.GenerateChangePhoneNumberTokenAsync(user, model.PhoneNumber);
-            await _smsSender.SendSmsAsync(model.PhoneNumber, "Your security code is: " + code);
-            return RedirectToAction(nameof(VerifyPhoneNumber), new { PhoneNumber = model.PhoneNumber });
+            var code = await _userManager.GenerateChangePhoneNumberTokenAsync(user, model.PhoneNumber).ConfigureAwait(false);
+            await _smsSender.SendSmsAsync(model.PhoneNumber, "Your security code is: " + code).ConfigureAwait(false);
+            return RedirectToAction(nameof(VerifyPhoneNumber), new { model.PhoneNumber });
         }
 
         //
@@ -124,11 +124,11 @@ namespace Swastika.Cms.Mvc.Areas.Portal.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> EnableTwoFactorAuthentication()
         {
-            var user = await GetCurrentUserAsync();
+            var user = await GetCurrentUserAsync().ConfigureAwait(false);
             if (user != null)
             {
-                await _userManager.SetTwoFactorEnabledAsync(user, true);
-                await _signInManager.SignInAsync(user, isPersistent: false);
+                await _userManager.SetTwoFactorEnabledAsync(user, true).ConfigureAwait(false);
+                await _signInManager.SignInAsync(user, isPersistent: false).ConfigureAwait(false);
                 _logger.LogInformation(1, "User enabled two-factor authentication.");
             }
             return RedirectToAction(nameof(Index), "Manage");
@@ -140,11 +140,11 @@ namespace Swastika.Cms.Mvc.Areas.Portal.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DisableTwoFactorAuthentication()
         {
-            var user = await GetCurrentUserAsync();
+            var user = await GetCurrentUserAsync().ConfigureAwait(false);
             if (user != null)
             {
-                await _userManager.SetTwoFactorEnabledAsync(user, false);
-                await _signInManager.SignInAsync(user, isPersistent: false);
+                await _userManager.SetTwoFactorEnabledAsync(user, false).ConfigureAwait(false);
+                await _signInManager.SignInAsync(user, isPersistent: false).ConfigureAwait(false);
                 _logger.LogInformation(2, "User disabled two-factor authentication.");
             }
             return RedirectToAction(nameof(Index), "Manage");
@@ -155,12 +155,12 @@ namespace Swastika.Cms.Mvc.Areas.Portal.Controllers
         [HttpGet]
         public async Task<IActionResult> VerifyPhoneNumber(string phoneNumber)
         {
-            var user = await GetCurrentUserAsync();
+            var user = await GetCurrentUserAsync().ConfigureAwait(false);
             if (user == null)
             {
                 return View("Error");
             }
-            var code = await _userManager.GenerateChangePhoneNumberTokenAsync(user, phoneNumber);
+            var code = await _userManager.GenerateChangePhoneNumberTokenAsync(user, phoneNumber).ConfigureAwait(false);
             // Send an SMS to verify the phone number
             return phoneNumber == null ? View("Error") : View(new VerifyPhoneNumberViewModel { PhoneNumber = phoneNumber });
         }
@@ -175,13 +175,13 @@ namespace Swastika.Cms.Mvc.Areas.Portal.Controllers
             {
                 return View(model);
             }
-            var user = await GetCurrentUserAsync();
+            var user = await GetCurrentUserAsync().ConfigureAwait(false);
             if (user != null)
             {
-                var result = await _userManager.ChangePhoneNumberAsync(user, model.PhoneNumber, model.Code);
+                var result = await _userManager.ChangePhoneNumberAsync(user, model.PhoneNumber, model.Code).ConfigureAwait(false);
                 if (result.Succeeded)
                 {
-                    await _signInManager.SignInAsync(user, isPersistent: false);
+                    await _signInManager.SignInAsync(user, isPersistent: false).ConfigureAwait(false);
                     return RedirectToAction(nameof(Index), new { Message = ManageMessageId.AddPhoneSuccess });
                 }
             }
@@ -196,13 +196,13 @@ namespace Swastika.Cms.Mvc.Areas.Portal.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> RemovePhoneNumber()
         {
-            var user = await GetCurrentUserAsync();
+            var user = await GetCurrentUserAsync().ConfigureAwait(false);
             if (user != null)
             {
-                var result = await _userManager.SetPhoneNumberAsync(user, null);
+                var result = await _userManager.SetPhoneNumberAsync(user, null).ConfigureAwait(false);
                 if (result.Succeeded)
                 {
-                    await _signInManager.SignInAsync(user, isPersistent: false);
+                    await _signInManager.SignInAsync(user, isPersistent: false).ConfigureAwait(false);
                     return RedirectToAction(nameof(Index), new { Message = ManageMessageId.RemovePhoneSuccess });
                 }
             }
@@ -227,13 +227,13 @@ namespace Swastika.Cms.Mvc.Areas.Portal.Controllers
             {
                 return View(model);
             }
-            var user = await GetCurrentUserAsync();
+            var user = await GetCurrentUserAsync().ConfigureAwait(false);
             if (user != null)
             {
-                var result = await _userManager.ChangePasswordAsync(user, model.OldPassword, model.NewPassword);
+                var result = await _userManager.ChangePasswordAsync(user, model.OldPassword, model.NewPassword).ConfigureAwait(false);
                 if (result.Succeeded)
                 {
-                    await _signInManager.SignInAsync(user, isPersistent: false);
+                    await _signInManager.SignInAsync(user, isPersistent: false).ConfigureAwait(false);
                     _logger.LogInformation(3, "User changed their password successfully.");
                     return RedirectToAction(nameof(Index), new { Message = ManageMessageId.ChangePasswordSuccess });
                 }
@@ -262,13 +262,13 @@ namespace Swastika.Cms.Mvc.Areas.Portal.Controllers
                 return View(model);
             }
 
-            var user = await GetCurrentUserAsync();
+            var user = await GetCurrentUserAsync().ConfigureAwait(false);
             if (user != null)
             {
-                var result = await _userManager.AddPasswordAsync(user, model.NewPassword);
+                var result = await _userManager.AddPasswordAsync(user, model.NewPassword).ConfigureAwait(false);
                 if (result.Succeeded)
                 {
-                    await _signInManager.SignInAsync(user, isPersistent: false);
+                    await _signInManager.SignInAsync(user, isPersistent: false).ConfigureAwait(false);
                     return RedirectToAction(nameof(Index), new { Message = ManageMessageId.SetPasswordSuccess });
                 }
                 AddErrors(result);
@@ -286,13 +286,13 @@ namespace Swastika.Cms.Mvc.Areas.Portal.Controllers
                 : message == ManageMessageId.AddLoginSuccess ? "The external login was added."
                 : message == ManageMessageId.Error ? "An error has occurred."
                 : "";
-            var user = await GetCurrentUserAsync();
+            var user = await GetCurrentUserAsync().ConfigureAwait(false);
             if (user == null)
             {
                 return View("Error");
             }
-            var userLogins = await _userManager.GetLoginsAsync(user);
-            var schemes = await _signInManager.GetExternalAuthenticationSchemesAsync();
+            var userLogins = await _userManager.GetLoginsAsync(user).ConfigureAwait(false);
+            var schemes = await _signInManager.GetExternalAuthenticationSchemesAsync().ConfigureAwait(false);
             var otherLogins = schemes.Where(auth => userLogins.All(ul => auth.Name != ul.LoginProvider)).ToList();
             ViewData["ShowRemoveButton"] = user.PasswordHash != null || userLogins.Count > 1;
             return View(new ManageLoginsViewModel
@@ -309,7 +309,7 @@ namespace Swastika.Cms.Mvc.Areas.Portal.Controllers
         public async Task<IActionResult> LinkLogin(string provider)
         {
             // Clear the existing external cookie to ensure a clean login process
-            await HttpContext.SignOutAsync(IdentityConstants.ExternalScheme);
+            await HttpContext.SignOutAsync(IdentityConstants.ExternalScheme).ConfigureAwait(false);
 
             // Request a redirect to the external login provider to link a login for the current user
             var redirectUrl = Url.Action(nameof(LinkLoginCallback), "Manage");
@@ -322,23 +322,23 @@ namespace Swastika.Cms.Mvc.Areas.Portal.Controllers
         [HttpGet]
         public async Task<ActionResult> LinkLoginCallback()
         {
-            var user = await GetCurrentUserAsync();
+            var user = await GetCurrentUserAsync().ConfigureAwait(false);
             if (user == null)
             {
                 return View("Error");
             }
-            var info = await _signInManager.GetExternalLoginInfoAsync(await _userManager.GetUserIdAsync(user));
+            var info = await _signInManager.GetExternalLoginInfoAsync(await _userManager.GetUserIdAsync(user).ConfigureAwait(false)).ConfigureAwait(false);
             if (info == null)
             {
                 return RedirectToAction(nameof(ManageLogins), new { Message = ManageMessageId.Error });
             }
-            var result = await _userManager.AddLoginAsync(user, info);
+            var result = await _userManager.AddLoginAsync(user, info).ConfigureAwait(false);
             var message = ManageMessageId.Error;
             if (result.Succeeded)
             {
                 message = ManageMessageId.AddLoginSuccess;
                 // Clear the existing external cookie to ensure a clean login process
-                await HttpContext.SignOutAsync(IdentityConstants.ExternalScheme);
+                await HttpContext.SignOutAsync(IdentityConstants.ExternalScheme).ConfigureAwait(false);
             }
             return RedirectToAction(nameof(ManageLogins), new { Message = message });
         }

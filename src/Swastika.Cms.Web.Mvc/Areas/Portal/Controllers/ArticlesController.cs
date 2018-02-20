@@ -48,7 +48,7 @@ namespace Swastika.Cms.Mvc.Areas.Portal.Controllers
                     && article.Status != (int)SWStatus.Deleted
                     && (string.IsNullOrEmpty(keyword) || article.Title.Contains(keyword)),
                 "Priority", OrderByDirection.Ascending
-                , pageSize, pageIndex);
+                , pageSize, pageIndex).ConfigureAwait(false);
             ViewBag.keyword = keyword;
             return View(getArticles.Data);
         }
@@ -60,11 +60,11 @@ namespace Swastika.Cms.Mvc.Areas.Portal.Controllers
         public async Task<IActionResult> Draft(int pageSize = 10, int pageIndex = 0, string keyword = null)
         {
             var getArticles = await InfoArticleViewModel.Repository.GetModelListByAsync(
-                article => article.Specificulture == _lang &&
-                    (string.IsNullOrEmpty(keyword) || article.Title.Contains(keyword))
+                article => article.Specificulture == _lang
+                    && (string.IsNullOrEmpty(keyword) || article.Title.Contains(keyword))
                     && article.Status == (int)SWStatus.Draft,
                 "CreatedDateTime", OrderByDirection.Descending,
-                pageSize, pageIndex);
+                pageSize, pageIndex).ConfigureAwait(false);
 
             return View(getArticles.Data);
         }
@@ -86,7 +86,7 @@ namespace Swastika.Cms.Mvc.Areas.Portal.Controllers
             };
             if (categoryId.HasValue)
             {
-                var activeCate = vmArticle.Categories.FirstOrDefault(c => c.CategoryId == categoryId);
+                var activeCate = vmArticle.Categories.Find(c => c.CategoryId == categoryId);
                 if (activeCate != null)
                 {
                     activeCate.IsActived = true;
@@ -129,7 +129,7 @@ namespace Swastika.Cms.Mvc.Areas.Portal.Controllers
             {
                 //var vmArticle = new SWBEArticleViewModel<BackendBEArticleViewModel>(article);
                 //var result = await vmArticle.SaveModelAsync();
-                var result = await article.SaveModelAsync(true);
+                var result = await article.SaveModelAsync(true).ConfigureAwait(false);
                 if (result.IsSucceed)
                 {
                     if (categoryId.HasValue)
@@ -162,7 +162,7 @@ namespace Swastika.Cms.Mvc.Areas.Portal.Controllers
             }
 
             var article = await BEArticleViewModel.Repository.GetSingleModelAsync(
-                m => m.Id == id && m.Specificulture == _lang);
+                m => m.Id == id && m.Specificulture == _lang).ConfigureAwait(false);
             if (article == null)
             {
                 return RedirectToAction("Index");
@@ -189,7 +189,7 @@ namespace Swastika.Cms.Mvc.Areas.Portal.Controllers
             {
                 try
                 {
-                    var result = await article.SaveModelAsync(true);
+                    var result = await article.SaveModelAsync(true).ConfigureAwait(false);
                     if (result.IsSucceed)
                     {
                         if (categoryId.HasValue)
@@ -241,7 +241,7 @@ namespace Swastika.Cms.Mvc.Areas.Portal.Controllers
             {
                 var data = getArticle.Data;
                 data.IsDeleted = true;
-                var result = await data.SaveModelAsync();
+                var result = await data.SaveModelAsync().ConfigureAwait(false);
                 if (result.IsSucceed)
                 {
                     return RedirectToAction("Index");
@@ -266,7 +266,7 @@ namespace Swastika.Cms.Mvc.Areas.Portal.Controllers
             {
                 var data = getArticle.Data;
                 data.IsDeleted = false;
-                var result = await data.SaveModelAsync();
+                var result = await data.SaveModelAsync().ConfigureAwait(false);
                 if (result.IsSucceed)
                 {
                     return RedirectToAction("Draft");
@@ -286,10 +286,10 @@ namespace Swastika.Cms.Mvc.Areas.Portal.Controllers
         [Route("Delete/{id}")]
         public async Task<IActionResult> Delete(string id)
         {
-            var getArticle = await BEArticleViewModel.Repository.GetSingleModelAsync(m => m.Id == id && m.Specificulture == _lang);
+            var getArticle = await BEArticleViewModel.Repository.GetSingleModelAsync(m => m.Id == id && m.Specificulture == _lang).ConfigureAwait(false);
             if (getArticle.IsSucceed)
             {
-                await getArticle.Data.RemoveModelAsync(true);
+                await getArticle.Data.RemoveModelAsync(true).ConfigureAwait(false);
             }
             return RedirectToAction("Draft", "Articles");
         }

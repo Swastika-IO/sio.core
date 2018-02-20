@@ -72,11 +72,11 @@ namespace Swastika.Cms.Mvc.Areas.Portal.Controllers
         [Route("Configurations/Create")]
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> CreateConfiguration(ConfigurationViewModel ttsConfiguration)
+        public async Task<IActionResult> CreateConfiguration(ConfigurationViewModel configuration)
         {
             if (ModelState.IsValid)
             {
-                var result = await ttsConfiguration.SaveModelAsync();// ConfigurationViewModel.Repository.CreateModelAsync(ttsConfiguration);
+                var result = await configuration.SaveModelAsync().ConfigureAwait(false);// ConfigurationViewModel.Repository.CreateModelAsync(ttsConfiguration);
                 if (result.IsSucceed)
                 {
                     GlobalConfigurationService.Instance.Refresh();
@@ -84,12 +84,12 @@ namespace Swastika.Cms.Mvc.Areas.Portal.Controllers
                 }
                 else
                 {
-                    return View(ttsConfiguration);
+                    return View(configuration);
                 }
             }
             else
             {
-                return View(ttsConfiguration);
+                return View(configuration);
             }
         }
 
@@ -104,7 +104,7 @@ namespace Swastika.Cms.Mvc.Areas.Portal.Controllers
             }
 
             var ttsConfiguration = await ConfigurationViewModel.Repository.GetSingleModelAsync(
-                m => m.Keyword == id && m.Specificulture == _lang);
+                m => m.Keyword == id && m.Specificulture == _lang).ConfigureAwait(false);
             if (ttsConfiguration == null)
             {
                 return NotFound();
@@ -124,7 +124,7 @@ namespace Swastika.Cms.Mvc.Areas.Portal.Controllers
             {
                 try
                 {
-                    var result = await ttsConfiguration.SaveModelAsync(); //_repo.EditModelAsync(ttsConfiguration.ParseModel());
+                    var result = await ttsConfiguration.SaveModelAsync().ConfigureAwait(false); //_repo.EditModelAsync(ttsConfiguration.ParseModel());
                     if (result.IsSucceed)
                     {
                         GlobalConfigurationService.Instance.Refresh();
@@ -150,7 +150,7 @@ namespace Swastika.Cms.Mvc.Areas.Portal.Controllers
         [Route("Configurations/Delete/{id}")]
         public async Task<IActionResult> DeleteConfiguration(string id)
         {
-            var result = await ConfigurationViewModel.Repository.RemoveModelAsync(m => m.Keyword == id && m.Specificulture == _lang);
+            var result = await ConfigurationViewModel.Repository.RemoveModelAsync(m => m.Keyword == id && m.Specificulture == _lang).ConfigureAwait(false);
             if (result.IsSucceed)
             {
                 GlobalConfigurationService.Instance.Refresh();

@@ -19,16 +19,14 @@ namespace Swastika.Cms.Lib.Repositories
     public class CommonRepository
     {
         private static volatile CommonRepository instance;
-        private static object syncRoot = new Object();
+        private static readonly object syncRoot = new Object();
 
         private CommonRepository()
         {
         }
 
-        public static CommonRepository Instance
-        {
-            get
-            {
+        public static CommonRepository Instance {
+            get {
                 if (instance == null)
                 {
                     lock (syncRoot)
@@ -125,7 +123,7 @@ namespace Swastika.Cms.Lib.Repositories
                 return new RepositoryResponse<List<CategoryArticleViewModel>>()
                 {
                     IsSucceed = true,
-                    Data = await result.ToListAsync()
+                    Data = await result.ToListAsync().ConfigureAwait(false)
                 };
             }
             catch (Exception ex) // TODO: Add more specific exeption types instead of Exception only
@@ -233,7 +231,7 @@ namespace Swastika.Cms.Lib.Repositories
                 return new RepositoryResponse<List<ModuleArticleViewModel>>()
                 {
                     IsSucceed = true,
-                    Data = await result.ToListAsync()
+                    Data = await result.ToListAsync().ConfigureAwait(false)
                 };
             }
             catch (Exception ex) // TODO: Add more specific exeption types instead of Exception only
@@ -345,7 +343,7 @@ namespace Swastika.Cms.Lib.Repositories
                 return new RepositoryResponse<List<InfoArticleModuleViewModel>>()
                 {
                     IsSucceed = true,
-                    Data = await result.ToListAsync()
+                    Data = await result.ToListAsync().ConfigureAwait(false)
                 };
             }
             catch (Exception ex) // TODO: Add more specific exeption types instead of Exception only
@@ -455,7 +453,7 @@ namespace Swastika.Cms.Lib.Repositories
                 return new RepositoryResponse<List<NavCategoryProductViewModel>>()
                 {
                     IsSucceed = true,
-                    Data = await result.ToListAsync()
+                    Data = await result.ToListAsync().ConfigureAwait(false)
                 };
             }
             catch (Exception ex) // TODO: Add more specific exeption types instead of Exception only
@@ -563,7 +561,7 @@ namespace Swastika.Cms.Lib.Repositories
                 return new RepositoryResponse<List<NavModuleProductViewModel>>()
                 {
                     IsSucceed = true,
-                    Data = await result.ToListAsync()
+                    Data = await result.ToListAsync().ConfigureAwait(false)
                 };
             }
             catch (Exception ex) // TODO: Add more specific exeption types instead of Exception only
@@ -675,7 +673,7 @@ namespace Swastika.Cms.Lib.Repositories
                 return new RepositoryResponse<List<NavProductModuleViewModel>>()
                 {
                     IsSucceed = true,
-                    Data = await result.ToListAsync()
+                    Data = await result.ToListAsync().ConfigureAwait(false)
                 };
             }
             catch (Exception ex) // TODO: Add more specific exeption types instead of Exception only

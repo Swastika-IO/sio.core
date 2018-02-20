@@ -34,10 +34,10 @@ namespace Swastika.Cms.Mvc.Areas.Portal.Controllers
         public async Task<IActionResult> Index(string keyword, int pageSize = 10, int pageIndex = 0)
         {
             var pagingPages = await InfoCategoryViewModel.Repository.GetModelListByAsync(
-                cate => cate.Specificulture == _lang &&
-                    (string.IsNullOrEmpty(keyword) || cate.Title.Contains(keyword))
+                cate => cate.Specificulture == _lang
+                    && (string.IsNullOrEmpty(keyword) || cate.Title.Contains(keyword))
                 , "Priority", OrderByDirection.Ascending
-                , pageSize, pageIndex);
+                , pageSize, pageIndex).ConfigureAwait(false);
 
             return View(pagingPages.Data);
         }
@@ -62,21 +62,21 @@ namespace Swastika.Cms.Mvc.Areas.Portal.Controllers
         [Route("Create")]
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create(BECategoryViewModel ttsMenu)
+        public async Task<IActionResult> Create(BECategoryViewModel menu)
         {
             if (ModelState.IsValid)
             {
-                var result = await ttsMenu.SaveModelAsync(true);
+                var result = await menu.SaveModelAsync(true);
                 if (result.IsSucceed)
                 {
                     return RedirectToAction("Index");
                 }
                 else
                 {
-                    return View(ttsMenu);
+                    return View(menu);
                 }
             }
-            return View(ttsMenu);
+            return View(menu);
         }
 
         // GET: TtsMenu/Edit/5

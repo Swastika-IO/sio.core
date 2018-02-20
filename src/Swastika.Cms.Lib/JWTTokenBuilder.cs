@@ -17,7 +17,7 @@ namespace Swastika.Cms.Lib
         private string subject = "";
         private string issuer = "";
         private string audience = "";
-        private Dictionary<string, string> claims = new Dictionary<string, string>();
+        private readonly Dictionary<string, string> claims = new Dictionary<string, string>();
         private int expiryInMinutes = 5;
 
         public JwtTokenBuilder AddSecurityKey(SecurityKey securityKey)
@@ -107,7 +107,7 @@ namespace Swastika.Cms.Lib
 
     public sealed class JwtToken
     {
-        private JwtSecurityToken token;
+        private readonly JwtSecurityToken token;
 
         internal JwtToken(JwtSecurityToken token)
         {

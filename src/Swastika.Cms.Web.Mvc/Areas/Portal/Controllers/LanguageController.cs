@@ -71,11 +71,11 @@ namespace Swastika.Cms.Web.Mvc.Areas.Portal.Controllers
         [Route("Create")]
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> CreateLanguage(BELanguageViewModel ttsLanguage)
+        public async Task<IActionResult> CreateLanguage(BELanguageViewModel language)
         {
             if (ModelState.IsValid)
             {
-                var result = await ttsLanguage.SaveModelAsync();// BELanguageViewModel.Repository.CreateModelAsync(ttsLanguage);
+                var result = await language.SaveModelAsync().ConfigureAwait(false);// BELanguageViewModel.Repository.CreateModelAsync(ttsLanguage);
                 if (result.IsSucceed)
                 {
                     GlobalLanguageService.Instance.Refresh();
@@ -93,12 +93,12 @@ namespace Swastika.Cms.Web.Mvc.Areas.Portal.Controllers
                         ModelState.AddModelError(string.Empty, error);
                     }
 
-                    return View(ttsLanguage);
+                    return View(language);
                 }
             }
             else
             {
-                return View(ttsLanguage);
+                return View(language);
             }
         }
 

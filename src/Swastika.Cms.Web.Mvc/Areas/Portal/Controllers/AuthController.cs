@@ -61,8 +61,8 @@ namespace Swastika.Cms.Web.Mvc.Areas.Portal.Controllers
         public async Task<IActionResult> Login(string returnUrl = null)
         {
             // Clear the existing external cookie to ensure a clean login process
-            await HttpContext.SignOutAsync(IdentityConstants.ExternalScheme);
-            await this._signInManager.SignOutAsync();
+            await HttpContext.SignOutAsync(IdentityConstants.ExternalScheme).ConfigureAwait(false);
+            await _signInManager.SignOutAsync().ConfigureAwait(false);
             LoginViewModel model = new LoginViewModel()
             {
                 ReturnUrl = returnUrl ?? "/"
@@ -82,14 +82,14 @@ namespace Swastika.Cms.Web.Mvc.Areas.Portal.Controllers
             {
                 // This doesn't count login failures towards account lockout
                 // To enable password failures to trigger account lockout, set lockoutOnFailure: true
-                var result = await _signInManager.PasswordSignInAsync(model.UserName, model.Password, model.RememberMe, lockoutOnFailure: false);
+                var result = await _signInManager.PasswordSignInAsync(model.UserName, model.Password, model.RememberMe, lockoutOnFailure: false).ConfigureAwait(false);
                 if (result.Succeeded)
                 {
                     var claims = new List<Claim>()
                     {
                         new Claim(ClaimTypes.Name, model.UserName)
                     };
-                    var user = await _userManager.FindByNameAsync(model.UserName);
+                    var user = await _userManager.FindByNameAsync(model.UserName).ConfigureAwait(false);
                     claims.AddRange(ExtendedClaimsProvider.GetClaims(user));
                     var claimsIdentity = new ClaimsIdentity(claims, "login");
 
@@ -100,7 +100,7 @@ namespace Swastika.Cms.Web.Mvc.Areas.Portal.Controllers
                     {
                         IsPersistent = true,
                         ExpiresUtc = DateTime.UtcNow.AddDays(30)
-                    });
+                    }).ConfigureAwait(false);
                     _logger.LogInformation(1, "User logged in.");
                     return RedirectToLocal(model.ReturnUrl);
                 }
@@ -159,7 +159,7 @@ namespace Swastika.Cms.Web.Mvc.Areas.Portal.Controllers
                     });
                 }
 
-                var result = await _userManager.CreateAsync(user, model.Password);
+                var result = await _userManager.CreateAsync(user, model.Password).ConfigureAwait(false);
                 if (result.Succeeded)
                 {
                     // For more information on how to enable account confirmation and password reset please visit https://go.microsoft.com/fwlink/?LinkID=532713
@@ -168,7 +168,7 @@ namespace Swastika.Cms.Web.Mvc.Areas.Portal.Controllers
                     //var callbackUrl = Url.Action(nameof(ConfirmEmail), "Account", new { userId = user.Id, code = code }, protocol: HttpContext.Request.Scheme);
                     //await _emailSender.SendEmailAsync(model.Email, "Confirm your account",
                     //    $"Please confirm your account by clicking this link: <a href='{callbackUrl}'>link</a>");
-                    await _signInManager.SignInAsync(user, isPersistent: false);
+                    await _signInManager.SignInAsync(user, isPersistent: false).ConfigureAwait(false);
                     _logger.LogInformation(3, "User created a new account with password.");
                     return RedirectToLocal(returnUrl);
                 }
@@ -185,9 +185,8 @@ namespace Swastika.Cms.Web.Mvc.Areas.Portal.Controllers
         [HttpGet, HttpPost]
         public async Task<IActionResult> Logout()
         {
-            await _signInManager.SignOutAsync();
-            await HttpContext.SignOutAsync(
-    CookieAuthenticationDefaults.AuthenticationScheme);
+            await _signInManager.SignOutAsync().ConfigureAwait(false);
+            await HttpContext.SignOutAsync(CookieAuthenticationDefaults.AuthenticationScheme).ConfigureAwait(false);
             _logger.LogInformation(4, "User logged out.");
             return RedirectToAction("Home", "Home");
         }
