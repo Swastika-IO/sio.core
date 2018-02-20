@@ -29,32 +29,29 @@ namespace Swastka.IO.Cms.Api.Controllers
         // GET api/category/id
         [HttpGet]
         [Route("details/{id}")]
-        public async Task<RepositoryResponse<FECategoryViewModel>> Details(int id)
+        public Task<RepositoryResponse<FECategoryViewModel>> Details(int id)
         {
-            var result = await FECategoryViewModel.Repository.GetSingleModelAsync(
+            return FECategoryViewModel.Repository.GetSingleModelAsync(
                 model => model.Id == id && model.Specificulture == _lang);
-            return result;
         }
 
         // GET api/category/id
         [HttpGet]
         [Route("details/backend/{id}")]
-        public async Task<RepositoryResponse<BECategoryViewModel>> BEDetails(int id)
+        public Task<RepositoryResponse<BECategoryViewModel>> BEDetails(int id)
         {
-            var result = await BECategoryViewModel.Repository.GetSingleModelAsync(
+            return BECategoryViewModel.Repository.GetSingleModelAsync(
                 model => model.Id == id && model.Specificulture == _lang);
-            return result;
         }
 
         // GET api/category/id
         [HttpGet]
         [Route("byArticle/{id}")]
         [Route("byArticle/{id}/{articleId}")]
-        public async Task<RepositoryResponse<FECategoryViewModel>> GetByArticle(int id, string articleId = null)
+        public Task<RepositoryResponse<FECategoryViewModel>> GetByArticle(int id, string articleId = null)
         {
-            var result = await FECategoryViewModel.Repository.GetSingleModelAsync(
+            return FECategoryViewModel.Repository.GetSingleModelAsync(
                 model => model.Id == id && model.Specificulture == _lang);
-            return result;
         }
 
         // GET api/Category
@@ -67,7 +64,7 @@ namespace Swastka.IO.Cms.Api.Controllers
             int? PageSize = 15, int? PageIndex = 0, string orderBy = "Id"
             , OrderByDirection direction = OrderByDirection.Ascending)
         {
-            var data = await InfoCategoryViewModel.Repository.GetModelListByAsync(m => m.Specificulture == _lang, orderBy, direction, PageSize, PageIndex); //base.Get(orderBy, direction, PageSize, PageIndex);
+            var data = await InfoCategoryViewModel.Repository.GetModelListByAsync(m => m.Specificulture == _lang, orderBy, direction, PageSize, PageIndex).ConfigureAwait(false); //base.Get(orderBy, direction, PageSize, PageIndex);
             string domain = string.Format("{0}://{1}", Request.Scheme, Request.Host);
             //data.Data.Items.ForEach(d => d.DetailsUrl = string.Format("{0}{1}", domain, this.Url.Action("Details", "Category", new { id = d.Id })));
             //data.Data.Items.ForEach(d => d.EditUrl = string.Format("{0}{1}", domain, this.Url.Action("Edit", "Category", new { id = d.Id })));
@@ -81,7 +78,7 @@ namespace Swastka.IO.Cms.Api.Controllers
         [Route("search/{PageSize:int?}/{PageIndex:int?}/{keyword}/{description}")]
         [Route("search/{PageSize:int?}/{PageIndex:int?}/{orderBy}/{direction}/{keyword}")]
         [Route("search/{PageSize:int?}/{PageIndex:int?}/{orderBy}/{direction}/{keyword}/{description}")]
-        public async Task<RepositoryResponse<PaginationModel<InfoCategoryViewModel>>> Search(
+        public Task<RepositoryResponse<PaginationModel<InfoCategoryViewModel>>> Search(
             string keyword = null,
             string description = null,
             int? PageSize = null, int? PageIndex = null, string orderBy = "Id"
@@ -91,7 +88,9 @@ namespace Swastka.IO.Cms.Api.Controllers
             model.Specificulture == _lang
             && (string.IsNullOrWhiteSpace(keyword) || (model.Title.Contains(keyword)))
             && (string.IsNullOrWhiteSpace(description) || (model.Excerpt.Contains(description)));
-            return await InfoCategoryViewModel.Repository.GetModelListByAsync(predicate, orderBy, direction, PageSize, PageIndex); // base.Search(predicate, orderBy, direction, PageSize, PageIndex, keyword);
+            return InfoCategoryViewModel
+                .Repository
+                .GetModelListByAsync(predicate, orderBy, direction, PageSize, PageIndex); // base.Search(predicate, orderBy, direction, PageSize, PageIndex, keyword);
         }
 
         #endregion Get
@@ -105,7 +104,7 @@ namespace Swastka.IO.Cms.Api.Controllers
         {
             if (model != null)
             {
-                var result = await model.SaveModelAsync(true);
+                var result = await model.SaveModelAsync(true).ConfigureAwait(false);
                 if (result.IsSucceed)
                 {
                     result.Data.Domain = this._domain;
@@ -124,7 +123,7 @@ namespace Swastka.IO.Cms.Api.Controllers
             {
                 foreach (var property in fields)
                 {
-                    var result = await InfoCategoryViewModel.Repository.UpdateFieldsAsync(c => c.Id == id && c.Specificulture == _lang, fields);
+                    var result = await InfoCategoryViewModel.Repository.UpdateFieldsAsync(c => c.Id == id && c.Specificulture == _lang, fields).ConfigureAwait(false);
 
                     return result;
                 }
@@ -141,7 +140,7 @@ namespace Swastka.IO.Cms.Api.Controllers
             if (string.IsNullOrEmpty(request.Keyword))
             {
                 var data = await InfoCategoryViewModel.Repository.GetModelListByAsync(
-                m => m.Status != (int)SWStatus.Deleted && m.Specificulture == _lang, request.OrderBy, request.Direction, request.PageSize, request.PageIndex);
+                m => m.Status != (int)SWStatus.Deleted && m.Specificulture == _lang, request.OrderBy, request.Direction, request.PageSize, request.PageIndex).ConfigureAwait(false);
                 if (data.IsSucceed)
                 {
                     data.Data.Items.ForEach(a =>
@@ -157,14 +156,12 @@ namespace Swastka.IO.Cms.Api.Controllers
             else
             {
                 Expression<Func<SiocCategory, bool>> predicate = model =>
-            model.Specificulture == _lang
-            && (string.IsNullOrWhiteSpace(request.Keyword) ||
-                (
-                    model.Title.Contains(request.Keyword)
-                    || model.Excerpt.Contains(request.Keyword)
-                )
-                );
-                var data = await InfoCategoryViewModel.Repository.GetModelListByAsync(predicate, request.OrderBy, request.Direction, request.PageSize, request.PageIndex);
+                    model.Specificulture == _lang
+                    && (string.IsNullOrWhiteSpace(request.Keyword)
+                        || (model.Title.Contains(request.Keyword)
+                        || model.Excerpt.Contains(request.Keyword)));
+
+                var data = await InfoCategoryViewModel.Repository.GetModelListByAsync(predicate, request.OrderBy, request.Direction, request.PageSize, request.PageIndex).ConfigureAwait(false);
                 if (data.IsSucceed)
                 {
                     data.Data.Items.ForEach(a =>

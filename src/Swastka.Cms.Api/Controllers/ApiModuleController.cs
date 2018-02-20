@@ -35,7 +35,7 @@ namespace Swastka.IO.Cms.Api.Controllers
         [Route("details/{id}")]
         public async Task<RepositoryResponse<FEModuleViewModel>> Details(int id)
         {
-            var result = await FEModuleViewModel.Repository.GetSingleModelAsync(model => model.Id == id && model.Specificulture == _lang);
+            var result = await FEModuleViewModel.Repository.GetSingleModelAsync(model => model.Id == id && model.Specificulture == _lang).ConfigureAwait(false);
             if (result.IsSucceed)
             {
                 result.Data.LoadData();
@@ -48,25 +48,20 @@ namespace Swastka.IO.Cms.Api.Controllers
         [Route("details/{viewType}/{id}")]
         public async Task<JObject> DetailsByType(string viewType, int id)
         {
-            JObject result = new JObject();
             switch (viewType)
             {
                 case "spa":
-                    var spaResult = await SpaModuleViewModel.Repository.GetSingleModelAsync(model => model.Id == id && model.Specificulture == _lang);
-                    result = JObject.FromObject(spaResult);
-                    break;
+                    var spaResult = await SpaModuleViewModel.Repository.GetSingleModelAsync(model => model.Id == id && model.Specificulture == _lang).ConfigureAwait(false);
+                    return JObject.FromObject(spaResult);
 
                 case "be":
-                    var beResult = await BEModuleViewModel.Repository.GetSingleModelAsync(model => model.Id == id && model.Specificulture == _lang);
-                    result = JObject.FromObject(beResult);
-                    break;
+                    var beResult = await BEModuleViewModel.Repository.GetSingleModelAsync(model => model.Id == id && model.Specificulture == _lang).ConfigureAwait(false);
+                    return JObject.FromObject(beResult);
 
                 default:
-                    var feResult = await FEModuleViewModel.Repository.GetSingleModelAsync(model => model.Id == id && model.Specificulture == _lang);
-                    result = JObject.FromObject(feResult);
-                    break;
+                    var feResult = await FEModuleViewModel.Repository.GetSingleModelAsync(model => model.Id == id && model.Specificulture == _lang).ConfigureAwait(false);
+                    return JObject.FromObject(feResult);
             }
-            return result;
         }
 
         // GET api/articles/id
@@ -75,7 +70,7 @@ namespace Swastka.IO.Cms.Api.Controllers
         [Route("byArticle/{id}/{articleId}")]
         public async Task<RepositoryResponse<FEModuleViewModel>> GetByArticle(int id, string articleId = null)
         {
-            var result = await FEModuleViewModel.Repository.GetSingleModelAsync(model => model.Id == id && model.Specificulture == _lang);
+            var result = await FEModuleViewModel.Repository.GetSingleModelAsync(model => model.Id == id && model.Specificulture == _lang).ConfigureAwait(false);
             return result;
         }
 
@@ -89,7 +84,7 @@ namespace Swastka.IO.Cms.Api.Controllers
             int? pageSize = 15, int? pageIndex = 0, string orderBy = "Id"
             , OrderByDirection direction = OrderByDirection.Ascending)
         {
-            var data = await InfoModuleViewModel.Repository.GetModelListByAsync(m => m.Specificulture == _lang, orderBy, direction, pageSize, pageIndex); //base.Get(orderBy, direction, pageSize, pageIndex);
+            var data = await InfoModuleViewModel.Repository.GetModelListByAsync(m => m.Specificulture == _lang, orderBy, direction, pageSize, pageIndex).ConfigureAwait(false); //base.Get(orderBy, direction, pageSize, pageIndex);
             string domain = string.Format("{0}://{1}", Request.Scheme, Request.Host);
             //data.Data.Items.ForEach(d => d.DetailsUrl = string.Format("{0}{1}", domain, this.Url.Action("Details", "modules", new { id = d.Id })));
             //data.Data.Items.ForEach(d => d.EditUrl = string.Format("{0}{1}", domain, this.Url.Action("Edit", "modules", new { id = d.Id })));
@@ -103,7 +98,7 @@ namespace Swastka.IO.Cms.Api.Controllers
         [Route("search/{pageSize:int?}/{pageIndex:int?}/{keyword}/{description}")]
         [Route("search/{pageSize:int?}/{pageIndex:int?}/{orderBy}/{direction}/{keyword}")]
         [Route("search/{pageSize:int?}/{pageIndex:int?}/{orderBy}/{direction}/{keyword}/{description}")]
-        public async Task<RepositoryResponse<PaginationModel<InfoModuleViewModel>>> Search(
+        public Task<RepositoryResponse<PaginationModel<InfoModuleViewModel>>> Search(
             string keyword = null,
             string description = null,
             int? pageSize = null, int? pageIndex = null, string orderBy = "Id"
@@ -113,7 +108,9 @@ namespace Swastka.IO.Cms.Api.Controllers
             model.Specificulture == _lang
             && (string.IsNullOrWhiteSpace(keyword) || (model.Title.Contains(keyword)))
             && (string.IsNullOrWhiteSpace(description) || (model.Description.Contains(description)));
-            return await InfoModuleViewModel.Repository.GetModelListByAsync(predicate, orderBy, direction, pageSize, pageIndex); // base.Search(predicate, orderBy, direction, pageSize, pageIndex, keyword);
+            return InfoModuleViewModel
+                .Repository
+                .GetModelListByAsync(predicate, orderBy, direction, pageSize, pageIndex); // base.Search(predicate, orderBy, direction, pageSize, pageIndex, keyword);
         }
 
         #endregion Get
@@ -127,7 +124,7 @@ namespace Swastka.IO.Cms.Api.Controllers
         {
             if (string.IsNullOrEmpty(request.Keyword))
             {
-                var data = await InfoModuleViewModel.Repository.GetModelListByAsync(m => m.Specificulture == _lang, request.OrderBy, request.Direction, request.PageSize, request.PageIndex);
+                var data = await InfoModuleViewModel.Repository.GetModelListByAsync(m => m.Specificulture == _lang, request.OrderBy, request.Direction, request.PageSize, request.PageIndex).ConfigureAwait(false);
                 string domain = string.Format("{0}://{1}", Request.Scheme, Request.Host);
 
                 return data;
@@ -135,14 +132,12 @@ namespace Swastka.IO.Cms.Api.Controllers
             else
             {
                 Expression<Func<SiocModule, bool>> predicate = model =>
-            model.Specificulture == _lang
-            && (string.IsNullOrWhiteSpace(request.Keyword) ||
-                (
-                    model.Title.Contains(request.Keyword)
-                    || model.Description.Contains(request.Keyword)
-                )
-                );
-                return await InfoModuleViewModel.Repository.GetModelListByAsync(predicate, request.OrderBy, request.Direction, request.PageSize, request.PageIndex);
+                    model.Specificulture == _lang
+                    && (string.IsNullOrWhiteSpace(request.Keyword)
+                    || (model.Title.Contains(request.Keyword)
+                    || model.Description.Contains(request.Keyword)));
+
+                return await InfoModuleViewModel.Repository.GetModelListByAsync(predicate, request.OrderBy, request.Direction, request.PageSize, request.PageIndex).ConfigureAwait(false);
             }
         }
 
@@ -153,7 +148,7 @@ namespace Swastka.IO.Cms.Api.Controllers
         {
             if (view.IsActived)
             {
-                var addResult = await view.SaveModelAsync();
+                var addResult = await view.SaveModelAsync().ConfigureAwait(false);
                 return new RepositoryResponse<bool>()
                 {
                     IsSucceed = addResult.IsSucceed,
@@ -162,7 +157,7 @@ namespace Swastka.IO.Cms.Api.Controllers
             }
             else
             {
-                return await view.RemoveModelAsync();
+                return await view.RemoveModelAsync().ConfigureAwait(false);
             }
         }
 
@@ -173,9 +168,7 @@ namespace Swastka.IO.Cms.Api.Controllers
         {
             if (model != null)
             {
-                var result = await model.SaveModelAsync(true);
-
-                return result;
+                return await model.SaveModelAsync(true).ConfigureAwait(false);
             }
             return new RepositoryResponse<BEModuleViewModel>();
         }
@@ -189,7 +182,7 @@ namespace Swastka.IO.Cms.Api.Controllers
             {
                 foreach (var property in fields)
                 {
-                    var result = await BEModuleViewModel.Repository.UpdateFieldsAsync(c => c.Id == id, fields);
+                    var result = await BEModuleViewModel.Repository.UpdateFieldsAsync(c => c.Id == id, fields).ConfigureAwait(false);
 
                     return result;
                 }

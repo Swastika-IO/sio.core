@@ -17,7 +17,8 @@ namespace Swastka.IO.Cms.Api.Controllers
         /// <summary>
         /// Uploads the image.
         /// </summary>
-        /// <param name="image">The img information.</param> Ex: { "base64": "", "fileFolder":"" }
+        /// <param name="image">The img information.</param>
+        /// <param name="template"></param> Ex: { "base64": "", "fileFolder":"" }
         /// <returns></returns>
         [Route("uploadFile")]
         [HttpPost]

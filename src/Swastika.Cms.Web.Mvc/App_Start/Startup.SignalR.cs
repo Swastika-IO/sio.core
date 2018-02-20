@@ -18,10 +18,7 @@ namespace Swastika.Cms.Web.Mvc
 
         public void ConfigurationSignalR(IApplicationBuilder app)
         {
-            app.UseSignalR(routes =>
-            {
-                routes.MapHub<MessengerHub>("Messenger");
-            });
+            app.UseSignalR(routes => routes.MapHub<MessengerHub>("Messenger"));
         }
     }
 }

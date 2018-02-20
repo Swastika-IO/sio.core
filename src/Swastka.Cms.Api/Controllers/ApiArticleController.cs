@@ -41,25 +41,20 @@ namespace Swastka.Cms.Api.Controllers
         [Route("details/{viewType}/{id}")]
         public async Task<JObject> BEDetails(string viewType, string id)
         {
-            JObject result = new JObject();
             switch (viewType)
             {
                 case "spa":
-                    var spaResult = await SpaArticleViewModel.Repository.GetSingleModelAsync(model => model.Id == id && model.Specificulture == _lang);
-                    result = JObject.FromObject(spaResult);
-                    break;
+                    var spaResult = await SpaArticleViewModel.Repository.GetSingleModelAsync(model => model.Id == id && model.Specificulture == _lang).ConfigureAwait(false);
+                    return JObject.FromObject(spaResult);
 
                 case "be":
-                    var beResult = await BEArticleViewModel.Repository.GetSingleModelAsync(model => model.Id == id && model.Specificulture == _lang);
-                    result = JObject.FromObject(beResult);
-                    break;
+                    var beResult = await BEArticleViewModel.Repository.GetSingleModelAsync(model => model.Id == id && model.Specificulture == _lang).ConfigureAwait(false);
+                    return JObject.FromObject(beResult);
 
                 default:
-                    var feResult = await FEArticleViewModel.Repository.GetSingleModelAsync(model => model.Id == id && model.Specificulture == _lang);
-                    result = JObject.FromObject(feResult);
-                    break;
+                    var feResult = await FEArticleViewModel.Repository.GetSingleModelAsync(model => model.Id == id && model.Specificulture == _lang).ConfigureAwait(false);
+                    return JObject.FromObject(feResult);
             }
-            return result;
         }
 
         // GET api/articles/id
@@ -89,7 +84,7 @@ namespace Swastka.Cms.Api.Controllers
             {
                 var data = getArticle.Data;
                 data.IsDeleted = true;
-                return await data.SaveModelAsync();
+                return await data.SaveModelAsync().ConfigureAwait(false);
             }
             else
             {
@@ -107,7 +102,7 @@ namespace Swastka.Cms.Api.Controllers
             {
                 var data = getArticle.Data;
                 data.IsDeleted = false;
-                return await data.SaveModelAsync();
+                return await data.SaveModelAsync().ConfigureAwait(false);
             }
             else
             {
@@ -123,7 +118,7 @@ namespace Swastka.Cms.Api.Controllers
             var getArticle = BEArticleViewModel.Repository.GetSingleModel(a => a.Id == id && a.Specificulture == _lang);
             if (getArticle.IsSucceed)
             {
-                return await getArticle.Data.RemoveModelAsync(true);
+                return await getArticle.Data.RemoveModelAsync(true).ConfigureAwait(false);
             }
             else
             {
@@ -138,20 +133,13 @@ namespace Swastka.Cms.Api.Controllers
         [Route("list/{pageSize:int?}/{pageIndex:int?}")]
         [Route("list/{orderBy}/{direction}")]
         [Route("list/{pageSize:int?}/{pageIndex:int?}/{orderBy}/{direction}")]
-        public async Task<RepositoryResponse<PaginationModel<InfoArticleViewModel>>> Get(
-            int? pageSize = 15, int? pageIndex = 0, string orderBy = "Id"
-            , OrderByDirection direction = OrderByDirection.Ascending)
+        public async Task<RepositoryResponse<PaginationModel<InfoArticleViewModel>>> Get(int? pageSize = 15, int? pageIndex = 0, string orderBy = "Id", OrderByDirection direction = OrderByDirection.Ascending)
         {
             var data = await InfoArticleViewModel.Repository.GetModelListByAsync(
-                m => m.Status != (int)SWStatus.Deleted && m.Specificulture == _lang, orderBy, direction, pageSize, pageIndex); //base.Get(orderBy, direction, pageSize, pageIndex);
+                m => m.Status != (int)SWStatus.Deleted && m.Specificulture == _lang, orderBy, direction, pageSize, pageIndex).ConfigureAwait(false); //base.Get(orderBy, direction, pageSize, pageIndex);
             if (data.IsSucceed)
             {
-                data.Data.Items.ForEach(a =>
-                {
-                    a.DetailsUrl = SWCmsHelper.GetRouterUrl("Article", new { a.SeoName }, Request, Url);
-                    ;
-                }
-                );
+                data.Data.Items.ForEach(a => a.DetailsUrl = SWCmsHelper.GetRouterUrl("Article", new { a.SeoName }, Request, Url));
             }
             return data;
         }
@@ -161,18 +149,16 @@ namespace Swastka.Cms.Api.Controllers
         [Route("search/{keyword}")]
         [Route("search/{pageSize:int?}/{pageIndex:int?}/{keyword}")]
         [Route("search/{pageSize:int?}/{pageIndex:int?}/{orderBy}/{direction}/{keyword}")]
-        public async Task<RepositoryResponse<PaginationModel<InfoArticleViewModel>>> Search(
-            string keyword = null, int? pageSize = null, int? pageIndex = null, string orderBy = "Id"
-            , OrderByDirection direction = OrderByDirection.Ascending)
+        public async Task<RepositoryResponse<PaginationModel<InfoArticleViewModel>>> Search(string keyword = null, int? pageSize = null, int? pageIndex = null, string orderBy = "Id", OrderByDirection direction = OrderByDirection.Ascending)
         {
             Expression<Func<SiocArticle, bool>> predicate = model =>
-            model.Specificulture == _lang
-            && model.Status != (int)SWStatus.Deleted
-            && (
-            string.IsNullOrWhiteSpace(keyword)
-                || (model.Title.Contains(keyword) || model.Content.Contains(keyword))
-                );
-            var data = await InfoArticleViewModel.Repository.GetModelListByAsync(predicate, orderBy, direction, pageSize, pageIndex); // base.Search(predicate, orderBy, direction, pageSize, pageIndex, keyword);
+                model.Specificulture == _lang
+                && model.Status != (int)SWStatus.Deleted
+                && (string.IsNullOrWhiteSpace(keyword)
+                    || (model.Title.Contains(keyword)
+                    || model.Content.Contains(keyword)));
+
+            var data = await InfoArticleViewModel.Repository.GetModelListByAsync(predicate, orderBy, direction, pageSize, pageIndex).ConfigureAwait(false); // base.Search(predicate, orderBy, direction, pageSize, pageIndex, keyword);
             //if (data.IsSucceed)
             //{
             //    data.Data.Items.ForEach(d => d.DetailsUrl = string.Format("{0}{1}", _domain, this.Url.Action("Details", "articles", new { id = d.Id })));
@@ -200,7 +186,7 @@ namespace Swastka.Cms.Api.Controllers
             string.IsNullOrWhiteSpace(keyword)
                 || (model.Title.Contains(keyword) || model.Content.Contains(keyword))
                 );
-            var data = await InfoArticleViewModel.Repository.GetModelListByAsync(predicate, orderBy, direction, pageSize, pageIndex); // base.Search(predicate, orderBy, direction, pageSize, pageIndex, keyword);
+            var data = await InfoArticleViewModel.Repository.GetModelListByAsync(predicate, orderBy, direction, pageSize, pageIndex).ConfigureAwait(false); // base.Search(predicate, orderBy, direction, pageSize, pageIndex, keyword);
             //if (data.IsSucceed)
             //{
             //    data.Data.Items.ForEach(d => d.DetailsUrl = string.Format("{0}{1}", _domain, this.Url.Action("Details", "articles", new { id = d.Id })));
@@ -221,7 +207,7 @@ namespace Swastka.Cms.Api.Controllers
         {
             if (model != null)
             {
-                var result = await model.SaveModelAsync(true);
+                var result = await model.SaveModelAsync(true).ConfigureAwait(false);
                 if (result.IsSucceed)
                 {
                     result.Data.Domain = this._domain;
@@ -240,7 +226,7 @@ namespace Swastka.Cms.Api.Controllers
             {
                 foreach (var property in fields)
                 {
-                    var result = await BEArticleViewModel.Repository.UpdateFieldsAsync(c => c.Id == id, fields);
+                    var result = await BEArticleViewModel.Repository.UpdateFieldsAsync(c => c.Id == id, fields).ConfigureAwait(false);
 
                     return result;
                 }
@@ -258,7 +244,7 @@ namespace Swastka.Cms.Api.Controllers
             if (string.IsNullOrEmpty(request.Keyword))
             {
                 var data = await InfoArticleViewModel.Repository.GetModelListByAsync(
-                m => m.Status != (int)SWStatus.Deleted && m.Specificulture == _lang, request.OrderBy, request.Direction, request.PageSize, request.PageIndex);
+                m => m.Status != (int)SWStatus.Deleted && m.Specificulture == _lang, request.OrderBy, request.Direction, request.PageSize, request.PageIndex).ConfigureAwait(false);
                 if (data.IsSucceed)
                 {
                     data.Data.Items.ForEach(a =>
@@ -274,14 +260,12 @@ namespace Swastka.Cms.Api.Controllers
             else
             {
                 Expression<Func<SiocArticle, bool>> predicate = model =>
-            model.Specificulture == _lang
-            && (string.IsNullOrWhiteSpace(request.Keyword) ||
-                (
-                    model.Title.Contains(request.Keyword)
-                    || model.Excerpt.Contains(request.Keyword)
-                )
-                );
-                var data = await InfoArticleViewModel.Repository.GetModelListByAsync(predicate, request.OrderBy, request.Direction, request.PageSize, request.PageIndex);
+                    model.Specificulture == _lang
+                    && (string.IsNullOrWhiteSpace(request.Keyword)
+                    || (model.Title.Contains(request.Keyword)
+                    || model.Excerpt.Contains(request.Keyword)));
+
+                var data = await InfoArticleViewModel.Repository.GetModelListByAsync(predicate, request.OrderBy, request.Direction, request.PageSize, request.PageIndex).ConfigureAwait(false);
                 if (data.IsSucceed)
                 {
                     data.Data.Items.ForEach(a =>
