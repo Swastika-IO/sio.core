@@ -48,7 +48,7 @@ namespace Swastika.Cms.Mvc.Areas.Portal.Controllers
                 return NotFound();
             }
 
-            var ttsCulture = await CultureViewModel.Repository.GetSingleModelAsync(m => m.Id == id);
+            var ttsCulture = await CultureViewModel.Repository.GetSingleModelAsync(m => m.Id == id).ConfigureAwait(false);
             if (ttsCulture == null)
             {
                 return NotFound();
@@ -75,7 +75,7 @@ namespace Swastika.Cms.Mvc.Areas.Portal.Controllers
         {
             if (ModelState.IsValid)
             {
-                var result = await vmCulture.SaveModelAsync();
+                Domain.Core.ViewModels.RepositoryResponse<CultureViewModel> result = await vmCulture.SaveModelAsync().ConfigureAwait(false);
                 if (result.IsSucceed)
                 {
                     GlobalLanguageService.Instance.RefreshCultures();
@@ -95,7 +95,7 @@ namespace Swastika.Cms.Mvc.Areas.Portal.Controllers
                 return NotFound();
             }
 
-            var ttsCulture = await CultureViewModel.Repository.GetSingleModelAsync(m => m.Id == id);
+            var ttsCulture = await CultureViewModel.Repository.GetSingleModelAsync(m => m.Id == id).ConfigureAwait(false);
             if (!ttsCulture.IsSucceed)
             {
                 return NotFound();
@@ -120,7 +120,7 @@ namespace Swastika.Cms.Mvc.Areas.Portal.Controllers
             {
                 try
                 {
-                    var result = await culture.SaveModelAsync();
+                    var result = await culture.SaveModelAsync().ConfigureAwait(false);
                     if (result.IsSucceed)
                     {
                         GlobalLanguageService.Instance.RefreshCultures();
@@ -152,7 +152,7 @@ namespace Swastika.Cms.Mvc.Areas.Portal.Controllers
                 return NotFound();
             }
 
-            var ttsCulture = await CultureViewModel.Repository.GetSingleModelAsync(m => m.Id == id);
+            var ttsCulture = await CultureViewModel.Repository.GetSingleModelAsync(m => m.Id == id).ConfigureAwait(false);
             if (ttsCulture == null)
             {
                 return NotFound();
@@ -167,7 +167,7 @@ namespace Swastika.Cms.Mvc.Areas.Portal.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            await CultureViewModel.Repository.RemoveModelAsync(c => c.Id == id);
+            await CultureViewModel.Repository.RemoveModelAsync(c => c.Id == id).ConfigureAwait(false);
             return RedirectToAction("Index");
         }
     }

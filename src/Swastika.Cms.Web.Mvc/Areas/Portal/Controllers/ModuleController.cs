@@ -49,7 +49,7 @@ namespace Swastika.Cms.Mvc.Areas.Portal.Controllers
                 m => m.Specificulture == _lang
                     && (string.IsNullOrEmpty(keyword) || m.Name.Contains(keyword)),
                 "Priority", OrderByDirection.Ascending,
-                pageSize, pageIndex);
+                pageSize, pageIndex).ConfigureAwait(false);
 
             return View(pagingPages.Data);
         }
@@ -76,7 +76,7 @@ namespace Swastika.Cms.Mvc.Areas.Portal.Controllers
         {
             if (ModelState.IsValid)
             {
-                var result = await Module.SaveModelAsync(true);
+                var result = await Module.SaveModelAsync(true).ConfigureAwait(false);
                 if (result.IsSucceed)
                 {
                     return RedirectToAction("Details", new { id = Module.Id });
@@ -95,7 +95,7 @@ namespace Swastika.Cms.Mvc.Areas.Portal.Controllers
         public async Task<IActionResult> Edit(int id)
         {
             var Module = await BEModuleViewModel.Repository.GetSingleModelAsync(m =>
-            m.Id == id && m.Specificulture == _lang);
+            m.Id == id && m.Specificulture == _lang).ConfigureAwait(false);
             if (Module == null)
             {
                 return RedirectToAction("Index");
@@ -120,7 +120,7 @@ namespace Swastika.Cms.Mvc.Areas.Portal.Controllers
             {
                 try
                 {
-                    var result = await Module.SaveModelAsync(true);
+                    var result = await Module.SaveModelAsync(true).ConfigureAwait(false);
                     if (result.IsSucceed)
                     {
                         return RedirectToAction("Details", new { id = Module.Id });
@@ -153,7 +153,7 @@ namespace Swastika.Cms.Mvc.Areas.Portal.Controllers
         [Route("Delete/{id}")]
         public async Task<IActionResult> Delete(int id)
         {
-            var Module = await BEModuleViewModel.Repository.RemoveModelAsync(m => m.Id == id && m.Specificulture == _lang);
+            var Module = await BEModuleViewModel.Repository.RemoveModelAsync(m => m.Id == id && m.Specificulture == _lang).ConfigureAwait(false);
             return RedirectToAction("Index");
         }
 
@@ -170,7 +170,7 @@ namespace Swastika.Cms.Mvc.Areas.Portal.Controllers
         public async Task<IActionResult> DeleteNav(int id, string productId)
         {
             var Module = await NavModuleProductViewModel.Repository.RemoveModelAsync(
-                m => m.ModuleId == id && m.ProductId == productId && m.Specificulture == _lang);
+                m => m.ModuleId == id && m.ProductId == productId && m.Specificulture == _lang).ConfigureAwait(false);
             return RedirectToAction("Details", new { id });
         }
 
@@ -266,7 +266,7 @@ namespace Swastika.Cms.Mvc.Areas.Portal.Controllers
         public async Task<IActionResult> Details(int id, int pageSize = 10, int pageIndex = 0, string keyword = null)
         {
             var getModule = await BEModuleViewModel.Repository.GetSingleModelAsync
-                (m => m.Specificulture == _lang && m.Id == id);
+                (m => m.Specificulture == _lang && m.Id == id).ConfigureAwait(false);
             if (getModule.IsSucceed)
             {
                 var module = getModule.Data;
@@ -284,7 +284,7 @@ namespace Swastika.Cms.Mvc.Areas.Portal.Controllers
         public async Task<IActionResult> AddModuleData(int id)
         {
             var getModule = await InfoModuleViewModel.Repository.GetSingleModelAsync(
-                m => m.Id == id && m.Specificulture == _lang);
+                m => m.Id == id && m.Specificulture == _lang).ConfigureAwait(false);
             if (getModule.IsSucceed)
             {
                 var ModuleData = new BEModuleDataViewModel(
@@ -314,7 +314,7 @@ namespace Swastika.Cms.Mvc.Areas.Portal.Controllers
             if (ModelState.IsValid)
             {
                 ModuleData.CreatedDateTime = DateTime.UtcNow;
-                var result = await ModuleData.SaveModelAsync();
+                var result = await ModuleData.SaveModelAsync().ConfigureAwait(false);
                 if (result.IsSucceed)
                 {
                     return RedirectToAction("Details", new { id = ModuleData.ModuleId });
@@ -333,7 +333,7 @@ namespace Swastika.Cms.Mvc.Areas.Portal.Controllers
         public async Task<IActionResult> EditModuleData(int id, string dataId)
         {
             var ModuleData = await BEModuleDataViewModel.Repository.GetSingleModelAsync(
-                m => m.Id == dataId && m.Specificulture == _lang);
+                m => m.Id == dataId && m.Specificulture == _lang).ConfigureAwait(false);
             var file = FileRepository.Instance.GetWebFile("fonts.css", "Content/Templates/Biotic/css");
 
             if (!ModuleData.IsSucceed)
@@ -355,7 +355,7 @@ namespace Swastika.Cms.Mvc.Areas.Portal.Controllers
             {
                 try
                 {
-                    var result = await ModuleData.SaveModelAsync();
+                    var result = await ModuleData.SaveModelAsync().ConfigureAwait(false);
                     if (result.IsSucceed)
                     {
                         return RedirectToAction("Details", new RouteValueDictionary(
@@ -388,10 +388,10 @@ namespace Swastika.Cms.Mvc.Areas.Portal.Controllers
         [Route("DeleteModuleData/{id}")]
         public async Task<IActionResult> DeleteModuleData(string id)
         {
-            var getData = await InfoModuleDataViewModel.Repository.GetSingleModelAsync(m => m.Id == id);
+            var getData = await InfoModuleDataViewModel.Repository.GetSingleModelAsync(m => m.Id == id).ConfigureAwait(false);
             if (getData.IsSucceed)
             {
-                var result = await getData.Data.RemoveModelAsync();
+                var result = await getData.Data.RemoveModelAsync().ConfigureAwait(false);
                 if (result.IsSucceed)
                 {
                     return RedirectToAction("Details", new RouteValueDictionary(new
