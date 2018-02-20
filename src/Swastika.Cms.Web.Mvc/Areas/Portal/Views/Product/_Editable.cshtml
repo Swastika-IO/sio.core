@@ -400,8 +400,6 @@
                                 @foreach (var item in Model.MediaNavs)
                                 {
                                     int index = Model.MediaNavs.IndexOf(item);
-                                    item.Description = item.Media.Title;
-                                    item.Image = item.Media.FullPath;
                                     <input type="hidden" name="MediaNavs[@index].MediaId" value="@item.MediaId" />
                                     <input type="hidden" name="MediaNavs[@index].ProductId" value="@item.ProductId" />
                                     <input type="hidden" name="MediaNavs[@index].Position" value="@item.Position" />
