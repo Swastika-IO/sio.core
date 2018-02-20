@@ -1,11 +1,15 @@
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Mvc;
-using Swastika.Cms.Mvc.Controllers;
+// Licensed to the Swastika I/O Foundation under one or more agreements.
+// The Swastika I/O Foundation licenses this file to you under the GNU General Public License v3.0 license.
+// See the LICENSE file in the project root for more information.
+
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.EntityFrameworkCore;
-using Swastika.Cms.Lib.ViewModels;
-using Swastika.Cms.Lib.Services;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.Data.OData.Query;
+using Microsoft.EntityFrameworkCore;
+using Swastika.Cms.Lib.Services;
+using Swastika.Cms.Lib.ViewModels;
+using Swastika.Cms.Mvc.Controllers;
+using System.Threading.Tasks;
 
 namespace Swastika.Cms.Mvc.Areas.Portal.Controllers
 {
@@ -31,7 +35,7 @@ namespace Swastika.Cms.Mvc.Areas.Portal.Controllers
         public IActionResult Index(int pageSize = 10, int pageIndex = 0, string keyword = null)
         {
             return View(CultureViewModel.Repository.GetModelList("FullName", OrderByDirection.Ascending
-                ,pageSize, pageIndex).Data);
+                , pageSize, pageIndex).Data);
         }
 
         // GET: Culture/Details/5
@@ -62,7 +66,7 @@ namespace Swastika.Cms.Mvc.Areas.Portal.Controllers
         }
 
         // POST: Culture/Create
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
+        // To protect from overposting attacks, please enable the specific properties you want to bind to, for
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [Route("Create")]
         [HttpPost]
@@ -100,7 +104,7 @@ namespace Swastika.Cms.Mvc.Areas.Portal.Controllers
         }
 
         // POST: Culture/Edit/5
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
+        // To protect from overposting attacks, please enable the specific properties you want to bind to, for
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [Route("Edit/{id}")]
         [HttpPost]
@@ -166,6 +170,5 @@ namespace Swastika.Cms.Mvc.Areas.Portal.Controllers
             await CultureViewModel.Repository.RemoveModelAsync(c => c.Id == id);
             return RedirectToAction("Index");
         }
-
     }
 }

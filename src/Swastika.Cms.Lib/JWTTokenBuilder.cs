@@ -1,9 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
+﻿// Licensed to the Swastika I/O Foundation under one or more agreements.
+// The Swastika I/O Foundation licenses this file to you under the GNU General Public License v3.0 license.
+// See the LICENSE file in the project root for more information.
+
 using Microsoft.IdentityModel.Tokens;
+using System;
+using System.Collections.Generic;
 using System.IdentityModel.Tokens.Jwt;
-using System.Security.Claims;
 using System.Linq;
+using System.Security.Claims;
 
 namespace Swastika.Cms.Lib
 {
@@ -98,8 +102,9 @@ namespace Swastika.Cms.Lib
                 throw new ArgumentNullException("Audience");
         }
 
-        #endregion
+        #endregion " private "
     }
+
     public sealed class JwtToken
     {
         private JwtSecurityToken token;

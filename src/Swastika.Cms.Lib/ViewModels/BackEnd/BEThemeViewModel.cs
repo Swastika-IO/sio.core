@@ -1,17 +1,20 @@
-﻿using System;
-using Swastika.Cms.Lib.Models.Cms;
-using Swastika.Domain.Data.ViewModels;
+﻿// Licensed to the Swastika I/O Foundation under one or more agreements.
+// The Swastika I/O Foundation licenses this file to you under the GNU General Public License v3.0 license.
+// See the LICENSE file in the project root for more information.
+
+using Microsoft.AspNetCore.Http;
 using Microsoft.EntityFrameworkCore.Storage;
 using Newtonsoft.Json;
-using Swastika.Domain.Core.ViewModels;
-using System.Threading.Tasks;
-using Swastika.Common.Helper;
+using Swastika.Cms.Lib.Models.Cms;
 using Swastika.Cms.Lib.Repositories;
-using Microsoft.AspNetCore.Http;
-using System.Linq;
 using Swastika.Cms.Lib.ViewModels.Info;
-using Microsoft.Data.OData.Query;
+using Swastika.Common.Helper;
+using Swastika.Domain.Core.ViewModels;
+using Swastika.Domain.Data.ViewModels;
+using System;
 using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
 
 namespace Swastika.Cms.Lib.ViewModels.BackEnd
 {
@@ -19,25 +22,33 @@ namespace Swastika.Cms.Lib.ViewModels.BackEnd
        : ViewModelBase<SiocCmsContext, SiocTheme, BEThemeViewModel>
     {
         public const int templatePageSize = 10;
+
         #region Properties
 
         #region Models
+
         [JsonProperty("id")]
         public int Id { get; set; }
+
         [JsonProperty("name")]
         public string Name { get; set; }
+
         [JsonProperty("createdBy")]
         public string CreatedBy { get; set; }
+
         [JsonProperty("createdDateTime")]
         public DateTime CreatedDateTime { get; set; }
-        #endregion
+
+        #endregion Models
 
         #region Views
+
         [JsonProperty("isActived")]
         public bool IsActived { get; set; }
 
         [JsonProperty("asset")]
         public IFormFile Asset { get; set; }// = new FileViewModel();
+
         [JsonProperty("assetFolder")]
         public string AssetFolder
         {
@@ -49,6 +60,7 @@ namespace Swastika.Cms.Lib.ViewModels.BackEnd
                     Name });
             }
         }
+
         [JsonProperty("templateFolder")]
         public string TemplateFolder
         {
@@ -59,9 +71,10 @@ namespace Swastika.Cms.Lib.ViewModels.BackEnd
         }
 
         public List<BETemplateViewModel> Templates { get; set; }
-        #endregion
 
-        #endregion
+        #endregion Views
+
+        #endregion Properties
 
         #region Contructors
 
@@ -75,9 +88,10 @@ namespace Swastika.Cms.Lib.ViewModels.BackEnd
         {
         }
 
-        #endregion
+        #endregion Contructors
 
         #region Overrides
+
         public override SiocTheme ParseModel()
         {
             if (Id == 0)
@@ -86,6 +100,7 @@ namespace Swastika.Cms.Lib.ViewModels.BackEnd
             }
             return base.ParseModel();
         }
+
         public override void ExpandView(SiocCmsContext _context = null, IDbContextTransaction _transaction = null)
         {
             Templates = BETemplateViewModel.Repository.GetModelListBy(t => t.TemplateId == Id,
@@ -93,6 +108,7 @@ namespace Swastika.Cms.Lib.ViewModels.BackEnd
         }
 
         #region Sync
+
         public override RepositoryResponse<BEThemeViewModel> SaveModel(bool isSaveSubModels = false, SiocCmsContext _context = null, IDbContextTransaction _transaction = null)
         {
             var result = base.SaveModel(isSaveSubModels, _context, _transaction);
@@ -139,7 +155,6 @@ namespace Swastika.Cms.Lib.ViewModels.BackEnd
                             Description = "Cms Theme Id",
                             Value = Model.Id.ToString()
                         };
-
                     }
                     else
                     {
@@ -183,6 +198,7 @@ namespace Swastika.Cms.Lib.ViewModels.BackEnd
             }
             return result;
         }
+
         public override RepositoryResponse<bool> SaveSubModels(SiocTheme parent, SiocCmsContext _context = null, IDbContextTransaction _transaction = null)
         {
             RepositoryResponse<bool> result = new RepositoryResponse<bool>() { IsSucceed = true };
@@ -224,9 +240,7 @@ namespace Swastika.Cms.Lib.ViewModels.BackEnd
                         result.Errors.AddRange(saveResult.Errors);
                         break;
                     }
-
                 }
-
             }
             return result;
         }
@@ -242,9 +256,11 @@ namespace Swastika.Cms.Lib.ViewModels.BackEnd
             }
             return result;
         }
-        #endregion
+
+        #endregion Sync
 
         #region Async
+
         public override async Task<RepositoryResponse<BEThemeViewModel>> SaveModelAsync(bool isSaveSubModels = false, SiocCmsContext _context = null, IDbContextTransaction _transaction = null)
         {
             var result = await base.SaveModelAsync(isSaveSubModels, _context, _transaction);
@@ -291,7 +307,6 @@ namespace Swastika.Cms.Lib.ViewModels.BackEnd
                             Description = "Cms Theme Id",
                             Value = Model.Id.ToString()
                         };
-
                     }
                     else
                     {
@@ -335,6 +350,7 @@ namespace Swastika.Cms.Lib.ViewModels.BackEnd
             }
             return result;
         }
+
         public override async Task<RepositoryResponse<bool>> SaveSubModelsAsync(SiocTheme parent, SiocCmsContext _context = null, IDbContextTransaction _transaction = null)
         {
             RepositoryResponse<bool> result = new RepositoryResponse<bool>() { IsSucceed = true };
@@ -376,9 +392,7 @@ namespace Swastika.Cms.Lib.ViewModels.BackEnd
                         result.Errors.AddRange(saveResult.Errors);
                         break;
                     }
-
                 }
-
             }
             return result;
         }
@@ -394,7 +408,9 @@ namespace Swastika.Cms.Lib.ViewModels.BackEnd
             }
             return result;
         }
-        #endregion
-        #endregion
+
+        #endregion Async
+
+        #endregion Overrides
     }
 }

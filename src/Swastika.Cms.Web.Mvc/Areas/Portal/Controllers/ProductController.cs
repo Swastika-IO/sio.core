@@ -1,16 +1,19 @@
-using System;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
-using Swastika.Cms.Mvc.Controllers;
+// Licensed to the Swastika I/O Foundation under one or more agreements.
+// The Swastika I/O Foundation licenses this file to you under the GNU General Public License v3.0 license.
+// See the LICENSE file in the project root for more information.
+
 using Microsoft.AspNetCore.Hosting;
-using System.Linq;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.Data.OData.Query;
-using Swastika.Domain.Core.ViewModels;
-using Swastika.Cms.Lib.Models;
-using Swastika.Cms.Lib.ViewModels.Info;
-using Swastika.Cms.Lib.ViewModels.BackEnd;
+using Microsoft.EntityFrameworkCore;
 using Swastika.Cms.Lib.Models.Cms;
+using Swastika.Cms.Lib.ViewModels.BackEnd;
+using Swastika.Cms.Lib.ViewModels.Info;
+using Swastika.Cms.Mvc.Controllers;
+using Swastika.Domain.Core.ViewModels;
+using System;
+using System.Linq;
+using System.Threading.Tasks;
 using static Swastika.Common.Utility.Enums;
 
 namespace Swastika.Cms.Mvc.Areas.Portal.Controllers
@@ -20,14 +23,12 @@ namespace Swastika.Cms.Mvc.Areas.Portal.Controllers
     [Route("{culture}/Portal/Product")]
     public class ProductController : BaseController<ProductController>
     {
-
         public ProductController(IHostingEnvironment env
             //, IStringLocalizer<PortalController> portalLocalizer, IStringLocalizer<SharedResource> localizer
             )
             : base(env)
         {
         }
-
 
         // GET: Portal/Product
         [HttpPost, HttpGet]
@@ -39,7 +40,7 @@ namespace Swastika.Cms.Mvc.Areas.Portal.Controllers
         [Route("Index/{pageSize:int?}/{pageIndex:int?}")]
         public async Task<IActionResult> Index(int pageSize = 10, int pageIndex = 0, string keyword = null)
         {
-            RepositoryResponse<PaginationModel<InfoProductViewModel>> getProduct = 
+            RepositoryResponse<PaginationModel<InfoProductViewModel>> getProduct =
                 await InfoProductViewModel.Repository.GetModelListByAsync(
                 product => product.Specificulture == _lang
                     && product.Status != (int)SWStatus.Deleted
@@ -71,7 +72,7 @@ namespace Swastika.Cms.Mvc.Areas.Portal.Controllers
         [Route("Create")]
         [Route("Create/{categoryId:int}")]
         public IActionResult Create(int? categoryId = null)
-        {           
+        {
             var vmProduct = new BEProductViewModel(new SiocProduct()
             {
                 Specificulture = _lang,
@@ -94,11 +95,10 @@ namespace Swastika.Cms.Mvc.Areas.Portal.Controllers
         }
 
         // POST: product/Create
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
+        // To protect from overposting attacks, please enable the specific properties you want to bind to, for
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [Route("Create")]
         [Route("Create/{categoryId:int}")]
-
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create(BEProductViewModel product, int? categoryId = null)
@@ -139,7 +139,7 @@ namespace Swastika.Cms.Mvc.Areas.Portal.Controllers
                 return RedirectToAction("Index");
             }
 
-            var product =  await BEProductViewModel.Repository.GetSingleModelAsync(
+            var product = await BEProductViewModel.Repository.GetSingleModelAsync(
                 m => m.Id == id && m.Specificulture == _lang);
             if (product == null)
             {
@@ -150,7 +150,7 @@ namespace Swastika.Cms.Mvc.Areas.Portal.Controllers
         }
 
         // POST: product/Edit/5
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
+        // To protect from overposting attacks, please enable the specific properties you want to bind to, for
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [Route("Edit/{id}")]
         [Route("Edit/{id}/{categoryId:int}")]
@@ -224,7 +224,6 @@ namespace Swastika.Cms.Mvc.Areas.Portal.Controllers
             {
                 return RedirectToAction("Index");
             }
-
         }
 
         [HttpGet]
@@ -252,7 +251,6 @@ namespace Swastika.Cms.Mvc.Areas.Portal.Controllers
             }
         }
 
-
         [HttpGet]
         [Route("Delete/{id}")]
         public async Task<IActionResult> Delete(string id)
@@ -262,7 +260,7 @@ namespace Swastika.Cms.Mvc.Areas.Portal.Controllers
             {
                 await getProduct.Data.RemoveModelAsync(true);
             }
-            return RedirectToAction("Draft","Product");
+            return RedirectToAction("Draft", "Product");
         }
     }
 }

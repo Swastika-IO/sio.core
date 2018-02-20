@@ -1,6 +1,8 @@
-﻿using System;
+﻿// Licensed to the Swastika I/O Foundation under one or more agreements.
+// The Swastika I/O Foundation licenses this file to you under the GNU General Public License v3.0 license.
+// See the LICENSE file in the project root for more information.
+
 using Microsoft.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.Extensions.Configuration;
 using Swastika.Cms.Lib.Services;
 using Swastika.Identity.Data;
@@ -21,6 +23,7 @@ namespace Swastika.Cms.Lib.Models.Account
         public SiocCmsAccountContext()
         {
         }
+
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             var config = new ConfigurationBuilder()
@@ -34,12 +37,8 @@ namespace Swastika.Cms.Lib.Models.Account
                 //cnn = "Server=(localdb)\\mssqllocaldb;Database=aspnet-Swastika.Cms.Db;Trusted_Connection=True;MultipleActiveResultSets=true";
                 optionsBuilder.UseSqlServer(cnn);
             }
-            
-
 
             //optionsBuilder.UseSqlServer(config.GetConnectionString("AccountConnection"));
-
         }
-
     }
 }

@@ -73,8 +73,8 @@
                 }
             </div><!--/.col-md-8-->
             <aside class="col-md-4">
-                @Html.Partial("Widgets/_Categories")                
-                
+                @Html.Partial("Widgets/_Categories")
+
                 @await Html.PartialAsync("Widgets/_Tags", new ViewDataDictionary(this.Vi‌​ewData)
                 {
                     { "Tags", tags} })
@@ -82,6 +82,3 @@
         </div><!--/.row-->
     </div>
 </section><!--/#blog-->
-
-
-

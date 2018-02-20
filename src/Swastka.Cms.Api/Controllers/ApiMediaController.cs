@@ -1,16 +1,20 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿// Licensed to the Swastika I/O Foundation under one or more agreements.
+// The Swastika I/O Foundation licenses this file to you under the GNU General Public License v3.0 license.
+// See the LICENSE file in the project root for more information.
+
+using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.Data.OData.Query;
+using Newtonsoft.Json.Linq;
+using Swastika.Api.Controllers;
+using Swastika.Cms.Lib;
+using Swastika.Cms.Lib.Models.Cms;
+using Swastika.Cms.Lib.ViewModels.BackEnd;
+using Swastika.Domain.Core.ViewModels;
 using System;
+using System.Linq;
 using System.Linq.Expressions;
 using System.Threading.Tasks;
-using Swastika.Domain.Core.ViewModels;
-using Swastika.Api.Controllers;
-using Swastika.Cms.Lib.ViewModels.BackEnd;
-using Swastika.Cms.Lib.Models.Cms;
-using Newtonsoft.Json.Linq;
-using System.Linq;
-using Microsoft.AspNetCore.Hosting;
-using Swastika.Cms.Lib;
 
 namespace Swastka.Cms.Api.Controllers
 {
@@ -25,6 +29,7 @@ namespace Swastka.Cms.Api.Controllers
         public ApiMediaController(IHostingEnvironment env) : base(env)
         {
         }
+
         #region Get
 
         // GET api/medias/id
@@ -35,7 +40,6 @@ namespace Swastka.Cms.Api.Controllers
             JObject result = new JObject();
             switch (viewType)
             {
-
                 default:
                     var feResult = await BEMediaViewModel.Repository.GetSingleModelAsync(
                         model => model.Id == id && model.Specificulture == _lang);
@@ -44,8 +48,6 @@ namespace Swastka.Cms.Api.Controllers
             }
             return result;
         }
-
-
 
         // GET api/medias/id
         [HttpGet]
@@ -99,8 +101,7 @@ namespace Swastka.Cms.Api.Controllers
             return data;
         }
 
-
-        #endregion
+        #endregion Get
 
         #region Post
 
@@ -151,9 +152,7 @@ namespace Swastka.Cms.Api.Controllers
                 return result;
             }
             return new RepositoryResponse<BEMediaViewModel>();
-
         }
-
 
         // GET api/medias
 
@@ -163,12 +162,10 @@ namespace Swastka.Cms.Api.Controllers
         {
             if (string.IsNullOrEmpty(request.Keyword))
             {
-
                 var data = await BEMediaViewModel.Repository.GetModelListByAsync(
                 m => m.Specificulture == _lang, request.OrderBy, request.Direction, request.PageSize, request.PageIndex);
 
                 return data;
-
             }
             else
             {
@@ -185,9 +182,9 @@ namespace Swastka.Cms.Api.Controllers
 
                 return data;
             }
-
         }
-        #endregion
+
+        #endregion Post
 
         #region Helper
 
@@ -200,6 +197,6 @@ namespace Swastka.Cms.Api.Controllers
         //    }
         //}
 
-        #endregion
+        #endregion Helper
     }
 }

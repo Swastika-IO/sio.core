@@ -1,16 +1,19 @@
-﻿using Swastika.Cms.Lib.Models.Cms;
-using Swastika.Domain.Data.ViewModels;
+﻿// Licensed to the Swastika I/O Foundation under one or more agreements.
+// The Swastika I/O Foundation licenses this file to you under the GNU General Public License v3.0 license.
+// See the LICENSE file in the project root for more information.
+
+using Microsoft.Data.OData.Query;
 using Microsoft.EntityFrameworkCore.Storage;
 using Newtonsoft.Json;
-using Swastika.Domain.Core.ViewModels;
-using Swastika.Cms.Lib.ViewModels.Info;
-using Microsoft.Data.OData.Query;
-using System;
-using System.Collections.Generic;
-using static Swastika.Cms.Lib.SWCmsConstants;
-using System.Linq;
+using Swastika.Cms.Lib.Models.Cms;
 using Swastika.Cms.Lib.Services;
 using Swastika.Cms.Lib.ViewModels.Navigation;
+using Swastika.Domain.Core.ViewModels;
+using Swastika.Domain.Data.ViewModels;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using static Swastika.Cms.Lib.SWCmsConstants;
 
 namespace Swastika.Cms.Lib.ViewModels.FrontEnd
 {
@@ -20,68 +23,95 @@ namespace Swastika.Cms.Lib.ViewModels.FrontEnd
         #region Properties
 
         #region Models
+
         [JsonProperty("id")]
         public int Id { get; set; }
+
         [JsonProperty("name")]
         public string Name { get; set; }
+
         [JsonProperty("template")]
         public string Template { get; set; }
+
         [JsonProperty("title")]
         public string Title { get; set; }
+
         [JsonProperty("fields")]
         public string Fields { get; set; }
+
         [JsonProperty("type")]
         public CateType Type { get; set; }
 
         [JsonProperty("icon")]
         public string Icon { get; set; }
+
         [JsonProperty("cssClass")]
         public string CssClass { get; set; }
+
         [JsonProperty("staticUrl")]
         public string StaticUrl { get; set; }
+
         [JsonProperty("excerpt")]
         public string Excerpt { get; set; }
+
         [JsonProperty("image")]
         public string Image { get; set; }
+
         [JsonProperty("content")]
         public string Content { get; set; }
+
         [JsonProperty("views")]
         public int? Views { get; set; }
+
         [JsonProperty("seoName")]
         public string SeoName { get; set; }
+
         [JsonProperty("seoTitle")]
         public string SeoTitle { get; set; }
+
         [JsonProperty("seoDescription")]
         public string SeoDescription { get; set; }
+
         [JsonProperty("seoKeywords")]
         public string SeoKeywords { get; set; }
+
         [JsonProperty("level")]
         public int? Level { get; set; }
+
         [JsonProperty("createdDateTime")]
         public DateTime CreatedDateTime { get; set; }
+
         [JsonProperty("updatedDateTime")]
         public DateTime? UpdatedDateTime { get; set; }
+
         [JsonProperty("createdBy")]
         public string CreatedBy { get; set; }
+
         [JsonProperty("updatedBy")]
         public string UpdatedBy { get; set; }
+
         [JsonProperty("isVisible")]
         public bool? IsVisible { get; set; }
+
         [JsonProperty("isDeleted")]
         public bool IsDeleted { get; set; }
+
         [JsonProperty("tags")]
         public string Tags { get; set; }
 
-        #endregion
+        #endregion Models
 
         #region Views
 
         [JsonProperty("view")]
         public FETemplateViewModel View { get; set; }
+
         [JsonProperty("articles")]
         public PaginationModel<NavCategoryArticleViewModel> Articles { get; set; } = new PaginationModel<NavCategoryArticleViewModel>();
+
         [JsonProperty("products")]
         public PaginationModel<NavCategoryProductViewModel> Products { get; set; } = new PaginationModel<NavCategoryProductViewModel>();
+
         [JsonProperty("modules")]
         public List<FEModuleViewModel> Modules { get; set; } = new List<FEModuleViewModel>(); // Get All Module
 
@@ -98,9 +128,10 @@ namespace Swastika.Cms.Lib.ViewModels.FrontEnd
                 });
             }
         }
-        #endregion
 
-        #endregion
+        #endregion Views
+
+        #endregion Properties
 
         #region Contructors
 
@@ -112,7 +143,7 @@ namespace Swastika.Cms.Lib.ViewModels.FrontEnd
         {
         }
 
-        #endregion
+        #endregion Contructors
 
         #region Overrides
 
@@ -121,42 +152,43 @@ namespace Swastika.Cms.Lib.ViewModels.FrontEnd
             this.View = FETemplateViewModel.GetTemplateByPath(Template, Specificulture, _context, _transaction).Data;
             if (View != null)
             {
-
                 switch (Type)
                 {
                     case CateType.Home:
                         GetSubModules(_context, _transaction);
                         break;
+
                     case CateType.Blank:
                         break;
+
                     case CateType.Article:
                         break;
+
                     case CateType.Modules:
                         GetSubModules(_context, _transaction);
                         break;
+
                     case CateType.List:
                         GetSubArticles(_context, _transaction);
                         break;
+
                     case CateType.ListProduct:
                         GetSubProducts(_context, _transaction);
                         break;
+
                     default:
                         break;
                 }
             }
         }
 
-        #endregion
+        #endregion Overrides
 
         #region Expands
 
-        #region Async
-
-        #endregion
-
         #region Sync
 
-        void GetSubModules(SiocCmsContext _context = null, IDbContextTransaction _transaction = null)
+        private void GetSubModules(SiocCmsContext _context = null, IDbContextTransaction _transaction = null)
         {
             var getNavs = CategoryModuleViewModel.Repository.GetModelListBy(
                 m => m.CategoryId == Id && m.Specificulture == Specificulture
@@ -179,11 +211,10 @@ namespace Swastika.Cms.Lib.ViewModels.FrontEnd
                         }
                     }
                 }
-
             }
         }
 
-        void GetSubArticles(SiocCmsContext _context = null, IDbContextTransaction _transaction = null)
+        private void GetSubArticles(SiocCmsContext _context = null, IDbContextTransaction _transaction = null)
         {
             var getArticles = NavCategoryArticleViewModel.Repository.GetModelListBy(
                 n => n.CategoryId == Id && n.Specificulture == Specificulture, SWCmsConstants.Default.OrderBy, OrderByDirection.Ascending
@@ -196,7 +227,7 @@ namespace Swastika.Cms.Lib.ViewModels.FrontEnd
             }
         }
 
-        void GetSubProducts(SiocCmsContext _context = null, IDbContextTransaction _transaction = null)
+        private void GetSubProducts(SiocCmsContext _context = null, IDbContextTransaction _transaction = null)
         {
             var getProducts = NavCategoryProductViewModel.Repository.GetModelListBy(
                m => m.CategoryId == Id && m.Specificulture == Specificulture
@@ -210,15 +241,13 @@ namespace Swastika.Cms.Lib.ViewModels.FrontEnd
             }
         }
 
-        #endregion
+        #endregion Sync
 
         public FEModuleViewModel GetModule(string name)
         {
             return Modules.FirstOrDefault(m => m.Name == name);
         }
 
-        #endregion
-
+        #endregion Expands
     }
-
 }

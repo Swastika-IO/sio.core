@@ -1,19 +1,13 @@
-﻿using System;
-using Swastika.Cms.Lib.Models.Cms;
-using Swastika.Domain.Data.ViewModels;
+﻿// Licensed to the Swastika I/O Foundation under one or more agreements.
+// The Swastika I/O Foundation licenses this file to you under the GNU General Public License v3.0 license.
+// See the LICENSE file in the project root for more information.
+
 using Microsoft.EntityFrameworkCore.Storage;
 using Newtonsoft.Json;
-using Swastika.Domain.Core.ViewModels;
-using Swastika.Cms.Lib.Repositories;
-using System.Threading.Tasks;
-using Swastika.Common.Helper;
+using Swastika.Cms.Lib.Models.Cms;
 using Swastika.Cms.Lib.Services;
-using Newtonsoft.Json.Linq;
-using System.Xml;
-using System.Xml.Linq;
-using System.Text.RegularExpressions;
-using System.Collections.Generic;
-using System.Linq;
+using Swastika.Domain.Core.ViewModels;
+using Swastika.Domain.Data.ViewModels;
 
 namespace Swastika.Cms.Lib.ViewModels.FrontEnd
 {
@@ -23,23 +17,25 @@ namespace Swastika.Cms.Lib.ViewModels.FrontEnd
         #region Properties
 
         #region Models
+
         [JsonIgnore]
         [JsonProperty("id")]
         public int Id { get; set; }
+
         [JsonIgnore]
         [JsonProperty("templateId")]
         public int TemplateId { get; set; }
+
         [JsonIgnore]
         [JsonProperty("templateName")]
         public string TemplateName { get; set; }
+
         [JsonProperty("spaContent")]
         public string SpaContent { get; set; }
-        #endregion
 
-        #region Views
-        #endregion
+        #endregion Models
 
-        #endregion
+        #endregion Properties
 
         #region Contructors
 
@@ -53,17 +49,8 @@ namespace Swastika.Cms.Lib.ViewModels.FrontEnd
         {
         }
 
-        #endregion
+        #endregion Contructors
 
-        #region Overrides
-
-        #region Common
-
-        #endregion
-
-
-
-        #endregion
         #region Expands
 
         /// <summary>
@@ -92,8 +79,6 @@ namespace Swastika.Cms.Lib.ViewModels.FrontEnd
             return result;
         }
 
-
-        #endregion
-
+        #endregion Expands
     }
 }

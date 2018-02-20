@@ -1,12 +1,16 @@
-﻿using Swastika.Cms.Lib.Models.Cms;
-using Swastika.Domain.Data.ViewModels;
+﻿// Licensed to the Swastika I/O Foundation under one or more agreements.
+// The Swastika I/O Foundation licenses this file to you under the GNU General Public License v3.0 license.
+// See the LICENSE file in the project root for more information.
+
 using Microsoft.EntityFrameworkCore.Storage;
 using Newtonsoft.Json;
+using Swastika.Cms.Lib.Models.Cms;
+using Swastika.Domain.Data.ViewModels;
 
 namespace Swastika.Cms.Lib.ViewModels
 {
     /// <summary>
-    /// 
+    ///
     /// </summary>
     /// <seealso cref="Swastika.Domain.Data.ViewModels.ViewModelBase{Swastika.Cms.Lib.Models.SiocCmsContext, Swastika.Cms.Lib.Models.SiocCategoryCategory, Swastika.Cms.Lib.ViewModels.CategoryCategoryViewModel}" />
     public class CategoryCategoryViewModel : ViewModelBase<SiocCmsContext, SiocCategoryCategory, CategoryCategoryViewModel>
@@ -29,7 +33,6 @@ namespace Swastika.Cms.Lib.ViewModels
         {
         }
 
-
         /// <summary>
         /// Gets or sets the identifier.
         /// </summary>
@@ -37,6 +40,7 @@ namespace Swastika.Cms.Lib.ViewModels
         /// The identifier.
         /// </value>
         public int Id { get; set; }
+
         /// <summary>
         /// Gets or sets the parent identifier.
         /// </summary>
@@ -44,6 +48,7 @@ namespace Swastika.Cms.Lib.ViewModels
         /// The parent identifier.
         /// </value>
         public int ParentId { get; set; }
+
         /// <summary>
         /// Gets or sets a value indicating whether this instance is actived.
         /// </summary>
@@ -54,6 +59,7 @@ namespace Swastika.Cms.Lib.ViewModels
 
         [JsonProperty("image")]
         public string Image { get; set; }
+
         /// <summary>
         /// Gets or sets the description.
         /// </summary>
@@ -62,22 +68,5 @@ namespace Swastika.Cms.Lib.ViewModels
         /// </value>
         [JsonProperty("description")]
         public string Description { get; set; }
-
-
-        #region overrides
-
-        #region Async
-
-
-
-        #endregion
-
-        #region Sync
-
-
-        #endregion
-
-        #endregion
-
     }
 }

@@ -25,23 +25,21 @@
     string inpName_Content = string.IsNullOrEmpty(name) ? "Content" : string.Format("{0}.Content", name);
     string inpId_Content = string.IsNullOrEmpty(name) ? "Content" : string.Format("{0}_Content", name);
 
-
     var templates = new SelectList(files, "Content", "FileName");
 }
 <div>
     @if (files.Count > 0)
     {
         <select asp-for="Filename" asp-items="@templates" id="sel-template" class="form-control">
-            <option value="<div></div>">--- Seclect Template Layout ---</option>           
+            <option value="<div></div>">--- Seclect Template Layout ---</option>
         </select>
     }
-    @*<input id="@inputId" name="@inputName" value="@Model.Filename" class="form-control sel-filename"/>*@
+    @*<input id="@inputId" name="@inputName" value="@Model.Filename" class="form-control sel-filename" />*@
     <input type="hidden" id="@inpId_FileFolder" name="@inpName_FileFolder" value="@Model.FileFolder">
     <input type="hidden" id="@inpId_Extension" name="@inpName_Extension" value="@Model.Extension">
-    
+
         <input class="form-control sel-filename" type="text" id="@inpId_Filename" name="@inpName_Filename" value="@Model.Filename">
         <div class="form-control @isHidden" id="code-editor">@Model.Content</div>
-  
-    <input class="form-control code-content" type="hidden" id="@inpId_Content" name="@inpName_Content" value="@Model.Content">
 
+    <input class="form-control code-content" type="hidden" id="@inpId_Content" name="@inpName_Content" value="@Model.Content">
 </div>

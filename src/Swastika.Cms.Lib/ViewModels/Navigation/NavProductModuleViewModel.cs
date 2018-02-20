@@ -1,12 +1,15 @@
-﻿using Swastika.Cms.Lib.Models.Cms;
-using Swastika.Domain.Data.ViewModels;
+﻿// Licensed to the Swastika I/O Foundation under one or more agreements.
+// The Swastika I/O Foundation licenses this file to you under the GNU General Public License v3.0 license.
+// See the LICENSE file in the project root for more information.
+
 using Microsoft.EntityFrameworkCore.Storage;
 using Newtonsoft.Json;
-using Swastika.Domain.Core.ViewModels;
-using Swastika.Cms.Lib.ViewModels.Info;
-using System.Threading.Tasks;
-using Swastika.Cms.Lib.ViewModels.FrontEnd;
+using Swastika.Cms.Lib.Models.Cms;
 using Swastika.Cms.Lib.ViewModels.BackEnd;
+using Swastika.Cms.Lib.ViewModels.Info;
+using Swastika.Domain.Core.ViewModels;
+using Swastika.Domain.Data.ViewModels;
+using System.Threading.Tasks;
 
 namespace Swastika.Cms.Lib.ViewModels.Navigation
 {
@@ -16,24 +19,32 @@ namespace Swastika.Cms.Lib.ViewModels.Navigation
         #region Properties
 
         #region Models
+
         [JsonProperty("productId")]
         public string ProductId { get; set; }
+
         [JsonProperty("moduleId")]
         public int ModuleId { get; set; }
+
         [JsonProperty("image")]
         public string Image { get; set; }
+
         [JsonProperty("description")]
         public string Description { get; set; }
-        #endregion
+
+        #endregion Models
 
         #region Views
+
         [JsonProperty("isActived")]
         public bool IsActived { get; set; }
+
         [JsonProperty("module")]
         public BEModuleViewModel Module { get; set; }
-        #endregion
 
-        #endregion
+        #endregion Views
+
+        #endregion Properties
 
         #region Contructors
 
@@ -45,7 +56,7 @@ namespace Swastika.Cms.Lib.ViewModels.Navigation
         {
         }
 
-        #endregion
+        #endregion Contructors
 
         #region Overrides
 
@@ -54,7 +65,7 @@ namespace Swastika.Cms.Lib.ViewModels.Navigation
             var getModuleResult = BEModuleViewModel.GetBy(
                 m => m.Id == ModuleId && m.Specificulture == Specificulture
                 , productId: ProductId
-                , _context:_context, _transaction: _transaction);
+                , _context: _context, _transaction: _transaction);
             if (getModuleResult.IsSucceed)
             {
                 this.Module = getModuleResult.Data;
@@ -66,8 +77,6 @@ namespace Swastika.Cms.Lib.ViewModels.Navigation
             return InfoModuleDataViewModel.Repository.RemoveListModel(d => d.ProductId == view.ProductId
                 && d.ModuleId == view.ModuleId && d.Specificulture == view.Specificulture, _context, _transaction);
         }
-
-       
 
         public override RepositoryResponse<bool> SaveSubModels(SiocProductModule parent, SiocCmsContext _context = null, IDbContextTransaction _transaction = null)
         {
@@ -88,11 +97,13 @@ namespace Swastika.Cms.Lib.ViewModels.Navigation
         }
 
         #region Async
+
         public override Task<RepositoryResponse<bool>> RemoveRelatedModelsAsync(NavProductModuleViewModel view, SiocCmsContext _context = null, IDbContextTransaction _transaction = null)
         {
             return InfoModuleDataViewModel.Repository.RemoveListModelAsync(d => d.ProductId == view.ProductId
                 && d.ModuleId == view.ModuleId && d.Specificulture == view.Specificulture, _context, _transaction);
         }
+
         public override async Task<RepositoryResponse<bool>> SaveSubModelsAsync(SiocProductModule parent, SiocCmsContext _context = null, IDbContextTransaction _transaction = null)
         {
             RepositoryResponse<bool> result = new RepositoryResponse<bool>() { IsSucceed = true };
@@ -110,12 +121,9 @@ namespace Swastika.Cms.Lib.ViewModels.Navigation
             }
             return result;
         }
-        #endregion
-        #endregion
 
-        #region Expands
+        #endregion Async
 
-        #endregion
-
+        #endregion Overrides
     }
 }

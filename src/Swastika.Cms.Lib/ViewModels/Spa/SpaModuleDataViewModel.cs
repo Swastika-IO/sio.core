@@ -1,20 +1,17 @@
-﻿using System;
-using System.Collections.Generic;
-using Swastika.Cms.Lib.Models.Cms;
-using Swastika.Domain.Data.ViewModels;
+﻿// Licensed to the Swastika I/O Foundation under one or more agreements.
+// The Swastika I/O Foundation licenses this file to you under the GNU General Public License v3.0 license.
+// See the LICENSE file in the project root for more information.
+
 using Microsoft.EntityFrameworkCore.Storage;
 using Newtonsoft.Json;
-using System.ComponentModel.DataAnnotations;
-using Swastika.Cms.Lib;
 using Newtonsoft.Json.Linq;
-using Swastika.Common.Helper;
-using System.Linq;
-using Swastika.Cms.Lib.ViewModels;
+using Swastika.Cms.Lib.Models.Cms;
 using Swastika.Cms.Lib.Services;
-using Swastika.Domain.Core.ViewModels;
-using Swastika.Cms.Lib.Repositories;
-using System.Threading.Tasks;
-using Swastika.Cms.Lib.ViewModels.FrontEnd;
+using Swastika.Common.Helper;
+using Swastika.Domain.Data.ViewModels;
+using System;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace Swastika.Cms.Lib.ViewModels.Spa
 {
@@ -24,8 +21,10 @@ namespace Swastika.Cms.Lib.ViewModels.Spa
         #region Properties
 
         #region Models
+
         [JsonProperty("id")]
         public string Id { get; set; }
+
         //[JsonProperty("moduleId")]
         //public int ModuleId { get; set; }
         //[JsonProperty("fields")]
@@ -33,6 +32,7 @@ namespace Swastika.Cms.Lib.ViewModels.Spa
         //[JsonProperty("value")]
         [JsonIgnore]
         public string Value { get; set; }
+
         //[JsonProperty("articleId")]
         //public string ArticleId { get; set; }
         //[JsonProperty("productId")]
@@ -44,17 +44,19 @@ namespace Swastika.Cms.Lib.ViewModels.Spa
         //[JsonProperty("updatedDateTime")]
         //public DateTime? UpdatedDateTime { get; set; }
 
-        #endregion
+        #endregion Models
 
         #region Views
+
         public List<ModuleDataValueViewModel> DataProperties { get; set; }
         public List<ModuleFieldViewModel> Columns { get; set; }
         public JObject JItem { get { return ParseJson(); } }
-        #endregion
 
-        #endregion
+        #endregion Views
 
-            #region Contructors
+        #endregion Properties
+
+        #region Contructors
 
         public SpaModuleDataViewModel() : base()
         {
@@ -64,9 +66,10 @@ namespace Swastika.Cms.Lib.ViewModels.Spa
         {
         }
 
-        #endregion
+        #endregion Contructors
 
         #region Overrides
+
         public override void ExpandView(SiocCmsContext _context = null, IDbContextTransaction _transaction = null)
         {
             IsClone = true;
@@ -109,7 +112,7 @@ namespace Swastika.Cms.Lib.ViewModels.Spa
             //        prop = new JProperty(col.Name, val);
             //    }
             //    //foreach (var prop in objValue.Properties())
-            //    //{               
+            //    //{
             //    var dataVal = new ModuleDataValueViewModel()
             //    {
             //        ModuleId = ModuleId,
@@ -141,16 +144,15 @@ namespace Swastika.Cms.Lib.ViewModels.Spa
             //}
         }
 
-        #endregion
-
+        #endregion Overrides
 
         #region Expands
+
         public string ParseObjectValue()
         {
             JObject result = new JObject();
             foreach (var prop in DataProperties)
             {
-
                 JObject obj = new JObject();
                 obj.Add(new JProperty("dataType", prop.DataType));
                 obj.Add(new JProperty("value", prop.StringValue));
@@ -200,12 +202,9 @@ namespace Swastika.Cms.Lib.ViewModels.Spa
             };
             //result.Add(new JProperty("model", model));
             return result;
-
         }
 
-
-        #endregion
-
+        #endregion Expands
     }
 
     public class ModuleDataValueViewModel
@@ -221,7 +220,5 @@ namespace Swastika.Cms.Lib.ViewModels.Spa
         {
             return this.Value != null ? (T)Value : default(T);
         }
-
     }
-
 }

@@ -1,8 +1,11 @@
-﻿using Microsoft.EntityFrameworkCore.Storage;
+﻿// Licensed to the Swastika I/O Foundation under one or more agreements.
+// The Swastika I/O Foundation licenses this file to you under the GNU General Public License v3.0 license.
+// See the LICENSE file in the project root for more information.
+
+using Microsoft.EntityFrameworkCore.Storage;
 using Newtonsoft.Json;
 using Swastika.Cms.Lib.Models.Cms;
 using Swastika.Domain.Data.ViewModels;
-using Swastika.Domain.Core.ViewModels;
 
 namespace Swastika.Cms.Lib.ViewModels.Info
 {
@@ -12,26 +15,28 @@ namespace Swastika.Cms.Lib.ViewModels.Info
         #region Properties
 
         #region Models
+
         [JsonProperty("moduleId")]
         public int ModuleId { get; set; }
+
         [JsonProperty("name")]
         public string Name { get; set; }
+
         [JsonProperty("dataType")]
         public int DataType { get; set; }
+
         [JsonProperty("title")]
         public string Title { get; set; }
+
         [JsonProperty("width")]
         public int Width { get; set; }
+
         [JsonProperty("defaultValue")]
         public string DefaultValue { get; set; }
 
-        #endregion
+        #endregion Models
 
-        #region Views
-
-        #endregion
-
-        #endregion
+        #endregion Properties
 
         #region Contructors
 
@@ -43,7 +48,6 @@ namespace Swastika.Cms.Lib.ViewModels.Info
         {
         }
 
-        #endregion
+        #endregion Contructors
     }
-
 }

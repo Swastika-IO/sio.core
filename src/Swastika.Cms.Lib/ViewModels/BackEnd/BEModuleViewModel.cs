@@ -1,22 +1,25 @@
-﻿using System.Collections.Generic;
-using Swastika.Cms.Lib.Models.Cms;
-using Swastika.Domain.Data.ViewModels;
+﻿// Licensed to the Swastika I/O Foundation under one or more agreements.
+// The Swastika I/O Foundation licenses this file to you under the GNU General Public License v3.0 license.
+// See the LICENSE file in the project root for more information.
+
+using Microsoft.Data.OData.Query;
 using Microsoft.EntityFrameworkCore.Storage;
 using Newtonsoft.Json;
-using Swastika.Domain.Core.ViewModels;
 using Newtonsoft.Json.Linq;
-using Swastika.Common.Helper;
-using Swastika.Cms.Lib.ViewModels.Info;
-using Swastika.Cms.Lib.Repositories;
-using Microsoft.Data.OData.Query;
-using System.Linq;
-using Swastika.Domain.Core.Models;
-using System.Threading.Tasks;
+using Swastika.Cms.Lib.Models.Cms;
 using Swastika.Cms.Lib.Services;
-using System;
-using System.Linq.Expressions;
-using static Swastika.Cms.Lib.SWCmsConstants;
+using Swastika.Cms.Lib.ViewModels.Info;
 using Swastika.Cms.Lib.ViewModels.Navigation;
+using Swastika.Common.Helper;
+using Swastika.Domain.Core.Models;
+using Swastika.Domain.Core.ViewModels;
+using Swastika.Domain.Data.ViewModels;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Linq.Expressions;
+using System.Threading.Tasks;
+using static Swastika.Cms.Lib.SWCmsConstants;
 
 namespace Swastika.Cms.Lib.ViewModels.BackEnd
 {
@@ -26,33 +29,44 @@ namespace Swastika.Cms.Lib.ViewModels.BackEnd
         #region Properties
 
         #region Models
+
         [JsonProperty("id")]
         public int Id { get; set; }
+
         [JsonProperty("name")]
         public string Name { get; set; }
+
         [JsonProperty("image")]
         public string Image { get; set; }
+
         [JsonProperty("template")]
         public string Template { get; set; }
+
         [JsonProperty("title")]
         public string Title { get; set; }
+
         [JsonProperty("description")]
         public string Description { get; set; }
+
         [JsonProperty("fields")]
         public string Fields { get; set; }
+
         [JsonProperty("type")]
         public ModuleType Type { get; set; }
+
         [JsonProperty("lastModified")]
         public DateTime? LastModified { get; set; }
+
         [JsonProperty("modifiedBy")]
         public string ModifiedBy { get; set; }
-        #endregion
+
+        #endregion Models
 
         #region Views
 
-
         [JsonProperty("data")]
         public PaginationModel<InfoModuleDataViewModel> Data { get; set; } = new PaginationModel<InfoModuleDataViewModel>();
+
         [JsonProperty("columns")]
         public List<ModuleFieldViewModel> Columns { get; set; }
 
@@ -66,8 +80,10 @@ namespace Swastika.Cms.Lib.ViewModels.BackEnd
 
         [JsonProperty("view")]
         public BETemplateViewModel View { get; set; }
+
         [JsonProperty("templates")]
         public List<BETemplateViewModel> Templates { get; set; }// Article Templates
+
         [JsonIgnore]
         public string ActivedTemplate
         {
@@ -76,8 +92,10 @@ namespace Swastika.Cms.Lib.ViewModels.BackEnd
                 return GlobalConfigurationService.Instance.GetLocalString(SWCmsConstants.ConfigurationKeyword.Theme, Specificulture, SWCmsConstants.Default.DefaultTemplateFolder);
             }
         }
+
         [JsonIgnore]
         public string TemplateFolderType { get { return SWCmsConstants.TemplateFolderEnum.Modules.ToString(); } }
+
         [JsonProperty("templateFolder")]
         public string TemplateFolder
         {
@@ -93,16 +111,19 @@ namespace Swastika.Cms.Lib.ViewModels.BackEnd
             }
         }
 
-        #endregion
+        #endregion Template
+
         //Parent Article Id
         [JsonProperty("articleId")]
         public string ArticleId { get; set; }
+
         //Parent Category Id
         [JsonProperty("categoryId")]
         public int CategoryId { get; set; }
-        #endregion
 
-        #endregion
+        #endregion Views
+
+        #endregion Properties
 
         #region Contructors
 
@@ -114,9 +135,10 @@ namespace Swastika.Cms.Lib.ViewModels.BackEnd
         {
         }
 
-        #endregion
+        #endregion Contructors
 
         #region Overrides
+
         public override SiocModule ParseModel()
         {
             if (Id == 0)
@@ -129,11 +151,8 @@ namespace Swastika.Cms.Lib.ViewModels.BackEnd
                     c => !string.IsNullOrEmpty(c.Name)))) : new JArray();
             Fields = arrField.ToString(Newtonsoft.Json.Formatting.None);
 
-
-
             return base.ParseModel();
         }
-
 
         public override void ExpandView(SiocCmsContext _context = null, IDbContextTransaction _transaction = null)
         {
@@ -213,8 +232,8 @@ namespace Swastika.Cms.Lib.ViewModels.BackEnd
             }
         }
 
-
         #region Async
+
         public override Task<RepositoryResponse<bool>> RemoveModelAsync(bool isRemoveRelatedModels = false, SiocCmsContext _context = null, IDbContextTransaction _transaction = null)
         {
             return base.RemoveModelAsync(isRemoveRelatedModels, _context, _transaction);
@@ -251,9 +270,11 @@ namespace Swastika.Cms.Lib.ViewModels.BackEnd
                 Errors = saveView.Errors
             };
         }
-        #endregion
+
+        #endregion Async
 
         #region Sync
+
         public override RepositoryResponse<bool> CloneSubModels(BEModuleViewModel parent, List<SupportedCulture> cloneCultures, SiocCmsContext _context = null, IDbContextTransaction _transaction = null)
         {
             RepositoryResponse<bool> result = new RepositoryResponse<bool>() { IsSucceed = true };
@@ -273,6 +294,7 @@ namespace Swastika.Cms.Lib.ViewModels.BackEnd
             }
             return result;
         }
+
         public override RepositoryResponse<bool> SaveSubModels(SiocModule parent, SiocCmsContext _context = null, IDbContextTransaction _transaction = null)
         {
             var saveView = View.SaveModel(true, _context, _transaction);
@@ -284,10 +306,11 @@ namespace Swastika.Cms.Lib.ViewModels.BackEnd
                 Errors = saveView.Errors
             };
         }
-        #endregion
 
+        #endregion Sync
 
-        #endregion
+        #endregion Overrides
+
         #region Expand
 
         public static RepositoryResponse<BEModuleViewModel> GetBy(
@@ -308,7 +331,6 @@ namespace Swastika.Cms.Lib.ViewModels.BackEnd
             , int? pageSize = null, int? pageIndex = 0
             , SiocCmsContext _context = null, IDbContextTransaction _transaction = null)
         {
-
             RepositoryResponse<PaginationModel<InfoModuleDataViewModel>> getDataResult = new RepositoryResponse<PaginationModel<InfoModuleDataViewModel>>();
 
             switch (Type)
@@ -319,6 +341,7 @@ namespace Swastika.Cms.Lib.ViewModels.BackEnd
                        , "Priority", OrderByDirection.Ascending, pageSize, pageIndex
                        , _context, _transaction);
                     break;
+
                 case SWCmsConstants.ModuleType.SubPage:
                     getDataResult = InfoModuleDataViewModel.Repository
                        .GetModelListBy(m => m.ModuleId == Id && m.Specificulture == Specificulture
@@ -326,6 +349,7 @@ namespace Swastika.Cms.Lib.ViewModels.BackEnd
                        , "Priority", OrderByDirection.Ascending, pageSize, pageIndex
                        , _context, _transaction);
                     break;
+
                 case SWCmsConstants.ModuleType.SubArticle:
                     getDataResult = InfoModuleDataViewModel.Repository
                        .GetModelListBy(m => m.ModuleId == Id && m.Specificulture == Specificulture
@@ -333,6 +357,7 @@ namespace Swastika.Cms.Lib.ViewModels.BackEnd
                        , "Priority", OrderByDirection.Ascending, pageSize, pageIndex
                        , _context, _transaction);
                     break;
+
                 default:
                     break;
             }
@@ -345,8 +370,6 @@ namespace Swastika.Cms.Lib.ViewModels.BackEnd
             }
         }
 
-
-        #endregion
+        #endregion Expand
     }
-
 }

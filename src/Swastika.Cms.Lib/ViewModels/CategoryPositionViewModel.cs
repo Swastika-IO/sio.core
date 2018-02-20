@@ -1,6 +1,10 @@
-﻿using Swastika.Cms.Lib.Models.Cms;
-using Swastika.Domain.Data.ViewModels;
+﻿// Licensed to the Swastika I/O Foundation under one or more agreements.
+// The Swastika I/O Foundation licenses this file to you under the GNU General Public License v3.0 license.
+// See the LICENSE file in the project root for more information.
+
 using Microsoft.EntityFrameworkCore.Storage;
+using Swastika.Cms.Lib.Models.Cms;
+using Swastika.Domain.Data.ViewModels;
 
 namespace Swastika.Cms.Lib.ViewModels
 {
@@ -10,17 +14,19 @@ namespace Swastika.Cms.Lib.ViewModels
             : base(model, _context, _transaction)
         {
         }
-        public CategoryPositionViewModel(): base()
-        {
 
+        public CategoryPositionViewModel() : base()
+        {
         }
 
         public int PositionId { get; set; }
         public int CategoryId { get; set; }
+
         //public string Specificulture { get; set; }
         public bool IsActived { get; set; }
+
         public string Description { get; set; }
-        
+
         #region overrides
 
         #region Async
@@ -63,14 +69,8 @@ namespace Swastika.Cms.Lib.ViewModels
 
         //}
 
-        #endregion
+        #endregion Async
 
-        #region Sync
-
-
-        #endregion
-
-        #endregion
-
+        #endregion overrides
     }
 }

@@ -534,7 +534,7 @@ namespace Swastika.Cms.Lib.Migrations
 
                     b.Property<string>("Specificulture")
                         .ValueGeneratedOnAdd()
-                        .HasDefaultValueSql("(N'vi-vn')")
+                        .HasDefaultValueSql("(N'en-us')")
                         .HasMaxLength(10);
 
                     b.Property<DateTime>("CreatedDateTime")

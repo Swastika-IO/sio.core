@@ -1,86 +1,118 @@
-﻿using System;
-using System.Collections.Generic;
-using Swastika.Cms.Lib.Models.Cms;
-using Swastika.Domain.Data.ViewModels;
+﻿// Licensed to the Swastika I/O Foundation under one or more agreements.
+// The Swastika I/O Foundation licenses this file to you under the GNU General Public License v3.0 license.
+// See the LICENSE file in the project root for more information.
+
 using Microsoft.EntityFrameworkCore.Storage;
 using Newtonsoft.Json;
-using System.ComponentModel.DataAnnotations;
-using Swastika.Common.Helper;
-using Swastika.Cms.Lib;
+using Swastika.Cms.Lib.Models.Cms;
 using Swastika.Cms.Lib.Services;
 using Swastika.Cms.Lib.ViewModels.Info;
 using Swastika.Cms.Lib.ViewModels.Navigation;
+using Swastika.Common.Helper;
+using Swastika.Domain.Data.ViewModels;
+using System;
+using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 
 namespace Swastika.Cms.Lib.ViewModels.FrontEnd
 {
-   
     public class FEProductViewModel
         : ViewModelBase<SiocCmsContext, SiocProduct, FEProductViewModel>
     {
         #region Properties
 
         #region Models
+
         [JsonProperty("id")]
         public string Id { get; set; }
+
         [JsonProperty("template")]
         public string Template { get; set; }
+
         [JsonProperty("thumbnail")]
         public string Thumbnail { get; set; }
+
         [JsonProperty("image")]
         public string Image { get; set; }
+
         [JsonIgnore]
         [JsonProperty("extraProperties")]
         public string ExtraProperties { get; set; } = "[]";
+
         [JsonProperty("price")]
         public double Price { get; set; }
+
         [JsonProperty("priceUnit")]
         public string PriceUnit { get; set; }
+
         [JsonProperty("icon")]
         public string Icon { get; set; }
+
         [Required]
         [JsonProperty("title")]
         public string Title { get; set; }
+
         [JsonProperty("excerpt")]
         public string Excerpt { get; set; }
+
         [JsonProperty("content")]
         public string Content { get; set; }
+
         [JsonProperty("seoName")]
         public string SeoName { get; set; }
+
         [JsonProperty("seoTitle")]
         public string SeoTitle { get; set; }
+
         [JsonProperty("seoDescription")]
         public string SeoDescription { get; set; }
+
         [JsonProperty("seoKeywords")]
         public string SeoKeywords { get; set; }
+
         [JsonProperty("source")]
         public string Source { get; set; }
+
         [JsonProperty("views")]
         public int? Views { get; set; }
+
         [JsonProperty("type")]
         public int Type { get; set; }
+
         [JsonProperty("createdDateTime")]
         public DateTime CreatedDateTime { get; set; }
+
         [JsonProperty("createdBy")]
         public string CreatedBy { get; set; }
+
         [JsonProperty("lastModified")]
         public DateTime? LastModified { get; set; }
+
         [JsonProperty("modifiedBy")]
         public string ModifiedBy { get; set; }
+
         [JsonProperty("isVisible")]
         public bool IsVisible { get; set; }
+
         [JsonProperty("isDeleted")]
         public bool IsDeleted { get; set; }
+
         [JsonProperty("tags")]
         public string Tags { get; set; }
-        #endregion
+
+        #endregion Models
 
         #region Views
+
         [JsonProperty("view")]
         public InfoTemplateViewModel View { get; set; }
+
         [JsonProperty("modules")]
         public List<FEModuleViewModel> Modules { get; set; }
+
         [JsonProperty("domain")]
         public string Domain { get; set; } = "/";
+
         [JsonProperty("imageUrl")]
         public string ImageUrl
         {
@@ -96,9 +128,9 @@ namespace Swastika.Cms.Lib.ViewModels.FrontEnd
                 {
                     return Image;
                 }
-
             }
         }
+
         [JsonProperty("thumbnailUrl")]
         public string ThumbnailUrl
         {
@@ -114,9 +146,9 @@ namespace Swastika.Cms.Lib.ViewModels.FrontEnd
                 {
                     return Thumbnail;
                 }
-
             }
         }
+
         public string TemplatePath
         {
             get
@@ -130,11 +162,13 @@ namespace Swastika.Cms.Lib.ViewModels.FrontEnd
                 });
             }
         }
+
         [JsonProperty("properties")]
         public List<ExtraProperty> Properties { get; set; }
-        #endregion
 
-        #endregion
+        #endregion Views
+
+        #endregion Properties
 
         #region Contructors
 
@@ -146,7 +180,7 @@ namespace Swastika.Cms.Lib.ViewModels.FrontEnd
         {
         }
 
-        #endregion
+        #endregion Contructors
 
         #region Overrides
 
@@ -170,14 +204,14 @@ namespace Swastika.Cms.Lib.ViewModels.FrontEnd
                         this.Modules.Add(getModules.Data);
                     }
                 }
-                
             }
         }
 
-        #endregion
+        #endregion Overrides
 
         #region Expands
-        void GenerateSEO()
+
+        private void GenerateSEO()
         {
             if (string.IsNullOrEmpty(this.SeoName))
             {
@@ -199,7 +233,7 @@ namespace Swastika.Cms.Lib.ViewModels.FrontEnd
                 this.SeoKeywords = SEOHelper.GetSEOString(this.Title);
             }
         }
-        #endregion
 
+        #endregion Expands
     }
 }

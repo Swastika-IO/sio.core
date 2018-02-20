@@ -1,35 +1,38 @@
-﻿using Microsoft.EntityFrameworkCore.Storage;
-using Swastika.Domain.Data.ViewModels;
+﻿// Licensed to the Swastika I/O Foundation under one or more agreements.
+// The Swastika I/O Foundation licenses this file to you under the GNU General Public License v3.0 license.
+// See the LICENSE file in the project root for more information.
+
+using Microsoft.EntityFrameworkCore.Storage;
 using Swastika.Cms.Lib.Models.Cms;
 using Swastika.Cms.Lib.Services;
-using System.ComponentModel.DataAnnotations;
 using Swastika.Domain.Core.ViewModels;
+using Swastika.Domain.Data.ViewModels;
+using System.ComponentModel.DataAnnotations;
 using System.Threading.Tasks;
 
 namespace Swastika.Cms.Lib.ViewModels
 {
-    public class ConfigurationViewModel:
+    public class ConfigurationViewModel :
         ViewModelBase
         <SiocCmsContext, SiocConfiguration, ConfigurationViewModel>
     {
         [Required]
         public string Keyword { get; set; }
+
         public string Category { get; set; }
         public string Value { get; set; }
-        public  SWCmsConstants.DataType DataType { get; set; }
+        public SWCmsConstants.DataType DataType { get; set; }
         public string Description { get; set; }
 
-
-        public ConfigurationViewModel(): base()
+        public ConfigurationViewModel() : base()
         {
         }
 
         public ConfigurationViewModel(
             SiocConfiguration model
-            , SiocCmsContext _context = null, IDbContextTransaction _transaction = null) 
+            , SiocCmsContext _context = null, IDbContextTransaction _transaction = null)
             : base(model, _context, _transaction)
         {
-            
         }
 
         #region Overrides
@@ -46,7 +49,7 @@ namespace Swastika.Cms.Lib.ViewModels
 
         public override RepositoryResponse<ConfigurationViewModel> SaveModel(bool isSaveSubModels = false, SiocCmsContext _context = null, IDbContextTransaction _transaction = null)
         {
-            var result =base.SaveModel(isSaveSubModels, _context, _transaction);
+            var result = base.SaveModel(isSaveSubModels, _context, _transaction);
             if (result.IsSucceed)
             {
                 GlobalConfigurationService.Instance.Refresh();
@@ -63,6 +66,7 @@ namespace Swastika.Cms.Lib.ViewModels
             }
             return result;
         }
-        #endregion
+
+        #endregion Overrides
     }
 }

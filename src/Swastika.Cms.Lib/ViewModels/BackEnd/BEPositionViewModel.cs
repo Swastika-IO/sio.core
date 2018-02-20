@@ -1,15 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using Swastika.Cms.Lib.Models.Cms;
-using Swastika.Domain.Data.ViewModels;
+﻿// Licensed to the Swastika I/O Foundation under one or more agreements.
+// The Swastika I/O Foundation licenses this file to you under the GNU General Public License v3.0 license.
+// See the LICENSE file in the project root for more information.
+
 using Microsoft.EntityFrameworkCore.Storage;
 using Newtonsoft.Json;
-using Swastika.Common.Helper;
-using Swastika.Domain.Core.ViewModels;
-using Swastika.Cms.Lib.ViewModels.Info;
-using System.Threading.Tasks;
-using Swastika.Cms.Lib.ViewModels.FrontEnd;
+using Swastika.Cms.Lib.Models.Cms;
+using Swastika.Domain.Data.ViewModels;
 
 namespace Swastika.Cms.Lib.ViewModels.BackEnd
 {
@@ -19,17 +15,16 @@ namespace Swastika.Cms.Lib.ViewModels.BackEnd
         #region Properties
 
         #region Models
+
         [JsonProperty("id")]
         public int Id { get; set; }
+
         [JsonProperty("description")]
         public string Description { get; set; }
-        #endregion
 
-        #region Views
-       
-        #endregion
+        #endregion Models
 
-        #endregion
+        #endregion Properties
 
         #region Contructors
 
@@ -41,6 +36,6 @@ namespace Swastika.Cms.Lib.ViewModels.BackEnd
         {
         }
 
-        #endregion
+        #endregion Contructors
     }
 }

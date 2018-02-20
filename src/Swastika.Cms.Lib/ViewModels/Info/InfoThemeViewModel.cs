@@ -1,18 +1,14 @@
-﻿using System;
-using System.Collections.Generic;
-using Swastika.Cms.Lib.Models.Cms;
-using Swastika.Domain.Data.ViewModels;
+﻿// Licensed to the Swastika I/O Foundation under one or more agreements.
+// The Swastika I/O Foundation licenses this file to you under the GNU General Public License v3.0 license.
+// See the LICENSE file in the project root for more information.
+
+using Microsoft.AspNetCore.Http;
 using Microsoft.EntityFrameworkCore.Storage;
 using Newtonsoft.Json;
-using System.ComponentModel.DataAnnotations;
-using Swastika.Cms.Lib;
-using Swastika.Cms.Lib.Services;
-using Swastika.Domain.Core.ViewModels;
-using System.Threading.Tasks;
+using Swastika.Cms.Lib.Models.Cms;
 using Swastika.Common.Helper;
-using Swastika.Cms.Lib.Repositories;
-using Microsoft.AspNetCore.Http;
-using System.Linq;
+using Swastika.Domain.Data.ViewModels;
+using System;
 
 namespace Swastika.Cms.Lib.ViewModels.Info
 {

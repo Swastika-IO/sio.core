@@ -225,7 +225,7 @@ namespace Swastika.Messenger.Lib.ViewModels.Messenger
                 }
 
             }
-            catch (Exception ex)
+            catch (Exception ex) // TODO: Add more specific exeption types instead of Exception only
             {
                 transaction.Rollback();
                 result.Exception = ex;

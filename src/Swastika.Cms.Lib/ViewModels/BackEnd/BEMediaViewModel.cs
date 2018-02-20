@@ -1,13 +1,16 @@
-﻿using System;
-using Swastika.Domain.Data.ViewModels;
+﻿// Licensed to the Swastika I/O Foundation under one or more agreements.
+// The Swastika I/O Foundation licenses this file to you under the GNU General Public License v3.0 license.
+// See the LICENSE file in the project root for more information.
+
 using Microsoft.EntityFrameworkCore.Storage;
 using Newtonsoft.Json;
 using Swastika.Cms.Lib.Models.Cms;
-using Swastika.Domain.Core.ViewModels;
-using System.Linq.Expressions;
 using Swastika.Cms.Lib.Repositories;
-using System.Threading.Tasks;
 using Swastika.Cms.Lib.Services;
+using Swastika.Domain.Core.ViewModels;
+using Swastika.Domain.Data.ViewModels;
+using System;
+using System.Threading.Tasks;
 
 namespace Swastika.Cms.Lib.ViewModels.BackEnd
 {
@@ -15,32 +18,46 @@ namespace Swastika.Cms.Lib.ViewModels.BackEnd
         : ViewModelBase<SiocCmsContext, SiocMedia, BEMediaViewModel>
     {
         #region Properties
+
         #region Models
+
         [JsonProperty("id")]
         public int Id { get; set; }
+
         [JsonProperty("extension")]
         public string Extension { get; set; }
+
         [JsonProperty("fileFolder")]
         public string FileFolder { get; set; }
+
         [JsonProperty("fileName")]
         public string FileName { get; set; }
+
         [JsonProperty("fileType")]
         public string FileType { get; set; }
+
         [JsonProperty("fileSize")]
         public int FileSize { get; set; }
+
         [JsonProperty("title")]
         public string Title { get; set; }
+
         [JsonProperty("description")]
         public string Description { get; set; }
+
         [JsonProperty("createdDateTime")]
         public DateTime CreatedDateTime { get; set; }
+
         [JsonProperty("lastModified")]
         public DateTime? LastModified { get; set; }
+
         [JsonProperty("modifiedBy")]
         public string ModifiedBy { get; set; }
-        #endregion
+
+        #endregion Models
 
         #region Views
+
         [JsonProperty("domain")]
         public string Domain { get { return GlobalConfigurationService.Instance.GetLocalString("Domain", Specificulture, "/"); } }
 
@@ -57,9 +74,9 @@ namespace Swastika.Cms.Lib.ViewModels.BackEnd
             }
         }
 
-        #endregion
+        #endregion Views
 
-        #endregion
+        #endregion Properties
 
         #region Contructors
 
@@ -72,9 +89,10 @@ namespace Swastika.Cms.Lib.ViewModels.BackEnd
         {
         }
 
-        #endregion
+        #endregion Contructors
 
         #region Overrides
+
         public override SiocMedia ParseModel()
         {
             if (Id == 0)
@@ -84,33 +102,32 @@ namespace Swastika.Cms.Lib.ViewModels.BackEnd
             }
             return base.ParseModel();
         }
+
         public override void ExpandView(SiocCmsContext _context = null, IDbContextTransaction _transaction = null)
         {
             IsClone = true;
             ListSupportedCulture = GlobalLanguageService.ListSupportedCulture;
             this.ListSupportedCulture.ForEach(c => c.IsSupported = true);
         }
-      
+
         public override RepositoryResponse<bool> RemoveRelatedModels(BEMediaViewModel view, SiocCmsContext _context = null, IDbContextTransaction _transaction = null)
         {
-            var result = new RepositoryResponse<bool>();
-
-            result.IsSucceed = FileRepository.Instance.DeleteFile(FileName, Extension, FileFolder);
+            var result = new RepositoryResponse<bool>
+            {
+                IsSucceed = FileRepository.Instance.DeleteFile(FileName, Extension, FileFolder)
+            };
             return result;
         }
 
         public override async Task<RepositoryResponse<bool>> RemoveRelatedModelsAsync(BEMediaViewModel view, SiocCmsContext _context = null, IDbContextTransaction _transaction = null)
         {
-            var result = new RepositoryResponse<bool>();
-
-            result.IsSucceed = FileRepository.Instance.DeleteFile(FileName, Extension, FileFolder);
+            var result = new RepositoryResponse<bool>
+            {
+                IsSucceed = FileRepository.Instance.DeleteFile(FileName, Extension, FileFolder)
+            };
             return result;
         }
-        #endregion
 
-        #region Expands
-
-        #endregion
-
+        #endregion Overrides
     }
 }

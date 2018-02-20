@@ -1,14 +1,17 @@
-﻿using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Mvc;
-using Swastika.Cms.Mvc.Controllers;
+﻿// Licensed to the Swastika I/O Foundation under one or more agreements.
+// The Swastika I/O Foundation licenses this file to you under the GNU General Public License v3.0 license.
+// See the LICENSE file in the project root for more information.
+
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using Swastika.Domain.Core.ViewModels;
-using Swastika.Cms.Lib.ViewModels;
-using Swastika.Cms.Lib.Models;
-using Swastika.Cms.Lib.Services;
 using Swastika.Cms.Lib.Models.Cms;
+using Swastika.Cms.Lib.Services;
+using Swastika.Cms.Lib.ViewModels;
+using Swastika.Cms.Mvc.Controllers;
+using Swastika.Domain.Core.ViewModels;
+using System.Linq;
+using System.Threading.Tasks;
 
 namespace Swastika.Cms.Mvc.Areas.Portal.Controllers
 {
@@ -27,8 +30,8 @@ namespace Swastika.Cms.Mvc.Areas.Portal.Controllers
             //_appService = service;
         }
 
-
         #region Configurations
+
         [HttpGet]
         [Route("")]
         [Route("Configurations")]
@@ -48,6 +51,7 @@ namespace Swastika.Cms.Mvc.Areas.Portal.Controllers
             //pageSize, pageIndex, Swastika.Cms.Lib.SWCmsConstants.ViewModelType.FrontEnd);
             return View(pagingPages);
         }
+
         // GET: Configuration/Create
         [HttpGet]
         [Route("Configurations/Create")]
@@ -55,15 +59,15 @@ namespace Swastika.Cms.Mvc.Areas.Portal.Controllers
         {
             ConfigurationViewModel ttsConfiguration = new ConfigurationViewModel(
                 new SiocConfiguration()
-            {
-                //Id = ConfigurationRepository.GetInstance().GetNextId()
-                Specificulture = _lang
-            });
+                {
+                    //Id = ConfigurationRepository.GetInstance().GetNextId()
+                    Specificulture = _lang
+                });
             return View(ttsConfiguration);
         }
 
         // POST: Configuration/Create
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
+        // To protect from overposting attacks, please enable the specific properties you want to bind to, for
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [Route("Configurations/Create")]
         [HttpPost]
@@ -109,19 +113,17 @@ namespace Swastika.Cms.Mvc.Areas.Portal.Controllers
         }
 
         // POST: Configuration/Edit/5
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
+        // To protect from overposting attacks, please enable the specific properties you want to bind to, for
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [Route("Configurations/Edit/{id}")]
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> EditConfiguration(string id, ConfigurationViewModel ttsConfiguration)
         {
-            
             if (ModelState.IsValid)
             {
                 try
                 {
-
                     var result = await ttsConfiguration.SaveModelAsync(); //_repo.EditModelAsync(ttsConfiguration.ParseModel());
                     if (result.IsSucceed)
                     {
@@ -155,6 +157,7 @@ namespace Swastika.Cms.Mvc.Areas.Portal.Controllers
             }
             return RedirectToAction("Configurations");
         }
-        #endregion
+
+        #endregion Configurations
     }
 }

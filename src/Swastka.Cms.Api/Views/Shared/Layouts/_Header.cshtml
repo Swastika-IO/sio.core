@@ -23,11 +23,11 @@
                     <div class="top-number">
                         <p>
                         <span>
-                            <i class="fa fa-phone-square"></i>  
+                            <i class="fa fa-phone-square"></i>
                             @LocalizerService.GetLocalString("Phone", ViewBag.culture)
                             </span>
                             <!--
-                            <a href="mailto:@LocalizerService.GetLocalString("Email", ViewBag.culture)" style="color: #fff;"><i class="fa fa-envelope-square"></i>  @LocalizerService.GetLocalString("Email", ViewBag.culture)</a> 
+                            <a href="mailto:@LocalizerService.GetLocalString("Email", ViewBag.culture)" style="color: #fff;"><i class="fa fa-envelope-square"></i>  @LocalizerService.GetLocalString("Email", ViewBag.culture)</a>
                             -->
                         </p>
                     </div>
@@ -40,7 +40,6 @@
                             await Html.RenderPartialAsync(socialModule.Template, socialModule);
                         }
                         @Html.Partial("_PartialSelectLanguage")
-
 
                         <!-- <div class="search">
                             <form role="form" asp-controller="Home" asp-action="Search">
@@ -112,22 +111,8 @@
                         }
 
                     }
-
                 </ul>
-
             </div>
         </div><!--/.container-->
     </nav><!--/nav-->
-
 </header><!--/header-->
-
-
-
-
-
-
-
-
-
-
-

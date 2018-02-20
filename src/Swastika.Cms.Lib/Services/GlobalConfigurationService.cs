@@ -1,17 +1,18 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿// Licensed to the Swastika I/O Foundation under one or more agreements.
+// The Swastika I/O Foundation licenses this file to you under the GNU General Public License v3.0 license.
+// See the LICENSE file in the project root for more information.
+
+using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Storage;
 using Microsoft.Extensions.Configuration;
-using Swastika.Cms.Lib.Models.Cms;
 using Swastika.Cms.Lib.Models.Account;
+using Swastika.Cms.Lib.Models.Cms;
 using Swastika.Cms.Lib.Repositories;
 using Swastika.Cms.Lib.ViewModels;
 using Swastika.Cms.Lib.ViewModels.BackEnd;
-using Swastika.Domain.Core.Models;
-using Swastika.Identity.Data;
 using Swastika.Common.Helper;
 using System.Collections.Generic;
 using System.Linq;
-using Newtonsoft.Json.Linq;
 
 namespace Swastika.Cms.Lib.Services
 {
@@ -21,7 +22,7 @@ namespace Swastika.Cms.Lib.Services
         public string Culture { get; set; }
         public string Name { get; set; }
         public bool IsInit { get; set; }
-       
+
         public string ConnectionString
         {
             get
@@ -33,7 +34,9 @@ namespace Swastika.Cms.Lib.Services
                 _connectionString = value;
             }
         }
+
         private static List<ConfigurationViewModel> _listConfiguration;
+
         public static List<ConfigurationViewModel> ListConfiguration
         {
             get
@@ -49,9 +52,6 @@ namespace Swastika.Cms.Lib.Services
                 _listConfiguration = value;
             }
         }
-
-
-
 
         //private static List<SupportedCulture> _listSupportedLanguage;
         //public static List<SupportedCulture> ListSupportedCulture
@@ -70,6 +70,7 @@ namespace Swastika.Cms.Lib.Services
         //    }
         //}
         private static GlobalConfigurationService _instance;
+
         public static GlobalConfigurationService Instance
         {
             get
@@ -93,6 +94,7 @@ namespace Swastika.Cms.Lib.Services
             //InitCultures();
             //InitConfigurations();
         }
+
         public string GetConnectionString()
         {
             if (!string.IsNullOrEmpty(ConnectionString))
@@ -105,6 +107,7 @@ namespace Swastika.Cms.Lib.Services
                 return ConnectionString;
             }
         }
+
         public bool InitConnectionString()
         {
             {
@@ -113,7 +116,6 @@ namespace Swastika.Cms.Lib.Services
                     if (string.IsNullOrEmpty(ConnectionString))
                     {
                         ConnectionString = GetConfigConnectionKey();
-
 
                         //if (string.IsNullOrEmpty(ConnectionString))
                         //{
@@ -136,9 +138,9 @@ namespace Swastika.Cms.Lib.Services
                 {
                     return false;
                 }
-
             }
         }
+
         public string GetConfigConnectionKey()
         {
             IConfiguration configuration = new ConfigurationBuilder()
@@ -178,21 +180,44 @@ namespace Swastika.Cms.Lib.Services
                         cnn.SaveModel(_context: context, _transaction: transaction);
                     }
 
+                    // EN-US
                     var getCulture = CultureViewModel.Repository.GetSingleModel(
-                        c => c.Specificulture == "vi-vn",
-                        _context: context, _transaction: transaction);
+                        c => c.Specificulture == "en-us",
+                        _context: context,
+                        _transaction: transaction);
+
                     if (!getCulture.IsSucceed)
                     {
-                        CultureViewModel viCulture = new CultureViewModel()
+                        CultureViewModel cultureViewModel = new CultureViewModel()
+                        {
+                            Specificulture = "en-us",
+                            FullName = "United States",
+                            Description = "United States",
+                            Icon = "flag-icon-us",
+                            Alias = "US"
+                        };
+                        cultureViewModel.SaveModel(_context: context, _transaction: transaction);
+                    }
+
+                    // VI-VN
+                    getCulture = CultureViewModel.Repository.GetSingleModel(
+                        c => c.Specificulture == "vi-vn",
+                        _context: context,
+                        _transaction: transaction);
+
+                    if (!getCulture.IsSucceed)
+                    {
+                        CultureViewModel cultureViewModel = new CultureViewModel()
                         {
                             Specificulture = "vi-vn",
                             FullName = "Vietnam",
                             Description = "Việt Nam",
                             Icon = "flag-icon-vn",
-                            Alias = "Vietnam"
+                            Alias = "VN"
                         };
-                        viCulture.SaveModel(_context: context, _transaction: transaction);
+                        cultureViewModel.SaveModel(_context: context, _transaction: transaction);
                     }
+
                     var getPosition = BEPositionViewModel.Repository.GetModelList(_context: context, _transaction: transaction);
                     if (!getPosition.IsSucceed || getPosition.Data.Count == 0)
                     {
@@ -241,8 +266,7 @@ namespace Swastika.Cms.Lib.Services
                     IsInit = true;
                 }
             }
-            // TODO: Add more specific exeption types instead of Exception only
-            catch
+            catch // TODO: Add more specific exeption types instead of Exception only
             {
                 IsInit = false;
                 if (transaction != null)
@@ -250,7 +274,6 @@ namespace Swastika.Cms.Lib.Services
                     transaction.Rollback();
                 }
             }
-
             finally
             {
                 if (context != null)
@@ -261,9 +284,7 @@ namespace Swastika.Cms.Lib.Services
                 {
                     accountContext.Dispose();
                 }
-
             }
-
         }
 
         //public SupportedCulture GetCulture(string specificulture)
@@ -293,7 +314,6 @@ namespace Swastika.Cms.Lib.Services
         //    _listSupportedLanguage = new List<SupportedCulture>();
         //    if (getCultures.IsSucceed)
         //    {
-               
         //        foreach (var culture in getCultures.Data)
         //        {
         //            _listSupportedLanguage.Add(
@@ -308,13 +328,12 @@ namespace Swastika.Cms.Lib.Services
         //                    Lcid = culture.Lcid
         //                });
 
-                   
         //        }
         //    }
 
         //}
 
-        static void InitConfigurations(SiocCmsContext _context = null, IDbContextTransaction _transaction = null)
+        private static void InitConfigurations(SiocCmsContext _context = null, IDbContextTransaction _transaction = null)
         {
             var getConfigurations = ConfigurationViewModel.Repository.GetModelList(_context, _transaction);
             _listConfiguration = getConfigurations.Data ?? new List<ConfigurationViewModel>();

@@ -207,7 +207,7 @@ namespace Messenger.Lib.SignalR.Hubs
         //    //    }
 
         //    //}
-        //    //catch (Exception ex)
+        //    //catch (Exception ex) // TODO: Add more specific exeption types instead of Exception only
         //    //{
         //    //    result = new ApiResult<TeamChatViewModel>()
         //    //    {
@@ -263,7 +263,7 @@ namespace Messenger.Lib.SignalR.Hubs
         //        }
 
         //    }
-        //    catch (Exception ex)
+        //    catch (Exception ex) // TODO: Add more specific exeption types instead of Exception only
         //    {
         //        result = new ApiResult<TeamChatViewModel>()
         //        {
@@ -411,7 +411,7 @@ namespace Messenger.Lib.SignalR.Hubs
         //            Errors = null
         //        };
         //    }
-        //    catch (Exception ex)
+        //    catch (Exception ex) // TODO: Add more specific exeption types instead of Exception only
         //    {
         //        result = new ApiResult<PaginationModel<TeamChatViewModel>>()
         //        {
@@ -550,7 +550,7 @@ namespace Messenger.Lib.SignalR.Hubs
         //        }
 
         //    }
-        //    catch (Exception ex)
+        //    catch (Exception ex) // TODO: Add more specific exeption types instead of Exception only
         //    {
         //        result = new ApiResult<bool>()
         //        {
@@ -609,7 +609,7 @@ namespace Messenger.Lib.SignalR.Hubs
         //            }
         //        }
         //    }
-        //    catch (Exception ex)
+        //    catch (Exception ex) // TODO: Add more specific exeption types instead of Exception only
         //    {
         //        result = new ApiResult<TeamMessageViewModel>()
         //        {

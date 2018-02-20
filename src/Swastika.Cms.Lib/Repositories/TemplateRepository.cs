@@ -1,5 +1,9 @@
-﻿using Swastika.Common.Helper;
+﻿// Licensed to the Swastika I/O Foundation under one or more agreements.
+// The Swastika I/O Foundation licenses this file to you under the GNU General Public License v3.0 license.
+// See the LICENSE file in the project root for more information.
+
 using Swastika.Cms.Lib.ViewModels;
+using Swastika.Common.Helper;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -62,7 +66,6 @@ namespace Swastika.Cms.Lib.Repositories
             TemplateViewModel result = null;
             if (file != null)
             {
-
                 using (StreamReader s = file.OpenText())
                 {
                     result = new TemplateViewModel()
@@ -72,7 +75,6 @@ namespace Swastika.Cms.Lib.Repositories
                         Extension = file.Extension,
                         Content = s.ReadToEnd()
                     };
-
                 }
             }
             result = result ?? new TemplateViewModel() { FileFolder = templateFolder.ToString() };
@@ -114,13 +116,11 @@ namespace Swastika.Cms.Lib.Repositories
                         Extension = SWCmsConstants.Parameters.TemplateExtension,
                         Content = s.ReadToEnd()
                     });
-
                 }
             }
             return result;
         }
 
-      
         public bool SaveTemplate(TemplateViewModel file)
         {
             try

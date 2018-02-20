@@ -1,20 +1,20 @@
-﻿using System;
-using System.Collections.Generic;
-using Swastika.Cms.Lib.Models.Cms;
-using Swastika.Domain.Data.ViewModels;
+﻿// Licensed to the Swastika I/O Foundation under one or more agreements.
+// The Swastika I/O Foundation licenses this file to you under the GNU General Public License v3.0 license.
+// See the LICENSE file in the project root for more information.
+
 using Microsoft.EntityFrameworkCore.Storage;
 using Newtonsoft.Json;
-using System.ComponentModel.DataAnnotations;
-using Swastika.Cms.Lib;
 using Newtonsoft.Json.Linq;
-using Swastika.Common.Helper;
-using System.Linq;
-using Swastika.Cms.Lib.ViewModels;
-using Swastika.Cms.Lib.Services;
-using Swastika.Domain.Core.ViewModels;
+using Swastika.Cms.Lib.Models.Cms;
 using Swastika.Cms.Lib.Repositories;
+using Swastika.Cms.Lib.Services;
+using Swastika.Common.Helper;
+using Swastika.Domain.Core.ViewModels;
+using Swastika.Domain.Data.ViewModels;
+using System;
+using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
-using Swastika.Cms.Lib.ViewModels.FrontEnd;
 
 namespace Swastika.Cms.Lib.ViewModels.Info
 {
@@ -24,34 +24,45 @@ namespace Swastika.Cms.Lib.ViewModels.Info
         #region Properties
 
         #region Models
+
         [JsonProperty("id")]
         public string Id { get; set; }
+
         [JsonProperty("moduleId")]
         public int ModuleId { get; set; }
+
         [JsonProperty("fields")]
         public string Fields { get; set; } = "[]";
+
         [JsonProperty("value")]
         public string Value { get; set; }
+
         [JsonProperty("articleId")]
         public string ArticleId { get; set; }
+
         [JsonProperty("productId")]
         public string ProductId { get; set; }
+
         [JsonProperty("categoryId")]
         public int? CategoryId { get; set; }
+
         [JsonProperty("createdDateTime")]
         public DateTime CreatedDateTime { get; set; }
+
         [JsonProperty("updatedDateTime")]
         public DateTime? UpdatedDateTime { get; set; }
 
-        #endregion
+        #endregion Models
 
         #region Views
+
         public List<ModuleDataValueViewModel> DataProperties { get; set; }
         public List<ModuleFieldViewModel> Columns { get; set; }
         public JObject JItem { get { return ParseJson(); } }
-        #endregion
 
-        #endregion
+        #endregion Views
+
+        #endregion Properties
 
         #region Contructors
 
@@ -63,9 +74,10 @@ namespace Swastika.Cms.Lib.ViewModels.Info
         {
         }
 
-        #endregion
+        #endregion Contructors
 
         #region Overrides
+
         public override SiocModuleData ParseModel()
         {
             if (string.IsNullOrEmpty(Id))
@@ -76,6 +88,7 @@ namespace Swastika.Cms.Lib.ViewModels.Info
             Value = ParseObjectValue();
             return base.ParseModel();
         }
+
         public override void ExpandView(SiocCmsContext _context = null, IDbContextTransaction _transaction = null)
         {
             IsClone = true;
@@ -119,7 +132,7 @@ namespace Swastika.Cms.Lib.ViewModels.Info
                     prop = new JProperty(col.Name, val);
                 }
                 //foreach (var prop in objValue.Properties())
-                //{               
+                //{
                 var dataVal = new ModuleDataValueViewModel()
                 {
                     ModuleId = ModuleId,
@@ -136,6 +149,7 @@ namespace Swastika.Cms.Lib.ViewModels.Info
                     case SWCmsConstants.DataType.Boolean:
                         dataVal.Value = !string.IsNullOrEmpty(prop.Value["value"].ToString()) ? prop.Value["value"].Value<bool>() : false;
                         break;
+
                     case SWCmsConstants.DataType.String:
                     case SWCmsConstants.DataType.Image:
                     case SWCmsConstants.DataType.Icon:
@@ -169,13 +183,12 @@ namespace Swastika.Cms.Lib.ViewModels.Info
             return result;
         }
 
-        #endregion
+        #endregion Sync
 
         #region ASync
 
         public override async Task<RepositoryResponse<bool>> RemoveModelAsync(bool isRemoveRelatedModels = false, SiocCmsContext _context = null, IDbContextTransaction _transaction = null)
         {
-           
             var result = await base.RemoveModelAsync(isRemoveRelatedModels, _context, _transaction);
             if (result.IsSucceed)
             {
@@ -189,17 +202,18 @@ namespace Swastika.Cms.Lib.ViewModels.Info
             }
             return result;
         }
-        #endregion
-        #endregion
 
+        #endregion ASync
+
+        #endregion Overrides
 
         #region Expands
+
         public string ParseObjectValue()
         {
             JObject result = new JObject();
             foreach (var prop in DataProperties)
             {
-                
                 JObject obj = new JObject();
                 obj.Add(new JProperty("dataType", prop.DataType));
                 obj.Add(new JProperty("value", prop.StringValue));
@@ -249,13 +263,8 @@ namespace Swastika.Cms.Lib.ViewModels.Info
             };
             //result.Add(new JProperty("model", model));
             return result;
-
         }
 
-
-        #endregion
-
+        #endregion Expands
     }
-
-    
 }

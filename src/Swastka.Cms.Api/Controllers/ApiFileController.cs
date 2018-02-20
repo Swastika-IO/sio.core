@@ -1,11 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Http;
+﻿// Licensed to the Swastika I/O Foundation under one or more agreements.
+// The Swastika I/O Foundation licenses this file to you under the GNU General Public License v3.0 license.
+// See the LICENSE file in the project root for more information.
+
 using Microsoft.AspNetCore.Mvc;
 using Swastika.Api.Controllers;
-using Swastika.Cms.Lib.Models;
 using Swastika.Cms.Lib.Repositories;
 using Swastika.Cms.Lib.ViewModels;
 
@@ -15,8 +13,7 @@ namespace Swastka.IO.Cms.Api.Controllers
     [Route("api/file")]
     public class ApiFileController : BaseApiController
     {
-
-        // POST api/values        
+        // POST api/values
         /// <summary>
         /// Uploads the image.
         /// </summary>

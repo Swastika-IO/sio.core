@@ -1,15 +1,18 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿// Licensed to the Swastika I/O Foundation under one or more agreements.
+// The Swastika I/O Foundation licenses this file to you under the GNU General Public License v3.0 license.
+// See the LICENSE file in the project root for more information.
+
+using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Storage;
 using Swastika.Cms.Lib.Models.Cms;
 using Swastika.Cms.Lib.ViewModels;
-using Swastika.Domain.Core.Models;
+using Swastika.Cms.Lib.ViewModels.BackEnd;
+using Swastika.Cms.Lib.ViewModels.Info;
+using Swastika.Cms.Lib.ViewModels.Navigation;
+using Swastika.Domain.Core.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using Swastika.Domain.Core.ViewModels;
-using Swastika.Cms.Lib.ViewModels.Info;
-using Swastika.Cms.Lib.ViewModels.BackEnd;
-using Swastika.Cms.Lib.ViewModels.Navigation;
 
 namespace Swastika.Cms.Lib.Repositories
 {
@@ -18,7 +21,9 @@ namespace Swastika.Cms.Lib.Repositories
         private static volatile CommonRepository instance;
         private static object syncRoot = new Object();
 
-        private CommonRepository() { }
+        private CommonRepository()
+        {
+        }
 
         public static CommonRepository Instance
         {
@@ -41,17 +46,20 @@ namespace Swastika.Cms.Lib.Repositories
 
         #region Category-Article Navigator
 
-
-        public RepositoryResponse<List<CategoryArticleViewModel>> GetCategoryArticleNav(string articleId, string specificulture
-            , SiocCmsContext _context = null, IDbContextTransaction _transaction = null)
+        public RepositoryResponse<List<CategoryArticleViewModel>> GetCategoryArticleNav(
+            string articleId,
+            string specificulture,
+            SiocCmsContext _context = null,
+            IDbContextTransaction _transaction = null)
         {
             SiocCmsContext context = _context ?? new SiocCmsContext();
             var transaction = _transaction ?? context.Database.BeginTransaction();
             try
             {
                 var result = context.SiocCategory.Include(cp => cp.SiocCategoryArticle)
-                    .Where(a => a.Specificulture == specificulture 
-                    && (a.Type == (int)SWCmsConstants.CateType.List || a.Type == (int)SWCmsConstants.CateType.Home))
+                    .Where(a => a.Specificulture == specificulture
+                                && (a.Type == (int)SWCmsConstants.CateType.List
+                                || a.Type == (int)SWCmsConstants.CateType.Home))
                     .Select(p => new CategoryArticleViewModel(
                         new SiocCategoryArticle()
                         {
@@ -70,7 +78,7 @@ namespace Swastika.Cms.Lib.Repositories
                     Data = result.ToList()
                 };
             }
-            catch (Exception ex)
+            catch (Exception ex) // TODO: Add more specific exeption types instead of Exception only
             {
                 if (_transaction == null)
                 {
@@ -120,7 +128,7 @@ namespace Swastika.Cms.Lib.Repositories
                     Data = await result.ToListAsync()
                 };
             }
-            catch (Exception ex)
+            catch (Exception ex) // TODO: Add more specific exeption types instead of Exception only
             {
                 if (_transaction == null)
                 {
@@ -144,10 +152,9 @@ namespace Swastika.Cms.Lib.Repositories
             }
         }
 
-        #endregion
+        #endregion Category-Article Navigator
 
         #region Module-Article Navigator
-
 
         public RepositoryResponse<List<ModuleArticleViewModel>> GetModuleArticleNav(string articleId, string specificulture
             , SiocCmsContext _context = null, IDbContextTransaction _transaction = null)
@@ -177,7 +184,7 @@ namespace Swastika.Cms.Lib.Repositories
                     Data = result.ToList()
                 };
             }
-            catch (Exception ex)
+            catch (Exception ex) // TODO: Add more specific exeption types instead of Exception only
             {
                 if (_transaction == null)
                 {
@@ -229,7 +236,7 @@ namespace Swastika.Cms.Lib.Repositories
                     Data = await result.ToListAsync()
                 };
             }
-            catch (Exception ex)
+            catch (Exception ex) // TODO: Add more specific exeption types instead of Exception only
             {
                 if (_transaction == null)
                 {
@@ -253,10 +260,9 @@ namespace Swastika.Cms.Lib.Repositories
             }
         }
 
-        #endregion
+        #endregion Module-Article Navigator
 
         #region Article-Module Navigator
-
 
         public RepositoryResponse<List<BEArticleModuleViewModel>> GetArticleModuleNav(string articleId, string specificulture
             , SiocCmsContext _context = null, IDbContextTransaction _transaction = null)
@@ -279,7 +285,6 @@ namespace Swastika.Cms.Lib.Repositories
 
                          _context, _transaction)
                      {
-
                          IsActived = p.SiocArticleModule.Count(cp => cp.ArticleId == articleId && cp.Specificulture == specificulture) > 0,
                          Description = p.Title
                      });
@@ -289,7 +294,7 @@ namespace Swastika.Cms.Lib.Repositories
                     Data = result.ToList()
                 };
             }
-            catch (Exception ex)
+            catch (Exception ex) // TODO: Add more specific exeption types instead of Exception only
             {
                 if (_transaction == null)
                 {
@@ -330,7 +335,6 @@ namespace Swastika.Cms.Lib.Repositories
                             ArticleId = articleId,
                             ModuleId = p.Id,
                             Specificulture = specificulture,
-
                         },
 
                         _context, _transaction)
@@ -344,7 +348,7 @@ namespace Swastika.Cms.Lib.Repositories
                     Data = await result.ToListAsync()
                 };
             }
-            catch (Exception ex)
+            catch (Exception ex) // TODO: Add more specific exeption types instead of Exception only
             {
                 if (_transaction == null)
                 {
@@ -368,14 +372,13 @@ namespace Swastika.Cms.Lib.Repositories
             }
         }
 
-        #endregion
+        #endregion Article-Module Navigator
 
-        #endregion
+        #endregion Article
 
         #region Product
 
         #region Category-Product Navigator
-
 
         public RepositoryResponse<List<NavCategoryProductViewModel>> GetCategoryProductNav(string ProductId, string specificulture
             , SiocCmsContext _context = null, IDbContextTransaction _transaction = null)
@@ -385,7 +388,7 @@ namespace Swastika.Cms.Lib.Repositories
             try
             {
                 var result = context.SiocCategory.Include(cp => cp.SiocCategoryProduct)
-                    .Where(a => a.Specificulture == specificulture 
+                    .Where(a => a.Specificulture == specificulture
                     && a.Type == (int)SWCmsConstants.CateType.ListProduct)
                     .Select(p => new NavCategoryProductViewModel(
                         new SiocCategoryProduct()
@@ -405,7 +408,7 @@ namespace Swastika.Cms.Lib.Repositories
                     Data = result.ToList()
                 };
             }
-            catch (Exception ex)
+            catch (Exception ex) // TODO: Add more specific exeption types instead of Exception only
             {
                 if (_transaction == null)
                 {
@@ -455,7 +458,7 @@ namespace Swastika.Cms.Lib.Repositories
                     Data = await result.ToListAsync()
                 };
             }
-            catch (Exception ex)
+            catch (Exception ex) // TODO: Add more specific exeption types instead of Exception only
             {
                 if (_transaction == null)
                 {
@@ -479,10 +482,9 @@ namespace Swastika.Cms.Lib.Repositories
             }
         }
 
-        #endregion
+        #endregion Category-Product Navigator
 
         #region Module-Product Navigator
-
 
         public RepositoryResponse<List<NavModuleProductViewModel>> GetModuleProductNav(string ProductId, string specificulture
             , SiocCmsContext _context = null, IDbContextTransaction _transaction = null)
@@ -512,7 +514,7 @@ namespace Swastika.Cms.Lib.Repositories
                     Data = result.ToList()
                 };
             }
-            catch (Exception ex)
+            catch (Exception ex) // TODO: Add more specific exeption types instead of Exception only
             {
                 if (_transaction == null)
                 {
@@ -564,7 +566,7 @@ namespace Swastika.Cms.Lib.Repositories
                     Data = await result.ToListAsync()
                 };
             }
-            catch (Exception ex)
+            catch (Exception ex) // TODO: Add more specific exeption types instead of Exception only
             {
                 if (_transaction == null)
                 {
@@ -588,10 +590,9 @@ namespace Swastika.Cms.Lib.Repositories
             }
         }
 
-        #endregion
+        #endregion Module-Product Navigator
 
         #region Product-Module Navigator
-
 
         public RepositoryResponse<List<NavProductModuleViewModel>> GetProductModuleNav(string ProductId, string specificulture
             , SiocCmsContext _context = null, IDbContextTransaction _transaction = null)
@@ -614,7 +615,6 @@ namespace Swastika.Cms.Lib.Repositories
 
                          _context, _transaction)
                      {
-
                          IsActived = p.SiocProductModule.Count(cp => cp.ProductId == ProductId && cp.Specificulture == specificulture) > 0,
                          Description = p.Title
                      });
@@ -624,7 +624,7 @@ namespace Swastika.Cms.Lib.Repositories
                     Data = result.ToList()
                 };
             }
-            catch (Exception ex)
+            catch (Exception ex) // TODO: Add more specific exeption types instead of Exception only
             {
                 if (_transaction == null)
                 {
@@ -665,7 +665,6 @@ namespace Swastika.Cms.Lib.Repositories
                             ProductId = ProductId,
                             ModuleId = p.Id,
                             Specificulture = specificulture,
-
                         },
 
                         _context, _transaction)
@@ -679,7 +678,7 @@ namespace Swastika.Cms.Lib.Repositories
                     Data = await result.ToListAsync()
                 };
             }
-            catch (Exception ex)
+            catch (Exception ex) // TODO: Add more specific exeption types instead of Exception only
             {
                 if (_transaction == null)
                 {
@@ -703,8 +702,8 @@ namespace Swastika.Cms.Lib.Repositories
             }
         }
 
-        #endregion
+        #endregion Product-Module Navigator
 
-        #endregion
+        #endregion Product
     }
 }

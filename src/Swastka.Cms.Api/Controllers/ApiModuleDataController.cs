@@ -1,17 +1,21 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿// Licensed to the Swastika I/O Foundation under one or more agreements.
+// The Swastika I/O Foundation licenses this file to you under the GNU General Public License v3.0 license.
+// See the LICENSE file in the project root for more information.
+
+using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.Data.OData.Query;
 using Newtonsoft.Json.Linq;
+using Swastika.Api.Controllers;
+using Swastika.Cms.Lib.Models.Cms;
 using Swastika.Cms.Lib.ViewModels;
+using Swastika.Cms.Lib.ViewModels.Info;
+using Swastika.Domain.Core.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
 using System.Threading.Tasks;
-using Swastika.Domain.Core.ViewModels;
-using Swastika.Api.Controllers;
-using Swastika.Cms.Lib.ViewModels.Info;
-using Swastika.Cms.Lib.Models.Cms;
-using Microsoft.AspNetCore.Hosting;
 
 namespace Swastka.Cms.Api.Controllers
 {
@@ -61,10 +65,8 @@ namespace Swastka.Cms.Api.Controllers
 
                     return result;
                 }
-
             }
             return new RepositoryResponse<bool>();
-
         }
 
         // GET api/articles/id
@@ -99,13 +101,12 @@ namespace Swastka.Cms.Api.Controllers
             };
         }
 
-
         // GET api/articles/id
         [HttpGet]
         [Route("delete/{id}")]
         public async Task<RepositoryResponse<bool>> Delete(string id)
         {
-            return await InfoModuleDataViewModel.Repository.RemoveModelAsync(model => model.Id == id && model.Specificulture== _lang);
+            return await InfoModuleDataViewModel.Repository.RemoveModelAsync(model => model.Id == id && model.Specificulture == _lang);
         }
 
         // GET api/articles
@@ -147,8 +148,6 @@ namespace Swastka.Cms.Api.Controllers
             return result;
         }
 
-
-
         // GET api/articles
         [HttpGet]
         [Route("{moduleId}/{keyword}")]
@@ -171,6 +170,5 @@ namespace Swastka.Cms.Api.Controllers
             result.Data.Items.ForEach(i => result.Data.JsonItems.Add(i.ParseJson()));
             return result;
         }
-
     }
 }

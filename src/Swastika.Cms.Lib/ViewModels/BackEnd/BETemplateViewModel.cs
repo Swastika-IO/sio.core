@@ -1,14 +1,17 @@
-﻿using System;
-using Swastika.Cms.Lib.Models.Cms;
-using Swastika.Domain.Data.ViewModels;
+﻿// Licensed to the Swastika I/O Foundation under one or more agreements.
+// The Swastika I/O Foundation licenses this file to you under the GNU General Public License v3.0 license.
+// See the LICENSE file in the project root for more information.
+
 using Microsoft.EntityFrameworkCore.Storage;
 using Newtonsoft.Json;
-using Swastika.Domain.Core.ViewModels;
+using Swastika.Cms.Lib.Models.Cms;
 using Swastika.Cms.Lib.Repositories;
-using System.Threading.Tasks;
 using Swastika.Common.Helper;
-using Newtonsoft.Json.Linq;
+using Swastika.Domain.Core.ViewModels;
+using Swastika.Domain.Data.ViewModels;
+using System;
 using System.ComponentModel.DataAnnotations;
+using System.Threading.Tasks;
 
 namespace Swastika.Cms.Lib.ViewModels.BackEnd
 {
@@ -18,42 +21,58 @@ namespace Swastika.Cms.Lib.ViewModels.BackEnd
         #region Properties
 
         #region Models
+
         [JsonProperty("id")]
         public int Id { get; set; }
+
         [JsonProperty("templateId")]
         public int TemplateId { get; set; }
+
         [JsonProperty("templateName")]
         public string TemplateName { get; set; }
+
         [JsonProperty("folderType")]
         public string FolderType { get; set; }
+
         [JsonProperty("fileFolder")]
         public string FileFolder { get; set; }
+
         [JsonProperty("fileName")]
         public string FileName { get; set; }
+
         [JsonProperty("extension")]
         public string Extension { get; set; }
+
         [Required]
         [JsonProperty("content")]
         public string Content { get; set; }
+
         [JsonIgnore]
         [JsonProperty("mobileContent")]
         public string MobileContent { get; set; } = "{}";
+
         [JsonProperty("spaContent")]
         public string SpaContent { get; set; } = "";
+
         [JsonProperty("scripts")]
         public string Scripts { get; set; }
+
         [JsonProperty("styles")]
         public string Styles { get; set; }
+
         [JsonProperty("createdDateTime")]
         public DateTime CreatedDateTime { get; set; }
+
         [JsonProperty("lastModified")]
         public DateTime? LastModified { get; set; }
+
         [JsonProperty("modifiedBy")]
         public string ModifiedBy { get; set; }
 
-        #endregion
+        #endregion Models
 
         #region Views
+
         [JsonProperty("assetFolder")]
         public string AssetFolder
         {
@@ -65,6 +84,7 @@ namespace Swastika.Cms.Lib.ViewModels.BackEnd
                     TemplateName });
             }
         }
+
         [JsonProperty("templateFolder")]
         public string TemplateFolder
         {
@@ -87,10 +107,9 @@ namespace Swastika.Cms.Lib.ViewModels.BackEnd
             }
         }
 
-       
-        #endregion
+        #endregion Views
 
-        #endregion
+        #endregion Properties
 
         #region Contructors
 
@@ -104,7 +123,7 @@ namespace Swastika.Cms.Lib.ViewModels.BackEnd
         {
         }
 
-        #endregion
+        #endregion Contructors
 
         #region Overrides
 
@@ -123,8 +142,8 @@ namespace Swastika.Cms.Lib.ViewModels.BackEnd
             //    string json = file.Content.Replace("\r\n", "").Trim();
             //    MobileContent= JObject.Parse(json);
             //}
-
         }
+
         public override SiocTemplate ParseModel()
         {
             if (Id == 0)
@@ -147,8 +166,10 @@ namespace Swastika.Cms.Lib.ViewModels.BackEnd
             return base.ParseModel();
         }
 
-        #endregion
+        #endregion Common
+
         #region Async
+
         public override RepositoryResponse<bool> RemoveModel(bool isRemoveRelatedModels = false, SiocCmsContext _context = null, IDbContextTransaction _transaction = null)
         {
             var result = base.RemoveModel(isRemoveRelatedModels, _context, _transaction);
@@ -170,8 +191,11 @@ namespace Swastika.Cms.Lib.ViewModels.BackEnd
             });
             return base.SaveSubModels(parent, _context, _transaction);
         }
-        #endregion
+
+        #endregion Async
+
         #region Async
+
         public override async Task<RepositoryResponse<bool>> RemoveModelAsync(bool isRemoveRelatedModels = false, SiocCmsContext _context = null, IDbContextTransaction _transaction = null)
         {
             var result = await base.RemoveModelAsync(isRemoveRelatedModels, _context, _transaction);
@@ -193,9 +217,9 @@ namespace Swastika.Cms.Lib.ViewModels.BackEnd
             });
             return base.SaveSubModelsAsync(parent, _context, _transaction);
         }
-        #endregion
 
-        #endregion
+        #endregion Async
 
+        #endregion Overrides
     }
 }
