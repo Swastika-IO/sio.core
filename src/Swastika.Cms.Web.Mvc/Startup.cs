@@ -51,14 +51,8 @@ namespace Swastika.Cms.Web.Mvc
                 options.UseSqlServer(Configuration.GetConnectionString(Swastika.Cms.Lib.SWCmsConstants.CONST_DEFAULT_CONNECTION)));
 
             //When View Page Source That changes only the HTML encoder, leaving the JavaScript and URL encoders with their (ASCII) defaults.
-            services.Configure<WebEncoderOptions>(options =>
-            {
-                options.TextEncoderSettings = new TextEncoderSettings(UnicodeRanges.All);
-            });
-            services.Configure<FormOptions>(options =>
-            {
-                options.MultipartBodyLengthLimit = 100000000;
-            });
+            services.Configure<WebEncoderOptions>(options => options.TextEncoderSettings = new TextEncoderSettings(UnicodeRanges.All));
+            services.Configure<FormOptions>(options => options.MultipartBodyLengthLimit = 100000000);
 
             //Swastika.Identity.Startup.ConfigIdentity(services, Configuration, "CmsConnection");
             ConfigIdentity(services, Configuration, Configuration.GetConnectionString(Swastika.Cms.Lib.SWCmsConstants.CONST_DEFAULT_CONNECTION)); //Cms Config
