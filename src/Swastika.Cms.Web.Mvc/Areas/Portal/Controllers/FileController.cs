@@ -120,7 +120,7 @@ namespace Swastika.Cms.Mvc.Areas.Portal.Controllers
         [Route("")]
         public IActionResult Index(string folder, IFormFile file)
         {
-            if (file != null && file.Length > 0)
+            if (file?.Length > 0)
             {
                 string filename = FileRepository.Instance.SaveWebFile(file, folder);
             }

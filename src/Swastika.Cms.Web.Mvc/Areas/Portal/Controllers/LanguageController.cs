@@ -71,11 +71,11 @@ namespace Swastika.Cms.Web.Mvc.Areas.Portal.Controllers
         [Route("Create")]
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> CreateLanguage(BELanguageViewModel ttsLanguage)
+        public async Task<IActionResult> CreateLanguage(BELanguageViewModel language)
         {
             if (ModelState.IsValid)
             {
-                var result = await ttsLanguage.SaveModelAsync();// BELanguageViewModel.Repository.CreateModelAsync(ttsLanguage);
+                var result = await language.SaveModelAsync().ConfigureAwait(false);// BELanguageViewModel.Repository.CreateModelAsync(ttsLanguage);
                 if (result.IsSucceed)
                 {
                     GlobalLanguageService.Instance.Refresh();
@@ -93,12 +93,12 @@ namespace Swastika.Cms.Web.Mvc.Areas.Portal.Controllers
                         ModelState.AddModelError(string.Empty, error);
                     }
 
-                    return View(ttsLanguage);
+                    return View(language);
                 }
             }
             else
             {
-                return View(ttsLanguage);
+                return View(language);
             }
         }
 
@@ -113,7 +113,7 @@ namespace Swastika.Cms.Web.Mvc.Areas.Portal.Controllers
             }
 
             var ttsLanguage = await BELanguageViewModel.Repository.GetSingleModelAsync(
-                m => m.Keyword == id && m.Specificulture == _lang);
+                m => m.Keyword == id && m.Specificulture == _lang).ConfigureAwait(false);
             if (ttsLanguage == null)
             {
                 return NotFound();
@@ -133,7 +133,7 @@ namespace Swastika.Cms.Web.Mvc.Areas.Portal.Controllers
             {
                 try
                 {
-                    var result = await ttsLanguage.SaveModelAsync(); //_repo.EditModelAsync(ttsLanguage.ParseModel());
+                    var result = await ttsLanguage.SaveModelAsync().ConfigureAwait(false); //_repo.EditModelAsync(ttsLanguage.ParseModel());
                     if (result.IsSucceed)
                     {
                         GlobalLanguageService.Instance.Refresh();
@@ -171,7 +171,7 @@ namespace Swastika.Cms.Web.Mvc.Areas.Portal.Controllers
         [Route("Delete/{id}")]
         public async Task<IActionResult> DeleteLanguage(string id)
         {
-            var result = await BELanguageViewModel.Repository.RemoveModelAsync(m => m.Keyword == id && m.Specificulture == _lang);
+            var result = await BELanguageViewModel.Repository.RemoveModelAsync(m => m.Keyword == id && m.Specificulture == _lang).ConfigureAwait(false);
             if (result.IsSucceed)
             {
                 GlobalLanguageService.Instance.Refresh();

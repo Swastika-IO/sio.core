@@ -43,7 +43,7 @@ namespace Swastika.Cms.Mvc.Areas.Portal.Controllers
             var getTemplate = await InfoThemeViewModel.Repository.GetModelListByAsync(
                  template => (string.IsNullOrEmpty(keyword) || template.Name.Contains(keyword)),
                  "CreatedDateTime", OrderByDirection.Descending,
-                 pageSize, pageIndex);
+                 pageSize, pageIndex).ConfigureAwait(false);
 
             return View(getTemplate.Data);
         }
@@ -53,10 +53,10 @@ namespace Swastika.Cms.Mvc.Areas.Portal.Controllers
         public async Task<IActionResult> SyncFromLocal(int id)
         {
             var getTemplate = await BETemplateViewModel.Repository.GetModelListByAsync(
-                 template => template.TemplateId == id);
+                 template => template.TemplateId == id).ConfigureAwait(false);
             foreach (var item in getTemplate.Data)
             {
-                await item.SaveModelAsync();
+                await item.SaveModelAsync().ConfigureAwait(false);
             }
             return RedirectToAction("Index");
         }
@@ -83,7 +83,7 @@ namespace Swastika.Cms.Mvc.Areas.Portal.Controllers
             if (ModelState.IsValid)
             {
                 template.CreatedDateTime = DateTime.UtcNow;
-                var result = await template.SaveModelAsync(true);
+                var result = await template.SaveModelAsync(true).ConfigureAwait(false);
                 if (result.IsSucceed)
                 {
                     return RedirectToAction("Index");
@@ -110,7 +110,7 @@ namespace Swastika.Cms.Mvc.Areas.Portal.Controllers
                 return NotFound();
             }
 
-            var template = await BEThemeViewModel.Repository.GetSingleModelAsync(m => m.Id == id);
+            var template = await BEThemeViewModel.Repository.GetSingleModelAsync(m => m.Id == id).ConfigureAwait(false);
             if (!template.IsSucceed)
             {
                 return NotFound();
@@ -141,7 +141,7 @@ namespace Swastika.Cms.Mvc.Areas.Portal.Controllers
             {
                 try
                 {
-                    var result = await template.SaveModelAsync(true);
+                    var result = await template.SaveModelAsync(true).ConfigureAwait(false);
                     if (result.IsSucceed)
                     {
                         return RedirectToAction("Index");
@@ -174,10 +174,10 @@ namespace Swastika.Cms.Mvc.Areas.Portal.Controllers
         [Route("Delete/{id}")]
         public async Task<IActionResult> Delete(int? id)
         {
-            var template = await BEThemeViewModel.Repository.GetSingleModelAsync(m => m.Id == id);
+            var template = await BEThemeViewModel.Repository.GetSingleModelAsync(m => m.Id == id).ConfigureAwait(false);
             if (template.IsSucceed)
             {
-                await template.Data.RemoveModelAsync(true);
+                await template.Data.RemoveModelAsync(true).ConfigureAwait(false);
             }
             return RedirectToAction("Index");
         }

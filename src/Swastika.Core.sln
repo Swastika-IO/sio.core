@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
-VisualStudioVersion = 15.0.27130.2024
+VisualStudioVersion = 15.0.27130.2026
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Swastika.Cms.Lib", "Swastika.Cms.Lib\Swastika.Cms.Lib.csproj", "{52DD88D7-CE01-494B-9219-3D5EA67B8AF3}"
 EndProject
@@ -11,17 +11,17 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Cms", "Cms", "{7995F1E6-D8C
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Core", "Core", "{567A1BBC-8230-4B63-B6E2-073C8C8D59D1}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Messenger", "Messenger", "{B89D1A22-54AC-4A14-9285-CE2AF91B50EB}"
-EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Swastika.Messenger.Lib", "Swastika.Messenger.Lib\Swastika.Messenger.Lib.csproj", "{DAF85CD3-B805-4EF2-A57B-635D056BD108}"
-EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Swastika.Cms.Web.Mvc", "Swastika.Cms.Web.Mvc\Swastika.Cms.Web.Mvc.csproj", "{8421C37A-6FA8-44C9-B08D-A9EA28BF8884}"
-EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Swastika.Messenger.Web", "Swastika.Messenger.Web\Swastika.Messenger.Web.csproj", "{DB15928D-DD02-44BE-B5BE-DA9FADDC4777}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Swastika", "..\..\Swastika-Heart\src\Swastika\Swastika.csproj", "{949BD6C5-D6A1-4C9D-9F28-0AF08BB9FE35}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Swastika.Identity", "..\..\Swastika-Identity\src\Swastika.Identity\Swastika.Identity.csproj", "{B95CBBF3-C895-4E12-89F6-4094E5E54EFE}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Messenger", "Messenger", "{B38FF4FB-2F89-43D2-9585-9BFD83123150}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Swastika.Messenger.Lib", "..\..\Swastika-IO-Messenger\src\Swastika.Messenger.Lib\Swastika.Messenger.Lib.csproj", "{0A4F76F9-583E-4F42-BE49-65B314ECB623}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Swastika.Messenger.Web", "..\..\Swastika-IO-Messenger\src\Swastika.Messenger.Web\Swastika.Messenger.Web.csproj", "{76C0C16B-C9BC-483F-8E9A-405398169384}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -37,18 +37,10 @@ Global
 		{FCD5568D-56D1-482C-B36D-B38AA4ECB890}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{FCD5568D-56D1-482C-B36D-B38AA4ECB890}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{FCD5568D-56D1-482C-B36D-B38AA4ECB890}.Release|Any CPU.Build.0 = Release|Any CPU
-		{DAF85CD3-B805-4EF2-A57B-635D056BD108}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{DAF85CD3-B805-4EF2-A57B-635D056BD108}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{DAF85CD3-B805-4EF2-A57B-635D056BD108}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{DAF85CD3-B805-4EF2-A57B-635D056BD108}.Release|Any CPU.Build.0 = Release|Any CPU
 		{8421C37A-6FA8-44C9-B08D-A9EA28BF8884}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{8421C37A-6FA8-44C9-B08D-A9EA28BF8884}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{8421C37A-6FA8-44C9-B08D-A9EA28BF8884}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{8421C37A-6FA8-44C9-B08D-A9EA28BF8884}.Release|Any CPU.Build.0 = Release|Any CPU
-		{DB15928D-DD02-44BE-B5BE-DA9FADDC4777}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{DB15928D-DD02-44BE-B5BE-DA9FADDC4777}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{DB15928D-DD02-44BE-B5BE-DA9FADDC4777}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{DB15928D-DD02-44BE-B5BE-DA9FADDC4777}.Release|Any CPU.Build.0 = Release|Any CPU
 		{949BD6C5-D6A1-4C9D-9F28-0AF08BB9FE35}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{949BD6C5-D6A1-4C9D-9F28-0AF08BB9FE35}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{949BD6C5-D6A1-4C9D-9F28-0AF08BB9FE35}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -57,6 +49,14 @@ Global
 		{B95CBBF3-C895-4E12-89F6-4094E5E54EFE}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B95CBBF3-C895-4E12-89F6-4094E5E54EFE}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B95CBBF3-C895-4E12-89F6-4094E5E54EFE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0A4F76F9-583E-4F42-BE49-65B314ECB623}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0A4F76F9-583E-4F42-BE49-65B314ECB623}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0A4F76F9-583E-4F42-BE49-65B314ECB623}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0A4F76F9-583E-4F42-BE49-65B314ECB623}.Release|Any CPU.Build.0 = Release|Any CPU
+		{76C0C16B-C9BC-483F-8E9A-405398169384}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{76C0C16B-C9BC-483F-8E9A-405398169384}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{76C0C16B-C9BC-483F-8E9A-405398169384}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{76C0C16B-C9BC-483F-8E9A-405398169384}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -64,11 +64,11 @@ Global
 	GlobalSection(NestedProjects) = preSolution
 		{52DD88D7-CE01-494B-9219-3D5EA67B8AF3} = {7995F1E6-D8C1-4E09-BB44-056740F208E6}
 		{FCD5568D-56D1-482C-B36D-B38AA4ECB890} = {7995F1E6-D8C1-4E09-BB44-056740F208E6}
-		{DAF85CD3-B805-4EF2-A57B-635D056BD108} = {B89D1A22-54AC-4A14-9285-CE2AF91B50EB}
 		{8421C37A-6FA8-44C9-B08D-A9EA28BF8884} = {7995F1E6-D8C1-4E09-BB44-056740F208E6}
-		{DB15928D-DD02-44BE-B5BE-DA9FADDC4777} = {B89D1A22-54AC-4A14-9285-CE2AF91B50EB}
 		{949BD6C5-D6A1-4C9D-9F28-0AF08BB9FE35} = {567A1BBC-8230-4B63-B6E2-073C8C8D59D1}
 		{B95CBBF3-C895-4E12-89F6-4094E5E54EFE} = {567A1BBC-8230-4B63-B6E2-073C8C8D59D1}
+		{0A4F76F9-583E-4F42-BE49-65B314ECB623} = {B38FF4FB-2F89-43D2-9585-9BFD83123150}
+		{76C0C16B-C9BC-483F-8E9A-405398169384} = {B38FF4FB-2F89-43D2-9585-9BFD83123150}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {07795DAD-40EE-4909-A6F5-320D6B0D3B54}

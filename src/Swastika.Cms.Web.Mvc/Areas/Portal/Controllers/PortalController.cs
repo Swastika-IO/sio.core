@@ -89,21 +89,21 @@ namespace Swastika.Cms.Mvc.Areas.Portal.Controllers
             {
                 case SWCmsConstants.SearchType.All:
                     ViewData["Articles"] = (await InfoArticleViewModel.Repository.GetModelListByAsync(
-                        c => c.Specificulture == _lang && (c.Title.Contains(keyword) || c.Excerpt.Contains(keyword) || c.Content.Contains(keyword)))
+                        c => c.Specificulture == _lang && (c.Title.Contains(keyword) || c.Excerpt.Contains(keyword) || c.Content.Contains(keyword))).ConfigureAwait(false)
                         ).Data;
                     ViewData["Pages"] = (InfoCategoryViewModel.Repository.GetModelListBy(
                         c => c.Specificulture == _lang
                         && (c.Title.Contains(keyword) || c.Excerpt.Contains(keyword)))
                         ).Data;
                     ViewData["Modules"] = (InfoModuleViewModel.Repository.GetModelListBy(
-                        c => c.Specificulture == _lang && (c.Title.Contains(keyword) ||
-                        c.Description.Contains(keyword)))
+                        c => c.Specificulture == _lang && (c.Title.Contains(keyword)
+                        || c.Description.Contains(keyword)))
                         ).Data;
                     break;
 
                 case SWCmsConstants.SearchType.Article:
                     ViewData["Articles"] = (await InfoArticleViewModel.Repository.GetModelListByAsync(
-                        c => c.Specificulture == _lang && (c.Title.Contains(keyword) || c.Excerpt.Contains(keyword) || c.Content.Contains(keyword)))
+                        c => c.Specificulture == _lang && (c.Title.Contains(keyword) || c.Excerpt.Contains(keyword) || c.Content.Contains(keyword))).ConfigureAwait(false)
                         ).Data;
                     break;
 

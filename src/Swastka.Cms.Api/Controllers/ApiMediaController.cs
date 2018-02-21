@@ -37,16 +37,13 @@ namespace Swastka.Cms.Api.Controllers
         [Route("details/{viewType}/{id}")]
         public async Task<JObject> BEDetails(string viewType, int id)
         {
-            JObject result = new JObject();
             switch (viewType)
             {
                 default:
                     var feResult = await BEMediaViewModel.Repository.GetSingleModelAsync(
-                        model => model.Id == id && model.Specificulture == _lang);
-                    result = JObject.FromObject(feResult);
-                    break;
+                        model => model.Id == id && model.Specificulture == _lang).ConfigureAwait(false);
+                    return JObject.FromObject(feResult);
             }
-            return result;
         }
 
         // GET api/medias/id
@@ -57,7 +54,7 @@ namespace Swastka.Cms.Api.Controllers
             var getMedia = BEMediaViewModel.Repository.GetSingleModel(a => a.Id == id && a.Specificulture == _lang);
             if (getMedia.IsSucceed)
             {
-                return await getMedia.Data.RemoveModelAsync(true);
+                return await getMedia.Data.RemoveModelAsync(true).ConfigureAwait(false);
             }
             else
             {
@@ -77,7 +74,7 @@ namespace Swastka.Cms.Api.Controllers
             , OrderByDirection direction = OrderByDirection.Ascending)
         {
             var data = await BEMediaViewModel.Repository.GetModelListByAsync(
-                m => m.Specificulture == _lang, orderBy, direction, pageSize, pageIndex); //base.Get(orderBy, direction, pageSize, pageIndex);
+                m => m.Specificulture == _lang, orderBy, direction, pageSize, pageIndex).ConfigureAwait(false); //base.Get(orderBy, direction, pageSize, pageIndex);
             return data;
         }
 
@@ -96,7 +93,7 @@ namespace Swastka.Cms.Api.Controllers
             string.IsNullOrWhiteSpace(keyword)
                 || model.FileName.Contains(keyword)
                 );
-            var data = await BEMediaViewModel.Repository.GetModelListByAsync(predicate, orderBy, direction, pageSize, pageIndex); // base.Search(predicate, orderBy, direction, pageSize, pageIndex, keyword);
+            var data = await BEMediaViewModel.Repository.GetModelListByAsync(predicate, orderBy, direction, pageSize, pageIndex).ConfigureAwait(false); // base.Search(predicate, orderBy, direction, pageSize, pageIndex, keyword);
 
             return data;
         }
@@ -118,7 +115,7 @@ namespace Swastka.Cms.Api.Controllers
                 string folderPath = $"{SWCmsConstants.Parameters.UploadFolder}/{fileFolder}/{DateTime.UtcNow.ToString("MMM-yyyy")}"; // string.Format("Uploads/{0}", fileFolder);
                 //return ImageHelper.ResizeImage(Image.FromStream(fileUpload.OpenReadStream()), System.IO.Path.Combine(_env.WebRootPath, folderPath));
                 //var fileName = await Common.UploadFileAsync(filePath, files.FirstOrDefault());
-                var fileName = string.Format("/{0}", await base.UploadFileAsync(files.FirstOrDefault(), folderPath));
+                string fileName = string.Format("/{0}", await UploadFileAsync(files.FirstOrDefault(), folderPath).ConfigureAwait(false));
                 BEMediaViewModel media = new BEMediaViewModel(new SiocMedia()
                 {
                     Specificulture = _lang,
@@ -132,7 +129,7 @@ namespace Swastka.Cms.Api.Controllers
                     Description = description
                 });
                 //media.SaveModel();
-                return media.SaveModel(); ;
+                return media.SaveModel();
             }
             else
             {
@@ -147,7 +144,7 @@ namespace Swastka.Cms.Api.Controllers
         {
             if (model != null)
             {
-                var result = await model.SaveModelAsync(true);
+                var result = await model.SaveModelAsync(true).ConfigureAwait(false);
 
                 return result;
             }
@@ -163,22 +160,19 @@ namespace Swastka.Cms.Api.Controllers
             if (string.IsNullOrEmpty(request.Keyword))
             {
                 var data = await BEMediaViewModel.Repository.GetModelListByAsync(
-                m => m.Specificulture == _lang, request.OrderBy, request.Direction, request.PageSize, request.PageIndex);
+                m => m.Specificulture == _lang, request.OrderBy, request.Direction, request.PageSize, request.PageIndex).ConfigureAwait(false);
 
                 return data;
             }
             else
             {
                 Expression<Func<SiocMedia, bool>> predicate = model =>
-            model.Specificulture == _lang
-            && (string.IsNullOrWhiteSpace(request.Keyword) ||
-                (
-                    model.FileName.Contains(request.Keyword)
+                    model.Specificulture == _lang
+                    && (string.IsNullOrWhiteSpace(request.Keyword)
+                    || (model.FileName.Contains(request.Keyword)
                     || model.Title.Contains(request.Keyword)
-                    || model.Description.Contains(request.Keyword)
-                )
-                );
-                var data = await BEMediaViewModel.Repository.GetModelListByAsync(predicate, request.OrderBy, request.Direction, request.PageSize, request.PageIndex);
+                    || model.Description.Contains(request.Keyword)));
+                var data = await BEMediaViewModel.Repository.GetModelListByAsync(predicate, request.OrderBy, request.Direction, request.PageSize, request.PageIndex).ConfigureAwait(false);
 
                 return data;
             }

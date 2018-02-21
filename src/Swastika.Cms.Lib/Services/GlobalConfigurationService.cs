@@ -23,32 +23,26 @@ namespace Swastika.Cms.Lib.Services
         public string Name { get; set; }
         public bool IsInit { get; set; }
 
-        public string ConnectionString
-        {
-            get
-            {
+        public string ConnectionString {
+            get {
                 return _connectionString;
             }
-            set
-            {
+            set {
                 _connectionString = value;
             }
         }
 
         private static List<ConfigurationViewModel> _listConfiguration;
 
-        public static List<ConfigurationViewModel> ListConfiguration
-        {
-            get
-            {
+        public static List<ConfigurationViewModel> ListConfiguration {
+            get {
                 if (_listConfiguration == null)
                 {
                     InitConfigurations();
                 }
                 return _listConfiguration;
             }
-            set
-            {
+            set {
                 _listConfiguration = value;
             }
         }
@@ -71,18 +65,11 @@ namespace Swastika.Cms.Lib.Services
         //}
         private static GlobalConfigurationService _instance;
 
-        public static GlobalConfigurationService Instance
-        {
-            get
-            {
-                if (_instance == null)
-                {
-                    _instance = new GlobalConfigurationService();
-                }
-                return _instance;
+        public static GlobalConfigurationService Instance {
+            get {
+                return _instance ?? (_instance = new GlobalConfigurationService());
             }
-            set
-            {
+            set {
                 _instance = value;
             }
         }
@@ -223,17 +210,17 @@ namespace Swastika.Cms.Lib.Services
                     {
                         BEPositionViewModel p = new BEPositionViewModel()
                         {
-                            Description = SWCmsConstants.CatePosition.Top.ToString()
+                            Description = nameof(SWCmsConstants.CatePosition.Top)
                         };
                         p.SaveModel(_context: context, _transaction: transaction);
                         p = new BEPositionViewModel()
                         {
-                            Description = SWCmsConstants.CatePosition.Left.ToString()
+                            Description = nameof(SWCmsConstants.CatePosition.Left)
                         };
                         p.SaveModel(_context: context, _transaction: transaction);
                         p = new BEPositionViewModel()
                         {
-                            Description = SWCmsConstants.CatePosition.Footer.ToString()
+                            Description = nameof(SWCmsConstants.CatePosition.Footer)
                         };
                         p.SaveModel(_context: context, _transaction: transaction);
                     }
@@ -269,21 +256,12 @@ namespace Swastika.Cms.Lib.Services
             catch // TODO: Add more specific exeption types instead of Exception only
             {
                 IsInit = false;
-                if (transaction != null)
-                {
-                    transaction.Rollback();
-                }
+                transaction?.Rollback();
             }
             finally
             {
-                if (context != null)
-                {
-                    context.Dispose();
-                }
-                if (accountContext != null)
-                {
-                    accountContext.Dispose();
-                }
+                context?.Dispose();
+                accountContext?.Dispose();
             }
         }
 
@@ -341,7 +319,7 @@ namespace Swastika.Cms.Lib.Services
 
         public bool UpdateConfiguration(string key, string culture, string value)
         {
-            var config = ListConfiguration.FirstOrDefault(c => c.Keyword == key && c.Specificulture == culture);
+            var config = ListConfiguration.Find(c => c.Keyword == key && c.Specificulture == culture);
             string oldValue = config.Value;
 
             config.Value = value;
@@ -360,13 +338,13 @@ namespace Swastika.Cms.Lib.Services
 
         public string GetLocalString(string key, string culture)
         {
-            var config = ListConfiguration.FirstOrDefault(c => c.Keyword == key && c.Specificulture == culture);
+            var config = ListConfiguration.Find(c => c.Keyword == key && c.Specificulture == culture);
             return config != null ? config.Value : key;
         }
 
         public string GetLocalString(string key, string culture, string defaultValue)
         {
-            var config = ListConfiguration.FirstOrDefault(c => c.Keyword == key && c.Specificulture == culture);
+            var config = ListConfiguration.Find(c => c.Keyword == key && c.Specificulture == culture);
             return config != null ? config.Value : defaultValue;
         }
 
@@ -379,7 +357,7 @@ namespace Swastika.Cms.Lib.Services
 
         public int GetLocalInt(string key, string culture, int defaultValue)
         {
-            var config = ListConfiguration.FirstOrDefault(c => c.Keyword == key && c.Specificulture == culture);
+            var config = ListConfiguration.Find(c => c.Keyword == key && c.Specificulture == culture);
             if (!int.TryParse(config?.Value, out int result))
             {
                 result = defaultValue;

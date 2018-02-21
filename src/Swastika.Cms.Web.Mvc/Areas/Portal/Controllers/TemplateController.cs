@@ -40,7 +40,7 @@ namespace Swastika.Cms.Mvc.Areas.Portal.Controllers
                  && template.FolderType == folder
                  && (string.IsNullOrEmpty(keyword) || template.FileName.Contains(keyword)),
                  "CreatedDateTime", OrderByDirection.Descending,
-                 pageSize, pageIndex);
+                 pageSize, pageIndex).ConfigureAwait(false);
             ViewBag.templateId = templateId;
             return View(getTemplateFile.Data);
         }
@@ -78,7 +78,7 @@ namespace Swastika.Cms.Mvc.Areas.Portal.Controllers
             if (ModelState.IsValid)
             {
                 template.CreatedDateTime = DateTime.UtcNow;
-                var result = await template.SaveModelAsync(true);
+                Domain.Core.ViewModels.RepositoryResponse<BETemplateViewModel> result = await template.SaveModelAsync(true).ConfigureAwait(false);
                 if (result.IsSucceed)
                 {
                     return RedirectToAction("Index", new { templateId = template.TemplateId, folder = template.FolderType });
@@ -101,7 +101,7 @@ namespace Swastika.Cms.Mvc.Areas.Portal.Controllers
                 return NotFound();
             }
 
-            var TemplateFile = await BETemplateViewModel.Repository.GetSingleModelAsync(m => m.Id == id);
+            var TemplateFile = await BETemplateViewModel.Repository.GetSingleModelAsync(m => m.Id == id).ConfigureAwait(false);
             if (!TemplateFile.IsSucceed)
             {
                 return NotFound();
@@ -128,7 +128,7 @@ namespace Swastika.Cms.Mvc.Areas.Portal.Controllers
                 {
                     template.ModifiedBy = User.Identity.Name;
                     template.LastModified = DateTime.UtcNow;
-                    var result = await template.SaveModelAsync(true);
+                    var result = await template.SaveModelAsync(true).ConfigureAwait(false);
                     if (result.IsSucceed)
                     {
                         return RedirectToAction("Index", new { templateId = template.TemplateId, folder = template.FolderType });
@@ -161,8 +161,8 @@ namespace Swastika.Cms.Mvc.Areas.Portal.Controllers
         [Route("Delete/{id}")]
         public async Task<IActionResult> Delete(int? id)
         {
-            var template = await BETemplateViewModel.Repository.GetSingleModelAsync(m => m.Id == id);
-            await template.Data.RemoveModelAsync();
+            var template = await BETemplateViewModel.Repository.GetSingleModelAsync(m => m.Id == id).ConfigureAwait(false);
+            await template.Data.RemoveModelAsync().ConfigureAwait(false);
             return RedirectToAction("Index", new { templateId = template.Data.TemplateId, folder = template.Data?.FolderType });
         }
     }

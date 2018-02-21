@@ -49,7 +49,7 @@ namespace Swastika.Core.Controllers
         public string Get()
         {
             var t = User.Claims.FirstOrDefault(c => c.Type == "RefreshToken");
-            return (t?.Value);
+            return t?.Value;
         }
 
         [Route("login")]
@@ -64,10 +64,10 @@ namespace Swastika.Core.Controllers
                 // This doesn't count login failures towards account lockout
                 // To enable password failures to trigger account lockout, set lockoutOnFailure: true
                 var result = await _signInManager.PasswordSignInAsync(
-                    model.UserName, model.Password, isPersistent: model.RememberMe, lockoutOnFailure: false);
+                    model.UserName, model.Password, isPersistent: model.RememberMe, lockoutOnFailure: false).ConfigureAwait(false);
                 if (result.Succeeded)
                 {
-                    var user = await _userManager.FindByNameAsync(model.UserName);
+                    var user = await _userManager.FindByNameAsync(model.UserName).ConfigureAwait(false);
                     var token = GenerateAccessToken(user);
                     if (token != null)
                     {
@@ -158,12 +158,12 @@ namespace Swastika.Core.Controllers
                     LastName = model.LastName,
                     JoinDate = DateTime.UtcNow
                 };
-                var createResult = await _userManager.CreateAsync(user, password: model.Password);
+                var createResult = await _userManager.CreateAsync(user, password: model.Password).ConfigureAwait(false);
                 if (createResult.Succeeded)
                 {
                     _logger.LogInformation("User created a new account with password.");
 
-                    user = await _userManager.FindByEmailAsync(model.Email);
+                    user = await _userManager.FindByEmailAsync(model.Email).ConfigureAwait(false);
                     var token = GenerateAccessToken(user);
                     if (token != null)
                     {

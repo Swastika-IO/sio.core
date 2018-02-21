@@ -46,7 +46,7 @@ namespace Swastika.Cms.Mvc.Areas.Portal.Controllers
                     && product.Status != (int)SWStatus.Deleted
                     && (string.IsNullOrEmpty(keyword) || product.Title.Contains(keyword)),
                 "Priority", OrderByDirection.Ascending
-                , pageSize, pageIndex);
+                , pageSize, pageIndex).ConfigureAwait(false);
             ViewBag.keyword = keyword;
             return View(getProduct.Data);
         }
@@ -58,11 +58,11 @@ namespace Swastika.Cms.Mvc.Areas.Portal.Controllers
         public async Task<IActionResult> Draft(int pageSize = 10, int pageIndex = 0, string keyword = null)
         {
             var getProduct = await InfoProductViewModel.Repository.GetModelListByAsync(
-                product => product.Specificulture == _lang &&
-                    (string.IsNullOrEmpty(keyword) || product.Title.Contains(keyword))
+                product => product.Specificulture == _lang
+                    && (string.IsNullOrEmpty(keyword) || product.Title.Contains(keyword))
                     && product.Status != (int)SWStatus.Deleted,
                 "CreatedDateTime", OrderByDirection.Descending,
-                pageSize, pageIndex);
+                pageSize, pageIndex).ConfigureAwait(false);
 
             return View(getProduct.Data);
         }
@@ -84,7 +84,7 @@ namespace Swastika.Cms.Mvc.Areas.Portal.Controllers
             };
             if (categoryId.HasValue)
             {
-                var activeCate = vmProduct.Categories.FirstOrDefault(c => c.CategoryId == categoryId);
+                var activeCate = vmProduct.Categories.Find(c => c.CategoryId == categoryId);
                 if (activeCate != null)
                 {
                     activeCate.IsActived = true;
@@ -107,7 +107,7 @@ namespace Swastika.Cms.Mvc.Areas.Portal.Controllers
             {
                 //var vmProduct = new SWBEProductViewModel<BackendBEProductViewModel>(product);
                 //var result = await vmProduct.SaveModelAsync();
-                var result = await product.SaveModelAsync(true);
+                var result = await product.SaveModelAsync(true).ConfigureAwait(false);
                 if (result.IsSucceed)
                 {
                     if (categoryId.HasValue)
@@ -140,7 +140,7 @@ namespace Swastika.Cms.Mvc.Areas.Portal.Controllers
             }
 
             var product = await BEProductViewModel.Repository.GetSingleModelAsync(
-                m => m.Id == id && m.Specificulture == _lang);
+                m => m.Id == id && m.Specificulture == _lang).ConfigureAwait(false);
             if (product == null)
             {
                 return RedirectToAction("Index");
@@ -167,7 +167,7 @@ namespace Swastika.Cms.Mvc.Areas.Portal.Controllers
             {
                 try
                 {
-                    var result = await product.SaveModelAsync(true);
+                    var result = await product.SaveModelAsync(true).ConfigureAwait(false);
                     if (result.IsSucceed)
                     {
                         if (categoryId.HasValue)
@@ -210,7 +210,7 @@ namespace Swastika.Cms.Mvc.Areas.Portal.Controllers
             {
                 var data = getProduct.Data;
                 data.IsDeleted = true;
-                var result = await data.SaveModelAsync();
+                var result = await data.SaveModelAsync().ConfigureAwait(false);
                 if (result.IsSucceed)
                 {
                     return RedirectToAction("Index");
@@ -235,7 +235,7 @@ namespace Swastika.Cms.Mvc.Areas.Portal.Controllers
             {
                 var data = getProduct.Data;
                 data.IsDeleted = false;
-                var result = await data.SaveModelAsync();
+                var result = await data.SaveModelAsync().ConfigureAwait(false);
                 if (result.IsSucceed)
                 {
                     return RedirectToAction("Draft");
@@ -255,10 +255,10 @@ namespace Swastika.Cms.Mvc.Areas.Portal.Controllers
         [Route("Delete/{id}")]
         public async Task<IActionResult> Delete(string id)
         {
-            var getProduct = await BEProductViewModel.Repository.GetSingleModelAsync(m => m.Id == id && m.Specificulture == _lang);
+            var getProduct = await BEProductViewModel.Repository.GetSingleModelAsync(m => m.Id == id && m.Specificulture == _lang).ConfigureAwait(false);
             if (getProduct.IsSucceed)
             {
-                await getProduct.Data.RemoveModelAsync(true);
+                await getProduct.Data.RemoveModelAsync(true).ConfigureAwait(false);
             }
             return RedirectToAction("Draft", "Product");
         }

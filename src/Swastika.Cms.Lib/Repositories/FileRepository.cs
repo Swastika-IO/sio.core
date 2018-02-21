@@ -25,16 +25,14 @@ namespace Swastika.Cms.Lib.Repositories
         /// <summary>
         /// The synchronize root
         /// </summary>
-        private static object syncRoot = new Object();
+        private static readonly object syncRoot = new Object();
 
         /// <summary>
         /// Gets the instance.
         /// </summary>
         /// <returns></returns>
-        public static FileRepository Instance
-        {
-            get
-            {
+        public static FileRepository Instance {
+            get {
                 if (instance == null)
                 {
                     lock (syncRoot)
@@ -45,8 +43,7 @@ namespace Swastika.Cms.Lib.Repositories
                 }
                 return instance;
             }
-            set
-            {
+            set {
                 instance = value;
             }
         }
@@ -61,9 +58,8 @@ namespace Swastika.Cms.Lib.Repositories
 
         public FileViewModel GetFile(string FilePath, List<FileViewModel> Files, string FileFolder)
         {
-            var result = Files.FirstOrDefault(v => !string.IsNullOrEmpty(FilePath) && v.Filename == FilePath.Replace(@"\", "/").Split('/')[1]);
-            result = result ?? new FileViewModel() { FileFolder = FileFolder.ToString() };
-            return result;
+            var result = Files.Find(v => !string.IsNullOrEmpty(FilePath) && v.Filename == FilePath.Replace(@"\", "/").Split('/')[1]);
+            return result ?? new FileViewModel() { FileFolder = FileFolder };
         }
 
         public FileViewModel GetWebFile(string filename, string folder)
@@ -106,8 +102,7 @@ namespace Swastika.Cms.Lib.Repositories
                 }
             }
 
-            result = result ?? new FileViewModel() { FileFolder = folder };
-            return result;
+            return result ?? new FileViewModel() { FileFolder = folder };
         }
 
         public bool DeleteWebFile(string filename, string folder)
@@ -160,7 +155,7 @@ namespace Swastika.Cms.Lib.Repositories
         {
             FileViewModel result = null;
 
-            string folder = string.Format(SWCmsConstants.Parameters.UploadFolder, FileFolder.ToString());
+            string folder = string.Format(SWCmsConstants.Parameters.UploadFolder, FileFolder);
             string fullPath = string.Format(@"{0}/{1}.{2}", folder, name, ext);
 
             FileInfo file = new FileInfo(fullPath);
@@ -173,7 +168,7 @@ namespace Swastika.Cms.Lib.Repositories
                     {
                         result = new FileViewModel()
                         {
-                            FileFolder = FileFolder.ToString(),
+                            FileFolder = FileFolder,
                             Filename = file.Name.Substring(0, file.Name.LastIndexOf('.')),
                             Extension = file.Extension.Remove(0, 1),
                             Content = s.ReadToEnd()
@@ -186,8 +181,7 @@ namespace Swastika.Cms.Lib.Repositories
                 }
             }
 
-            result = result ?? new FileViewModel() { FileFolder = FileFolder.ToString() };
-            return result;
+            return result ?? new FileViewModel() { FileFolder = FileFolder };
         }
 
         public FileViewModel GetFile(string name, string ext, string FileFolder)
@@ -206,7 +200,7 @@ namespace Swastika.Cms.Lib.Repositories
                     {
                         result = new FileViewModel()
                         {
-                            FileFolder = FileFolder.ToString(),
+                            FileFolder = FileFolder,
                             Filename = name,
                             Extension = ext,
                             Content = s.ReadToEnd()
@@ -219,8 +213,7 @@ namespace Swastika.Cms.Lib.Repositories
                 }
             }
 
-            result = result ?? new FileViewModel() { FileFolder = FileFolder.ToString() };
-            return result;
+            return result ?? new FileViewModel() { FileFolder = FileFolder };
         }
 
         public bool DeleteFile(string name, string extension, string FileFolder)
@@ -259,14 +252,17 @@ namespace Swastika.Cms.Lib.Repositories
             if (srcPath != desPath)
             {
                 //Now Create all of the directories
-                foreach (string dirPath in Directory.GetDirectories(srcPath, "*",
-                    SearchOption.AllDirectories))
+                foreach (string dirPath in Directory.GetDirectories(srcPath, "*", SearchOption.AllDirectories))
+                {
                     Directory.CreateDirectory(dirPath.Replace(srcPath, desPath));
+                }
 
                 //Copy all the files & Replaces any files with the same name
-                foreach (string newPath in Directory.GetFiles(srcPath, "*.*",
-                    SearchOption.AllDirectories))
+                foreach (string newPath in Directory.GetFiles(srcPath, "*.*", SearchOption.AllDirectories))
+                {
                     File.Copy(newPath, newPath.Replace(srcPath, desPath), true);
+                }
+
                 return true;
             }
             return false;

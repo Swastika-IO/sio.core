@@ -12,27 +12,14 @@
         <input type="hidden" asp-for="Fields" />
         <input type="hidden" asp-for="CreatedDateTime" />
         @foreach (var col in Model.Columns)
-            {
+        {
 
-            }
+        }
         @for (int i = 0; i < Model.DataProperties.Count; i++)
-            {
+        {
 
-                Html.RenderPartial("_Editor",
-                new ViewDataDictionary(this.Vi‌​ewData) {
-                {
-                "Model", Model.DataProperties[i]
-                },
-                {
-
-                "Name","DataProperties"
-                },
-                {
-
-                "Index",i
-                }
-                }
-                );
+            Html.RenderPartial("_Editor",
+            new ViewDataDictionary(this.Vi‌​ewData) { { "Model", Model.DataProperties[i] }, { "Name", "DataProperties" }, { "Index", i } });
 
             <input type="hidden" asp-for="@Model.DataProperties[i].Name" class="form-control" />
             <input type="hidden" asp-for="@Model.DataProperties[i].DataType" class="form-control" />
