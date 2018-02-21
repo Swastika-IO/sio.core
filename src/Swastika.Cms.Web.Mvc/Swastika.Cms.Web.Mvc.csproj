@@ -5,7 +5,7 @@
     <TypeScriptCompileBlocked>true</TypeScriptCompileBlocked>
     <TypeScriptToolsVersion>2.5</TypeScriptToolsVersion>
     <MvcRazorExcludeRefAssembliesFromPublish>false</MvcRazorExcludeRefAssembliesFromPublish>
-    <MvcRazorCompileOnPublish>false</MvcRazorCompileOnPublish>
+    <MvcRazorCompileOnPublish>true</MvcRazorCompileOnPublish>
   <PublishWithAspNetCoreTargetManifest>False</PublishWithAspNetCoreTargetManifest>
   </PropertyGroup>
 
@@ -81,6 +81,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Compile Remove="App_Start\Startup.SignalR.cs" />
     <Compile Remove="Areas\Portal\Controllers\Apis\ModuleApiController.cs" />
     <Compile Remove="Areas\Portal\Controllers\ApperanceController.cs" />
     <Compile Remove="Areas\User\Controllers\AccountController.cs" />
@@ -266,7 +267,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\..\Swastika-IO-Messenger\src\Swastika.Messenger.Lib\Swastika.Messenger.Lib.csproj" />
     <ProjectReference Include="..\Swastika.Cms.Lib\Swastika.Cms.Lib.csproj" />
     <ProjectReference Include="..\Swastka.Cms.Api\Swastka.Cms.Api.csproj" />
   </ItemGroup>

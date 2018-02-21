@@ -643,8 +643,7 @@ namespace Swastika.Cms.Lib.Migrations
 
             modelBuilder.Entity("Swastika.Cms.Lib.Models.Cms.SiocMedia", b =>
                 {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd();
+                    b.Property<int>("Id");
 
                     b.Property<string>("Specificulture")
                         .ValueGeneratedOnAdd()
@@ -1155,6 +1154,39 @@ namespace Swastika.Cms.Lib.Migrations
                     b.ToTable("sioc_product_module");
                 });
 
+            modelBuilder.Entity("Swastika.Cms.Lib.Models.Cms.SiocRelatedProduct", b =>
+                {
+                    b.Property<string>("SourceProductId")
+                        .HasMaxLength(50);
+
+                    b.Property<string>("RelatedProductId")
+                        .HasMaxLength(50);
+
+                    b.Property<string>("Specificulture")
+                        .HasMaxLength(10);
+
+                    b.Property<string>("CreatedBy")
+                        .IsRequired()
+                        .HasMaxLength(50);
+
+                    b.Property<DateTime>("CreatedDateTime")
+                        .HasColumnType("datetime");
+
+                    b.Property<int>("Priority")
+                        .ValueGeneratedOnAdd()
+                        .HasDefaultValueSql("((0))");
+
+                    b.Property<int>("Status");
+
+                    b.HasKey("SourceProductId", "RelatedProductId", "Specificulture");
+
+                    b.HasIndex("RelatedProductId", "Specificulture");
+
+                    b.HasIndex("SourceProductId", "Specificulture");
+
+                    b.ToTable("sioc_related_product");
+                });
+
             modelBuilder.Entity("Swastika.Cms.Lib.Models.Cms.SiocTemplate", b =>
                 {
                     b.Property<int>("Id")
@@ -1512,6 +1544,19 @@ namespace Swastika.Cms.Lib.Migrations
                         .WithMany("SiocProductModule")
                         .HasForeignKey("ProductId", "Specificulture")
                         .HasConstraintName("FK_TTS_Product_Module_TTS_Product");
+                });
+
+            modelBuilder.Entity("Swastika.Cms.Lib.Models.Cms.SiocRelatedProduct", b =>
+                {
+                    b.HasOne("Swastika.Cms.Lib.Models.Cms.SiocProduct", "SiocProduct")
+                        .WithMany("SiocRelatedProductSiocProduct")
+                        .HasForeignKey("RelatedProductId", "Specificulture")
+                        .HasConstraintName("FK_sioc_related_product_sioc_product1");
+
+                    b.HasOne("Swastika.Cms.Lib.Models.Cms.SiocProduct", "S")
+                        .WithMany("SiocRelatedProductS")
+                        .HasForeignKey("SourceProductId", "Specificulture")
+                        .HasConstraintName("FK_sioc_related_product_sioc_product");
                 });
 
             modelBuilder.Entity("Swastika.Cms.Lib.Models.Cms.SiocTemplate", b =>

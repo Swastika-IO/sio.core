@@ -1,8 +1,4 @@
-﻿// Licensed to the Swastika I/O Foundation under one or more agreements.
-// The Swastika I/O Foundation licenses this file to you under the GNU General Public License v3.0 license.
-// See the LICENSE file in the project root for more information.
-
-using System;
+﻿using System;
 using System.Collections.Generic;
 
 namespace Swastika.Cms.Lib.Models.Cms
@@ -15,6 +11,8 @@ namespace Swastika.Cms.Lib.Models.Cms
             SiocModuleProduct = new HashSet<SiocModuleProduct>();
             SiocProductMedia = new HashSet<SiocProductMedia>();
             SiocProductModule = new HashSet<SiocProductModule>();
+            SiocRelatedProductS = new HashSet<SiocRelatedProduct>();
+            SiocRelatedProductSiocProduct = new HashSet<SiocRelatedProduct>();
         }
 
         public string Id { get; set; }
@@ -49,5 +47,7 @@ namespace Swastika.Cms.Lib.Models.Cms
         public ICollection<SiocModuleProduct> SiocModuleProduct { get; set; }
         public ICollection<SiocProductMedia> SiocProductMedia { get; set; }
         public ICollection<SiocProductModule> SiocProductModule { get; set; }
+        public ICollection<SiocRelatedProduct> SiocRelatedProductS { get; set; }
+        public ICollection<SiocRelatedProduct> SiocRelatedProductSiocProduct { get; set; }
     }
 }

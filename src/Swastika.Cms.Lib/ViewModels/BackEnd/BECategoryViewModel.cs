@@ -86,12 +86,6 @@ namespace Swastika.Cms.Lib.ViewModels.BackEnd
         [JsonProperty("createdBy")]
         public string CreatedBy { get; set; }
 
-        [JsonProperty("isVisible")]
-        public bool IsVisible { get; set; }
-
-        [JsonProperty("isDeleted")]
-        public bool IsDeleted { get; set; }
-
         [JsonProperty("tags")]
         public string Tags { get; set; }
 

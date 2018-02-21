@@ -83,7 +83,7 @@ namespace Swastka.Cms.Api.Controllers
             if (getArticle.IsSucceed)
             {
                 var data = getArticle.Data;
-                data.IsDeleted = true;
+                data.Status = SWStatus.Deleted;
                 return await data.SaveModelAsync().ConfigureAwait(false);
             }
             else
@@ -101,7 +101,7 @@ namespace Swastka.Cms.Api.Controllers
             if (getArticle.IsSucceed)
             {
                 var data = getArticle.Data;
-                data.IsDeleted = false;
+                data.Status = SWStatus.Preview;
                 return await data.SaveModelAsync().ConfigureAwait(false);
             }
             else

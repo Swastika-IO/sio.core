@@ -46,7 +46,7 @@ namespace Swastika.Cms.Web.Mvc
         public void ConfigureServices(IServiceCollection services)
         {
             // Add framework services.
-            ConfigureSignalRServices(services);
+            //ConfigureSignalRServices(services);
             services.AddDbContext<SiocCmsContext>(options =>
                 options.UseSqlServer(Configuration.GetConnectionString(Swastika.Cms.Lib.SWCmsConstants.CONST_DEFAULT_CONNECTION)));
 
@@ -98,7 +98,7 @@ namespace Swastika.Cms.Web.Mvc
         {
             loggerFactory.AddConsole(Configuration.GetSection("Logging"));
             loggerFactory.AddDebug();
-            ConfigurationSignalR(app);
+            //ConfigurationSignalR(app);
             app.UseCors(option => { option.AllowAnyMethod(); option.AllowAnyOrigin(); option.AllowAnyHeader(); });
             if (env.IsDevelopment())
             {
