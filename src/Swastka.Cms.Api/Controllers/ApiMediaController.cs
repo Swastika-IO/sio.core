@@ -10,6 +10,7 @@ using Swastika.Api.Controllers;
 using Swastika.Cms.Lib;
 using Swastika.Cms.Lib.Models.Cms;
 using Swastika.Cms.Lib.ViewModels.BackEnd;
+using Swastika.Cms.Lib.ViewModels.Navigation;
 using Swastika.Domain.Core.ViewModels;
 using System;
 using System.Linq;
@@ -176,6 +177,20 @@ namespace Swastka.Cms.Api.Controllers
 
                 return data;
             }
+        }
+
+        [HttpPost, HttpOptions]
+        [Route("list/byProduct/{productId}")]
+        [Route("list/byProduct")]
+        public async Task<RepositoryResponse<PaginationModel<NavProductMediaViewModel>>> GetListByProduct(RequestPaging request, string productId = null)
+        {
+            var data = await NavProductMediaViewModel.Repository.GetModelListByAsync(
+            m => m.ProductId == productId && m.Specificulture == _lang, request.OrderBy
+            , request.Direction, request.PageSize, request.PageIndex)
+            .ConfigureAwait(false);
+
+            return data;
+
         }
 
         #endregion Post

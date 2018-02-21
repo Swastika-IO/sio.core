@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
-VisualStudioVersion = 15.0.27130.2026
+VisualStudioVersion = 15.0.27130.2027
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Swastika.Cms.Lib", "Swastika.Cms.Lib\Swastika.Cms.Lib.csproj", "{52DD88D7-CE01-494B-9219-3D5EA67B8AF3}"
 EndProject
@@ -16,12 +16,6 @@ EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Swastika", "..\..\Swastika-Heart\src\Swastika\Swastika.csproj", "{949BD6C5-D6A1-4C9D-9F28-0AF08BB9FE35}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Swastika.Identity", "..\..\Swastika-Identity\src\Swastika.Identity\Swastika.Identity.csproj", "{B95CBBF3-C895-4E12-89F6-4094E5E54EFE}"
-EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Messenger", "Messenger", "{B38FF4FB-2F89-43D2-9585-9BFD83123150}"
-EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Swastika.Messenger.Lib", "..\..\Swastika-IO-Messenger\src\Swastika.Messenger.Lib\Swastika.Messenger.Lib.csproj", "{0A4F76F9-583E-4F42-BE49-65B314ECB623}"
-EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Swastika.Messenger.Web", "..\..\Swastika-IO-Messenger\src\Swastika.Messenger.Web\Swastika.Messenger.Web.csproj", "{76C0C16B-C9BC-483F-8E9A-405398169384}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -49,14 +43,6 @@ Global
 		{B95CBBF3-C895-4E12-89F6-4094E5E54EFE}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B95CBBF3-C895-4E12-89F6-4094E5E54EFE}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B95CBBF3-C895-4E12-89F6-4094E5E54EFE}.Release|Any CPU.Build.0 = Release|Any CPU
-		{0A4F76F9-583E-4F42-BE49-65B314ECB623}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{0A4F76F9-583E-4F42-BE49-65B314ECB623}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{0A4F76F9-583E-4F42-BE49-65B314ECB623}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{0A4F76F9-583E-4F42-BE49-65B314ECB623}.Release|Any CPU.Build.0 = Release|Any CPU
-		{76C0C16B-C9BC-483F-8E9A-405398169384}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{76C0C16B-C9BC-483F-8E9A-405398169384}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{76C0C16B-C9BC-483F-8E9A-405398169384}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{76C0C16B-C9BC-483F-8E9A-405398169384}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -67,8 +53,6 @@ Global
 		{8421C37A-6FA8-44C9-B08D-A9EA28BF8884} = {7995F1E6-D8C1-4E09-BB44-056740F208E6}
 		{949BD6C5-D6A1-4C9D-9F28-0AF08BB9FE35} = {567A1BBC-8230-4B63-B6E2-073C8C8D59D1}
 		{B95CBBF3-C895-4E12-89F6-4094E5E54EFE} = {567A1BBC-8230-4B63-B6E2-073C8C8D59D1}
-		{0A4F76F9-583E-4F42-BE49-65B314ECB623} = {B38FF4FB-2F89-43D2-9585-9BFD83123150}
-		{76C0C16B-C9BC-483F-8E9A-405398169384} = {B38FF4FB-2F89-43D2-9585-9BFD83123150}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {07795DAD-40EE-4909-A6F5-320D6B0D3B54}

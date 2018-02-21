@@ -7,16 +7,16 @@
 }
 
 <!-- Main content -->
-<section class="content container-fluid">
+<section class="content container-fluid" ng-controller="ProductController">
     <form asp-action="@ViewContext.RouteData.Values["action"].ToString()"
           asp-route-categoryId="@ViewBag.categoryId"
-          enctype="multipart/form-data">
+          enctype="multipart/form-data" >
 
-        @await Html.PartialAsync("EditableSides/_Editable_ActionsBar")
+        @Html.Partial("EditableSides/_Editable_ActionsBar")
         <div class="row">
 
             <section class="col-lg-9">
-                @await Html.PartialAsync("_Editable", Model)
+                @Html.Partial("_Editable", Model)
             </section>
             <section class="col-lg-3">
                 @await Html.PartialAsync("_EditableSide", Model)

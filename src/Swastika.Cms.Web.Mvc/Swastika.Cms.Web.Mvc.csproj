@@ -5,7 +5,7 @@
     <TypeScriptCompileBlocked>true</TypeScriptCompileBlocked>
     <TypeScriptToolsVersion>2.5</TypeScriptToolsVersion>
     <MvcRazorExcludeRefAssembliesFromPublish>false</MvcRazorExcludeRefAssembliesFromPublish>
-    <MvcRazorCompileOnPublish>true</MvcRazorCompileOnPublish>
+    <MvcRazorCompileOnPublish>false</MvcRazorCompileOnPublish>
   <PublishWithAspNetCoreTargetManifest>False</PublishWithAspNetCoreTargetManifest>
   </PropertyGroup>
 
@@ -101,7 +101,6 @@
     <Content Remove="Areas\Portal\Views\Setting\_Editable_Culture.cshtml" />
     <Content Remove="Areas\Portal\Views\Shared\Components\HeaderNavbar\DefaultOld.cshtml" />
     <Content Remove="Areas\Portal\Views\Shared\_Layout.cshtml" />
-    <Content Remove="tsconfig.json" />
     <Content Remove="Views\Home\About.cshtml" />
     <Content Remove="Views\Home\Article.cshtml" />
     <Content Remove="Views\Home\Blog.cshtml" />
@@ -264,6 +263,8 @@
     <None Include="Areas\User\Views\_ViewStart.cshtml" />
     <None Include="Views\_ViewImports.cshtml" />
     <None Include="Views\_ViewStart.cshtml" />
+    <None Include="wwwroot\app\app-portal.js" />
+    <None Include="wwwroot\app\controllers\product-controller.js" />
   </ItemGroup>
 
   <ItemGroup>

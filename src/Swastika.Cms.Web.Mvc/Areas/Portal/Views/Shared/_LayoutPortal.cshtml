@@ -32,7 +32,7 @@
     @RenderSection("Styles", required: false)
 </head>
 
-<body>
+<body ng-app="SwastikaPortal">
     <!-- Page Header -->
     <header class="navbar navbar-expand flex-column flex-md-row sw-navbar">
         @await Component.InvokeAsync(typeof(Swastika.Cms.Mvc.Areas.Portal.ViewComponents.HeaderNavbar))
@@ -104,7 +104,9 @@
         }
     </style>
     <script type="text/javascript" src="~/lib/bootstrap4-tagsinput-4.1.2/tagsinput.js"></script>
-
+    <script src="~/js/angular.min.js"></script>
+    <script src="~/app/app-portal.js"></script>
+    <script src="~/app/controllers/product-controller.js"></script>
     @RenderSection("Scripts", required: false)
 
     <!--Datatables-->

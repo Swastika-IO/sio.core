@@ -75,6 +75,7 @@ namespace Swastika.Cms.Mvc.Areas.Portal.Controllers
         {
             var vmProduct = new BEProductViewModel(new SiocProduct()
             {
+                Id = Guid.NewGuid().ToString(),
                 Specificulture = _lang,
                 CreatedBy = User.Identity.Name,
                 CreatedDateTime = DateTime.UtcNow

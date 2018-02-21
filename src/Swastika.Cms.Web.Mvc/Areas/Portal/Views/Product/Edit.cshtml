@@ -6,7 +6,7 @@
 }
 
 <!-- Main content -->
-<section class="content container-fluid">
+<section class="content container-fluid" ng-controller="ProductController">
 
     <form asp-controller="@ViewContext.RouteData.Values["controller"].ToString()"
           asp-action="@ViewContext.RouteData.Values["action"].ToString()"
