@@ -88,6 +88,10 @@
 <div class="card">
     <div class="card-header">
         Feature image
+
+        <button data-toggle="modal" data-target=".image-crop-modal-lg" data-imgsrc="https://fengyuanchen.github.io/cropperjs/images/picture.jpg">
+            Crop
+        </button>
     </div>
     <div class="card-body p-0" style="background:url(/images/upload-image-thumbnail.png) no-repeat center; ">
         @*<label asp-for="Image" class="control-label"></label>*@
@@ -116,6 +120,37 @@
             <input type="text" asp-for="Thumbnail" class="form-control custom-file-val d-none">
             @*<span class="btn btn-primary custom-file-control">Browse</span>*@
         </label>
+    </div>
+</div>
+<style>
+    .img-container img {
+        max-width: 100%;
+    }
+</style>
+<div class="modal fade image-crop-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Image crop setting</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+
+                <div class="row">
+                    <div class="col-12">
+                        <div class="img-container">
+                            <img class="img-fluid img-cropper" style="max-width:100%" src="https://fengyuanchen.github.io/cropperjs/images/picture.jpg">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary">Save changes</button>
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            </div>
+        </div>
     </div>
 </div>
 
