@@ -1,27 +1,28 @@
 ﻿@model InfoModuleDataViewModel
 
 @{
-    <tr id="data-@Model.Id" dataId="data-@Model.Id" class="sortable-item">
-        <td style="cursor:move;">
-            <span class="oi oi-move"></span>
-        </td>
+<tr id="data-@Model.Id" dataId="data-@Model.Id" class="sortable-item">
+    <td style="cursor:move;">
+        <span class="oi oi-move"></span>
+    </td>
+
+    @foreach (var col in Model.Columns.Where(c => c.IsDisplay))
+    {
         <td>
-            <input type="text" asp-for="@Model.Columns[i].Priority" class="item-priority form-control form-control-sm d-inline" style="width:40px;" />
+            <input type="text" asp-for="@col.Priority" class="item-priority form-control form-control-sm d-inline" style="width:40px;" />
         </td>
-        @foreach (var col in Model.Columns.Where(c => c.IsDisplay))
-        {
-            var prop = Model.GetDataProperty(col.Name);
-            <td>
-                @{Html.RenderPartial("_ViewByFieldType",
-                      new ViewDataDictionary(this.Vi‌​ewData) { { "Model", prop } });
-                }
-            </td>
-        }
+        var prop = Model.GetDataProperty(col.Name);
         <td>
-            <input type="checkbox" class="cb-active-data" dataId="@Model.Id" />
+            @{Html.RenderPartial("_ViewByFieldType",
+                    new ViewDataDictionary(this.Vi‌​ewData) { { "Model", prop } });
+            }
         </td>
-        <td>
-            <a dataId="@Model.Id" class="btn-edit-data btn btn-sm btn-warning"><span class="oi oi-pencil"></span> </a>
-        </td>
-    </tr>
+    }
+    <td>
+        <input type="checkbox" class="cb-active-data" dataId="@Model.Id" />
+    </td>
+    <td>
+        <a dataId="@Model.Id" class="btn-edit-data btn btn-sm btn-warning"><span class="oi oi-pencil"></span> </a>
+    </td>
+</tr>
 }

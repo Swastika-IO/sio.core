@@ -9,8 +9,9 @@
                 <div class="col-md-10 ml-auto mr-auto">
                     <h2 class="title">@Model.Title</h2>
                     <div class="row">
-                        @foreach(var article in Model.Articles.Items)
+                        @foreach(var item in Model.Articles.Items)
                         {
+                            var article = item.Article;
                             <div class="col-md-4">
                                 <div class="card card-blog">
                                     <div class="card-image">

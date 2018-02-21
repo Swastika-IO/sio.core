@@ -17,7 +17,7 @@ Add-Migration AddFirstName -Context ApplicationDbContext
 
 Update-database -Context SiocCmsContext
 
-Scaffold-DbContext "Server=115.77.190.113,4444;Database=Stag_swastika_io;UID=sa;Pwd=sqlP@ssw0rd;MultipleActiveResultSets=true" Microsoft.EntityFrameworkCore.SqlServer -OutputDir Models -force
+Scaffold-DbContext "Server=115.77.190.113,4444;Database=sw_cms_structure;UID=sa;Pwd=sqlP@ssw0rd;MultipleActiveResultSets=true" Microsoft.EntityFrameworkCore.SqlServer -OutputDir Models\Cms -force
 Scaffold-DbContext "Server=.\sqlexpress;Database=sw_cms;UID=sa;Pwd=1234qwe@;MultipleActiveResultSets=true" Microsoft.EntityFrameworkCore.SqlServer -OutputDir Models -force
 
 /// <summary>

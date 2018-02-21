@@ -209,7 +209,7 @@ namespace Swastika.Cms.Mvc.Areas.Portal.Controllers
             if (getProduct.IsSucceed)
             {
                 var data = getProduct.Data;
-                data.IsDeleted = true;
+                data.Status = SWStatus.Deleted;
                 var result = await data.SaveModelAsync().ConfigureAwait(false);
                 if (result.IsSucceed)
                 {
@@ -234,7 +234,7 @@ namespace Swastika.Cms.Mvc.Areas.Portal.Controllers
             if (getProduct.IsSucceed)
             {
                 var data = getProduct.Data;
-                data.IsDeleted = false;
+                data.Status = SWStatus.Preview;
                 var result = await data.SaveModelAsync().ConfigureAwait(false);
                 if (result.IsSucceed)
                 {

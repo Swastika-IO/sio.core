@@ -11,9 +11,10 @@ using System;
 namespace Swastika.Cms.Lib.Migrations
 {
     [DbContext(typeof(SiocCmsContext))]
-    partial class SiocCmsContextModelSnapshot : ModelSnapshot
+    [Migration("20180221054540_add_related_product")]
+    partial class add_related_product
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -667,9 +668,6 @@ namespace Swastika.Cms.Lib.Migrations
                     b.Property<string>("FileName")
                         .IsRequired()
                         .HasMaxLength(250);
-
-                    b.Property<string>("FileProperties")
-                        .HasMaxLength(4000);
 
                     b.Property<long>("FileSize")
                         .ValueGeneratedOnAdd()

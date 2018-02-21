@@ -5,7 +5,7 @@
     <TypeScriptCompileBlocked>true</TypeScriptCompileBlocked>
     <TypeScriptToolsVersion>2.5</TypeScriptToolsVersion>
     <MvcRazorExcludeRefAssembliesFromPublish>false</MvcRazorExcludeRefAssembliesFromPublish>
-    <MvcRazorCompileOnPublish>false</MvcRazorCompileOnPublish>
+    <MvcRazorCompileOnPublish>true</MvcRazorCompileOnPublish>
   <PublishWithAspNetCoreTargetManifest>False</PublishWithAspNetCoreTargetManifest>
   </PropertyGroup>
 
@@ -81,6 +81,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Compile Remove="App_Start\Startup.SignalR.cs" />
     <Compile Remove="Areas\Portal\Controllers\Apis\ModuleApiController.cs" />
     <Compile Remove="Areas\Portal\Controllers\ApperanceController.cs" />
     <Compile Remove="Areas\User\Controllers\AccountController.cs" />

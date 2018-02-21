@@ -1,11 +1,11 @@
 @using Swastika.Cms.Lib.ViewModels;
 @{
      string culture = ViewBag.culture;
-    var getTopCates = CategoryListItemViewModel.Repository.GetModelListBy
+    var getTopCates = InfoCategoryViewModel.Repository.GetModelListBy
 (c => c.Specificulture == culture && c.SiocCategoryPosition.Count(
    p => p.PositionId == (int)Swastika.Cms.Lib.SWCmsConstants.CatePosition.Top) > 0
 );
-    var topCates = getTopCates.Data?? new List<CategoryListItemViewModel>();
+    var topCates = getTopCates.Data?? new List<InfoCategoryViewModel>();
 }
 <nav class="navbar navbar-expand-lg navbar-transparent bg-primary navbar-absolute">
     <div class="container">

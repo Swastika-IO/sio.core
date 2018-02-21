@@ -256,7 +256,7 @@
 
                                 <div class="form-check col-md-10">
                                     <ul class="nav">
-                                        @for (int i = 0; i < Model.Categories.Count; i++)
+                                        @for (int i = 0; i <Model.Categories.Count; i++)
                                         {
                                             <li class="col-sm-6">
 
@@ -285,7 +285,7 @@
                                 <label asp-for="Modules" class="control-label">Set parent modules</label>
                                 <div class="form-check col-md-10">
                                     <ul class="nav">
-                                        @for (int i = 0; i < Model.Modules.Count; i++)
+                                        @for (int i = 0; i <Model.Modules.Count; i++)
                                         {
                                             <li class="col-sm-6">
                                                 <div class="custom-control custom-checkbox">
@@ -399,15 +399,23 @@
                             <div class="row media-navs">
                                 @foreach (var item in Model.MediaNavs)
                                 {
+                                    int index = Model.MediaNavs.IndexOf(item);
+                                    <input type="hidden" name="MediaNavs[@index].MediaId" value="@item.MediaId" />
+                                    <input type="hidden" name="MediaNavs[@index].ProductId" value="@item.ProductId" />
+                                    <input type="hidden" name="MediaNavs[@index].Position" value="@item.Position" />
+                                    <input type="hidden" name="MediaNavs[@index].Image" value="@item.Image" />
+                                    <input type="hidden" name="MediaNavs[@index].Description" value="@item.Description" />
                                     <div class="card">
                                         <span class="switch switch-sm" style="position: absolute;top: 10px;">
                                             <input type="checkbox" class="switch" data-val="true" data-val-required="The IsActived field is required."
-                                                   id="Media_Image_@item.MediaId" name="Media_Image_@item.MediaId" value="@item.IsActived">
+                                                   id="Media_Image_@item.MediaId"
+                                                   name="MediaNavs[@index].IsActived" value="@item.IsActived">
                                             <label class="switch" for="Media_Image_@item.MediaId">
                                                 @item.Media.FileName
                                             </label>
                                         </span>
-                                        <a href="#" data-toggle="modal" data-target=".image-preview-modal-lg" data-whatever="@item.Media.FullPath">
+                                        <a href="#" data-toggle="modal" data-target=".image-preview-modal-lg"
+                                           data-whatever="@item.Media.FullPath">
                                             <img class="card-img-top" src="@item.Media.FullPath" alt="Card image cap">
                                         </a>
                                     </div>
@@ -772,23 +780,32 @@
                 var container = $('.card-columns');
                 $(container).empty();
                 var html = '';
+                var index = $('.media-navs').find('.card').length;
                 $.each(response.data.items, function (i, e) {
 
-                    html += ' <div class="card" data-media-id="' + e.id + '"> \
-                            <span class="switch switch-sm" style= "position: absolute;top: 10px;" > \
+                    var isActived = $('.media-navs').find('media-' + e.id).length == 1;
+                    html += '<div class="card media-' + e.id + '" data-media-id="' + e.id + '" > \
+                        <input type="hidden" name="MediaNavs['+e.id+'].MediaId" value="' + e.id + '" />\
+                        <input type= "hidden" name="MediaNavs['+e.id+'].ProductId" value="' + '@Model.Id' + '" />\
+                        <input type="hidden" name="MediaNavs['+ e.id + '].Specificultre" value="' + e.specificulture + '" />\
+                        <input type="text" name="MediaNavs['+ e.id + '].Priority" value="0" />\
+                        <input type="hidden" name="MediaNavs['+ e.id +'].Image" value="' + e.fullPath + '" />\
+                        <input type="hidden" name="MediaNavs['+ e.id + '].Description" value="' + e.title + '" />\
+                        <input type="hidden" name="MediaNavs['+ e.id + '].IsActived" value="' + true + '" />\
+                    <span class="switch switch-sm" style="position: absolute;top: 10px;" > \
                                 <input type="checkbox" class="switch cb-media" data-media-id="' + e.id + '"\
-                                    data-val-required="The IsActived field is required."\
-                                        id = "Media_Image_'+ e.id + '" name= "MediaNavs[' + e.id + ']"\
-                                    value = "' + e.isActived + '" >\
-                                    <label class="switch" for="Media_Image_'+ e.id + '">\
+                        data-val-required="The IsActived field is required."\
+                                        id = "MediaNavs1_['+ e.id +']__IsActived" name= "MediaNavs[' + e.id +'].IsActived"\
+                                    value = "' + isActived + '" >\
+                                    <label class="switch" for="MediaNavs1_['+e.id+']__IsActived">\
                                         \
                                                     </label>\
                                                 </span>\
-                                <a href="#" data-toggle="modal" data-target=".image-preview-modal-lg" data-imgsrc="'+ e.fullPath + '">\
+                    <a href="#" data-toggle="modal" data-target=".image-preview-modal-lg" data-imgsrc="'+ e.fullPath + '">\
                                     <img class="card-img-top" src="'+ e.fullPath + '" alt="Card image cap">\
                                                 </a>\
                         </div>';
-
+                    index++;
                 });
                 $(container).append(html);
                 var pagination = $('.pagination');
@@ -837,7 +854,18 @@
         });
         $(document).on('change', '.cb-media', function () {
             if ($(this).is(':checked')) {
-                alert($(this).data('media-id'));
+                var id = ($(this).data('media-id'));
+                if ($('.media-navs').find('media-' + id).length == 0) {
+                    var nav = $(this).parents('.card').first();
+                    var index = '[' + $('.media-navs').find('.card').length + ']';
+                    var t = '[' + id + ']';
+                    var div = nav.clone();
+                    div.html(div.html().replace(new RegExp("\\" + t, "gm"), index));
+                    div.html(div.html().replace(new RegExp("\\MediaNavs1", "gm"), 'MediaNavs'));
+                    $('.media-navs').append(div);
+                    $(div).find('.cb-media').prop('checked', true);
+                    nav.hide();
+                }
             }
         })
         loadMedia();

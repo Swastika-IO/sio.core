@@ -1,6 +1,6 @@
 @model Swastika.Cms.Lib.ViewModels.FrontEnd.FECategoryViewModel
 @{
-    var listTags = Model.Articles.Items.Where(a => !string.IsNullOrEmpty(a.Tags)).Select(a => a.Tags).ToList();
+    var listTags = Model.Articles.Items.Where(a => !string.IsNullOrEmpty(a.Article.Tags)).Select(a => a.Article.Tags).ToList();
     string tags = string.Empty;
     if (listTags.Count > 0)
     {
