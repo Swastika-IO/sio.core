@@ -32,7 +32,7 @@
                         "lengthChange": false,
                         "select": true,
                         "searching": false,
-                        "ordering": true,
+                        "ordering": false,
                         "info": false,
                         "autoWidth": true//,
                         //"rowReorder": true
@@ -203,14 +203,14 @@
                 "lengthChange": false,
                 //"select": true,
                 "searching": false,
-                "ordering": true,
+                "ordering": false,
                 "info": false,
                 "autoWidth": true//,
                 //"rowReorder": true
             });
-            $('.dataTable tr').on('click', function () {
-                $(this).toggleClass('selected');
-            })
+            //$('.dataTable tr').on('click', function () {
+            //    $(this).toggleClass('selected');
+            //})
 
             $('.custom-file .custom-file-val').on('change', function () {
                 $(this).parent('.custom-file').find('img').attr('src', $(this).val());
