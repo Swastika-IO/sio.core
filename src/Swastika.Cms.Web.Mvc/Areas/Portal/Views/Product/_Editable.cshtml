@@ -396,30 +396,75 @@
                     </div>
                     <div class="tab-pane fade" id="pills-media" role="tabpanel" aria-labelledby="pills-media-tab">
                         <section class="content container-fluid">
-                            <div class="row media-navs">
-                                @foreach (var item in Model.MediaNavs)
-                                {
-                                    int index = Model.MediaNavs.IndexOf(item);
-                                    <input type="hidden" name="MediaNavs[@index].MediaId" value="@item.MediaId" />
-                                    <input type="hidden" name="MediaNavs[@index].ProductId" value="@item.ProductId" />
-                                    <input type="hidden" name="MediaNavs[@index].Position" value="@item.Position" />
-                                    <input type="hidden" name="MediaNavs[@index].Image" value="@item.Image" />
-                                    <input type="hidden" name="MediaNavs[@index].Description" value="@item.Description" />
-                                    <div class="card">
-                                        <span class="switch switch-sm" style="position: absolute;top: 10px;">
-                                            <input type="checkbox" class="switch" data-val="true" data-val-required="The IsActived field is required."
-                                                   id="Media_Image_@item.MediaId"
-                                                   name="MediaNavs[@index].IsActived" value="@item.IsActived">
-                                            <label class="switch" for="Media_Image_@item.MediaId">
-                                                @item.Media.FileName
-                                            </label>
-                                        </span>
-                                        <a href="#" data-toggle="modal" data-target=".image-preview-modal-lg"
-                                           data-whatever="@item.Media.FullPath">
-                                            <img class="card-img-top" src="@item.Media.FullPath" alt="Card image cap">
-                                        </a>
-                                    </div>
-                                }
+                            <div class="row">
+                                <div class="col-12">
+                                    <table class="table table-sm table-hover" id="tbl-related-medias">
+                                        <thead class="thead-light">
+                                            <tr>
+                                                <th scope="col" width="5%">
+                                                    <span class="oi oi-move"></span>
+                                                </th>
+                                                <th scope="col" width="5%">
+                                                    <span class="oi oi-sort-ascending"></span>
+                                                </th>
+                                                <th scope="col">Name</th>
+                                                <th scope="col">Image</th>
+                                                <th scope="col" width="5%">Showing?</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody class="sortable media-navs">
+
+                                            @foreach (var item in Model.MediaNavs)
+                                            {
+                                                int index = Model.MediaNavs.IndexOf(item);
+
+                                                <tr class="sortable-item product-property">
+                                                    <td style="cursor:move;">
+                                                        <span class="oi oi-move"></span>
+                                                    </td>
+                                                    <td>
+                                                        <input type="text" asp-for="@Model.Properties[index].Priority" class="item-priority form-control form-control-sm d-inline" style="width:40px;" />
+                                                    </td>
+                                                    <td>
+                                                        @item.Media.FileName
+                                                    </td>
+                                                    <td>
+                                                        <a href="#" data-toggle="modal" data-target=".image-preview-modal-lg" data-whatever="@item.Media.FullPath"> <img class="card-img-top" src="@item.Media.FullPath" alt="Card image cap"> </a>
+                                                    </td>
+                                                    <td>
+                                                        <input type="hidden" name="MediaNavs[@index].MediaId" value="@item.MediaId" />
+                                                        <input type="hidden" name="MediaNavs[@index].ProductId" value="@item.ProductId" />
+                                                        <input type="hidden" name="MediaNavs[@index].Position" value="@item.Position" />
+                                                        <input type="hidden" name="MediaNavs[@index].Image" value="@item.Image" />
+                                                        <input type="hidden" name="MediaNavs[@index].Description" value="@item.Description" />
+
+                                                        <span class="switch switch-sm" style="position: absolute;top: 10px;">
+                                                            <input type="checkbox" class="switch" data-val="true" data-val-required="The IsActived field is required." id="Media_Image_@item.MediaId" name="MediaNavs[@index].IsActived" value="@item.IsActived">
+                                                            <label class="switch" for="Media_Image_@item.MediaId">
+                                                                @item.Media.FileName
+                                                            </label>
+                                                        </span>
+                                                    </td>
+                                                </tr>
+
+                                                @*<input type="hidden" name="MediaNavs[@index].MediaId" value="@item.MediaId" />
+                                                    <input type="hidden" name="MediaNavs[@index].ProductId" value="@item.ProductId" />
+                                                    <input type="hidden" name="MediaNavs[@index].Position" value="@item.Position" />
+                                                    <input type="hidden" name="MediaNavs[@index].Image" value="@item.Image" />
+                                                    <input type="hidden" name="MediaNavs[@index].Description" value="@item.Description" />
+                                                    <div class="card">
+                                                        <span class="switch switch-sm" style="position: absolute;top: 10px;">
+                                                            <input type="checkbox" class="switch" data-val="true" data-val-required="The IsActived field is required." id="Media_Image_@item.MediaId" name="MediaNavs[@index].IsActived" value="@item.IsActived">
+                                                            <label class="switch" for="Media_Image_@item.MediaId">
+                                                                @item.Media.FileName
+                                                            </label>
+                                                        </span>
+                                                        <a href="#" data-toggle="modal" data-target=".image-preview-modal-lg" data-whatever="@item.Media.FullPath"> <img class="card-img-top" src="@item.Media.FullPath" alt="Card image cap"> </a>
+                                                    </div>*@
+                                            }
+                                        </tbody>
+                                    </table>
+                                </div>
                             </div>
                             <div class="row">
                                 <div class="col-md-8">
@@ -788,7 +833,7 @@
                         <input type="hidden" name="MediaNavs['+e.id+'].MediaId" value="' + e.id + '" />\
                         <input type= "hidden" name="MediaNavs['+e.id+'].ProductId" value="' + '@Model.Id' + '" />\
                         <input type="hidden" name="MediaNavs['+ e.id + '].Specificultre" value="' + e.specificulture + '" />\
-                        <input type="text" name="MediaNavs['+ e.id + '].Priority" value="0" />\
+                        <input type="hidden" name="MediaNavs['+ e.id + '].Priority" value="0" />\
                         <input type="hidden" name="MediaNavs['+ e.id +'].Image" value="' + e.fullPath + '" />\
                         <input type="hidden" name="MediaNavs['+ e.id + '].Description" value="' + e.title + '" />\
                         <input type="hidden" name="MediaNavs['+ e.id + '].IsActived" value="' + true + '" />\
@@ -860,6 +905,39 @@
                     var index = '[' + $('.media-navs').find('.card').length + ']';
                     var t = '[' + id + ']';
                     var div = nav.clone();
+
+                    @*var html += '<tr class="sortable-item  media-' + e.id + '" data-media-id="' + e.id + '" > \
+	<td style="cursor:move;"> \
+		<span class="oi oi-move"> \</span> \
+	</td> \
+	<td> \
+		<input type="text" asp-for="MediaNavs['+ e.id + '].Priority" class="item-priority form-control form-control-sm d-inline" style="width:40px;" /> \
+	</td> \
+	<td> ' + e.title + ' </td> \
+	<td> \
+		<a href="#" data-toggle="modal" data-target=".image-preview-modal-lg" data-imgsrc="'+ e.fullPath + '">\
+                                    <img class="card-img-top" src="'+ e.fullPath + '" alt="Card image cap">\
+                                                </a>\
+	</td> \
+	<td> \
+		<input type="hidden" name="MediaNavs['+ e.id + '].MediaId" value="' + e.id + '" />\
+		<input type= "hidden" name="MediaNavs['+ e.id + '].ProductId" value="' + '@Model.Id' + '" />\
+		<input type="hidden" name="MediaNavs['+ e.id + '].Specificultre" value="' + e.specificulture + '" />\
+		<input type="hidden" name="MediaNavs['+ e.id + '].Priority" value="0" />\
+		<input type="hidden" name="MediaNavs['+ e.id + '].Image" value="' + e.fullPath + '" />\
+		<input type="hidden" name="MediaNavs['+ e.id + '].Description" value="' + e.title + '" />\
+		<input type="hidden" name="MediaNavs['+ e.id + '].IsActived" value="' + true + '" />\
+		<span class="switch switch-sm" style="position: absolute;top: 10px;" > \
+                                <input type="checkbox" class="switch cb-media" data-media-id="' + e.id + '"\
+                        data-val-required="The IsActived field is required."\
+                                        id = "MediaNavs1_['+ e.id + ']__IsActived" name= "MediaNavs[' + e.id + '].IsActived"\
+                                    value = "' + isActived + '" >\
+                                    <label class="switch" for="MediaNavs1_['+ e.id + ']__IsActived">\
+                                                    </label>\
+                                                </span>\
+	</td> \
+</tr>';*@
+
                     div.html(div.html().replace(new RegExp("\\" + t, "gm"), index));
                     div.html(div.html().replace(new RegExp("\\MediaNavs1", "gm"), 'MediaNavs'));
                     $('.media-navs').append(div);
