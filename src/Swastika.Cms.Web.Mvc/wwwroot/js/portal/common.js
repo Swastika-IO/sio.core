@@ -162,6 +162,40 @@
                 }
             });
 
+                var cropBoxData;
+                var canvasData;
+                var cropper;
+
+            $(".image-crop-modal-lg").on('show.bs.modal', function (event) {
+window.addEventListener('DOMContentLoaded', function () {
+                var button = $(event.relatedTarget) // Button that triggered the modal
+                var recipient = button.data('imgsrc') // Extract info from data-* attributes
+                // If necessary, you could initiate an AJAX request here (and then do the updating in a callback).
+                // Update the modal's content. We'll use jQuery here, but you could use a data binding library or other methods instead.
+                var modal = $(this)
+                //modal.find('.modal-title').text('New message to ' + recipient)
+                //modal.find('.modal-body input').val(recipient)
+                modal.find('.modal-body .img-fluid').attr('src', recipient);
+
+                //var Cropper = window.Cropper;
+                var image = $(".image-crop-modal-lg .img-cropper").get(0);
+
+                cropper = new Cropper(image, {
+                  autoCropArea: 0.5,
+//minContainerWidth:500,
+//minContainerHeight: 500,
+                  ready: function () {
+                    // Strict mode: set crop box data first
+                    cropper.setCropBoxData(cropBoxData).setCanvasData(canvasData);
+                  }
+                });
+});
+            }).on('hidden.bs.modal', function () {
+                cropBoxData = cropper.getCropBoxData();
+                canvasData = cropper.getCanvasData();
+                cropper.destroy();
+            });
+
             $(".image-preview-modal-lg").on('show.bs.modal', function (event) {
                 var button = $(event.relatedTarget) // Button that triggered the modal
                 var recipient = button.data('imgsrc') // Extract info from data-* attributes
@@ -171,7 +205,7 @@
                 //modal.find('.modal-title').text('New message to ' + recipient)
                 //modal.find('.modal-body input').val(recipient)
                 modal.find('.modal-body .img-fluid').attr('src', recipient);
-            })
+            });
 
             // not work with BS 4 (using now http://bootstrap-tagsinput.github.io/bootstrap-tagsinput/examples/)
             //$(".tags")
