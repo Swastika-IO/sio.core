@@ -668,6 +668,9 @@ namespace Swastika.Cms.Lib.Migrations
                         .IsRequired()
                         .HasMaxLength(250);
 
+                    b.Property<string>("FileProperties")
+                        .HasMaxLength(4000);
+
                     b.Property<long>("FileSize")
                         .ValueGeneratedOnAdd()
                         .HasDefaultValueSql("((0))");

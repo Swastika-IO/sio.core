@@ -614,6 +614,8 @@ namespace Swastika.Cms.Lib.Models.Cms
                     .IsRequired()
                     .HasMaxLength(50);
 
+                entity.Property(e => e.FileProperties).HasMaxLength(4000);
+
                 entity.Property(e => e.LastModified).HasColumnType("datetime");
 
                 entity.Property(e => e.ModifiedBy).HasMaxLength(250);

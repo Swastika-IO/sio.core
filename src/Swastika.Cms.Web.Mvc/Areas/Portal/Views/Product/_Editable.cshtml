@@ -795,9 +795,9 @@
                     <span class="switch switch-sm" style="position: absolute;top: 10px;" > \
                                 <input type="checkbox" class="switch cb-media" data-media-id="' + e.id + '"\
                         data-val-required="The IsActived field is required."\
-                                        id = "MediaNavs_['+ e.id +']__IsActived" name= "MediaNavs[' + e.id +'].IsActived"\
+                                        id = "MediaNavs1_['+ e.id +']__IsActived" name= "MediaNavs[' + e.id +'].IsActived"\
                                     value = "' + isActived + '" >\
-                                    <label class="switch" for="MediaNavs_['+e.id+']__IsActived">\
+                                    <label class="switch" for="MediaNavs1_['+e.id+']__IsActived">\
                                         \
                                                     </label>\
                                                 </span>\
@@ -857,11 +857,14 @@
                 var id = ($(this).data('media-id'));
                 if ($('.media-navs').find('media-' + id).length == 0) {
                     var nav = $(this).parents('.card').first();
-                    nav.find('.cb-media').first().val(true);
                     var index = '[' + $('.media-navs').find('.card').length + ']';
                     var t = '[' + id + ']';
-                    nav.html(nav.html().replace(new RegExp("\\"+t, "gm"), index));
-                    $('.media-navs').append(nav);
+                    var div = nav.clone();
+                    div.html(div.html().replace(new RegExp("\\" + t, "gm"), index));
+                    div.html(div.html().replace(new RegExp("\\MediaNavs1", "gm"), 'MediaNavs'));
+                    $('.media-navs').append(div);
+                    $(div).find('.cb-media').prop('checked', true);
+                    nav.hide();
                 }
             }
         })

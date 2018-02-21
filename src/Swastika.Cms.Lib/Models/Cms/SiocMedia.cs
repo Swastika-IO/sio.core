@@ -18,6 +18,7 @@ namespace Swastika.Cms.Lib.Models.Cms
         public string FileFolder { get; set; }
         public string FileName { get; set; }
         public string FileType { get; set; }
+        public string FileProperties { get; set; }
         public DateTime? LastModified { get; set; }
         public string ModifiedBy { get; set; }
         public int Priority { get; set; }
