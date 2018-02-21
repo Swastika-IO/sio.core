@@ -9,7 +9,7 @@
                 url: '/api/files',
                 type: "GET",
                 success: function (result) {
-                    //container.dataTable().fnDestroy();
+                    container.dataTable().fnDestroy();
                     container.find('tbody').empty();
                     $.each(result, function (index, val) {
                         var html = '<tr>';
@@ -26,17 +26,17 @@
                         container.find('tbody').append(html);
                     });
 
-                    //container.DataTable({
-                    //    "paging": true,
-                    //    "pageLength": 5,
-                    //    "lengthChange": false,
-                    //    "select": true,
-                    //    "searching": false,
-                    //    "ordering": true,
-                    //    "info": false,
-                    //    "autoWidth": true//,
-                    //    //"rowReorder": true
-                    //});
+                    container.DataTable({
+                        "paging": true,
+                        "pageLength": 5,
+                        "lengthChange": false,
+                        "select": true,
+                        "searching": false,
+                        "ordering": true,
+                        "info": false,
+                        "autoWidth": true//,
+                        //"rowReorder": true
+                    });
                 },
                 error: function (err) {
                     return null;
@@ -162,8 +162,6 @@
                 }
             });
 
-            
-
             $(".image-preview-modal-lg").on('show.bs.modal', function (event) {
                 var button = $(event.relatedTarget) // Button that triggered the modal
                 var recipient = button.data('imgsrc') // Extract info from data-* attributes
@@ -200,19 +198,19 @@
 
             //$(".select2").select2();
 
-            //$('.dataTable').DataTable({
-            //    "paging": false,
-            //    "lengthChange": false,
-            //    //"select": true,
-            //    "searching": false,
-            //    "ordering": true,
-            //    "info": false,
-            //    "autoWidth": true//,
-            //    //"rowReorder": true
-            //});
-            //$('.dataTable tr').on('click', function () {
-            //    $(this).toggleClass('selected');
-            //})
+            $('.dataTable').DataTable({
+                "paging": false,
+                "lengthChange": false,
+                //"select": true,
+                "searching": false,
+                "ordering": true,
+                "info": false,
+                "autoWidth": true//,
+                //"rowReorder": true
+            });
+            $('.dataTable tr').on('click', function () {
+                $(this).toggleClass('selected');
+            })
 
             $('.custom-file .custom-file-val').on('change', function () {
                 $(this).parent('.custom-file').find('img').attr('src', $(this).val());
@@ -465,7 +463,6 @@
             }
         },
         loadMedia: function (callBack, keyword = '', pageSize = 12, pageIndex = 0, orderBy = 'fileName', direction = 0) {
-
             var settings = {
                 "async": true,
                 "crossDomain": true,
