@@ -6,7 +6,9 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Data.OData.Query;
 using Microsoft.EntityFrameworkCore;
+using Swastika.Cms.Lib;
 using Swastika.Cms.Lib.Models.Cms;
+using Swastika.Cms.Lib.ViewModels;
 using Swastika.Cms.Lib.ViewModels.BackEnd;
 using Swastika.Cms.Lib.ViewModels.Info;
 using Swastika.Cms.Mvc.Controllers;
@@ -262,6 +264,27 @@ namespace Swastika.Cms.Mvc.Areas.Portal.Controllers
                 await getProduct.Data.RemoveModelAsync(true).ConfigureAwait(false);
             }
             return RedirectToAction("Draft", "Product");
+        }
+
+        [HttpGet]
+        [Route("AddEmptyProperty/{index}")]
+        public IActionResult AddEmptyProperty(int index)
+        {
+            ViewData["Index"] = index;
+            return PartialView(new ExtraProperty());
+        }
+
+
+        [HttpPost]
+        [Route("GetEditor")]
+        public IActionResult GetEditor(int index, SWCmsConstants.DataType type, string id, string name, string value)
+        {
+            ViewData["Id"] = id;
+            ViewData["Name"] = name;
+            ViewData["DataType"] = type;
+            ViewData["Value"] = value;
+            ViewData["Index"] = index;
+            return PartialView("_Editor");
         }
     }
 }

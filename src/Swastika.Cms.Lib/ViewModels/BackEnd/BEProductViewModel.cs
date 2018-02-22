@@ -113,8 +113,13 @@ namespace Swastika.Cms.Lib.ViewModels.BackEnd
         [JsonProperty("moduleNavs")]
         public List<NavProductModuleViewModel> ModuleNavs { get; set; } // Children Modules
 
+        
         [JsonProperty("mediaNavs")]
         public List<NavProductMediaViewModel> MediaNavs { get; set; }
+
+        [JsonProperty("jMediaNavs")]
+        public JArray JMediaNavs { get { return JArray.FromObject(MediaNavs); } }
+
 
         [JsonProperty("activedModules")]
         public List<BEModuleViewModel> ActivedModules { get; set; } // Children Modules
@@ -295,6 +300,7 @@ namespace Swastika.Cms.Lib.ViewModels.BackEnd
             if (getProductMedia.IsSucceed)
             {
                 MediaNavs = getProductMedia.Data;
+                MediaNavs.ForEach(n => n.IsActived = true);
             }
 
             this.ListSupportedCulture.ForEach(c => c.IsSupported =
@@ -521,12 +527,20 @@ namespace Swastika.Cms.Lib.ViewModels.BackEnd
                     {
                         navMedia.ProductId = parent.Id;
                         navMedia.Specificulture = parent.Specificulture;
-                        var saveResult = await navMedia.SaveModelAsync(false, _context, _transaction);
-                        result = saveResult.IsSucceed;
-                        if (!result)
+
+                        if (navMedia.IsActived)
                         {
-                            Errors.AddRange(saveResult.Errors);
-                            Exception = saveResult.Exception;
+                            var saveResult = await navMedia.SaveModelAsync(false, _context, _transaction);
+                        }
+                        else
+                        {
+                            var saveResult = await navMedia.RemoveModelAsync(false, _context, _transaction);
+                            result = saveResult.IsSucceed;
+                            if (!result)
+                            {
+                                Errors.AddRange(saveResult.Errors);
+                                Exception = saveResult.Exception;
+                            }
                         }
                     }
                 }

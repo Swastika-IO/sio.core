@@ -66,8 +66,16 @@ namespace Swastika.Cms.Lib.ViewModels.Navigation
             , _context: _context, _transaction: _transaction
             );
             Media = getMedia.Data;
+            Description = Media?.FileName;
+            Image = Media?.FullPath;
         }
 
+        public override SiocProductMedia ParseModel()
+        {
+            Description = Description ?? Media?.FileName;
+            Image = Media?.FullPath;
+            return base.ParseModel();
+        }
         #endregion Overrides
     }
 }

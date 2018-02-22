@@ -4,17 +4,20 @@
     string thumb = Model != null ? Model.Thumbnail : "http://placehold.it/200x200";
     var templates = new SelectList(Model.Templates, "Filename", "Filename");
     var types = Html.GetEnumSelectList<Swastika.Cms.Lib.SWCmsConstants.DataType>();
+    string culture = ViewBag.culture;
+    var translator = Swastika.Cms.Lib.SWCmsHelper.GetTranslator(culture);
 }
 
 <div>
-    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+    <div asp-validation-summary="All" class="text-danger"></div>
     <input type="hidden" asp-for="Id" />
-    <input type="hidden" id="product-id" value="@Model.Id"/>
     <input type="hidden" asp-for="Specificulture" />
     <input type="hidden" asp-for="CreatedBy" />
     <input type="hidden" asp-for="CreatedDateTime" />
     <input type="hidden" asp-for="View" />
     <input type="hidden" asp-for="Type" />
+    <input type="hidden" id="product-id" value="@Model.Id" />
+    <input id="arr-medias" type="hidden" value="@Model.JMediaNavs.ToString()" />
 </div>
 
 <div class="row">
@@ -99,7 +102,9 @@
                                 <div class="card">
                                     <div class="card-header">
                                         Extra Properties (<label asp-for="ExtraProperties" class="control-label"></label>)
-                                        <button id="add-property" class="btn btn-primary btn-sm float-right">@Swastika.Cms.Lib.Services.GlobalConfigurationService.Instance.GetLocalString("Add New", ViewBag.culture)</button>
+                                        <a id="add-property" class="btn btn-primary btn-sm float-right">
+                                        @translator.Get("Add New")
+                                        </a>
                                     </div>
                                     <div class="card-body">
                                         <input type="hidden" asp-for="Id" />
@@ -369,7 +374,7 @@
                                                         <td>
                                                             @{Html.RenderPartial("_ViewByFieldType", new ViewDataDictionary(this.Vi‌​ewData) { { "DataType", prop.DataType }, { "Value", prop.Value } });}
                                                         </td>
-                                                                }
+                                                    }
                                                     <td>
                                                         <input asp-for="@isActived" class="cb-active-data" dataId="@item.Id" />
                                                     </td>
@@ -377,17 +382,18 @@
                                                         <a asp-area="Portal" asp-controller="Module" asp-action="EditModuleData" asp-route-id="@item.ModuleId" asp-route-dataId="@item.Id" dataId="@item.Id" class="btn btn-sm btn-warning"><span class="oi oi-pencil"></span></a>
                                                     </td>
                                                 </tr>
-                                                                }
+                                            }
                                         </tbody>
                                     </table>
                                 </div>
-                                                                }
+                            }
                         </div>
                     </div>
                     <div class="tab-pane fade" id="pills-layout" role="tabpanel" aria-labelledby="pills-layout-tab">
                         <div class="form-group">
                             @*<label asp-for="Template" class="control-label"></label>*@
                             <div class="">
+
                                 @Html.Partial("_Editor_Code", Model.View, new ViewDataDictionary(this.ViewData) { { "Files", Model.Templates }, { "Name", "View" } })
                                 @* <input asp-for="View.Filename" class="form-control" />
                                     <div class="form-control" id="code-editor" asp-for="View.Content"></div>*@
@@ -414,83 +420,36 @@
                                             </tr>
                                         </thead>
                                         <tbody class="sortable media-navs">
-                                            <tr class="sortable-item product-property" ng-repeat="item in activedMedias.items track by $index">
-                                                    <td style="cursor:move;">
-                                                        <span class="oi oi-move"></span>
-                                                    </td>
-                                                    <td>
-                                                        {{item.title}}
-                                                    </td>
-                                                    <td>
-                                                        <a href="#" data-toggle="modal" data-target=".image-preview-modal-lg" data-whatever="{{item.media.fullPath}}"> 
-                                                        <img class="card-img-top" src="{{item.image}}" alt="Card image cap"> </a>
-                                                    </td>
-                                                    <td  style="position:relative">
-                                                        <input type="hidden" name="MediaNavs[{{$index}}].Specificulture" value="{{item.specificulture}}" />
-                                                        <input type="hidden" name="MediaNavs[{{$index}}].MediaId" value="{{item.mediaId}}" />
-                                                        <input type="hidden" name="MediaNavs[{{$index}}].ProductId" value="{{item.productId}}" />
-                                                        <input type="hidden" name="MediaNavs[{{$index}}].Position" value="{{item.position}}" />
-                                                        <input type="hidden" name="MediaNavs[{{$index}}].Image" value="{{item.image}}" />
-                                                        <input type="hidden" name="MediaNavs[{{$index}}].Description" value="{{item.description}}" />
 
-                                                        <span class="switch switch-sm" style="position: absolute;top: 10px;">
-                                                            <input type="checkbox" class="switch" data-val="true" data-val-required="The IsActived field is required." 
-                                                                   id="MediaNavs_{{item.mediaId}}" name="MediaNavs[{{$index}}].IsActived" ng-model="item.isActived">
-                                                            <label class="switch" for="MediaNavs_{{item.mediaId}}">
-                                                                {{item.media.fileName}}
-                                                            </label>
-                                                        </span>
-                                                    </td>
-                                                </tr>
+                                            <tr class="sortable-item" ng-repeat="item in activedMedias track by $index">
+                                                <td style="cursor:move;">
+                                                    <span class="oi oi-move"></span>
+                                                </td>
+                                                <td>
+                                                    {{item.description}}
+                                                </td>
+                                                <td>
+                                                    <a href="#" data-toggle="modal" data-target=".image-preview-modal-lg" data-whatever="{{item.media.fullPath}}">
+                                                        <img class="card-img-top" src="{{item.image}}" alt="Card image cap">
+                                                    </a>
+                                                </td>
+                                                <td style="position:relative">
+                                                    <input type="hidden" name="MediaNavs[{{$index}}].Specificulture" value="{{item.specificulture}}" />
+                                                    <input type="hidden" name="MediaNavs[{{$index}}].MediaId" value="{{item.mediaId}}" />
+                                                    <input type="hidden" name="MediaNavs[{{$index}}].ProductId" value="{{item.productId}}" />
+                                                    <input type="hidden" name="MediaNavs[{{$index}}].Position" value="{{item.position}}" />
+                                                    <input type="hidden" name="MediaNavs[{{$index}}].Image" value="{{item.image}}" />
+                                                    <input type="hidden" name="MediaNavs[{{$index}}].Description" value="{{item.description}}" />
 
-                                            @*@foreach (var item in Model.MediaNavs)
-                                            {
-                                                int index = Model.MediaNavs.IndexOf(item);
+                                                    <span class="switch switch-sm" style="position: absolute;top: 10px;">
+                                                        <input type="checkbox" class="switch" data-val="{{item.isActived}}"
+                                                               id="MediaNavs_{{item.mediaId}}" name="MediaNavs[{{$index}}].IsActived" ng-model="item.isActived" value="{{item.isActived}}">
+                                                        <label class="switch" for="MediaNavs_{{item.mediaId}}">
+                                                        </label>
+                                                    </span>
+                                                </td>
+                                            </tr>
 
-                                                <tr class="sortable-item product-property">
-                                                    <td style="cursor:move;">
-                                                        <span class="oi oi-move"></span>
-                                                    </td>
-                                                    <td>
-                                                        <input type="text" asp-for="@Model.Properties[index].Priority" class="item-priority form-control form-control-sm d-inline" style="width:40px;" />
-                                                    </td>
-                                                    <td>
-                                                        @item.Media.FileName
-                                                    </td>
-                                                    <td>
-                                                        <a href="#" data-toggle="modal" data-target=".image-preview-modal-lg" data-whatever="@item.Media.FullPath"> <img class="card-img-top" src="@item.Media.FullPath" alt="Card image cap"> </a>
-                                                    </td>
-                                                    <td>
-                                                        <input type="hidden" name="MediaNavs[@index].MediaId" value="@item.MediaId" />
-                                                        <input type="hidden" name="MediaNavs[@index].ProductId" value="@item.ProductId" />
-                                                        <input type="hidden" name="MediaNavs[@index].Position" value="@item.Position" />
-                                                        <input type="hidden" name="MediaNavs[@index].Image" value="@item.Image" />
-                                                        <input type="hidden" name="MediaNavs[@index].Description" value="@item.Description" />
-
-                                                        <span class="switch switch-sm" style="position: absolute;top: 10px;">
-                                                            <input type="checkbox" class="switch" data-val="true" data-val-required="The IsActived field is required." id="Media_Image_@item.MediaId" name="MediaNavs[@index].IsActived" value="@item.IsActived">
-                                                            <label class="switch" for="Media_Image_@item.MediaId">
-                                                                @item.Media.FileName
-                                                            </label>
-                                                        </span>
-                                                    </td>
-                                                </tr>*@
-
-                                                @*<input type="hidden" name="MediaNavs[@index].MediaId" value="@item.MediaId" />
-                                                    <input type="hidden" name="MediaNavs[@index].ProductId" value="@item.ProductId" />
-                                                    <input type="hidden" name="MediaNavs[@index].Position" value="@item.Position" />
-                                                    <input type="hidden" name="MediaNavs[@index].Image" value="@item.Image" />
-                                                    <input type="hidden" name="MediaNavs[@index].Description" value="@item.Description" />
-                                                    <div class="card">
-                                                        <span class="switch switch-sm" style="position: absolute;top: 10px;">
-                                                            <input type="checkbox" class="switch" data-val="true" data-val-required="The IsActived field is required." id="Media_Image_@item.MediaId" name="MediaNavs[@index].IsActived" value="@item.IsActived">
-                                                            <label class="switch" for="Media_Image_@item.MediaId">
-                                                                @item.Media.FileName
-                                                            </label>
-                                                        </span>
-                                                        <a href="#" data-toggle="modal" data-target=".image-preview-modal-lg" data-whatever="@item.Media.FullPath"> <img class="card-img-top" src="@item.Media.FullPath" alt="Card image cap"> </a>
-                                                    </div>
-                                            }*@
                                         </tbody>
                                     </table>
                                 </div>
@@ -538,35 +497,39 @@
                                     <div class="input-group">
                                         <div class="input-group-prepend">
                                             <div class="input-group-text " id="btnGroupAddon">
-                                                <i class="mi mi-Search btn-search-media" style="top:0;cursor:pointer;"></i>
+                                                <i class="mi mi-Search btn-search-media" ng-click="loadMedia()" style="top:0;cursor:pointer;"></i>
                                             </div>
                                         </div>
-                                        <input type="text" class="form-control media-keyword" placeholder="Search media items..." aria-label="Search media items..." aria-describedby="btnGroupAddon">
+                                        <input type="text" id="keyword" ng-enter="loadMedia()"
+                                               class="form-control media-keyword" placeholder="Search media items..." aria-label="Search media items..." aria-describedby="btnGroupAddon">
                                     </div>
                                 </div>
                             </div>
 
                             <div class="card-columns" style="column-count: 4 !important;column-gap: 0.75rem;">
-                                <div class="card" ng-repeat="media in mediaData.items"  ng-hide="media.isHidden">
-                                        <span class="switch switch-sm" style="position: absolute;top: 10px;">
-                                            <input type="checkbox" class="switch" ng-model="media.isActived" ng-change="changeMedia(media)"
-                                                   id="Media_Image_{{media.id}}" value="true">
-                                            <label class="switch" for="Media_Image_{{media.id}}">
-                                                {{media.title}}
-                                            </label>
-                                        </span>
-                                        <a href="#" data-toggle="modal" data-target=".image-preview-modal-lg">
-                                            <img class="card-img-top" src="{{media.fullPath}}" alt="Card image cap">
-                                        </a>
-                                    </div>
+                                <div class="card" ng-repeat="media in mediaData.items" ng-hide="media.isHidden">
+                                    <span class="switch switch-sm" style="position: absolute;top: 10px;">
+                                        <input type="checkbox" class="switch" ng-model="media.isActived" ng-change="changeMedia(media)"
+                                               id="Media_Image_{{media.id}}" value="true">
+                                        <label class="switch" for="Media_Image_{{media.id}}">
+                                            {{media.title}} {{mediaData.totalPage}}
+                                        </label>
+                                    </span>
+                                    <a href="#" data-toggle="modal" data-target=".image-preview-modal-lg">
+                                        <img class="card-img-top" src="{{media.fullPath}}" alt="Card image cap">
+                                    </a>
+                                </div>
                             </div>
                             <nav aria-label="Page navigation">
                                 <ul class="pagination pull-right">
-                                    <li class="page-item"><a class="page-link" href="#">Previous</a></li>
-                                    <li class="page-item"><a class="page-link" href="#">1</a></li>
-                                    <li class="page-item"><a class="page-link" href="#">2</a></li>
-                                    <li class="page-item"><a class="page-link" href="#">3</a></li>
-                                    <li class="page-item"><a class="page-link" href="#">Next</a></li>
+                                    <li class="page-item"><a class="page-link active" href="javascript:void(0)" ng-click="loadMedia(mediaData.pageIndex-1)" 
+                                                             ng-hide="mediaData.pageIndex==0">Prev</a></li>
+                                    <li class="page-item" ng-class="{active: n-1==mediaData.pageIndex}" ng-repeat="n in range(mediaData.totalPage)"
+                                        ><a class="page-link" href="javascript:void(0)" ng-click="loadMedia(n-1)">{{n}}</a></li>
+                                    <li class="page-item"><a class="page-link" href="javascript:void(0)" ng-click="loadMedia(mediaData.pageIndex + 1)" 
+                                                             ng-hide="mediaData.pageIndex >= (mediaData.totalPage-1)">Next</a></li>
+
+
                                 </ul>
                             </nav>
                             <div class="modal fade image-preview-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
@@ -737,7 +700,7 @@
                     $('#modal-data').modal('show')
                 },
                 error: function (a, b, c) {
-                    alert(a + " " + b + " " + c);
+                    console.log(a + " " + b + " " + c);
                 }
             });
         });
@@ -755,7 +718,7 @@
                     $('#modal-data').modal('show');
                 },
                 error: function (a, b, c) {
-                    alert(a + " " + b + " " + c);
+                    console.log(a + " " + b + " " + c);
                 }
             });
         });
@@ -798,7 +761,7 @@
                 success: function (data) {
                 },
                 error: function (a, b, c) {
-                    alert(a + " " + b + " " + c);
+                    console.log(a + " " + b + " " + c);
                 }
             });
         })
@@ -811,13 +774,14 @@
         $('#add-property').click(function () {
             var i = $(".product-property").length;
             $.ajax({
-                url: '/vi-vn/Portal/products/AddEmptyProperty/' + i,
+                method: 'GET',
+                url: '/vi-vn/Portal/Product/AddEmptyProperty/' + i,
                 success: function (data) {
                     $('#tbl-properties > tbody').append(data);
                     $(data).find('.prop-data-type').trigger('change');
                 },
                 error: function (a, b, c) {
-                    alert(a + " " + b + " " + c);
+                    console.log(a + " " + b + " " + c);
                 }
             });
         });
@@ -832,89 +796,20 @@
             $.ajax({
                 method: 'POST',
                 data: { index: index, type: dataType, id: inputId, name: inputName, value: inputValue },
-                url: '/vi-vn/Portal/products/GetEditor',// + index + '/' + dataType + '/' + inputId + '/' + inputName + '/' + inputValue,
+                url: '/vi-vn/Portal/Product/GetEditor',// + index + '/' + dataType + '/' + inputId + '/' + inputName + '/' + inputValue,
                 success: function (data) {
                     container.html(data);
                     $('.editor-content').trumbowyg();
 
                 },
                 error: function (a, b, c) {
-                    alert(a + " " + b + " " + c);
+                    console.log(a + " " + b + " " + c);
                 }
             });
         });
         $('.prop-data-type').change();
 
-        function loadMedia(pageIndex = 0) {
-            var keyword = $('.media-keyword').val();
-            var pageSize = 12;
-            var orderBy = 'createdDateTime';
-            var direction = 1;
-
-            SW.Common.loadMedia(function (response) {
-
-                var container = $('.card-columns');
-                $(container).empty();
-                var html = '';
-                var index = $('.media-navs').find('.card').length;
-                $.each(response.data.items, function (i, e) {
-
-                    var isActived = $('.media-navs').find('media-' + e.id).length == 1;
-                    html += '<div class="card media-' + e.id + '" data-media-id="' + e.id + '" > \
-                        <input type="hidden" name="MediaNavs['+e.id+'].MediaId" value="' + e.id + '" />\
-                        <input type= "hidden" name="MediaNavs['+e.id+'].ProductId" value="' + '@Model.Id' + '" />\
-                        <input type="hidden" name="MediaNavs['+ e.id + '].Specificultre" value="' + e.specificulture + '" />\
-                        <input type="hidden" name="MediaNavs['+ e.id + '].Priority" value="0" />\
-                        <input type="hidden" name="MediaNavs['+ e.id +'].Image" value="' + e.fullPath + '" />\
-                        <input type="hidden" name="MediaNavs['+ e.id + '].Description" value="' + e.title + '" />\
-                        <input type="hidden" name="MediaNavs['+ e.id + '].IsActived" value="' + true + '" />\
-                    <span class="switch switch-sm" style="position: absolute;top: 10px;" > \
-                                <input type="checkbox" class="switch cb-media" data-media-id="' + e.id + '"\
-                        data-val-required="The IsActived field is required."\
-                                        id = "MediaNavs1_['+ e.id +']__IsActived" name= "MediaNavs[' + e.id +'].IsActived"\
-                                    value = "' + isActived + '" >\
-                                    <label class="switch" for="MediaNavs1_['+e.id+']__IsActived">\
-                                        \
-                                                    </label>\
-                                                </span>\
-                    <a href="#" data-toggle="modal" data-target=".image-preview-modal-lg" data-imgsrc="'+ e.fullPath + '">\
-                                    <img class="card-img-top" src="'+ e.fullPath + '" alt="Card image cap">\
-                                                </a>\
-                        </div>';
-                    index++;
-                });
-                $(container).append(html);
-                var pagination = $('.pagination');
-                console.log($(pagination).html);
-                $(pagination).empty();
-
-                for (var i = 0; i < response.data.totalPage; i++) {
-                    var li = document.createElement('li');
-                    var pageIndex = i;
-                    $(li).addClass('page-item');
-
-                    if (i == response.data.pageIndex) {
-                        $(li).addClass('active');
-                    }
-
-                    var a = document.createElement('a');
-                    $(a).attr('href', 'javascript:void(0)');
-                    $(a).addClass('page-link');
-                    $(a).html(i + 1);
-                    $(li).append(a);
-                    $(pagination).append(li);
-                }
-            },
-                keyword, pageSize, pageIndex
-            )
-        }
-
-        $(document).on('click', '.page-link', function () {
-            var pageIndex = $(this).html() - 1;
-            loadMedia(pageIndex);
-        })
-        $('.btn-search-media').on('click', function () { loadMedia(); });
-
+        
         $(document).on('click', '.model-media .btn-upload', function () {
             var container = $(this).parents('.model-media').first().find('.custom-file').first();
             var file = $('.model-media .custom-file-input').first().prop('files')[0];
@@ -928,55 +823,6 @@
                 }
             }
         });
-        $(document).on('change', '.cb-media', function () {
-            if ($(this).is(':checked')) {
-                var id = ($(this).data('media-id'));
-                if ($('.media-navs').find('media-' + id).length == 0) {
-                    var nav = $(this).parents('.card').first();
-                    var index = '[' + $('.media-navs').find('.card').length + ']';
-                    var t = '[' + id + ']';
-                    var div = nav.clone();
-
-                    @*var html += '<tr class="sortable-item  media-' + e.id + '" data-media-id="' + e.id + '" > \
-	<td style="cursor:move;"> \
-		<span class="oi oi-move"> \</span> \
-	</td> \
-	<td> \
-		<input type="text" asp-for="MediaNavs['+ e.id + '].Priority" class="item-priority form-control form-control-sm d-inline" style="width:40px;" /> \
-	</td> \
-	<td> ' + e.title + ' </td> \
-	<td> \
-		<a href="#" data-toggle="modal" data-target=".image-preview-modal-lg" data-imgsrc="'+ e.fullPath + '">\
-                                    <img class="card-img-top" src="'+ e.fullPath + '" alt="Card image cap">\
-                                                </a>\
-	</td> \
-	<td> \
-		<input type="hidden" name="MediaNavs['+ e.id + '].MediaId" value="' + e.id + '" />\
-		<input type= "hidden" name="MediaNavs['+ e.id + '].ProductId" value="' + '@Model.Id' + '" />\
-		<input type="hidden" name="MediaNavs['+ e.id + '].Specificultre" value="' + e.specificulture + '" />\
-		<input type="hidden" name="MediaNavs['+ e.id + '].Priority" value="0" />\
-		<input type="hidden" name="MediaNavs['+ e.id + '].Image" value="' + e.fullPath + '" />\
-		<input type="hidden" name="MediaNavs['+ e.id + '].Description" value="' + e.title + '" />\
-		<input type="hidden" name="MediaNavs['+ e.id + '].IsActived" value="' + true + '" />\
-		<span class="switch switch-sm" style="position: absolute;top: 10px;" > \
-                                <input type="checkbox" class="switch cb-media" data-media-id="' + e.id + '"\
-                        data-val-required="The IsActived field is required."\
-                                        id = "MediaNavs1_['+ e.id + ']__IsActived" name= "MediaNavs[' + e.id + '].IsActived"\
-                                    value = "' + isActived + '" >\
-                                    <label class="switch" for="MediaNavs1_['+ e.id + ']__IsActived">\
-                                                    </label>\
-                                                </span>\
-	</td> \
-</tr>';*@
-
-                    div.html(div.html().replace(new RegExp("\\" + t, "gm"), index));
-                    div.html(div.html().replace(new RegExp("\\MediaNavs1", "gm"), 'MediaNavs'));
-                    $('.media-navs').append(div);
-                    $(div).find('.cb-media').prop('checked', true);
-                    nav.hide();
-                }
-            }
-        })
         //loadMedia();
     }
 </script>

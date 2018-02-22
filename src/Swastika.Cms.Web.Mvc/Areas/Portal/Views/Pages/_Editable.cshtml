@@ -126,8 +126,8 @@
                                                     <input type="hidden" asp-for="@Model.ParentNavs[i].ParentId" />
                                                     <input type="hidden" asp-for="@Model.ParentNavs[i].Priority" />
                                                     <span class="switch switch-sm">
-                                                        <input type="checkbox" id="checkboxParentNavs_@Model.ParentNavs[i].Id" asp-for="@Model.ParentNavs[i].IsActived" class="switch">
-                                                        <label class="switch" for="checkboxParentNavs_@Model.ParentNavs[i].Id">
+                                                        <input type="checkbox" id="checkboxParentNavs_@i" asp-for="@Model.ParentNavs[i].IsActived" class="switch">
+                                                        <label class="switch" for="checkboxParentNavs_@i">
                                                             @Model.ParentNavs[i].Description
                                                         </label>
                                                     </span>
