@@ -162,34 +162,71 @@
                 }
             });
 
-                var cropBoxData;
-                var canvasData;
-                var cropper;
+            var cropBoxData;
+            var canvasData;
+            var cropper;
 
-            $(".image-crop-modal-lg").on('show.bs.modal', function (event) {
-window.addEventListener('DOMContentLoaded', function () {
+            function each(arr, callback) {
+                var length = arr.length;
+                var i;
+
+                for (i = 0; i < length; i++) {
+                    callback.call(arr, arr[i], i, arr);
+                }
+
+                return arr;
+            }
+
+            $(".image-crop-modal-lg").on('shown.bs.modal', function (event) {
                 var button = $(event.relatedTarget) // Button that triggered the modal
                 var recipient = button.data('imgsrc') // Extract info from data-* attributes
                 // If necessary, you could initiate an AJAX request here (and then do the updating in a callback).
                 // Update the modal's content. We'll use jQuery here, but you could use a data binding library or other methods instead.
-                var modal = $(this)
-                //modal.find('.modal-title').text('New message to ' + recipient)
-                //modal.find('.modal-body input').val(recipient)
-                modal.find('.modal-body .img-fluid').attr('src', recipient);
+                var modal = $(this);
+                modal.find('.modal-body #image-crop-placeholder').attr('src', recipient);
 
-                //var Cropper = window.Cropper;
-                var image = $(".image-crop-modal-lg .img-cropper").get(0);
+                var image = $(".image-crop-modal-lg #image-crop-placeholder").get(0);
+                var previews = document.querySelectorAll('.image-crop-modal-lg .img-cropper-preview');
 
                 cropper = new Cropper(image, {
-                  autoCropArea: 0.5,
-//minContainerWidth:500,
-//minContainerHeight: 500,
-                  ready: function () {
-                    // Strict mode: set crop box data first
-                    cropper.setCropBoxData(cropBoxData).setCanvasData(canvasData);
-                  }
+                    ready: function () {
+                        var clone = this.cloneNode();
+
+                        clone.className = ''
+                        clone.style.cssText = (
+                            'display: block;' +
+                            'width: 100%;' +
+                            'min-width: 0;' +
+                            'min-height: 0;' +
+                            'max-width: none;' +
+                            'max-height: none;'
+                        );
+
+                        each(previews, function (elem) {
+                            elem.appendChild(clone.cloneNode());
+                        });
+                    },
+
+                    crop: function (e) {
+                        var data = e.detail;
+                        var cropper = this.cropper;
+                        var imageData = cropper.getImageData();
+                        var previewAspectRatio = data.width / data.height;
+
+                        each(previews, function (elem) {
+                            var previewImage = elem.getElementsByTagName('img').item(0);
+                            var previewWidth = elem.offsetWidth;
+                            var previewHeight = previewWidth / previewAspectRatio;
+                            var imageScaledRatio = data.width / previewWidth;
+
+                            elem.style.height = previewHeight + 'px';
+                            previewImage.style.width = imageData.naturalWidth / imageScaledRatio + 'px';
+                            previewImage.style.height = imageData.naturalHeight / imageScaledRatio + 'px';
+                            previewImage.style.marginLeft = -data.x / imageScaledRatio + 'px';
+                            previewImage.style.marginTop = -data.y / imageScaledRatio + 'px';
+                        });
+                    }
                 });
-});
             }).on('hidden.bs.modal', function () {
                 cropBoxData = cropper.getCropBoxData();
                 canvasData = cropper.getCanvasData();

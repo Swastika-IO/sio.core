@@ -126,9 +126,13 @@
     .img-container img {
         max-width: 100%;
     }
+
+    .img-cropper-preview {
+        overflow: hidden;
+    }
 </style>
-<div class="modal fade image-crop-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-lg modal-dialog-centered">
+<div class="modal fade image-crop-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel">
+    <div class="modal-dialog modal-lg modal-dialog-centered" style="max-width: 95%;">
         <div class="modal-content">
             <div class="modal-header">
                 <h5 class="modal-title">Image crop setting</h5>
@@ -139,9 +143,14 @@
             <div class="modal-body">
 
                 <div class="row">
-                    <div class="col-12">
-                        <div class="img-container">
-                            <img class="img-fluid img-cropper" style="max-width:100%" src="https://fengyuanchen.github.io/cropperjs/images/picture.jpg">
+                    <div class="col-8">
+                        <div class="img-cropper-container">
+                            <img id="image-crop-placeholder" class="img-cropper img-fluid" style="max-width:100%;width: 100%;" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7">
+                        </div>
+                    </div>
+                    <div class="col-4">
+                        <div class="img-cropper-preview-container">
+                            <div class="img-cropper-preview"></div>
                         </div>
                     </div>
                 </div>
