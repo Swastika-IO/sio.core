@@ -1,5 +1,3 @@
-@inject SignInManager<ApplicationUser> SignInManager
-@inject UserManager<ApplicationUser> UserManager
 @{
     string culture = ViewBag.culture;
     List<InfoCategoryViewModel> topCates = SWCmsHelper.GetCategory(Url, ViewBag.culture, SWCmsConstants.CatePosition.Top, Context.Request.Path);

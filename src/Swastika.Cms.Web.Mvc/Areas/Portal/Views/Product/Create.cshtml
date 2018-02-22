@@ -7,7 +7,7 @@
 }
 
 <!-- Main content -->
-<section class="content container-fluid" ng-controller="ProductController">
+<section class="content container-fluid">
     <form asp-action="@ViewContext.RouteData.Values["action"].ToString()"
           asp-route-categoryId="@ViewBag.categoryId"
           enctype="multipart/form-data" >

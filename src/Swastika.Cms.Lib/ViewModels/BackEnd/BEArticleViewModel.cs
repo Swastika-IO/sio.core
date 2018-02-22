@@ -110,6 +110,9 @@ namespace Swastika.Cms.Lib.ViewModels.BackEnd
         [JsonProperty("mediaNavs")]
         public List<NavArticleMediaViewModel> MediaNavs { get; set; }
 
+        [JsonProperty("jMediaNavs")]
+        public JArray JMediaNavs { get { return JArray.FromObject(MediaNavs); } }
+
         [JsonProperty("activedModules")]
         public List<BEModuleViewModel> ActivedModules { get; set; } // Children Modules
 
@@ -224,10 +227,10 @@ namespace Swastika.Cms.Lib.ViewModels.BackEnd
             IsClone = true;
             ListSupportedCulture = GlobalLanguageService.ListSupportedCulture;
 
-            if (!string.IsNullOrEmpty(this.Tags))
-            {
-                ListTag = JArray.Parse(this.Tags);
-            }
+            //if (!string.IsNullOrEmpty(this.Tags))
+            //{
+            //    ListTag = JArray.Parse(this.Tags);
+            //}
             Properties = new List<ExtraProperty>();
             if (!string.IsNullOrEmpty(ExtraProperties))
             {
@@ -289,7 +292,7 @@ namespace Swastika.Cms.Lib.ViewModels.BackEnd
             var getArticleMedia = NavArticleMediaViewModel.Repository.GetModelListBy(n => n.ArticleId == Id && n.Specificulture == Specificulture, _context, _transaction);
             if (getArticleMedia.IsSucceed)
             {
-                MediaNavs = getArticleMedia.Data;
+                MediaNavs = getArticleMedia.Data.OrderBy(p => p.Priority).ToList();
             }
 
             this.ListSupportedCulture.ForEach(c => c.IsSupported =
@@ -319,7 +322,7 @@ namespace Swastika.Cms.Lib.ViewModels.BackEnd
             if (Properties.Count > 0)
             {
                 JArray arrProperties = new JArray();
-                foreach (var p in Properties.OrderBy(p => p.Priority))
+                foreach (var p in Properties.Where(p=>!string.IsNullOrEmpty(p.Value) && !string.IsNullOrEmpty(p.Name)).OrderBy(p => p.Priority))
                 {
                     arrProperties.Add(JObject.FromObject(p));
                 }
@@ -356,7 +359,7 @@ namespace Swastika.Cms.Lib.ViewModels.BackEnd
                 }
             }
 
-            Tags = ListTag.ToString(Newtonsoft.Json.Formatting.None);
+            //Tags = ListTag.ToString(Newtonsoft.Json.Formatting.None);
 
             GenerateSEO();
 

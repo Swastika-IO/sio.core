@@ -7,6 +7,7 @@ using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using Swastika.Cms.Lib.Models.Cms;
 using Swastika.Cms.Lib.Services;
+using Swastika.Cms.Lib.ViewModels.Navigation;
 using Swastika.Common.Helper;
 using Swastika.Domain.Data.ViewModels;
 using System;
@@ -153,6 +154,9 @@ namespace Swastika.Cms.Lib.ViewModels.FrontEnd
 
         public List<ExtraProperty> Properties { get; set; }
 
+        [JsonProperty("mediaNavs")]
+        public List<NavArticleMediaViewModel> MediaNavs { get; set; }
+
         #endregion Views
 
         #endregion Properties
@@ -201,6 +205,13 @@ namespace Swastika.Cms.Lib.ViewModels.FrontEnd
                         this.Modules.Add(getModules.Data);
                     }
                 }
+            }
+
+            var getArticleMedia = NavArticleMediaViewModel.Repository.GetModelListBy(n => n.ArticleId == Id && n.Specificulture == Specificulture, _context, _transaction);
+            if (getArticleMedia.IsSucceed)
+            {
+                MediaNavs = getArticleMedia.Data.OrderBy(p => p.Priority).ToList();
+                MediaNavs.ForEach(n => n.IsActived = true);
             }
         }
 

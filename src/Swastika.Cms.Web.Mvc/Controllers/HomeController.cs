@@ -146,7 +146,16 @@ namespace Swastika.Cms.Mvc.Controllers
                         ),
                "CreatedDateTime", OrderByDirection.Descending,
                pageSize, pageIndex);
-            //ViewData["Categories"] = categories;
+            var getProducts = await InfoProductViewModel.Repository.GetModelListByAsync(
+               Product => Product.Specificulture == _lang
+                   && Product.Status != (int)SWStatus.Deleted
+                   && (
+                        string.IsNullOrEmpty(keyword) || Product.Title.Contains(keyword)
+                        || (Product.Excerpt != null && Product.Excerpt.Contains(keyword))
+                        ),
+               "CreatedDateTime", OrderByDirection.Descending,
+               pageSize, pageIndex);
+            ViewData["Products"] = getProducts.Data;
             return View(getArticles.Data);
         }
 
