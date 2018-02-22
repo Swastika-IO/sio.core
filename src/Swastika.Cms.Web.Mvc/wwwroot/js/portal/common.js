@@ -731,7 +731,7 @@
                 success: function (result) {
                     container.find('.custom-file-val').val(result.data.fullPath);
                     container.find('.custom-file-img').attr('src', result.data.fullPath);
-                    container.find('.custom-file-cropper').show().attr('data-imgsrc', result.data.fullPath);
+                    container.find('.custom-file-cropper').show().attr('data-imgsrc', result.data.fullPath).attr('data-imgid', result.data.id);
                     return result;
                 },
                 error: function (err) {

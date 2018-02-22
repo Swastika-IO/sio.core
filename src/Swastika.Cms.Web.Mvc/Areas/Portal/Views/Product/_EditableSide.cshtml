@@ -58,47 +58,48 @@
 <input type="hidden" asp-for="Specificulture" />
 
 @*<div class="card">
-    <div class="card-header">
-        <label asp-for="Icon"></label>
-    </div>
-    <div class="card-body">
-        <div class="form-group">
-
-            <span asp-validation-for="Icon" class="text-danger"></span>
-            <select asp-for="@Model.Icon" class="form-control selectpicker">
-                <option value="">Select Icon</option>
-                <option value="fa fa-envelope" data-content="<span><i class='fa fa-1x fa-envelope'></i></span>"></option>
-
-                <option value="fa fa-facebook" data-content="<span><i class='fa fa-1x fa-facebook'></i></span>"></option>
-                <option value="fa fa-twitter" data-content="<span><i class='fa fa-1x fa-twitter'></i></span>"></option>
-                <option value="fa fa-linkedin" data-content="<span><i class='fa fa-1x fa-linkedin'></i></span>"></option>
-                <option value="fa fa-skype" data-content="<span><i class='fa fa-1x fa-skype'></i></span>"></option>
-
-                <option value="fa fa fa-car" data-content="<span><i class='fa fa fa-car'></i></span>"></option>
-                <option value="fa fa fa-building" data-content="<span><i class='fa fa-building'></i></span>"></option>
-                <option value="fa fa fa-language" data-content="<span><i class='fa fa-language'></i></span>"></option>
-                <option value="fa fa fa-paper-plane-o" data-content="<span><i class='fa fa fa-paper-plane-o'></i></span>"></option>
-                <option value="fa fa fa-users" data-content="<span><i class='fa fa fa-users'></i></span>"></option>
-                <option value="fa fa fa-ticket" data-content="<span><i class='fa fa fa-ticket'></i></span>"></option>
-            </select>
+        <div class="card-header">
+            <label asp-for="Icon"></label>
         </div>
-    </div>
-</div>*@
+        <div class="card-body">
+            <div class="form-group">
+
+                <span asp-validation-for="Icon" class="text-danger"></span>
+                <select asp-for="@Model.Icon" class="form-control selectpicker">
+                    <option value="">Select Icon</option>
+                    <option value="fa fa-envelope" data-content="<span><i class='fa fa-1x fa-envelope'></i></span>"></option>
+
+                    <option value="fa fa-facebook" data-content="<span><i class='fa fa-1x fa-facebook'></i></span>"></option>
+                    <option value="fa fa-twitter" data-content="<span><i class='fa fa-1x fa-twitter'></i></span>"></option>
+                    <option value="fa fa-linkedin" data-content="<span><i class='fa fa-1x fa-linkedin'></i></span>"></option>
+                    <option value="fa fa-skype" data-content="<span><i class='fa fa-1x fa-skype'></i></span>"></option>
+
+                    <option value="fa fa fa-car" data-content="<span><i class='fa fa fa-car'></i></span>"></option>
+                    <option value="fa fa fa-building" data-content="<span><i class='fa fa-building'></i></span>"></option>
+                    <option value="fa fa fa-language" data-content="<span><i class='fa fa-language'></i></span>"></option>
+                    <option value="fa fa fa-paper-plane-o" data-content="<span><i class='fa fa fa-paper-plane-o'></i></span>"></option>
+                    <option value="fa fa fa-users" data-content="<span><i class='fa fa fa-users'></i></span>"></option>
+                    <option value="fa fa fa-ticket" data-content="<span><i class='fa fa fa-ticket'></i></span>"></option>
+                </select>
+            </div>
+        </div>
+    </div>*@
 
 <div class="card">
     <div class="card-header">
         Feature image
     </div>
-    <div class="card-body p-0" style="background:url(/images/upload-image-thumbnail.png) no-repeat center; ">
-        @*<label asp-for="Image" class="control-label"></label>*@
+    <div class="card-body p-0" style="background:url(/images/upload-image-thumbnail.png) no-repeat center;  cursor:pointer;">
         <span asp-validation-for="Image" class="text-danger"></span>
-        <label class="custom-file" style="min-height:150px; cursor:pointer;">
+        <span class="custom-file" style="min-height:150px; overflow:hidden;">
+            <button class="btn btn-dark btn-sm custom-file-cropper position-absolute m-1 collapse" style="z-index:3; right:0;" data-toggle="modal" data-target=".image-crop-modal-lg" data-imgsrc="" data-imgid="">
+                <i class="mi mi-Crop"></i>
+            </button>
+            <input type="file" name="pic" class="custom-file-input auto-upload position-absolute" style="height:400px; cursor:pointer;">
             <img src="@img" name="pic" class="custom-file-img " accept="image/*" width="100%" />
             <input type="hidden" value="Products/@Model.SeoTitle" class="folder-val" />
-            <input type="file" name="pic" class="custom-file-input auto-upload">
             <input type="text" asp-for="Image" class="form-control custom-file-val d-none">
-            @*<span class="btn btn-primary custom-file-control">Browse</span>*@
-        </label>
+        </span>
     </div>
 </div>
 
@@ -106,19 +107,19 @@
     <div class="card-header">
         Thumbnail image
     </div>
-    <div class="card-body p-0" style="background:url(/images/upload-image-thumbnail.png) no-repeat center; ">
-        @*<label asp-for="Image" class="control-label"></label>*@
+    <div class="card-body p-0" style="background:url(/images/upload-image-thumbnail.png) no-repeat center;  cursor:pointer;">
         <span asp-validation-for="Thumbnail" class="text-danger"></span>
-        <label class="custom-file" style="min-height:150px; cursor:pointer;">
+        <span class="custom-file" style="min-height:150px; overflow:hidden;">
+            <button class="btn btn-dark btn-sm custom-file-cropper position-absolute m-1 collapse" style="z-index:3; right:0;" data-toggle="modal" data-target=".image-crop-modal-lg" data-imgsrc="" data-imgid="">
+                <i class="mi mi-Crop"></i>
+            </button>
+            <input type="file" name="pic" class="custom-file-input auto-upload position-absolute" style="height:400px; cursor:pointer;">
             <img src="@thumb" name="pic" class="custom-file-img " accept="image/*" width="100%" />
             <input type="hidden" value="Products/@Model.SeoTitle" class="folder-val" />
-            <input type="file" name="pic" class="custom-file-input auto-upload">
             <input type="text" asp-for="Thumbnail" class="form-control custom-file-val d-none">
-            @*<span class="btn btn-primary custom-file-control">Browse</span>*@
-        </label>
+        </span>
     </div>
 </div>
-
 @*<div class="card">
         <div class="card-header">
             Languages
