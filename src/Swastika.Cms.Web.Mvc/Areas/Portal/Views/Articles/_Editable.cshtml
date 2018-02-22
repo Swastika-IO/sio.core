@@ -1,4 +1,5 @@
 ﻿@model BEArticleViewModel
+
 @{
     string img = Model != null ? Model.Image : "http://placehold.it/200x200";
     string thumb = Model != null ? Model.Thumbnail : "http://placehold.it/200x200";
@@ -7,9 +8,14 @@
     string culture = ViewBag.culture;
     var translator = Swastika.Cms.Lib.SWCmsHelper.GetTranslator(culture);
 }
+@if (!ViewData.ModelState.IsValid)
+{
+    <div class="alert alert-danger" role="alert">
+        <div asp-validation-summary="All"></div>
+    </div>
+}
 
-<div>
-    <div asp-validation-summary="All" class="text-danger"></div>
+<span class="d-none">
     <input type="hidden" asp-for="Id" />
     <input type="hidden" asp-for="Specificulture" />
     <input type="hidden" asp-for="CreatedBy" />
@@ -18,8 +24,7 @@
     <input type="hidden" asp-for="Type" />
     <input type="hidden" id="article-id" value="@Model.Id" />
     <input id="arr-medias" type="hidden" value="@Model.JMediaNavs.ToString()" />
-</div>
-
+</span>
 <div class="row">
     <div class="col-sm-12">
         <div class="card">
@@ -27,9 +32,8 @@
                 Main Content
             </div>
             <div class="card-body">
-
                 <div class="form-group">
-                    <input asp-for="Title" class="form-control form-control-lg" placeholder="Enter your article title here..." />
+                    <input asp-for="Title" class="form-control form-control-lg" placeholder="Enter your article title here..." required />
                     <span asp-validation-for="Title" class="text-danger"></span>
                 </div>
 
@@ -110,7 +114,7 @@
                                         <input type="hidden" asp-for="Id" />
                                         <input type="hidden" asp-for="Specificulture" />
                                         <input type="hidden" asp-for="Priority" />
-                                        <table class="table table-sm table-hover dataTable" id="tbl-properties">
+                                        <table class="table table-sm table-hover" id="tbl-properties">
                                             <thead class="thead-light">
                                                 <tr>
                                                     <th scope="col" width="5%">
@@ -402,200 +406,201 @@
                         </div>
                     </div>
                     <div class="tab-pane fade" id="pills-media" role="tabpanel" aria-labelledby="pills-media-tab">
-                        <section class="content container-fluid">
-                            <div class="row">
-                                <div class="col-12">
-                                    <table class="table table-sm table-hover" id="tbl-related-medias">
-                                        <thead class="thead-light">
-                                            <tr>
-                                                <th scope="col" width="5%">
-                                                    <span class="oi oi-move"></span>
-                                                </th>
-                                                <th scope="col" width="5%">
-                                                    <span class="oi oi-sort-ascending"></span>
-                                                </th>
-                                                <th scope="col">Name</th>
-                                                <th scope="col">Image</th>
-                                                <th scope="col" width="5%">Showing?</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody class="sortable media-navs">
+                        <div class="row">
+                            <div class="col-12">
+                                <h6>Selected items</h6>
+                                <table class="table table-sm table-hover" id="tbl-related-medias">
+                                    <thead class="thead-light">
+                                        <tr>
+                                            <th scope="col" width="5%">
+                                                <span class="oi oi-move"></span>
+                                            </th>
+                                            <th scope="col" width="5%">
+                                                <span class="oi oi-sort-ascending"></span>
+                                            </th>
+                                            <th scope="col">Name</th>
+                                            <th scope="col" width="15%">Image</th>
+                                            <th scope="col" width="5%">Showing?</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody class="sortable media-navs">
 
-                                            <tr class="sortable-item" ng-repeat="item in activedMedias track by $index">
-                                                <td style="cursor:move;">
-                                                    <span class="oi oi-move"></span>
-                                                </td>
-                                                <td>
-                                                    <input type="text" name="MediaNavs[{{$index}}].Priority" value="{{item.priority}}" class="item-priority form-control form-control-sm d-inline" style="width:40px;" />
-                                                </td>
-                                                <td>
-                                                    {{item.description}}
-                                                </td>
-                                                <td>
-                                                    <a href="#" data-toggle="modal" data-target=".image-preview-modal-lg" data-whatever="{{item.media.fullPath}}">
-                                                        <img class="card-img-top" src="{{item.image}}" alt="Card image cap">
-                                                    </a>
-                                                </td>
-                                                <td style="position:relative">
-                                                    <input type="hidden" name="MediaNavs[{{$index}}].Specificulture" value="{{item.specificulture}}" />
-                                                    <input type="hidden" name="MediaNavs[{{$index}}].MediaId" value="{{item.mediaId}}" />
-                                                    <input type="hidden" name="MediaNavs[{{$index}}].ArticleId" value="{{item.articleId}}" />
-                                                    <input type="hidden" name="MediaNavs[{{$index}}].Position" value="{{item.position}}" />
-                                                    <input type="hidden" name="MediaNavs[{{$index}}].Image" value="{{item.image}}" />
-                                                    <input type="hidden" name="MediaNavs[{{$index}}].Description" value="{{item.description}}" />
+                                        <tr class="sortable-item" ng-repeat="item in activedMedias track by $index">
+                                            <td style="cursor:move;">
+                                                <span class="oi oi-move"></span>
+                                            </td>
+                                            <td>
+                                                <input type="text" name="MediaNavs[{{$index}}].Priority" value="{{item.priority}}" class="item-priority form-control form-control-sm d-inline" style="width:40px;" />
+                                            </td>
+                                            <td>
+                                                {{item.description}}
+                                            </td>
+                                            <td>
+                                                <a href="#" data-toggle="modal" data-target=".image-preview-modal-lg" data-imgsrc="{{item.image}}">
+                                                    <img class="" src="{{item.image}}" alt="Card image cap" height="50">
+                                                </a>
+                                            </td>
+                                            <td style="position:relative">
+                                                <input type="hidden" name="MediaNavs[{{$index}}].Specificulture" value="{{item.specificulture}}" />
+                                                <input type="hidden" name="MediaNavs[{{$index}}].MediaId" value="{{item.mediaId}}" />
+                                                <input type="hidden" name="MediaNavs[{{$index}}].ArticleId" value="{{item.articleId}}" />
+                                                <input type="hidden" name="MediaNavs[{{$index}}].Position" value="{{item.position}}" />
+                                                <input type="hidden" name="MediaNavs[{{$index}}].Image" value="{{item.image}}" />
+                                                <input type="hidden" name="MediaNavs[{{$index}}].Description" value="{{item.description}}" />
 
-                                                    <span class="switch switch-sm" style="position: absolute;top: 10px;">
-                                                        <input type="checkbox" class="switch" data-val="{{item.isActived}}"
-                                                               id="MediaNavs_{{item.mediaId}}" name="MediaNavs[{{$index}}].IsActived" ng-model="item.isActived" value="{{item.isActived}}">
-                                                        <label class="switch" for="MediaNavs_{{item.mediaId}}">
-                                                        </label>
-                                                    </span>
-                                                </td>
-                                            </tr>
-
-                                        </tbody>
-                                    </table>
-                                </div>
+                                                <span class="switch switch-sm position-absolute m-1">
+                                                    <input type="checkbox" class="switch" data-val="{{item.isActived}}"
+                                                           id="MediaNavs_{{item.mediaId}}" name="MediaNavs[{{$index}}].IsActived" ng-model="item.isActived" value="{{item.isActived}}">
+                                                    <label class="switch" for="MediaNavs_{{item.mediaId}}">
+                                                    </label>
+                                                </span>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
                             </div>
-                            <div class="row">
-                                <div class="col-md-8">
-                                    <div class="btn-toolbar mb-3" role="toolbar" aria-label="Toolbar with button groups">
-                                        <div class="btn-group mr-2" role="group" aria-label="First group">
-                                            <button type="button" class="btn btn-secondary" data-toggle="modal" data-target=".upload-image-modal-lg"><i class="mi mi-Add"></i></button>
-                                            <button type="button" class="btn btn-secondary"><i class="mi mi-ViewAll"></i></button>
-                                            <button type="button" class="btn btn-secondary"><i class="mi mi-List"></i></button>
-                                            <button type="button" class="btn btn-secondary"><i class="mi mi-TabletSelected"></i></button>
-                                        </div>
-                                        <div class="btn-group mr-2" role="group" aria-label="Button group with nested dropdown">
-                                            <div class="btn-group" role="group">
-                                                <button id="btnGroupDrop1" type="button" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                                    All media types
-                                                </button>
-                                                <div class="dropdown-menu" aria-labelledby="btnGroupDrop1">
-                                                    <a class="dropdown-item" href="#">All media types</a>
-                                                    <a class="dropdown-item" href="#">Images</a>
-                                                    <a class="dropdown-item" href="#">Audios</a>
-                                                    <a class="dropdown-item" href="#">Videos</a>
-                                                    <a class="dropdown-item" href="#">Documents</a>
-                                                    <a class="dropdown-item" href="#">Zips</a>
-                                                    <a class="dropdown-item" href="#">Others</a>
-                                                </div>
+                        </div>
+                        <h6>List items</h6>
+                        <div class="row">
+                            <div class="col-md-8">
+                                <div class="btn-toolbar mb-3" role="toolbar" aria-label="Toolbar with button groups">
+                                    <div class="btn-group mr-2" role="group" aria-label="First group">
+                                        <button type="button" class="btn btn-secondary" data-toggle="modal" data-target=".upload-image-modal-lg"><i class="mi mi-Add"></i></button>
+                                        <button type="button" class="btn btn-secondary"><i class="mi mi-ViewAll"></i></button>
+                                        <button type="button" class="btn btn-secondary"><i class="mi mi-List"></i></button>
+                                        <button type="button" class="btn btn-secondary"><i class="mi mi-TabletSelected"></i></button>
+                                    </div>
+                                    <div class="btn-group mr-2" role="group" aria-label="Button group with nested dropdown">
+                                        <div class="btn-group" role="group">
+                                            <button id="btnGroupDrop1" type="button" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                                All media types
+                                            </button>
+                                            <div class="dropdown-menu" aria-labelledby="btnGroupDrop1">
+                                                <a class="dropdown-item" href="#">All media types</a>
+                                                <a class="dropdown-item" href="#">Images</a>
+                                                <a class="dropdown-item" href="#">Audios</a>
+                                                <a class="dropdown-item" href="#">Videos</a>
+                                                <a class="dropdown-item" href="#">Documents</a>
+                                                <a class="dropdown-item" href="#">Zips</a>
+                                                <a class="dropdown-item" href="#">Others</a>
                                             </div>
                                         </div>
-                                        <div class="btn-group mr-2" role="group" aria-label="Button group with nested dropdown">
-                                            <div class="btn-group" role="group">
-                                                <button id="btnGroupDrop1" type="button" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                                    All times
-                                                </button>
-                                                <div class="dropdown-menu" aria-labelledby="btnGroupDrop1">
-                                                    <a class="dropdown-item" href="#">Jan 2018</a>
-                                                    <a class="dropdown-item" href="#">Dec 2017</a>
-                                                    <a class="dropdown-item" href="#">Nov 2017</a>
-                                                </div>
+                                    </div>
+                                    <div class="btn-group mr-2" role="group" aria-label="Button group with nested dropdown">
+                                        <div class="btn-group" role="group">
+                                            <button id="btnGroupDrop1" type="button" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                                All times
+                                            </button>
+                                            <div class="dropdown-menu" aria-labelledby="btnGroupDrop1">
+                                                <a class="dropdown-item" href="#">Jan 2018</a>
+                                                <a class="dropdown-item" href="#">Dec 2017</a>
+                                                <a class="dropdown-item" href="#">Nov 2017</a>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
-                                <div class="col-md-4">
-                                    <div class="input-group">
-                                        <div class="input-group-prepend">
-                                            <div class="input-group-text " id="btnGroupAddon">
-                                                <i class="mi mi-Search btn-search-media" ng-click="loadMedia()" style="top:0;cursor:pointer;"></i>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="input-group">
+                                    <div class="input-group-prepend">
+                                        <div class="input-group-text " id="btnGroupAddon">
+                                            <i class="mi mi-Search btn-search-media" ng-click="loadMedia()" style="top:0;cursor:pointer;"></i>
+                                        </div>
+                                    </div>
+                                    <input type="text" id="keyword" ng-enter="loadMedia()"
+                                           class="form-control media-keyword" placeholder="Search media items..." aria-label="Search media items..." aria-describedby="btnGroupAddon">
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="card-columns" style="column-count: 4 !important;column-gap: 0.75rem;">
+                            <div class="card" ng-repeat="media in mediaData.items" ng-hide="media.isHidden">
+                                <span class="switch switch-sm position-absolute m-1">
+                                    <input type="checkbox" class="switch" ng-model="media.isActived" ng-change="changeMedia(media)"
+                                           id="Media_Image_{{media.id}}" value="true">
+                                    <label class="switch m-0" for="Media_Image_{{media.id}}">
+                                        @*{{media.title}} {{mediaData.totalPage}}*@
+                                    </label>
+                                </span>
+
+                                <button class="btn btn-dark btn-sm custom-file-cropper position-absolute m-1" style="z-index:3; right:0;" data-toggle="modal" data-target=".image-crop-modal-lg" data-imgsrc="{{media.fullPath}}" data-imgid="{{media.id}}">
+                                    <i class="mi mi-Crop"></i>
+                                </button>
+                                <a href="#" data-toggle="modal" data-target=".image-preview-modal-lg">
+                                    <img class="card-img-top" src="{{media.fullPath}}" alt="Card image cap">
+                                </a>
+                            </div>
+                        </div>
+                        <nav aria-label="Page navigation">
+                            <ul class="pagination pull-right">
+                                <li class="page-item">
+                                    <a class="page-link active" href="javascript:void(0)" ng-click="loadMedia(mediaData.pageIndex-1)"
+                                       ng-hide="mediaData.pageIndex==0">Prev</a>
+                                </li>
+                                <li class="page-item" ng-class="{active: n-1==mediaData.pageIndex}" ng-repeat="n in range(mediaData.totalPage)"><a class="page-link" href="javascript:void(0)" ng-click="loadMedia(n-1)">{{n}}</a></li>
+                                <li class="page-item">
+                                    <a class="page-link" href="javascript:void(0)" ng-click="loadMedia(mediaData.pageIndex + 1)"
+                                       ng-hide="mediaData.pageIndex >= (mediaData.totalPage-1)">Next</a>
+                                </li>
+                            </ul>
+                        </nav>
+                        <div class="modal fade image-preview-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+                            <div class="modal-dialog modal-lg modal-dialog-centered">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title">Image information</h5>
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                            <span aria-hidden="true">&times;</span>
+                                        </button>
+                                    </div>
+                                    <div class="modal-body">
+                                        <div class="row">
+                                            <div class="col-8"><img class="img-fluid" alt="100%x250" style="width: 100%; display: block;" src="data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%22782%22%20height%3D%22250%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20782%20250%22%20preserveAspectRatio%3D%22none%22%3E%3Cdefs%3E%3Cstyle%20type%3D%22text%2Fcss%22%3E%23holder_1615fe0964c%20text%20%7B%20fill%3Argba(255%2C255%2C255%2C.75)%3Bfont-weight%3Anormal%3Bfont-family%3AHelvetica%2C%20monospace%3Bfont-size%3A39pt%20%7D%20%3C%2Fstyle%3E%3C%2Fdefs%3E%3Cg%20id%3D%22holder_1615fe0964c%22%3E%3Crect%20width%3D%22782%22%20height%3D%22250%22%20fill%3D%22%23777%22%3E%3C%2Frect%3E%3Cg%3E%3Ctext%20x%3D%22291.2421875%22%20y%3D%22142.4%22%3E782x250%3C%2Ftext%3E%3C%2Fg%3E%3C%2Fg%3E%3C%2Fsvg%3E" data-holder-rendered="true"></div>
+                                            <div class="col-4">
+                                                File name: Layout-2.jpg<br />
+                                                File type: image/jpeg<br />
+                                                Uploaded on: December 17, 2017<br />
+                                                File size: 189 KB<br />
+                                                Dimensions: 1000 × 1000<br />
                                             </div>
                                         </div>
-                                        <input type="text" id="keyword" ng-enter="loadMedia()"
-                                               class="form-control media-keyword" placeholder="Search media items..." aria-label="Search media items..." aria-describedby="btnGroupAddon">
+                                    </div>
+                                    <div class="modal-footer">
+                                        @*<button type="button" class="btn btn-primary">Save changes</button>*@
+                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
                                     </div>
                                 </div>
                             </div>
+                        </div>
+                        <div class="modal fade upload-image-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+                            <div class="modal-dialog modal-lg modal-dialog-centered">
+                                <div class="modal-content model-media">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title">Upload media</h5>
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                            <span aria-hidden="true">&times;</span>
+                                        </button>
+                                    </div>
+                                    <div class="modal-body" style="background:url(/images/upload-image-thumbnail.png) no-repeat center; ">
+                                        <span class="text-danger"></span>
 
-                            <div class="card-columns" style="column-count: 4 !important;column-gap: 0.75rem;">
-                                <div class="card" ng-repeat="media in mediaData.items" ng-hide="media.isHidden">
-                                    <span class="switch switch-sm" style="position: absolute;top: 10px;">
-                                        <input type="checkbox" class="switch" ng-model="media.isActived" ng-change="changeMedia(media)"
-                                               id="Media_Image_{{media.id}}" value="true">
-                                        <label class="switch" for="Media_Image_{{media.id}}">
-                                            {{media.title}} {{mediaData.totalPage}}
+                                        <label class="custom-file" style="min-height:150px; cursor:pointer; border: 2px dashed;">
+                                            <img src="" name="pic" class="custom-file-img " accept="image/*" width="100%" />
+                                            <input type="hidden" value="Media" class="folder-val" />
+                                            <input type="file" name="pic" class="custom-file-input">
+                                            <input type="text" class="form-control custom-file-val d-none">
                                         </label>
-                                    </span>
-                                    <a href="#" data-toggle="modal" data-target=".image-preview-modal-lg">
-                                        <img class="card-img-top" src="{{media.fullPath}}" alt="Card image cap">
-                                    </a>
-                                </div>
-                            </div>
-                            <nav aria-label="Page navigation">
-                                <ul class="pagination pull-right">
-                                    <li class="page-item">
-                                        <a class="page-link active" href="javascript:void(0)" ng-click="loadMedia(mediaData.pageIndex-1)"
-                                           ng-hide="mediaData.pageIndex==0">Prev</a>
-                                    </li>
-                                    <li class="page-item" ng-class="{active: n-1==mediaData.pageIndex}" ng-repeat="n in range(mediaData.totalPage)"><a class="page-link" href="javascript:void(0)" ng-click="loadMedia(n-1)">{{n}}</a></li>
-                                    <li class="page-item">
-                                        <a class="page-link" href="javascript:void(0)" ng-click="loadMedia(mediaData.pageIndex + 1)"
-                                           ng-hide="mediaData.pageIndex >= (mediaData.totalPage-1)">Next</a>
-                                    </li>
+                                    </div>
+                                    <div class="modal-footer">
 
-
-                                </ul>
-                            </nav>
-                            <div class="modal fade image-preview-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
-                                <div class="modal-dialog modal-lg modal-dialog-centered">
-                                    <div class="modal-content">
-                                        <div class="modal-header">
-                                            <h5 class="modal-title">Image information</h5>
-                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                                <span aria-hidden="true">&times;</span>
-                                            </button>
-                                        </div>
-                                        <div class="modal-body">
-                                            <div class="row">
-                                                <div class="col-8"><img class="img-fluid" alt="100%x250" style="width: 100%; display: block;" src="data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%22782%22%20height%3D%22250%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20782%20250%22%20preserveAspectRatio%3D%22none%22%3E%3Cdefs%3E%3Cstyle%20type%3D%22text%2Fcss%22%3E%23holder_1615fe0964c%20text%20%7B%20fill%3Argba(255%2C255%2C255%2C.75)%3Bfont-weight%3Anormal%3Bfont-family%3AHelvetica%2C%20monospace%3Bfont-size%3A39pt%20%7D%20%3C%2Fstyle%3E%3C%2Fdefs%3E%3Cg%20id%3D%22holder_1615fe0964c%22%3E%3Crect%20width%3D%22782%22%20height%3D%22250%22%20fill%3D%22%23777%22%3E%3C%2Frect%3E%3Cg%3E%3Ctext%20x%3D%22291.2421875%22%20y%3D%22142.4%22%3E782x250%3C%2Ftext%3E%3C%2Fg%3E%3C%2Fg%3E%3C%2Fsvg%3E" data-holder-rendered="true"></div>
-                                                <div class="col-4">
-                                                    File name: Layout-2.jpg<br />
-                                                    File type: image/jpeg<br />
-                                                    Uploaded on: December 17, 2017<br />
-                                                    File size: 189 KB<br />
-                                                    Dimensions: 1000 × 1000<br />
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="modal-footer">
-                                            @*<button type="button" class="btn btn-primary">Save changes</button>*@
-                                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                                        </div>
+                                        <input type="text" value="" class="title form-control" placeholder="Title..." />
+                                        <input type="text" value="" class="description form-control" placeholder="Description..." />
+                                        <button type="button" class="btn btn-primary btn-upload"><i class="mi mi-Upload"></i> Upload</button>
+                                        <button type="button" class="btn btn-secondary" data-dismiss="modal"><i class="mi mi-Cancel"></i> Dismiss</button>
                                     </div>
                                 </div>
                             </div>
-                            <div class="modal fade upload-image-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
-                                <div class="modal-dialog modal-lg modal-dialog-centered">
-                                    <div class="modal-content model-media">
-                                        <div class="modal-header">
-                                            <h5 class="modal-title">Upload media</h5>
-                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                                <span aria-hidden="true">&times;</span>
-                                            </button>
-                                        </div>
-                                        <div class="modal-body" style="background:url(/images/upload-image-thumbnail.png) no-repeat center; ">
-                                            <span class="text-danger"></span>
-
-                                            <label class="custom-file" style="min-height:150px; cursor:pointer; border: 2px dashed;">
-                                                <img src="" name="pic" class="custom-file-img " accept="image/*" width="100%" />
-                                                <input type="hidden" value="Media" class="folder-val" />
-                                                <input type="file" name="pic" class="custom-file-input">
-                                                <input type="text" class="form-control custom-file-val d-none">
-                                            </label>
-                                        </div>
-                                        <div class="modal-footer">
-
-                                            <input type="text" value="" class="title form-control" placeholder="Title..." />
-                                            <input type="text" value="" class="description form-control" placeholder="Description..." />
-                                            <button type="button" class="btn btn-primary btn-upload"><i class="mi mi-Upload"></i> Upload</button>
-                                            <button type="button" class="btn btn-secondary" data-dismiss="modal"><i class="mi mi-Cancel"></i> Dismiss</button>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </section>
+                        </div>
                     </div>
                     <div id="pills-rel" class="tab-pane fade">
 
@@ -814,7 +819,6 @@
             });
         });
         $('.prop-data-type').change();
-
 
         $(document).on('click', '.model-media .btn-upload', function () {
             var container = $(this).parents('.model-media').first().find('.custom-file').first();

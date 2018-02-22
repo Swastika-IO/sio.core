@@ -70,15 +70,16 @@
     <div class="card-header">
         Feature image
     </div>
-    <div class="card-body p-0" style="background:url(/images/upload-image-thumbnail.png) no-repeat center; ">
-        @*<label asp-for="Image" class="control-label"></label>*@
+    <div class="card-body p-0" style="background:url(/images/upload-image-thumbnail.png) no-repeat center;  cursor:pointer;">
         <span asp-validation-for="Image" class="text-danger"></span>
-        <label class="custom-file" style="min-height:150px; cursor:pointer;">
+        <span class="custom-file" style="min-height:150px; overflow:hidden;">
+            <button class="btn btn-dark btn-sm custom-file-cropper position-absolute m-1 collapse" style="z-index:3; right:0;" data-toggle="modal" data-target=".image-crop-modal-lg" data-imgsrc="" data-imgid="">
+                <i class="mi mi-Crop"></i>
+            </button>
+            <input type="file" name="pic" class="custom-file-input auto-upload position-absolute" style="height:400px; cursor:pointer;">
             <img src="@img" name="pic" class="custom-file-img " accept="image/*" width="100%" />
-            <input type="hidden" value="MOdule/@Model.Id" class="folder-val" />
-            <input type="file" name="pic" class="custom-file-input auto-upload">
+            <input type="hidden" value="Modules/@Model.Id" class="folder-val" />
             <input type="text" asp-for="Image" class="form-control custom-file-val d-none">
-            @*<span class="btn btn-primary custom-file-control">Browse</span>*@
-        </label>
+        </span>
     </div>
 </div>

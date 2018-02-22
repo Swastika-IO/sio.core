@@ -100,6 +100,8 @@
     <Content Remove="Areas\Portal\Views\Setting\EditCulture.cshtml" />
     <Content Remove="Areas\Portal\Views\Setting\_Editable_Culture.cshtml" />
     <Content Remove="Areas\Portal\Views\Shared\Components\HeaderNavbar\DefaultOld.cshtml" />
+    <Content Remove="Areas\Portal\Views\Shared\Widgets\_FeatureImage.cshtml" />
+    <Content Remove="Areas\Portal\Views\Shared\Widgets\_ThumbnailImage.cshtml" />
     <Content Remove="Areas\Portal\Views\Shared\_Layout.cshtml" />
     <Content Remove="Views\Home\About.cshtml" />
     <Content Remove="Views\Home\Article.cshtml" />
@@ -150,6 +152,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Folder Include="Areas\Portal\Views\Shared\Widgets\" />
     <Folder Include="Areas\User\Models\" />
     <Folder Include="wwwroot\lib\" />
   </ItemGroup>

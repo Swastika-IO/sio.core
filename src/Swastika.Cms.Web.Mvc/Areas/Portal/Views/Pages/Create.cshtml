@@ -8,7 +8,7 @@
 @section Styles
     {
 }
-<form enctype="multipart/form-data" asp-action="@ViewContext.RouteData.Values["action"].ToString()">
+<form enctype="multipart/form-data" asp-action="@ViewContext.RouteData.Values["action"].ToString()" class="needs-validation" novalidate>
     <!-- Main content -->
     <section class="content container-fluid">
         @await Html.PartialAsync("EditableSides/_Editable_ActionsBar")
@@ -25,4 +25,4 @@
 </form>
 
 @section Scripts {
-   }
+}

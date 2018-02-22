@@ -14,6 +14,8 @@
     <meta name="viewport" content="width=1920">
 
     <link rel="stylesheet" href="~/css/portal/portal.white.min.css">
+    <link href="~/css/portal/main.css" rel="stylesheet" />
+
     <link href="~/css/open-iconic/open-iconic-bootstrap.min.css" rel="stylesheet">
     <link href="~/lib/micon/css/micon.min.css" rel="stylesheet" />
 
@@ -40,7 +42,7 @@
     </header>
 
     <!-- Page Content Holder -->
-    <div class="container-fluid wrapper"  ng-controller="PortalController">
+    <div class="container-fluid wrapper" ng-controller="PortalController">
         <div class="row flex-xl-nowrap">
             <!-- Sidebar Holder -->
 
@@ -115,96 +117,7 @@
     <!--Datatables-->
     <script type="text/javascript" src="~/js/portal/common.js"></script>
 
-    <div class="modal modal-danger fade" id="modal-error">
-        <div class="modal-dialog modal-lg">
-            <form id="frm-data" asp-controller="ApiModule" asp-action="AjaxSaveModuleData">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
-                        <h4 class="modal-title">Edit</h4>
-                    </div>
-                    <div class="modal-body">
-                    </div>
-                    <div class="modal-footer">
-                        <a class="btn btn- btn-primary btn-warning" data-dismiss="modal">Close</a>
-                    </div>
-                </div>
-                <!-- /.modal-content -->
-            </form>
-        </div>
-        <!-- /.modal-dialog -->
-    </div>
-
-    <div class="modal modal-default fade show" id="modal-files">
-        <div class="modal-dialog modal-lg modal-dialog-centered" style="max-width: 95%;">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <div class="col-md-11">
-                        <h5 class="modal-title" id="exampleModalLabel"><i class="mi mi-Media"></i> Quick media upload</h5>
-                    </div>
-                    <div class="col-md-1">
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
-                    </div>
-                </div>
-                <div class="modal-body" style="height: calc(100vh - 143px);overflow-y: auto;">
-                    <div class="row">
-                        <div class="col-md-12 d-flex justify-content-end">
-                            <div class="btn-toolbar mb-3" role="toolbar" aria-label="Toolbar with button groups">
-                                <div class="input-group mr-2">
-                                    <div class="custom-file">
-                                        <input type="file" class="custom-file-input" name="file" id="file">
-                                        <label class="custom-file-label" for="file">Choose file</label>
-                                    </div>
-                                </div>
-                                <div class="btn-group mr-2" role="group" aria-label="First group">
-                                    <button type="button" onclick="SW.Common.loadFileStream('Images')" class="btn btn-secondary"><i class="mi mi-Upload"></i> Upload</button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    @*<div class="row">
-                            <div class="col-lg-10">
-                                <div class="col-lg-4">
-                                    <input type="file" id="file" />
-                                </div>
-                            </div>
-                            <div class="col-lg-2" style="margin-bottom: 10px;">
-                                <a href="#" class="btn btn-success btn-block" onclick="SW.Common.loadFileStream('Images')">Submit file...</a>
-                            </div>
-                        </div>*@
-                    <table class="table table-sm table-condensed">
-                        <thead class="thead-light">
-                            <tr>
-                                <th scope="col">
-                                    Folder
-                                </th>
-                                <th scope="col">
-                                    Name
-                                </th>
-                                <th scope="col">
-                                    FullPath
-                                </th>
-                                <th scope="col">
-                                    Content
-                                </th>
-                            </tr>
-                        </thead>
-                        <tbody></tbody>
-                    </table>
-                </div>
-                @*<div class="modal-footer">
-                        <a class="btn btn- btn-primary btn-warning" data-dismiss="modal">Close</a>
-                    </div>*@
-            </div>
-            <!-- /.modal-content -->
-        </div>
-        <!-- /.modal-dialog -->
-    </div>
-
     @RenderSection("Modals", required: false)
+    @await Component.InvokeAsync(typeof(Swastika.Cms.Mvc.Areas.Portal.ViewComponents.Modals))
 </body>
 </html>
