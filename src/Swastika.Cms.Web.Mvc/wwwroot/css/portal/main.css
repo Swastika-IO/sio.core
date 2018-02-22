@@ -1,0 +1,92 @@
+﻿/*
+    IMAGE CROP SETTING START
+*/
+.img-container,
+.img-preview {
+    background-color: #f7f7f7;
+    text-align: center;
+    width: 100%;
+}
+
+.img-container {
+    margin-bottom: 1rem;
+    max-height: 497px;
+    min-height: 200px;
+}
+
+@@media (min-width: 768px) {
+    .img-container {
+        min-height: 497px;
+    }
+}
+
+.img-container > img {
+    max-width: 100%;
+}
+
+.docs-preview {
+    margin-right: -1rem;
+}
+
+.img-preview {
+    float: left;
+    margin-bottom: .5rem;
+    margin-right: .5rem;
+    overflow: hidden;
+}
+
+    .img-preview > img {
+        max-width: 100%;
+    }
+
+.preview-lg {
+    height: 9rem;
+    width: 16rem;
+}
+
+.preview-md {
+    height: 4.5rem;
+    width: 8rem;
+}
+
+.preview-sm {
+    height: 2.25rem;
+    width: 4rem;
+}
+
+.preview-xs {
+    height: 1.125rem;
+    margin-right: 0;
+    width: 2rem;
+}
+
+.docs-data > .input-group {
+    margin-bottom: .5rem;
+}
+
+    .docs-data > .input-group > label {
+        justify-content: center;
+        min-width: 5rem;
+    }
+
+    .docs-data > .input-group > span {
+        justify-content: center;
+        min-width: 3rem;
+    }
+
+.docs-buttons > .btn,
+.docs-buttons > .btn-group,
+.docs-buttons > .form-control {
+    margin-bottom: .5rem;
+    margin-right: .25rem;
+}
+
+.docs-toggles > .btn,
+.docs-toggles > .btn-group,
+.docs-toggles > .dropdown {
+    margin-bottom: .5rem;
+}
+
+/*
+    IMAGE CROP SETTING END
+*/

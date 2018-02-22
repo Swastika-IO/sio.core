@@ -1,4 +1,5 @@
 ﻿@model BEArticleViewModel
+
 @{
     string img = Model != null ? Model.Image : "http://placehold.it/200x200";
     string thumb = Model != null ? Model.Thumbnail : "http://placehold.it/200x200";
@@ -7,9 +8,14 @@
     string culture = ViewBag.culture;
     var translator = Swastika.Cms.Lib.SWCmsHelper.GetTranslator(culture);
 }
+@if (!ViewData.ModelState.IsValid)
+{
+    <div class="alert alert-danger" role="alert">
+        <div asp-validation-summary="All"></div>
+    </div>
+}
 
-<div>
-    <div asp-validation-summary="All" class="text-danger"></div>
+<span class="d-none">
     <input type="hidden" asp-for="Id" />
     <input type="hidden" asp-for="Specificulture" />
     <input type="hidden" asp-for="CreatedBy" />
@@ -18,8 +24,7 @@
     <input type="hidden" asp-for="Type" />
     <input type="hidden" id="article-id" value="@Model.Id" />
     <input id="arr-medias" type="hidden" value="@Model.JMediaNavs.ToString()" />
-</div>
-
+</span>
 <div class="row">
     <div class="col-sm-12">
         <div class="card">
@@ -27,9 +32,8 @@
                 Main Content
             </div>
             <div class="card-body">
-
                 <div class="form-group">
-                    <input asp-for="Title" class="form-control form-control-lg" placeholder="Enter your article title here..." />
+                    <input asp-for="Title" class="form-control form-control-lg" placeholder="Enter your article title here..." required />
                     <span asp-validation-for="Title" class="text-danger"></span>
                 </div>
 
@@ -415,7 +419,7 @@
                                                 <span class="oi oi-sort-ascending"></span>
                                             </th>
                                             <th scope="col">Name</th>
-                                            <th scope="col">Image</th>
+                                            <th scope="col" width="15%">Image</th>
                                             <th scope="col" width="5%">Showing?</th>
                                         </tr>
                                     </thead>

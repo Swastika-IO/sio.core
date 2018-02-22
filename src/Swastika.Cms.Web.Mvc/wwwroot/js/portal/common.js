@@ -258,7 +258,7 @@
                         cropper = new Cropper(image, options);
                     });
 
-                    $('.image-crop-modal-lg #submit').on('click', function (event) {
+                    $('.image-crop-modal-lg #btn-submit-crop-info').on('click', function (event) {
                         // TODO: Submit Ajax
                         alert('TODO: Submit ajax');
                         SW.Common.settings.url = '';
