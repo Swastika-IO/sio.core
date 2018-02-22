@@ -175,9 +175,10 @@
             window.onload = function () {
                 'use strict';
 
+                var container = document.querySelector('.image-crop-modal-lg .img-container');
+if (container){
                 var Cropper = window.Cropper;
                 var URL = window.URL || window.webkitURL;
-                var container = document.querySelector('.img-container');
                 var image = container.getElementsByTagName('img').item(0);
                 var download = document.getElementById('download');
                 var actionsLeftSidebar = document.getElementById('actions-left-sidebar');
@@ -252,9 +253,6 @@
                     // Restart
                     cropper.destroy();
                     cropper = new Cropper(image, options);
-
-                    //var image = $(".image-crop-modal-lg #image-crop-placeholder").get(0);
-                    //var previews = document.querySelectorAll('.image-crop-modal-lg .img-cropper-preview');
                 });
 
                 $('.image-crop-modal-lg #submit').on('click', function (event) {
@@ -512,6 +510,7 @@
                 //    inputImage.parentNode.className += ' disabled';
                 //}
             };
+}
 
             //var cropBoxData;
             //var canvasData;
