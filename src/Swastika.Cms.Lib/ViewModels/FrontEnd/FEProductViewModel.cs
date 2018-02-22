@@ -14,6 +14,7 @@ using Swastika.Domain.Data.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.Linq;
 
 namespace Swastika.Cms.Lib.ViewModels.FrontEnd
 {
@@ -164,6 +165,8 @@ namespace Swastika.Cms.Lib.ViewModels.FrontEnd
         [JsonProperty("mediaNavs")]
         public List<NavProductMediaViewModel> MediaNavs { get; set; }
 
+        [JsonProperty("productNavs")]
+        public List<NavRelatedProductViewModel> ProductNavs { get; set; }
         #endregion Views
 
         #endregion Properties
@@ -215,8 +218,15 @@ namespace Swastika.Cms.Lib.ViewModels.FrontEnd
             var getProductMedia = NavProductMediaViewModel.Repository.GetModelListBy(n => n.ProductId == Id && n.Specificulture == Specificulture, _context, _transaction);
             if (getProductMedia.IsSucceed)
             {
-                MediaNavs = getProductMedia.Data;
+                MediaNavs = getProductMedia.Data.OrderBy(p => p.Priority).ToList();
                 MediaNavs.ForEach(n => n.IsActived = true);
+            }
+
+            var getRelatedProduct = NavRelatedProductViewModel.Repository.GetModelListBy(n => n.SourceProductId == Id && n.Specificulture == Specificulture, _context, _transaction);
+            if (getRelatedProduct.IsSucceed)
+            {
+                ProductNavs = getRelatedProduct.Data.OrderBy(p => p.Priority).ToList();
+                ProductNavs.ForEach(n => n.IsActived = true);
             }
         }
 

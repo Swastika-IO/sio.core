@@ -1,113 +1,111 @@
-﻿@model Swastika.Domain.Core.ViewModels.PaginationModel<Swastika.Cms.Lib.ViewModels.Info.InfoArticleViewModel>
+﻿@model PaginationModel<Swastika.Cms.Lib.ViewModels.Info.InfoArticleViewModel>
 
 @{
+    string culture = ViewBag.culture;
+    //Layout = string.Format("Layouts/{0}", Swastika.Cms.Lib.Services.GlobalConfigurationService.Instance.GetLocalString("Layout", culture, "_Layout_Corlate"));// "_Layout_Corlate";
+    Layout = string.Format("Templates/{0}/Layouts/_Layout",
+        Swastika.Cms.Lib.Services.GlobalConfigurationService.Instance.GetLocalString(Swastika.Cms.Lib.SWCmsConstants.ConfigurationKeyword.Theme, culture, "Default"));
+
     ViewData["Title"] = "Search Results";
     var translator = SWCmsHelper.GetTranslator(ViewBag.culture);
-    List<Swastika.Cms.Lib.ViewModels.FrontEnd.FECategoryViewModel> categories = ViewData["Categories"] as List<Swastika.Cms.Lib.ViewModels.FrontEnd.FECategoryViewModel>;
+    PaginationModel<InfoProductViewModel> products = ViewData["Products"] as PaginationModel<InfoProductViewModel>;
 }
 
-<section id="blog" class="container">
-    <div class="blog">
+
+<div class="main-content bg-color">
+    <div class="container">
         <div class="row">
-            <div class="col-md-8">
-                @if (categories != null)
-            {
-                foreach (var cate in categories)
-                {
-                        <div class="blog-item">
-                            <div class="row">
-                                <div class="col-sm-2 text-center">
-                                    <div class="entry-meta">
-                                        <span id="publish_date">@cate.CreatedDateTime.ToString("dd MMM")</span>
-                                        <span><i class="fa fa-user"></i> <a href="#">@cate.CreatedBy</a></span>
-                                        @*<span><i class="fa fa-comment"></i> <a href="blog-item.html#comments">2 Comments</a></span>
-                                            <span><i class="fa fa-heart"></i><a href="#">56 Likes</a></span>*@
-                                    </div>
-                                </div>
+            <div class="col-md-12">
+                <div class="tr-blog blog-two">
 
-                                <div class="col-xs-12 col-sm-10 blog-content">
-                                    <a asp-route-culture="@ViewBag.culture" asp-controller="Home" asp-action="Home" asp-route-pageName="@cate.SeoTitle">
-                                        <img class="img-responsive img-blog" src="@cate.Image" width="100%" alt="" />
-                                    </a>
-                                    <h2>
-                                        <a asp-route-culture="@ViewBag.culture" asp-controller="Home" asp-action="Home" asp-route-pageName="@cate.SeoTitle">@cate.Title</a>
-                                    </h2>
-                                    <h3>
-                                        @cate.Excerpt
-                                    </h3>
-
-                                    <a class="btn btn-primary readmore"
-                                       asp-route-culture="@ViewBag.culture" asp-controller="Home"
-                                       asp-action="Home" asp-route-pageName="@cate.SeoTitle">
-                                        @translator.Get("Read More") <i class="fa fa-angle-right"></i>
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
-                    }
-                }
-                @foreach (var article in Model.Items)
-            {
-                    <div class="blog-item">
+                    @if (Model.Items.Count > 0)
+                    {
+                       
                         <div class="row">
-                            <div class="col-sm-2 text-center">
-                                <div class="entry-meta">
-                                    <span id="publish_date">@article.CreatedDateTime.ToString("dd MMM")</span>
-                                    <span><i class="fa fa-user"></i> <a href="#">@article.CreatedBy</a></span>
-                                    @*<span><i class="fa fa-comment"></i> <a href="blog-item.html#comments">2 Comments</a></span>
-                                        <span><i class="fa fa-heart"></i><a href="#">56 Likes</a></span>*@
+
+                            @foreach (var item in Model.Items)
+                            {
+                                item.DetailsUrl = SWCmsHelper.GetRouterUrl("Article", new { SeoName = item.SeoName }, Context.Request, Url);
+                                <div class="col-lg-6">
+                                    <div class="tr-post">
+                                        <div class="entry-header">
+                                            <div class="entry-thumbnail">
+                                                <a href="@item.DetailsUrl"><img src="@item.Image" alt="Image" class="img-fluid"></a>
+                                            </div>
+                                        </div>
+                                        <div class="entry-content">
+                                            <div class="post-time">
+                                                <span>
+                                                    @item.CreatedDateTime.ToString("MMM")
+                                                    <span>@item.CreatedDateTime.ToString("dd")</span>
+                                                </span>
+                                            </div>
+                                            <div class="entry-meta">
+                                                <ul class="global-list">
+                                                    <li><a href="#">@item.CreatedBy</a></li>
+                                                </ul>
+                                            </div>
+                                            <h2 class="entry-title">
+                                                <a href="@item.DetailsUrl">@item.Title</a>
+                                            </h2>
+                                            <p>@item.Excerpt</p>
+                                        </div>
+                                    </div><!-- /.tr-post -->
                                 </div>
-                            </div>
+                            }
+                        </div><!-- /.row -->
 
-                            <div class="col-xs-12 col-sm-10 blog-content">
-                                <a asp-action="ArticleDetails" asp-route-id="@article.Id" asp-route-SeoName="@article.SeoName">
-                                    <img class="img-responsive img-blog" src="@article.Image" width="100%" alt="" />
-                                </a>
-                                <h2>
-                                    <a asp-action="ArticleDetails" asp-route-id="@article.Id" asp-route-SeoName="@article.SeoName">
-                                        @article.Title
-                                    </a>
-                                </h2>
-                                <h3>
-                                    @article.Excerpt
-                                </h3>
-                                <a class="btn btn-primary readmore"
-                                   asp-action="ArticleDetails" asp-route-id="@article.Id" asp-route-SeoName="@article.SeoName">
-                                    Read More <i class="fa fa-angle-right"></i>
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                }
-                <!--/.blog-item-->
-                @if (Model.TotalPage > 1)
-            {
+                    }
+                   
+                </div><!-- /.tr-blog -->
+            </div>            
+        </div><!-- /.row -->
 
-                    <ul class="pagination pagination-lg">
-                        <li><a href="#"><i class="fa fa-long-arrow-left"></i>Previous Page</a></li>
-                        @for (int i = 0; i < Model.TotalPage; i++)
-                        {
-                            string cl = Model.PageIndex == i ? "active" : string.Empty;
-                            <li class="@cl">
-                                <a asp-controller="Home" asp-action="List" asp-route-pageIndex="@i">@i</a>
-                            </li>
-                        }
+        <div class="row">
+            <div class="col-md-12">
+                <div class="tr-blog blog-two">
 
-                        <li><a href="#">Next Page<i class="fa fa-long-arrow-right"></i></a></li>
-                    </ul><!--/.pagination-->
-                }
-            </div><!--/.col-md-8-->
-            <aside class="col-md-4">
-                <div class="widget search">
-                    <form role="form" asp-controller="Home" asp-action="Search">
-                        <input type="text" name="keyword"
-                               class="form-control search_box" autocomplete="off"
-                               placeholder='@translator.Get("Tìm kiếm thông tin")'>
-                    </form>
-                </div><!--/.search-->
-                
+                    @if (products!=null && products.Items.Count > 0)
+                    {
+                       
+                        <div class="row">
 
-            </aside>
-        </div><!--/.row-->
-    </div>
-</section><!--/#blog-->
+                            @foreach (var item in products.Items)
+                            {
+                                item.DetailsUrl = SWCmsHelper.GetRouterUrl("Product", new { SeoName = item.SeoName }, Context.Request, Url);
+                                <div class="col-lg-6">
+                                    <div class="tr-post">
+                                        <div class="entry-header">
+                                            <div class="entry-thumbnail">
+                                                <a href="@item.DetailsUrl"><img src="@item.Image" alt="Image" class="img-fluid"></a>
+                                            </div>
+                                        </div>
+                                        <div class="entry-content">
+                                            <div class="post-time">
+                                                <span>
+                                                    @item.CreatedDateTime.ToString("MMM")
+                                                    <span>@item.CreatedDateTime.ToString("dd")</span>
+                                                </span>
+                                            </div>
+                                            <div class="entry-meta">
+                                                <ul class="global-list">
+                                                    <li><a href="#">@item.CreatedBy</a></li>
+                                                </ul>
+                                            </div>
+                                            <h2 class="entry-title">
+                                                <a href="@item.DetailsUrl">@item.Title</a>
+                                            </h2>
+                                            <p>@item.Excerpt</p>
+                                        </div>
+                                    </div><!-- /.tr-post -->
+                                </div>
+                            }
+                        </div><!-- /.row -->
+
+                    }
+                   
+                </div><!-- /.tr-blog -->
+            </div>            
+        </div>
+    </div><!-- /.container -->
+</div><!-- /.main-content -->

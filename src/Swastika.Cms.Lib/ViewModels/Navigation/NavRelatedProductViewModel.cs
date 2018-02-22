@@ -72,6 +72,15 @@ namespace Swastika.Cms.Lib.ViewModels.Navigation
             }
         }
 
+        public override SiocRelatedProduct ParseModel()
+        {
+            if (CreatedDateTime == default(DateTime))
+            {
+                CreatedDateTime = DateTime.UtcNow;
+            }
+            return base.ParseModel();
+        }
+
         #region Sync
 
         #endregion

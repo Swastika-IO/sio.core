@@ -120,6 +120,12 @@ namespace Swastika.Cms.Lib.ViewModels.BackEnd
         [JsonProperty("jMediaNavs")]
         public JArray JMediaNavs { get { return JArray.FromObject(MediaNavs); } }
 
+        [JsonProperty("productNavs")]
+        public List<NavRelatedProductViewModel> ProductNavs { get; set; }
+
+        [JsonProperty("jProductNavs")]
+        public JArray JProductNavs { get { return JArray.FromObject(ProductNavs??new List<NavRelatedProductViewModel>()); } }
+
 
         [JsonProperty("activedModules")]
         public List<BEModuleViewModel> ActivedModules { get; set; } // Children Modules
@@ -235,10 +241,10 @@ namespace Swastika.Cms.Lib.ViewModels.BackEnd
             IsClone = true;
             ListSupportedCulture = GlobalLanguageService.ListSupportedCulture;
 
-            if (!string.IsNullOrEmpty(this.Tags))
-            {
-                ListTag = JArray.Parse(this.Tags);
-            }
+            //if (!string.IsNullOrEmpty(this.Tags))
+            //{
+            //    ListTag = JArray.Parse(this.Tags);
+            //}
             Properties = new List<ExtraProperty>();
             if (!string.IsNullOrEmpty(ExtraProperties))
             {
@@ -299,8 +305,15 @@ namespace Swastika.Cms.Lib.ViewModels.BackEnd
             var getProductMedia = NavProductMediaViewModel.Repository.GetModelListBy(n => n.ProductId == Id && n.Specificulture == Specificulture, _context, _transaction);
             if (getProductMedia.IsSucceed)
             {
-                MediaNavs = getProductMedia.Data;
+                MediaNavs = getProductMedia.Data.OrderBy(p=>p.Priority).ToList();
                 MediaNavs.ForEach(n => n.IsActived = true);
+            }
+
+            var getRelatedProduct = NavRelatedProductViewModel.Repository.GetModelListBy(n => n.SourceProductId == Id && n.Specificulture == Specificulture, _context, _transaction);
+            if (getRelatedProduct.IsSucceed)
+            {
+                ProductNavs = getRelatedProduct.Data.OrderBy(p => p.Priority).ToList();
+                ProductNavs.ForEach(n => n.IsActived = true);
             }
 
             this.ListSupportedCulture.ForEach(c => c.IsSupported =
@@ -329,7 +342,7 @@ namespace Swastika.Cms.Lib.ViewModels.BackEnd
             if (Properties.Count > 0)
             {
                 JArray arrProperties = new JArray();
-                foreach (var p in Properties.OrderBy(p => p.Priority))
+                foreach (var p in Properties.Where(p => !string.IsNullOrEmpty(p.Value) && !string.IsNullOrEmpty(p.Name)).OrderBy(p => p.Priority))
                 {
                     arrProperties.Add(JObject.FromObject(p));
                 }
@@ -366,7 +379,7 @@ namespace Swastika.Cms.Lib.ViewModels.BackEnd
                 }
             }
 
-            Tags = ListTag.ToString(Newtonsoft.Json.Formatting.None);
+            //Tags = ListTag.ToString(Newtonsoft.Json.Formatting.None);
 
             GenerateSEO();
 
@@ -535,6 +548,30 @@ namespace Swastika.Cms.Lib.ViewModels.BackEnd
                         else
                         {
                             var saveResult = await navMedia.RemoveModelAsync(false, _context, _transaction);
+                            result = saveResult.IsSucceed;
+                            if (!result)
+                            {
+                                Errors.AddRange(saveResult.Errors);
+                                Exception = saveResult.Exception;
+                            }
+                        }
+                    }
+                }
+
+                if (result)
+                {
+                    foreach (var navProduct in ProductNavs)
+                    {
+                        navProduct.SourceProductId = parent.Id;
+                        navProduct.Specificulture = parent.Specificulture;
+                        navProduct.CreatedBy = parent.CreatedBy;
+                        if (navProduct.IsActived)
+                        {
+                            var saveResult = await navProduct.SaveModelAsync(false, _context, _transaction);
+                        }
+                        else
+                        {
+                            var saveResult = await navProduct.RemoveModelAsync(false, _context, _transaction);
                             result = saveResult.IsSucceed;
                             if (!result)
                             {

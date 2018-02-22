@@ -1,7 +1,9 @@
 ﻿'use strict';
-app.controller('ProductController', function PhoneListController($scope) {
+app.controller('PortalController', function PhoneListController($scope) {
     $scope.mediaData = {};
+    $scope.productData = {};
     $scope.activedMedias = {};
+    $scope.activedProducts = [];
     $scope.request = {
         "pageSize": 12,
         "pageIndex": 0,
@@ -38,7 +40,7 @@ app.controller('ProductController', function PhoneListController($scope) {
         $scope.settings.url = url;// + '/true';
         $scope.settings.data = $scope.request;
         $.ajax($scope.settings).done(function (response) {
-           
+
             $scope.$apply($scope.mediaData = response.data);
 
             $.each($scope.mediaData.items, function (i, media) {
@@ -52,7 +54,23 @@ app.controller('ProductController', function PhoneListController($scope) {
             })
         });
 
-       
+
+    };
+
+    $scope.loadProduct = function (pageIndex = 0, pageSize = 12, orderBy = 'title', direction = 0) {
+        var request = {
+            "pageSize": pageSize,
+            "pageIndex": pageIndex,
+            "orderBy": orderBy,
+            "direction": direction,
+            "keyword": $('#keyword').val()
+        }
+        var url = '/api/vi-vn/product/list';//byProduct/' + productId;
+        $scope.settings.url = url;// + '/true';
+        $scope.settings.data = request;
+        $.ajax($scope.settings).done(function (response) {
+            $scope.productData = response.data;
+        });
     };
 
     $scope.changeMedia = function (media) {
@@ -63,7 +81,7 @@ app.controller('ProductController', function PhoneListController($scope) {
                 currentItem = e;
                 return false;
             }
-           
+
         });
         if (currentItem == null) {
             currentItem = {
@@ -73,6 +91,7 @@ app.controller('ProductController', function PhoneListController($scope) {
                 product: $('#product-id').val(),
                 specificulture: media.specificulture,
                 position: 0,
+                priority: $scope.activedMedias.length + 1,
                 isActived: true
             };
             media.isHidden = true;
@@ -81,13 +100,47 @@ app.controller('ProductController', function PhoneListController($scope) {
 
     }
 
+    $scope.changeProduct = function (product) {
+        var currentItem = null;
+        $.each($scope.activedProducts, function (i, e) {
+            if (e.relatedProductId == product.id) {
+                e.isActived = product.isActived;
+                currentItem = e;
+                return false;
+            }
+
+        });
+        if (currentItem == null) {
+            currentItem = {
+                relatedProductId: product.id,
+                sourceProductId: $('#product-id').val(),
+                specificulture: product.specificulture,
+                priority: $scope.activedMedias.length + 1,
+                product: product,
+                isActived: true
+            };
+            product.isHidden = true;
+            $scope.activedProducts.push(currentItem);
+        }
+
+    }
+
     $(document).ready(function () {
-        if ($('#arr-medias').val() != '') {
+
+        if ($('#arr-medias').length > 0 && $('#arr-medias').val() != '') {
             $scope.activedMedias = $.parseJSON($('#arr-medias').val());
         }
         else {
             $scope.activedMedias = [];
         }
+
+        if ($('#arr-products').length > 0 && $('#arr-products').val() != '') {
+            $scope.activedProducts = $.parseJSON($('#arr-products').val());
+        }
+        else {
+            $scope.activedProducts = [];
+        }
         $scope.loadMedia();
+        $scope.loadProduct();
     });
 });
