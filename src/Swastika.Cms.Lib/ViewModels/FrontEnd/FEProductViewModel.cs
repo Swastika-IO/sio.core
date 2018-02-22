@@ -4,6 +4,7 @@
 
 using Microsoft.EntityFrameworkCore.Storage;
 using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 using Swastika.Cms.Lib.Models.Cms;
 using Swastika.Cms.Lib.Services;
 using Swastika.Cms.Lib.ViewModels.Info;
@@ -160,6 +161,9 @@ namespace Swastika.Cms.Lib.ViewModels.FrontEnd
         [JsonProperty("properties")]
         public List<ExtraProperty> Properties { get; set; }
 
+        [JsonProperty("mediaNavs")]
+        public List<NavProductMediaViewModel> MediaNavs { get; set; }
+
         #endregion Views
 
         #endregion Properties
@@ -184,7 +188,15 @@ namespace Swastika.Cms.Lib.ViewModels.FrontEnd
             var getModulesResult = NavProductModuleViewModel.Repository.GetModelListBy(
                 m => m.ProductId == Id && m.Specificulture == Specificulture
                 , _context, _transaction);
-
+            Properties = new List<ExtraProperty>();
+            if (!string.IsNullOrEmpty(ExtraProperties))
+            {
+                JArray arr = JArray.Parse(ExtraProperties);
+                foreach (JObject item in arr)
+                {
+                    Properties.Add(item.ToObject<ExtraProperty>());
+                }
+            }
             if (getModulesResult.IsSucceed)
             {
                 this.Modules = new List<FEModuleViewModel>();
@@ -198,6 +210,13 @@ namespace Swastika.Cms.Lib.ViewModels.FrontEnd
                         this.Modules.Add(getModules.Data);
                     }
                 }
+            }
+
+            var getProductMedia = NavProductMediaViewModel.Repository.GetModelListBy(n => n.ProductId == Id && n.Specificulture == Specificulture, _context, _transaction);
+            if (getProductMedia.IsSucceed)
+            {
+                MediaNavs = getProductMedia.Data;
+                MediaNavs.ForEach(n => n.IsActived = true);
             }
         }
 

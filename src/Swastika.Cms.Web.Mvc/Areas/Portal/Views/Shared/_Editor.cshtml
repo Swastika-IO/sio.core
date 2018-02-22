@@ -22,7 +22,7 @@
             <img src="@img" name="pic" class="custom-file-img image" accept="image/*" />
             <input type="file" name="pic" class="custom-file-input auto-upload">
             <input type="hidden" class="folder-val" value="@inputId" />
-            <input type="text" id="@inputId" name="@inputName" value="@value" class="custom-file-val form-control" />
+            <input type="text" id="@inputId" name="@inputName" value="@value" class="custom-file-val form-control form-control-sm" />
             <span class="custom-file-control">Browse</span>
         </label>
 
@@ -78,7 +78,7 @@
 
         break;
     default:
-        <input class="form-control" type="text" id="@inputId" name="@inputName" value="@value">
+        <input class="form-control form-control-sm" type="text" id="@inputId" name="@inputName" value="@value">
         break;
 }
 

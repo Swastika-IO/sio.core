@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Filters;
 using Microsoft.AspNetCore.Mvc.Rendering;
+using Swastika.Cms.Lib;
 using Swastika.Cms.Lib.Services;
 using Swastika.Common.Helper;
 using System.Collections.Generic;
@@ -20,7 +21,7 @@ namespace Swastika.Cms.Mvc.Controllers
         protected string _lang;
         protected string _domain;
         protected IHostingEnvironment _env;
-        public const string CONST_ROUTE_DEFAULT_CULTURE = "en-us";
+        public const string CONST_ROUTE_DEFAULT_CULTURE = SWCmsConstants.Default.Specificulture;
 
         public BaseController(IHostingEnvironment env)
         {
