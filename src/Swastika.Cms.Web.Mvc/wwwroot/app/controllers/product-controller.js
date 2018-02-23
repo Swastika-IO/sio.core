@@ -28,7 +28,7 @@ app.controller('PortalController', function PhoneListController($scope) {
         return input;
     };
 
-    $scope.loadMedia = function (pageIndex = 0, pageSize = 12, orderBy = 'fileName', direction = 0) {
+    $scope.loadMedia = function (pageIndex = 0, pageSize = 16, orderBy = 'fileName', direction = 0) {
         $scope.request = {
             "pageSize": pageSize,
             "pageIndex": pageIndex,
@@ -40,7 +40,6 @@ app.controller('PortalController', function PhoneListController($scope) {
         $scope.settings.url = url;// + '/true';
         $scope.settings.data = $scope.request;
         $.ajax($scope.settings).done(function (response) {
-
             $scope.$apply($scope.mediaData = response.data);
 
             $.each($scope.mediaData.items, function (i, media) {
@@ -48,16 +47,12 @@ app.controller('PortalController', function PhoneListController($scope) {
                     if (e.mediaId == media.id) {
                         media.isHidden = true;
                     }
-
                 })
-
             })
         });
-
-
     };
 
-    $scope.loadProduct = function (pageIndex = 0, pageSize = 12, orderBy = 'title', direction = 0) {
+    $scope.loadProduct = function (pageIndex = 0, pageSize = 16, orderBy = 'title', direction = 0) {
         var request = {
             "pageSize": pageSize,
             "pageIndex": pageIndex,
@@ -81,7 +76,6 @@ app.controller('PortalController', function PhoneListController($scope) {
                 currentItem = e;
                 return false;
             }
-
         });
         if (currentItem == null) {
             currentItem = {
@@ -97,7 +91,6 @@ app.controller('PortalController', function PhoneListController($scope) {
             media.isHidden = true;
             $scope.activedMedias.push(currentItem);
         }
-
     }
 
     $scope.changeProduct = function (product) {
@@ -108,7 +101,6 @@ app.controller('PortalController', function PhoneListController($scope) {
                 currentItem = e;
                 return false;
             }
-
         });
         if (currentItem == null) {
             currentItem = {
@@ -122,11 +114,9 @@ app.controller('PortalController', function PhoneListController($scope) {
             product.isHidden = true;
             $scope.activedProducts.push(currentItem);
         }
-
     }
 
     $(document).ready(function () {
-
         if ($('#arr-medias').length > 0 && $('#arr-medias').val() != '') {
             $scope.activedMedias = $.parseJSON($('#arr-medias').val());
         }
