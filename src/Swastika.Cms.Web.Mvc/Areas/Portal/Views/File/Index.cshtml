@@ -18,7 +18,7 @@
     string prvUrl = Url.RouteUrl("File", new { culture = ViewBag.culture, folder = prvFolder });
 }
 
-<div class="content container-fluid">
+<section class="content container-fluid">
 
     <div class="row">
         <div class="col-md-12 d-flex justify-content-end">
@@ -53,16 +53,16 @@
         </div>*@
     <div class="row">
         <div class="col-md-12">
-            <table class="table table-sm table-hover dataTable">
+            <table class="table table-sm table-hover">
                 <thead class="thead-light">
                     <tr>
-                        <th scope="col" width="20%">
+                        <th scope="col" width="30%">
                             Name
                         </th>
                         <th scope="col">
                             FullPath
                         </th>
-                        <th scope="col">
+                        <th scope="col" width="15%">
                             Preview
                         </th>
                         <th scope="col" width="5%" class="text-right">
@@ -96,7 +96,7 @@
                     {
                         <tr>
                             <td class="text-secondary">
-                                <span class="oi oi-file mr-2"></span>  @Html.DisplayFor(modelItem => item.Filename)@Html.DisplayFor(modelItem => item.Extension)
+                                <span class="oi oi-file mr-2"></span>  <small>@Html.DisplayFor(modelItem => item.Filename)@Html.DisplayFor(modelItem => item.Extension)</small>
                             </td>
                             <td>
                                 <input value="@item.FullPath" onclick="this.select()" class="form-control form-control-sm" readonly />
@@ -105,7 +105,7 @@
 
                                 @if (imgExts.Contains(item.Extension))
                                 {
-                                    <img src="@item.FullPath" style="max-height:50px;max-width:50px;" class="img-thumbnail" />
+                                    <img src="@item.FullPath" style="max-height:50px;" class="" />
                                 }
                                 else
                                 {
@@ -140,4 +140,4 @@
             <!-- /.table -->
         </div>
     </div>
-</div>
+</section>

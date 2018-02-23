@@ -5,7 +5,7 @@ app.controller('PortalController', function PhoneListController($scope) {
     $scope.activedMedias = {};
     $scope.activedProducts = [];
     $scope.request = {
-        "pageSize": 12,
+        "pageSize": 16,
         "pageIndex": 0,
         "orderBy": 'id',
         "direction": 0,
