@@ -34,6 +34,17 @@
       ga: 'UA-xxx',
       disqus: 'swastika-io',
       formatUpdated: '{MM}/{DD} {HH}:{mm}',
+      search: {
+        noData: {
+          '/vi-vn/': 'Không có kết quả!',
+          '/': 'No results!'
+        },
+        paths: 'auto',
+        placeholder: {
+          '/vi-vn/': 'Tìm kiếm',
+          '/': 'Search'
+        }
+      },
       plugins: [
         EditOnGithubPlugin.create(
           'https://github.com/Swastika-IO/Swastika-IO-Core/blob/master/docs/'
@@ -56,6 +67,7 @@
     }
   </script>
   <script src="//unpkg.com/docsify/lib/docsify.min.js"></script>
+  <script src="//unpkg.com/docsify/lib/plugins/search.min.js"></script>
   <script src="//unpkg.com/docsify/lib/plugins/ga.min.js"></script>
   <script src="//unpkg.com/docsify/lib/plugins/disqus.min.js"></script>
   <script src="//unpkg.com/docsify-pagination/dist/docsify-pagination.min.js"></script>
