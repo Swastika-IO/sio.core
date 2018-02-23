@@ -6,7 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace Swastika.Cms.Mvc.Areas.Portal.ViewComponents
 {
-    public class Modals : ViewComponent
+    public class Breadcrumbs : ViewComponent
     {
         public IViewComponentResult Invoke()
         {
