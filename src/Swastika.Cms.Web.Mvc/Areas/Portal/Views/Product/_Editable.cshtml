@@ -434,7 +434,7 @@
                                             </td>
                                             <td>
                                                 <a href="#" data-toggle="modal" data-target=".image-preview-modal-lg" data-imgsrc="{{item.image}}">
-                                                    <img class="" src="{{item.image}}" alt="Card image cap" height="50">
+                                                    <img class="" src="{{item.image}}" alt="{{item.description}}" height="50">
                                                 </a>
                                             </td>
                                             <td style="position:relative">
@@ -523,7 +523,7 @@
                                     <i class="mi mi-Crop"></i>
                                 </button>
                                 <a href="#" data-toggle="modal" data-target=".image-preview-modal-lg" data-imgsrc="{{media.fullPath}}">
-                                    <img class="card-img-top" src="{{media.fullPath}}" alt="Card image cap">
+                                    <img class="card-img-top" src="{{media.fullPath}}" alt="{{media.title}}">
                                 </a>
                             </div>
                         </div>
@@ -540,64 +540,6 @@
                                 </li>
                             </ul>
                         </nav>
-
-                        <div class="modal fade image-preview-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
-                            <div class="modal-dialog modal-lg modal-dialog-centered">
-                                <div class="modal-content">
-                                    <div class="modal-header">
-                                        <h5 class="modal-title">Image information</h5>
-                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                            <span aria-hidden="true">&times;</span>
-                                        </button>
-                                    </div>
-                                    <div class="modal-body">
-                                        <div class="row">
-                                            <div class="col-8"><img class="img-fluid" alt="100%x250" style="width: 100%; display: block;" src="data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%22782%22%20height%3D%22250%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20782%20250%22%20preserveAspectRatio%3D%22none%22%3E%3Cdefs%3E%3Cstyle%20type%3D%22text%2Fcss%22%3E%23holder_1615fe0964c%20text%20%7B%20fill%3Argba(255%2C255%2C255%2C.75)%3Bfont-weight%3Anormal%3Bfont-family%3AHelvetica%2C%20monospace%3Bfont-size%3A39pt%20%7D%20%3C%2Fstyle%3E%3C%2Fdefs%3E%3Cg%20id%3D%22holder_1615fe0964c%22%3E%3Crect%20width%3D%22782%22%20height%3D%22250%22%20fill%3D%22%23777%22%3E%3C%2Frect%3E%3Cg%3E%3Ctext%20x%3D%22291.2421875%22%20y%3D%22142.4%22%3E782x250%3C%2Ftext%3E%3C%2Fg%3E%3C%2Fg%3E%3C%2Fsvg%3E" data-holder-rendered="true"></div>
-                                            <div class="col-4">
-                                                File name: Layout-2.jpg<br />
-                                                File type: image/jpeg<br />
-                                                Uploaded on: December 17, 2017<br />
-                                                File size: 189 KB<br />
-                                                Dimensions: 1000 × 1000<br />
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="modal-footer">
-                                        @*<button type="button" class="btn btn-primary">Save changes</button>*@
-                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="modal fade upload-image-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
-                            <div class="modal-dialog modal-lg modal-dialog-centered">
-                                <div class="modal-content model-media">
-                                    <div class="modal-header">
-                                        <h5 class="modal-title">Upload media</h5>
-                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                            <span aria-hidden="true">&times;</span>
-                                        </button>
-                                    </div>
-                                    <div class="modal-body" style="background:url(/images/upload-image-thumbnail.png) no-repeat center; ">
-                                        <span class="text-danger"></span>
-
-                                        <label class="custom-file" style="min-height:150px; cursor:pointer; border: 2px dashed;">
-                                            <img src="" name="pic" class="custom-file-img " accept="image/*" width="100%" />
-                                            <input type="hidden" value="Media" class="folder-val" />
-                                            <input type="file" name="pic" class="custom-file-input">
-                                            <input type="text" class="form-control custom-file-val d-none">
-                                        </label>
-                                    </div>
-                                    <div class="modal-footer">
-
-                                        <input type="text" value="" class="title form-control" placeholder="Title..." />
-                                        <input type="text" value="" class="description form-control" placeholder="Description..." />
-                                        <button type="button" class="btn btn-primary btn-upload"><i class="mi mi-Upload"></i> Upload</button>
-                                        <button type="button" class="btn btn-secondary" data-dismiss="modal"><i class="mi mi-Cancel"></i> Dismiss</button>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
                     </div>
                     <div id="pills-rel" class="tab-pane fade">
                         <div class="row">
@@ -612,8 +554,8 @@
                                             <th scope="col" width="5%">
                                                 <span class="oi oi-sort-ascending"></span>
                                             </th>
-                                            <th scope="col">Name</th>
-                                            <th scope="col">Image</th>
+                                            <th scope="col">Title</th>
+                                            <th scope="col" width="15%">Image</th>
                                             <th scope="col" width="5%">Showing?</th>
                                         </tr>
                                     </thead>
@@ -631,7 +573,7 @@
                                             </td>
                                             <td>
                                                 <a href="#" data-toggle="modal" data-target=".image-preview-modal-lg" data-imgsrc="{{item.product.image}}">
-                                                    <img class="" src="{{item.product.image}}" alt="Card image cap" style="max-height: 50px;">
+                                                    <img class="" src="{{item.product.image}}" alt="{{item.product.title}}" style="max-height: 50px;">
                                                 </a>
                                             </td>
                                             <td style="position:relative">
