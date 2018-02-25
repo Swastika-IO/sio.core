@@ -96,5 +96,6 @@ This project has been developed using:
 * [Creative Tim](https://www.creative-tim.com/)
 * [Bootstrap](https://getbootstrap.com/)
 * [BrowserStack](https://www.browserstack.com/)
+* [Micon](http://xtoolkit.github.io/Micon/icons/)
 * [.NET](https://www.microsoft.com/net/core)
 * And more...
