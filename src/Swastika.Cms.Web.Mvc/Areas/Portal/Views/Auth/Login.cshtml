@@ -16,7 +16,7 @@
 
 <div class="col-md-4 content-center">
     <div class="card card-login card-plain">
-        <form asp-area="Portal" asp-controller="Auth" asp-action="Login" method="post" class="form-horizontal">
+        <form asp-area="Portal" asp-controller="Auth" asp-action="Login" method="post" class="form-horizontal" autocomplete="off">
             <input type="hidden" asp-for="ReturnUrl" />
             <div class="header header-primary text-center">
                 <div class="logo-container">
@@ -25,15 +25,15 @@
             </div>
             <div class="content">
                 <div class="input-group form-group-no-border input-lg">
-                    <span class="input-group-addon">
-                        <i class="now-ui-icons users_circle-08"></i>
-                    </span>
+                    <div class="input-group-prepend">
+                        <span class="input-group-text"><i class="now-ui-icons users_circle-08"></i></span>
+                    </div>
                     <input asp-for="UserName" class="form-control" placeholder="UserName..." autocomplete="off">
                 </div>
                 <div class="input-group form-group-no-border input-lg">
-                    <span class="input-group-addon">
-                        <i class="now-ui-icons ui-1_lock-circle-open"></i>
-                    </span>
+                    <div class="input-group-prepend">
+                        <span class="input-group-text"><i class="now-ui-icons ui-1_lock-circle-open"></i></span>
+                    </div>
                     <input asp-for="Password" class="form-control" placeholder="Password..." autocomplete="off" />
                 </div>
             </div>
