@@ -2,9 +2,14 @@
 
 Swastika I / O là miễn phí, mã nguồn mở và nền tảng CMS dựa trên ASP.NET Core. Nó được xây dựng bằng cách sử dụng tốt nhất và các công cụ hiện đại nhất và ngôn ngữ (Visual Studio 2017, C # vv). Hãy là người tốt nhất và tham gia nhóm của chúng tôi!
 
+- Demo: [http://demo.swastika.io](http://demo.swastika.io)
+- Screenshot:  
+  - Admin:
+![Swastika I/O Admin Portal Bootstrap 4](https://swastika-io.github.io/Swastika-IO-Admin/img/white.png "Swastika I/O Admin Portal Bootstrap 4")
+
 ## Swastika - swas·ti·ka (/ˈswästəkə/) mean:
 
- ![Swastika History](_images/readme/swastika-history.png)
+ ![Swastika History](http://docs.swastika.io/_images/readme/swastika-history.png)
 
 From Sanskrit svastika, from svasti ‘well-being,’ from su ‘good’ + asti ‘being.
 

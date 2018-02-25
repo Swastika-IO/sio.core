@@ -2,6 +2,11 @@
 
 Swastika I/O is free, open source and cross-platform CMS based on ASP.NET Core. It is built using the best and the most modern tools and languages (Visual Studio 2017, C# etc). Be the best and join our team!
 
+- Demo: [http://demo.swastika.io](http://demo.swastika.io)
+- Screenshot:  
+  - Admin:
+![Swastika I/O Admin Portal Bootstrap 4](https://swastika-io.github.io/Swastika-IO-Admin/img/white.png "Swastika I/O Admin Portal Bootstrap 4")
+
 ## Swastika - swas·ti·ka (/ˈswästəkə/) mean:
 
  ![Swastika History](_images/readme/swastika-history.png)
