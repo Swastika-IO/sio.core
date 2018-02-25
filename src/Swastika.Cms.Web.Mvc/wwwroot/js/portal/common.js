@@ -19,7 +19,7 @@
                 url: '/api/files',
                 type: "GET",
                 success: function (result) {
-                    container.dataTable().fnDestroy();
+                    //container.dataTable().fnDestroy();
                     container.find('tbody').empty();
                     $.each(result, function (index, val) {
                         var html = '<tr>';
@@ -36,17 +36,17 @@
                         container.find('tbody').append(html);
                     });
 
-                    container.DataTable({
-                        "paging": true,
-                        "pageLength": 5,
-                        "lengthChange": false,
-                        "select": true,
-                        "searching": false,
-                        "ordering": false,
-                        "info": false,
-                        "autoWidth": true//,
-                        //"rowReorder": true
-                    });
+                    //container.DataTable({
+                    //    "paging": true,
+                    //    "pageLength": 5,
+                    //    "lengthChange": false,
+                    //    "select": true,
+                    //    "searching": false,
+                    //    "ordering": false,
+                    //    "info": false,
+                    //    "autoWidth": true//,
+                    //    //"rowReorder": true
+                    //});
                 },
                 error: function (err) {
                     return null;
@@ -631,16 +631,16 @@
 
             //$(".select2").select2();
 
-            $('.dataTable').DataTable({
-                "paging": false,
-                "lengthChange": false,
-                //"select": true,
-                "searching": false,
-                "ordering": false,
-                "info": false,
-                "autoWidth": true//,
-                //"rowReorder": true
-            });
+            //$('.dataTable').DataTable({
+            //    "paging": false,
+            //    "lengthChange": false,
+            //    //"select": true,
+            //    "searching": false,
+            //    "ordering": false,
+            //    "info": false,
+            //    "autoWidth": true//,
+            //    //"rowReorder": true
+            //});
             //$('.dataTable tr').on('click', function () {
             //    $(this).toggleClass('selected');
             //})

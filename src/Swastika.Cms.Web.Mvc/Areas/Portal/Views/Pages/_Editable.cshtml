@@ -24,12 +24,14 @@
                 </div>
 
                 <div class="form-group">
-                    <textarea asp-for="Excerpt" class="form-control" placeholder="Excerpt"></textarea>
+                    <textarea asp-for="Excerpt" class="form-control" placeholder="Excerpt" aria-describedby="excerptHelp"></textarea>
+                    <small id="excerptHelp" class="form-text text-muted">Excerpt is an optional summary or description of a post; in short, a post summary.</small>
                     <span asp-validation-for="Excerpt" class="text-danger"></span>
                 </div>
 
                 <div class="form-group">
-                    <textarea asp-for="Content" class="form-control editor-content"></textarea>
+                    <textarea asp-for="Content" class="form-control editor-content" aria-describedby="descHelp"></textarea>
+                    <small id="descHelp" class="form-text text-muted">Page content...</small>
                     <span asp-validation-for="Content" class="text-danger"></span>
                 </div>
             </div>
@@ -63,7 +65,8 @@
 
                         <div class="form-group">
                             <label asp-for="StaticUrl" class="control-label">Static URL</label>
-                            <input asp-for="StaticUrl" class="form-control" />
+                            <input asp-for="StaticUrl" class="form-control" aria-describedby="staticUrlHelp" />
+                            <small id="staticUrlHelp" class="form-text text-muted">If you using the content some other site, you can use this to input the content reference URL</small>
                             <span asp-validation-for="StaticUrl" class="text-danger"></span>
                         </div>
                         <div class="form-group">
