@@ -1,13 +1,12 @@
 ﻿@using Swastika.Identity.Models.AccountViewModels;
 @model RegisterViewModel
 @{
-    Layout = "_Layout_Corlate";
     Layout = "~/Areas/Portal/Views/Shared/NowUI/_Signup.cshtml";
     ViewData["Title"] = "Register";
 }
 
 <div class="row">
-    <div class="col-md-5 ml-auto mr-auto">
+    <div class="col-md-4 ml-auto mr-auto">
         <div class="info info-horizontal">
             <div class="icon icon-primary">
                 <i class="now-ui-icons media-2_sound-wave"></i>
@@ -19,6 +18,7 @@
                 </p>
             </div>
         </div>
+
         <div class="info info-horizontal">
             <div class="icon icon-primary">
                 <i class="now-ui-icons media-1_button-pause"></i>
@@ -30,6 +30,7 @@
                 </p>
             </div>
         </div>
+
         <div class="info info-horizontal">
             <div class="icon icon-info">
                 <i class="now-ui-icons users_single-02"></i>
@@ -42,7 +43,8 @@
             </div>
         </div>
     </div>
-    <div class="col-md-5">
+    <div class="col-md-4 mr-auto">
+
         <div class="card card-signup">
             <div class="card-body">
                 <h4 class="card-title text-center">Register</h4>
@@ -60,90 +62,61 @@
                 </div>
 
                 <form asp-controller="Auth" asp-action="Register" asp-route-returnurl="@ViewData[" ReturnUrl"]" method="post" class="form">
-                    <input type="hidden" asp-for="ReturnUrl" />
                     <div class="input-group">
-                        <span class="input-group-addon">
-                            <i class="now-ui-icons ui-1_email-85"></i>
-                        </span>
+                        <div class="input-group-prepend">
+                            <span class="input-group-text"><i class="now-ui-icons users_circle-08"></i></span>
+                        </div>
+                        <input asp-for="UserName" class="form-control" placeholder="input your username..." />
+                    </div>
+
+                    <div class="input-group">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text"><i class="now-ui-icons ui-1_email-85"></i></span>
+                        </div>
                         <input asp-for="Email" class="form-control" placeholder="Email..." type="text" />
                     </div>
-                    <div class="row">
 
-                        <div class="col-md-6">
-                            <div class="input-group">
-                                <span class="input-group-addon">
-                                    <i class="now-ui-icons text_caps-small"></i>
-                                </span>
-                                <input asp-for="UserName" class="form-control" placeholder="UserName..." />
-                            </div>
+                    <div class="input-group">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text"><i class="now-ui-icons objects_key-25"></i></span>
                         </div>
-                        <div class="col-md-6">
-                            <div class="input-group">
-                                <span class="input-group-addon">
-                                    <i class="now-ui-icons text_caps-small"></i>
-                                </span>
-                                <input asp-for="NickName" class="form-control" placeholder="NickName..." />
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-md-6">
-                            <div class="input-group">
-                                <span class="input-group-addon">
-                                    <i class="now-ui-icons text_caps-small"></i>
-                                </span>
-                                <input asp-for="FirstName" class="form-control" placeholder="FirstName..." />
-                            </div>
-                        </div>
-                        <div class="col-md-6">
-                            <div class="input-group">
-                                <span class="input-group-addon">
-                                    <i class="now-ui-icons text_caps-small"></i>
-                                </span>
-                                <input asp-for="LastName" class="form-control" placeholder="LastName..." />
-                            </div>
-                        </div>
+                        <input asp-for="Password" class="form-control" placeholder="input your password..." />
                     </div>
                     <div class="input-group">
-                        <span class="input-group-addon">
-                            <i class="now-ui-icons objects_key-25"></i>
-                        </span>
-                        <input asp-for="Password" class="form-control" placeholder="Password..." />
-                    </div>
-                    <div class="input-group">
-                        <span class="input-group-addon">
-                            <i class="now-ui-icons objects_key-25"></i>
-                        </span>
+                        <div class="input-group-prepend">
+                            <span class="input-group-text"><i class="now-ui-icons objects_key-25"></i></span>
+                        </div>
                         <input asp-for="ConfirmPassword" class="form-control" placeholder="ConfirmPassword..." />
                     </div>
-                    <div class="input-group">
+                    @*<div class="input-group">
 
-                        @for (int i = 0; i < Model.UserClaims.Count; i++)
-        {
+                            @for (int i = 0; i < Model.UserClaims.Count; i++)
+                            {
 
-                <div class="form-check">
-                    <label class="form-check-label" asp-for="@Model.UserClaims[i].Selected">
-                        <input class="form-check-input" type="checkbox" asp-for="@Model.UserClaims[i].Selected">
-                        <span class="form-check-sign"></span>
-                        @Model.UserClaims[i].Text
-                    </label>
-                    <input type="hidden" asp-for="@Model.UserClaims[i].Value" />
-                    <input type="hidden" asp-for="@Model.UserClaims[i].Text" />
-                </div>
-}
-                    </div>
+                                <div class="form-check">
+                                    <label class="form-check-label" asp-for="@Model.UserClaims[i].Selected">
+                                        <input class="form-check-input" type="checkbox" asp-for="@Model.UserClaims[i].Selected">
+                                        <span class="form-check-sign"></span>
+                                        @Model.UserClaims[i].Text
+                                    </label>
+                                    <input type="hidden" asp-for="@Model.UserClaims[i].Value" />
+                                    <input type="hidden" asp-for="@Model.UserClaims[i].Text" />
+                                </div>
+                            }
+                        </div>*@
+
+                    <!-- If you want to add a checkbox to this form, uncomment this code -->
+
                     <div class="form-check">
                         <label class="form-check-label">
                             <input class="form-check-input" type="checkbox">
                             <span class="form-check-sign"></span>
-                            I agree to the terms and
-                            <a href="#something">conditions</a>.
+                            I agree to the terms and <a href="#something">conditions</a>.
                         </label>
                     </div>
+
                     <div class="card-footer text-center">
-                        <div class="col-md-offset-2 col-md-10">
-                            <button type="submit" class="btn btn-primary btn-round btn-lg">Register</button>
-                        </div>
+                        <button type="submit" class="btn btn-primary btn-round btn-lg">Get Started</button>
                     </div>
                     <div class="">
                         <h6>
@@ -154,6 +127,119 @@
             </div>
         </div>
     </div>
+
+    @*<div class="col-md-5">
+            <div class="card card-signup">
+                <div class="card-body">
+                    <h4 class="card-title text-center">Register</h4>
+                    <div class="social text-center">
+                        <button class="btn btn-icon btn-round btn-twitter">
+                            <i class="fa fa-twitter"></i>
+                        </button>
+                        <button class="btn btn-icon btn-round btn-google">
+                            <i class="fa fa-google"></i>
+                        </button>
+                        <button class="btn btn-icon btn-round btn-facebook">
+                            <i class="fa fa-facebook"> </i>
+                        </button>
+                        <h5 class="card-description"> or be classical </h5>
+                    </div>
+
+                    <form asp-controller="Auth" asp-action="Register" asp-route-returnurl="@ViewData[" ReturnUrl"]" method="post" class="form">
+                        <input type="hidden" asp-for="ReturnUrl" />
+                        <div class="input-group">
+                            <span class="input-group-addon">
+                                <i class="now-ui-icons ui-1_email-85"></i>
+                            </span>
+                            <input asp-for="Email" class="form-control" placeholder="Email..." type="text" />
+                        </div>
+                        <div class="row">
+
+                            <div class="col-md-6">
+                                <div class="input-group">
+                                    <span class="input-group-addon">
+                                        <i class="now-ui-icons text_caps-small"></i>
+                                    </span>
+                                    <input asp-for="UserName" class="form-control" placeholder="UserName..." />
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="input-group">
+                                    <span class="input-group-addon">
+                                        <i class="now-ui-icons text_caps-small"></i>
+                                    </span>
+                                    <input asp-for="NickName" class="form-control" placeholder="NickName..." />
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="input-group">
+                                    <span class="input-group-addon">
+                                        <i class="now-ui-icons text_caps-small"></i>
+                                    </span>
+                                    <input asp-for="FirstName" class="form-control" placeholder="FirstName..." />
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="input-group">
+                                    <span class="input-group-addon">
+                                        <i class="now-ui-icons text_caps-small"></i>
+                                    </span>
+                                    <input asp-for="LastName" class="form-control" placeholder="LastName..." />
+                                </div>
+                            </div>
+                        </div>
+                        <div class="input-group">
+                            <span class="input-group-addon">
+                                <i class="now-ui-icons objects_key-25"></i>
+                            </span>
+                            <input asp-for="Password" class="form-control" placeholder="Password..." />
+                        </div>
+                        <div class="input-group">
+                            <span class="input-group-addon">
+                                <i class="now-ui-icons objects_key-25"></i>
+                            </span>
+                            <input asp-for="ConfirmPassword" class="form-control" placeholder="ConfirmPassword..." />
+                        </div>
+                        <div class="input-group">
+
+                            @for (int i = 0; i < Model.UserClaims.Count; i++)
+                            {
+
+                                <div class="form-check">
+                                    <label class="form-check-label" asp-for="@Model.UserClaims[i].Selected">
+                                        <input class="form-check-input" type="checkbox" asp-for="@Model.UserClaims[i].Selected">
+                                        <span class="form-check-sign"></span>
+                                        @Model.UserClaims[i].Text
+                                    </label>
+                                    <input type="hidden" asp-for="@Model.UserClaims[i].Value" />
+                                    <input type="hidden" asp-for="@Model.UserClaims[i].Text" />
+                                </div>
+                            }
+                        </div>
+                        <div class="form-check">
+                            <label class="form-check-label">
+                                <input class="form-check-input" type="checkbox">
+                                <span class="form-check-sign"></span>
+                                I agree to the terms and
+                                <a href="#something">conditions</a>.
+                            </label>
+                        </div>
+                        <div class="card-footer text-center">
+                            <div class="col-md-offset-2 col-md-10">
+                                <button type="submit" class="btn btn-primary btn-round btn-lg">Register</button>
+                            </div>
+                        </div>
+                        <div class="">
+                            <h6>
+                                <a href="/vi-vn/portal/auth/login" class="link footer-link">Login</a>
+                            </h6>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>*@
 </div>
 
 @section Scripts {
