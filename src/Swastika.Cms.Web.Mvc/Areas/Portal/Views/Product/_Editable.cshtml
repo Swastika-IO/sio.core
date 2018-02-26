@@ -519,9 +519,14 @@
                                         @* {{media.title}} {{mediaData.totalPage}}*@
                                     </label>
                                 </span>
-                                <button class="btn btn-dark btn-sm custom-file-cropper position-absolute m-1" style="z-index:3; right:0;" data-toggle="modal" data-target=".image-crop-modal-lg" data-imgsrc="{{media.fullPath}}" data-imgid="{{media.id}}">
-                                    <i class="mi mi-Crop"></i>
-                                </button>
+                                <div class="btn-group position-absolute m-1" role="group" aria-label="Basic example" style="z-index:3; right:0;">
+                                    <button class="btn btn-dark btn-sm custom-file-cropper" data-toggle="modal" data-target=".image-crop-modal-lg" data-imgsrc="{{media.fullPath}}" data-imgid="{{media.id}}">
+                                        <i class="mi mi-Crop"></i>
+                                    </button>
+                                    <button class="btn btn-dark btn-sm" data-imgsrc="{{media.fullPath}}" data-imgid="{{media.id}}">
+                                        <i class="mi mi-Cancel"></i>
+                                    </button>
+                                </div>
                                 <a href="#" data-toggle="modal" data-target=".image-preview-modal-lg" data-imgsrc="{{media.fullPath}}">
                                     <img class="card-img-top" src="{{media.fullPath}}" alt="{{media.title}}">
                                 </a>
