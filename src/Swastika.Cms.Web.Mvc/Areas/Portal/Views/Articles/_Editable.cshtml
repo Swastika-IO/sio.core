@@ -106,7 +106,7 @@
                                 <div class="card">
                                     <div class="card-header">
                                         Extra Properties (<label asp-for="ExtraProperties" class="control-label"></label>)
-                                        <a id="add-property" class="btn btn-primary btn-sm float-right">
+                                        <a id="add-property" class="btn btn-primary btn-sm float-right" ng-click="addProperty('Articles')">
                                             @translator.Get("Add New")
                                         </a>
                                     </div>
@@ -639,144 +639,128 @@
     </div>
 </div>
 <script>
-    window.onload = function () {
-
-        $('.AddObject').click(function (e) {
-            var i = $(".module-column").length;
-            var moduleId = $(this).attr('moduleId');
-            $('.btn-save-data').attr('moduleId', moduleId);
-            $.ajax({
-                url: '/vi-vn/Portal/Module/AjaxAddModuleData/' + moduleId,
-                success: function (data) {
-                    //$('#Table > tbody').append(data);
-                    $('#modal-data .modal-body').html(data);
-                    $('#modal-data').modal('show')
-                },
-                error: function (a, b, c) {
-                    console.log(a + " " + b + " " + c);
-                }
-            });
-        });
-
-        $(document).on('click', '.btn-edit-data', function () {
-
-            var dataId = $(this).attr('dataId');
-            $('.btn-save-data').attr('dataId', 'data-' + dataId);
-            $.ajax({
-                url: '/vi-vn/Portal/Module/AjaxEditModuleData/' + dataId,
-                success: function (data) {
-                    //$('#Table > tbody').append(data);
-                    console.log(data);
-                    $('#modal-data .modal-body').html(data);
-                    $('#modal-data').modal('show');
-                },
-                error: function (a, b, c) {
-                    console.log(a + " " + b + " " + c);
-                }
-            });
-        });
-
-        $(document).on('click', '.btn-save-data', function (e) {
-
-            var container = $('#module-' + $(this).attr('moduleId'));
-            var dataId = $(this).attr('dataId');
-            e.preventDefault();
-            var frm = $('#frm-data');
-            var url = '/vi-vn/Portal/Module/AjaxSaveModuleData';
-            //SW.Common.ajaxSubmitForm(frm, url);
-            var data = frm.serialize();
-            $.ajax({
-                type: 'Post',
-                url: '/vi-vn/Portal/Module/AjaxSaveModuleData', //frm.attr('action'),
-                data: data,
-                success: function (data) {
-                    if (dataId != '') {
-                        $('#' + dataId).replaceWith(data);
-                    } else {
-                        $(container).find('tbody').append(data);
-
-                    }
-
-                    $('#modal-data').modal('hide');
-                },
-                error: function (data) {
-                    SW.Common.showError(data.toSource());
-                },
-            });
-        });
-
-        $(document).on('ifChanged', '.cb-active-data', function (e) {
-            var articleId = $('#Id').val();
-            var dataId = $(this).attr('dataId');
-            $.ajax({
-                type: 'GET',
-                url: '/vi-vn/Portal/Module/AjaxAtiveModuleData/' + articleId + '/' + dataId + '/' + $(this).is(':checked'),
-                success: function (data) {
-                },
-                error: function (a, b, c) {
-                    console.log(a + " " + b + " " + c);
-                }
-            });
-        })
-
-        $(document).on('ifChanged', '.cb-active-module', function (e) {
-            var moduleid = $(this).data('module-id');
-            $('.module-data-' + moduleid).toggleClass('hidden');
-
-        });
-        $('#add-property').click(function () {
-            var i = $(".article-property").length;
-            $.ajax({
-                method: 'GET',
-                url: '/vi-vn/Portal/Article/AddEmptyProperty/' + i,
-                success: function (data) {
-                    $('#tbl-properties > tbody').append(data);
-                    $(data).find('.prop-data-type').trigger('change');
-                },
-                error: function (a, b, c) {
-                    console.log(a + " " + b + " " + c);
-                }
-            });
-        });
-
-        $(document).on('change', '.prop-data-type', function () {
-            var container = $(this).parents('tr').first().find('.prop-value-container');
-            var dataType = $(this).val();
-            var index = container.data('index');
-            var inputName = container.data('name');
-            var inputId = container.data('id');
-            var inputValue = container.data('value');
-            $.ajax({
-                method: 'POST',
-                data: { index: index, type: dataType, id: inputId, name: inputName, value: inputValue },
-                url: '/vi-vn/Portal/Article/GetEditor',// + index + '/' + dataType + '/' + inputId + '/' + inputName + '/' + inputValue,
-                success: function (data) {
-                    container.html(data);
-                    $('.editor-content').trumbowyg();
-
-                },
-                error: function (a, b, c) {
-                    console.log(a + " " + b + " " + c);
-                }
-            });
-        });
-        $('.prop-data-type').change();
-
-        $(document).on('click', '.model-media .btn-upload', function () {
-            var container = $(this).parents('.model-media').first().find('.custom-file').first();
-            var file = $('.model-media .custom-file-input').first().prop('files')[0];
-            if (file !== undefined && file !== null) {
-                //SW.Common.getBase64(file, $('.custom-file')).then(result => console.log(result));
-                //await SW.Common.getBase64(file).then(result => console.log(result));
-                var fileName = SW.Common.uploadImage(file, container);
-                if (fileName !== "") {
-                    $('.upload-image-modal-lg').modal('toggle');
-                    loadMedia();
-                }
+    $('.AddObject').click(function (e) {
+        var i = $(".module-column").length;
+        var moduleId = $(this).attr('moduleId');
+        $('.btn-save-data').attr('moduleId', moduleId);
+        $.ajax({
+            url: '/vi-vn/Portal/Module/AjaxAddModuleData/' + moduleId,
+            success: function (data) {
+                //$('#Table > tbody').append(data);
+                $('#modal-data .modal-body').html(data);
+                $('#modal-data').modal('show')
+            },
+            error: function (a, b, c) {
+                console.log(a + " " + b + " " + c);
             }
         });
+    });
+
+    $(document).on('click', '.btn-edit-data', function () {
+
+        var dataId = $(this).attr('dataId');
+        $('.btn-save-data').attr('dataId', 'data-' + dataId);
+        $.ajax({
+            url: '/vi-vn/Portal/Module/AjaxEditModuleData/' + dataId,
+            success: function (data) {
+                //$('#Table > tbody').append(data);
+                console.log(data);
+                $('#modal-data .modal-body').html(data);
+                $('#modal-data').modal('show');
+            },
+            error: function (a, b, c) {
+                console.log(a + " " + b + " " + c);
+            }
+        });
+    });
+
+    $(document).on('click', '.btn-save-data', function (e) {
+
+        var container = $('#module-' + $(this).attr('moduleId'));
+        var dataId = $(this).attr('dataId');
+        e.preventDefault();
+        var frm = $('#frm-data');
+        var url = '/vi-vn/Portal/Module/AjaxSaveModuleData';
+        //SW.Common.ajaxSubmitForm(frm, url);
+        var data = frm.serialize();
+        $.ajax({
+            type: 'Post',
+            url: '/vi-vn/Portal/Module/AjaxSaveModuleData', //frm.attr('action'),
+            data: data,
+            success: function (data) {
+                if (dataId != '') {
+                    $('#' + dataId).replaceWith(data);
+                } else {
+                    $(container).find('tbody').append(data);
+
+                }
+
+                $('#modal-data').modal('hide');
+            },
+            error: function (data) {
+                SW.Common.showError(data.toSource());
+            },
+        });
+    });
+
+    $(document).on('ifChanged', '.cb-active-data', function (e) {
+        var articleId = $('#Id').val();
+        var dataId = $(this).attr('dataId');
+        $.ajax({
+            type: 'GET',
+            url: '/vi-vn/Portal/Module/AjaxAtiveModuleData/' + articleId + '/' + dataId + '/' + $(this).is(':checked'),
+            success: function (data) {
+            },
+            error: function (a, b, c) {
+                console.log(a + " " + b + " " + c);
+            }
+        });
+    })
+
+    $(document).on('ifChanged', '.cb-active-module', function (e) {
+        var moduleid = $(this).data('module-id');
+        $('.module-data-' + moduleid).toggleClass('hidden');
+
+    });
+
+
+    $(document).on('change', '.prop-data-type', function () {
+        var container = $(this).parents('tr').first().find('.prop-value-container');
+        var dataType = $(this).val();
+        var index = container.data('index');
+        var inputName = container.data('name');
+        var inputId = container.data('id');
+        var inputValue = container.data('value');
+        $.ajax({
+            method: 'POST',
+            data: { index: index, type: dataType, id: inputId, name: inputName, value: inputValue },
+            url: '/vi-vn/Portal/Article/GetEditor',// + index + '/' + dataType + '/' + inputId + '/' + inputName + '/' + inputValue,
+            success: function (data) {
+                container.html(data);
+                $('.editor-content').trumbowyg();
+
+            },
+            error: function (a, b, c) {
+                console.log(a + " " + b + " " + c);
+            }
+        });
+    });
+    $('.prop-data-type').trigger('change');
+
+    $(document).on('click', '.model-media .btn-upload', function () {
+        var container = $(this).parents('.model-media').first().find('.custom-file').first();
+        var file = $('.model-media .custom-file-input').first().prop('files')[0];
+        if (file !== undefined && file !== null) {
+            //SW.Common.getBase64(file, $('.custom-file')).then(result => console.log(result));
+            //await SW.Common.getBase64(file).then(result => console.log(result));
+            var fileName = SW.Common.uploadImage(file, container);
+            if (fileName !== "") {
+                $('.upload-image-modal-lg').modal('toggle');
+                loadMedia();
+            }
+        }
+    });
         //loadMedia();
-    }
 </script>
 <script>
 </script>

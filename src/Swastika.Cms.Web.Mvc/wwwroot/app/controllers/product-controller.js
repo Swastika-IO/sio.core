@@ -115,7 +115,20 @@ app.controller('PortalController', function PhoneListController($scope) {
             $scope.activedProducts.push(currentItem);
         }
     }
-
+    $scope.addProperty = function (type) {
+        var i = $(".product-property").length;
+        $.ajax({
+            method: 'GET',
+            url: '/vi-vn/Portal/'+ type + '/AddEmptyProperty/' + i,
+            success: function (data) {
+                $('#tbl-properties > tbody').append(data);
+                $(data).find('.prop-data-type').trigger('change');
+            },
+            error: function (a, b, c) {
+                console.log(a + " " + b + " " + c);
+            }
+        });
+    }
     $(document).ready(function () {
         if ($('#arr-medias').length > 0 && $('#arr-medias').val() != '') {
             $scope.activedMedias = $.parseJSON($('#arr-medias').val());
