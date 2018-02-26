@@ -649,7 +649,71 @@
                 $(this).parent('.custom-file').find('img').attr('src', $(this).val());
                 $(this).parent('.custom-file').find('.custom-file-cropper').show().attr('data-imgsrc', $(this).val());
             });
-            $('.editor-content').trumbowyg()
+            //$('.editor-content').trumbowyg({
+            //    btns: [
+            //        ['base64', 'foreColor', 'backColor']
+            //    ]
+            //});
+
+            if ($.trumbowyg) {
+                var configurations = {
+                    core: {},
+                    plugins: {
+                        btnsDef: {
+                            // Customizables dropdowns
+                            image: {
+                                dropdown: ['insertImage', 'upload', 'base64', 'noembed'],
+                                ico: 'insertImage'
+                            }
+                        },
+                        btns: [
+                            ['viewHTML'],
+                            ['undo', 'redo'],
+                            ['formatting'],
+                            ['strong', 'em', 'del', 'underline'],
+                            ['link'],
+                            ['image'],
+                            ['justifyLeft', 'justifyCenter', 'justifyRight', 'justifyFull'],
+                            ['unorderedList', 'orderedList'],
+                            ['foreColor', 'backColor'],
+                            ['preformatted'],
+                            ['horizontalRule'],
+                            ['fullscreen']
+                        ],
+                        plugins: {
+                            // Add imagur parameters to upload plugin
+                            upload: {
+                                serverPath: 'https://api.imgur.com/3/image',
+                                fileFieldName: 'image',
+                                headers: {
+                                    'Authorization': 'Client-ID 9e57cb1c4791cea'
+                                },
+                                urlPropertyName: 'data.link'
+                            }
+                        }
+                    }
+                };
+
+                // Demo switch
+                var $demoTextarea = $('.editor-content');
+                $demoTextarea.trumbowyg(configurations.plugins);
+                //$('.demo-switcher .button').on('click', function () {
+                //    var $current = $('.demo-switcher .current');
+                //    $(this).parent().removeClass('current-' + $current.data('config'));
+                //    $current.removeClass('current');
+                //    $(this).addClass('current');
+                //    $(this).parent().addClass('current-' + $(this).data('config'));
+                //    $demoTextarea.trumbowyg('destroy');
+                //    $demoTextarea.trumbowyg(configurations[$(this).data('config')]);
+                //});
+
+                // Lang accordion
+                $('#lang-list-view-full').on('click', function () {
+                    $('#lang-list-light').slideUp(100);
+                    $('#lang-list-full').slideDown(350);
+                });
+            }
+
             // Init Code editor
             $.each($('.code-editor'), function (i, e) {
                 var container = $(this);
