@@ -523,7 +523,7 @@
                                     <button class="btn btn-dark btn-sm custom-file-cropper" data-toggle="modal" data-target=".image-crop-modal-lg" data-imgsrc="{{media.fullPath}}" data-imgid="{{media.id}}">
                                         <i class="mi mi-Crop"></i>
                                     </button>
-                                    <button class="btn btn-dark btn-sm" data-imgsrc="{{media.fullPath}}" data-imgid="{{media.id}}">
+                                    <button class="btn btn-dark btn-sm" data-imgsrc="{{media.fullPath}}" data-imgid="{{media.id}}" ng-click="removeMedia(media.id)">
                                         <i class="mi mi-Cancel"></i>
                                     </button>
                                 </div>
@@ -801,19 +801,7 @@
     });
     $('.prop-data-type').change();
 
-    $(document).on('click', '.model-media .btn-upload', function () {
-        var container = $(this).parents('.model-media').first().find('.custom-file').first();
-        var file = $('.model-media .custom-file-input').first().prop('files')[0];
-        if (file !== undefined && file !== null) {
-            //SW.Common.getBase64(file, $('.custom-file')).then(result => console.log(result));
-            //await SW.Common.getBase64(file).then(result => console.log(result));
-            var fileName = SW.Common.uploadImage(file, container);
-            if (fileName !== "") {
-                $('.upload-image-modal-lg').modal('toggle');
-                loadMedia();
-            }
-        }
-    });
+    
 </script>
 <script>
 </script>

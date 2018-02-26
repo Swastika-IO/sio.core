@@ -35,14 +35,14 @@
     @RenderSection("Styles", required: false)
 </head>
 
-<body ng-app="SwastikaPortal">
+<body ng-app="SwastikaPortal" ng-controller="PortalController">
     <!-- Page Header -->
     <header class="navbar navbar-expand flex-column flex-md-row sw-navbar">
         @await Component.InvokeAsync(typeof(Swastika.Cms.Mvc.Areas.Portal.ViewComponents.HeaderNavbar))
     </header>
 
     <!-- Page Content Holder -->
-    <div class="container-fluid wrapper" ng-controller="PortalController">
+    <div class="container-fluid wrapper" >
         <div class="row flex-xl-nowrap">
             <!-- Sidebar Holder -->
 

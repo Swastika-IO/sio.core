@@ -7,8 +7,8 @@ app.controller('PortalController', function PhoneListController($scope) {
     $scope.request = {
         "pageSize": 16,
         "pageIndex": 0,
-        "orderBy": 'id',
-        "direction": 0,
+        "orderBy": 'CreatedDateTime',
+        "direction": 1,
         "keyword": ''
     };
     $scope.settings = {
@@ -28,7 +28,7 @@ app.controller('PortalController', function PhoneListController($scope) {
         return input;
     };
 
-    $scope.loadMedia = function (pageIndex = 0, pageSize = 16, orderBy = 'fileName', direction = 0) {
+    $scope.loadMedia = function (pageIndex = 0, pageSize = 16, orderBy = 'CreatedDateTime', direction = 1) {
         $scope.request = {
             "pageSize": pageSize,
             "pageIndex": pageIndex,
@@ -51,7 +51,35 @@ app.controller('PortalController', function PhoneListController($scope) {
             })
         });
     };
-
+    $scope.uploadMedia = function () {
+        var container = $(this).parents('.model-media').first().find('.custom-file').first();
+        var file = $('.model-media .custom-file-input').first().prop('files')[0];
+        if (file !== undefined && file !== null) {
+            //SW.Common.getBase64(file, $('.custom-file')).then(result => console.log(result));
+            //await SW.Common.getBase64(file).then(result => console.log(result));
+            var fileName = SW.Common.uploadImage(file, container);
+            if (fileName !== "") {
+                $('.upload-image-modal-lg').modal('toggle');
+                $scope.loadMedia();
+            }
+        }
+    };
+    $scope.removeMedia = function (mediaId) {
+        if (confirm("Are you sure!")) {
+            var url = '/api/vi-vn/media/delete/' + mediaId;
+            $.ajax({
+                method: 'GET',
+                url: url,
+                success: function (data) {
+                    $scope.loadMedia();
+                },
+                error: function (a, b, c) {
+                    console.log(a + " " + b + " " + c);
+                }
+            });
+        }
+        
+    };
     $scope.loadProduct = function (pageIndex = 0, pageSize = 16, orderBy = 'title', direction = 0) {
         var request = {
             "pageSize": pageSize,
