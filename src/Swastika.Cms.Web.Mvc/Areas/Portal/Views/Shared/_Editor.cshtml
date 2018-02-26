@@ -19,7 +19,7 @@
         string img = value != null ? value.ToString() : "http://placehold.it/200x200";
         <label class="custom-file">
             @*<a href="javascript:void(0)" class="link danger lnk-remove">Remove</a>*@
-            <img src="@img" name="pic" class="custom-file-img image" accept="image/*" />
+            <img src="@img" name="pic" class="custom-file-img image d-block" style="max-height: 150px; width: auto; margin: 0 auto;" accept="image/*" />
             <input type="file" name="pic" class="custom-file-input auto-upload">
             <input type="hidden" class="folder-val" value="@inputId" />
             <input type="text" id="@inputId" name="@inputName" value="@value" class="custom-file-val form-control form-control-sm" />
@@ -48,17 +48,17 @@
         break;
     case Swastika.Cms.Lib.SWCmsConstants.DataType.Html:
         @*<div class="editor-container">
-            @*<textarea id="@inputId" name="@inputName" class="form-control">@value</textarea>
-                <script>
-                    var editor = CKEDITOR.replace('@inputId');
-                    editor.on('change', function (e) {
-                        $('#@inputId').val(e.editor.getData());
-                    })
-                </script>
+                @*<textarea id="@inputId" name="@inputName" class="form-control">@value</textarea>
+                    <script>
+                        var editor = CKEDITOR.replace('@inputId');
+                        editor.on('change', function (e) {
+                            $('#@inputId').val(e.editor.getData());
+                        })
+                    </script>
 
-            <input type="hidden" id="@inputId" name="@inputName" />
-            <div class="editor-content"></div>
-        </div>*@
+                <input type="hidden" id="@inputId" name="@inputName" />
+                <div class="editor-content"></div>
+            </div>*@
 
         <div class="form-group">
             <textarea id="@inputId" name="@inputName" class="form-control editor-content">@value</textarea>
