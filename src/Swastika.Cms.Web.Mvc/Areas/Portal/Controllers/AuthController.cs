@@ -144,20 +144,20 @@ namespace Swastika.Cms.Web.Mvc.Areas.Portal.Controllers
                 {
                     UserName = model.UserName,
                     Email = model.Email,
-                    NickName = model.NickName,
-                    FirstName = model.FirstName,
-                    LastName = model.LastName
+                    NickName = model.Email,
+                    FirstName = model.Email,
+                    LastName = model.Email
                 };
-                List<SelectListItem> userClaims = model.UserClaims.Where(c => c.Selected).ToList();
-                foreach (var claim in userClaims)
-                {
-                    user.Claims.Add(new IdentityUserClaim<string>
-                    {
-                        UserId = user.Id,
-                        ClaimType = claim.Value,
-                        ClaimValue = claim.Value
-                    });
-                }
+                //List<SelectListItem> userClaims = model.UserClaims.Where(c => c.Selected).ToList();
+                //foreach (var claim in userClaims)
+                //{
+                //    user.Claims.Add(new IdentityUserClaim<string>
+                //    {
+                //        UserId = user.Id,
+                //        ClaimType = claim.Value,
+                //        ClaimValue = claim.Value
+                //    });
+                //}
 
                 var result = await _userManager.CreateAsync(user, model.Password).ConfigureAwait(false);
                 if (result.Succeeded)
