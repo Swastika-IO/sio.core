@@ -31,6 +31,7 @@ namespace Swastika.Cms.Lib
             }
         }
 
+
         public static FEModuleViewModel GetModule(string name, string culture)
         {
             var getModule = FEModuleViewModel.Repository.GetSingleModel(m => m.Name == name);

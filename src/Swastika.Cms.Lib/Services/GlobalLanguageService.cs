@@ -84,7 +84,14 @@ namespace Swastika.Cms.Lib.Services
                     lock (syncRoot)
                     {
                         if (_instance == null)
-                            _instance = new GlobalLanguageService();
+                        {
+                            string cnn = GlobalConfigurationService.Instance.GetConnectionString();
+                            if (!string.IsNullOrEmpty(cnn))
+                            {
+                                _instance = new GlobalLanguageService();
+                            }
+                           
+                        }
                     }
                 }
 
@@ -99,7 +106,11 @@ namespace Swastika.Cms.Lib.Services
         public GlobalLanguageService()
         {
             //_repo = LanguageRepository.GetInstance();
-            InitCultures();
+            if (_instance!=null)
+            {
+                InitCultures();
+            }
+            
             //InitLanguages();
         }
 

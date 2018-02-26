@@ -63,8 +63,12 @@ namespace Swastika.Cms.Lib.Models.Cms
                 .Build();
 
             // define the database to use
-
-            optionsBuilder.UseSqlServer(GlobalConfigurationService.Instance.GetConnectionString());
+            string cnn = GlobalConfigurationService.Instance.GetConnectionString();
+            if (!string.IsNullOrEmpty(cnn))
+            {
+                optionsBuilder.UseSqlServer(cnn);
+            }
+            
         }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
