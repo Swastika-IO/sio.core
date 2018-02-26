@@ -24,7 +24,7 @@
             <label class="custom-file">
                 @*<a href="javascript:void(0)" class="link danger lnk-remove">Remove</a>*@
                 <input type="hidden" value="Modules/@Model.ModuleId" class="folder-val" />
-                <img src="@img" name="pic" class="custom-file-img image" accept="image/*" />
+                <img src="@img" name="pic" class="custom-file-img image d-block" style="max-height: 150px; width: auto; margin: 0 auto;" accept="image/*" />
                 <input type="file" id="file" name="pic" class="custom-file-input auto-upload">
                 <input type="text" id="@inputId" name="@inputName" value="@Model.Value" class="custom-file-val form-control" />
                 <span class="custom-file-control">Browse</span>

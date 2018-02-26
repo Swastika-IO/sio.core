@@ -7,6 +7,7 @@
     <MvcRazorExcludeRefAssembliesFromPublish>false</MvcRazorExcludeRefAssembliesFromPublish>
     <MvcRazorCompileOnPublish>false</MvcRazorCompileOnPublish>
   <PublishWithAspNetCoreTargetManifest>False</PublishWithAspNetCoreTargetManifest>
+  <Version>0.0.3</Version>
   </PropertyGroup>
 
   <ItemGroup>
