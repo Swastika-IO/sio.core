@@ -510,7 +510,7 @@
                             </div>
                         </div>
 
-                        <div class="card-columns" style="column-count: 4 !important;column-gap: 0.75rem;">
+                        <div class="card-columns" style="column-count: 3 !important;column-gap: 0.75rem;">
                             <div class="card" ng-repeat="media in mediaData.items" ng-hide="media.isHidden">
                                 <span class="switch switch-sm position-absolute m-1">
                                     <input type="checkbox" class="switch" ng-model="media.isActived" ng-change="changeMedia(media)"
@@ -519,11 +519,11 @@
                                         @* {{media.title}} {{mediaData.totalPage}}*@
                                     </label>
                                 </span>
-                                <div class="btn-group position-absolute m-1" role="group" aria-label="Basic example" style="z-index:3; right:0;">
-                                    <button class="btn btn-dark btn-sm custom-file-cropper" data-toggle="modal" data-target=".image-crop-modal-lg" data-imgsrc="{{media.fullPath}}" data-imgid="{{media.id}}">
+                                <div class="btn-group btn-group-sm position-absolute m-1" role="group" aria-label="Basic example" style="z-index:3; right:0;">
+                                    <button class="btn btn-dark custom-file-cropper" data-toggle="modal" data-target=".image-crop-modal-lg" data-imgsrc="{{media.fullPath}}" data-imgid="{{media.id}}">
                                         <i class="mi mi-Crop"></i>
                                     </button>
-                                    <button class="btn btn-dark btn-sm" data-imgsrc="{{media.fullPath}}" data-imgid="{{media.id}}">
+                                    <button class="btn btn-dark" data-imgsrc="{{media.fullPath}}" data-imgid="{{media.id}}">
                                         <i class="mi mi-Cancel"></i>
                                     </button>
                                 </div>
