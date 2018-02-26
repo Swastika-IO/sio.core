@@ -774,7 +774,7 @@
             $('.module-data-' + moduleid).toggleClass('hidden');
 
         });
-        $('#add-property').click(function () {
+        $('#add-property').on('click', function () {
             var i = $(".product-property").length;
             $.ajax({
                 method: 'GET',
