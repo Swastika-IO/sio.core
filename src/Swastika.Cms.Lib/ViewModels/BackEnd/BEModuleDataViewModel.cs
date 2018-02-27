@@ -92,14 +92,14 @@ namespace Swastika.Cms.Lib.ViewModels.BackEnd
 
         public override void ExpandView(SiocCmsContext _context = null, IDbContextTransaction _transaction = null)
         {
-            IsClone = true;
+            IsClone = false;
             ListSupportedCulture = GlobalLanguageService.ListSupportedCulture;
 
             var objValue = Value != null ? JObject.Parse(Value) : new JObject();
 
             this.DataProperties = new List<ModuleDataValueViewModel>();
             //Columns = new List<ModuleFieldViewModel>(); // ModuleRepository.GetInstance().GetColumns(m => m.Id == ModuleId && m.Specificulture == Specificulture);
-            Fields = InfoModuleViewModel.Repository.GetSingleModel(m => m.Id == ModuleId && m.Specificulture == Specificulture, _context, _transaction).Data.Fields;
+            Fields = InfoModuleViewModel.Repository.GetSingleModel(m => m.Id == ModuleId && m.Specificulture == Specificulture, _context, _transaction).Data?.Fields;
             this.Columns = new List<ModuleFieldViewModel>();
             if (!string.IsNullOrEmpty(Fields))
             {

@@ -4,6 +4,12 @@
     Layout = "~/Areas/Portal/Views/Shared/NowUI/_Signup.cshtml";
     ViewData["Title"] = "Register";
 }
+@if (!ViewData.ModelState.IsValid)
+{
+    <div class="alert alert-danger" role="alert">
+        <div asp-validation-summary="All"></div>
+    </div>
+}
 
 <div class="row">
     <div class="col-md-4 ml-auto mr-auto">

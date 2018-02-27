@@ -6,6 +6,12 @@
     string img = Model != null ? Model.Image : "http://placehold.it/200x200";
     var templates = new SelectList(Model.Templates, "Filename", "Filename");
 }
+@if (!ViewData.ModelState.IsValid)
+{
+    <div class="alert alert-danger" role="alert">
+        <div asp-validation-summary="All"></div>
+    </div>
+}
 
 <div class="row">
     <div class="col-sm-12">

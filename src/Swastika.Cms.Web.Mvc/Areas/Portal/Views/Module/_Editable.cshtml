@@ -5,6 +5,12 @@
     var types = Html.GetEnumSelectList<Swastika.Cms.Lib.SWCmsConstants.DataType>();
     var templates = new SelectList(Model.Templates, "Filename", "Filename");
 }
+@if (!ViewData.ModelState.IsValid)
+{
+    <div class="alert alert-danger" role="alert">
+        <div asp-validation-summary="All"></div>
+    </div>
+}
 
 <div class="row">
     <div class="col-sm-12">
@@ -38,7 +44,7 @@
         <div class="card">
             <div class="card-header">
                 Module Attributes (<label asp-for="Columns" class="control-label"></label>)
-                <button id="AddObject" class="btn btn-primary btn-sm float-right">@Swastika.Cms.Lib.Services.GlobalConfigurationService.Instance.GetLocalString("Add New", ViewBag.culture)</button>
+                <a id="AddObject" class="btn btn-primary btn-sm float-right">@Swastika.Cms.Lib.Services.GlobalConfigurationService.Instance.GetLocalString("Add New", ViewBag.culture)</a>
             </div>
             <div class="card-body">
                 <input type="hidden" asp-for="Id" />
@@ -103,7 +109,6 @@
 </div>
 
 <script>
-    window.onload = function () {
         $('#AddObject').click(function () {
             var i = $(".module-column").length;
             $.ajax({
@@ -116,6 +121,4 @@
                 }
             });
         });
-
-    }
 </script>

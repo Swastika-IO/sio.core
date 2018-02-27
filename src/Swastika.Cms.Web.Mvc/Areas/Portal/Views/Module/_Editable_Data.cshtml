@@ -3,6 +3,12 @@
 @{
     var types = Html.GetEnumSelectList<Swastika.Cms.Lib.SWCmsConstants.DataType>();
 }
+@if (!ViewData.ModelState.IsValid)
+{
+    <div class="alert alert-danger" role="alert">
+        <div asp-validation-summary="All"></div>
+    </div>
+}
 
 <div class="row">
     <div class="col-sm-12">

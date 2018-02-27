@@ -144,7 +144,7 @@ app.controller('PortalController', function PhoneListController($scope) {
         }
     }
     $scope.addProperty = function (type) {
-        var i = $(".product-property").length;
+        var i = $(".property").length;
         $.ajax({
             method: 'GET',
             url: '/vi-vn/Portal/'+ type + '/AddEmptyProperty/' + i,

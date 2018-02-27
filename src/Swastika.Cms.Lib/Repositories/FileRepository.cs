@@ -608,7 +608,6 @@ namespace Swastika.Cms.Lib.Repositories
             {
                 string fullPath = CommonHelper.GetFullPath(new string[] {
                     SWCmsConstants.Parameters.WebRootPath,
-                    SWCmsConstants.Parameters.FileFolder,
                     folder
                 });
                 return SaveFile(file, fullPath);

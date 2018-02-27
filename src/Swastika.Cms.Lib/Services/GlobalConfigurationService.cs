@@ -227,26 +227,46 @@ namespace Swastika.Cms.Lib.Services
                     var getThemes = BEThemeViewModel.Repository.GetModelList(_context: context, _transaction: transaction);
                     if (getThemes.IsSucceed)
                     {
-                        foreach (var theme in getThemes.Data)
+                        if (getThemes.Data.Count == 0)
                         {
-                            string folderPath = CommonHelper.GetFullPath(new string[]
+                            BEThemeViewModel theme = new BEThemeViewModel(new SiocTheme()
                             {
+                                Name = "Default",
+                                CreatedBy = "Admin"
+                            })
+                            {
+                                IsActived = true
+                            };
+                            
+
+                            theme.SaveModel(true, context, transaction);
+                        }
+                        else
+                        {
+                            foreach (var theme in getThemes.Data)
+                            {
+                                string folderPath = CommonHelper.GetFullPath(new string[]
+                                {
                             SWCmsConstants.Parameters.TemplatesFolder,
                             theme.Name
-                            });
+                                });
 
-                            var delFolder = FileRepository.Instance.DeleteFolder(folderPath);
+                                var delFolder = FileRepository.Instance.DeleteFolder(folderPath);
 
-                            foreach (var item in theme.Templates)
-                            {
-                                try
+                                foreach (var item in theme.Templates)
                                 {
-                                    item.SaveModel(true, _context: context, _transaction: transaction);
+                                    try
+                                    {
+                                        item.SaveModel(true, _context: context, _transaction: transaction);
+                                    }
+                                    catch { }
                                 }
-                                catch { }
                             }
                         }
                     }
+
+                  
+
                     GlobalLanguageService.Instance.RefreshCultures(context, transaction);
                     InitConfigurations(context, transaction);
                     transaction.Commit();

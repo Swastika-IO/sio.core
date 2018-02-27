@@ -368,7 +368,9 @@ namespace Swastika.Cms.Lib.ViewModels.BackEnd
                 string defaultFolder = CommonHelper.GetFullPath(new string[] { SWCmsConstants.Parameters.TemplatesFolder, SWCmsConstants.Default.DefaultTemplateFolder });
                 bool copyResult = FileRepository.Instance.CopyDirectory(defaultFolder, TemplateFolder);
                 var files = copyResult ? FileRepository.Instance.GetFilesWithContent(TemplateFolder) : new System.Collections.Generic.List<FileViewModel>();
-                foreach (var file in files)
+                //TODO: Create default asset
+                //FileRepository.Instance.CopyDirectory(TemplateFolder, TemplateFolder);
+                                foreach (var file in files)
                 {
                     BETemplateViewModel template = new BETemplateViewModel(
                         new SiocTemplate()
