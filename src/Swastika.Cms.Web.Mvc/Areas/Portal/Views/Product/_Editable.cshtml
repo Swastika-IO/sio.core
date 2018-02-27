@@ -8,8 +8,14 @@
     var translator = Swastika.Cms.Lib.SWCmsHelper.GetTranslator(culture);
 }
 
+@if (!ViewData.ModelState.IsValid)
+{
+    <div class="alert alert-danger" role="alert">
+        <div asp-validation-summary="All"></div>
+    </div>
+}
+
 <div>
-    <div asp-validation-summary="All" class="text-danger"></div>
     <input type="hidden" asp-for="Id" />
     <input type="hidden" asp-for="Specificulture" />
     <input type="hidden" asp-for="CreatedBy" />
@@ -800,8 +806,6 @@
         });
     });
     $('.prop-data-type').change();
-
-    
 </script>
 <script>
 </script>
