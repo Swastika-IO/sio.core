@@ -9,6 +9,7 @@ using Newtonsoft.Json.Linq;
 using Swastika.Api.Controllers;
 using Swastika.Cms.Lib.Models.Cms;
 using Swastika.Cms.Lib.ViewModels;
+using Swastika.Cms.Lib.ViewModels.BackEnd;
 using Swastika.Cms.Lib.ViewModels.Info;
 using Swastika.Domain.Core.ViewModels;
 using System;
@@ -19,7 +20,7 @@ using System.Threading.Tasks;
 
 namespace Swastka.Cms.Api.Controllers
 {
-    [Route("api/{culture}/moduleData")]
+    [Route("api/{culture}/module-data")]
     public class ApiModuleDataController :
         BaseApiController<SiocCmsContext, SiocModule>
     {
@@ -69,7 +70,7 @@ namespace Swastka.Cms.Api.Controllers
             return new RepositoryResponse<bool>();
         }
 
-        // GET api/articles/id
+        // GET api/module-data/id
         [HttpGet]
         [Route("details/{id}")]
         public Task<RepositoryResponse<InfoModuleDataViewModel>> Details(string id)
@@ -77,7 +78,7 @@ namespace Swastka.Cms.Api.Controllers
             return InfoModuleDataViewModel.Repository.GetSingleModelAsync(model => model.Id == id && model.Specificulture == _lang); //base.GetAsync(model => model.Id == id);
         }
 
-        // GET api/articles/id
+        // GET api/module-data/id
         [HttpGet]
         [Route("edit/{id}")]
         public Task<RepositoryResponse<InfoModuleDataViewModel>> Edit(string id)
@@ -85,23 +86,42 @@ namespace Swastka.Cms.Api.Controllers
             return InfoModuleDataViewModel.Repository.GetSingleModelAsync(model => model.Id == id && model.Specificulture == _lang); //base.GetAsync(model => model.Id == id);
         }
 
-        // GET api/articles/id
+        // GET api/module-data/create/id
         [HttpGet]
-        [Route("create")]
-        public RepositoryResponse<InfoModuleDataViewModel> Create()
+        [Route("create/{moduleId}")]
+        public async Task<RepositoryResponse<BEModuleDataViewModel>> CreateAsync(int moduleId)
         {
-            SiocModuleData article = new SiocModuleData()
+            var getModule = await InfoModuleViewModel.Repository.GetSingleModelAsync(
+                m => m.Id == moduleId && m.Specificulture == _lang).ConfigureAwait(false);
+            if (getModule.IsSucceed)
             {
-                Specificulture = _lang
-            };
-            return new RepositoryResponse<InfoModuleDataViewModel>()
+                var ModuleData = new BEModuleDataViewModel(
+                    new SiocModuleData()
+                    {
+                        Id = Guid.NewGuid().ToString("N"),
+                        ModuleId = moduleId,
+                        Specificulture = _lang,
+                        Fields = getModule.Data.Fields
+                    });
+                return new RepositoryResponse<BEModuleDataViewModel>()
+                {
+                    IsSucceed = true,
+                    Data = ModuleData
+                };
+            }
+            else
             {
-                IsSucceed = true,
-                Data = new InfoModuleDataViewModel(article)
-            };
+                return new RepositoryResponse<BEModuleDataViewModel>()
+                {
+                    IsSucceed = false,
+                    Data = null,
+                    Exception = getModule.Exception,
+                    Errors = getModule.Errors
+                };
+            }
         }
 
-        // GET api/articles/id
+        // GET api/module-data/id
         [HttpGet]
         [Route("delete/{id}")]
         public Task<RepositoryResponse<bool>> Delete(string id)
@@ -109,7 +129,7 @@ namespace Swastka.Cms.Api.Controllers
             return InfoModuleDataViewModel.Repository.RemoveModelAsync(model => model.Id == id && model.Specificulture == _lang);
         }
 
-        // GET api/articles
+        // GET api/module-data
         [HttpGet]
         [Route("{moduleId}")]
         [Route("{moduleId}/{pageSize:int?}/{pageIndex:int?}")]
@@ -128,7 +148,7 @@ namespace Swastka.Cms.Api.Controllers
             return result;
         }
 
-        // GET api/articles
+        // GET api/module-data
         [HttpGet]
         [Route("getByArticle/{articleId}/{moduleId}")]
         [Route("getByArticle/{articleId}/{moduleId}/{pageSize:int?}/{pageIndex:int?}")]
@@ -148,7 +168,7 @@ namespace Swastka.Cms.Api.Controllers
             return result;
         }
 
-        // GET api/articles
+        // GET api/module-data
         [HttpGet]
         [Route("{moduleId}/{keyword}")]
         [Route("{moduleId}/{pageSize:int?}/{pageIndex:int?}/{keyword}")]

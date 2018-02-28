@@ -56,10 +56,11 @@ namespace Swastika.Cms.Lib.ViewModels.BackEnd
         #endregion Models
 
         #region Views
-
+        [JsonProperty("dataProperties")]
         public List<ModuleDataValueViewModel> DataProperties { get; set; }
+        [JsonIgnore]
         public List<ModuleFieldViewModel> Columns { get; set; }
-        public JObject JItem { get { return ParseJson(); } }
+        //public JObject JItem { get { return ParseJson(); } }
 
         #endregion Views
 
@@ -85,6 +86,10 @@ namespace Swastika.Cms.Lib.ViewModels.BackEnd
             {
                 Id = Guid.NewGuid().ToString();
                 CreatedDateTime = DateTime.UtcNow;
+            }
+            else
+            {
+                UpdatedDateTime = DateTime.UtcNow;
             }
             Value = ParseObjectValue();
             return base.ParseModel();
