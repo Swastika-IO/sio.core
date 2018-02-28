@@ -21,7 +21,7 @@
 
                 @foreach (var stat in status)
                 {
-                    <label class="btn btn-outline-primary btn-block mt-0" for="pageType_@stat.Value">
+                    <label class="btn btn-outline-primary btn-block mt-0">
                         <input asp-for="Status" type="radio" value="@stat.Text" class="custom-control-input" id="pageType_@stat.Value" />
 
                         @switch (stat.Text)
@@ -32,9 +32,9 @@
                                 break;
                             case "Published":<i class="mi mi-Page mi-lg mi-fw" title="@stat.Text"></i>
                                 break;
-                            case "Draft":<i class="mi mi-Edit mi-flip-horizontal" title="@stat.Text"></i>
+                            case "Draft":<i class="mi mi-Edit mi-lg mi-flip-horizontal" title="@stat.Text"></i>
                                 break;
-                            case "Schedule":<i class="mi mi-Calendar mi-flip-horizontal" title="@stat.Text"></i>
+                            case "Schedule":<i class="mi mi-Calendar mi-lg mi-flip-horizontal" title="@stat.Text"></i>
                                 break;
                         }
                     </label>
@@ -69,10 +69,9 @@
         <div class="form-group">
 
             <div class="btn-group btn-group-sm btn-group-toggle d-flex w-100" role="group" data-toggle="buttons">
-
                 @foreach (var type in moduleTypes)
                 {
-                    <label class="btn btn-outline-primary btn-block mt-0 " for="pageType_@type.Text">
+                    <label class="btn btn-outline-primary btn-block mt-0 ">
                         <input asp-for="Type" type="radio" value="@type.Text" class="custom-control-input" id="pageType_@type.Text" />
 
                         @switch (type.Text)
@@ -88,17 +87,17 @@
                         }
                     </label>
                 }
-
-                @*<label class="btn btn-secondary active">
-                        <input type="radio" name="options" id="option1" autocomplete="off" checked> Active
-                    </label>
-                    <label class="btn btn-secondary">
-                        <input type="radio" name="options" id="option2" autocomplete="off"> Radio
-                    </label>
-                    <label class="btn btn-secondary">
-                        <input type="radio" name="options" id="option3" autocomplete="off"> Radio
-                    </label>*@
             </div>
+
+            @*<label class="btn btn-secondary active">
+                    <input type="radio" name="options" id="option1" autocomplete="off" checked> Active
+                </label>
+                <label class="btn btn-secondary">
+                    <input type="radio" name="options" id="option2" autocomplete="off"> Radio
+                </label>
+                <label class="btn btn-secondary">
+                    <input type="radio" name="options" id="option3" autocomplete="off"> Radio
+                </label>*@
 
             @*<select asp-for="Type" class="form-control" asp-items="@moduleTypes"></select>*@
 

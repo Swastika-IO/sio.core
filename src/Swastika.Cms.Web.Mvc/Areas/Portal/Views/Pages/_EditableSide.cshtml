@@ -19,16 +19,39 @@
     <div class="card-body">
         <div class="form-group">
 
-            @{
-                foreach (var stat in status)
-                {
+            <div class="btn-group btn-group-sm btn-group-toggle d-flex w-100" role="group" data-toggle="buttons">
 
-                    <div class="custom-control custom-radio">
-                        <input asp-for="Status" type="radio" value="@stat.Value" class="custom-control-input" id="pageStatus_@stat.Value" />
-                        <label class="custom-control-label" for="pageStatus_@stat.Value">@stat.Text</label>
-                    </div>
+                @foreach (var stat in status)
+                {
+                    <label class="btn btn-outline-primary btn-block mt-0">
+                        <input asp-for="Status" type="radio" value="@stat.Text" class="custom-control-input" id="pageType_@stat.Value" />
+
+                        @switch (stat.Text)
+                        {
+                            case "Deleted":<i class="mi mi-Delete mi-lg mi-fw" title="@stat.Text"></i>
+                                break;
+                            case "Preview":<i class="mi mi-Preview mi-lg mi-fw" title="@stat.Text"></i>
+                                break;
+                            case "Published":<i class="mi mi-Page mi-lg mi-fw" title="@stat.Text"></i>
+                                break;
+                            case "Draft":<i class="mi mi-Edit mi-lg mi-flip-horizontal" title="@stat.Text"></i>
+                                break;
+                            case "Schedule":<i class="mi mi-Calendar mi-lg mi-flip-horizontal" title="@stat.Text"></i>
+                                break;
+                        }
+                    </label>
                 }
-            }
+            </div>
+            @*@{
+                    foreach (var stat in status)
+                    {
+
+                        <div class="custom-control custom-radio">
+                            <input asp-for="Status" type="radio" value="@stat.Value" class="custom-control-input" id="pageStatus_@stat.Value" />
+                            <label class="custom-control-label" for="pageStatus_@stat.Value">@stat.Text</label>
+                        </div>
+                    }
+                }*@
         </div>
         @*
                 <div class="form-group">
@@ -70,19 +93,46 @@
     </div>
     <div class="card-body">
 
+        <div class="btn-group btn-group-sm btn-group-toggle d-flex w-100" role="group" data-toggle="buttons">
+            @foreach (var type in types)
+            {
+                <label class="btn btn-outline-primary btn-block mt-0 ">
+                    <input asp-for="Type" type="radio" value="@type.Value" class="custom-control-input" id="pageType_@type.Value" />
+
+                    @switch (type.Text)
+                    {
+                        case "Blank":<i class="mi mi-Preview mi-fw" title="@type.Text"></i>
+                            break;
+                        case "Article":<i class="mi mi-ReadingList mi-fw" title="@type.Text"></i>
+                            break;
+                        case "ListProduct":<i class="mi mi-Package mi-fw" title="@type.Text"></i>
+                            break;
+                        case "List":<i class="mi mi-BulletedList mi-fw" title="@type.Text"></i>
+                            break;
+                        case "Home":<i class="mi mi-Home mi-fw" title="@type.Text"></i>
+                            break;
+                        case "StaticUrl":<i class="mi mi-Go mi-fw" title="@type.Text"></i>
+                            break;
+                        case "Modules":<i class="mi mi-ResolutionLegacy mi-fw" title="@type.Text"></i>
+                            break;
+                    }
+                </label>
+            }
+        </div>
+
         @*<select asp-for="Type" class="form-control" asp-items="@types"></select>
             <span asp-validation-for="Type" class="text-danger"></span>*@
 
-        @{
-            foreach (var type in types)
-            {
+        @*@{
+                foreach (var type in types)
+                {
 
-                <div class="custom-control custom-radio">
-                    <input asp-for="Type" type="radio" value="@type.Value" class="custom-control-input" id="pageType_@type.Value" />
-                    <label class="custom-control-label" for="pageType_@type.Value">@type.Text</label>
-                </div>
-            }
-        }
+                    <div class="custom-control custom-radio">
+                        <input asp-for="Type" type="radio" value="@type.Value" class="custom-control-input" id="pageType_@type.Value" />
+                        <label class="custom-control-label" for="pageType_@type.Value">@type.Text</label>
+                    </div>
+                }
+            }*@
     </div>
 </div>
 
