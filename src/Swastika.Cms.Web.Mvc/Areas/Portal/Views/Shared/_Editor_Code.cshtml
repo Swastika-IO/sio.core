@@ -60,6 +60,14 @@
 
 <div>
     <div class="form-group">
+        <h6>TODO: Only display for Page section</h6>
+        <div class="input-group mb-3">
+            <select name="MasterLayoutFileName" id="sel-master-template" class="btn btn-outline-secondary custom-select col-sm-4">
+                <option value="<div></div>" selected="selected">--- Seclect Master Layout ---</option>
+                <option value="<div></div>">...</option>
+            </select>
+            <input class="form-control sel-filename" type="text" id="inpId_MasterFilename" name="inpName_MasterFilename" value="" placeholder="_BlankLayout">
+        </div>
 
         @*<input id="@inputId" name="@inputName" value="@Model.Filename" class="form-control sel-filename" />*@
         <input type="hidden" id="@inpId_TemplateName" name="@inpName_TemplateName" value="@Model.TemplateName">
@@ -70,6 +78,7 @@
         <input type="hidden" id="@inpId_CreatedDateTime" name="@inpName_CreatedDateTime" value="@Model.CreatedDateTime">
         <input type="hidden" id="@inpId_LastModified" name="@inpName_LastModified" value="@Model.LastModified">
         <input type="hidden" id="@inpId_ModifiedBy" name="@inpName_ModifiedBy" value="@Model.ModifiedBy">
+        <h6>Layout</h6>
         <div class="input-group mb-3">
 
             @if (files.Count > 0)
