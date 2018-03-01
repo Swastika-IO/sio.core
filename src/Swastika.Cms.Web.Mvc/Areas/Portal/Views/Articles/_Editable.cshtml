@@ -106,11 +106,11 @@
                                 <div class="card">
                                     <div class="card-header">
                                         Extra Properties (<label asp-for="ExtraProperties" class="control-label"></label>)
-                                        <a id="add-property" class="btn btn-primary btn-sm float-right" ng-click="addProperty('Articles')">
+                                        <a id="add-property" class="btn btn-primary btn-sm float-right text-white" ng-click="addProperty('Articles')">
                                             @translator.Get("Add New")
                                         </a>
                                     </div>
-                                    <div class="card-body">
+                                    <div class="card-body p-1">
                                         <input type="hidden" asp-for="Id" />
                                         <input type="hidden" asp-for="Specificulture" />
                                         <input type="hidden" asp-for="Priority" />
@@ -722,7 +722,6 @@
         $('.module-data-' + moduleid).toggleClass('hidden');
 
     });
-
 
     $(document).on('change', '.prop-data-type', function () {
         var container = $(this).parents('tr').first().find('.prop-value-container');

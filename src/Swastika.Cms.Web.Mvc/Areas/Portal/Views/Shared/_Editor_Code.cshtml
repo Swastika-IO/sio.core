@@ -72,7 +72,7 @@
         @*<input id="@inputId" name="@inputName" value="@Model.Filename" class="form-control sel-filename" />*@
         <input type="hidden" id="@inpId_TemplateName" name="@inpName_TemplateName" value="@Model.TemplateName">
         <input type="hidden" id="@inpId_TemplateId" name="@inpName_TemplateId" value="@Model.TemplateId">
-        
+
         <input type="hidden" id="@inpId_FileFolder" name="@inpName_FileFolder" value="@Model.FileFolder">
         <input type="hidden" id="@inpId_Extension" name="@inpName_Extension" value="@Model.Extension">
         <input type="hidden" id="@inpId_CreatedDateTime" name="@inpName_CreatedDateTime" value="@Model.CreatedDateTime">
@@ -114,7 +114,7 @@
                     </li>
                 </ul>
             </div>
-            <div class="card-body">
+            <div class="card-body p-1">
                 <div class="tab-content" id="pills-tabContent">
 
                     <div class="tab-pane fade active show" id="pills-template-razor" role="tabpanel" aria-labelledby="pills-template-razor-tab">
@@ -143,7 +143,7 @@
                     <div class="tab-pane fade" id="pills-template-others" role="tabpanel" aria-labelledby="pills-template-others-tab">
 
                         <div class="row">
-                            <div class="col-3">
+                            <div class="col-3" style="border-right: 1px solid #eee;">
                                 <div class="nav flex-column nav-pills" id="v-pills-tab" role="tablist" aria-orientation="vertical">
                                     <a class="nav-link active show" id="v-pills-home-tab" data-toggle="pill" href="#v-pills-home" role="tab" aria-controls="v-pills-home" aria-selected="false">Scripts</a>
                                     <a class="nav-link" id="v-pills-profile-tab" data-toggle="pill" href="#v-pills-profile" role="tab" aria-controls="v-pills-profile" aria-selected="true">Styles</a>
