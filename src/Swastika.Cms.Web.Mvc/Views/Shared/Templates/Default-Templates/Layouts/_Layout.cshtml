@@ -12,7 +12,7 @@
     @RenderSection("Styles", false)
 </head>
 
-<body class="@this.ViewData["pageClass"]">
+<body class="@this.ViewData["pageClass"]" ng-app="Swastika">
     <div class="wrapper">
         @Html.Partial("../Layouts/_Top_Nav.cshtml")
         @RenderBody()

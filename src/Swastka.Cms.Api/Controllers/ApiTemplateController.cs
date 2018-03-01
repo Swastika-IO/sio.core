@@ -121,12 +121,12 @@ namespace Swastka.IO.Cms.Api.Controllers
         // GET api/template
         [HttpPost, HttpOptions]
         [Route("list")]
-        public async Task<RepositoryResponse<PaginationModel<InfoTemplateViewModel>>> GetList(RequestPaging request)
+        public async Task<RepositoryResponse<PaginationModel<BETemplateViewModel>>> GetList(RequestPaging request)
         {
             string domain = string.Format("{0}://{1}", Request.Scheme, Request.Host);
             if (string.IsNullOrEmpty(request.Keyword))
             {
-                var data = await InfoTemplateViewModel.Repository.GetModelListByAsync(
+                var data = await BETemplateViewModel.Repository.GetModelListByAsync(
                 m => m.Status != (int)SWStatus.Deleted, request.OrderBy, request.Direction, request.PageSize, request.PageIndex).ConfigureAwait(false);
                 return data;
             }
@@ -137,7 +137,7 @@ namespace Swastka.IO.Cms.Api.Controllers
                         || (model.FileName.Contains(request.Keyword)
                         || model.FileFolder.Contains(request.Keyword)));
 
-                var data = await InfoTemplateViewModel.Repository.GetModelListByAsync(predicate, request.OrderBy, request.Direction, request.PageSize, request.PageIndex).ConfigureAwait(false);
+                var data = await BETemplateViewModel.Repository.GetModelListByAsync(predicate, request.OrderBy, request.Direction, request.PageSize, request.PageIndex).ConfigureAwait(false);
                 return data;
             }
         }

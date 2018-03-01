@@ -717,27 +717,27 @@
             }
 
             // Init Code editor
-            $.each($('.code-editor'), function (i, e) {
-                var container = $(this);
-                var editor = ace.edit(e);
-                if (container.hasClass('json')) {
-                    editor.session.setMode("ace/mode/json");
-                }
-                else {
-                    editor.session.setMode("ace/mode/razor");
-                }
-                editor.setTheme("ace/theme/chrome");
-                //editor.setReadOnly(true);
+            //$.each($('.code-editor'), function (i, e) {
+            //    var container = $(this);
+            //    var editor = ace.edit(e);
+            //    if (container.hasClass('json')) {
+            //        editor.session.setMode("ace/mode/json");
+            //    }
+            //    else {
+            //        editor.session.setMode("ace/mode/razor");
+            //    }
+            //    editor.setTheme("ace/theme/chrome");
+            //    //editor.setReadOnly(true);
 
-                editor.session.setUseWrapMode(true);
-                editor.setOptions({
-                    maxLines: Infinity
-                });
-                editor.getSession().on('change', function (e) {
-                    // e.type, etc
-                    $(container).parent().find('.code-content').val(editor.getValue());
-                });
-            })
+            //    editor.session.setUseWrapMode(true);
+            //    editor.setOptions({
+            //        maxLines: Infinity
+            //    });
+            //    editor.getSession().on('change', function (e) {
+            //        // e.type, etc
+            //        $(container).parent().find('.code-content').val(editor.getValue());
+            //    });
+            //})
             if ($('#code-editor').length > 0) {
                 SW.Common.templateEditor = ace.edit("code-editor");
                 SW.Common.templateEditor.setTheme("ace/theme/chrome");

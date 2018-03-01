@@ -1,7 +1,10 @@
 ﻿'use strict';
 app.controller('PortalController', function PhoneListController($scope) {
     $scope.mediaData = {};
+    $scope.templates = [];
+
     $scope.productData = {};
+    $scope.activedTemplate = {};
     $scope.activedMedias = {};
     $scope.activedProducts = [];
     $scope.request = {
@@ -78,7 +81,7 @@ app.controller('PortalController', function PhoneListController($scope) {
                 }
             });
         }
-        
+
     };
     $scope.loadProduct = function (pageIndex = 0, pageSize = 16, orderBy = 'title', direction = 0) {
         var request = {
@@ -147,7 +150,7 @@ app.controller('PortalController', function PhoneListController($scope) {
         var i = $(".property").length;
         $.ajax({
             method: 'GET',
-            url: '/vi-vn/Portal/'+ type + '/AddEmptyProperty/' + i,
+            url: '/vi-vn/Portal/' + type + '/AddEmptyProperty/' + i,
             success: function (data) {
                 $('#tbl-properties > tbody').append(data);
                 $(data).find('.prop-data-type').trigger('change');
@@ -158,22 +161,63 @@ app.controller('PortalController', function PhoneListController($scope) {
         });
     }
 
-$scope.loadTemplates = function(folder){
-var request = {
+    $scope.loadTemplates = function (activedId, folder) {
+        var request = {
             "pageSize": null,
-            "pageIndex": pageIndex,
+            "pageIndex": 0,
             "orderBy": 'fileName',
-            "direction": direction,
+            "direction": 0,
             "keyword": folder
         }
- var url = '/api/vi-vn/product/list';//byProduct/' + productId;
+        var url = '/api/vi-vn/template/list';//byProduct/' + productId;
         $scope.settings.url = url;// + '/true';
         $scope.settings.data = request;
         $.ajax($scope.settings).done(function (response) {
-            $scope.productData = response.data;
+            $scope.templates = response.data.items;
+            if ($scope.templates.length > 0) {
+                var newTemplate = angular.copy($scope.templates[0]);
+                newTemplate.id = 0;
+                newTemplate.fileName = 'NewTemplate';
+                newTemplate.content = "<div></div>";
+                $scope.templates.splice(0, 0, newTemplate);
+            }
+            $.each($scope.templates, function (i, e) {
+                if (e.id == activedId) {
+                    $scope.activedTemplate = e;
+                    $scope.updateEditors();
+                    return false;
+                }
+            });
+            $scope.$apply();
         });
-}
+    }
+    $scope.updateEditors = function () {
+        setTimeout(function () {
+            $.each($('.code-editor'), function (i, e) {
+                var container = $(this);
+                var editor = ace.edit(e);
+                var val = $(this).next('input').val();
+                editor.setValue(val);
+                if (container.hasClass('json')) {
+                    editor.session.setMode("ace/mode/json");
+                }
+                else {
+                    editor.session.setMode("ace/mode/razor");
+                }
+                editor.setTheme("ace/theme/chrome");
+                //editor.setReadOnly(true);
 
+                editor.session.setUseWrapMode(true);
+                editor.setOptions({
+                    maxLines: Infinity
+                });
+                editor.getSession().on('change', function (e) {
+                    // e.type, etc
+                    $(container).parent().find('.code-content').val(editor.getValue());
+                });
+            });
+        }, 200);
+    };
     $(document).ready(function () {
         if ($('#arr-medias').length > 0 && $('#arr-medias').val() != '') {
             $scope.activedMedias = $.parseJSON($('#arr-medias').val());
