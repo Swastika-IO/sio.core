@@ -110,7 +110,6 @@
     <Content Remove="Views\Home\Contact.cshtml" />
     <Content Remove="Views\Home\Index.cshtml" />
     <Content Remove="Views\Home\List.cshtml" />
-    <Content Remove="Views\Home\Tag.cshtml" />
     <Content Remove="Views\Home\TTS.cshtml" />
     <Content Remove="Views\Shared\Error.cshtml" />
     <Content Remove="Views\Shared\Modules.cshtml" />
