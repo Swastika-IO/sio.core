@@ -22,7 +22,7 @@ namespace Swastka.IO.Cms.Api.Controllers
     [Produces("application/json")]
     [Route("api/{culture}/category")]
     public class ApiCategoryController :
-        BaseApiController<SiocCmsContext, SiocArticle>
+        BaseApiController<SiocCmsContext, SiocCategory>
     {
         #region Get
 

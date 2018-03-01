@@ -761,7 +761,8 @@
                 }
             });
             $('.sel-filename').on('change', function () {
-                $('.sel-filename').attr('value', $(this).val());
+                //$('.sel-filename').attr('value', $(this).val());
+                $(this).next('.template-id').val(0);
             });
 
             var selVal = $('.selectpicker').data('val');

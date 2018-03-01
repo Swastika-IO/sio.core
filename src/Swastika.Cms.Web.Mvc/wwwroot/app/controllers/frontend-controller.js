@@ -32,7 +32,7 @@ app.controller('ModuleDataController', function PhoneListController($scope) {
                 $scope.$apply($scope.data = response.data); 
             },
             error: function (a, b, c) {
-                console.log(a + " " + b + " " + c);
+                console.log(a , b, c);
             }
         });
     };

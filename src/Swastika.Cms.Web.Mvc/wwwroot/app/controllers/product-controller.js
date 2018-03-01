@@ -157,6 +157,23 @@ app.controller('PortalController', function PhoneListController($scope) {
             }
         });
     }
+
+$scope.loadTemplates = function(folder){
+var request = {
+            "pageSize": null,
+            "pageIndex": pageIndex,
+            "orderBy": 'fileName',
+            "direction": direction,
+            "keyword": folder
+        }
+ var url = '/api/vi-vn/product/list';//byProduct/' + productId;
+        $scope.settings.url = url;// + '/true';
+        $scope.settings.data = request;
+        $.ajax($scope.settings).done(function (response) {
+            $scope.productData = response.data;
+        });
+}
+
     $(document).ready(function () {
         if ($('#arr-medias').length > 0 && $('#arr-medias').val() != '') {
             $scope.activedMedias = $.parseJSON($('#arr-medias').val());
