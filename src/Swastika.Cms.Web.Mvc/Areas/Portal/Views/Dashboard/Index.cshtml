@@ -1,4 +1,5 @@
-﻿@{
+﻿@model DashboardViewModel
+@{
     ViewData["Title"] = "Dashboard";
     ViewData["Description"] = "Your powerful dashboard is here";
 }
@@ -27,41 +28,41 @@
         <div class="col-sm-3 ui-sortable-handle">
             <div class="card">
                 <div class="card-body">
-                    <i class="mi mi-ReadingList mi-5x mi-fw text-primary"></i> <span class="display-3"> 23</span>
+                    <i class="mi mi-ReadingList mi-5x mi-fw text-primary"></i> <span class="display-3"> @Model.TotalPage</span>
                 </div>
-                <div class="card-footer text-muted">
+               @*<div class="card-footer text-muted">
                     <i class="mi mi-Calendar"></i> 2 days ago
-                </div>
+                </div>*@
             </div>
         </div>
         <div class="col-sm-3 ui-sortable-handle">
             <div class="card">
                 <div class="card-body">
-                    <i class="mi mi-Page mi-5x mi-fw text-primary"></i> <span class="display-3"> 4</span>
+                    <i class="mi mi-Page mi-5x mi-fw text-primary"></i> <span class="display-3">  @Model.TotalArticle</span>
                 </div>
-                <div class="card-footer text-muted">
+                @*<div class="card-footer text-muted">
                     <i class="mi mi-Calendar"></i> 2 days ago
-                </div>
+                </div>*@
             </div>
         </div>
         <div class="col-sm-3 ui-sortable-handle">
             <div class="card">
                 <div class="card-body">
-                    <i class="mi mi-ResolutionLegacy mi-5x mi-fw text-primary"></i> <span class="display-3"> 79</span>
+                    <i class="mi mi-ResolutionLegacy mi-5x mi-fw text-primary"></i> <span class="display-3">  @Model.TotalProduct</span>
                 </div>
-                <div class="card-footer text-muted">
+                @*<div class="card-footer text-muted">
                     <i class="mi mi-Calendar"></i> 2 days ago
-                </div>
+                </div>*@
             </div>
         </div>
         <div class="col-sm-3 ui-sortable-handle">
             <div class="card">
                 <div class="card-body">
-                    <i class="mi mi-Contact mi-5x mi-fw text-primary"></i> <span class="display-3"> 2k</span>
+                    <i class="mi mi-Contact mi-5x mi-fw text-primary"></i> <span class="display-3">  @Model.TotalUser</span>
                 </div>
-                <div class="card-footer text-muted">
+               @*<div class="card-footer text-muted">
                     <i class="mi mi-Calendar"></i> 2 days ago
-                </div>
+                </div>*@
             </div>
         </div>
     </div>

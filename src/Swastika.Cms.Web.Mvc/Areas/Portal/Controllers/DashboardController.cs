@@ -4,6 +4,7 @@
 
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
+using Swastika.Cms.Lib.ViewModels;
 using Swastika.Cms.Mvc.Controllers;
 
 namespace Swastika.Cms.Mvc.Areas.Portal.Controllers
@@ -26,7 +27,8 @@ namespace Swastika.Cms.Mvc.Areas.Portal.Controllers
         [Route("Index/{Dashboardize:int?}/{pageIndex:int?}")]
         public IActionResult Index(string keyword, int Dashboardize = 10, int pageIndex = 0)
         {
-            return View();
+            DashboardViewModel dashboard = new DashboardViewModel();
+            return View(dashboard);
         }
     }
 }

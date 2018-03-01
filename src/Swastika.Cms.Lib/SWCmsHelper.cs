@@ -230,5 +230,11 @@ namespace Swastika.Cms.Lib
                 w.Close();
             }
         }
+
+        public static string SubString(string src, int length)
+        {
+            return src.Length <= length ? src 
+                : src.Substring(0, length) + "...";
+        }
     }
 }

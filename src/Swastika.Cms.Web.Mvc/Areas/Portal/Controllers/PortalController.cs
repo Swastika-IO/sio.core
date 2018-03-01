@@ -28,6 +28,7 @@ namespace Swastika.Cms.Mvc.Areas.Portal.Controllers
         [Route("")]
         public IActionResult Index()
         {
+            
             return RedirectToAction("", "Dashboard");
             //return View();
         }

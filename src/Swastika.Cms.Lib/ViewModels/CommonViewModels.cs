@@ -3,12 +3,37 @@
 // See the LICENSE file in the project root for more information.
 
 using Newtonsoft.Json;
+using Swastika.Cms.Lib.Models.Cms;
 using Swastika.Common.Helper;
 using System;
 using System.ComponentModel.DataAnnotations;
+using System.Linq;
 
 namespace Swastika.Cms.Lib.ViewModels
 {
+    public class DashboardViewModel
+    {
+        [JsonProperty("totalPage")]
+        public int TotalPage { get; set; }
+        [JsonProperty("totalArticle")]
+        public int TotalArticle { get; set; }
+        [JsonProperty("totalProduct")]
+        public int TotalProduct { get; set; }
+        [JsonProperty("totalModule")]
+        public int TotalModule { get; set; }
+        [JsonProperty("totalUser")]
+        public int TotalUser { get; set; }
+
+        public DashboardViewModel()
+        {
+            using(SiocCmsContext context = new SiocCmsContext())
+            {
+                TotalPage = context.SiocCategory.Count();
+                TotalArticle = context.SiocArticle.Count();
+                TotalProduct = context.SiocProduct.Count();                
+            }
+        }
+    }
     public class InitCmsViewModel
     {
         public string DataBaseServer { get; set; }
