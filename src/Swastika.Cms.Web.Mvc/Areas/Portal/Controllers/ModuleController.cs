@@ -290,7 +290,6 @@ namespace Swastika.Cms.Mvc.Areas.Portal.Controllers
                 var ModuleData = new BEModuleDataViewModel(
                     new SiocModuleData()
                     {
-                        Id = Guid.NewGuid().ToString("N"),
                         ModuleId = id,
                         Specificulture = _lang,
                         Fields = getModule.Data.Fields

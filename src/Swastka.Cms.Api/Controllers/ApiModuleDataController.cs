@@ -30,27 +30,30 @@ namespace Swastka.Cms.Api.Controllers
 
         [HttpPost]
         [Route("save")]
-        public Task<RepositoryResponse<InfoModuleDataViewModel>> Save([FromBody]JObject data)
+        public async Task<RepositoryResponse<BEModuleDataViewModel>> SaveAsync(BEModuleDataViewModel data)
         {
-            var model = data["model"].ToObject<SiocModuleData>();
-            List<ModuleFieldViewModel> cols = data["columns"].ToObject<List<ModuleFieldViewModel>>();
-            JObject val = new JObject();
-            foreach (JProperty prop in data.Properties())
-            {
-                if (prop.Name != "model" && prop.Name != "columns")
-                {
-                    var col = cols.Find(c => c.Name == prop.Name);
-                    JObject fieldVal = new JObject
-                    {
-                        new JProperty("dataType", col.DataType),
-                        new JProperty("value", prop.Value)
-                    };
-                    val.Add(new JProperty(prop.Name, fieldVal));
-                }
-            }
-            model.Value = val.ToString(Newtonsoft.Json.Formatting.None);
-            var vmData = new InfoModuleDataViewModel(model);
-            return vmData.SaveModelAsync();
+            var result = await data.SaveModelAsync().ConfigureAwait(false);
+            return result;
+
+            //var model = data["model"].ToObject<SiocModuleData>();
+            //List<ModuleFieldViewModel> cols = data["columns"].ToObject<List<ModuleFieldViewModel>>();
+            //JObject val = new JObject();
+            //foreach (JProperty prop in data.Properties())
+            //{
+            //    if (prop.Name != "model" && prop.Name != "columns")
+            //    {
+            //        var col = cols.Find(c => c.Name == prop.Name);
+            //        JObject fieldVal = new JObject
+            //        {
+            //            new JProperty("dataType", col.DataType),
+            //            new JProperty("value", prop.Value)
+            //        };
+            //        val.Add(new JProperty(prop.Name, fieldVal));
+            //    }
+            //}
+            //model.Value = val.ToString(Newtonsoft.Json.Formatting.None);
+            //var vmData = new InfoModuleDataViewModel(model);
+            //return vmData.SaveModelAsync();
         }
 
         // POST api/category
@@ -98,7 +101,6 @@ namespace Swastka.Cms.Api.Controllers
                 var ModuleData = new BEModuleDataViewModel(
                     new SiocModuleData()
                     {
-                        Id = Guid.NewGuid().ToString("N"),
                         ModuleId = moduleId,
                         Specificulture = _lang,
                         Fields = getModule.Data.Fields

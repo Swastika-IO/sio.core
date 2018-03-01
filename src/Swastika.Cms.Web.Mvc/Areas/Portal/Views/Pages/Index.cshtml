@@ -156,7 +156,8 @@
                                     <a asp-area="" asp-controller="Home" asp-action="Home" asp-route-pageName="@Model.Items[i].SeoName" target="_blank" class="btn btn-light"><span class="oi oi-eye text-info"></span></a>
                                     @*<a asp-action="Delete" asp-route-id="@Model.Items[i].Id" class="btn btn-light" data-popout="true" data-toggle="confirmation" data-singleton="true"> <span class="oi oi-x text-danger"></span> </a>*@
 
-                                    <button class="btn btn-light del-popover" data-toggle="popover" title="Confirmation!" data-trigger="focus" data-html="true">
+                                    <button type="button" class="btn btn-light del-popover"
+                                            data-toggle="popover" data-html="true">
                                         <span class="oi oi-x text-danger"></span>
                                     </button>
                                     <div class="popover-body d-none">

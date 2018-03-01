@@ -10,29 +10,34 @@
     ViewData["SeoKeywords"] = Model.SeoKeywords;
     ViewData["SeoDescription"] = Model.SeoDescription;
 }
-
-@if (!string.IsNullOrEmpty(Model.TemplatePath))
-{
-
-
-    try
+<div ng-app="Swastika">
+    @if (!string.IsNullOrEmpty(Model.TemplatePath))
     {
-        @Html.Partial(Model.TemplatePath, Model)
+
+
+        try
+        {
+            @Html.Partial(Model.TemplatePath, Model)
+        }
+        catch (Exception ex)
+        {
+            @ex
+            <p class="danger text-center has-error">Unable load template</p>
+        }
     }
-    catch (Exception ex)
+    else
     {
-        @ex
-        <p class="danger text-center has-error">Unable load template</p>
+        <section class="container">
+            <h1>@Swastika.Cms.Lib.Services.GlobalConfigurationService.Instance.GetLocalString("Please choose template", ViewBag.culture)</h1>
+        </section>
     }
-}
-else
-{
-    <section class="container">
-        <h1>@Swastika.Cms.Lib.Services.GlobalConfigurationService.Instance.GetLocalString("Please choose template", ViewBag.culture)</h1>
-    </section>
-}
+</div>
 @section scripts{
     @Html.Raw(Model.View?.Scripts)
+
+    <script src="~/js/angular.min.js"></script>
+    <script src="~/app/app-frontend.js"></script>
+    <script src="~/app/controllers/frontend-controller.js"></script>
 }
 @section styles{
     @Html.Raw(Model.View?.Styles)

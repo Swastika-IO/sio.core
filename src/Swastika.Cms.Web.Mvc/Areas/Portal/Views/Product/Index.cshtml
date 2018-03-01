@@ -149,7 +149,8 @@
                                     @*<a asp-area="Portal" asp-controller="Products" asp-action="Recycle" asp-route-id="@Model.Items[i].Id"
                                         class="btn btn-sm btn-light d-inline-block" data-popout="true" data-toggle="confirmation" data-singleton="true"><span class="oi oi-x text-danger"></span></a>*@
 
-                                    <button class="btn btn-light del-popover" data-toggle="popover" title="Confirmation!" data-trigger="focus" data-html="true">
+                                    <button type="button" class="btn btn-light del-popover"
+                                            data-toggle="popover" data-html="true">
                                         <span class="oi oi-x text-danger"></span>
                                     </button>
                                     <div class="popover-body d-none">
