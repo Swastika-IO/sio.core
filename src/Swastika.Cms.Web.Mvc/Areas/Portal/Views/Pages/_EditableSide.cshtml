@@ -87,54 +87,55 @@
         </div>
     </div>
 </div>
-<div class="card">
-    <div class="card-header">
-        Page Type
-    </div>
-    <div class="card-body">
 
-        <div class="btn-group btn-group-sm btn-group-toggle d-flex w-100" role="group" data-toggle="buttons">
-            @foreach (var type in types)
-            {
-                <label class="btn btn-outline-primary btn-block mt-0 ">
-                    <input asp-for="Type" type="radio" value="@type.Value" class="custom-control-input" id="pageType_@type.Value" />
-
-                    @switch (type.Text)
-                    {
-                        case "Blank":<i class="mi mi-Preview mi-fw" title="@type.Text"></i>
-                            break;
-                        case "Article":<i class="mi mi-ReadingList mi-fw" title="@type.Text"></i>
-                            break;
-                        case "ListProduct":<i class="mi mi-Package mi-fw" title="@type.Text"></i>
-                            break;
-                        case "List":<i class="mi mi-BulletedList mi-fw" title="@type.Text"></i>
-                            break;
-                        case "Home":<i class="mi mi-Home mi-fw" title="@type.Text"></i>
-                            break;
-                        case "StaticUrl":<i class="mi mi-Go mi-fw" title="@type.Text"></i>
-                            break;
-                        case "Modules":<i class="mi mi-ResolutionLegacy mi-fw" title="@type.Text"></i>
-                            break;
-                    }
-                </label>
-            }
+@*<div class="card">
+        <div class="card-header">
+            Page Type
         </div>
+        <div class="card-body">
 
-        @*<select asp-for="Type" class="form-control" asp-items="@types"></select>
-            <span asp-validation-for="Type" class="text-danger"></span>*@
-
-        @*@{
-                foreach (var type in types)
+            <div class="btn-group btn-group-sm btn-group-toggle d-flex w-100" role="group" data-toggle="buttons">
+                @foreach (var type in types)
                 {
-
-                    <div class="custom-control custom-radio">
+                    <label class="btn btn-outline-primary btn-block mt-0 ">
                         <input asp-for="Type" type="radio" value="@type.Value" class="custom-control-input" id="pageType_@type.Value" />
-                        <label class="custom-control-label" for="pageType_@type.Value">@type.Text</label>
-                    </div>
+
+                        @switch (type.Text)
+                        {
+                            case "Blank":<i class="mi mi-Preview mi-fw" title="@type.Text"></i>
+                                break;
+                            case "Article":<i class="mi mi-ReadingList mi-fw" title="@type.Text"></i>
+                                break;
+                            case "ListProduct":<i class="mi mi-Package mi-fw" title="@type.Text"></i>
+                                break;
+                            case "List":<i class="mi mi-BulletedList mi-fw" title="@type.Text"></i>
+                                break;
+                            case "Home":<i class="mi mi-Home mi-fw" title="@type.Text"></i>
+                                break;
+                            case "StaticUrl":<i class="mi mi-Go mi-fw" title="@type.Text"></i>
+                                break;
+                            case "Modules":<i class="mi mi-ResolutionLegacy mi-fw" title="@type.Text"></i>
+                                break;
+                        }
+                    </label>
                 }
-            }*@
-    </div>
-</div>
+            </div>
+
+           <select asp-for="Type" class="form-control" asp-items="@types"></select>
+                <span asp-validation-for="Type" class="text-danger"></span>
+
+    @{
+            foreach (var type in types)
+            {
+
+                <div class="custom-control custom-radio">
+                    <input asp-for="Type" type="radio" value="@type.Value" class="custom-control-input" id="pageType_@type.Value" />
+                    <label class="custom-control-label" for="pageType_@type.Value">@type.Text</label>
+                </div>
+            }
+        }
+        </div>
+    </div>*@
 
 @Html.Partial("EditableSides/_EditableSide_Cultures", Model.ListSupportedCulture)
 <input type="hidden" asp-for="Specificulture" />
