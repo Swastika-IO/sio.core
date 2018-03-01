@@ -4,10 +4,10 @@
         Languages
     </div>
     <div class="card-body">
-        <div class="form-group">
-            @for (int i = 0; i < Model.Count; i++)
-            {
-                string prefix = string.Format("ListSupportedCulture[{0}]", i);
+        @for (int i = 0; i < Model.Count; i++)
+        {
+            string prefix = string.Format("ListSupportedCulture[{0}]", i);
+            <div class="">
                 <span class="switch switch-sm">
                     <input type="hidden" asp-for="@Model[i].Specificulture" name="@(prefix).Specificulture" />
                     <input type="hidden" asp-for="@Model[i].Icon" name="@(prefix).Icon" />
@@ -17,8 +17,8 @@
                         <i class="flag-icon @Model[i].Icon"></i> @Model[i].Description
                     </label>
                 </span>
-            }
-        </div>
+            </div>
+        }
     </div>
 </div>
 

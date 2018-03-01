@@ -178,6 +178,8 @@
             window.onload = function () {
                 'use strict';
 
+                $('.btn-group .btn input[checked="checked"]').parent().addClass('active');
+
                 var container = document.querySelector('.image-crop-modal-lg .img-container');
                 if (container) {
                     var Cropper = window.Cropper;
