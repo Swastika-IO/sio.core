@@ -18,14 +18,14 @@
     <div class="box box-primary">
         <div class="box-header with-border">
             <h3 class="box-title">@Swastika.Cms.Lib.Services.GlobalConfigurationService.Instance.GetLocalString("Articles", ViewBag.culture)</h3>
-            <div class="box-tools">
-                <button type="button" class="btn btn-box-tool" data-widget="collapse">
-                    <i class="fa fa-minus"></i>
-                </button>
-            </div>
+            @*<div class="box-tools">
+                    <button type="button" class="btn btn-box-tool" data-widget="collapse">
+                        <i class="fa fa-minus"></i>
+                    </button>
+                </div>*@
         </div>
         <div class="box-body">
-            <table class="table table-hover table-striped dataTable" cellspacing="0">
+            <table class="table table-sm " cellspacing="0">
                 <thead class="thead-light">
                     <tr>
                         <th scope="col">
@@ -37,42 +37,50 @@
                         <th scope="col">
                             Type
                         </th>
-                        <th scope="col">
-                            CreatedBy
+                        <th scope="col" width="10%">
+                            Created By
                         </th>
-                        <th scope="col"></th>
+                        <th scope="col" width="5%">
+                            Actions
+                        </th>
                     </tr>
                 </thead>
 
                 <tbody>
                     @foreach (var item in articles)
-                {
-                <tr>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.Title)
-                    </td>
-                    <td>
-                        @Html.Raw(item.Excerpt)
-                    </td>
+                    {
+                        <tr>
+                            <td>
+                                <small>
+                                    @Html.DisplayFor(modelItem => item.Title)
+                                </small>
+                            </td>
+                            <td>
+                                <small>
+                                    @Html.Raw(item.Excerpt)
+                                </small>
+                            </td>
 
-                    <td>
-                        @Html.DisplayFor(modelItem => item.Type)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.CreatedBy)
-                    </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Type)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.CreatedBy)
+                            </td>
 
-                    <td>
-                        <div class="btn-group btn-group-sm" role="group" aria-label="Actions">
-                            <a asp-controller="Articles" asp-action="Edit" asp-route-id="@item.Id" asp-route-categoryId="@ViewBag.categoryId"
-                               class="btn btn-sm btn-warning d-inline-block "><span class="oi oi-pencil"></span></a>
-                            <a asp-area="" asp-controller="Home" asp-action="ArticleDetails" asp-route-id="@item.Id" asp-route-SeoName="@item.SeoName"
-                               target="_blank" class="btn btn-sm btn-info"><span class="oi oi-eye"></span></a>
-                            <a asp-controller="Articles" asp-action="Recycle" asp-route-id="@item.Id" class="btn btn-sm btn-danger d-inline-block" data-popout="true" data-toggle="confirmation" data-singleton="true"> <span class="oi oi-x"></span> </a>
-                        </div>
-                    </td>
-                </tr>
-                }
+                            <td>
+                                <div class="btn-group btn-group-sm" role="group" aria-label="Actions">
+                                    <a asp-controller="Articles" asp-action="Edit" asp-route-id="@item.Id" asp-route-categoryId="@ViewBag.categoryId"
+                                       class="btn btn-sm btn-light  d-inline-block "><span class="oi oi-pencil text-primary"></span></a>
+                                    <a asp-area="" asp-controller="Home" asp-action="ArticleDetails" asp-route-id="@item.Id" asp-route-SeoName="@item.SeoName"
+                                       target="_blank" class="btn btn-sm btn-light "><span class="oi oi-eye text-secondary"></span></a>
+                                    <a asp-controller="Articles" asp-action="Recycle" asp-route-id="@item.Id" class="btn btn-sm btn-light d-inline-block" data-popout="true" data-toggle="confirmation" data-singleton="true">
+                                        <span class="oi oi-x text-danger"></span>
+                                    </a>
+                                </div>
+                            </td>
+                        </tr>
+                    }
                 </tbody>
 
                 <tbody></tbody>
@@ -93,7 +101,7 @@
             </div>
         </div>
         <div class="box-body">
-            <table class="table table-hover table-striped dataTable" cellspacing="0">
+            <table class="table table-sm" cellspacing="0">
                 <thead class="thead-light">
                     <tr>
                         <th scope="col"></th>
@@ -106,43 +114,45 @@
                         <th scope="col">
                             Type
                         </th>
-                        <th scope="col">
-                            CreatedBy
+                        <th scope="col" width="10%">
+                            Created By
                         </th>
                         <th scope="col">
                             Priority
                         </th>
-                        <th scope="col"></th>
+                        <th scope="col" width="5%">
+                            Actions
+                        </th>
                     </tr>
                 </thead>
                 <tbody>
                     @foreach (var item in pages)
-                {
-                <tr>
-                    <td><input type="checkbox"></td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.Title)
-                    </td>
-                    <td>
-                        @Html.Raw(item.Excerpt)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.Type)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.CreatedBy)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.Priority)
-                    </td>
-                    <td>
-                        <a asp-controller="Pages" asp-action="Edit" asp-route-id="@item.Id" class="btn btn-sm btn-warning"> <span class="oi oi-pencil"></span></a>
-                        <a asp-controller="Pages" asp-area="" asp-controller="Home" asp-action="Home" asp-route-pageName="@item.SeoName"
-                           target="_blank" class="btn btn-sm btn-info"><span class="oi oi-eye"></span></a>
-                        <a asp-controller="Pages" asp-action="Delete" asp-route-id="@item.Id" class="btn btn-sm btn-danger" data-popout="true" data-toggle="confirmation" data-singleton="true"> <span class="oi oi-x"></span> </a>
-                    </td>
-                </tr>
-                }
+                    {
+                        <tr>
+                            <td><input type="checkbox"></td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Title)
+                            </td>
+                            <td>
+                                @Html.Raw(item.Excerpt)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Type)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.CreatedBy)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Priority)
+                            </td>
+                            <td>
+                                <a asp-controller="Pages" asp-action="Edit" asp-route-id="@item.Id" class="btn btn-sm btn-light"> <span class="oi oi-pencil text-primary"></span></a>
+                                <a asp-controller="Pages" asp-area="" asp-controller="Home" asp-action="Home" asp-route-pageName="@item.SeoName"
+                                   target="_blank" class="btn btn-sm btn-light"><span class="oi oi-eye text-secondary"></span></a>
+                                <a asp-controller="Pages" asp-action="Delete" asp-route-id="@item.Id" class="btn btn-sm btn-light" data-popout="true" data-toggle="confirmation" data-singleton="true"> <span class="oi oi-x text-danger"></span> </a>
+                            </td>
+                        </tr>
+                    }
                 </tbody>
             </table>
         </div>
@@ -162,7 +172,7 @@
         </div>
         <div class="box-body">
             <div class="table-responsive mailbox-messages" style="height:500px;">
-                <table class="table table-hover table-striped dataTable" cellspacing="0">
+                <table class="table table-sm" cellspacing="0">
                     <thead class="thead-light">
                         <tr>
                             <th scope="col"></th>
@@ -175,13 +185,15 @@
                             <th scope="col">
                                 Title
                             </th>
-                            <th scope="col"></th>
+                            <th scope="col">
+                                Actions
+                            </th>
                         </tr>
                     </thead>
                     <tbody>
 
                         @foreach (var item in modules)
-                {
+                        {
                             <tr>
                                 <td><input type="checkbox"></td>
                                 <td>
@@ -195,10 +207,10 @@
                                     @Html.DisplayFor(modelItem => item.Title)
                                 </td>
                                 <td>
-                                    <a asp-controller="Module" asp-action="Edit" asp-route-id="@item.Id" class="btn btn-sm btn-warning"> <span class="oi oi-pencil"></span></a>
+                                    <a asp-controller="Module" asp-action="Edit" asp-route-id="@item.Id" class="btn btn-sm btn-light"> <span class="oi oi-pencil"></span></a>
                                     <a asp-controller="Module" asp-action="Details" asp-route-id="@item.Id"
-                                       class="btn btn-sm btn-info"><span class="oi oi-eye"></span></a>
-                                    <a asp-controller="Module" asp-action="Delete" asp-route-id="@item.Id" class="btn btn-sm btn-danger" data-popout="true" data-toggle="confirmation" data-singleton="true" data-btn-ok-class="btn-danger btn-sm" data-btn-cancel-class="btn-success btn-sm" data-content="This can be undo!"> <span class="oi oi-x"></span> </a>
+                                       class="btn btn-sm btn-light"><span class="oi oi-eye text-secondary"></span></a>
+                                    <a asp-controller="Module" asp-action="Delete" asp-route-id="@item.Id" class="btn btn-sm btn-light" data-popout="true" data-toggle="confirmation" data-singleton="true" data-btn-ok-class="btn-danger btn-sm" data-btn-cancel-class="btn-success btn-sm" data-content="This can be undo!"> <span class="oi oi-x text-danger"></span> </a>
                                 </td>
                             </tr>
                         }

@@ -12,15 +12,39 @@
     </div>
     <div class="card-body">
         <div class="form-group">
-            @{
-                foreach (var stat in status)
+
+            <div class="btn-group btn-group-sm btn-group-toggle d-flex w-100" role="group" data-toggle="buttons">
+
+                @foreach (var stat in status)
                 {
-                    <div class="custom-control custom-radio">
+                    <label class="btn btn-outline-primary btn-block mt-0">
                         <input asp-for="Status" type="radio" value="@stat.Text" class="custom-control-input" id="pageType_@stat.Value" />
-                        <label class="custom-control-label" for="pageType_@stat.Value">@stat.Text</label>
-                    </div>
+
+                        @switch (stat.Text)
+                        {
+                            case "Deleted":<i class="mi mi-Delete mi-lg mi-fw" title="@stat.Text"></i>
+                                break;
+                            case "Preview":<i class="mi mi-Preview mi-lg mi-fw" title="@stat.Text"></i>
+                                break;
+                            case "Published":<i class="mi mi-Page mi-lg mi-fw" title="@stat.Text"></i>
+                                break;
+                            case "Draft":<i class="mi mi-Edit mi-lg mi-flip-horizontal" title="@stat.Text"></i>
+                                break;
+                            case "Schedule":<i class="mi mi-Calendar mi-lg mi-flip-horizontal" title="@stat.Text"></i>
+                                break;
+                        }
+                    </label>
                 }
-            }
+            </div>
+            @*@{
+                    foreach (var stat in status)
+                    {
+                        <div class="custom-control custom-radio">
+                            <input asp-for="Status" type="radio" value="@stat.Text" class="custom-control-input" id="pageType_@stat.Value" />
+                            <label class="custom-control-label" for="pageType_@stat.Value">@stat.Text</label>
+                        </div>
+                    }
+                }*@
             @*<span class="switch">
                     <input type="checkbox" asp-for="IsVisible" class="switch">
                     <label asp-for="IsVisible">Publish</label>

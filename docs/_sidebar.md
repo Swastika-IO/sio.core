@@ -8,7 +8,8 @@
   * [Module](module.md)
   * [Article](article.md)
   * [Product](product.md)
-  * Template
+  * [Theme](theme.md)
+  * [Template](template.md)
   * ...
 * Developer
   * [For developers](more-pages.md)
