@@ -1,2 +1,4 @@
 $ cat .gitattributes
-*.* linguist-language=Csharp
+Swastika-IO-Core/docs/* linguist-documentation
+Swastika-IO-Core/src/Swastika.Cms.Web.Mvc/wwwroot/lib/* linguist-vendored
+
