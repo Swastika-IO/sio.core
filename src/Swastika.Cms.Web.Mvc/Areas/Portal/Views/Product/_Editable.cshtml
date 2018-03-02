@@ -23,8 +23,8 @@
     <input type="hidden" asp-for="View" />
     <input type="hidden" asp-for="Type" />
     <input type="hidden" id="product-id" value="@Model.Id" />
-    <input id="arr-medias" type="hidden" value="@Model.JMediaNavs.ToString()" />
-    <input id="arr-products" type="hidden" value="@Model.JProductNavs.ToString()" />
+    <input id="arr-medias" type="hidden" value="@Model.JMediaNavs.ToString()" ng-init="activedMedias = $.parseJSON($('#arr-medias').val())"/>
+    <input id="arr-products" type="hidden" value="@Model.JProductNavs.ToString()" ng-init="activedProducts = $.parseJSON($('#arr-products').val())"/>
 </div>
 
 <div class="row">
@@ -570,7 +570,7 @@
                                             <th scope="col" width="5%">Showing?</th>
                                         </tr>
                                     </thead>
-                                    <tbody class="sortable product-navs">
+                                    <tbody class="sortable product-navs" ng-init="activedProducts = loadProduct()">
 
                                         <tr class="sortable-item" ng-repeat="item in activedProducts track by $index">
                                             <td style="cursor:move;">

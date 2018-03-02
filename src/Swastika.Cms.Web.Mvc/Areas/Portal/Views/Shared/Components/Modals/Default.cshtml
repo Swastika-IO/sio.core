@@ -78,7 +78,7 @@
     </div>
 </div>
 
-<div class="modal modal-default fade show" id="modal-files">
+<div class="modal modal-default fade show" id="modal-files"  ng-init="activedMedias = loadMedia()">
     <div class="modal-dialog modal-lg modal-dialog-centered" style="max-width: 95%;">
         <div class="modal-content">
             <div class="modal-header">
@@ -134,7 +134,22 @@
                             </th>
                         </tr>
                     </thead>
-                    <tbody></tbody>
+                    <tbody>
+                        <tr ng-repeat="item in activedMedias track by $index">
+                            <td>
+                                {{item.fileFolder}}
+                            </td>
+                            <td>
+                                {{item.fileName}}
+                            </td>
+                            <td>
+                                {{item.fullPath}}
+                            </td>
+                            <td>
+
+                            </td>
+                        </tr>
+                    </tbody>
                 </table>
             </div>
             @*<div class="modal-footer">

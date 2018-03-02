@@ -268,7 +268,7 @@
     <None Include="Views\_ViewImports.cshtml" />
     <None Include="Views\_ViewStart.cshtml" />
     <None Include="wwwroot\app\app-portal.js" />
-    <None Include="wwwroot\app\controllers\product-controller.js" />
+    <None Include="wwwroot\app\controllers\portal-controller.js" />
   </ItemGroup>
 
   <ItemGroup>
