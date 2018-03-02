@@ -90,3 +90,7 @@
 /*
     IMAGE CROP SETTING END
 */
+.custom-file-val {
+    position:absolute;
+    bottom:0;
+}

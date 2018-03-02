@@ -100,6 +100,8 @@
                                         <input type="file" class="custom-file-input" name="file" id="file" data-file="mediaFile.file">
                                         <label class="custom-file-label" for="file">Choose file</label>
                                     </div>*@
+                                <input type="text" ng-model="request.keyword" ng-enter="loadMedia()"
+                                       class="form-control media-keyword" placeholder="Search media items..." aria-label="Search media items..." aria-describedby="btnGroupAddon">
                                 <label class="custom-file">
                                     <img src="{{mediaFile.fullPath}}" name="pic" class="d-block" style="max-height: 150px; width: auto; margin: 0 auto;" accept="image/*" width="100%" />
                                     <input type="hidden" ng-model="mediaFile.folder" class="folder-val" />
@@ -127,35 +129,61 @@
                     <thead class="thead-light">
                         <tr>
                             <th scope="col">
-                                Name
-                            </th>
-                            <th scope="col">
                                 Full Path
                             </th>
                             <th scope="col">
+                                Title
+                            </th>
+                            <th scope="col">
+                                Description
+                            </th>
+                            <th scope="col">
                                 Content
+                            </th>
+                            <th scope="col" width="5%" class="text-right">
+                                Actions
                             </th>
                         </tr>
                     </thead>
                     <tbody>
                         <tr ng-repeat="item in mediaData.items track by $index">
-
                             <td>
-                                {{item.fileName}}
+                                <input readonly value="{{item.fullPath}}" onclick="this.select()" />
                             </td>
                             <td>
-                                <input value="{{item.fullPath}}" onclick="this.select()" />
+                                <input ng-model="item.title" />
+                            </td>
+                            <td>
+                                <input ng-model="item.description" />
                             </td>
                             <td>
                                 <img height="50px" src="{{item.fullPath}}" />
+                            </td>
+                            <td>
+                                <a href="javascript:void(0)" ng-click="saveMedia(item)" class="btn btn-sm btn-light">
+                                    <span class="oi oi-plus text-info"></span>
+                                </a>
+                                <a href="javascript:void(0)" ng-click="removeMedia(item.id)" class="btn btn-sm btn-light">
+                                    <span class="oi oi-x text-danger"></span>
+                                </a>
                             </td>
                         </tr>
                     </tbody>
                 </table>
             </div>
-            @*<div class="modal-footer">
-                    <a class="btn btn- btn-primary btn-warning" data-dismiss="modal">Close</a>
-                </div>*@
+            <div class="modal-footer">
+                <ul class="pagination pull-right">
+                    <li class="page-item">
+                        <a class="page-link active" href="javascript:void(0)" ng-click="loadMedia(mediaData.pageIndex-1)"
+                           ng-hide="mediaData.pageIndex==0">Prev</a>
+                    </li>
+                    <li class="page-item" ng-class="{active: n-1==mediaData.pageIndex}" ng-repeat="n in range(mediaData.totalPage)"><a class="page-link" href="javascript:void(0)" ng-click="loadMedia(n-1)">{{n}}</a></li>
+                    <li class="page-item">
+                        <a class="page-link" href="javascript:void(0)" ng-click="loadMedia(mediaData.pageIndex + 1)"
+                           ng-hide="mediaData.pageIndex >= (mediaData.totalPage-1)">Next</a>
+                    </li>
+                </ul>
+            </div>
         </div>
         <!-- /.modal-content -->
     </div>

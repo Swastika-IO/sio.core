@@ -15,21 +15,21 @@ app.controller('PortalController', function PhoneListController($scope) {
     $scope.activedMedias = [];
     $scope.activedProducts = [];
     $scope.request = {
-        "pageSize": 16,
-        "pageIndex": 0,
-        "orderBy": 'CreatedDateTime',
-        "direction": 1,
-        "keyword": ''
+        pageSize: 10,
+        pageIndex: 0,
+        orderBy: 'CreatedDateTime',
+        direction: 1,
+        keyword: ''
     };
     $scope.settings = {
-        "async": true,
-        "crossDomain": true,
-        "url": "",
-        "method": "POST",
-        "headers": {
+        async: true,
+        crossDomain: true,
+        url: "",
+        method: "POST",
+        headers: {
             "Content-Type": "application/x-www-form-urlencoded"
         },
-        "data": $scope.request
+        data: $scope.request
     };
 
     $scope.range = function (max) {
@@ -38,13 +38,9 @@ app.controller('PortalController', function PhoneListController($scope) {
         return input;
     };
 
-    $scope.loadMedia = function (pageIndex = 0, pageSize = 16, orderBy = 'CreatedDateTime', direction = 1) {
-        $scope.request = {
-            "pageSize": pageSize,
-            "pageIndex": pageIndex,
-            "orderBy": orderBy,
-            "direction": direction,
-            "keyword": $('#keyword').val()
+    $scope.loadMedia = function (pageIndex) {
+        if (pageIndex != undefined) {
+            $scope.request.pageIndex = pageIndex;
         }
         var url = '/api/vi-vn/media/list';//byProduct/' + productId;
         $scope.settings.url = url;// + '/true';
@@ -63,7 +59,7 @@ app.controller('PortalController', function PhoneListController($scope) {
     };
     $scope.uploadMedia = function () {
         //var container = $(this).parents('.model-media').first().find('.custom-file').first();        
-        if ($scope.mediaFile.file !== undefined && $scope.mediaFile.file !== null) {            
+        if ($scope.mediaFile.file !== undefined && $scope.mediaFile.file !== null) {
             // Create FormData object
             var files = new FormData();
 
@@ -83,7 +79,6 @@ app.controller('PortalController', function PhoneListController($scope) {
                 success: function (result) {
                     if (result.isSucceed) {
 
-                        $scope.mediaFile.fullPath = result.data.fullPath;                        
                         $scope.mediaFile.file = null;
                         $scope.loadMedia();
                         $('.upload-image-modal-lg').modal('hide');
@@ -114,6 +109,28 @@ app.controller('PortalController', function PhoneListController($scope) {
         }
 
     };
+    $scope.saveMedia = function (media) {
+        var url = '/api/vi-vn/media/save';
+        $.ajax({
+            method: 'POST',
+            url: url,
+            data: media,
+            success: function (data) {
+                //$scope.loadMedia();
+                if (data.isSucceed) {
+                    alert('success');
+                }
+                else {
+                    alert('failed! ' + data.errors);
+                }
+            },
+            error: function (a, b, c) {
+                console.log(a + " " + b + " " + c);
+            }
+        });
+
+    };
+
     $scope.loadProduct = function (pageIndex = 0, pageSize = 16, orderBy = 'title', direction = 0) {
         var request = {
             "pageSize": pageSize,
