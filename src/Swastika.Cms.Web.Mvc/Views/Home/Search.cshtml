@@ -26,7 +26,7 @@
                             @foreach (var item in Model.Items)
                             {
                                 item.DetailsUrl = SWCmsHelper.GetRouterUrl("Article", new { SeoName = item.SeoName }, Context.Request, Url);
-                                <div class="col-lg-6">
+                                <div class="col-lg-4">
                                     <div class="tr-post">
                                         <div class="entry-header">
                                             <div class="entry-thumbnail">
@@ -73,7 +73,7 @@
                             @foreach (var item in products.Items)
                             {
                                 item.DetailsUrl = SWCmsHelper.GetRouterUrl("Product", new { SeoName = item.SeoName }, Context.Request, Url);
-                                <div class="col-lg-6">
+                                <div class="col-lg-4">
                                     <div class="tr-post">
                                         <div class="entry-header">
                                             <div class="entry-thumbnail">
