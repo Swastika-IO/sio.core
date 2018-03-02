@@ -426,7 +426,7 @@
                                             <th scope="col" width="5%">Showing?</th>
                                         </tr>
                                     </thead>
-                                    <tbody class="sortable media-navs">
+                                    <tbody class="sortable media-navs" ng-init="activedMedias = []">
 
                                         <tr class="sortable-item" ng-repeat="item in activedMedias track by $index">
                                             <td style="cursor:move;">

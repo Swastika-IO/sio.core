@@ -1,11 +1,18 @@
 ﻿'use strict';
 app.controller('PortalController', function PhoneListController($scope) {
     $scope.mediaData = {};
+    $scope.mediaFile = {
+        file: null,
+        fullPath: '',
+        folder: 'Media',
+        title: '',
+        description: ''
+    };
     $scope.templates = [];
     $scope.medias = [];
     $scope.productData = {};
     $scope.activedTemplate = {};
-    $scope.activedMedias = {};
+    $scope.activedMedias = [];
     $scope.activedProducts = [];
     $scope.request = {
         "pageSize": 16,
@@ -55,18 +62,42 @@ app.controller('PortalController', function PhoneListController($scope) {
         });
     };
     $scope.uploadMedia = function () {
-        var container = $(this).parents('.model-media').first().find('.custom-file').first();
-        var file = $('.model-media .custom-file-input').first().prop('files')[0];
-        if (file !== undefined && file !== null) {
-            //SW.Common.getBase64(file, $('.custom-file')).then(result => console.log(result));
-            //await SW.Common.getBase64(file).then(result => console.log(result));
-            var fileName = SW.Common.uploadImage(file, container);
-            if (fileName !== "") {
-                $('.upload-image-modal-lg').modal('toggle');
-                $scope.loadMedia();
-            }
+        //var container = $(this).parents('.model-media').first().find('.custom-file').first();        
+        if ($scope.mediaFile.file !== undefined && $scope.mediaFile.file !== null) {            
+            // Create FormData object
+            var files = new FormData();
+
+            // Looping over all files and add it to FormData object
+            files.append($scope.mediaFile.file.name, $scope.mediaFile.file);
+
+            // Adding one more key to FormData object
+            files.append('fileFolder', $scope.mediaFile.folder);
+            files.append('title', $scope.mediaFile.title);
+            files.append('description', $scope.mediaFile.description);
+            $.ajax({
+                url: '/api/vi-vn/media/upload', //'/api/tts/UploadImage',
+                type: "POST",
+                contentType: false, // Not to set any content header
+                processData: false, // Not to process data
+                data: files,
+                success: function (result) {
+                    if (result.isSucceed) {
+
+                        $scope.mediaFile.fullPath = result.data.fullPath;                        
+                        $scope.mediaFile.file = null;
+                        $scope.loadMedia();
+                        $('.upload-image-modal-lg').modal('hide');
+                        return result;
+
+                    }
+                },
+                error: function (err) {
+                    return '';
+                }
+            });
         }
     };
+
     $scope.removeMedia = function (mediaId) {
         if (confirm("Are you sure!")) {
             var url = '/api/vi-vn/media/delete/' + mediaId;
@@ -101,6 +132,9 @@ app.controller('PortalController', function PhoneListController($scope) {
 
     $scope.changeMedia = function (media) {
         var currentItem = null;
+        if ($scope.activedMedias == undefined) {
+            $scope.activedMedias = [];
+        }
         $.each($scope.activedMedias, function (i, e) {
             if (e.mediaId == media.id) {
                 e.isActived = media.isActived;
@@ -219,7 +253,7 @@ app.controller('PortalController', function PhoneListController($scope) {
         }, 200);
     };
     $(document).ready(function () {
-        $scope.loadMedia();
-        $scope.loadProduct();
+        //$scope.loadMedia();
+        //$scope.loadProduct();
     });
 });
