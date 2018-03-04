@@ -44,9 +44,9 @@
         <div class="card">
             <div class="card-header">
                 Module Attributes (<label asp-for="Columns" class="control-label"></label>)
-                <a id="AddObject" class="btn btn-primary btn-sm float-right">@Swastika.Cms.Lib.Services.GlobalConfigurationService.Instance.GetLocalString("Add New", ViewBag.culture)</a>
+                <a id="AddObject" class="btn btn-primary btn-sm float-right text-white">@Swastika.Cms.Lib.Services.GlobalConfigurationService.Instance.GetLocalString("Add New", ViewBag.culture)</a>
             </div>
-            <div class="card-body">
+            <div class="card-body p-1">
                 <input type="hidden" asp-for="Id" />
                 <input type="hidden" asp-for="Specificulture" />
                 <input type="hidden" asp-for="Priority" />
@@ -109,16 +109,16 @@
 </div>
 
 <script>
-        $('#AddObject').click(function () {
-            var i = $(".module-column").length;
-            $.ajax({
-                url: '/vi-vn/Portal/Module/AddEmptyField/' + i,
-                success: function (data) {
-                    $('#Table > tbody').append(data);
-                },
-                error: function (a, b, c) {
-                    alert(a + " " + b + " " + c);
-                }
-            });
+    $('#AddObject').click(function () {
+        var i = $(".module-column").length;
+        $.ajax({
+            url: '/vi-vn/Portal/Module/AddEmptyField/' + i,
+            success: function (data) {
+                $('#Table > tbody').append(data);
+            },
+            error: function (a, b, c) {
+                alert(a + " " + b + " " + c);
+            }
         });
+    });
 </script>
