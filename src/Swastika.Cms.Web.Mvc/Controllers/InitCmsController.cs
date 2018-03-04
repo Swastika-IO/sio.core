@@ -22,7 +22,7 @@ namespace Swastika.Cms.Web.Mvc.Controllers
         {
             if (string.IsNullOrEmpty(GlobalConfigurationService.Instance.GetConfigConnectionKey()))
             {
-                return RedirectToAction("Init", "Portal", new { culture = CONST_ROUTE_DEFAULT_CULTURE });
+                return RedirectToAction("Init", "Portal", new { culture = ROUTE_DEFAULT_CULTURE });
             }
             else
             {
