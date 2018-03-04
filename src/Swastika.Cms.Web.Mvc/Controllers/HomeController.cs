@@ -61,7 +61,7 @@ namespace Swastika.Cms.Mvc.Controllers
             if (string.IsNullOrEmpty(pageName) || pageName == "Home")
             {
                 //CategoryViewModel page = CategoryRepository.GetInstance().GetFEHomeModel(p => p.Type == (int)SWCmsConstants.CateType.Home && p.Specificulture == _lang);
-                var getPage = FECategoryViewModel.Repository.GetSingleModel(p => p.Type == (int)SWCmsConstants.CateType.Home && p.Specificulture == _lang);
+                var getPage = FECategoryViewModel.Repository.GetSingleModel(p => p.Type == (int)SWCmsConstants.CateType.Home && p.Specificulture == CurrentLanguage);
                 if (getPage.IsSucceed && getPage.Data.View != null)
                 {
                     ViewBag.pageClass = getPage.Data.CssClass;
@@ -69,13 +69,13 @@ namespace Swastika.Cms.Mvc.Controllers
                 }
                 else
                 {
-                    return RedirectToAction("Index", "Portal", new { culture = _lang });
+                    return RedirectToAction("Index", "Portal", new { culture = CurrentLanguage });
                 }
             }
             else
             {
                 var getPage = FECategoryViewModel.Repository.GetSingleModel(
-                    p => p.SeoName == pageName && p.Specificulture == _lang);
+                    p => p.SeoName == pageName && p.Specificulture == CurrentLanguage);
                 if (getPage.IsSucceed && getPage.Data.View != null)
                 {
                     if (getPage.Data.Type == SWCmsConstants.CateType.List)
@@ -97,7 +97,7 @@ namespace Swastika.Cms.Mvc.Controllers
                 }
                 else
                 {
-                    return Redirect(string.Format("/{0}", _lang));
+                    return Redirect(string.Format("/{0}", CurrentLanguage));
                 }
             }
         }
@@ -109,7 +109,7 @@ namespace Swastika.Cms.Mvc.Controllers
         public IActionResult List(string pageName, int pageIndex = 0, int pageSize = 10)
         {
             var getPage = FECategoryViewModel.Repository.GetSingleModel(
-                p => p.Type == (int)SWCmsConstants.CateType.Home && p.Specificulture == _lang);
+                p => p.Type == (int)SWCmsConstants.CateType.Home && p.Specificulture == CurrentLanguage);
             //= CategoryRepository.GetInstance().GetFEListModel(p => p.SeoTitle == pageName && p.Specificulture == _lang, _lang, pageSize, pageIndex);
             if (getPage.IsSucceed)
             {
@@ -117,7 +117,7 @@ namespace Swastika.Cms.Mvc.Controllers
             }
             else
             {
-                return Redirect(string.Format("/{0}", _lang));
+                return Redirect(string.Format("/{0}", CurrentLanguage));
             }
         }
 
@@ -138,7 +138,7 @@ namespace Swastika.Cms.Mvc.Controllers
             //        );
             //}
             var getArticles = await InfoArticleViewModel.Repository.GetModelListByAsync(
-               article => article.Specificulture == _lang
+               article => article.Specificulture == CurrentLanguage
                    && article.Status != (int)SWStatus.Deleted
                    && (
                         string.IsNullOrEmpty(keyword) || article.Title.Contains(keyword)
@@ -147,7 +147,7 @@ namespace Swastika.Cms.Mvc.Controllers
                "CreatedDateTime", OrderByDirection.Descending,
                pageSize, pageIndex);
             var getProducts = await InfoProductViewModel.Repository.GetModelListByAsync(
-               Product => Product.Specificulture == _lang
+               Product => Product.Specificulture == CurrentLanguage
                    && Product.Status != (int)SWStatus.Deleted
                    && (
                         string.IsNullOrEmpty(keyword) || Product.Title.Contains(keyword)
@@ -175,13 +175,13 @@ namespace Swastika.Cms.Mvc.Controllers
             //        );
             //}
             var getArticles = await InfoArticleViewModel.Repository.GetModelListByAsync(
-               cate => cate.Specificulture == _lang
+               cate => cate.Specificulture == CurrentLanguage
                    && cate.Status != (int)SWStatus.Deleted
                    && (string.IsNullOrEmpty(keyword) || cate.Tags.Contains(keyword)),
                "CreatedDateTime", OrderByDirection.Descending,
                pageSize, pageIndex);
             var getProducts = await InfoProductViewModel.Repository.GetModelListByAsync(
-               Product => Product.Specificulture == _lang
+               Product => Product.Specificulture == CurrentLanguage
                    && Product.Status != (int)SWStatus.Deleted
                    && (
                         string.IsNullOrEmpty(keyword) || Product.Tags.Contains(keyword)
@@ -197,7 +197,7 @@ namespace Swastika.Cms.Mvc.Controllers
         public IActionResult Article(string pageName)
         {
             var getPage = FECategoryViewModel.Repository.GetSingleModel(
-                p => p.Type == (int)SWCmsConstants.CateType.Home && p.Specificulture == _lang);
+                p => p.Type == (int)SWCmsConstants.CateType.Home && p.Specificulture == CurrentLanguage);
             //CategoryRepository.GetInstance().GetFEHomeModel(p => p.SeoTitle == pageName && p.Specificulture == _lang);
             if (getPage.IsSucceed)
             {
@@ -205,7 +205,7 @@ namespace Swastika.Cms.Mvc.Controllers
             }
             else
             {
-                return Redirect(string.Format("/{0}", _lang));
+                return Redirect(string.Format("/{0}", CurrentLanguage));
             }
         }
 
@@ -215,7 +215,7 @@ namespace Swastika.Cms.Mvc.Controllers
         public IActionResult ArticleDetails(string SeoName, string CateSeoName = null)
         {
             var getArticle = FEArticleViewModel.Repository.GetSingleModel(
-                a => a.SeoName == SeoName && a.Specificulture == _lang);
+                a => a.SeoName == SeoName && a.Specificulture == CurrentLanguage);
             ViewData["CateSeoName"] = CateSeoName;
             //ArticleRepository.GetInstance().GetSingleModel(a => a.Id == id && a.Specificulture == _lang, SWCmsConstants.ViewModelType.FrontEnd);
             if (getArticle.IsSucceed)
@@ -224,7 +224,7 @@ namespace Swastika.Cms.Mvc.Controllers
             }
             else
             {
-                return Redirect(string.Format("/{0}", _lang));
+                return Redirect(string.Format("/{0}", CurrentLanguage));
             }
         }
 
@@ -234,7 +234,7 @@ namespace Swastika.Cms.Mvc.Controllers
         public IActionResult ProductDetails(string SeoName, string CateSeoName = null)
         {
             var getProduct = FEProductViewModel.Repository.GetSingleModel(
-                a => a.SeoName == SeoName && a.Specificulture == _lang);
+                a => a.SeoName == SeoName && a.Specificulture == CurrentLanguage);
             ViewData["CateSeoName"] = CateSeoName;
             //ProductRepository.GetInstance().GetSingleModel(a => a.Id == id && a.Specificulture == _lang, SWCmsConstants.ViewModelType.FrontEnd);
             if (getProduct.IsSucceed)
@@ -243,7 +243,7 @@ namespace Swastika.Cms.Mvc.Controllers
             }
             else
             {
-                return Redirect(string.Format("/{0}", _lang));
+                return Redirect(string.Format("/{0}", CurrentLanguage));
             }
         }
     }

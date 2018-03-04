@@ -2,6 +2,8 @@
 app.controller('ModuleDataController', function PhoneListController($scope) {
     $scope.data = null;
 
+    $scope.currentLanguage = $('#curentLanguage').val();
+
     $scope.settings = {
         "async": true,
         "crossDomain": true,
@@ -27,23 +29,23 @@ app.controller('ModuleDataController', function PhoneListController($scope) {
             async: true,
             crossDomain: true,
             method: 'GET',
-            url: '/api/vi-vn/module-data/create/' + moduleId,
+            url: '/api/' + $scope.currentLanguage + '/module-data/create/' + moduleId,
             success: function (response) {
-                $scope.$apply($scope.data = response.data); 
+                $scope.$apply($scope.data = response.data);
             },
             error: function (a, b, c) {
-                console.log(a , b, c);
+                console.log(a, b, c);
             }
         });
     };
     $scope.saveModuleData = function () {
         $.ajax({
             method: 'POST',
-            url: '/api/vi-vn/module-data/save',
+            url: '/api/' + $scope.currentLanguage + '/module-data/save',
             data: $scope.data,
             success: function (response) {
                 $scope.data = response.data;
-                if (response.isSucceed) {                    
+                if (response.isSucceed) {
                     $scope.data = $scope.initModuleData($scope.data.moduleId);
                     $scope.message.class = 'alert-success';
                     $scope.message.content = 'success';

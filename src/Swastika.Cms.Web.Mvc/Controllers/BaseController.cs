@@ -4,6 +4,7 @@
 
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Localization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Filters;
 using Microsoft.AspNetCore.Mvc.Rendering;
@@ -11,6 +12,7 @@ using Swastika.Cms.Lib;
 using Swastika.Cms.Lib.Services;
 using Swastika.Common.Helper;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Threading.Tasks;
 
 namespace Swastika.Cms.Mvc.Controllers
@@ -18,23 +20,37 @@ namespace Swastika.Cms.Mvc.Controllers
     public class BaseController<T> : Controller
     {
         public ViewContext ViewContext { get; set; }
-        protected string _lang;
+        private string _currentLanguage;
         protected string _domain;
         protected IHostingEnvironment _env;
         public const string CONST_ROUTE_DEFAULT_CULTURE = SWCmsConstants.Default.Specificulture;
+        public const string CONST_ROUTE_CULTURE_NAME = "culture";
+
+        protected string CurrentLanguage {
+            get {
+                _currentLanguage = RouteData?.Values[CONST_ROUTE_CULTURE_NAME] != null
+                                    ? RouteData.Values[CONST_ROUTE_CULTURE_NAME].ToString().ToLower() : CONST_ROUTE_DEFAULT_CULTURE.ToLower();
+                return _currentLanguage;
+            }
+        }
 
         public BaseController(IHostingEnvironment env)
         {
             _env = env;
-            string lang = RouteData != null && RouteData.Values["culture"] != null
-               ? RouteData.Values["culture"].ToString() : CONST_ROUTE_DEFAULT_CULTURE;
+            string lang = RouteData != null && RouteData.Values[CONST_ROUTE_CULTURE_NAME] != null
+               ? RouteData.Values[CONST_ROUTE_CULTURE_NAME].ToString() : CONST_ROUTE_DEFAULT_CULTURE;
+
+            // Set CultureInfo
+            var cultureInfo = new CultureInfo(CurrentLanguage);
+            CultureInfo.DefaultThreadCurrentCulture = cultureInfo;
+            CultureInfo.DefaultThreadCurrentUICulture = cultureInfo;
         }
 
         //public BaseController(IHostingEnvironment env, IStringLocalizer<SharedResource> localizer)
         //{
         //    _env = env;
-        //    string lang = RouteData != null && RouteData.Values["culture"] != null
-        //        ? RouteData.Values["culture"].ToString() : CONST_ROUTE_DEFAULT_CULTURE;
+        //    string lang = RouteData != null && RouteData.Values[CONST_ROUTE_CULTURE_NAME] != null
+        //        ? RouteData.Values[CONST_ROUTE_CULTURE_NAME].ToString() : CONST_ROUTE_DEFAULT_CULTURE;
         //    listCultures = listCultures ?? CultureRepository.GetInstance().GetModelList();
         //}
 
@@ -49,10 +65,13 @@ namespace Swastika.Cms.Mvc.Controllers
 
         protected void GetLanguage()
         {
-            _lang = RouteData != null && RouteData.Values["culture"] != null
-                ? RouteData.Values["culture"].ToString() : CONST_ROUTE_DEFAULT_CULTURE;
+            //_lang = RouteData != null && RouteData.Values[CONST_ROUTE_CULTURE_NAME] != null
+            //    ? RouteData.Values[CONST_ROUTE_CULTURE_NAME].ToString() : CONST_ROUTE_DEFAULT_CULTURE;
+
             _domain = string.Format("{0}://{1}", Request.Scheme, Request.Host);
-            ViewBag.culture = _lang;
+
+            ViewBag.culture = CurrentLanguage;
+
             //ViewBag.currentCulture = listCultures.FirstOrDefault(c => c.Specificulture == _lang);
             //ViewBag.cultures = listCultures;
         }

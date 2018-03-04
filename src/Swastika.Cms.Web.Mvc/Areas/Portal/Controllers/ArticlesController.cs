@@ -44,7 +44,7 @@ namespace Swastika.Cms.Mvc.Areas.Portal.Controllers
         {
             RepositoryResponse<PaginationModel<InfoArticleViewModel>> getArticles =
                 await InfoArticleViewModel.Repository.GetModelListByAsync(
-                article => article.Specificulture == _lang
+                article => article.Specificulture == CurrentLanguage
                     && article.Status != (int)SWStatus.Deleted
                     && (string.IsNullOrEmpty(keyword) || article.Title.Contains(keyword)),
                 "Priority", OrderByDirection.Ascending
@@ -60,7 +60,7 @@ namespace Swastika.Cms.Mvc.Areas.Portal.Controllers
         public async Task<IActionResult> Draft(int pageSize = 10, int pageIndex = 0, string keyword = null)
         {
             var getArticles = await InfoArticleViewModel.Repository.GetModelListByAsync(
-                article => article.Specificulture == _lang
+                article => article.Specificulture == CurrentLanguage
                     && (string.IsNullOrEmpty(keyword) || article.Title.Contains(keyword))
                     && article.Status == (int)SWStatus.Draft,
                 "CreatedDateTime", OrderByDirection.Descending,
@@ -77,7 +77,7 @@ namespace Swastika.Cms.Mvc.Areas.Portal.Controllers
         {
             var vmArticle = new BEArticleViewModel(new SiocArticle()
             {
-                Specificulture = _lang,
+                Specificulture = CurrentLanguage,
                 CreatedBy = User.Identity.Name,
                 CreatedDateTime = DateTime.UtcNow
             })
@@ -162,7 +162,7 @@ namespace Swastika.Cms.Mvc.Areas.Portal.Controllers
             }
 
             var article = await BEArticleViewModel.Repository.GetSingleModelAsync(
-                m => m.Id == id && m.Specificulture == _lang).ConfigureAwait(false);
+                m => m.Id == id && m.Specificulture == CurrentLanguage).ConfigureAwait(false);
             if (article == null)
             {
                 return RedirectToAction("Index");
@@ -286,7 +286,7 @@ namespace Swastika.Cms.Mvc.Areas.Portal.Controllers
         [Route("Delete/{id}")]
         public async Task<IActionResult> Delete(string id)
         {
-            var getArticle = await BEArticleViewModel.Repository.GetSingleModelAsync(m => m.Id == id && m.Specificulture == _lang).ConfigureAwait(false);
+            var getArticle = await BEArticleViewModel.Repository.GetSingleModelAsync(m => m.Id == id && m.Specificulture == CurrentLanguage).ConfigureAwait(false);
             if (getArticle.IsSucceed)
             {
                 await getArticle.Data.RemoveModelAsync(true).ConfigureAwait(false);

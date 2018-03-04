@@ -68,7 +68,7 @@ namespace Swastika.Cms.Mvc.Areas.Portal.Controllers
             var template = new BEThemeViewModel()
             {
                 CreatedBy = User.Identity.Name,
-                Specificulture = _lang
+                Specificulture = CurrentLanguage
             };
             return View(template);
         }
@@ -117,8 +117,8 @@ namespace Swastika.Cms.Mvc.Areas.Portal.Controllers
             }
             else
             {
-                template.Data.Specificulture = _lang;
-                template.Data.IsActived = template.Data.Name == GlobalConfigurationService.Instance.GetLocalString(SWCmsConstants.ConfigurationKeyword.Theme, _lang, SWCmsConstants.Default.DefaultTemplateFolder);
+                template.Data.Specificulture = CurrentLanguage;
+                template.Data.IsActived = template.Data.Name == GlobalConfigurationService.Instance.GetLocalString(SWCmsConstants.ConfigurationKeyword.Theme, CurrentLanguage, SWCmsConstants.Default.DefaultTemplateFolder);
             }
             return View(template.Data);
         }

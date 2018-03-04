@@ -2,6 +2,7 @@
 
 (function ($) {
     SW.Common = {
+        currentLanguage: $('#curentLanguage').val(),
         settings: {
             "async": true,
             "crossDomain": true,
@@ -133,7 +134,7 @@
                             var settings = {
                                 "async": true,
                                 "crossDomain": true,
-                                "url": "/api/vi-vn/" + model + "/save/" + modelId,
+                                "url": '/api/' + SW.Common.currentLanguage + '/' + model + '/save/' + modelId,
                                 "method": "POST",
                                 "headers": {
                                     "Content-Type": "application/json"
@@ -792,7 +793,7 @@
             files.append('title', title);
             files.append('description', description);
             $.ajax({
-                url: '/api/vi-vn/media/upload', //'/api/tts/UploadImage',
+                url: '/api/' + SW.Common.currentLanguage + '/media/upload', //'/api/tts/UploadImage',
                 type: "POST",
                 contentType: false, // Not to set any content header
                 processData: false, // Not to process data
@@ -970,7 +971,7 @@
             var settings = {
                 "async": true,
                 "crossDomain": true,
-                "url": "/api/vi-vn/media/list",
+                "url": '/api/' + SW.Common.currentLanguage + '/media/list',
                 "method": "POST",
                 "headers": {
                     "Content-Type": "application/x-www-form-urlencoded"

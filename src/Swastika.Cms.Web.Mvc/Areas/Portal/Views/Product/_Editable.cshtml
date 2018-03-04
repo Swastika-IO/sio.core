@@ -705,7 +705,7 @@
         var moduleId = $(this).attr('moduleId');
         $('.btn-save-data').attr('moduleId', moduleId);
         $.ajax({
-            url: '/vi-vn/Portal/Module/AjaxAddModuleData/' + moduleId,
+            url: '/@ViewBag.culture/Portal/Module/AjaxAddModuleData/' + moduleId,
             success: function (data) {
                 //$('#Table > tbody').append(data);
                 $('#modal-data .modal-body').html(data);
@@ -722,7 +722,7 @@
         var dataId = $(this).attr('dataId');
         $('.btn-save-data').attr('dataId', 'data-' + dataId);
         $.ajax({
-            url: '/vi-vn/Portal/Module/AjaxEditModuleData/' + dataId,
+            url: '/@ViewBag.culture/Portal/Module/AjaxEditModuleData/' + dataId,
             success: function (data) {
                 //$('#Table > tbody').append(data);
                 console.log(data);
@@ -741,12 +741,12 @@
         var dataId = $(this).attr('dataId');
         e.preventDefault();
         var frm = $('#frm-data');
-        var url = '/vi-vn/Portal/Module/AjaxSaveModuleData';
+        var url = '/@ViewBag.culture/Portal/Module/AjaxSaveModuleData';
         //SW.Common.ajaxSubmitForm(frm, url);
         var data = frm.serialize();
         $.ajax({
             type: 'Post',
-            url: '/vi-vn/Portal/Module/AjaxSaveModuleData', //frm.attr('action'),
+            url: '/@ViewBag.culture/Portal/Module/AjaxSaveModuleData', //frm.attr('action'),
             data: data,
             success: function (data) {
                 if (dataId != '') {
@@ -769,7 +769,7 @@
         var dataId = $(this).attr('dataId');
         $.ajax({
             type: 'GET',
-            url: '/vi-vn/Portal/Module/AjaxAtiveModuleData/' + productId + '/' + dataId + '/' + $(this).is(':checked'),
+            url: '/@ViewBag.culture/Portal/Module/AjaxAtiveModuleData/' + productId + '/' + dataId + '/' + $(this).is(':checked'),
             success: function (data) {
             },
             error: function (a, b, c) {
@@ -794,7 +794,7 @@
         $.ajax({
             method: 'POST',
             data: { index: index, type: dataType, id: inputId, name: inputName, value: inputValue },
-            url: '/vi-vn/Portal/Product/GetEditor',// + index + '/' + dataType + '/' + inputId + '/' + inputName + '/' + inputValue,
+            url: '/@ViewBag.culture/Portal/Product/GetEditor',// + index + '/' + dataType + '/' + inputId + '/' + inputName + '/' + inputValue,
             success: function (data) {
                 container.html(data);
                 $('.editor-content').trumbowyg();

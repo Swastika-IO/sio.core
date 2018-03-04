@@ -39,10 +39,10 @@ namespace Swastika.Cms.Web.Mvc.Areas.Portal.Controllers
         {
             PaginationModel<BELanguageViewModel> pagingPages = new PaginationModel<BELanguageViewModel>()
             {
-                Items = GlobalLanguageService.ListLanguage.Where(m => m.Specificulture == _lang).ToList(),
+                Items = GlobalLanguageService.ListLanguage.Where(m => m.Specificulture == CurrentLanguage).ToList(),
                 PageIndex = 0,
-                PageSize = GlobalLanguageService.ListLanguage.Count(m => m.Specificulture == _lang),
-                TotalItems = GlobalLanguageService.ListLanguage.Count(m => m.Specificulture == _lang),
+                PageSize = GlobalLanguageService.ListLanguage.Count(m => m.Specificulture == CurrentLanguage),
+                TotalItems = GlobalLanguageService.ListLanguage.Count(m => m.Specificulture == CurrentLanguage),
                 TotalPage = 1
             };
             //  await LanguageRepository.GetInstance().GetModelListByAsync(m=> m.Specificulture == _lang,
@@ -60,7 +60,7 @@ namespace Swastika.Cms.Web.Mvc.Areas.Portal.Controllers
                 new SiocLanguage()
                 {
                     //Id = LanguageRepository.GetInstance().GetNextId()
-                    Specificulture = _lang
+                    Specificulture = CurrentLanguage
                 });
             return View(ttsLanguage);
         }
@@ -113,7 +113,7 @@ namespace Swastika.Cms.Web.Mvc.Areas.Portal.Controllers
             }
 
             var ttsLanguage = await BELanguageViewModel.Repository.GetSingleModelAsync(
-                m => m.Keyword == id && m.Specificulture == _lang).ConfigureAwait(false);
+                m => m.Keyword == id && m.Specificulture == CurrentLanguage).ConfigureAwait(false);
             if (ttsLanguage == null)
             {
                 return NotFound();
@@ -171,7 +171,7 @@ namespace Swastika.Cms.Web.Mvc.Areas.Portal.Controllers
         [Route("Delete/{id}")]
         public async Task<IActionResult> DeleteLanguage(string id)
         {
-            var result = await BELanguageViewModel.Repository.RemoveModelAsync(m => m.Keyword == id && m.Specificulture == _lang).ConfigureAwait(false);
+            var result = await BELanguageViewModel.Repository.RemoveModelAsync(m => m.Keyword == id && m.Specificulture == CurrentLanguage).ConfigureAwait(false);
             if (result.IsSucceed)
             {
                 GlobalLanguageService.Instance.Refresh();

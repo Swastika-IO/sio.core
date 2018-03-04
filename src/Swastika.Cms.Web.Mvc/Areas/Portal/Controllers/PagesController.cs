@@ -34,7 +34,7 @@ namespace Swastika.Cms.Mvc.Areas.Portal.Controllers
         public async Task<IActionResult> Index(string keyword, int pageSize = 10, int pageIndex = 0)
         {
             var pagingPages = await InfoCategoryViewModel.Repository.GetModelListByAsync(
-                cate => cate.Specificulture == _lang
+                cate => cate.Specificulture == CurrentLanguage
                     && (string.IsNullOrEmpty(keyword) || cate.Title.Contains(keyword))
                 , "Priority", OrderByDirection.Ascending
                 , pageSize, pageIndex).ConfigureAwait(false);
@@ -49,7 +49,7 @@ namespace Swastika.Cms.Mvc.Areas.Portal.Controllers
             //ViewData["Specificulture"] = new SelectList(_context.TtsCulture, "Specificulture", "Specificulture");
             var ttsMenu = new BECategoryViewModel(new SiocCategory()
             {
-                Specificulture = _lang,
+                Specificulture = CurrentLanguage,
                 CreatedBy = User.Identity.Name,
                 //CreatedDate = DateTime.UtcNow
             });
@@ -91,7 +91,7 @@ namespace Swastika.Cms.Mvc.Areas.Portal.Controllers
             }
 
             var getCategory = await BECategoryViewModel.Repository.GetSingleModelAsync(
-                m => m.Id == id && m.Specificulture == _lang
+                m => m.Id == id && m.Specificulture == CurrentLanguage
                 ).ConfigureAwait(false);
             if (!getCategory.IsSucceed)
             {
@@ -153,7 +153,7 @@ namespace Swastika.Cms.Mvc.Areas.Portal.Controllers
         public async Task<IActionResult> Delete(int? id)
         {
             var ttsMenu = await BECategoryViewModel.Repository.RemoveModelAsync(
-                m => m.Id == id && m.Specificulture == _lang).ConfigureAwait(false);
+                m => m.Id == id && m.Specificulture == CurrentLanguage).ConfigureAwait(false);
             return RedirectToAction("Index");
         }
 
@@ -167,7 +167,7 @@ namespace Swastika.Cms.Mvc.Areas.Portal.Controllers
             pageSize = pageSize ?? SWCmsConstants.Default.PageSizeArticle;
             pageIndex = pageIndex ?? 0;
             var articles = await InfoArticleViewModel.GetModelListByCategoryAsync(
-                id, _lang, orderBy, OrderByDirection.Ascending,
+                id, CurrentLanguage, orderBy, OrderByDirection.Ascending,
                 pageSize, pageIndex).ConfigureAwait(false);
 
             if (!articles.IsSucceed)

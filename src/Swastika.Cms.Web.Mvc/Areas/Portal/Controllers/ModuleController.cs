@@ -46,7 +46,7 @@ namespace Swastika.Cms.Mvc.Areas.Portal.Controllers
         {
             var pagingPages = await
                 InfoModuleViewModel.Repository.GetModelListByAsync(
-                m => m.Specificulture == _lang
+                m => m.Specificulture == CurrentLanguage
                     && (string.IsNullOrEmpty(keyword) || m.Name.Contains(keyword)),
                 "Priority", OrderByDirection.Ascending,
                 pageSize, pageIndex).ConfigureAwait(false);
@@ -61,7 +61,7 @@ namespace Swastika.Cms.Mvc.Areas.Portal.Controllers
         {
             var Module = new BEModuleViewModel(new SiocModule()
             {
-                Specificulture = _lang
+                Specificulture = CurrentLanguage
             });
             return View(Module);
         }
@@ -95,7 +95,7 @@ namespace Swastika.Cms.Mvc.Areas.Portal.Controllers
         public async Task<IActionResult> Edit(int id)
         {
             var Module = await BEModuleViewModel.Repository.GetSingleModelAsync(m =>
-            m.Id == id && m.Specificulture == _lang).ConfigureAwait(false);
+            m.Id == id && m.Specificulture == CurrentLanguage).ConfigureAwait(false);
             if (Module == null)
             {
                 return RedirectToAction("Index");
@@ -153,7 +153,7 @@ namespace Swastika.Cms.Mvc.Areas.Portal.Controllers
         [Route("Delete/{id}")]
         public async Task<IActionResult> Delete(int id)
         {
-            var Module = await BEModuleViewModel.Repository.RemoveModelAsync(m => m.Id == id && m.Specificulture == _lang).ConfigureAwait(false);
+            var Module = await BEModuleViewModel.Repository.RemoveModelAsync(m => m.Id == id && m.Specificulture == CurrentLanguage).ConfigureAwait(false);
             return RedirectToAction("Index");
         }
 
@@ -170,7 +170,7 @@ namespace Swastika.Cms.Mvc.Areas.Portal.Controllers
         public async Task<IActionResult> DeleteNav(int id, string productId)
         {
             var Module = await NavModuleProductViewModel.Repository.RemoveModelAsync(
-                m => m.ModuleId == id && m.ProductId == productId && m.Specificulture == _lang).ConfigureAwait(false);
+                m => m.ModuleId == id && m.ProductId == productId && m.Specificulture == CurrentLanguage).ConfigureAwait(false);
             return RedirectToAction("Details", new { id });
         }
 
@@ -266,7 +266,7 @@ namespace Swastika.Cms.Mvc.Areas.Portal.Controllers
         public async Task<IActionResult> Details(int id, int pageSize = 10, int pageIndex = 0, string keyword = null)
         {
             var getModule = await BEModuleViewModel.Repository.GetSingleModelAsync
-                (m => m.Specificulture == _lang && m.Id == id).ConfigureAwait(false);
+                (m => m.Specificulture == CurrentLanguage && m.Id == id).ConfigureAwait(false);
             if (getModule.IsSucceed)
             {
                 var module = getModule.Data;
@@ -284,14 +284,14 @@ namespace Swastika.Cms.Mvc.Areas.Portal.Controllers
         public async Task<IActionResult> AddModuleData(int id)
         {
             var getModule = await InfoModuleViewModel.Repository.GetSingleModelAsync(
-                m => m.Id == id && m.Specificulture == _lang).ConfigureAwait(false);
+                m => m.Id == id && m.Specificulture == CurrentLanguage).ConfigureAwait(false);
             if (getModule.IsSucceed)
             {
                 var ModuleData = new BEModuleDataViewModel(
                     new SiocModuleData()
                     {
                         ModuleId = id,
-                        Specificulture = _lang,
+                        Specificulture = CurrentLanguage,
                         Fields = getModule.Data.Fields
                     });
                 return View(ModuleData);
@@ -332,7 +332,7 @@ namespace Swastika.Cms.Mvc.Areas.Portal.Controllers
         public async Task<IActionResult> EditModuleData(int id, string dataId)
         {
             var ModuleData = await BEModuleDataViewModel.Repository.GetSingleModelAsync(
-                m => m.Id == dataId && m.Specificulture == _lang).ConfigureAwait(false);
+                m => m.Id == dataId && m.Specificulture == CurrentLanguage).ConfigureAwait(false);
             var file = FileRepository.Instance.GetWebFile("fonts.css", "Content/Templates/Biotic/css");
 
             if (!ModuleData.IsSucceed)
@@ -369,7 +369,7 @@ namespace Swastika.Cms.Mvc.Areas.Portal.Controllers
                 catch (DbUpdateConcurrencyException)
                 {
                     if (!InfoModuleDataViewModel.Repository.CheckIsExists(
-                        m => m.Id == ModuleData.Id && m.Specificulture == _lang))
+                        m => m.Id == ModuleData.Id && m.Specificulture == CurrentLanguage))
                     {
                         return NotFound();
                     }

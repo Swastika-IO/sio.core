@@ -54,6 +54,8 @@
 </head>
 
 <body ng-app="SwastikaPortal" ng-controller="PortalController">
+    <input type="hidden" id="curentLanguage" name="curentLanguage" value="@ViewBag.culture" />
+
     <!-- Page Header -->
     <header class="navbar navbar-expand flex-column flex-md-row sw-navbar">
         @await Component.InvokeAsync(typeof(Swastika.Cms.Mvc.Areas.Portal.ViewComponents.HeaderNavbar))

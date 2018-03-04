@@ -112,7 +112,7 @@
     $('#AddObject').click(function () {
         var i = $(".module-column").length;
         $.ajax({
-            url: '/vi-vn/Portal/Module/AddEmptyField/' + i,
+            url: '/@ViewBag.culture/Portal/Module/AddEmptyField/' + i,
             success: function (data) {
                 $('#Table > tbody').append(data);
             },
