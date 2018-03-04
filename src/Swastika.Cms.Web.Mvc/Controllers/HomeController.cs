@@ -264,7 +264,7 @@ namespace Swastika.Cms.Mvc.Controllers
             var getPage = FECategoryViewModel.Repository.GetSingleModel(
                    p => p.SeoName == pageName && p.Specificulture == CurrentLanguage);
 
-            string tmpsource = getPage.Data.Excerpt != "" ? getPage.Data.Excerpt : @"
+            string tmpsource = getPage.Data.Content != "" ? getPage.Data.Content : @"
             <html><body>
             <ul id='products'>
               {{ for product in products }}
