@@ -7,10 +7,13 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Localization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Data.OData.Query;
+using Scriban;
 using Swastika.Cms.Lib;
 using Swastika.Cms.Lib.ViewModels.FrontEnd;
 using Swastika.Cms.Lib.ViewModels.Info;
 using System;
+using System.Net.Http;
+using System.Net.Http.Headers;
 using static Swastika.Common.Utility.Enums;
 
 namespace Swastika.Cms.Mvc.Controllers
@@ -245,6 +248,60 @@ namespace Swastika.Cms.Mvc.Controllers
             {
                 return Redirect(string.Format("/{0}", CurrentLanguage));
             }
+        }
+
+        // TEST DEMO LIQUID templating language with https://github.com/lunet-io/scriban/
+        [HttpGet]
+        [Route("scriban/{pageName}")]
+        public ActionResult Scriban(string pageName)
+        {
+            Product products = new Product();
+            products.Products = new ProductList[3];
+            products.Products[0] = new ProductList { Name = "abc", Price = 12, Description = "abc product" };
+            products.Products[1] = new ProductList { Name = "def", Price = (float)0.23, Description = "abc product" };
+            products.Products[2] = new ProductList { Name = "ght", Price = 16, Description = "abc product" };
+
+            var getPage = FECategoryViewModel.Repository.GetSingleModel(
+                   p => p.SeoName == pageName && p.Specificulture == CurrentLanguage);
+
+            string tmpsource = getPage.Data.Excerpt != "" ? getPage.Data.Excerpt : @"
+            <html><body>
+            <ul id='products'>
+              {{ for product in products }}
+                <li>
+                  <h2>{{ product.name }}</h2>
+                       Price: {{ product.price }}
+                       {{ product.description | string.truncate 15 }}
+                </li>
+              {{ end }}
+            </ul></body></html>";
+            var template = Template.Parse(tmpsource);
+            string result = template.Render(products);
+
+            if (getPage.IsSucceed)
+            {
+                return new ContentResult()
+                {
+                    Content = result,
+                    ContentType = "text/html",
+                };
+            }
+            else
+            {
+                return Content("Error!");
+            }
+        }
+
+        private class Product
+        {
+            public ProductList[] Products { get; set; }
+        }
+
+        private class ProductList
+        {
+            public string Name { get; set; }
+            public float Price { get; set; }
+            public string Description { get; set; }
         }
     }
 }
