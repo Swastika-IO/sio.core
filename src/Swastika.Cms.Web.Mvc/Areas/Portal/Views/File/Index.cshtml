@@ -101,9 +101,9 @@
                             <td>
 
                                 <div class="input-group input-group-sm mb-3">
-                                    <input id="path-@Model.IndexOf(item)" value="@item.FullPath" onclick="this.select()" class="form-control form-control-sm" readonly />
+                                    <input id="path-file-@Model.IndexOf(item)" value="@item.FullPath" onclick="this.select()" class="form-control form-control-sm" readonly />
                                     <div class="input-group-append">
-                                        <button class="btn btn-outline-secondary btn-clipboard" type="button" data-clipboard-target="#path-@Model.IndexOf(item)"><i class="mi mi-Copy"></i></button>
+                                        <button class="btn btn-outline-secondary btn-clipboard" type="button" data-clipboard-target="#path-file-@Model.IndexOf(item)"><i class="mi mi-Copy"></i></button>
                                     </div>
                                 </div>
                             </td>
