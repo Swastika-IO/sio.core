@@ -23,8 +23,8 @@
     <input type="hidden" asp-for="View" />
     <input type="hidden" asp-for="Type" />
     <input type="hidden" id="product-id" value="@Model.Id" />
-    <input id="arr-medias" type="hidden" value="@Model.JMediaNavs.ToString()" ng-init="activedMedias = $.parseJSON($('#arr-medias').val())"/>
-    <input id="arr-products" type="hidden" value="@Model.JProductNavs.ToString()" ng-init="activedProducts = $.parseJSON($('#arr-products').val())"/>
+    <input id="arr-medias" type="hidden" value="@Model.JMediaNavs.ToString()" ng-init="activedMedias = $.parseJSON($('#arr-medias').val())" />
+    <input id="arr-products" type="hidden" value="@Model.JProductNavs.ToString()" ng-init="activedProducts = $.parseJSON($('#arr-products').val())" />
 </div>
 
 <div class="row">
@@ -526,11 +526,11 @@
                                     </label>
                                 </span>
                                 <div class="btn-group btn-group-sm position-absolute m-1" role="group" aria-label="Basic example" style="z-index:3; right:0;">
-                                    <button class="btn btn-dark custom-file-cropper" data-toggle="modal" data-target=".image-crop-modal-lg" data-imgsrc="{{media.fullPath}}" data-imgid="{{media.id}}">
+                                    <button class="btn btn-light custom-file-cropper" data-toggle="modal" data-target=".image-crop-modal-lg" data-imgsrc="{{media.fullPath}}" data-imgid="{{media.id}}">
                                         <i class="mi mi-Crop"></i>
                                     </button>
-                                    <button class="btn btn-dark btn-sm" data-imgsrc="{{media.fullPath}}" data-imgid="{{media.id}}" ng-click="removeMedia(media.id)">
-                                        <i class="mi mi-Cancel"></i>
+                                    <button class="btn btn-light btn-sm" data-imgsrc="{{media.fullPath}}" data-imgid="{{media.id}}" ng-click="removeMedia(media.id)">
+                                        <i class="mi mi-Delete"></i>
                                     </button>
                                 </div>
                                 <a href="#" data-toggle="modal" data-target=".image-preview-modal-lg" data-imgsrc="{{media.fullPath}}">

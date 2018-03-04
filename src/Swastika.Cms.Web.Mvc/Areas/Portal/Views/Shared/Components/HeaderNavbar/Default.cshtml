@@ -7,7 +7,7 @@
     string currentId = ViewContext.RouteData.Values["Id"] == null ? string.Empty : ViewContext.RouteData.Values["Id"].ToString();
     var cultures = LanguageService.GetSupportedCultures();
 
-    ApplicationUser appuser = await UserManager.FindByIdAsync(UserManager.GetUserId(User)??string.Empty);
+    ApplicationUser appuser = await UserManager.FindByIdAsync(UserManager.GetUserId(User) ?? string.Empty);
 }
 
 <a class="navbar-brand mr-0 mr-md-2" href="/" aria-label="Swastika I/O">
@@ -48,16 +48,16 @@
         </div>
     </li>
     @*<li class="nav-item dropdown mr-2">
-        <a class="nav-item nav-link text-success" href="#" id="sw-versions" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            <i class="mi mi-ActionCenterMirrored"></i>
-        </a>
-        <div class="dropdown-menu dropdown-menu-right" aria-labelledby="sw-versions">
-            <a class="dropdown-item active" href="#">Lorem...</a>
-            <a class="dropdown-item" href="#">Lorem...</a>
-            <a class="dropdown-item" href="#">Lorem...</a>
-            <a class="dropdown-item" href="#">Lorem...</a>
-        </div>
-    </li>*@
+            <a class="nav-item nav-link text-success" href="#" id="sw-versions" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <i class="mi mi-ActionCenterMirrored"></i>
+            </a>
+            <div class="dropdown-menu dropdown-menu-right" aria-labelledby="sw-versions">
+                <a class="dropdown-item active" href="#">Lorem...</a>
+                <a class="dropdown-item" href="#">Lorem...</a>
+                <a class="dropdown-item" href="#">Lorem...</a>
+                <a class="dropdown-item" href="#">Lorem...</a>
+            </div>
+        </li>*@
     <li class="nav-item mr-2">
         <form asp-area="Portal" asp-controller="Auth" asp-action="Logout" method="post" id="logoutForm" class="">
             <a class="nav-link p-2 text-danger" href="#" onclick="document.getElementById('logoutForm').submit();" rel="noopener" aria-label="Logout">
@@ -68,13 +68,13 @@
 </ul>
 @if (appuser != null)
 {
-<a href="/vi-vn/portal/profile" title="@UserManager.GetUserName(User)">
-    @Html.GravatarImage(
-                    await UserManager.GetEmailAsync(appuser),
-                    size: 36,
-                    defaultImage: GravatarHtmlHelper.DefaultImage.Identicon,
-                    rating: GravatarHtmlHelper.Rating.PG,
-                    cssClass: "rounded-circle sw-avatar"
-                )
-</a>
+    <a href="/vi-vn/portal/profile" title="@UserManager.GetUserName(User)">
+        @Html.GravatarImage(
+                            await UserManager.GetEmailAsync(appuser),
+                            size: 36,
+                            defaultImage: GravatarHtmlHelper.DefaultImage.Identicon,
+                            rating: GravatarHtmlHelper.Rating.PG,
+                            cssClass: "rounded-circle sw-avatar"
+                        )
+    </a>
 }

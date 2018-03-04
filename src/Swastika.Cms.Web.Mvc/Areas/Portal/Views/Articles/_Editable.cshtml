@@ -507,7 +507,7 @@
                                             <i class="mi mi-Search btn-search-media" ng-click="loadMedia()" style="top:0;cursor:pointer;"></i>
                                         </div>
                                     </div>
-                                     <input type="text" ng-model="request.keyword" ng-enter="loadMedia()"
+                                    <input type="text" ng-model="request.keyword" ng-enter="loadMedia()"
                                            class="form-control media-keyword" placeholder="Search media items..." aria-label="Search media items..." aria-describedby="btnGroupAddon">
                                 </div>
                             </div>
@@ -523,9 +523,14 @@
                                     </label>
                                 </span>
 
-                                <button class="btn btn-dark btn-sm custom-file-cropper position-absolute m-1" style="z-index:3; right:0;" data-toggle="modal" data-target=".image-crop-modal-lg" data-imgsrc="{{media.fullPath}}" data-imgid="{{media.id}}">
-                                    <i class="mi mi-Crop"></i>
-                                </button>
+                                <div class="btn-group btn-group-sm position-absolute m-1" role="group" aria-label="Basic example" style="z-index:3; right:0;">
+                                    <button class="btn btn-light custom-file-cropper" data-toggle="modal" data-target=".image-crop-modal-lg" data-imgsrc="{{media.fullPath}}" data-imgid="{{media.id}}">
+                                        <i class="mi mi-Crop"></i>
+                                    </button>
+                                    <button class="btn btn-light btn-sm" data-imgsrc="{{media.fullPath}}" data-imgid="{{media.id}}" ng-click="removeMedia(media.id)">
+                                        <i class="mi mi-Delete"></i>
+                                    </button>
+                                </div>
                                 <a href="#" data-toggle="modal" data-target=".image-preview-modal-lg">
                                     <img class="card-img-top" src="{{media.fullPath}}" alt="Card image cap">
                                 </a>
