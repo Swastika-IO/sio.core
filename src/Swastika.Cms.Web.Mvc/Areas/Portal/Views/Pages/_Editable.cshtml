@@ -424,7 +424,7 @@
                     </div>
                     <div class="tab-pane fade" id="pills-layout" role="tabpanel" aria-labelledby="pills-layout-tab">
 
-                        @Html.Partial("_Editor_Code", Model.View, new ViewDataDictionary(this.ViewData) { { "Files", Model.Templates }, { "Name", "View" } })
+                        @Html.Partial("_Editor_Code", Model.View, new ViewDataDictionary(this.ViewData) { { "Files", Model.Templates }, { "Name", "View" }, { "Layout", Model.Layout } })
                         @* <input asp-for="View.Filename" class="form-control" />
 
                             <div class="form-control" id="code-editor" asp-for="View.Content"></div>*@

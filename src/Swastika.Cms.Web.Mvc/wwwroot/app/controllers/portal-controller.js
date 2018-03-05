@@ -9,10 +9,10 @@ app.controller('PortalController', function PhoneListController($scope) {
         title: '',
         description: ''
     };
-    $scope.templates = [];
+    $scope.templates = [];   
     $scope.medias = [];
     $scope.productData = {};
-    $scope.activedTemplate = {};
+    $scope.activedTemplate = { fileName: '_Layout' };
     $scope.activedMedias = [];
     $scope.activedProducts = [];
     $scope.request = {
@@ -209,36 +209,7 @@ app.controller('PortalController', function PhoneListController($scope) {
         });
     }
 
-    $scope.loadTemplates = function (activedId, folder) {
-        var request = {
-            "pageSize": null,
-            "pageIndex": 0,
-            "orderBy": 'fileName',
-            "direction": 0,
-            "keyword": folder
-        }
-        var url = '/api/' + $scope.currentLanguage + '/template/list';//byProduct/' + productId;
-        $scope.settings.url = url;// + '/true';
-        $scope.settings.data = request;
-        $.ajax($scope.settings).done(function (response) {
-            $scope.templates = response.data.items;
-            if ($scope.templates.length > 0) {
-                var newTemplate = angular.copy($scope.templates[0]);
-                newTemplate.id = 0;
-                newTemplate.fileName = 'NewTemplate';
-                newTemplate.content = "<div></div>";
-                $scope.templates.splice(0, 0, newTemplate);
-            }
-            $.each($scope.templates, function (i, e) {
-                if (e.id == activedId) {
-                    $scope.activedTemplate = e;
-                    $scope.updateEditors();
-                    return false;
-                }
-            });
-            $scope.$apply();
-        });
-    }
+    
     $scope.updateEditors = function () {
         setTimeout(function () {
             $.each($('.code-editor'), function (i, e) {
@@ -266,8 +237,4 @@ app.controller('PortalController', function PhoneListController($scope) {
             });
         }, 200);
     };
-    $(document).ready(function () {
-        //$scope.loadMedia();
-        //$scope.loadProduct();
-    });
 });

@@ -9,6 +9,7 @@
     List<BETemplateViewModel> files = (List<BETemplateViewModel>)this.ViewData["Files"];
     files = files ?? new List<BETemplateViewModel>();
     string name = (string)this.ViewData["Name"];
+    string layout = (string)this.ViewData["Layout"];
 
     string inpName_TemplateName = string.IsNullOrEmpty(name) ? "TemplateName" : string.Format("{0}.TemplateName", name);
     string inpId_TemplateName = string.IsNullOrEmpty(name) ? "TemplateName" : string.Format("{0}_TemplateName", name);
@@ -58,29 +59,30 @@
     //var templates = new SelectList(files, "Content", "FileName");
 }
 
-<div>
+<div class="form-group">
+    <h6>TODO: Only display for Page section</h6>
+    <div class="input-group mb-3" ng-controller="PortalTemplateController as master">
+        <select class="btn btn-outline-secondary custom-select col-sm-4"
+                ng-model="master.activedTemplate" ng-init="master.templates = master.loadTemplates(-1, '@layout', 'Masters')"
+                ng-options="item as item.fileName for item in master.templates track by item.id"
+                ng-change="master.updateEditors()"></select>
+        <input class="form-control sel-filename" type="text" id="Layout" name="Layout" value="{{master.activedTemplate.fileName}}" placeholder="_BlankLayout">
+    </div>
+
+</div>
+<div ng-controller="PortalTemplateController as layout">
     <div class="form-group">
-        <h6>TODO: Only display for Page section</h6>
-        <div class="input-group mb-3">
-            <select name="MasterLayoutFileName" id="sel-master-template" class="btn btn-outline-secondary custom-select col-sm-4">
-                <option value="<div></div>" selected="selected">--- Seclect Master Layout ---</option>
-                <option value="<div></div>">...</option>
-            </select>
-            <input class="form-control sel-filename" type="text" id="inpId_MasterFilename" name="inpName_MasterFilename" value="" placeholder="_BlankLayout">
-        </div>
-
-        @*<input id="@inputId" name="@inputName" value="@Model.Filename" class="form-control sel-filename" />*@
-        <input type="hidden" id="@inpId_TemplateName" name="@inpName_TemplateName" value="{{activedTemplate.templateName}}">
-        <input type="hidden" id="@inpId_TemplateId" name="@inpName_TemplateId" value="{{activedTemplate.templateId}}">
-
-        <input type="hidden" id="@inpId_FileFolder" name="@inpName_FileFolder" value="{{activedTemplate.fileFolder}}">
-        <input type="hidden" id="@inpId_Extension" name="@inpName_Extension" value="{{activedTemplate.extension}}">
-        <input type="hidden" id="@inpId_CreatedDateTime" name="@inpName_CreatedDateTime" value="{{activedTemplate.createdDateTime}}">
-        <input type="hidden" id="@inpId_LastModified" name="@inpName_LastModified" value="{{activedTemplate.lastModified}}">
-        <input type="hidden" id="@inpId_ModifiedBy" name="@inpName_ModifiedBy" value="{{activedTemplate.modifiedBy}}">
         <h6>Layout</h6>
         <div class="input-group mb-3">
+            @*<input id="@inputId" name="@inputName" value="@Model.Filename" class="form-control sel-filename" />*@
+            <input type="hidden" id="@inpId_TemplateName" name="@inpName_TemplateName" value="{{layout.activedTemplate.templateName}}">
+            <input type="hidden" id="@inpId_TemplateId" name="@inpName_TemplateId" value="{{layout.activedTemplate.templateId}}">
 
+            <input type="hidden" id="@inpId_FileFolder" name="@inpName_FileFolder" value="{{layout.activedTemplate.fileFolder}}">
+            <input type="hidden" id="@inpId_Extension" name="@inpName_Extension" value="{{layout.activedTemplate.extension}}">
+            <input type="hidden" id="@inpId_CreatedDateTime" name="@inpName_CreatedDateTime" value="{{layout.activedTemplate.createdDateTime}}">
+            <input type="hidden" id="@inpId_LastModified" name="@inpName_LastModified" value="{{layout.activedTemplate.lastModified}}">
+            <input type="hidden" id="@inpId_ModifiedBy" name="@inpName_ModifiedBy" value="{{layout.activedTemplate.modifiedBy}}">
             @*@if (files.Count > 0)
                 {
                     <select asp-for="FileName" asp-items="@templates" id="sel-template" class="btn btn-outline-secondary custom-select col-sm-4">
@@ -89,83 +91,82 @@
                     </select>
                 }*@
             <select class="btn btn-outline-secondary custom-select col-sm-4"
-                    ng-model="activedTemplate" ng-init="templates = loadTemplates(@Model.Id, '@Model.FolderType')"
-                    ng-options="item as item.fileName for item in templates track by item.id"
-                    ng-change="updateEditors()"></select>
+                    ng-model="layout.activedTemplate" ng-init="templates = layout.loadTemplates(@Model.Id, '', '@Model.FolderType')"
+                    ng-options="item as item.fileName for item in layout.templates track by item.id"
+                    ng-change="layout.updateEditors()"></select>
 
-            <input class="form-control sel-filename" type="text" id="@inpId_Filename" name="@inpName_Filename" value="{{activedTemplate.fileName}}" placeholder="Input template name here...">
-            <input class="template-id" type="hidden" id="@inpId_Id" name="@inpName_Id" value="{{activedTemplate.id}}">
+            <input class="form-control sel-filename" type="text" id="@inpId_Filename" name="@inpName_Filename" value="{{layout.activedTemplate.fileName}}" placeholder="Input template name here...">
+            <input class="template-id" type="hidden" id="@inpId_Id" name="@inpName_Id" value="{{layout.activedTemplate.id}}">
         </div>
     </div>
-</div>
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="card">
+                <div class="card-header-nav-pills">
+                    <ul class="nav nav-pills text-center" id="pills-tab" role="tablist">
+                        <li class="nav-item">
+                            <a class="nav-link active" id="pills-template-razor-tab" data-toggle="pill" href="#pills-template-razor" role="tab" aria-controls="pills-template-razor" aria-selected="true">Razor Template</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" id="pills-template-general-tab" data-toggle="pill" href="#pills-template-general" role="tab" aria-controls="pills-template-general" aria-selected="true">General Template</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" id="pills-template-mobile-tab" data-toggle="pill" href="#pills-template-mobile" role="tab" aria-controls="pills-template-mobile" aria-selected="false">Mobile Template</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" id="pills-template-others-tab" data-toggle="pill" href="#pills-template-others" role="tab" aria-controls="pills-template-others" aria-selected="false">Others</a>
+                        </li>
+                    </ul>
+                </div>
+                <div class="card-body p-1">
+                    <div class="tab-content" id="pills-tabContent">
 
-<div class="row">
-    <div class="col-sm-12">
-        <div class="card">
-            <div class="card-header-nav-pills">
-                <ul class="nav nav-pills text-center" id="pills-tab" role="tablist">
-                    <li class="nav-item">
-                        <a class="nav-link active" id="pills-template-razor-tab" data-toggle="pill" href="#pills-template-razor" role="tab" aria-controls="pills-template-razor" aria-selected="true">Razor Template</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" id="pills-template-general-tab" data-toggle="pill" href="#pills-template-general" role="tab" aria-controls="pills-template-general" aria-selected="true">General Template</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" id="pills-template-mobile-tab" data-toggle="pill" href="#pills-template-mobile" role="tab" aria-controls="pills-template-mobile" aria-selected="false">Mobile Template</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" id="pills-template-others-tab" data-toggle="pill" href="#pills-template-others" role="tab" aria-controls="pills-template-others" aria-selected="false">Others</a>
-                    </li>
-                </ul>
-            </div>
-            <div class="card-body p-1">
-                <div class="tab-content" id="pills-tabContent">
+                        <div class="tab-pane fade active show" id="pills-template-razor" role="tabpanel" aria-labelledby="pills-template-razor-tab">
 
-                    <div class="tab-pane fade active show" id="pills-template-razor" role="tabpanel" aria-labelledby="pills-template-razor-tab">
-
-                        <div class="container-code-editor">
-                            <div class="form-control code-editor">{{activedTemplate.content}}</div>
-                            <input class="form-control code-content" type="hidden" id="@inpId_Content" name="@inpName_Content" value="{{activedTemplate.content}}">
-                        </div>
-                    </div>
-                    <div class="tab-pane fade " id="pills-template-general" role="tabpanel" aria-labelledby="pills-template-general-tab">
-
-                        <div class="container-code-editor">
-
-                            <div class="form-control code-editor">{{activedTemplate.spaContent}}</div>
-                            <input class="form-control code-content" type="hidden" id="@inpId_SpaContent" name="@inpName_SpaContent" value="{{activedTemplate.spaContent}}">
-                        </div>
-                    </div>
-                    <div class="tab-pane fade" id="pills-template-mobile" role="tabpanel" aria-labelledby="pills-template-mobile-tab">
-
-                        <div class="container-code-editor">
-
-                            <div class="form-control code-editor json">{{activedTemplate.mobileContent}}</div>
-                            <input class="form-control code-content" type="hidden" id="@inpId_MobileContent" name="@inpName_MobileContent" value="{{activedTemplate.mobileContent}}">
-                        </div>
-                    </div>
-                    <div class="tab-pane fade" id="pills-template-others" role="tabpanel" aria-labelledby="pills-template-others-tab">
-
-                        <div class="row">
-                            <div class="col-3">
-                                <div class="nav flex-column nav-pills" id="v-pills-tab" role="tablist" aria-orientation="vertical">
-                                    <a class="nav-link active show" id="v-pills-home-tab" data-toggle="pill" href="#v-pills-home" role="tab" aria-controls="v-pills-home" aria-selected="false">Scripts</a>
-                                    <a class="nav-link" id="v-pills-profile-tab" data-toggle="pill" href="#v-pills-profile" role="tab" aria-controls="v-pills-profile" aria-selected="true">Styles</a>
-                                </div>
+                            <div class="container-code-editor">
+                                <div class="form-control code-editor">{{layout.activedTemplate.content}}</div>
+                                <input class="form-control code-content" type="hidden" id="@inpId_Content" name="@inpName_Content" value="{{layout.activedTemplate.content}}">
                             </div>
-                            <div class="col-9">
-                                <div class="tab-content" id="v-pills-tabContent">
-                                    <div class="tab-pane fade" id="v-pills-home" role="tabpanel" aria-labelledby="v-pills-home-tab">
+                        </div>
+                        <div class="tab-pane fade " id="pills-template-general" role="tabpanel" aria-labelledby="pills-template-general-tab">
 
-                                        <div class="container-code-editor">
-                                            <div class="form-control code-editor">@(isCreate ? "" : Model.Scripts)</div>
-                                            <input class="form-control code-content" type="hidden" id="@inpId_Scripts" name="@inpName_Scripts" value="{{activedTemplate.scripts}}">
-                                        </div>
+                            <div class="container-code-editor">
+
+                                <div class="form-control code-editor">{{layout.activedTemplate.spaContent}}</div>
+                                <input class="form-control code-content" type="hidden" id="@inpId_SpaContent" name="@inpName_SpaContent" value="{{layout.activedTemplate.spaContent}}">
+                            </div>
+                        </div>
+                        <div class="tab-pane fade" id="pills-template-mobile" role="tabpanel" aria-labelledby="pills-template-mobile-tab">
+
+                            <div class="container-code-editor">
+
+                                <div class="form-control code-editor json">{{layout.activedTemplate.mobileContent}}</div>
+                                <input class="form-control code-content" type="hidden" id="@inpId_MobileContent" name="@inpName_MobileContent" value="{{layout.activedTemplate.mobileContent}}">
+                            </div>
+                        </div>
+                        <div class="tab-pane fade" id="pills-template-others" role="tabpanel" aria-labelledby="pills-template-others-tab">
+
+                            <div class="row">
+                                <div class="col-3">
+                                    <div class="nav flex-column nav-pills" id="v-pills-tab" role="tablist" aria-orientation="vertical">
+                                        <a class="nav-link active show" id="v-pills-home-tab" data-toggle="pill" href="#v-pills-home" role="tab" aria-controls="v-pills-home" aria-selected="false">Scripts</a>
+                                        <a class="nav-link" id="v-pills-profile-tab" data-toggle="pill" href="#v-pills-profile" role="tab" aria-controls="v-pills-profile" aria-selected="true">Styles</a>
                                     </div>
-                                    <div class="tab-pane fade active show" id="v-pills-profile" role="tabpanel" aria-labelledby="v-pills-profile-tab">
-                                        <div class="container-code-editor">
-                                            <div class="form-control code-editor">@(isCreate ? "" : Model.Styles)</div>
-                                            <input class="form-control code-content" type="hidden" id="@inpId_Styles" name="@inpName_Styles" value="{{activedTemplate.styles}})">
+                                </div>
+                                <div class="col-9">
+                                    <div class="tab-content" id="v-pills-tabContent">
+                                        <div class="tab-pane fade" id="v-pills-home" role="tabpanel" aria-labelledby="v-pills-home-tab">
+
+                                            <div class="container-code-editor">
+                                                <div class="form-control code-editor">{{layout.activedTemplate.scripts}}</div>
+                                                <input class="form-control code-content" type="hidden" id="@inpId_Scripts" name="@inpName_Scripts" value="{{layout.activedTemplate.scripts}}">
+                                            </div>
+                                        </div>
+                                        <div class="tab-pane fade active show" id="v-pills-profile" role="tabpanel" aria-labelledby="v-pills-profile-tab">
+                                            <div class="container-code-editor">
+                                                <div class="form-control code-editor">{{layout.activedTemplate.styles}}</div>
+                                                <input class="form-control code-content" type="hidden" id="@inpId_Styles" name="@inpName_Styles" value="{{layout.activedTemplate.styles}}">
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
@@ -177,3 +178,5 @@
         </div>
     </div>
 </div>
+
+<script defer src="~/app/controllers/portal-template-controller.js"></script>

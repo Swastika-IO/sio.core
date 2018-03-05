@@ -31,15 +31,15 @@ namespace Swastika.Cms.Mvc.Areas.Portal.Controllers
         [HttpGet]
         [Route("{pageSize:int?}/{pageIndex:int?}")]
         [Route("Index/{pageSize:int?}/{pageIndex:int?}")]
-        public async Task<IActionResult> Index(string keyword, int pageSize = 10, int pageIndex = 0)
+        public IActionResult Index(string keyword, int pageSize = 10, int pageIndex = 0)
         {
-            var pagingPages = await InfoCategoryViewModel.Repository.GetModelListByAsync(
-                cate => cate.Specificulture == CurrentLanguage
-                    && (string.IsNullOrEmpty(keyword) || cate.Title.Contains(keyword))
-                , "Priority", OrderByDirection.Ascending
-                , pageSize, pageIndex).ConfigureAwait(false);
+            //var pagingPages = await InfoCategoryViewModel.Repository.GetModelListByAsync(
+            //    cate => cate.Specificulture == CurrentLanguage
+            //        && (string.IsNullOrEmpty(keyword) || cate.Title.Contains(keyword))
+            //    , "Priority", OrderByDirection.Ascending
+            //    , pageSize, pageIndex).ConfigureAwait(false);
 
-            return View(pagingPages.Data);
+            return View();
         }
 
         [HttpGet]

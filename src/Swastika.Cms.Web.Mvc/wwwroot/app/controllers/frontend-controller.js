@@ -1,10 +1,11 @@
 ﻿'use strict';
 app.controller('ModuleDataController', function PhoneListController($scope) {
-    $scope.data = null;
+    var vm = this
+    vm.data = null;
 
-    $scope.currentLanguage = $('#curentLanguage').val();
+    vm.currentLanguage = $('#curentLanguage').val();
 
-    $scope.settings = {
+    vm.settings = {
         "async": true,
         "crossDomain": true,
         "url": "",
@@ -14,45 +15,45 @@ app.controller('ModuleDataController', function PhoneListController($scope) {
         },
         "data": null
     };
-    $scope.message = {
+    vm.message = {
         class: 'alert-success',
         content: ''
     };
-    $scope.range = function (max) {
+    vm.range = function (max) {
         var input = [];
         for (var i = 1; i <= max; i += 1) input.push(i);
         return input;
     };
 
-    $scope.initModuleData = function (moduleId) {
+    vm.initModuleData = function (moduleId) {
         $.ajax({
             async: true,
             crossDomain: true,
             method: 'GET',
-            url: '/api/' + $scope.currentLanguage + '/module-data/create/' + moduleId,
+            url: '/api/' + vm.currentLanguage + '/module-data/create/' + moduleId,
             success: function (response) {
-                $scope.$apply($scope.data = response.data);
+                vm.data = response.data;
             },
             error: function (a, b, c) {
                 console.log(a, b, c);
             }
         });
     };
-    $scope.saveModuleData = function () {
+    vm.saveModuleData = function () {
         $.ajax({
             method: 'POST',
-            url: '/api/' + $scope.currentLanguage + '/module-data/save',
-            data: $scope.data,
+            url: '/api/' + vm.currentLanguage + '/module-data/save',
+            data: vm.data,
             success: function (response) {
-                $scope.data = response.data;
+                vm.data = response.data;
                 if (response.isSucceed) {
-                    $scope.data = $scope.initModuleData($scope.data.moduleId);
-                    $scope.message.class = 'alert-success';
-                    $scope.message.content = 'success';
+                    vm.data = vm.initModuleData(vm.data.moduleId);
+                    vm.message.class = 'alert-success';
+                    vm.message.content = 'success';
                 }
                 else {
-                    $scope.message.class = 'alert-danger';
-                    $scope.message.content = response.errors;
+                    vm.message.class = 'alert-danger';
+                    vm.message.content = response.errors;
                 }
                 console.log(response);
             },
@@ -61,7 +62,4 @@ app.controller('ModuleDataController', function PhoneListController($scope) {
             }
         });
     }
-    $(document).ready(function () {
-        //$scope.initModuleData();
-    });
 });

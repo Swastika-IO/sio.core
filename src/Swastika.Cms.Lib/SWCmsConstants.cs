@@ -75,13 +75,14 @@ namespace Swastika.Cms.Lib
         }
 
         public enum TemplateFolderEnum
-        {
+        {            
             Layouts,
             Pages,
             Modules,
             Articles,
             Products,
-            Widgets
+            Widgets,
+            Masters,
         }
 
         public enum ViewModelType

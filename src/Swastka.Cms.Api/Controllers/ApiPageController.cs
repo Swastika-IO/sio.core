@@ -20,7 +20,7 @@ using static Swastika.Common.Utility.Enums;
 namespace Swastka.IO.Cms.Api.Controllers
 {
     [Produces("application/json")]
-    [Route("api/{culture}/category")]
+    [Route("api/{culture}/page")]
     public class ApiCategoryController :
         BaseApiController<SiocCmsContext, SiocCategory>
     {
@@ -140,7 +140,7 @@ namespace Swastka.IO.Cms.Api.Controllers
             if (string.IsNullOrEmpty(request.Keyword))
             {
                 var data = await InfoCategoryViewModel.Repository.GetModelListByAsync(
-                m => m.Status != (int)SWStatus.Deleted && m.Specificulture == _lang, request.OrderBy, request.Direction, request.PageSize, request.PageIndex).ConfigureAwait(false);
+                m => m.Specificulture == _lang, request.OrderBy, request.Direction, request.PageSize, request.PageIndex).ConfigureAwait(false);
                 if (data.IsSucceed)
                 {
                     data.Data.Items.ForEach(a =>

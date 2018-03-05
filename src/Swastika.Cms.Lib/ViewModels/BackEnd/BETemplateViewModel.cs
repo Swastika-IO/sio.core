@@ -73,6 +73,9 @@ namespace Swastika.Cms.Lib.ViewModels.BackEnd
 
         #region Views
 
+        [JsonProperty("layout")]
+        public string Layout { get; set; }
+
         [JsonProperty("assetFolder")]
         public string AssetFolder
         {
