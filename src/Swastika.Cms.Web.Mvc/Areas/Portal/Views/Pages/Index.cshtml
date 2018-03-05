@@ -1,19 +1,4 @@
-﻿@*@using Swastika.Domain.Core.ViewModels;
-    @using Swastika.Domain.Core.Models
-    @using Swastika.Domain.Core.ViewModels;
-    @model PaginationModel<Swastika.Cms.Lib.ViewModels.Info.InfoCategoryViewModel>
-    @{
-        ViewData["Title"] = "Pages";
-        ViewData["Description"] = "Manage site navigations and menus";
-        //Layout = "~/Areas/Portal/Views/Shared/_Layout.cshtml";
-        int fromValue = Model.PageIndex * @Model.PageSize + 1;
-        int toValue = fromValue + Model.PageSize;
-        int prevPage = Model.PageIndex > 0 ? Model.PageIndex - 1 : 0;
-        int nextPage = Model.PageIndex == Model.TotalPage - 1 ? Model.PageIndex : Model.PageIndex + 1;
-        toValue = toValue > Model.TotalItems ? Model.TotalItems : toValue;
-    }*@
-
-@{
+﻿@{
     ViewData["Title"] = "Pages";
     ViewData["Description"] = "Manage site navigations and menus";
 }
@@ -37,34 +22,13 @@
                         ng-change="loadPages()">
                     <option ng-repeat="item in directions track by $index" value="{{item.value}}">{{item.title}}</option>
                 </select>
-                <div class="btn-group mr-2" role="group" aria-label="Button group with nested dropdown">
-                    <div class="btn-group" role="group">
-                        <button id="btnGroupDrop1" type="button" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            All types
-                        </button>
-                        <div class="dropdown-menu" aria-labelledby="btnGroupDrop1">
-                            <a class="dropdown-item" href="#">All types</a>
-                            <a class="dropdown-item" href="#">Images</a>
-                            <a class="dropdown-item" href="#">Audios</a>
-                            <a class="dropdown-item" href="#">Videos</a>
-                            <a class="dropdown-item" href="#">Documents</a>
-                            <a class="dropdown-item" href="#">Zips</a>
-                            <a class="dropdown-item" href="#">Others</a>
-                        </div>
-                    </div>
-                </div>
-                <div class="btn-group mr-2" role="group" aria-label="Button group with nested dropdown">
-                    <div class="btn-group" role="group">
-                        <button id="btnGroupDrop1" type="button" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            All times
-                        </button>
-                        <div class="dropdown-menu" aria-labelledby="btnGroupDrop1">
-                            <a class="dropdown-item" href="#">Jan 2018</a>
-                            <a class="dropdown-item" href="#">Dec 2017</a>
-                            <a class="dropdown-item" href="#">Nov 2017</a>
-                        </div>
-                    </div>
-                </div>
+                <select class="btn btn-outline-secondary custom-select col-sm-1"
+                        ng-model="request.pageSize"
+                        ng-change="loadPages(0)">
+                    <option ng-repeat="item in pageSizes track by $index" value="{{item}}">{{item}}</option>
+                </select>
+                <input type="date" ng-model="request.fromDate"/>
+                <input type="date" ng-model="request.toDate"/>
             </div>
         </div>
         <div class="col-md-4">
@@ -92,7 +56,7 @@
                     Description
                 </th>
                 <th scope="col" style="width: 10%;">
-                    Type
+                    Created Date
                 </th>
                 <th scope="col" style="width: 10%;">
                     Created By
@@ -122,7 +86,7 @@
                     </small>
                 </td>
                 <td>
-                    {{item.type}}
+                    {{item.createdDateTime | utcToLocal:'dd.MM.yyyy - hh:mm:ss a'}}
                 </td>
                 <td>
                     {{item.createdBy}}
@@ -130,7 +94,7 @@
 
                 <td>
                     <div class="btn-group btn-group-sm" role="group" aria-label="Actions">
-                        <a asp-action="Edit" asp-route-id="{{item.id}}" class="btn btn-light"> <span class="oi oi-pencil text-primary"></span></a>
+                        <a href="/{{currentLanguage}}/portal/pages/edit/{{item.id}}" class="btn btn-light"> <span class="oi oi-pencil text-primary"></span></a>
                         <a href="{{item.detailsUrl}}" target="_blank" class="btn btn-light"><span class="oi oi-eye text-info"></span></a>
 
                         <button type="button" class="btn btn-light del-popover"
@@ -138,7 +102,7 @@
                             <span class="oi oi-x text-danger"></span>
                         </button>
                         <div class="popover-body d-none">
-                            <a asp-area="Portal" asp-controller="Pages" asp-action="Delete" asp-route-id="{{item.id}}" class="btn btn btn-danger">Yes, I want to delete!</a>
+                            <a href="/{{currentLanguage}}/portal/pages/delete/{{item.id}}" class="btn btn btn-danger">Yes, I want to delete!</a>
                         </div>
                     </div>
                 </td>

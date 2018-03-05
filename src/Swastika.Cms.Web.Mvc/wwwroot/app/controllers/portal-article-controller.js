@@ -1,17 +1,17 @@
 ﻿'use strict';
-app.controller('PageController', function PhoneListController($scope) {
-    $scope.activedPage = {};
+app.controller('ArticleController', function PhoneListController($scope) {
+    $scope.activedArticle = {};
     $scope.data = [];
-    
+
     $scope.range = function (max) {
         var input = [];
         for (var i = 1; i <= max; i += 1) input.push(i);
         return input;
     };
 
-    $scope.loadPages = function (pageIndex) {
-        if (pageIndex != undefined) {
-            $scope.request.pageIndex = pageIndex;
+    $scope.loadArticles = function (articleIndex) {
+        if (articleIndex != undefined) {
+            $scope.request.articleIndex = articleIndex;
         }
         if ($scope.request.fromDate != null) {
             $scope.request.fromDate = $scope.request.fromDate.toISOString();
@@ -19,30 +19,30 @@ app.controller('PageController', function PhoneListController($scope) {
         if ($scope.request.toDate != null) {
             $scope.request.toDate = $scope.request.toDate.toISOString();
         }
-        var url = '/api/' + $scope.currentLanguage + '/page/list';//byProduct/' + productId;
+        var url = '/api/' + $scope.currentLanguage + '/article/list';//byProduct/' + productId;
         $scope.settings.url = url;// + '/true';
         $scope.settings.data = $scope.request;
         $.ajax($scope.settings).done(function (response) {
             $scope.$apply($scope.data = response.data);
 
-            $.each($scope.data.items, function (i, page) {
-                $.each($scope.activedPages, function (i, e) {
-                    if (e.pageId == page.id) {
-                        page.isHidden = true;
+            $.each($scope.data.items, function (i, article) {
+                $.each($scope.activedArticles, function (i, e) {
+                    if (e.articleId == article.id) {
+                        article.isHidden = true;
                     }
                 })
             })
         });
     };
 
-    $scope.removePage = function (pageId) {
+    $scope.removeArticle = function (articleId) {
         if (confirm("Are you sure!")) {
-            var url = '/api/' + $scope.currentLanguage + '/page/delete/' + pageId;
+            var url = '/api/' + $scope.currentLanguage + '/article/delete/' + articleId;
             $.ajax({
                 method: 'GET',
                 url: url,
                 success: function (data) {
-                    $scope.loadPage();
+                    $scope.loadArticle();
                 },
                 error: function (a, b, c) {
                     console.log(a + " " + b + " " + c);
@@ -50,14 +50,14 @@ app.controller('PageController', function PhoneListController($scope) {
             });
         }
     };
-    $scope.savePage = function (page) {
-        var url = '/api/' + $scope.currentLanguage + '/page/save';
+    $scope.saveArticle = function (article) {
+        var url = '/api/' + $scope.currentLanguage + '/article/save';
         $.ajax({
             method: 'POST',
             url: url,
-            data: page,
+            data: article,
             success: function (data) {
-                //$scope.loadPage();
+                //$scope.loadArticle();
                 if (data.isSucceed) {
                     alert('success');
                 }

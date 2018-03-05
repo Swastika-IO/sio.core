@@ -9,17 +9,52 @@ app.controller('PortalController', function PhoneListController($scope) {
         title: '',
         description: ''
     };
-    $scope.templates = [];   
+    $scope.templates = [];
     $scope.medias = [];
     $scope.productData = {};
     $scope.activedTemplate = { fileName: '_Layout' };
     $scope.activedMedias = [];
     $scope.activedProducts = [];
+
+    $scope.orders = [
+        {
+            value: 'CreatedDateTime',
+            title: 'Created Date'
+        }
+        ,
+        {
+            value: 'Priority',
+            title: 'Priority'
+        },
+
+        {
+            value: 'Title',
+            title: 'Title'
+        }
+    ];
+    $scope.directions = [
+        {
+            value: '0',
+            title: 'Asc'
+        },
+        {
+            value: '1',
+            title: 'Desc'
+        }
+    ]
+    $scope.pageSizes = [
+        '5',
+        '10',
+        '15',
+        '20'
+    ]
     $scope.request = {
-        pageSize: 10,
+        pageSize: '10',
         pageIndex: 0,
         orderBy: 'CreatedDateTime',
-        direction: 1,
+        direction: '0',
+        fromDate: null,
+        toDate: null,
         keyword: ''
     };
     $scope.settings = {
@@ -209,7 +244,7 @@ app.controller('PortalController', function PhoneListController($scope) {
         });
     }
 
-    
+
     $scope.updateEditors = function () {
         setTimeout(function () {
             $.each($('.code-editor'), function (i, e) {
