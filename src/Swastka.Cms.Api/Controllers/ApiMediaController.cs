@@ -141,7 +141,7 @@ namespace Swastka.Cms.Api.Controllers
         // POST api/medias
         [HttpPost, HttpOptions]
         [Route("save")]
-        public async Task<RepositoryResponse<BEMediaViewModel>> Post([FromBody]BEMediaViewModel model)
+        public async Task<RepositoryResponse<BEMediaViewModel>> Post(BEMediaViewModel model)
         {
             if (model != null)
             {
