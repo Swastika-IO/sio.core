@@ -1,5 +1,6 @@
 ﻿'use strict';
 app.controller('PortalController', function PhoneListController($scope) {
+    $scope.currentLanguage = $('#curentLanguage').val();
     $scope.mediaData = {};
     $scope.mediaFile = {
         file: null,
@@ -42,7 +43,7 @@ app.controller('PortalController', function PhoneListController($scope) {
         if (pageIndex != undefined) {
             $scope.request.pageIndex = pageIndex;
         }
-        var url = '/api/vi-vn/media/list';//byProduct/' + productId;
+        var url = '/api/' + $scope.currentLanguage + '/media/list';//byProduct/' + productId;
         $scope.settings.url = url;// + '/true';
         $scope.settings.data = $scope.request;
         $.ajax($scope.settings).done(function (response) {
@@ -58,7 +59,7 @@ app.controller('PortalController', function PhoneListController($scope) {
         });
     };
     $scope.uploadMedia = function () {
-        //var container = $(this).parents('.model-media').first().find('.custom-file').first();        
+        //var container = $(this).parents('.model-media').first().find('.custom-file').first();
         if ($scope.mediaFile.file !== undefined && $scope.mediaFile.file !== null) {
             // Create FormData object
             var files = new FormData();
@@ -71,19 +72,17 @@ app.controller('PortalController', function PhoneListController($scope) {
             files.append('title', $scope.mediaFile.title);
             files.append('description', $scope.mediaFile.description);
             $.ajax({
-                url: '/api/vi-vn/media/upload', //'/api/tts/UploadImage',
+                url: '/api/' + $scope.currentLanguage + '/media/upload', //'/api/tts/UploadImage',
                 type: "POST",
                 contentType: false, // Not to set any content header
                 processData: false, // Not to process data
                 data: files,
                 success: function (result) {
                     if (result.isSucceed) {
-
                         $scope.mediaFile.file = null;
                         $scope.loadMedia();
                         $('.upload-image-modal-lg').modal('hide');
                         return result;
-
                     }
                 },
                 error: function (err) {
@@ -95,7 +94,7 @@ app.controller('PortalController', function PhoneListController($scope) {
 
     $scope.removeMedia = function (mediaId) {
         if (confirm("Are you sure!")) {
-            var url = '/api/vi-vn/media/delete/' + mediaId;
+            var url = '/api/' + $scope.currentLanguage + '/media/delete/' + mediaId;
             $.ajax({
                 method: 'GET',
                 url: url,
@@ -107,10 +106,9 @@ app.controller('PortalController', function PhoneListController($scope) {
                 }
             });
         }
-
     };
     $scope.saveMedia = function (media) {
-        var url = '/api/vi-vn/media/save';
+        var url = '/api/' + $scope.currentLanguage + '/media/save';
         $.ajax({
             method: 'POST',
             url: url,
@@ -128,7 +126,6 @@ app.controller('PortalController', function PhoneListController($scope) {
                 console.log(a + " " + b + " " + c);
             }
         });
-
     };
 
     $scope.loadProduct = function (pageIndex = 0, pageSize = 16, orderBy = 'title', direction = 0) {
@@ -139,7 +136,7 @@ app.controller('PortalController', function PhoneListController($scope) {
             "direction": direction,
             "keyword": $('#keyword').val()
         }
-        var url = '/api/vi-vn/product/list';//byProduct/' + productId;
+        var url = '/api/' + $scope.currentLanguage + '/product/list';//byProduct/' + productId;
         $scope.settings.url = url;// + '/true';
         $scope.settings.data = request;
         $.ajax($scope.settings).done(function (response) {
@@ -201,7 +198,7 @@ app.controller('PortalController', function PhoneListController($scope) {
         var i = $(".property").length;
         $.ajax({
             method: 'GET',
-            url: '/vi-vn/Portal/' + type + '/AddEmptyProperty/' + i,
+            url: '/' + $scope.currentLanguage + '/Portal/' + type + '/AddEmptyProperty/' + i,
             success: function (data) {
                 $('#tbl-properties > tbody').append(data);
                 $(data).find('.prop-data-type').trigger('change');
@@ -220,7 +217,7 @@ app.controller('PortalController', function PhoneListController($scope) {
             "direction": 0,
             "keyword": folder
         }
-        var url = '/api/vi-vn/template/list';//byProduct/' + productId;
+        var url = '/api/' + $scope.currentLanguage + '/template/list';//byProduct/' + productId;
         $scope.settings.url = url;// + '/true';
         $scope.settings.data = request;
         $.ajax($scope.settings).done(function (response) {

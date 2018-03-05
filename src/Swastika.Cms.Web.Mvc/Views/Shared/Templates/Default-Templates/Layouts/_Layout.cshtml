@@ -13,6 +13,9 @@
 </head>
 
 <body class="@this.ViewData["pageClass"]" ng-app="Swastika">
+
+    <input type="hidden" id="curentLanguage" name="curentLanguage" value="@ViewBag.culture" />
+
     <div class="wrapper">
         @Html.Partial("../Layouts/_Top_Nav.cshtml")
         @RenderBody()
@@ -21,5 +24,4 @@
     <!--[SCRIPTS]-->
     @RenderSection("Scripts", false)
 </body>
-    
 </html>

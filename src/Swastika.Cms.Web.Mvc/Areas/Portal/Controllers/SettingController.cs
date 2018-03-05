@@ -40,10 +40,10 @@ namespace Swastika.Cms.Mvc.Areas.Portal.Controllers
         {
             PaginationModel<ConfigurationViewModel> pagingPages = new PaginationModel<ConfigurationViewModel>()
             {
-                Items = GlobalConfigurationService.ListConfiguration.Where(m => m.Specificulture == _lang).ToList(),
+                Items = GlobalConfigurationService.ListConfiguration.Where(m => m.Specificulture == CurrentLanguage).ToList(),
                 PageIndex = 0,
-                PageSize = GlobalConfigurationService.ListConfiguration.Count(m => m.Specificulture == _lang),
-                TotalItems = GlobalConfigurationService.ListConfiguration.Count(m => m.Specificulture == _lang),
+                PageSize = GlobalConfigurationService.ListConfiguration.Count(m => m.Specificulture == CurrentLanguage),
+                TotalItems = GlobalConfigurationService.ListConfiguration.Count(m => m.Specificulture == CurrentLanguage),
                 TotalPage = 1
             };
             //  await ConfigurationRepository.GetInstance().GetModelListByAsync(m=> m.Specificulture == _lang,
@@ -61,7 +61,7 @@ namespace Swastika.Cms.Mvc.Areas.Portal.Controllers
                 new SiocConfiguration()
                 {
                     //Id = ConfigurationRepository.GetInstance().GetNextId()
-                    Specificulture = _lang
+                    Specificulture = CurrentLanguage
                 });
             return View(ttsConfiguration);
         }
@@ -104,7 +104,7 @@ namespace Swastika.Cms.Mvc.Areas.Portal.Controllers
             }
 
             var ttsConfiguration = await ConfigurationViewModel.Repository.GetSingleModelAsync(
-                m => m.Keyword == id && m.Specificulture == _lang).ConfigureAwait(false);
+                m => m.Keyword == id && m.Specificulture == CurrentLanguage).ConfigureAwait(false);
             if (ttsConfiguration == null)
             {
                 return NotFound();
@@ -150,7 +150,7 @@ namespace Swastika.Cms.Mvc.Areas.Portal.Controllers
         [Route("Configurations/Delete/{id}")]
         public async Task<IActionResult> DeleteConfiguration(string id)
         {
-            var result = await ConfigurationViewModel.Repository.RemoveModelAsync(m => m.Keyword == id && m.Specificulture == _lang).ConfigureAwait(false);
+            var result = await ConfigurationViewModel.Repository.RemoveModelAsync(m => m.Keyword == id && m.Specificulture == CurrentLanguage).ConfigureAwait(false);
             if (result.IsSucceed)
             {
                 GlobalConfigurationService.Instance.Refresh();

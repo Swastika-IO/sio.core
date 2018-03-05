@@ -36,11 +36,26 @@
         .sw-content {
             width: 100% !important;
         }
+        /* helper to ensure that razor (which is correctly detected by ACE) is also highlighted */
+        .ace_razor {
+            background-color: yellow;
+        }
+
+        /* make sure the highlighted text is also black, otherwise it a kind of gray */
+        .ace_punctuation.ace_short.ace_razor {
+            color: black;
+        }
+
+        .ace_punctuation.ace_block.ace_razor {
+            color: black;
+        }
     </style>
     @RenderSection("Styles", required: false)
 </head>
 
 <body ng-app="SwastikaPortal" ng-controller="PortalController">
+    <input type="hidden" id="curentLanguage" name="curentLanguage" value="@ViewBag.culture" />
+
     <!-- Page Header -->
     <header class="navbar navbar-expand flex-column flex-md-row sw-navbar">
         @await Component.InvokeAsync(typeof(Swastika.Cms.Mvc.Areas.Portal.ViewComponents.HeaderNavbar))
@@ -77,7 +92,7 @@
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
 
     <script src="~/lib/jquery-ui-1.12.1/jquery-ui.min.js"></script>
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="~/lib/popper.js-1.12.9/dist/umd/popper.min.js"></script>
 
     <script type="text/javascript" src="~/lib/bootstrap-4.0.0/js/bootstrap.min.js"></script>
 
@@ -102,21 +117,9 @@
     <script type="text/javascript" src="~/lib/ace/src/theme-chrome.js"></script>
     <script type="text/javascript" src="~/lib/ace/src/theme-clouds_midnight.js"></script>
     <script type="text/javascript" src="~/lib/ace/src/worker-json.js"></script>
-    <style>
-        /* helper to ensure that razor (which is correctly detected by ACE) is also highlighted */
-        .ace_razor {
-            background-color: yellow;
-        }
 
-        /* make sure the highlighted text is also black, otherwise it a kind of gray */
-        .ace_punctuation.ace_short.ace_razor {
-            color: black;
-        }
+    <script src="~/lib/clipboard.js-2.0.0/dist/clipboard.min.js"></script>
 
-        .ace_punctuation.ace_block.ace_razor {
-            color: black;
-        }
-    </style>
     <script type="text/javascript" src="~/lib/bootstrap4-tagsinput-4.1.2/tagsinput.js"></script>
     <script src="~/js/angular.min.js"></script>
     <script src="~/app/app-portal.js"></script>

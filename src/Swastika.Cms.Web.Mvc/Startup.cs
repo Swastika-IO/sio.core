@@ -4,8 +4,11 @@
 
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Http.Features;
+using Microsoft.AspNetCore.Localization;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Routing;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -14,8 +17,10 @@ using Microsoft.Extensions.WebEncoders;
 using Swastika.Cms.Lib.Models.Cms;
 using Swastika.Cms.Lib.Services;
 using Swastika.Identity.Services;
+using System;
 using System.Text.Encodings.Web;
 using System.Text.Unicode;
+using System.Threading.Tasks;
 
 namespace Swastika.Cms.Web.Mvc
 {
@@ -158,6 +163,62 @@ namespace Swastika.Cms.Web.Mvc
                     name: "Product",
                     template: "{culture=" + CONST_ROUTE_DEFAULT_CULTURE + "}/product/{seoName}");
             });
+        }
+
+        /// <summary>
+        ///  REF: https://irensaltali.com/en/asp-net-core-mvc-localization-by-url-routedatarequestcultureprovider/
+        /// </summary>
+        public class LanguageRouteConstraint : IRouteConstraint
+        {
+            public bool Match(HttpContext httpContext, IRouter route, string routeKey, RouteValueDictionary values, RouteDirection routeDirection)
+            {
+                if (!values.ContainsKey("culture"))
+                    return false;
+
+                var culture = values["culture"].ToString();
+                return culture == "en" || culture == "vi";
+            }
+        }
+
+        public class RouteDataRequestCultureProvider : RequestCultureProvider
+        {
+            public int IndexOfCulture;
+            public int IndexofUICulture;
+
+            public override Task<ProviderCultureResult> DetermineProviderCultureResult(HttpContext httpContext)
+            {
+                if (httpContext == null)
+                    throw new ArgumentNullException(nameof(httpContext));
+
+                string culture = null;
+                string uiCulture = null;
+
+                var twoLetterCultureName = httpContext.Request.Path.Value.Split('/')[IndexOfCulture]?.ToString();
+                var twoLetterUICultureName = httpContext.Request.Path.Value.Split('/')[IndexofUICulture]?.ToString();
+
+                if (twoLetterCultureName == "vi")
+                    culture = "vi-VN";
+                else if (twoLetterCultureName == "en")
+                    culture = uiCulture = "en-US";
+
+                if (twoLetterUICultureName == "vi")
+                    culture = "vi-VN";
+                else if (twoLetterUICultureName == "en")
+                    culture = uiCulture = "en-US";
+
+                if (culture == null && uiCulture == null)
+                    return NullProviderCultureResult;
+
+                if (culture != null && uiCulture == null)
+                    uiCulture = culture;
+
+                if (culture == null && uiCulture != null)
+                    culture = uiCulture;
+
+                var providerResultCulture = new ProviderCultureResult(culture, uiCulture);
+
+                return Task.FromResult(providerResultCulture);
+            }
         }
     }
 }

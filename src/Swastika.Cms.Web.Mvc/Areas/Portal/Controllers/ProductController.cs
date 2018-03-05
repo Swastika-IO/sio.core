@@ -44,7 +44,7 @@ namespace Swastika.Cms.Mvc.Areas.Portal.Controllers
         {
             RepositoryResponse<PaginationModel<InfoProductViewModel>> getProduct =
                 await InfoProductViewModel.Repository.GetModelListByAsync(
-                product => product.Specificulture == _lang
+                product => product.Specificulture == CurrentLanguage
                     && product.Status != (int)SWStatus.Deleted
                     && (string.IsNullOrEmpty(keyword) || product.Title.Contains(keyword)),
                 "Priority", OrderByDirection.Ascending
@@ -60,7 +60,7 @@ namespace Swastika.Cms.Mvc.Areas.Portal.Controllers
         public async Task<IActionResult> Draft(int pageSize = 10, int pageIndex = 0, string keyword = null)
         {
             var getProduct = await InfoProductViewModel.Repository.GetModelListByAsync(
-                product => product.Specificulture == _lang
+                product => product.Specificulture == CurrentLanguage
                     && (string.IsNullOrEmpty(keyword) || product.Title.Contains(keyword))
                     && product.Status == (int)SWStatus.Deleted,
                 "CreatedDateTime", OrderByDirection.Descending,
@@ -78,7 +78,7 @@ namespace Swastika.Cms.Mvc.Areas.Portal.Controllers
             var vmProduct = new BEProductViewModel(new SiocProduct()
             {
                 Id = Guid.NewGuid().ToString(),
-                Specificulture = _lang,
+                Specificulture = CurrentLanguage,
                 CreatedBy = User.Identity.Name,
                 CreatedDateTime = DateTime.UtcNow
             })
@@ -143,7 +143,7 @@ namespace Swastika.Cms.Mvc.Areas.Portal.Controllers
             }
 
             var product = await BEProductViewModel.Repository.GetSingleModelAsync(
-                m => m.Id == id && m.Specificulture == _lang).ConfigureAwait(false);
+                m => m.Id == id && m.Specificulture == CurrentLanguage).ConfigureAwait(false);
             if (product == null)
             {
                 return RedirectToAction("Index");
@@ -266,7 +266,7 @@ namespace Swastika.Cms.Mvc.Areas.Portal.Controllers
         [Route("Delete/{id}")]
         public async Task<IActionResult> Delete(string id)
         {
-            var getProduct = await BEProductViewModel.Repository.GetSingleModelAsync(m => m.Id == id && m.Specificulture == _lang).ConfigureAwait(false);
+            var getProduct = await BEProductViewModel.Repository.GetSingleModelAsync(m => m.Id == id && m.Specificulture == CurrentLanguage).ConfigureAwait(false);
             if (getProduct.IsSucceed)
             {
                 await getProduct.Data.RemoveModelAsync(true).ConfigureAwait(false);

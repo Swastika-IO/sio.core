@@ -35,7 +35,7 @@ namespace TTS.Web.Areas.Portal.Controllers.Apis
         public async Task<IActionResult> Index(int pageSize = 10, int pageIndex = 0, string keyword = null)
         {
             var pagingPages = await BEModuleViewModel.Repository.GetModelListByAsync(
-                m => m.Specificulture == _lang
+                m => m.Specificulture == CurrentLanguage
                     && (string.IsNullOrEmpty(keyword) || m.Name.Contains(keyword)),
                 "Name", OrderByDirection.Ascending,
                 pageSize, pageIndex);
@@ -50,7 +50,7 @@ namespace TTS.Web.Areas.Portal.Controllers.Apis
         {
             var Module = new BEModuleViewModel()
             {
-                Specificulture = _lang,
+                Specificulture = CurrentLanguage,
                 Columns = new System.Collections.Generic.List<Swastika.Cms.Lib.ViewModels.ModuleFieldViewModel>()
             };
             return View(Module);
@@ -84,7 +84,7 @@ namespace TTS.Web.Areas.Portal.Controllers.Apis
         [Route("Edit/{id}")]
         public async Task<IActionResult> Edit(int id)
         {
-            var Module = await BEModuleViewModel.Repository.GetSingleModelAsync(m => m.Id == id && m.Specificulture == _lang);
+            var Module = await BEModuleViewModel.Repository.GetSingleModelAsync(m => m.Id == id && m.Specificulture == CurrentLanguage);
             if (Module == null)
             {
                 return RedirectToAction("Index");
@@ -144,7 +144,7 @@ namespace TTS.Web.Areas.Portal.Controllers.Apis
         [Route("Delete/{id}")]
         public async Task<IActionResult> Delete(int id)
         {
-            var Module = await BEModuleViewModel.Repository.RemoveModelAsync(m => m.Id == id && m.Specificulture == _lang);
+            var Module = await BEModuleViewModel.Repository.RemoveModelAsync(m => m.Id == id && m.Specificulture == CurrentLanguage);
             return RedirectToAction("Index");
         }
 
@@ -204,7 +204,7 @@ namespace TTS.Web.Areas.Portal.Controllers.Apis
         public async Task<bool> AjaxAtiveModuleData(string articleId, string dataId, bool isActived)
         {
             var getData = await InfoModuleDataViewModel.Repository.GetSingleModelAsync(
-                d => d.Id == dataId && d.Specificulture == _lang);
+                d => d.Id == dataId && d.Specificulture == CurrentLanguage);
             if (getData.IsSucceed)
             {
                 var data = getData.Data;
@@ -223,7 +223,7 @@ namespace TTS.Web.Areas.Portal.Controllers.Apis
         public async Task<IActionResult> AjaxEditModuleData(string dataId)
         {
             var getData = await InfoModuleDataViewModel.Repository.GetSingleModelAsync(
-                d => d.Id == dataId && d.Specificulture == _lang);
+                d => d.Id == dataId && d.Specificulture == CurrentLanguage);
             if (getData.IsSucceed)
             {
                 var data = getData.Data;
@@ -246,7 +246,7 @@ namespace TTS.Web.Areas.Portal.Controllers.Apis
         public async Task<IActionResult> Details(int id, int pageSize = 10, int pageIndex = 0, string keyword = null)
         {
             var getModule = await BEModuleViewModel.Repository.GetSingleModelAsync(
-                m => m.Specificulture == _lang && m.Id == id);
+                m => m.Specificulture == CurrentLanguage && m.Id == id);
             if (getModule.IsSucceed)
             {
                 return View(getModule.Data);
@@ -263,7 +263,7 @@ namespace TTS.Web.Areas.Portal.Controllers.Apis
         public async Task<IActionResult> AddModuleData(int id)
         {
             var getModule = await InfoModuleViewModel.Repository.GetSingleModelAsync(
-                m => m.Id == id && m.Specificulture == _lang);
+                m => m.Id == id && m.Specificulture == CurrentLanguage);
             if (getModule.IsSucceed)
             {
                 var module = getModule.Data;
@@ -273,7 +273,7 @@ namespace TTS.Web.Areas.Portal.Controllers.Apis
                     {
                         Id = Guid.NewGuid().ToString("N"),
                         ModuleId = id,
-                        Specificulture = _lang,
+                        Specificulture = CurrentLanguage,
                         Fields = module.Fields
                     });
                 return View(ModuleData);
