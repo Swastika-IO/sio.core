@@ -1,66 +1,203 @@
-@using Swastika.Domain.Core.ViewModels;
+﻿@using Swastika.Domain.Core.ViewModels;
 @model PaginationModel<Swastika.Cms.Lib.ViewModels.Info.InfoProductViewModel>
 
 @{
-    ViewData["Title"] = "Draft Articles";
+    ViewData["Title"] = "Product";
     //Layout = "~/Areas/Portal/Views/Shared/_Layout.cshtml";
     int fromValue = Model.PageIndex * @Model.PageSize + 1;
-    int toValue = fromValue + Model.PageSize;
+    int toValue = fromValue + Model.PageSize - 1;
     int prevPage = Model.PageIndex > 0 ? Model.PageIndex - 1 : 0;
     int nextPage = Model.PageIndex == Model.TotalPage - 1 ? Model.PageIndex : Model.PageIndex + 1;
     toValue = toValue > Model.TotalItems ? Model.TotalItems : toValue;
+    string href = string.Format("{0}://{1}{2}", Context.Request.Scheme, Context.Request.Host, Url.Action());
 }
 
-<div class="box-body no-padding">
-    <div class="mailbox-controls">
-        <!-- Check all button -->
-        <button type="button" class="btn btn-default btn-sm checkbox-toggle">
-            <i class="fa fa-square-o"></i>
-        </button>
-        <div class="btn-group">
-            <button type="button" class="btn btn-default btn-sm"><i class="fa fa-trash-o"></i></button>
-            <button type="button" class="btn btn-default btn-sm"><i class="fa fa-reply"></i></button>
-            <button type="button" class="btn btn-default btn-sm"><i class="fa fa-share"></i></button>
-        </div>
-        <!-- /.btn-group -->
-        <button type="button" class="btn btn-default btn-sm"><i class="fa fa-refresh"></i></button>
-        <div class="pull-right">
-            @fromValue  - @toValue
-            / @Model.TotalItems
-            <div class="btn-group">
-                <a asp-route-pageSize="@Model.PageSize" asp-route-pageIndex="@prevPage" class="btn btn-default btn-sm"><i class="fa fa-chevron-left"></i></a>
-                <a asp-route-pageSize="@Model.PageSize" asp-route-pageIndex="@nextPage" class="btn btn-default btn-sm"><i class="fa fa-chevron-right"></i></a>
+<section class="content container-fluid">
+    <form enctype="multipart/form-data" asp-action="@ViewContext.RouteData.Values["action"].ToString()">
+        @if (Model.Items.Count > 0)
+        {
+            <div class="row">
+                <div class="col-md-8">
+                    <div class="btn-toolbar mb-3" role="toolbar" aria-label="Toolbar with button groups">
+                        <div class="btn-group mr-2" role="group" aria-label="First group">
+                            <a asp-area="Portal" asp-controller="Product" asp-action="Create" class="btn btn-secondary"><i class="mi mi-Add"></i></a>
+                            <a asp-area="Portal" asp-controller="Product" asp-action="Index" class="btn btn-secondary"><i class="mi mi-List"></i></a>
+                            <a asp-area="Portal" asp-controller="Product" asp-action="Draft" class="btn btn-secondary"><i class="mi mi-Paste"></i></a>
+                        </div>
+                        <div class="btn-group mr-2" role="group" aria-label="Button group with nested dropdown">
+                            <div class="btn-group" role="group">
+                                <button id="btnGroupDrop1" type="button" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    All types
+                                </button>
+                                <div class="dropdown-menu" aria-labelledby="btnGroupDrop1">
+                                    <a class="dropdown-item" href="#">All types</a>
+                                    <a class="dropdown-item" href="#">Images</a>
+                                    <a class="dropdown-item" href="#">Audios</a>
+                                    <a class="dropdown-item" href="#">Videos</a>
+                                    <a class="dropdown-item" href="#">Documents</a>
+                                    <a class="dropdown-item" href="#">Zips</a>
+                                    <a class="dropdown-item" href="#">Others</a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="btn-group mr-2" role="group" aria-label="Button group with nested dropdown">
+                            <div class="btn-group" role="group">
+                                <button id="btnGroupDrop1" type="button" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    All times
+                                </button>
+                                <div class="dropdown-menu" aria-labelledby="btnGroupDrop1">
+                                    <a class="dropdown-item" href="#">Jan 2018</a>
+                                    <a class="dropdown-item" href="#">Dec 2017</a>
+                                    <a class="dropdown-item" href="#">Nov 2017</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="input-group">
+                        <div class="input-group-prepend">
+                            <div class="input-group-text" id="btnGroupAddon"><i class="mi mi-Search" style="top:0;"></i></div>
+                        </div>
+                        <input type="text" class="form-control" placeholder="Search......" aria-label="Search......" aria-describedby="btnGroupAddon">
+                    </div>
+                </div>
             </div>
-            <!-- /.btn-group -->
-        </div>
-        <!-- /.pull-right -->
-    </div>
-    <div class="table-responsive mailbox-messages" style="height:500px;">
-        <table class="table table-hover table-striped">
+            <table class="table table-sm table-hover dataTable" cellspacing="0">
+                <thead class="thead-light">
+                    <tr>
+                        <th scope="col" width="5%">
+                            <span class="oi oi-move"></span>
+                        </th>
+                        <th scope="col" width="5%">
+                            <span class="oi oi-sort-ascending"></span>
+                        </th>
+                        <th scope="col">
+                            Title
+                        </th>
+                        
+                        <th scope="col" width="5%">
+                            Type
+                        </th>
+                        <th scope="col" width="10%">
+                            Created By
+                        </th>
+                        <th scope="col" width="5%" class="text-right">
+                            Actions
+                        </th>
+                    </tr>
+                </thead>
+                @*<tfoot>
+                        <tr>
+                            <th scope="col">
+                                <span class="oi oi-move"></span>
+                            </th>
+                            <th scope="col">
+                                <span class="oi oi-sort-ascending"></span>
+                            </th>
+                            <th scope="col">
+                                Title
+                            </th>
+                            <th scope="col">
+                                Excerpt
+                            </th>
+                            <th scope="col">
+                                Type
+                            </th>
+                            <th scope="col">
+                                CreatedBy
+                            </th>
+                            <th scope="col"></th>
+                        </tr>
+                    </tfoot>*@
+                <tbody class="sortable">
+                    @for (int i = 0; i < Model.Items.OrderBy(n => n.Priority).ToList().Count; i++)
+                    {
+                        <tr class="sortable-item" sort-model="Product" sort-model-id="@Model.Items[i].Id">
+                            <td style="cursor:move;">
+                                <span class="oi oi-move"></span>
+                            </td>
+                            <td>
+                                <input type="text" asp-for="@Model.Items[i].Priority" class="item-priority form-control form-control-sm d-inline" style="width:40px;" />
+                            </td>
+                            <td>
+                                <small>
+                                    @Model.Items[i].Title
+                                </small>
+                            </td>
+                            
+
+                            <td>
+                                @Model.Items[i].Type
+                            </td>
+                            <td>
+                                @Model.Items[i].CreatedBy
+                            </td>
+
+                            <td>
+                                <a asp-area="Portal" asp-action="Restore" asp-route-id="@Model.Items[i].Id"
+                                   class="btn btn-sm btn-success" data-popout="true" data-toggle="confirmation" data-singleton="true"><i class="fa fa-retweet"></i></a>
+
+                                <a asp-area="Portal" asp-controller="Product" asp-action="Delete" asp-route-id="@Model.Items[i].Id"
+                                   class="btn btn-sm btn-danger d-inline-block" data-popout="true" data-toggle="confirmation" data-singleton="true"><span class="oi oi-x"></span></a>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+
+            @await Html.PartialAsync("_Pagination", Model, new ViewDataDictionary(this.Vi‌​ewData) { { "PageSize", Model.PageSize }, { "PageIndex", Model.PageIndex }, { "TotalPage", Model.TotalPage } })
+
+        }
+        else
+        {
+            <div class="alert alert-warning" role="alert">
+                No Product added yet! Please add your first Product <a asp-area="Portal" asp-controller="Products" asp-action="Create" class="">here</a>.
+            </div>
+        }
+    </form>
+</section>
+<!-- /.box-body -->
+@*<div class="box-body">
+        <table class="table table-hover table-striped dataTable" cellspacing="0">
             <thead>
                 <tr>
-                    <th></th>
-                    <th>
+                    <th scope="col">
                         Title
                     </th>
-                    <th>
+                    <th scope="col">
                         Excerpt
                     </th>
-                    <th>
+                    <th scope="col">
                         Type
                     </th>
-                    <th>
+                    <th scope="col">
                         CreatedBy
                     </th>
-                    <th></th>
+                    <th scope="col"></th>
                 </tr>
             </thead>
+            <tfoot>
+                <tr>
+                    <th scope="col">
+                        Title
+                    </th>
+                    <th scope="col">
+                        Excerpt
+                    </th>
+                    <th scope="col">
+                        Type
+                    </th>
+                    <th scope="col">
+                        CreatedBy
+                    </th>
+                    <th scope="col"></th>
+                </tr>
+            </tfoot>
             <tbody>
-
                 @foreach (var item in Model.Items)
                 {
                     <tr>
-                        <td><input type="checkbox"></td>
                         <td>
                             @Html.DisplayFor(modelItem => item.Title)
                         </td>
@@ -76,17 +213,25 @@
                         </td>
 
                         <td>
-                            <a  asp-area="Portal" asp-action="Restore" asp-route-id="@item.Id"
-                               class="btn btn-sm btn-success" data-popout="true" data-toggle="confirmation" data-singleton="true"> <i class="fa fa-retweet"></i> </a>
-
-                            <a  asp-area="Portal" asp-controller="Articles" asp-action="Delete" asp-route-id="@item.Id"
-                               class="btn btn-sm btn-danger d-inline-block" data-popout="true" data-toggle="confirmation" data-singleton="true"> <span class="oi oi-x"></span> </a>
+                            <div class="btn-group btn-group-sm" role="group" aria-label="Actions">
+                                <a asp-controller="Product" asp-action="Edit" asp-route-id="@item.Id" asp-route-categoryId="@ViewBag.categoryId"
+                                   class="btn btn-sm btn-warning d-inline-block "><span class="oi oi-pencil"></span></a>
+                                <a asp-area="" asp-controller="Home" asp-action="ProductDetails"
+                                   asp-route-SeoName="@item.SeoName"
+                                   target="_blank" class="btn btn-sm btn-info"><span class="oi oi-eye"></span></a>
+                                <a asp-area="Portal" asp-controller="Product" asp-action="Recycle" asp-route-id="@item.Id"
+                                   class="btn btn-sm btn-danger d-inline-block" data-popout="true" data-toggle="confirmation" data-singleton="true"><span class="oi oi-x"></span></a>
+                            </div>
                         </td>
                     </tr>
                 }
             </tbody>
+
+            <tbody></tbody>
         </table>
-        <!-- /.table -->
-    </div>
-    <!-- /.mail-box-messages -->
-</div>
+        @await Html.PartialAsync("_Pagination", Model
+                            , new ViewDataDictionary(this.Vi‌​ewData)
+                            {
+    { "PageSize", Model.PageSize}, { "PageIndex", Model.PageIndex }, { "TotalPage", Model.TotalPage } })
+    </div>*@
+<!-- /.box-body -->

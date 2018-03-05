@@ -61,7 +61,7 @@
                 <span class="text-danger"></span>
 
                 <label class="custom-file" style="min-height:150px; cursor:pointer; border: 2px dashed;">
-                    <img src="{{mediaFile.Path}}" name="pic" class="custom-file-img d-block" style="max-height: 150px; width: auto; margin: 0 auto;" accept="image/*" width="100%" />
+                    <img src="{{mediaFile.fullPath}}" name="pic" class="custom-file-img d-block" style="max-height: 150px; width: auto; margin: 0 auto;" accept="image/*" width="100%" />
                     <input type="hidden" ng-model="mediaFile.folder" class="folder-val" />
                     <input type="file" name="pic" class="custom-file-input" data-file="mediaFile.file">
                     <input type="text" class="form-control custom-file-val d-none" ng-model="mediaFile.fullPath">

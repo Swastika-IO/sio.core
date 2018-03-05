@@ -168,14 +168,14 @@ namespace Swastika.Cms.Lib.Services
                     }
 
                     // EN-US
-                    var getCulture = CultureViewModel.Repository.GetSingleModel(
+                    var getCulture = BECultureViewModel.Repository.GetSingleModel(
                         c => c.Specificulture == "en-us",
                         _context: context,
                         _transaction: transaction);
 
                     if (!getCulture.IsSucceed)
                     {
-                        CultureViewModel cultureViewModel = new CultureViewModel()
+                        BECultureViewModel cultureViewModel = new BECultureViewModel()
                         {
                             Specificulture = "en-us",
                             FullName = "United States",
@@ -187,14 +187,14 @@ namespace Swastika.Cms.Lib.Services
                     }
 
                     // VI-VN
-                    getCulture = CultureViewModel.Repository.GetSingleModel(
+                    getCulture = BECultureViewModel.Repository.GetSingleModel(
                         c => c.Specificulture == "vi-vn",
                         _context: context,
                         _transaction: transaction);
 
                     if (!getCulture.IsSucceed)
                     {
-                        CultureViewModel cultureViewModel = new CultureViewModel()
+                        BECultureViewModel cultureViewModel = new BECultureViewModel()
                         {
                             Specificulture = "vi-vn",
                             FullName = "Vietnam",

@@ -62,7 +62,7 @@ namespace Swastika.Cms.Mvc.Areas.Portal.Controllers
             var getArticles = await InfoArticleViewModel.Repository.GetModelListByAsync(
                 article => article.Specificulture == _lang
                     && (string.IsNullOrEmpty(keyword) || article.Title.Contains(keyword))
-                    && article.Status == (int)SWStatus.Draft,
+                    && article.Status == (int)SWStatus.Deleted,
                 "CreatedDateTime", OrderByDirection.Descending,
                 pageSize, pageIndex).ConfigureAwait(false);
 

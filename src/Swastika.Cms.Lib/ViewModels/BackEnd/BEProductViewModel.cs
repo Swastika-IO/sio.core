@@ -604,31 +604,35 @@ namespace Swastika.Cms.Lib.ViewModels.BackEnd
 
         public override async Task<RepositoryResponse<bool>> CloneSubModelsAsync(BEProductViewModel parent, List<SupportedCulture> cloneCultures, SiocCmsContext _context = null, IDbContextTransaction _transaction = null)
         {
-            RepositoryResponse<bool> result = new RepositoryResponse<bool>() { };
-            foreach (var module in ActivedModules)
+            RepositoryResponse<bool> result = new RepositoryResponse<bool>() { IsSucceed = true };
+            if (ActivedModules.Count > 0)
             {
-                module.ParseModel();
-                var cloneModule = await module.CloneAsync(module.Model, cloneCultures, _context, _transaction);
-                if (cloneModule.IsSucceed)
+
+                foreach (var module in ActivedModules)
                 {
-                    var moduleNav = ModuleNavs.FirstOrDefault(m => m.ModuleId == module.Id &&
-                        m.ProductId == Id && m.Specificulture == module.Specificulture);
-                    var cloneNav = await moduleNav.CloneAsync(moduleNav.Model, cloneCultures, _context, _transaction);
-                    if (cloneNav.IsSucceed)
+                    module.ParseModel();
+                    var cloneModule = await module.CloneAsync(module.Model, cloneCultures, _context, _transaction);
+                    if (cloneModule.IsSucceed)
                     {
-                        result.IsSucceed = cloneNav.IsSucceed;
+                        var moduleNav = ModuleNavs.FirstOrDefault(m => m.ModuleId == module.Id &&
+                            m.ProductId == Id && m.Specificulture == module.Specificulture);
+                        var cloneNav = await moduleNav.CloneAsync(moduleNav.Model, cloneCultures, _context, _transaction);
+                        if (cloneNav.IsSucceed)
+                        {
+                            result.IsSucceed = cloneNav.IsSucceed;
+                        }
+                        else
+                        {
+                            result.IsSucceed = cloneNav.IsSucceed;
+                            result.Errors.AddRange(cloneNav.Errors);
+                            result.Exception = cloneNav.Exception;
+                        }
                     }
                     else
                     {
-                        result.IsSucceed = cloneNav.IsSucceed;
-                        result.Errors.AddRange(cloneNav.Errors);
-                        result.Exception = cloneNav.Exception;
+                        result.Errors.AddRange(cloneModule.Errors);
+                        result.Exception = cloneModule.Exception;
                     }
-                }
-                else
-                {
-                    result.Errors.AddRange(cloneModule.Errors);
-                    result.Exception = cloneModule.Exception;
                 }
             }
             return result;

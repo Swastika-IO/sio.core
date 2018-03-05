@@ -27,58 +27,72 @@ namespace Swastika.Cms.Lib.Services
         public bool IsInit { get; set; }
         private static JObject _translator { get; set; }
 
-        public JObject Translator {
-            get {
+        public JObject Translator
+        {
+            get
+            {
                 return _translator;
             }
-            set {
+            set
+            {
                 _translator = value;
             }
         }
 
-        public string ConnectionString {
-            get {
+        public string ConnectionString
+        {
+            get
+            {
                 return _connectionString;
             }
-            set {
+            set
+            {
                 _connectionString = value;
             }
         }
 
         private static List<BELanguageViewModel> _listLanguage;
 
-        public static List<BELanguageViewModel> ListLanguage {
-            get {
+        public static List<BELanguageViewModel> ListLanguage
+        {
+            get
+            {
                 if (_listLanguage == null)
                 {
                     InitLanguages();
                 }
                 return _listLanguage;
             }
-            set {
+            set
+            {
                 _listLanguage = value;
             }
         }
 
         private static List<SupportedCulture> _listSupportedLanguage;
 
-        public static List<SupportedCulture> ListSupportedCulture {
-            get {
+        public static List<SupportedCulture> ListSupportedCulture
+        {
+            get
+            {
                 if (_listSupportedLanguage == null)
                 {
                     InitCultures();
                 }
                 return _listSupportedLanguage;
             }
-            set {
+            set
+            {
                 _listSupportedLanguage = value;
             }
         }
 
         private static GlobalLanguageService _instance;
 
-        public static GlobalLanguageService Instance {
-            get {
+        public static GlobalLanguageService Instance
+        {
+            get
+            {
                 if (_instance == null)
                 {
                     lock (syncRoot)
@@ -90,14 +104,15 @@ namespace Swastika.Cms.Lib.Services
                             {
                                 _instance = new GlobalLanguageService();
                             }
-                           
+
                         }
                     }
                 }
 
                 return _instance;
             }
-            set {
+            set
+            {
                 _instance = value;
             }
         }
@@ -106,11 +121,11 @@ namespace Swastika.Cms.Lib.Services
         public GlobalLanguageService()
         {
             //_repo = LanguageRepository.GetInstance();
-            if (_instance!=null)
+            if (_instance != null)
             {
                 InitCultures();
             }
-            
+
             //InitLanguages();
         }
 
@@ -137,7 +152,7 @@ namespace Swastika.Cms.Lib.Services
 
         private static void InitCultures(SiocCmsContext _context = null, IDbContextTransaction _transaction = null)
         {
-            var getCultures = CultureViewModel.Repository.GetModelList(_context, _transaction);
+            var getCultures = BECultureViewModel.Repository.GetModelList(_context, _transaction);
             _listSupportedLanguage = new List<SupportedCulture>();
             if (getCultures.IsSucceed)
             {
@@ -163,7 +178,11 @@ namespace Swastika.Cms.Lib.Services
                     {
                         temp.Add(new JProperty(item.Keyword, item.Value));
                     }
-                    _translator.Add(new JProperty(culture.Specificulture, temp));
+                    if (_translator.GetValue(culture.Specificulture) == null)
+                    {
+                        _translator.Add(new JProperty(culture.Specificulture, temp));
+                    }
+
                 }
             }
         }

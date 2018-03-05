@@ -62,7 +62,7 @@ namespace Swastika.Cms.Mvc.Areas.Portal.Controllers
             var getProduct = await InfoProductViewModel.Repository.GetModelListByAsync(
                 product => product.Specificulture == _lang
                     && (string.IsNullOrEmpty(keyword) || product.Title.Contains(keyword))
-                    && product.Status != (int)SWStatus.Deleted,
+                    && product.Status == (int)SWStatus.Deleted,
                 "CreatedDateTime", OrderByDirection.Descending,
                 pageSize, pageIndex).ConfigureAwait(false);
 
@@ -184,7 +184,15 @@ namespace Swastika.Cms.Mvc.Areas.Portal.Controllers
                     }
                     else
                     {
-                        ModelState.AddModelError(string.Empty, result.Exception.Message);
+                        if (result.Exception!=null)
+                        {
+                            ModelState.AddModelError(string.Empty, result.Exception?.Message);
+                        }
+                        
+                        foreach (var error in result.Errors)
+                        {
+                            ModelState.AddModelError(string.Empty, error);
+                        }
                         return View(product);
                     }
                 }

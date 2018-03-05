@@ -46,14 +46,17 @@
                         </div>
                     }
                 }*@
-            @*<span class="switch">
-                    <input type="checkbox" asp-for="IsVisible" class="switch">
-                    <label asp-for="IsVisible">Publish</label>
-                </span>
-                <span class="switch">
+            
+                @*<span class="switch">
                         <input type="checkbox" asp-for="IsDeleted" class="switch">
                         <label asp-for="IsDeleted">Deleted</label>
                     </span>*@
+        </div>
+        <div class="form-group">
+            <span class="switch">
+                    <input type="checkbox" asp-for="IsClone" class="switch">
+                    <label asp-for="IsClone">Clone</label>
+                </span>
         </div>
         <div class="form-group">
             <label asp-for="CreatedDateTime" class="control-label">Created Date Time</label>

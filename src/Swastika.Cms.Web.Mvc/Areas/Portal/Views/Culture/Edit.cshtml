@@ -1,14 +1,13 @@
-@model Swastika.Cms.Lib.ViewModels.CultureViewModel
+@model BECultureViewModel
 
 @{
-    ViewData["Title"] = "Edit Culture";
+    ViewData["Title"] = "Create Culture";
     //Layout = "~/Views/Shared/_AdminLayout.cshtml";
-
 }
-
 <section class="content container-fluid">
     <form asp-controller="@ViewContext.RouteData.Values["controller"].ToString()"
-          asp-action="@ViewContext.RouteData.Values["action"].ToString()">
+          asp-action="@ViewContext.RouteData.Values["action"].ToString()"
+          enctype="application/x-www-form-urlencoded">
         @await Html.PartialAsync("EditableSides/_Editable_ActionsBar")
         <div class="row">
             <section class="col-lg-12">

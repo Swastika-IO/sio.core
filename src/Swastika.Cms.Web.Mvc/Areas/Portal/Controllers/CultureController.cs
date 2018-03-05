@@ -8,6 +8,7 @@ using Microsoft.Data.OData.Query;
 using Microsoft.EntityFrameworkCore;
 using Swastika.Cms.Lib.Services;
 using Swastika.Cms.Lib.ViewModels;
+using Swastika.Cms.Lib.ViewModels.BackEnd;
 using Swastika.Cms.Mvc.Controllers;
 using System.Threading.Tasks;
 
@@ -34,7 +35,7 @@ namespace Swastika.Cms.Mvc.Areas.Portal.Controllers
         [Route("Index/{pageSize:int?}/{pageIndex:int?}/{keyword}")]
         public IActionResult Index(int pageSize = 10, int pageIndex = 0, string keyword = null)
         {
-            return View(CultureViewModel.Repository.GetModelList("FullName", OrderByDirection.Ascending
+            return View(BECultureViewModel.Repository.GetModelList("FullName", OrderByDirection.Ascending
                 , pageSize, pageIndex).Data);
         }
 
@@ -48,7 +49,7 @@ namespace Swastika.Cms.Mvc.Areas.Portal.Controllers
                 return NotFound();
             }
 
-            var ttsCulture = await CultureViewModel.Repository.GetSingleModelAsync(m => m.Id == id).ConfigureAwait(false);
+            var ttsCulture = await BECultureViewModel.Repository.GetSingleModelAsync(m => m.Id == id).ConfigureAwait(false);
             if (ttsCulture == null)
             {
                 return NotFound();
@@ -62,7 +63,7 @@ namespace Swastika.Cms.Mvc.Areas.Portal.Controllers
         [Route("Create")]
         public IActionResult Create()
         {
-            return View();
+            return View(new BECultureViewModel());
         }
 
         // POST: Culture/Create
@@ -71,11 +72,11 @@ namespace Swastika.Cms.Mvc.Areas.Portal.Controllers
         [Route("Create")]
         [HttpPost]
         //[ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create(CultureViewModel vmCulture)
+        public async Task<IActionResult> Create(BECultureViewModel vmCulture)
         {
             if (ModelState.IsValid)
             {
-                Domain.Core.ViewModels.RepositoryResponse<CultureViewModel> result = await vmCulture.SaveModelAsync().ConfigureAwait(false);
+                var result = await vmCulture.SaveModelAsync().ConfigureAwait(false);
                 if (result.IsSucceed)
                 {
                     GlobalLanguageService.Instance.RefreshCultures();
@@ -88,14 +89,9 @@ namespace Swastika.Cms.Mvc.Areas.Portal.Controllers
         // GET: Culture/Edit/5
         [HttpGet]
         [Route("Edit/{id}")]
-        public async Task<IActionResult> Edit(int? id)
+        public async Task<IActionResult> Edit(int id)
         {
-            if (id == null)
-            {
-                return NotFound();
-            }
-
-            var ttsCulture = await CultureViewModel.Repository.GetSingleModelAsync(m => m.Id == id).ConfigureAwait(false);
+            var ttsCulture = await BECultureViewModel.Repository.GetSingleModelAsync(m => m.Id == id);//.ConfigureAwait(false);
             if (!ttsCulture.IsSucceed)
             {
                 return NotFound();
@@ -108,14 +104,12 @@ namespace Swastika.Cms.Mvc.Areas.Portal.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [Route("Edit/{id}")]
         [HttpPost]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, CultureViewModel culture)
+        public async Task<IActionResult> Edit(int id, [FromForm] BECultureViewModel culture)
         {
             if (id != culture.Id)
             {
                 return NotFound();
             }
-
             if (ModelState.IsValid)
             {
                 try
@@ -128,7 +122,7 @@ namespace Swastika.Cms.Mvc.Areas.Portal.Controllers
                 }
                 catch (DbUpdateConcurrencyException)
                 {
-                    if (!CultureViewModel.Repository.CheckIsExists(c => c.Specificulture == culture.Specificulture))
+                    if (!BECultureViewModel.Repository.CheckIsExists(c => c.Specificulture == culture.Specificulture))
                     {
                         return NotFound();
                     }
@@ -142,32 +136,17 @@ namespace Swastika.Cms.Mvc.Areas.Portal.Controllers
             return View(culture);
         }
 
-        // GET: Culture/Delete/5
-        [HttpGet]
-        [Route("Delete/{id}")]
-        public async Task<IActionResult> Delete(int? id)
-        {
-            if (id == null)
-            {
-                return NotFound();
-            }
-
-            var ttsCulture = await CultureViewModel.Repository.GetSingleModelAsync(m => m.Id == id).ConfigureAwait(false);
-            if (ttsCulture == null)
-            {
-                return NotFound();
-            }
-
-            return View(ttsCulture);
-        }
-
+        
         // POST: Culture/Delete/5
         [Route("Delete/{id}")]
-        [HttpPost, ActionName("Delete")]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> DeleteConfirmed(int id)
+        [HttpGet]
+        public async Task<IActionResult> Delete(int id)
         {
-            await CultureViewModel.Repository.RemoveModelAsync(c => c.Id == id).ConfigureAwait(false);
+            var vm = await BECultureViewModel.Repository.GetSingleModelAsync(c => c.Id == id);
+            if (vm.IsSucceed)
+            {
+                vm.Data.RemoveModelAsync(true);
+            }
             return RedirectToAction("Index");
         }
     }
