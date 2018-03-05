@@ -21,6 +21,7 @@ namespace Swastika.Cms.Lib.Models.Cms
         public string CreatedBy { get; set; }
         public DateTime CreatedDateTime { get; set; }
         public string CssClass { get; set; }
+        public string Layout { get; set; }
         public string Excerpt { get; set; }
         public string Icon { get; set; }
         public string Image { get; set; }

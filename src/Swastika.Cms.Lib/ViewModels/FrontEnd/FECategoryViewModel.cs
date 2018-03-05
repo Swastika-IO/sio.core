@@ -48,6 +48,10 @@ namespace Swastika.Cms.Lib.ViewModels.FrontEnd
         [JsonProperty("cssClass")]
         public string CssClass { get; set; }
 
+
+        [JsonProperty("layout")]
+        public string Layout { get; set; }
+
         [JsonProperty("staticUrl")]
         public string StaticUrl { get; set; }
 

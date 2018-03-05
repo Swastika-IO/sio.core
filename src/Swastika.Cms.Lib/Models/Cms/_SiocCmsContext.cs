@@ -66,7 +66,7 @@ namespace Swastika.Cms.Lib.Models.Cms
             string cnn = GlobalConfigurationService.Instance.GetConnectionString();
             if (!string.IsNullOrEmpty(cnn))
             {
-                optionsBuilder.UseSqlServer(cnn);
+                optionsBuilder.UseSqlServer(config.GetConnectionString("CmsConnection"));
             }
             
         }
@@ -215,6 +215,8 @@ namespace Swastika.Cms.Lib.Models.Cms
                 entity.Property(e => e.CreatedDateTime).HasColumnType("datetime");
 
                 entity.Property(e => e.CssClass).HasMaxLength(50);
+
+                entity.Property(e => e.Layout).HasMaxLength(50);
 
                 entity.Property(e => e.Icon).HasMaxLength(50);
 

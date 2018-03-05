@@ -46,6 +46,9 @@ namespace Swastika.Cms.Lib.ViewModels.BackEnd
         [JsonProperty("cssClass")]
         public string CssClass { get; set; }
 
+        [JsonProperty("layout")]
+        public string Layout { get; set; }
+
         [Required]
         [JsonProperty("title")]
         public string Title { get; set; }

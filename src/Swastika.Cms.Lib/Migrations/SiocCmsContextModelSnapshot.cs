@@ -199,6 +199,9 @@ namespace Swastika.Cms.Lib.Migrations
                     b.Property<DateTime?>("LastModified")
                         .HasColumnType("datetime");
 
+                    b.Property<string>("Layout")
+                        .HasMaxLength(50);
+
                     b.Property<int?>("Level");
 
                     b.Property<string>("ModifiedBy")
