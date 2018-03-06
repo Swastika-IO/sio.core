@@ -1,15 +1,10 @@
 ﻿'use strict';
-app.controller('PageController', function PhoneListController($scope) {
+app.controller('PageController', function PhoneListController($rootScope,$scope) {
     $scope.activedPage = {};
-    $scope.data = [];
-    
-    $scope.range = function (max) {
-        var input = [];
-        for (var i = 1; i <= max; i += 1) input.push(i);
-        return input;
-    };
+    $scope.data = [];   
 
     $scope.loadPages = function (pageIndex) {
+        $scope.isBusy = true;
         if (pageIndex != undefined) {
             $scope.request.pageIndex = pageIndex;
         }
@@ -23,7 +18,7 @@ app.controller('PageController', function PhoneListController($scope) {
         $scope.settings.url = url;// + '/true';
         $scope.settings.data = $scope.request;
         $.ajax($scope.settings).done(function (response) {
-            $scope.$apply($scope.data = response.data);
+            $scope.data = response.data;
 
             $.each($scope.data.items, function (i, page) {
                 $.each($scope.activedPages, function (i, e) {
@@ -32,6 +27,8 @@ app.controller('PageController', function PhoneListController($scope) {
                     }
                 })
             })
+            $scope.isBusy = false;
+            $scope.$apply();
         });
     };
 

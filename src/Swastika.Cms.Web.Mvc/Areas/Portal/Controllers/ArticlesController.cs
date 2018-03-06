@@ -42,15 +42,15 @@ namespace Swastika.Cms.Mvc.Areas.Portal.Controllers
         [Route("Index/{pageSize:int?}/{pageIndex:int?}")]
         public async Task<IActionResult> Index(int pageSize = 10, int pageIndex = 0, string keyword = null)
         {
-            RepositoryResponse<PaginationModel<InfoArticleViewModel>> getArticles =
-                await InfoArticleViewModel.Repository.GetModelListByAsync(
-                article => article.Specificulture == CurrentLanguage
-                    && article.Status != (int)SWStatus.Deleted
-                    && (string.IsNullOrEmpty(keyword) || article.Title.Contains(keyword)),
-                "Priority", OrderByDirection.Ascending
-                , pageSize, pageIndex).ConfigureAwait(false);
-            ViewBag.keyword = keyword;
-            return View(getArticles.Data);
+            //RepositoryResponse<PaginationModel<InfoArticleViewModel>> getArticles =
+            //    await InfoArticleViewModel.Repository.GetModelListByAsync(
+            //    article => article.Specificulture == CurrentLanguage
+            //        && article.Status != (int)SWStatus.Deleted
+            //        && (string.IsNullOrEmpty(keyword) || article.Title.Contains(keyword)),
+            //    "Priority", OrderByDirection.Ascending
+            //    , pageSize, pageIndex).ConfigureAwait(false);
+            //ViewBag.keyword = keyword;
+            return View();
         }
 
         // GET: Portal/Articles/Draft

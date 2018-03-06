@@ -10,6 +10,7 @@ app.controller('ArticleController', function PhoneListController($scope) {
     };
 
     $scope.loadArticles = function (articleIndex) {
+        $scope.isBusy = true;
         if (articleIndex != undefined) {
             $scope.request.articleIndex = articleIndex;
         }
@@ -32,6 +33,8 @@ app.controller('ArticleController', function PhoneListController($scope) {
                     }
                 })
             })
+            $scope.isBusy = false;
+            $scope.$apply();
         });
     };
 

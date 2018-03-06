@@ -1,6 +1,7 @@
 ﻿'use strict';
 app.controller('PortalController', function PhoneListController($scope) {
     $scope.currentLanguage = $('#curentLanguage').val();
+    $scope.isBusy = true;
     $scope.mediaData = {};
     $scope.mediaFile = {
         file: null,

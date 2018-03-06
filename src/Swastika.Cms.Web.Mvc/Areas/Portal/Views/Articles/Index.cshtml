@@ -4,6 +4,9 @@
 }
 <!-- Main content -->
 <section class="content container-fluid" ng-controller="ArticleController">
+    <div class="loader-container" ng-show="isBusy">
+        <div id="loader"></div>
+    </div>
     <div class="row">
         <div class="col-md-8">
             <div class="btn-toolbar mb-3" role="toolbar" aria-label="Toolbar with button groups">
