@@ -30,8 +30,8 @@
                         ng-change="loadArticles(0)">
                     <option ng-repeat="item in pageSizes track by $index" value="{{item}}">{{item}}</option>
                 </select>
-                <input type="date" ng-model="request.fromDate" />
-                <input type="date" ng-model="request.toDate" />
+                <input type="date" data-date-format="dd.MM.yyyy - hh:mm:ss a" ng-model="request.fromDate" />
+                <input type="date" data-date-format="dd.MM.yyyy - hh:mm:ss a" ng-model="request.toDate" />
             </div>
         </div>
         <div class="col-md-4">

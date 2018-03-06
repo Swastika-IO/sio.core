@@ -1,5 +1,5 @@
 ﻿'use strict';
-app.controller('PageController', function PhoneListController($rootScope,$scope) {
+app.controller('PageController', function PhoneListController($filter,$scope) {
     $scope.activedPage = {};
     $scope.data = [];   
 
@@ -9,10 +9,10 @@ app.controller('PageController', function PhoneListController($rootScope,$scope)
             $scope.request.pageIndex = pageIndex;
         }
         if ($scope.request.fromDate != null) {
-            $scope.request.fromDate = $scope.request.fromDate.toISOString();
+            $scope.request.fromDate = $filter('date')($scope.request.fromDate, "yyyy-MM-dd");
         }
         if ($scope.request.toDate != null) {
-            $scope.request.toDate = $scope.request.toDate.toISOString();
+            $scope.request.toDate = $filter('date')($scope.request.toDate, "yyyy-MM-dd");
         }
         var url = '/api/' + $scope.currentLanguage + '/page/list';//byProduct/' + productId;
         $scope.settings.url = url;// + '/true';
