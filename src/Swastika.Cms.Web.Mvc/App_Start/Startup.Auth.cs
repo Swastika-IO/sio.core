@@ -11,6 +11,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.IdentityModel.Tokens;
 using Swastika.Cms.Lib;
 using Swastika.Cms.Lib.Models.Account;
+using Swastika.Identity.Data;
 using Swastika.Identity.Models;
 using System;
 using System.Text;
@@ -27,7 +28,7 @@ namespace Swastika.Cms.Web.Mvc
                 connectionString = "Server=(localdb)\\mssqllocaldb;Database=aspnet-Swastika.Cms.Db;Trusted_Connection=True;MultipleActiveResultSets=true";
             }
 
-            services.AddDbContext<SiocCmsAccountContext>(options =>
+            services.AddDbContext<ApplicationDbContext>(options =>
                 options.UseSqlServer(connectionString));
 
             PasswordOptions pOpt = new PasswordOptions()
@@ -43,7 +44,7 @@ namespace Swastika.Cms.Web.Mvc
             {
                 options.Password = pOpt;
             })
-                .AddEntityFrameworkStores<SiocCmsAccountContext>()
+                .AddEntityFrameworkStores<ApplicationDbContext>()
                 .AddDefaultTokenProviders()
                 .AddUserManager<UserManager<ApplicationUser>>();
 

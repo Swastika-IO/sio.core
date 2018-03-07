@@ -15,6 +15,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Core", "Core", "{96B08E7C-A
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Swastika", "..\..\Swastika-Heart\src\Swastika\Swastika.csproj", "{289DFF6B-C944-4005-83BC-10DCC6420A1E}"
 EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Swastika.Identity", "..\..\Swastika-Identity\src\Swastika.Identity\Swastika.Identity.csproj", "{73786840-58D8-447F-B2F6-D90F751651FC}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -37,6 +39,10 @@ Global
 		{289DFF6B-C944-4005-83BC-10DCC6420A1E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{289DFF6B-C944-4005-83BC-10DCC6420A1E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{289DFF6B-C944-4005-83BC-10DCC6420A1E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{73786840-58D8-447F-B2F6-D90F751651FC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{73786840-58D8-447F-B2F6-D90F751651FC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{73786840-58D8-447F-B2F6-D90F751651FC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{73786840-58D8-447F-B2F6-D90F751651FC}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -46,6 +52,7 @@ Global
 		{FCD5568D-56D1-482C-B36D-B38AA4ECB890} = {7995F1E6-D8C1-4E09-BB44-056740F208E6}
 		{8421C37A-6FA8-44C9-B08D-A9EA28BF8884} = {7995F1E6-D8C1-4E09-BB44-056740F208E6}
 		{289DFF6B-C944-4005-83BC-10DCC6420A1E} = {96B08E7C-A426-437C-96BA-1A2DF11FD135}
+		{73786840-58D8-447F-B2F6-D90F751651FC} = {96B08E7C-A426-437C-96BA-1A2DF11FD135}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {07795DAD-40EE-4909-A6F5-320D6B0D3B54}

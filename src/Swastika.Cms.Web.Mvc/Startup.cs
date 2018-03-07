@@ -62,6 +62,8 @@ namespace Swastika.Cms.Web.Mvc
             //Swastika.Identity.Startup.ConfigIdentity(services, Configuration, "CmsConnection");
             ConfigIdentity(services, Configuration, Configuration.GetConnectionString(Swastika.Cms.Lib.SWCmsConstants.CONST_DEFAULT_CONNECTION)); //Cms Config
 
+            // SignalR Services
+
             ConfigCookieAuth(services, Configuration);
             ConfigJWTToken(services, Configuration);
 
