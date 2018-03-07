@@ -28,7 +28,7 @@ namespace Swastika.Cms.Web.Mvc
                 connectionString = "Server=(localdb)\\mssqllocaldb;Database=aspnet-Swastika.Cms.Db;Trusted_Connection=True;MultipleActiveResultSets=true";
             }
 
-            services.AddDbContext<ApplicationDbContext>(options =>
+            services.AddDbContext<SiocCmsAccountContext>(options =>
                 options.UseSqlServer(connectionString));
 
             PasswordOptions pOpt = new PasswordOptions()
@@ -44,7 +44,7 @@ namespace Swastika.Cms.Web.Mvc
             {
                 options.Password = pOpt;
             })
-                .AddEntityFrameworkStores<ApplicationDbContext>()
+                .AddEntityFrameworkStores<SiocCmsAccountContext>()
                 .AddDefaultTokenProviders()
                 .AddUserManager<UserManager<ApplicationUser>>();
 

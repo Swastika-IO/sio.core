@@ -581,37 +581,47 @@ namespace Swastika.Core.Controllers
             var dtExpired = dtIssued.AddSeconds(SWCmsConstants.AuthConfiguration.AuthCookieExpiration);
             var dtRefreshTokenExpired = dtIssued.AddSeconds(SWCmsConstants.AuthConfiguration.AuthCookieExpiration);
 
-            RefreshTokenViewModel vmRefreshToken = new RefreshTokenViewModel(
-                        new RefreshTokens()
-                        {
-                            Id = refreshToken,
-                            Email = user.Email,
-                            IssuedUtc = dtIssued,
-                            ClientId = SWCmsConstants.AuthConfiguration.Audience,
-                            //Subject = SWCmsConstants.AuthConfiguration.Audience,
-                            ExpiresUtc = dtRefreshTokenExpired
-                        });
+            //RefreshTokenViewModel vmRefreshToken = new RefreshTokenViewModel(
+            //            new RefreshTokens()
+            //            {
+            //                Id = refreshToken,
+            //                Email = user.Email,
+            //                IssuedUtc = dtIssued,
+            //                ClientId = SWCmsConstants.AuthConfiguration.Audience,
+            //                //Subject = SWCmsConstants.AuthConfiguration.Audience,
+            //                ExpiresUtc = dtRefreshTokenExpired
+            //            });
 
-            var saveRefreshTokenResult = await vmRefreshToken.SaveModelAsync();
-
-            if (saveRefreshTokenResult.IsSucceed)
+            //var saveRefreshTokenResult = await vmRefreshToken.SaveModelAsync();
+            AccessTokenViewModel token = new AccessTokenViewModel()
             {
-                AccessTokenViewModel token = new AccessTokenViewModel()
-                {
-                    Access_token = GenerateToken(user, dtExpired, refreshToken),
-                    Refresh_token = vmRefreshToken.Id,
-                    Token_type = SWCmsConstants.AuthConfiguration.TokenType,
-                    Expires_in = SWCmsConstants.AuthConfiguration.AuthCookieExpiration,
-                    //UserData = user,
-                    Issued = dtIssued,
-                    Expires = dtExpired,
-                };
-                return token;
-            }
-            else
-            {
-                return null;
-            }
+                Access_token = GenerateToken(user, dtExpired, refreshToken),
+                //Refresh_token = vmRefreshToken.Id,
+                Token_type = SWCmsConstants.AuthConfiguration.TokenType,
+                Expires_in = SWCmsConstants.AuthConfiguration.AuthCookieExpiration,
+                //UserData = user,
+                Issued = dtIssued,
+                Expires = dtExpired,
+            };
+            return token;
+            //if (saveRefreshTokenResult.IsSucceed)
+            //{
+            //    AccessTokenViewModel token = new AccessTokenViewModel()
+            //    {
+            //        Access_token = GenerateToken(user, dtExpired, refreshToken),
+            //        Refresh_token = vmRefreshToken.Id,
+            //        Token_type = SWCmsConstants.AuthConfiguration.TokenType,
+            //        Expires_in = SWCmsConstants.AuthConfiguration.AuthCookieExpiration,
+            //        //UserData = user,
+            //        Issued = dtIssued,
+            //        Expires = dtExpired,
+            //    };
+            //    return token;
+            //}
+            //else
+            //{
+            //    return null;
+            //}
 
             //var token = new JwtTokenBuilder()
             //                    .AddSecurityKey(JwtSecurityKey.Create(SWCmsConstants.JWTSettings.SECRET_KEY))
