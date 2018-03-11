@@ -35,11 +35,6 @@
                         <button class="dropdown-item" ng-repeat="item in pageSizes track by $index" ng-model="request.pageSize" ng-click="request.pageSize=item;loadPages();" value="{{item}}">{{item}}</button>
                     </div>
                 </div>
-                <style>
-                    input[type="date"]::-webkit-inner-spin-button {
-                        display: none;
-                    }
-                </style>
                 <div class="input-group mr-2" role="group" aria-label="First group">
                     <div class="input-group-prepend">
                         <span class="input-group-text" id=""><i class="mi mi-Calendar"></i></span>
@@ -73,6 +68,9 @@
                 <th scope="col">
                     Description
                 </th>
+                @*<th scope="col">
+                        Type
+                    </th>*@
                 <th scope="col" width="15%">
                     Created Date
                 </th>
@@ -102,6 +100,9 @@
                         {{item.excerpt}}
                     </small>
                 </td>
+                @*<td>
+                        {{item.type}}
+                    </td>*@
                 <td>
                     <small>
                         {{item.createdDateTime | utcToLocal:'dd.MM.yy - hh:mm a'}}
