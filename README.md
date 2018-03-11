@@ -108,3 +108,6 @@ This project has been developed using:
 * [Micon](http://xtoolkit.github.io/Micon/icons/)
 * [.NET](https://www.microsoft.com/net/core)
 * And more...
+
+## Tags
+#### Asp.Net Core CMS, Asp.Net Core MVC CMS, C# Core CMS, NetCoreCMS, Core CMS, Modular Architecture, CMS Theme, CMS Widget, Multilangual CMS, .Net CMS Platform, .Net CMS Open Source, .Net CMS Comparison 2017, .Net CMS System, .Net CMS Framework, .Net CMS Open Source MVC, .Net CMS tools, .Net CMS website, Content Management System, Blog Engine, DotNet Core,
