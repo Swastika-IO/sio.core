@@ -5,7 +5,10 @@ Swastika I/O is free, open source and cross-platform CMS based on ASP.NET Core. 
 [![Gitter](https://badges.gitter.im/Swastika-IO/Swastika-IO-Core.svg)](https://gitter.im/Swastika-IO/Swastika-IO-Core?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge)
 
 ## Buid status:
-[![Build Status](https://travis-ci.org/Swastika-IO/Swastika-IO-Core.svg?branch=master)](https://travis-ci.org/Swastika-IO/Swastika-IO-Core)  [![Build status](https://ci.appveyor.com/api/projects/status/dup0f5a09j58ud8s?svg=true)](https://ci.appveyor.com/project/Smilefounder/swastika-core)
+| Build server| Platform       | Status      |
+|-------------|----------------|-------------|
+|Travis       | Linux / MacOS  |[![Build Status](https://travis-ci.org/Swastika-IO/Swastika-IO-Core.svg?branch=master)](https://travis-ci.org/Swastika-IO/Swastika-IO-Core) |
+|Appveyor      | Windows/Vs2017 |[![Build status](https://ci.appveyor.com/api/projects/status/dup0f5a09j58ud8s?svg=true)](https://ci.appveyor.com/project/Smilefounder/swastika-core)|
 
 - Docs: [http://docs.swastika.io](http://docs.swastika.io)
 - Demo: [http://demo.swastika.io](http://demo.swastika.io)
