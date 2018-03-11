@@ -1,0 +1,28 @@
+version: 1.0.{build}
+image: Visual Studio 2017
+configuration: Debug
+init:
+- ps: choco install dotnetcore-sdk
+build_script:
+- cmd: >-
+    git clone -q --branch=master https://github.com/Swastika-IO/Swastika-IO-Heart.git C:\projects\Swastika-Heart
+
+    git clone -q --branch=master https://github.com/Swastika-IO/Swastika-IO-Identity.git C:\projects\Swastika-Identity
+
+
+    cd src\Swastika.Cms.Web.Mvc
+
+    dotnet restore
+
+    dotnet build
+artifacts:
+- path: dist
+  name: web-app
+notifications:
+- provider: Email
+  to:
+  - nhathoang989@gmail.com
+  subject: '[ Swastika I/O ] Build failure'
+  on_build_success: false
+  on_build_failure: true
+  on_build_status_changed: false
