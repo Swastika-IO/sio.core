@@ -16,23 +16,37 @@
                     <a asp-area="Portal" asp-controller="Pages" asp-action="Index" class="btn btn-secondary"><i class="mi mi-List"></i></a>
                     <a asp-area="Portal" asp-controller="Pages" asp-action="Draft" class="btn btn-secondary"><i class="mi mi-Paste"></i></a>
                 </div>
-                <select class="btn btn-outline-secondary custom-select col-sm-3"
-                        ng-model="request.orderBy"
-                        ng-change="loadPages()">
-                    <option ng-repeat="item in orders track by $index" value="{{item.value}}">{{item.title}}</option>
-                </select>
-                <select class="btn btn-outline-secondary custom-select col-sm-1"
-                        ng-model="request.direction"
-                        ng-change="loadPages()">
-                    <option ng-repeat="item in directions track by $index" value="{{item.value}}">{{item.title}}</option>
-                </select>
-                <select class="btn btn-outline-secondary custom-select col-sm-1"
-                        ng-model="request.pageSize"
-                        ng-change="loadPages(0)">
-                    <option ng-repeat="item in pageSizes track by $index" value="{{item}}">{{item}}</option>
-                </select>
-                <input type="date" ng-model="request.fromDate" ng-change="loadPages()" />
-                <input type="date" ng-model="request.toDate" ng-change="loadPages()" />
+                <div class="btn-group dropdown mr-2">
+                    <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownOrderBy" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        {{request.orderBy}}
+                    </button>
+                    <div class="dropdown-menu" aria-labelledby="dropdownOrderBy">
+                        <button class="dropdown-item" ng-repeat="item in orders track by $index" ng-model="request.orderBy" ng-click="request.orderBy=item.value;loadPages();" value="{{item.value}}">{{item.title}}</button>
+                    </div>
+                </div>
+                <div class="btn-group mr-2" role="group" aria-label="First group">
+                    <button class="btn btn-secondary" ng-repeat="item in directions track by $index" ng-model="request.direction" ng-click="request.direction=item.value;loadPages();" value="{{item.value}}">{{item.title}}</button>
+                </div>
+                <div class="dropdown mr-2">
+                    <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownItemPerPage" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        {{request.pageSize}} items
+                    </button>
+                    <div class="dropdown-menu" aria-labelledby="dropdownItemPerPage">
+                        <button class="dropdown-item" ng-repeat="item in pageSizes track by $index" ng-model="request.pageSize" ng-click="request.pageSize=item;loadPages();" value="{{item}}">{{item}}</button>
+                    </div>
+                </div>
+                <style>
+                    input[type="date"]::-webkit-inner-spin-button {
+                        display: none;
+                    }
+                </style>
+                <div class="input-group mr-2" role="group" aria-label="First group">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text" id=""><i class="mi mi-Calendar"></i></span>
+                    </div>
+                    <input type="date" ng-model="request.fromDate" ng-change="loadPages()" class="form-control" />
+                    <input type="date" ng-model="request.toDate" ng-change="loadPages()" class="form-control" />
+                </div>
             </div>
         </div>
         <div class="col-md-4">
@@ -47,29 +61,28 @@
     <table class="table table-sm table-hover" cellspacing="0">
         <thead class="thead-light">
             <tr>
-                <th scope="col" style="width: 3%;">
+                <th scope="col" width="3%">
                     <span class="oi oi-move"></span>
                 </th>
-                <th scope="col" style="width: 4%;">
+                <th scope="col" width="4%">
                     <span class="oi oi-sort-ascending"></span>
                 </th>
-                <th scope="col" style="width: 15%;">
+                <th scope="col" width="20%">
                     Title
                 </th>
                 <th scope="col">
                     Description
                 </th>
-                <th scope="col" style="width: 10%;">
+                <th scope="col" width="15%">
                     Created Date
                 </th>
-                <th scope="col" style="width: 10%;">
+                <th scope="col" width="10%">
                     Created By
                 </th>
 
-                <th scope="col" style="width: 5%;">Actions</th>
+                <th scope="col" width="5%">Actions</th>
             </tr>
         </thead>
-
 
         <tbody class="sortable" ng-init="data = loadPages()">
             <tr ng-repeat="item in data.items track by $index"
@@ -90,7 +103,9 @@
                     </small>
                 </td>
                 <td>
-                    {{item.createdDateTime | utcToLocal:'dd.MM.yyyy - hh:mm:ss a'}}
+                    <small>
+                        {{item.createdDateTime | utcToLocal:'dd.MM.yy - hh:mm a'}}
+                    </small>
                 </td>
                 <td>
                     {{item.createdBy}}
@@ -112,11 +127,10 @@
                 </td>
             </tr>
         </tbody>
-
     </table>
     <nav aria-label="Page navigation example">
         <ul class="pagination justify-content-end">
-            <li class="page-item" ng-class="{disabled: data.pageIndex==0}" 
+            <li class="page-item" ng-class="{disabled: data.pageIndex==0}"
                 ng-hide="data.totalPage==1">
                 <a class="page-link" href="javascript:void(0)" ng-click="loadPages(data.pageIndex-1)">Prev</a>
             </li>
@@ -129,7 +143,6 @@
             </li>
         </ul>
     </nav>
-
 </section>
 @section scripts{
     <script src="~/app/controllers/portal-page-controller.js"></script>
