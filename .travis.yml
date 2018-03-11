@@ -1,7 +1,7 @@
 language: csharp
 mono: none
 dotnet: 2.0.0
-before_script: 
+install:
   - git clone --depth=50 --branch=master https://github.com/Swastika-IO/Swastika-IO-Heart.git Swastika-IO/Swastika-Heart
   - git clone --depth=50 --branch=master https://github.com/Swastika-IO/Swastika-IO-Identity.git Swastika-IO/Swastika-Identity
 before_install: 
