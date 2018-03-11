@@ -50,10 +50,8 @@ namespace Swastika.Cms.Lib.ViewModels.BackEnd
         public IFormFile Asset { get; set; }// = new FileViewModel();
 
         [JsonProperty("assetFolder")]
-        public string AssetFolder
-        {
-            get
-            {
+        public string AssetFolder {
+            get {
                 return CommonHelper.GetFullPath(new string[] {
                     SWCmsConstants.Parameters.FileFolder,
                     SWCmsConstants.Parameters.TemplatesAssetFolder,
@@ -62,10 +60,8 @@ namespace Swastika.Cms.Lib.ViewModels.BackEnd
         }
 
         [JsonProperty("templateFolder")]
-        public string TemplateFolder
-        {
-            get
-            {
+        public string TemplateFolder {
+            get {
                 return CommonHelper.GetFullPath(new string[] { SWCmsConstants.Parameters.TemplatesFolder, Name });
             }
         }
@@ -370,7 +366,7 @@ namespace Swastika.Cms.Lib.ViewModels.BackEnd
                 var files = copyResult ? FileRepository.Instance.GetFilesWithContent(TemplateFolder) : new System.Collections.Generic.List<FileViewModel>();
                 //TODO: Create default asset
                 //FileRepository.Instance.CopyDirectory(TemplateFolder, TemplateFolder);
-                                foreach (var file in files)
+                foreach (var file in files)
                 {
                     BETemplateViewModel template = new BETemplateViewModel(
                         new SiocTemplate()

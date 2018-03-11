@@ -113,7 +113,6 @@ namespace Swastika.Cms.Lib.ViewModels.BackEnd
         [JsonProperty("moduleNavs")]
         public List<NavProductModuleViewModel> ModuleNavs { get; set; } // Children Modules
 
-        
         [JsonProperty("mediaNavs")]
         public List<NavProductMediaViewModel> MediaNavs { get; set; }
 
@@ -124,8 +123,7 @@ namespace Swastika.Cms.Lib.ViewModels.BackEnd
         public List<NavRelatedProductViewModel> ProductNavs { get; set; }
 
         [JsonProperty("jProductNavs")]
-        public JArray JProductNavs { get { return JArray.FromObject(ProductNavs??new List<NavRelatedProductViewModel>()); } }
-
+        public JArray JProductNavs { get { return JArray.FromObject(ProductNavs ?? new List<NavRelatedProductViewModel>()); } }
 
         [JsonProperty("activedModules")]
         public List<BEModuleViewModel> ActivedModules { get; set; } // Children Modules
@@ -148,10 +146,8 @@ namespace Swastika.Cms.Lib.ViewModels.BackEnd
         public List<BETemplateViewModel> Templates { get; set; }// Product Templates
 
         [JsonIgnore]
-        public string ActivedTemplate
-        {
-            get
-            {
+        public string ActivedTemplate {
+            get {
                 return GlobalConfigurationService.Instance.GetLocalString(SWCmsConstants.ConfigurationKeyword.Theme, Specificulture, SWCmsConstants.Default.DefaultTemplateFolder);
             }
         }
@@ -160,10 +156,8 @@ namespace Swastika.Cms.Lib.ViewModels.BackEnd
         public string TemplateFolderType { get { return SWCmsConstants.TemplateFolderEnum.Products.ToString(); } }
 
         [JsonProperty("templateFolder")]
-        public string TemplateFolder
-        {
-            get
-            {
+        public string TemplateFolder {
+            get {
                 return SWCmsHelper.GetFullPath(new string[]
                 {
                     SWCmsConstants.Parameters.TemplatesFolder
@@ -180,10 +174,8 @@ namespace Swastika.Cms.Lib.ViewModels.BackEnd
         public string Domain { get; set; } = "/";
 
         [JsonProperty("imageUrl")]
-        public string ImageUrl
-        {
-            get
-            {
+        public string ImageUrl {
+            get {
                 if (Image != null && Image.IndexOf("http") == -1)
                 {
                     return SWCmsHelper.GetFullPath(new string[] {
@@ -198,10 +190,8 @@ namespace Swastika.Cms.Lib.ViewModels.BackEnd
         }
 
         [JsonProperty("thumbnailUrl")]
-        public string ThumbnailUrl
-        {
-            get
-            {
+        public string ThumbnailUrl {
+            get {
                 if (Thumbnail != null && Thumbnail.IndexOf("http") == -1)
                 {
                     return SWCmsHelper.GetFullPath(new string[] {
@@ -305,7 +295,7 @@ namespace Swastika.Cms.Lib.ViewModels.BackEnd
             var getProductMedia = NavProductMediaViewModel.Repository.GetModelListBy(n => n.ProductId == Id && n.Specificulture == Specificulture, _context, _transaction);
             if (getProductMedia.IsSucceed)
             {
-                MediaNavs = getProductMedia.Data.OrderBy(p=>p.Priority).ToList();
+                MediaNavs = getProductMedia.Data.OrderBy(p => p.Priority).ToList();
                 MediaNavs.ForEach(n => n.IsActived = true);
             }
 
@@ -607,7 +597,6 @@ namespace Swastika.Cms.Lib.ViewModels.BackEnd
             RepositoryResponse<bool> result = new RepositoryResponse<bool>() { IsSucceed = true };
             if (ActivedModules.Count > 0)
             {
-
                 foreach (var module in ActivedModules)
                 {
                     module.ParseModel();

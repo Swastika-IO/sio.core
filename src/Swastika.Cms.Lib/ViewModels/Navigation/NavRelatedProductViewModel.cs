@@ -5,12 +5,9 @@
 using Microsoft.EntityFrameworkCore.Storage;
 using Newtonsoft.Json;
 using Swastika.Cms.Lib.Models.Cms;
-using Swastika.Cms.Lib.ViewModels.BackEnd;
 using Swastika.Cms.Lib.ViewModels.Info;
-using Swastika.Domain.Core.ViewModels;
 using Swastika.Domain.Data.ViewModels;
 using System;
-using System.Threading.Tasks;
 
 namespace Swastika.Cms.Lib.ViewModels.Navigation
 {
@@ -80,17 +77,6 @@ namespace Swastika.Cms.Lib.ViewModels.Navigation
             }
             return base.ParseModel();
         }
-
-        #region Sync
-
-        #endregion
-
-
-        #region Async
-
-
-
-        #endregion Async
 
         #endregion Overrides
     }

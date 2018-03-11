@@ -5,12 +5,10 @@
 using Microsoft.EntityFrameworkCore.Storage;
 using Newtonsoft.Json.Linq;
 using Swastika.Cms.Lib.Models.Cms;
-using Swastika.Cms.Lib.ViewModels;
 using Swastika.Cms.Lib.ViewModels.BackEnd;
 using Swastika.Domain.Core.Models;
 using System;
 using System.Collections.Generic;
-using System.Linq;
 
 namespace Swastika.Cms.Lib.Services
 {
@@ -27,72 +25,58 @@ namespace Swastika.Cms.Lib.Services
         public bool IsInit { get; set; }
         private static JObject _translator { get; set; }
 
-        public JObject Translator
-        {
-            get
-            {
+        public JObject Translator {
+            get {
                 return _translator;
             }
-            set
-            {
+            set {
                 _translator = value;
             }
         }
 
-        public string ConnectionString
-        {
-            get
-            {
+        public string ConnectionString {
+            get {
                 return _connectionString;
             }
-            set
-            {
+            set {
                 _connectionString = value;
             }
         }
 
         private static List<BELanguageViewModel> _listLanguage;
 
-        public static List<BELanguageViewModel> ListLanguage
-        {
-            get
-            {
+        public static List<BELanguageViewModel> ListLanguage {
+            get {
                 if (_listLanguage == null)
                 {
                     InitLanguages();
                 }
                 return _listLanguage;
             }
-            set
-            {
+            set {
                 _listLanguage = value;
             }
         }
 
         private static List<SupportedCulture> _listSupportedLanguage;
 
-        public static List<SupportedCulture> ListSupportedCulture
-        {
-            get
-            {
+        public static List<SupportedCulture> ListSupportedCulture {
+            get {
                 if (_listSupportedLanguage == null)
                 {
                     InitCultures();
                 }
                 return _listSupportedLanguage;
             }
-            set
-            {
+            set {
                 _listSupportedLanguage = value;
             }
         }
 
         private static GlobalLanguageService _instance;
 
-        public static GlobalLanguageService Instance
-        {
-            get
-            {
+        public static GlobalLanguageService Instance {
+            get {
                 if (_instance == null)
                 {
                     lock (syncRoot)
@@ -104,15 +88,13 @@ namespace Swastika.Cms.Lib.Services
                             {
                                 _instance = new GlobalLanguageService();
                             }
-
                         }
                     }
                 }
 
                 return _instance;
             }
-            set
-            {
+            set {
                 _instance = value;
             }
         }
@@ -182,7 +164,6 @@ namespace Swastika.Cms.Lib.Services
                     {
                         _translator.Add(new JProperty(culture.Specificulture, temp));
                     }
-
                 }
             }
         }

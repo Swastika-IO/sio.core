@@ -9,7 +9,7 @@ using Swastika.Identity.Data;
 
 namespace Swastika.Cms.Lib.Models.Account
 {
-    public partial class SiocCmsAccountContext: ApplicationDbContext
+    public partial class SiocCmsAccountContext : ApplicationDbContext
     {
         //public virtual DbSet<AspNetRoleClaims> AspNetRoleClaims { get; set; }
         //public virtual DbSet<AspNetRoles> AspNetRoles { get; set; }
@@ -50,10 +50,10 @@ namespace Swastika.Cms.Lib.Models.Account
 
             //optionsBuilder.UseSqlServer(config.GetConnectionString("AccountConnection"));
         }
+
         //protected override void OnModelCreating(ModelBuilder modelBuilder)
         //{
         //    //base.OnModelCreating(modelBuilder);
-
 
         //    //modelBuilder.Entity<RefreshTokens>(entity =>
         //    //{

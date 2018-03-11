@@ -75,10 +75,8 @@ namespace Swastika.Cms.Lib.ViewModels.FrontEnd
         [JsonProperty("products")]
         public PaginationModel<NavModuleProductViewModel> Products { get; set; } = new PaginationModel<NavModuleProductViewModel>();
 
-        public string TemplatePath
-        {
-            get
-            {
+        public string TemplatePath {
+            get {
                 return string.Format("../{0}", Template);
                 //return SWCmsHelper.GetFullPath(new string[]
                 //{
