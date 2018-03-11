@@ -241,7 +241,7 @@ ModelManifest.xml
 # FAKE - F# Make
 .fake/
 
-appsettings.json
+**/appsettings.json
 
 
 /src/Swastika.UI.Spa/wwwroot/static
