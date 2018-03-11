@@ -1,8 +1,9 @@
 language: csharp
 mono: none
 dotnet: 2.1.4
-solution: /src/Swastika.Core.sln
 before_install:
   - git clone --depth=50 --branch=master https://github.com/Swastika-IO/Swastika-IO-Heart.git /home/travis/build/Swastika-IO/Swastika-Heart
   - git clone --depth=50 --branch=master https://github.com/Swastika-IO/Swastika-IO-Identity.git /home/travis/build/Swastika-IO/Swastika-Identity
-
+script:
+  - dotnet restore
+  - dotnet build
