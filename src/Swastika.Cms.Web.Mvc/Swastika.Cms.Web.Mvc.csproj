@@ -6,8 +6,9 @@
     <TypeScriptToolsVersion>2.5</TypeScriptToolsVersion>
     <MvcRazorExcludeRefAssembliesFromPublish>false</MvcRazorExcludeRefAssembliesFromPublish>
     <MvcRazorCompileOnPublish>false</MvcRazorCompileOnPublish>
-  <PublishWithAspNetCoreTargetManifest>False</PublishWithAspNetCoreTargetManifest>
-  <Version>0.0.3</Version>
+    <GenerateProgramFile>false</GenerateProgramFile>
+    <PublishWithAspNetCoreTargetManifest>False</PublishWithAspNetCoreTargetManifest>
+    <Version>0.0.3</Version>
   </PropertyGroup>
 
   <ItemGroup>
@@ -278,6 +279,9 @@
     <ProjectReference Include="..\Swastka.Cms.Api\Swastka.Cms.Api.csproj" />
   </ItemGroup>
 
-  <ProjectExtensions><VisualStudio><UserProperties appsettings_1json__JSONSchema="http://json.schemastore.org/bower" /></VisualStudio></ProjectExtensions>
-
+  <ProjectExtensions>
+    <VisualStudio>
+      <UserProperties appsettings_1json__JSONSchema="http://json.schemastore.org/bower" />
+    </VisualStudio>
+  </ProjectExtensions>
 </Project>
