@@ -14,7 +14,6 @@ using Swastika.Cms.Lib.ViewModels.Info;
 using Swastika.Cms.Mvc.Controllers;
 using Swastika.Domain.Core.ViewModels;
 using System;
-using System.Linq;
 using System.Threading.Tasks;
 using static Swastika.Common.Utility.Enums;
 
@@ -184,11 +183,11 @@ namespace Swastika.Cms.Mvc.Areas.Portal.Controllers
                     }
                     else
                     {
-                        if (result.Exception!=null)
+                        if (result.Exception != null)
                         {
                             ModelState.AddModelError(string.Empty, result.Exception?.Message);
                         }
-                        
+
                         foreach (var error in result.Errors)
                         {
                             ModelState.AddModelError(string.Empty, error);
@@ -281,7 +280,6 @@ namespace Swastika.Cms.Mvc.Areas.Portal.Controllers
             ViewData["Index"] = index;
             return PartialView(new ExtraProperty());
         }
-
 
         [HttpPost]
         [Route("GetEditor")]
