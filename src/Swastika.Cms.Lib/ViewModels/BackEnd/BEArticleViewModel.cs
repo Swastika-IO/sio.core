@@ -368,7 +368,7 @@ namespace Swastika.Cms.Lib.ViewModels.BackEnd
 
             try
             {
-                var saveTemplate = await View.SaveModelAsync(false, _context, _transaction);
+                var saveTemplate = await View.SaveModelAsync(false, _context, _transaction).ConfigureAwait(false);
                 if (!saveTemplate.IsSucceed)
                 {
                     Errors.AddRange(saveTemplate.Errors);
@@ -382,7 +382,7 @@ namespace Swastika.Cms.Lib.ViewModels.BackEnd
                         categoryArticleViewModel.ArticleId = Id;
                         if (categoryArticleViewModel.IsActived)
                         {
-                            var saveResult = await categoryArticleViewModel.SaveModelAsync(false, _context, _transaction);
+                            var saveResult = await categoryArticleViewModel.SaveModelAsync(false, _context, _transaction).ConfigureAwait(false);
                             result = result && saveResult.IsSucceed;
                             if (!result)
                             {
@@ -391,7 +391,7 @@ namespace Swastika.Cms.Lib.ViewModels.BackEnd
                         }
                         else
                         {
-                            var saveResult = await categoryArticleViewModel.RemoveModelAsync(false, _context, _transaction);
+                            var saveResult = await categoryArticleViewModel.RemoveModelAsync(false, _context, _transaction).ConfigureAwait(false);
                             result = result && saveResult.IsSucceed;
                             if (!result)
                             {
@@ -408,7 +408,7 @@ namespace Swastika.Cms.Lib.ViewModels.BackEnd
                         moduleArticleViewModel.ArticleId = Id;
                         if (moduleArticleViewModel.IsActived)
                         {
-                            var saveResult = await moduleArticleViewModel.SaveModelAsync(false, _context, _transaction);
+                            var saveResult = await moduleArticleViewModel.SaveModelAsync(false, _context, _transaction).ConfigureAwait(false);
                             result = result && saveResult.IsSucceed;
                             if (!result)
                             {
@@ -417,7 +417,7 @@ namespace Swastika.Cms.Lib.ViewModels.BackEnd
                         }
                         else
                         {
-                            var saveResult = await moduleArticleViewModel.RemoveModelAsync(false, _context, _transaction);
+                            var saveResult = await moduleArticleViewModel.RemoveModelAsync(false, _context, _transaction).ConfigureAwait(false);
                             result = result && saveResult.IsSucceed;
                             if (!result)
                             {
@@ -434,11 +434,11 @@ namespace Swastika.Cms.Lib.ViewModels.BackEnd
                         bEArticleModuleViewModel.ArticleId = Id;
                         if (bEArticleModuleViewModel.IsActived)
                         {
-                            var saveResult = await bEArticleModuleViewModel.SaveModelAsync(false, _context, _transaction);
+                            var saveResult = await bEArticleModuleViewModel.SaveModelAsync(false, _context, _transaction).ConfigureAwait(false);
                         }
                         else
                         {
-                            var saveResult = await bEArticleModuleViewModel.RemoveModelAsync(true, _context, _transaction);
+                            var saveResult = await bEArticleModuleViewModel.RemoveModelAsync(true, _context, _transaction).ConfigureAwait(false);
                             result = saveResult.IsSucceed;
                             if (!result)
                             {

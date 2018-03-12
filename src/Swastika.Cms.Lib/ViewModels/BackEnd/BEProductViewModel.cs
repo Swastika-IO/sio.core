@@ -629,35 +629,35 @@ namespace Swastika.Cms.Lib.ViewModels.BackEnd
 
         public override async Task<RepositoryResponse<bool>> RemoveRelatedModelsAsync(BEProductViewModel view, SiocCmsContext _context = null, IDbContextTransaction _transaction = null)
         {
-            RepositoryResponse<bool> result = new RepositoryResponse<bool>()
+            RepositoryResponse<bool> repositoryResponse = new RepositoryResponse<bool>()
             {
                 IsSucceed = true
             };
 
-            if (result.IsSucceed)
+            if (repositoryResponse.IsSucceed)
             {
                 foreach (var item in view.Categories.Where(m => m.IsActived))
                 {
-                    result = await item.RemoveModelAsync(false, _context, _transaction);
+                    repositoryResponse = await item.RemoveModelAsync(false, _context, _transaction).ConfigureAwait(false);
                 }
             }
 
-            if (result.IsSucceed)
+            if (repositoryResponse.IsSucceed)
             {
                 foreach (var item in view.Modules.Where(m => m.IsActived))
                 {
-                    result = await item.RemoveModelAsync(false, _context, _transaction);
+                    repositoryResponse = await item.RemoveModelAsync(false, _context, _transaction);
                 }
             }
 
-            if (result.IsSucceed)
+            if (repositoryResponse.IsSucceed)
             {
                 foreach (var item in view.ModuleNavs.Where(m => m.IsActived))
                 {
-                    result = item.RemoveModel(false, _context, _transaction);
+                    repositoryResponse = item.RemoveModel(false, _context, _transaction);
                 }
             }
-            return result;
+            return repositoryResponse;
         }
 
         #endregion Async Methods
