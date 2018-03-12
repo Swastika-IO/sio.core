@@ -7,7 +7,6 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.Data.OData.Query;
 using Microsoft.EntityFrameworkCore;
 using Swastika.Cms.Lib.Services;
-using Swastika.Cms.Lib.ViewModels;
 using Swastika.Cms.Lib.ViewModels.BackEnd;
 using Swastika.Cms.Mvc.Controllers;
 using System.Threading.Tasks;
@@ -136,7 +135,6 @@ namespace Swastika.Cms.Mvc.Areas.Portal.Controllers
             return View(culture);
         }
 
-        
         // POST: Culture/Delete/5
         [Route("Delete/{id}")]
         [HttpGet]
