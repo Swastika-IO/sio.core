@@ -5,6 +5,11 @@
     <RootNamespace>Swastika.Cms.Lib</RootNamespace>
   </PropertyGroup>
 
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+    <DebugType>full</DebugType>
+    <DebugSymbols>true</DebugSymbols>
+  </PropertyGroup>
+
   <ItemGroup>
     <Compile Remove="Migrations\20180201164141_Add_Article_Priority.cs" />
     <Compile Remove="Migrations\20180206120944_Remove_Dub_Article_Prior.cs" />

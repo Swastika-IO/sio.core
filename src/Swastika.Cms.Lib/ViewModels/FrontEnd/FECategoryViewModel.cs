@@ -48,7 +48,6 @@ namespace Swastika.Cms.Lib.ViewModels.FrontEnd
         [JsonProperty("cssClass")]
         public string CssClass { get; set; }
 
-
         [JsonProperty("layout")]
         public string Layout { get; set; }
 
@@ -113,10 +112,8 @@ namespace Swastika.Cms.Lib.ViewModels.FrontEnd
         [JsonProperty("modules")]
         public List<FEModuleViewModel> Modules { get; set; } = new List<FEModuleViewModel>(); // Get All Module
 
-        public string TemplatePath
-        {
-            get
-            {
+        public string TemplatePath {
+            get {
                 return SWCmsHelper.GetFullPath(new string[]
                 {
                     ""

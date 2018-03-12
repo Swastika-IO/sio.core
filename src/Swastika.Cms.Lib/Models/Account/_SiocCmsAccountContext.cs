@@ -9,7 +9,7 @@ using Swastika.Identity.Data;
 
 namespace Swastika.Cms.Lib.Models.Account
 {
-    public partial class SiocCmsAccountContext: ApplicationDbContext
+    public partial class SiocCmsAccountContext : ApplicationDbContext
     {
         //public virtual DbSet<AspNetRoleClaims> AspNetRoleClaims { get; set; }
         //public virtual DbSet<AspNetRoles> AspNetRoles { get; set; }
@@ -41,7 +41,7 @@ namespace Swastika.Cms.Lib.Models.Account
                 .AddJsonFile(Common.Utility.Const.CONST_FILE_APPSETTING)
                 .Build();
 
-            string cnn = GlobalConfigurationService.Instance.GetConnectionString();
+            string cnn = GlobalConfigurationService.Instance.ConnectionString;
             if (!string.IsNullOrEmpty(cnn))
             {
                 //cnn = "Server=(localdb)\\mssqllocaldb;Database=aspnet-Swastika.Cms.Db;Trusted_Connection=True;MultipleActiveResultSets=true";
@@ -50,10 +50,10 @@ namespace Swastika.Cms.Lib.Models.Account
 
             //optionsBuilder.UseSqlServer(config.GetConnectionString("AccountConnection"));
         }
+
         //protected override void OnModelCreating(ModelBuilder modelBuilder)
         //{
         //    //base.OnModelCreating(modelBuilder);
-
 
         //    //modelBuilder.Entity<RefreshTokens>(entity =>
         //    //{

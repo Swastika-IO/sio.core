@@ -11,8 +11,8 @@ using Swastika.Cms.Lib.Repositories;
 using Swastika.Cms.Lib.ViewModels;
 using Swastika.Cms.Lib.ViewModels.BackEnd;
 using Swastika.Common.Helper;
+using System;
 using System.Collections.Generic;
-using System.Linq;
 
 namespace Swastika.Cms.Lib.Services
 {
@@ -237,7 +237,6 @@ namespace Swastika.Cms.Lib.Services
                             {
                                 IsActived = true
                             };
-                            
 
                             theme.SaveModel(true, context, transaction);
                         }
@@ -265,18 +264,17 @@ namespace Swastika.Cms.Lib.Services
                         }
                     }
 
-                  
-
                     GlobalLanguageService.Instance.RefreshCultures(context, transaction);
                     InitConfigurations(context, transaction);
                     transaction.Commit();
                     IsInit = true;
                 }
             }
-            catch // TODO: Add more specific exeption types instead of Exception only
+            catch (Exception ex) // TODO: Add more specific exeption types instead of Exception only
             {
                 IsInit = false;
                 transaction?.Rollback();
+                throw ex;
             }
             finally
             {

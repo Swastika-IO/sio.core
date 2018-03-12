@@ -110,10 +110,8 @@ namespace Swastika.Cms.Lib.ViewModels.FrontEnd
         public string Domain { get; set; } = "/";
 
         [JsonProperty("imageUrl")]
-        public string ImageUrl
-        {
-            get
-            {
+        public string ImageUrl {
+            get {
                 if (Image != null && Image.IndexOf("http") == -1)
                 {
                     return SWCmsHelper.GetFullPath(new string[] {
@@ -128,10 +126,8 @@ namespace Swastika.Cms.Lib.ViewModels.FrontEnd
         }
 
         [JsonProperty("thumbnailUrl")]
-        public string ThumbnailUrl
-        {
-            get
-            {
+        public string ThumbnailUrl {
+            get {
                 if (Thumbnail != null && Thumbnail.IndexOf("http") == -1)
                 {
                     return SWCmsHelper.GetFullPath(new string[] {
@@ -145,10 +141,8 @@ namespace Swastika.Cms.Lib.ViewModels.FrontEnd
             }
         }
 
-        public string TemplatePath
-        {
-            get
-            {
+        public string TemplatePath {
+            get {
                 return SWCmsHelper.GetFullPath(new string[]
                 {
                     ""
@@ -167,6 +161,7 @@ namespace Swastika.Cms.Lib.ViewModels.FrontEnd
 
         [JsonProperty("productNavs")]
         public List<NavRelatedProductViewModel> ProductNavs { get; set; }
+
         #endregion Views
 
         #endregion Properties

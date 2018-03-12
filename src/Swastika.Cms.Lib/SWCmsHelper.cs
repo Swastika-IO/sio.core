@@ -31,7 +31,6 @@ namespace Swastika.Cms.Lib
             }
         }
 
-
         public static FEModuleViewModel GetModule(string name, string culture)
         {
             var getModule = FEModuleViewModel.Repository.GetSingleModel(m => m.Name == name);
@@ -233,7 +232,7 @@ namespace Swastika.Cms.Lib
 
         public static string SubString(string src, int length)
         {
-            return src.Length <= length ? src 
+            return src.Length <= length ? src
                 : src.Substring(0, length) + "...";
         }
     }

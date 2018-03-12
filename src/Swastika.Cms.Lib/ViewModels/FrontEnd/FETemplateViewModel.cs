@@ -90,10 +90,8 @@ namespace Swastika.Cms.Lib.ViewModels.FrontEnd
 
         [JsonIgnore]
         [JsonProperty("assetFolder")]
-        public string AssetFolder
-        {
-            get
-            {
+        public string AssetFolder {
+            get {
                 return CommonHelper.GetFullPath(new string[] {
                     SWCmsConstants.Parameters.FileFolder,
                     SWCmsConstants.Parameters.TemplatesAssetFolder,
@@ -103,18 +101,14 @@ namespace Swastika.Cms.Lib.ViewModels.FrontEnd
 
         [JsonIgnore]
         [JsonProperty("templateFolder")]
-        public string TemplateFolder
-        {
-            get
-            {
+        public string TemplateFolder {
+            get {
                 return CommonHelper.GetFullPath(new string[] { SWCmsConstants.Parameters.TemplatesFolder, TemplateName });
             }
         }
 
-        public string TemplatePath
-        {
-            get
-            {
+        public string TemplatePath {
+            get {
                 return SWCmsHelper.GetFullPath(new string[]
                 {
                     ""
@@ -126,28 +120,22 @@ namespace Swastika.Cms.Lib.ViewModels.FrontEnd
 
         [JsonIgnore]
         [JsonProperty("spaView")]
-        public XElement SpaView
-        {
-            get
-            {
+        public XElement SpaView {
+            get {
                 return !string.IsNullOrEmpty(SpaContent) ? XElement.Parse(Regex.Replace(SpaContent, "(?<!\r)\n|\r\n|\t", "").Trim()) : new XElement("div");
             }
         }
 
         [JsonProperty("mobileView")]
-        public JObject MobileView
-        {
-            get
-            {
+        public JObject MobileView {
+            get {
                 return !string.IsNullOrEmpty(MobileContent) ? JObject.Parse(MobileContent) : new JObject();
             }
         }
 
         [JsonProperty("mobileComponent")]
-        public MobileComponent mobileComponent
-        {
-            get
-            {
+        public MobileComponent mobileComponent {
+            get {
                 return new MobileComponent(SpaView);
             }
         }

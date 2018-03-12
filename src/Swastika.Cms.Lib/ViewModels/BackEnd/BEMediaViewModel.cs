@@ -62,10 +62,8 @@ namespace Swastika.Cms.Lib.ViewModels.BackEnd
         public string Domain { get { return GlobalConfigurationService.Instance.GetLocalString("Domain", Specificulture, "/"); } }
 
         [JsonProperty("fullPath")]
-        public string FullPath
-        {
-            get
-            {
+        public string FullPath {
+            get {
                 return SWCmsHelper.GetFullPath(new string[]{
                     Domain,
                     FileFolder,

@@ -3,11 +3,17 @@
   <PropertyGroup>
     <TargetFramework>netcoreapp2.0</TargetFramework>
     <TypeScriptCompileBlocked>true</TypeScriptCompileBlocked>
-    <TypeScriptToolsVersion>2.6</TypeScriptToolsVersion>
+    <TypeScriptToolsVersion>2.5</TypeScriptToolsVersion>
     <MvcRazorExcludeRefAssembliesFromPublish>false</MvcRazorExcludeRefAssembliesFromPublish>
     <MvcRazorCompileOnPublish>false</MvcRazorCompileOnPublish>
-  <PublishWithAspNetCoreTargetManifest>False</PublishWithAspNetCoreTargetManifest>
-  <Version>0.0.3</Version>
+    <GenerateProgramFile>false</GenerateProgramFile>
+    <PublishWithAspNetCoreTargetManifest>False</PublishWithAspNetCoreTargetManifest>
+    <Version>0.0.3</Version>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+    <DebugType>full</DebugType>
+    <DebugSymbols>true</DebugSymbols>
   </PropertyGroup>
 
   <ItemGroup>
@@ -89,7 +95,6 @@
     <Compile Remove="Controllers\AdminController.cs" />
     <Compile Remove="Controllers\DefaultController.cs" />
     <Compile Remove="Controllers\ManageController.cs" />
-    <Compile Remove="Controllers\MessengerController.cs" />
   </ItemGroup>
 
   <ItemGroup>
@@ -145,6 +150,7 @@
     <PackageReference Include="JWT" Version="3.2.0-beta" />
     <PackageReference Include="Microsoft.AspNetCore.All" Version="2.0.5" />
     <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="2.0.1" />
+    <PackageReference Include="Microsoft.NET.Test.Sdk" Version="15.6.1" />
     <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="2.0.2" />
     <PackageReference Include="Newtonsoft.Json" Version="11.0.1" />
     <PackageReference Include="Scriban" Version="1.2.0" />
@@ -267,77 +273,10 @@
     <None Include="Areas\User\Views\Manage\VerifyPhoneNumber.cshtml" />
     <None Include="Areas\User\Views\_ViewImports.cshtml" />
     <None Include="Areas\User\Views\_ViewStart.cshtml" />
-    <None Include="Views\Messenger\Index.cshtml" />
     <None Include="Views\_ViewImports.cshtml" />
     <None Include="Views\_ViewStart.cshtml" />
     <None Include="wwwroot\app\app-portal.js" />
     <None Include="wwwroot\app\controllers\portal-controller.js" />
-    <None Include="wwwroot\js\plugins\angular.min.js" />
-    <None Include="wwwroot\js\plugins\signalR\%40aspnet_signalr-client.1.0.0-preview1-28127.tgz" />
-    <None Include="wwwroot\js\plugins\signalR\%40aspnet_signalr-client.1.0.0-preview1-28127\package\dist\browser\signalr-client.js" />
-    <None Include="wwwroot\js\plugins\signalR\%40aspnet_signalr-client.1.0.0-preview1-28127\package\dist\browser\signalr-client.min.js" />
-    <None Include="wwwroot\js\plugins\signalR\%40aspnet_signalr-client.1.0.0-preview1-28127\package\dist\browser\signalr-clientES5.js" />
-    <None Include="wwwroot\js\plugins\signalR\%40aspnet_signalr-client.1.0.0-preview1-28127\package\dist\browser\signalr-clientES5.min.js" />
-    <None Include="wwwroot\js\plugins\signalR\%40aspnet_signalr-client.1.0.0-preview1-28127\package\dist\browser\signalr-msgpackprotocol.js" />
-    <None Include="wwwroot\js\plugins\signalR\%40aspnet_signalr-client.1.0.0-preview1-28127\package\dist\browser\signalr-msgpackprotocol.min.js" />
-    <None Include="wwwroot\js\plugins\signalR\%40aspnet_signalr-client.1.0.0-preview1-28127\package\dist\browser\signalr-msgpackprotocolES5.js" />
-    <None Include="wwwroot\js\plugins\signalR\%40aspnet_signalr-client.1.0.0-preview1-28127\package\dist\browser\signalr-msgpackprotocolES5.min.js" />
-    <None Include="wwwroot\js\plugins\signalR\%40aspnet_signalr-client.1.0.0-preview1-28127\package\dist\src\AbortController.js" />
-    <None Include="wwwroot\js\plugins\signalR\%40aspnet_signalr-client.1.0.0-preview1-28127\package\dist\src\Base64EncodedHubProtocol.js" />
-    <None Include="wwwroot\js\plugins\signalR\%40aspnet_signalr-client.1.0.0-preview1-28127\package\dist\src\Common.js" />
-    <None Include="wwwroot\js\plugins\signalR\%40aspnet_signalr-client.1.0.0-preview1-28127\package\dist\src\Errors.js" />
-    <None Include="wwwroot\js\plugins\signalR\%40aspnet_signalr-client.1.0.0-preview1-28127\package\dist\src\Formatters.js" />
-    <None Include="wwwroot\js\plugins\signalR\%40aspnet_signalr-client.1.0.0-preview1-28127\package\dist\src\HttpClient.js" />
-    <None Include="wwwroot\js\plugins\signalR\%40aspnet_signalr-client.1.0.0-preview1-28127\package\dist\src\HttpConnection.js" />
-    <None Include="wwwroot\js\plugins\signalR\%40aspnet_signalr-client.1.0.0-preview1-28127\package\dist\src\HubConnection.js" />
-    <None Include="wwwroot\js\plugins\signalR\%40aspnet_signalr-client.1.0.0-preview1-28127\package\dist\src\IConnection.js" />
-    <None Include="wwwroot\js\plugins\signalR\%40aspnet_signalr-client.1.0.0-preview1-28127\package\dist\src\IHttpConnectionOptions.js" />
-    <None Include="wwwroot\js\plugins\signalR\%40aspnet_signalr-client.1.0.0-preview1-28127\package\dist\src\IHubConnectionOptions.js" />
-    <None Include="wwwroot\js\plugins\signalR\%40aspnet_signalr-client.1.0.0-preview1-28127\package\dist\src\IHubProtocol.js" />
-    <None Include="wwwroot\js\plugins\signalR\%40aspnet_signalr-client.1.0.0-preview1-28127\package\dist\src\ILogger.js" />
-    <None Include="wwwroot\js\plugins\signalR\%40aspnet_signalr-client.1.0.0-preview1-28127\package\dist\src\index.js" />
-    <None Include="wwwroot\js\plugins\signalR\%40aspnet_signalr-client.1.0.0-preview1-28127\package\dist\src\JsonHubProtocol.js" />
-    <None Include="wwwroot\js\plugins\signalR\%40aspnet_signalr-client.1.0.0-preview1-28127\package\dist\src\Loggers.js" />
-    <None Include="wwwroot\js\plugins\signalR\%40aspnet_signalr-client.1.0.0-preview1-28127\package\dist\src\MessagePackHubProtocol.js" />
-    <None Include="wwwroot\js\plugins\signalR\%40aspnet_signalr-client.1.0.0-preview1-28127\package\dist\src\Observable.js" />
-    <None Include="wwwroot\js\plugins\signalR\%40aspnet_signalr-client.1.0.0-preview1-28127\package\dist\src\Transports.js" />
-    <None Include="wwwroot\js\plugins\signalR\%40aspnet_signalr-client.1.0.0-preview1-28127\package\README.md" />
-    <None Include="wwwroot\js\plugins\signalR\package\dist\browser\signalr-client.js" />
-    <None Include="wwwroot\js\plugins\signalR\package\dist\browser\signalr-client.min.js" />
-    <None Include="wwwroot\js\plugins\signalR\package\dist\browser\signalr-clientES5.js" />
-    <None Include="wwwroot\js\plugins\signalR\package\dist\browser\signalr-clientES5.min.js" />
-    <None Include="wwwroot\js\plugins\signalR\package\dist\browser\signalr-msgpackprotocol.js" />
-    <None Include="wwwroot\js\plugins\signalR\package\dist\browser\signalr-msgpackprotocol.min.js" />
-    <None Include="wwwroot\js\plugins\signalR\package\dist\browser\signalr-msgpackprotocolES5.js" />
-    <None Include="wwwroot\js\plugins\signalR\package\dist\browser\signalr-msgpackprotocolES5.min.js" />
-    <None Include="wwwroot\js\plugins\signalR\package\dist\src\AbortController.js" />
-    <None Include="wwwroot\js\plugins\signalR\package\dist\src\Base64EncodedHubProtocol.js" />
-    <None Include="wwwroot\js\plugins\signalR\package\dist\src\Common.js" />
-    <None Include="wwwroot\js\plugins\signalR\package\dist\src\Errors.js" />
-    <None Include="wwwroot\js\plugins\signalR\package\dist\src\Formatters.js" />
-    <None Include="wwwroot\js\plugins\signalR\package\dist\src\HttpClient.js" />
-    <None Include="wwwroot\js\plugins\signalR\package\dist\src\HttpConnection.js" />
-    <None Include="wwwroot\js\plugins\signalR\package\dist\src\HubConnection.js" />
-    <None Include="wwwroot\js\plugins\signalR\package\dist\src\IConnection.js" />
-    <None Include="wwwroot\js\plugins\signalR\package\dist\src\IHttpConnectionOptions.js" />
-    <None Include="wwwroot\js\plugins\signalR\package\dist\src\IHubConnectionOptions.js" />
-    <None Include="wwwroot\js\plugins\signalR\package\dist\src\IHubProtocol.js" />
-    <None Include="wwwroot\js\plugins\signalR\package\dist\src\ILogger.js" />
-    <None Include="wwwroot\js\plugins\signalR\package\dist\src\index.js" />
-    <None Include="wwwroot\js\plugins\signalR\package\dist\src\JsonHubProtocol.js" />
-    <None Include="wwwroot\js\plugins\signalR\package\dist\src\Loggers.js" />
-    <None Include="wwwroot\js\plugins\signalR\package\dist\src\MessagePackHubProtocol.js" />
-    <None Include="wwwroot\js\plugins\signalR\package\dist\src\Observable.js" />
-    <None Include="wwwroot\js\plugins\signalR\package\dist\src\Transports.js" />
-    <None Include="wwwroot\js\plugins\signalR\package\README.md" />
-    <None Include="wwwroot\js\plugins\signalR\signalr-client.js" />
-    <None Include="wwwroot\js\plugins\signalR\signalr-client.min.js" />
-    <None Include="wwwroot\js\plugins\signalR\signalr-clientES5.js" />
-    <None Include="wwwroot\js\plugins\signalR\signalr-clientES5.min.js" />
-    <None Include="wwwroot\js\plugins\signalR\signalr-msgpackprotocol.js" />
-    <None Include="wwwroot\js\plugins\signalR\signalr-msgpackprotocol.min.js" />
-    <None Include="wwwroot\js\plugins\signalR\signalr-msgpackprotocolES5.js" />
-    <None Include="wwwroot\js\plugins\signalR\signalr-msgpackprotocolES5.min.js" />
   </ItemGroup>
 
   <ItemGroup>
@@ -345,47 +284,9 @@
     <ProjectReference Include="..\Swastka.Cms.Api\Swastka.Cms.Api.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <TypeScriptCompile Include="wwwroot\js\plugins\signalR\%40aspnet_signalr-client.1.0.0-preview1-28127\package\dist\src\AbortController.d.ts" />
-    <TypeScriptCompile Include="wwwroot\js\plugins\signalR\%40aspnet_signalr-client.1.0.0-preview1-28127\package\dist\src\Base64EncodedHubProtocol.d.ts" />
-    <TypeScriptCompile Include="wwwroot\js\plugins\signalR\%40aspnet_signalr-client.1.0.0-preview1-28127\package\dist\src\Common.d.ts" />
-    <TypeScriptCompile Include="wwwroot\js\plugins\signalR\%40aspnet_signalr-client.1.0.0-preview1-28127\package\dist\src\Errors.d.ts" />
-    <TypeScriptCompile Include="wwwroot\js\plugins\signalR\%40aspnet_signalr-client.1.0.0-preview1-28127\package\dist\src\Formatters.d.ts" />
-    <TypeScriptCompile Include="wwwroot\js\plugins\signalR\%40aspnet_signalr-client.1.0.0-preview1-28127\package\dist\src\HttpClient.d.ts" />
-    <TypeScriptCompile Include="wwwroot\js\plugins\signalR\%40aspnet_signalr-client.1.0.0-preview1-28127\package\dist\src\HttpConnection.d.ts" />
-    <TypeScriptCompile Include="wwwroot\js\plugins\signalR\%40aspnet_signalr-client.1.0.0-preview1-28127\package\dist\src\HubConnection.d.ts" />
-    <TypeScriptCompile Include="wwwroot\js\plugins\signalR\%40aspnet_signalr-client.1.0.0-preview1-28127\package\dist\src\IConnection.d.ts" />
-    <TypeScriptCompile Include="wwwroot\js\plugins\signalR\%40aspnet_signalr-client.1.0.0-preview1-28127\package\dist\src\IHttpConnectionOptions.d.ts" />
-    <TypeScriptCompile Include="wwwroot\js\plugins\signalR\%40aspnet_signalr-client.1.0.0-preview1-28127\package\dist\src\IHubConnectionOptions.d.ts" />
-    <TypeScriptCompile Include="wwwroot\js\plugins\signalR\%40aspnet_signalr-client.1.0.0-preview1-28127\package\dist\src\IHubProtocol.d.ts" />
-    <TypeScriptCompile Include="wwwroot\js\plugins\signalR\%40aspnet_signalr-client.1.0.0-preview1-28127\package\dist\src\ILogger.d.ts" />
-    <TypeScriptCompile Include="wwwroot\js\plugins\signalR\%40aspnet_signalr-client.1.0.0-preview1-28127\package\dist\src\index.d.ts" />
-    <TypeScriptCompile Include="wwwroot\js\plugins\signalR\%40aspnet_signalr-client.1.0.0-preview1-28127\package\dist\src\JsonHubProtocol.d.ts" />
-    <TypeScriptCompile Include="wwwroot\js\plugins\signalR\%40aspnet_signalr-client.1.0.0-preview1-28127\package\dist\src\Loggers.d.ts" />
-    <TypeScriptCompile Include="wwwroot\js\plugins\signalR\%40aspnet_signalr-client.1.0.0-preview1-28127\package\dist\src\MessagePackHubProtocol.d.ts" />
-    <TypeScriptCompile Include="wwwroot\js\plugins\signalR\%40aspnet_signalr-client.1.0.0-preview1-28127\package\dist\src\Observable.d.ts" />
-    <TypeScriptCompile Include="wwwroot\js\plugins\signalR\%40aspnet_signalr-client.1.0.0-preview1-28127\package\dist\src\Transports.d.ts" />
-    <TypeScriptCompile Include="wwwroot\js\plugins\signalR\package\dist\src\AbortController.d.ts" />
-    <TypeScriptCompile Include="wwwroot\js\plugins\signalR\package\dist\src\Base64EncodedHubProtocol.d.ts" />
-    <TypeScriptCompile Include="wwwroot\js\plugins\signalR\package\dist\src\Common.d.ts" />
-    <TypeScriptCompile Include="wwwroot\js\plugins\signalR\package\dist\src\Errors.d.ts" />
-    <TypeScriptCompile Include="wwwroot\js\plugins\signalR\package\dist\src\Formatters.d.ts" />
-    <TypeScriptCompile Include="wwwroot\js\plugins\signalR\package\dist\src\HttpClient.d.ts" />
-    <TypeScriptCompile Include="wwwroot\js\plugins\signalR\package\dist\src\HttpConnection.d.ts" />
-    <TypeScriptCompile Include="wwwroot\js\plugins\signalR\package\dist\src\HubConnection.d.ts" />
-    <TypeScriptCompile Include="wwwroot\js\plugins\signalR\package\dist\src\IConnection.d.ts" />
-    <TypeScriptCompile Include="wwwroot\js\plugins\signalR\package\dist\src\IHttpConnectionOptions.d.ts" />
-    <TypeScriptCompile Include="wwwroot\js\plugins\signalR\package\dist\src\IHubConnectionOptions.d.ts" />
-    <TypeScriptCompile Include="wwwroot\js\plugins\signalR\package\dist\src\IHubProtocol.d.ts" />
-    <TypeScriptCompile Include="wwwroot\js\plugins\signalR\package\dist\src\ILogger.d.ts" />
-    <TypeScriptCompile Include="wwwroot\js\plugins\signalR\package\dist\src\index.d.ts" />
-    <TypeScriptCompile Include="wwwroot\js\plugins\signalR\package\dist\src\JsonHubProtocol.d.ts" />
-    <TypeScriptCompile Include="wwwroot\js\plugins\signalR\package\dist\src\Loggers.d.ts" />
-    <TypeScriptCompile Include="wwwroot\js\plugins\signalR\package\dist\src\MessagePackHubProtocol.d.ts" />
-    <TypeScriptCompile Include="wwwroot\js\plugins\signalR\package\dist\src\Observable.d.ts" />
-    <TypeScriptCompile Include="wwwroot\js\plugins\signalR\package\dist\src\Transports.d.ts" />
-  </ItemGroup>
-
-  <ProjectExtensions><VisualStudio><UserProperties appsettings_1json__JSONSchema="http://json.schemastore.org/bower" /></VisualStudio></ProjectExtensions>
-
+  <ProjectExtensions>
+    <VisualStudio>
+      <UserProperties appsettings_1json__JSONSchema="http://json.schemastore.org/bower" />
+    </VisualStudio>
+  </ProjectExtensions>
 </Project>

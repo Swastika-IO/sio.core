@@ -76,6 +76,7 @@ namespace Swastika.Cms.Lib.ViewModels.Navigation
             Image = Media?.FullPath;
             return base.ParseModel();
         }
+
         #endregion Overrides
     }
 }

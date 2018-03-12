@@ -103,10 +103,8 @@ namespace Swastika.Cms.Lib.ViewModels.Spa
         public string Domain { get; set; } = "/";
 
         [JsonProperty("imageUrl")]
-        public string ImageUrl
-        {
-            get
-            {
+        public string ImageUrl {
+            get {
                 if (Image != null && Image.IndexOf("http") == -1)
                 {
                     return SWCmsHelper.GetFullPath(new string[] {
@@ -121,10 +119,8 @@ namespace Swastika.Cms.Lib.ViewModels.Spa
         }
 
         [JsonProperty("thumbnailUrl")]
-        public string ThumbnailUrl
-        {
-            get
-            {
+        public string ThumbnailUrl {
+            get {
                 if (Thumbnail != null && Thumbnail.IndexOf("http") == -1)
                 {
                     return SWCmsHelper.GetFullPath(new string[] {
@@ -138,10 +134,8 @@ namespace Swastika.Cms.Lib.ViewModels.Spa
             }
         }
 
-        public string TemplatePath
-        {
-            get
-            {
+        public string TemplatePath {
+            get {
                 return SWCmsHelper.GetFullPath(new string[]
                 {
                     ""

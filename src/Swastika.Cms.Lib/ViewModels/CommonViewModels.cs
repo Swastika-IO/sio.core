@@ -15,25 +15,30 @@ namespace Swastika.Cms.Lib.ViewModels
     {
         [JsonProperty("totalPage")]
         public int TotalPage { get; set; }
+
         [JsonProperty("totalArticle")]
         public int TotalArticle { get; set; }
+
         [JsonProperty("totalProduct")]
         public int TotalProduct { get; set; }
+
         [JsonProperty("totalModule")]
         public int TotalModule { get; set; }
+
         [JsonProperty("totalUser")]
         public int TotalUser { get; set; }
 
         public DashboardViewModel()
         {
-            using(SiocCmsContext context = new SiocCmsContext())
+            using (SiocCmsContext context = new SiocCmsContext())
             {
                 TotalPage = context.SiocCategory.Count();
                 TotalArticle = context.SiocArticle.Count();
-                TotalProduct = context.SiocProduct.Count();                
+                TotalProduct = context.SiocProduct.Count();
             }
         }
     }
+
     public class InitCmsViewModel
     {
         public string DataBaseServer { get; set; }
@@ -53,10 +58,8 @@ namespace Swastika.Cms.Lib.ViewModels
 
     public class FileViewModel
     {
-        public string FullPath
-        {
-            get
-            {
+        public string FullPath {
+            get {
                 return CommonHelper.GetFullPath(new string[] {
                     "",
                     SWCmsConstants.Parameters.FileFolder,
@@ -64,7 +67,8 @@ namespace Swastika.Cms.Lib.ViewModels
                     string.Format("{0}{1}", Filename, Extension)
                 });
             }
-            set { }
+            set {
+            }
         }
 
         public string FolderName { get; set; }

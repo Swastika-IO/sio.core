@@ -2,8 +2,16 @@
 
 Swastika I/O is free, open source and cross-platform CMS based on ASP.NET Core. It is built using the best and the most modern tools and languages (Visual Studio 2017, C# etc). Be the best and join our team!
 
+[![Gitter](https://badges.gitter.im/Swastika-IO/Swastika-IO-Core.svg)](https://gitter.im/Swastika-IO/Swastika-IO-Core?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge)
+[![FOSSA Status](https://app.fossa.io/api/projects/git%2Bgithub.com%2FSwastika-IO%2FSwastika-IO-Core.svg?type=shield)](https://app.fossa.io/projects/git%2Bgithub.com%2FSwastika-IO%2FSwastika-IO-Core?ref=badge_shield)
+[![CodeFactor](https://www.codefactor.io/repository/github/swastika-io/swastika-io-core/badge)](https://www.codefactor.io/repository/github/swastika-io/swastika-io-core)
+[![codecov](https://codecov.io/gh/Swastika-IO/Swastika-IO-Core/branch/master/graph/badge.svg)](https://codecov.io/gh/Swastika-IO/Swastika-IO-Core)
+
 ## Buid status:
-![travis-ci](https://travis-ci.org/Swastika-IO/Swastika-IO-Core.svg?branch=master)
+| Build server| Platform       | Status      |
+|-------------|----------------|-------------|
+|Travis       | Linux / MacOS  |[![Build Status](https://travis-ci.org/Swastika-IO/Swastika-IO-Core.svg?branch=master)](https://travis-ci.org/Swastika-IO/Swastika-IO-Core) |
+|Appveyor      | Windows/Vs2017 |[![Build status](https://ci.appveyor.com/api/projects/status/dup0f5a09j58ud8s?svg=true)](https://ci.appveyor.com/project/Smilefounder/swastika-core)|
 
 - Docs: [http://docs.swastika.io](http://docs.swastika.io)
 - Demo: [http://demo.swastika.io](http://demo.swastika.io)
@@ -94,6 +102,9 @@ See also the list of [contributors](https://github.com/Swastika-IO/Swastika-IO-C
 
 This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md) file for details
 
+
+[![FOSSA Status](https://app.fossa.io/api/projects/git%2Bgithub.com%2FSwastika-IO%2FSwastika-IO-Core.svg?type=large)](https://app.fossa.io/projects/git%2Bgithub.com%2FSwastika-IO%2FSwastika-IO-Core?ref=badge_large)
+
 ## Thanks to
 
 This project has been developed using:
@@ -103,3 +114,6 @@ This project has been developed using:
 * [Micon](http://xtoolkit.github.io/Micon/icons/)
 * [.NET](https://www.microsoft.com/net/core)
 * And more...
+
+## Tags
+#### Asp.Net Core CMS, Asp.Net Core MVC CMS, C# Core CMS, NetCoreCMS, Core CMS, Modular Architecture, CMS Theme, CMS Widget, Multilangual CMS, .Net CMS Platform, .Net CMS Open Source, .Net CMS Comparison 2017, .Net CMS System, .Net CMS Framework, .Net CMS Open Source MVC, .Net CMS tools, .Net CMS website, Content Management System, Blog Engine, DotNet Core,

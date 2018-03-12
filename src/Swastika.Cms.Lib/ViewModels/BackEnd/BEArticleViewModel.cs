@@ -137,10 +137,8 @@ namespace Swastika.Cms.Lib.ViewModels.BackEnd
         public List<BETemplateViewModel> Templates { get; set; }// Article Templates
 
         [JsonIgnore]
-        public string ActivedTemplate
-        {
-            get
-            {
+        public string ActivedTemplate {
+            get {
                 return GlobalConfigurationService.Instance.GetLocalString(SWCmsConstants.ConfigurationKeyword.Theme, Specificulture, SWCmsConstants.Default.DefaultTemplateFolder);
             }
         }
@@ -149,10 +147,8 @@ namespace Swastika.Cms.Lib.ViewModels.BackEnd
         public string TemplateFolderType { get { return SWCmsConstants.TemplateFolderEnum.Articles.ToString(); } }
 
         [JsonProperty("templateFolder")]
-        public string TemplateFolder
-        {
-            get
-            {
+        public string TemplateFolder {
+            get {
                 return SWCmsHelper.GetFullPath(new string[]
                 {
                     SWCmsConstants.Parameters.TemplatesFolder
@@ -169,10 +165,8 @@ namespace Swastika.Cms.Lib.ViewModels.BackEnd
         public string Domain { get; set; } = "/";
 
         [JsonProperty("imageUrl")]
-        public string ImageUrl
-        {
-            get
-            {
+        public string ImageUrl {
+            get {
                 if (Image != null && Image.IndexOf("http") == -1)
                 {
                     return SWCmsHelper.GetFullPath(new string[] {
@@ -187,10 +181,8 @@ namespace Swastika.Cms.Lib.ViewModels.BackEnd
         }
 
         [JsonProperty("thumbnailUrl")]
-        public string ThumbnailUrl
-        {
-            get
-            {
+        public string ThumbnailUrl {
+            get {
                 if (Thumbnail != null && Thumbnail.IndexOf("http") == -1)
                 {
                     return SWCmsHelper.GetFullPath(new string[] {
@@ -322,7 +314,7 @@ namespace Swastika.Cms.Lib.ViewModels.BackEnd
             if (Properties.Count > 0)
             {
                 JArray arrProperties = new JArray();
-                foreach (var p in Properties.Where(p=>!string.IsNullOrEmpty(p.Value) && !string.IsNullOrEmpty(p.Name)).OrderBy(p => p.Priority))
+                foreach (var p in Properties.Where(p => !string.IsNullOrEmpty(p.Value) && !string.IsNullOrEmpty(p.Name)).OrderBy(p => p.Priority))
                 {
                     arrProperties.Add(JObject.FromObject(p));
                 }

@@ -32,9 +32,14 @@
     @*<link rel="stylesheet" type="text/css" href="~/lib/DataTables/datatables.min.css" />*@
     <link href="~/lib/cropperjs-1.2.2/dist/cropper.min.css" rel="stylesheet" />
     <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
     <style>
         .sw-content {
             width: 100% !important;
+        }
+
+        input[type="date"]::-webkit-inner-spin-button {
+            display: none;
         }
         /* helper to ensure that razor (which is correctly detected by ACE) is also highlighted */
         .ace_razor {
@@ -60,7 +65,8 @@
             background-color: black;
             opacity: 0.2;
             z-index: 9999;
-        } 
+        }
+
         #loader {
             position: absolute;
             left: 50%;
@@ -103,7 +109,7 @@
 
 <body ng-app="SwastikaPortal" ng-controller="PortalController as main">
     <input type="hidden" id="curentLanguage" name="curentLanguage" value="@ViewBag.culture" />
-    
+
     <!-- Page Header -->
     <header class="navbar navbar-expand flex-column flex-md-row sw-navbar">
         @await Component.InvokeAsync(typeof(Swastika.Cms.Mvc.Areas.Portal.ViewComponents.HeaderNavbar))

@@ -41,7 +41,6 @@ namespace Swastika.Cms.Lib.Models.Cms
         public virtual DbSet<SiocTemplate> SiocTemplate { get; set; }
         public virtual DbSet<SiocTheme> SiocTheme { get; set; }
 
-
         /// <summary>
         /// Initializes a new instance of the <see cref="ApplicationDbContext" /> class.
         /// </summary>
@@ -63,12 +62,11 @@ namespace Swastika.Cms.Lib.Models.Cms
                 .Build();
 
             // define the database to use
-            string cnn = GlobalConfigurationService.Instance.GetConnectionString();
+            string cnn = GlobalConfigurationService.Instance.ConnectionString;
             if (!string.IsNullOrEmpty(cnn))
             {
-                optionsBuilder.UseSqlServer(config.GetConnectionString("CmsConnection"));
+                optionsBuilder.UseSqlServer(cnn);
             }
-            
         }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)

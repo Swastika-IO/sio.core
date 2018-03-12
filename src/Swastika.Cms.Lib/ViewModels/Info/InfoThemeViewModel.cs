@@ -45,10 +45,8 @@ namespace Swastika.Cms.Lib.ViewModels.Info
         public IFormFile Asset { get; set; }// = new FileViewModel();
 
         [JsonProperty("assetFolder")]
-        public string AssetFolder
-        {
-            get
-            {
+        public string AssetFolder {
+            get {
                 return CommonHelper.GetFullPath(new string[] {
                     SWCmsConstants.Parameters.FileFolder,
                     SWCmsConstants.Parameters.TemplatesAssetFolder,
@@ -57,10 +55,8 @@ namespace Swastika.Cms.Lib.ViewModels.Info
         }
 
         [JsonProperty("templateFolder")]
-        public string TemplateFolder
-        {
-            get
-            {
+        public string TemplateFolder {
+            get {
                 return CommonHelper.GetFullPath(new string[] { SWCmsConstants.Parameters.TemplatesFolder, Name });
             }
         }

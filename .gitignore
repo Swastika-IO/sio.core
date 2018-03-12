@@ -240,6 +240,10 @@ ModelManifest.xml
 
 # FAKE - F# Make
 .fake/
+
+**/appsettings.json
+
+
 /src/Swastika.UI.Spa/wwwroot/static
 /src/Swastika.Cms.Lib/obj
 /src/Swastika.Cms.Lib/bin
