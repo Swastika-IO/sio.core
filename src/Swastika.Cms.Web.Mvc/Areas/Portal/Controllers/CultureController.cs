@@ -145,7 +145,7 @@ namespace Swastika.Cms.Mvc.Areas.Portal.Controllers
             var vm = await BECultureViewModel.Repository.GetSingleModelAsync(c => c.Id == id);
             if (vm.IsSucceed)
             {
-                vm.Data.RemoveModelAsync(true);
+                await vm.Data.RemoveModelAsync(true);
             }
             return RedirectToAction("Index");
         }

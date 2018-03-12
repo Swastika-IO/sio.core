@@ -40,7 +40,7 @@ namespace Swastika.Cms.Mvc.Areas.Portal.Controllers
         [Route("{pageSize:int?}/{pageIndex:int?}")]
         [Route("Index/{pageSize:int?}/{pageIndex:int?}/{keyword}")]
         [Route("Index/{pageSize:int?}/{pageIndex:int?}")]
-        public async Task<IActionResult> Index(int pageSize = 10, int pageIndex = 0, string keyword = null)
+        public IActionResult Index(int pageSize = 10, int pageIndex = 0, string keyword = null)
         {
             //RepositoryResponse<PaginationModel<InfoArticleViewModel>> getArticles =
             //    await InfoArticleViewModel.Repository.GetModelListByAsync(

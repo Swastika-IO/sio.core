@@ -17,6 +17,16 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Swastika", "..\..\Swastika-
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Swastika.Identity", "..\..\Swastika-Identity\src\Swastika.Identity\Swastika.Identity.csproj", "{73786840-58D8-447F-B2F6-D90F751651FC}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Crm", "Crm", "{88CA3465-F028-4701-89D1-AD9276606C92}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Swastika.Crm.Lib", "Swastika.Crm.Lib\Swastika.Crm.Lib.csproj", "{9927CB97-8512-44F1-8B7C-5DE54C33FAAE}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Messenger", "Messenger", "{A1F6E69F-43D3-4E17-87B2-E20A7B61DCC5}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Swastika.Messenger.Mvc", "..\..\Swastika-Messenger\src\Swastika.Messenger.Mvc\Swastika.Messenger.Mvc.csproj", "{D222621D-859E-4A86-8C1C-EBE0F64A9530}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Swastika.Messenger.Lib", "..\..\Swastika-Messenger\src\Swastika.Messenger.Lib\Swastika.Messenger.Lib.csproj", "{AB9C8AF2-E0DC-4022-9663-78E22EE28B8A}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -43,6 +53,18 @@ Global
 		{73786840-58D8-447F-B2F6-D90F751651FC}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{73786840-58D8-447F-B2F6-D90F751651FC}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{73786840-58D8-447F-B2F6-D90F751651FC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9927CB97-8512-44F1-8B7C-5DE54C33FAAE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9927CB97-8512-44F1-8B7C-5DE54C33FAAE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9927CB97-8512-44F1-8B7C-5DE54C33FAAE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9927CB97-8512-44F1-8B7C-5DE54C33FAAE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D222621D-859E-4A86-8C1C-EBE0F64A9530}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D222621D-859E-4A86-8C1C-EBE0F64A9530}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D222621D-859E-4A86-8C1C-EBE0F64A9530}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D222621D-859E-4A86-8C1C-EBE0F64A9530}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AB9C8AF2-E0DC-4022-9663-78E22EE28B8A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AB9C8AF2-E0DC-4022-9663-78E22EE28B8A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AB9C8AF2-E0DC-4022-9663-78E22EE28B8A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AB9C8AF2-E0DC-4022-9663-78E22EE28B8A}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -53,6 +75,9 @@ Global
 		{8421C37A-6FA8-44C9-B08D-A9EA28BF8884} = {7995F1E6-D8C1-4E09-BB44-056740F208E6}
 		{289DFF6B-C944-4005-83BC-10DCC6420A1E} = {96B08E7C-A426-437C-96BA-1A2DF11FD135}
 		{73786840-58D8-447F-B2F6-D90F751651FC} = {96B08E7C-A426-437C-96BA-1A2DF11FD135}
+		{9927CB97-8512-44F1-8B7C-5DE54C33FAAE} = {88CA3465-F028-4701-89D1-AD9276606C92}
+		{D222621D-859E-4A86-8C1C-EBE0F64A9530} = {A1F6E69F-43D3-4E17-87B2-E20A7B61DCC5}
+		{AB9C8AF2-E0DC-4022-9663-78E22EE28B8A} = {A1F6E69F-43D3-4E17-87B2-E20A7B61DCC5}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {07795DAD-40EE-4909-A6F5-320D6B0D3B54}
