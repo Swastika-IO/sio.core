@@ -377,12 +377,12 @@ namespace Swastika.Cms.Lib.ViewModels.BackEnd
                 result = result && saveTemplate.IsSucceed;
                 if (result)
                 {
-                    foreach (var item in Categories)
+                    foreach (var categoryArticleViewModel in Categories)
                     {
-                        item.ArticleId = Id;
-                        if (item.IsActived)
+                        categoryArticleViewModel.ArticleId = Id;
+                        if (categoryArticleViewModel.IsActived)
                         {
-                            var saveResult = await item.SaveModelAsync(false, _context, _transaction);
+                            var saveResult = await categoryArticleViewModel.SaveModelAsync(false, _context, _transaction);
                             result = result && saveResult.IsSucceed;
                             if (!result)
                             {
@@ -391,7 +391,7 @@ namespace Swastika.Cms.Lib.ViewModels.BackEnd
                         }
                         else
                         {
-                            var saveResult = await item.RemoveModelAsync(false, _context, _transaction);
+                            var saveResult = await categoryArticleViewModel.RemoveModelAsync(false, _context, _transaction);
                             result = result && saveResult.IsSucceed;
                             if (!result)
                             {
@@ -403,12 +403,12 @@ namespace Swastika.Cms.Lib.ViewModels.BackEnd
 
                 if (result)
                 {
-                    foreach (var item in Modules)
+                    foreach (var moduleArticleViewModel in Modules)
                     {
-                        item.ArticleId = Id;
-                        if (item.IsActived)
+                        moduleArticleViewModel.ArticleId = Id;
+                        if (moduleArticleViewModel.IsActived)
                         {
-                            var saveResult = await item.SaveModelAsync(false, _context, _transaction);
+                            var saveResult = await moduleArticleViewModel.SaveModelAsync(false, _context, _transaction);
                             result = result && saveResult.IsSucceed;
                             if (!result)
                             {
@@ -417,7 +417,7 @@ namespace Swastika.Cms.Lib.ViewModels.BackEnd
                         }
                         else
                         {
-                            var saveResult = await item.RemoveModelAsync(false, _context, _transaction);
+                            var saveResult = await moduleArticleViewModel.RemoveModelAsync(false, _context, _transaction);
                             result = result && saveResult.IsSucceed;
                             if (!result)
                             {
@@ -429,16 +429,16 @@ namespace Swastika.Cms.Lib.ViewModels.BackEnd
 
                 if (result)
                 {
-                    foreach (var item in ModuleNavs)
+                    foreach (var bEArticleModuleViewModel in ModuleNavs)
                     {
-                        item.ArticleId = Id;
-                        if (item.IsActived)
+                        bEArticleModuleViewModel.ArticleId = Id;
+                        if (bEArticleModuleViewModel.IsActived)
                         {
-                            var saveResult = await item.SaveModelAsync(false, _context, _transaction);
+                            var saveResult = await bEArticleModuleViewModel.SaveModelAsync(false, _context, _transaction);
                         }
                         else
                         {
-                            var saveResult = await item.RemoveModelAsync(true, _context, _transaction);
+                            var saveResult = await bEArticleModuleViewModel.RemoveModelAsync(true, _context, _transaction);
                             result = saveResult.IsSucceed;
                             if (!result)
                             {
@@ -452,23 +452,23 @@ namespace Swastika.Cms.Lib.ViewModels.BackEnd
                 //save submodules data
                 if (result)
                 {
-                    foreach (var module in ActivedModules)
+                    foreach (var bEModuleViewModel in ActivedModules)
                     {
-                        module.Data.Items = new List<InfoModuleDataViewModel>();
-                        foreach (var data in module.Data.JsonItems)
+                        bEModuleViewModel.Data.Items = new List<InfoModuleDataViewModel>();
+                        foreach (var data in bEModuleViewModel.Data.JsonItems)
                         {
                             SiocModuleData model = new SiocModuleData()
                             {
                                 Id = data.Value<string>("id") ?? Guid.NewGuid().ToString(),
-                                Specificulture = module.Specificulture,
+                                Specificulture = bEModuleViewModel.Specificulture,
                                 ArticleId = Id,
-                                ModuleId = module.Id,
-                                Fields = module.Fields,
+                                ModuleId = bEModuleViewModel.Id,
+                                Fields = bEModuleViewModel.Fields,
                                 CreatedDateTime = DateTime.UtcNow,
                                 UpdatedDateTime = DateTime.UtcNow
                             };
 
-                            List<ModuleFieldViewModel> cols = module.Columns;
+                            List<ModuleFieldViewModel> cols = bEModuleViewModel.Columns;
                             JObject val = new JObject();
 
                             foreach (JProperty prop in data.Properties())
@@ -491,7 +491,7 @@ namespace Swastika.Cms.Lib.ViewModels.BackEnd
                             var saveResult = await vmData.SaveModelAsync(false, _context, _transaction);
                             if (saveResult.IsSucceed)
                             {
-                                module.Data.Items.Add(vmData);
+                                bEModuleViewModel.Data.Items.Add(vmData);
                             }
                             else
                             {
@@ -505,17 +505,17 @@ namespace Swastika.Cms.Lib.ViewModels.BackEnd
 
                 if (result)
                 {
-                    foreach (var navMedia in MediaNavs)
+                    foreach (var navArticleMediaViewModel in MediaNavs)
                     {
-                        if (navMedia.IsActived)
+                        if (navArticleMediaViewModel.IsActived)
                         {
-                            navMedia.ArticleId = parent.Id;
-                            var saveResult = await navMedia.SaveModelAsync(false, _context, _transaction);
+                            navArticleMediaViewModel.ArticleId = parent.Id;
+                            var saveResult = await navArticleMediaViewModel.SaveModelAsync(false, _context, _transaction);
                         }
                         else
                         {
-                            navMedia.ArticleId = parent.Id;
-                            var saveResult = await navMedia.RemoveModelAsync(false, _context, _transaction);
+                            navArticleMediaViewModel.ArticleId = parent.Id;
+                            var saveResult = await navArticleMediaViewModel.RemoveModelAsync(false, _context, _transaction);
                             result = saveResult.IsSucceed;
                             if (!result)
                             {
