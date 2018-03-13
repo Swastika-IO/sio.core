@@ -28,11 +28,11 @@ Begin your installation by:
 
 Here's the quick version of the instructions for those who are already comfortable with performing such installations. More detailed instructions follow.
 
-If you are not comfortable with renaming files, step 3 is optional and you can skip it as the install program will create the wp-config.php file for you.
+If you are not comfortable with renaming files, step 3 is optional and you can skip it as the install program will create the sw-config.php file for you.
 
 1. Download and unzip the Swastika I/O Core CMS package if you haven't already.
 2. Create a database for Swastika I/O Core CMS on your web server, as well as a MS SQL Server Database user who has all privileges for accessing and modifying it.
-3. (Optional) Find and rename wp-config-sample.php to wp-config.php, then edit the file (see Editing wp-config.php) and add your database information. (TBC)
+3. (Optional) Find and rename sw-config-sample.php to sw-config.php, then edit the file (see Editing sw-config.php) and add your database information. (TBC)
 4. Upload the Swastika I/O Core CMS files to the desired location on your web server:
  - If you want to integrate Swastika I/O Core CMS into the root of your domain (e.g. http://example.com/), move or upload all contents of the unzipped Swastika I/O Core CMS directory (excluding the Swastika I/O Core CMS directory itself) into the root directory of your web server.
  - If you want to have your Swastika I/O Core CMS installation in its own subdirectory on your website (e.g. http://example.com/blog/), create the blog directory on your server and upload the contents of the unzipped Swastika I/O Core CMS package to the directory via FTP.
@@ -98,7 +98,7 @@ Note: Plesk recommends all users to install and manage Swastika I/O Core CMS usi
 
  ![plesk_create_db_6](_images/plesk_create_db_6.png)
 
-## Step 3: Set up wp-config.php
+## Step 3: Set up sw-config.php
 
 ## Step 4: Upload the files
 
