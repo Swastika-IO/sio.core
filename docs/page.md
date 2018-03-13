@@ -30,7 +30,7 @@ In general, pages are very similar to articles in that they both have titles and
 
 To create a new Page, log in to your Swastika I/O Core CMS installation with sufficient admin privileges to create new pages. Select the Pages > Create Page option to begin writing a new Page.
 
- ![Pages > Create Page](_images/page/page-sidebar.png)
+ ![Pages > Create Page](_images/page/create-page.png)
 
 # Organizing Your Pages
 
@@ -58,6 +58,8 @@ The structure of the pages on the site would then look like this.
 3. Select the appropriate parent Page to make the current Page a child Page.
 5. Add content to the subpage.
 6. Click Publish when ready.
+
+![To create a subpage](_images/page/set-parent-pages.png)
 
 # Changing the URL of Your Pages
 ## Creating a List of Pages
