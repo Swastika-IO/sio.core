@@ -14,14 +14,14 @@ In general, pages are very similar to articles in that they both have titles and
 - Pages can be organized into pages and subpages.
 - Pages can use different Page Templates, including template files, Template Tags and other ASP code.
 - More sophisticated themes may provide a wider range of adjustments or display options for individual pages.
-- It's quite possible to make a website using WordPress which only contains pages.
+- It's quite possible to make a website using Swastika I/O Core CMS which only contains pages.
 
 # What Pages Are Not
 - Pages are not articles, so they don't appear in the time-structured views within a blog or article section of a website.
 - Pages cannot be associated with Categories, but they can be assigned Tags. However, Tags on Pages are not included in lists displayed via the "tag" permalink.
 - The organizational structure for Pages comes from hierarchical interrelationship, not from a system of categorization. (e.g. Tags or Categories.)
 - Pages are not files. They are stored in your database, just like articles.
-- Although you can put Template Tags and PHP code into a Page Template file, you cannot put these into the Page or Post content without using a WordPress Plugin. But be careful: integrating PHP code directly into page or article content may introduce a security problem, or an unexpected error on your website.
+- Although you can put Template Tags and PHP code into a Page Template file, you cannot put these into the Page or Post content without using a Swastika I/O Core CMS Plugin. But be careful: integrating PHP code directly into page or article content may introduce a security problem, or an unexpected error on your website.
 - Pages are not included in your site's "feeds". (e.g. RSS or Atom.)
 - Pages and Articles can be interpreted differently by site visitors and by search engines. Commonly, search engines place more relevance to time-dependent site content - articles - because a newer article on a topic may be more relevant than a static page.
 - A specific page (or a specific article) can be set as a static front page. Websites which are set up in this way usually have a secondary page defined on which the latest blog articles are displayed.

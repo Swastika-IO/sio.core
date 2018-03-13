@@ -3,7 +3,7 @@
   * [Dowload](https://github.com/Swastika-IO/Swastika-IO-Core/releases)
   * [Installing](installing.md)
   * [Your 1st step](firststep.md)
-* CMS Guide
+* CMS User Guide
   * [Page](page.md)
   * [Module](module.md)
   * [Article](article.md)
