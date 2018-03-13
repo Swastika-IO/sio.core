@@ -62,6 +62,11 @@ The structure of the pages on the site would then look like this.
 ![To create a subpage](_images/page/set-parent-pages.png)
 
 # Changing the URL of Your Pages
+
+(TBC)
+
 ## Creating a List of Pages
+
+(TBC)
 
 # Page Templates
