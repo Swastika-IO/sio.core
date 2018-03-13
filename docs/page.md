@@ -28,7 +28,9 @@ In general, pages are very similar to articles in that they both have titles and
 
 # How to create a page?
 
-To create a new Page, log in to your Swastika I/O Core CMS installation with sufficient admin privileges to create new pages. Select the Pages > Create page option to begin writing a new Page.
+To create a new Page, log in to your Swastika I/O Core CMS installation with sufficient admin privileges to create new pages. Select the Pages > Create Page option to begin writing a new Page.
+
+ ![Pages > Create Page](_images/page/page-sidebar.png)
 
 # Organizing Your Pages
 
