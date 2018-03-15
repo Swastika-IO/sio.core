@@ -28,7 +28,8 @@ namespace Swastika.Cms.Lib.ViewModels.BackEnd
         {
         }
 
-        public BlankViewModel(SiocBlank model, SiocCmsContext _context = null, IDbContextTransaction _transaction = null) : base(model, _context, _transaction)
+        public BlankViewModel(SiocBlank model, SiocCmsContext _context = null, IDbContextTransaction _transaction = null) 
+            : base(model, _context, _transaction)
         {
         }
 

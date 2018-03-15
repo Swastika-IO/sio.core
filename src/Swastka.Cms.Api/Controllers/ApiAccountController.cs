@@ -76,7 +76,7 @@ namespace Swastika.Core.Controllers
                 if (result.Succeeded)
                 {
                     var user = await _userManager.FindByNameAsync(model.UserName).ConfigureAwait(false);
-                    var token = await GenerateAccessTokenAsync(user);
+                    var token = GenerateAccessToken(user);
                     if (token != null)
                     {
                         loginResult.IsSucceed = true;
@@ -128,7 +128,7 @@ namespace Swastika.Core.Controllers
                 if (oldToken.ExpiresUtc < DateTime.UtcNow)
                 {
                     var user = await _userManager.FindByEmailAsync(oldToken.Email);
-                    var token = await GenerateAccessTokenAsync(user);
+                    var token = GenerateAccessToken(user);
                     if (token != null)
                     {
                         await oldToken.RemoveModelAsync();
@@ -172,7 +172,7 @@ namespace Swastika.Core.Controllers
                     _logger.LogInformation("User created a new account with password.");
 
                     user = await _userManager.FindByEmailAsync(model.Email).ConfigureAwait(false);
-                    var token = await GenerateAccessTokenAsync(user);
+                    var token = GenerateAccessToken(user);
                     if (token != null)
                     {
                         result.IsSucceed = true;
@@ -574,7 +574,7 @@ namespace Swastika.Core.Controllers
 
         */
 
-        private async Task<AccessTokenViewModel> GenerateAccessTokenAsync(ApplicationUser user)
+        private AccessTokenViewModel GenerateAccessToken(ApplicationUser user)
         {
             string refreshToken = Guid.NewGuid().ToString();
             var dtIssued = DateTime.UtcNow;

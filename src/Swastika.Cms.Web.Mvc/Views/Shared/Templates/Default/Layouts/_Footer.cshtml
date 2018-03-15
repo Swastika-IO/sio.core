@@ -1,0 +1,26 @@
+@{
+    List<InfoCategoryViewModel> cates = SWCmsHelper.GetCategory(Url, ViewBag.culture, SWCmsConstants.CatePosition.Footer, Context.Request.Path);
+}
+<footer class="footer footer-default ">
+            <div class="container">
+                <nav>
+                    <ul>
+                    @foreach (var cate in cates.OrderBy(c => c.Priority))
+                    {
+                        <li>
+                            <a href="@cate.Href">
+                                @cate.Title
+                            </a>
+                        </li>
+                    }
+                    </ul>
+                </nav>
+                <div class="copyright">
+                    &copy;
+                    <script>
+                        document.write(new Date().getFullYear())
+                    </script>, Build with love by
+                    <a href="https://www.Swastika." target="_blank">Swastika I/O</a>.
+                </div>
+            </div>
+        </footer>
