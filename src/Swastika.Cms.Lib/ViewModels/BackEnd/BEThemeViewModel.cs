@@ -50,8 +50,10 @@ namespace Swastika.Cms.Lib.ViewModels.BackEnd
         public IFormFile Asset { get; set; }// = new FileViewModel();
 
         [JsonProperty("assetFolder")]
-        public string AssetFolder {
-            get {
+        public string AssetFolder
+        {
+            get
+            {
                 return CommonHelper.GetFullPath(new string[] {
                     SWCmsConstants.Parameters.FileFolder,
                     SWCmsConstants.Parameters.TemplatesAssetFolder,
@@ -60,8 +62,10 @@ namespace Swastika.Cms.Lib.ViewModels.BackEnd
         }
 
         [JsonProperty("templateFolder")]
-        public string TemplateFolder {
-            get {
+        public string TemplateFolder
+        {
+            get
+            {
                 return CommonHelper.GetFullPath(new string[] { SWCmsConstants.Parameters.TemplatesFolder, Name });
             }
         }
@@ -119,11 +123,11 @@ namespace Swastika.Cms.Lib.ViewModels.BackEnd
                         config = new ConfigurationViewModel()
                         {
                             Keyword = SWCmsConstants.ConfigurationKeyword.Theme,
-                            Specificulture = !string.IsNullOrEmpty(Specificulture)? Specificulture: SWCmsConstants.Default.Specificulture,
+                            Specificulture = !string.IsNullOrEmpty(Specificulture) ? Specificulture : SWCmsConstants.Default.Specificulture,
                             Category = SWCmsConstants.ConfigurationType.User,
                             DataType = SWCmsConstants.DataType.String,
                             Description = "Cms Theme",
-                            
+
                             Value = Name
                         };
                     }
@@ -210,7 +214,7 @@ namespace Swastika.Cms.Lib.ViewModels.BackEnd
             }
             if (Id == 0)
             {
-                string defaultFolder = CommonHelper.GetFullPath(new string[] { SWCmsConstants.Parameters.TemplatesFolder, SWCmsConstants.Default.DefaultTemplateFolder });
+                string defaultFolder = CommonHelper.GetFullPath(new string[] { SWCmsConstants.Parameters.TemplatesFolder, Name == "Default" ? "Default" : SWCmsConstants.Default.DefaultTemplateFolder });
                 bool copyResult = FileRepository.Instance.CopyDirectory(defaultFolder, TemplateFolder);
                 var files = copyResult ? FileRepository.Instance.GetFilesWithContent(TemplateFolder) : new System.Collections.Generic.List<FileViewModel>();
                 foreach (var file in files)
@@ -362,7 +366,7 @@ namespace Swastika.Cms.Lib.ViewModels.BackEnd
             }
             if (Id == 0)
             {
-                string defaultFolder = CommonHelper.GetFullPath(new string[] { SWCmsConstants.Parameters.TemplatesFolder, SWCmsConstants.Default.DefaultTemplateFolder });
+                string defaultFolder = CommonHelper.GetFullPath(new string[] { SWCmsConstants.Parameters.TemplatesFolder, Name == "Default" ? "Default" : SWCmsConstants.Default.DefaultTemplateFolder });
                 bool copyResult = FileRepository.Instance.CopyDirectory(defaultFolder, TemplateFolder);
                 var files = copyResult ? FileRepository.Instance.GetFilesWithContent(TemplateFolder) : new System.Collections.Generic.List<FileViewModel>();
                 //TODO: Create default asset
