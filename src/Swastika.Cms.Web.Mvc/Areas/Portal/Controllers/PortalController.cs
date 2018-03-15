@@ -29,7 +29,7 @@ namespace Swastika.Cms.Mvc.Areas.Portal.Controllers
         public IActionResult Index()
         {
             
-            return RedirectToAction("", "Dashboard");
+            return RedirectToAction("", "Dashboard", new { culture = CurrentLanguage });
             //return View();
         }
 
@@ -70,7 +70,7 @@ namespace Swastika.Cms.Mvc.Areas.Portal.Controllers
                         settings.Content = jsonSettings.ToString();
                         FileRepository.Instance.SaveFile(settings);
                     }
-                    return RedirectToAction("Create", "Theme", new { culture = SWCmsConstants.Default.Specificulture });
+                    return RedirectToAction("Index", "Home", new { culture = SWCmsConstants.Default.Specificulture });
                 }
             }
             return View(model);

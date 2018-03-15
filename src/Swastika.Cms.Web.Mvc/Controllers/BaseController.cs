@@ -56,7 +56,7 @@ namespace Swastika.Cms.Mvc.Controllers
 
         public override void OnActionExecuting(ActionExecutingContext context)
         {
-            if (!string.IsNullOrEmpty(GlobalConfigurationService.Instance.GetConnectionString()))
+            if (!string.IsNullOrEmpty(GlobalConfigurationService.Instance.ConnectionString))
             {
                 GetLanguage();
             }

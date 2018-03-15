@@ -62,7 +62,7 @@ namespace Swastika.Cms.Lib.Models.Cms
                 .Build();
 
             // define the database to use
-            string cnn = GlobalConfigurationService.Instance.ConnectionString;
+            string cnn = GlobalConfigurationService.Instance.GetConnectionString();
             if (!string.IsNullOrEmpty(cnn))
             {
                 optionsBuilder.UseSqlServer(cnn);

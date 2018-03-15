@@ -15,8 +15,15 @@
     <Compile Remove="Migrations\20180206120944_Remove_Dub_Article_Prior.cs" />
     <Compile Remove="Migrations\20180221045916_Add_Related_Product.cs" />
     <Compile Remove="Migrations\20180221053535_modified_related_product_cols.cs" />
+    <Compile Remove="Migrations\20180221070435_Add_Media_Properties.cs" />
+    <Compile Remove="Migrations\20180221070435_Add_Media_Properties.Designer.cs" />
     <Compile Remove="Migrations\20180305040722_First.cs" />
+    <Compile Remove="Migrations\20180305042255_First.cs" />
+    <Compile Remove="Migrations\20180305042255_First.Designer.cs" />
     <Compile Remove="Migrations\20180305042643_test.cs" />
+    <Compile Remove="Migrations\20180305042908_Add-Page-Layout.cs" />
+    <Compile Remove="Migrations\20180305042908_Add-Page-Layout.Designer.cs" />
+    <Compile Remove="Migrations\SiocCmsContextModelSnapshot.cs" />
     <Compile Remove="Models\SiocFile.cs" />
     <Compile Remove="Models\SiocTemplate.cs" />
     <Compile Remove="Models\SiocTheme.cs" />

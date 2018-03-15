@@ -78,7 +78,7 @@ namespace Swastika.Cms.Lib.ViewModels.BackEnd
         public int? Views { get; set; }
 
         [JsonProperty("type")]
-        public int Type { get; set; }
+        public SWCmsConstants.CateType Type { get; set; }
 
         [JsonProperty("createdDateTime")]
         public DateTime CreatedDateTime { get; set; }

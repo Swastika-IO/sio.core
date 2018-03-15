@@ -60,7 +60,7 @@ namespace Swastika.Cms.Web.Mvc
             services.Configure<FormOptions>(options => options.MultipartBodyLengthLimit = 100000000);
 
             //Swastika.Identity.Startup.ConfigIdentity(services, Configuration, "CmsConnection");
-            ConfigIdentity(services, Configuration, Configuration.GetConnectionString(Swastika.Cms.Lib.SWCmsConstants.CONST_DEFAULT_CONNECTION)); //Cms Config
+            ConfigIdentity(services, Configuration, Swastika.Cms.Lib.SWCmsConstants.CONST_DEFAULT_CONNECTION); //Cms Config
 
             // SignalR Services
 

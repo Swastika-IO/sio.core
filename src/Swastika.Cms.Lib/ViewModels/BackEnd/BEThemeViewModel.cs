@@ -119,10 +119,11 @@ namespace Swastika.Cms.Lib.ViewModels.BackEnd
                         config = new ConfigurationViewModel()
                         {
                             Keyword = SWCmsConstants.ConfigurationKeyword.Theme,
-                            Specificulture = Specificulture,
+                            Specificulture = !string.IsNullOrEmpty(Specificulture)? Specificulture: SWCmsConstants.Default.Specificulture,
                             Category = SWCmsConstants.ConfigurationType.User,
                             DataType = SWCmsConstants.DataType.String,
                             Description = "Cms Theme",
+                            
                             Value = Name
                         };
                     }
