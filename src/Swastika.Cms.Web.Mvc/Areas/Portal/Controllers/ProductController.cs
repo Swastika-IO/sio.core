@@ -1,5 +1,5 @@
 // Licensed to the Swastika I/O Foundation under one or more agreements.
-// The Swastika I/O Foundation licenses this file to you under the GNU General Public License v3.0 license.
+// The Swastika I/O Foundation licenses this file to you under the MIT license.
 // See the LICENSE file in the project root for more information.
 
 using Microsoft.AspNetCore.Hosting;
@@ -14,7 +14,6 @@ using Swastika.Cms.Lib.ViewModels.Info;
 using Swastika.Cms.Mvc.Controllers;
 using Swastika.Domain.Core.ViewModels;
 using System;
-using System.Linq;
 using System.Threading.Tasks;
 using static Swastika.Common.Utility.Enums;
 
@@ -184,11 +183,11 @@ namespace Swastika.Cms.Mvc.Areas.Portal.Controllers
                     }
                     else
                     {
-                        if (result.Exception!=null)
+                        if (result.Exception != null)
                         {
                             ModelState.AddModelError(string.Empty, result.Exception?.Message);
                         }
-                        
+
                         foreach (var error in result.Errors)
                         {
                             ModelState.AddModelError(string.Empty, error);
@@ -219,9 +218,9 @@ namespace Swastika.Cms.Mvc.Areas.Portal.Controllers
             var getProduct = InfoProductViewModel.Repository.GetSingleModel(a => a.Id == id);
             if (getProduct.IsSucceed)
             {
-                var data = getProduct.Data;
-                data.Status = SWStatus.Deleted;
-                var result = await data.SaveModelAsync().ConfigureAwait(false);
+                var infoProductViewModel = getProduct.Data;
+                infoProductViewModel.Status = SWStatus.Deleted;
+                var result = await infoProductViewModel.SaveModelAsync().ConfigureAwait(false);
                 if (result.IsSucceed)
                 {
                     return RedirectToAction("Index");
@@ -244,9 +243,9 @@ namespace Swastika.Cms.Mvc.Areas.Portal.Controllers
             var getProduct = InfoProductViewModel.Repository.GetSingleModel(a => a.Id == id);
             if (getProduct.IsSucceed)
             {
-                var data = getProduct.Data;
-                data.Status = SWStatus.Preview;
-                var result = await data.SaveModelAsync().ConfigureAwait(false);
+                var infoProductViewModel = getProduct.Data;
+                infoProductViewModel.Status = SWStatus.Preview;
+                var result = await infoProductViewModel.SaveModelAsync().ConfigureAwait(false);
                 if (result.IsSucceed)
                 {
                     return RedirectToAction("Draft");
@@ -281,7 +280,6 @@ namespace Swastika.Cms.Mvc.Areas.Portal.Controllers
             ViewData["Index"] = index;
             return PartialView(new ExtraProperty());
         }
-
 
         [HttpPost]
         [Route("GetEditor")]

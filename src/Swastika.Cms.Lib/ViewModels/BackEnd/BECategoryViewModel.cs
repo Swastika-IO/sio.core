@@ -1,5 +1,5 @@
 ﻿// Licensed to the Swastika I/O Foundation under one or more agreements.
-// The Swastika I/O Foundation licenses this file to you under the GNU General Public License v3.0 license.
+// The Swastika I/O Foundation licenses this file to you under the MIT license.
 // See the LICENSE file in the project root for more information.
 
 using Microsoft.EntityFrameworkCore;
@@ -78,7 +78,7 @@ namespace Swastika.Cms.Lib.ViewModels.BackEnd
         public int? Views { get; set; }
 
         [JsonProperty("type")]
-        public int Type { get; set; }
+        public SWCmsConstants.CateType Type { get; set; }
 
         [JsonProperty("createdDateTime")]
         public DateTime CreatedDateTime { get; set; }

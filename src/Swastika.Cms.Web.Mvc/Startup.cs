@@ -1,5 +1,5 @@
 ﻿// Licensed to the Swastika I/O Foundation under one or more agreements.
-// The Swastika I/O Foundation licenses this file to you under the GNU General Public License v3.0 license.
+// The Swastika I/O Foundation licenses this file to you under the MIT license.
 // See the LICENSE file in the project root for more information.
 
 using Microsoft.AspNetCore.Builder;
@@ -60,7 +60,7 @@ namespace Swastika.Cms.Web.Mvc
             services.Configure<FormOptions>(options => options.MultipartBodyLengthLimit = 100000000);
 
             //Swastika.Identity.Startup.ConfigIdentity(services, Configuration, "CmsConnection");
-            ConfigIdentity(services, Configuration, Configuration.GetConnectionString(Swastika.Cms.Lib.SWCmsConstants.CONST_DEFAULT_CONNECTION)); //Cms Config
+            ConfigIdentity(services, Configuration, Swastika.Cms.Lib.SWCmsConstants.CONST_DEFAULT_CONNECTION); //Cms Config
 
             // SignalR Services
 

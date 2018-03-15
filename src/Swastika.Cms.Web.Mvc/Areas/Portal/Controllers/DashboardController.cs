@@ -1,5 +1,5 @@
 ﻿// Licensed to the Swastika I/O Foundation under one or more agreements.
-// The Swastika I/O Foundation licenses this file to you under the GNU General Public License v3.0 license.
+// The Swastika I/O Foundation licenses this file to you under the MIT license.
 // See the LICENSE file in the project root for more information.
 
 using Microsoft.AspNetCore.Hosting;
@@ -23,9 +23,9 @@ namespace Swastika.Cms.Mvc.Areas.Portal.Controllers
 
         //[Route("/portal/Dashboard")]
         [HttpGet]
-        [Route("{Dashboardize:int?}/{pageIndex:int?}")]
-        [Route("Index/{Dashboardize:int?}/{pageIndex:int?}")]
-        public IActionResult Index(string keyword, int Dashboardize = 10, int pageIndex = 0)
+        [Route("{pageSize:int?}/{pageIndex:int?}")]
+        [Route("Index/{pageSize:int?}/{pageIndex:int?}")]
+        public IActionResult Index(string keyword, int pageSize = 10, int pageIndex = 0)
         {
             DashboardViewModel dashboard = new DashboardViewModel();
             return View(dashboard);

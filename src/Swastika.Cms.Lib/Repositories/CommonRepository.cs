@@ -1,5 +1,5 @@
 ﻿// Licensed to the Swastika I/O Foundation under one or more agreements.
-// The Swastika I/O Foundation licenses this file to you under the GNU General Public License v3.0 license.
+// The Swastika I/O Foundation licenses this file to you under the MIT license.
 // See the LICENSE file in the project root for more information.
 
 using Microsoft.EntityFrameworkCore;
@@ -54,7 +54,7 @@ namespace Swastika.Cms.Lib.Repositories
             var transaction = _transaction ?? context.Database.BeginTransaction();
             try
             {
-                var result = context.SiocCategory.Include(cp => cp.SiocCategoryArticle)
+                var categoryArticleViewModels = context.SiocCategory.Include(cp => cp.SiocCategoryArticle)
                     .Where(a => a.Specificulture == specificulture
                                 && (a.Type == (int)SWCmsConstants.CateType.List
                                 || a.Type == (int)SWCmsConstants.CateType.Home))
@@ -73,7 +73,7 @@ namespace Swastika.Cms.Lib.Repositories
                 return new RepositoryResponse<List<CategoryArticleViewModel>>()
                 {
                     IsSucceed = true,
-                    Data = result.ToList()
+                    Data = categoryArticleViewModels.ToList()
                 };
             }
             catch (Exception ex) // TODO: Add more specific exeption types instead of Exception only
@@ -107,7 +107,7 @@ namespace Swastika.Cms.Lib.Repositories
             var transaction = _transaction ?? context.Database.BeginTransaction();
             try
             {
-                var result = context.SiocCategory.Include(cp => cp.SiocCategoryArticle).Where(a => a.Specificulture == specificulture && a.Type == (int)SWCmsConstants.CateType.List)
+                var categoryArticleViewModels = context.SiocCategory.Include(cp => cp.SiocCategoryArticle).Where(a => a.Specificulture == specificulture && a.Type == (int)SWCmsConstants.CateType.List)
                     .Select(p => new CategoryArticleViewModel(
                         new SiocCategoryArticle()
                         {
@@ -123,7 +123,7 @@ namespace Swastika.Cms.Lib.Repositories
                 return new RepositoryResponse<List<CategoryArticleViewModel>>()
                 {
                     IsSucceed = true,
-                    Data = await result.ToListAsync().ConfigureAwait(false)
+                    Data = await categoryArticleViewModels.ToListAsync().ConfigureAwait(false)
                 };
             }
             catch (Exception ex) // TODO: Add more specific exeption types instead of Exception only
@@ -161,7 +161,7 @@ namespace Swastika.Cms.Lib.Repositories
             var transaction = _transaction ?? context.Database.BeginTransaction();
             try
             {
-                var result = context.SiocModule.Include(cp => cp.SiocModuleArticle)
+                var moduleArticleViewModels = context.SiocModule.Include(cp => cp.SiocModuleArticle)
                     .Where(a => a.Specificulture == specificulture
                     && a.Type == (int)SWCmsConstants.ModuleType.Root)
                      .Select(p => new ModuleArticleViewModel(
@@ -179,7 +179,7 @@ namespace Swastika.Cms.Lib.Repositories
                 return new RepositoryResponse<List<ModuleArticleViewModel>>()
                 {
                     IsSucceed = true,
-                    Data = result.ToList()
+                    Data = moduleArticleViewModels.ToList()
                 };
             }
             catch (Exception ex) // TODO: Add more specific exeption types instead of Exception only
@@ -213,7 +213,7 @@ namespace Swastika.Cms.Lib.Repositories
             var transaction = _transaction ?? context.Database.BeginTransaction();
             try
             {
-                var result = context.SiocModule.Include(cp => cp.SiocModuleArticle)
+                var moduleArticleViewModels = context.SiocModule.Include(cp => cp.SiocModuleArticle)
                     .Where(a => a.Specificulture == specificulture
                     && a.Type == (int)SWCmsConstants.ModuleType.Root)
                     .Select(p => new ModuleArticleViewModel(
@@ -231,7 +231,7 @@ namespace Swastika.Cms.Lib.Repositories
                 return new RepositoryResponse<List<ModuleArticleViewModel>>()
                 {
                     IsSucceed = true,
-                    Data = await result.ToListAsync().ConfigureAwait(false)
+                    Data = await moduleArticleViewModels.ToListAsync().ConfigureAwait(false)
                 };
             }
             catch (Exception ex) // TODO: Add more specific exeption types instead of Exception only
@@ -269,7 +269,7 @@ namespace Swastika.Cms.Lib.Repositories
             var transaction = _transaction ?? context.Database.BeginTransaction();
             try
             {
-                var result = context.SiocModule.Include(cp => cp.SiocArticleModule)
+                var bEArticleModuleViewModels = context.SiocModule.Include(cp => cp.SiocArticleModule)
                     .Where(a => a.Specificulture == specificulture
                     && a.Type == (int)SWCmsConstants.ModuleType.SubArticle
                     )
@@ -289,7 +289,7 @@ namespace Swastika.Cms.Lib.Repositories
                 return new RepositoryResponse<List<BEArticleModuleViewModel>>()
                 {
                     IsSucceed = true,
-                    Data = result.ToList()
+                    Data = bEArticleModuleViewModels.ToList()
                 };
             }
             catch (Exception ex) // TODO: Add more specific exeption types instead of Exception only
@@ -324,7 +324,7 @@ namespace Swastika.Cms.Lib.Repositories
             var transaction = _transaction ?? context.Database.BeginTransaction();
             try
             {
-                var result = context.SiocModule.Include(cp => cp.SiocArticleModule)
+                var infoArticleModuleViewModels = context.SiocModule.Include(cp => cp.SiocArticleModule)
                     .Where(a => a.Specificulture == specificulture
                     && a.Type == (int)SWCmsConstants.ModuleType.SubArticle)
                     .Select(p => new InfoArticleModuleViewModel(
@@ -343,7 +343,7 @@ namespace Swastika.Cms.Lib.Repositories
                 return new RepositoryResponse<List<InfoArticleModuleViewModel>>()
                 {
                     IsSucceed = true,
-                    Data = await result.ToListAsync().ConfigureAwait(false)
+                    Data = await infoArticleModuleViewModels.ToListAsync().ConfigureAwait(false)
                 };
             }
             catch (Exception ex) // TODO: Add more specific exeption types instead of Exception only
@@ -385,7 +385,7 @@ namespace Swastika.Cms.Lib.Repositories
             var transaction = _transaction ?? context.Database.BeginTransaction();
             try
             {
-                var result = context.SiocCategory.Include(cp => cp.SiocCategoryProduct)
+                var navCategoryProductViewModels = context.SiocCategory.Include(cp => cp.SiocCategoryProduct)
                     .Where(a => a.Specificulture == specificulture
                     && a.Type == (int)SWCmsConstants.CateType.ListProduct)
                     .Select(p => new NavCategoryProductViewModel(
@@ -403,7 +403,7 @@ namespace Swastika.Cms.Lib.Repositories
                 return new RepositoryResponse<List<NavCategoryProductViewModel>>()
                 {
                     IsSucceed = true,
-                    Data = result.ToList()
+                    Data = navCategoryProductViewModels.ToList()
                 };
             }
             catch (Exception ex) // TODO: Add more specific exeption types instead of Exception only
@@ -437,7 +437,7 @@ namespace Swastika.Cms.Lib.Repositories
             var transaction = _transaction ?? context.Database.BeginTransaction();
             try
             {
-                var result = context.SiocCategory.Include(cp => cp.SiocCategoryProduct).Where(a => a.Specificulture == specificulture && a.Type == (int)SWCmsConstants.CateType.List)
+                var navCategoryProductViewModels = context.SiocCategory.Include(cp => cp.SiocCategoryProduct).Where(a => a.Specificulture == specificulture && a.Type == (int)SWCmsConstants.CateType.List)
                     .Select(p => new NavCategoryProductViewModel(
                         new SiocCategoryProduct()
                         {
@@ -453,7 +453,7 @@ namespace Swastika.Cms.Lib.Repositories
                 return new RepositoryResponse<List<NavCategoryProductViewModel>>()
                 {
                     IsSucceed = true,
-                    Data = await result.ToListAsync().ConfigureAwait(false)
+                    Data = await navCategoryProductViewModels.ToListAsync().ConfigureAwait(false)
                 };
             }
             catch (Exception ex) // TODO: Add more specific exeption types instead of Exception only
@@ -491,7 +491,7 @@ namespace Swastika.Cms.Lib.Repositories
             var transaction = _transaction ?? context.Database.BeginTransaction();
             try
             {
-                var result = context.SiocModule.Include(cp => cp.SiocModuleProduct)
+                var navModuleProductViewModels = context.SiocModule.Include(cp => cp.SiocModuleProduct)
                     .Where(a => a.Specificulture == specificulture
                     && a.Type == (int)SWCmsConstants.ModuleType.Root)
                      .Select(p => new NavModuleProductViewModel(
@@ -509,7 +509,7 @@ namespace Swastika.Cms.Lib.Repositories
                 return new RepositoryResponse<List<NavModuleProductViewModel>>()
                 {
                     IsSucceed = true,
-                    Data = result.ToList()
+                    Data = navModuleProductViewModels.ToList()
                 };
             }
             catch (Exception ex) // TODO: Add more specific exeption types instead of Exception only
@@ -543,7 +543,7 @@ namespace Swastika.Cms.Lib.Repositories
             var transaction = _transaction ?? context.Database.BeginTransaction();
             try
             {
-                var result = context.SiocModule.Include(cp => cp.SiocModuleProduct)
+                var navModuleProductViewModels = context.SiocModule.Include(cp => cp.SiocModuleProduct)
                     .Where(a => a.Specificulture == specificulture
                     && a.Type == (int)SWCmsConstants.ModuleType.Root)
                     .Select(p => new NavModuleProductViewModel(
@@ -561,7 +561,7 @@ namespace Swastika.Cms.Lib.Repositories
                 return new RepositoryResponse<List<NavModuleProductViewModel>>()
                 {
                     IsSucceed = true,
-                    Data = await result.ToListAsync().ConfigureAwait(false)
+                    Data = await navModuleProductViewModels.ToListAsync().ConfigureAwait(false)
                 };
             }
             catch (Exception ex) // TODO: Add more specific exeption types instead of Exception only
@@ -599,7 +599,7 @@ namespace Swastika.Cms.Lib.Repositories
             var transaction = _transaction ?? context.Database.BeginTransaction();
             try
             {
-                var result = context.SiocModule.Include(cp => cp.SiocProductModule)
+                var navProductModuleViewModels = context.SiocModule.Include(cp => cp.SiocProductModule)
                     .Where(a => a.Specificulture == specificulture
                     && a.Type == (int)SWCmsConstants.ModuleType.SubProduct
                     )
@@ -619,7 +619,7 @@ namespace Swastika.Cms.Lib.Repositories
                 return new RepositoryResponse<List<NavProductModuleViewModel>>()
                 {
                     IsSucceed = true,
-                    Data = result.ToList()
+                    Data = navProductModuleViewModels.ToList()
                 };
             }
             catch (Exception ex) // TODO: Add more specific exeption types instead of Exception only
@@ -654,7 +654,7 @@ namespace Swastika.Cms.Lib.Repositories
             var transaction = _transaction ?? context.Database.BeginTransaction();
             try
             {
-                var result = context.SiocModule.Include(cp => cp.SiocProductModule)
+                var navProductModuleViewModels = context.SiocModule.Include(cp => cp.SiocProductModule)
                     .Where(a => a.Specificulture == specificulture
                     && a.Type == (int)SWCmsConstants.ModuleType.SubProduct)
                     .Select(p => new NavProductModuleViewModel(
@@ -673,7 +673,7 @@ namespace Swastika.Cms.Lib.Repositories
                 return new RepositoryResponse<List<NavProductModuleViewModel>>()
                 {
                     IsSucceed = true,
-                    Data = await result.ToListAsync().ConfigureAwait(false)
+                    Data = await navProductModuleViewModels.ToListAsync().ConfigureAwait(false)
                 };
             }
             catch (Exception ex) // TODO: Add more specific exeption types instead of Exception only

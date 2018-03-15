@@ -1,5 +1,5 @@
 ﻿// Licensed to the Swastika I/O Foundation under one or more agreements.
-// The Swastika I/O Foundation licenses this file to you under the GNU General Public License v3.0 license.
+// The Swastika I/O Foundation licenses this file to you under the MIT license.
 // See the LICENSE file in the project root for more information.
 
 using Microsoft.EntityFrameworkCore;
@@ -41,7 +41,7 @@ namespace Swastika.Cms.Lib.Models.Account
                 .AddJsonFile(Common.Utility.Const.CONST_FILE_APPSETTING)
                 .Build();
 
-            string cnn = GlobalConfigurationService.Instance.ConnectionString;
+            string cnn = GlobalConfigurationService.Instance.GetConnectionString();
             if (!string.IsNullOrEmpty(cnn))
             {
                 //cnn = "Server=(localdb)\\mssqllocaldb;Database=aspnet-Swastika.Cms.Db;Trusted_Connection=True;MultipleActiveResultSets=true";

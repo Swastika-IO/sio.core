@@ -1,5 +1,5 @@
 ﻿// Licensed to the Swastika I/O Foundation under one or more agreements.
-// The Swastika I/O Foundation licenses this file to you under the GNU General Public License v3.0 license.
+// The Swastika I/O Foundation licenses this file to you under the MIT license.
 // See the LICENSE file in the project root for more information.
 
 using Microsoft.EntityFrameworkCore;
@@ -23,26 +23,32 @@ namespace Swastika.Cms.Lib.Services
         public string Name { get; set; }
         public bool IsInit { get; set; }
 
-        public string ConnectionString {
-            get {
+        public string ConnectionString
+        {
+            get
+            {
                 return _connectionString;
             }
-            set {
+            set
+            {
                 _connectionString = value;
             }
         }
 
         private static List<ConfigurationViewModel> _listConfiguration;
 
-        public static List<ConfigurationViewModel> ListConfiguration {
-            get {
+        public static List<ConfigurationViewModel> ListConfiguration
+        {
+            get
+            {
                 if (_listConfiguration == null)
                 {
                     InitConfigurations();
                 }
                 return _listConfiguration;
             }
-            set {
+            set
+            {
                 _listConfiguration = value;
             }
         }
@@ -65,11 +71,14 @@ namespace Swastika.Cms.Lib.Services
         //}
         private static GlobalConfigurationService _instance;
 
-        public static GlobalConfigurationService Instance {
-            get {
+        public static GlobalConfigurationService Instance
+        {
+            get
+            {
                 return _instance ?? (_instance = new GlobalConfigurationService());
             }
-            set {
+            set
+            {
                 _instance = value;
             }
         }
@@ -151,21 +160,21 @@ namespace Swastika.Cms.Lib.Services
                     context.Database.Migrate();
                     accountContext.Database.Migrate();
                     transaction = context.Database.BeginTransaction();
+                    bool isSucceed = true;
+                    //var getConnectionString = BEParameterViewModel.Repository.GetSingleModel(
+                    //    c => c.Name == SWCmsConstants.ConfigurationKeyword.ConnectionString,
+                    //    _context: context, _transaction: transaction);
 
-                    var getConnectionString = BEParameterViewModel.Repository.GetSingleModel(
-                        c => c.Name == SWCmsConstants.ConfigurationKeyword.ConnectionString,
-                        _context: context, _transaction: transaction);
-
-                    if (!getConnectionString.IsSucceed)
-                    {
-                        BEParameterViewModel cnn = new BEParameterViewModel()
-                        {
-                            Name = SWCmsConstants.ConfigurationKeyword.ConnectionString,
-                            Value = ConnectionString,
-                            Description = SWCmsConstants.ConfigurationType.System
-                        };
-                        cnn.SaveModel(_context: context, _transaction: transaction);
-                    }
+                    //if (!getConnectionString.IsSucceed)
+                    //{
+                    //    BEParameterViewModel cnn = new BEParameterViewModel()
+                    //    {
+                    //        Name = SWCmsConstants.ConfigurationKeyword.ConnectionString,
+                    //        Value = ConnectionString,
+                    //        Description = SWCmsConstants.ConfigurationType.System
+                    //    };
+                    //    cnn.SaveModel(_context: context, _transaction: transaction);
+                    //}
 
                     // EN-US
                     var getCulture = BECultureViewModel.Repository.GetSingleModel(
@@ -183,7 +192,7 @@ namespace Swastika.Cms.Lib.Services
                             Icon = "flag-icon-us",
                             Alias = "US"
                         };
-                        cultureViewModel.SaveModel(_context: context, _transaction: transaction);
+                        isSucceed = isSucceed && cultureViewModel.SaveModel(_context: context, _transaction: transaction).IsSucceed;
                     }
 
                     // VI-VN
@@ -202,43 +211,141 @@ namespace Swastika.Cms.Lib.Services
                             Icon = "flag-icon-vn",
                             Alias = "VN"
                         };
-                        cultureViewModel.SaveModel(_context: context, _transaction: transaction);
+                        isSucceed = isSucceed && cultureViewModel.SaveModel(_context: context, _transaction: transaction).IsSucceed;
                     }
 
                     var getPosition = BEPositionViewModel.Repository.GetModelList(_context: context, _transaction: transaction);
-                    if (!getPosition.IsSucceed || getPosition.Data.Count == 0)
+                    if (isSucceed && (!getPosition.IsSucceed || getPosition.Data.Count == 0))
                     {
                         BEPositionViewModel p = new BEPositionViewModel()
                         {
                             Description = nameof(SWCmsConstants.CatePosition.Top)
                         };
-                        p.SaveModel(_context: context, _transaction: transaction);
+                        isSucceed = isSucceed && p.SaveModel(_context: context, _transaction: transaction).IsSucceed;
                         p = new BEPositionViewModel()
                         {
                             Description = nameof(SWCmsConstants.CatePosition.Left)
                         };
-                        p.SaveModel(_context: context, _transaction: transaction);
+                        isSucceed = isSucceed && p.SaveModel(_context: context, _transaction: transaction).IsSucceed;
                         p = new BEPositionViewModel()
                         {
                             Description = nameof(SWCmsConstants.CatePosition.Footer)
                         };
-                        p.SaveModel(_context: context, _transaction: transaction);
+                        isSucceed = isSucceed && p.SaveModel(_context: context, _transaction: transaction).IsSucceed;
                     }
                     var getThemes = BEThemeViewModel.Repository.GetModelList(_context: context, _transaction: transaction);
-                    if (getThemes.IsSucceed)
+                    if (isSucceed && getThemes.IsSucceed)
                     {
                         if (getThemes.Data.Count == 0)
                         {
                             BEThemeViewModel theme = new BEThemeViewModel(new SiocTheme()
                             {
                                 Name = "Default",
+
                                 CreatedBy = "Admin"
                             })
                             {
-                                IsActived = true
+                                IsActived = true,
+                                Specificulture = "vi-vn"
                             };
 
-                            theme.SaveModel(true, context, transaction);
+                            isSucceed = isSucceed && theme.SaveModel(true, context, transaction).IsSucceed;
+                            
+                            if (isSucceed)
+                            {
+                                ConfigurationViewModel config = (ConfigurationViewModel.Repository.GetSingleModel(
+                        c => c.Keyword == SWCmsConstants.ConfigurationKeyword.Theme && c.Specificulture == "vi-vn", context, transaction)).Data;
+                                if (config == null)
+                                {
+                                    config = new ConfigurationViewModel()
+                                    {
+                                        Keyword = SWCmsConstants.ConfigurationKeyword.Theme,
+                                        Specificulture = "vi-vn",
+                                        Category = SWCmsConstants.ConfigurationType.User,
+                                        DataType = SWCmsConstants.DataType.String,
+                                        Description = "Cms Theme",
+
+                                        Value = ""
+                                    };
+                                }
+                                else
+                                {
+                                    config.Value = theme.Name;
+                                }
+                                isSucceed = isSucceed && config.SaveModel(false, context, transaction).IsSucceed;
+                            }
+
+                            if (isSucceed)
+                            {
+                                ConfigurationViewModel config = (ConfigurationViewModel.Repository.GetSingleModel(
+                        c => c.Keyword == SWCmsConstants.ConfigurationKeyword.ThemeId && c.Specificulture == "vi-vn", context, transaction)).Data;
+                                if (config == null)
+                                {
+                                    config = new ConfigurationViewModel()
+                                    {
+                                        Keyword = SWCmsConstants.ConfigurationKeyword.Theme,
+                                        Specificulture = "vi-vn",
+                                        Category = SWCmsConstants.ConfigurationType.User,
+                                        DataType = SWCmsConstants.DataType.String,
+                                        Description = "Cms Theme",
+
+                                        Value = theme.Model.Id.ToString()
+                                    };
+                                }
+                                else
+                                {
+                                    config.Value = theme.Model.Id.ToString();
+                                }
+                                isSucceed = isSucceed && config.SaveModel(false, context, transaction).IsSucceed;
+                            }
+
+                            if (isSucceed)
+                            {
+                                ConfigurationViewModel config = (ConfigurationViewModel.Repository.GetSingleModel(
+                        c => c.Keyword == SWCmsConstants.ConfigurationKeyword.Theme && c.Specificulture == "en-us", context, transaction)).Data;
+                                if (config == null)
+                                {
+                                    config = new ConfigurationViewModel()
+                                    {
+                                        Keyword = SWCmsConstants.ConfigurationKeyword.Theme,
+                                        Specificulture = "en-us",
+                                        Category = SWCmsConstants.ConfigurationType.User,
+                                        DataType = SWCmsConstants.DataType.String,
+                                        Description = "Cms Theme",
+
+                                        Value = theme.Name
+                                    };
+                                }
+                                else
+                                {
+                                    config.Value = Name;
+                                }
+                                isSucceed = isSucceed && config.SaveModel(false, context, transaction).IsSucceed;
+                            }
+
+                            if (isSucceed)
+                            {
+                                ConfigurationViewModel config = (ConfigurationViewModel.Repository.GetSingleModel(
+                        c => c.Keyword == SWCmsConstants.ConfigurationKeyword.ThemeId && c.Specificulture == "en-us", context, transaction)).Data;
+                                if (config == null)
+                                {
+                                    config = new ConfigurationViewModel()
+                                    {
+                                        Keyword = SWCmsConstants.ConfigurationKeyword.ThemeId,
+                                        Specificulture = "en-us",
+                                        Category = SWCmsConstants.ConfigurationType.User,
+                                        DataType = SWCmsConstants.DataType.String,
+                                        Description = "Cms Theme",
+
+                                        Value = theme.Model.Id.ToString()
+                                    };
+                                }
+                                else
+                                {
+                                    config.Value = theme.Model.Id.ToString();
+                                }
+                                isSucceed = isSucceed && config.SaveModel(false, context, transaction).IsSucceed;
+                            }
                         }
                         else
                         {
@@ -256,7 +363,7 @@ namespace Swastika.Cms.Lib.Services
                                 {
                                     try
                                     {
-                                        item.SaveModel(true, _context: context, _transaction: transaction);
+                                        isSucceed = isSucceed && item.SaveModel(true, _context: context, _transaction: transaction).IsSucceed;
                                     }
                                     catch { }
                                 }
@@ -264,10 +371,40 @@ namespace Swastika.Cms.Lib.Services
                         }
                     }
 
-                    GlobalLanguageService.Instance.RefreshCultures(context, transaction);
-                    InitConfigurations(context, transaction);
-                    transaction.Commit();
-                    IsInit = true;
+                    if (isSucceed)
+                    {
+
+                        BECategoryViewModel cate = new BECategoryViewModel()
+                        {
+                            Title = "Home",
+                            Specificulture = "vi-vn",
+                            Template = "_Home",
+                            Type = SWCmsConstants.CateType.Home,
+                            CreatedBy = "Admin"
+
+                        };
+
+                        isSucceed = isSucceed && cate.SaveModel(false, context, transaction).IsSucceed;
+                        BECategoryViewModel uscate = new BECategoryViewModel()
+                        {
+                            Title = "Home",
+                            Specificulture = "en-us",
+                            Template = "_Home",
+                            Type = SWCmsConstants.CateType.Home,
+                            CreatedBy = "Admin"
+                        };
+                        isSucceed = isSucceed && uscate.SaveModel(false, context, transaction).IsSucceed;
+                    }
+
+
+                    if (isSucceed)
+                    {
+
+                        GlobalLanguageService.Instance.RefreshCultures(context, transaction);
+                        InitConfigurations(context, transaction);
+                        transaction.Commit();
+                        IsInit = true;
+                    }
                 }
             }
             catch (Exception ex) // TODO: Add more specific exeption types instead of Exception only
