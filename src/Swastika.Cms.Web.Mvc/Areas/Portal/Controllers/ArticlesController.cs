@@ -1,5 +1,5 @@
 // Licensed to the Swastika I/O Foundation under one or more agreements.
-// The Swastika I/O Foundation licenses this file to you under the GNU General Public License v3.0 license.
+// The Swastika I/O Foundation licenses this file to you under the MIT license.
 // See the LICENSE file in the project root for more information.
 
 using Microsoft.AspNetCore.Hosting;
@@ -14,7 +14,6 @@ using Swastika.Cms.Lib.ViewModels.Info;
 using Swastika.Cms.Mvc.Controllers;
 using Swastika.Domain.Core.ViewModels;
 using System;
-using System.Linq;
 using System.Threading.Tasks;
 using static Swastika.Common.Utility.Enums;
 
@@ -25,10 +24,10 @@ namespace Swastika.Cms.Mvc.Areas.Portal.Controllers
     [Route("{culture}/Portal/Articles")]
     public class ArticlesController : BaseController<ArticlesController>
     {
-        public ArticlesController(IHostingEnvironment env
+        public ArticlesController(IHostingEnvironment hostingEnvironment
             //, IStringLocalizer<PortalController> portalLocalizer, IStringLocalizer<SharedResource> localizer
             )
-            : base(env)
+            : base(hostingEnvironment)
         {
         }
 
@@ -59,14 +58,14 @@ namespace Swastika.Cms.Mvc.Areas.Portal.Controllers
         [Route("Draft/{pageSize:int?}/{pageIndex:int?}/{keyword}")]
         public async Task<IActionResult> Draft(int pageSize = 10, int pageIndex = 0, string keyword = null)
         {
-            var getArticles = await InfoArticleViewModel.Repository.GetModelListByAsync(
+            RepositoryResponse<PaginationModel<InfoArticleViewModel>> repositoryResponse = await InfoArticleViewModel.Repository.GetModelListByAsync(
                 article => article.Specificulture == CurrentLanguage
                     && (string.IsNullOrEmpty(keyword) || article.Title.Contains(keyword))
                     && article.Status == (int)SWStatus.Deleted,
                 "CreatedDateTime", OrderByDirection.Descending,
                 pageSize, pageIndex).ConfigureAwait(false);
 
-            return View(getArticles.Data);
+            return View(repositoryResponse.Data);
         }
 
         // GET: Portal/Articles/Create
@@ -75,7 +74,7 @@ namespace Swastika.Cms.Mvc.Areas.Portal.Controllers
         [Route("Create/{categoryId:int}")]
         public IActionResult Create(int? categoryId = null)
         {
-            var vmArticle = new BEArticleViewModel(new SiocArticle()
+            BEArticleViewModel bEArticleViewModel = new BEArticleViewModel(new SiocArticle()
             {
                 Specificulture = CurrentLanguage,
                 CreatedBy = User.Identity.Name,
@@ -86,14 +85,14 @@ namespace Swastika.Cms.Mvc.Areas.Portal.Controllers
             };
             if (categoryId.HasValue)
             {
-                var activeCate = vmArticle.Categories.Find(c => c.CategoryId == categoryId);
-                if (activeCate != null)
+                CategoryArticleViewModel categoryArticleViewModel = bEArticleViewModel.Categories.Find(c => c.CategoryId == categoryId);
+                if (categoryArticleViewModel != null)
                 {
-                    activeCate.IsActived = true;
+                    categoryArticleViewModel.IsActived = true;
                 }
             }
             ViewBag.categoryId = categoryId;
-            return View(vmArticle);
+            return View(bEArticleViewModel);
         }
 
         [HttpGet]
@@ -129,8 +128,8 @@ namespace Swastika.Cms.Mvc.Areas.Portal.Controllers
             {
                 //var vmArticle = new SWBEArticleViewModel<BackendBEArticleViewModel>(article);
                 //var result = await vmArticle.SaveModelAsync();
-                var result = await article.SaveModelAsync(true).ConfigureAwait(false);
-                if (result.IsSucceed)
+                var repositoryResponse = await article.SaveModelAsync(true).ConfigureAwait(false);
+                if (repositoryResponse.IsSucceed)
                 {
                     if (categoryId.HasValue)
                     {
@@ -161,14 +160,14 @@ namespace Swastika.Cms.Mvc.Areas.Portal.Controllers
                 return RedirectToAction("Index");
             }
 
-            var article = await BEArticleViewModel.Repository.GetSingleModelAsync(
+            var repositoryResponse = await BEArticleViewModel.Repository.GetSingleModelAsync(
                 m => m.Id == id && m.Specificulture == CurrentLanguage).ConfigureAwait(false);
-            if (article == null)
+            if (repositoryResponse == null)
             {
                 return RedirectToAction("Index");
             }
             ViewBag.categoryId = categoryId;
-            return View(article.Data);
+            return View(repositoryResponse.Data);
         }
 
         // POST: article/Edit/5
@@ -189,8 +188,8 @@ namespace Swastika.Cms.Mvc.Areas.Portal.Controllers
             {
                 try
                 {
-                    var result = await article.SaveModelAsync(true).ConfigureAwait(false);
-                    if (result.IsSucceed)
+                    var repositoryResponse = await article.SaveModelAsync(true).ConfigureAwait(false);
+                    if (repositoryResponse.IsSucceed)
                     {
                         if (categoryId.HasValue)
                         {
@@ -203,12 +202,12 @@ namespace Swastika.Cms.Mvc.Areas.Portal.Controllers
                     }
                     else
                     {
-                        if (result.Exception != null)
+                        if (repositoryResponse.Exception != null)
                         {
-                            ModelState.AddModelError(string.Empty, result.Exception?.Message);
+                            ModelState.AddModelError(string.Empty, repositoryResponse.Exception?.Message);
                         }
 
-                        foreach (var error in result.Errors)
+                        foreach (var error in repositoryResponse.Errors)
                         {
                             ModelState.AddModelError(string.Empty, error);
                         }
@@ -239,9 +238,9 @@ namespace Swastika.Cms.Mvc.Areas.Portal.Controllers
             var getArticle = InfoArticleViewModel.Repository.GetSingleModel(a => a.Id == id);
             if (getArticle.IsSucceed)
             {
-                var data = getArticle.Data;
-                data.Status = SWStatus.Deleted;
-                var result = await data.SaveModelAsync().ConfigureAwait(false);
+                var infoArticleViewModel = getArticle.Data;
+                infoArticleViewModel.Status = SWStatus.Deleted;
+                var result = await infoArticleViewModel.SaveModelAsync().ConfigureAwait(false);
                 if (result.IsSucceed)
                 {
                     return RedirectToAction("Index");
@@ -264,9 +263,9 @@ namespace Swastika.Cms.Mvc.Areas.Portal.Controllers
             var getArticle = InfoArticleViewModel.Repository.GetSingleModel(a => a.Id == id);
             if (getArticle.IsSucceed)
             {
-                var data = getArticle.Data;
-                data.Status = SWStatus.Preview;
-                var result = await data.SaveModelAsync().ConfigureAwait(false);
+                var infoArticleViewModel = getArticle.Data;
+                infoArticleViewModel.Status = SWStatus.Preview;
+                var result = await infoArticleViewModel.SaveModelAsync().ConfigureAwait(false);
                 if (result.IsSucceed)
                 {
                     return RedirectToAction("Draft");
