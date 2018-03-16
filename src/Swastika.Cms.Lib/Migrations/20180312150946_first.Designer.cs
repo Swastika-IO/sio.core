@@ -11,8 +11,8 @@ using System;
 namespace Swastika.Cms.Lib.Migrations
 {
     [DbContext(typeof(SiocCmsContext))]
-    [Migration("20180305042255_First")]
-    partial class First
+    [Migration("20180312150946_first")]
+    partial class first
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -199,6 +199,9 @@ namespace Swastika.Cms.Lib.Migrations
 
                     b.Property<DateTime?>("LastModified")
                         .HasColumnType("datetime");
+
+                    b.Property<string>("Layout")
+                        .HasMaxLength(50);
 
                     b.Property<int?>("Level");
 

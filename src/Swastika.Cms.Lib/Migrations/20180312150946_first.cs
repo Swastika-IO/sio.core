@@ -5,7 +5,7 @@ using System.Collections.Generic;
 
 namespace Swastika.Cms.Lib.Migrations
 {
-    public partial class First : Migration
+    public partial class first : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -197,6 +197,7 @@ namespace Swastika.Cms.Lib.Migrations
                     Icon = table.Column<string>(maxLength: 50, nullable: true),
                     Image = table.Column<string>(maxLength: 250, nullable: true),
                     LastModified = table.Column<DateTime>(type: "datetime", nullable: true),
+                    Layout = table.Column<string>(maxLength: 50, nullable: true),
                     Level = table.Column<int>(nullable: true),
                     ModifiedBy = table.Column<string>(maxLength: 250, nullable: true),
                     Priority = table.Column<int>(nullable: false, defaultValueSql: "((0))"),
