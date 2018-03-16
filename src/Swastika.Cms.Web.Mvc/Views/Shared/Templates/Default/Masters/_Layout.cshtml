@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 
 <head>
@@ -8,20 +8,38 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
     <title>Landing Page - Now UI Kit Pro by Creative Tim</title>
     <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0, shrink-to-fit=no' name='viewport' />
-    <!--[STYLES]-->
+       <link href='/Content/Templates/Default/assets/css/now-ui-kit.css' rel='stylesheet'/>
+   <link href='/Content/Templates/Default/assets/css/demo.css' rel='stylesheet'/>
+   <link href='/Content/Templates/Default/assets/css/bootstrap.min.css' rel='stylesheet'/>
+
+<!--[STYLES]-->
     @RenderSection("Styles", false)
 </head>
 
-<body class="@this.ViewData["pageClass"]" ng-app="Swastika">
-
-    <input type="hidden" id="curentLanguage" name="curentLanguage" value="@ViewBag.culture" />
-
-    <div class="wrapper">
-        @Html.Partial("../Layouts/_Top_Nav.cshtml")
+<body class="@this.ViewData["pageClass"]">
+    @Html.Partial("../Layouts/_Top_Nav.cshtml")
+	<div class="wrapper">
+        @Html.Partial("../Layouts/_Header.cshtml")
         @RenderBody()
         @await Html.PartialAsync("../Layouts/_Footer.cshtml")
     </div>
-    <!--[SCRIPTS]-->
+    <script src='/Content/Templates/Default/assets/js/core/jquery.3.2.1.min.js'></script>
+      <script src='/Content/Templates/Default/assets/js/now-ui-kit.js'></script>
+  <script src='/Content/Templates/Default/assets/js/core/popper.min.js'></script>
+  
+  <script src='/Content/Templates/Default/assets/js/core/bootstrap.min.js'></script>
+  <script src='/Content/Templates/Default/assets/js/plugins/nouislider.min.js'></script>
+  <script src='/Content/Templates/Default/assets/js/plugins/moment.min.js'></script>
+  <script src='/Content/Templates/Default/assets/js/plugins/jasny-bootstrap.min.js'></script>
+  <script src='/Content/Templates/Default/assets/js/plugins/bootstrap-tagsinput.js'></script>
+  <script src='/Content/Templates/Default/assets/js/plugins/bootstrap-switch.js'></script>
+  <script src='/Content/Templates/Default/assets/js/plugins/bootstrap-datetimepicker.min.js'></script>
+  <script src='/Content/Templates/Default/assets/js/plugins/bootstrap-selectpicker.js'></script>
+  <script src='/Content/Templates/Default/assets/js/plugins/presentation-page/rellax.min.js'></script>
+  <script src='/Content/Templates/Default/assets/js/plugins/presentation-page/jquery.sharrre.js'></script>
+
+<!--[SCRIPTS]-->
     @RenderSection("Scripts", false)
 </body>
+    
 </html>
