@@ -1,5 +1,5 @@
 ﻿// Licensed to the Swastika I/O Foundation under one or more agreements.
-// The Swastika I/O Foundation licenses this file to you under the MIT license.
+// The Swastika I/O Foundation licenses this file to you under the GNU General Public License v3.0 license.
 // See the LICENSE file in the project root for more information.
 
 using Microsoft.AspNetCore.Authentication.Cookies;
@@ -25,40 +25,40 @@ namespace Swastika.Cms.Web.Mvc
             string connectionString = Configuration.GetConnectionString(connectionName);
             if (!string.IsNullOrEmpty(connectionString))
             {
-                //connectionString = "Server=(localdb)\\mssqllocaldb;Database=aspnet-Swastika.Cms.Db;Trusted_Connection=True;MultipleActiveResultSets=true";
-                services.AddDbContext<SiocCmsAccountContext>(options =>
+                connectionString = "Server=(localdb)\\mssqllocaldb;Database=aspnet-Swastika.Cms.Db;Trusted_Connection=True;MultipleActiveResultSets=true";
+                
+            }
+            services.AddDbContext<SiocCmsAccountContext>(options =>
                 options.UseSqlServer(connectionString));
 
-                PasswordOptions pOpt = new PasswordOptions()
-                {
-                    RequireDigit = false,
-                    RequiredLength = 6,
-                    RequireLowercase = false,
-                    RequireNonAlphanumeric = false,
-                    RequireUppercase = false
-                };
+            PasswordOptions pOpt = new PasswordOptions()
+            {
+                RequireDigit = false,
+                RequiredLength = 6,
+                RequireLowercase = false,
+                RequireNonAlphanumeric = false,
+                RequireUppercase = false
+            };
 
-                services.AddIdentity<ApplicationUser, IdentityRole>(options =>
-                {
-                    options.Password = pOpt;
-                })
-                    .AddEntityFrameworkStores<SiocCmsAccountContext>()
-                    .AddDefaultTokenProviders()
-                    .AddUserManager<UserManager<ApplicationUser>>();
+            services.AddIdentity<ApplicationUser, IdentityRole>(options =>
+            {
+                options.Password = pOpt;
+            })
+                .AddEntityFrameworkStores<SiocCmsAccountContext>()
+                .AddDefaultTokenProviders()
+                .AddUserManager<UserManager<ApplicationUser>>();
 
-                services.AddAuthorization(options =>
+            services.AddAuthorization(options =>
+            {
+                options.AddPolicy("AddEditUser", policy =>
                 {
-                    options.AddPolicy("AddEditUser", policy =>
-                    {
-                        policy.RequireClaim("Add User");
-                        policy.RequireClaim("Edit User");
-                    });
-                    options.AddPolicy("DeleteUser", policy => policy.RequireClaim("Delete User"));
-                })
-                 ;
-            }
+                    policy.RequireClaim("Add User");
+                    policy.RequireClaim("Edit User");
+                });
+                options.AddPolicy("DeleteUser", policy => policy.RequireClaim("Delete User"));
+            })
+             ;
 
-            
         }
 
         public static void ConfigJWTToken(IServiceCollection services, IConfigurationRoot Configuration)

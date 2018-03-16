@@ -74,7 +74,7 @@ namespace Swastika.Cms.Web.Mvc
             // Add Singleton Configs App Configs (load from db)
             services.AddSingleton<GlobalConfigurationService>();
             services.AddSingleton<GlobalLanguageService>();
-
+            services.AddSingleton<IConfigurationRoot>(Configuration);
             services.AddScoped<IViewRenderService, ViewRenderService>();
 
             services.AddRouting(options => options.LowercaseUrls = true);

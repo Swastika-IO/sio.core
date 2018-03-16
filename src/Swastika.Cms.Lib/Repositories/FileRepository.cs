@@ -265,7 +265,7 @@ namespace Swastika.Cms.Lib.Repositories
 
                 return true;
             }
-            return false;
+            return true;
         }
 
         public List<FileViewModel> GetUploadFiles(string folder)

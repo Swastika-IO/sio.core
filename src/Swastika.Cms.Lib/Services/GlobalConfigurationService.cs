@@ -346,6 +346,10 @@ namespace Swastika.Cms.Lib.Services
                                 }
                                 isSucceed = isSucceed && config.SaveModel(false, context, transaction).IsSucceed;
                             }
+                            if (isSucceed)
+                            {
+                                InitConfigurations(context, transaction);
+                            }
                         }
                         else
                         {
@@ -374,25 +378,25 @@ namespace Swastika.Cms.Lib.Services
                     if (isSucceed)
                     {
 
-                        BECategoryViewModel cate = new BECategoryViewModel()
+                        BECategoryViewModel cate = new BECategoryViewModel( new SiocCategory()
                         {
                             Title = "Home",
                             Specificulture = "vi-vn",
                             Template = "_Home",
-                            Type = SWCmsConstants.CateType.Home,
+                            Type = (int)SWCmsConstants.CateType.Home,
                             CreatedBy = "Admin"
 
-                        };
+                        });
 
                         isSucceed = isSucceed && cate.SaveModel(false, context, transaction).IsSucceed;
-                        BECategoryViewModel uscate = new BECategoryViewModel()
+                        BECategoryViewModel uscate = new BECategoryViewModel( new SiocCategory()
                         {
                             Title = "Home",
                             Specificulture = "en-us",
                             Template = "_Home",
-                            Type = SWCmsConstants.CateType.Home,
+                            Type = (int)SWCmsConstants.CateType.Home,
                             CreatedBy = "Admin"
-                        };
+                        });
                         isSucceed = isSucceed && uscate.SaveModel(false, context, transaction).IsSucceed;
                     }
 
@@ -401,7 +405,7 @@ namespace Swastika.Cms.Lib.Services
                     {
 
                         GlobalLanguageService.Instance.RefreshCultures(context, transaction);
-                        InitConfigurations(context, transaction);
+                        
                         transaction.Commit();
                         IsInit = true;
                     }

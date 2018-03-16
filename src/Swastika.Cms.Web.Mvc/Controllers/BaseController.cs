@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Filters;
 using Microsoft.AspNetCore.Mvc.Rendering;
+using Microsoft.Extensions.Configuration;
 using Swastika.Cms.Lib;
 using Swastika.Cms.Lib.Services;
 using Swastika.Common.Helper;
@@ -21,11 +22,25 @@ namespace Swastika.Cms.Mvc.Controllers
         public readonly string ROUTE_CULTURE_NAME = "culture";
         public readonly string ROUTE_DEFAULT_CULTURE = SWCmsConstants.Default.Specificulture;
         protected string _domain;
+        protected IConfigurationRoot _configuration;
         protected IHostingEnvironment _env;
         private string _currentLanguage;
 
         public BaseController(IHostingEnvironment env)
         {
+            _env = env;
+            string lang = RouteData != null && RouteData.Values[ROUTE_CULTURE_NAME] != null
+               ? RouteData.Values[ROUTE_CULTURE_NAME].ToString() : ROUTE_DEFAULT_CULTURE;
+
+            // Set CultureInfo
+            var cultureInfo = new CultureInfo(CurrentLanguage);
+            CultureInfo.DefaultThreadCurrentCulture = cultureInfo;
+            CultureInfo.DefaultThreadCurrentUICulture = cultureInfo;
+        }
+
+        public BaseController(IHostingEnvironment env, IConfigurationRoot configuration)
+        {
+            _configuration = configuration;
             _env = env;
             string lang = RouteData != null && RouteData.Values[ROUTE_CULTURE_NAME] != null
                ? RouteData.Values[ROUTE_CULTURE_NAME].ToString() : ROUTE_DEFAULT_CULTURE;

@@ -4,6 +4,7 @@
 
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Configuration;
 using Newtonsoft.Json.Linq;
 using Swastika.Cms.Lib;
 using Swastika.Cms.Lib.Repositories;
@@ -19,8 +20,8 @@ namespace Swastika.Cms.Mvc.Areas.Portal.Controllers
     [Route("{culture}/Portal")]
     public class PortalController : BaseController<PortalController>
     {
-        public PortalController(IHostingEnvironment env)
-            : base(env)
+        public PortalController(IHostingEnvironment env, IConfigurationRoot configuration)
+            : base(env, configuration)
         {
         }
 
@@ -61,6 +62,7 @@ namespace Swastika.Cms.Mvc.Areas.Portal.Controllers
                 GlobalConfigurationService.Instance.InitSWCms();
                 if (GlobalConfigurationService.Instance.IsInit)
                 {
+                    
                     var settings = FileRepository.Instance.GetFile("appsettings", ".json", string.Empty);
                     if (settings != null)
                     {
@@ -69,7 +71,7 @@ namespace Swastika.Cms.Mvc.Areas.Portal.Controllers
                         settings.Content = jsonSettings.ToString();
                         FileRepository.Instance.SaveFile(settings);
                     }
-                    return RedirectToAction("Index", "Home", new { culture = SWCmsConstants.Default.Specificulture });
+                    return Redirect($"/{SWCmsConstants.Default.Specificulture}");
                 }
             }
             return View(model);
