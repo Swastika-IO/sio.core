@@ -3,7 +3,7 @@ app.controller('ModuleDataController', function PhoneListController($scope) {
     var vm = this
     vm.data = null;
 
-    vm.currentLanguage = $('#curentLanguage').val();
+    vm.currentLanguage = 'vi-vn';
 
     vm.settings = {
         "async": true,
@@ -55,7 +55,7 @@ app.controller('ModuleDataController', function PhoneListController($scope) {
                     vm.message.class = 'alert-danger';
                     vm.message.content = response.errors;
                 }
-                console.log(response);
+                $scope.$apply();
             },
             error: function (a, b, c) {
                 console.log(a, b, c);
