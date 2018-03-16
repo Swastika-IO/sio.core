@@ -27,7 +27,7 @@
                     </style>
                     <div class="col form-check mb-4">
                         <label asp-for="IsUseLocal" class="form-check-label">
-                            <input asp-for="IsUseLocal" class="form-check-input" />
+                            <input asp-for="IsUseLocal" class="form-check-input" ng-model="isLocalDb" />
                             <span class="form-check-sign"></span>
                             Use local Database
                         </label>
@@ -39,6 +39,7 @@
                             </label>
                         </div>*@
                 </div>
+                <div ng-hide="isLocalDb">
                 <h5 class="card-description text-white"> or remote database </h5>
                 <div class="input-group form-group-no-border input-lg">
                     <div class="input-group-prepend">
@@ -64,6 +65,7 @@
                     </div>
                     <input asp-for="DataBasePassword" type="password" class="form-control" placeholder="Database Password" />
                 </div>
+                    </div>
             </div>
             <div class="card-footer text-center">
                 <button type="submit" class="btn btn-primary btn-round btn-lg btn-block">Continue...</button>

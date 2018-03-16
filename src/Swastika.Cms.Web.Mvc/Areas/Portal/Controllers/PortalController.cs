@@ -71,7 +71,7 @@ namespace Swastika.Cms.Mvc.Areas.Portal.Controllers
                         settings.Content = jsonSettings.ToString();
                         FileRepository.Instance.SaveFile(settings);
                     }
-                    return Redirect($"/{SWCmsConstants.Default.Specificulture}");
+                    return RedirectToAction("Register", "Auth", new { culture = SWCmsConstants.Default.Specificulture });
                 }
             }
             return View(model);

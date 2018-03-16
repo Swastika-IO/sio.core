@@ -2,6 +2,7 @@
 app.controller('PortalController', function PhoneListController($scope) {
     $scope.currentLanguage = $('#curentLanguage').val();
     $scope.isBusy = true;
+    $scope.isLocalDb = false;
     $scope.mediaData = {};
     $scope.mediaFile = {
         file: null,
