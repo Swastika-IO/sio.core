@@ -261,17 +261,17 @@ m => m.Specificulture == ViewContext.RouteData.Values["culture"].ToString());
             </ul>
         </li>
 
-         <!-- Favorite MODULES -->
+        <!-- Favorite MODULES -->
         <li class="sw-toc-item mt-1 mb-1" is-active-menu asp-controllers="Module">
 
             <div class="sw-toc-link" data-toggle="collapse" data-target="#collapseModuleForm" aria-expanded="false"
                  aria-controls="collapseModuleForm">
-                <i class="mi mi-ResolutionLegacy mi-lg mi-fw"></i>
+                <i class="mi mi-wpform mi-lg mi-fw"></i>
                 <span class="text">@translator.Get("Forms")</span>
             </div>
             <ul id="collapseModuleForm" class="collapse list-unstyled" data-parent="#sw-docs-nav">
-                
-                @foreach (var module in listAvaiModule.Where(m=>m.Type == (int)SWCmsConstants.ModuleType.Form).OrderBy(m => m.Priority))
+
+                @foreach (var module in listAvaiModule.Where(m => m.Type == (int)SWCmsConstants.ModuleType.Form).OrderBy(m => m.Priority))
                 {
                     <li class="hide-on-sb-inactive">
                         <div class="sw-toc-sub-link mb-1">
