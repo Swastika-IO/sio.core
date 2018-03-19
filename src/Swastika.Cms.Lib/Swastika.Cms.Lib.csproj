@@ -3,6 +3,16 @@
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
     <RootNamespace>Swastika.Cms.Lib</RootNamespace>
+    <Version>0.0.4</Version>
+    <Authors>Swastika I/O Team, Smileway Team</Authors>
+    <Company>Swastika I/O</Company>
+    <Copyright>Swastika I/O, Smileway, Befirst.Solution</Copyright>
+    <Product>Swastika I/O Core CMS Library</Product>
+    <PackageLicenseUrl>https://github.com/Swastika-IO/Swastika-IO-Core/blob/master/LICENSE</PackageLicenseUrl>
+    <PackageProjectUrl>https://www.swastika.io</PackageProjectUrl>
+    <PackageIconUrl>https://avatars2.githubusercontent.com/u/26378971</PackageIconUrl>
+    <RepositoryUrl>https://github.com/Swastika-IO/Swastika-IO-Core</RepositoryUrl>
+    <PackageTags>Asp.Net Core CMS, Asp.Net Core MVC CMS, C# Core CMS, NetCoreCMS, Core CMS, Modular Architecture, CMS Theme, CMS Widget, Multilangual CMS, .Net CMS Platform, .Net CMS Open Source, .Net CMS Comparison 2017, .Net CMS System, .Net CMS Framework, .Net CMS Open Source MVC, .Net CMS tools, .Net CMS website, Content Management System, Blog Engine, DotNet Core,</PackageTags>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
@@ -44,16 +54,13 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="AngleSharp" Version="0.9.9.1" />
-    <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="2.0.1" />
-    <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="2.0.1" />
-    <PackageReference Include="Microsoft.Extensions.Configuration" Version="2.0.0" />
+    <PackageReference Include="AngleSharp" Version="0.9.9.2" />
+    <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="2.0.3" />
+    <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="2.0.2" />
+    <PackageReference Include="Microsoft.Extensions.Configuration" Version="2.0.1" />
     <PackageReference Include="Microsoft.IdentityModel.Tokens" Version="5.2.1" />
-    <PackageReference Include="Swastika.Identity" Version="0.0.3" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <ProjectReference Include="..\..\..\Swastika-Heart\src\Swastika\Swastika.csproj" />
+    <PackageReference Include="Swastika" Version="0.0.4" />
+    <PackageReference Include="Swastika.Identity" Version="0.0.4" />
   </ItemGroup>
 
 </Project>
