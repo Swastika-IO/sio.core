@@ -1,0 +1,16 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Remove="ViewModels\Crm\FrontEnd\_Blank.cs" />
+    <Compile Remove="ViewModels\Crm\_Blank.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Swastika" Version="0.0.3" />
+  </ItemGroup>
+
+</Project>
