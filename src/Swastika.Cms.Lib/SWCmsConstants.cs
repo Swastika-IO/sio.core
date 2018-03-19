@@ -64,6 +64,7 @@ namespace Swastika.Cms.Lib
             SubPage,
             SubArticle,
             SubProduct,
+            Form
         }
 
         public enum SearchType
@@ -156,7 +157,7 @@ namespace Swastika.Cms.Lib
             public const string OrderBy = @"Priority";
             public const int PageSizeArticle = 20;
             public const string Password = @"1234qwe@";
-            public const string Specificulture = @"en-us";
+            public const string Specificulture = @"vi-vn";
         }
 
         public class FileFolder

@@ -3,7 +3,5 @@
 {
     if (module != null)
     {
-        Html.RenderPartial("../" + module.Template, module);
-    }
-
-}
+        Html.RenderPartial(module.TemplatePath, module);
+    }}

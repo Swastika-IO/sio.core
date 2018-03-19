@@ -1,6 +1,6 @@
 ﻿'use strict';
 app.controller('PortalController', function PhoneListController($scope) {
-    $scope.currentLanguage = $('#curentLanguage').val();
+    $scope.currentLanguage = 'vi-vn';
     $scope.isBusy = true;
     $scope.isLocalDb = false;
     $scope.mediaData = {};

@@ -1,7 +1,7 @@
 ﻿'use strict';
 app.controller('PortalTemplateController', function PhoneListController($scope) {
     var vm = this;
-    vm.currentLanguage = $('#curentLanguage').val();
+    vm.currentLanguage = 'vi-vn';
     vm.templates = [];
     vm.activedTemplate = {  };
     vm.request = {

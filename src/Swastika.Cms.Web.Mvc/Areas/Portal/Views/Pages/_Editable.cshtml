@@ -40,11 +40,10 @@
 
                     <label class="control-label">Page types</label>
                     <div class="btn-group btn-group-sm btn-group-toggle d-flex w-100" role="group" data-toggle="buttons">
-
                         @foreach (var type in types)
                         {
                             <label class="btn btn-outline-secondary btn-block mt-0">
-                                <input asp-for="Type" type="radio" value="@type.Value" class="custom-control-input" id="pageType_@type.Value" />
+                                <input asp-for="Type" type="radio" value="@type.Text" class="custom-control-input" id="pageType_@type.Value" />
 
                                 @switch (type.Text)
                                 {

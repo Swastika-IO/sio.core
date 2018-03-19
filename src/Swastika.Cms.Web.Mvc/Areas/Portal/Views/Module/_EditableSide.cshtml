@@ -3,7 +3,7 @@
 @{
     string img = Model != null ? Model.Image : "http://placehold.it/200x200";
     var status = Html.GetEnumSelectList<Swastika.Common.Utility.Enums.SWStatus>();
-    var moduleTypes = Html.GetEnumSelectList<Swastika.Cms.Lib.SWCmsConstants.ModuleType>();
+    var moduleTypes = Html.GetEnumSelectList<SWCmsConstants.ModuleType>();
     //var types = Html.GetEnumSelectList<Swastika.Cms.Lib.SWCmsConstants.CateType>();
     //string img = Model != null ? Model.Image : "http://placehold.it/200x200";
 }
@@ -81,6 +81,8 @@
                             case "SubArticle":<i class="mi mi-ReadingList mi-lg mi-fw" title="@type.Text"></i>
                                 break;
                             case "SubProduct":<i class="mi mi-Package mi-lg mi-fw" title="@type.Text"></i>
+                                break;
+                            case "Form":<i class="mi mi-wpform mi-lg mi-fw" title="@type.Text"></i>
                                 break;
                             case "Root":<i class="mi mi-ReturnKey mi-flip-horizontal" title="@type.Text"></i>
                                 break;

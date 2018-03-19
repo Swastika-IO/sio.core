@@ -16,6 +16,7 @@ using Swastika.Domain.Core.ViewModels;
 using Swastika.Domain.Data.ViewModels;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Linq.Expressions;
 using System.Threading.Tasks;
@@ -33,6 +34,7 @@ namespace Swastika.Cms.Lib.ViewModels.BackEnd
         [JsonProperty("id")]
         public int Id { get; set; }
 
+        [Required]
         [JsonProperty("name")]
         public string Name { get; set; }
 
@@ -42,6 +44,7 @@ namespace Swastika.Cms.Lib.ViewModels.BackEnd
         [JsonProperty("template")]
         public string Template { get; set; }
 
+        [Required]
         [JsonProperty("title")]
         public string Title { get; set; }
 
