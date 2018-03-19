@@ -299,7 +299,7 @@ namespace Swastika.Cms.Lib.ViewModels.BackEnd
                 MediaNavs.ForEach(n => n.IsActived = true);
             }
 
-            var getRelatedProduct = NavRelatedProductViewModel.Repository.GetModelListBy(n => n.SourceProductId == Id && n.Specificulture == Specificulture, _context, _transaction);
+            var getRelatedProduct = NavRelatedProductViewModel.Repository.GetModelListBy(n => (n.SourceProductId == Id || n.RelatedProductId == Id) && n.Specificulture == Specificulture, _context, _transaction);
             if (getRelatedProduct.IsSucceed)
             {
                 ProductNavs = getRelatedProduct.Data.OrderBy(p => p.Priority).ToList();
@@ -629,35 +629,51 @@ namespace Swastika.Cms.Lib.ViewModels.BackEnd
 
         public override async Task<RepositoryResponse<bool>> RemoveRelatedModelsAsync(BEProductViewModel view, SiocCmsContext _context = null, IDbContextTransaction _transaction = null)
         {
-            RepositoryResponse<bool> repositoryResponse = new RepositoryResponse<bool>()
+            RepositoryResponse<bool> result = new RepositoryResponse<bool>()
             {
                 IsSucceed = true
             };
 
-            if (repositoryResponse.IsSucceed)
+            if (result.IsSucceed)
             {
                 foreach (var item in view.Categories.Where(m => m.IsActived))
                 {
-                    repositoryResponse = await item.RemoveModelAsync(false, _context, _transaction).ConfigureAwait(false);
+                    result = await item.RemoveModelAsync(false, _context, _transaction).ConfigureAwait(false);
                 }
             }
 
-            if (repositoryResponse.IsSucceed)
+            if (result.IsSucceed)
             {
                 foreach (var item in view.Modules.Where(m => m.IsActived))
                 {
-                    repositoryResponse = await item.RemoveModelAsync(false, _context, _transaction);
+                    result = await item.RemoveModelAsync(false, _context, _transaction);
                 }
             }
 
-            if (repositoryResponse.IsSucceed)
+            if (result.IsSucceed)
             {
                 foreach (var item in view.ModuleNavs.Where(m => m.IsActived))
                 {
-                    repositoryResponse = item.RemoveModel(false, _context, _transaction);
+                    result = item.RemoveModel(false, _context, _transaction);
                 }
             }
-            return repositoryResponse;
+
+            if (result.IsSucceed)
+            {
+                foreach (var item in view.MediaNavs)
+                {
+                    result = await item.RemoveModelAsync(false, _context, _transaction);
+                }
+            }
+
+            if (result.IsSucceed)
+            {
+                foreach (var item in view.ProductNavs)
+                {
+                    result = await item.RemoveModelAsync(false, _context, _transaction);
+                }
+            }
+            return result;
         }
 
         #endregion Async Methods
@@ -690,6 +706,14 @@ namespace Swastika.Cms.Lib.ViewModels.BackEnd
             if (result.IsSucceed)
             {
                 foreach (var item in model.ModuleNavs)
+                {
+                    result = item.RemoveModel(false, _context, _transaction);
+                }
+            }
+
+            if (result.IsSucceed)
+            {
+                foreach (var item in model.MediaNavs)
                 {
                     result = item.RemoveModel(false, _context, _transaction);
                 }

@@ -1,253 +1,192 @@
-﻿@using Swastika.Domain.Core.ViewModels;
-@model PaginationModel<Swastika.Cms.Lib.ViewModels.Info.InfoProductViewModel>
-
-@{
-    ViewData["Title"] = "Product";
-    //Layout = "~/Areas/Portal/Views/Shared/_Layout.cshtml";
-    int fromValue = Model.PageIndex * @Model.PageSize + 1;
-    int toValue = fromValue + Model.PageSize - 1;
-    int prevPage = Model.PageIndex > 0 ? Model.PageIndex - 1 : 0;
-    int nextPage = Model.PageIndex == Model.TotalPage - 1 ? Model.PageIndex : Model.PageIndex + 1;
-    toValue = toValue > Model.TotalItems ? Model.TotalItems : toValue;
-    string href = string.Format("{0}://{1}{2}", Context.Request.Scheme, Context.Request.Host, Url.Action());
+﻿@{
+    ViewData["Title"] = "Products";
+    ViewData["Description"] = "Manage site navigations and menus";
 }
+<!-- Main content -->
+<section class="content container-fluid" ng-controller="ProductController">
+    <div class="loader-container" ng-show="isBusy">
+        <div id="loader"></div>
+    </div>
 
-<section class="content container-fluid">
-    <form enctype="multipart/form-data" asp-action="@ViewContext.RouteData.Values["action"].ToString()">
-        @if (Model.Items.Count > 0)
-        {
-
-            <div class="row">
-                <div class="col-md-8">
-                    <div class="btn-toolbar mb-3" role="toolbar" aria-label="Toolbar with button groups">
-                        <div class="btn-group mr-2" role="group" aria-label="First group">
-                            <a asp-area="Portal" asp-controller="Products" asp-action="Create" class="btn btn-secondary"><i class="mi mi-Add"></i></a>
-                            <a asp-area="Portal" asp-controller="Products" asp-action="Index" class="btn btn-secondary"><i class="mi mi-List"></i></a>
-                            <a asp-area="Portal" asp-controller="Products" asp-action="Draft" class="btn btn-secondary"><i class="mi mi-Paste"></i></a>
-                        </div>
-                        <div class="btn-group dropdown mr-2">
-                            <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownOrderBy" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                {{request.orderBy}}
-                            </button>
-                            <div class="dropdown-menu" aria-labelledby="dropdownOrderBy">
-                                <button class="dropdown-item" ng-repeat="item in orders track by $index" ng-model="request.orderBy" ng-click="request.orderBy=item.value;loadProducts();" value="{{item.value}}">{{item.title}}</button>
-                            </div>
-                        </div>
-                        <div class="btn-group mr-2" role="group" aria-label="First group">
-                            <button class="btn btn-secondary" ng-repeat="item in directions track by $index" ng-model="request.direction" ng-click="request.direction=item.value;loadProducts();" value="{{item.value}}">{{item.title}}</button>
-                        </div>
-                        <div class="dropdown mr-2">
-                            <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownItemPerPage" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                {{request.pageSize}} items
-                            </button>
-                            <div class="dropdown-menu" aria-labelledby="dropdownItemPerPage">
-                                <button class="dropdown-item" ng-repeat="item in pageSizes track by $index" ng-model="request.pageSize" ng-click="request.pageSize=item;loadProducts();" value="{{item}}">{{item}}</button>
-                            </div>
-                        </div>
-                        <div class="input-group mr-2" role="group" aria-label="First group">
-                            <div class="input-group-prepend">
-                                <span class="input-group-text" id=""><i class="mi mi-Calendar"></i></span>
-                            </div>
-                            <input type="date" ng-model="request.fromDate" ng-change="loadProducts()" class="form-control" />
-                            <input type="date" ng-model="request.toDate" ng-change="loadProducts()" class="form-control" />
-                        </div>
+    <div class="row">
+        <div class="col-md-8">
+            <div class="btn-toolbar mb-3" role="toolbar" aria-label="Toolbar with button groups">
+                <div class="btn-group mr-2" role="group" aria-label="First group">
+                    <a asp-area="Portal" asp-controller="Products" asp-action="Create" class="btn btn-secondary"><i class="mi mi-Add"></i></a>
+                    <a asp-area="Portal" asp-controller="Products" asp-action="Index" class="btn btn-secondary"><i class="mi mi-List"></i></a>
+                    <a asp-area="Portal" asp-controller="Products" asp-action="Draft" class="btn btn-secondary"><i class="mi mi-Paste"></i></a>
+                </div>
+                <div class="btn-group dropdown mr-2">
+                    <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownOrderBy" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        {{request.status}}
+                    </button>
+                    <div class="dropdown-menu" aria-labelledby="dropdownOrderBy">
+                        <button class="dropdown-item" ng-repeat="item in swStatus track by $index" ng-model="request.status" ng-click="request.status=item;loadProducts();"
+                                value="{{item}}">
+                            {{item}}
+                        </button>
                     </div>
                 </div>
-                <div class="col-md-4">
-                    <div class="input-group">
-                        <div class="input-group-prepend" ng-click="loadProducts()">
-                            <div class="input-group-text" id="btnGroupAddon"><i class="mi mi-Search" style="top:0;"></i></div>
-                        </div>
-                        <input ng-model="request.keyword" ng-enter="loadProducts()" type="text" class="form-control" placeholder="Search......" aria-label="Search......" aria-describedby="btnGroupAddon">
+                <div class="btn-group dropdown mr-2">
+                    <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownOrderBy" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        {{request.orderBy}}
+                    </button>
+                    <div class="dropdown-menu" aria-labelledby="dropdownOrderBy">
+                        <button class="dropdown-item" ng-repeat="item in orders track by $index" ng-model="request.orderBy" ng-click="request.orderBy=item.value;loadProducts();" value="{{item.value}}">{{item.title}}</button>
                     </div>
                 </div>
+                <div class="btn-group mr-2" role="group" aria-label="First group">
+                    <button class="btn btn-secondary" ng-repeat="item in directions track by $index" ng-model="request.direction" ng-click="request.direction=item.value;loadProducts();" value="{{item.value}}">{{item.title}}</button>
+                </div>
+                <div class="dropdown mr-2">
+                    <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownItemPerPage" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        {{request.pageSize}} items
+                    </button>
+                    <div class="dropdown-menu" aria-labelledby="dropdownItemPerPage">
+                        <button class="dropdown-item" ng-repeat="item in pageSizes track by $index" ng-model="request.pageSize" ng-click="request.pageSize=item;loadProducts();" value="{{item}}">{{item}}</button>
+                    </div>
+                </div>
+                <div class="input-group mr-2" role="group" aria-label="First group">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text" id=""><i class="mi mi-Calendar"></i></span>
+                    </div>
+                    <input type="date" ng-model="request.fromDate" ng-change="loadProducts()" class="form-control" />
+                    <input type="date" ng-model="request.toDate" ng-change="loadProducts()" class="form-control" />
+                </div>
             </div>
-            <table class="table table-sm table-hover dataTable" cellspacing="0">
-                <thead class="thead-light">
-                    <tr>
-                        <th scope="col" width="5%">
-                            <span class="oi oi-move"></span>
-                        </th>
-                        <th scope="col" width="5%">
-                            <span class="oi oi-sort-ascending"></span>
-                        </th>
-                        <th scope="col">
-                            Title
-                        </th>
-                        <th scope="col">
-                            Excerpt
-                        </th>
-                        <th scope="col" width="5%">
-                            Type
-                        </th>
-                        <th scope="col" width="10%">
-                            Created By
-                        </th>
-                        <th scope="col" width="5%" class="text-right">
-                            Actions
-                        </th>
-                    </tr>
-                </thead>
-                @*<tfoot>
-                        <tr>
-                            <th scope="col">
-                                <span class="oi oi-move"></span>
-                            </th>
-                            <th scope="col">
-                                <span class="oi oi-sort-ascending"></span>
-                            </th>
-                            <th scope="col">
-                                Title
-                            </th>
-                            <th scope="col">
-                                Excerpt
-                            </th>
-                            <th scope="col">
-                                Type
-                            </th>
-                            <th scope="col">
-                                CreatedBy
-                            </th>
-                            <th scope="col"></th>
-                        </tr>
-                    </tfoot>*@
-                <tbody class="sortable">
-                    @for (int i = 0; i < Model.Items.OrderBy(n => n.Priority).ToList().Count; i++)
-                    {
-                        <tr class="sortable-item" sort-model="Product" sort-model-id="@Model.Items[i].Id">
-                            <td style="cursor:move;">
-                                <span class="oi oi-move"></span>
-                            </td>
-                            <td>
-                                <input type="text" asp-for="@Model.Items[i].Priority" class="item-priority form-control form-control-sm d-inline" style="width:40px;" />
-                            </td>
-                            <td>
-                                <small>
-                                    @Model.Items[i].Title
-                                </small>
-                            </td>
-                            <td>
-                                <small>
-                                    @Model.Items[i].Excerpt
-                                </small>
-                            </td>
-
-                            <td>
-                                @Model.Items[i].Type
-                            </td>
-                            <td>
-                                @Model.Items[i].CreatedBy
-                            </td>
-
-                            <td>
-                                <div class="btn-group btn-group-sm" role="group" aria-label="Actions">
-                                    <a asp-controller="Product" asp-action="Edit" asp-route-id="@Model.Items[i].Id" asp-route-categoryId="@ViewBag.categoryId"
-                                       class="btn btn-sm btn-light d-inline-block "><span class="oi oi-pencil text-primary"></span></a>
-                                    <a asp-area="" asp-controller="Home" asp-action="ProductDetails" asp-route-SeoName="@Model.Items[i].SeoName"
-                                       target="_blank" class="btn btn-sm btn-light"><span class="oi oi-eye text-info"></span></a>
-                                    @*<a asp-area="Portal" asp-controller="Products" asp-action="Recycle" asp-route-id="@Model.Items[i].Id"
-                                        class="btn btn-sm btn-light d-inline-block" data-popout="true" data-toggle="confirmation" data-singleton="true"><span class="oi oi-x text-danger"></span></a>*@
-
-                                    <button type="button" class="btn btn-light del-popover"
-                                            data-toggle="popover" data-html="true">
-                                        <span class="oi oi-x text-danger"></span>
-                                    </button>
-                                    <div class="popover-body d-none">
-                                        <a asp-area="Portal" asp-controller="Product" asp-action="Recycle" asp-route-id="@Model.Items[i].Id" class="btn btn btn-danger">Yes, I want to delete!</a>
-                                    </div>
-                                </div>
-                            </td>
-                        </tr>
-                    }
-                </tbody>
-            </table>
-
-            @await Html.PartialAsync("_Pagination", Model, new ViewDataDictionary(this.Vi‌​ewData) { { "PageSize", Model.PageSize }, { "PageIndex", Model.PageIndex }, { "TotalPage", Model.TotalPage } })
-
-        }
-        else
-        {
-            <div class="alert alert-warning" role="alert">
-                No Product added yet! Please add your first Product <a asp-area="Portal" asp-controller="Products" asp-action="Create" class="">here</a>.
+        </div>
+        <div class="col-md-4">
+            <div class="input-group">
+                <div class="input-group-prepend" ng-click="loadProducts()">
+                    <div class="input-group-text" id="btnGroupAddon"><i class="mi mi-Search" style="top:0;"></i></div>
+                </div>
+                <input ng-model="request.keyword" ng-enter="loadProducts()" type="text" class="form-control" placeholder="Search......" aria-label="Search......" aria-describedby="btnGroupAddon">
             </div>
-        }
-    </form>
+        </div>
+    </div>
+
+    @*<div class="row">
+            <div class="col-md-8">
+                <div class="btn-toolbar mb-3" role="toolbar" aria-label="Toolbar with button groups">
+                    <div class="btn-group mr-2" role="group" aria-label="First group">
+                        <a asp-area="Portal" asp-controller="Products" asp-action="Create" class="btn btn-secondary"><i class="mi mi-Add"></i></a>
+                        <a asp-area="Portal" asp-controller="Products" asp-action="Index" class="btn btn-secondary"><i class="mi mi-List"></i></a>
+                        <a asp-area="Portal" asp-controller="Products" asp-action="Draft" class="btn btn-secondary"><i class="mi mi-Paste"></i></a>
+                    </div>
+                    <select class="btn btn-outline-secondary custom-select col-sm-3"
+                            ng-model="request.orderBy"
+                            ng-change="loadProducts()">
+                        <option ng-repeat="item in orders track by $index" value="{{item.value}}">{{item.title}}</option>
+                    </select>
+                    <select class="btn btn-outline-secondary custom-select col-sm-1"
+                            ng-model="request.direction"
+                            ng-change="loadProducts()">
+                        <option ng-repeat="item in directions track by $index" value="{{item.value}}">{{item.title}}</option>
+                    </select>
+                    <select class="btn btn-outline-secondary custom-select col-sm-1"
+                            ng-model="request.pageSize"
+                            ng-change="loadProducts(0)">
+                        <option ng-repeat="item in pageSizes track by $index" value="{{item}}">{{item}}</option>
+                    </select>
+                    <input type="date" data-date-format="dd.MM.yyyy - hh:mm:ss a" ng-model="request.fromDate" />
+                    <input type="date" data-date-format="dd.MM.yyyy - hh:mm:ss a" ng-model="request.toDate" />
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="input-group">
+                    <div class="input-group-prepend" ng-click="loadProducts()">
+                        <div class="input-group-text" id="btnGroupAddon"><i class="mi mi-Search" style="top:0;"></i></div>
+                    </div>
+                    <input ng-model="request.keyword" ng-enter="loadProducts()" type="text" class="form-control" placeholder="Search......" aria-label="Search......" aria-describedby="btnGroupAddon">
+                </div>
+            </div>
+        </div>*@
+    <table class="table table-sm table-hover" cellspacing="0">
+        <thead class="thead-light">
+            <tr>
+                <th scope="col" style="width: 3%;">
+                    <span class="oi oi-move"></span>
+                </th>
+                <th scope="col" style="width: 4%;">
+                    <span class="oi oi-sort-ascending"></span>
+                </th>
+                <th scope="col" style="width: 15%;">
+                    Title
+                </th>
+                <th scope="col">
+                    Description
+                </th>
+                <th scope="col" style="width: 10%;">
+                    Created Date
+                </th>
+                <th scope="col" style="width: 10%;">
+                    Created By
+                </th>
+
+                <th scope="col" style="width: 5%;">Actions</th>
+            </tr>
+        </thead>
+
+        <tbody class="sortable" ng-init="data = loadProducts()">
+            <tr ng-repeat="item in data.items track by $index"
+                class="sortable-item" sort-model="product" sort-model-id="{{item.id}}">
+                <td style="cursor:move;">
+                    <span class="oi oi-move"></span>
+                </td>
+                <td>
+                    <input type="text" value="{{item.priority}}" class="item-priority form-control form-control-sm d-inline" style="width:40px;" />
+                </td>
+
+                <td>
+                    {{item.title}}
+                </td>
+                <td>
+                    <small>
+                        {{item.excerpt}}
+                    </small>
+                </td>
+                <td>
+                    {{item.createdDateTime | utcToLocal:'dd.MM.yyyy - hh:mm:ss a'}}
+                </td>
+                <td>
+                    {{item.createdBy}}
+                </td>
+
+                <td>
+                    <div class="btn-group btn-group-sm" role="group" aria-label="Actions">
+                        <a href="/{{currentLanguage}}/portal/product/edit/{{item.id}}" class="btn btn-light"> <span class="oi oi-pencil text-primary"></span></a>
+                        <a href="{{item.detailsUrl}}" target="_blank" class="btn btn-light"><span class="oi oi-eye text-info"></span></a>
+
+                        <button type="button" class="btn btn-light del-popover"
+                                ng-click="removeProduct(item.id)">
+                            <span class="oi oi-x text-danger"></span>
+                        </button>
+                        @*<button type="button" class="btn btn-light del-popover"
+                                    data-toggle="popover" data-html="true" ng-click="removeProduct(item.id)">
+                                <span class="oi oi-x text-danger"></span>
+                            </button>
+                            <div class="popover-body d-none">
+                                <a href="/{{currentLanguage}}/portal/products/delete/{{item.id}}" class="btn btn btn-danger">Yes, I want to delete!</a>
+                            </div>*@
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <nav aria-label="Page navigation example">
+        <ul class="pagination justify-content-end">
+            <li class="page-item">
+                <a class="page-link active" href="javascript:void(0)" ng-click="loadProducts(data.pageIndex-1)"
+                   ng-hide="data.pageIndex==0">Prev</a>
+            </li>
+            <li class="page-item" ng-class="{active: n-1==data.pageIndex}" ng-repeat="n in range(data.totalPage)"><a class="page-link" href="javascript:void(0)" ng-click="loadProducts(n-1)">{{n}}</a></li>
+            <li class="page-item">
+                <a class="page-link" href="javascript:void(0)" ng-click="loadProducts(data.pageIndex + 1)"
+                   ng-hide="data.pageIndex >= (data.totalPage-1)">Next</a>
+            </li>
+        </ul>
+    </nav>
 </section>
-<!-- /.box-body -->
-@*<div class="box-body">
-        <table class="table table-hover table-striped dataTable" cellspacing="0">
-            <thead>
-                <tr>
-                    <th scope="col">
-                        Title
-                    </th>
-                    <th scope="col">
-                        Excerpt
-                    </th>
-                    <th scope="col">
-                        Type
-                    </th>
-                    <th scope="col">
-                        CreatedBy
-                    </th>
-                    <th scope="col"></th>
-                </tr>
-            </thead>
-            <tfoot>
-                <tr>
-                    <th scope="col">
-                        Title
-                    </th>
-                    <th scope="col">
-                        Excerpt
-                    </th>
-                    <th scope="col">
-                        Type
-                    </th>
-                    <th scope="col">
-                        CreatedBy
-                    </th>
-                    <th scope="col"></th>
-                </tr>
-            </tfoot>
-            <tbody>
-                @foreach (var item in Model.Items)
-                {
-                    <tr>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.Title)
-                        </td>
-                        <td>
-                            @Html.Raw(item.Excerpt)
-                        </td>
-
-                        <td>
-                            @Html.DisplayFor(modelItem => item.Type)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.CreatedBy)
-                        </td>
-
-                        <td>
-                            <div class="btn-group btn-group-sm" role="group" aria-label="Actions">
-                                <a asp-controller="Product" asp-action="Edit" asp-route-id="@item.Id" asp-route-categoryId="@ViewBag.categoryId"
-                                   class="btn btn-sm btn-warning d-inline-block "><span class="oi oi-pencil"></span></a>
-                                <a asp-area="" asp-controller="Home" asp-action="ProductDetails"
-                                   asp-route-SeoName="@item.SeoName"
-                                   target="_blank" class="btn btn-sm btn-info"><span class="oi oi-eye"></span></a>
-                                <a asp-area="Portal" asp-controller="Product" asp-action="Recycle" asp-route-id="@item.Id"
-                                   class="btn btn-sm btn-danger d-inline-block" data-popout="true" data-toggle="confirmation" data-singleton="true"><span class="oi oi-x"></span></a>
-                            </div>
-                        </td>
-                    </tr>
-                }
-            </tbody>
-
-            <tbody></tbody>
-        </table>
-        @await Html.PartialAsync("_Pagination", Model
-                            , new ViewDataDictionary(this.Vi‌​ewData)
-                            {
-    { "PageSize", Model.PageSize}, { "PageIndex", Model.PageIndex }, { "TotalPage", Model.TotalPage } })
-    </div>*@
-<!-- /.box-body -->
+@section scripts{
+    <script src="~/app/controllers/portal-product-controller.js"></script>
+}

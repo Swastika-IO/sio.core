@@ -246,8 +246,10 @@ namespace Swastka.Cms.Api.Controllers
 
             Expression<Func<SiocArticle, bool>> predicate = model =>
                 model.Specificulture == _lang
+                && (!request.Status.HasValue || model.Status == (int)request.Status.Value)
                 && (string.IsNullOrWhiteSpace(request.Keyword)
                 || (model.Title.Contains(request.Keyword)
+
                 || model.Excerpt.Contains(request.Keyword)))
                 && (!request.FromDate.HasValue
                     || (model.CreatedDateTime >= request.FromDate.Value.ToUniversalTime())

@@ -34,6 +34,19 @@ app.controller('ArticleController', function PhoneListController($scope) {
                 })
             })
             $scope.isBusy = false;
+            setTimeout(function () {
+                $('[data-toggle="popover"]').popover({
+                    html: true,
+                    content: function () {
+                        var content = $(this).next('.popover-body');
+                        return $(content).html();
+                    },
+                    title: function () {
+                        var title = $(this).attr("data-popover-content");
+                        return $(title).children(".popover-heading").html();
+                    }
+                });
+            }, 200);
             $scope.$apply();
         });
     };
@@ -46,6 +59,7 @@ app.controller('ArticleController', function PhoneListController($scope) {
                 url: url,
                 success: function (data) {
                     $scope.loadArticle();
+                    $scope.$apply();
                 },
                 error: function (a, b, c) {
                     console.log(a + " " + b + " " + c);

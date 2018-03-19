@@ -81,7 +81,7 @@ namespace Swastika.Cms.Mvc.Areas.Portal.Controllers
                 CreatedDateTime = DateTime.UtcNow
             })
             {
-                Status = SWStatus.Preview
+                Status = SWStatus.Published
             };
             if (categoryId.HasValue)
             {

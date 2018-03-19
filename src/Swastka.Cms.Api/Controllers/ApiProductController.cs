@@ -237,43 +237,33 @@ namespace Swastka.Cms.Api.Controllers
         public async Task<RepositoryResponse<PaginationModel<InfoProductViewModel>>> GetList(RequestPaging request)
         {
             string domain = string.Format("{0}://{1}", Request.Scheme, Request.Host);
-            if (string.IsNullOrEmpty(request.Keyword))
-            {
-                var data = await InfoProductViewModel.Repository.GetModelListByAsync(
-                m => m.Status != (int)SWStatus.Deleted && m.Specificulture == _lang, request.OrderBy, request.Direction, request.PageSize, request.PageIndex).ConfigureAwait(false);
-                if (data.IsSucceed)
-                {
-                    data.Data.Items.ForEach(a =>
-                    {
-                        a.DetailsUrl = SWCmsHelper.GetRouterUrl(
-                            "Product", new { a.SeoName }, Request, Url);
-                        a.Domain = domain;
-                    }
-                    );
-                }
-                return data;
-            }
-            else
-            {
-                Expression<Func<SiocProduct, bool>> predicate = model =>
-                    model.Specificulture == _lang
-                    && (string.IsNullOrWhiteSpace(request.Keyword)
-                    || (model.Title.Contains(request.Keyword)
-                    || model.Excerpt.Contains(request.Keyword)));
 
-                var data = await InfoProductViewModel.Repository.GetModelListByAsync(predicate, request.OrderBy, request.Direction, request.PageSize, request.PageIndex).ConfigureAwait(false);
-                if (data.IsSucceed)
+            Expression<Func<SiocProduct, bool>> predicate = model =>
+                model.Specificulture == _lang
+                && (!request.Status.HasValue || model.Status == (int)request.Status.Value)
+                && (string.IsNullOrWhiteSpace(request.Keyword)
+                || (model.Title.Contains(request.Keyword)
+
+                || model.Excerpt.Contains(request.Keyword)))
+                && (!request.FromDate.HasValue
+                    || (model.CreatedDateTime >= request.FromDate.Value.ToUniversalTime())
+                )
+                && (!request.ToDate.HasValue
+                    || (model.CreatedDateTime <= request.ToDate.Value.ToUniversalTime())
+                );
+
+            var data = await InfoProductViewModel.Repository.GetModelListByAsync(predicate, request.OrderBy, request.Direction, request.PageSize, request.PageIndex).ConfigureAwait(false);
+            if (data.IsSucceed)
+            {
+                data.Data.Items.ForEach(a =>
                 {
-                    data.Data.Items.ForEach(a =>
-                    {
-                        a.DetailsUrl = SWCmsHelper.GetRouterUrl(
-                            "Product", new { a.SeoName }, Request, Url);
-                        a.Domain = domain;
-                    }
-                    );
+                    a.DetailsUrl = SWCmsHelper.GetRouterUrl(
+                        "Product", new { a.SeoName }, Request, Url);
+                    a.Domain = domain;
                 }
-                return data;
+                );
             }
+            return data;
         }
 
         #endregion Post

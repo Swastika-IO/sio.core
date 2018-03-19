@@ -17,7 +17,13 @@ app.controller('PortalController', function PhoneListController($scope) {
     $scope.activedTemplate = { fileName: '_Layout' };
     $scope.activedMedias = [];
     $scope.activedProducts = [];
-
+    $scope.swStatus = [
+        'Deleted',
+        'Preview',
+        'Published',
+        'Draft',
+        'Schedule'
+    ]
     $scope.orders = [
         {
             value: 'CreatedDateTime',
@@ -53,8 +59,9 @@ app.controller('PortalController', function PhoneListController($scope) {
     $scope.request = {
         pageSize: '10',
         pageIndex: 0,
+        status: $scope.swStatus[2],
         orderBy: 'CreatedDateTime',
-        direction: '0',
+        direction: '1',
         fromDate: null,
         toDate: null,
         keyword: ''

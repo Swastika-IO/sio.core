@@ -605,7 +605,15 @@ namespace Swastika.Cms.Lib.ViewModels.BackEnd
             {
                 foreach (var item in view.ModuleNavs.Where(m => m.IsActived))
                 {
-                    result = item.RemoveModel(false, _context, _transaction);
+                    result = await item.RemoveModelAsync(false, _context, _transaction);
+                }
+            }
+
+            if (result.IsSucceed)
+            {
+                foreach (var item in view.MediaNavs)
+                {
+                    result = await item.RemoveModelAsync(false, _context, _transaction);
                 }
             }
             return result;
@@ -641,6 +649,14 @@ namespace Swastika.Cms.Lib.ViewModels.BackEnd
             if (result.IsSucceed)
             {
                 foreach (var item in model.ModuleNavs)
+                {
+                    result = item.RemoveModel(false, _context, _transaction);
+                }
+            }
+
+            if (result.IsSucceed)
+            {
+                foreach (var item in model.MediaNavs)
                 {
                     result = item.RemoveModel(false, _context, _transaction);
                 }

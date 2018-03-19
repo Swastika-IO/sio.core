@@ -18,6 +18,15 @@
                 </div>
                 <div class="btn-group dropdown mr-2">
                     <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownOrderBy" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        {{request.status}}
+                    </button>
+                    <div class="dropdown-menu" aria-labelledby="dropdownOrderBy">
+                        <button class="dropdown-item" ng-repeat="item in swStatus track by $index" ng-model="request.status" ng-click="request.status=item;loadArticles();" 
+                                value="{{item}}">{{item}}</button>
+                    </div>
+                </div>
+                <div class="btn-group dropdown mr-2">
+                    <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownOrderBy" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         {{request.orderBy}}
                     </button>
                     <div class="dropdown-menu" aria-labelledby="dropdownOrderBy">
@@ -147,12 +156,16 @@
                         <a href="{{item.detailsUrl}}" target="_blank" class="btn btn-light"><span class="oi oi-eye text-info"></span></a>
 
                         <button type="button" class="btn btn-light del-popover"
-                                data-toggle="popover" data-html="true">
+                                ng-click="removeArticle(item.id)">
+                            <span class="oi oi-x text-danger"></span>
+                        </button>
+                        @*<button type="button" class="btn btn-light del-popover"
+                                data-toggle="popover" data-html="true" ng-click="removeArticle(item.id)">
                             <span class="oi oi-x text-danger"></span>
                         </button>
                         <div class="popover-body d-none">
-                            <a href="/{{currentLanguage}}/portal/articles/recycle/{{item.id}}" class="btn btn btn-danger">Yes, I want to delete!</a>
-                        </div>
+                            <a href="/{{currentLanguage}}/portal/articles/delete/{{item.id}}" class="btn btn btn-danger">Yes, I want to delete!</a>
+                        </div>*@
                     </div>
                 </td>
             </tr>
