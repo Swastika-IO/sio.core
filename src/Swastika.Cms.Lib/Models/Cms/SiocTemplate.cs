@@ -1,8 +1,5 @@
-﻿// Licensed to the Swastika I/O Foundation under one or more agreements.
-// The Swastika I/O Foundation licenses this file to you under the MIT license.
-// See the LICENSE file in the project root for more information.
-
-using System;
+﻿using System;
+using System.Collections.Generic;
 
 namespace Swastika.Cms.Lib.Models.Cms
 {
@@ -16,15 +13,15 @@ namespace Swastika.Cms.Lib.Models.Cms
         public string FileName { get; set; }
         public string FolderType { get; set; }
         public DateTime? LastModified { get; set; }
+        public string MobileContent { get; set; }
         public string ModifiedBy { get; set; }
         public int Priority { get; set; }
-        public int TemplateId { get; set; }
-        public string TemplateName { get; set; }
         public string Scripts { get; set; }
-        public string Styles { get; set; }
-        public string MobileContent { get; set; }
         public string SpaContent { get; set; }
         public int Status { get; set; }
+        public string Styles { get; set; }
+        public int TemplateId { get; set; }
+        public string TemplateName { get; set; }
 
         public SiocTheme Template { get; set; }
     }

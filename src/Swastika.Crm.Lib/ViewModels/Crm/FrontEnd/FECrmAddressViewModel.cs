@@ -1,10 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using Swastika.Domain.Data.ViewModels;
 using Microsoft.EntityFrameworkCore.Storage;
 using Newtonsoft.Json;
 using Swastika.Crm.Lib.Models.Crm;
+using Swastika.Domain.Data.ViewModels;
 
 namespace Swastika.Crm.Lib.ViewModels.Crm.FrontEnd
 {

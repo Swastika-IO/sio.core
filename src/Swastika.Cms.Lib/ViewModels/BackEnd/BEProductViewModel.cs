@@ -100,6 +100,32 @@ namespace Swastika.Cms.Lib.ViewModels.BackEnd
         [JsonProperty("tags")]
         public string Tags { get; set; }
 
+        [JsonProperty("code")]
+        public string Code { get; set; }
+
+        [JsonProperty("totalSaled")]
+        public int TotalSaled { get; set; }
+
+        [JsonProperty("dealPrice")]
+        public double? DealPrice { get; set; }
+
+        [JsonProperty("discount")]
+        public double Discount { get; set; }
+
+        [JsonProperty("importPrice")]
+        public double ImportPrice { get; set; }
+
+        [JsonProperty("material")]
+        public string Material { get; set; }
+
+        [JsonProperty("normalPrice")]
+        public double NormalPrice { get; set; }
+
+        [JsonProperty("packageCount")]
+        public int PackageCount { get; set; }
+
+        [JsonProperty("size")]
+        public string Size { get; set; }
         #endregion Models
 
         #region Views
@@ -136,6 +162,33 @@ namespace Swastika.Cms.Lib.ViewModels.BackEnd
 
         [JsonProperty("thumbnailFileStream")]
         public FileStreamViewModel ThumbnailFileStream { get; set; }
+
+        [JsonProperty("strNormalPrice")]
+        public string StrNormalPrice
+        {
+            get
+            {
+                return SWCmsHelper.FormatPrice(NormalPrice);
+            }
+        }
+
+        [JsonProperty("strDealPrice")]
+        public string StrDealPrice
+        {
+            get
+            {
+                return SWCmsHelper.FormatPrice(DealPrice);
+            }
+        }
+
+        [JsonProperty("strImportPrice")]
+        public string StrImportPrice
+        {
+            get
+            {
+                return SWCmsHelper.FormatPrice(ImportPrice);
+            }
+        }
 
         #region Template
 
@@ -228,7 +281,7 @@ namespace Swastika.Cms.Lib.ViewModels.BackEnd
 
         public override void ExpandView(SiocCmsContext _context = null, IDbContextTransaction _transaction = null)
         {
-            IsClone = true;
+            IsClone = false;
             ListSupportedCulture = GlobalLanguageService.ListSupportedCulture;
 
             //if (!string.IsNullOrEmpty(this.Tags))
@@ -370,6 +423,9 @@ namespace Swastika.Cms.Lib.ViewModels.BackEnd
             }
 
             //Tags = ListTag.ToString(Newtonsoft.Json.Formatting.None);
+            NormalPrice = SWCmsHelper.ReversePrice(StrNormalPrice);
+            DealPrice = SWCmsHelper.ReversePrice(StrDealPrice);
+            ImportPrice = SWCmsHelper.ReversePrice(StrImportPrice);
 
             GenerateSEO();
 

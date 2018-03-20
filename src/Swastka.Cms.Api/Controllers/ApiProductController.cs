@@ -26,6 +26,7 @@ namespace Swastka.Cms.Api.Controllers
     //    //, Policy = "AddEditUser"
     //    )]
     //[Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
+    [Produces("application/json")]
     [Route("api/{culture}/product")]
     public class ApiProductController :
         BaseApiController<SiocCmsContext, SiocProduct>
@@ -197,13 +198,13 @@ namespace Swastka.Cms.Api.Controllers
         #region Post
 
         // POST api/products
-        [HttpPost, HttpOptions]
+        [HttpPost]
         [Route("save")]
-        public async Task<RepositoryResponse<BEProductViewModel>> Post([FromBody]BEProductViewModel model)
+        public async Task<RepositoryResponse<BEProductViewModel>> Save([FromBody] BEProductViewModel product)
         {
-            if (model != null)
+            if (product != null)
             {
-                var result = await model.SaveModelAsync(true).ConfigureAwait(false);
+                var result = await product.SaveModelAsync(true).ConfigureAwait(false);
                 if (result.IsSucceed)
                 {
                     result.Data.Domain = this._domain;

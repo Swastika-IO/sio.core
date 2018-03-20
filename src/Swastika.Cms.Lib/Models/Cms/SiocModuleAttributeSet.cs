@@ -1,8 +1,4 @@
-﻿// Licensed to the Swastika I/O Foundation under one or more agreements.
-// The Swastika I/O Foundation licenses this file to you under the MIT license.
-// See the LICENSE file in the project root for more information.
-
-using System;
+﻿using System;
 using System.Collections.Generic;
 
 namespace Swastika.Cms.Lib.Models.Cms
@@ -22,9 +18,9 @@ namespace Swastika.Cms.Lib.Models.Cms
         public DateTime CreatedDateTime { get; set; }
         public string Fields { get; set; }
         public int Priority { get; set; }
+        public int Status { get; set; }
         public DateTime? UpdatedDateTime { get; set; }
         public string Value { get; set; }
-        public int Status { get; set; }
 
         public SiocArticleModule SiocArticleModule { get; set; }
         public SiocCategoryModule SiocCategoryModule { get; set; }

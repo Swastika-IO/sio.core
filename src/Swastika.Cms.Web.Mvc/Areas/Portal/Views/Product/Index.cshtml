@@ -110,11 +110,14 @@
                 <th scope="col" style="width: 4%;">
                     <span class="oi oi-sort-ascending"></span>
                 </th>
+                  <th scope="col" style="width: 15%;">
+                    Code
+                </th>
                 <th scope="col" style="width: 15%;">
                     Title
                 </th>
                 <th scope="col">
-                    Description
+                    Image
                 </th>
                 <th scope="col" style="width: 10%;">
                     Created Date
@@ -136,14 +139,19 @@
                 <td>
                     <input type="text" value="{{item.priority}}" class="item-priority form-control form-control-sm d-inline" style="width:40px;" />
                 </td>
-
+                 <td>
+                    {{item.code}}
+                </td>
                 <td>
                     {{item.title}}
                 </td>
                 <td>
-                    <small>
+                    <div ng-if="item.image!=''">
+                        <img height="50px" src="{{item.image}}"/>
+                    </div>
+                    @*<small>
                         {{item.excerpt}}
-                    </small>
+                    </small>*@
                 </td>
                 <td>
                     {{item.createdDateTime | utcToLocal:'dd.MM.yyyy - hh:mm:ss a'}}

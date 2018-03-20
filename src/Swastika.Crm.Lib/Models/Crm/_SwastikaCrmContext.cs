@@ -1,6 +1,8 @@
 ﻿using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.Extensions.Configuration;
+using Swastika.Cms.Lib.Services;
 
 namespace Swastika.Crm.Lib.Models.Crm
 {
@@ -23,12 +25,34 @@ namespace Swastika.Crm.Lib.Models.Crm
         public virtual DbSet<CrmRoleMenu> CrmRoleMenu { get; set; }
         public virtual DbSet<CrmTags> CrmTags { get; set; }
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="ApplicationDbContext" /> class.
+        /// </summary>
+        /// <param name="options">The options.</param>
+        public SwastikaCrmContext(DbContextOptions<SwastikaCrmContext> options)
+                    : base(options)
+        {
+        }
+
+        public SwastikaCrmContext()
+        {
+        }
+
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             if (!optionsBuilder.IsConfigured)
             {
-#warning To protect potentially sensitive information in your connection string, you should move it out of source code. See http://go.microsoft.com/fwlink/?LinkId=723263 for guidance on storing connection strings.
-                optionsBuilder.UseSqlServer(@"Server=115.77.190.113,4444;Database=sw_crm_structure;UID=sa;Pwd=sqlP@ssw0rd;MultipleActiveResultSets=true");
+                var config = new ConfigurationBuilder()
+                                .SetBasePath(System.IO.Directory.GetCurrentDirectory())
+                                .AddJsonFile("appsettings.json")
+                                .Build();
+
+                // define the database to use
+                string cnn = GlobalConfigurationService.Instance.GetConnectionString();
+                if (!string.IsNullOrEmpty(cnn))
+                {
+                    optionsBuilder.UseSqlServer(cnn);
+                }
             }
         }
 

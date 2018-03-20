@@ -36,14 +36,17 @@ namespace Swastika.Cms.Lib.ViewModels.Info
         [JsonProperty("image")]
         public string Image { get; set; }
 
-        [JsonProperty("price")]
-        public double Price { get; set; }
+        [JsonProperty("normailPrice")]
+        public double NormalPrice { get; set; }
 
         [JsonProperty("priceUnit")]
         public string PriceUnit { get; set; }
 
         [JsonProperty("icon")]
         public string Icon { get; set; }
+
+        [JsonProperty("code")]
+        public string Code { get; set; }
 
         [Required]
         [JsonProperty("title")]

@@ -1,8 +1,4 @@
-﻿// Licensed to the Swastika I/O Foundation under one or more agreements.
-// The Swastika I/O Foundation licenses this file to you under the MIT license.
-// See the LICENSE file in the project root for more information.
-
-using System;
+﻿using System;
 using System.Collections.Generic;
 
 namespace Swastika.Cms.Lib.Models.Cms
@@ -25,26 +21,35 @@ namespace Swastika.Cms.Lib.Models.Cms
         public string CreatedBy { get; set; }
         public DateTime CreatedDateTime { get; set; }
         public string Excerpt { get; set; }
+        public string ExtraProperties { get; set; }
         public string Icon { get; set; }
         public string Image { get; set; }
         public DateTime? LastModified { get; set; }
         public string ModifiedBy { get; set; }
         public double Price { get; set; }
         public string PriceUnit { get; set; }
+        public int Priority { get; set; }
         public string SeoDescription { get; set; }
         public string SeoKeywords { get; set; }
         public string SeoName { get; set; }
         public string SeoTitle { get; set; }
         public string Source { get; set; }
+        public int Status { get; set; }
         public string Tags { get; set; }
         public string Template { get; set; }
         public string Thumbnail { get; set; }
         public string Title { get; set; }
         public int Type { get; set; }
         public int? Views { get; set; }
-        public string ExtraProperties { get; set; }
-        public int Priority { get; set; }
-        public int Status { get; set; }
+        public string Code { get; set; }
+        public int TotalSaled { get; set; }
+        public double? DealPrice { get; set; }
+        public double Discount { get; set; }
+        public double ImportPrice { get; set; }
+        public string Material { get; set; }
+        public double NormalPrice { get; set; }
+        public int PackageCount { get; set; }
+        public string Size { get; set; }
 
         public SiocCulture SpecificultureNavigation { get; set; }
         public ICollection<SiocCategoryProduct> SiocCategoryProduct { get; set; }

@@ -5,12 +5,13 @@
 using Microsoft.AspNetCore.Builder;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Swastika.Cms.Lib;
 
 namespace Swastka.Cms.Web
 {
     public partial class Startup
     {
-        public const string CONST_ROUTE_DEFAULT_CULTURE = "en-us";
+        public const string CONST_ROUTE_DEFAULT_CULTURE = SWCmsConstants.Default.Specificulture;
 
         public Startup(IConfiguration configuration)
         {

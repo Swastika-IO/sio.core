@@ -113,10 +113,20 @@ namespace Swastka.Cms.Api.Controllers
             {
                 var fileUpload = files.FirstOrDefault();
 
-                string folderPath = $"{SWCmsConstants.Parameters.UploadFolder}/{fileFolder}/{DateTime.UtcNow.ToString("MMM-yyyy")}"; // string.Format("Uploads/{0}", fileFolder);
+                string folderPath = //$"{SWCmsConstants.Parameters.UploadFolder}/{fileFolder}/{DateTime.UtcNow.ToString("MMM-yyyy")}";
+                SWCmsHelper.GetFullPath(new[] {
+                    SWCmsConstants.Parameters.UploadFolder,
+                    fileFolder,
+                    DateTime.UtcNow.ToString("MMM-yyyy")
+                });
+                // string.Format("Uploads/{0}", fileFolder);
                 //return ImageHelper.ResizeImage(Image.FromStream(fileUpload.OpenReadStream()), System.IO.Path.Combine(_env.WebRootPath, folderPath));
                 //var fileName = await Common.UploadFileAsync(filePath, files.FirstOrDefault());
-                string fileName = string.Format("/{0}", await UploadFileAsync(files.FirstOrDefault(), folderPath).ConfigureAwait(false));
+                string fileName = 
+                SWCmsHelper.GetFullPath(new[] {
+                    "/",
+                    await UploadFileAsync(files.FirstOrDefault(), folderPath).ConfigureAwait(false)
+                });
                 BEMediaViewModel media = new BEMediaViewModel(new SiocMedia()
                 {
                     Specificulture = _lang,

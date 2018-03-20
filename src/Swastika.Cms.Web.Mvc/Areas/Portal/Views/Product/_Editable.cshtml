@@ -22,6 +22,15 @@
     <input type="hidden" asp-for="CreatedDateTime" />
     <input type="hidden" asp-for="View" />
     <input type="hidden" asp-for="Type" />
+
+    <input type="hidden" asp-for="TotalSaled" />
+    <input type="hidden" asp-for="Discount" />
+    <input type="hidden" asp-for="ImportPrice" />
+    <input type="hidden" asp-for="Material" />
+    <input type="hidden" asp-for="PackageCount" />
+    <input type="hidden" asp-for="Size" />
+
+
     <input type="hidden" id="product-id" value="@Model.Id" />
     <input id="arr-medias" type="hidden" value="@Model.JMediaNavs.ToString()" ng-init="activedMedias = $.parseJSON($('#arr-medias').val())" />
     <input id="arr-products" type="hidden" value="@Model.JProductNavs.ToString()" ng-init="activedProducts = $.parseJSON($('#arr-products').val())" />
@@ -36,10 +45,25 @@
             <div class="card-body">
 
                 <div class="form-group">
+                    <label asp-for="Title"></label>
                     <input asp-for="Title" class="form-control form-control-lg" placeholder="Enter your product title here..." />
                     <span asp-validation-for="Title" class="text-danger"></span>
                 </div>
-
+                 <div class="form-group">
+                     <label asp-for="Code"></label>
+                    <input asp-for="Code" class="form-control form-control-lg" placeholder="Enter your product title here..." />
+                    <span asp-validation-for="Code" class="text-danger"></span>
+                </div>
+                 <div class="form-group">
+                     <label asp-for="NormalPrice"></label>
+                    <input asp-for="StrNormalPrice" ng-change="formatPrice(this)" class="form-control form-control-lg" placeholder="Enter your product title here..." />
+                    <span asp-validation-for="StrNormalPrice" class="text-danger"></span>
+                </div>
+                 <div class="form-group">
+                     <label asp-for="DealPrice"></label>
+                    <input asp-for="StrDealPrice" class="form-control form-control-lg" placeholder="Enter your product title here..." />
+                    <span asp-validation-for="StrDealPrice" class="text-danger"></span>
+                </div>
                 <div class="form-group">
                     <textarea asp-for="Excerpt" class="form-control" placeholder="Excerpt"></textarea>
                     <span asp-validation-for="Excerpt" class="text-danger"></span>

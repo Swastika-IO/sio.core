@@ -214,13 +214,13 @@ namespace Swastika.Cms.Lib.Models.Cms
 
                 entity.Property(e => e.CssClass).HasMaxLength(50);
 
-                entity.Property(e => e.Layout).HasMaxLength(50);
-
                 entity.Property(e => e.Icon).HasMaxLength(50);
 
                 entity.Property(e => e.Image).HasMaxLength(250);
 
                 entity.Property(e => e.LastModified).HasColumnType("datetime");
+
+                entity.Property(e => e.Layout).HasMaxLength(50);
 
                 entity.Property(e => e.ModifiedBy).HasMaxLength(250);
 
@@ -612,13 +612,13 @@ namespace Swastika.Cms.Lib.Models.Cms
                     .IsRequired()
                     .HasMaxLength(250);
 
+                entity.Property(e => e.FileProperties).HasMaxLength(4000);
+
                 entity.Property(e => e.FileSize).HasDefaultValueSql("((0))");
 
                 entity.Property(e => e.FileType)
                     .IsRequired()
                     .HasMaxLength(50);
-
-                entity.Property(e => e.FileProperties).HasMaxLength(4000);
 
                 entity.Property(e => e.LastModified).HasColumnType("datetime");
 
@@ -908,17 +908,33 @@ namespace Swastika.Cms.Lib.Models.Cms
 
                 entity.Property(e => e.Specificulture).HasMaxLength(10);
 
+                entity.Property(e => e.Code)
+                    .IsRequired()
+                    .HasMaxLength(50);
+
                 entity.Property(e => e.CreatedBy).HasMaxLength(250);
 
                 entity.Property(e => e.CreatedDateTime).HasColumnType("datetime");
+
+                entity.Property(e => e.DealPrice).HasDefaultValueSql("((0))");
+
+                entity.Property(e => e.Discount).HasDefaultValueSql("((0))");
 
                 entity.Property(e => e.ExtraProperties).HasColumnType("ntext");
 
                 entity.Property(e => e.Image).HasMaxLength(250);
 
+                entity.Property(e => e.ImportPrice).HasDefaultValueSql("((0))");
+
                 entity.Property(e => e.LastModified).HasColumnType("datetime");
 
+                entity.Property(e => e.Material).HasMaxLength(250);
+
                 entity.Property(e => e.ModifiedBy).HasMaxLength(250);
+
+                entity.Property(e => e.NormalPrice).HasDefaultValueSql("((0))");
+
+                entity.Property(e => e.PackageCount).HasDefaultValueSql("((1))");
 
                 entity.Property(e => e.Price).HasDefaultValueSql("((0))");
 
@@ -936,6 +952,8 @@ namespace Swastika.Cms.Lib.Models.Cms
 
                 entity.Property(e => e.SeoTitle).HasMaxLength(4000);
 
+                entity.Property(e => e.Size).HasMaxLength(250);
+
                 entity.Property(e => e.Source).HasMaxLength(250);
 
                 entity.Property(e => e.Status).HasDefaultValueSql("((1))");
@@ -947,6 +965,8 @@ namespace Swastika.Cms.Lib.Models.Cms
                 entity.Property(e => e.Thumbnail).HasMaxLength(250);
 
                 entity.Property(e => e.Title).HasMaxLength(4000);
+
+                entity.Property(e => e.TotalSaled).HasDefaultValueSql("((0))");
 
                 entity.HasOne(d => d.SpecificultureNavigation)
                     .WithMany(p => p.SiocProduct)
@@ -1030,6 +1050,10 @@ namespace Swastika.Cms.Lib.Models.Cms
                 entity.HasKey(e => new { e.SourceProductId, e.RelatedProductId, e.Specificulture });
 
                 entity.ToTable("sioc_related_product");
+
+                entity.HasIndex(e => new { e.RelatedProductId, e.Specificulture });
+
+                entity.HasIndex(e => new { e.SourceProductId, e.Specificulture });
 
                 entity.Property(e => e.SourceProductId).HasMaxLength(50);
 

@@ -1,55 +1,80 @@
-@model BEProductViewModel
+﻿@model BEProductViewModel
 
 @{
     ViewData["Title"] = "Edit";
     //Layout = "~/Areas/Portal/Views/Shared/_Layout.cshtml";
+    string culture = ViewBag.culture; string currentId = ViewContext.RouteData.Values["Id"] == null ? string.Empty : ViewContext.RouteData.Values["Id"].ToString();
+    var translator = Swastika.Cms.Lib.SWCmsHelper.GetTranslator(culture);
 }
 
 <!-- Main content -->
-<section class="content container-fluid">
+<section class="content container-fluid" ng-controller="ProductController" ng-init="loadProducts();loadProduct('@currentId')">
+    <div class="loader-container" ng-show="isBusy">
+        <div id="loader"></div>
+    </div>
 
-    <form asp-controller="@ViewContext.RouteData.Values["controller"].ToString()"
-          asp-action="@ViewContext.RouteData.Values["action"].ToString()"
-          asp-route-id="@Model.Id"
-          asp-route-categoryId="@ViewBag.categoryId">
-        @await Html.PartialAsync("EditableSides/_Editable_ActionsBar")
+    <form ng-class="{'submitted': submitted}"
+          ng-submit="saveProduct(activedProduct)">
+
+        @Html.Partial("EditableSides/_Editable_ActionsBar")
+
+
+        <div class="alert alert-danger" role="alert" ng-if="errors.length > 0">
+            <span class="text-danger" ng-repeat="err in errors">
+                {{err}}
+            </span>
+        </div>
+
+        <product-main product="activedProduct"></product-main>
         <div class="row">
-            <section class="col-lg-9">
-                @await Html.PartialAsync("_Editable", Model)
-            </section>
-            <section class="col-lg-3">
-                @await Html.PartialAsync("_EditableSide", Model)
-            </section>
+            <div class="col-sm-12">
+                <tabs>
+                    <pane title="General">
+                        <product-general product="activedProduct"></product-general>
+                    </pane>
+                    <pane title="Seo">
+                        <product-seo product="activedProduct"></product-seo>
+                    </pane>
+                    <pane title="Parents">
+                        <product-parents product="activedProduct"></product-parents>
+                    </pane>
+                    <pane title="Modules">
+                        <product-modules product="activedProduct"></product-modules>
+                    </pane>
+                    <pane title="Layout">
+                        <div class="tab-pane">
+                            <div class="form-group">
+                                @*<label asp-for="Template" class="control-label"></label>*@
+                                <div class="">
+                                    @*@Html.Partial("_Editor_Code", Model.View, new ViewDataDictionary(this.ViewData) { { "Files", Model.Templates }, { "Name", "View" } })*@
+                                </div>
+                            </div>
+                        </div>
+                    </pane>
+                    <pane title="Medias">
+                        <product-medias product="activedProduct" medias="mediaData"></product-medias>
+
+                    </pane>
+                    <pane title="Related">
+                        <product-related product="activedProduct" list="data"></product-related>
+                    </pane>
+                </tabs>
+
+            </div>
         </div>
     </form>
 </section>
 <!-- /.content -->
 
 @section Scripts{
-}
 
-@section Modals{
-    <div class="modal fade" id="modal-data">
-        <div class="modal-dialog modal-lg">
-            <form id="frm-data" asp-controller="Module" asp-action="AjaxSaveModuleData">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
-                        <h4 class="modal-title">Edit</h4>
-                    </div>
-                    <div class="modal-body">
-                    </div>
-                    <div class="modal-footer">
-                        <a class="btn btn-default pull-left" data-dismiss="modal">Close</a>
-                        <a class="btn btn-primary btn-save-data">Save changes</a>
-                    </div>
-                </div>
-                <!-- /.modal-content -->
-            </form>
-        </div>
-        <!-- /.modal-dialog -->
-    </div>
-    <!-- /.modal -->
+    <script src="~/app/controllers/portal-product-controller.js"></script>
+    <script src="~/app/portal/components/product/general/productGeneral.js"></script>
+    
+<script src="~/app/portal/components/product/main/productMain.js"></script>
+    <script src="~/app/portal/components/product/seo/productSeo.js"></script>
+<script src="~/app/portal/components/product/medias/productMedias.js"></script>
+<script src="~/app/portal/components/product/modules/productModules.js"></script>
+<script src="~/app/portal/components/product/related/productRelated.js"></script>
+    <script src="~/app/portal/components/product/parents/productParents.js"></script>
 }

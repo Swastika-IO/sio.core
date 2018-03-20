@@ -1,8 +1,5 @@
-﻿// Licensed to the Swastika I/O Foundation under one or more agreements.
-// The Swastika I/O Foundation licenses this file to you under the MIT license.
-// See the LICENSE file in the project root for more information.
-
-using System;
+﻿using System;
+using System.Collections.Generic;
 
 namespace Swastika.Cms.Lib.Models.Cms
 {
@@ -18,9 +15,9 @@ namespace Swastika.Cms.Lib.Models.Cms
         public bool IsDeleted { get; set; }
         public bool? IsReviewed { get; set; }
         public bool? IsVisible { get; set; }
-        public string UpdatedBy { get; set; }
-        public DateTime? UpdatedDateTime { get; set; }
         public int Priority { get; set; }
         public int Status { get; set; }
+        public string UpdatedBy { get; set; }
+        public DateTime? UpdatedDateTime { get; set; }
     }
 }

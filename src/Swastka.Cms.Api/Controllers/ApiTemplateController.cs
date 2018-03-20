@@ -88,7 +88,7 @@ namespace Swastka.IO.Cms.Api.Controllers
         // POST api/template
         [HttpPost, HttpOptions]
         [Route("save")]
-        public async Task<RepositoryResponse<BETemplateViewModel>> Post([FromBody]BETemplateViewModel model)
+        public async Task<RepositoryResponse<BETemplateViewModel>> Post(BETemplateViewModel model)
         {
             if (model != null)
             {
