@@ -44,7 +44,7 @@ namespace Swastka.IO.Cms.Api.Controllers
                 model => model.Id == id);
         }
 
-        
+
         // GET api/Template
         [HttpGet]
         [Route("list")]
@@ -124,22 +124,17 @@ namespace Swastka.IO.Cms.Api.Controllers
         public async Task<RepositoryResponse<PaginationModel<BETemplateViewModel>>> GetList(RequestPaging request)
         {
             string domain = string.Format("{0}://{1}", Request.Scheme, Request.Host);
-            if (string.IsNullOrEmpty(request.Keyword))
-            {
-                var data = await BETemplateViewModel.Repository.GetModelListByAsync(
-                m => m.Status != (int)SWStatus.Deleted, request.OrderBy, request.Direction, request.PageSize, request.PageIndex).ConfigureAwait(false);
-                return data;
-            }
-            else
-            {
-                Expression<Func<SiocTemplate, bool>> predicate = model =>
-                    (string.IsNullOrWhiteSpace(request.Keyword)
-                        || (model.FileName.Contains(request.Keyword)
-                        || model.FileFolder.Contains(request.Keyword)));
+            Expression<Func<SiocTemplate, bool>> predicate = model =>
+                (string.IsNullOrWhiteSpace(request.Keyword)
+                    || 
+                    (
+                        model.FileName.Contains(request.Keyword)
+                        || model.FileFolder.Contains(request.Keyword)
+                        || model.FolderType == request.Keyword
+                    ));
 
-                var data = await BETemplateViewModel.Repository.GetModelListByAsync(predicate, request.OrderBy, request.Direction, request.PageSize, request.PageIndex).ConfigureAwait(false);
-                return data;
-            }
+            var data = await BETemplateViewModel.Repository.GetModelListByAsync(predicate, request.OrderBy, request.Direction, request.PageSize, request.PageIndex).ConfigureAwait(false);
+            return data;
         }
 
         #endregion Post

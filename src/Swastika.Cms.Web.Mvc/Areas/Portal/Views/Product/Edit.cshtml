@@ -3,7 +3,8 @@
 @{
     ViewData["Title"] = "Edit";
     //Layout = "~/Areas/Portal/Views/Shared/_Layout.cshtml";
-    string culture = ViewBag.culture; string currentId = ViewContext.RouteData.Values["Id"] == null ? string.Empty : ViewContext.RouteData.Values["Id"].ToString();
+    string culture = ViewBag.culture;
+    string currentId = ViewContext.RouteData.Values["Id"] == null ? string.Empty : ViewContext.RouteData.Values["Id"].ToString();
     var translator = Swastika.Cms.Lib.SWCmsHelper.GetTranslator(culture);
 }
 
@@ -43,12 +44,7 @@
                     </pane>
                     <pane title="Layout">
                         <div class="tab-pane">
-                            <div class="form-group">
-                                @*<label asp-for="Template" class="control-label"></label>*@
-                                <div class="">
-                                    @*@Html.Partial("_Editor_Code", Model.View, new ViewDataDictionary(this.ViewData) { { "Files", Model.Templates }, { "Name", "View" } })*@
-                                </div>
-                            </div>
+                            <code-editor template="activedProduct.view"></code-editor>
                         </div>
                     </pane>
                     <pane title="Medias">
@@ -71,10 +67,10 @@
     <script src="~/app/controllers/portal-product-controller.js"></script>
     <script src="~/app/portal/components/product/general/productGeneral.js"></script>
     
-<script src="~/app/portal/components/product/main/productMain.js"></script>
+    <script src="~/app/portal/components/product/main/productMain.js"></script>
     <script src="~/app/portal/components/product/seo/productSeo.js"></script>
-<script src="~/app/portal/components/product/medias/productMedias.js"></script>
-<script src="~/app/portal/components/product/modules/productModules.js"></script>
-<script src="~/app/portal/components/product/related/productRelated.js"></script>
+    <script src="~/app/portal/components/product/medias/productMedias.js"></script>
+    <script src="~/app/portal/components/product/modules/productModules.js"></script>
+    <script src="~/app/portal/components/product/related/productRelated.js"></script>
     <script src="~/app/portal/components/product/parents/productParents.js"></script>
 }

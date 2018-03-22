@@ -92,7 +92,7 @@
             <select class="btn btn-outline-secondary custom-select col-sm-4"
                     ng-model="layout.activedTemplate" ng-init="templates = layout.loadTemplates(@Model.Id, '', '@Model.FolderType')"
                     ng-options="item as item.fileName for item in layout.templates track by item.id"
-                    ng-change="layout.updateEditors()"></select>
+                    ng></select>
 
             <input class="form-control sel-filename" type="text" id="@inpId_Filename" name="@inpName_Filename" value="{{layout.activedTemplate.fileName}}" placeholder="Input template name here...">
             <input class="template-id" type="hidden" id="@inpId_Id" name="@inpName_Id" value="{{layout.activedTemplate.id}}">

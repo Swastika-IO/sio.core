@@ -100,6 +100,7 @@ namespace Swastika.Cms.Lib.ViewModels.BackEnd
         [JsonProperty("tags")]
         public string Tags { get; set; }
 
+        [Required]
         [JsonProperty("code")]
         public string Code { get; set; }
 
@@ -375,7 +376,7 @@ namespace Swastika.Cms.Lib.ViewModels.BackEnd
             }
         }
 
-        public override SiocProduct ParseModel()
+        public override SiocProduct ParseModel(SiocCmsContext _context = null, IDbContextTransaction _transaction = null)
         {
             if (string.IsNullOrEmpty(Id))
             {

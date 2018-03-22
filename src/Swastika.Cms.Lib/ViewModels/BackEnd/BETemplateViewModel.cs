@@ -141,7 +141,7 @@ namespace Swastika.Cms.Lib.ViewModels.BackEnd
             //}
         }
 
-        public override SiocTemplate ParseModel()
+        public override SiocTemplate ParseModel(SiocCmsContext _context = null, IDbContextTransaction _transaction = null)
         {
             if (Id == 0)
             {

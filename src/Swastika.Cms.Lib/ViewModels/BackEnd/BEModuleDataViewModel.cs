@@ -83,7 +83,7 @@ namespace Swastika.Cms.Lib.ViewModels.BackEnd
 
         #region Overrides
 
-        public override SiocModuleData ParseModel()
+        public override SiocModuleData ParseModel(SiocCmsContext _context = null, IDbContextTransaction _transaction = null)
         {
             if (string.IsNullOrEmpty(Id))
             {

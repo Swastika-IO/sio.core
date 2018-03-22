@@ -69,7 +69,7 @@ namespace Swastika.Cms.Lib.ViewModels.Navigation
             }
         }
 
-        public override SiocRelatedProduct ParseModel()
+        public override SiocRelatedProduct ParseModel(SiocCmsContext _context = null, IDbContextTransaction _transaction = null)
         {
             if (CreatedDateTime == default(DateTime))
             {

@@ -3,7 +3,12 @@ app.controller('PortalTemplateController', function PhoneListController($scope) 
     var vm = this;
     vm.currentLanguage = 'vi-vn';
     vm.templates = [];
-    vm.activedTemplate = {  };
+    vm.activedId = -1;
+    vm.masters = [];
+    vm.activedMaster = {};
+    vm.activedName = '';
+    vm.folder = '';
+    vm.activedTemplate = {};
     vm.request = {
         pageSize: 10,
         pageIndex: 0,
@@ -29,18 +34,31 @@ app.controller('PortalTemplateController', function PhoneListController($scope) 
     };
 
     vm.loadTemplates = async function (activedId, activedName, folder) {
-        var request = {
-            "pageSize": null,
-            "pageIndex": 0,
-            "orderBy": 'fileName',
-            "direction": 0,
-            "keyword": folder
-        }
-        var url = '/api/' + vm.currentLanguage + '/template/list';//byProduct/' + productId;
-        vm.settings.url = url;// + '/true';
-        vm.settings.data = request;
-        var response = await $.ajax(vm.settings);
-        var t = await vm.initTemplate(response, activedId, activedName);
+        setTimeout(async function () {
+
+            if (folder) {
+                vm.folder = folder;
+                vm.activedId = activedId;
+                vm.activedName = activedName;
+            }
+            else if (vm.template != null) {
+                vm.folder = vm.template.folderType;
+                vm.activedId = vm.template.id;
+                vm.activedName = vm.template.fileName;
+            }
+            var request = {
+                "pageSize": null,
+                "pageIndex": 0,
+                "orderBy": 'fileName',
+                "direction": 0,
+                "keyword": vm.folder
+            }
+            var url = '/api/' + vm.currentLanguage + '/template/list';//byProduct/' + productId;
+            vm.settings.url = url;// + '/true';
+            vm.settings.data = request;
+            var response = await $.ajax(vm.settings);
+            var t = await vm.initTemplate(response, vm.activedId, vm.activedName);
+        }, 300)
     };
     vm.initTemplate = function (response, activedId, activedName) {
         const ph = {};
@@ -77,8 +95,8 @@ app.controller('PortalTemplateController', function PhoneListController($scope) 
         return promise;
 
 
-        
-       
+
+
     };
     vm.updateEditors = function () {
         setTimeout(function () {
