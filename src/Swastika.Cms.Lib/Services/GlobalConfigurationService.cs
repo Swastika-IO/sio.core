@@ -23,32 +23,26 @@ namespace Swastika.Cms.Lib.Services
         public string Name { get; set; }
         public bool IsInit { get; set; }
 
-        public string ConnectionString
-        {
-            get
-            {
+        public string ConnectionString {
+            get {
                 return _connectionString;
             }
-            set
-            {
+            set {
                 _connectionString = value;
             }
         }
 
         private static List<ConfigurationViewModel> _listConfiguration;
 
-        public static List<ConfigurationViewModel> ListConfiguration
-        {
-            get
-            {
+        public static List<ConfigurationViewModel> ListConfiguration {
+            get {
                 if (_listConfiguration == null)
                 {
                     InitConfigurations();
                 }
                 return _listConfiguration;
             }
-            set
-            {
+            set {
                 _listConfiguration = value;
             }
         }
@@ -71,14 +65,11 @@ namespace Swastika.Cms.Lib.Services
         //}
         private static GlobalConfigurationService _instance;
 
-        public static GlobalConfigurationService Instance
-        {
-            get
-            {
+        public static GlobalConfigurationService Instance {
+            get {
                 return _instance ?? (_instance = new GlobalConfigurationService());
             }
-            set
-            {
+            set {
                 _instance = value;
             }
         }
@@ -250,7 +241,7 @@ namespace Swastika.Cms.Lib.Services
                             };
 
                             isSucceed = isSucceed && theme.SaveModel(true, context, transaction).IsSucceed;
-                            
+
                             if (isSucceed)
                             {
                                 ConfigurationViewModel config = (ConfigurationViewModel.Repository.GetSingleModel(
@@ -377,19 +368,17 @@ namespace Swastika.Cms.Lib.Services
 
                     if (isSucceed)
                     {
-
-                        BECategoryViewModel cate = new BECategoryViewModel( new SiocCategory()
+                        BECategoryViewModel cate = new BECategoryViewModel(new SiocCategory()
                         {
                             Title = "Home",
                             Specificulture = "vi-vn",
                             Template = "_Home",
                             Type = (int)SWCmsConstants.CateType.Home,
                             CreatedBy = "Admin"
-
                         });
 
                         isSucceed = isSucceed && cate.SaveModel(false, context, transaction).IsSucceed;
-                        BECategoryViewModel uscate = new BECategoryViewModel( new SiocCategory()
+                        BECategoryViewModel uscate = new BECategoryViewModel(new SiocCategory()
                         {
                             Title = "Home",
                             Specificulture = "en-us",
@@ -400,14 +389,16 @@ namespace Swastika.Cms.Lib.Services
                         isSucceed = isSucceed && uscate.SaveModel(false, context, transaction).IsSucceed;
                     }
 
-
                     if (isSucceed)
                     {
-
                         GlobalLanguageService.Instance.RefreshCultures(context, transaction);
-                        
                         transaction.Commit();
                         IsInit = true;
+                    }
+                    else
+                    {
+                        transaction.Rollback();
+                        IsInit = false;
                     }
                 }
             }
