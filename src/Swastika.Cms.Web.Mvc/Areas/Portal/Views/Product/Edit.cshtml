@@ -19,45 +19,118 @@
 
         @Html.Partial("EditableSides/_Editable_ActionsBar")
 
+        <div class="row">
 
-        <div class="alert alert-danger" role="alert" ng-if="errors.length > 0">
-            <span class="text-danger" ng-repeat="err in errors">
-                {{err}}
-            </span>
+            <div class="alert alert-danger" role="alert" ng-if="errors.length > 0">
+                <span class="text-danger" ng-repeat="err in errors">
+                    {{err}}
+                </span>
+            </div>
+            <section class="col-lg-9">
+                <div class="col-sm-12">
+                    <tabs>
+                        <pane title="General">
+                            <product-general product="activedProduct"></product-general>
+                        </pane>
+                        <pane title="Seo">
+                            <product-seo product="activedProduct"></product-seo>
+                        </pane>
+                        <pane title="Parents">
+                            <product-parents product="activedProduct"></product-parents>
+                        </pane>
+                        <pane title="Modules">
+                            <product-modules product="activedProduct"></product-modules>
+                        </pane>
+                        <pane title="Layout">
+                            <div class="tab-pane">
+                                <code-editor template="activedProduct.view"></code-editor>
+                            </div>
+                        </pane>
+                        <pane title="Medias">
+                            <product-medias product="activedProduct" medias="mediaData"></product-medias>
+
+                        </pane>
+                        <pane title="Related">
+                            <product-related product="activedProduct" list="data"></product-related>
+                        </pane>
+                    </tabs>
+
+                </div>
+            </section>
+            <section class="col-lg-3">
+                <div class="card">
+                    <div class="card-header">
+                        Info
+                    </div>
+                    <div class="card-body">
+                        <div class="form-group">
+                            <div class="btn-group btn-group-sm btn-group-toggle d-flex w-100">
+                                <label ng-repeat="stt in swStatus track by $index"
+                                       ng-switch="stt"
+                                       ng-class="{active: $index == activedProduct.status}"
+                                       class="btn btn-outline-primary btn-block mt-0">
+                                    <input ng-model="activedProduct.status" type="radio" value="{{$index}}" class="custom-control-input" id="pageType_{{$index}}" />
+                                    <i ng-switch-when="Deleted" class="mi mi-Delete mi-lg mi-fw" title="{{stt}}"></i>
+                                    <i ng-switch-when="Preview" class="mi mi-Preview mi-lg mi-fw" title="{{stt}}"></i>
+                                    <i ng-switch-when="Published" class="mi mi-Page mi-lg mi-fw" title="{{stt}}"></i>
+                                    <i ng-switch-when="Draft" class="mi mi-Edit mi-lg mi-flip-horizontal" title="{{stt}}"></i>
+                                    <i ng-switch-when="Schedule" class="mi mi-Calendar mi-lg mi-flip-horizontal" title="{{stt}}"></i>
+                                </label>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <span class="switch">
+                                <label>
+                                    <input type="checkbox" ng-model="activedProduct.isClone" class="switch">
+                                    Clone
+                                </label>
+                            </span>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label">Created Date Time</label>
+                            <div class="input-group mb-3">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text" id="basic-addon1"><i class="mi mi-Calendar"></i></span>
+                                </div>
+                                <input ng-model="activedProduct.createdDateTime" type="text" class="form-control" readonly />
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="control-label">Created By</label>
+                            <div class="input-group mb-3">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text" id="basic-addon1"><i class="mi mi-Contact"></i></span>
+                                </div>
+                                <input ng-model="activedProduct.createdBy" class="form-control" readonly />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+                <custom-file title="'Feature Image'" folder="'Products/test'" src="activedProduct.image" autoUpload="true"></custom-file>
+
+                <div class="card">
+                    <div class="card-header">
+                        Thumbnail image
+                    </div>
+                    <div class="card-body p-0" style="background:url(/images/upload-image-thumbnail.png) no-repeat center;  cursor:pointer;">
+                        <span class="custom-file" style="min-height:210px; overflow:hidden;">
+                            <button class="btn btn-light btn-sm custom-file-cropper position-absolute m-1 collapse" style="z-index:3; right:0;" data-toggle="modal" data-target=".image-crop-modal-lg" data-imgsrc="" data-imgid="">
+                                <i class="mi mi-Crop"></i>
+                            </button>
+                            <input type="file" name="pic" class="custom-file-input auto-upload position-absolute" style="height:150px; cursor:pointer;">
+                            <img src="{{activedProduct.thumbnail}}" name="pic" class="custom-file-img d-block" style="max-height: 150px; width: auto; margin: 0 auto;" accept="image/*" width="100%" />
+                            <input type="hidden" value="Products/{{activedProduct.seoName}}" class="folder-val" />
+                            <input type="text" ng-model="activedProduct.thumbnail" class="form-control custom-file-val">
+                        </span>
+                    </div>
+                </div>
+            </section>
         </div>
 
         <product-main product="activedProduct"></product-main>
-        <div class="row">
-            <div class="col-sm-12">
-                <tabs>
-                    <pane title="General">
-                        <product-general product="activedProduct"></product-general>
-                    </pane>
-                    <pane title="Seo">
-                        <product-seo product="activedProduct"></product-seo>
-                    </pane>
-                    <pane title="Parents">
-                        <product-parents product="activedProduct"></product-parents>
-                    </pane>
-                    <pane title="Modules">
-                        <product-modules product="activedProduct"></product-modules>
-                    </pane>
-                    <pane title="Layout">
-                        <div class="tab-pane">
-                            <code-editor template="activedProduct.view"></code-editor>
-                        </div>
-                    </pane>
-                    <pane title="Medias">
-                        <product-medias product="activedProduct" medias="mediaData"></product-medias>
-
-                    </pane>
-                    <pane title="Related">
-                        <product-related product="activedProduct" list="data"></product-related>
-                    </pane>
-                </tabs>
-
-            </div>
-        </div>
     </form>
 </section>
 <!-- /.content -->
@@ -66,7 +139,7 @@
 
     <script src="~/app/controllers/portal-product-controller.js"></script>
     <script src="~/app/portal/components/product/general/productGeneral.js"></script>
-    
+
     <script src="~/app/portal/components/product/main/productMain.js"></script>
     <script src="~/app/portal/components/product/seo/productSeo.js"></script>
     <script src="~/app/portal/components/product/medias/productMedias.js"></script>

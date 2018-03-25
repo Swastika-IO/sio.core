@@ -21,4 +21,4 @@
         templateUrl: '/app/portal/components/shared/templates/tabs.html',
         replace: true
     };
-})
+});

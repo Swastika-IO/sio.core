@@ -28,7 +28,7 @@ app.directive('ngEnter', function () {
             });
         }
     };
-    });
+});
 
 app.filter('utcToLocal', Filter);
 function Filter($filter) {
