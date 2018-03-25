@@ -1,9 +1,9 @@
 ﻿'use strict';
 app.controller('PortalTemplateController', function PhoneListController($scope) {
     var vm = this;
-    vm.currentLanguage = 'vi-vn';
+    vm.currentLanguage = 'en-us';
     vm.templates = [];
-    vm.activedTemplate = {  };
+    vm.activedTemplate = {};
     vm.request = {
         pageSize: 10,
         pageIndex: 0,
@@ -50,7 +50,6 @@ app.controller('PortalTemplateController', function PhoneListController($scope) 
         });
         vm.templates = response.data.items;
         if (vm.templates != undefined && vm.templates.length > 0) {
-
             var newTemplate = angular.copy(vm.templates[0]);
             newTemplate.id = 0;
             newTemplate.fileName = '_blank';
@@ -72,13 +71,8 @@ app.controller('PortalTemplateController', function PhoneListController($scope) 
                 }
             });
             ph.resolve(true);
-
         }
         return promise;
-
-
-        
-       
     };
     vm.updateEditors = function () {
         setTimeout(function () {

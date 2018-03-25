@@ -1,6 +1,6 @@
 ﻿'use strict';
 app.controller('PortalController', function PhoneListController($scope) {
-    $scope.currentLanguage = 'vi-vn';
+    $scope.currentLanguage = 'en-us';
     $scope.isBusy = true;
     $scope.isLocalDb = false;
     $scope.mediaData = {};
@@ -252,7 +252,6 @@ app.controller('PortalController', function PhoneListController($scope) {
             }
         });
     }
-
 
     $scope.updateEditors = function () {
         setTimeout(function () {
