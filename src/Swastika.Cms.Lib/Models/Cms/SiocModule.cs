@@ -4,6 +4,7 @@
 
 using System;
 using System.Collections.Generic;
+using static Swastika.Common.Utility.Enums;
 
 namespace Swastika.Cms.Lib.Models.Cms
 {
@@ -32,7 +33,7 @@ namespace Swastika.Cms.Lib.Models.Cms
         public int Type { get; set; }
         public string Image { get; set; }
         public int Priority { get; set; }
-        public int Status { get; set; }
+        public SWStatus Status { get; set; }
 
         public SiocCulture SpecificultureNavigation { get; set; }
         public ICollection<SiocArticleModule> SiocArticleModule { get; set; }

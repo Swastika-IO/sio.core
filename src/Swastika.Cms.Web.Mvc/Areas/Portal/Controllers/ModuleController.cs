@@ -61,7 +61,8 @@ namespace Swastika.Cms.Mvc.Areas.Portal.Controllers
         {
             var Module = new BEModuleViewModel(new SiocModule()
             {
-                Specificulture = CurrentLanguage
+                Specificulture = CurrentLanguage,
+                Status = Common.Utility.Enums.SWStatus.Published
             });
             return View(Module);
         }

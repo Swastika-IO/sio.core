@@ -37,7 +37,9 @@ namespace Swastika.Cms.Mvc.Areas.Portal.Controllers
         [Route("init")]
         public IActionResult Init()
         {
-            var model = new InitCmsViewModel();
+            var model = new InitCmsViewModel() {
+                LocalDbName = "aspnet-swastika-v1.Cms.Db"
+            };
             return View(model);
         }
 
@@ -55,7 +57,7 @@ namespace Swastika.Cms.Mvc.Areas.Portal.Controllers
                 }
                 else
                 {
-                    cnnString = "Server=(localdb)\\mssqllocaldb;Database=aspnet-swastika-v1.Cms.Db;Trusted_Connection=True;MultipleActiveResultSets=true";
+                    cnnString = $"Server=(localdb)\\mssqllocaldb;Database={model.LocalDbName};Trusted_Connection=True;MultipleActiveResultSets=true";
                 }
 
                 GlobalConfigurationService.Instance.ConnectionString = cnnString;

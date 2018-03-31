@@ -46,6 +46,7 @@ namespace Swastika.Cms.Lib.ViewModels
         public string DataBaseUser { get; set; }
         public string DataBasePassword { get; set; }
         public bool IsUseLocal { get; set; }
+        public string LocalDbName { get; set; }
     }
 
     public class FileStreamViewModel
