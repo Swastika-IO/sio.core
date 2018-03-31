@@ -24,6 +24,14 @@
     <DebugType>full</DebugType>
     <DebugSymbols>true</DebugSymbols>
   </PropertyGroup>
+  
+  <Target Name="BeforeBuild">
+    <ItemGroup>
+          <SonarQubeSetting Include="sonar.exclusions">
+              <Value>**/wwwroot/**/*</Value>
+          </SonarQubeSetting>
+      </ItemGroup>
+  </Target>
 
   <ItemGroup>
     <Compile Remove="Areas\Portal\Data\**" />
