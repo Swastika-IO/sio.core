@@ -25,14 +25,6 @@
     <DebugSymbols>true</DebugSymbols>
   </PropertyGroup>
   
-  <Target Name="BeforeBuild">
-    <ItemGroup>
-          <SonarQubeSetting Include="sonar.exclusions">
-              <Value>**/wwwroot/**/*</Value>
-          </SonarQubeSetting>
-      </ItemGroup>
-  </Target>
-
   <ItemGroup>
     <Compile Remove="Areas\Portal\Data\**" />
     <Compile Remove="Areas\Portal\Models\**" />
@@ -160,13 +152,14 @@
 
   <ItemGroup>
     <PackageReference Include="angularjs" Version="1.6.9" />
-    <PackageReference Include="JWT" Version="3.2.0-beta" />
+    <PackageReference Include="JWT" Version="4.0.0" />
     <PackageReference Include="Microsoft.AspNetCore.All" Version="2.0.6" />
     <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="2.0.3" />
-    <PackageReference Include="Microsoft.NET.Test.Sdk" Version="15.6.1" />
+    <PackageReference Include="Microsoft.NET.Test.Sdk" Version="15.6.2" />
     <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="2.0.3" />
-    <PackageReference Include="Newtonsoft.Json" Version="11.0.1" />
+    <PackageReference Include="Newtonsoft.Json" Version="11.0.2" />
     <PackageReference Include="Scriban" Version="1.2.0" />
+    <PackageReference Include="SonarAnalyzer.CSharp" Version="6.8.2.4717" />
   </ItemGroup>
 
   <ItemGroup>
