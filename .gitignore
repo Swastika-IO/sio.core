@@ -243,6 +243,7 @@ ModelManifest.xml
 
 **/appsettings.json
 
+.sonarqube/
 
 /src/Swastika.UI.Spa/wwwroot/static
 /src/Swastika.Cms.Lib/obj
