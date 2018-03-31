@@ -283,7 +283,6 @@
     <None Include="Views\Shared\Templates\Default\Layouts\_Comments_Facebook.cshtml" />
     <None Include="Views\Shared\Templates\Default\Layouts\_Footer.cshtml" />
     <None Include="Views\Shared\Templates\Default\Layouts\_Header.cshtml" />
-    <None Include="Views\Shared\Templates\Default\Layouts\_Layout.cshtml" />
     <None Include="Views\Shared\Templates\Default\Layouts\_Top_Nav.cshtml" />
     <None Include="Views\Shared\Templates\Default\Masters\_Layout.cshtml" />
     <None Include="Views\Shared\Templates\Default\Modules\newtemplate.cshtml" />
