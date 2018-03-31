@@ -62,21 +62,25 @@
       //"wwwroot/app/controllers/portal-controller.js",
     ]
   },
-  {
-    // For Portal app js
-    "outputFileName": "wwwroot/app/all-app-portal.min.js",
-    "inputFiles": [
-      //"wwwroot/js/angular.min.js",
-      "wwwroot/app/app-portal.js",
-      "wwwroot/app/controllers/portal-controller.js" //,
-      //"wwwroot/js/portal/portal.white.js"
-    ],
-    // Optionally specify minification options
-    "minify": {
-      "enabled": true,
-      "renameLocals": true
-    },
-    // Optionally generate .map file
-    "sourceMap": false
-  }
-]
+//  {
+//    // For Portal app js
+//    "outputFileName": "wwwroot/app/all-app-portal.min.js",
+//    "inputFiles": [
+//      "wwwroot/app/controllers/portal-template-controller.js",
+//      "wwwroot/app/portal/components/shared/components.js",
+//      "wwwroot/app/portal/components/shared/directives/pane.js",
+//      "wwwroot/app/portal/components/shared/directives/tabs.js",
+//      "wwwroot/app/portal/components/shared/code-editor/codeEditor.js",
+//      "wwwroot/app/portal/components/shared/custom-file/customFile.js",
+//      "wwwroot/app/controllers/portal-controller.js" //,
+//      //"wwwroot/js/portal/portal.white.js"
+//    ],
+//    // Optionally specify minification options
+//    "minify": {
+//      "enabled": true,
+//      "renameLocals": true
+//    },
+//    // Optionally generate .map file
+//    "sourceMap": false
+//  }
+//]

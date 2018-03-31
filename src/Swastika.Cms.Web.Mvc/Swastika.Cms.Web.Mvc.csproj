@@ -155,6 +155,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <PackageReference Include="angular-file-upload" Version="12.2.13" />
     <PackageReference Include="angularjs" Version="1.6.9" />
     <PackageReference Include="JWT" Version="3.2.0-beta" />
     <PackageReference Include="Microsoft.AspNetCore.All" Version="2.0.6" />
@@ -290,7 +291,6 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Swastika.Cms.Lib\Swastika.Cms.Lib.csproj" />
-    <ProjectReference Include="..\Swastika.Crm.Lib\Swastika.Crm.Lib.csproj" />
     <ProjectReference Include="..\Swastka.Cms.Api\Swastka.Cms.Api.csproj" />
   </ItemGroup>
 

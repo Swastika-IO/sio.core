@@ -1,5 +1,5 @@
 ﻿'use strict';
-app.controller('PortalTemplateController', function PhoneListController($scope) {
+app.controller('PortalTemplateController', function PortalTemplateController($scope) {
     var vm = this;
     vm.currentLanguage = 'vi-vn';
     vm.templates = [];
