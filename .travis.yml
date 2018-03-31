@@ -7,6 +7,4 @@ before_install:
   - cd src/Swastika.Cms.Web.Mvc
 script:
   - dotnet restore
-  - dotnet /home/travis/build/Swastika-IO/Swastika-IO-Core/sonar-scanner/SonarScanner.MSBuild.dll begin /k:"6a483423ddd398c2cdd23d61937594db76709ec4"
   - dotnet build
-  - dotnet /home/travis/build/Swastika-IO/Swastika-IO-Core/sonar-scanner/SonarScanner.MSBuild.dll end
