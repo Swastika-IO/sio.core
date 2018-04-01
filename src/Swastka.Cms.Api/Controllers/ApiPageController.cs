@@ -20,7 +20,7 @@ using static Swastika.Common.Utility.Enums;
 namespace Swastka.IO.Cms.Api.Controllers
 {
     [Produces("application/json")]
-    [Route("api/{culture}/page")]
+    [Route("api/{culture}/category")]
     public class ApiCategoryController :
         BaseApiController<SiocCmsContext, SiocCategory>
     {

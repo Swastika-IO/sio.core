@@ -1,5 +1,5 @@
 ﻿'use strict';
-var app = angular.module('SwastikaPortal', []);
+var app = angular.module('app', []);
 var serviceBase = "/";
 app.directive('ngEnter', function () {
     return function (scope, element, attrs) {
