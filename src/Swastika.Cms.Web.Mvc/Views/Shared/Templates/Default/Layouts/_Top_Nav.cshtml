@@ -2,7 +2,7 @@
     string culture = ViewBag.culture;
     List<InfoCategoryViewModel> topCates = SWCmsHelper.GetCategory(Url, ViewBag.culture, SWCmsConstants.CatePosition.Top, Context.Request.Path);
 }
-<nav class="navbar navbar-expand-lg navbar-transparent bg-primary navbar-absolute">
+<nav class="navbar navbar-expand-lg bg-white fixed-top navbar-transparent" color-on-scroll="500">
     <div class="container">
         <div class="navbar-translate">
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#example-navbar-primary" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -10,7 +10,7 @@
                 <span class="navbar-toggler-bar bar2"></span>
                 <span class="navbar-toggler-bar bar3"></span>
             </button>
-            <a class="navbar-brand" href="#">Swastika I/O</a>
+            <a class="navbar-brand" href="https://www.swastika.io">Swastika I/O</a>
         </div>
         <div class="collapse navbar-collapse" id="example-navbar-primary">
             <ul class="navbar-nav ml-auto">
