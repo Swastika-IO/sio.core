@@ -1,20 +1,7 @@
 @model Swastika.Cms.Lib.ViewModels.FrontEnd.FECategoryViewModel
-
-<ul>
-
-    @foreach (var module in Model.Modules.OrderBy(n => n.Priority))
-    {
-        <li>
-            <a href="#@module.Name">@module.Title</a>
-        </li>
-    }
-</ul>
 @foreach (var module in Model.Modules.OrderBy(n => n.Priority))
 {
-
     if (module != null)
     {
-        <a href="#" name="#@module.Name"></a>
         Html.RenderPartial(module.TemplatePath, module);
-    }
-}
+    }}
