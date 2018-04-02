@@ -17,7 +17,7 @@ Swastika I/O is free, open source and cross-platform CMS based on ASP.NET Core (
 - Demo: [http://demo.swastika.io](http://demo.swastika.io) | [https://www.swastika.io](https://www.swastika.io)
 - Screenshot:  
   - **Default template:**
-![Swastika I/O CMS default template with Now UI Pro](_images/readme/Swastika-IO-Default-Template-Now-UI-Pro-800px.gif "Swastika I/O CMS default template with Now UI Pro")
+![Swastika I/O CMS default template with Now UI Pro](https://github.com/Swastika-IO/Swastika-IO-Core/blob/master/docs/_images/readme/Swastika-IO-Default-Template-Now-UI-Pro-800px.gif?raw=true "Swastika I/O CMS default template with Now UI Pro")
   - **Admin Portal:**
 ![Swastika I/O Admin Portal Bootstrap 4](https://swastika-io.github.io/Swastika-IO-Admin/img/white.png "Swastika I/O Admin Portal Bootstrap 4")
 
