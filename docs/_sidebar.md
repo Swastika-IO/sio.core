@@ -2,15 +2,12 @@
 * Getting started
   * [Dowload](https://github.com/Swastika-IO/Swastika-IO-Core/releases)
   * [Installing](installing.md)
-  * [Your 1st step](firststep.md)
 * CMS User Guide
+  * [Your 1st step](firststep.md)
   * [Page](page.md)
-  * [Module](module.md)
-  * [Article](article.md)
-  * [Product](product.md)
+  * [Article & Product](article-and-product.md)
+* Developer
   * [Theme](theme.md)
   * [Template](template.md)
-  * ...
-* Developer
-  * [For developers](more-pages.md)
+  * [Module](module.md)
 * For Theme developer

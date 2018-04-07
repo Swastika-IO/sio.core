@@ -105,7 +105,7 @@ Note: Plesk recommends all users to install and manage Swastika I/O Core CMS usi
 Now you will need to decide where on your domain you'd like your Swastika I/O Core CMS-powered site to appear:
 
 - In the root directory of your website. (For example, http://example.com/)
-- In a subdirectory of your website. (For example, http://example.com/blog/)
+- In a subdirectory of your website. (For example, http://example.com/blog/). How to setup app in subfolder with [IIS](https://docs.microsoft.com/en-us/iis/configuration/system.applicationhost/sites/site/application/).
 
 **Note:** The location of your root web directory in the filesystem on your web server will vary across hosting providers and operating systems. Check with your hosting provider or system administrator if you do not know where this is.
 

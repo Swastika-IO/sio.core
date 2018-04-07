@@ -1,3 +1,3 @@
-# What is "template"?
+# What is "Theme"?
 
-## How to create a template?
+## How to create a theme?

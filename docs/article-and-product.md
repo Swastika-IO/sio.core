@@ -1,4 +1,4 @@
-# Writing Articles
+# Writing Articles and Products
 
 Articles are entries that display in reverse order on your home page. Articles usually have comments fields beneath them and are included in your site's RSS feed.
 
