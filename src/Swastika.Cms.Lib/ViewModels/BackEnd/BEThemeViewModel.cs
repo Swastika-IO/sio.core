@@ -7,6 +7,7 @@ using Microsoft.EntityFrameworkCore.Storage;
 using Newtonsoft.Json;
 using Swastika.Cms.Lib.Models.Cms;
 using Swastika.Cms.Lib.Repositories;
+using Swastika.Cms.Lib.Services;
 using Swastika.Cms.Lib.ViewModels.Info;
 using Swastika.Common.Helper;
 using Swastika.Domain.Core.ViewModels;
@@ -107,250 +108,9 @@ namespace Swastika.Cms.Lib.ViewModels.BackEnd
                 _context: _context, _transaction: _transaction).Data;
         }
 
-        #region Sync
-
-        public override RepositoryResponse<BEThemeViewModel> SaveModel(bool isSaveSubModels = false, SiocCmsContext _context = null, IDbContextTransaction _transaction = null)
-        {
-            var result = base.SaveModel(isSaveSubModels, _context, _transaction);
-            if (result.IsSucceed)
-            {
-                if (IsActived)
-                {
-                    ConfigurationViewModel config = (ConfigurationViewModel.Repository.GetSingleModel(
-                        c => c.Keyword == SWCmsConstants.ConfigurationKeyword.Theme, _context, _transaction)).Data;
-                    if (config == null)
-                    {
-                        config = new ConfigurationViewModel()
-                        {
-                            Keyword = SWCmsConstants.ConfigurationKeyword.Theme,
-                            Specificulture = !string.IsNullOrEmpty(Specificulture) ? Specificulture : SWCmsConstants.Default.Specificulture,
-                            Category = SWCmsConstants.ConfigurationType.User,
-                            DataType = SWCmsConstants.DataType.String,
-                            Description = "Cms Theme",
-
-                            Value = Name
-                        };
-                    }
-                    else
-                    {
-                        config.Value = Name;
-                    }
-
-                    var saveConfigResult = config.SaveModel(false, _context, _transaction);
-                    if (!saveConfigResult.IsSucceed)
-                    {
-                        Errors.AddRange(saveConfigResult.Errors);
-                    }
-                    result.IsSucceed = result.IsSucceed && saveConfigResult.IsSucceed;
-
-                    ConfigurationViewModel configId = (ConfigurationViewModel.Repository.GetSingleModel(
-                          c => c.Keyword == SWCmsConstants.ConfigurationKeyword.ThemeId, _context, _transaction)).Data;
-                    if (configId == null)
-                    {
-                        configId = new ConfigurationViewModel()
-                        {
-                            Keyword = SWCmsConstants.ConfigurationKeyword.ThemeId,
-                            Specificulture = Specificulture,
-                            Category = SWCmsConstants.ConfigurationType.User,
-                            DataType = SWCmsConstants.DataType.String,
-                            Description = "Cms Theme Id",
-                            Value = Model.Id.ToString()
-                        };
-                    }
-                    else
-                    {
-                        configId.Value = Model.Id.ToString();
-                    }
-                    var saveResult = configId.SaveModel(false, _context, _transaction);
-                    if (!saveResult.IsSucceed)
-                    {
-                        Errors.AddRange(saveResult.Errors);
-                    }
-                    result.IsSucceed = result.IsSucceed && saveResult.IsSucceed;
-                }
-
-                if (Asset != null && Asset.Length > 0 && Id == 0)
-                {
-                    var files = FileRepository.Instance.GetWebFiles(AssetFolder);
-                    string strStyles = string.Empty;
-                    foreach (var css in files.Where(f => f.Extension == ".css"))
-                    {
-                        strStyles += string.Format(@"   <link href='{0}/{1}{2}' rel='stylesheet'/>
-", css.FileFolder, css.Filename, css.Extension);
-                    }
-                    string strScripts = string.Empty;
-                    foreach (var js in files.Where(f => f.Extension == ".js"))
-                    {
-                        strScripts += string.Format(@"  <script src='{0}/{1}{2}'></script>
-", js.FileFolder, js.Filename, js.Extension);
-                    }
-                    var layout = BETemplateViewModel.Repository.GetSingleModel(
-                        t => t.FileName == "_Layout" && t.TemplateId == Model.Id
-                        , _context, _transaction);
-                    layout.Data.Content = layout.Data.Content.Replace("<!--[STYLES]-->"
-                        , string.Format(@"{0}"
-                        , strStyles));
-                    layout.Data.Content = layout.Data.Content.Replace("<!--[SCRIPTS]-->"
-                        , string.Format(@"{0}"
-                        , strScripts));
-
-                    layout.Data.SaveModel(true, _context, _transaction);
-                }
-            }
-            return result;
-        }
-
-        public override RepositoryResponse<bool> SaveSubModels(SiocTheme parent, SiocCmsContext _context = null, IDbContextTransaction _transaction = null)
-        {
-            RepositoryResponse<bool> result = new RepositoryResponse<bool>() { IsSucceed = true };
-
-            if (Asset != null && Asset.Length > 0)
-            {
-                string filename = FileRepository.Instance.SaveWebFile(Asset, AssetFolder);
-                if (!string.IsNullOrEmpty(filename))
-                {
-                    FileRepository.Instance.UnZipFile(filename, AssetFolder);
-                }
-            }
-            if (Id == 0)
-            {
-                string defaultFolder = CommonHelper.GetFullPath(new string[] { SWCmsConstants.Parameters.TemplatesFolder, Name == "Default" ? "Default" : SWCmsConstants.Default.DefaultTemplateFolder });
-                bool copyResult = FileRepository.Instance.CopyDirectory(defaultFolder, TemplateFolder);
-                var files = copyResult ? FileRepository.Instance.GetFilesWithContent(TemplateFolder) : new System.Collections.Generic.List<FileViewModel>();
-                foreach (var file in files)
-                {
-                    BETemplateViewModel template = new BETemplateViewModel(
-                        new SiocTemplate()
-                        {
-                            FileFolder = file.FileFolder,
-                            FileName = file.Filename,
-                            Content = file.Content,
-                            Extension = file.Extension,
-                            CreatedDateTime = DateTime.UtcNow,
-                            LastModified = DateTime.UtcNow,
-                            TemplateId = Model.Id,
-                            TemplateName = Model.Name,
-                            FolderType = file.FolderName,
-                            ModifiedBy = CreatedBy
-                        });
-                    var saveResult = template.SaveModel(true, _context, _transaction);
-                    result.IsSucceed = result.IsSucceed && saveResult.IsSucceed;
-                    if (!saveResult.IsSucceed)
-                    {
-                        result.Exception = saveResult.Exception;
-                        result.Errors.AddRange(saveResult.Errors);
-                        break;
-                    }
-                }
-            }
-            return result;
-        }
-
-        public override RepositoryResponse<bool> RemoveRelatedModels(BEThemeViewModel view, SiocCmsContext _context = null, IDbContextTransaction _transaction = null)
-        {
-            RepositoryResponse<bool> result = new RepositoryResponse<bool>() { IsSucceed = true };
-            result = InfoTemplateViewModel.Repository.RemoveListModel(t => t.TemplateId == Id);
-            if (result.IsSucceed)
-            {
-                FileRepository.Instance.DeleteWebFolder(AssetFolder);
-                FileRepository.Instance.DeleteFolder(TemplateFolder);
-            }
-            return result;
-        }
-
-        #endregion Sync
+      
 
         #region Async
-
-        public override async Task<RepositoryResponse<BEThemeViewModel>> SaveModelAsync(bool isSaveSubModels = false, SiocCmsContext _context = null, IDbContextTransaction _transaction = null)
-        {
-            var result = await base.SaveModelAsync(isSaveSubModels, _context, _transaction);
-            if (result.IsSucceed)
-            {
-                if (IsActived)
-                {
-                    ConfigurationViewModel config = (await ConfigurationViewModel.Repository.GetSingleModelAsync(
-                        c => c.Keyword == SWCmsConstants.ConfigurationKeyword.Theme, _context, _transaction)).Data;
-                    if (config == null)
-                    {
-                        config = new ConfigurationViewModel()
-                        {
-                            Keyword = SWCmsConstants.ConfigurationKeyword.Theme,
-                            Specificulture = Specificulture,
-                            Category = SWCmsConstants.ConfigurationType.User,
-                            DataType = SWCmsConstants.DataType.String,
-                            Description = "Cms Theme",
-                            Value = Name
-                        };
-                    }
-                    else
-                    {
-                        config.Value = Name;
-                    }
-
-                    var saveConfigResult = await config.SaveModelAsync(false, _context, _transaction);
-                    if (!saveConfigResult.IsSucceed)
-                    {
-                        Errors.AddRange(saveConfigResult.Errors);
-                    }
-                    result.IsSucceed = result.IsSucceed && saveConfigResult.IsSucceed;
-
-                    ConfigurationViewModel configId = (await ConfigurationViewModel.Repository.GetSingleModelAsync(
-                          c => c.Keyword == SWCmsConstants.ConfigurationKeyword.ThemeId, _context, _transaction)).Data;
-                    if (configId == null)
-                    {
-                        configId = new ConfigurationViewModel()
-                        {
-                            Keyword = SWCmsConstants.ConfigurationKeyword.ThemeId,
-                            Specificulture = Specificulture,
-                            Category = SWCmsConstants.ConfigurationType.User,
-                            DataType = SWCmsConstants.DataType.String,
-                            Description = "Cms Theme Id",
-                            Value = Model.Id.ToString()
-                        };
-                    }
-                    else
-                    {
-                        configId.Value = Model.Id.ToString();
-                    }
-                    var saveResult = await configId.SaveModelAsync(false, _context, _transaction);
-                    if (!saveResult.IsSucceed)
-                    {
-                        Errors.AddRange(saveResult.Errors);
-                    }
-                    result.IsSucceed = result.IsSucceed && saveResult.IsSucceed;
-                }
-
-                if (Asset != null && Asset.Length > 0 && Id == 0)
-                {
-                    var files = FileRepository.Instance.GetWebFiles(AssetFolder);
-                    string strStyles = string.Empty;
-                    foreach (var css in files.Where(f => f.Extension == ".css"))
-                    {
-                        strStyles += string.Format(@"   <link href='{0}/{1}{2}' rel='stylesheet'/>
-", css.FileFolder, css.Filename, css.Extension);
-                    }
-                    string strScripts = string.Empty;
-                    foreach (var js in files.Where(f => f.Extension == ".js"))
-                    {
-                        strScripts += string.Format(@"  <script src='{0}/{1}{2}'></script>
-", js.FileFolder, js.Filename, js.Extension);
-                    }
-                    var layout = BETemplateViewModel.Repository.GetSingleModel(
-                        t => t.FileName == "_Layout" && t.TemplateId == Model.Id
-                        , _context, _transaction);
-                    layout.Data.Content = layout.Data.Content.Replace("<!--[STYLES]-->"
-                        , string.Format(@"{0}"
-                        , strStyles));
-                    layout.Data.Content = layout.Data.Content.Replace("<!--[SCRIPTS]-->"
-                        , string.Format(@"{0}"
-                        , strScripts));
-
-                    await layout.Data.SaveModelAsync(true, _context, _transaction);
-                }
-            }
-            return result;
-        }
 
         public override async Task<RepositoryResponse<bool>> SaveSubModelsAsync(SiocTheme parent, SiocCmsContext _context = null, IDbContextTransaction _transaction = null)
         {
@@ -397,6 +157,99 @@ namespace Swastika.Cms.Lib.ViewModels.BackEnd
                     }
                 }
             }
+
+            // Actived Theme
+            if (IsActived)
+            {
+                InfoConfigurationViewModel config = (await InfoConfigurationViewModel.Repository.GetSingleModelAsync(
+                    c => c.Keyword == SWCmsConstants.ConfigurationKeyword.Theme && c.Specificulture == Specificulture
+                    , _context, _transaction)).Data;
+                if (config == null)
+                {
+                    config = new InfoConfigurationViewModel()
+                    {
+                        Keyword = SWCmsConstants.ConfigurationKeyword.Theme,
+                        Specificulture = Specificulture,
+                        Category = SWCmsConstants.ConfigurationType.User,
+                        DataType = SWCmsConstants.DataType.String,
+                        Description = "Cms Theme",
+                        Value = Name
+                    };
+                }
+                else
+                {
+                    config.Value = Name;
+                }
+
+                var saveConfigResult = await config.SaveModelAsync(false, _context, _transaction);
+                if (!saveConfigResult.IsSucceed)
+                {
+                    Errors.AddRange(saveConfigResult.Errors);
+                }
+                else
+                {
+                    GlobalConfigurationService.Instance.UpdateConfiguration(SWCmsConstants.ConfigurationKeyword.Theme, Specificulture, Name);
+                }
+                result.IsSucceed = result.IsSucceed && saveConfigResult.IsSucceed;
+
+                InfoConfigurationViewModel configId = (await InfoConfigurationViewModel.Repository.GetSingleModelAsync(
+                      c => c.Keyword == SWCmsConstants.ConfigurationKeyword.ThemeId && c.Specificulture == Specificulture, _context, _transaction)).Data;
+                if (configId == null)
+                {
+                    configId = new InfoConfigurationViewModel()
+                    {
+                        Keyword = SWCmsConstants.ConfigurationKeyword.ThemeId,
+                        Specificulture = Specificulture,
+                        Category = SWCmsConstants.ConfigurationType.User,
+                        DataType = SWCmsConstants.DataType.String,
+                        Description = "Cms Theme Id",
+                        Value = Model.Id.ToString()
+                    };
+                }
+                else
+                {
+                    configId.Value = Model.Id.ToString();
+                }
+                var saveResult = await configId.SaveModelAsync(false, _context, _transaction);
+                if (!saveResult.IsSucceed)
+                {
+                    Errors.AddRange(saveResult.Errors);
+                }
+                else
+                {
+                    GlobalConfigurationService.Instance.UpdateConfiguration(SWCmsConstants.ConfigurationKeyword.ThemeId, Specificulture, Model.Id.ToString());
+                }
+                result.IsSucceed = result.IsSucceed && saveResult.IsSucceed;
+            }
+
+            if (Asset != null && Asset.Length > 0 && Id == 0)
+            {
+                var files = FileRepository.Instance.GetWebFiles(AssetFolder);
+                string strStyles = string.Empty;
+                foreach (var css in files.Where(f => f.Extension == ".css"))
+                {
+                    strStyles += string.Format(@"   <link href='{0}/{1}{2}' rel='stylesheet'/>
+", css.FileFolder, css.Filename, css.Extension);
+                }
+                string strScripts = string.Empty;
+                foreach (var js in files.Where(f => f.Extension == ".js"))
+                {
+                    strScripts += string.Format(@"  <script src='{0}/{1}{2}'></script>
+", js.FileFolder, js.Filename, js.Extension);
+                }
+                var layout = BETemplateViewModel.Repository.GetSingleModel(
+                    t => t.FileName == "_Layout" && t.TemplateId == Model.Id
+                    , _context, _transaction);
+                layout.Data.Content = layout.Data.Content.Replace("<!--[STYLES]-->"
+                    , string.Format(@"{0}"
+                    , strStyles));
+                layout.Data.Content = layout.Data.Content.Replace("<!--[SCRIPTS]-->"
+                    , string.Format(@"{0}"
+                    , strScripts));
+
+                await layout.Data.SaveModelAsync(true, _context, _transaction);
+            }
+            
             return result;
         }
 

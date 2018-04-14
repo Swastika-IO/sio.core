@@ -116,14 +116,16 @@
                     <div class="btn-group btn-group-sm" role="group" aria-label="Actions">
                         <a href="/{{currentLanguage}}/portal/pages/edit/{{item.id}}" class="btn btn-light"> <span class="oi oi-pencil text-primary"></span></a>
                         <a href="{{item.detailsUrl}}" target="_blank" class="btn btn-light"><span class="oi oi-eye text-info"></span></a>
-
-                        <button type="button" class="btn btn-light del-popover"
+                        <a href="#" class="btn btn-light"
+                           ng-click="removePage(item.id)">
+                        <span class="oi oi-x text-danger"></span></a>
+                        @*<button type="button" class="btn btn-light del-popover"
                                 data-toggle="popover" data-html="true">
                             <span class="oi oi-x text-danger"></span>
                         </button>
-                        <div class="popover-body d-none">
+                        <div class="popover-body">
                             <a href="/{{currentLanguage}}/portal/pages/delete/{{item.id}}" class="btn btn btn-danger">Yes, I want to delete!</a>
-                        </div>
+                        </div>*@
                     </div>
                 </td>
             </tr>

@@ -30,41 +30,57 @@ app.controller('ProductController', function ProductController($scope) {
             $scope.request.pageIndex = pageIndex;
         }
         if ($scope.request.fromDate != null) {
-            $scope.request.fromDate = $scope.request.fromDate.toISOString();
+            var d = new Date($scope.request.fromDate);
+            $scope.request.fromDate = d.toISOString();
         }
         if ($scope.request.toDate != null) {
             $scope.request.toDate = $scope.request.toDate.toISOString();
         }
         var url = '/api/' + $scope.currentLanguage + '/product/list';//byProduct/' + productId;
-        $scope.settings.method = "POST";
-        $scope.settings.url = url;// + '/true';
-        $scope.settings.data = $scope.request;
-        $.ajax($scope.settings).done(function (response) {
-            ($scope.data = response.data);
+        console.log($scope.request);
+        $.ajax({
+            method: 'POST',
+            url: url,
+            data: $scope.request,
+            success: function (response) {
+                //$scope.loadArticle();
+                if (response.isSucceed) {
 
-            $.each($scope.data.items, function (i, product) {
-                $.each($scope.activedProducts, function (i, e) {
-                    if (e.productId == product.id) {
-                        product.isHidden = true;
-                    }
-                })
-            })
-            $scope.isBusy = false;
-            setTimeout(function () {
-                $('[data-toggle="popover"]').popover({
-                    html: true,
-                    content: function () {
-                        var content = $(this).next('.popover-body');
-                        return $(content).html();
-                    },
-                    title: function () {
-                        var title = $(this).attr("data-popover-content");
-                        return $(title).children(".popover-heading").html();
-                    }
-                });
-            }, 200);
-            $scope.$apply();
+                    ($scope.data = response.data);
+
+                    $.each($scope.data.items, function (i, product) {
+
+                        $.each($scope.activedProducts, function (i, e) {
+                            if (e.productId == product.id) {
+                                product.isHidden = true;
+                            }
+                        })
+                    })
+                    $scope.isBusy = false;
+                    setTimeout(function () {
+                        $('[data-toggle="popover"]').popover({
+                            html: true,
+                            content: function () {
+                                var content = $(this).next('.popover-body');
+                                return $(content).html();
+                            },
+                            title: function () {
+                                var title = $(this).attr("data-popover-content");
+                                return $(title).children(".popover-heading").html();
+                            }
+                        });
+                    }, 200);
+                    $scope.$apply();
+                }
+                else {
+                    alert('failed! ' + data.errors);
+                }
+            },
+            error: function (a, b, c) {
+                console.log(a + " " + b + " " + c);
+            }
         });
+
     };
 
     $scope.removeProduct = function (productId) {

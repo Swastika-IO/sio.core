@@ -36,17 +36,18 @@ namespace Swastika.Cms.Lib.ViewModels.Info
         [JsonProperty("image")]
         public string Image { get; set; }
 
-        [JsonProperty("normailPrice")]
-        public double NormalPrice { get; set; }
+        [JsonIgnore]
+        [JsonProperty("extraProperties")]
+        public string ExtraProperties { get; set; } = "[]";
+
+        [JsonProperty("price")]
+        public double Price { get; set; }
 
         [JsonProperty("priceUnit")]
         public string PriceUnit { get; set; }
 
         [JsonProperty("icon")]
         public string Icon { get; set; }
-
-        [JsonProperty("code")]
-        public string Code { get; set; }
 
         [Required]
         [JsonProperty("title")]
@@ -94,42 +95,62 @@ namespace Swastika.Cms.Lib.ViewModels.Info
         [JsonProperty("tags")]
         public string Tags { get; set; }
 
+        [Required]
+        [JsonProperty("code")]
+        public string Code { get; set; }
+
+        [JsonProperty("totalSaled")]
+        public int TotalSaled { get; set; }
+
+        [JsonProperty("dealPrice")]
+        public double? DealPrice { get; set; }
+
+        [JsonProperty("discount")]
+        public double Discount { get; set; }
+
+        [JsonProperty("importPrice")]
+        public double ImportPrice { get; set; }
+
+        [JsonProperty("material")]
+        public string Material { get; set; }
+
+        [JsonProperty("normalPrice")]
+        public double NormalPrice { get; set; }
+
+        [JsonProperty("packageCount")]
+        public int PackageCount { get; set; }
+
+        [JsonProperty("size")]
+        public string Size { get; set; }
         #endregion Models
 
         #region Views
 
-        [JsonProperty("domain")]
-        public string Domain { get; set; } = "/";
 
-        [JsonProperty("imageUrl")]
-        public string ImageUrl {
-            get {
-                if (Image != null && Image.IndexOf("http") == -1)
-                {
-                    return SWCmsHelper.GetFullPath(new string[] {
-                    Domain,  Image
-                });
-                }
-                else
-                {
-                    return Image;
-                }
+        [JsonProperty("strNormalPrice")]
+        public string StrNormalPrice
+        {
+            get
+            {
+                return SWCmsHelper.FormatPrice(NormalPrice);
             }
         }
 
-        [JsonProperty("thumbnailUrl")]
-        public string ThumbnailUrl {
-            get {
-                if (Thumbnail != null && Thumbnail.IndexOf("http") == -1)
-                {
-                    return SWCmsHelper.GetFullPath(new string[] {
-                    Domain,  Thumbnail
-                });
-                }
-                else
-                {
-                    return Thumbnail;
-                }
+        [JsonProperty("strDealPrice")]
+        public string StrDealPrice
+        {
+            get
+            {
+                return SWCmsHelper.FormatPrice(DealPrice);
+            }
+        }
+
+        [JsonProperty("strImportPrice")]
+        public string StrImportPrice
+        {
+            get
+            {
+                return SWCmsHelper.FormatPrice(ImportPrice);
             }
         }
 

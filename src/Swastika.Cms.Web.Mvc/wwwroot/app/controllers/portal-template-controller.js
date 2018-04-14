@@ -33,7 +33,7 @@ app.controller('PortalTemplateController', function PortalTemplateController($sc
         return input;
     };
 
-    vm.loadTemplates = async function (activedId, activedName, folder) {
+    vm.loadTemplates = async function (themeId = 0, activedId, activedName, folder) {
         setTimeout(async function () {
 
             if (folder) {
@@ -51,6 +51,7 @@ app.controller('PortalTemplateController', function PortalTemplateController($sc
                 "pageIndex": 0,
                 "orderBy": 'fileName',
                 "direction": 0,
+                "key": themeId,
                 "keyword": vm.folder
             }
             var url = '/api/' + vm.currentLanguage + '/template/list';//byProduct/' + productId;
@@ -78,17 +79,13 @@ app.controller('PortalTemplateController', function PortalTemplateController($sc
             $.each(templates, function (i, e) {
                 if (e.id == activedId) {
                     vm.activedTemplate = e;
-                    vm.updateEditors();
-                    $scope.$apply();
-                    ph.resolve(true);
                 }
                 if (e.fileName == activedName) {
                     vm.activedTemplate = e;
-                    vm.updateEditors();
-                    $scope.$apply();
-                    ph.resolve(true);
                 }
             });
+            vm.updateEditors();
+            $scope.$apply();
             ph.resolve(true);
 
         }

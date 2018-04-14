@@ -96,6 +96,33 @@ namespace Swastika.Cms.Lib.ViewModels.FrontEnd
         [JsonProperty("tags")]
         public string Tags { get; set; }
 
+        [Required]
+        [JsonProperty("code")]
+        public string Code { get; set; }
+
+        [JsonProperty("totalSaled")]
+        public int TotalSaled { get; set; }
+
+        [JsonProperty("dealPrice")]
+        public double? DealPrice { get; set; }
+
+        [JsonProperty("discount")]
+        public double Discount { get; set; }
+
+        [JsonProperty("importPrice")]
+        public double ImportPrice { get; set; }
+
+        [JsonProperty("material")]
+        public string Material { get; set; }
+
+        [JsonProperty("normalPrice")]
+        public double NormalPrice { get; set; }
+
+        [JsonProperty("packageCount")]
+        public int PackageCount { get; set; }
+
+        [JsonProperty("size")]
+        public string Size { get; set; }
         #endregion Models
 
         #region Views
@@ -162,6 +189,33 @@ namespace Swastika.Cms.Lib.ViewModels.FrontEnd
         [JsonProperty("productNavs")]
         public List<NavRelatedProductViewModel> ProductNavs { get; set; }
 
+
+        [JsonProperty("strNormalPrice")]
+        public string StrNormalPrice
+        {
+            get
+            {
+                return SWCmsHelper.FormatPrice(NormalPrice);
+            }
+        }
+
+        [JsonProperty("strDealPrice")]
+        public string StrDealPrice
+        {
+            get
+            {
+                return SWCmsHelper.FormatPrice(DealPrice);
+            }
+        }
+
+        [JsonProperty("strImportPrice")]
+        public string StrImportPrice
+        {
+            get
+            {
+                return SWCmsHelper.FormatPrice(ImportPrice);
+            }
+        }
         #endregion Views
 
         #endregion Properties

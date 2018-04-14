@@ -34,12 +34,12 @@ app.controller('PageController', function PhoneListController($filter,$scope) {
 
     $scope.removePage = function (pageId) {
         if (confirm("Are you sure!")) {
-            var url = '/api/' + $scope.currentLanguage + '/page/delete/' + pageId;
+            var url = '/api/vi-vn/page/delete/' + pageId;
             $.ajax({
                 method: 'GET',
                 url: url,
                 success: function (data) {
-                    $scope.loadPage();
+                    $scope.loadPages();
                 },
                 error: function (a, b, c) {
                     console.log(a + " " + b + " " + c);

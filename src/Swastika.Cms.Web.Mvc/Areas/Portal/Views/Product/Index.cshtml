@@ -110,7 +110,7 @@
                 <th scope="col" style="width: 4%;">
                     <span class="oi oi-sort-ascending"></span>
                 </th>
-                  <th scope="col" style="width: 15%;">
+                <th scope="col" style="width: 15%;">
                     Code
                 </th>
                 <th scope="col" style="width: 15%;">
@@ -139,7 +139,7 @@
                 <td>
                     <input type="text" value="{{item.priority}}" class="item-priority form-control form-control-sm d-inline" style="width:40px;" />
                 </td>
-                 <td>
+                <td>
                     {{item.code}}
                 </td>
                 <td>
@@ -147,11 +147,11 @@
                 </td>
                 <td>
                     <div ng-if="item.image!=''">
-                        <img height="50px" src="{{item.image}}"/>
+                        <img height="50px" src="{{item.image}}" />
                     </div>
                     @*<small>
-                        {{item.excerpt}}
-                    </small>*@
+                            {{item.excerpt}}
+                        </small>*@
                 </td>
                 <td>
                     {{item.createdDateTime | utcToLocal:'dd.MM.yyyy - hh:mm:ss a'}}
@@ -187,7 +187,9 @@
                 <a class="page-link active" href="javascript:void(0)" ng-click="loadProducts(data.pageIndex-1)"
                    ng-hide="data.pageIndex==0">Prev</a>
             </li>
-            <li class="page-item" ng-class="{active: n-1==data.pageIndex}" ng-repeat="n in range(data.totalPage)"><a class="page-link" href="javascript:void(0)" ng-click="loadProducts(n-1)">{{n}}</a></li>
+            <li class="page-item" ng-class="{active: n-1==data.pageIndex}" ng-repeat="n in range(data.totalPage)">
+                <a class="page-link" href="javascript:void(0)" ng-click="loadProducts(n-1)">{{n}}</a>
+            </li>
             <li class="page-item">
                 <a class="page-link" href="javascript:void(0)" ng-click="loadProducts(data.pageIndex + 1)"
                    ng-hide="data.pageIndex >= (data.totalPage-1)">Next</a>

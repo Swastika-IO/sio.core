@@ -260,9 +260,7 @@ namespace Swastka.Cms.Api.Controllers
                 {
                     a.DetailsUrl = SWCmsHelper.GetRouterUrl(
                         "Product", new { a.SeoName }, Request, Url);
-                    a.Domain = domain;
-                }
-                );
+                });
             }
             return data;
         }

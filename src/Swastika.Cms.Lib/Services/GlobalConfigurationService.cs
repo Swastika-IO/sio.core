@@ -377,7 +377,6 @@ namespace Swastika.Cms.Lib.Services
 
                     if (isSucceed)
                     {
-
                         BECategoryViewModel cate = new BECategoryViewModel( new SiocCategory()
                         {
                             Title = "Home",
@@ -409,6 +408,11 @@ namespace Swastika.Cms.Lib.Services
                         transaction.Commit();
                         IsInit = true;
                     }
+                    else
+                    {
+                        transaction.Rollback();
+                        IsInit = false;
+                    }
                 }
             }
             catch (Exception ex) // TODO: Add more specific exeption types instead of Exception only
@@ -434,10 +438,10 @@ namespace Swastika.Cms.Lib.Services
         //    return ListSupportedCulture;
         //}
 
-        public void Refresh()
+        public void Refresh(SiocCmsContext _context = null, IDbContextTransaction _transaction = null)
         {
             //InitCultures();
-            InitConfigurations();
+            InitConfigurations(_context, _transaction);
         }
 
         //public void RefreshCultures()
@@ -476,23 +480,12 @@ namespace Swastika.Cms.Lib.Services
             _listConfiguration = getConfigurations.Data ?? new List<ConfigurationViewModel>();
         }
 
-        public bool UpdateConfiguration(string key, string culture, string value)
+        public void UpdateConfiguration(string key, string culture, string value)
         {
             var config = ListConfiguration.Find(c => c.Keyword == key && c.Specificulture == culture);
             string oldValue = config.Value;
 
             config.Value = value;
-            var result = ConfigurationViewModel.Repository.SaveModel(config);
-
-            if (result.IsSucceed)
-            {
-                return true;
-            }
-            else
-            {
-                config.Value = oldValue;
-                return false;
-            }
         }
 
         public string GetLocalString(string key, string culture)
@@ -523,5 +516,7 @@ namespace Swastika.Cms.Lib.Services
             }
             return result;
         }
+
+       
     }
 }

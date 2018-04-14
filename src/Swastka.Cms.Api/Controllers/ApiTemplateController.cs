@@ -124,9 +124,11 @@ namespace Swastka.IO.Cms.Api.Controllers
         public async Task<RepositoryResponse<PaginationModel<BETemplateViewModel>>> GetList(RequestPaging request)
         {
             string domain = string.Format("{0}://{1}", Request.Scheme, Request.Host);
+            int.TryParse(request.Key, out int themeId);
             Expression<Func<SiocTemplate, bool>> predicate = model =>
+                model.TemplateId == themeId &&
                 (string.IsNullOrWhiteSpace(request.Keyword)
-                    || 
+                    ||
                     (
                         model.FileName.Contains(request.Keyword)
                         || model.FileFolder.Contains(request.Keyword)
@@ -134,6 +136,7 @@ namespace Swastka.IO.Cms.Api.Controllers
                     ));
 
             var data = await BETemplateViewModel.Repository.GetModelListByAsync(predicate, request.OrderBy, request.Direction, request.PageSize, request.PageIndex).ConfigureAwait(false);
+
             return data;
         }
 
