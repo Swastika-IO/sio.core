@@ -13,6 +13,7 @@ using Swastika.Domain.Data.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 using static Swastika.Cms.Lib.SWCmsConstants;
 
 namespace Swastika.Cms.Lib.ViewModels.FrontEnd
@@ -112,8 +113,10 @@ namespace Swastika.Cms.Lib.ViewModels.FrontEnd
         [JsonProperty("modules")]
         public List<FEModuleViewModel> Modules { get; set; } = new List<FEModuleViewModel>(); // Get All Module
 
-        public string TemplatePath {
-            get {
+        public string TemplatePath
+        {
+            get
+            {
                 return SWCmsHelper.GetFullPath(new string[]
                 {
                     ""
@@ -176,6 +179,120 @@ namespace Swastika.Cms.Lib.ViewModels.FrontEnd
                 }
             }
         }
+
+        public override async Task<RepositoryResponse<bool>> RemoveRelatedModelsAsync(FECategoryViewModel view, SiocCmsContext _context = null, IDbContextTransaction _transaction = null)
+        {
+            RepositoryResponse<bool> result = new RepositoryResponse<bool>() { IsSucceed = true };
+            if (result.IsSucceed)
+            {
+                var removeResult = await NavCategoryArticleViewModel.Repository.RemoveListModelAsync(n => n.CategoryId == Id && n.Specificulture == Specificulture, _context, _transaction);
+                result.IsSucceed = result.IsSucceed && removeResult.IsSucceed;
+                if (!result.IsSucceed)
+                {
+                    result.Errors.AddRange(removeResult.Errors);
+                    result.Exception = removeResult.Exception;
+                }
+            }
+            if (result.IsSucceed)
+            {
+                var removeResult = await NavCategoryProductViewModel.Repository.RemoveListModelAsync(n => n.CategoryId == Id && n.Specificulture == Specificulture, _context, _transaction);
+                result.IsSucceed = result.IsSucceed && removeResult.IsSucceed;
+                if (!result.IsSucceed)
+                {
+                    result.Errors.AddRange(removeResult.Errors);
+                    result.Exception = removeResult.Exception;
+                }
+            }
+            if (result.IsSucceed)
+            {
+                var removeResult = await CategoryModuleViewModel.Repository.RemoveListModelAsync(n => n.CategoryId == Id && n.Specificulture == Specificulture, _context, _transaction);
+                result.IsSucceed = result.IsSucceed && removeResult.IsSucceed;
+                if (!result.IsSucceed)
+                {
+                    result.Errors.AddRange(removeResult.Errors);
+                    result.Exception = removeResult.Exception;
+                }
+            }
+            if (result.IsSucceed)
+            {
+                var removeResult = await CategoryPositionViewModel.Repository.RemoveListModelAsync(n => n.CategoryId == Id && n.Specificulture == Specificulture, _context, _transaction);
+                result.IsSucceed = result.IsSucceed && removeResult.IsSucceed;
+                if (!result.IsSucceed)
+                {
+                    result.Errors.AddRange(removeResult.Errors);
+                    result.Exception = removeResult.Exception;
+                }
+            }
+            if (result.IsSucceed)
+            {
+                var removeResult = await CategoryCategoryViewModel.Repository.RemoveListModelAsync(n => (n.ParentId == Id || n.Id == Id) && n.Specificulture == Specificulture, _context, _transaction);
+                result.IsSucceed = result.IsSucceed && removeResult.IsSucceed;
+                if (!result.IsSucceed)
+                {
+                    result.Errors.AddRange(removeResult.Errors);
+                    result.Exception = removeResult.Exception;
+                }
+            }
+
+            return result;
+        }
+        public override RepositoryResponse<bool> RemoveRelatedModels(FECategoryViewModel view, SiocCmsContext _context = null, IDbContextTransaction _transaction = null)
+        {
+            RepositoryResponse<bool> result = new RepositoryResponse<bool>() { IsSucceed = true };
+            if (result.IsSucceed)
+            {
+                var removeResult = NavCategoryArticleViewModel.Repository.RemoveListModel(n => n.CategoryId == Id && n.Specificulture == Specificulture, _context, _transaction);
+                result.IsSucceed = result.IsSucceed && removeResult.IsSucceed;
+                if (!result.IsSucceed)
+                {
+                    result.Errors.AddRange(removeResult.Errors);
+                    result.Exception = removeResult.Exception;
+                }
+            }
+            if (result.IsSucceed)
+            {
+                var removeResult = NavCategoryProductViewModel.Repository.RemoveListModel(n => n.CategoryId == Id && n.Specificulture == Specificulture, _context, _transaction);
+                result.IsSucceed = result.IsSucceed && removeResult.IsSucceed;
+                if (!result.IsSucceed)
+                {
+                    result.Errors.AddRange(removeResult.Errors);
+                    result.Exception = removeResult.Exception;
+                }
+            }
+            if (result.IsSucceed)
+            {
+                var removeResult = CategoryModuleViewModel.Repository.RemoveListModel(n => n.CategoryId == Id && n.Specificulture == Specificulture, _context, _transaction);
+                result.IsSucceed = result.IsSucceed && removeResult.IsSucceed;
+                if (!result.IsSucceed)
+                {
+                    result.Errors.AddRange(removeResult.Errors);
+                    result.Exception = removeResult.Exception;
+                }
+            }
+            if (result.IsSucceed)
+            {
+                var removeResult = CategoryPositionViewModel.Repository.RemoveListModel(n => n.CategoryId == Id && n.Specificulture == Specificulture, _context, _transaction);
+                result.IsSucceed = result.IsSucceed && removeResult.IsSucceed;
+                if (!result.IsSucceed)
+                {
+                    result.Errors.AddRange(removeResult.Errors);
+                    result.Exception = removeResult.Exception;
+                }
+            }
+            if (result.IsSucceed)
+            {
+                var removeResult = CategoryCategoryViewModel.Repository.RemoveListModel(n => (n.ParentId == Id || n.Id == Id) && n.Specificulture == Specificulture, _context, _transaction);
+                result.IsSucceed = result.IsSucceed && removeResult.IsSucceed;
+                if (!result.IsSucceed)
+                {
+                    result.Errors.AddRange(removeResult.Errors);
+                    result.Exception = removeResult.Exception;
+                }
+            }
+
+            return result;
+        }
+
 
         #endregion Overrides
 

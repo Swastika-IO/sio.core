@@ -3,6 +3,7 @@
 
 @{
     ViewBag.IsAdmin = true;
+    int themeId = LocalizerService.GetLocalInt("ThemeId", ViewBag.culture as string, 0);
     string isHidden = ViewBag.IsAdmin ? string.Empty : "hidden";
     bool isCreate = ViewContext.RouteData.Values["action"].ToString().ToLower() == "create";
 
@@ -90,7 +91,7 @@
                     </select>
                 }*@
             <select class="btn btn-outline-secondary custom-select col-sm-4"
-                    ng-model="layout.activedTemplate" ng-init="templates = layout.loadTemplates(@Model.Id, '', '@Model.FolderType')"
+                    ng-model="layout.activedTemplate" ng-init="templates = layout.loadTemplates(@themeId, @Model.Id, '', '@Model.FolderType')"
                     ng-options="item as item.fileName for item in layout.templates track by item.id"
                     ng-change="layout.updateEditors()"></select>
 

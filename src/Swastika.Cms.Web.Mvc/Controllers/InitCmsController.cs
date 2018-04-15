@@ -4,8 +4,13 @@
 
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
+using Swastika.Cms.Lib;
+using Swastika.Cms.Lib.Models.Cms;
 using Swastika.Cms.Lib.Services;
 using Swastika.Cms.Mvc.Controllers;
+using System;
+using System.Linq;
+using static Swastika.Common.Utility.Enums;
 
 namespace Swastika.Cms.Web.Mvc.Controllers
 {
@@ -27,6 +32,7 @@ namespace Swastika.Cms.Web.Mvc.Controllers
             else
             {
                 GlobalConfigurationService.Instance.IsInit = true;
+                GlobalConfigurationService.Instance.Refresh();
                 return RedirectToAction("", "Home", new { culture = CurrentLanguage });
             }
         }

@@ -24,7 +24,7 @@
     <DebugType>full</DebugType>
     <DebugSymbols>true</DebugSymbols>
   </PropertyGroup>
-  
+
   <ItemGroup>
     <Compile Remove="Areas\Portal\Data\**" />
     <Compile Remove="Areas\Portal\Models\**" />
@@ -38,6 +38,8 @@
     <Compile Remove="Views\Shared\Modules\**" />
     <Compile Remove="Views\Shared\NowUI\**" />
     <Compile Remove="Views\Shared\Pages\**" />
+    <Compile Remove="Views\Shared\Templates\Default\**" />
+    <Compile Remove="Views\Shared\Templates\Default\Products\**" />
     <Compile Remove="Views\Shared\Templates\Modus\**" />
     <Compile Remove="Views\Shared\Templates\Now-UI-Kit-PRO\**" />
     <Compile Remove="Views\Shared\Widgets\**" />
@@ -54,6 +56,8 @@
     <Content Remove="Views\Shared\Modules\**" />
     <Content Remove="Views\Shared\NowUI\**" />
     <Content Remove="Views\Shared\Pages\**" />
+    <Content Remove="Views\Shared\Templates\Default\**" />
+    <Content Remove="Views\Shared\Templates\Default\Products\**" />
     <Content Remove="Views\Shared\Templates\Modus\**" />
     <Content Remove="Views\Shared\Templates\Now-UI-Kit-PRO\**" />
     <Content Remove="Views\Shared\Widgets\**" />
@@ -70,6 +74,8 @@
     <EmbeddedResource Remove="Views\Shared\Modules\**" />
     <EmbeddedResource Remove="Views\Shared\NowUI\**" />
     <EmbeddedResource Remove="Views\Shared\Pages\**" />
+    <EmbeddedResource Remove="Views\Shared\Templates\Default\**" />
+    <EmbeddedResource Remove="Views\Shared\Templates\Default\Products\**" />
     <EmbeddedResource Remove="Views\Shared\Templates\Modus\**" />
     <EmbeddedResource Remove="Views\Shared\Templates\Now-UI-Kit-PRO\**" />
     <EmbeddedResource Remove="Views\Shared\Widgets\**" />
@@ -86,6 +92,8 @@
     <None Remove="Views\Shared\Modules\**" />
     <None Remove="Views\Shared\NowUI\**" />
     <None Remove="Views\Shared\Pages\**" />
+    <None Remove="Views\Shared\Templates\Default\**" />
+    <None Remove="Views\Shared\Templates\Default\Products\**" />
     <None Remove="Views\Shared\Templates\Modus\**" />
     <None Remove="Views\Shared\Templates\Now-UI-Kit-PRO\**" />
     <None Remove="Views\Shared\Widgets\**" />
@@ -151,15 +159,14 @@
   </ItemGroup>
 
   <ItemGroup>
+    <PackageReference Include="angular-file-upload" Version="12.2.13" />
     <PackageReference Include="angularjs" Version="1.6.9" />
-    <PackageReference Include="JWT" Version="4.0.0" />
+    <PackageReference Include="JWT" Version="3.2.0-beta" />
     <PackageReference Include="Microsoft.AspNetCore.All" Version="2.0.6" />
     <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="2.0.3" />
-    <PackageReference Include="Microsoft.NET.Test.Sdk" Version="15.6.2" />
+    <PackageReference Include="Microsoft.NET.Test.Sdk" Version="15.6.1" />
     <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="2.0.3" />
-    <PackageReference Include="Newtonsoft.Json" Version="11.0.2" />
     <PackageReference Include="Scriban" Version="1.2.0" />
-    <PackageReference Include="SonarAnalyzer.CSharp" Version="6.8.2.4717" />
   </ItemGroup>
 
   <ItemGroup>
@@ -279,38 +286,7 @@
     <None Include="Areas\User\Views\Manage\VerifyPhoneNumber.cshtml" />
     <None Include="Areas\User\Views\_ViewImports.cshtml" />
     <None Include="Areas\User\Views\_ViewStart.cshtml" />
-    <None Include="Views\Shared\Templates\Default\Articles\_Default.cshtml" />
-    <None Include="Views\Shared\Templates\Default\Layouts\_Advanced.cshtml" />
-    <None Include="Views\Shared\Templates\Default\Layouts\_Comments_Facebook.cshtml" />
-    <None Include="Views\Shared\Templates\Default\Layouts\_Footer.cshtml" />
-    <None Include="Views\Shared\Templates\Default\Layouts\_Header.cshtml" />
-    <None Include="Views\Shared\Templates\Default\Layouts\_Top_Nav.cshtml" />
-    <None Include="Views\Shared\Templates\Default\Masters\_Layout.cshtml" />
-    <None Include="Views\Shared\Templates\Default\Modules\newtemplate.cshtml" />
-    <None Include="Views\Shared\Templates\Default\Modules\_AboutUs_Advanced.cshtml" />
-    <None Include="Views\Shared\Templates\Default\Modules\_Banners.cshtml" />
-    <None Include="Views\Shared\Templates\Default\Modules\_Default.cshtml" />
-    <None Include="Views\Shared\Templates\Default\Modules\_header-1.cshtml" />
-    <None Include="Views\Shared\Templates\Default\Modules\_Home_AboutUs.cshtml" />
-    <None Include="Views\Shared\Templates\Default\Modules\_Home_Contact_Us.cshtml" />
-    <None Include="Views\Shared\Templates\Default\Modules\_Home_Header.cshtml" />
-    <None Include="Views\Shared\Templates\Default\Modules\_Home_Pricing.cshtml" />
-    <None Include="Views\Shared\Templates\Default\Modules\_Home_What_Is_Alpha.cshtml" />
-    <None Include="Views\Shared\Templates\Default\Modules\_Home_Work_With_Us.cshtml" />
-    <None Include="Views\Shared\Templates\Default\Modules\_Latest_Blogposts.cshtml" />
-    <None Include="Views\Shared\Templates\Default\Modules\_MainNavi.cshtml" />
-    <None Include="Views\Shared\Templates\Default\Modules\_Modules.cshtml" />
-    <None Include="Views\Shared\Templates\Default\Modules\_What_Clients_Say.cshtml" />
-    <None Include="Views\Shared\Templates\Default\Pages\Modules.cshtml" />
-    <None Include="Views\Shared\Templates\Default\Pages\_AboutUs.cshtml" />
-    <None Include="Views\Shared\Templates\Default\Pages\_Components.cshtml" />
-    <None Include="Views\Shared\Templates\Default\Pages\_Default.cshtml" />
-    <None Include="Views\Shared\Templates\Default\Pages\_Home.cshtml" />
-    <None Include="Views\Shared\Templates\Default\Pages\_List_Post.cshtml" />
-    <None Include="Views\Shared\Templates\Default\Pages\_List_Post_Item.cshtml" />
-    <None Include="Views\Shared\Templates\Default\Pages\_Modules.cshtml" />
-    <None Include="Views\Shared\Templates\Default\Widgets\_Comments_Facebook.cshtml" />
-    <None Include="Views\Shared\Templates\Default\Widgets\_Tags.cshtml" />
+    <None Include="Views\Shared\Templates\Starceramic\Products\_Default.cshtml" />
     <None Include="Views\_ViewImports.cshtml" />
     <None Include="Views\_ViewStart.cshtml" />
     <None Include="wwwroot\app\app-portal.js" />

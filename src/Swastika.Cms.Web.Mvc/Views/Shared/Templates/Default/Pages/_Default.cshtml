@@ -2,11 +2,11 @@
 @{
     var wwa = Model.GetModule("who_we_are");
 }
-@if(wwa!=null)
-{
-    @Html.Partial(wwa.TemplatePath, wwa)
-}
 
+@if(wwa != null)
+{
+    @Html.Partial(wwa.TemplatePath, wwa);
+}
 <div class="testimonials-1 section-image" style="background-image: url('/Content/Templates/Default/assets/img/bg19.jpg')">
     <div class="container">
         <div class="row">

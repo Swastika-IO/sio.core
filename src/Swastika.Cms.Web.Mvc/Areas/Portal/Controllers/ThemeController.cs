@@ -148,7 +148,15 @@ namespace Swastika.Cms.Mvc.Areas.Portal.Controllers
                     }
                     else
                     {
-                        ModelState.AddModelError(string.Empty, result.Exception.Message);
+                        if (result.Exception!=null)
+                        {
+                            ModelState.AddModelError(string.Empty, result.Exception.Message);
+                        }
+                        
+                        foreach (var error in result.Errors)
+                        {
+                            ModelState.AddModelError(string.Empty, error);
+                        }
                         return View(template);
                     }
                 }
@@ -163,6 +171,7 @@ namespace Swastika.Cms.Mvc.Areas.Portal.Controllers
                         throw;
                     }
                 }
+                
                 //return RedirectToAction("Index");
             }
             ViewData["Action"] = "Edit";

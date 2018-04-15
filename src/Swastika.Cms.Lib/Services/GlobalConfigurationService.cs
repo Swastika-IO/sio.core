@@ -1,5 +1,5 @@
 ﻿// Licensed to the Swastika I/O Foundation under one or more agreements.
-// The Swastika I/O Foundation licenses this file to you under the GNU General Public License v3.0.
+// The Swastika I/O Foundation licenses this file to you under the MIT license.
 // See the LICENSE file in the project root for more information.
 
 using Microsoft.EntityFrameworkCore;
@@ -23,26 +23,32 @@ namespace Swastika.Cms.Lib.Services
         public string Name { get; set; }
         public bool IsInit { get; set; }
 
-        public string ConnectionString {
-            get {
+        public string ConnectionString
+        {
+            get
+            {
                 return _connectionString;
             }
-            set {
+            set
+            {
                 _connectionString = value;
             }
         }
 
         private static List<ConfigurationViewModel> _listConfiguration;
 
-        public static List<ConfigurationViewModel> ListConfiguration {
-            get {
+        public static List<ConfigurationViewModel> ListConfiguration
+        {
+            get
+            {
                 if (_listConfiguration == null)
                 {
                     InitConfigurations();
                 }
                 return _listConfiguration;
             }
-            set {
+            set
+            {
                 _listConfiguration = value;
             }
         }
@@ -65,11 +71,14 @@ namespace Swastika.Cms.Lib.Services
         //}
         private static GlobalConfigurationService _instance;
 
-        public static GlobalConfigurationService Instance {
-            get {
+        public static GlobalConfigurationService Instance
+        {
+            get
+            {
                 return _instance ?? (_instance = new GlobalConfigurationService());
             }
-            set {
+            set
+            {
                 _instance = value;
             }
         }
@@ -210,6 +219,11 @@ namespace Swastika.Cms.Lib.Services
                     {
                         BEPositionViewModel p = new BEPositionViewModel()
                         {
+                            Description = nameof(SWCmsConstants.CatePosition.Nav)
+                        };
+                        isSucceed = isSucceed && p.SaveModel(_context: context, _transaction: transaction).IsSucceed;
+                        p = new BEPositionViewModel()
+                        {
                             Description = nameof(SWCmsConstants.CatePosition.Top)
                         };
                         isSucceed = isSucceed && p.SaveModel(_context: context, _transaction: transaction).IsSucceed;
@@ -241,7 +255,7 @@ namespace Swastika.Cms.Lib.Services
                             };
 
                             isSucceed = isSucceed && theme.SaveModel(true, context, transaction).IsSucceed;
-
+                            
                             if (isSucceed)
                             {
                                 ConfigurationViewModel config = (ConfigurationViewModel.Repository.GetSingleModel(
@@ -368,17 +382,18 @@ namespace Swastika.Cms.Lib.Services
 
                     if (isSucceed)
                     {
-                        BECategoryViewModel cate = new BECategoryViewModel(new SiocCategory()
+                        BECategoryViewModel cate = new BECategoryViewModel( new SiocCategory()
                         {
                             Title = "Home",
                             Specificulture = "vi-vn",
                             Template = "_Home",
                             Type = (int)SWCmsConstants.CateType.Home,
                             CreatedBy = "Admin"
+
                         });
 
                         isSucceed = isSucceed && cate.SaveModel(false, context, transaction).IsSucceed;
-                        BECategoryViewModel uscate = new BECategoryViewModel(new SiocCategory()
+                        BECategoryViewModel uscate = new BECategoryViewModel( new SiocCategory()
                         {
                             Title = "Home",
                             Specificulture = "en-us",
@@ -389,9 +404,12 @@ namespace Swastika.Cms.Lib.Services
                         isSucceed = isSucceed && uscate.SaveModel(false, context, transaction).IsSucceed;
                     }
 
+
                     if (isSucceed)
                     {
+
                         GlobalLanguageService.Instance.RefreshCultures(context, transaction);
+                        
                         transaction.Commit();
                         IsInit = true;
                     }
@@ -415,20 +433,9 @@ namespace Swastika.Cms.Lib.Services
             }
         }
 
-        //public SupportedCulture GetCulture(string specificulture)
-        //{
-        //    return ListSupportedCulture.FirstOrDefault(c => c.Specificulture == specificulture);
-        //}
-
-        //public List<SupportedCulture> GetSupportedCultures()
-        //{
-        //    return ListSupportedCulture;
-        //}
-
-        public void Refresh()
+        public void Refresh(SiocCmsContext _context = null, IDbContextTransaction _transaction = null)
         {
-            //InitCultures();
-            InitConfigurations();
+            InitConfigurations(_context, _transaction);
         }
 
         //public void RefreshCultures()
@@ -467,23 +474,12 @@ namespace Swastika.Cms.Lib.Services
             _listConfiguration = getConfigurations.Data ?? new List<ConfigurationViewModel>();
         }
 
-        public bool UpdateConfiguration(string key, string culture, string value)
+        public void UpdateConfiguration(string key, string culture, string value)
         {
             var config = ListConfiguration.Find(c => c.Keyword == key && c.Specificulture == culture);
             string oldValue = config.Value;
 
             config.Value = value;
-            var result = ConfigurationViewModel.Repository.SaveModel(config);
-
-            if (result.IsSucceed)
-            {
-                return true;
-            }
-            else
-            {
-                config.Value = oldValue;
-                return false;
-            }
         }
 
         public string GetLocalString(string key, string culture)
@@ -514,5 +510,7 @@ namespace Swastika.Cms.Lib.Services
             }
             return result;
         }
+
+       
     }
 }

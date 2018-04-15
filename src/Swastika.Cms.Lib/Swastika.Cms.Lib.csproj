@@ -33,7 +33,7 @@
     <Compile Remove="Migrations\20180305042643_test.cs" />
     <Compile Remove="Migrations\20180305042908_Add-Page-Layout.cs" />
     <Compile Remove="Migrations\20180305042908_Add-Page-Layout.Designer.cs" />
-    <Compile Remove="Migrations\SiocCmsContextModelSnapshot.cs" />
+    <Compile Remove="Migrations\20180319080440_update-product.cs" />
     <Compile Remove="Models\SiocFile.cs" />
     <Compile Remove="Models\SiocTemplate.cs" />
     <Compile Remove="Models\SiocTheme.cs" />

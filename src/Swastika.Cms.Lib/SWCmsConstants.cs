@@ -13,9 +13,11 @@ namespace Swastika.Cms.Lib
 
         public enum CatePosition
         {
+
             Top = 1,
             Left = 2,
-            Footer = 3
+            Footer = 3,
+            Nav = 4
         }
 
         public enum CateType
@@ -157,7 +159,7 @@ namespace Swastika.Cms.Lib
             public const string OrderBy = @"Priority";
             public const int PageSizeArticle = 20;
             public const string Password = @"1234qwe@";
-            public const string Specificulture = @"en-us";
+            public const string Specificulture = @"vi-vn";
         }
 
         public class FileFolder

@@ -136,19 +136,20 @@ namespace Swastika.Cms.Mvc.Areas.Portal.Controllers
         [Route("Edit/{id}/{categoryId:int}")]
         public async Task<IActionResult> Edit(string id = null, int? categoryId = null)
         {
-            if (id == null)
-            {
-                return RedirectToAction("Index");
-            }
+            //if (id == null)
+            //{
+            //    return RedirectToAction("Index");
+            //}
 
-            var product = await BEProductViewModel.Repository.GetSingleModelAsync(
-                m => m.Id == id && m.Specificulture == CurrentLanguage).ConfigureAwait(false);
-            if (product == null)
-            {
-                return RedirectToAction("Index");
-            }
-            ViewBag.categoryId = categoryId;
-            return View(product.Data);
+            //var product = await BEProductViewModel.Repository.GetSingleModelAsync(
+            //    m => m.Id == id && m.Specificulture == CurrentLanguage).ConfigureAwait(false);
+            //if (product == null)
+            //{
+            //    return RedirectToAction("Index");
+            //}
+            //ViewBag.categoryId = categoryId;
+            //return View(product.Data);
+            return View();
         }
 
         // POST: product/Edit/5

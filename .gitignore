@@ -243,7 +243,6 @@ ModelManifest.xml
 
 **/appsettings.json
 
-.sonarqube/
 
 /src/Swastika.UI.Spa/wwwroot/static
 /src/Swastika.Cms.Lib/obj
@@ -259,10 +258,12 @@ ModelManifest.xml
 /src/Swastika.Cms.Mvc/wwwroot/lib
 /src/Swastika.Cms.Web.Mvc/Content
 /src/Swastika.Cms.Web.Mvc/wwwroot/Content
+/src/Swastika.Cms.Web.Mvc/Views/Shared/Templates
 /src/Swastika.Chat.Web
 /src/Swastika.Chat.Lib
 /src/Swastika.Cms.Lib/Migrations
 /src/Swastika.Cms.Web.Mvc/wwwroot/Uploads
+/src/Swastika.Cms.Web.Mvc/Views/Shared/Templates/Default
 /src/Swastika.Cms.Web.Mvc/wwwroot/Views/Shared/Templates/Default/Assets/assets.zip
 /src/Swastika.Cms.Web.Mvc/wwwroot/Views/Shared/Templates/Default/Assets/css/bootstrap.min.css
 /src/Swastika.Cms.Web.Mvc/wwwroot/Views/Shared/Templates/Default/Assets/css/demo.css
@@ -285,4 +286,4 @@ ModelManifest.xml
 /src/Swastika.Cms.Web.Mvc/wwwroot/Views/Shared/Templates/Default/Assets/js/plugins/presentation-page/jquery.sharrre.js
 /src/Swastika.Cms.Web.Mvc/wwwroot/Views/Shared/Templates/Default/Assets/js/plugins/presentation-page/rellax.min.js
 /src/Swastika.Cms.Web.Mvc/wwwroot/optimized_contents.zip
-/src/Swastika.Cms.Web.Mvc/appsettings.json
+/src/Swastika.Cms.Web.Mvc/appSettings.json
