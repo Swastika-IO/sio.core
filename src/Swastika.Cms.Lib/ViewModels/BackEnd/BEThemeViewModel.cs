@@ -92,7 +92,7 @@ namespace Swastika.Cms.Lib.ViewModels.BackEnd
 
         #region Overrides
 
-        public override SiocTheme ParseModel()
+        public override SiocTheme ParseModel(SiocCmsContext _context = null, IDbContextTransaction _transaction = null)
         {
             if (Id == 0)
             {

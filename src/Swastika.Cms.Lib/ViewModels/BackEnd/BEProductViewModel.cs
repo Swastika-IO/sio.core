@@ -322,7 +322,7 @@ namespace Swastika.Cms.Lib.ViewModels.BackEnd
             }
         }
 
-        public override SiocProduct ParseModel()
+        public override SiocProduct ParseModel(SiocCmsContext _context = null, IDbContextTransaction _transaction = null)
         {
             if (string.IsNullOrEmpty(Id))
             {

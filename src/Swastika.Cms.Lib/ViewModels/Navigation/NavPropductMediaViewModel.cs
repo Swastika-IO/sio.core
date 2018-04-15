@@ -70,7 +70,7 @@ namespace Swastika.Cms.Lib.ViewModels.Navigation
             Image = Media?.FullPath;
         }
 
-        public override SiocProductMedia ParseModel()
+        public override SiocProductMedia ParseModel(SiocCmsContext _context = null, IDbContextTransaction _transaction = null)
         {
             Description = Description ?? Media?.FileName;
             Image = Media?.FullPath;

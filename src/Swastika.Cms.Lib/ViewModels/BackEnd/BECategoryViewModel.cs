@@ -216,7 +216,7 @@ namespace Swastika.Cms.Lib.ViewModels.BackEnd
 
         #region Overrides
 
-        public override SiocCategory ParseModel()
+        public override SiocCategory ParseModel(SiocCmsContext _context = null, IDbContextTransaction _transaction = null)
         {
             GenerateSEO();
             //if (View != null)
