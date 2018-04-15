@@ -17,17 +17,24 @@
     <form ng-class="{'submitted': submitted}"
           ng-submit="saveProduct(activedProduct)">
 
-        @Html.Partial("EditableSides/_Editable_ActionsBar")
-
+        <actions preview-url="activedProduct.detailsUrl" back-url="'/@culture/portal/product'"></actions>
+        
         <div class="row">
-
-            <div class="alert alert-danger" role="alert" ng-if="errors.length > 0">
-                <span class="text-danger" ng-repeat="err in errors">
-                    {{err}}
-                </span>
+            <div class="col-lg-12">
+                <div class="alert alert-{{message.class}}" role="alert" ng-show="message.content!=''">
+                    <span ng-bind="message.content" />
+                </div>
+                <div class="alert alert-danger" role="alert" ng-show="errors.length > 0">
+                    <p class="text-danger" ng-repeat="err in errors">
+                        <span ng-bind="err" />
+                    </p>
+                </div>
             </div>
             <section class="col-lg-9">
-                <div class="col-sm-12">
+                <div class="row">
+                <product-main product="activedProduct"></product-main>
+                    </div>
+                <div class="row">
                     <tabs>
                         <pane title="General">
                             <product-general product="activedProduct"></product-general>
@@ -57,7 +64,7 @@
 
                 </div>
             </section>
-            <section class="col-lg-3">
+            <section class="col-lg-3" style="padding-left:0">
                 <div class="card">
                     <div class="card-header">
                         Info
@@ -110,27 +117,14 @@
 
 
                 <custom-file header="'Feature Image'" folder="'Products/test'" src="activedProduct.image" auto="'true'"></custom-file>
+                <custom-file header="'Feature Thumnail'" folder="'Products/test'" src="activedProduct.thumbnail" auto="'false'"></custom-file>
 
-                <div class="card">
-                    <div class="card-header">
-                        Thumbnail image
-                    </div>
-                    <div class="card-body p-0" style="background:url(/images/upload-image-thumbnail.png) no-repeat center;  cursor:pointer;">
-                        <span class="custom-file" style="min-height:210px; overflow:hidden;">
-                            <button class="btn btn-light btn-sm custom-file-cropper position-absolute m-1 collapse" style="z-index:3; right:0;" data-toggle="modal" data-target=".image-crop-modal-lg" data-imgsrc="" data-imgid="">
-                                <i class="mi mi-Crop"></i>
-                            </button>
-                            <input type="file" name="pic" class="custom-file-input auto-upload position-absolute" style="height:150px; cursor:pointer;">
-                            <img src="{{activedProduct.thumbnail}}" name="pic" class="custom-file-img d-block" style="max-height: 150px; width: auto; margin: 0 auto;" accept="image/*" width="100%" />
-                            <input type="hidden" value="Products/{{activedProduct.seoName}}" class="folder-val" />
-                            <input type="text" ng-model="activedProduct.thumbnail" class="form-control custom-file-val">
-                        </span>
-                    </div>
-                </div>
+
             </section>
         </div>
 
-        <product-main product="activedProduct"></product-main>
+
+
     </form>
 </section>
 <!-- /.content -->

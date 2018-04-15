@@ -20,6 +20,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Controllers\ApiRoleController.cs" />
     <Compile Remove="Controllers\BaseApiController.cs" />
     <Compile Remove="Controllers\ClaimsController.cs" />
   </ItemGroup>

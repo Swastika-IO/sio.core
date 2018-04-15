@@ -216,6 +216,10 @@ namespace Swastika.Cms.Lib.ViewModels.FrontEnd
                 return SWCmsHelper.FormatPrice(ImportPrice);
             }
         }
+
+        [JsonProperty("detailsUrl")]
+        public string DetailsUrl { get; set; }
+
         #endregion Views
 
         #endregion Properties

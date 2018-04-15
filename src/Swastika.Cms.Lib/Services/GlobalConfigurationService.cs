@@ -219,6 +219,11 @@ namespace Swastika.Cms.Lib.Services
                     {
                         BEPositionViewModel p = new BEPositionViewModel()
                         {
+                            Description = nameof(SWCmsConstants.CatePosition.Nav)
+                        };
+                        isSucceed = isSucceed && p.SaveModel(_context: context, _transaction: transaction).IsSucceed;
+                        p = new BEPositionViewModel()
+                        {
                             Description = nameof(SWCmsConstants.CatePosition.Top)
                         };
                         isSucceed = isSucceed && p.SaveModel(_context: context, _transaction: transaction).IsSucceed;
@@ -428,19 +433,8 @@ namespace Swastika.Cms.Lib.Services
             }
         }
 
-        //public SupportedCulture GetCulture(string specificulture)
-        //{
-        //    return ListSupportedCulture.FirstOrDefault(c => c.Specificulture == specificulture);
-        //}
-
-        //public List<SupportedCulture> GetSupportedCultures()
-        //{
-        //    return ListSupportedCulture;
-        //}
-
         public void Refresh(SiocCmsContext _context = null, IDbContextTransaction _transaction = null)
         {
-            //InitCultures();
             InitConfigurations(_context, _transaction);
         }
 

@@ -1,6 +1,6 @@
 ﻿'use strict';
 var appName = 'SwastikaPortal';
-var app = angular.module(appName, ['components']);
+var app = angular.module(appName, ['components','ngFileUpload']);
 var serviceBase = "/";
 app.directive('ngEnter', function () {
     return function (scope, element, attrs) {
@@ -22,7 +22,7 @@ app.directive('ngEnter', function () {
         link: function (scope, el, attrs) {
             el.bind('change', function (event) {
                 var files = event.target.files;
-                var file = files[0];
+                var file = files[0]; alert('adaf');
                 scope.file = file;
                 scope.$apply();
             });

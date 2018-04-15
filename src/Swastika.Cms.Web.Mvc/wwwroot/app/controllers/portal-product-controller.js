@@ -4,14 +4,26 @@ app.controller('ProductController', function ProductController($scope) {
     $scope.relatedProducts = [];
     $scope.data = [];
     $scope.errors = [];
+    $scope.message = {
+        class: 'info',
+        content: ''
+    }
+   
     $scope.range = function (max) {
         var input = [];
         for (var i = 1; i <= max; i += 1) input.push(i);
         return input;
     };
-    $scope.loadProduct = function (productId) {
+    $scope.loadProduct = function (productId, isNew) {
         $scope.isBusy = true;
-        var url = '/api/' + $scope.currentLanguage + '/product/details/be/' + productId;//byProduct/' + productId;
+        var url = '';
+        if (isNew) {
+            url = '/api/' + $scope.currentLanguage + '/product/create';
+        }
+        else {
+            url = '/api/' + $scope.currentLanguage + '/product/details/be/' + productId;//byProduct/' + productId;
+        }
+
         $scope.settings.method = "GET";
         $scope.settings.url = url;// + '/true';
         $scope.settings.data = $scope.request;
@@ -37,7 +49,7 @@ app.controller('ProductController', function ProductController($scope) {
             $scope.request.toDate = $scope.request.toDate.toISOString();
         }
         var url = '/api/' + $scope.currentLanguage + '/product/list';//byProduct/' + productId;
-        console.log($scope.request);
+
         $.ajax({
             method: 'POST',
             url: url,
@@ -47,7 +59,7 @@ app.controller('ProductController', function ProductController($scope) {
                 if (response.isSucceed) {
 
                     ($scope.data = response.data);
-
+                    $("html, body").animate({ "scrollTop": "0px" }, 500);
                     $.each($scope.data.items, function (i, product) {
 
                         $.each($scope.activedProducts, function (i, e) {
@@ -101,6 +113,7 @@ app.controller('ProductController', function ProductController($scope) {
     };
     $scope.saveProduct = function (product) {
         $scope.isBusy = true;
+        product.content = $('.editor-content').val();
         var json = (angular.toJson(product));
         var url = '/api/' + $scope.currentLanguage + '/product/save';
         $.ajax({
@@ -111,11 +124,14 @@ app.controller('ProductController', function ProductController($scope) {
             success: function (data) {
                 //$scope.loadProducts();
                 if (data.isSucceed) {
-                    alert('success');
+                    $scope.activedProduct = data.data;
+                    $scope.message.content = 'Thành công';
+                    $scope.message.class = 'success';
                 }
                 else {
                     $scope.errors = data.errors;
                 }
+                $("html, body").animate({ "scrollTop": "0px" }, 500);
                 $scope.isBusy = false;
                 $scope.$apply();
             },
@@ -141,4 +157,11 @@ app.controller('ProductController', function ProductController($scope) {
             }
         });
     }
+
+    $scope.$watch('isBusy', function (newValue, oldValue) {
+        if (newValue) {
+            $scope.message.content = '';
+            $scope.errors = [];
+        }
+    });
 });

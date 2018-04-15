@@ -127,6 +127,7 @@ namespace Swastika.Cms.Lib.ViewModels.BackEnd
 
         [JsonProperty("size")]
         public string Size { get; set; }
+
         #endregion Models
 
         #region Views
@@ -165,31 +166,13 @@ namespace Swastika.Cms.Lib.ViewModels.BackEnd
         public FileStreamViewModel ThumbnailFileStream { get; set; }
 
         [JsonProperty("strNormalPrice")]
-        public string StrNormalPrice
-        {
-            get
-            {
-                return SWCmsHelper.FormatPrice(NormalPrice);
-            }
-        }
+        public string StrNormalPrice { get; set; }
 
         [JsonProperty("strDealPrice")]
-        public string StrDealPrice
-        {
-            get
-            {
-                return SWCmsHelper.FormatPrice(DealPrice);
-            }
-        }
+        public string StrDealPrice { get; set; }
 
         [JsonProperty("strImportPrice")]
-        public string StrImportPrice
-        {
-            get
-            {
-                return SWCmsHelper.FormatPrice(ImportPrice);
-            }
-        }
+        public string StrImportPrice { get; set; }
 
         #region Template
 
@@ -200,8 +183,10 @@ namespace Swastika.Cms.Lib.ViewModels.BackEnd
         public List<BETemplateViewModel> Templates { get; set; }// Product Templates
 
         [JsonIgnore]
-        public string ActivedTemplate {
-            get {
+        public string ActivedTemplate
+        {
+            get
+            {
                 return GlobalConfigurationService.Instance.GetLocalString(SWCmsConstants.ConfigurationKeyword.Theme, Specificulture, SWCmsConstants.Default.DefaultTemplateFolder);
             }
         }
@@ -210,8 +195,10 @@ namespace Swastika.Cms.Lib.ViewModels.BackEnd
         public string TemplateFolderType { get { return SWCmsConstants.TemplateFolderEnum.Products.ToString(); } }
 
         [JsonProperty("templateFolder")]
-        public string TemplateFolder {
-            get {
+        public string TemplateFolder
+        {
+            get
+            {
                 return SWCmsHelper.GetFullPath(new string[]
                 {
                     SWCmsConstants.Parameters.TemplatesFolder
@@ -228,8 +215,10 @@ namespace Swastika.Cms.Lib.ViewModels.BackEnd
         public string Domain { get; set; } = "/";
 
         [JsonProperty("imageUrl")]
-        public string ImageUrl {
-            get {
+        public string ImageUrl
+        {
+            get
+            {
                 if (Image != null && Image.IndexOf("http") == -1)
                 {
                     return SWCmsHelper.GetFullPath(new string[] {
@@ -244,8 +233,10 @@ namespace Swastika.Cms.Lib.ViewModels.BackEnd
         }
 
         [JsonProperty("thumbnailUrl")]
-        public string ThumbnailUrl {
-            get {
+        public string ThumbnailUrl
+        {
+            get
+            {
                 if (Thumbnail != null && Thumbnail.IndexOf("http") == -1)
                 {
                     return SWCmsHelper.GetFullPath(new string[] {
@@ -261,7 +252,8 @@ namespace Swastika.Cms.Lib.ViewModels.BackEnd
 
         [JsonProperty("properties")]
         public List<ExtraProperty> Properties { get; set; }
-
+        [JsonProperty("detailsUrl")]
+        public string DetailsUrl { get; set; }
         #endregion Views
 
         #endregion Properties
@@ -282,9 +274,11 @@ namespace Swastika.Cms.Lib.ViewModels.BackEnd
 
         public override void ExpandView(SiocCmsContext _context = null, IDbContextTransaction _transaction = null)
         {
-            IsClone = false;
             ListSupportedCulture = GlobalLanguageService.ListSupportedCulture;
-
+            StrNormalPrice = SWCmsHelper.FormatPrice(NormalPrice);
+            StrDealPrice = SWCmsHelper.FormatPrice(DealPrice);
+            StrImportPrice = SWCmsHelper.FormatPrice(ImportPrice);
+            
             //if (!string.IsNullOrEmpty(this.Tags))
             //{
             //    ListTag = JArray.Parse(this.Tags);
@@ -430,7 +424,7 @@ namespace Swastika.Cms.Lib.ViewModels.BackEnd
 
             GenerateSEO();
 
-            return base.ParseModel();
+            return base.ParseModel(_context, _transaction);
         }
 
         #region Async Methods

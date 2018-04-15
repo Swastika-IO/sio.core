@@ -46,10 +46,18 @@ namespace Swastka.Cms.Api.Controllers
             {
                 case "be":
                     var beResult = await BEProductViewModel.Repository.GetSingleModelAsync(model => model.Id == id && model.Specificulture == _lang).ConfigureAwait(false);
+                    if (beResult.IsSucceed)
+                    {
+                        beResult.Data.DetailsUrl = SWCmsHelper.GetRouterUrl("Product", new { beResult.Data.SeoName }, Request, Url);
+                    }
                     return JObject.FromObject(beResult);
 
                 default:
                     var feResult = await FEProductViewModel.Repository.GetSingleModelAsync(model => model.Id == id && model.Specificulture == _lang).ConfigureAwait(false);
+                    if (feResult.IsSucceed)
+                    {
+                        feResult.Data.DetailsUrl = SWCmsHelper.GetRouterUrl("Product", new { feResult.Data.SeoName }, Request, Url);
+                    }
                     return JObject.FromObject(feResult);
             }
         }
@@ -63,11 +71,12 @@ namespace Swastka.Cms.Api.Controllers
             {
                 //Id = Guid.NewGuid().ToString(),
                 Specificulture = _lang
+                
             };
             return new RepositoryResponse<BEProductViewModel>()
             {
                 IsSucceed = true,
-                Data = new BEProductViewModel(product) { Domain = this._domain }
+                Data = new BEProductViewModel(product) { Domain = this._domain, Status = SWStatus.Preview }
             };
         }
 
@@ -243,9 +252,13 @@ namespace Swastka.Cms.Api.Controllers
                 model.Specificulture == _lang
                 && (!request.Status.HasValue || model.Status == (int)request.Status.Value)
                 && (string.IsNullOrWhiteSpace(request.Keyword)
-                || (model.Title.Contains(request.Keyword)
+                || (
+                    model.Title.Contains(request.Keyword)
 
-                || model.Excerpt.Contains(request.Keyword)))
+                    || model.Excerpt.Contains(request.Keyword)
+                    || model.Code.Contains(request.Keyword)
+                    )
+                )
                 && (!request.FromDate.HasValue
                     || (model.CreatedDateTime >= request.FromDate.Value.ToUniversalTime())
                 )

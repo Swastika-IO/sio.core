@@ -89,8 +89,6 @@ namespace TTS.Web.Areas.Portal.Controllers.Apis
             {
                 return RedirectToAction("Index");
             }
-            //ViewData["Specificulture"] = new SelectList(_context.TtsCulture, "Specificulture", "Specificulture", Module.Specificulture);
-
             return View(Module);
         }
 
@@ -133,7 +131,6 @@ namespace TTS.Web.Areas.Portal.Controllers.Apis
                         throw;
                     }
                 }
-                //return RedirectToAction("Index");
             }
             ViewData["Action"] = "Edit";
             ViewData["Controller"] = "Pages";

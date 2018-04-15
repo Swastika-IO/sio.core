@@ -21,6 +21,7 @@ namespace Swastka.IO.Cms.Api.Controllers
 {
     [Produces("application/json")]
     [Route("api/{culture}/page")]
+    [Route("api/{culture}/category")]
     public class ApiCategoryController :
         BaseApiController<SiocCmsContext, SiocCategory>
     {
@@ -33,6 +34,28 @@ namespace Swastka.IO.Cms.Api.Controllers
         {
             return FECategoryViewModel.Repository.GetSingleModelAsync(
                 model => model.Id == id && model.Specificulture == _lang);
+        }
+
+
+        // GET api/category/id
+        [HttpGet]
+        [Route("delete/{id}")]
+        public async Task<RepositoryResponse<bool>> DeleteAsync(int id)
+        {
+            var getPage =await FECategoryViewModel.Repository.GetSingleModelAsync(
+                model => model.Id == id && model.Specificulture == _lang);
+            if (getPage.IsSucceed)
+            {
+
+                return await getPage.Data.RemoveModelAsync(true);
+            }
+            else
+            {
+                return new RepositoryResponse<bool>()
+                {
+                    IsSucceed = false
+                };
+            }
         }
 
         // GET api/category/id

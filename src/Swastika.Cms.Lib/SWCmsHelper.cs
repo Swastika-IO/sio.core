@@ -45,7 +45,7 @@ namespace Swastika.Cms.Lib
               p => p.PositionId == (int)position) > 0
             );
             var cates = getTopCates.Data ?? new List<InfoCategoryViewModel>();
-
+            activePath = activePath.ToLower();
             foreach (var cate in cates)
             {
                 switch (cate.Type)
@@ -71,7 +71,13 @@ namespace Swastika.Cms.Lib
                         cate.Href = Url.RouteUrl("Page", new { culture, seoName = cate.SeoName });
                         break;
                 }
-                cate.IsActived = (cate.Href == activePath || (cate.Type == SWCmsConstants.CateType.Home && activePath == string.Format("/{0}/Home", culture)));
+                cate.IsActived = (cate.Href == activePath 
+                    || (cate.Type == SWCmsConstants.CateType.Home && activePath == string.Format("/{0}/home", culture)));
+                cate.Childs.ForEach(c => {
+                    c.IsActived = (
+                    c.Href == activePath);
+                    cate.IsActived = cate.IsActived || c.IsActived;
+                });
             }
             return cates;
         }
@@ -82,7 +88,7 @@ namespace Swastika.Cms.Lib
             (c => c.Specificulture == culture && c.Type == (int)cateType
             );
             var cates = getTopCates.Data ?? new List<InfoCategoryViewModel>();
-
+            activePath = activePath.ToLower();
             foreach (var cate in cates)
             {
                 switch (cate.Type)
@@ -108,9 +114,16 @@ namespace Swastika.Cms.Lib
                         cate.Href = Url.RouteUrl("Page", new { culture, pageName = cate.SeoName });
                         break;
                 }
+                
                 cate.IsActived = (
-                    cate.Href == activePath || (cate.Type == SWCmsConstants.CateType.Home && activePath == string.Format("/{0}/Home", culture))
+                    cate.Href == activePath || (cate.Type == SWCmsConstants.CateType.Home && activePath == string.Format("/{0}/home", culture))
                     );
+
+                cate.Childs.ForEach(c => {
+                    c.IsActived = (
+                    c.Href == activePath);
+                    cate.IsActived = cate.IsActived || c.IsActived;
+                });
             }
             return cates;
         }

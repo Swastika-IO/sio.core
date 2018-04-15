@@ -127,7 +127,8 @@ namespace Swastika.Cms.Mvc.Areas.Portal.Controllers
                     SWCmsConstants.Parameters.FileFolder,
                     folder
                 });
-                string filename = FileRepository.Instance.SaveWebFile(file, folder);
+                //string filename = 
+                FileRepository.Instance.SaveWebFile(file, folder);
             }
             var files = FileRepository.Instance.GetTopFiles(folder);
             var directories = FileRepository.Instance.GetTopDirectories(folder);

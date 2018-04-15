@@ -18,7 +18,7 @@ app.component('productRelated', {
                     sourceProductId: ctrl.product.id,
                     specificulture: ctrl.product.specificulture,
                     priority: ctrl.product.productNavs.length + 1,
-                    product: pr,
+                    relatedProduct: pr,
                     isActived: true
                 };
                 pr.isHidden = true;

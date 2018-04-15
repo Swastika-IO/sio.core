@@ -23,6 +23,7 @@ namespace Swastka.Cms.Api.Controllers
     //    //, Policy = "AddEditUser"
     //    )]
     //[Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
+    [Produces("application/json")]
     [Route("api/{culture}/media")]
     public class ApiMediaController :
         BaseApiController<SiocCmsContext, SiocMedia>
@@ -122,7 +123,7 @@ namespace Swastka.Cms.Api.Controllers
                 // string.Format("Uploads/{0}", fileFolder);
                 //return ImageHelper.ResizeImage(Image.FromStream(fileUpload.OpenReadStream()), System.IO.Path.Combine(_env.WebRootPath, folderPath));
                 //var fileName = await Common.UploadFileAsync(filePath, files.FirstOrDefault());
-                string fileName = 
+                string fileName =
                 SWCmsHelper.GetFullPath(new[] {
                     "/",
                     await UploadFileAsync(files.FirstOrDefault(), folderPath).ConfigureAwait(false)
@@ -168,25 +169,15 @@ namespace Swastka.Cms.Api.Controllers
         [Route("list")]
         public async Task<RepositoryResponse<PaginationModel<BEMediaViewModel>>> GetList(RequestPaging request)
         {
-            if (string.IsNullOrEmpty(request.Keyword))
-            {
-                var data = await BEMediaViewModel.Repository.GetModelListByAsync(
-                m => m.Specificulture == _lang, request.OrderBy, request.Direction, request.PageSize, request.PageIndex).ConfigureAwait(false);
+            Expression<Func<SiocMedia, bool>> predicate = model =>
+                model.Specificulture == _lang
+                && (string.IsNullOrWhiteSpace(request.Keyword)
+                || (model.FileName.Contains(request.Keyword)
+                || model.Title.Contains(request.Keyword)
+                || model.Description.Contains(request.Keyword)));
+            var data = await BEMediaViewModel.Repository.GetModelListByAsync(predicate, request.OrderBy, request.Direction, request.PageSize, request.PageIndex).ConfigureAwait(false);
 
-                return data;
-            }
-            else
-            {
-                Expression<Func<SiocMedia, bool>> predicate = model =>
-                    model.Specificulture == _lang
-                    && (string.IsNullOrWhiteSpace(request.Keyword)
-                    || (model.FileName.Contains(request.Keyword)
-                    || model.Title.Contains(request.Keyword)
-                    || model.Description.Contains(request.Keyword)));
-                var data = await BEMediaViewModel.Repository.GetModelListByAsync(predicate, request.OrderBy, request.Direction, request.PageSize, request.PageIndex).ConfigureAwait(false);
-
-                return data;
-            }
+            return data;
         }
 
         [HttpPost, HttpOptions]

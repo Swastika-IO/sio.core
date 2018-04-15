@@ -60,7 +60,7 @@
         $scope.request = {
             pageSize: '10',
             pageIndex: 0,
-            status: $scope.swStatus[2],
+            status: $scope.swStatus[1],
             orderBy: 'CreatedDateTime',
             direction: '1',
             fromDate: null,
@@ -125,20 +125,26 @@
                 $scope.request.pageIndex = pageIndex;
             }
             var url = '/api/' + $scope.currentLanguage + '/media/list';//byProduct/' + productId;
-            $scope.settings.method = "POST";
-            $scope.settings.url = url;// + '/true';
-            $scope.settings.data = $scope.request;
-            $.ajax($scope.settings).done(function (response) {
-                $scope.$apply($scope.mediaData = response.data);
+            $.ajax({
+                method: 'POST',
+                url: url,
+                data: $scope.request,
+                success: function (response) {
+                    $scope.$apply($scope.mediaData = response.data);
 
-                $.each($scope.mediaData.items, function (i, media) {
-                    $.each($scope.activedMedias, function (i, e) {
-                        if (e.mediaId == media.id) {
-                            media.isHidden = true;
-                        }
+                    $.each($scope.mediaData.items, function (i, media) {
+                        $.each($scope.activedMedias, function (i, e) {
+                            if (e.mediaId == media.id) {
+                                media.isHidden = true;
+                            }
+                        })
                     })
-                })
+                },
+                error: function (a, b, c) {
+                    console.log(a + " " + b + " " + c);
+                }
             });
+            
         };
         $scope.uploadMedia = function () {
             //var container = $(this).parents('.model-media').first().find('.custom-file').first();

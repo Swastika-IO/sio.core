@@ -51,6 +51,9 @@ namespace Swastika.Core.Controllers
         [TempData]
         public string ErrorMessage { get; set; }
 
+
+
+
         //[Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
         [Route("Get")]
         [HttpGet]

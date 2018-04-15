@@ -216,7 +216,6 @@ namespace Swastika.Cms.Lib.ViewModels.BackEnd
 
         public override void ExpandView(SiocCmsContext _context = null, IDbContextTransaction _transaction = null)
         {
-            IsClone = true;
             ListSupportedCulture = GlobalLanguageService.ListSupportedCulture;
 
             //if (!string.IsNullOrEmpty(this.Tags))

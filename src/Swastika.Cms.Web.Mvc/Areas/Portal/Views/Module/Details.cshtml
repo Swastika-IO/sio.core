@@ -306,7 +306,7 @@
 
                             <td>
                                 <div class="btn-group btn-group-sm" role="group" aria-label="Actions">
-                                    <a href="/@ViewBag.culture/Portal/Products/Edit/@Model.Products.Items[i].Product.Id"
+                                    <a href="/@ViewBag.culture/Portal/Product/Edit/@Model.Products.Items[i].Product.Id"
                                        class="btn btn-sm btn-warning"><span class="oi oi-pencil"></span></a>
                                     @*<a asp-action="Details" asp-route-id="@item.Id" class="btn btn-sm btn-info"> <span class="oi oi-eye"></span> </a>*@
                                     <a href="/@ViewBag.culture/Portal/Module/Delete/Product-Nav/@Model.Id/@Model.Products.Items[i].Product.Id" class="btn btn-sm btn-danger" data-popout="true" data-toggle="confirmation" data-singleton="true"> <span class="oi oi-x"></span> </a>
@@ -321,7 +321,7 @@
         else
         {
             <div class="alert alert-warning" role="alert">
-                No related product added for [<strong>@Model.Name</strong>] module yet! Please add your first related product <a asp-area="Portal" asp-controller="Products" asp-action="Create" asp-route-id="@Model.Id">here</a>.
+                No related product added for [<strong>@Model.Name</strong>] module yet! Please add your first related product <a asp-area="Portal" asp-controller="Product" asp-action="Create" asp-route-id="@Model.Id">here</a>.
             </div>
         }
     </form>
