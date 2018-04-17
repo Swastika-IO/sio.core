@@ -1,4 +1,10 @@
 ﻿'use strict';
+
+///////////////////////////////////////
+//
+//  PAGE CONTROLLER
+//
+///////////////////////////////////////
 app.controller('PageController', function PhoneListController($filter, $scope) {
     $scope.activedPage = {};
     $scope.data = [];

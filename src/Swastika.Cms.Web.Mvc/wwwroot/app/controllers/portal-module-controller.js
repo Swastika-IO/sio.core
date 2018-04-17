@@ -2,15 +2,15 @@
 
 ///////////////////////////////////////
 //
-//  PRODUCT CONTROLLER
+//  MODULE CONTROLLER
 //
 ///////////////////////////////////////
-app.controller('ProductController', function ProductController($scope) {
-    // Actived product
-    $scope.activedProduct = null;
+app.controller('ModuleController', function ModuleController($scope) {
+    // Actived module
+    $scope.activedModule = null;
 
-    // Related products array
-    $scope.relatedProducts = [];
+    // Related modules array
+    $scope.relatedModules = [];
 
     // Data array
     $scope.data = [];
@@ -31,18 +31,18 @@ app.controller('ProductController', function ProductController($scope) {
         return input;
     };
 
-    // Load product from API
-    $scope.loadProduct = function (productId, isNew) {
+    // Load module from API
+    $scope.loadModule = function (moduleId, isNew) {
         $scope.isBusy = true;
         var url = '';
 
         if (isNew) {
-            // If create product then call create API
-            url = '/api/' + $scope.currentLanguage + '/product/create';
+            // If create module then call create API
+            url = '/api/' + $scope.currentLanguage + '/module/create';
         }
         else {
-            // Else create product then call get API
-            url = '/api/' + $scope.currentLanguage + '/product/details/be/' + productId;//byProduct/' + productId;
+            // Else create module then call get API
+            url = '/api/' + $scope.currentLanguage + '/module/details/be/' + moduleId;//byModule/' + moduleId;
         }
 
         // Ajax setting
@@ -56,7 +56,7 @@ app.controller('ProductController', function ProductController($scope) {
 
             if (response.isSucceed) {
                 // If reponse is succeed
-                $scope.activedProduct = response.data;
+                $scope.activedModule = response.data;
                 $scope.initEditor();
             }
 
@@ -65,8 +65,8 @@ app.controller('ProductController', function ProductController($scope) {
         });
     };
 
-    // Load list of product from API
-    $scope.loadProducts = function (pageIndex) {
+    // Load list of module from API
+    $scope.loadModules = function (pageIndex) {
         $scope.isBusy = true;
 
         if (pageIndex != undefined) {
@@ -82,8 +82,8 @@ app.controller('ProductController', function ProductController($scope) {
             $scope.request.toDate = $scope.request.toDate.toISOString();
         }
 
-        // Set ajax request URL for get all products
-        var url = '/api/' + $scope.currentLanguage + '/product/list';//byProduct/' + productId;
+        // Set ajax request URL for get all modules
+        var url = '/api/' + $scope.currentLanguage + '/module/list';//byModule/' + moduleId;
 
         // Ajax call
         $.ajax({
@@ -97,10 +97,10 @@ app.controller('ProductController', function ProductController($scope) {
                     ($scope.data = response.data);
                     $("html, body").animate({ "scrollTop": "0px" }, 500);
 
-                    $.each($scope.data.items, function (i, product) {
-                        $.each($scope.activedProducts, function (i, e) {
-                            if (e.productId == product.id) {
-                                product.isHidden = true;
+                    $.each($scope.data.items, function (i, module) {
+                        $.each($scope.activedModules, function (i, e) {
+                            if (e.moduleId == module.id) {
+                                module.isHidden = true;
                             }
                         })
                     })
@@ -133,20 +133,20 @@ app.controller('ProductController', function ProductController($scope) {
         });
     };
 
-    // Remove product
-    $scope.removeProduct = function (productId) {
-        if (confirm("Are you sure that you want to delete this product!?")) {
+    // Remove module
+    $scope.removeModule = function (moduleId) {
+        if (confirm("Are you sure that you want to delete this module!?")) {
 
-            // Set ajax call URL to remove product with product ID
-            var url = '/api/' + $scope.currentLanguage + '/product/delete/' + productId;
+            // Set ajax call URL to remove module with module ID
+            var url = '/api/' + $scope.currentLanguage + '/module/delete/' + moduleId;
 
             // Ajax call
             $.ajax({
                 method: 'GET',
                 url: url,
                 success: function (data) {
-                    // Ajax request is succeed then load product list again
-                    $scope.loadProducts();
+                    // Ajax request is succeed then load module list again
+                    $scope.loadModules();
                     $scope.$apply();
                 },
                 error: function (a, b, c) {
@@ -157,14 +157,14 @@ app.controller('ProductController', function ProductController($scope) {
         }
     };
 
-    // Save product
-    $scope.saveProduct = function (product) {
+    // Save module
+    $scope.saveModule = function (module) {
         $scope.isBusy = true;
-        product.content = $('.editor-content').val();
-        var json = (angular.toJson(product));
+        module.content = $('.editor-content').val();
+        var json = (angular.toJson(module));
 
-        // Set ajax call URL to save product API
-        var url = '/api/' + $scope.currentLanguage + '/product/save';
+        // Set ajax call URL to save module API
+        var url = '/api/' + $scope.currentLanguage + '/module/save';
 
         // Ajax call
         $.ajax({
@@ -173,10 +173,10 @@ app.controller('ProductController', function ProductController($scope) {
             url: url,
             data: json,
             success: function (data) {
-                //$scope.loadProducts();
+                //$scope.loadModules();
                 if (data.isSucceed) {
                     // Ajax request is succeed
-                    $scope.activedProduct = data.data;
+                    $scope.activedModule = data.data;
                     $scope.message.content = 'Success';
                     $scope.message.class = 'success';
                 }
@@ -197,7 +197,7 @@ app.controller('ProductController', function ProductController($scope) {
         });
     };
 
-    // Add product's property
+    // Add module's property
     $scope.addProperty = function (type) {
         var i = $(".property").length;
 

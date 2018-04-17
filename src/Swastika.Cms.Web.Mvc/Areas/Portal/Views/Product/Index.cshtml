@@ -110,16 +110,16 @@
                 <th scope="col" style="width: 4%;">
                     <span class="oi oi-sort-ascending"></span>
                 </th>
-                <th scope="col" style="width: 15%;">
+                <th scope="col" style="width: 5%;">
                     Code
                 </th>
-                <th scope="col" style="width: 15%;">
+                <th scope="col" style="width: 25%;">
                     Title
                 </th>
-                <th scope="col">
+                <th scope="col" width="10%">
                     Image
                 </th>
-                <th scope="col" style="width: 10%;">
+                <th scope="col" width="10%">
                     Created Date
                 </th>
                 <th scope="col" style="width: 10%;">
@@ -154,7 +154,9 @@
                         </small>*@
                 </td>
                 <td>
-                    {{item.createdDateTime | utcToLocal:'dd.MM.yyyy - hh:mm:ss a'}}
+                    <small>
+                        {{item.createdDateTime | utcToLocal:'dd.MM.yyyy - hh:mm:ss a'}}
+                    </small>
                 </td>
                 <td>
                     {{item.createdBy}}
