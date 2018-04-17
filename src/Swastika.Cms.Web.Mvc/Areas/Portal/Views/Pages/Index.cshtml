@@ -53,7 +53,7 @@
             </div>
         </div>
     </div>
-    <table id="list-page" class="table table-hover" cellspacing="0" ng-init="data = loadPages()">
+    <table id="list-page" class="table table-hover sortable" cellspacing="0" ng-init="data = loadPages()">
         <thead class="thead-light">
             <tr>
                 <th scope="col" width="3%">
@@ -82,8 +82,8 @@
             </tr>
         </thead>
 
-        <tbody class="sortable" ng-repeat="item in data.items track by $index" >
-            <tr class="sortable-item" sort-model="category" sort-model-id="{{item.id}}">
+        <tbody class="sortable-item" ng-repeat="item in data.items track by $index" >
+            <tr class="" sort-model="category" sort-model-id="{{item.id}}">
 
                 <td style="cursor:move;">
                     <span class="oi oi-move"></span>
