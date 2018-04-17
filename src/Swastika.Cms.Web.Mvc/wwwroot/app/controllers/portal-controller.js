@@ -24,7 +24,7 @@
             'Published',
             'Draft',
             'Schedule'
-        ]        
+        ]
         $scope.orders = [
             {
                 value: 'CreatedDateTime',
@@ -144,7 +144,6 @@
                     console.log(a + " " + b + " " + c);
                 }
             });
-            
         };
         $scope.uploadMedia = function () {
             //var container = $(this).parents('.model-media').first().find('.custom-file').first();
@@ -231,9 +230,6 @@
                 $scope.productData = response.data;
             });
         };
-
-
-
 
         $scope.updateEditors = function () {
             setTimeout(function () {

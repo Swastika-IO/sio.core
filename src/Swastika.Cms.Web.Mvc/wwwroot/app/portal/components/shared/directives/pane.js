@@ -1,6 +1,4 @@
-﻿
-
-    modules.directive('pane', function () {
+﻿modules.directive('pane', function () {
     return {
         require: '^tabs',
         restrict: 'E',

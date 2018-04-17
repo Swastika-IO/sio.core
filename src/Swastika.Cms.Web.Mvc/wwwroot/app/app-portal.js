@@ -1,6 +1,6 @@
 ﻿'use strict';
 var appName = 'SwastikaPortal';
-var app = angular.module(appName, ['components','ngFileUpload']);
+var app = angular.module(appName, ['components', 'ngFileUpload']);
 var serviceBase = "/";
 app.directive('ngEnter', function () {
     return function (scope, element, attrs) {

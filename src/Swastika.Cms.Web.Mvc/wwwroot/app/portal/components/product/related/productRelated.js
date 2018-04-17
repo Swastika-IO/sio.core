@@ -1,5 +1,4 @@
-﻿
-app.component('productRelated', {
+﻿app.component('productRelated', {
     templateUrl: '/app/portal/components/product/related/productRelated.html',
     controller: function () {
         var ctrl = this;

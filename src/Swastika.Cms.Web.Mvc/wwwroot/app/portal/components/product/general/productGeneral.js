@@ -1,5 +1,4 @@
-﻿
-app.component('productGeneral', {
+﻿app.component('productGeneral', {
     templateUrl: '/app/portal/components/product/general/productGeneral.html',
     controller: function ($scope) {
         var ctrl = this;

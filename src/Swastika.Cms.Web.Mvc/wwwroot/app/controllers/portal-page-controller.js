@@ -1,7 +1,7 @@
 ﻿'use strict';
-app.controller('PageController', function PhoneListController($filter,$scope) {
+app.controller('PageController', function PhoneListController($filter, $scope) {
     $scope.activedPage = {};
-    $scope.data = [];   
+    $scope.data = [];
 
     $scope.loadPages = function (pageIndex) {
         $scope.isBusy = true;
@@ -67,5 +67,4 @@ app.controller('PageController', function PhoneListController($filter,$scope) {
             }
         });
     };
-
 });

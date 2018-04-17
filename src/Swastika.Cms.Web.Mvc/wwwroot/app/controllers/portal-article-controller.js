@@ -88,5 +88,4 @@ app.controller('ArticleController', function PhoneListController($scope) {
             }
         });
     };
-
 });

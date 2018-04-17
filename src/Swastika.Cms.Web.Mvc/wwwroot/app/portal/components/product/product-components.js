@@ -157,7 +157,6 @@
             }
         }
 
-
         ctrl.addProperty = function (type) {
             var i = $(".property").length;
             $.ajax({
@@ -189,4 +188,3 @@
         });
     }
 })(window.angular)
-

@@ -1,5 +1,4 @@
-﻿
-app.component('productMain', {
+﻿app.component('productMain', {
     templateUrl: '/app/portal/components/product/main/productMain.html',
     bindings: {
         product: '=',

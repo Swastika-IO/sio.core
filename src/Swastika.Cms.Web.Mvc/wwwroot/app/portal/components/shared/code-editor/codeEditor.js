@@ -1,5 +1,4 @@
-﻿
-modules.component('codeEditor', {
+﻿modules.component('codeEditor', {
     templateUrl: '/app/portal/components/shared/code-editor/codeEditor.html',
     controller: 'PortalTemplateController',
     bindings: {

@@ -35,7 +35,6 @@ app.controller('PortalTemplateController', function PortalTemplateController($sc
 
     vm.loadTemplates = async function (themeId = 0, activedId, activedName, folder) {
         setTimeout(async function () {
-
             if (folder) {
                 vm.folder = folder;
                 vm.activedId = activedId;
@@ -69,7 +68,6 @@ app.controller('PortalTemplateController', function PortalTemplateController($sc
         });
         vm.templates = response.data.items;
         if (vm.templates != undefined && vm.templates.length > 0) {
-
             var newTemplate = angular.copy(vm.templates[0]);
             newTemplate.id = 0;
             newTemplate.fileName = '_blank';
@@ -87,13 +85,8 @@ app.controller('PortalTemplateController', function PortalTemplateController($sc
             vm.updateEditors();
             $scope.$apply();
             ph.resolve(true);
-
         }
         return promise;
-
-
-
-
     };
     vm.updateEditors = function () {
         setTimeout(function () {

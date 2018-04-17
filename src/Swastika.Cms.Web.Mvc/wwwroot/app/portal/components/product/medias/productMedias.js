@@ -1,5 +1,4 @@
-﻿
-app.component('productMedias', {
+﻿app.component('productMedias', {
     templateUrl: '/app/portal/components/product/medias/productMedias.html',
     controller: function () {
         var ctrl = this;

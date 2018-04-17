@@ -8,7 +8,7 @@ app.controller('ProductController', function ProductController($scope) {
         class: 'info',
         content: ''
     }
-   
+
     $scope.range = function (max) {
         var input = [];
         for (var i = 1; i <= max; i += 1) input.push(i);
@@ -57,11 +57,9 @@ app.controller('ProductController', function ProductController($scope) {
             success: function (response) {
                 //$scope.loadArticle();
                 if (response.isSucceed) {
-
                     ($scope.data = response.data);
                     $("html, body").animate({ "scrollTop": "0px" }, 500);
                     $.each($scope.data.items, function (i, product) {
-
                         $.each($scope.activedProducts, function (i, e) {
                             if (e.productId == product.id) {
                                 product.isHidden = true;
@@ -92,7 +90,6 @@ app.controller('ProductController', function ProductController($scope) {
                 console.log(a + " " + b + " " + c);
             }
         });
-
     };
 
     $scope.removeProduct = function (productId) {

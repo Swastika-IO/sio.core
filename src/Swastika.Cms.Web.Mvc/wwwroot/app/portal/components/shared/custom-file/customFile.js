@@ -1,5 +1,4 @@
-﻿
-modules.controller('FileController', function PortalTemplateController($scope) {
+﻿modules.controller('FileController', function PortalTemplateController($scope) {
     var ctrl = this;
     ctrl.selectFile = function (file, errFiles) {
         if (file !== undefined && file !== null) {
@@ -39,7 +38,6 @@ modules.controller('FileController', function PortalTemplateController($scope) {
                 return '';
             }
         });
-        
     }
     ctrl.getBase64 = function (file) {
         if (file !== null) {
@@ -48,7 +46,7 @@ modules.controller('FileController', function PortalTemplateController($scope) {
             reader.onload = function () {
                 var index = reader.result.indexOf(',') + 1;
                 var base64 = reader.result.substring(index);
-               
+
                 ctrl.src = base64;
                 $scope.$apply();
             };

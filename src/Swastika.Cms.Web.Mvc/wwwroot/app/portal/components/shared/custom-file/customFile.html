@@ -4,16 +4,15 @@
     </div>
     <div class="card-body p-0" style="background:url(/images/upload-image-thumbnail.png) no-repeat center;  cursor:pointer;">
         <span class="custom-file" style="min-height:210px; overflow:hidden;">
-            <button class="btn btn-light btn-sm custom-file-cropper position-absolute m-1 collapse" style="z-index:3; right:0;" 
+            <button class="btn btn-light btn-sm custom-file-cropper position-absolute m-1 collapse" style="z-index:3; right:0;"
                     data-toggle="modal" data-target=".image-crop-modal-lg" data-imgsrc="" data-imgid="">
                 <i class="mi mi-Crop"></i>
             </button>
             <input type="file" name="pic"   ngf-select="$ctrl.selectFile($file, $invalidFiles)" class="position-absolute" style="height:130px; cursor:pointer;">
             <img src="{{$ctrl.src}}" name="pic" class="custom-file-img d-block"
-                 style="max-height: 150px; width: auto; margin: 35px auto;" accept="image/*"/>
+                 style="max-height: 150px; width: auto; margin: 35px auto;" accept="image/*" />
             <input type="hidden" value="{{$ctrl.folder}}" class="folder-val" />
             <input type="text" ng-model="$ctrl.src" class="form-control custom-file-val">
         </span>
     </div>
-
 </div>
