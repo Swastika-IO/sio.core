@@ -17,31 +17,31 @@
                     @*<a asp-area="Portal" asp-controller="Pages" asp-action="Draft" class="btn btn-secondary"><i class="mi mi-Paste"></i></a>*@
                 </div>
                 @*<div class="btn-group dropdown mr-2">
-                    <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownOrderBy" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        {{request.orderBy}}
-                    </button>
-                    <div class="dropdown-menu" aria-labelledby="dropdownOrderBy">
-                        <button class="dropdown-item" ng-repeat="item in orders track by $index" ng-model="request.orderBy" ng-click="request.orderBy=item.value;loadPages();" value="{{item.value}}">{{item.title}}</button>
+                        <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownOrderBy" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            {{request.orderBy}}
+                        </button>
+                        <div class="dropdown-menu" aria-labelledby="dropdownOrderBy">
+                            <button class="dropdown-item" ng-repeat="item in orders track by $index" ng-model="request.orderBy" ng-click="request.orderBy=item.value;loadPages();" value="{{item.value}}">{{item.title}}</button>
+                        </div>
                     </div>
-                </div>
-                <div class="btn-group mr-2" role="group" aria-label="First group">
-                    <button class="btn btn-secondary" ng-repeat="item in directions track by $index" ng-model="request.direction" ng-click="request.direction=item.value;loadPages();" value="{{item.value}}">{{item.title}}</button>
-                </div>
-                <div class="dropdown mr-2">
-                    <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownItemPerPage" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        {{request.pageSize}} items
-                    </button>
-                    <div class="dropdown-menu" aria-labelledby="dropdownItemPerPage">
-                        <button class="dropdown-item" ng-repeat="item in pageSizes track by $index" ng-model="request.pageSize" ng-click="request.pageSize=item;loadPages();" value="{{item}}">{{item}}</button>
+                    <div class="btn-group mr-2" role="group" aria-label="First group">
+                        <button class="btn btn-secondary" ng-repeat="item in directions track by $index" ng-model="request.direction" ng-click="request.direction=item.value;loadPages();" value="{{item.value}}">{{item.title}}</button>
                     </div>
-                </div>
-                <div class="input-group mr-2" role="group" aria-label="First group">
-                    <div class="input-group-prepend">
-                        <span class="input-group-text" id=""><i class="mi mi-Calendar"></i></span>
+                    <div class="dropdown mr-2">
+                        <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownItemPerPage" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            {{request.pageSize}} items
+                        </button>
+                        <div class="dropdown-menu" aria-labelledby="dropdownItemPerPage">
+                            <button class="dropdown-item" ng-repeat="item in pageSizes track by $index" ng-model="request.pageSize" ng-click="request.pageSize=item;loadPages();" value="{{item}}">{{item}}</button>
+                        </div>
                     </div>
-                    <input type="date" ng-model="request.fromDate" ng-change="loadPages()" class="form-control" />
-                    <input type="date" ng-model="request.toDate" ng-change="loadPages()" class="form-control" />
-                </div>*@
+                    <div class="input-group mr-2" role="group" aria-label="First group">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text" id=""><i class="mi mi-Calendar"></i></span>
+                        </div>
+                        <input type="date" ng-model="request.fromDate" ng-change="loadPages()" class="form-control" />
+                        <input type="date" ng-model="request.toDate" ng-change="loadPages()" class="form-control" />
+                    </div>*@
             </div>
         </div>
         <div class="col-md-4">
@@ -53,7 +53,7 @@
             </div>
         </div>
     </div>
-    <table class="table table-sm table-hover" cellspacing="0">
+    <table id="list-page" class="table table-hover" cellspacing="0" ng-init="data = loadPages()">
         <thead class="thead-light">
             <tr>
                 <th scope="col" width="3%">
@@ -82,9 +82,9 @@
             </tr>
         </thead>
 
-        <tbody class="sortable" ng-init="data = loadPages()">
-            <tr ng-repeat="item in data.items track by $index"
-                class="sortable-item" sort-model="category" sort-model-id="{{item.id}}">
+        <tbody class="sortable" ng-repeat="item in data.items track by $index" >
+            <tr class="sortable-item" sort-model="category" sort-model-id="{{item.id}}">
+
                 <td style="cursor:move;">
                     <span class="oi oi-move"></span>
                 </td>
@@ -94,6 +94,7 @@
 
                 <td>
                     {{item.title}}
+
                 </td>
                 <td>
                     <small>
@@ -101,8 +102,8 @@
                     </small>
                 </td>
                 @*<td>
-                        {{item.type}}
-                    </td>*@
+                    {{item.type}}
+                </td>*@
                 <td>
                     <small>
                         {{item.createdDateTime | utcToLocal:'dd.MM.yy - hh:mm a'}}
@@ -114,11 +115,16 @@
 
                 <td>
                     <div class="btn-group btn-group-sm" role="group" aria-label="Actions">
+
+                        <a class="btn btn-light" data-toggle="collapse" href="#collapse-page{{item.id}}-childs" role="button" aria-expanded="false" aria-controls="collapse-page{{item.id}}-childs">
+                            <span class="oi oi-fork"></span>
+                        </a>
                         <a href="/{{currentLanguage}}/portal/pages/edit/{{item.id}}" class="btn btn-light"> <span class="oi oi-pencil text-primary"></span></a>
                         <a href="{{item.detailsUrl}}" target="_blank" class="btn btn-light"><span class="oi oi-eye text-info"></span></a>
                         <a href="#" class="btn btn-light"
                            ng-click="removePage(item.id)">
-                        <span class="oi oi-x text-danger"></span></a>
+                            <span class="oi oi-x text-danger"></span>
+                        </a>
                         @*<button type="button" class="btn btn-light del-popover"
                                 data-toggle="popover" data-html="true">
                             <span class="oi oi-x text-danger"></span>
@@ -126,6 +132,136 @@
                         <div class="popover-body">
                             <a href="/{{currentLanguage}}/portal/pages/delete/{{item.id}}" class="btn btn btn-danger">Yes, I want to delete!</a>
                         </div>*@
+                    </div>
+                </td>
+
+            </tr>
+            <tr>
+                <td colspan="7" style="padding:0">
+                    <div class="collapse" id="collapse-page{{item.id}}-childs" data-parent="#list-page">
+                        <table class="table table-sm table-hover" cellspacing="0" style="background-color: #efefef;">
+                            <thead>
+                                <tr>
+                                    <th scope="col" width="3%">
+                                        <span class="oi oi-move"></span>
+                                    </th>
+                                    <th scope="col" width="4%">
+                                        <span class="oi oi-sort-ascending"></span>
+                                    </th>
+                                    <th scope="col" width="20%">
+                                        Title
+                                    </th>
+                                    <th scope="col">
+                                        Description
+                                    </th>
+                                    <th scope="col" width="15%">
+                                        Created Date
+                                    </th>
+                                    <th scope="col" width="10%">
+                                        Created By
+                                    </th>
+
+                                    <th scope="col" width="5%">Actions</th>
+                                </tr>
+                            </thead>
+
+                            <tbody class="sortable ui-sortable">
+                                <tr class="sortable-item ng-scope">
+                                    <td style="cursor:move;">
+                                        <span class="oi oi-move"></span>
+                                    </td>
+                                    <td>
+                                        <input type="text" value="0" class="item-priority form-control form-control-sm d-inline" style="width:40px;">
+                                    </td>
+                                    <td class="ng-binding">
+                                        AJ-32501
+                                    </td>
+                                    <td class="ng-binding">
+                                        Gạch Lót AJ-32501
+                                    </td>
+                                    <td>
+                                        <small class="ng-binding">
+                                            16.04.2018 - 04:09:42 PM
+                                        </small>
+                                    </td>
+                                    <td class="ng-binding"></td>
+
+                                    <td>
+                                        <div class="btn-group btn-group-sm" role="group" aria-label="Actions">
+                                            <a href="/vi-vn/portal/product/edit/807fa8dd-b7ff-4011-a0ec-ba24ee1eec0a" class="btn btn-light"> <span class="oi oi-pencil text-primary"></span></a>
+                                            <a href="http://localhost:58511/vi-vn/product/gach-lot-aj32501_1" target="_blank" class="btn btn-light"><span class="oi oi-eye text-info"></span></a>
+
+                                            <button type="button" class="btn btn-light del-popover" ng-click="removeProduct(item.id)">
+                                                <span class="oi oi-x text-danger"></span>
+                                            </button>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr class="sortable-item ng-scope">
+                                    <td style="cursor:move;">
+                                        <span class="oi oi-move"></span>
+                                    </td>
+                                    <td>
+                                        <input type="text" value="0" class="item-priority form-control form-control-sm d-inline" style="width:40px;">
+                                    </td>
+                                    <td class="ng-binding">
+                                        AJ-32501
+                                    </td>
+                                    <td class="ng-binding">
+                                        Gạch Lót AJ-32501
+                                    </td>
+                                    <td>
+                                        <small class="ng-binding">
+                                            16.04.2018 - 04:09:42 PM
+                                        </small>
+                                    </td>
+                                    <td class="ng-binding"></td>
+
+                                    <td>
+                                        <div class="btn-group btn-group-sm" role="group" aria-label="Actions">
+                                            <a href="/vi-vn/portal/product/edit/807fa8dd-b7ff-4011-a0ec-ba24ee1eec0a" class="btn btn-light"> <span class="oi oi-pencil text-primary"></span></a>
+                                            <a href="http://localhost:58511/vi-vn/product/gach-lot-aj32501_1" target="_blank" class="btn btn-light"><span class="oi oi-eye text-info"></span></a>
+
+                                            <button type="button" class="btn btn-light del-popover" ng-click="removeProduct(item.id)">
+                                                <span class="oi oi-x text-danger"></span>
+                                            </button>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr class="sortable-item ng-scope">
+                                    <td style="cursor:move;">
+                                        <span class="oi oi-move"></span>
+                                    </td>
+                                    <td>
+                                        <input type="text" value="0" class="item-priority form-control form-control-sm d-inline" style="width:40px;">
+                                    </td>
+                                    <td class="ng-binding">
+                                        AJ-32501
+                                    </td>
+                                    <td class="ng-binding">
+                                        Gạch Lót AJ-32501
+                                    </td>
+                                    <td>
+                                        <small class="ng-binding">
+                                            16.04.2018 - 04:09:42 PM
+                                        </small>
+                                    </td>
+                                    <td class="ng-binding"></td>
+
+                                    <td>
+                                        <div class="btn-group btn-group-sm" role="group" aria-label="Actions">
+                                            <a href="/vi-vn/portal/product/edit/807fa8dd-b7ff-4011-a0ec-ba24ee1eec0a" class="btn btn-light"> <span class="oi oi-pencil text-primary"></span></a>
+                                            <a href="http://localhost:58511/vi-vn/product/gach-lot-aj32501_1" target="_blank" class="btn btn-light"><span class="oi oi-eye text-info"></span></a>
+
+                                            <button type="button" class="btn btn-light del-popover" ng-click="removeProduct(item.id)">
+                                                <span class="oi oi-x text-danger"></span>
+                                            </button>
+                                        </div>
+                                    </td>
+                                </tr>
+
+                            </tbody>
+                        </table>
                     </div>
                 </td>
             </tr>
