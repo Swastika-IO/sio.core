@@ -114,7 +114,7 @@
                     @for (int i = 0; i < Model.Items.OrderBy(n => n.Priority).ToList().Count; i++)
                     {
                         <tr class="sortable-item" sort-model="Product" sort-model-id="@Model.Items[i].Id">
-                            <td style="cursor:move;">
+                            <td style="cursor:move;" class="drag-header">
                                 <span class="oi oi-move"></span>
                             </td>
                             <td>

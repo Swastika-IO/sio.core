@@ -133,7 +133,7 @@
         <tbody class="sortable" ng-init="data = loadProducts()">
             <tr ng-repeat="item in data.items track by $index"
                 class="sortable-item" sort-model="product" sort-model-id="{{item.id}}">
-                <td style="cursor:move;">
+                <td style="cursor:move;" class="drag-header">
                     <span class="oi oi-move"></span>
                 </td>
                 <td>

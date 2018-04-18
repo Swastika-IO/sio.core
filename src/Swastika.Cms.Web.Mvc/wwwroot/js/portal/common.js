@@ -112,7 +112,7 @@
 
             $(".sortable").sortable({
                 revert: true,
-                handle: "td:first",
+                handle: ".drag-header",
                 update: function (event, ui) {
                     //create the array that hold the positions...
                     var order = [];
@@ -956,10 +956,8 @@
                     var index = reader.result.indexOf(',') + 1;
                     var base64 = reader.result.substring(index);
                     if (container) {
-
                         container.find('.custom-file-val').val(reader.result);
                         container.find('.custom-file-img').attr('src', reader.result);
-
                     }
                     return base64;
                 };

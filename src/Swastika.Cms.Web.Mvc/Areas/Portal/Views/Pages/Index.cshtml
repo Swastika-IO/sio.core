@@ -75,17 +75,17 @@
                     Created Date
                 </th>
                 <th scope="col" width="10%">
-                    Created By
+                    By
                 </th>
 
                 <th scope="col" width="5%">Actions</th>
             </tr>
         </thead>
 
-        <tbody class="sortable-item" ng-repeat="item in data.items track by $index" >
+        <tbody class="sortable-item" ng-repeat="item in data.items track by $index">
             <tr class="" sort-model="category" sort-model-id="{{item.id}}">
 
-                <td style="cursor:move;">
+                <td style="cursor:move;" class="drag-header">
                     <span class="oi oi-move"></span>
                 </td>
                 <td>
@@ -94,7 +94,6 @@
 
                 <td>
                     {{item.title}}
-
                 </td>
                 <td>
                     <small>
@@ -102,8 +101,8 @@
                     </small>
                 </td>
                 @*<td>
-                    {{item.type}}
-                </td>*@
+                        {{item.type}}
+                    </td>*@
                 <td>
                     <small>
                         {{item.createdDateTime | utcToLocal:'dd.MM.yy - hh:mm a'}}
@@ -126,24 +125,23 @@
                             <span class="oi oi-x text-danger"></span>
                         </a>
                         @*<button type="button" class="btn btn-light del-popover"
-                                data-toggle="popover" data-html="true">
-                            <span class="oi oi-x text-danger"></span>
-                        </button>
-                        <div class="popover-body">
-                            <a href="/{{currentLanguage}}/portal/pages/delete/{{item.id}}" class="btn btn btn-danger">Yes, I want to delete!</a>
-                        </div>*@
+                                    data-toggle="popover" data-html="true">
+                                <span class="oi oi-x text-danger"></span>
+                            </button>
+                            <div class="popover-body">
+                                <a href="/{{currentLanguage}}/portal/pages/delete/{{item.id}}" class="btn btn btn-danger">Yes, I want to delete!</a>
+                            </div>*@
                     </div>
                 </td>
-
             </tr>
             <tr>
                 <td colspan="7" style="padding:0">
                     <div class="collapse" id="collapse-page{{item.id}}-childs" data-parent="#list-page">
                         <table class="table table-sm table-hover mb-0" cellspacing="0" style="background-color: #eee;">
-                            <thead>
+                            <thead style="font-size:small; font-weight:normal">
                                 <tr>
                                     <th scope="col" width="3%">
-                                        <span class="oi oi-move"></span>
+                                        <span class="oi oi-move" style="font-size:small"></span>
                                     </th>
                                     <th scope="col" width="4%">
                                         <span class="oi oi-sort-ascending"></span>
@@ -165,26 +163,26 @@
                                 </tr>
                             </thead>
 
-                            <tbody class="sortable ui-sortable">
-                                <tr class="sortable-item ng-scope">
-                                    <td style="cursor:move;">
-                                        <span class="oi oi-move"></span>
+                            <tbody class="sortable">
+                                <tr class="sortable-item">
+                                    <td style="cursor:move;" class="drag-header">
+                                        <span class="oi oi-move" style="font-size:small"></span>
                                     </td>
                                     <td>
                                         <input type="text" value="0" class="item-priority form-control form-control-sm d-inline" style="width:40px;">
                                     </td>
-                                    <td class="ng-binding">
+                                    <td>
                                         AJ-32501
                                     </td>
-                                    <td class="ng-binding">
+                                    <td>
                                         Gạch Lót AJ-32501
                                     </td>
                                     <td>
-                                        <small class="ng-binding">
+                                        <small>
                                             16.04.2018 - 04:09:42 PM
                                         </small>
                                     </td>
-                                    <td class="ng-binding"></td>
+                                    <td></td>
 
                                     <td>
                                         <div class="btn-group btn-group-sm" role="group" aria-label="Actions">
@@ -197,25 +195,25 @@
                                         </div>
                                     </td>
                                 </tr>
-                                <tr class="sortable-item ng-scope">
-                                    <td style="cursor:move;">
-                                        <span class="oi oi-move"></span>
+                                <tr class="sortable-item">
+                                    <td style="cursor:move;" class="drag-header">
+                                        <span class="oi oi-move" style="font-size:small"></span>
                                     </td>
                                     <td>
                                         <input type="text" value="0" class="item-priority form-control form-control-sm d-inline" style="width:40px;">
                                     </td>
-                                    <td class="ng-binding">
+                                    <td>
                                         AJ-32501
                                     </td>
-                                    <td class="ng-binding">
+                                    <td>
                                         Gạch Lót AJ-32501
                                     </td>
                                     <td>
-                                        <small class="ng-binding">
+                                        <small>
                                             16.04.2018 - 04:09:42 PM
                                         </small>
                                     </td>
-                                    <td class="ng-binding"></td>
+                                    <td></td>
 
                                     <td>
                                         <div class="btn-group btn-group-sm" role="group" aria-label="Actions">
@@ -228,25 +226,25 @@
                                         </div>
                                     </td>
                                 </tr>
-                                <tr class="sortable-item ng-scope">
-                                    <td style="cursor:move;">
-                                        <span class="oi oi-move"></span>
+                                <tr class="sortable-item">
+                                    <td style="cursor:move;" class="drag-header">
+                                        <span class="oi oi-move" style="font-size:small"></span>
                                     </td>
                                     <td>
                                         <input type="text" value="0" class="item-priority form-control form-control-sm d-inline" style="width:40px;">
                                     </td>
-                                    <td class="ng-binding">
+                                    <td>
                                         AJ-32501
                                     </td>
-                                    <td class="ng-binding">
+                                    <td>
                                         Gạch Lót AJ-32501
                                     </td>
                                     <td>
-                                        <small class="ng-binding">
+                                        <small>
                                             16.04.2018 - 04:09:42 PM
                                         </small>
                                     </td>
-                                    <td class="ng-binding"></td>
+                                    <td></td>
 
                                     <td>
                                         <div class="btn-group btn-group-sm" role="group" aria-label="Actions">
@@ -259,7 +257,6 @@
                                         </div>
                                     </td>
                                 </tr>
-
                             </tbody>
                         </table>
                     </div>

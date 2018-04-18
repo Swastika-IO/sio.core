@@ -84,7 +84,7 @@
                     @for (int i = 0; i < Data.Items.OrderBy(n => n.Priority).ToList().Count; i++)
                     {
                         <tr class="sortable-item" sort-model="moduleData" sort-model-id="@Data.Items[i].Id">
-                            <td style="cursor:move;">
+                            <td style="cursor:move;" class="drag-header">
                                 <span class="oi oi-move"></span>
                             </td>
                             <td>
@@ -186,7 +186,7 @@
                     @for (int i = 0; i < Model.Articles.Items.OrderBy(n => n.Priority).ToList().Count; i++)
                     {
                         <tr class="sortable-item">
-                            <td style="cursor:move;">
+                            <td style="cursor:move;" class="drag-header">
                                 <span class="oi oi-move"></span>
                             </td>
                             <td>
@@ -284,7 +284,7 @@
                     @for (int i = 0; i < Model.Products.Items.OrderBy(n => n.Priority).ToList().Count; i++)
                     {
                         <tr class="sortable-item">
-                            <td style="cursor:move;">
+                            <td style="cursor:move;" class="drag-header">
                                 <span class="oi oi-move"></span>
                             </td>
                             <td>
