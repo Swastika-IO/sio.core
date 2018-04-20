@@ -10,6 +10,7 @@ using Swastika.Cms.Lib.Models.Cms;
 using Swastika.Cms.Lib.Services;
 using Swastika.Cms.Lib.ViewModels.FrontEnd;
 using Swastika.Cms.Lib.ViewModels.Info;
+using Swastika.Cms.Lib.ViewModels.Navigation;
 using Swastika.Common.Helper;
 using Swastika.Domain.Core.ViewModels;
 using Swastika.Domain.Data.ViewModels;
@@ -115,10 +116,10 @@ namespace Swastika.Cms.Lib.ViewModels.BackEnd
         public List<CategoryPositionViewModel> PositionNavs { get; set; } // Parent to Modules
 
         [JsonProperty("parentNavs")]
-        public List<CategoryCategoryViewModel> ParentNavs { get; set; } // Parent to  Parent
+        public List<NavCategoryCategoryViewModel> ParentNavs { get; set; } // Parent to  Parent
 
         [JsonProperty("childNavs")]
-        public List<CategoryCategoryViewModel> ChildNavs { get; set; } // Parent to  Parent
+        public List<NavCategoryCategoryViewModel> ChildNavs { get; set; } // Parent to  Parent
 
         [JsonProperty("listTag")]
         public JArray ListTag { get; set; } = new JArray();
@@ -130,8 +131,10 @@ namespace Swastika.Cms.Lib.ViewModels.BackEnd
         public string Domain { get; set; } = "/";
 
         [JsonProperty("imageUrl")]
-        public string ImageUrl {
-            get {
+        public string ImageUrl
+        {
+            get
+            {
                 if (Image != null && Image.IndexOf("http") == -1)
                 {
                     return SWCmsHelper.GetFullPath(new string[] {
@@ -146,8 +149,10 @@ namespace Swastika.Cms.Lib.ViewModels.BackEnd
         }
 
         [JsonProperty("thumbnailUrl")]
-        public string ThumbnailUrl {
-            get {
+        public string ThumbnailUrl
+        {
+            get
+            {
                 if (Thumbnail != null && Thumbnail.IndexOf("http") == -1)
                 {
                     return SWCmsHelper.GetFullPath(new string[] {
@@ -170,22 +175,28 @@ namespace Swastika.Cms.Lib.ViewModels.BackEnd
         public List<BETemplateViewModel> Templates { get; set; }// Article Templates
 
         [JsonIgnore]
-        public string ActivedTemplate {
-            get {
+        public string ActivedTemplate
+        {
+            get
+            {
                 return GlobalConfigurationService.Instance.GetLocalString(SWCmsConstants.ConfigurationKeyword.Theme, Specificulture, SWCmsConstants.Default.DefaultTemplateFolder);
             }
         }
 
         [JsonIgnore]
-        public string TemplateFolderType {
-            get {
+        public string TemplateFolderType
+        {
+            get
+            {
                 return SWCmsConstants.TemplateFolderEnum.Pages.ToString();
             }
         }
 
         [JsonProperty("templateFolder")]
-        public string TemplateFolder {
-            get {
+        public string TemplateFolder
+        {
+            get
+            {
                 return SWCmsHelper.GetFullPath(new string[]
                 {
                     SWCmsConstants.Parameters.TemplatesFolder
@@ -219,11 +230,11 @@ namespace Swastika.Cms.Lib.ViewModels.BackEnd
         public override SiocCategory ParseModel(SiocCmsContext _context = null, IDbContextTransaction _transaction = null)
         {
             GenerateSEO(_context, _transaction);
-            //if (View != null)
-            //{
-            //    //TemplateRepository.Instance.SaveTemplate(View);
-            //    View.SaveModel();
-            //}
+
+            if (ParentNavs.Any(p => p.IsActived))
+            {
+                Level = ParentNavs.Where(p => p.IsActived).Max(n => n.Parent.Level) + 1;
+            }
             Template = View != null ? string.Format(@"{0}/{1}{2}", View.FolderType, View.FileName, View.Extension) : Template;
             if (Id == 0)
             {
@@ -623,18 +634,21 @@ namespace Swastika.Cms.Lib.ViewModels.BackEnd
             return result.OrderBy(m => m.Priority).ToList();
         }
 
-        public List<CategoryCategoryViewModel> GetParentNavs(SiocCmsContext context, IDbContextTransaction transaction)
+        public List<NavCategoryCategoryViewModel> GetParentNavs(SiocCmsContext context, IDbContextTransaction transaction)
         {
             var query = context.SiocCategory
                 .Include(cp => cp.SiocCategoryCategorySiocCategory)
                 .Where(Category => Category.Specificulture == Specificulture && Category.Id != Id)
-                .Select(Category => new CategoryCategoryViewModel()
-                {
-                    Id = Id,
-                    ParentId = Category.Id,
-                    Specificulture = Specificulture,
-                    Description = Category.Title,
-                });
+                .Select(Category =>
+                    new NavCategoryCategoryViewModel(
+                      new SiocCategoryCategory()
+                      {
+                          Id = Id,
+                          ParentId = Category.Id,
+                          Specificulture = Specificulture,
+                          Description = Category.Title,
+                      }, context, transaction)
+                );
 
             var result = query.ToList();
             result.ForEach(nav =>
@@ -647,18 +661,20 @@ namespace Swastika.Cms.Lib.ViewModels.BackEnd
             return result.OrderBy(m => m.Priority).ToList();
         }
 
-        public List<CategoryCategoryViewModel> GetChildNavs(SiocCmsContext context, IDbContextTransaction transaction)
+        public List<NavCategoryCategoryViewModel> GetChildNavs(SiocCmsContext context, IDbContextTransaction transaction)
         {
             var query = context.SiocCategory
                 .Include(cp => cp.SiocCategoryCategorySiocCategory)
                 .Where(Category => Category.Specificulture == Specificulture && Category.Id != Id)
-                .Select(Category => new CategoryCategoryViewModel()
-                {
-                    Id = Category.Id,
-                    ParentId = Id,
-                    Specificulture = Specificulture,
-                    Description = Category.Title,
-                });
+                .Select(Category =>
+                new NavCategoryCategoryViewModel(
+                      new SiocCategoryCategory()
+                      {
+                          Id = Category.Id,
+                          ParentId = Id,
+                          Specificulture = Specificulture,
+                          Description = Category.Title,
+                      }, context, transaction));
 
             var result = query.ToList();
             result.ForEach(nav =>

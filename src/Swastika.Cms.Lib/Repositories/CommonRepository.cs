@@ -397,7 +397,7 @@ namespace Swastika.Cms.Lib.Repositories
                         },
                         _context, _transaction)
                     {
-                        IsActived = p.SiocCategoryProduct.Count(cp => cp.ProductId == ProductId && cp.Specificulture == specificulture) > 0,
+                        IsActived = p.SiocCategoryProduct.Any(cp => cp.ProductId == ProductId && cp.Specificulture == specificulture),
                         Description = p.Title
                     });
                 return new RepositoryResponse<List<NavCategoryProductViewModel>>()
