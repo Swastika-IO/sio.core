@@ -47,7 +47,6 @@ namespace Swastika.Cms.Lib.ViewModels.BackEnd
         [JsonProperty("content")]
         public string Content { get; set; }
 
-        [JsonIgnore]
         [JsonProperty("mobileContent")]
         public string MobileContent { get; set; } = "{}";
 

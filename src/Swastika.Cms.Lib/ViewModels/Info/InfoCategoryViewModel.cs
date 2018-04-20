@@ -5,6 +5,7 @@
 using Microsoft.EntityFrameworkCore.Storage;
 using Newtonsoft.Json;
 using Swastika.Cms.Lib.Models.Cms;
+using Swastika.Cms.Lib.Services;
 using Swastika.Cms.Lib.ViewModels.Navigation;
 using Swastika.Domain.Data.ViewModels;
 using System;
@@ -129,9 +130,13 @@ namespace Swastika.Cms.Lib.ViewModels.Info
 
         public override void ExpandView(SiocCmsContext _context = null, IDbContextTransaction _transaction = null)
         {
+            this.Image = SWCmsHelper.GetFullPath(new string[] {
+                GlobalConfigurationService.Instance.GetLocalString("Domain", Specificulture),
+                Image
+            });
             var getChilds = Repository.GetModelListBy
-                (p => p.SiocCategoryCategorySiocCategory.Count(c => c.ParentId == Id
-                && c.Specificulture == Specificulture) > 0
+                (p => p.SiocCategoryCategorySiocCategory.Any(c => c.ParentId == Id
+                && c.Specificulture == Specificulture)
                 );
             if (getChilds.IsSucceed)
             {

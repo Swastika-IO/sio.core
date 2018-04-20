@@ -65,7 +65,7 @@ namespace Swastika.Cms.Lib.ViewModels.BackEnd
         public string FullPath {
             get {
                 return SWCmsHelper.GetFullPath(new string[]{
-                    Domain,
+                    "",
                     FileFolder,
                     $"{FileName}{Extension}"
                 });

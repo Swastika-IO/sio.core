@@ -120,7 +120,12 @@ namespace Swastika.Cms.Lib
             string strFormat = string.Empty;
             for (int i = 0; i < subPaths.Length; i++)
             {
-                strFormat += @"{" + i + "}" + (i < subPaths.Length - 1 ? "/" : string.Empty);
+                string connector = string.Empty;
+                if ((i < subPaths.Length - 1) && subPaths[i + 1][0] != '/')
+                {
+                    connector = "/";
+                }
+                strFormat += @"{" + i + "}" + connector;
             }
             return string.Format(strFormat, subPaths);
         }

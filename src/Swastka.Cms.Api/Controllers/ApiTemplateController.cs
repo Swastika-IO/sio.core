@@ -7,6 +7,7 @@ using Microsoft.Data.OData.Query;
 using Swastika.Api.Controllers;
 using Swastika.Cms.Lib;
 using Swastika.Cms.Lib.Models.Cms;
+using Swastika.Cms.Lib.Services;
 using Swastika.Cms.Lib.ViewModels.BackEnd;
 using Swastika.Cms.Lib.ViewModels.FrontEnd;
 using Swastika.Cms.Lib.ViewModels.Info;
@@ -92,10 +93,7 @@ namespace Swastka.IO.Cms.Api.Controllers
         {
             if (model != null)
             {
-                var result = await model.SaveModelAsync(true).ConfigureAwait(false);
-                if (result.IsSucceed)
-                {
-                }
+                var result = await model.SaveModelAsync(true).ConfigureAwait(false);                
                 return result;
             }
             return new RepositoryResponse<BETemplateViewModel>();
@@ -124,6 +122,7 @@ namespace Swastka.IO.Cms.Api.Controllers
         public async Task<RepositoryResponse<PaginationModel<BETemplateViewModel>>> GetList(RequestPaging request)
         {
             string domain = string.Format("{0}://{1}", Request.Scheme, Request.Host);
+            int themeId = GlobalConfigurationService.Instance.GetLocalInt(SWCmsConstants.ConfigurationKeyword.ThemeId, 0);
             if (string.IsNullOrEmpty(request.Keyword))
             {
                 var data = await BETemplateViewModel.Repository.GetModelListByAsync(
@@ -133,6 +132,7 @@ namespace Swastka.IO.Cms.Api.Controllers
             else
             {
                 Expression<Func<SiocTemplate, bool>> predicate = model =>
+                    model.TemplateId== themeId &&
                     (string.IsNullOrWhiteSpace(request.Keyword)
                         || (model.FileName.Contains(request.Keyword)
                         || model.FileFolder.Contains(request.Keyword)));
