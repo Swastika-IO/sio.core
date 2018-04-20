@@ -216,9 +216,9 @@ namespace Swastika.Cms.Lib.ViewModels.BackEnd
 
         #region Overrides
 
-        public override SiocCategory ParseModel()
+        public override SiocCategory ParseModel(SiocCmsContext _context = null, IDbContextTransaction _transaction = null)
         {
-            GenerateSEO();
+            GenerateSEO(_context, _transaction);
             //if (View != null)
             //{
             //    //TemplateRepository.Instance.SaveTemplate(View);
@@ -230,12 +230,11 @@ namespace Swastika.Cms.Lib.ViewModels.BackEnd
                 Id = FECategoryViewModel.Repository.Max(c => c.Id).Data + 1;
                 CreatedDateTime = DateTime.UtcNow;
             }
-            return base.ParseModel();
+            return base.ParseModel(_context, _transaction);
         }
 
         public override void ExpandView(SiocCmsContext _context = null, IDbContextTransaction _transaction = null)
         {
-            IsClone = true;
             ListSupportedCulture = GlobalLanguageService.ListSupportedCulture;
             this.ListSupportedCulture.ForEach(c => c.IsSupported =
            (Id == 0 && c.Specificulture == Specificulture)
@@ -551,7 +550,7 @@ namespace Swastika.Cms.Lib.ViewModels.BackEnd
 
         #region Expands
 
-        private void GenerateSEO()
+        private void GenerateSEO(SiocCmsContext _context = null, IDbContextTransaction _transaction = null)
         {
             if (string.IsNullOrEmpty(this.SeoName))
             {
@@ -559,9 +558,10 @@ namespace Swastika.Cms.Lib.ViewModels.BackEnd
             }
             int i = 1;
             string name = SeoName;
-            while (InfoCategoryViewModel.Repository.CheckIsExists(a => a.SeoName == name && a.Specificulture == Specificulture && a.Id != Id))
+            while (InfoCategoryViewModel.Repository.CheckIsExists(a => a.SeoName == name, _context, _transaction))
             {
                 name = SeoName + "_" + i;
+                i++;
             }
             SeoName = name;
 

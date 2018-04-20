@@ -26,6 +26,7 @@ namespace Swastka.Cms.Api.Controllers
     //    //, Policy = "AddEditUser"
     //    )]
     //[Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
+    [Produces("application/json")]
     [Route("api/{culture}/product")]
     public class ApiProductController :
         BaseApiController<SiocCmsContext, SiocProduct>
@@ -45,10 +46,18 @@ namespace Swastka.Cms.Api.Controllers
             {
                 case "be":
                     var beResult = await BEProductViewModel.Repository.GetSingleModelAsync(model => model.Id == id && model.Specificulture == _lang).ConfigureAwait(false);
+                    if (beResult.IsSucceed)
+                    {
+                        beResult.Data.DetailsUrl = SWCmsHelper.GetRouterUrl("Product", new { beResult.Data.SeoName }, Request, Url);
+                    }
                     return JObject.FromObject(beResult);
 
                 default:
                     var feResult = await FEProductViewModel.Repository.GetSingleModelAsync(model => model.Id == id && model.Specificulture == _lang).ConfigureAwait(false);
+                    if (feResult.IsSucceed)
+                    {
+                        feResult.Data.DetailsUrl = SWCmsHelper.GetRouterUrl("Product", new { feResult.Data.SeoName }, Request, Url);
+                    }
                     return JObject.FromObject(feResult);
             }
         }
@@ -62,11 +71,12 @@ namespace Swastka.Cms.Api.Controllers
             {
                 //Id = Guid.NewGuid().ToString(),
                 Specificulture = _lang
+                
             };
             return new RepositoryResponse<BEProductViewModel>()
             {
                 IsSucceed = true,
-                Data = new BEProductViewModel(product) { Domain = this._domain }
+                Data = new BEProductViewModel(product) { Domain = this._domain, Status = SWStatus.Preview }
             };
         }
 
@@ -197,13 +207,13 @@ namespace Swastka.Cms.Api.Controllers
         #region Post
 
         // POST api/products
-        [HttpPost, HttpOptions]
+        [HttpPost]
         [Route("save")]
-        public async Task<RepositoryResponse<BEProductViewModel>> Post([FromBody]BEProductViewModel model)
+        public async Task<RepositoryResponse<BEProductViewModel>> Save([FromBody] BEProductViewModel product)
         {
-            if (model != null)
+            if (product != null)
             {
-                var result = await model.SaveModelAsync(true).ConfigureAwait(false);
+                var result = await product.SaveModelAsync(true).ConfigureAwait(false);
                 if (result.IsSucceed)
                 {
                     result.Data.Domain = this._domain;
@@ -242,9 +252,13 @@ namespace Swastka.Cms.Api.Controllers
                 model.Specificulture == _lang
                 && (!request.Status.HasValue || model.Status == (int)request.Status.Value)
                 && (string.IsNullOrWhiteSpace(request.Keyword)
-                || (model.Title.Contains(request.Keyword)
+                || (
+                    model.Title.Contains(request.Keyword)
 
-                || model.Excerpt.Contains(request.Keyword)))
+                    || model.Excerpt.Contains(request.Keyword)
+                    || model.Code.Contains(request.Keyword)
+                    )
+                )
                 && (!request.FromDate.HasValue
                     || (model.CreatedDateTime >= request.FromDate.Value.ToUniversalTime())
                 )
@@ -259,9 +273,7 @@ namespace Swastka.Cms.Api.Controllers
                 {
                     a.DetailsUrl = SWCmsHelper.GetRouterUrl(
                         "Product", new { a.SeoName }, Request, Url);
-                    a.Domain = domain;
-                }
-                );
+                });
             }
             return data;
         }

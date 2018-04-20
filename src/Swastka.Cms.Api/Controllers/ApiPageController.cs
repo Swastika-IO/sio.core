@@ -4,7 +4,6 @@
 
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Data.OData.Query;
-using Newtonsoft.Json.Linq;
 using Swastika.Api.Controllers;
 using Swastika.Cms.Lib;
 using Swastika.Cms.Lib.Models.Cms;
@@ -22,33 +21,53 @@ namespace Swastka.IO.Cms.Api.Controllers
 {
     [Produces("application/json")]
     [Route("api/{culture}/page")]
+    [Route("api/{culture}/category")]
     public class ApiCategoryController :
         BaseApiController<SiocCmsContext, SiocCategory>
     {
         #region Get
 
-        // GET api/page/details/spa/1
+        // GET api/category/id
         [HttpGet]
-        [Route("details/{viewType}/{id}")]
-        public async Task<JObject> DetailsByType(string viewType, int id)
+        [Route("details/{id}")]
+        public Task<RepositoryResponse<FECategoryViewModel>> Details(int id)
         {
-            switch (viewType)
+            return FECategoryViewModel.Repository.GetSingleModelAsync(
+                model => model.Id == id && model.Specificulture == _lang);
+        }
+
+
+        // GET api/category/id
+        [HttpGet]
+        [Route("delete/{id}")]
+        public async Task<RepositoryResponse<bool>> DeleteAsync(int id)
+        {
+            var getPage =await FECategoryViewModel.Repository.GetSingleModelAsync(
+                model => model.Id == id && model.Specificulture == _lang);
+            if (getPage.IsSucceed)
             {
-                case "fe":
-                    var spaResult = await FECategoryViewModel.Repository.GetSingleModelAsync(model => model.Id == id && model.Specificulture == _lang).ConfigureAwait(false);
-                    return JObject.FromObject(spaResult);
 
-                case "be":
-                    var beResult = await BECategoryViewModel.Repository.GetSingleModelAsync(model => model.Id == id && model.Specificulture == _lang).ConfigureAwait(false);
-                    return JObject.FromObject(beResult);
-
-                default:
-                    var feResult = await FECategoryViewModel.Repository.GetSingleModelAsync(model => model.Id == id && model.Specificulture == _lang).ConfigureAwait(false);
-                    return JObject.FromObject(feResult);
+                return await getPage.Data.RemoveModelAsync(true);
+            }
+            else
+            {
+                return new RepositoryResponse<bool>()
+                {
+                    IsSucceed = false
+                };
             }
         }
 
-        // GET api/page/id
+        // GET api/category/id
+        [HttpGet]
+        [Route("details/backend/{id}")]
+        public Task<RepositoryResponse<BECategoryViewModel>> BEDetails(int id)
+        {
+            return BECategoryViewModel.Repository.GetSingleModelAsync(
+                model => model.Id == id && model.Specificulture == _lang);
+        }
+
+        // GET api/category/id
         [HttpGet]
         [Route("byArticle/{id}")]
         [Route("byArticle/{id}/{articleId}")]
@@ -101,7 +120,7 @@ namespace Swastka.IO.Cms.Api.Controllers
 
         #region Post
 
-        // POST api/page
+        // POST api/category
         [HttpPost, HttpOptions]
         [Route("save")]
         public async Task<RepositoryResponse<BECategoryViewModel>> Post([FromBody]BECategoryViewModel model)
@@ -118,7 +137,7 @@ namespace Swastka.IO.Cms.Api.Controllers
             return new RepositoryResponse<BECategoryViewModel>();
         }
 
-        // POST api/page
+        // POST api/category
         [HttpPost, HttpOptions]
         [Route("save/{id}")]
         public async Task<RepositoryResponse<bool>> SaveFields(int id, [FromBody]List<EntityField> fields)
@@ -135,7 +154,7 @@ namespace Swastka.IO.Cms.Api.Controllers
             return new RepositoryResponse<bool>();
         }
 
-        // GET api/page
+        // GET api/category
         [HttpPost, HttpOptions]
         [Route("list")]
         public async Task<RepositoryResponse<PaginationModel<InfoCategoryViewModel>>> GetList(RequestPaging request)

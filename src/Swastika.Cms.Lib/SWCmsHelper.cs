@@ -12,6 +12,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Security.Cryptography;
+using System.Text.RegularExpressions;
 
 namespace Swastika.Cms.Lib
 {
@@ -44,7 +45,7 @@ namespace Swastika.Cms.Lib
               p => p.PositionId == (int)position) > 0
             );
             var cates = getTopCates.Data ?? new List<InfoCategoryViewModel>();
-
+            activePath = activePath.ToLower();
             foreach (var cate in cates)
             {
                 switch (cate.Type)
@@ -70,7 +71,13 @@ namespace Swastika.Cms.Lib
                         cate.Href = Url.RouteUrl("Page", new { culture, seoName = cate.SeoName });
                         break;
                 }
-                cate.IsActived = (cate.Href == activePath || (cate.Type == SWCmsConstants.CateType.Home && activePath == string.Format("/{0}/Home", culture)));
+                cate.IsActived = (cate.Href == activePath 
+                    || (cate.Type == SWCmsConstants.CateType.Home && activePath == string.Format("/{0}/home", culture)));
+                cate.Childs.ForEach(c => {
+                    c.IsActived = (
+                    c.Href == activePath);
+                    cate.IsActived = cate.IsActived || c.IsActived;
+                });
             }
             return cates;
         }
@@ -81,7 +88,7 @@ namespace Swastika.Cms.Lib
             (c => c.Specificulture == culture && c.Type == (int)cateType
             );
             var cates = getTopCates.Data ?? new List<InfoCategoryViewModel>();
-
+            activePath = activePath.ToLower();
             foreach (var cate in cates)
             {
                 switch (cate.Type)
@@ -107,9 +114,16 @@ namespace Swastika.Cms.Lib
                         cate.Href = Url.RouteUrl("Page", new { culture, pageName = cate.SeoName });
                         break;
                 }
+                
                 cate.IsActived = (
-                    cate.Href == activePath || (cate.Type == SWCmsConstants.CateType.Home && activePath == string.Format("/{0}/Home", culture))
+                    cate.Href == activePath || (cate.Type == SWCmsConstants.CateType.Home && activePath == string.Format("/{0}/home", culture))
                     );
+
+                cate.Childs.ForEach(c => {
+                    c.IsActived = (
+                    c.Href == activePath);
+                    cate.IsActived = cate.IsActived || c.IsActived;
+                });
             }
             return cates;
         }
@@ -127,7 +141,7 @@ namespace Swastika.Cms.Lib
                 }
                 strFormat += @"{" + i + "}" + connector;
             }
-            return string.Format(strFormat, subPaths);
+            return string.Format(strFormat, subPaths).Replace("//","/");
         }
 
         public static string GetRandomName(string filename)
@@ -239,6 +253,65 @@ namespace Swastika.Cms.Lib
         {
             return src.Length <= length ? src
                 : src.Substring(0, length) + "...";
+        }
+
+        public static string FormatPrice(double? price, string oldPrice = "0")
+        {
+            string strPrice = price?.ToString();
+            if (string.IsNullOrEmpty(strPrice))
+            {
+                return "0";
+            }
+            var arr = strPrice.Trim(new char[] { ',' });
+            string s1 = strPrice.Replace(",", string.Empty);
+            if (CheckIsPrice(s1))
+            {
+
+                Regex rgx = new Regex("(\\d+)(\\d{3})");
+                while (rgx.IsMatch(s1))
+                {
+                    s1 = rgx.Replace(s1, "$1" + "," + "$2");
+                }
+                return s1;
+            }
+            return oldPrice;
+
+        }
+
+        public static bool CheckIsPrice(string number)
+        {
+            if (number == null)
+            {
+                return false;
+            }
+            number = number.Replace(",", "");
+            try
+            {
+                double.Parse(number);
+                return true;
+            }
+            catch
+            {
+                return false;
+            }
+            //Regex rgx = new Regex("^(0|[1-9][0-9]*)$");
+            //return rgx.IsMatch(number);
+        }
+
+        public static double ReversePrice(string formatedPrice)
+        {
+            try
+            {
+                if (string.IsNullOrEmpty(formatedPrice))
+                {
+                    return 0;
+                }
+                return double.Parse(formatedPrice.Replace(",", string.Empty));
+            }
+            catch
+            {
+                return 0;
+            }
         }
     }
 }

@@ -33,7 +33,7 @@
     <Compile Remove="Migrations\20180305042643_test.cs" />
     <Compile Remove="Migrations\20180305042908_Add-Page-Layout.cs" />
     <Compile Remove="Migrations\20180305042908_Add-Page-Layout.Designer.cs" />
-    <Compile Remove="Migrations\SiocCmsContextModelSnapshot.cs" />
+    <Compile Remove="Migrations\20180319080440_update-product.cs" />
     <Compile Remove="Models\SiocFile.cs" />
     <Compile Remove="Models\SiocTemplate.cs" />
     <Compile Remove="Models\SiocTheme.cs" />
@@ -60,8 +60,11 @@
     <PackageReference Include="Microsoft.Extensions.Configuration" Version="2.0.1" />
     <PackageReference Include="Microsoft.IdentityModel.Tokens" Version="5.2.1" />
     <PackageReference Include="SonarAnalyzer.CSharp" Version="6.8.2.4717" />
-    <PackageReference Include="Swastika" Version="0.0.4" />
-    <PackageReference Include="Swastika.Identity" Version="0.0.4" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\Swastika-Heart\src\Swastika\Swastika.csproj" />
+    <ProjectReference Include="..\..\..\Swastika-Identity\src\Swastika.Identity\Swastika.Identity.csproj" />
   </ItemGroup>
 
 </Project>

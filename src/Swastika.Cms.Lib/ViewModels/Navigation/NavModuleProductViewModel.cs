@@ -3,6 +3,7 @@
 // See the LICENSE file in the project root for more information.
 
 using Microsoft.EntityFrameworkCore.Storage;
+using Newtonsoft.Json;
 using Swastika.Cms.Lib.Models.Cms;
 using Swastika.Cms.Lib.ViewModels.Info;
 using Swastika.Domain.Data.ViewModels;
@@ -18,17 +19,19 @@ namespace Swastika.Cms.Lib.ViewModels.Navigation
         public NavModuleProductViewModel() : base()
         {
         }
-
+        [JsonProperty("productId")]
         public string ProductId { get; set; }
+        [JsonProperty("moduleId")]
         public int ModuleId { get; set; }
 
         //public string Specificulture { get; set; }
+        [JsonProperty("isActived")]
         public bool IsActived { get; set; }
-
+        [JsonProperty("description")]
         public string Description { get; set; }
 
         #region Views
-
+        [JsonProperty("product")]
         public InfoProductViewModel Product { get; set; }
 
         #endregion Views

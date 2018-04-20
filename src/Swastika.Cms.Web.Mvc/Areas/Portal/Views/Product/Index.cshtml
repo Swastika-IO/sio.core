@@ -12,9 +12,9 @@
         <div class="col-md-8">
             <div class="btn-toolbar mb-3" role="toolbar" aria-label="Toolbar with button groups">
                 <div class="btn-group mr-2" role="group" aria-label="First group">
-                    <a asp-area="Portal" asp-controller="Products" asp-action="Create" class="btn btn-secondary"><i class="mi mi-Add"></i></a>
-                    <a asp-area="Portal" asp-controller="Products" asp-action="Index" class="btn btn-secondary"><i class="mi mi-List"></i></a>
-                    <a asp-area="Portal" asp-controller="Products" asp-action="Draft" class="btn btn-secondary"><i class="mi mi-Paste"></i></a>
+                    <a asp-area="Portal" asp-controller="Product" asp-action="Create" class="btn btn-secondary"><i class="mi mi-Add"></i></a>
+                    @*<a asp-area="Portal" asp-controller="Product" asp-action="Index" class="btn btn-secondary"><i class="mi mi-List"></i></a>*@
+                    @*<a asp-area="Portal" asp-controller="Product" asp-action="Draft" class="btn btn-secondary"><i class="mi mi-Paste"></i></a>*@
                 </div>
                 <div class="btn-group dropdown mr-2">
                     <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownOrderBy" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -27,7 +27,7 @@
                         </button>
                     </div>
                 </div>
-                <div class="btn-group dropdown mr-2">
+                @*<div class="btn-group dropdown mr-2">
                     <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownOrderBy" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         {{request.orderBy}}
                     </button>
@@ -52,15 +52,15 @@
                     </div>
                     <input type="date" ng-model="request.fromDate" ng-change="loadProducts()" class="form-control" />
                     <input type="date" ng-model="request.toDate" ng-change="loadProducts()" class="form-control" />
-                </div>
+                </div>*@
             </div>
         </div>
         <div class="col-md-4">
             <div class="input-group">
-                <div class="input-group-prepend" ng-click="loadProducts()">
+                <div class="input-group-prepend" ng-click="loadProducts(0)">
                     <div class="input-group-text" id="btnGroupAddon"><i class="mi mi-Search" style="top:0;"></i></div>
                 </div>
-                <input ng-model="request.keyword" ng-enter="loadProducts()" type="text" class="form-control" placeholder="Search......" aria-label="Search......" aria-describedby="btnGroupAddon">
+                <input ng-model="request.keyword" ng-enter="loadProducts(0)" type="text" class="form-control" placeholder="Search......" aria-label="Search......" aria-describedby="btnGroupAddon">
             </div>
         </div>
     </div>
@@ -69,9 +69,9 @@
             <div class="col-md-8">
                 <div class="btn-toolbar mb-3" role="toolbar" aria-label="Toolbar with button groups">
                     <div class="btn-group mr-2" role="group" aria-label="First group">
-                        <a asp-area="Portal" asp-controller="Products" asp-action="Create" class="btn btn-secondary"><i class="mi mi-Add"></i></a>
-                        <a asp-area="Portal" asp-controller="Products" asp-action="Index" class="btn btn-secondary"><i class="mi mi-List"></i></a>
-                        <a asp-area="Portal" asp-controller="Products" asp-action="Draft" class="btn btn-secondary"><i class="mi mi-Paste"></i></a>
+                        <a asp-area="Portal" asp-controller="Product" asp-action="Create" class="btn btn-secondary"><i class="mi mi-Add"></i></a>
+                        <a asp-area="Portal" asp-controller="Product" asp-action="Index" class="btn btn-secondary"><i class="mi mi-List"></i></a>
+                        <a asp-area="Portal" asp-controller="Product" asp-action="Draft" class="btn btn-secondary"><i class="mi mi-Paste"></i></a>
                     </div>
                     <select class="btn btn-outline-secondary custom-select col-sm-3"
                             ng-model="request.orderBy"
@@ -110,13 +110,16 @@
                 <th scope="col" style="width: 4%;">
                     <span class="oi oi-sort-ascending"></span>
                 </th>
-                <th scope="col" style="width: 15%;">
+                <th scope="col" style="width: 5%;">
+                    Code
+                </th>
+                <th scope="col" style="width: 25%;">
                     Title
                 </th>
-                <th scope="col">
-                    Description
+                <th scope="col" width="10%">
+                    Image
                 </th>
-                <th scope="col" style="width: 10%;">
+                <th scope="col" width="10%">
                     Created Date
                 </th>
                 <th scope="col" style="width: 10%;">
@@ -130,23 +133,30 @@
         <tbody class="sortable" ng-init="data = loadProducts()">
             <tr ng-repeat="item in data.items track by $index"
                 class="sortable-item" sort-model="product" sort-model-id="{{item.id}}">
-                <td style="cursor:move;">
+                <td style="cursor:move;" class="drag-header">
                     <span class="oi oi-move"></span>
                 </td>
                 <td>
                     <input type="text" value="{{item.priority}}" class="item-priority form-control form-control-sm d-inline" style="width:40px;" />
                 </td>
-
+                <td>
+                    {{item.code}}
+                </td>
                 <td>
                     {{item.title}}
                 </td>
                 <td>
-                    <small>
-                        {{item.excerpt}}
-                    </small>
+                    <div ng-if="item.image!=''">
+                        <img height="50px" src="{{item.image}}" />
+                    </div>
+                    @*<small>
+                            {{item.excerpt}}
+                        </small>*@
                 </td>
                 <td>
-                    {{item.createdDateTime | utcToLocal:'dd.MM.yyyy - hh:mm:ss a'}}
+                    <small>
+                        {{item.createdDateTime | utcToLocal:'dd.MM.yyyy - hh:mm:ss a'}}
+                    </small>
                 </td>
                 <td>
                     {{item.createdBy}}
@@ -154,12 +164,14 @@
 
                 <td>
                     <div class="btn-group btn-group-sm" role="group" aria-label="Actions">
-                        <a href="/{{currentLanguage}}/portal/product/edit/{{item.id}}" class="btn btn-light"> <span class="oi oi-pencil text-primary"></span></a>
-                        <a href="{{item.detailsUrl}}" target="_blank" class="btn btn-light"><span class="oi oi-eye text-info"></span></a>
+                        <a href="/{{currentLanguage}}/portal/product/edit/{{item.id}}" class="btn btn-light"> <span class="mi mi-Pencil text-primary">
+                                Sửa</span></a>
+                        <a href="{{item.detailsUrl}}" target="_blank" class="btn btn-light"><span class="fa fa-eye text-info">
+                                Xem</span></a>
 
                         <button type="button" class="btn btn-light del-popover"
                                 ng-click="removeProduct(item.id)">
-                            <span class="oi oi-x text-danger"></span>
+                            <span class="mi mi-Delete text-danger">Xóa</span>
                         </button>
                         @*<button type="button" class="btn btn-light del-popover"
                                     data-toggle="popover" data-html="true" ng-click="removeProduct(item.id)">
@@ -179,7 +191,9 @@
                 <a class="page-link active" href="javascript:void(0)" ng-click="loadProducts(data.pageIndex-1)"
                    ng-hide="data.pageIndex==0">Prev</a>
             </li>
-            <li class="page-item" ng-class="{active: n-1==data.pageIndex}" ng-repeat="n in range(data.totalPage)"><a class="page-link" href="javascript:void(0)" ng-click="loadProducts(n-1)">{{n}}</a></li>
+            <li class="page-item" ng-class="{active: n-1==data.pageIndex}" ng-repeat="n in range(data.totalPage)">
+                <a class="page-link" href="javascript:void(0)" ng-click="loadProducts(n-1)">{{n}}</a>
+            </li>
             <li class="page-item">
                 <a class="page-link" href="javascript:void(0)" ng-click="loadProducts(data.pageIndex + 1)"
                    ng-hide="data.pageIndex >= (data.totalPage-1)">Next</a>

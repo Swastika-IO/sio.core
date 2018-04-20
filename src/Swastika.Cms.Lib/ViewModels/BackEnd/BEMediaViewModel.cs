@@ -91,7 +91,7 @@ namespace Swastika.Cms.Lib.ViewModels.BackEnd
 
         #region Overrides
 
-        public override SiocMedia ParseModel()
+        public override SiocMedia ParseModel(SiocCmsContext _context = null, IDbContextTransaction _transaction = null)
         {
             if (Id == 0)
             {
@@ -117,7 +117,9 @@ namespace Swastika.Cms.Lib.ViewModels.BackEnd
             return result;
         }
 
+#pragma warning disable CS1998 // Async method lacks 'await' operators and will run synchronously
         public override async Task<RepositoryResponse<bool>> RemoveRelatedModelsAsync(BEMediaViewModel view, SiocCmsContext _context = null, IDbContextTransaction _transaction = null)
+#pragma warning restore CS1998 // Async method lacks 'await' operators and will run synchronously
         {
             var result = new RepositoryResponse<bool>
             {

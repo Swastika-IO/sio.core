@@ -194,7 +194,7 @@
                                         <ul class="nav">
                                             @for (int i = 0; i < Model.ChildNavs.Count; i++)
                                             {
-                                                <li class="col-sm-4">
+                                                <li class="col-sm-12">
                                                     <input type="hidden" asp-for="@Model.ChildNavs[i].Specificulture" />
                                                     <input type="hidden" asp-for="@Model.ChildNavs[i].Id" />
                                                     <input type="hidden" asp-for="@Model.ChildNavs[i].Priority" />
@@ -254,12 +254,12 @@
                                         </ul>
                                     </div>
                                     <div class="tab-pane fade" id="v-pills-module" role="tabpanel" aria-labelledby="v-pills-module-tab">
-                                        <ul class="nav sortable">
+                                        <ul class="nav sortable ui-sortable">
                                             @for (int i = 0; i < Model.ModuleNavs.OrderBy(n => n.Priority).ToList().Count; i++)
                                             {
                                                 <li id="module_@Model.ModuleNavs[i].ModuleId" class="col-sm-12 sortable-item">
                                                     <div class="row">
-                                                        <div class="col-1" style="cursor:move;"><span class="oi oi-move"></span></div>
+                                                        <div class="col-1 drag-header" style="cursor:move;"><span class="oi oi-move"></span></div>
                                                         <div class="col-1 d-none">
                                                             <input type="text" asp-for="@Model.ModuleNavs[i].Priority" class="item-priority form-control form-control-sm d-inline" style="width:40px;" />
                                                         </div>

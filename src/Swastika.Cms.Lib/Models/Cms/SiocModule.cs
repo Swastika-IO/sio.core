@@ -1,10 +1,5 @@
-﻿// Licensed to the Swastika I/O Foundation under one or more agreements.
-// The Swastika I/O Foundation licenses this file to you under the GNU General Public License v3.0.
-// See the LICENSE file in the project root for more information.
-
-using System;
+﻿using System;
 using System.Collections.Generic;
-using static Swastika.Common.Utility.Enums;
 
 namespace Swastika.Cms.Lib.Models.Cms
 {
@@ -25,15 +20,15 @@ namespace Swastika.Cms.Lib.Models.Cms
         public string Specificulture { get; set; }
         public string Description { get; set; }
         public string Fields { get; set; }
+        public string Image { get; set; }
         public DateTime? LastModified { get; set; }
         public string ModifiedBy { get; set; }
         public string Name { get; set; }
+        public int Priority { get; set; }
+        public int Status { get; set; }
         public string Template { get; set; }
         public string Title { get; set; }
         public int Type { get; set; }
-        public string Image { get; set; }
-        public int Priority { get; set; }
-        public SWStatus Status { get; set; }
 
         public SiocCulture SpecificultureNavigation { get; set; }
         public ICollection<SiocArticleModule> SiocArticleModule { get; set; }

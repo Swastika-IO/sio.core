@@ -1,58 +1,143 @@
-@model BEProductViewModel
+﻿@model BEProductViewModel
 
 @{
-    ViewData["Title"] = "Create Product";
+    ViewData["Title"] = "Edit";
     //Layout = "~/Areas/Portal/Views/Shared/_Layout.cshtml";
-    string img = Model != null ? Model.ImageUrl : "http://placehold.it/200x200";
+    string culture = ViewBag.culture;
+    string currentId = ViewContext.RouteData.Values["Id"] == null ? string.Empty : ViewContext.RouteData.Values["Id"].ToString();
+    var translator = Swastika.Cms.Lib.SWCmsHelper.GetTranslator(culture);
 }
 
 <!-- Main content -->
-<section class="content container-fluid">
-    <form asp-action="@ViewContext.RouteData.Values["action"].ToString()"
-          asp-route-categoryId="@ViewBag.categoryId"
-          enctype="multipart/form-data">
+<section class="content container-fluid" ng-controller="ProductController" ng-init="loadProducts();loadProduct('@currentId', true)">
+    <div class="loader-container" ng-show="isBusy">
+        <div id="loader"></div>
+    </div>
 
-        @Html.Partial("EditableSides/_Editable_ActionsBar")
+    <form ng-class="{'submitted': submitted}"
+          ng-submit="saveProduct(activedProduct)">
+
+        <actions preview-url="activedProduct.detailsUrl" back-url="'/@culture/portal/product'"></actions>
+
         <div class="row">
-
+            <div class="col-lg-12">
+                <div class="alert alert-{{message.class}}" role="alert" ng-show="message.content!=''">
+                    <span ng-bind="message.content" />
+                </div>
+                <div class="alert alert-danger" role="alert" ng-show="errors.length > 0">
+                    <p class="text-danger" ng-repeat="err in errors">
+                        <span ng-bind="err" />
+                    </p>
+                </div>
+            </div>
             <section class="col-lg-9">
-                @Html.Partial("_Editable", Model)
+                <div class="row">
+                    <product-main product="activedProduct"></product-main>
+                </div>
+                <div class="row">
+                    <tabs>
+                        <pane title="General">
+                            <product-general product="activedProduct"></product-general>
+                        </pane>
+                        <pane title="Seo">
+                            <product-seo product="activedProduct"></product-seo>
+                        </pane>
+                        <pane title="Parents">
+                            <product-parents product="activedProduct"></product-parents>
+                        </pane>
+                        <pane title="Modules">
+                            <product-modules product="activedProduct"></product-modules>
+                        </pane>
+                        <pane title="Layout">
+                            <div class="tab-pane">
+                                <code-editor template="activedProduct.view"></code-editor>
+                            </div>
+                        </pane>
+                        <pane title="Medias">
+                            <product-medias product="activedProduct" medias="mediaData"></product-medias>
+
+                        </pane>
+                        <pane title="Related">
+                            <product-related product="activedProduct" list="data"></product-related>
+                        </pane>
+                    </tabs>
+
+                </div>
             </section>
-            <section class="col-lg-3">
-                @await Html.PartialAsync("_EditableSide", Model)
+            <section class="col-lg-3" style="padding-left:0">
+                <div class="card">
+                    <div class="card-header">
+                        Info
+                    </div>
+                    <div class="card-body">
+                        <div class="form-group">
+                            <div class="btn-group btn-group-sm btn-group-toggle d-flex w-100">
+                                <label ng-repeat="stt in swStatus track by $index"
+                                       ng-switch="stt"
+                                       ng-class="{active: $index == activedProduct.status}"
+                                       class="btn btn-outline-primary btn-block mt-0">
+                                    <input ng-model="activedProduct.status" type="radio" value="{{$index}}" class="custom-control-input" id="pageType_{{$index}}" />
+                                    <i ng-switch-when="Deleted" class="mi mi-Delete mi-lg mi-fw" title="{{stt}}"></i>
+                                    <i ng-switch-when="Preview" class="mi mi-Preview mi-lg mi-fw" title="{{stt}}"></i>
+                                    <i ng-switch-when="Published" class="mi mi-Page mi-lg mi-fw" title="{{stt}}"></i>
+                                    <i ng-switch-when="Draft" class="mi mi-Edit mi-lg mi-flip-horizontal" title="{{stt}}"></i>
+                                    <i ng-switch-when="Schedule" class="mi mi-Calendar mi-lg mi-flip-horizontal" title="{{stt}}"></i>
+                                </label>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <span class="switch">
+                                <label>
+                                    <input type="checkbox" ng-model="activedProduct.isClone" class="switch">
+                                    Clone
+                                </label>
+                            </span>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label">Created Date Time</label>
+                            <div class="input-group mb-3">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text" id="basic-addon1"><i class="mi mi-Calendar"></i></span>
+                                </div>
+                                <input ng-model="activedProduct.createdDateTime" type="text" class="form-control" readonly />
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="control-label">Created By</label>
+                            <div class="input-group mb-3">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text" id="basic-addon1"><i class="mi mi-Contact"></i></span>
+                                </div>
+                                <input ng-model="activedProduct.createdBy" class="form-control" readonly />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+                <custom-file header="'Feature Image'" folder="'Products/test'" src="activedProduct.image" auto="'true'"></custom-file>
+                <custom-file header="'Feature Thumnail'" folder="'Products/test'" src="activedProduct.thumbnail" auto="'false'"></custom-file>
+
+
             </section>
         </div>
+
+
+
     </form>
 </section>
 <!-- /.content -->
-<!-- /.box-body -->
 
 @section Scripts{
 
-}
+    <script src="~/app/controllers/portal-product-controller.js"></script>
+    <script src="~/app/portal/components/product/general/productGeneral.js"></script>
 
-@section Modals{
-    <div class="modal fade" id="modal-data">
-        <div class="modal-dialog modal-lg">
-            <form id="frm-data" asp-controller="Module" asp-action="AjaxSaveModuleData">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
-                        <h4 class="modal-title">Edit</h4>
-                    </div>
-                    <div class="modal-body">
-                    </div>
-                    <div class="modal-footer">
-                        <a class="btn btn-default pull-left" data-dismiss="modal">Close</a>
-                        <a class="btn btn-primary btn-save-data">Save changes</a>
-                    </div>
-                </div>
-                <!-- /.modal-content -->
-            </form>
-        </div>
-        <!-- /.modal-dialog -->
-    </div>
-    <!-- /.modal -->
+    <script src="~/app/portal/components/product/main/productMain.js"></script>
+    <script src="~/app/portal/components/product/seo/productSeo.js"></script>
+    <script src="~/app/portal/components/product/medias/productMedias.js"></script>
+    <script src="~/app/portal/components/product/modules/productModules.js"></script>
+    <script src="~/app/portal/components/product/related/productRelated.js"></script>
+    <script src="~/app/portal/components/product/parents/productParents.js"></script>
 }

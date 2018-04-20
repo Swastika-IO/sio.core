@@ -41,7 +41,6 @@ namespace Swastika.Cms.Lib.ViewModels.BackEnd
 
         public override void ExpandView(SiocCmsContext _context = null, IDbContextTransaction _transaction = null)
         {
-            IsClone = true;
             ListSupportedCulture = GlobalLanguageService.ListSupportedCulture;
             this.ListSupportedCulture.ForEach(c => c.IsSupported = true);
         }
@@ -84,18 +83,6 @@ namespace Swastika.Cms.Lib.ViewModels.BackEnd
                 GlobalLanguageService.Instance.Refresh();
             }
             return result;
-        }
-
-        public override RepositoryResponse<List<BELanguageViewModel>> Clone(SiocLanguage model, List<SupportedCulture> cloneCultures, SiocCmsContext _context = null, IDbContextTransaction _transaction = null)
-        {
-            model.Value = Model.Keyword;
-            return base.Clone(model, cloneCultures, _context, _transaction);
-        }
-
-        public override Task<RepositoryResponse<List<BELanguageViewModel>>> CloneAsync(SiocLanguage model, List<SupportedCulture> cloneCultures, SiocCmsContext _context = null, IDbContextTransaction _transaction = null)
-        {
-            model.Value = Model.Keyword;
-            return base.CloneAsync(model, cloneCultures, _context, _transaction);
         }
 
         #endregion Overrides

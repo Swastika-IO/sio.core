@@ -18,6 +18,7 @@ namespace Swastika.Cms.Mvc.Areas.Portal.Controllers
 {
     [Area("Portal")]
     [Route("{culture}/Portal")]
+    [Route("Admin")]
     public class PortalController : BaseController<PortalController>
     {
         public PortalController(IHostingEnvironment env, IConfigurationRoot configuration)

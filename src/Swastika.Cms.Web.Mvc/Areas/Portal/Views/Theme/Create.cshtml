@@ -1,22 +1,26 @@
 @model BEThemeViewModel
 
 @{
-    ViewData["Title"] = "Add themes";
+    ViewData["Title"] = "Edit theme";
     //Layout = "~/Areas/Portal/Views/Shared/_Layout.cshtml";
 }
 
 <!-- Main content -->
 <section class="content container-fluid">
+    <form asp-controller="@ViewContext.RouteData.Values["controller"].ToString()"
+          asp-action="@ViewContext.RouteData.Values["action"].ToString()">
 
-    @await Html.PartialAsync("EditableSides/_Editable_ActionsBar")
-    <div class="row">
-        <section class="col-lg-9">
-            @await Html.PartialAsync("_Editable", Model)
-        </section>
-        <section class="col-lg-3">
-            @await Html.PartialAsync("_EditableSide", Model)
-        </section>
-    </div>
+        @await Html.PartialAsync("EditableSides/_Editable_ActionsBar")
+        <div class="row">
+
+            <section class="col-lg-9">
+                @await Html.PartialAsync("_Editable", Model)
+            </section>
+            <section class="col-lg-3">
+                @await Html.PartialAsync("_EditableSide", Model)
+            </section>
+        </div>
+    </form>
 </section>
 <!-- /.content -->
 @section Scripts{

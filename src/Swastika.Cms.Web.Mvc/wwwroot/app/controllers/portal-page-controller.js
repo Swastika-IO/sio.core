@@ -1,7 +1,13 @@
 ﻿'use strict';
-app.controller('PageController', function PhoneListController($filter,$scope) {
+
+///////////////////////////////////////
+//
+//  PAGE CONTROLLER
+//
+///////////////////////////////////////
+app.controller('PageController', function PhoneListController($filter, $scope) {
     $scope.activedPage = {};
-    $scope.data = [];   
+    $scope.data = [];
 
     $scope.loadPages = function (pageIndex) {
         $scope.isBusy = true;
@@ -34,12 +40,12 @@ app.controller('PageController', function PhoneListController($filter,$scope) {
 
     $scope.removePage = function (pageId) {
         if (confirm("Are you sure!")) {
-            var url = '/api/' + $scope.currentLanguage + '/page/delete/' + pageId;
+            var url = '/api/vi-vn/page/delete/' + pageId;
             $.ajax({
                 method: 'GET',
                 url: url,
                 success: function (data) {
-                    $scope.loadPage();
+                    $scope.loadPages();
                 },
                 error: function (a, b, c) {
                     console.log(a + " " + b + " " + c);
@@ -67,5 +73,4 @@ app.controller('PageController', function PhoneListController($filter,$scope) {
             }
         });
     };
-
 });

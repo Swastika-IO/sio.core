@@ -1,4 +1,5 @@
-﻿'use strict';
+﻿/// <reference path="portal-page-controller.js" />
+'use strict';
 app.controller('ArticleController', function PhoneListController($scope) {
     $scope.activedArticle = {};
     $scope.data = [];
@@ -87,5 +88,4 @@ app.controller('ArticleController', function PhoneListController($scope) {
             }
         });
     };
-
 });

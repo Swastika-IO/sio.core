@@ -23,7 +23,7 @@
                             <a asp-area="Portal" asp-controller="Module" asp-action="Index" class="btn btn-secondary"><i class="mi mi-List"></i></a>
                             <a asp-area="Portal" asp-controller="Module" asp-action="Draft" class="btn btn-secondary"><i class="mi mi-Paste"></i></a>
                         </div>
-                        <div class="btn-group mr-2" role="group" aria-label="Button group with nested dropdown">
+                        @*<div class="btn-group mr-2" role="group" aria-label="Button group with nested dropdown">
                             <div class="btn-group" role="group">
                                 <button id="btnGroupDrop1" type="button" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                     All types
@@ -38,8 +38,8 @@
                                     <a class="dropdown-item" href="#">Others</a>
                                 </div>
                             </div>
-                        </div>
-                        <div class="btn-group mr-2" role="group" aria-label="Button group with nested dropdown">
+                        </div>*@
+                        @*<div class="btn-group mr-2" role="group" aria-label="Button group with nested dropdown">
                             <div class="btn-group" role="group">
                                 <button id="btnGroupDrop1" type="button" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                     All times
@@ -50,7 +50,7 @@
                                     <a class="dropdown-item" href="#">Nov 2017</a>
                                 </div>
                             </div>
-                        </div>
+                        </div>*@
                     </div>
                 </div>
                 <div class="col-md-4">
@@ -110,7 +110,7 @@
                     {
 
                         <tr class="sortable-item" sort-model="module" sort-model-id="@Model.Items[i].Id">
-                            <td style="cursor:move;">
+                            <td style="cursor:move;" class="drag-header">
                                 <span class="oi oi-move"></span>
                             </td>
                             <td>
@@ -132,16 +132,16 @@
                             <td>
                                 <div class="btn-group btn-group-sm" role="group" aria-label="Actions">
                                     <a asp-area="Portal" asp-controller="Module" asp-action="AddModuleData" asp-route-id="@Model.Items[i].Id" class="btn btn-light">
-                                        <span class="oi oi-plus text-primary"></span>
+                                        <span class="mi mi-Add text-primary">Thêm</span>
                                     </a>
                                     <a asp-action="Details" asp-route-id="@Model.Items[i].Id"
-                                       class="btn btn-sm btn-light"><span class="oi oi-list text-info"></span></a>
-                                    <a asp-action="Edit" asp-route-id="@Model.Items[i].Id" class="btn btn-sm btn-light"> <span class="oi oi-pencil text-secondary"></span></a>
+                                       class="btn btn-sm btn-light"><span class="mi mi-List text-info"></span></a>
+                                    <a asp-action="Edit" asp-route-id="@Model.Items[i].Id" class="btn btn-sm btn-light"> <span class="mi mi-Pencil text-secondary">Sửa</span></a>
                                     @*<a asp-action="Delete" asp-route-id="@Model.Items[i].Id" class="btn btn-sm btn-light" data-popout="true" data-toggle="confirmation" data-singleton="true" data-btn-ok-class="btn-danger btn-sm" data-btn-cancel-class="btn-success btn-sm" data-content="This can be undo!"> <span class="oi oi-x text-danger"></span> </a>*@
 
                                     <button type="button" class="btn btn-light del-popover"
                                             data-toggle="popover" data-html="true">
-                                        <span class="oi oi-x text-danger"></span>
+                                        <span class="oi oi-x text-danger">Xóa</span>
                                     </button>
                                     <div class="popover-body d-none">
                                         <a asp-action="Delete" asp-route-id="@Model.Items[i].Id" class="btn btn btn-danger">Yes, I want to delete!</a>

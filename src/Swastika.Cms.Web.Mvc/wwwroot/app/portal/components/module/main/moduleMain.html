@@ -1,0 +1,56 @@
+﻿<div class="col-sm-12" ng-if="$ctrl.module!=null">
+    <div class="card">
+        <div class="card-header">
+            Main Content
+        </div>
+        <div class="card-body">
+
+            <div class="form-group">
+                <label>Title</label>
+                <input type="text"
+                       class="form-control form-control-lg"
+                       ng-model="$ctrl.module.title" />
+            </div>
+            <div class="form-group">
+                <label>Code</label>
+                <input type="text"
+                       class="form-control form-control-lg"
+                       ng-model="$ctrl.module.code" />
+            </div>
+            <div class="form-group">
+                <label>Chất liệu</label>
+                <input type="text"
+                       class="form-control form-control-lg"
+                       ng-model="$ctrl.module.material" />
+            </div>
+            <div class="form-group">
+                <label>Quy cách</label>
+                <input type="text"
+                       class="form-control form-control-lg"
+                       ng-model="$ctrl.module.size" />
+            </div>
+            <div class="form-group">
+                <label>Giá bình thường</label>
+                <input type="text"
+                       class="form-control form-control-lg"
+                       ng-model="$ctrl.module.strNormalPrice" />
+            </div>
+            <div class="form-group">
+                <label>Giá khuyến mãi</label>
+                <input type="text"
+                       class="form-control form-control-lg"
+                       ng-model="$ctrl.module.strDealPrice" />
+            </div>
+            <div class="form-group">
+                <label>Mô tả</label>
+                <textarea class="form-control form-control-lg"
+                          ng-model="$ctrl.module.excerpt">{{$ctrl.module.excerpt}}</textarea>
+            </div>
+            <div class="form-group">
+                <label>Nội dung</label>
+                <textarea class="form-control editor-content"
+                          ng-model="$ctrl.module.content">{{$ctrl.module.content}}</textarea>
+            </div>
+        </div>
+    </div>
+</div>

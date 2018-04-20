@@ -1,8 +1,4 @@
-﻿// Licensed to the Swastika I/O Foundation under one or more agreements.
-// The Swastika I/O Foundation licenses this file to you under the GNU General Public License v3.0.
-// See the LICENSE file in the project root for more information.
-
-using System;
+﻿using System;
 using System.Collections.Generic;
 
 namespace Swastika.Cms.Lib.Models.Cms
@@ -25,11 +21,11 @@ namespace Swastika.Cms.Lib.Models.Cms
         public string CreatedBy { get; set; }
         public DateTime CreatedDateTime { get; set; }
         public string CssClass { get; set; }
-        public string Layout { get; set; }
         public string Excerpt { get; set; }
         public string Icon { get; set; }
         public string Image { get; set; }
         public DateTime? LastModified { get; set; }
+        public string Layout { get; set; }
         public int? Level { get; set; }
         public string ModifiedBy { get; set; }
         public int Priority { get; set; }
@@ -38,12 +34,12 @@ namespace Swastika.Cms.Lib.Models.Cms
         public string SeoName { get; set; }
         public string SeoTitle { get; set; }
         public string StaticUrl { get; set; }
+        public int Status { get; set; }
         public string Tags { get; set; }
         public string Template { get; set; }
         public string Title { get; set; }
         public int Type { get; set; }
         public int? Views { get; set; }
-        public int Status { get; set; }
 
         public SiocCulture SpecificultureNavigation { get; set; }
         public ICollection<SiocCategoryArticle> SiocCategoryArticle { get; set; }
