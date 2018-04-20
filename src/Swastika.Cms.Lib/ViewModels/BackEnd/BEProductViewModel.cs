@@ -326,6 +326,9 @@ namespace Swastika.Cms.Lib.ViewModels.BackEnd
             if (getCateProduct.IsSucceed)
             {
                 this.Categories = getCateProduct.Data;
+                this.Categories.ForEach(c => {
+                    c.IsActived = NavCategoryProductViewModel.Repository.CheckIsExists(n => n.CategoryId == c.CategoryId && n.ProductId == Id, _context, _transaction);
+                });
             }
 
             var getModuleProduct = CommonRepository.Instance.GetModuleProductNav(Id, Specificulture, _context, _transaction);

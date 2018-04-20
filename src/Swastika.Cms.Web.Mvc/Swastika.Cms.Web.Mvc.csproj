@@ -176,6 +176,8 @@
   <ItemGroup>
     <Folder Include="Areas\Portal\Views\Shared\Widgets\" />
     <Folder Include="Areas\User\Models\" />
+    <Folder Include="wwwroot\app-portal\views\" />
+    <Folder Include="wwwroot\app\services\" />
     <Folder Include="wwwroot\lib\" />
   </ItemGroup>
 
@@ -289,6 +291,12 @@
     <None Include="Views\Shared\Templates\Starceramic\Products\_Default.cshtml" />
     <None Include="Views\_ViewImports.cshtml" />
     <None Include="Views\_ViewStart.cshtml" />
+    <None Include="wwwroot\app-portal\controllers\register-controller.js" />
+    <None Include="wwwroot\app-portal\controllers\user-controller.js" />
+    <None Include="wwwroot\app-portal\services\auth-services.js" />
+    <None Include="wwwroot\app-portal\services\common-services.js" />
+    <None Include="wwwroot\app-portal\services\register-services.js" />
+    <None Include="wwwroot\app-portal\services\user-services.js" />
     <None Include="wwwroot\app\app-portal.js" />
     <None Include="wwwroot\app\controllers\portal-controller.js" />
   </ItemGroup>

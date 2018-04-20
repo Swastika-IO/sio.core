@@ -59,8 +59,13 @@
             </div>
             <div class="modal-body" style="background:url(/images/upload-image-thumbnail.png) no-repeat center; ">
                 <span class="text-danger"></span>
-                <custom-file header="'Feature Thumnail'" folder="'Medias'" src="mediaFile.fullPath" auto="'true'"></custom-file>
-                
+
+                <label class="custom-file" style="min-height:150px; cursor:pointer; border: 2px dashed;">
+                    <img src="{{mediaFile.fullPath}}" name="pic" class="custom-file-img d-block" style="max-height: 150px; width: auto; margin: 0 auto;" accept="image/*" width="100%" />
+                    <input type="hidden" ng-model="mediaFile.folder" class="folder-val" />
+                    <input type="file" name="pic" class="custom-file-input" data-file="mediaFile.file">
+                    <input type="text" class="form-control custom-file-val d-none" ng-model="mediaFile.fullPath">
+                </label>
             </div>
             <div class="modal-footer">
 
@@ -99,13 +104,13 @@
                                         <input type="file" class="custom-file-input" name="file" id="file" data-file="mediaFile.file">
                                         <label class="custom-file-label" for="file">Choose file</label>
                                     </div>*@
-                                <custom-file header="'Feature Thumnail'" folder="'Medias'" src="mediaFile.fullPath" auto="'true'"></custom-file>
-                                @*<label class="custom-file">
+
+                                <label class="custom-file">
                                     <img src="{{mediaFile.fullPath}}" name="pic" class="d-block" style="max-height: 150px; width: auto; margin: 0 auto;" accept="image/*" width="100%" />
                                     <input type="hidden" ng-model="mediaFile.folder" class="folder-val" />
                                     <input type="file" name="pic" class="" data-file="mediaFile.file">
                                     <input type="text" class="form-control d-none" ng-model="mediaFile.fullPath">
-                                </label>*@
+                                </label>
                             </div>
                             <div class="btn-group mr-2" role="group" aria-label="First group">
                                 <button type="button" ng-click="uploadMedia()" class="btn btn-secondary"><i class="mi mi-Upload"></i> Upload</button>
@@ -123,7 +128,7 @@
                             <a href="#" class="btn btn-success btn-block" onclick="SW.Common.loadFileStream('Images')">Submit file...</a>
                         </div>
                     </div>*@
-                <table class="table table-sm table-condensed" ng-if="mediaData.totalItems >0">
+                <table class="table table-sm table-condensed">
                     <thead class="thead-light">
                         <tr>
                             <th scope="col">
@@ -163,8 +168,7 @@
                                 </div>
                             </td>
                             <td>
-                                fullpath: {{item.fullPath}}
-                                @*<img height="50px" src="{{item.fullPath}}" />*@
+                                <img height="50px" src="{{item.fullPath}}" />
                             </td>
                             <td>
                                 <div class="btn-group btn-group-sm" role="group" aria-label="Actions">

@@ -82,6 +82,37 @@ namespace Swastka.Cms.Api.Controllers
 
         // GET api/products/id
         [HttpGet]
+        [Route("init/{viewType}")]
+        public JObject Init(string viewType)
+        {
+            SiocProduct product = new SiocProduct()
+            {
+                //Id = Guid.NewGuid().ToString(),
+                Specificulture = _lang
+
+            };
+
+            switch (viewType)
+            {
+                case "be":
+                    var be = new RepositoryResponse<BEProductViewModel>()
+                    {
+                        IsSucceed = true,
+                        Data = new BEProductViewModel(product) { Domain = this._domain, Status = SWStatus.Preview }
+                    };
+                    return JObject.FromObject(be);
+                default:
+                    var fe = new RepositoryResponse<InfoProductViewModel>()
+                    {
+                        IsSucceed = true,
+                        Data = new InfoProductViewModel(product) { Status = SWStatus.Preview }
+                    };
+                    return JObject.FromObject(fe);
+            }
+        }
+
+        // GET api/products/id
+        [HttpGet]
         [Route("recycle/{id}")]
         public async Task<RepositoryResponse<InfoProductViewModel>> Recycle(string id)
         {

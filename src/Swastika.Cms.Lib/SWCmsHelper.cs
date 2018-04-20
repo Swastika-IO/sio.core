@@ -41,8 +41,8 @@ namespace Swastika.Cms.Lib
         public static List<InfoCategoryViewModel> GetCategory(IUrlHelper Url, string culture, SWCmsConstants.CatePosition position, string activePath = "")
         {
             var getTopCates = InfoCategoryViewModel.Repository.GetModelListBy
-            (c => c.Specificulture == culture && c.SiocCategoryPosition.Count(
-              p => p.PositionId == (int)position) > 0
+            (c => c.Specificulture == culture && c.SiocCategoryPosition.Any(
+              p => p.PositionId == (int)position)
             );
             var cates = getTopCates.Data ?? new List<InfoCategoryViewModel>();
             activePath = activePath.ToLower();
