@@ -23,7 +23,7 @@
                             <i class="mi mi-Add"></i>
                         </a>
                         @*<a asp-area="Portal" asp-controller="Module" asp-action="Details" asp-route-id="@Model.Id" class="btn btn-secondary">
-                                <span class="oi oi-list"></span>
+                                <span class="mi mi-List"></span>
                             </a>*@
                         <a asp-area="Portal" asp-controller="Module" asp-action="Edit" asp-route-id="@Model.Id" class="btn btn-secondary">
                             <i class="mi mi-Edit"></i>
@@ -101,7 +101,7 @@
                             }
                             <td>
                                 <div class="btn-group btn-group-sm" role="group" aria-label="Actions">
-                                    <a asp-action="EditModuleData" asp-route-id="@Data.Items[i].ModuleId" asp-route-dataId="@Data.Items[i].Id" class="btn btn-sm btn-light"> <span class="oi oi-pencil text-primary"></span></a>
+                                    <a asp-action="EditModuleData" asp-route-id="@Data.Items[i].ModuleId" asp-route-dataId="@Data.Items[i].Id" class="btn btn-sm btn-light"> <span class="mi mi-Pencil text-primary"></span></a>
                                     @*<a asp-action="DeleteModuleData" asp-route-id="@Data.Items[i].Id" class="btn btn-sm btn-light" data-popout="true" data-toggle="confirmation" data-singleton="true"> <span class="oi oi-x text-danger"></span> </a>*@
 
                                     <button type="button" class="btn btn-light del-popover"
@@ -209,9 +209,9 @@
                             <td>
                                 <div class="btn-group btn-group-sm" role="group" aria-label="Actions">
                                     <a href="/@ViewBag.culture/Portal/Articles/Edit/@Model.Articles.Items[i].Id"
-                                       class="btn btn-sm btn-warning"><span class="oi oi-pencil"></span></a>
+                                       class="btn btn-sm btn-warning"><span class="mi mi-Pencil">Sửa</span></a>
                                     @*<a asp-action="Details" asp-route-id="@item.Id" class="btn btn-sm btn-info"> <span class="oi oi-eye"></span> </a>*@
-                                    <a href="/@ViewBag.culture/Portal/Articles/Recycle/@Model.Articles.Items[i].Id" class="btn btn-sm btn-danger" data-popout="true" data-toggle="confirmation" data-singleton="true"> <span class="oi oi-x"></span> </a>
+                                    <a href="/@ViewBag.culture/Portal/Articles/Recycle/@Model.Articles.Items[i].Id" class="btn btn-sm btn-danger" data-popout="true" data-toggle="confirmation" data-singleton="true"> <span class="oi oi-x">Xóa</span> </a>
                                 </div>
                             </td>
                         </tr>
@@ -307,7 +307,7 @@
                             <td>
                                 <div class="btn-group btn-group-sm" role="group" aria-label="Actions">
                                     <a href="/@ViewBag.culture/Portal/Product/Edit/@Model.Products.Items[i].Product.Id"
-                                       class="btn btn-sm btn-warning"><span class="oi oi-pencil"></span></a>
+                                       class="btn btn-sm btn-warning"><span class="mi mi-Pencil"></span></a>
                                     @*<a asp-action="Details" asp-route-id="@item.Id" class="btn btn-sm btn-info"> <span class="oi oi-eye"></span> </a>*@
                                     <a href="/@ViewBag.culture/Portal/Module/Delete/Product-Nav/@Model.Id/@Model.Products.Items[i].Product.Id" class="btn btn-sm btn-danger" data-popout="true" data-toggle="confirmation" data-singleton="true"> <span class="oi oi-x"></span> </a>
                                 </div>

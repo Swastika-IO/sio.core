@@ -57,10 +57,10 @@
         </div>
         <div class="col-md-4">
             <div class="input-group">
-                <div class="input-group-prepend" ng-click="loadProducts()">
+                <div class="input-group-prepend" ng-click="loadProducts(0)">
                     <div class="input-group-text" id="btnGroupAddon"><i class="mi mi-Search" style="top:0;"></i></div>
                 </div>
-                <input ng-model="request.keyword" ng-enter="loadProducts()" type="text" class="form-control" placeholder="Search......" aria-label="Search......" aria-describedby="btnGroupAddon">
+                <input ng-model="request.keyword" ng-enter="loadProducts(0)" type="text" class="form-control" placeholder="Search......" aria-label="Search......" aria-describedby="btnGroupAddon">
             </div>
         </div>
     </div>
@@ -164,12 +164,14 @@
 
                 <td>
                     <div class="btn-group btn-group-sm" role="group" aria-label="Actions">
-                        <a href="/{{currentLanguage}}/portal/product/edit/{{item.id}}" class="btn btn-light"> <span class="oi oi-pencil text-primary"></span></a>
-                        <a href="{{item.detailsUrl}}" target="_blank" class="btn btn-light"><span class="oi oi-eye text-info"></span></a>
+                        <a href="/{{currentLanguage}}/portal/product/edit/{{item.id}}" class="btn btn-light"> <span class="mi mi-Pencil text-primary">
+                                Sửa</span></a>
+                        <a href="{{item.detailsUrl}}" target="_blank" class="btn btn-light"><span class="fa fa-eye text-info">
+                                Xem</span></a>
 
                         <button type="button" class="btn btn-light del-popover"
                                 ng-click="removeProduct(item.id)">
-                            <span class="oi oi-x text-danger"></span>
+                            <span class="mi mi-Delete text-danger">Xóa</span>
                         </button>
                         @*<button type="button" class="btn btn-light del-popover"
                                     data-toggle="popover" data-html="true" ng-click="removeProduct(item.id)">

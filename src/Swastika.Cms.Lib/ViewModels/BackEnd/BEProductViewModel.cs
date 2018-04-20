@@ -977,6 +977,7 @@ namespace Swastika.Cms.Lib.ViewModels.BackEnd
             while (BEProductViewModel.Repository.CheckIsExists(a => a.SeoName == name && a.Specificulture == Specificulture && a.Id != Id))
             {
                 name = SeoName + "_" + i;
+                i++;
             }
             SeoName = name;
 
