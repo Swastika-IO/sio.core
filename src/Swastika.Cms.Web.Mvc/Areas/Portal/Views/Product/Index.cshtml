@@ -28,31 +28,31 @@
                     </div>
                 </div>
                 @*<div class="btn-group dropdown mr-2">
-                    <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownOrderBy" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        {{request.orderBy}}
-                    </button>
-                    <div class="dropdown-menu" aria-labelledby="dropdownOrderBy">
-                        <button class="dropdown-item" ng-repeat="item in orders track by $index" ng-model="request.orderBy" ng-click="request.orderBy=item.value;loadProducts();" value="{{item.value}}">{{item.title}}</button>
+                        <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownOrderBy" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            {{request.orderBy}}
+                        </button>
+                        <div class="dropdown-menu" aria-labelledby="dropdownOrderBy">
+                            <button class="dropdown-item" ng-repeat="item in orders track by $index" ng-model="request.orderBy" ng-click="request.orderBy=item.value;loadProducts();" value="{{item.value}}">{{item.title}}</button>
+                        </div>
                     </div>
-                </div>
-                <div class="btn-group mr-2" role="group" aria-label="First group">
-                    <button class="btn btn-secondary" ng-repeat="item in directions track by $index" ng-model="request.direction" ng-click="request.direction=item.value;loadProducts();" value="{{item.value}}">{{item.title}}</button>
-                </div>
-                <div class="dropdown mr-2">
-                    <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownItemPerPage" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        {{request.pageSize}} items
-                    </button>
-                    <div class="dropdown-menu" aria-labelledby="dropdownItemPerPage">
-                        <button class="dropdown-item" ng-repeat="item in pageSizes track by $index" ng-model="request.pageSize" ng-click="request.pageSize=item;loadProducts();" value="{{item}}">{{item}}</button>
+                    <div class="btn-group mr-2" role="group" aria-label="First group">
+                        <button class="btn btn-secondary" ng-repeat="item in directions track by $index" ng-model="request.direction" ng-click="request.direction=item.value;loadProducts();" value="{{item.value}}">{{item.title}}</button>
                     </div>
-                </div>
-                <div class="input-group mr-2" role="group" aria-label="First group">
-                    <div class="input-group-prepend">
-                        <span class="input-group-text" id=""><i class="mi mi-Calendar"></i></span>
+                    <div class="dropdown mr-2">
+                        <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownItemPerPage" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            {{request.pageSize}} items
+                        </button>
+                        <div class="dropdown-menu" aria-labelledby="dropdownItemPerPage">
+                            <button class="dropdown-item" ng-repeat="item in pageSizes track by $index" ng-model="request.pageSize" ng-click="request.pageSize=item;loadProducts();" value="{{item}}">{{item}}</button>
+                        </div>
                     </div>
-                    <input type="date" ng-model="request.fromDate" ng-change="loadProducts()" class="form-control" />
-                    <input type="date" ng-model="request.toDate" ng-change="loadProducts()" class="form-control" />
-                </div>*@
+                    <div class="input-group mr-2" role="group" aria-label="First group">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text" id=""><i class="mi mi-Calendar"></i></span>
+                        </div>
+                        <input type="date" ng-model="request.fromDate" ng-change="loadProducts()" class="form-control" />
+                        <input type="date" ng-model="request.toDate" ng-change="loadProducts()" class="form-control" />
+                    </div>*@
             </div>
         </div>
         <div class="col-md-4">
@@ -105,10 +105,10 @@
         <thead class="thead-light">
             <tr>
                 <th scope="col" style="width: 3%;">
-                    <span class="oi oi-move"></span>
+                    <span class="fas fa-arrows-alt"></span>
                 </th>
                 <th scope="col" style="width: 4%;">
-                    <span class="oi oi-sort-ascending"></span>
+                    <span class="fas fa-sort-numeric-down"></span>
                 </th>
                 <th scope="col" style="width: 5%;">
                     Code
@@ -134,7 +134,7 @@
             <tr ng-repeat="item in data.items track by $index"
                 class="sortable-item" sort-model="product" sort-model-id="{{item.id}}">
                 <td style="cursor:move;" class="drag-header">
-                    <span class="oi oi-move"></span>
+                    <span class="fas fa-sort"></span>
                 </td>
                 <td>
                     <input type="text" value="{{item.priority}}" class="item-priority form-control form-control-sm d-inline" style="width:40px;" />
@@ -164,18 +164,20 @@
 
                 <td>
                     <div class="btn-group btn-group-sm" role="group" aria-label="Actions">
-                        <a href="/{{currentLanguage}}/portal/product/edit/{{item.id}}" class="btn btn-light"> <span class="mi mi-Pencil text-primary">
-                                Sửa</span></a>
-                        <a href="{{item.detailsUrl}}" target="_blank" class="btn btn-light"><span class="fa fa-eye text-info">
-                                Xem</span></a>
+                        <a href="/{{currentLanguage}}/portal/product/edit/{{item.id}}" class="btn btn-light">
+                            <span class="fas fa-pencil-alt text-primary"></span>
+                        </a>
+                        <a href="{{item.detailsUrl}}" target="_blank" class="btn btn-light">
+                            <span class="fas fa-eye text-info"></span>
+                        </a>
 
                         <button type="button" class="btn btn-light del-popover"
                                 ng-click="removeProduct(item.id)">
-                            <span class="mi mi-Delete text-danger">Xóa</span>
+                            <span class="fas fa-times text-danger"></span>
                         </button>
                         @*<button type="button" class="btn btn-light del-popover"
                                     data-toggle="popover" data-html="true" ng-click="removeProduct(item.id)">
-                                <span class="oi oi-x text-danger"></span>
+                                <span class="fas fa-times text-danger"></span>
                             </button>
                             <div class="popover-body d-none">
                                 <a href="/{{currentLanguage}}/portal/products/delete/{{item.id}}" class="btn btn btn-danger">Yes, I want to delete!</a>

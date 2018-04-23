@@ -26,7 +26,7 @@
                                 <span class="mi mi-List"></span>
                             </a>*@
                         <a asp-area="Portal" asp-controller="Module" asp-action="Edit" asp-route-id="@Model.Id" class="btn btn-secondary">
-                            <i class="mi mi-Edit"></i>
+                            <i class="fas fa-pencil-alt"></i>
                         </a>
                     </div>
                 </div>
@@ -43,10 +43,10 @@
                 <thead class="thead-light">
                     <tr>
                         <th scope="col" width="5%">
-                            <span class="oi oi-move"></span>
+                            <span class="fas fa-arrows-alt"></span>
                         </th>
                         <th scope="col" width="5%">
-                            <span class="oi oi-sort-ascending"></span>
+                            <span class="fas fa-sort-numeric-down"></span>
                         </th>
                         @foreach (var col in Model.Columns.Where(c => c.IsDisplay))
                         {
@@ -63,10 +63,10 @@
                 <tfoot>
                     <tr>
                         <th scope="col">
-                            <span class="oi oi-move"></span>
+                            <span class="fas fa-arrows-alt"></span>
                         </th>
                         <th scope="col">
-                            <span class="oi oi-sort-ascending"></span>
+                            <span class="fas fa-sort-numeric-down"></span>
                         </th>
                         @foreach (var col in Model.Columns.Where(c => c.IsDisplay))
                         {
@@ -85,7 +85,7 @@
                     {
                         <tr class="sortable-item" sort-model="moduleData" sort-model-id="@Data.Items[i].Id">
                             <td style="cursor:move;" class="drag-header">
-                                <span class="oi oi-move"></span>
+                                <span class="fas fa-arrows-alt"></span>
                             </td>
                             <td>
                                 <input type="text" asp-for="@Data.Items[i].Priority" class="item-priority form-control form-control-sm d-inline" style="width:40px;" />
@@ -101,12 +101,12 @@
                             }
                             <td>
                                 <div class="btn-group btn-group-sm" role="group" aria-label="Actions">
-                                    <a asp-action="EditModuleData" asp-route-id="@Data.Items[i].ModuleId" asp-route-dataId="@Data.Items[i].Id" class="btn btn-sm btn-light"> <span class="mi mi-Pencil text-primary"></span></a>
-                                    @*<a asp-action="DeleteModuleData" asp-route-id="@Data.Items[i].Id" class="btn btn-sm btn-light" data-popout="true" data-toggle="confirmation" data-singleton="true"> <span class="oi oi-x text-danger"></span> </a>*@
+                                    <a asp-action="EditModuleData" asp-route-id="@Data.Items[i].ModuleId" asp-route-dataId="@Data.Items[i].Id" class="btn btn-sm btn-light"> <span class="fas fa-pencil-alt text-primary"></span></a>
+                                    @*<a asp-action="DeleteModuleData" asp-route-id="@Data.Items[i].Id" class="btn btn-sm btn-light" data-popout="true" data-toggle="confirmation" data-singleton="true"> <span class="fas fa-times text-danger"></span> </a>*@
 
                                     <button type="button" class="btn btn-light del-popover"
                                             data-toggle="popover" data-html="true">
-                                        <span class="oi oi-x text-danger"></span>
+                                        <span class="fas fa-times text-danger"></span>
                                     </button>
                                     <div class="popover-body d-none">
                                         <a asp-action="DeleteModuleData" asp-route-id="@Data.Items[i].Id" class="btn btn btn-danger">Yes, I want to delete!</a>
@@ -137,10 +137,10 @@
                 <thead class="thead-light">
                     <tr>
                         <th scope="col">
-                            <span class="oi oi-move"></span>
+                            <span class="fas fa-arrows-alt"></span>
                         </th>
                         <th scope="col">
-                            <span class="oi oi-sort-ascending"></span>
+                            <span class="fas fa-sort-numeric-down"></span>
                         </th>
                         <th scope="col">
                             Title
@@ -161,10 +161,10 @@
                 <tfoot>
                     <tr>
                         <th scope="col">
-                            <span class="oi oi-move"></span>
+                            <span class="fas fa-arrows-alt"></span>
                         </th>
                         <th scope="col">
-                            <span class="oi oi-sort-ascending"></span>
+                            <span class="fas fa-sort-numeric-down"></span>
                         </th>
                         <th scope="col">
                             Title
@@ -187,7 +187,7 @@
                     {
                         <tr class="sortable-item">
                             <td style="cursor:move;" class="drag-header">
-                                <span class="oi oi-move"></span>
+                                <span class="fas fa-arrows-alt"></span>
                             </td>
                             <td>
                                 <input type="text" asp-for="@Model.Articles.Items[i].Priority" class="item-priority form-control form-control-sm d-inline" style="width:40px;" />
@@ -209,9 +209,9 @@
                             <td>
                                 <div class="btn-group btn-group-sm" role="group" aria-label="Actions">
                                     <a href="/@ViewBag.culture/Portal/Articles/Edit/@Model.Articles.Items[i].Id"
-                                       class="btn btn-sm btn-warning"><span class="mi mi-Pencil">Sửa</span></a>
-                                    @*<a asp-action="Details" asp-route-id="@item.Id" class="btn btn-sm btn-info"> <span class="oi oi-eye"></span> </a>*@
-                                    <a href="/@ViewBag.culture/Portal/Articles/Recycle/@Model.Articles.Items[i].Id" class="btn btn-sm btn-danger" data-popout="true" data-toggle="confirmation" data-singleton="true"> <span class="oi oi-x">Xóa</span> </a>
+                                       class="btn btn-sm btn-warning"><span class="fas fa-pencil-alt"></span></a>
+                                    @*<a asp-action="Details" asp-route-id="@item.Id" class="btn btn-sm btn-info"> <span class="fas fa-eye"></span> </a>*@
+                                    <a href="/@ViewBag.culture/Portal/Articles/Recycle/@Model.Articles.Items[i].Id" class="btn btn-sm btn-danger" data-popout="true" data-toggle="confirmation" data-singleton="true"> <span class="fas fa-times"></span> </a>
                                 </div>
                             </td>
                         </tr>
@@ -235,10 +235,10 @@
                 <thead class="thead-light">
                     <tr>
                         <th scope="col">
-                            <span class="oi oi-move"></span>
+                            <span class="fas fa-arrows-alt"></span>
                         </th>
                         <th scope="col">
-                            <span class="oi oi-sort-ascending"></span>
+                            <span class="fas fa-sort-numeric-down"></span>
                         </th>
                         <th scope="col">
                             Title
@@ -259,10 +259,10 @@
                 <tfoot>
                     <tr>
                         <th scope="col">
-                            <span class="oi oi-move"></span>
+                            <span class="fas fa-arrows-alt"></span>
                         </th>
                         <th scope="col">
-                            <span class="oi oi-sort-ascending"></span>
+                            <span class="fas fa-sort-numeric-down"></span>
                         </th>
                         <th scope="col">
                             Title
@@ -285,7 +285,7 @@
                     {
                         <tr class="sortable-item">
                             <td style="cursor:move;" class="drag-header">
-                                <span class="oi oi-move"></span>
+                                <span class="fas fa-arrows-alt"></span>
                             </td>
                             <td>
                                 <input type="text" asp-for="@Model.Products.Items[i].Product.Priority" class="item-priority form-control form-control-sm d-inline" style="width:40px;" />
@@ -307,9 +307,9 @@
                             <td>
                                 <div class="btn-group btn-group-sm" role="group" aria-label="Actions">
                                     <a href="/@ViewBag.culture/Portal/Product/Edit/@Model.Products.Items[i].Product.Id"
-                                       class="btn btn-sm btn-warning"><span class="mi mi-Pencil"></span></a>
-                                    @*<a asp-action="Details" asp-route-id="@item.Id" class="btn btn-sm btn-info"> <span class="oi oi-eye"></span> </a>*@
-                                    <a href="/@ViewBag.culture/Portal/Module/Delete/Product-Nav/@Model.Id/@Model.Products.Items[i].Product.Id" class="btn btn-sm btn-danger" data-popout="true" data-toggle="confirmation" data-singleton="true"> <span class="oi oi-x"></span> </a>
+                                       class="btn btn-sm btn-warning"><span class="fas fa-pencil-alt"></span></a>
+                                    @*<a asp-action="Details" asp-route-id="@item.Id" class="btn btn-sm btn-info"> <span class="fas fa-eye"></span> </a>*@
+                                    <a href="/@ViewBag.culture/Portal/Module/Delete/Product-Nav/@Model.Id/@Model.Products.Items[i].Product.Id" class="btn btn-sm btn-danger" data-popout="true" data-toggle="confirmation" data-singleton="true"> <span class="fas fa-times"></span> </a>
                                 </div>
                             </td>
                         </tr>

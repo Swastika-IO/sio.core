@@ -57,10 +57,10 @@
         <thead class="thead-light">
             <tr>
                 <th scope="col" width="3%">
-                    <span class="oi oi-move"></span>
+                    <span class="fas fa-arrows-alt"></span>
                 </th>
                 <th scope="col" width="4%">
-                    <span class="oi oi-sort-ascending"></span>
+                    <span class="fas fa-sort-numeric-down"></span>
                 </th>
                 <th scope="col" width="20%">
                     Title
@@ -86,7 +86,7 @@
             <tr class="" sort-model="category" sort-model-id="{{item.id}}">
 
                 <td style="cursor:move;" class="drag-header">
-                    <span class="oi oi-move"></span>
+                    <span class="fas fa-arrows-alt"></span>
                 </td>
                 <td>
                     <input type="text" value="{{item.priority}}" class="item-priority form-control form-control-sm d-inline" style="width:40px;" />
@@ -116,17 +116,17 @@
                     <div class="btn-group btn-group-sm" role="group" aria-label="Actions">
 
                         <a class="btn btn-light" data-toggle="collapse" href="#collapse-page{{item.id}}-childs" role="button" aria-expanded="false" aria-controls="collapse-page{{item.id}}-childs">
-                            <span class="oi oi-fork"></span>
+                            <span class="fas fa-code-branch"></span>
                         </a>
-                        <a href="/{{currentLanguage}}/portal/pages/edit/{{item.id}}" class="btn btn-light"> <span class="mi mi-Pencil text-primary">Sửa</span></a>
-                        <a href="{{item.detailsUrl}}" target="_blank" class="btn btn-light"><span class="oi oi-eye text-info">Xem</span></a>
+                        <a href="/{{currentLanguage}}/portal/pages/edit/{{item.id}}" class="btn btn-light"> <span class="fas fa-pencil-alt text-primary"></span></a>
+                        <a href="{{item.detailsUrl}}" target="_blank" class="btn btn-light"><span class="fas fa-eye text-info"></span></a>
                         <a href="#" class="btn btn-light"
                            ng-click="removePage(item.id)">
-                            <span class="oi oi-x text-danger">Xóa</span>
+                            <span class="fas fa-times text-danger"></span>
                         </a>
                         @*<button type="button" class="btn btn-light del-popover"
                                     data-toggle="popover" data-html="true">
-                                <span class="oi oi-x text-danger"></span>
+                                <span class="fas fa-times text-danger"></span>
                             </button>
                             <div class="popover-body">
                                 <a href="/{{currentLanguage}}/portal/pages/delete/{{item.id}}" class="btn btn btn-danger">Yes, I want to delete!</a>
@@ -141,10 +141,10 @@
                             <thead style="font-size:small; font-weight:normal">
                                 <tr>
                                     <th scope="col" width="3%">
-                                        <span class="oi oi-move" style="font-size:small"></span>
+                                        <span class="fas fa-arrows-alt" style="font-size:small"></span>
                                     </th>
                                     <th scope="col" width="4%">
-                                        <span class="oi oi-sort-ascending"></span>
+                                        <span class="fas fa-sort-numeric-down"></span>
                                     </th>
                                     <th scope="col" width="20%">
                                         Title
@@ -166,7 +166,7 @@
                             <tbody class="sortable">
                                 <tr class="sortable-item">
                                     <td style="cursor:move;" class="drag-header">
-                                        <span class="oi oi-move" style="font-size:small"></span>
+                                        <span class="fas fa-arrows-alt" style="font-size:small"></span>
                                     </td>
                                     <td>
                                         <input type="text" value="0" class="item-priority form-control form-control-sm d-inline" style="width:40px;">
@@ -186,18 +186,18 @@
 
                                     <td>
                                         <div class="btn-group btn-group-sm" role="group" aria-label="Actions">
-                                            <a href="/vi-vn/portal/product/edit/807fa8dd-b7ff-4011-a0ec-ba24ee1eec0a" class="btn btn-light"> <span class="mi mi-Pencil text-primary"></span></a>
-                                            <a href="http://localhost:58511/vi-vn/product/gach-lot-aj32501_1" target="_blank" class="btn btn-light"><span class="oi oi-eye text-info"></span></a>
+                                            <a href="/vi-vn/portal/product/edit/807fa8dd-b7ff-4011-a0ec-ba24ee1eec0a" class="btn btn-light"> <span class="fas fa-pencil-alt text-primary"></span></a>
+                                            <a href="http://localhost:58511/vi-vn/product/gach-lot-aj32501_1" target="_blank" class="btn btn-light"><span class="fas fa-eye text-info"></span></a>
 
                                             <button type="button" class="btn btn-light del-popover" ng-click="removeProduct(item.id)">
-                                                <span class="oi oi-x text-danger"></span>
+                                                <span class="fas fa-times text-danger"></span>
                                             </button>
                                         </div>
                                     </td>
                                 </tr>
                                 <tr class="sortable-item">
                                     <td style="cursor:move;" class="drag-header">
-                                        <span class="oi oi-move" style="font-size:small"></span>
+                                        <span class="fas fa-arrows-alt" style="font-size:small"></span>
                                     </td>
                                     <td>
                                         <input type="text" value="0" class="item-priority form-control form-control-sm d-inline" style="width:40px;">
@@ -217,18 +217,18 @@
 
                                     <td>
                                         <div class="btn-group btn-group-sm" role="group" aria-label="Actions">
-                                            <a href="/vi-vn/portal/product/edit/807fa8dd-b7ff-4011-a0ec-ba24ee1eec0a" class="btn btn-light"> <span class="mi mi-Pencil text-primary"></span></a>
-                                            <a href="http://localhost:58511/vi-vn/product/gach-lot-aj32501_1" target="_blank" class="btn btn-light"><span class="oi oi-eye text-info"></span></a>
+                                            <a href="/vi-vn/portal/product/edit/807fa8dd-b7ff-4011-a0ec-ba24ee1eec0a" class="btn btn-light"> <span class="fas fa-pencil-alt text-primary"></span></a>
+                                            <a href="http://localhost:58511/vi-vn/product/gach-lot-aj32501_1" target="_blank" class="btn btn-light"><span class="fas fa-eye text-info"></span></a>
 
                                             <button type="button" class="btn btn-light del-popover" ng-click="removeProduct(item.id)">
-                                                <span class="oi oi-x text-danger"></span>
+                                                <span class="fas fa-times text-danger"></span>
                                             </button>
                                         </div>
                                     </td>
                                 </tr>
                                 <tr class="sortable-item">
                                     <td style="cursor:move;" class="drag-header">
-                                        <span class="oi oi-move" style="font-size:small"></span>
+                                        <span class="fas fa-arrows-alt" style="font-size:small"></span>
                                     </td>
                                     <td>
                                         <input type="text" value="0" class="item-priority form-control form-control-sm d-inline" style="width:40px;">
@@ -248,11 +248,11 @@
 
                                     <td>
                                         <div class="btn-group btn-group-sm" role="group" aria-label="Actions">
-                                            <a href="/vi-vn/portal/product/edit/807fa8dd-b7ff-4011-a0ec-ba24ee1eec0a" class="btn btn-light"> <span class="mi mi-Pencil text-primary"></span></a>
-                                            <a href="http://localhost:58511/vi-vn/product/gach-lot-aj32501_1" target="_blank" class="btn btn-light"><span class="oi oi-eye text-info"></span></a>
+                                            <a href="/vi-vn/portal/product/edit/807fa8dd-b7ff-4011-a0ec-ba24ee1eec0a" class="btn btn-light"> <span class="fas fa-pencil-alt text-primary"></span></a>
+                                            <a href="http://localhost:58511/vi-vn/product/gach-lot-aj32501_1" target="_blank" class="btn btn-light"><span class="fas fa-eye text-info"></span></a>
 
                                             <button type="button" class="btn btn-light del-popover" ng-click="removeProduct(item.id)">
-                                                <span class="oi oi-x text-danger"></span>
+                                                <span class="fas fa-times text-danger"></span>
                                             </button>
                                         </div>
                                     </td>

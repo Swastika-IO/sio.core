@@ -3,7 +3,7 @@
 @{
     <tr id="data-@Model.Id" dataId="data-@Model.Id" class="sortable-item">
         <td style="cursor:move;" class="drag-header">
-            <span class="oi oi-move"></span>
+            <span class="fas fa-arrows-alt"></span>
         </td>
 
         @foreach (var col in Model.Columns.Where(c => c.IsDisplay))
