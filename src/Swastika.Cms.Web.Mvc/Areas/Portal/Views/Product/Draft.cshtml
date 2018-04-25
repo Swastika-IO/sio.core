@@ -67,10 +67,10 @@
                 <thead class="thead-light">
                     <tr>
                         <th scope="col" width="5%">
-                            <span class="oi oi-move"></span>
+                            <span class="fas fa-arrows-alt"></span>
                         </th>
                         <th scope="col" width="5%">
-                            <span class="oi oi-sort-ascending"></span>
+                            <span class="fas fa-sort-numeric-down"></span>
                         </th>
                         <th scope="col">
                             Title
@@ -90,10 +90,10 @@
                 @*<tfoot>
                         <tr>
                             <th scope="col">
-                                <span class="oi oi-move"></span>
+                                <span class="fas fa-arrows-alt"></span>
                             </th>
                             <th scope="col">
-                                <span class="oi oi-sort-ascending"></span>
+                                <span class="fas fa-sort-numeric-down"></span>
                             </th>
                             <th scope="col">
                                 Title
@@ -115,7 +115,7 @@
                     {
                         <tr class="sortable-item" sort-model="Product" sort-model-id="@Model.Items[i].Id">
                             <td style="cursor:move;" class="drag-header">
-                                <span class="oi oi-move"></span>
+                                <span class="fas fa-arrows-alt"></span>
                             </td>
                             <td>
                                 <input type="text" asp-for="@Model.Items[i].Priority" class="item-priority form-control form-control-sm d-inline" style="width:40px;" />
@@ -138,7 +138,7 @@
                                    class="btn btn-sm btn-success" data-popout="true" data-toggle="confirmation" data-singleton="true"><i class="fa fa-retweet"></i></a>
 
                                 <a asp-area="Portal" asp-controller="Product" asp-action="Delete" asp-route-id="@Model.Items[i].Id"
-                                   class="btn btn-sm btn-danger d-inline-block" data-popout="true" data-toggle="confirmation" data-singleton="true"><span class="oi oi-x"></span></a>
+                                   class="btn btn-sm btn-danger d-inline-block" data-popout="true" data-toggle="confirmation" data-singleton="true"><span class="fas fa-times"></span></a>
                             </td>
                         </tr>
                     }
@@ -217,9 +217,9 @@
                                    class="btn btn-sm btn-warning d-inline-block "><span class="oi oi-pencil"></span></a>
                                 <a asp-area="" asp-controller="Home" asp-action="ProductDetails"
                                    asp-route-SeoName="@item.SeoName"
-                                   target="_blank" class="btn btn-sm btn-info"><span class="oi oi-eye"></span></a>
+                                   target="_blank" class="btn btn-sm btn-info"><span class="fas fa-eye"></span></a>
                                 <a asp-area="Portal" asp-controller="Product" asp-action="Recycle" asp-route-id="@item.Id"
-                                   class="btn btn-sm btn-danger d-inline-block" data-popout="true" data-toggle="confirmation" data-singleton="true"><span class="oi oi-x"></span></a>
+                                   class="btn btn-sm btn-danger d-inline-block" data-popout="true" data-toggle="confirmation" data-singleton="true"><span class="fas fa-times"></span></a>
                             </div>
                         </td>
                     </tr>

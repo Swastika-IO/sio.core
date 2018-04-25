@@ -70,8 +70,8 @@
                                 <a asp-controller="Articles" asp-action="Edit" asp-route-id="@item.Id" asp-route-categoryId="@ViewBag.categoryId"
                                    class="btn btn-sm btn-warning d-inline-block "><span class="oi oi-pencil"></span></a>
                                 <a asp-area="" asp-controller="Home" asp-action="ArticleDetails" asp-route-id="@item.Id" asp-route-SeoName="@item.SeoName"
-                                   target="_blank" class="btn btn-sm btn-info"><span class="oi oi-eye"></span></a>
-                                <a asp-controller="Articles" asp-action="Recycle" asp-route-id="@item.Id" class="btn btn-sm btn-danger d-inline-block" data-popout="true" data-toggle="confirmation" data-singleton="true"> <span class="oi oi-x"></span> </a>
+                                   target="_blank" class="btn btn-sm btn-info"><span class="fas fa-eye"></span></a>
+                                <a asp-controller="Articles" asp-action="Recycle" asp-route-id="@item.Id" class="btn btn-sm btn-danger d-inline-block" data-popout="true" data-toggle="confirmation" data-singleton="true"> <span class="fas fa-times"></span> </a>
                             </div>
                         </td>
                     </tr>

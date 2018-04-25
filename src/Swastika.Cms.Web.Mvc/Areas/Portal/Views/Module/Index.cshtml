@@ -24,33 +24,33 @@
                             <a asp-area="Portal" asp-controller="Module" asp-action="Draft" class="btn btn-secondary"><i class="mi mi-Paste"></i></a>
                         </div>
                         @*<div class="btn-group mr-2" role="group" aria-label="Button group with nested dropdown">
-                            <div class="btn-group" role="group">
-                                <button id="btnGroupDrop1" type="button" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                    All types
-                                </button>
-                                <div class="dropdown-menu" aria-labelledby="btnGroupDrop1">
-                                    <a class="dropdown-item" href="#">All types</a>
-                                    <a class="dropdown-item" href="#">Images</a>
-                                    <a class="dropdown-item" href="#">Audios</a>
-                                    <a class="dropdown-item" href="#">Videos</a>
-                                    <a class="dropdown-item" href="#">Documents</a>
-                                    <a class="dropdown-item" href="#">Zips</a>
-                                    <a class="dropdown-item" href="#">Others</a>
+                                <div class="btn-group" role="group">
+                                    <button id="btnGroupDrop1" type="button" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                        All types
+                                    </button>
+                                    <div class="dropdown-menu" aria-labelledby="btnGroupDrop1">
+                                        <a class="dropdown-item" href="#">All types</a>
+                                        <a class="dropdown-item" href="#">Images</a>
+                                        <a class="dropdown-item" href="#">Audios</a>
+                                        <a class="dropdown-item" href="#">Videos</a>
+                                        <a class="dropdown-item" href="#">Documents</a>
+                                        <a class="dropdown-item" href="#">Zips</a>
+                                        <a class="dropdown-item" href="#">Others</a>
+                                    </div>
                                 </div>
-                            </div>
-                        </div>*@
+                            </div>*@
                         @*<div class="btn-group mr-2" role="group" aria-label="Button group with nested dropdown">
-                            <div class="btn-group" role="group">
-                                <button id="btnGroupDrop1" type="button" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                    All times
-                                </button>
-                                <div class="dropdown-menu" aria-labelledby="btnGroupDrop1">
-                                    <a class="dropdown-item" href="#">Jan 2018</a>
-                                    <a class="dropdown-item" href="#">Dec 2017</a>
-                                    <a class="dropdown-item" href="#">Nov 2017</a>
+                                <div class="btn-group" role="group">
+                                    <button id="btnGroupDrop1" type="button" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                        All times
+                                    </button>
+                                    <div class="dropdown-menu" aria-labelledby="btnGroupDrop1">
+                                        <a class="dropdown-item" href="#">Jan 2018</a>
+                                        <a class="dropdown-item" href="#">Dec 2017</a>
+                                        <a class="dropdown-item" href="#">Nov 2017</a>
+                                    </div>
                                 </div>
-                            </div>
-                        </div>*@
+                            </div>*@
                     </div>
                 </div>
                 <div class="col-md-4">
@@ -66,10 +66,10 @@
                 <thead class="thead-light">
                     <tr>
                         <th scope="col" width="5%">
-                            <span class="oi oi-move"></span>
+                            <span class="fas fa-arrows-alt"></span>
                         </th>
                         <th scope="col" width="5%">
-                            <span class="oi oi-sort-ascending"></span>
+                            <span class="fas fa-sort-numeric-down"></span>
                         </th>
                         @*<th scope="col">
                                 Id
@@ -111,7 +111,7 @@
 
                         <tr class="sortable-item" sort-model="module" sort-model-id="@Model.Items[i].Id">
                             <td style="cursor:move;" class="drag-header">
-                                <span class="oi oi-move"></span>
+                                <span class="fas fa-sort"></span>
                             </td>
                             <td>
                                 <input type="text" asp-for="@Model.Items[i].Priority" class="item-priority form-control form-control-sm d-inline" style="width:40px;" />
@@ -132,16 +132,16 @@
                             <td>
                                 <div class="btn-group btn-group-sm" role="group" aria-label="Actions">
                                     <a asp-area="Portal" asp-controller="Module" asp-action="AddModuleData" asp-route-id="@Model.Items[i].Id" class="btn btn-light">
-                                        <span class="mi mi-Add text-primary">Thêm</span>
+                                        <span class="fas fa-plus text-primary"></span>
                                     </a>
                                     <a asp-action="Details" asp-route-id="@Model.Items[i].Id"
-                                       class="btn btn-sm btn-light"><span class="mi mi-List text-info"></span></a>
-                                    <a asp-action="Edit" asp-route-id="@Model.Items[i].Id" class="btn btn-sm btn-light"> <span class="mi mi-Pencil text-secondary">Sửa</span></a>
-                                    @*<a asp-action="Delete" asp-route-id="@Model.Items[i].Id" class="btn btn-sm btn-light" data-popout="true" data-toggle="confirmation" data-singleton="true" data-btn-ok-class="btn-danger btn-sm" data-btn-cancel-class="btn-success btn-sm" data-content="This can be undo!"> <span class="oi oi-x text-danger"></span> </a>*@
+                                       class="btn btn-sm btn-light"><span class="fas fa-list text-info"></span></a>
+                                    <a asp-action="Edit" asp-route-id="@Model.Items[i].Id" class="btn btn-sm btn-light"> <span class="fas fa-pencil-alt text-secondary"></span></a>
+                                    @*<a asp-action="Delete" asp-route-id="@Model.Items[i].Id" class="btn btn-sm btn-light" data-popout="true" data-toggle="confirmation" data-singleton="true" data-btn-ok-class="btn-danger btn-sm" data-btn-cancel-class="btn-success btn-sm" data-content="This can be undo!"> <span class="fas fa-times text-danger"></span> </a>*@
 
                                     <button type="button" class="btn btn-light del-popover"
                                             data-toggle="popover" data-html="true">
-                                        <span class="oi oi-x text-danger">Xóa</span>
+                                        <span class="fas fa-times text-danger"></span>
                                     </button>
                                     <div class="popover-body d-none">
                                         <a asp-action="Delete" asp-route-id="@Model.Items[i].Id" class="btn btn btn-danger">Yes, I want to delete!</a>

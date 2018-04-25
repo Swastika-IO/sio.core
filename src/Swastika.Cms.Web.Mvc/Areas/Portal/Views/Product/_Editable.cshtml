@@ -145,10 +145,10 @@
                                             <thead class="thead-light">
                                                 <tr>
                                                     <th scope="col" width="5%">
-                                                        <span class="oi oi-move"></span>
+                                                        <span class="fas fa-arrows-alt"></span>
                                                     </th>
                                                     <th scope="col" width="5%">
-                                                        <span class="oi oi-sort-ascending"></span>
+                                                        <span class="fas fa-sort-numeric-down"></span>
                                                     </th>
                                                     <th scope="col">Name</th>
                                                     <th scope="col" width="20%">Data Type</th>
@@ -160,7 +160,7 @@
                                                 {
                                                     <tr class="sortable-item product-property">
                                                         <td style="cursor:move;" class="drag-header">
-                                                            <span class="oi oi-move"></span>
+                                                            <span class="fas fa-arrows-alt"></span>
                                                         </td>
                                                         <td>
                                                             <input type="text" asp-for="@Model.Properties[i].Priority" class="item-priority form-control form-control-sm d-inline" style="width:40px;" />
@@ -440,10 +440,10 @@
                                     <thead class="thead-light">
                                         <tr>
                                             <th scope="col" width="5%">
-                                                <span class="oi oi-move"></span>
+                                                <span class="fas fa-arrows-alt"></span>
                                             </th>
                                             <th scope="col" width="5%">
-                                                <span class="oi oi-sort-ascending"></span>
+                                                <span class="fas fa-sort-numeric-down"></span>
                                             </th>
                                             <th scope="col">Name</th>
                                             <th scope="col">Image</th>
@@ -454,7 +454,7 @@
 
                                         <tr class="sortable-item" ng-repeat="item in activedMedias track by $index">
                                             <td style="cursor:move;" class="drag-header">
-                                                <span class="oi oi-move"></span>
+                                                <span class="fas fa-arrows-alt"></span>
                                             </td>
                                             <td>
                                                 <input type="text" name="MediaNavs[{{$index}}].Priority" value="{{item.priority}}" class="item-priority form-control form-control-sm d-inline" style="width:40px;" />
@@ -584,10 +584,10 @@
                                     <thead class="thead-light">
                                         <tr>
                                             <th scope="col" width="5%">
-                                                <span class="oi oi-move"></span>
+                                                <span class="fas fa-arrows-alt"></span>
                                             </th>
                                             <th scope="col" width="5%">
-                                                <span class="oi oi-sort-ascending"></span>
+                                                <span class="fas fa-sort-numeric-down"></span>
                                             </th>
                                             <th scope="col">Title</th>
                                             <th scope="col" width="15%">Image</th>
@@ -598,7 +598,7 @@
 
                                         <tr class="sortable-item" ng-repeat="item in activedProducts track by $index">
                                             <td style="cursor:move;" class="drag-header">
-                                                <span class="oi oi-move"></span>
+                                                <span class="fas fa-arrows-alt"></span>
                                             </td>
                                             <td>
                                                 <input type="text" name="ProductNavs[{{$index}}].Priority" value="{{item.priority}}" class="item-priority form-control form-control-sm d-inline" style="width:40px;" />
@@ -682,10 +682,10 @@
                                 <thead class="thead-light">
                                     <tr>
                                         <th scope="col" width="5%">
-                                            <span class="oi oi-move"></span>
+                                            <span class="fas fa-arrows-alt"></span>
                                         </th>
                                         <th scope="col" width="5%">
-                                            <span class="oi oi-sort-ascending"></span>
+                                            <span class="fas fa-sort-numeric-down"></span>
                                         </th>
                                         <th scope="col">Title</th>
                                         <th scope="col" width="20%">Image</th>
@@ -695,7 +695,7 @@
                                 <tbody class="sortable">
                                     <tr class="sortable-item module-column" ng-repeat="product in productData.items">
                                         <td style="cursor:move;" class="drag-header">
-                                            <span class="oi oi-move"></span>
+                                            <span class="fas fa-arrows-alt"></span>
                                         </td>
                                         <td>
                                             <input type="text" class="item-priority form-control form-control-sm d-inline" style="width:40px;" />
