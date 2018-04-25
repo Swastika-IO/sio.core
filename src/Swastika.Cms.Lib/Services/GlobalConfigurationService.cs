@@ -2,6 +2,8 @@
 // The Swastika I/O Foundation licenses this file to you under the MIT license.
 // See the LICENSE file in the project root for more information.
 
+using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Storage;
 using Microsoft.Extensions.Configuration;
@@ -11,8 +13,12 @@ using Swastika.Cms.Lib.Repositories;
 using Swastika.Cms.Lib.ViewModels;
 using Swastika.Cms.Lib.ViewModels.BackEnd;
 using Swastika.Common.Helper;
+using Swastika.Domain.Core.ViewModels;
+using Swastika.Identity.Data;
+using Swastika.Identity.Models;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace Swastika.Cms.Lib.Services
 {
@@ -146,11 +152,14 @@ namespace Swastika.Cms.Lib.Services
             return configuration.GetConnectionString(SWCmsConstants.CONST_DEFAULT_CONNECTION);
         }
 
-        public void InitSWCms()
+        public RepositoryResponse<bool> InitSWCms()
         {
+            RepositoryResponse<bool> result = new RepositoryResponse<bool>();
             SiocCmsContext context = null;
             SiocCmsAccountContext accountContext = null;
             IDbContextTransaction transaction = null;
+            IDbContextTransaction accTransaction = null;
+            bool isSucceed = true;
             try
             {
                 if (InitConnectionString())
@@ -159,230 +168,21 @@ namespace Swastika.Cms.Lib.Services
                     accountContext = new SiocCmsAccountContext();
                     context.Database.Migrate();
                     accountContext.Database.Migrate();
+
                     transaction = context.Database.BeginTransaction();
-                    bool isSucceed = true;
-                    //var getConnectionString = BEParameterViewModel.Repository.GetSingleModel(
-                    //    c => c.Name == SWCmsConstants.ConfigurationKeyword.ConnectionString,
-                    //    _context: context, _transaction: transaction);
+                    accTransaction = accountContext.Database.BeginTransaction();
 
-                    //if (!getConnectionString.IsSucceed)
-                    //{
-                    //    BEParameterViewModel cnn = new BEParameterViewModel()
-                    //    {
-                    //        Name = SWCmsConstants.ConfigurationKeyword.ConnectionString,
-                    //        Value = ConnectionString,
-                    //        Description = SWCmsConstants.ConfigurationType.System
-                    //    };
-                    //    cnn.SaveModel(_context: context, _transaction: transaction);
-                    //}
+                    isSucceed = InitCultures(context, transaction);
 
-                    // EN-US
-                    var getCulture = BECultureViewModel.Repository.GetSingleModel(
-                        c => c.Specificulture == "en-us",
-                        _context: context,
-                        _transaction: transaction);
+                    isSucceed = isSucceed && InitPositions(context, transaction);
 
-                    if (!getCulture.IsSucceed)
-                    {
-                        BECultureViewModel cultureViewModel = new BECultureViewModel()
-                        {
-                            Specificulture = "en-us",
-                            FullName = "United States",
-                            Description = "United States",
-                            Icon = "flag-icon-us",
-                            Alias = "US"
-                        };
-                        isSucceed = isSucceed && cultureViewModel.SaveModel(_context: context, _transaction: transaction).IsSucceed;
-                    }
+                    isSucceed = isSucceed && InitThemes(context, transaction);
 
-                    // VI-VN
-                    getCulture = BECultureViewModel.Repository.GetSingleModel(
-                        c => c.Specificulture == "vi-vn",
-                        _context: context,
-                        _transaction: transaction);
-
-                    if (!getCulture.IsSucceed)
-                    {
-                        BECultureViewModel cultureViewModel = new BECultureViewModel()
-                        {
-                            Specificulture = "vi-vn",
-                            FullName = "Vietnam",
-                            Description = "Việt Nam",
-                            Icon = "flag-icon-vn",
-                            Alias = "VN"
-                        };
-                        isSucceed = isSucceed && cultureViewModel.SaveModel(_context: context, _transaction: transaction).IsSucceed;
-                    }
-
-                    var getPosition = BEPositionViewModel.Repository.GetModelList(_context: context, _transaction: transaction);
-                    if (isSucceed && (!getPosition.IsSucceed || getPosition.Data.Count == 0))
-                    {
-                        BEPositionViewModel p = new BEPositionViewModel()
-                        {
-                            Description = nameof(SWCmsConstants.CatePosition.Nav)
-                        };
-                        isSucceed = isSucceed && p.SaveModel(_context: context, _transaction: transaction).IsSucceed;
-                        p = new BEPositionViewModel()
-                        {
-                            Description = nameof(SWCmsConstants.CatePosition.Top)
-                        };
-                        isSucceed = isSucceed && p.SaveModel(_context: context, _transaction: transaction).IsSucceed;
-                        p = new BEPositionViewModel()
-                        {
-                            Description = nameof(SWCmsConstants.CatePosition.Left)
-                        };
-                        isSucceed = isSucceed && p.SaveModel(_context: context, _transaction: transaction).IsSucceed;
-                        p = new BEPositionViewModel()
-                        {
-                            Description = nameof(SWCmsConstants.CatePosition.Footer)
-                        };
-                        isSucceed = isSucceed && p.SaveModel(_context: context, _transaction: transaction).IsSucceed;
-                    }
-                    var getThemes = BEThemeViewModel.Repository.GetModelList(_context: context, _transaction: transaction);
-                    if (isSucceed && getThemes.IsSucceed)
-                    {
-                        if (getThemes.Data.Count == 0)
-                        {
-                            BEThemeViewModel theme = new BEThemeViewModel(new SiocTheme()
-                            {
-                                Name = "Default",
-
-                                CreatedBy = "Admin"
-                            })
-                            {
-                                IsActived = true,
-                                Specificulture = "vi-vn"
-                            };
-
-                            isSucceed = isSucceed && theme.SaveModel(true, context, transaction).IsSucceed;
-                            
-                            if (isSucceed)
-                            {
-                                ConfigurationViewModel config = (ConfigurationViewModel.Repository.GetSingleModel(
-                        c => c.Keyword == SWCmsConstants.ConfigurationKeyword.Theme && c.Specificulture == "vi-vn", context, transaction)).Data;
-                                if (config == null)
-                                {
-                                    config = new ConfigurationViewModel()
-                                    {
-                                        Keyword = SWCmsConstants.ConfigurationKeyword.Theme,
-                                        Specificulture = "vi-vn",
-                                        Category = SWCmsConstants.ConfigurationType.User,
-                                        DataType = SWCmsConstants.DataType.String,
-                                        Description = "Cms Theme",
-
-                                        Value = ""
-                                    };
-                                }
-                                else
-                                {
-                                    config.Value = theme.Name;
-                                }
-                                isSucceed = isSucceed && config.SaveModel(false, context, transaction).IsSucceed;
-                            }
-
-                            if (isSucceed)
-                            {
-                                ConfigurationViewModel config = (ConfigurationViewModel.Repository.GetSingleModel(
-                        c => c.Keyword == SWCmsConstants.ConfigurationKeyword.ThemeId && c.Specificulture == "vi-vn", context, transaction)).Data;
-                                if (config == null)
-                                {
-                                    config = new ConfigurationViewModel()
-                                    {
-                                        Keyword = SWCmsConstants.ConfigurationKeyword.Theme,
-                                        Specificulture = "vi-vn",
-                                        Category = SWCmsConstants.ConfigurationType.User,
-                                        DataType = SWCmsConstants.DataType.String,
-                                        Description = "Cms Theme",
-
-                                        Value = theme.Model.Id.ToString()
-                                    };
-                                }
-                                else
-                                {
-                                    config.Value = theme.Model.Id.ToString();
-                                }
-                                isSucceed = isSucceed && config.SaveModel(false, context, transaction).IsSucceed;
-                            }
-
-                            if (isSucceed)
-                            {
-                                ConfigurationViewModel config = (ConfigurationViewModel.Repository.GetSingleModel(
-                        c => c.Keyword == SWCmsConstants.ConfigurationKeyword.Theme && c.Specificulture == "en-us", context, transaction)).Data;
-                                if (config == null)
-                                {
-                                    config = new ConfigurationViewModel()
-                                    {
-                                        Keyword = SWCmsConstants.ConfigurationKeyword.Theme,
-                                        Specificulture = "en-us",
-                                        Category = SWCmsConstants.ConfigurationType.User,
-                                        DataType = SWCmsConstants.DataType.String,
-                                        Description = "Cms Theme",
-
-                                        Value = theme.Name
-                                    };
-                                }
-                                else
-                                {
-                                    config.Value = Name;
-                                }
-                                isSucceed = isSucceed && config.SaveModel(false, context, transaction).IsSucceed;
-                            }
-
-                            if (isSucceed)
-                            {
-                                ConfigurationViewModel config = (ConfigurationViewModel.Repository.GetSingleModel(
-                        c => c.Keyword == SWCmsConstants.ConfigurationKeyword.ThemeId && c.Specificulture == "en-us", context, transaction)).Data;
-                                if (config == null)
-                                {
-                                    config = new ConfigurationViewModel()
-                                    {
-                                        Keyword = SWCmsConstants.ConfigurationKeyword.ThemeId,
-                                        Specificulture = "en-us",
-                                        Category = SWCmsConstants.ConfigurationType.User,
-                                        DataType = SWCmsConstants.DataType.String,
-                                        Description = "Cms Theme",
-
-                                        Value = theme.Model.Id.ToString()
-                                    };
-                                }
-                                else
-                                {
-                                    config.Value = theme.Model.Id.ToString();
-                                }
-                                isSucceed = isSucceed && config.SaveModel(false, context, transaction).IsSucceed;
-                            }
-                            if (isSucceed)
-                            {
-                                InitConfigurations(context, transaction);
-                            }
-                        }
-                        else
-                        {
-                            foreach (var theme in getThemes.Data)
-                            {
-                                string folderPath = CommonHelper.GetFullPath(new string[]
-                                {
-                            SWCmsConstants.Parameters.TemplatesFolder,
-                            theme.Name
-                                });
-
-                                var delFolder = FileRepository.Instance.DeleteFolder(folderPath);
-
-                                foreach (var item in theme.Templates)
-                                {
-                                    try
-                                    {
-                                        isSucceed = isSucceed && item.SaveModel(true, _context: context, _transaction: transaction).IsSucceed;
-                                    }
-                                    catch { }
-                                }
-                            }
-                        }
-                    }
+                    isSucceed = isSucceed && InitRoles(accountContext, accTransaction);
 
                     if (isSucceed)
                     {
-                        BECategoryViewModel cate = new BECategoryViewModel( new SiocCategory()
+                        BECategoryViewModel cate = new BECategoryViewModel(new SiocCategory()
                         {
                             Title = "Home",
                             Specificulture = "vi-vn",
@@ -393,7 +193,7 @@ namespace Swastika.Cms.Lib.Services
                         });
 
                         isSucceed = isSucceed && cate.SaveModel(false, context, transaction).IsSucceed;
-                        BECategoryViewModel uscate = new BECategoryViewModel( new SiocCategory()
+                        BECategoryViewModel uscate = new BECategoryViewModel(new SiocCategory()
                         {
                             Title = "Home",
                             Specificulture = "en-us",
@@ -409,22 +209,30 @@ namespace Swastika.Cms.Lib.Services
                     {
 
                         GlobalLanguageService.Instance.RefreshCultures(context, transaction);
-                        
+
                         transaction.Commit();
+                        accTransaction.Commit();
                         IsInit = true;
                     }
                     else
                     {
                         transaction.Rollback();
+                        accTransaction.Rollback();
                         IsInit = false;
                     }
+
                 }
+                result.IsSucceed = isSucceed;
+                return result;
             }
             catch (Exception ex) // TODO: Add more specific exeption types instead of Exception only
             {
                 IsInit = false;
                 transaction?.Rollback();
-                throw ex;
+                accTransaction?.Rollback();
+                result.IsSucceed = false;
+                result.Exception = ex;
+                return result;
             }
             finally
             {
@@ -433,6 +241,241 @@ namespace Swastika.Cms.Lib.Services
             }
         }
 
+        private bool InitRoles(SiocCmsAccountContext context, IDbContextTransaction transaction)
+        {
+            bool isSucceed = true;
+            var getRoles = RoleViewModel.Repository.GetModelList(context, transaction);
+            if (getRoles.IsSucceed && getRoles.Data.Count == 0)
+            {
+                var role = new RoleViewModel()
+                {
+                    Id = Guid.NewGuid().ToString(),
+                    Name = "SuperAdmin"
+                };
+                isSucceed = role.SaveModel(false, context, transaction).IsSucceed;
+            }
+            return isSucceed;
+        }
+
+        private bool InitThemes(SiocCmsContext context, IDbContextTransaction transaction)
+        {
+            bool isSucceed = true;
+            var getThemes = BEThemeViewModel.Repository.GetModelList(_context: context, _transaction: transaction);
+            if (getThemes.IsSucceed && getThemes.Data.Count == 0)
+            {
+                if (getThemes.Data.Count == 0)
+                {
+                    BEThemeViewModel theme = new BEThemeViewModel(new SiocTheme()
+                    {
+                        Name = "Default",
+
+                        CreatedBy = "Admin"
+                    })
+                    {
+                        IsActived = true,
+                        Specificulture = "vi-vn"
+                    };
+
+                    isSucceed = isSucceed && theme.SaveModel(true, context, transaction).IsSucceed;
+
+                    if (isSucceed)
+                    {
+                        ConfigurationViewModel config = (ConfigurationViewModel.Repository.GetSingleModel(
+                c => c.Keyword == SWCmsConstants.ConfigurationKeyword.Theme && c.Specificulture == "vi-vn", context, transaction)).Data;
+                        if (config == null)
+                        {
+                            config = new ConfigurationViewModel()
+                            {
+                                Keyword = SWCmsConstants.ConfigurationKeyword.Theme,
+                                Specificulture = "vi-vn",
+                                Category = SWCmsConstants.ConfigurationType.User,
+                                DataType = SWCmsConstants.DataType.String,
+                                Description = "Cms Theme",
+
+                                Value = ""
+                            };
+                        }
+                        else
+                        {
+                            config.Value = theme.Name;
+                        }
+                        isSucceed = isSucceed && config.SaveModel(false, context, transaction).IsSucceed;
+                    }
+
+                    if (isSucceed)
+                    {
+                        ConfigurationViewModel config = (ConfigurationViewModel.Repository.GetSingleModel(
+                c => c.Keyword == SWCmsConstants.ConfigurationKeyword.ThemeId && c.Specificulture == "vi-vn", context, transaction)).Data;
+                        if (config == null)
+                        {
+                            config = new ConfigurationViewModel()
+                            {
+                                Keyword = SWCmsConstants.ConfigurationKeyword.Theme,
+                                Specificulture = "vi-vn",
+                                Category = SWCmsConstants.ConfigurationType.User,
+                                DataType = SWCmsConstants.DataType.String,
+                                Description = "Cms Theme",
+
+                                Value = theme.Model.Id.ToString()
+                            };
+                        }
+                        else
+                        {
+                            config.Value = theme.Model.Id.ToString();
+                        }
+                        isSucceed = isSucceed && config.SaveModel(false, context, transaction).IsSucceed;
+                    }
+
+                    if (isSucceed)
+                    {
+                        ConfigurationViewModel config = (ConfigurationViewModel.Repository.GetSingleModel(
+                c => c.Keyword == SWCmsConstants.ConfigurationKeyword.Theme && c.Specificulture == "en-us", context, transaction)).Data;
+                        if (config == null)
+                        {
+                            config = new ConfigurationViewModel()
+                            {
+                                Keyword = SWCmsConstants.ConfigurationKeyword.Theme,
+                                Specificulture = "en-us",
+                                Category = SWCmsConstants.ConfigurationType.User,
+                                DataType = SWCmsConstants.DataType.String,
+                                Description = "Cms Theme",
+
+                                Value = theme.Name
+                            };
+                        }
+                        else
+                        {
+                            config.Value = Name;
+                        }
+                        isSucceed = isSucceed && config.SaveModel(false, context, transaction).IsSucceed;
+                    }
+
+                    if (isSucceed)
+                    {
+                        ConfigurationViewModel config = (ConfigurationViewModel.Repository.GetSingleModel(
+                c => c.Keyword == SWCmsConstants.ConfigurationKeyword.ThemeId && c.Specificulture == "en-us", context, transaction)).Data;
+                        if (config == null)
+                        {
+                            config = new ConfigurationViewModel()
+                            {
+                                Keyword = SWCmsConstants.ConfigurationKeyword.ThemeId,
+                                Specificulture = "en-us",
+                                Category = SWCmsConstants.ConfigurationType.User,
+                                DataType = SWCmsConstants.DataType.String,
+                                Description = "Cms Theme",
+
+                                Value = theme.Model.Id.ToString()
+                            };
+                        }
+                        else
+                        {
+                            config.Value = theme.Model.Id.ToString();
+                        }
+                        isSucceed = isSucceed && config.SaveModel(false, context, transaction).IsSucceed;
+                    }
+                    if (isSucceed)
+                    {
+                        InitConfigurations(context, transaction);
+                    }
+                }
+                else
+                {
+                    foreach (var theme in getThemes.Data)
+                    {
+                        string folderPath = CommonHelper.GetFullPath(new string[]
+                        {
+                            SWCmsConstants.Parameters.TemplatesFolder,
+                            theme.Name
+                        });
+
+                        var delFolder = FileRepository.Instance.DeleteFolder(folderPath);
+
+                        foreach (var item in theme.Templates)
+                        {
+                            try
+                            {
+                                isSucceed = isSucceed && item.SaveModel(true, _context: context, _transaction: transaction).IsSucceed;
+                            }
+                            catch { }
+                        }
+                    }
+                }
+            }
+
+            return isSucceed;
+        }
+
+        protected bool InitCultures(SiocCmsContext context, IDbContextTransaction transaction)
+        {
+            bool isSucceed = true;
+            // EN-US
+            var getCulture = BECultureViewModel.Repository.GetSingleModel(
+                c => c.Specificulture == "en-us",
+                _context: context,
+                _transaction: transaction);
+
+            if (!getCulture.IsSucceed)
+            {
+                BECultureViewModel cultureViewModel = new BECultureViewModel()
+                {
+                    Specificulture = "en-us",
+                    FullName = "United States",
+                    Description = "United States",
+                    Icon = "flag-icon-us",
+                    Alias = "US"
+                };
+                isSucceed = isSucceed && cultureViewModel.SaveModel(_context: context, _transaction: transaction).IsSucceed;
+            }
+
+            // VI-VN
+            getCulture = BECultureViewModel.Repository.GetSingleModel(
+                c => c.Specificulture == "vi-vn",
+                _context: context,
+                _transaction: transaction);
+
+            if (isSucceed && !getCulture.IsSucceed)
+            {
+                BECultureViewModel cultureViewModel = new BECultureViewModel()
+                {
+                    Specificulture = "vi-vn",
+                    FullName = "Vietnam",
+                    Description = "Việt Nam",
+                    Icon = "flag-icon-vn",
+                    Alias = "VN"
+                };
+                isSucceed = isSucceed && cultureViewModel.SaveModel(_context: context, _transaction: transaction).IsSucceed;
+            }
+            return isSucceed;
+        }
+        protected bool InitPositions(SiocCmsContext context, IDbContextTransaction transaction)
+        {
+            bool isSucceed = true;
+            var getPosition = BEPositionViewModel.Repository.GetModelList(_context: context, _transaction: transaction);
+            if (isSucceed && (!getPosition.IsSucceed || getPosition.Data.Count == 0))
+            {
+                BEPositionViewModel p = new BEPositionViewModel()
+                {
+                    Description = nameof(SWCmsConstants.CatePosition.Nav)
+                };
+                isSucceed = isSucceed && p.SaveModel(_context: context, _transaction: transaction).IsSucceed;
+                p = new BEPositionViewModel()
+                {
+                    Description = nameof(SWCmsConstants.CatePosition.Top)
+                };
+                isSucceed = isSucceed && p.SaveModel(_context: context, _transaction: transaction).IsSucceed;
+                p = new BEPositionViewModel()
+                {
+                    Description = nameof(SWCmsConstants.CatePosition.Left)
+                };
+                isSucceed = isSucceed && p.SaveModel(_context: context, _transaction: transaction).IsSucceed;
+                p = new BEPositionViewModel()
+                {
+                    Description = nameof(SWCmsConstants.CatePosition.Footer)
+                };
+                isSucceed = isSucceed && p.SaveModel(_context: context, _transaction: transaction).IsSucceed;
+            }
+            return isSucceed;
+        }
         public void Refresh(SiocCmsContext _context = null, IDbContextTransaction _transaction = null)
         {
             InitConfigurations(_context, _transaction);
@@ -477,9 +520,10 @@ namespace Swastika.Cms.Lib.Services
         public void UpdateConfiguration(string key, string culture, string value)
         {
             var config = ListConfiguration.Find(c => c.Keyword == key && c.Specificulture == culture);
-            string oldValue = config.Value;
-
-            config.Value = value;
+            if (config != null)
+            {
+                config.Value = value;
+            }
         }
 
         public string GetLocalString(string key, string culture)
@@ -496,9 +540,9 @@ namespace Swastika.Cms.Lib.Services
 
         public static int GetLocalInt(string key, string culture)
         {
-            return 10;
-            //var config = ListConfiguration.FirstOrDefault(c => c.Keyword == key && c.Specificulture == culture);
-            //return config != null ? config.Value : key;
+            var config = ListConfiguration.FirstOrDefault(c => c.Keyword == key && c.Specificulture == culture);
+            int.TryParse(config?.Value, out int result);
+            return result;
         }
 
         public int GetLocalInt(string key, string culture, int defaultValue)
@@ -511,6 +555,6 @@ namespace Swastika.Cms.Lib.Services
             return result;
         }
 
-       
+
     }
 }

@@ -41,12 +41,22 @@ namespace Swastika.Cms.Lib.ViewModels
 
     public class InitCmsViewModel
     {
+        [JsonProperty("dataBaseServer")]
         public string DataBaseServer { get; set; }
+        [JsonProperty("dataBaseName")]
         public string DataBaseName { get; set; }
+        [JsonProperty("dataBaseUser")]
         public string DataBaseUser { get; set; }
+        [JsonProperty("dataBasePassword")]
         public string DataBasePassword { get; set; }
+        [JsonProperty("isUseLocal")]
         public bool IsUseLocal { get; set; }
+        [JsonProperty("localDbName")]
         public string LocalDbName { get; set; }
+        [JsonProperty("superAdmin")]
+        public string SuperAdmin { get; set; }
+        [JsonProperty("adminPasseord")]
+        public string AdminPassword { get; set; }
     }
 
     public class FileStreamViewModel

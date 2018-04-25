@@ -41,6 +41,7 @@
     <Compile Remove="Repositories\AuthRepository.cs" />
     <Compile Remove="Repositories\AuthRepository1.cs" />
     <Compile Remove="ViewModels\AccessTokenViewModel.cs" />
+    <Compile Remove="ViewModels\Account\AccountBindingViewModels.cs" />
     <Compile Remove="ViewModels\ArticleModuleViewModels.cs" />
     <Compile Remove="ViewModels\ArticleViewModels.cs" />
     <Compile Remove="ViewModels\BackEnd\_BlankViewModel.cs" />

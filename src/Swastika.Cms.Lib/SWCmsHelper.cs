@@ -71,9 +71,10 @@ namespace Swastika.Cms.Lib
                         cate.Href = Url.RouteUrl("Page", new { culture, seoName = cate.SeoName });
                         break;
                 }
-                cate.IsActived = (cate.Href == activePath 
+                cate.IsActived = (cate.Href == activePath
                     || (cate.Type == SWCmsConstants.CateType.Home && activePath == string.Format("/{0}/home", culture)));
-                cate.Childs.ForEach(c => {
+                cate.Childs.ForEach(c =>
+                {
                     c.IsActived = (
                     c.Href == activePath);
                     cate.IsActived = cate.IsActived || c.IsActived;
@@ -114,12 +115,13 @@ namespace Swastika.Cms.Lib
                         cate.Href = Url.RouteUrl("Page", new { culture, pageName = cate.SeoName });
                         break;
                 }
-                
+
                 cate.IsActived = (
                     cate.Href == activePath || (cate.Type == SWCmsConstants.CateType.Home && activePath == string.Format("/{0}/home", culture))
                     );
 
-                cate.Childs.ForEach(c => {
+                cate.Childs.ForEach(c =>
+                {
                     c.IsActived = (
                     c.Href == activePath);
                     cate.IsActived = cate.IsActived || c.IsActived;
@@ -141,7 +143,8 @@ namespace Swastika.Cms.Lib
                 }
                 strFormat += @"{" + i + "}" + connector;
             }
-            return string.Format(strFormat, subPaths).Replace("//","/");
+            result = string.Format(strFormat, subPaths).Replace("//", "/").Replace(":/", "://");
+            return result;
         }
 
         public static string GetRandomName(string filename)

@@ -89,6 +89,26 @@ namespace Swastika.Cms.Lib.ViewModels.Info
 
         #region Views
 
+        [JsonProperty("domain")]
+        public string Domain { get { return GlobalConfigurationService.Instance.GetLocalString("Domain", Specificulture, "/"); } }
+        [JsonProperty("imageUrl")]
+        public string ImageUrl
+        {
+            get
+            {
+                if (Image != null && Image.IndexOf("http") == -1)
+                {
+                    return SWCmsHelper.GetFullPath(new string[] {
+                    Domain,  Image
+                });
+                }
+                else
+                {
+                    return Image;
+                }
+            }
+        }
+
         [JsonProperty("childs")]
         public List<InfoCategoryViewModel> Childs { get; set; }
 
@@ -106,9 +126,6 @@ namespace Swastika.Cms.Lib.ViewModels.Info
 
         [JsonProperty("detailsUrl")]
         public string DetailsUrl { get; set; }
-
-        [JsonProperty("domain")]
-        public string Domain { get; set; }
 
         #endregion Views
 
@@ -130,10 +147,6 @@ namespace Swastika.Cms.Lib.ViewModels.Info
 
         public override void ExpandView(SiocCmsContext _context = null, IDbContextTransaction _transaction = null)
         {
-            this.Image = SWCmsHelper.GetFullPath(new string[] {
-                GlobalConfigurationService.Instance.GetLocalString("Domain", Specificulture),
-                Image
-            });
             var getChilds = Repository.GetModelListBy
                 (p => p.SiocCategoryCategorySiocCategory.Any(c => c.ParentId == Id
                 && c.Specificulture == Specificulture)

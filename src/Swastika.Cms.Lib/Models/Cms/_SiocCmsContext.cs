@@ -56,16 +56,19 @@ namespace Swastika.Cms.Lib.Models.Cms
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            var config = new ConfigurationBuilder()
-                .SetBasePath(System.IO.Directory.GetCurrentDirectory())
-                .AddJsonFile(Common.Utility.Const.CONST_FILE_APPSETTING)
-                .Build();
-
-            // define the database to use
-            string cnn = GlobalConfigurationService.Instance.GetConnectionString();
-            if (!string.IsNullOrEmpty(cnn))
+            if (!optionsBuilder.IsConfigured)
             {
-                optionsBuilder.UseSqlServer(cnn);
+                //var config = new ConfigurationBuilder()
+                //    .SetBasePath(System.IO.Directory.GetCurrentDirectory())
+                //    .AddJsonFile(Common.Utility.Const.CONST_FILE_APPSETTING)
+                //    .Build();
+
+                // define the database to use
+                string cnn = GlobalConfigurationService.Instance.GetConnectionString();
+                if (!string.IsNullOrEmpty(cnn))
+                {
+                    optionsBuilder.UseSqlServer(cnn);
+                }
             }
         }
 

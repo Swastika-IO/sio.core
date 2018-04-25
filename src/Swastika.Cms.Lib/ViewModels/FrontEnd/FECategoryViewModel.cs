@@ -100,7 +100,25 @@ namespace Swastika.Cms.Lib.ViewModels.FrontEnd
         #endregion Models
 
         #region Views
-
+        [JsonProperty("domain")]
+        public string Domain { get { return GlobalConfigurationService.Instance.GetLocalString("Domain", Specificulture, "/"); } }
+        [JsonProperty("imageUrl")]
+        public string ImageUrl
+        {
+            get
+            {
+                if (Image != null && Image.IndexOf("http") == -1)
+                {
+                    return SWCmsHelper.GetFullPath(new string[] {
+                    Domain,  Image
+                });
+                }
+                else
+                {
+                    return Image;
+                }
+            }
+        }
         [JsonProperty("view")]
         public FETemplateViewModel View { get; set; }
 
@@ -147,10 +165,6 @@ namespace Swastika.Cms.Lib.ViewModels.FrontEnd
 
         public override void ExpandView(SiocCmsContext _context = null, IDbContextTransaction _transaction = null)
         {
-            this.Image = SWCmsHelper.GetFullPath(new string[] {
-                GlobalConfigurationService.Instance.GetLocalString("Domain", Specificulture),
-                Image
-            });
             this.View = FETemplateViewModel.GetTemplateByPath(Template, Specificulture, _context, _transaction).Data;
             if (View != null)
             {

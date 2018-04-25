@@ -7,6 +7,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Storage;
 using Newtonsoft.Json;
 using Swastika.Cms.Lib.Models.Cms;
+using Swastika.Cms.Lib.Services;
 using Swastika.Domain.Core.ViewModels;
 using Swastika.Domain.Data.ViewModels;
 using System;
@@ -125,7 +126,26 @@ namespace Swastika.Cms.Lib.ViewModels.Info
         #endregion Models
 
         #region Views
+        [JsonProperty("domain")]
+        public string Domain { get { return GlobalConfigurationService.Instance.GetLocalString("Domain", Specificulture, "/"); } }
 
+        [JsonProperty("imageUrl")]
+        public string ImageUrl
+        {
+            get
+            {
+                if (Image != null && Image.IndexOf("http") == -1)
+                {
+                    return SWCmsHelper.GetFullPath(new string[] {
+                    Domain,  Image
+                });
+                }
+                else
+                {
+                    return Image;
+                }
+            }
+        }
 
         [JsonProperty("strNormalPrice")]
         public string StrNormalPrice

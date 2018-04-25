@@ -2,6 +2,9 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
+using Microsoft.EntityFrameworkCore.Storage;
+using Microsoft.EntityFrameworkCore.Storage.Internal;
 using Swastika.Cms.Lib.Models.Account;
 using System;
 
@@ -14,34 +17,10 @@ namespace Swastika.Cms.Lib.Migrations.SiocCmsAccount
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "2.0.1-rtm-125")
+                .HasAnnotation("ProductVersion", "2.0.2-rtm-10011")
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole", b =>
-                {
-                    b.Property<string>("Id")
-                        .ValueGeneratedOnAdd();
-
-                    b.Property<string>("ConcurrencyStamp")
-                        .IsConcurrencyToken();
-
-                    b.Property<string>("Name")
-                        .HasMaxLength(256);
-
-                    b.Property<string>("NormalizedName")
-                        .HasMaxLength(256);
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("NormalizedName")
-                        .IsUnique()
-                        .HasName("RoleNameIndex")
-                        .HasFilter("[NormalizedName] IS NOT NULL");
-
-                    b.ToTable("AspNetRoles");
-                });
-
-            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
+            modelBuilder.Entity("Swastika.Cms.Lib.Models.Account.AspNetRoleClaims", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd();
@@ -60,7 +39,29 @@ namespace Swastika.Cms.Lib.Migrations.SiocCmsAccount
                     b.ToTable("AspNetRoleClaims");
                 });
 
-            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserClaim<string>", b =>
+            modelBuilder.Entity("Swastika.Cms.Lib.Models.Account.AspNetRoles", b =>
+                {
+                    b.Property<string>("Id");
+
+                    b.Property<string>("ConcurrencyStamp");
+
+                    b.Property<string>("Name")
+                        .HasMaxLength(256);
+
+                    b.Property<string>("NormalizedName")
+                        .HasMaxLength(256);
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("NormalizedName")
+                        .IsUnique()
+                        .HasName("RoleNameIndex")
+                        .HasFilter("([NormalizedName] IS NOT NULL)");
+
+                    b.ToTable("AspNetRoles");
+                });
+
+            modelBuilder.Entity("Swastika.Cms.Lib.Models.Account.AspNetUserClaims", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd();
@@ -83,7 +84,7 @@ namespace Swastika.Cms.Lib.Migrations.SiocCmsAccount
                     b.ToTable("AspNetUserClaims");
                 });
 
-            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserLogin<string>", b =>
+            modelBuilder.Entity("Swastika.Cms.Lib.Models.Account.AspNetUserLogins", b =>
                 {
                     b.Property<string>("LoginProvider");
 
@@ -105,7 +106,7 @@ namespace Swastika.Cms.Lib.Migrations.SiocCmsAccount
                     b.ToTable("AspNetUserLogins");
                 });
 
-            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserRole<string>", b =>
+            modelBuilder.Entity("Swastika.Cms.Lib.Models.Account.AspNetUserRoles", b =>
                 {
                     b.Property<string>("UserId");
 
@@ -122,38 +123,22 @@ namespace Swastika.Cms.Lib.Migrations.SiocCmsAccount
                     b.ToTable("AspNetUserRoles");
                 });
 
-            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserToken<string>", b =>
+            modelBuilder.Entity("Swastika.Cms.Lib.Models.Account.AspNetUsers", b =>
                 {
-                    b.Property<string>("UserId");
-
-                    b.Property<string>("LoginProvider");
-
-                    b.Property<string>("Name");
-
-                    b.Property<string>("Value");
-
-                    b.HasKey("UserId", "LoginProvider", "Name");
-
-                    b.ToTable("AspNetUserTokens");
-                });
-
-            modelBuilder.Entity("Swastika.Identity.Models.ApplicationUser", b =>
-                {
-                    b.Property<string>("Id")
-                        .ValueGeneratedOnAdd();
+                    b.Property<string>("Id");
 
                     b.Property<int>("AccessFailedCount");
 
                     b.Property<string>("Avatar");
 
-                    b.Property<string>("ConcurrencyStamp")
-                        .IsConcurrencyToken();
+                    b.Property<string>("ConcurrencyStamp");
 
                     b.Property<int>("CountryId");
 
                     b.Property<string>("Culture");
 
-                    b.Property<DateTime?>("DOB");
+                    b.Property<DateTime?>("Dob")
+                        .HasColumnName("DOB");
 
                     b.Property<string>("Email")
                         .HasMaxLength(256);
@@ -209,15 +194,29 @@ namespace Swastika.Cms.Lib.Migrations.SiocCmsAccount
                     b.HasIndex("NormalizedUserName")
                         .IsUnique()
                         .HasName("UserNameIndex")
-                        .HasFilter("[NormalizedUserName] IS NOT NULL");
+                        .HasFilter("([NormalizedUserName] IS NOT NULL)");
 
                     b.ToTable("AspNetUsers");
                 });
 
-            modelBuilder.Entity("Swastika.IO.Identity.Identity.Entities.Client", b =>
+            modelBuilder.Entity("Swastika.Cms.Lib.Models.Account.AspNetUserTokens", b =>
                 {
-                    b.Property<string>("Id")
-                        .ValueGeneratedOnAdd();
+                    b.Property<string>("UserId");
+
+                    b.Property<string>("LoginProvider");
+
+                    b.Property<string>("Name");
+
+                    b.Property<string>("Value");
+
+                    b.HasKey("UserId", "LoginProvider", "Name");
+
+                    b.ToTable("AspNetUserTokens");
+                });
+
+            modelBuilder.Entity("Swastika.Cms.Lib.Models.Account.Clients", b =>
+                {
+                    b.Property<string>("Id");
 
                     b.Property<bool>("Active");
 
@@ -240,10 +239,9 @@ namespace Swastika.Cms.Lib.Migrations.SiocCmsAccount
                     b.ToTable("Clients");
                 });
 
-            modelBuilder.Entity("Swastika.IO.Identity.Identity.Entities.RefreshToken", b =>
+            modelBuilder.Entity("Swastika.Cms.Lib.Models.Account.RefreshTokens", b =>
                 {
-                    b.Property<string>("Id")
-                        .ValueGeneratedOnAdd();
+                    b.Property<string>("Id");
 
                     b.Property<string>("ClientId");
 
@@ -254,64 +252,66 @@ namespace Swastika.Cms.Lib.Migrations.SiocCmsAccount
 
                     b.Property<DateTime>("IssuedUtc");
 
+                    b.Property<string>("Username");
+
                     b.HasKey("Id");
 
                     b.ToTable("RefreshTokens");
                 });
 
-            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
+            modelBuilder.Entity("Swastika.Cms.Lib.Models.Account.AspNetRoleClaims", b =>
                 {
-                    b.HasOne("Microsoft.AspNetCore.Identity.IdentityRole")
-                        .WithMany()
+                    b.HasOne("Swastika.Cms.Lib.Models.Account.AspNetRoles", "Role")
+                        .WithMany("AspNetRoleClaims")
                         .HasForeignKey("RoleId")
                         .OnDelete(DeleteBehavior.Cascade);
                 });
 
-            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserClaim<string>", b =>
+            modelBuilder.Entity("Swastika.Cms.Lib.Models.Account.AspNetUserClaims", b =>
                 {
-                    b.HasOne("Swastika.Identity.Models.ApplicationUser")
-                        .WithMany("Claims")
+                    b.HasOne("Swastika.Cms.Lib.Models.Account.AspNetUsers", "ApplicationUser")
+                        .WithMany("AspNetUserClaimsApplicationUser")
                         .HasForeignKey("ApplicationUserId");
 
-                    b.HasOne("Swastika.Identity.Models.ApplicationUser")
-                        .WithMany()
+                    b.HasOne("Swastika.Cms.Lib.Models.Account.AspNetUsers", "User")
+                        .WithMany("AspNetUserClaimsUser")
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade);
                 });
 
-            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserLogin<string>", b =>
+            modelBuilder.Entity("Swastika.Cms.Lib.Models.Account.AspNetUserLogins", b =>
                 {
-                    b.HasOne("Swastika.Identity.Models.ApplicationUser")
-                        .WithMany("Logins")
+                    b.HasOne("Swastika.Cms.Lib.Models.Account.AspNetUsers", "ApplicationUser")
+                        .WithMany("AspNetUserLoginsApplicationUser")
                         .HasForeignKey("ApplicationUserId");
 
-                    b.HasOne("Swastika.Identity.Models.ApplicationUser")
-                        .WithMany()
+                    b.HasOne("Swastika.Cms.Lib.Models.Account.AspNetUsers", "User")
+                        .WithMany("AspNetUserLoginsUser")
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade);
                 });
 
-            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserRole<string>", b =>
+            modelBuilder.Entity("Swastika.Cms.Lib.Models.Account.AspNetUserRoles", b =>
                 {
-                    b.HasOne("Swastika.Identity.Models.ApplicationUser")
-                        .WithMany("Roles")
+                    b.HasOne("Swastika.Cms.Lib.Models.Account.AspNetUsers", "ApplicationUser")
+                        .WithMany("AspNetUserRolesApplicationUser")
                         .HasForeignKey("ApplicationUserId");
 
-                    b.HasOne("Microsoft.AspNetCore.Identity.IdentityRole")
-                        .WithMany()
+                    b.HasOne("Swastika.Cms.Lib.Models.Account.AspNetRoles", "Role")
+                        .WithMany("AspNetUserRoles")
                         .HasForeignKey("RoleId")
                         .OnDelete(DeleteBehavior.Cascade);
 
-                    b.HasOne("Swastika.Identity.Models.ApplicationUser")
-                        .WithMany()
+                    b.HasOne("Swastika.Cms.Lib.Models.Account.AspNetUsers", "User")
+                        .WithMany("AspNetUserRolesUser")
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade);
                 });
 
-            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserToken<string>", b =>
+            modelBuilder.Entity("Swastika.Cms.Lib.Models.Account.AspNetUserTokens", b =>
                 {
-                    b.HasOne("Swastika.Identity.Models.ApplicationUser")
-                        .WithMany()
+                    b.HasOne("Swastika.Cms.Lib.Models.Account.AspNetUsers", "User")
+                        .WithMany("AspNetUserTokens")
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade);
                 });

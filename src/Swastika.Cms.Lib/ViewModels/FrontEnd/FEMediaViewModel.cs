@@ -98,12 +98,11 @@ namespace Swastika.Cms.Lib.ViewModels.FrontEnd
                 Id = FEMediaViewModel.Repository.Max(c => c.Id).Data + 1;
                 CreatedDateTime = DateTime.UtcNow;
             }
-            return base.ParseModel();
+            return base.ParseModel(_context, _transaction);
         }
 
         public override void ExpandView(SiocCmsContext _context = null, IDbContextTransaction _transaction = null)
         {
-            IsClone = true;
             ListSupportedCulture = GlobalLanguageService.ListSupportedCulture;
             this.ListSupportedCulture.ForEach(c => c.IsSupported = true);
         }

@@ -128,8 +128,7 @@ namespace Swastika.Cms.Lib.ViewModels.BackEnd
         public FileStreamViewModel ImageFileStream { get; set; }
 
         [JsonProperty("domain")]
-        public string Domain { get; set; } = "/";
-
+        public string Domain { get { return GlobalConfigurationService.Instance.GetLocalString("Domain", Specificulture, "/"); } }
         [JsonProperty("imageUrl")]
         public string ImageUrl
         {

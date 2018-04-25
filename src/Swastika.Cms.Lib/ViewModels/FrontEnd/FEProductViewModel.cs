@@ -134,7 +134,7 @@ namespace Swastika.Cms.Lib.ViewModels.FrontEnd
         public List<FEModuleViewModel> Modules { get; set; }
 
         [JsonProperty("domain")]
-        public string Domain { get; set; } = "/";
+        public string Domain { get { return GlobalConfigurationService.Instance.GetLocalString("Domain", Specificulture, "/"); } }
 
         [JsonProperty("imageUrl")]
         public string ImageUrl {
