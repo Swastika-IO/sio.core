@@ -128,10 +128,6 @@ namespace Swastka.IO.Cms.Api.Controllers
             if (model != null)
             {
                 var result = await model.SaveModelAsync(true).ConfigureAwait(false);
-                if (result.IsSucceed)
-                {
-                    result.Data.Domain = this._domain;
-                }
                 return result;
             }
             return new RepositoryResponse<BECategoryViewModel>();
@@ -181,7 +177,6 @@ namespace Swastka.IO.Cms.Api.Controllers
                 {
                     a.DetailsUrl = SWCmsHelper.GetRouterUrl(
                         "Page", new { a.SeoName }, Request, Url);
-                    a.Domain = domain;
                 }
                 );
             }

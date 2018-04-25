@@ -137,8 +137,8 @@ namespace Swastka.Cms.Api.Controllers
                     CreatedDateTime = DateTime.UtcNow,
                     FileType = fileUpload.ContentType.Split('/')[0],
                     FileSize = fileUpload.Length,
-                    Title = title,
-                    Description = description
+                    Title = title ?? fileName,
+                    Description = description ?? fileName
                 });
                 //media.SaveModel();
                 return media.SaveModel();

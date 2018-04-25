@@ -60,7 +60,8 @@
             <div class="modal-body" style="background:url(/images/upload-image-thumbnail.png) no-repeat center; ">
                 <span class="text-danger"></span>
 
-                <label class="custom-file" style="min-height:150px; cursor:pointer; border: 2px dashed;">
+                <label class="custom-file" style="min-height:150px; cursor:pointer; border: 2px dashed;" ng-if="mediaFile.fullPath">
+
                     <img src="{{mediaFile.fullPath}}" name="pic" class="custom-file-img d-block" style="max-height: 150px; width: auto; margin: 0 auto;" accept="image/*" width="100%" />
                     <input type="hidden" ng-model="mediaFile.folder" class="folder-val" />
                     <input type="file" name="pic" class="custom-file-input" data-file="mediaFile.file">
@@ -151,12 +152,10 @@
                     <tbody>
                         <tr ng-repeat="item in mediaData.items track by $index">
                             <td>
-                                {{item.title}}
+                                <input type="text" ng-model="item.title" />
                             </td>
                             <td>
-                                <small>
-                                    {{item.description}}
-                                </small>
+                                <input type="text" ng-model="item.description" />
                             </td>
                             <td>
 
@@ -168,12 +167,12 @@
                                 </div>
                             </td>
                             <td>
-                                <img height="50px" src="{{item.fullPath}}" />
+                                <img height="50" src="{{item.fullPath}}" />
                             </td>
                             <td>
                                 <div class="btn-group btn-group-sm" role="group" aria-label="Actions">
                                     <a href="javascript:void(0)" ng-click="saveMedia(item)" class="btn btn-sm btn-light">
-                                        <span class="oi oi-plus text-info"></span>
+                                        <span class="oi oi-check text-info"></span>
                                     </a>
                                     <a href="javascript:void(0)" ng-click="removeMedia(item.id)" class="btn btn-sm btn-light">
                                         <span class="oi oi-x text-danger"></span>

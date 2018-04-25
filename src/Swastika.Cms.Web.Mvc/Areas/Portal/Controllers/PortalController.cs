@@ -62,8 +62,8 @@ namespace Swastika.Cms.Mvc.Areas.Portal.Controllers
                 }
 
                 GlobalConfigurationService.Instance.ConnectionString = cnnString;
-                GlobalConfigurationService.Instance.InitSWCms();
-                if (GlobalConfigurationService.Instance.IsInit)
+                var initResult = GlobalConfigurationService.Instance.InitSWCms();
+                if (initResult.IsSucceed)
                 {
                     
                     var settings = FileRepository.Instance.GetFile("appsettings", ".json", string.Empty);
@@ -75,6 +75,17 @@ namespace Swastika.Cms.Mvc.Areas.Portal.Controllers
                         FileRepository.Instance.SaveFile(settings);
                     }
                     return RedirectToAction("Register", "Auth", new { culture = SWCmsConstants.Default.Specificulture });
+                }
+                else
+                {
+                    if (initResult.Exception!=null)
+                    {
+                        ModelState.AddModelError("", initResult.Exception.Message);
+                    }
+                    foreach (var item in initResult.Errors)
+                    {
+                        ModelState.AddModelError("", item);
+                    }
                 }
             }
             return View(model);

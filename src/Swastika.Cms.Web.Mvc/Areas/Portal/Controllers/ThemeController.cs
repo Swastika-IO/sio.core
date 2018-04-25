@@ -56,7 +56,7 @@ namespace Swastika.Cms.Mvc.Areas.Portal.Controllers
                  template => template.TemplateId == id).ConfigureAwait(false);
             foreach (var item in getTemplate.Data)
             {
-                await item.SaveModelAsync().ConfigureAwait(false);
+                await item.SaveModelAsync(true).ConfigureAwait(false);
             }
             return RedirectToAction("Index");
         }
