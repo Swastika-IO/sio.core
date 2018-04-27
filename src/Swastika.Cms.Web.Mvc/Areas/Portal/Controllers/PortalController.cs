@@ -3,6 +3,7 @@
 // See the LICENSE file in the project root for more information.
 
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Newtonsoft.Json.Linq;
@@ -10,8 +11,11 @@ using Swastika.Cms.Lib;
 using Swastika.Cms.Lib.Repositories;
 using Swastika.Cms.Lib.Services;
 using Swastika.Cms.Lib.ViewModels;
+using Swastika.Cms.Lib.ViewModels.BackEnd;
 using Swastika.Cms.Lib.ViewModels.Info;
 using Swastika.Cms.Mvc.Controllers;
+using Swastika.Identity.Models;
+using System;
 using System.Threading.Tasks;
 
 namespace Swastika.Cms.Mvc.Areas.Portal.Controllers
@@ -21,9 +25,16 @@ namespace Swastika.Cms.Mvc.Areas.Portal.Controllers
     [Route("Admin")]
     public class PortalController : BaseController<PortalController>
     {
-        public PortalController(IHostingEnvironment env, IConfigurationRoot configuration)
+        private readonly UserManager<ApplicationUser> _userManager;
+        private readonly RoleManager<IdentityRole> _roleManager;
+        public PortalController(IHostingEnvironment env, IConfigurationRoot configuration,
+            UserManager<ApplicationUser> userManager,
+            RoleManager<IdentityRole> roleManager
+            )
             : base(env, configuration)
         {
+            this._userManager = userManager;
+            this._roleManager = roleManager;
         }
 
         [HttpGet]
@@ -38,15 +49,17 @@ namespace Swastika.Cms.Mvc.Areas.Portal.Controllers
         [Route("init")]
         public IActionResult Init()
         {
-            var model = new InitCmsViewModel() {
-                LocalDbName = "aspnet-swastika-v1.Cms.Db"
+            var model = new InitCmsViewModel()
+            {
+                LocalDbName = "aspnet-swastika.Cms.Db",
+                LocalDbConnectionString = $"Server=(localdb)\\mssqllocaldb;Database=aspnet-swastika.Cms.Db;Trusted_Connection=True;MultipleActiveResultSets=true"
             };
             return View(model);
         }
 
         [HttpPost]
         [Route("init")]
-        public IActionResult Init(InitCmsViewModel model)
+        public async Task<IActionResult> Init(InitCmsViewModel model)
         {
             if (ModelState.IsValid)
             {
@@ -58,27 +71,30 @@ namespace Swastika.Cms.Mvc.Areas.Portal.Controllers
                 }
                 else
                 {
-                    cnnString = $"Server=(localdb)\\mssqllocaldb;Database={model.LocalDbName};Trusted_Connection=True;MultipleActiveResultSets=true";
+                    cnnString = model.LocalDbConnectionString;
                 }
 
                 GlobalConfigurationService.Instance.ConnectionString = cnnString;
-                var initResult = GlobalConfigurationService.Instance.InitSWCms();
+                var initResult = await GlobalConfigurationService.Instance.InitSWCms(_userManager, _roleManager);
                 if (initResult.IsSucceed)
                 {
-                    
+
                     var settings = FileRepository.Instance.GetFile("appsettings", ".json", string.Empty);
                     if (settings != null)
                     {
                         JObject jsonSettings = JObject.Parse(settings.Content);
                         jsonSettings["ConnectionStrings"][SWCmsConstants.CONST_DEFAULT_CONNECTION] = cnnString;
+                        // Set connection string for identity ApplicationDbContext
+                        jsonSettings["ConnectionStrings"]["AccountConnection"] = cnnString;
                         settings.Content = jsonSettings.ToString();
                         FileRepository.Instance.SaveFile(settings);
                     }
-                    return RedirectToAction("Register", "Auth", new { culture = SWCmsConstants.Default.Specificulture });
+                    await InitRolesAsync();
+                    return RedirectToAction("RegisterSuperAdmin", "Auth", new { culture = SWCmsConstants.Default.Specificulture });
                 }
                 else
                 {
-                    if (initResult.Exception!=null)
+                    if (initResult.Exception != null)
                     {
                         ModelState.AddModelError("", initResult.Exception.Message);
                     }
@@ -89,6 +105,22 @@ namespace Swastika.Cms.Mvc.Areas.Portal.Controllers
                 }
             }
             return View(model);
+        }
+
+        private async Task<bool> InitRolesAsync()
+        {
+            bool isSucceed = true;
+            var getRoles = await RoleViewModel.Repository.GetModelListAsync();
+            if (getRoles.IsSucceed && getRoles.Data.Count == 0)
+            {                
+                var saveResult = await _roleManager.CreateAsync(new IdentityRole()
+                {
+                    Id = Guid.NewGuid().ToString(),
+                    Name = "SuperAdmin"
+                });
+                isSucceed = saveResult.Succeeded;
+            }
+            return isSucceed;
         }
 
         /// <summary>

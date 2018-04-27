@@ -31,6 +31,7 @@ namespace Swastika.Cms.Web.Mvc.Controllers
             }
             else
             {
+                
                 GlobalConfigurationService.Instance.IsInit = true;
                 GlobalConfigurationService.Instance.Refresh();
                 return RedirectToAction("", "Home", new { culture = CurrentLanguage });

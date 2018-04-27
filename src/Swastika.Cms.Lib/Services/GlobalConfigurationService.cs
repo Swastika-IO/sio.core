@@ -19,6 +19,7 @@ using Swastika.Identity.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 
 namespace Swastika.Cms.Lib.Services
 {
@@ -152,7 +153,8 @@ namespace Swastika.Cms.Lib.Services
             return configuration.GetConnectionString(SWCmsConstants.CONST_DEFAULT_CONNECTION);
         }
 
-        public RepositoryResponse<bool> InitSWCms()
+        public async Task<RepositoryResponse<bool>> InitSWCms(UserManager<ApplicationUser> userManager,
+            RoleManager<IdentityRole> roleManager)
         {
             RepositoryResponse<bool> result = new RepositoryResponse<bool>();
             SiocCmsContext context = null;
@@ -166,19 +168,32 @@ namespace Swastika.Cms.Lib.Services
                 {
                     context = new SiocCmsContext();
                     accountContext = new SiocCmsAccountContext();
-                    context.Database.Migrate();
-                    accountContext.Database.Migrate();
-
+                    await context.Database.MigrateAsync();
+                    await accountContext.Database.MigrateAsync();
                     transaction = context.Database.BeginTransaction();
                     accTransaction = accountContext.Database.BeginTransaction();
+                    var getCulture = await BECultureViewModel.Repository.GetModelListAsync();
 
-                    isSucceed = InitCultures(context, transaction);
+                    var isInit = getCulture.IsSucceed && getCulture.Data.Count > 0;
 
-                    isSucceed = isSucceed && InitPositions(context, transaction);
+                    if (!isInit)
+                    {
 
-                    isSucceed = isSucceed && InitThemes(context, transaction);
+                        isSucceed = InitCultures(context, transaction);
 
-                    isSucceed = isSucceed && InitRoles(accountContext, accTransaction);
+                        isSucceed = isSucceed && InitPositions(context, transaction);
+
+                        isSucceed = isSucceed && InitThemes(context, transaction);
+
+                        //isSucceed = isSucceed && await InitRolesAsync(accountContext, accTransaction, roleManager);
+
+                        //isSucceed = isSucceed && await InitUsersAsync(accountContext, accTransaction, userManager);
+
+                    }
+                    else
+                    {
+                        isSucceed = true;
+                    }
 
                     if (isSucceed)
                     {
@@ -241,18 +256,43 @@ namespace Swastika.Cms.Lib.Services
             }
         }
 
-        private bool InitRoles(SiocCmsAccountContext context, IDbContextTransaction transaction)
+        private async Task<bool> InitRolesAsync(SiocCmsAccountContext context, IDbContextTransaction transaction, RoleManager<IdentityRole> roleManager)
         {
             bool isSucceed = true;
             var getRoles = RoleViewModel.Repository.GetModelList(context, transaction);
             if (getRoles.IsSucceed && getRoles.Data.Count == 0)
             {
-                var role = new RoleViewModel()
+                //RoleViewModel role = new RoleViewModel()
+                //{
+                //    Name = "SuperAdmin",
+                //    NormalizedName = "Super Admin",
+                //};
+                //var saveResult = await role.SaveModelAsync(false, context, transaction);
+                var saveResult = await roleManager.CreateAsync(new IdentityRole()
                 {
                     Id = Guid.NewGuid().ToString(),
                     Name = "SuperAdmin"
+                });
+                isSucceed = saveResult.Succeeded;
+            }
+            return isSucceed;
+        }
+
+        private async Task<bool> InitUsersAsync(SiocCmsAccountContext context, IDbContextTransaction transaction, UserManager<ApplicationUser> userManager)
+        {
+            bool isSucceed = true;
+            var getUsers = await UserViewModel.Repository.GetModelListAsync(context, transaction);
+            if (getUsers.IsSucceed && getUsers.Data.Count == 0)
+            {
+                var user = new ApplicationUser()
+                {
+                    UserName = "Admin",
+                    Email = "admin@swastika.com",
                 };
-                isSucceed = role.SaveModel(false, context, transaction).IsSucceed;
+
+                var saveResult = await userManager.CreateAsync(user, "123123");
+                await userManager.AddToRoleAsync(user, "SuperAdmin");
+                isSucceed = saveResult.Succeeded;
             }
             return isSucceed;
         }

@@ -7,6 +7,7 @@ using Swastika.Cms.Lib.Models.Account;
 using System.Collections.Generic;
 using Swastika.Cms.Lib.ViewModels.Account;
 using Swastika.Identity.Models.AccountViewModels;
+using System.ComponentModel.DataAnnotations;
 
 namespace Swastika.Cms.Lib.ViewModels.BackEnd
 {
@@ -19,6 +20,7 @@ namespace Swastika.Cms.Lib.ViewModels.BackEnd
         public string Id { get; set; }
         [JsonProperty("concurrencyStamp")]
         public string ConcurrencyStamp { get; set; }
+        [Required]
         [JsonProperty("name")]
         public string Name { get; set; }
         [JsonProperty("normalizedName")]
@@ -46,7 +48,14 @@ namespace Swastika.Cms.Lib.ViewModels.BackEnd
         #endregion
 
         #region Overrides
-
+        public override AspNetRoles ParseModel(SiocCmsAccountContext _context = null, IDbContextTransaction _transaction = null)
+        {
+            if (string.IsNullOrEmpty(Id))
+            {
+                Id = Guid.NewGuid().ToString();
+            }
+            return base.ParseModel(_context, _transaction);
+        }
         #endregion
 
         #region Expands

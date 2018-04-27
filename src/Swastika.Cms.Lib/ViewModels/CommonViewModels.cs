@@ -53,6 +53,8 @@ namespace Swastika.Cms.Lib.ViewModels
         public bool IsUseLocal { get; set; }
         [JsonProperty("localDbName")]
         public string LocalDbName { get; set; }
+        [JsonProperty("localDbConnectionString")]
+        public string LocalDbConnectionString { get; set; }
         [JsonProperty("superAdmin")]
         public string SuperAdmin { get; set; }
         [JsonProperty("adminPasseord")]

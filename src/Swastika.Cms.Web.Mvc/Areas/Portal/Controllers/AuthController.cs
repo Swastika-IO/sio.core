@@ -32,6 +32,7 @@ namespace Swastika.Cms.Web.Mvc.Areas.Portal.Controllers
     {
         private readonly UserManager<ApplicationUser> _userManager;
         private readonly SignInManager<ApplicationUser> _signInManager;
+        private readonly RoleManager<IdentityRole> _roleManager;
         private readonly JWTSettings _options;
         private readonly IEmailSender _emailSender;
         private readonly ISmsSender _smsSender;
@@ -41,6 +42,7 @@ namespace Swastika.Cms.Web.Mvc.Areas.Portal.Controllers
             IHostingEnvironment env,
             UserManager<ApplicationUser> userManager,
             SignInManager<ApplicationUser> signInManager,
+            RoleManager<IdentityRole> roleManager,
             IOptions<JWTSettings> optionsAccessor,
             IEmailSender emailSender,
             ISmsSender smsSender,
@@ -168,6 +170,61 @@ namespace Swastika.Cms.Web.Mvc.Areas.Portal.Controllers
                     //var callbackUrl = Url.Action(nameof(ConfirmEmail), "Account", new { userId = user.Id, code = code }, protocol: HttpContext.Request.Scheme);
                     //await _emailSender.SendEmailAsync(model.Email, "Confirm your account",
                     //    $"Please confirm your account by clicking this link: <a href='{callbackUrl}'>link</a>");
+                    await _signInManager.SignInAsync(user, isPersistent: false).ConfigureAwait(false);
+                    _logger.LogInformation(3, "User created a new account with password.");
+                    return RedirectToLocal(returnUrl);
+                }
+                AddErrors(result);
+            }
+
+            // If we got this far, something failed, redisplay form
+            return View(model);
+        }
+        
+        //
+        // GET: /Account/Register
+        [Route("RegisterSuperAdmin")]
+        [HttpGet]
+        [AllowAnonymous]
+        public IActionResult RegisterSuperAdmin(string returnUrl = null)
+        {
+            RegisterViewModel model = new RegisterViewModel()
+            {
+                ReturnUrl = returnUrl ?? "/",
+                UserClaims = IdentityBasedData.UserClaims.Select(c => new SelectListItem
+                {
+                    Text = c,
+                    Value = c
+                }).ToList()
+            };
+            return View(model);
+        }
+
+        //
+        // POST: /Account/Register
+        [Route("RegisterSuperAdmin")]
+        [HttpPost]
+        [AllowAnonymous]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> RegisterSuperAdmin(RegisterViewModel model, string returnUrl = null)
+        {
+            ViewData["ReturnUrl"] = returnUrl;
+            if (ModelState.IsValid)
+            {
+                var user = new ApplicationUser
+                {
+                    UserName = model.UserName,
+                    Email = model.Email,
+                    NickName = model.Email,
+                    FirstName = model.Email,
+                    LastName = model.Email
+                };
+              
+                var result = await _userManager.CreateAsync(user, model.Password).ConfigureAwait(false);
+                await _userManager.AddToRoleAsync(user, "SuperAdmin");
+                if (result.Succeeded)
+                {
+                   
                     await _signInManager.SignInAsync(user, isPersistent: false).ConfigureAwait(false);
                     _logger.LogInformation(3, "User created a new account with password.");
                     return RedirectToLocal(returnUrl);
