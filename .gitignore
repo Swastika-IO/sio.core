@@ -241,7 +241,7 @@ ModelManifest.xml
 # FAKE - F# Make
 .fake/
 
-**/appsettings.json
+/src/Swastika.Cms.Web.Mvc/appsettings.json
 
 
 /src/Swastika.UI.Spa/wwwroot/static
@@ -287,3 +287,4 @@ ModelManifest.xml
 /src/Swastika.Cms.Web.Mvc/wwwroot/Views/Shared/Templates/Default/Assets/js/plugins/presentation-page/rellax.min.js
 /src/Swastika.Cms.Web.Mvc/wwwroot/optimized_contents.zip
 /src/Swastika.Cms.Web.Mvc/appSettings.json
+/src/Swastika.Cms.Web.Mvc/Views/Account
