@@ -5,7 +5,9 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Swastika.Cms.Lib.Services;
+using Swastika.Common.Utility;
 using Swastika.Identity.Data;
+using System.IO;
 
 namespace Swastika.Cms.Lib.Models.Account
 {
@@ -36,15 +38,15 @@ namespace Swastika.Cms.Lib.Models.Account
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            if (!optionsBuilder.IsConfigured)
+            var config = new ConfigurationBuilder()
+             .SetBasePath(Directory.GetCurrentDirectory())
+             .AddJsonFile(Const.CONST_FILE_APPSETTING)
+             .Build();
+            string cnn = config.GetConnectionString(Swastika.Identity.Const.CONST_DEFAULT_CONNECTION);
+            if (!string.IsNullOrEmpty(cnn))
             {
-                string cnn = GlobalConfigurationService.Instance.GetConnectionString();//"Server=115.77.190.113,4444;Database=starceramic_new;UID=sa;Pwd=k{+X$f=7K5@#TJsH;MultipleActiveResultSets=true";//
-                if (!string.IsNullOrEmpty(cnn))
-                {
-                    optionsBuilder.UseSqlServer(cnn);
-                }
+                optionsBuilder.UseSqlServer(cnn);
             }
-
         }
 
 

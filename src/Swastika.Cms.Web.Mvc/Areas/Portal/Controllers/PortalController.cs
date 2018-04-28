@@ -11,6 +11,7 @@ using Swastika.Cms.Lib;
 using Swastika.Cms.Lib.Repositories;
 using Swastika.Cms.Lib.Services;
 using Swastika.Cms.Lib.ViewModels;
+using Swastika.Cms.Lib.ViewModels.Account;
 using Swastika.Cms.Lib.ViewModels.BackEnd;
 using Swastika.Cms.Lib.ViewModels.Info;
 using Swastika.Cms.Mvc.Controllers;

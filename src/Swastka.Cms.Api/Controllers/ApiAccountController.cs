@@ -4,6 +4,7 @@
 
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authentication.Cookies;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
@@ -30,22 +31,25 @@ using System.Threading.Tasks;
 
 namespace Swastika.Core.Controllers
 {
-    [Route("api/{culture}/account")]
+    [Route("api/account")]
     public class ApiAccountController : BaseApiController
     {
         private readonly UserManager<ApplicationUser> _userManager;
         private readonly SignInManager<ApplicationUser> _signInManager;
+        private readonly RoleManager<IdentityRole> _roleManager;
         private readonly IEmailSender _emailSender;
         private readonly ILogger _logger;
 
         public ApiAccountController(
             UserManager<ApplicationUser> userManager,
             SignInManager<ApplicationUser> signInManager,
+            RoleManager<IdentityRole> roleManager,
             IEmailSender emailSender,
             ILogger<ApiAccountController> logger)
         {
             _userManager = userManager;
             _signInManager = signInManager;
+            _roleManager = roleManager;
             _emailSender = emailSender;
             _logger = logger;
         }
@@ -55,19 +59,9 @@ namespace Swastika.Core.Controllers
 
 
 
-
-        //[Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
-        [Route("Get")]
-        [HttpGet]
-        public string Get()
-        {
-            var t = User.Claims.FirstOrDefault(c => c.Type == "RefreshToken");
-            return t?.Value;
-        }
-
         //
         // POST: /Account/Logout
-        [Authorize]
+        [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
         [Route("Logout")]
         [HttpGet, HttpPost]
         public async Task<RepositoryResponse<bool>> Logout()
@@ -113,7 +107,7 @@ namespace Swastika.Core.Controllers
                 {
                     return loginResult;
                 }
-               
+
             }
             else
             {
@@ -177,6 +171,7 @@ namespace Swastika.Core.Controllers
                 var createResult = await _userManager.CreateAsync(user, password: model.Password).ConfigureAwait(false);
                 if (createResult.Succeeded)
                 {
+
                     _logger.LogInformation("User created a new account with password.");
 
                     user = await _userManager.FindByEmailAsync(model.Email).ConfigureAwait(false);
@@ -213,13 +208,13 @@ namespace Swastika.Core.Controllers
             return result;
         }
 
-       
+
 
         private async Task<AccessTokenViewModel> GenerateAccessTokenAsync(ApplicationUser user)
         {
             string refreshToken = Guid.NewGuid().ToString();
             var dtIssued = DateTime.UtcNow;
-            var dtExpired = dtIssued.AddSeconds(SWCmsConstants.AuthConfiguration.AuthCookieExpiration);
+            var dtExpired = dtIssued.AddMinutes(SWCmsConstants.AuthConfiguration.AuthCookieExpiration);
             var dtRefreshTokenExpired = dtIssued.AddDays(SWCmsConstants.AuthConfiguration.AuthCookieExpiration);
 
             RefreshTokenViewModel vmRefreshToken = new RefreshTokenViewModel(
@@ -237,7 +232,7 @@ namespace Swastika.Core.Controllers
             var saveRefreshTokenResult = await vmRefreshToken.SaveModelAsync();
             AccessTokenViewModel token = new AccessTokenViewModel()
             {
-                Access_token = GenerateToken(user, dtExpired, refreshToken),
+                Access_token = await GenerateTokenAsync(user, dtExpired, refreshToken),
                 Refresh_token = saveRefreshTokenResult.Data.Id,
                 Token_type = SWCmsConstants.AuthConfiguration.TokenType,
                 Expires_in = SWCmsConstants.AuthConfiguration.AuthCookieExpiration,
@@ -246,86 +241,57 @@ namespace Swastika.Core.Controllers
                 Expires = dtExpired,
             };
             return token;
-            //if (saveRefreshTokenResult.IsSucceed)
-            //{
-            //    AccessTokenViewModel token = new AccessTokenViewModel()
-            //    {
-            //        Access_token = GenerateToken(user, dtExpired, refreshToken),
-            //        Refresh_token = vmRefreshToken.Id,
-            //        Token_type = SWCmsConstants.AuthConfiguration.TokenType,
-            //        Expires_in = SWCmsConstants.AuthConfiguration.AuthCookieExpiration,
-            //        //UserData = user,
-            //        Issued = dtIssued,
-            //        Expires = dtExpired,
-            //    };
-            //    return token;
-            //}
-            //else
-            //{
-            //    return null;
-            //}
-
-            //var token = new JwtTokenBuilder()
-            //                    .AddSecurityKey(JwtSecurityKey.Create(SWCmsConstants.JWTSettings.SECRET_KEY))
-            //                    .AddSubject(user.UserName)
-            //                    .AddIssuer(SWCmsConstants.JWTSettings.ISSUER)
-            //                    .AddAudience(SWCmsConstants.JWTSettings.AUDIENCE)
-            //                    //.AddClaim("MembershipId", "111")
-            //                    .AddExpiry(SWCmsConstants.JWTSettings.EXPIRED_IN)
-            //                    .Build();
-            //AccessTokenViewModel access_token = new AccessTokenViewModel()
-            //{
-            //    Access_token = token.Value, //GenerateToken(user, dtExpired, refreshToken),
-            //    //Refresh_token = vmRefreshToken.Id,
-            //    Token_type = SWCmsConstants.AuthConfiguration.TokenType,
-            //    Expires_in = SWCmsConstants.AuthConfiguration.AuthCookieExpiration,
-            //    //UserData = user,
-            //    Issued = DateTime.UtcNow,
-            //    Expires = token.ValidTo
-            //};
-            //return access_token;
+            
         }
 
-        private string GenerateToken(ApplicationUser user, DateTime expires, string refreshToken)
+        private async Task<string> GenerateTokenAsync(ApplicationUser user, DateTime expires, string refreshToken)
         {
-            List<Claim> claims = ExtendedClaimsProvider.GetClaims(user).ToList();
+            List<Claim> claims = await GetClaimsAsync(user);
             claims.AddRange(new[]
                 {
                     new Claim("Id", user.Id.ToString()),
                     new Claim("RefreshToken", refreshToken)
                 });
-            var token = new JwtTokenBuilder()
-                                .AddSecurityKey(JwtSecurityKey.Create(SWCmsConstants.JWTSettings.SECRET_KEY))
-                                .AddSubject(user.UserName)
-                                .AddIssuer(SWCmsConstants.JWTSettings.ISSUER)
-                                .AddAudience(SWCmsConstants.JWTSettings.AUDIENCE)
-                                .AddClaims(claims.ToDictionary(c => c.Type, c => c.Value))
-                                .AddExpiry(SWCmsConstants.JWTSettings.EXPIRED_IN)
-                                .Build();
-            return token.Value;
+            JwtSecurityToken jwtSecurityToken = new JwtSecurityToken(
+                issuer: SWCmsConstants.JWTSettings.ISSUER,
+                audience: SWCmsConstants.JWTSettings.AUDIENCE,
+                notBefore: DateTime.UtcNow,
+                claims: claims,
+                // our token will live 1 hour, but you can change you token lifetime here
+                expires: expires,
+                signingCredentials: new SigningCredentials(JwtSecurityKey.Create(SWCmsConstants.JWTSettings.SECRET_KEY), SecurityAlgorithms.HmacSha256));
+            return new JwtSecurityTokenHandler().WriteToken(jwtSecurityToken);
 
-            //var handler = new JwtSecurityTokenHandler();
-            //List<Claim> claims = ExtendedClaimsProvider.GetClaims(user).ToList();
-            //claims.AddRange(new[]
-            //    {
-            //        new Claim("Id", user.Id.ToString()),
-            //        new Claim("RefreshToken", refreshToken)
-            //    });
-            //ClaimsIdentity identity = new ClaimsIdentity(
-            //    new GenericIdentity(user.UserName, "TokenAuth"),
-            //    claims
-            //);
-
-            //var securityToken = handler.CreateToken(new SecurityTokenDescriptor
-            //{
-            //    Issuer = SWCmsConstants.AuthConfiguration.AuthTokenIssuer,
-            //    Audience = SWCmsConstants.AuthConfiguration.Audience,
-            //    SigningCredentials = SWCmsConstants.AuthConfiguration.SigningCredentials,
-            //    Subject = identity,
-            //    IssuedAt = expires.AddSeconds(-SWCmsConstants.AuthConfiguration.AuthCookieExpiration),
-            //    Expires = expires
-            //});
-            //return handler.WriteToken(securityToken);
         }
+
+        protected async Task<List<Claim>> GetClaimsAsync(ApplicationUser user)
+        {
+            List<Claim> claims = new List<Claim>();
+            var userRoles = await _userManager.GetRolesAsync(user);
+            foreach (var claim in user.Claims)
+            {
+                claims.Add(CreateClaim(claim.ClaimType, claim.ClaimValue));
+            }
+
+            foreach (var userRole in userRoles)
+            {
+                claims.Add(new Claim(ClaimTypes.Role, userRole));
+                var role = await _roleManager.FindByNameAsync(userRole);
+                if (role != null)
+                {
+                    var roleClaims = await _roleManager.GetClaimsAsync(role);
+                    foreach (Claim roleClaim in roleClaims)
+                    {
+                        claims.Add(roleClaim);
+                    }
+                }
+            }
+            return claims;
+        }
+        protected Claim CreateClaim(string type, string value)
+        {
+            return new Claim(type, value, ClaimValueTypes.String);
+        }
+
     }
 }

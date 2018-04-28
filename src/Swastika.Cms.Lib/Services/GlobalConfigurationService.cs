@@ -11,6 +11,7 @@ using Swastika.Cms.Lib.Models.Account;
 using Swastika.Cms.Lib.Models.Cms;
 using Swastika.Cms.Lib.Repositories;
 using Swastika.Cms.Lib.ViewModels;
+using Swastika.Cms.Lib.ViewModels.Account;
 using Swastika.Cms.Lib.ViewModels.BackEnd;
 using Swastika.Common.Helper;
 using Swastika.Domain.Core.ViewModels;
@@ -185,10 +186,6 @@ namespace Swastika.Cms.Lib.Services
 
                         isSucceed = isSucceed && InitThemes(context, transaction);
 
-                        //isSucceed = isSucceed && await InitRolesAsync(accountContext, accTransaction, roleManager);
-
-                        //isSucceed = isSucceed && await InitUsersAsync(accountContext, accTransaction, userManager);
-
                     }
                     else
                     {
@@ -254,28 +251,6 @@ namespace Swastika.Cms.Lib.Services
                 context?.Dispose();
                 accountContext?.Dispose();
             }
-        }
-
-        private async Task<bool> InitRolesAsync(SiocCmsAccountContext context, IDbContextTransaction transaction, RoleManager<IdentityRole> roleManager)
-        {
-            bool isSucceed = true;
-            var getRoles = RoleViewModel.Repository.GetModelList(context, transaction);
-            if (getRoles.IsSucceed && getRoles.Data.Count == 0)
-            {
-                //RoleViewModel role = new RoleViewModel()
-                //{
-                //    Name = "SuperAdmin",
-                //    NormalizedName = "Super Admin",
-                //};
-                //var saveResult = await role.SaveModelAsync(false, context, transaction);
-                var saveResult = await roleManager.CreateAsync(new IdentityRole()
-                {
-                    Id = Guid.NewGuid().ToString(),
-                    Name = "SuperAdmin"
-                });
-                isSucceed = saveResult.Succeeded;
-            }
-            return isSucceed;
         }
 
         private async Task<bool> InitUsersAsync(SiocCmsAccountContext context, IDbContextTransaction transaction, UserManager<ApplicationUser> userManager)

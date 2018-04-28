@@ -15,6 +15,7 @@ using Swastika.Identity.Data;
 using Swastika.Identity.Models;
 using System;
 using System.Text;
+using System.Threading.Tasks;
 
 namespace Swastika.Cms.Web.Mvc
 {
@@ -22,7 +23,6 @@ namespace Swastika.Cms.Web.Mvc
     {
         public static void ConfigIdentity(IServiceCollection services, IConfigurationRoot Configuration, string connectionName)
         {
-            //string connectionString = Configuration.GetConnectionString(connectionName);
             services.AddDbContext<ApplicationDbContext>();
 
             PasswordOptions pOpt = new PasswordOptions()
@@ -69,22 +69,21 @@ namespace Swastika.Cms.Web.Mvc
 
                                  ValidIssuer = SWCmsConstants.JWTSettings.ISSUER,
                                  ValidAudience = SWCmsConstants.JWTSettings.AUDIENCE,
-                                 IssuerSigningKey =
-                                  JwtSecurityKey.Create(SWCmsConstants.JWTSettings.SECRET_KEY)
+                                 IssuerSigningKey = JwtSecurityKey.Create(SWCmsConstants.JWTSettings.SECRET_KEY)
                              };
-                        //options.Events = new JwtBearerEvents
-                        //{
-                        //    OnAuthenticationFailed = context =>
-                        //    {
-                        //        Console.WriteLine("OnAuthenticationFailed: " + context.Exception.Message);
-                        //        return Task.CompletedTask;
-                        //    },
-                        //    OnTokenValidated = context =>
-                        //    {
-                        //        Console.WriteLine("OnTokenValidated: " + context.SecurityToken);
-                        //        return Task.CompletedTask;
-                        //    }
-                        //};
+                        options.Events = new JwtBearerEvents
+                        {
+                            OnAuthenticationFailed = context =>
+                            {
+                                Console.WriteLine("OnAuthenticationFailed: " + context.Exception.Message);
+                                return Task.CompletedTask;
+                            },
+                            OnTokenValidated = context =>
+                            {
+                                Console.WriteLine("OnTokenValidated: " + context.SecurityToken);
+                                return Task.CompletedTask;
+                            }
+                        };
                     });
         }
 

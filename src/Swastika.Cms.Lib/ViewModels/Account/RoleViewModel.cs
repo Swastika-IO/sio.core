@@ -9,7 +9,7 @@ using Swastika.Cms.Lib.ViewModels.Account;
 using Swastika.Identity.Models.AccountViewModels;
 using System.ComponentModel.DataAnnotations;
 
-namespace Swastika.Cms.Lib.ViewModels.BackEnd
+namespace Swastika.Cms.Lib.ViewModels.Account
 {
     public class RoleViewModel
         : ViewModelBase<SiocCmsAccountContext, AspNetRoles, RoleViewModel>
