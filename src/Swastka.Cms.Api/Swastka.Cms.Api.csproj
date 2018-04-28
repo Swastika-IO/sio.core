@@ -44,7 +44,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\..\Swastika-Identity\src\Swastika.Identity\Swastika.Identity.csproj" />
     <ProjectReference Include="..\Swastika.Cms.Lib\Swastika.Cms.Lib.csproj" />
   </ItemGroup>
 
