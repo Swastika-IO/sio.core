@@ -74,7 +74,7 @@ namespace Swastika.Cms.Mvc.Areas.Portal.Controllers
                 {
                     cnnString = model.LocalDbConnectionString;
                 }
-                var settings = FileRepository.Instance.GetFile("appsettings", ".json", string.Empty);
+                var settings = FileRepository.Instance.GetFile("appsettings", ".json", string.Empty, true, "{}");
                 if (settings != null)
                 {
                     JObject jsonSettings = JObject.Parse(settings.Content);
@@ -89,7 +89,7 @@ namespace Swastika.Cms.Mvc.Areas.Portal.Controllers
                 if (initResult.IsSucceed)
                 {
 
-                    
+
                     await InitRolesAsync();
                     return RedirectToAction("RegisterSuperAdmin", "Auth", new { culture = SWCmsConstants.Default.Specificulture });
                 }
@@ -119,7 +119,7 @@ namespace Swastika.Cms.Mvc.Areas.Portal.Controllers
             bool isSucceed = true;
             var getRoles = await RoleViewModel.Repository.GetModelListAsync();
             if (getRoles.IsSucceed && getRoles.Data.Count == 0)
-            {                
+            {
                 var saveResult = await _roleManager.CreateAsync(new IdentityRole()
                 {
                     Id = Guid.NewGuid().ToString(),
