@@ -184,7 +184,7 @@ namespace Swastika.Cms.Lib.Repositories
             return result ?? new FileViewModel() { FileFolder = FileFolder };
         }
 
-        public FileViewModel GetFile(string name, string ext, string FileFolder)
+        public FileViewModel GetFile(string name, string ext, string FileFolder, bool isCreate = false, string defaultContent = "")
         {
             FileViewModel result = null;
 
@@ -211,6 +211,17 @@ namespace Swastika.Cms.Lib.Repositories
                 {
                     // File invalid
                 }
+            }
+            else if (isCreate)
+            {
+                file.Create();
+                result = new FileViewModel()
+                {
+                    FileFolder = FileFolder,
+                    Filename = name,
+                    Extension = ext,
+                    Content = defaultContent
+                };
             }
 
             return result ?? new FileViewModel() { FileFolder = FileFolder };
