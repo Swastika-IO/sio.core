@@ -11,6 +11,8 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
+using Swastika.Cms.Lib.ViewModels.Account;
+using Swastika.Cms.Lib.ViewModels.Info;
 using Swastika.Cms.Mvc.Controllers;
 using Swastika.Cms.Web.Mvc.Models.Identity;
 using Swastika.Identity.Data;
@@ -180,14 +182,19 @@ namespace Swastika.Cms.Web.Mvc.Areas.Portal.Controllers
             // If we got this far, something failed, redisplay form
             return View(model);
         }
-        
+
         //
         // GET: /Account/Register
         [Route("RegisterSuperAdmin")]
         [HttpGet]
         [AllowAnonymous]
-        public IActionResult RegisterSuperAdmin(string returnUrl = null)
+        public async Task<IActionResult> RegisterSuperAdmin(string returnUrl = null)
         {
+            var superAdmin = await _userManager.GetUsersInRoleAsync("SuperAdmin");
+            if (superAdmin.Count > 0)
+            {
+                return RedirectToAction("Register");
+            }
             RegisterViewModel model = new RegisterViewModel()
             {
                 ReturnUrl = returnUrl ?? "/",
@@ -197,6 +204,7 @@ namespace Swastika.Cms.Web.Mvc.Areas.Portal.Controllers
                     Value = c
                 }).ToList()
             };
+
             return View(model);
         }
 
@@ -208,6 +216,11 @@ namespace Swastika.Cms.Web.Mvc.Areas.Portal.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> RegisterSuperAdmin(RegisterViewModel model, string returnUrl = null)
         {
+            var superAdmin = await _userManager.GetUsersInRoleAsync("SuperAdmin");
+            if (superAdmin.Count > 0)
+            {
+                return RedirectToAction("Register");
+            }
             ViewData["ReturnUrl"] = returnUrl;
             if (ModelState.IsValid)
             {
@@ -219,12 +232,22 @@ namespace Swastika.Cms.Web.Mvc.Areas.Portal.Controllers
                     FirstName = model.Email,
                     LastName = model.Email
                 };
-              
+
                 var result = await _userManager.CreateAsync(user, model.Password).ConfigureAwait(false);
                 await _userManager.AddToRoleAsync(user, "SuperAdmin");
                 if (result.Succeeded)
                 {
-                   
+                    // Save to cms db context
+                    InfoUserViewModel cmsUser = new InfoUserViewModel()
+                    {
+                        Id = user.Id,
+                        Username = model.UserName,
+                        FirstName = model.FirstName,
+                        LastName = model.LastName,
+                        CreatedDateTime = DateTime.UtcNow
+                    };
+                    await cmsUser.SaveModelAsync().ConfigureAwait(false);
+
                     await _signInManager.SignInAsync(user, isPersistent: false).ConfigureAwait(false);
                     _logger.LogInformation(3, "User created a new account with password.");
                     return RedirectToLocal(returnUrl);

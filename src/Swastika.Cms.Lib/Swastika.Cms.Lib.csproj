@@ -34,6 +34,15 @@
     <Compile Remove="Migrations\20180305042908_Add-Page-Layout.cs" />
     <Compile Remove="Migrations\20180305042908_Add-Page-Layout.Designer.cs" />
     <Compile Remove="Migrations\20180319080440_update-product.cs" />
+    <Compile Remove="Models\Cms\AspNetRoleClaims.cs" />
+    <Compile Remove="Models\Cms\AspNetRoles.cs" />
+    <Compile Remove="Models\Cms\AspNetUserClaims.cs" />
+    <Compile Remove="Models\Cms\AspNetUserLogins.cs" />
+    <Compile Remove="Models\Cms\AspNetUserRoles.cs" />
+    <Compile Remove="Models\Cms\AspNetUsers.cs" />
+    <Compile Remove="Models\Cms\AspNetUserTokens.cs" />
+    <Compile Remove="Models\Cms\Clients.cs" />
+    <Compile Remove="Models\Cms\RefreshTokens.cs" />
     <Compile Remove="Models\SiocFile.cs" />
     <Compile Remove="Models\SiocTemplate.cs" />
     <Compile Remove="Models\SiocTheme.cs" />
@@ -48,6 +57,7 @@
     <Compile Remove="ViewModels\BlankViewModel.cs" />
     <Compile Remove="ViewModels\CategoryViewModels.cs" />
     <Compile Remove="ViewModels\CultureViewModel.cs" />
+    <Compile Remove="ViewModels\Info\_BlankViewModel.cs" />
     <Compile Remove="ViewModels\ModuleDataViewModels.cs" />
     <Compile Remove="ViewModels\ModuleViewModels.cs" />
     <Compile Remove="ViewModels\Navigation\_BlankViewModel.cs" />

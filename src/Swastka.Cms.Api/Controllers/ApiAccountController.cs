@@ -15,7 +15,9 @@ using Swastika.Cms.Lib;
 using Swastika.Cms.Lib.Models.Account;
 using Swastika.Cms.Lib.ViewModels;
 using Swastika.Cms.Lib.ViewModels.Account;
+using Swastika.Cms.Lib.ViewModels.Info;
 using Swastika.Domain.Core.ViewModels;
+using Swastika.Identity.Identity.Models.AccountViewModels;
 using Swastika.Identity.Infrastructure;
 using Swastika.Identity.Models;
 using Swastika.Identity.Models.AccountViewModels;
@@ -175,6 +177,18 @@ namespace Swastika.Core.Controllers
                     _logger.LogInformation("User created a new account with password.");
 
                     user = await _userManager.FindByEmailAsync(model.Email).ConfigureAwait(false);
+
+                    // Save to cms db context
+                    InfoUserViewModel cmsUser = new InfoUserViewModel()
+                    {
+                        Id = user.Id,
+                        Username = model.UserName,
+                        FirstName = model.FirstName,
+                        LastName = model.LastName,
+                        CreatedDateTime = DateTime.UtcNow
+                    };
+                    await cmsUser.SaveModelAsync();
+
                     var token = await GenerateAccessTokenAsync(user);
                     if (token != null)
                     {
@@ -208,7 +222,62 @@ namespace Swastika.Core.Controllers
             return result;
         }
 
+        [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme, Roles = "SuperAdmin")]
+        [Route("user-in-role")]
+        [HttpPost]
+        public async Task<RepositoryResponse<bool>> ManageUserInRole(UserRoleModel model)
+        {
+            var role = await _roleManager.FindByIdAsync(model.RoleId);
+            var result = new RepositoryResponse<bool>();
 
+            List<string> errors = new List<string>();
+
+            if (role == null)
+            {
+                errors.Add($"Role: {model.RoleId} does not exists");
+            }
+            else if (model.IsUserInRole)
+            {
+
+
+                var appUser = await _userManager.FindByIdAsync(model.UserId);
+
+                if (appUser == null)
+                {
+                    errors.Add($"User: {model.UserId} does not exists");
+                }
+
+                else if (!(await _userManager.IsInRoleAsync(appUser, role.Name)))
+                {
+                    var addResult = await _userManager.AddToRoleAsync(appUser, role.Name);
+
+                    if (!addResult.Succeeded)
+                    {
+                        errors.Add($"User: {model.UserId} could not be added to role");
+                    }
+                }
+            }
+            else
+            {
+                var appUser = await _userManager.FindByIdAsync(model.UserId);
+
+                if (appUser == null)
+                {
+                    errors.Add($"User: {model.UserId} does not exists");
+                }
+
+                var removeResult = await _userManager.RemoveFromRoleAsync(appUser, role.Name);
+                if (!removeResult.Succeeded)
+                {
+                    errors.Add($"User: {model.UserId} could not be removed from role");
+                }
+
+            }
+            result.IsSucceed = errors.Count == 0;
+            result.Data = errors.Count == 0;
+            result.Errors = errors;
+            return result;
+        }
 
         private async Task<AccessTokenViewModel> GenerateAccessTokenAsync(ApplicationUser user)
         {
@@ -241,7 +310,7 @@ namespace Swastika.Core.Controllers
                 Expires = dtExpired,
             };
             return token;
-            
+
         }
 
         private async Task<string> GenerateTokenAsync(ApplicationUser user, DateTime expires, string refreshToken)

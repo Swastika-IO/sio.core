@@ -145,6 +145,7 @@ namespace Swastika.Cms.Web.Mvc
                 routes.MapRoute(
                     name: "areaRoute2",
                     template: "{culture=" + CONST_ROUTE_DEFAULT_CULTURE + "}/{area:exists}/{controller=Portal}/{action=Index}/{id?}");
+               
                 routes.MapRoute(
                     name: "apiRoute",
                     template: "api/{culture=" + CONST_ROUTE_DEFAULT_CULTURE + "}/{area:exists}/{controller=Portal}/{action=Index}");

@@ -42,7 +42,6 @@ namespace Swastika.Cms.Lib.Models.Cms
         public int Type { get; set; }
         public int? Views { get; set; }
         public string Code { get; set; }
-        public int TotalSaled { get; set; }
         public double? DealPrice { get; set; }
         public double Discount { get; set; }
         public double ImportPrice { get; set; }
@@ -50,6 +49,7 @@ namespace Swastika.Cms.Lib.Models.Cms
         public double NormalPrice { get; set; }
         public int PackageCount { get; set; }
         public string Size { get; set; }
+        public int TotalSaled { get; set; }
 
         public SiocCulture SpecificultureNavigation { get; set; }
         public ICollection<SiocCategoryProduct> SiocCategoryProduct { get; set; }

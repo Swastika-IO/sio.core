@@ -19,6 +19,7 @@ namespace Swastika.Cms.Lib.Models.Cms
         public virtual DbSet<SiocCategoryModule> SiocCategoryModule { get; set; }
         public virtual DbSet<SiocCategoryPosition> SiocCategoryPosition { get; set; }
         public virtual DbSet<SiocCategoryProduct> SiocCategoryProduct { get; set; }
+        public virtual DbSet<SiocCmsUser> SiocCmsUser { get; set; }
         public virtual DbSet<SiocComment> SiocComment { get; set; }
         public virtual DbSet<SiocConfiguration> SiocConfiguration { get; set; }
         public virtual DbSet<SiocCopy> SiocCopy { get; set; }
@@ -33,6 +34,9 @@ namespace Swastika.Cms.Lib.Models.Cms
         public virtual DbSet<SiocModuleData> SiocModuleData { get; set; }
         public virtual DbSet<SiocModuleProduct> SiocModuleProduct { get; set; }
         public virtual DbSet<SiocParameter> SiocParameter { get; set; }
+        public virtual DbSet<SiocPortalPage> SiocPortalPage { get; set; }
+        public virtual DbSet<SiocPortalPageNavigation> SiocPortalPageNavigation { get; set; }
+        public virtual DbSet<SiocPortalPageRole> SiocPortalPageRole { get; set; }
         public virtual DbSet<SiocPosition> SiocPosition { get; set; }
         public virtual DbSet<SiocProduct> SiocProduct { get; set; }
         public virtual DbSet<SiocProductMedia> SiocProductMedia { get; set; }
@@ -58,10 +62,7 @@ namespace Swastika.Cms.Lib.Models.Cms
         {
             if (!optionsBuilder.IsConfigured)
             {
-                //var config = new ConfigurationBuilder()
-                //    .SetBasePath(System.IO.Directory.GetCurrentDirectory())
-                //    .AddJsonFile(Common.Utility.Const.CONST_FILE_APPSETTING)
-                //    .Build();
+                
 
                 // define the database to use
                 string cnn = GlobalConfigurationService.Instance.GetConnectionString();
@@ -418,6 +419,35 @@ namespace Swastika.Cms.Lib.Models.Cms
                     .HasForeignKey(d => new { d.ProductId, d.Specificulture })
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_TTS_Category_Product_TTS_Product");
+            });
+
+            modelBuilder.Entity<SiocCmsUser>(entity =>
+            {
+                entity.ToTable("sioc_cms_user");
+
+                entity.Property(e => e.Id).ValueGeneratedNever();
+
+                entity.Property(e => e.Address).HasMaxLength(50);
+
+                entity.Property(e => e.Avatar).HasMaxLength(50);
+
+                entity.Property(e => e.CreatedBy).HasMaxLength(50);
+
+                entity.Property(e => e.CreatedDateTime).HasColumnType("datetime");
+
+                entity.Property(e => e.FirstName).HasMaxLength(50);
+
+                entity.Property(e => e.LastName).HasMaxLength(50);
+
+                entity.Property(e => e.MiddleName).HasMaxLength(50);
+
+                entity.Property(e => e.PhoneNumber).HasMaxLength(50);
+
+                entity.Property(e => e.Priority).HasDefaultValueSql("((0))");
+
+                entity.Property(e => e.Status).HasDefaultValueSql("((1))");
+
+                entity.Property(e => e.Username).HasMaxLength(256);
             });
 
             modelBuilder.Entity<SiocComment>(entity =>
@@ -886,6 +916,84 @@ namespace Swastika.Cms.Lib.Models.Cms
                 entity.Property(e => e.Value).IsRequired();
             });
 
+            modelBuilder.Entity<SiocPortalPage>(entity =>
+            {
+                entity.ToTable("sioc_portal_page");
+
+                entity.Property(e => e.CreatedBy)
+                    .IsRequired()
+                    .HasMaxLength(50);
+
+                entity.Property(e => e.CreatedDateTime).HasColumnType("datetime");
+
+                entity.Property(e => e.Priority).HasDefaultValueSql("((0))");
+
+                entity.Property(e => e.RouteAction).HasMaxLength(50);
+
+                entity.Property(e => e.RouteName).HasMaxLength(50);
+
+                entity.Property(e => e.RouteValue).HasMaxLength(250);
+
+                entity.Property(e => e.Status).HasDefaultValueSql("((1))");
+
+                entity.Property(e => e.Title)
+                    .IsRequired()
+                    .HasMaxLength(250);
+
+                entity.Property(e => e.Url).HasMaxLength(250);
+            });
+
+            modelBuilder.Entity<SiocPortalPageNavigation>(entity =>
+            {
+                entity.HasKey(e => new { e.Id, e.ParentId });
+
+                entity.ToTable("sioc_portal_page_navigation");
+
+                entity.Property(e => e.Description).HasMaxLength(250);
+
+                entity.Property(e => e.Image).HasMaxLength(250);
+
+                entity.Property(e => e.Priority).HasDefaultValueSql("((0))");
+
+                entity.Property(e => e.Status).HasDefaultValueSql("((1))");
+
+                entity.HasOne(d => d.IdNavigation)
+                    .WithMany(p => p.SiocPortalPageNavigationIdNavigation)
+                    .HasForeignKey(d => d.Id)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("FK_sioc_portal_page_navigation_sioc_portal_page");
+
+                entity.HasOne(d => d.Parent)
+                    .WithMany(p => p.SiocPortalPageNavigationParent)
+                    .HasForeignKey(d => d.ParentId)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("FK_sioc_portal_page_navigation_sioc_portal_page1");
+            });
+
+            modelBuilder.Entity<SiocPortalPageRole>(entity =>
+            {
+                entity.ToTable("sioc_portal_page_role");
+
+                entity.Property(e => e.CreatedBy)
+                    .IsRequired()
+                    .HasMaxLength(50);
+
+                entity.Property(e => e.CreatedDateTime).HasColumnType("datetime");
+
+                entity.Property(e => e.Priority).HasDefaultValueSql("((0))");
+
+                entity.Property(e => e.RoleId)
+                    .IsRequired()
+                    .HasMaxLength(450);
+
+                entity.Property(e => e.Status).HasDefaultValueSql("((1))");
+
+                entity.HasOne(d => d.Page)
+                    .WithMany(p => p.SiocPortalPageRole)
+                    .HasForeignKey(d => d.PageId)
+                    .HasConstraintName("FK_sioc_portal_page_role_sioc_portal_page");
+            });
+
             modelBuilder.Entity<SiocPosition>(entity =>
             {
                 entity.ToTable("sioc_position");
@@ -913,7 +1021,8 @@ namespace Swastika.Cms.Lib.Models.Cms
 
                 entity.Property(e => e.Code)
                     .IsRequired()
-                    .HasMaxLength(50);
+                    .HasMaxLength(50)
+                    .HasDefaultValueSql("(N'')");
 
                 entity.Property(e => e.CreatedBy).HasMaxLength(250);
 

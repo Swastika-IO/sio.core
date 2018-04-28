@@ -74,27 +74,33 @@ namespace Swastika.Cms.Mvc.Areas.Portal.Controllers
                 {
                     cnnString = model.LocalDbConnectionString;
                 }
-
+                var settings = FileRepository.Instance.GetFile("appsettings", ".json", string.Empty);
+                if (settings != null)
+                {
+                    JObject jsonSettings = JObject.Parse(settings.Content);
+                    jsonSettings["ConnectionStrings"][SWCmsConstants.CONST_DEFAULT_CONNECTION] = cnnString;
+                    // Set connection string for identity ApplicationDbContext
+                    jsonSettings["ConnectionStrings"]["AccountConnection"] = cnnString;
+                    settings.Content = jsonSettings.ToString();
+                    FileRepository.Instance.SaveFile(settings);
+                }
                 GlobalConfigurationService.Instance.ConnectionString = cnnString;
                 var initResult = await GlobalConfigurationService.Instance.InitSWCms(_userManager, _roleManager);
                 if (initResult.IsSucceed)
                 {
 
-                    var settings = FileRepository.Instance.GetFile("appsettings", ".json", string.Empty);
-                    if (settings != null)
-                    {
-                        JObject jsonSettings = JObject.Parse(settings.Content);
-                        jsonSettings["ConnectionStrings"][SWCmsConstants.CONST_DEFAULT_CONNECTION] = cnnString;
-                        // Set connection string for identity ApplicationDbContext
-                        jsonSettings["ConnectionStrings"]["AccountConnection"] = cnnString;
-                        settings.Content = jsonSettings.ToString();
-                        FileRepository.Instance.SaveFile(settings);
-                    }
+                    
                     await InitRolesAsync();
                     return RedirectToAction("RegisterSuperAdmin", "Auth", new { culture = SWCmsConstants.Default.Specificulture });
                 }
                 else
                 {
+                    settings = FileRepository.Instance.GetFile("appsettings", ".json", string.Empty);
+                    JObject jsonSettings = JObject.Parse(settings.Content);
+                    jsonSettings["ConnectionStrings"][SWCmsConstants.CONST_DEFAULT_CONNECTION] = null;
+                    jsonSettings["ConnectionStrings"]["AccountConnection"] = null;
+                    settings.Content = jsonSettings.ToString();
+                    FileRepository.Instance.SaveFile(settings);
                     if (initResult.Exception != null)
                     {
                         ModelState.AddModelError("", initResult.Exception.Message);

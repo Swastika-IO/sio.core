@@ -17,7 +17,7 @@ namespace Swastika.Cms.Lib.Migrations
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "2.0.1-rtm-125")
+                .HasAnnotation("ProductVersion", "2.0.2-rtm-10011")
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
             modelBuilder.Entity("Swastika.Cms.Lib.Models.Cms.SiocArticle", b =>
@@ -408,6 +408,51 @@ namespace Swastika.Cms.Lib.Migrations
                     b.HasIndex("ProductId", "Specificulture");
 
                     b.ToTable("sioc_category_product");
+                });
+
+            modelBuilder.Entity("Swastika.Cms.Lib.Models.Cms.SiocCmsUser", b =>
+                {
+                    b.Property<string>("Id");
+
+                    b.Property<string>("Address")
+                        .HasMaxLength(50);
+
+                    b.Property<string>("Avatar")
+                        .HasMaxLength(50);
+
+                    b.Property<string>("CreatedBy")
+                        .IsRequired()
+                        .HasMaxLength(50);
+
+                    b.Property<DateTime>("CreatedDateTime")
+                        .HasColumnType("datetime");
+
+                    b.Property<string>("FirstName")
+                        .HasMaxLength(50);
+
+                    b.Property<string>("LastName")
+                        .HasMaxLength(50);
+
+                    b.Property<string>("MiddleName")
+                        .HasMaxLength(50);
+
+                    b.Property<string>("PhoneNumber")
+                        .HasMaxLength(50);
+
+                    b.Property<int>("Priority")
+                        .ValueGeneratedOnAdd()
+                        .HasDefaultValueSql("((0))");
+
+                    b.Property<int>("Status")
+                        .ValueGeneratedOnAdd()
+                        .HasDefaultValueSql("((1))");
+
+                    b.Property<string>("Username")
+                        .HasMaxLength(256);
+
+                    b.HasKey("Id");
+
+                    b.ToTable("sioc_cms_user");
                 });
 
             modelBuilder.Entity("Swastika.Cms.Lib.Models.Cms.SiocComment", b =>
@@ -982,6 +1027,109 @@ namespace Swastika.Cms.Lib.Migrations
                     b.ToTable("sioc_parameter");
                 });
 
+            modelBuilder.Entity("Swastika.Cms.Lib.Models.Cms.SiocPortalPage", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd();
+
+                    b.Property<string>("CreatedBy")
+                        .IsRequired()
+                        .HasMaxLength(50);
+
+                    b.Property<DateTime>("CreatedDateTime")
+                        .HasColumnType("datetime");
+
+                    b.Property<int?>("ParentId");
+
+                    b.Property<int>("Priority")
+                        .ValueGeneratedOnAdd()
+                        .HasDefaultValueSql("((0))");
+
+                    b.Property<string>("RouteAction")
+                        .HasMaxLength(50);
+
+                    b.Property<string>("RouteName")
+                        .HasMaxLength(50);
+
+                    b.Property<string>("RouteValue")
+                        .HasMaxLength(250);
+
+                    b.Property<int>("Status")
+                        .ValueGeneratedOnAdd()
+                        .HasDefaultValueSql("((1))");
+
+                    b.Property<string>("Title")
+                        .IsRequired()
+                        .HasMaxLength(250);
+
+                    b.Property<string>("Url")
+                        .HasMaxLength(250);
+
+                    b.HasKey("Id");
+
+                    b.ToTable("sioc_portal_page");
+                });
+
+            modelBuilder.Entity("Swastika.Cms.Lib.Models.Cms.SiocPortalPageNavigation", b =>
+                {
+                    b.Property<int>("Id");
+
+                    b.Property<int>("ParentId");
+
+                    b.Property<string>("Description")
+                        .HasMaxLength(250);
+
+                    b.Property<string>("Image")
+                        .HasMaxLength(250);
+
+                    b.Property<int>("Priority")
+                        .ValueGeneratedOnAdd()
+                        .HasDefaultValueSql("((0))");
+
+                    b.Property<int>("Status")
+                        .ValueGeneratedOnAdd()
+                        .HasDefaultValueSql("((1))");
+
+                    b.HasKey("Id", "ParentId");
+
+                    b.HasIndex("ParentId");
+
+                    b.ToTable("sioc_portal_page_navigation");
+                });
+
+            modelBuilder.Entity("Swastika.Cms.Lib.Models.Cms.SiocPortalPageRole", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd();
+
+                    b.Property<string>("CreatedBy")
+                        .IsRequired()
+                        .HasMaxLength(50);
+
+                    b.Property<DateTime>("CreatedDateTime")
+                        .HasColumnType("datetime");
+
+                    b.Property<int>("PageId");
+
+                    b.Property<int>("Priority")
+                        .ValueGeneratedOnAdd()
+                        .HasDefaultValueSql("((0))");
+
+                    b.Property<string>("RoleId")
+                        .IsRequired()
+                        .HasMaxLength(450);
+
+                    b.Property<int>("Status")
+                        .ValueGeneratedOnAdd()
+                        .HasDefaultValueSql("((1))");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("PageId");
+
+                    b.ToTable("sioc_portal_page_role");
+                });
+
             modelBuilder.Entity("Swastika.Cms.Lib.Models.Cms.SiocPosition", b =>
                 {
                     b.Property<int>("Id")
@@ -1014,6 +1162,8 @@ namespace Swastika.Cms.Lib.Migrations
 
                     b.Property<string>("Code")
                         .IsRequired()
+                        .ValueGeneratedOnAdd()
+                        .HasDefaultValueSql("(N'')")
                         .HasMaxLength(50);
 
                     b.Property<string>("Content");
@@ -1548,6 +1698,28 @@ namespace Swastika.Cms.Lib.Migrations
                         .WithMany("SiocModuleProduct")
                         .HasForeignKey("ProductId", "Specificulture")
                         .HasConstraintName("FK_TTS_Module_Product_TTS_Product");
+                });
+
+            modelBuilder.Entity("Swastika.Cms.Lib.Models.Cms.SiocPortalPageNavigation", b =>
+                {
+                    b.HasOne("Swastika.Cms.Lib.Models.Cms.SiocPortalPage", "IdNavigation")
+                        .WithMany("SiocPortalPageNavigationIdNavigation")
+                        .HasForeignKey("Id")
+                        .HasConstraintName("FK_sioc_portal_page_navigation_sioc_portal_page");
+
+                    b.HasOne("Swastika.Cms.Lib.Models.Cms.SiocPortalPage", "Parent")
+                        .WithMany("SiocPortalPageNavigationParent")
+                        .HasForeignKey("ParentId")
+                        .HasConstraintName("FK_sioc_portal_page_navigation_sioc_portal_page1");
+                });
+
+            modelBuilder.Entity("Swastika.Cms.Lib.Models.Cms.SiocPortalPageRole", b =>
+                {
+                    b.HasOne("Swastika.Cms.Lib.Models.Cms.SiocPortalPage", "Page")
+                        .WithMany("SiocPortalPageRole")
+                        .HasForeignKey("PageId")
+                        .HasConstraintName("FK_sioc_portal_page_role_sioc_portal_page")
+                        .OnDelete(DeleteBehavior.Cascade);
                 });
 
             modelBuilder.Entity("Swastika.Cms.Lib.Models.Cms.SiocProduct", b =>

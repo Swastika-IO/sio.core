@@ -4,6 +4,7 @@
 
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Localization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Data.OData.Query;
@@ -11,6 +12,7 @@ using Scriban;
 using Swastika.Cms.Lib;
 using Swastika.Cms.Lib.ViewModels.FrontEnd;
 using Swastika.Cms.Lib.ViewModels.Info;
+using Swastika.Identity.Models;
 using System;
 using System.Net.Http;
 using System.Net.Http.Headers;
@@ -27,13 +29,19 @@ namespace Swastika.Cms.Mvc.Controllers
         //private readonly IStringLocalizer<HomeController> _homeLocalizer;
         //private readonly IStringLocalizer<SharedResource> _localizer;
         //private readonly GlobalConfigurationService _appService;
-        public HomeController(IHostingEnvironment env
+        private readonly UserManager<ApplicationUser> _userManager;
+        private readonly RoleManager<IdentityRole> _roleManager;
+        public HomeController(IHostingEnvironment env,
             //, IStringLocalizer<HomeController> homeLocalizer
             //, IStringLocalizer<SharedResource> localizer
             //, GlobalConfigurationService service
+             UserManager<ApplicationUser> userManager,
+            RoleManager<IdentityRole> roleManager
             )
             : base(env)
         {
+            this._userManager = userManager;
+            this._roleManager = roleManager;
             //_localizer = localizer;
             //_homeLocalizer = homeLocalizer;
             //_appService = service;

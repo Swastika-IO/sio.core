@@ -7,22 +7,20 @@ using System.ComponentModel.DataAnnotations;
 
 namespace Swastika.Cms.Lib.ViewModels.Account
 {
-    public class RoleViewModel
-        : ViewModelBase<SiocCmsAccountContext, AspNetRoles, RoleViewModel>
+    public class UserRoleViewModel
+        : ViewModelBase<SiocCmsAccountContext, AspNetUserRoles, UserRoleViewModel>
     {
         #region Properties
 
+        #region Models
         [JsonProperty("id")]
         public string Id { get; set; }
-        [JsonProperty("concurrencyStamp")]
-        public string ConcurrencyStamp { get; set; }
-        [Required]
-        [JsonProperty("name")]
-        public string Name { get; set; }
-        [JsonProperty("normalizedName")]
-        public string NormalizedName { get; set; }
-        #region Models
-
+        [JsonProperty("userId")]
+        public string UserId { get; set; }
+        [JsonProperty("roleId")]
+        public string RoleId { get; set; }
+        [JsonProperty("applicationUserId")]
+        public string ApplicationUserId { get; set; }
         #endregion
 
         #region Views
@@ -32,11 +30,11 @@ namespace Swastika.Cms.Lib.ViewModels.Account
 
         #region Contructors
 
-        public RoleViewModel() : base()
+        public UserRoleViewModel() : base()
         {
         }
 
-        public RoleViewModel(AspNetRoles model, SiocCmsAccountContext _context = null, IDbContextTransaction _transaction = null)
+        public UserRoleViewModel(AspNetUserRoles model, SiocCmsAccountContext _context = null, IDbContextTransaction _transaction = null)
             : base(model, _context, _transaction)
         {
         }
@@ -44,7 +42,7 @@ namespace Swastika.Cms.Lib.ViewModels.Account
         #endregion
 
         #region Overrides
-        public override AspNetRoles ParseModel(SiocCmsAccountContext _context = null, IDbContextTransaction _transaction = null)
+        public override AspNetUserRoles ParseModel(SiocCmsAccountContext _context = null, IDbContextTransaction _transaction = null)
         {
             if (string.IsNullOrEmpty(Id))
             {
