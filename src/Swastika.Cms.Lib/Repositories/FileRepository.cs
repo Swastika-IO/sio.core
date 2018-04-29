@@ -501,6 +501,7 @@ namespace Swastika.Cms.Lib.Repositories
             {
                 string fullPath = CommonHelper.GetFullPath(new string[] {
                     SWCmsConstants.Parameters.WebRootPath,
+                    SWCmsConstants.Parameters.FileFolder,
                     file.FileFolder
                 });
                 if (!string.IsNullOrEmpty(file.Filename))

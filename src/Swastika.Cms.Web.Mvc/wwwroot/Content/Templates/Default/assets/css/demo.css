@@ -3,7 +3,7 @@
 }
 
 
-/*      transitions */
+/*  transitions */
 
 .presentation-page .front,
 .presentation-page .front:after,
@@ -1596,3 +1596,4 @@
     -webkit-animation-name: Floatingx;
     -moz-animation-name: Floatingx;
 }
+
