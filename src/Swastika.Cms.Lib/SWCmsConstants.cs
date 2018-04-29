@@ -11,8 +11,6 @@ namespace Swastika.Cms.Lib
     {
         public const string CONST_DEFAULT_CONNECTION = "CmsConnection";
         
-
-       
         /// The constant path home access denied
         /// </summary>
         public const string CONST_PATH_HOME_ACCESS_DENIED = "/home/access-denied";
