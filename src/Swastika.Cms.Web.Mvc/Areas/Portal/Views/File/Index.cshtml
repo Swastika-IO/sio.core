@@ -29,7 +29,7 @@
                         <label class="custom-file-label" for="file">Choose file</label>
                     </div>
                 </div>
-                <div class="btn-group mr-2" role="group" aria-label="First group">
+                <div class="btn-group btn-group-sm mr-2" role="group" aria-label="First group">
                     <input type="hidden" name="folder" value="@ViewBag.folder" />
                     <button type="button" onclick="this.form.submit()" class="btn btn-secondary"><i class="mi mi-Upload"></i> Upload</button>
                 </div>
@@ -126,7 +126,7 @@
                             </td>
 
                             <td>
-                                <div class="btn-group btn-group-sm" role="group" aria-label="Actions">
+                                <div class="btn-group btn-group-sm btn-group-sm" role="group" aria-label="Actions">
                                     <a asp-action="Edit"
                                        asp-route-name="@item.Filename"
                                        asp-route-ext="@item.Extension"

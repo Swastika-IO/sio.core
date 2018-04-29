@@ -9,14 +9,14 @@
     </div>
 
     <div class="row">
-        <div class="col-md-8">
+        <div class="col-md-9">
             <div class="btn-toolbar mb-3" role="toolbar" aria-label="Toolbar with button groups">
-                <div class="btn-group mr-2" role="group" aria-label="First group">
+                <div class="btn-group btn-group-sm mr-2" role="group" aria-label="First group">
                     <a asp-area="Portal" asp-controller="Articles" asp-action="Create" class="btn btn-secondary"><i class="fas fa-plus"></i></a>
                     <a asp-area="Portal" asp-controller="Articles" asp-action="Index" class="btn btn-secondary"><i class="fas fa-bars"></i></a>
                     <a asp-area="Portal" asp-controller="Articles" asp-action="Draft" class="btn btn-secondary"><i class="fas fa-clipboard"></i></a>
                 </div>
-                <div class="btn-group dropdown mr-2">
+                <div class="btn-group btn-group-sm dropdown mr-2">
                     <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownOrderBy" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         {{request.status}}
                     </button>
@@ -27,7 +27,7 @@
                         </button>
                     </div>
                 </div>
-                <div class="btn-group dropdown mr-2">
+                <div class="btn-group btn-group-sm dropdown mr-2">
                     <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownOrderBy" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         {{request.orderBy}}
                     </button>
@@ -35,10 +35,10 @@
                         <button class="dropdown-item" ng-repeat="item in orders track by $index" ng-model="request.orderBy" ng-click="request.orderBy=item.value;loadArticles();" value="{{item.value}}">{{item.title}}</button>
                     </div>
                 </div>
-                <div class="btn-group mr-2" role="group" aria-label="First group">
+                <div class="btn-group btn-group-sm mr-2" role="group" aria-label="First group">
                     <button class="btn btn-secondary" ng-repeat="item in directions track by $index" ng-model="request.direction" ng-click="request.direction=item.value;loadArticles();" value="{{item.value}}">{{item.title}}</button>
                 </div>
-                <div class="dropdown mr-2">
+                <div class="btn-group btn-group-sm dropdown mr-2">
                     <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownItemPerPage" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         {{request.pageSize}} items
                     </button>
@@ -46,7 +46,7 @@
                         <button class="dropdown-item" ng-repeat="item in pageSizes track by $index" ng-model="request.pageSize" ng-click="request.pageSize=item;loadArticles();" value="{{item}}">{{item}}</button>
                     </div>
                 </div>
-                <div class="input-group mr-2" role="group" aria-label="First group">
+                <div class="input-group input-group-sm mr-2" role="group" aria-label="First group">
                     <div class="input-group-prepend">
                         <span class="input-group-text" id=""><i class="mi mi-Calendar"></i></span>
                     </div>
@@ -55,8 +55,8 @@
                 </div>
             </div>
         </div>
-        <div class="col-md-4">
-            <div class="input-group">
+        <div class="col-md-3">
+            <div class="input-group input-group-sm">
                 <div class="input-group-prepend" ng-click="loadArticles()">
                     <div class="input-group-text" id="btnGroupAddon"><i class="mi mi-Search" style="top:0;"></i></div>
                 </div>
@@ -68,7 +68,7 @@
     @*<div class="row">
             <div class="col-md-8">
                 <div class="btn-toolbar mb-3" role="toolbar" aria-label="Toolbar with button groups">
-                    <div class="btn-group mr-2" role="group" aria-label="First group">
+                    <div class="btn-group btn-group-sm mr-2" role="group" aria-label="First group">
                         <a asp-area="Portal" asp-controller="Articles" asp-action="Create" class="btn btn-secondary"><i class="fas fa-plus"></i></a>
                         <a asp-area="Portal" asp-controller="Articles" asp-action="Index" class="btn btn-secondary"><i class="fas fa-bars"></i></a>
                         <a asp-area="Portal" asp-controller="Articles" asp-action="Draft" class="btn btn-secondary"><i class="fas fa-clipboard"></i></a>
@@ -153,7 +153,7 @@
                 </td>
 
                 <td>
-                    <div class="btn-group btn-group-sm" role="group" aria-label="Actions">
+                    <div class="btn-group btn-group-sm btn-group-sm" role="group" aria-label="Actions">
                         <a href="/{{currentLanguage}}/portal/articles/edit/{{item.id}}" class="btn btn-light"> <span class="oi oi-pencil text-primary"></span></a>
                         <a href="{{item.detailsUrl}}" target="_blank" class="btn btn-light"><span class="fas fa-eye text-info"></span></a>
 
