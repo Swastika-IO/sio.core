@@ -3,7 +3,7 @@
 @{
     <tr id="data-@Model.Id" dataId="data-@Model.Id" class="sortable-item">
         <td style="cursor:move;" class="drag-header">
-            <span class="fas fa-arrows-alt"></span>
+            <span class="fas fa-sort"></span>
         </td>
 
         @foreach (var col in Model.Columns.Where(c => c.IsDisplay))
@@ -22,7 +22,7 @@
             <input type="checkbox" class="cb-active-data" dataId="@Model.Id" />
         </td>
         <td>
-            <a dataId="@Model.Id" class="btn-edit-data btn btn-sm btn-warning"><span class="oi oi-pencil"></span> </a>
+            <a dataId="@Model.Id" class="btn-edit-data btn btn-sm btn-warning"><span class="fas fa-pencil"></span> </a>
         </td>
     </tr>
 }

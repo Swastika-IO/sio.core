@@ -31,42 +31,49 @@
                             <span class="form-check-sign"></span>
                             Use local Database
                         </label>
-                        <input  ng-show="isLocalDb" asp-for="LocalDbConnectionString" class="form-control" placeholder="Local Db">
+
+
+                    </div>
+                    <div ng-show="isLocalDb" class="input-group form-group-no-border input-lg">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text"><i class="now-ui-icons business_chart-pie-36"></i></span>
+                        </div>
+                        <input asp-for="LocalDbConnectionString" class="form-control" placeholder="Local Db">
                     </div>
                     @*<div class="">
-                            <label asp-for="IsUseLocal" class="">
-                                <input asp-for="IsUseLocal" />
-                                @Html.DisplayNameFor(m => m.IsUseLocal)
-                            </label>
-                        </div>*@
+            <label asp-for="IsUseLocal" class="">
+                <input asp-for="IsUseLocal" />
+                @Html.DisplayNameFor(m => m.IsUseLocal)
+            </label>
+        </div>*@
                 </div>
                 <div ng-hide="isLocalDb">
-                <h5 class="card-description text-white"> or remote database </h5>
-                <div class="input-group form-group-no-border input-lg">
-                    <div class="input-group-prepend">
-                        <span class="input-group-text"><i class="now-ui-icons business_chart-pie-36"></i></span>
+                    <h5 class="card-description text-white"> or remote database </h5>
+                    <div class="input-group form-group-no-border input-lg">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text"><i class="now-ui-icons business_chart-pie-36"></i></span>
+                        </div>
+                        <input asp-for="DataBaseServer" class="form-control" placeholder="Database Server (e.g. domain or IP)">
                     </div>
-                    <input asp-for="DataBaseServer" class="form-control" placeholder="Database Server (e.g. domain or IP)">
+                    <div class="input-group form-group-no-border input-lg">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text"><i class="now-ui-icons business_badge"></i></span>
+                        </div>
+                        <input asp-for="DataBaseName" class="form-control" placeholder="Database name (e.g. SwastikaDb)" />
+                    </div>
+                    <div class="input-group form-group-no-border input-lg">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text"><i class="now-ui-icons ui-1_lock-circle-open"></i></span>
+                        </div>
+                        <input asp-for="DataBaseUser" class="form-control" placeholder="Database Username">
+                    </div>
+                    <div class="input-group form-group-no-border input-lg">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text"><i class="now-ui-icons ui-1_lock-circle-open"></i></span>
+                        </div>
+                        <input asp-for="DataBasePassword" type="password" class="form-control" placeholder="Database Password" />
+                    </div>
                 </div>
-                <div class="input-group form-group-no-border input-lg">
-                    <div class="input-group-prepend">
-                        <span class="input-group-text"><i class="now-ui-icons business_badge"></i></span>
-                    </div>
-                    <input asp-for="DataBaseName" class="form-control" placeholder="Database name (e.g. SwastikaDb)" />
-                </div>
-                <div class="input-group form-group-no-border input-lg">
-                    <div class="input-group-prepend">
-                        <span class="input-group-text"><i class="now-ui-icons ui-1_lock-circle-open"></i></span>
-                    </div>
-                    <input asp-for="DataBaseUser" class="form-control" placeholder="Database Username">
-                </div>
-                <div class="input-group form-group-no-border input-lg">
-                    <div class="input-group-prepend">
-                        <span class="input-group-text"><i class="now-ui-icons ui-1_lock-circle-open"></i></span>
-                    </div>
-                    <input asp-for="DataBasePassword" type="password" class="form-control" placeholder="Database Password" />
-                </div>
-                    </div>
             </div>
             <div class="card-footer text-center">
                 <button type="submit" class="btn btn-primary btn-round btn-lg btn-block">Continue...</button>

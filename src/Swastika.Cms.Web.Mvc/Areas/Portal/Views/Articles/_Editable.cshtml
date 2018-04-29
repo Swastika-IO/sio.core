@@ -119,7 +119,7 @@
                                             <thead class="thead-light">
                                                 <tr>
                                                     <th scope="col" width="5%">
-                                                        <span class="fas fa-arrows-alt"></span>
+                                                        <span class="fas fa-sort"></span>
                                                     </th>
                                                     <th scope="col" width="5%">
                                                         <span class="fas fa-sort-numeric-down"></span>
@@ -134,7 +134,7 @@
                                                 {
                                                     <tr class="sortable-item article-property">
                                                         <td style="cursor:move;" class="drag-header">
-                                                            <span class="fas fa-arrows-alt"></span>
+                                                            <span class="fas fa-sort"></span>
                                                         </td>
                                                         <td>
                                                             <input type="text" asp-for="@Model.Properties[i].Priority" class="item-priority form-control form-control-sm d-inline" style="width:40px;" />
@@ -386,7 +386,7 @@
                                                         <input asp-for="@isActived" class="cb-active-data" dataId="@item.Id" />
                                                     </td>
                                                     <td>
-                                                        <a asp-area="Portal" asp-controller="Module" asp-action="EditModuleData" asp-route-id="@item.ModuleId" asp-route-dataId="@item.Id" dataId="@item.Id" class="btn btn-sm btn-warning"><span class="oi oi-pencil"></span></a>
+                                                        <a asp-area="Portal" asp-controller="Module" asp-action="EditModuleData" asp-route-id="@item.ModuleId" asp-route-dataId="@item.Id" dataId="@item.Id" class="btn btn-sm btn-warning"><span class="fas fa-pencil"></span></a>
                                                     </td>
                                                 </tr>
                                             }
@@ -414,9 +414,9 @@
                             <div class="col-md-8">
                                 <div class="btn-toolbar mb-3" role="toolbar" aria-label="Toolbar with button groups">
                                     <div class="btn-group mr-2" role="group" aria-label="First group">
-                                        <button type="button" class="btn btn-secondary" data-toggle="modal" data-target=".upload-image-modal-lg"><i class="mi mi-Add"></i></button>
-                                        @*<button type="button" class="btn btn-secondary"><i class="mi mi-ViewAll"></i></button>
-                                            <button type="button" class="btn btn-secondary"><i class="mi mi-List"></i></button>*@
+                                        <button type="button" class="btn btn-secondary" data-toggle="modal" data-target=".upload-image-modal-lg"><i class="fas fa-plus"></i></button>
+                                        @*<button type="button" class="btn btn-secondary"><i class="fas fa-th-large"></i></button>
+                                            <button type="button" class="btn btn-secondary"><i class="fas fa-bars"></i></button>*@
                                     </div>
                                     <div class="btn-group mr-2" role="group" aria-label="Button group with nested dropdown">
                                         <div class="btn-group" role="group">
@@ -449,7 +449,7 @@
                                 </div>
                             </div>
                             <div class="col-md-4">
-                                <div class="input-group">
+                                <div class="input-group input-group-sm">
                                     <div class="input-group-prepend">
                                         <div class="input-group-text" id="btnGroupAddon"><i class="mi mi-Search" style="top:0;"></i></div>
                                     </div>
@@ -462,7 +462,7 @@
                                 <thead class="thead-light">
                                     <tr>
                                         <th scope="col" width="5%">
-                                            <span class="fas fa-arrows-alt"></span>
+                                            <span class="fas fa-sort"></span>
                                         </th>
                                         <th scope="col" width="5%">
                                             <span class="fas fa-sort-numeric-down"></span>
@@ -475,7 +475,7 @@
                                 <tbody class="sortable">
                                     <tr class="sortable-item module-column">
                                         <td style="cursor:move;" class="drag-header">
-                                            <span class="fas fa-arrows-alt"></span>
+                                            <span class="fas fa-sort"></span>
                                         </td>
                                         <td>
                                             <input type="text" class="item-priority form-control form-control-sm d-inline" style="width:40px;" />

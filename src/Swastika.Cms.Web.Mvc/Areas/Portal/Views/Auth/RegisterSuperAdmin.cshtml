@@ -2,7 +2,7 @@
 @model RegisterViewModel
 @{
     Layout = "~/Areas/Portal/Views/Shared/NowUI/_Signup.cshtml";
-    ViewData["Title"] = "Register";
+    ViewData["Title"] = "Create super administrator";
 }
 @if (!ViewData.ModelState.IsValid)
 {
@@ -18,9 +18,9 @@
                 <i class="now-ui-icons media-2_sound-wave"></i>
             </div>
             <div class="description">
-                <h5 class="info-title">Marketing</h5>
+                <h5 class="info-title">High Performance</h5>
                 <p class="description">
-                    We've created the marketing campaign of the website. It was a very interesting collaboration.
+                    Extremely fast with the power of ASP.NET Core.
                 </p>
             </div>
         </div>
@@ -30,9 +30,9 @@
                 <i class="now-ui-icons media-1_button-pause"></i>
             </div>
             <div class="description">
-                <h5 class="info-title">Fully Coded in HTML5</h5>
+                <h5 class="info-title">Customizable Designs</h5>
                 <p class="description">
-                    We've developed the website with HTML5 and CSS3. The client has access to the code using GitHub.
+                    We've developed the website with HTML5 and CSS3.
                 </p>
             </div>
         </div>
@@ -42,9 +42,9 @@
                 <i class="now-ui-icons users_single-02"></i>
             </div>
             <div class="description">
-                <h5 class="info-title">Built Audience</h5>
+                <h5 class="info-title">Open source</h5>
                 <p class="description">
-                    There is also a Fully Customizable CMS Admin Dashboard for this product.
+                    Released as open source software.
                 </p>
             </div>
         </div>
@@ -53,8 +53,8 @@
 
         <div class="card card-signup">
             <div class="card-body">
-                <h4 class="card-title text-center">Register</h4>
-                <div class="social text-center">
+                <h4 class="card-title text-center">Create Administrator Account</h4>
+                @*<div class="social text-center">
                     <button class="btn btn-icon btn-round btn-twitter">
                         <i class="fa fa-twitter"></i>
                     </button>
@@ -65,14 +65,14 @@
                         <i class="fa fa-facebook"> </i>
                     </button>
                     <h5 class="card-description"> or be classical </h5>
-                </div>
+                </div>*@
 
                 <form asp-controller="Auth" asp-action="RegisterSuperAdmin" asp-route-returnurl="@ViewData[" ReturnUrl"]" method="post" class="form">
                     <div class="input-group">
                         <div class="input-group-prepend">
                             <span class="input-group-text"><i class="now-ui-icons users_circle-08"></i></span>
                         </div>
-                        <input asp-for="UserName" class="form-control" placeholder="input your username..." />
+                        <input asp-for="UserName" class="form-control" placeholder="input admin username..." />
                     </div>
 
                     <div class="input-group">
@@ -86,13 +86,13 @@
                         <div class="input-group-prepend">
                             <span class="input-group-text"><i class="now-ui-icons objects_key-25"></i></span>
                         </div>
-                        <input asp-for="Password" class="form-control" placeholder="input your password..." />
+                        <input asp-for="Password" class="form-control" placeholder="input admin password..." />
                     </div>
                     <div class="input-group">
                         <div class="input-group-prepend">
                             <span class="input-group-text"><i class="now-ui-icons objects_key-25"></i></span>
                         </div>
-                        <input asp-for="ConfirmPassword" class="form-control" placeholder="ConfirmPassword..." />
+                        <input asp-for="ConfirmPassword" class="form-control" placeholder="Input confirm password..." />
                     </div>
                     @*<div class="input-group">
 
@@ -124,11 +124,11 @@
                     <div class="card-footer text-center">
                         <button type="submit" class="btn btn-primary btn-round btn-lg">Get Started</button>
                     </div>
-                    <div class="">
+                    @*<div class="">
                         <h6>
                             <a href="/@ViewBag.culture/portal/auth/login" class="link footer-link">Login</a>
                         </h6>
-                    </div>
+                    </div>*@
                 </form>
             </div>
         </div>

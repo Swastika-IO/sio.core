@@ -20,10 +20,10 @@
                 <div class="btn-toolbar mb-3" role="toolbar" aria-label="Toolbar with button groups">
                     <div class="btn-group mr-2" role="group" aria-label="First group">
                         <a asp-area="Portal" asp-controller="Module" asp-action="AddModuleData" asp-route-id="@Model.Id" class="btn btn-secondary">
-                            <i class="mi mi-Add"></i>
+                            <i class="fas fa-plus"></i>
                         </a>
                         @*<a asp-area="Portal" asp-controller="Module" asp-action="Details" asp-route-id="@Model.Id" class="btn btn-secondary">
-                                <span class="mi mi-List"></span>
+                                <span class="fas fa-bars"></span>
                             </a>*@
                         <a asp-area="Portal" asp-controller="Module" asp-action="Edit" asp-route-id="@Model.Id" class="btn btn-secondary">
                             <i class="fas fa-pencil-alt"></i>
@@ -43,7 +43,7 @@
                 <thead class="thead-light">
                     <tr>
                         <th scope="col" width="5%">
-                            <span class="fas fa-arrows-alt"></span>
+                            <span class="fas fa-sort"></span>
                         </th>
                         <th scope="col" width="5%">
                             <span class="fas fa-sort-numeric-down"></span>
@@ -63,7 +63,7 @@
                 <tfoot>
                     <tr>
                         <th scope="col">
-                            <span class="fas fa-arrows-alt"></span>
+                            <span class="fas fa-sort"></span>
                         </th>
                         <th scope="col">
                             <span class="fas fa-sort-numeric-down"></span>
@@ -85,7 +85,7 @@
                     {
                         <tr class="sortable-item" sort-model="moduleData" sort-model-id="@Data.Items[i].Id">
                             <td style="cursor:move;" class="drag-header">
-                                <span class="fas fa-arrows-alt"></span>
+                                <span class="fas fa-sort"></span>
                             </td>
                             <td>
                                 <input type="text" asp-for="@Data.Items[i].Priority" class="item-priority form-control form-control-sm d-inline" style="width:40px;" />
@@ -137,7 +137,7 @@
                 <thead class="thead-light">
                     <tr>
                         <th scope="col">
-                            <span class="fas fa-arrows-alt"></span>
+                            <span class="fas fa-sort"></span>
                         </th>
                         <th scope="col">
                             <span class="fas fa-sort-numeric-down"></span>
@@ -161,7 +161,7 @@
                 <tfoot>
                     <tr>
                         <th scope="col">
-                            <span class="fas fa-arrows-alt"></span>
+                            <span class="fas fa-sort"></span>
                         </th>
                         <th scope="col">
                             <span class="fas fa-sort-numeric-down"></span>
@@ -187,7 +187,7 @@
                     {
                         <tr class="sortable-item">
                             <td style="cursor:move;" class="drag-header">
-                                <span class="fas fa-arrows-alt"></span>
+                                <span class="fas fa-sort"></span>
                             </td>
                             <td>
                                 <input type="text" asp-for="@Model.Articles.Items[i].Priority" class="item-priority form-control form-control-sm d-inline" style="width:40px;" />
@@ -235,7 +235,7 @@
                 <thead class="thead-light">
                     <tr>
                         <th scope="col">
-                            <span class="fas fa-arrows-alt"></span>
+                            <span class="fas fa-sort"></span>
                         </th>
                         <th scope="col">
                             <span class="fas fa-sort-numeric-down"></span>
@@ -259,7 +259,7 @@
                 <tfoot>
                     <tr>
                         <th scope="col">
-                            <span class="fas fa-arrows-alt"></span>
+                            <span class="fas fa-sort"></span>
                         </th>
                         <th scope="col">
                             <span class="fas fa-sort-numeric-down"></span>
@@ -285,7 +285,7 @@
                     {
                         <tr class="sortable-item">
                             <td style="cursor:move;" class="drag-header">
-                                <span class="fas fa-arrows-alt"></span>
+                                <span class="fas fa-sort"></span>
                             </td>
                             <td>
                                 <input type="text" asp-for="@Model.Products.Items[i].Product.Priority" class="item-priority form-control form-control-sm d-inline" style="width:40px;" />

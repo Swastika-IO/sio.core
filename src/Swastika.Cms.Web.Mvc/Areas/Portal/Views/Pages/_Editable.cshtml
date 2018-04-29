@@ -259,7 +259,7 @@
                                             {
                                                 <li id="module_@Model.ModuleNavs[i].ModuleId" class="col-sm-12 sortable-item">
                                                     <div class="row">
-                                                        <div class="col-1 drag-header" style="cursor:move;"><span class="fas fa-arrows-alt"></span></div>
+                                                        <div class="col-1 drag-header" style="cursor:move;"><span class="fas fa-sort"></span></div>
                                                         <div class="col-1 d-none">
                                                             <input type="text" asp-for="@Model.ModuleNavs[i].Priority" class="item-priority form-control form-control-sm d-inline" style="width:40px;" />
                                                         </div>
@@ -279,13 +279,13 @@
                                                         <div class="col-3">
                                                             <div class="btn-group btn-group-sm" role="group" aria-label="Basic example">
                                                                 <a asp-area="Portal" asp-controller="Module" asp-action="AddModuleData" asp-route-id="@Model.ModuleNavs[i].ModuleId" class="btn btn-light btn-sm text-secondary" target="_blank">
-                                                                    <span class="oi oi-plus"></span>
+                                                                    <span class="fas fa-plus"></span>
                                                                 </a>
                                                                 <a asp-area="Portal" asp-controller="Module" asp-action="Details" asp-route-id="@Model.ModuleNavs[i].ModuleId" class="btn btn-light btn-sm text-secondary" target="_blank">
-                                                                    <span class="oi oi-list"></span>
+                                                                    <span class="fas fa-list"></span>
                                                                 </a>
                                                                 <a asp-area="Portal" asp-controller="Module" asp-action="Edit" asp-route-id="@Model.ModuleNavs[i].ModuleId" class="btn btn-light btn-sm text-secondary" target="_blank">
-                                                                    <span class="oi oi-pencil"></span>
+                                                                    <span class="fas fa-pencil"></span>
                                                                 </a>
                                                             </div>
                                                         </div>
@@ -383,7 +383,7 @@
                                         {
                                             <li id="module_@Model.ModuleNavs[i].ModuleId" class="col-sm-12 sortable-item">
                                                 <div class="row">
-                                                    <div class="col-1" style="cursor:move;"><span class="fas fa-arrows-alt"></span></div>
+                                                    <div class="col-1" style="cursor:move;"><span class="fas fa-sort"></span></div>
                                                     <div class="col-1">
                                                         <input type="text" asp-for="@Model.ModuleNavs[i].Priority" class="item-priority form-control form-control-sm d-inline" style="width:40px;" />
                                                     </div>
@@ -400,13 +400,13 @@
                                                     <div class="col-2">
                                                         <div class="btn-group btn-group-sm" role="group" aria-label="Basic example">
                                                             <a asp-area="Portal" asp-controller="Module" asp-action="AddModuleData" asp-route-id="@Model.ModuleNavs[i].ModuleId" class="btn btn-light btn-sm text-secondary" target="_blank">
-                                                                <span class="oi oi-plus"></span>
+                                                                <span class="fas fa-plus"></span>
                                                             </a>
                                                             <a asp-area="Portal" asp-controller="Module" asp-action="Details" asp-route-id="@Model.ModuleNavs[i].ModuleId" class="btn btn-light btn-sm text-secondary" target="_blank">
-                                                                <span class="oi oi-list"></span>
+                                                                <span class="fas fa-list"></span>
                                                             </a>
                                                             <a asp-area="Portal" asp-controller="Module" asp-action="Edit" asp-route-id="@Model.ModuleNavs[i].ModuleId" class="btn btn-light btn-sm text-secondary" target="_blank">
-                                                                <span class="oi oi-pencil"></span>
+                                                                <span class="fas fa-pencil"></span>
                                                             </a>
                                                         </div>
                                                     </div>

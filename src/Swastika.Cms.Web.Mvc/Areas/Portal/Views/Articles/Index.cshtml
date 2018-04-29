@@ -9,23 +9,25 @@
     </div>
 
     <div class="row">
-        <div class="col-md-8">
+        <div class="col-md-9">
             <div class="btn-toolbar mb-3" role="toolbar" aria-label="Toolbar with button groups">
-                <div class="btn-group mr-2" role="group" aria-label="First group">
-                    <a asp-area="Portal" asp-controller="Articles" asp-action="Create" class="btn btn-secondary"><i class="mi mi-Add"></i></a>
-                    <a asp-area="Portal" asp-controller="Articles" asp-action="Index" class="btn btn-secondary"><i class="mi mi-List"></i></a>
-                    <a asp-area="Portal" asp-controller="Articles" asp-action="Draft" class="btn btn-secondary"><i class="mi mi-Paste"></i></a>
+                <div class="btn-group btn-group-sm mr-2" role="group" aria-label="First group">
+                    <a asp-area="Portal" asp-controller="Articles" asp-action="Create" class="btn btn-secondary"><i class="fas fa-plus"></i></a>
+                    <a asp-area="Portal" asp-controller="Articles" asp-action="Index" class="btn btn-secondary"><i class="fas fa-bars"></i></a>
+                    <a asp-area="Portal" asp-controller="Articles" asp-action="Draft" class="btn btn-secondary"><i class="fas fa-clipboard"></i></a>
                 </div>
-                <div class="btn-group dropdown mr-2">
+                <div class="btn-group btn-group-sm dropdown mr-2">
                     <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownOrderBy" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         {{request.status}}
                     </button>
                     <div class="dropdown-menu" aria-labelledby="dropdownOrderBy">
-                        <button class="dropdown-item" ng-repeat="item in swStatus track by $index" ng-model="request.status" ng-click="request.status=item;loadArticles();" 
-                                value="{{item}}">{{item}}</button>
+                        <button class="dropdown-item" ng-repeat="item in swStatus track by $index" ng-model="request.status" ng-click="request.status=item;loadArticles();"
+                                value="{{item}}">
+                            {{item}}
+                        </button>
                     </div>
                 </div>
-                <div class="btn-group dropdown mr-2">
+                <div class="btn-group btn-group-sm dropdown mr-2">
                     <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownOrderBy" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         {{request.orderBy}}
                     </button>
@@ -33,10 +35,10 @@
                         <button class="dropdown-item" ng-repeat="item in orders track by $index" ng-model="request.orderBy" ng-click="request.orderBy=item.value;loadArticles();" value="{{item.value}}">{{item.title}}</button>
                     </div>
                 </div>
-                <div class="btn-group mr-2" role="group" aria-label="First group">
+                <div class="btn-group btn-group-sm mr-2" role="group" aria-label="First group">
                     <button class="btn btn-secondary" ng-repeat="item in directions track by $index" ng-model="request.direction" ng-click="request.direction=item.value;loadArticles();" value="{{item.value}}">{{item.title}}</button>
                 </div>
-                <div class="dropdown mr-2">
+                <div class="btn-group btn-group-sm dropdown mr-2">
                     <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownItemPerPage" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         {{request.pageSize}} items
                     </button>
@@ -44,7 +46,7 @@
                         <button class="dropdown-item" ng-repeat="item in pageSizes track by $index" ng-model="request.pageSize" ng-click="request.pageSize=item;loadArticles();" value="{{item}}">{{item}}</button>
                     </div>
                 </div>
-                <div class="input-group mr-2" role="group" aria-label="First group">
+                <div class="input-group input-group-sm mr-2" role="group" aria-label="First group">
                     <div class="input-group-prepend">
                         <span class="input-group-text" id=""><i class="mi mi-Calendar"></i></span>
                     </div>
@@ -53,12 +55,12 @@
                 </div>
             </div>
         </div>
-        <div class="col-md-4">
-            <div class="input-group">
+        <div class="col-md-3">
+            <div class="input-group input-group-sm">
                 <div class="input-group-prepend" ng-click="loadArticles()">
                     <div class="input-group-text" id="btnGroupAddon"><i class="mi mi-Search" style="top:0;"></i></div>
                 </div>
-                <input ng-model="request.keyword" ng-enter="loadArticles()" type="text" class="form-control" placeholder="Search......" aria-label="Search......" aria-describedby="btnGroupAddon">
+                <input ng-model="request.keyword" ng-enter="loadArticles()" type="text" class="form-control" placeholder="Search..." aria-label="Search..." aria-describedby="btnGroupAddon">
             </div>
         </div>
     </div>
@@ -66,10 +68,10 @@
     @*<div class="row">
             <div class="col-md-8">
                 <div class="btn-toolbar mb-3" role="toolbar" aria-label="Toolbar with button groups">
-                    <div class="btn-group mr-2" role="group" aria-label="First group">
-                        <a asp-area="Portal" asp-controller="Articles" asp-action="Create" class="btn btn-secondary"><i class="mi mi-Add"></i></a>
-                        <a asp-area="Portal" asp-controller="Articles" asp-action="Index" class="btn btn-secondary"><i class="mi mi-List"></i></a>
-                        <a asp-area="Portal" asp-controller="Articles" asp-action="Draft" class="btn btn-secondary"><i class="mi mi-Paste"></i></a>
+                    <div class="btn-group btn-group-sm mr-2" role="group" aria-label="First group">
+                        <a asp-area="Portal" asp-controller="Articles" asp-action="Create" class="btn btn-secondary"><i class="fas fa-plus"></i></a>
+                        <a asp-area="Portal" asp-controller="Articles" asp-action="Index" class="btn btn-secondary"><i class="fas fa-bars"></i></a>
+                        <a asp-area="Portal" asp-controller="Articles" asp-action="Draft" class="btn btn-secondary"><i class="fas fa-clipboard"></i></a>
                     </div>
                     <select class="btn btn-outline-secondary custom-select col-sm-3"
                             ng-model="request.orderBy"
@@ -95,7 +97,7 @@
                     <div class="input-group-prepend" ng-click="loadArticles()">
                         <div class="input-group-text" id="btnGroupAddon"><i class="mi mi-Search" style="top:0;"></i></div>
                     </div>
-                    <input ng-model="request.keyword" ng-enter="loadArticles()" type="text" class="form-control" placeholder="Search......" aria-label="Search......" aria-describedby="btnGroupAddon">
+                    <input ng-model="request.keyword" ng-enter="loadArticles()" type="text" class="form-control" placeholder="Search..." aria-label="Search..." aria-describedby="btnGroupAddon">
                 </div>
             </div>
         </div>*@
@@ -103,7 +105,7 @@
         <thead class="thead-light">
             <tr>
                 <th scope="col" style="width: 3%;">
-                    <span class="fas fa-arrows-alt"></span>
+                    <span class="fas fa-sort"></span>
                 </th>
                 <th scope="col" style="width: 4%;">
                     <span class="fas fa-sort-numeric-down"></span>
@@ -129,7 +131,7 @@
             <tr ng-repeat="item in data.items track by $index"
                 class="sortable-item" sort-model="article" sort-model-id="{{item.id}}">
                 <td style="cursor:move;" class="drag-header">
-                    <span class="fas fa-arrows-alt"></span>
+                    <span class="fas fa-sort"></span>
                 </td>
                 <td>
                     <input type="text" value="{{item.priority}}" class="item-priority form-control form-control-sm d-inline" style="width:40px;" />
@@ -151,8 +153,8 @@
                 </td>
 
                 <td>
-                    <div class="btn-group btn-group-sm" role="group" aria-label="Actions">
-                        <a href="/{{currentLanguage}}/portal/articles/edit/{{item.id}}" class="btn btn-light"> <span class="oi oi-pencil text-primary"></span></a>
+                    <div class="btn-group btn-group-sm btn-group-sm" role="group" aria-label="Actions">
+                        <a href="/{{currentLanguage}}/portal/articles/edit/{{item.id}}" class="btn btn-light"> <span class="fas fa-pencil text-primary"></span></a>
                         <a href="{{item.detailsUrl}}" target="_blank" class="btn btn-light"><span class="fas fa-eye text-info"></span></a>
 
                         <button type="button" class="btn btn-light del-popover"
@@ -160,12 +162,12 @@
                             <span class="fas fa-times text-danger"></span>
                         </button>
                         @*<button type="button" class="btn btn-light del-popover"
-                                data-toggle="popover" data-html="true" ng-click="removeArticle(item.id)">
-                            <span class="fas fa-times text-danger"></span>
-                        </button>
-                        <div class="popover-body d-none">
-                            <a href="/{{currentLanguage}}/portal/articles/delete/{{item.id}}" class="btn btn btn-danger">Yes, I want to delete!</a>
-                        </div>*@
+                                    data-toggle="popover" data-html="true" ng-click="removeArticle(item.id)">
+                                <span class="fas fa-times text-danger"></span>
+                            </button>
+                            <div class="popover-body d-none">
+                                <a href="/{{currentLanguage}}/portal/articles/delete/{{item.id}}" class="btn btn btn-danger">Yes, I want to delete!</a>
+                            </div>*@
                     </div>
                 </td>
             </tr>

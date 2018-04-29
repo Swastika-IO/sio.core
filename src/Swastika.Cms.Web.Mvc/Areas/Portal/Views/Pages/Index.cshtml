@@ -11,12 +11,12 @@
     <div class="row">
         <div class="col-md-8">
             <div class="btn-toolbar mb-3" role="toolbar" aria-label="Toolbar with button groups">
-                <div class="btn-group mr-2" role="group" aria-label="First group">
-                    <a asp-area="Portal" asp-controller="Pages" asp-action="Create" class="btn btn-secondary"><i class="mi mi-Add"></i></a>
-                    @*<a asp-area="Portal" asp-controller="Pages" asp-action="Index" class="btn btn-secondary"><i class="mi mi-List"></i></a>*@
+                <div class="btn-group btn-group-sm mr-2" role="group" aria-label="First group">
+                    <a asp-area="Portal" asp-controller="Pages" asp-action="Create" class="btn btn-secondary"><i class="fas fa-plus"></i></a>
+                    @*<a asp-area="Portal" asp-controller="Pages" asp-action="Index" class="btn btn-secondary"><i class="fas fa-bars"></i></a>*@
                     @*<a asp-area="Portal" asp-controller="Pages" asp-action="Draft" class="btn btn-secondary"><i class="mi mi-Paste"></i></a>*@
                 </div>
-                @*<div class="btn-group dropdown mr-2">
+                @*<div class="btn-group btn-group-sm dropdown mr-2">
                         <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownOrderBy" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                             {{request.orderBy}}
                         </button>
@@ -24,7 +24,7 @@
                             <button class="dropdown-item" ng-repeat="item in orders track by $index" ng-model="request.orderBy" ng-click="request.orderBy=item.value;loadPages();" value="{{item.value}}">{{item.title}}</button>
                         </div>
                     </div>
-                    <div class="btn-group mr-2" role="group" aria-label="First group">
+                    <div class="btn-group btn-group-sm mr-2" role="group" aria-label="First group">
                         <button class="btn btn-secondary" ng-repeat="item in directions track by $index" ng-model="request.direction" ng-click="request.direction=item.value;loadPages();" value="{{item.value}}">{{item.title}}</button>
                     </div>
                     <div class="dropdown mr-2">
@@ -45,11 +45,11 @@
             </div>
         </div>
         <div class="col-md-4">
-            <div class="input-group">
+            <div class="input-group input-group-sm">
                 <div class="input-group-prepend" ng-click="loadPages()">
                     <div class="input-group-text" id="btnGroupAddon"><i class="mi mi-Search" style="top:0;"></i></div>
                 </div>
-                <input ng-model="request.keyword" ng-enter="loadPages()" type="text" class="form-control" placeholder="Search......" aria-label="Search......" aria-describedby="btnGroupAddon">
+                <input ng-model="request.keyword" ng-enter="loadPages()" type="text" class="form-control" placeholder="Search..." aria-label="Search..." aria-describedby="btnGroupAddon">
             </div>
         </div>
     </div>
@@ -57,7 +57,7 @@
         <thead class="thead-light">
             <tr>
                 <th scope="col" width="3%">
-                    <span class="fas fa-arrows-alt"></span>
+                    <span class="fas fa-sort"></span>
                 </th>
                 <th scope="col" width="4%">
                     <span class="fas fa-sort-numeric-down"></span>
@@ -86,7 +86,7 @@
             <tr class="" sort-model="category" sort-model-id="{{item.id}}">
 
                 <td style="cursor:move;" class="drag-header">
-                    <span class="fas fa-arrows-alt"></span>
+                    <span class="fas fa-sort"></span>
                 </td>
                 <td>
                     <input type="text" value="{{item.priority}}" class="item-priority form-control form-control-sm d-inline" style="width:40px;" />
@@ -113,10 +113,10 @@
                 </td>
 
                 <td>
-                    <div class="btn-group btn-group-sm" role="group" aria-label="Actions">
+                    <div class="btn-group btn-group-sm btn-group-sm" role="group" aria-label="Actions">
 
                         <a class="btn btn-light" data-toggle="collapse" href="#collapse-page{{item.id}}-childs" role="button" aria-expanded="false" aria-controls="collapse-page{{item.id}}-childs">
-                            <span class="fas fa-code-branch"></span>
+                            <span class="fas fa-sitemap text-success"></span>
                         </a>
                         <a href="/{{currentLanguage}}/portal/pages/edit/{{item.id}}" class="btn btn-light"> <span class="fas fa-pencil-alt text-primary"></span></a>
                         <a href="{{item.detailsUrl}}" target="_blank" class="btn btn-light"><span class="fas fa-eye text-info"></span></a>
@@ -141,7 +141,7 @@
                             <thead style="font-size:small; font-weight:normal">
                                 <tr>
                                     <th scope="col" width="3%">
-                                        <span class="fas fa-arrows-alt" style="font-size:small"></span>
+                                        <span class="fas fa-sort" style="font-size:small"></span>
                                     </th>
                                     <th scope="col" width="4%">
                                         <span class="fas fa-sort-numeric-down"></span>
@@ -166,7 +166,7 @@
                             <tbody class="sortable">
                                 <tr class="sortable-item">
                                     <td style="cursor:move;" class="drag-header">
-                                        <span class="fas fa-arrows-alt" style="font-size:small"></span>
+                                        <span class="fas fa-sort" style="font-size:small"></span>
                                     </td>
                                     <td>
                                         <input type="text" value="0" class="item-priority form-control form-control-sm d-inline" style="width:40px;">
@@ -185,7 +185,7 @@
                                     <td></td>
 
                                     <td>
-                                        <div class="btn-group btn-group-sm" role="group" aria-label="Actions">
+                                        <div class="btn-group btn-group-sm btn-group-sm" role="group" aria-label="Actions">
                                             <a href="/vi-vn/portal/product/edit/807fa8dd-b7ff-4011-a0ec-ba24ee1eec0a" class="btn btn-light"> <span class="fas fa-pencil-alt text-primary"></span></a>
                                             <a href="http://localhost:58511/vi-vn/product/gach-lot-aj32501_1" target="_blank" class="btn btn-light"><span class="fas fa-eye text-info"></span></a>
 
@@ -197,7 +197,7 @@
                                 </tr>
                                 <tr class="sortable-item">
                                     <td style="cursor:move;" class="drag-header">
-                                        <span class="fas fa-arrows-alt" style="font-size:small"></span>
+                                        <span class="fas fa-sort" style="font-size:small"></span>
                                     </td>
                                     <td>
                                         <input type="text" value="0" class="item-priority form-control form-control-sm d-inline" style="width:40px;">
@@ -216,7 +216,7 @@
                                     <td></td>
 
                                     <td>
-                                        <div class="btn-group btn-group-sm" role="group" aria-label="Actions">
+                                        <div class="btn-group btn-group-sm btn-group-sm" role="group" aria-label="Actions">
                                             <a href="/vi-vn/portal/product/edit/807fa8dd-b7ff-4011-a0ec-ba24ee1eec0a" class="btn btn-light"> <span class="fas fa-pencil-alt text-primary"></span></a>
                                             <a href="http://localhost:58511/vi-vn/product/gach-lot-aj32501_1" target="_blank" class="btn btn-light"><span class="fas fa-eye text-info"></span></a>
 
@@ -228,7 +228,7 @@
                                 </tr>
                                 <tr class="sortable-item">
                                     <td style="cursor:move;" class="drag-header">
-                                        <span class="fas fa-arrows-alt" style="font-size:small"></span>
+                                        <span class="fas fa-sort" style="font-size:small"></span>
                                     </td>
                                     <td>
                                         <input type="text" value="0" class="item-priority form-control form-control-sm d-inline" style="width:40px;">
@@ -247,7 +247,7 @@
                                     <td></td>
 
                                     <td>
-                                        <div class="btn-group btn-group-sm" role="group" aria-label="Actions">
+                                        <div class="btn-group btn-group-sm btn-group-sm" role="group" aria-label="Actions">
                                             <a href="/vi-vn/portal/product/edit/807fa8dd-b7ff-4011-a0ec-ba24ee1eec0a" class="btn btn-light"> <span class="fas fa-pencil-alt text-primary"></span></a>
                                             <a href="http://localhost:58511/vi-vn/product/gach-lot-aj32501_1" target="_blank" class="btn btn-light"><span class="fas fa-eye text-info"></span></a>
 

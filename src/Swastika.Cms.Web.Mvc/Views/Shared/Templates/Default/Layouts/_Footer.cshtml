@@ -1,3 +1,6 @@
+@using Microsoft.AspNetCore.Authorization
+@inject IAuthorizationService AuthorizationService
+
 @{
     List<InfoCategoryViewModel> cates = SWCmsHelper.GetCategory(Url, ViewBag.culture, SWCmsConstants.CatePosition.Footer, Context.Request.Path);
 }
@@ -13,6 +16,20 @@
                             </a>
                         </li>
                     }
+					@if(!User.Identity.IsAuthenticated)
+					{
+                        <li>
+                            <a href="/@ViewBag.culture/portal/auth/login">
+                                Login
+                            </a>
+                        </li>
+					}else{
+						<li>
+                            <a href="/@ViewBag.culture/portal">
+                                Portal
+                            </a>
+                        </li>
+					}
                     </ul>
                 </nav>
                 <div class="copyright">

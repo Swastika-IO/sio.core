@@ -29,7 +29,7 @@
                         <label class="custom-file-label" for="file">Choose file</label>
                     </div>
                 </div>
-                <div class="btn-group mr-2" role="group" aria-label="First group">
+                <div class="btn-group btn-group-sm mr-2" role="group" aria-label="First group">
                     <input type="hidden" name="folder" value="@ViewBag.folder" />
                     <button type="button" onclick="this.form.submit()" class="btn btn-secondary"><i class="mi mi-Upload"></i> Upload</button>
                 </div>
@@ -76,7 +76,7 @@
                     {
                         <tr>
                             <td>
-                                <span class="oi oi-arrow-thick-left mr-2"></span> <strong><a href="@prvUrl" class="">Back...</a></strong>
+                                <span class="fas fa-arrow-thick-left mr-2"></span> <strong><a href="@prvUrl" class="">Back...</a></strong>
                             </td>
                             <td colspan="3"></td>
                         </tr>
@@ -87,7 +87,7 @@
                         string href = Url.RouteUrl("File", new { culture = ViewBag.culture, folder = dirPath });
                         <tr>
                             <td class="text-primary">
-                                <span class="oi oi-folder mr-2"></span> <a href="@href" class="text-primary">@path</a>
+                                <span class="fas fa-folder mr-2"></span> <a href="@href" class="text-primary">@path</a>
                             </td>
                             <td colspan="3"></td>
                         </tr>
@@ -96,7 +96,7 @@
                     {
                         <tr>
                             <td class="text-secondary">
-                                <span class="oi oi-file mr-2"></span>  <small>@Html.DisplayFor(modelItem => item.Filename)@Html.DisplayFor(modelItem => item.Extension)</small>
+                                <span class="fas fa-file mr-2"></span>  <small>@Html.DisplayFor(modelItem => item.Filename)@Html.DisplayFor(modelItem => item.Extension)</small>
                             </td>
                             <td>
 
@@ -126,12 +126,12 @@
                             </td>
 
                             <td>
-                                <div class="btn-group btn-group-sm" role="group" aria-label="Actions">
+                                <div class="btn-group btn-group-sm btn-group-sm" role="group" aria-label="Actions">
                                     <a asp-action="Edit"
                                        asp-route-name="@item.Filename"
                                        asp-route-ext="@item.Extension"
                                        asp-route-folder="@item.FileFolder"
-                                       class="btn btn-sm btn-light d-inline-block"><span class="oi oi-pencil text-primary"></span></a>
+                                       class="btn btn-sm btn-light d-inline-block"><span class="fas fa-pencil text-primary"></span></a>
                                     <a target="_blank" href="@item.FullPath" class="btn btn-sm btn-light"> <span class="fas fa-eye text-info"></span> </a>
                                     <a asp-action="Delete"
                                        asp-route-name="@item.Filename"
