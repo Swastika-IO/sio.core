@@ -30,7 +30,6 @@
     <input type="hidden" asp-for="PackageCount" />
     <input type="hidden" asp-for="Size" />
 
-
     <input type="hidden" id="product-id" value="@Model.Id" />
     <input id="arr-medias" type="hidden" value="@Model.JMediaNavs.ToString()" ng-init="activedMedias = $.parseJSON($('#arr-medias').val())" />
     <input id="arr-products" type="hidden" value="@Model.JProductNavs.ToString()" ng-init="activedProducts = $.parseJSON($('#arr-products').val())" />
@@ -49,18 +48,18 @@
                     <input asp-for="Title" class="form-control form-control-lg" placeholder="Enter your product title here..." />
                     <span asp-validation-for="Title" class="text-danger"></span>
                 </div>
-                 <div class="form-group">
-                     <label asp-for="Code"></label>
+                <div class="form-group">
+                    <label asp-for="Code"></label>
                     <input asp-for="Code" class="form-control form-control-lg" placeholder="Enter your product title here..." />
                     <span asp-validation-for="Code" class="text-danger"></span>
                 </div>
-                 <div class="form-group">
-                     <label asp-for="NormalPrice"></label>
+                <div class="form-group">
+                    <label asp-for="NormalPrice"></label>
                     <input asp-for="StrNormalPrice" class="form-control form-control-lg" placeholder="Enter your product title here..." />
                     <span asp-validation-for="StrNormalPrice" class="text-danger"></span>
                 </div>
-                 <div class="form-group">
-                     <label asp-for="DealPrice"></label>
+                <div class="form-group">
+                    <label asp-for="DealPrice"></label>
                     <input asp-for="StrDealPrice" class="form-control form-control-lg" placeholder="Enter your product title here..." />
                     <span asp-validation-for="StrDealPrice" class="text-danger"></span>
                 </div>
@@ -410,7 +409,7 @@
                                                         <input asp-for="@isActived" class="cb-active-data" dataId="@item.Id" />
                                                     </td>
                                                     <td>
-                                                        <a asp-area="Portal" asp-controller="Module" asp-action="EditModuleData" asp-route-id="@item.ModuleId" asp-route-dataId="@item.Id" dataId="@item.Id" class="btn btn-sm btn-warning"><span class="oi oi-pencil"></span></a>
+                                                        <a asp-area="Portal" asp-controller="Module" asp-action="EditModuleData" asp-route-id="@item.ModuleId" asp-route-dataId="@item.Id" dataId="@item.Id" class="btn btn-sm btn-warning"><span class="fas fa-pencil"></span></a>
                                                     </td>
                                                 </tr>
                                             }

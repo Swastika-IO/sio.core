@@ -13,7 +13,7 @@
 <section class="content container-fluid">
     @*<div class="row mb-1">
             <div class="col-sm-12">
-                <a asp-action="Create" asp-route-templateId="@ViewBag.templateId" class="btn btn-primary"><span class="oi oi-plus"></span> Add template</a>
+                <a asp-action="Create" asp-route-templateId="@ViewBag.templateId" class="btn btn-primary"><span class="fas fa-plus"></span> Add template</a>
                 <div class="btn-group">
                     <button type="button" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         Template Folders
@@ -119,7 +119,7 @@
                     </td>
                     <td>
                         <div class="btn-group btn-group-sm" role="group" aria-label="Actions">
-                            <a asp-action="Edit" asp-route-id="@item.Id" class="btn btn-sm btn-light d-inline-block "> <span class="oi oi-pencil text-primary"></span></a>
+                            <a asp-action="Edit" asp-route-id="@item.Id" class="btn btn-sm btn-light d-inline-block "> <span class="fas fa-pencil text-primary"></span></a>
                             @*<a asp-action="Delete" asp-route-id="@item.Id" class="btn btn-sm btn-light d-inline-block" data-popout="true" data-toggle="confirmation" data-singleton="true"> <span class="fas fa-times text-danger"></span> </a>*@
 
                             <button type="button" class="btn btn-light del-popover"
