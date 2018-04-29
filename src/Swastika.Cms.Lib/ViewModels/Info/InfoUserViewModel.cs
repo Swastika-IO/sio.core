@@ -63,6 +63,5 @@ namespace Swastika.Cms.Lib.ViewModels.Info
         #region Expands
 
         #endregion
-
     }
 }

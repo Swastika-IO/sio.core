@@ -62,8 +62,6 @@ namespace Swastika.Cms.Lib.Models.Cms
         {
             if (!optionsBuilder.IsConfigured)
             {
-                
-
                 // define the database to use
                 string cnn = GlobalConfigurationService.Instance.GetConnectionString();
                 if (!string.IsNullOrEmpty(cnn))
