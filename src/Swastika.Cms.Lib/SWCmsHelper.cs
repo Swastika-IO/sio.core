@@ -269,7 +269,6 @@ namespace Swastika.Cms.Lib
             string s1 = strPrice.Replace(",", string.Empty);
             if (CheckIsPrice(s1))
             {
-
                 Regex rgx = new Regex("(\\d+)(\\d{3})");
                 while (rgx.IsMatch(s1))
                 {
@@ -278,7 +277,6 @@ namespace Swastika.Cms.Lib
                 return s1;
             }
             return oldPrice;
-
         }
 
         public static bool CheckIsPrice(string number)

@@ -38,8 +38,6 @@
     <Compile Remove="Views\Shared\Modules\**" />
     <Compile Remove="Views\Shared\NowUI\**" />
     <Compile Remove="Views\Shared\Pages\**" />
-    <Compile Remove="Views\Shared\Templates\Default\**" />
-    <Compile Remove="Views\Shared\Templates\Default\Products\**" />
     <Compile Remove="Views\Shared\Templates\Modus\**" />
     <Compile Remove="Views\Shared\Templates\Now-UI-Kit-PRO\**" />
     <Compile Remove="Views\Shared\Widgets\**" />
@@ -56,8 +54,6 @@
     <Content Remove="Views\Shared\Modules\**" />
     <Content Remove="Views\Shared\NowUI\**" />
     <Content Remove="Views\Shared\Pages\**" />
-    <Content Remove="Views\Shared\Templates\Default\**" />
-    <Content Remove="Views\Shared\Templates\Default\Products\**" />
     <Content Remove="Views\Shared\Templates\Modus\**" />
     <Content Remove="Views\Shared\Templates\Now-UI-Kit-PRO\**" />
     <Content Remove="Views\Shared\Widgets\**" />
@@ -74,8 +70,6 @@
     <EmbeddedResource Remove="Views\Shared\Modules\**" />
     <EmbeddedResource Remove="Views\Shared\NowUI\**" />
     <EmbeddedResource Remove="Views\Shared\Pages\**" />
-    <EmbeddedResource Remove="Views\Shared\Templates\Default\**" />
-    <EmbeddedResource Remove="Views\Shared\Templates\Default\Products\**" />
     <EmbeddedResource Remove="Views\Shared\Templates\Modus\**" />
     <EmbeddedResource Remove="Views\Shared\Templates\Now-UI-Kit-PRO\**" />
     <EmbeddedResource Remove="Views\Shared\Widgets\**" />
@@ -92,8 +86,6 @@
     <None Remove="Views\Shared\Modules\**" />
     <None Remove="Views\Shared\NowUI\**" />
     <None Remove="Views\Shared\Pages\**" />
-    <None Remove="Views\Shared\Templates\Default\**" />
-    <None Remove="Views\Shared\Templates\Default\Products\**" />
     <None Remove="Views\Shared\Templates\Modus\**" />
     <None Remove="Views\Shared\Templates\Now-UI-Kit-PRO\**" />
     <None Remove="Views\Shared\Widgets\**" />
@@ -288,7 +280,6 @@
     <None Include="Areas\User\Views\Manage\VerifyPhoneNumber.cshtml" />
     <None Include="Areas\User\Views\_ViewImports.cshtml" />
     <None Include="Areas\User\Views\_ViewStart.cshtml" />
-    <None Include="Views\Shared\Templates\Starceramic\Products\_Default.cshtml" />
     <None Include="Views\_ViewImports.cshtml" />
     <None Include="Views\_ViewStart.cshtml" />
     <None Include="wwwroot\app-portal\controllers\register-controller.js" />
