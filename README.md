@@ -10,7 +10,7 @@ Btw, the word ‘swastika’ is a Sanskrit word (‘svasktika’) meaning ‘It 
 [![codecov](https://codecov.io/gh/Swastika-IO/Swastika-IO-Core/branch/master/graph/badge.svg)](https://codecov.io/gh/Swastika-IO/Swastika-IO-Core)
 [![codebeat badge](https://codebeat.co/badges/dcd5aeaf-f8d5-412e-bc22-e937ccf3a698)](https://codebeat.co/projects/github-com-smileway-swastika-io-core-master)
 [![Codacy Badge](https://api.codacy.com/project/badge/Grade/bbd56b2b0e1f4711a83dfe61181ed894)](https://www.codacy.com/app/Smilefounder/Swastika-IO-Core?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=Swastika-IO/Swastika-IO-Core&amp;utm_campaign=Badge_Grade)
-[![Sonarcloud](https://sonarcloud.io/dashboard?id=Swastika.Core)](https://sonarcloud.io/api/project_badges/measure?project=Swastika.Core&metric=alert_status)
+[![Sonarcloud](https://sonarcloud.io/api/project_badges/measure?project=Swastika.Core&metric=alert_status)](https://sonarcloud.io/dashboard?id=Swastika.Core)
 
 ## Buid status:
 | Build server| Platform       | Status      |
