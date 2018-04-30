@@ -63,7 +63,7 @@
 
     <script>
         $(window).scroll(function () {
-            if ($(".navbar").offset().top > 600) {
+            if ($(".navbar").offset().top > $(window).height()) {
                 $('.navbar-brand img').attr('src', '/css/portal/img/swastika-io-logo-blue.png'); //change src
             } else {
                 $('.navbar-brand img').attr('src', '/images/swastika-io-logo-white.svg')
