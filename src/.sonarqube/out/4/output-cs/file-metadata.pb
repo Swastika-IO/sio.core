@@ -1,0 +1,17 @@
+T
+RD:\Workspace\GitHub\Swastika-IO-Core\src\Swastka.Cms.Api\App_Start\Startup.Auth.cs^
+\D:\Workspace\GitHub\Swastika-IO-Core\src\Swastka.Cms.Api\Controllers\ApiAccountController.cs^
+\D:\Workspace\GitHub\Swastika-IO-Core\src\Swastka.Cms.Api\Controllers\ApiArticleController.cs[
+YD:\Workspace\GitHub\Swastika-IO-Core\src\Swastka.Cms.Api\Controllers\ApiFileController.cs\
+ZD:\Workspace\GitHub\Swastika-IO-Core\src\Swastka.Cms.Api\Controllers\ApiMediaController.cs]
+[D:\Workspace\GitHub\Swastika-IO-Core\src\Swastka.Cms.Api\Controllers\ApiModuleController.csa
+_D:\Workspace\GitHub\Swastika-IO-Core\src\Swastka.Cms.Api\Controllers\ApiModuleDataController.csa
+_D:\Workspace\GitHub\Swastika-IO-Core\src\Swastka.Cms.Api\Controllers\ApiNavigationController.cs[
+YD:\Workspace\GitHub\Swastika-IO-Core\src\Swastka.Cms.Api\Controllers\ApiPageController.cs^
+\D:\Workspace\GitHub\Swastika-IO-Core\src\Swastka.Cms.Api\Controllers\ApiProductController.cs[
+YD:\Workspace\GitHub\Swastika-IO-Core\src\Swastka.Cms.Api\Controllers\ApiRoleController.cs_
+]D:\Workspace\GitHub\Swastika-IO-Core\src\Swastka.Cms.Api\Controllers\ApiTemplateController.csE
+CD:\Workspace\GitHub\Swastika-IO-Core\src\Swastka.Cms.Api\Program.csE
+CD:\Workspace\GitHub\Swastika-IO-Core\src\Swastka.Cms.Api\Startup.csT
+PC:\Users\smile\AppData\Local\Temp\.NETCoreApp,Version=v2.0.AssemblyAttributes.cst
+pD:\Workspace\GitHub\Swastika-IO-Core\src\Swastka.Cms.Api\obj\Debug\netcoreapp2.0\Swastka.Cms.Api.AssemblyInfo.cs

@@ -1,0 +1,7 @@
+organization=swastika-io
+projectKey=Swastika.Core
+serverUrl=https://sonarcloud.io
+serverVersion=7.1.1.10702
+dashboardUrl=https://sonarcloud.io/dashboard/index/Swastika.Core
+ceTaskId=AWMXwLmEXhRh5gha-HWG
+ceTaskUrl=https://sonarcloud.io/api/ce/task?id=AWMXwLmEXhRh5gha-HWG

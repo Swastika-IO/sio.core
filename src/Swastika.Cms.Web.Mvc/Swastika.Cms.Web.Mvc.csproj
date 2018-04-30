@@ -57,6 +57,7 @@
     <Content Remove="Views\Shared\Templates\Modus\**" />
     <Content Remove="Views\Shared\Templates\Now-UI-Kit-PRO\**" />
     <Content Remove="Views\Shared\Widgets\**" />
+    <Content Remove="wwwroot\lib\**" />
     <!--<Content Remove="wwwroot\lib\**" />-->
     <EmbeddedResource Remove="Areas\Portal\Data\**" />
     <EmbeddedResource Remove="Areas\Portal\Models\**" />
@@ -170,7 +171,6 @@
     <Folder Include="Areas\User\Models\" />
     <Folder Include="wwwroot\app-portal\views\" />
     <Folder Include="wwwroot\app\services\" />
-    <Folder Include="wwwroot\lib\" />
   </ItemGroup>
 
   <ItemGroup>

@@ -1,0 +1,15 @@
+[
+RD:\Workspace\GitHub\Swastika-IO-Core\src\Swastka.Cms.Api\App_Start\Startup.Auth.csutf-8e
+\D:\Workspace\GitHub\Swastika-IO-Core\src\Swastka.Cms.Api\Controllers\ApiAccountController.csutf-8e
+\D:\Workspace\GitHub\Swastika-IO-Core\src\Swastka.Cms.Api\Controllers\ApiArticleController.csutf-8b
+YD:\Workspace\GitHub\Swastika-IO-Core\src\Swastka.Cms.Api\Controllers\ApiFileController.csutf-8c
+ZD:\Workspace\GitHub\Swastika-IO-Core\src\Swastka.Cms.Api\Controllers\ApiMediaController.csutf-8d
+[D:\Workspace\GitHub\Swastika-IO-Core\src\Swastka.Cms.Api\Controllers\ApiModuleController.csutf-8h
+_D:\Workspace\GitHub\Swastika-IO-Core\src\Swastka.Cms.Api\Controllers\ApiModuleDataController.csutf-8h
+_D:\Workspace\GitHub\Swastika-IO-Core\src\Swastka.Cms.Api\Controllers\ApiNavigationController.csutf-8b
+YD:\Workspace\GitHub\Swastika-IO-Core\src\Swastka.Cms.Api\Controllers\ApiPageController.csutf-8e
+\D:\Workspace\GitHub\Swastika-IO-Core\src\Swastka.Cms.Api\Controllers\ApiProductController.csutf-8b
+YD:\Workspace\GitHub\Swastika-IO-Core\src\Swastka.Cms.Api\Controllers\ApiRoleController.csutf-8f
+]D:\Workspace\GitHub\Swastika-IO-Core\src\Swastka.Cms.Api\Controllers\ApiTemplateController.csutf-8L
+CD:\Workspace\GitHub\Swastika-IO-Core\src\Swastka.Cms.Api\Program.csutf-8L
+CD:\Workspace\GitHub\Swastika-IO-Core\src\Swastka.Cms.Api\Startup.csutf-8
