@@ -4,9 +4,9 @@
     //var arrLocations = window.arrLocations ||  [
     //  [{
     //      marker: null,
-    //      name:	'Alexandra House', 
-    //      type:	'1', 
-    //      address:	'7-15 Des Voeux Road Central, Central, Hong Kong', 
+    //      name:	'Alexandra House',
+    //      type:	'1',
+    //      address:	'7-15 Des Voeux Road Central, Central, Hong Kong',
     //      LatLng:	{
     //          lb:  22.2810133,
     //          mb:  114.1587265
@@ -17,9 +17,9 @@
     //  }],
     //  [{
     //      marker: null,
-    //      name:	'York House', 
-    //      type:	'0', 
-    //      address:	'12-16 Des Voeux Road Central, Central, Hong Kong', 
+    //      name:	'York House',
+    //      type:	'0',
+    //      address:	'12-16 Des Voeux Road Central, Central, Hong Kong',
     //      LatLng:	{
     //          lb:  22.281554,
     //          mb:  114.15761799999996
@@ -69,9 +69,8 @@
         markers: [],
         refLocation: {},
         geocoder: null,
-        centerPos:null,
+        centerPos: null,
         initMap: function (address) {
-
             if (address) {
                 var url = 'https://maps.googleapis.com/maps/api/geocode/json?address=' + address + '&key=' + SW.GMap.apiKey;
                 $.ajax({
@@ -94,7 +93,6 @@
                             SW.GMap.addMarker(SW.GMap.centerPos);
                         }
                         google.maps.event.addListener(SW.GMap.map, 'click', function (event) {
-
                             var pos = { lat: event.latLng.lat(), lng: event.latLng.lng() };
                             SW.GMap.addMarker(pos);
                         });
@@ -103,19 +101,12 @@
                         function clearMarkers() {
                             setMapOnAll(null);
                         }
-
                     },
                     error: function (a, b, c) {
                         console.log(a + " " + b + " " + c);
                     }
                 });
             }
-
-            
-           
-            
-            
-
         },
         addMarker: function (location) {
             SW.GMap.deleteMarkers();
@@ -142,7 +133,7 @@
             }
         },
         initialize: function () {
-            geocoder = new google.maps.Geocoder();
+            SW.GMap.geocoder = new google.maps.Geocoder();
             if (SW.GMap.map == undefined) {
                 var mapOptions = {
                     zoom: initZoom,
@@ -154,9 +145,7 @@
             SW.GMap.map.mapTypes.set('map_style', styledMap);
             SW.GMap.map.setMapTypeId('map_style');
 
-
             setMarkers(arrLocations);
-
         },
         createMarker: function (location) {
             var myLatLng = new google.maps.LatLng(location.LatLng.lb, location.LatLng.mb);
@@ -205,7 +194,6 @@
                 }
             });
 
-
             location.infoBox = new InfoBox(myOptions);
 
             //open info when create
@@ -215,8 +203,6 @@
             google.maps.event.addListener(location.infoBox, "closeclick", function (e) {
                 location.visible = false;
             });
-
-
         },
         getPlaceDetail: function (id) {
             $.ajax({
@@ -235,7 +221,6 @@
                         DoveTet.Tracking.trackEvent("button", "click", 'location-detail_dang-va-sap-dien-ra');
                     }
                     $("#marker-modal").dialog('open');
-
                 }
             });
         },
@@ -255,7 +240,6 @@
             }
         },
 
-
         getLatLngCodeAddress: function (address) {
             SW.GMap.geocoder.geocode({ 'address': address }, function (results, status) {
                 if (status === 'OK') {
@@ -267,12 +251,8 @@
                 }
             });
         }
-
-
-
     }
     $(document).ready(function () {
-
         //google.maps.event.addDomListener(window, 'load', function () {
         //    initialize();
         //});

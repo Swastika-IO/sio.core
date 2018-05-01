@@ -1,4 +1,8 @@
 ﻿// Licensed to the Swastika I/O Foundation under one or more agreements.
+// The Swastika I/O Foundation licenses this file to you under the GNU General Public License v3.0 license.
+// See the LICENSE file in the project root for more information.
+
+// Licensed to the Swastika I/O Foundation under one or more agreements.
 // The Swastika I/O Foundation licenses this file to you under the GNU General Public License v3.0.
 // See the LICENSE file in the project root for more information.
 
@@ -83,16 +87,22 @@ namespace Swastika.Cms.Lib.ViewModels
 
     public class FileViewModel
     {
+        private string _fullPath = string.Empty;
+
         public string FullPath {
             get {
-                return CommonHelper.GetFullPath(new string[] {
+                _fullPath = CommonHelper.GetFullPath(new string[] {
                     "",
                     SWCmsConstants.Parameters.FileFolder,
                     FileFolder,
                     string.Format("{0}{1}", Filename, Extension)
                 });
+
+                return _fullPath;
             }
-            set { }
+            set {
+                _fullPath = value;
+            }
         }
 
         public string FolderName { get; set; }
@@ -211,6 +221,7 @@ namespace Swastika.Cms.Lib.ViewModels
     {
         [JsonProperty("lang")]
         public string Lang { get; set; }
+
         [JsonProperty("cultures")]
         public List<SupportedCulture> Cultures { get; set; }
     }
