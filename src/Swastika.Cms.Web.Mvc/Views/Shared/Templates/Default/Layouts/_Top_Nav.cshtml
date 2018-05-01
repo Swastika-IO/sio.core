@@ -1,3 +1,6 @@
+@using Microsoft.AspNetCore.Authorization
+@inject IAuthorizationService AuthorizationService
+
 @{
     string culture = ViewBag.culture;
     List<InfoCategoryViewModel> topCates = SWCmsHelper.GetCategory(Url, ViewBag.culture, SWCmsConstants.CatePosition.Top, Context.Request.Path);
@@ -10,7 +13,9 @@
                 <span class="navbar-toggler-bar bar2"></span>
                 <span class="navbar-toggler-bar bar3"></span>
             </button>
-            <a class="navbar-brand" href="https://www.swastika.io">Swastika I/O</a>
+            <a class="navbar-brand" href="https://www.swastika.io" title="Swastika I/O">
+                <img class="logo-white" src="~/images/swastika-io-logo-white.svg" width="32" title="Swastika I/O" alt="Swastika I/O" />
+            </a>
         </div>
         <div class="collapse navbar-collapse" id="example-navbar-primary">
             <ul class="navbar-nav ml-auto">
@@ -42,19 +47,28 @@
 
                     }
                 }
+                @if (User.Identity.IsAuthenticated)
+                {
+                    <li class="nav-item">
+                        <a class="nav-link" href="/@ViewBag.culture/portal">
+                            <i class="now-ui-icons ui-2_settings-90"></i>
+                            <p>Portal</p>
+                        </a>
+                    </li>
+                }
             </ul>
             <ul class="nav navbar-nav">
-                    <li class="nav-item">
-                        <a class="nav-link" href="https://www.facebook.com/Swastika-IO-268388420255457/">
-                            <i class="fa fa-facebook-square"></i>
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="https://github.com/Swastika-IO/Swastika-IO-Core">
-                            <i class="fa fa-github"></i>
-                        </a>
-                    </li>
-                </ul>
+                <li class="nav-item">
+                    <a class="nav-link" href="https://www.facebook.com/Swastika-IO-268388420255457/">
+                        <i class="fa fa-facebook-square"></i>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="https://github.com/Swastika-IO/Swastika-IO-Core">
+                        <i class="fa fa-github"></i>
+                    </a>
+                </li>
+            </ul>
         </div>
     </div>
 </nav>

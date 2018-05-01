@@ -28,46 +28,37 @@ namespace Swastika.Cms.Lib.Services
         public string Name { get; set; }
         public bool IsInit { get; set; }
 
-        public string ConnectionString
-        {
-            get
-            {
+        public string ConnectionString {
+            get {
                 return _connectionString;
             }
-            set
-            {
+            set {
                 _connectionString = value;
             }
         }
 
         private static List<ConfigurationViewModel> _listConfiguration;
 
-        public static List<ConfigurationViewModel> ListConfiguration
-        {
-            get
-            {
+        public static List<ConfigurationViewModel> ListConfiguration {
+            get {
                 if (_listConfiguration == null)
                 {
                     InitConfigurations();
                 }
                 return _listConfiguration;
             }
-            set
-            {
+            set {
                 _listConfiguration = value;
             }
         }
 
         private static GlobalConfigurationService _instance;
 
-        public static GlobalConfigurationService Instance
-        {
-            get
-            {
+        public static GlobalConfigurationService Instance {
+            get {
                 return _instance ?? (_instance = new GlobalConfigurationService());
             }
-            set
-            {
+            set {
                 _instance = value;
             }
         }
@@ -145,13 +136,11 @@ namespace Swastika.Cms.Lib.Services
 
                     if (!isInit)
                     {
-
                         isSucceed = InitCultures(context, transaction);
 
                         isSucceed = isSucceed && InitPositions(context, transaction);
 
                         isSucceed = isSucceed && InitThemes(context, transaction);
-
                     }
                     else
                     {
@@ -167,7 +156,6 @@ namespace Swastika.Cms.Lib.Services
                             Template = "_Home",
                             Type = (int)SWCmsConstants.CateType.Home,
                             CreatedBy = "Admin"
-
                         });
 
                         isSucceed = cate.SaveModel(false, context, transaction).IsSucceed;
@@ -182,10 +170,8 @@ namespace Swastika.Cms.Lib.Services
                         isSucceed = isSucceed && uscate.SaveModel(false, context, transaction).IsSucceed;
                     }
 
-
                     if (isSucceed)
                     {
-
                         GlobalLanguageService.Instance.RefreshCultures(context, transaction);
 
                         transaction.Commit();
@@ -198,7 +184,6 @@ namespace Swastika.Cms.Lib.Services
                         accTransaction.Rollback();
                         IsInit = false;
                     }
-
                 }
                 result.IsSucceed = isSucceed;
                 return result;
@@ -424,6 +409,7 @@ namespace Swastika.Cms.Lib.Services
             }
             return isSucceed;
         }
+
         protected bool InitPositions(SiocCmsContext context, IDbContextTransaction transaction)
         {
             bool isSucceed = true;
@@ -453,6 +439,7 @@ namespace Swastika.Cms.Lib.Services
             }
             return isSucceed;
         }
+
         public void Refresh(SiocCmsContext _context = null, IDbContextTransaction _transaction = null)
         {
             InitConfigurations(_context, _transaction);

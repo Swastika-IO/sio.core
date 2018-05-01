@@ -47,20 +47,28 @@ namespace Swastika.Cms.Lib.ViewModels
     {
         [JsonProperty("dataBaseServer")]
         public string DataBaseServer { get; set; }
+
         [JsonProperty("dataBaseName")]
         public string DataBaseName { get; set; }
+
         [JsonProperty("dataBaseUser")]
         public string DataBaseUser { get; set; }
+
         [JsonProperty("dataBasePassword")]
         public string DataBasePassword { get; set; }
+
         [JsonProperty("isUseLocal")]
         public bool IsUseLocal { get; set; }
+
         [JsonProperty("localDbName")]
         public string LocalDbName { get; set; }
+
         [JsonProperty("localDbConnectionString")]
         public string LocalDbConnectionString { get; set; }
+
         [JsonProperty("superAdmin")]
         public string SuperAdmin { get; set; }
+
         [JsonProperty("adminPasseord")]
         public string AdminPassword { get; set; }
     }
@@ -84,8 +92,7 @@ namespace Swastika.Cms.Lib.ViewModels
                     string.Format("{0}{1}", Filename, Extension)
                 });
             }
-            set {
-            }
+            set { }
         }
 
         public string FolderName { get; set; }
