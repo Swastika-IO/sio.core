@@ -40,7 +40,7 @@ namespace Swastika.Cms.Lib.Models.Account
         {
             var config = new ConfigurationBuilder()
              .SetBasePath(Directory.GetCurrentDirectory())
-             .AddJsonFile(Const.CONST_FILE_APPSETTING)
+             .AddJsonFile(SWCmsConstants.CONST_FILE_APPSETTING)
              .Build();
             string cnn = config.GetConnectionString(Swastika.Identity.Const.CONST_DEFAULT_CONNECTION);
             if (!string.IsNullOrEmpty(cnn))

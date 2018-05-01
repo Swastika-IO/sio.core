@@ -23,8 +23,11 @@ namespace Swastka.IO.Cms.Api.Controllers
     [Produces("application/json")]
     [Route("api/{culture}/template")]
     public class ApiTemplateController :
-        BaseApiController<SiocCmsContext, SiocTemplate>
+        BaseApiController
     {
+        public ApiTemplateController()
+        {
+        }
         #region Get
 
         // GET api/template/id

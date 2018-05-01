@@ -26,9 +26,9 @@ namespace Swastka.Cms.Api.Controllers
     [Produces("application/json")]
     [Route("api/{culture}/media")]
     public class ApiMediaController :
-        BaseApiController<SiocCmsContext, SiocMedia>
+        BaseApiController
     {
-        public ApiMediaController(IHostingEnvironment env) : base(env)
+        public ApiMediaController()
         {
         }
 

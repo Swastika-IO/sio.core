@@ -30,9 +30,10 @@ namespace Swastka.Cms.Api.Controllers
     //[Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
     [Route("api/{culture}/article")]
     public class ApiArticleController :
-        BaseApiController<SiocCmsContext, SiocArticle>
+        BaseApiController
     {
-        public ApiArticleController(IHostingEnvironment env) : base(env)
+
+        public ApiArticleController()
         {
         }
 

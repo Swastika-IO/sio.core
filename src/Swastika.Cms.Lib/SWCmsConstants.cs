@@ -9,6 +9,8 @@ namespace Swastika.Cms.Lib
 {
     public class SWCmsConstants
     {
+        public const string CONST_FILE_APPSETTING = "appSettings.json";
+
         public const string CONST_DEFAULT_CONNECTION = "CmsConnection";
 
         /// The constant path home access denied

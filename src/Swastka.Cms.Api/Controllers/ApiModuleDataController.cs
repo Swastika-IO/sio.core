@@ -22,9 +22,9 @@ namespace Swastka.Cms.Api.Controllers
 {
     [Route("api/{culture}/module-data")]
     public class ApiModuleDataController :
-        BaseApiController<SiocCmsContext, SiocModule>
+        BaseApiController
     {
-        public ApiModuleDataController(IHostingEnvironment env) : base(env)
+        public ApiModuleDataController()
         {
         }
 

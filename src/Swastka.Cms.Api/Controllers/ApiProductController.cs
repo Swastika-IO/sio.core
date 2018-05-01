@@ -29,9 +29,9 @@ namespace Swastka.Cms.Api.Controllers
     [Produces("application/json")]
     [Route("api/{culture}/product")]
     public class ApiProductController :
-        BaseApiController<SiocCmsContext, SiocProduct>
+        BaseApiController
     {
-        public ApiProductController(IHostingEnvironment env) : base(env)
+        public ApiProductController()
         {
         }
 

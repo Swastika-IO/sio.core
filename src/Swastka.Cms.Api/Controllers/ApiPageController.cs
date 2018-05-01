@@ -23,8 +23,11 @@ namespace Swastka.IO.Cms.Api.Controllers
     [Route("api/{culture}/page")]
     [Route("api/{culture}/category")]
     public class ApiCategoryController :
-        BaseApiController<SiocCmsContext, SiocCategory>
+        BaseApiController
     {
+        public ApiCategoryController()
+        {
+        }
         #region Get
 
         // GET api/category/id
