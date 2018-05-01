@@ -126537,7 +126537,7 @@ ViewModels %
 {11 	
 }22 	
 }77 
-}88 õY
+}88 …X
 ^D:\Workspace\GitHub\Swastika-IO-Core\src\Swastika.Cms.Lib\ViewModels\Info\InfoFileViewModel.cs
 	namespace 	
 Swastika
@@ -127212,17 +127212,9 @@ FileFolder
 .
 èè 
 	IsSucceed
-èè  
-&&
-èè! #
-result
-èè$ *
-.
-èè* +
-	IsSucceed
-èè+ 4
+èè  
 )
-èè4 5
+èè  !
 {
 êê 
 FileRepository

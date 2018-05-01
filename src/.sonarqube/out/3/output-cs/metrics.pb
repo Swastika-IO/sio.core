@@ -249,8 +249,8 @@ bD:\Workspace\GitHub\Swastika-IO-Core\src\Swastika.Cms.Lib\ViewModels\Info\InfoC
 !"$%'(*+-.013467=>FGIJLMOPRSUV\]^_`abcdefghijklmnpqstvwyz|}Äàâäåçéîïñóòôöõúùûü°¢£§¶ß©™´¨≠∞±x	Ç]cekñóòöúû°£¶©´ﬁ
 gD:\Workspace\GitHub\Swastika-IO-Core\src\Swastika.Cms.Lib\ViewModels\Info\InfoConfigurationViewModel.cs (08@HR 0=0;5=0;10=1;20=0;30=0;60=0;90=0Z1=12;2=0;4=0;6=0;8=0;10=0;12=0r#	
  !"*+,-/01278‹
-^D:\Workspace\GitHub\Swastika-IO-Core\src\Swastika.Cms.Lib\ViewModels\Info\InfoFileViewModel.cs (08$@$H$R 0=0;5=0;10=0;20=0;30=1;60=0;90=0Z1=24;2=5;4=0;6=0;8=0;10=0;12=0rÑ	
-!"$%'(*+-.0134679:BCDEGHIJRSTUVWXYZ[\]^defghijklnopqrstuvwxyz{|ÇÉÑÖÜáàâäåçéèêëíìîïñóòôöü†xÇTVXZ\]fgikpqs{ÑÖáâéèëô⁄
+^D:\Workspace\GitHub\Swastika-IO-Core\src\Swastika.Cms.Lib\ViewModels\Info\InfoFileViewModel.cs (08#@#H#R 0=0;5=0;10=0;20=0;30=1;60=0;90=0Z1=24;2=5;4=0;6=0;8=0;10=0;12=0rÑ	
+!"$%'(*+-.0134679:BCDEGHIJRSTUVWXYZ[\]^defghijklnopqrstuvwxyz{|ÇÉÑÖÜáàâäåçéèêëíìîïñóòôöü†xÇTVXZ\]fgikpqs{ÑÖáâéèëô⁄
 iD:\Workspace\GitHub\Swastika-IO-Core\src\Swastika.Cms.Lib\ViewModels\Info\InfoModuleAttributeViewModel.cs (	0	8@HR 0=0;5=0;10=1;20=0;30=0;60=0;90=0Z1=14;2=0;4=0;6=0;8=0;10=0;12=0r
  "#+,-/0145¯
 dD:\Workspace\GitHub\Swastika-IO-Core\src\Swastika.Cms.Lib\ViewModels\Info\InfoModuleDataViewModel.cs< "(08B@BHBR 0=0;5=0;10=0;20=0;30=0;60=1;90=0Z1=26;2=5;4=2;6=0;8=0;10=0;12=1jdzÜàrΩ	
