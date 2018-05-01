@@ -29,8 +29,8 @@ YD:\Workspace\GitHub\Swastika-IO-Core\src\Swastka.Cms.Api\Controllers\ApiRoleCon
 ]D:\Workspace\GitHub\Swastika-IO-Core\src\Swastka.Cms.Api\Controllers\ApiTemplateController.cs (	08@HR 0=0;5=0;10=1;20=0;30=0;60=0;90=0Z1=4;2=2;4=2;6=0;8=0;10=0;12=0j!*4CU\izrÉ	
 "#$%&'(+,-./0156789:;<=>?@ADEFGHIJKLMNOPQRSTUV]^_`abcdefgjklmnopqrtuvwx{|}~ÄÅÇÉÑÖÜáàâãçéëíx
 Ç)&'/0<>?@NPQRSacdfnprtwÄÅÇÉÜáàãç≠
-CD:\Workspace\GitHub\Swastika-IO-Core\src\Swastka.Cms.Api\Program.cs (08@HR 0=1;5=0;10=0;20=0;30=0;60=0;90=0Z1=2;2=0;4=0;6=0;8=0;10=0;12=0r	
-Ç√
+CD:\Workspace\GitHub\Swastika-IO-Core\src\Swastka.Cms.Api\Program.cs (08@HR 0=1;5=0;10=0;20=0;30=0;60=0;90=0Z1=2;2=0;4=0;6=0;8=0;10=0;12=0r	
+Ç√
 CD:\Workspace\GitHub\Swastika-IO-Core\src\Swastka.Cms.Api\Startup.cs (08@HR 0=1;5=0;10=0;20=0;30=0;60=0;90=0Z1=4;2=0;4=0;6=0;8=0;10=0;12=0r!
  !"$%&'()*+,Ç"$&›
 SD:\Workspace\GitHub\Swastika-IO-Core\src\Swastka.Cms.Api\App_Start\Startup.Auth.txt (08@HR 0=1;5=0;10=0;20=0;30=0;60=0;90=0Z1=2;2=0;4=0;6=0;8=0;10=0;12=0j#&'(*,r%

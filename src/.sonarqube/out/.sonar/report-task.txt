@@ -3,5 +3,5 @@ projectKey=Swastika.Core
 serverUrl=https://sonarcloud.io
 serverVersion=7.1.1.10702
 dashboardUrl=https://sonarcloud.io/dashboard/index/Swastika.Core
-ceTaskId=AWMcXvIuOnVewt-wixqo
-ceTaskUrl=https://sonarcloud.io/api/ce/task?id=AWMcXvIuOnVewt-wixqo
+ceTaskId=AWMcfKbAOnVewt-wixt-
+ceTaskUrl=https://sonarcloud.io/api/ce/task?id=AWMcfKbAOnVewt-wixt-

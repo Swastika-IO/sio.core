@@ -140,7 +140,7 @@ namespace Swastika.Cms.Lib.ViewModels.Info
         public override async Task<RepositoryResponse<InfoFileViewModel>> SaveModelAsync(bool isSaveSubModels = false, SiocCmsContext _context = null, IDbContextTransaction _transaction = null)
         {
             var result = await base.SaveModelAsync(isSaveSubModels, _context, _transaction);
-            if (result.IsSucceed && result.IsSucceed)
+            if (result.IsSucceed)
             {
                 FileRepository.Instance.SaveWebFile(new FileViewModel()
                 {

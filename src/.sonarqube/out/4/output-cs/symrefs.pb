@@ -1383,14 +1383,12 @@ YD:\Workspace\GitHub\Swastika-IO-Core\src\Swastka.Cms.Api\Controllers\ApiRoleCon
 çç ü
 CD:\Workspace\GitHub\Swastika-IO-Core\src\Swastka.Cms.Api\Program.cs
 
-
-
- 
+ 
 
- 
-) - 
- + 
-5 9) -ç
+ 
+) - 
+ + 
+5 9) -ç
 CD:\Workspace\GitHub\Swastika-IO-Core\src\Swastka.Cms.Api\Startup.cs
 
   
