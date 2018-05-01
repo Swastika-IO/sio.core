@@ -16,7 +16,7 @@ using Swastika.Cms.Mvc.Controllers;
 using System;
 using System.Threading.Tasks;
 
-namespace TTS.Web.Areas.Portal.Controllers.Apis
+namespace Swastika.Cms.Mvc.Areas.Portal.Controllers.Apis
 {
     [Area("Portal")]
     [Route("api/{culture}/Portal/Module")]
@@ -266,7 +266,6 @@ namespace TTS.Web.Areas.Portal.Controllers.Apis
                 var module = getModule.Data;
                 var ModuleData = new InfoModuleDataViewModel(
                     new SiocModuleData()
-
                     {
                         Id = Guid.NewGuid().ToString("N"),
                         ModuleId = id,

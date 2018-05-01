@@ -152,6 +152,11 @@
   </ItemGroup>
 
   <ItemGroup>
+    <None Remove="Areas\Portal\Controllers\Apis\ModuleApiController.txt" />
+    <None Remove="Areas\Portal\Controllers\ApperanceController.txt" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="angular-file-upload" Version="12.2.13" />
     <PackageReference Include="angularjs" Version="1.6.10" />
     <PackageReference Include="JWT" Version="4.0.0" />
