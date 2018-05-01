@@ -12,7 +12,7 @@ app.controller('DashboardController', ['$scope', '$rootScope', '$timeout', '$loc
     $scope.users = [];
     $scope.$on('$viewContentLoaded', function () {
         $rootScope.isBusy = false;
-        
+
     });
     $scope.getUserDemographicInfo = function () {
         //dashboardServices.getUserDemographicInfo().then(function (results) {
