@@ -17,8 +17,6 @@ using Swastika.Cms.Lib.ViewModels;
 using Swastika.Cms.Lib.ViewModels.Account;
 using Swastika.Cms.Lib.ViewModels.Info;
 using Swastika.Domain.Core.ViewModels;
-using Swastika.Identity.Identity.Models.AccountViewModels;
-using Swastika.Identity.Infrastructure;
 using Swastika.Identity.Models;
 using Swastika.Identity.Models.AccountViewModels;
 using Swastika.Identity.Services;
@@ -26,9 +24,7 @@ using Swastka.Cms.Api;
 using System;
 using System.Collections.Generic;
 using System.IdentityModel.Tokens.Jwt;
-using System.Linq;
 using System.Security.Claims;
-using System.Security.Principal;
 using System.Threading.Tasks;
 
 namespace Swastika.Core.Controllers
@@ -58,8 +54,6 @@ namespace Swastika.Core.Controllers
 
         [TempData]
         public string ErrorMessage { get; set; }
-
-
 
         //
         // POST: /Account/Logout
@@ -109,7 +103,6 @@ namespace Swastika.Core.Controllers
                 {
                     return loginResult;
                 }
-
             }
             else
             {
@@ -151,7 +144,6 @@ namespace Swastika.Core.Controllers
                 result.Errors.Add("Token expired");
                 return result;
             }
-
         }
 
         [Route("Register")]
@@ -173,7 +165,6 @@ namespace Swastika.Core.Controllers
                 var createResult = await _userManager.CreateAsync(user, password: model.Password).ConfigureAwait(false);
                 if (createResult.Succeeded)
                 {
-
                     _logger.LogInformation("User created a new account with password.");
 
                     user = await _userManager.FindByEmailAsync(model.Email).ConfigureAwait(false);
@@ -238,15 +229,12 @@ namespace Swastika.Core.Controllers
             }
             else if (model.IsUserInRole)
             {
-
-
                 var appUser = await _userManager.FindByIdAsync(model.UserId);
 
                 if (appUser == null)
                 {
                     errors.Add($"User: {model.UserId} does not exists");
                 }
-
                 else if (!(await _userManager.IsInRoleAsync(appUser, role.Name)))
                 {
                     var addResult = await _userManager.AddToRoleAsync(appUser, role.Name);
@@ -271,7 +259,6 @@ namespace Swastika.Core.Controllers
                 {
                     errors.Add($"User: {model.UserId} could not be removed from role");
                 }
-
             }
             result.IsSucceed = errors.Count == 0;
             result.Data = errors.Count == 0;
@@ -310,7 +297,6 @@ namespace Swastika.Core.Controllers
                 Expires = dtExpired,
             };
             return token;
-
         }
 
         private async Task<string> GenerateTokenAsync(ApplicationUser user, DateTime expires, string refreshToken)
@@ -330,7 +316,6 @@ namespace Swastika.Core.Controllers
                 expires: expires,
                 signingCredentials: new SigningCredentials(JwtSecurityKey.Create(SWCmsConstants.JWTSettings.SECRET_KEY), SecurityAlgorithms.HmacSha256));
             return new JwtSecurityTokenHandler().WriteToken(jwtSecurityToken);
-
         }
 
         protected async Task<List<Claim>> GetClaimsAsync(ApplicationUser user)
@@ -357,10 +342,10 @@ namespace Swastika.Core.Controllers
             }
             return claims;
         }
+
         protected Claim CreateClaim(string type, string value)
         {
             return new Claim(type, value, ClaimValueTypes.String);
         }
-
     }
 }
