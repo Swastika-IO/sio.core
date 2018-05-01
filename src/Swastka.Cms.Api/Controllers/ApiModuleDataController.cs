@@ -180,9 +180,7 @@ namespace Swastka.Cms.Api.Controllers
             Expression<Func<SiocModuleData, bool>> predicate = model =>
                 model.ModuleId == moduleId
                 && model.Specificulture == _lang
-                && (string.IsNullOrWhiteSpace(keyword)
-                || (model.Fields.Contains(keyword)
-                || model.Fields.Contains(keyword)));
+                && (string.IsNullOrWhiteSpace(keyword) || (model.Fields.Contains(keyword)));
 
             var result = await InfoModuleDataViewModel.Repository.GetModelListByAsync(predicate, orderBy, direction, pageSize, pageIndex).ConfigureAwait(false); // base.Search(predicate, orderBy, direction, pageSize, pageIndex, keyword);
             result.Data.JsonItems = new List<Newtonsoft.Json.Linq.JObject>();
