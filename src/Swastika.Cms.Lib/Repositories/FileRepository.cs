@@ -286,7 +286,7 @@ namespace Swastika.Cms.Lib.Repositories
             {
                 Directory.CreateDirectory(fullPath);
             }
-            DirectoryInfo d = new DirectoryInfo(fullPath);//Assuming Test is your Folder
+            DirectoryInfo d = new DirectoryInfo(fullPath); //Assuming Test is your Folder
             FileInfo[] Files = d.GetFiles();
             List<FileViewModel> result = new List<FileViewModel>();
             foreach (var file in Files.OrderByDescending(f => f.CreationTimeUtc))
@@ -367,7 +367,7 @@ namespace Swastika.Cms.Lib.Repositories
             {
                 Directory.CreateDirectory(fullPath);
             }
-            //DirectoryInfo d = new DirectoryInfo(fullPath);//Assuming Test is your Folder
+            //DirectoryInfo d = new DirectoryInfo(fullPath); //Assuming Test is your Folder
             FileInfo[] Files = { };
             List<FileViewModel> result = new List<FileViewModel>();
             foreach (string dirPath in Directory.GetDirectories(fullPath, "*",
@@ -401,7 +401,7 @@ namespace Swastika.Cms.Lib.Repositories
             {
                 Directory.CreateDirectory(fullPath);
             }
-            //DirectoryInfo d = new DirectoryInfo(fullPath);//Assuming Test is your Folder
+            //DirectoryInfo d = new DirectoryInfo(fullPath); //Assuming Test is your Folder
             FileInfo[] Files = { };
             List<FileViewModel> result = new List<FileViewModel>();
             foreach (string dirPath in Directory.GetDirectories(fullPath, "*",
@@ -450,7 +450,7 @@ namespace Swastika.Cms.Lib.Repositories
             {
                 Directory.CreateDirectory(fullPath);
             }
-            //DirectoryInfo d = new DirectoryInfo(fullPath);//Assuming Test is your Folder
+            //DirectoryInfo d = new DirectoryInfo(fullPath); //Assuming Test is your Folder
             FileInfo[] Files = { };
             List<FileViewModel> result = new List<FileViewModel>();
             foreach (string dirPath in Directory.GetDirectories(fullPath, "*",
@@ -560,7 +560,7 @@ namespace Swastika.Cms.Lib.Repositories
                     {
                         Directory.CreateDirectory(fullPath);
                     }
-                    string filename = file.FileName;// Guid.NewGuid().ToString("N");
+                    string filename = file.FileName; // Guid.NewGuid().ToString("N");
                     string filePath = SWCmsHelper.GetFullPath(new string[] { fullPath, filename });
                     //var logPath = System.IO.Path.GetTempFileName();
                     if (File.Exists(filePath))
