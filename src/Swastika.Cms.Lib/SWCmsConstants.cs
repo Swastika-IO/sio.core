@@ -221,7 +221,7 @@ namespace Swastika.Cms.Lib
             public const string Specificulture = @"en-us";
         }
 
-        public static class FileFolder
+        public class FileFolder
         {
             public const string Fonts = "Fonts";
             public const string Images = "Images";
