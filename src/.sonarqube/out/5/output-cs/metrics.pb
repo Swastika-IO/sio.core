@@ -65,9 +65,9 @@ WE:\_Workspace\Github\Swastika-IO-Core\src\Swastika.Cms.Web.Mvc\Models\ErrorView
 ]E:\_Workspace\Github\Swastika-IO-Core\src\Swastika.Cms.Web.Mvc\Models\Identity\JWTSettings.cs (08@HR 0=0;5=1;10=0;20=0;30=0;60=0;90=0Z1=6;2=0;4=0;6=0;8=0;10=0;12=0r		
 ¥
 IE:\_Workspace\Github\Swastika-IO-Core\src\Swastika.Cms.Web.Mvc\Program.cs (08@HR 0=1;5=0;10=0;20=0;30=0;60=0;90=0Z1=2;2=0;4=0;6=0;8=0;10=0;12=0r	
-Çí
-IE:\_Workspace\Github\Swastika-IO-Core\src\Swastika.Cms.Web.Mvc\Startup.csD (0	8@(HR 0=0;5=0;10=0;20=1;30=0;60=0;90=0Z1=2;2=3;4=0;6=0;8=0;10=0;12=1j)()256:>?AFJXY[\`acguyzÅÉÑÜáâ≠ÆØr·	
- !"#$&'*,-.03478;<?CDGHKLMNPQRSTUVW^ehijklmnopqrstvw|}åçéèêëíìïñóòôöõúùûü†°¢£§•¶ß®©™´∞±≤≥¥µ∑∏π∫ºΩæø¡¬√ƒ∆«… ÃÕŒœ—“”‘÷◊Ÿ⁄‹›ﬂ·‚„‰ÂxÇb!"$&,-78;<?CDGHKLMNPQSjklmopqv|}åéëïòõû°§ß¥µ∑∏√ƒ… ÃÕŒœ—“”‘÷◊Ÿ⁄‹›·Ã
+Ç∞
+IE:\_Workspace\Github\Swastika-IO-Core\src\Swastika.Cms.Web.Mvc\Startup.cs. (08	@H	R 0=0;5=1;10=0;20=0;30=0;60=0;90=0Z1=2;2=3;4=0;6=0;8=0;10=0;12=0j)()256:>?AFJXY[\`acguyzÅÉÑÜáâ≠ÆØr•	
+ !"#$&'*,-.03478;<?CDGHKLMNPQRSTUVW^ehijklmnopqrstvw|}åçéèêëíìïñóòôöõúùûü†°¢£§•¶ß®©™´∞±≤≥¥µ∑∏π∫ªºxÇ<!"$&,-78;<?CDGHKLMNPQSjklmopqv|}åéëïòõû°§ß¥µ∑∏Ã
 ]E:\_Workspace\Github\Swastika-IO-Core\src\Swastika.Cms.Web.Mvc\ViewComponents\FooterNavbar.cs (08@HR 0=1;5=0;10=0;20=0;30=0;60=0;90=0Z1=1;2=0;4=0;6=0;8=0;10=0;12=0jr
 Çœ
 ]E:\_Workspace\Github\Swastika-IO-Core\src\Swastika.Cms.Web.Mvc\ViewComponents\HeaderNavbar.cs (08@HR 0=1;5=0;10=0;20=0;30=0;60=0;90=0Z1=0;2=1;4=0;6=0;8=0;10=0;12=0r

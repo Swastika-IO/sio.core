@@ -354,7 +354,7 @@ namespace Swastika.Cms.Lib.ViewModels.BackEnd
 
             GenerateSEO();
 
-            return base.ParseModel();
+            return base.ParseModel(_context, _transaction);
         }
 
         #region Async Methods

@@ -159,7 +159,7 @@ namespace Swastika.Cms.Lib.ViewModels.BackEnd
             Content = Content?.Trim();
             Scripts = Scripts?.Trim();
             Styles = Styles?.Trim();
-            return base.ParseModel();
+            return base.ParseModel(_context, _transaction);
         }
 
         #endregion Common

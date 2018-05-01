@@ -98,7 +98,7 @@ namespace Swastika.Cms.Lib.ViewModels.BackEnd
                 Id = BEMediaViewModel.Repository.Max(c => c.Id).Data + 1;
                 CreatedDateTime = DateTime.UtcNow;
             }
-            return base.ParseModel();
+            return base.ParseModel(_context, _transaction);
         }
 
         public override void ExpandView(SiocCmsContext _context = null, IDbContextTransaction _transaction = null)
@@ -118,6 +118,7 @@ namespace Swastika.Cms.Lib.ViewModels.BackEnd
         }
 
 #pragma warning disable CS1998 // Async method lacks 'await' operators and will run synchronously
+
         public override async Task<RepositoryResponse<bool>> RemoveRelatedModelsAsync(BEMediaViewModel view, SiocCmsContext _context = null, IDbContextTransaction _transaction = null)
 #pragma warning restore CS1998 // Async method lacks 'await' operators and will run synchronously
         {

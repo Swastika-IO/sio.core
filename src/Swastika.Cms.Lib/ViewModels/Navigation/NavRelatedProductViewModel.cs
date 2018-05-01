@@ -75,7 +75,7 @@ namespace Swastika.Cms.Lib.ViewModels.Navigation
             {
                 CreatedDateTime = DateTime.UtcNow;
             }
-            return base.ParseModel();
+            return base.ParseModel(_context, _transaction);
         }
 
         #endregion Overrides
