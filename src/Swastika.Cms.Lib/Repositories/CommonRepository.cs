@@ -157,7 +157,7 @@ namespace Swastika.Cms.Lib.Repositories
         private IQueryable<ModuleArticleViewModel> GetModuleArticleViewModel(string articleId, string specificulture
             , SiocCmsContext _context = null, IDbContextTransaction _transaction = null)
         {
-            SiocCmsContext context = _context ?? new SiocCmsContext(); ;
+            SiocCmsContext context = _context ?? new SiocCmsContext();
             return context.SiocModule.Include(cp => cp.SiocModuleArticle)
                     .Where(a => a.Specificulture == specificulture
                     && a.Type == (int)SWCmsConstants.ModuleType.Root)
@@ -511,14 +511,11 @@ namespace Swastika.Cms.Lib.Repositories
 
         #region Module-Product Navigator
 
-        public RepositoryResponse<List<NavModuleProductViewModel>> GetModuleProductNav(string ProductId, string specificulture
+        private IQueryable<NavModuleProductViewModel> GetNavModuleProductViewModel(string ProductId, string specificulture
             , SiocCmsContext _context = null, IDbContextTransaction _transaction = null)
         {
             SiocCmsContext context = _context ?? new SiocCmsContext();
-            var transaction = _transaction ?? context.Database.BeginTransaction();
-            try
-            {
-                var navModuleProductViewModels = context.SiocModule.Include(cp => cp.SiocModuleProduct)
+            return context.SiocModule.Include(cp => cp.SiocModuleProduct)
                     .Where(a => a.Specificulture == specificulture
                     && a.Type == (int)SWCmsConstants.ModuleType.Root)
                      .Select(p => new NavModuleProductViewModel(
@@ -533,6 +530,33 @@ namespace Swastika.Cms.Lib.Repositories
                          IsActived = p.SiocModuleProduct.Count(cp => cp.ProductId == ProductId && cp.Specificulture == specificulture) > 0,
                          Description = p.Title
                      });
+        }
+
+        public RepositoryResponse<List<NavModuleProductViewModel>> GetModuleProductNav(string ProductId, string specificulture
+            , SiocCmsContext _context = null, IDbContextTransaction _transaction = null)
+        {
+            SiocCmsContext context = _context ?? new SiocCmsContext();
+            var transaction = _transaction ?? context.Database.BeginTransaction();
+            try
+            {
+                //var navModuleProductViewModels = context.SiocModule.Include(cp => cp.SiocModuleProduct)
+                //    .Where(a => a.Specificulture == specificulture
+                //    && a.Type == (int)SWCmsConstants.ModuleType.Root)
+                //     .Select(p => new NavModuleProductViewModel(
+                //         new SiocModuleProduct()
+                //         {
+                //             ProductId = ProductId,
+                //             ModuleId = p.Id,
+                //             Specificulture = specificulture
+                //         },
+                //         _context, _transaction)
+                //     {
+                //         IsActived = p.SiocModuleProduct.Count(cp => cp.ProductId == ProductId && cp.Specificulture == specificulture) > 0,
+                //         Description = p.Title
+                //     });
+
+                var navModuleProductViewModels = GetNavModuleProductViewModel(ProductId, specificulture, context, transaction);
+
                 return new RepositoryResponse<List<NavModuleProductViewModel>>()
                 {
                     IsSucceed = true,
@@ -570,21 +594,24 @@ namespace Swastika.Cms.Lib.Repositories
             var transaction = _transaction ?? context.Database.BeginTransaction();
             try
             {
-                var navModuleProductViewModels = context.SiocModule.Include(cp => cp.SiocModuleProduct)
-                    .Where(a => a.Specificulture == specificulture
-                    && a.Type == (int)SWCmsConstants.ModuleType.Root)
-                    .Select(p => new NavModuleProductViewModel(
-                        new SiocModuleProduct()
-                        {
-                            ProductId = ProductId,
-                            ModuleId = p.Id,
-                            Specificulture = specificulture
-                        },
-                        _context, _transaction)
-                    {
-                        IsActived = p.SiocModuleProduct.Count(cp => cp.ProductId == ProductId && cp.Specificulture == specificulture) > 0,
-                        Description = p.Title
-                    });
+                //var navModuleProductViewModels = context.SiocModule.Include(cp => cp.SiocModuleProduct)
+                //    .Where(a => a.Specificulture == specificulture
+                //    && a.Type == (int)SWCmsConstants.ModuleType.Root)
+                //    .Select(p => new NavModuleProductViewModel(
+                //        new SiocModuleProduct()
+                //        {
+                //            ProductId = ProductId,
+                //            ModuleId = p.Id,
+                //            Specificulture = specificulture
+                //        },
+                //        _context, _transaction)
+                //    {
+                //        IsActived = p.SiocModuleProduct.Count(cp => cp.ProductId == ProductId && cp.Specificulture == specificulture) > 0,
+                //        Description = p.Title
+                //    });
+
+                var navModuleProductViewModels = GetNavModuleProductViewModel(ProductId, specificulture, context, transaction);
+
                 return new RepositoryResponse<List<NavModuleProductViewModel>>()
                 {
                     IsSucceed = true,
