@@ -1,5 +1,5 @@
-®B
-ME:\_Workspace\Github\Swastika-IO-Core\src\Swastika.Cms.Lib\JWTTokenBuilder.cs
+ßB
+LD:\Workspace\GitHub\Swastika-IO-Core\src\Swastika.Cms.Lib\JWTTokenBuilder.cs
 	namespace 	
 Swastika
  
@@ -470,8 +470,8 @@ WriteTokenvv= G
 )vvR S
 ;vvS T
 }ww 
-}xx „©
-]E:\_Workspace\Github\Swastika-IO-Core\src\Swastika.Cms.Lib\Migrations\20180312150946_first.cs
+}xx ‚©
+\D:\Workspace\GitHub\Swastika-IO-Core\src\Swastika.Cms.Lib\Migrations\20180312150946_first.cs
 	namespace 	
 Swastika
  
@@ -18714,8 +18714,8 @@ ForeignKey
 à	à	 	
 }
 â	â	 
-}ä	ä	 ¶5
-cE:\_Workspace\Github\Swastika-IO-Core\src\Swastika.Cms.Lib\Migrations\20180319080926_upd_product.cs
+}ä	ä	 •5
+bD:\Workspace\GitHub\Swastika-IO-Core\src\Swastika.Cms.Lib\Migrations\20180319080926_upd_product.cs
 	namespace 	
 Swastika
  
@@ -19104,8 +19104,8 @@ DropColumnee '
 ;gg& '
 }hh 	
 }ii 
-}jj Ïí
-tE:\_Workspace\Github\Swastika-IO-Core\src\Swastika.Cms.Lib\Migrations\SiocCmsAccount\20180111051125_First_Account.cs
+}jj Îí
+sD:\Workspace\GitHub\Swastika-IO-Core\src\Swastika.Cms.Lib\Migrations\SiocCmsAccount\20180111051125_First_Account.cs
 	namespace		 	
 Swastika		
  
@@ -21908,8 +21908,8 @@ ForeignKey
 µµ 	
 }
 ∂∂ 
-}∑∑ ®	
-]E:\_Workspace\Github\Swastika-IO-Core\src\Swastika.Cms.Lib\Models\Account\AspNetRoleClaims.cs
+}∑∑ ß	
+\D:\Workspace\GitHub\Swastika-IO-Core\src\Swastika.Cms.Lib\Models\Account\AspNetRoleClaims.cs
 	namespace 	
 Swastika
  
@@ -21993,8 +21993,8 @@ ClaimValue
 ;* +
 }, -
 } 
-} ¥
-XE:\_Workspace\Github\Swastika-IO-Core\src\Swastika.Cms.Lib\Models\Account\AspNetRoles.cs
+} ≥
+WD:\Workspace\GitHub\Swastika-IO-Core\src\Swastika.Cms.Lib\Models\Account\AspNetRoles.cs
 	namespace 	
 Swastika
  
@@ -22120,8 +22120,8 @@ XE:\_Workspace\Github\Swastika-IO-Core\src\Swastika.Cms.Lib\Models\Account\AspNe
 ;F G
 }H I
 } 
-} ı
-]E:\_Workspace\Github\Swastika-IO-Core\src\Swastika.Cms.Lib\Models\Account\AspNetUserClaims.cs
+} Ù
+\D:\Workspace\GitHub\Swastika-IO-Core\src\Swastika.Cms.Lib\Models\Account\AspNetUserClaims.cs
 	namespace 	
 Swastika
  
@@ -22223,8 +22223,8 @@ ClaimValue  
 ;* +
 }, -
 } 
-} é
-]E:\_Workspace\Github\Swastika-IO-Core\src\Swastika.Cms.Lib\Models\Account\AspNetUserLogins.cs
+} ç
+\D:\Workspace\GitHub\Swastika-IO-Core\src\Swastika.Cms.Lib\Models\Account\AspNetUserLogins.cs
 	namespace 	
 Swastika
  
@@ -22325,9 +22325,9 @@ ClaimValue  
 ;* +
 }, -
 } 
-} ‹
+} €
 
-\E:\_Workspace\Github\Swastika-IO-Core\src\Swastika.Cms.Lib\Models\Account\AspNetUserRoles.cs
+[D:\Workspace\GitHub\Swastika-IO-Core\src\Swastika.Cms.Lib\Models\Account\AspNetUserRoles.cs
 	namespace 	
 Swastika
  
@@ -22419,8 +22419,8 @@ ClaimValue  
 ;* +
 }, -
 } 
-} …>
-XE:\_Workspace\Github\Swastika-IO-Core\src\Swastika.Cms.Lib\Models\Account\AspNetUsers.cs
+} »>
+WD:\Workspace\GitHub\Swastika-IO-Core\src\Swastika.Cms.Lib\Models\Account\AspNetUsers.cs
 	namespace 	
 Swastika
  
@@ -22876,8 +22876,8 @@ ModifiedBy$$  
 ;66H I
 }66J K
 }77 
-}88 ¨	
-]E:\_Workspace\Github\Swastika-IO-Core\src\Swastika.Cms.Lib\Models\Account\AspNetUserTokens.cs
+}88 ´	
+\D:\Workspace\GitHub\Swastika-IO-Core\src\Swastika.Cms.Lib\Models\Account\AspNetUserTokens.cs
 	namespace 	
 Swastika
  
@@ -22960,8 +22960,8 @@ ModifiedBy$$  
 ;* +
 }, -
 } 
-} ◊
-TE:\_Workspace\Github\Swastika-IO-Core\src\Swastika.Cms.Lib\Models\Account\Clients.cs
+} ÷
+SD:\Workspace\GitHub\Swastika-IO-Core\src\Swastika.Cms.Lib\Models\Account\Clients.cs
 	namespace 	
 Swastika
  
@@ -23062,9 +23062,9 @@ TE:\_Workspace\Github\Swastika-IO-Core\src\Swastika.Cms.Lib\Models\Account\Clien
 ;' (
 }) *
 } 
-} √
+} ¬
 
-ZE:\_Workspace\Github\Swastika-IO-Core\src\Swastika.Cms.Lib\Models\Account\RefreshTokens.cs
+YD:\Workspace\GitHub\Swastika-IO-Core\src\Swastika.Cms.Lib\Models\Account\RefreshTokens.cs
 	namespace 	
 Swastika
  
@@ -23157,8 +23157,8 @@ ExpiresUtc "
 ;, -
 }. /
 } 
-} ¸ü
-cE:\_Workspace\Github\Swastika-IO-Core\src\Swastika.Cms.Lib\Models\Account\_SiocCmsAccountContext.cs
+} ˚ü
+bD:\Workspace\GitHub\Swastika-IO-Core\src\Swastika.Cms.Lib\Models\Account\_SiocCmsAccountContext.cs
 	namespace 	
 Swastika
  
@@ -24690,8 +24690,8 @@ IsRequired
 ææ 	
 }
 øø 
-}¿¿ ¸/
-TE:\_Workspace\Github\Swastika-IO-Core\src\Swastika.Cms.Lib\Models\Cms\SiocArticle.cs
+}¿¿ ˚/
+SD:\Workspace\GitHub\Swastika-IO-Core\src\Swastika.Cms.Lib\Models\Cms\SiocArticle.cs
 	namespace 	
 Swastika
  
@@ -25053,8 +25053,8 @@ ModifiedBy  
 ;--J K
 }--L M
 }.. 
-}// ∑
-YE:\_Workspace\Github\Swastika-IO-Core\src\Swastika.Cms.Lib\Models\Cms\SiocArticleMedia.cs
+}// ∂
+XD:\Workspace\GitHub\Swastika-IO-Core\src\Swastika.Cms.Lib\Models\Cms\SiocArticleMedia.cs
 	namespace 	
 Swastika
  
@@ -25182,8 +25182,8 @@ YE:\_Workspace\Github\Swastika-IO-Core\src\Swastika.Cms.Lib\Models\Cms\SiocArtic
 ;- .
 }/ 0
 } 
-} ˝
-ZE:\_Workspace\Github\Swastika-IO-Core\src\Swastika.Cms.Lib\Models\Cms\SiocArticleModule.cs
+} ¸
+YD:\Workspace\GitHub\Swastika-IO-Core\src\Swastika.Cms.Lib\Models\Cms\SiocArticleModule.cs
 	namespace 	
 Swastika
  
@@ -25365,8 +25365,8 @@ SiocModule $
 ;D E
 }F G
 } 
-} ‹8
-UE:\_Workspace\Github\Swastika-IO-Core\src\Swastika.Cms.Lib\Models\Cms\SiocCategory.cs
+} €8
+TD:\Workspace\GitHub\Swastika-IO-Core\src\Swastika.Cms.Lib\Models\Cms\SiocCategory.cs
 	namespace 	
 Swastika
  
@@ -25782,8 +25782,8 @@ ModifiedBy  
 ;22N O
 }22P Q
 }33 
-}44 º
-\E:\_Workspace\Github\Swastika-IO-Core\src\Swastika.Cms.Lib\Models\Cms\SiocCategoryArticle.cs
+}44 ª
+[D:\Workspace\GitHub\Swastika-IO-Core\src\Swastika.Cms.Lib\Models\Cms\SiocCategoryArticle.cs
 	namespace 	
 Swastika
  
@@ -25904,8 +25904,8 @@ CategoryId		 
 ;3 4
 }5 6
 } 
-} Ø
-]E:\_Workspace\Github\Swastika-IO-Core\src\Swastika.Cms.Lib\Models\Cms\SiocCategoryCategory.cs
+} Æ
+\D:\Workspace\GitHub\Swastika-IO-Core\src\Swastika.Cms.Lib\Models\Cms\SiocCategoryCategory.cs
 	namespace 	
 Swastika
  
@@ -26024,8 +26024,8 @@ CategoryId		 
 ;= >
 }? @
 } 
-} Ä
-[E:\_Workspace\Github\Swastika-IO-Core\src\Swastika.Cms.Lib\Models\Cms\SiocCategoryModule.cs
+} ˇ
+ZD:\Workspace\GitHub\Swastika-IO-Core\src\Swastika.Cms.Lib\Models\Cms\SiocCategoryModule.cs
 	namespace 	
 Swastika
  
@@ -26208,8 +26208,8 @@ SiocModule $
 ;D E
 }F G
 } 
-} í
-]E:\_Workspace\Github\Swastika-IO-Core\src\Swastika.Cms.Lib\Models\Cms\SiocCategoryPosition.cs
+} ë
+\D:\Workspace\GitHub\Swastika-IO-Core\src\Swastika.Cms.Lib\Models\Cms\SiocCategoryPosition.cs
 	namespace 	
 Swastika
  
@@ -26321,8 +26321,8 @@ CategoryId		 
 ;3 4
 }5 6
 } 
-} ≠
-\E:\_Workspace\Github\Swastika-IO-Core\src\Swastika.Cms.Lib\Models\Cms\SiocCategoryProduct.cs
+} ¨
+[D:\Workspace\GitHub\Swastika-IO-Core\src\Swastika.Cms.Lib\Models\Cms\SiocCategoryProduct.cs
 	namespace 	
 Swastika
  
@@ -26442,8 +26442,8 @@ CategoryId		 
 ;1 2
 }3 4
 } 
-} ‡
-TE:\_Workspace\Github\Swastika-IO-Core\src\Swastika.Cms.Lib\Models\Cms\SiocCmsUser.cs
+} ﬂ
+SD:\Workspace\GitHub\Swastika-IO-Core\src\Swastika.Cms.Lib\Models\Cms\SiocCmsUser.cs
 	namespace 	
 Swastika
  
@@ -26590,8 +26590,8 @@ MiddleName  
 ;& '
 }( )
 } 
-} —
-TE:\_Workspace\Github\Swastika-IO-Core\src\Swastika.Cms.Lib\Models\Cms\SiocComment.cs
+} –
+SD:\Workspace\GitHub\Swastika-IO-Core\src\Swastika.Cms.Lib\Models\Cms\SiocComment.cs
 	namespace 	
 Swastika
  
@@ -26760,8 +26760,8 @@ IsReviewed 
 ;3 4
 }5 6
 } 
-} ®
-ZE:\_Workspace\Github\Swastika-IO-Core\src\Swastika.Cms.Lib\Models\Cms\SiocConfiguration.cs
+} ß
+YD:\Workspace\GitHub\Swastika-IO-Core\src\Swastika.Cms.Lib\Models\Cms\SiocConfiguration.cs
 	namespace 	
 Swastika
  
@@ -26880,9 +26880,9 @@ ZE:\_Workspace\Github\Swastika-IO-Core\src\Swastika.Cms.Lib\Models\Cms\SiocConfi
 ;> ?
 }@ A
 } 
-} ¢
+} °
 
-QE:\_Workspace\Github\Swastika-IO-Core\src\Swastika.Cms.Lib\Models\Cms\SiocCopy.cs
+PD:\Workspace\GitHub\Swastika-IO-Core\src\Swastika.Cms.Lib\Models\Cms\SiocCopy.cs
 	namespace 	
 Swastika
  
@@ -26974,8 +26974,8 @@ QE:\_Workspace\Github\Swastika-IO-Core\src\Swastika.Cms.Lib\Models\Cms\SiocCopy.
 ;& '
 }( )
 } 
-} Õ!
-TE:\_Workspace\Github\Swastika-IO-Core\src\Swastika.Cms.Lib\Models\Cms\SiocCulture.cs
+} Ã!
+SD:\Workspace\GitHub\Swastika-IO-Core\src\Swastika.Cms.Lib\Models\Cms\SiocCulture.cs
 	namespace 	
 Swastika
  
@@ -27238,8 +27238,8 @@ SiocModule  ' 1
 ;!!> ?
 }!!@ A
 }"" 
-}## ≤
-QE:\_Workspace\Github\Swastika-IO-Core\src\Swastika.Cms.Lib\Models\Cms\SiocFile.cs
+}## ±
+PD:\Workspace\GitHub\Swastika-IO-Core\src\Swastika.Cms.Lib\Models\Cms\SiocFile.cs
 	namespace 	
 Swastika
  
@@ -27408,8 +27408,8 @@ ModifiedBy  
 ;) *
 }+ ,
 } 
-} û
-UE:\_Workspace\Github\Swastika-IO-Core\src\Swastika.Cms.Lib\Models\Cms\SiocLanguage.cs
+} ù
+TD:\Workspace\GitHub\Swastika-IO-Core\src\Swastika.Cms.Lib\Models\Cms\SiocLanguage.cs
 	namespace 	
 Swastika
  
@@ -27528,8 +27528,8 @@ UE:\_Workspace\Github\Swastika-IO-Core\src\Swastika.Cms.Lib\Models\Cms\SiocLangu
 ;> ?
 }@ A
 } 
-} ˆ
-RE:\_Workspace\Github\Swastika-IO-Core\src\Swastika.Cms.Lib\Models\Cms\SiocMedia.cs
+} ı
+QD:\Workspace\GitHub\Swastika-IO-Core\src\Swastika.Cms.Lib\Models\Cms\SiocMedia.cs
 	namespace 	
 Swastika
  
@@ -27757,8 +27757,8 @@ ModifiedBy  
 ;H I
 }J K
 }   
-}!! ü,
-SE:\_Workspace\Github\Swastika-IO-Core\src\Swastika.Cms.Lib\Models\Cms\SiocModule.cs
+}!! û,
+RD:\Workspace\GitHub\Swastika-IO-Core\src\Swastika.Cms.Lib\Models\Cms\SiocModule.cs
 	namespace 	
 Swastika
  
@@ -28088,8 +28088,8 @@ ModifiedBy  
 ;((J K
 }((L M
 })) 
-}** £
-ZE:\_Workspace\Github\Swastika-IO-Core\src\Swastika.Cms.Lib\Models\Cms\SiocModuleArticle.cs
+}** ¢
+YD:\Workspace\GitHub\Swastika-IO-Core\src\Swastika.Cms.Lib\Models\Cms\SiocModuleArticle.cs
 	namespace 	
 Swastika
  
@@ -28210,8 +28210,8 @@ SiocModule $
 ;/ 0
 }1 2
 } 
-} ≤
-_E:\_Workspace\Github\Swastika-IO-Core\src\Swastika.Cms.Lib\Models\Cms\SiocModuleAttributeSet.cs
+} ±
+^D:\Workspace\GitHub\Swastika-IO-Core\src\Swastika.Cms.Lib\Models\Cms\SiocModuleAttributeSet.cs
 	namespace 	
 Swastika
  
@@ -28410,8 +28410,8 @@ SiocModule $
 ;X Y
 }Z [
 } 
-} Ñ
-aE:\_Workspace\Github\Swastika-IO-Core\src\Swastika.Cms.Lib\Models\Cms\SiocModuleAttributeValue.cs
+} É
+`D:\Workspace\GitHub\Swastika-IO-Core\src\Swastika.Cms.Lib\Models\Cms\SiocModuleAttributeValue.cs
 	namespace 	
 Swastika
  
@@ -28557,8 +28557,8 @@ aE:\_Workspace\Github\Swastika-IO-Core\src\Swastika.Cms.Lib\Models\Cms\SiocModul
 ;G H
 }I J
 } 
-} å
-WE:\_Workspace\Github\Swastika-IO-Core\src\Swastika.Cms.Lib\Models\Cms\SiocModuleData.cs
+} ã
+VD:\Workspace\GitHub\Swastika-IO-Core\src\Swastika.Cms.Lib\Models\Cms\SiocModuleData.cs
 	namespace 	
 Swastika
  
@@ -28736,8 +28736,8 @@ SiocModule $
 ;/ 0
 }1 2
 } 
-} £
-ZE:\_Workspace\Github\Swastika-IO-Core\src\Swastika.Cms.Lib\Models\Cms\SiocModuleProduct.cs
+} ¢
+YD:\Workspace\GitHub\Swastika-IO-Core\src\Swastika.Cms.Lib\Models\Cms\SiocModuleProduct.cs
 	namespace 	
 Swastika
  
@@ -28858,8 +28858,8 @@ SiocModule $
 ;1 2
 }3 4
 } 
-} ï	
-VE:\_Workspace\Github\Swastika-IO-Core\src\Swastika.Cms.Lib\Models\Cms\SiocParameter.cs
+} î	
+UD:\Workspace\GitHub\Swastika-IO-Core\src\Swastika.Cms.Lib\Models\Cms\SiocParameter.cs
 	namespace 	
 Swastika
  
@@ -28942,8 +28942,8 @@ VE:\_Workspace\Github\Swastika-IO-Core\src\Swastika.Cms.Lib\Models\Cms\SiocParam
 ;& '
 }( )
 } 
-} â
-WE:\_Workspace\Github\Swastika-IO-Core\src\Swastika.Cms.Lib\Models\Cms\SiocPortalPage.cs
+} à
+VD:\Workspace\GitHub\Swastika-IO-Core\src\Swastika.Cms.Lib\Models\Cms\SiocPortalPage.cs
 	namespace 	
 Swastika
  
@@ -29156,8 +29156,8 @@ $SiocPortalPageNavigationIdNavigation5 Y
 ;L M
 }N O
 } 
-} â
-aE:\_Workspace\Github\Swastika-IO-Core\src\Swastika.Cms.Lib\Models\Cms\SiocPortalPageNavigation.cs
+} à
+`D:\Workspace\GitHub\Swastika-IO-Core\src\Swastika.Cms.Lib\Models\Cms\SiocPortalPageNavigation.cs
 	namespace 	
 Swastika
  
@@ -29267,8 +29267,8 @@ aE:\_Workspace\Github\Swastika-IO-Core\src\Swastika.Cms.Lib\Models\Cms\SiocPorta
 ;/ 0
 }1 2
 } 
-} ı
-[E:\_Workspace\Github\Swastika-IO-Core\src\Swastika.Cms.Lib\Models\Cms\SiocPortalPageRole.cs
+} Ù
+ZD:\Workspace\GitHub\Swastika-IO-Core\src\Swastika.Cms.Lib\Models\Cms\SiocPortalPageRole.cs
 	namespace 	
 Swastika
  
@@ -29378,8 +29378,8 @@ aE:\_Workspace\Github\Swastika-IO-Core\src\Swastika.Cms.Lib\Models\Cms\SiocPorta
 ;- .
 }/ 0
 } 
-} ê
-UE:\_Workspace\Github\Swastika-IO-Core\src\Swastika.Cms.Lib\Models\Cms\SiocPosition.cs
+} è
+TD:\Workspace\GitHub\Swastika-IO-Core\src\Swastika.Cms.Lib\Models\Cms\SiocPosition.cs
 	namespace 	
 Swastika
  
@@ -29483,8 +29483,8 @@ UE:\_Workspace\Github\Swastika-IO-Core\src\Swastika.Cms.Lib\Models\Cms\SiocPosit
 ;P Q
 }R S
 } 
-} ¶D
-TE:\_Workspace\Github\Swastika-IO-Core\src\Swastika.Cms.Lib\Models\Cms\SiocProduct.cs
+} •D
+SD:\Workspace\GitHub\Swastika-IO-Core\src\Swastika.Cms.Lib\Models\Cms\SiocProduct.cs
 	namespace 	
 Swastika
  
@@ -29991,8 +29991,8 @@ TotalSaled44 
 ;<<W X
 }<<Y Z
 }== 
-}>> ∑
-YE:\_Workspace\Github\Swastika-IO-Core\src\Swastika.Cms.Lib\Models\Cms\SiocProductMedia.cs
+}>> ∂
+XD:\Workspace\GitHub\Swastika-IO-Core\src\Swastika.Cms.Lib\Models\Cms\SiocProductMedia.cs
 	namespace 	
 Swastika
  
@@ -30120,8 +30120,8 @@ YE:\_Workspace\Github\Swastika-IO-Core\src\Swastika.Cms.Lib\Models\Cms\SiocProdu
 ;1 2
 }3 4
 } 
-} º
-ZE:\_Workspace\Github\Swastika-IO-Core\src\Swastika.Cms.Lib\Models\Cms\SiocProductModule.cs
+} ª
+YD:\Workspace\GitHub\Swastika-IO-Core\src\Swastika.Cms.Lib\Models\Cms\SiocProductModule.cs
 	namespace 	
 Swastika
  
@@ -30251,8 +30251,8 @@ SiocModule $
 ;1 2
 }3 4
 } 
-} ∏
-[E:\_Workspace\Github\Swastika-IO-Core\src\Swastika.Cms.Lib\Models\Cms\SiocRelatedProduct.cs
+} ∑
+ZD:\Workspace\GitHub\Swastika-IO-Core\src\Swastika.Cms.Lib\Models\Cms\SiocRelatedProduct.cs
 	namespace 	
 Swastika
  
@@ -30371,8 +30371,8 @@ SiocModule $
 ;1 2
 }3 4
 } 
-} ®
-UE:\_Workspace\Github\Swastika-IO-Core\src\Swastika.Cms.Lib\Models\Cms\SiocTemplate.cs
+} ß
+TD:\Workspace\GitHub\Swastika-IO-Core\src\Swastika.Cms.Lib\Models\Cms\SiocTemplate.cs
 	namespace 	
 Swastika
  
@@ -30578,8 +30578,8 @@ TemplateId 
 ;, -
 }. /
 } 
-} º
-RE:\_Workspace\Github\Swastika-IO-Core\src\Swastika.Cms.Lib\Models\Cms\SiocTheme.cs
+} ª
+QD:\Workspace\GitHub\Swastika-IO-Core\src\Swastika.Cms.Lib\Models\Cms\SiocTheme.cs
 	namespace 	
 Swastika
  
@@ -30732,9 +30732,9 @@ RE:\_Workspace\Github\Swastika-IO-Core\src\Swastika.Cms.Lib\Models\Cms\SiocTheme
 ;@ A
 }B C
 } 
-} ≥‘
+} ≤‘
 
-XE:\_Workspace\Github\Swastika-IO-Core\src\Swastika.Cms.Lib\Models\Cms\_SiocCmsContext.cs
+WD:\Workspace\GitHub\Swastika-IO-Core\src\Swastika.Cms.Lib\Models\Cms\_SiocCmsContext.cs
 	namespace		 	
 Swastika		
  
@@ -48040,8 +48040,8 @@ IsRequired
 ˜	˜	 	
 }
 ¯	¯	 
-}˘	˘	 ﬁÍ
-[E:\_Workspace\Github\Swastika-IO-Core\src\Swastika.Cms.Lib\Repositories\CommonRepository.cs
+}˘	˘	 ›Í
+ZD:\Workspace\GitHub\Swastika-IO-Core\src\Swastika.Cms.Lib\Repositories\CommonRepository.cs
 	namespace 	
 Swastika
  
@@ -53742,8 +53742,8 @@ SubProduct
 ©© 	
 }
 ÆÆ 
-}ØØ œõ
-YE:\_Workspace\Github\Swastika-IO-Core\src\Swastika.Cms.Lib\Repositories\FileRepository.cs
+}ØØ Œõ
+XD:\Workspace\GitHub\Swastika-IO-Core\src\Swastika.Cms.Lib\Repositories\FileRepository.cs
 	namespace 	
 Swastika
  
@@ -57121,1673 +57121,1673 @@ folderName
 ;
 ßß 
 }
-µµ 
+®® 
 }
-∂∂ 
+©© 
 return
-∑∑ 
+™™ 
 result
-∑∑ 
+™™ 
 ;
-∑∑ 
+™™ 
 }
-∏∏ 	
+´´ 	
 public
-∫∫ 
+≠≠ 
 List
-∫∫ 
+≠≠ 
 <
-∫∫ 
+≠≠ 
 FileViewModel
-∫∫ !
+≠≠ !
 >
-∫∫! "
+≠≠! "
 GetWebFiles
-∫∫# .
+≠≠# .
 (
-∫∫. /
+≠≠. /
 string
-∫∫/ 5
+≠≠/ 5
 folder
-∫∫6 <
+≠≠6 <
 )
-∫∫< =
+≠≠< =
 {
-ªª 	
+ÆÆ 	
 string
-ºº 
+ØØ 
 fullPath
-ºº 
+ØØ 
 =
-ºº 
+ØØ 
 CommonHelper
-ºº *
+ØØ *
 .
-ºº* +
+ØØ* +
 GetFullPath
-ºº+ 6
+ØØ+ 6
 (
-ºº6 7
+ØØ6 7
 new
-ºº7 :
+ØØ7 :
 string
-ºº; A
+ØØ; A
 [
-ººA B
+ØØA B
 ]
-ººB C
+ØØB C
 {
-ººD E
+ØØD E
 SWCmsConstants
-ΩΩ "
+∞∞ "
 .
-ΩΩ" #
+∞∞" #
 
 Parameters
-ΩΩ# -
+∞∞# -
 .
-ΩΩ- .
+∞∞- .
 WebRootPath
-ΩΩ. 9
+∞∞. 9
 ,
-ΩΩ9 :
+∞∞9 :
 folder
-ææ 
+±± 
 }
-øø 
+≤≤ 
 )
-øø 
+≤≤ 
 ;
-øø '
+≤≤ '
 CreateDirectoryIfNotExist
-¡¡ %
+¥¥ %
 (
-¡¡% &
+¥¥% &
 fullPath
-¡¡& .
+¥¥& .
 )
-¡¡. /
+¥¥. /
 ;
-¡¡/ 0
+¥¥/ 0
 FileInfo
-ƒƒ 
+∑∑ 
 [
-ƒƒ 
+∑∑ 
 ]
-ƒƒ 
+∑∑ 
 Files
-ƒƒ 
+∑∑ 
 =
-ƒƒ 
+∑∑ 
 {
-ƒƒ  
+∑∑  
 }
-ƒƒ! "
+∑∑! "
 ;
-ƒƒ" #
+∑∑" #
 List
-≈≈ 
+∏∏ 
 <
-≈≈ 
+∏∏ 
 FileViewModel
-≈≈ 
+∏∏ 
 >
-≈≈ 
+∏∏ 
 result
-≈≈  &
+∏∏  &
 =
-≈≈' (
+∏∏' (
 new
-≈≈) ,
+∏∏) ,
 List
-≈≈- 1
+∏∏- 1
 <
-≈≈1 2
+∏∏1 2
 FileViewModel
-≈≈2 ?
+∏∏2 ?
 >
-≈≈? @
+∏∏? @
 (
-≈≈@ A
+∏∏@ A
 )
-≈≈A B
+∏∏A B
 ;
-≈≈B C
+∏∏B C
 foreach
-∆∆ 
+ππ 
 (
-∆∆ 
+ππ 
 string
-∆∆ 
+ππ 
 dirPath
-∆∆ #
+ππ #
 in
-∆∆$ &
+ππ$ &
 	Directory
-∆∆' 0
+ππ' 0
 .
-∆∆0 1
+ππ0 1
 GetDirectories
-∆∆1 ?
+ππ1 ?
 (
-∆∆? @
+ππ? @
 fullPath
-∆∆@ H
+ππ@ H
 ,
-∆∆H I
+ππH I
 $str
-∆∆J M
+ππJ M
 ,
-∆∆M N
+ππM N
 SearchOption
-«« 
+∫∫ 
 .
-«« 
+∫∫ 
 AllDirectories
-«« +
+∫∫ +
 )
-««+ ,
+∫∫+ ,
 )
-««, -
+∫∫, -
 {
-»» 
+ªª 
 DirectoryInfo
-…… 
+ºº 
 path
-…… "
+ºº "
 =
-……# $
+ºº# $
 new
-……% (
+ºº% (
 DirectoryInfo
-……) 6
+ºº) 6
 (
-……6 7
+ºº6 7
 dirPath
-……7 >
+ºº7 >
 )
-……> ?
+ºº> ?
 ;
-……? @
+ºº? @
 string
-   
+ΩΩ 
 
 folderName
-   !
+ΩΩ !
 =
-  " #
+ΩΩ" #
 path
-  $ (
+ΩΩ$ (
 .
-  ( )
+ΩΩ( )
 ToString
-  ) 1
+ΩΩ) 1
 (
-  1 2
+ΩΩ1 2
 )
-  2 3
+ΩΩ2 3
 .
-  3 4
+ΩΩ3 4
 Replace
-  4 ;
+ΩΩ4 ;
 (
-  ; <
+ΩΩ; <
 $str
-  < @
+ΩΩ< @
 ,
-  @ A
+ΩΩ@ A
 $str
-  B E
+ΩΩB E
 )
-  E F
+ΩΩE F
 .
-  F G
+ΩΩF G
 Replace
-  G N
+ΩΩG N
 (
-  N O
+ΩΩN O
 SWCmsConstants
-  O ]
+ΩΩO ]
 .
-  ] ^
+ΩΩ] ^
 
 Parameters
-  ^ h
+ΩΩ^ h
 .
-  h i
+ΩΩh i
 WebRootPath
-  i t
+ΩΩi t
 ,
-  t u
+ΩΩt u
 string
-  v |
+ΩΩv |
 .
-  | }
-Empty  } Ç
-)  Ç É
-;  É Ñ
+ΩΩ| }
+EmptyΩΩ} Ç
+)ΩΩÇ É
+;ΩΩÉ Ñ
 Files
-ÃÃ 
+øø 
 =
-ÃÃ 
+øø 
 path
-ÃÃ 
+øø 
 .
-ÃÃ 
+øø 
 GetFiles
-ÃÃ %
+øø %
 (
-ÃÃ% &
+øø% &
 )
-ÃÃ& '
+øø& '
 ;
-ÃÃ' (
+øø' (
 foreach
-ÕÕ 
+¿¿ 
 (
-ÕÕ 
+¿¿ 
 var
-ÕÕ 
+¿¿ 
 file
-ÕÕ !
+¿¿ !
 in
-ÕÕ" $
+¿¿" $
 Files
-ÕÕ% *
+¿¿% *
 .
-ÕÕ* +
+¿¿* +
 OrderByDescending
-ÕÕ+ <
+¿¿+ <
 (
-ÕÕ< =
+¿¿< =
 f
-ÕÕ= >
+¿¿= >
 =>
-ÕÕ? A
+¿¿? A
 f
-ÕÕB C
+¿¿B C
 .
-ÕÕC D
+¿¿C D
 CreationTimeUtc
-ÕÕD S
+¿¿D S
 )
-ÕÕS T
+¿¿S T
 )
-ÕÕT U
+¿¿T U
 {
-ŒŒ 
+¡¡ 
 result
-œœ 
+¬¬ 
 .
-œœ 
+¬¬ 
 Add
-œœ 
+¬¬ 
 (
-œœ 
+¬¬ 
 new
-œœ "
+¬¬ "
 FileViewModel
-œœ# 0
+¬¬# 0
 (
-œœ0 1
+¬¬0 1
 )
-œœ1 2
+¬¬1 2
 {
-–– 
+√√ 
 
 FolderName
-—— "
+ƒƒ "
 =
-——# $
+ƒƒ# $
 path
-——% )
+ƒƒ% )
 .
-——) *
+ƒƒ) *
 Name
-——* .
+ƒƒ* .
 ,
-——. /
+ƒƒ. /
 
 FileFolder
-““ "
+≈≈ "
 =
-““# $
+≈≈# $
 
 folderName
-““% /
+≈≈% /
 ,
-““/ 0
+≈≈/ 0
 Filename
-””  
+∆∆  
 =
-””! "
+∆∆! "
 file
-””# '
+∆∆# '
 .
-””' (
+∆∆' (
 Name
-””( ,
+∆∆( ,
 .
-””, -
+∆∆, -
 LastIndexOf
-””- 8
+∆∆- 8
 (
-””8 9
+∆∆8 9
 $char
-””9 <
+∆∆9 <
 )
-””< =
+∆∆< =
 >=
-””> @
+∆∆> @
 $num
-””A B
+∆∆A B
 ?
-””C D
+∆∆C D
 file
-””E I
+∆∆E I
 .
-””I J
+∆∆I J
 Name
-””J N
+∆∆J N
 .
-””N O
+∆∆N O
 	Substring
-””O X
+∆∆O X
 (
-””X Y
+∆∆X Y
 $num
-””Y Z
+∆∆Y Z
 ,
-””Z [
+∆∆Z [
 file
-””\ `
+∆∆\ `
 .
-””` a
+∆∆` a
 Name
-””a e
+∆∆a e
 .
-””e f
+∆∆e f
 LastIndexOf
-””f q
+∆∆f q
 (
-””q r
+∆∆q r
 $char
-””r u
+∆∆r u
 )
-””u v
+∆∆u v
 )
-””v w
+∆∆v w
 :
-‘‘$ %
+««$ %
 file
-‘‘& *
+««& *
 .
-‘‘* +
+««* +
 Name
-‘‘+ /
+««+ /
 ,
-‘‘/ 0
+««/ 0
 	Extension
-’’ !
+»» !
 =
-’’" #
+»»" #
 file
-’’$ (
+»»$ (
 .
-’’( )
+»»( )
 	Extension
-’’) 2
+»») 2
 ,
-’’2 3
+»»2 3
 }
-◊◊ 
+   
 )
-◊◊ 
+   
 ;
-◊◊ 
+   
 }
-ÂÂ 
+ÀÀ 
 }
-ÊÊ 
+ÃÃ 
 return
-ÁÁ 
+ÕÕ 
 result
-ÁÁ 
+ÕÕ 
 ;
-ÁÁ 
+ÕÕ 
 }
-ËË 	
+ŒŒ 	
 public
-ÍÍ 
+–– 
 List
-ÍÍ 
+–– 
 <
-ÍÍ 
+–– 
 FileViewModel
-ÍÍ !
+–– !
 >
-ÍÍ! "
+––! "
 GetFiles
-ÍÍ# +
+––# +
 (
-ÍÍ+ ,
+––+ ,
 SWCmsConstants
-ÍÍ, :
+––, :
 .
-ÍÍ: ;
+––: ;
 
 FileFolder
-ÍÍ; E
+––; E
 
 FileFolder
-ÍÍF P
+––F P
 )
-ÍÍP Q
+––P Q
 {
-ÎÎ 	
+—— 	
 string
-ÏÏ 
+““ 
 folder
-ÏÏ 
+““ 
 =
-ÏÏ 
+““ 
 
 FileFolder
-ÏÏ &
+““ &
 .
-ÏÏ& '
+““& '
 ToString
-ÏÏ' /
+““' /
 (
-ÏÏ/ 0
+““/ 0
 )
-ÏÏ0 1
+““0 1
 ;
-ÏÏ1 2
+““1 2
 return
-ÌÌ 
+”” 
 GetUploadFiles
-ÌÌ !
+”” !
 (
-ÌÌ! "
+””! "
 folder
-ÌÌ" (
+””" (
 )
-ÌÌ( )
+””( )
 ;
-ÌÌ) *
+””) *
 }
-ÓÓ 	
+‘‘ 	
 public
- 
+÷÷ 
 bool
- 
+÷÷ 
 SaveWebFile
- 
+÷÷ 
 (
-  
+÷÷  
 FileViewModel
-  -
+÷÷  -
 file
-. 2
+÷÷. 2
 )
-2 3
+÷÷2 3
 {
-ÒÒ 	
+◊◊ 	
 try
-ÚÚ 
+ÿÿ 
 {
-ÛÛ 
+ŸŸ 
 string
-ÙÙ 
+⁄⁄ 
 fullPath
-ÙÙ 
+⁄⁄ 
 =
-ÙÙ  !
+⁄⁄  !
 CommonHelper
-ÙÙ" .
+⁄⁄" .
 .
-ÙÙ. /
+⁄⁄. /
 GetFullPath
-ÙÙ/ :
+⁄⁄/ :
 (
-ÙÙ: ;
+⁄⁄: ;
 new
-ÙÙ; >
+⁄⁄; >
 string
-ÙÙ? E
+⁄⁄? E
 [
-ÙÙE F
+⁄⁄E F
 ]
-ÙÙF G
+⁄⁄F G
 {
-ÙÙH I
+⁄⁄H I
 SWCmsConstants
-ıı "
+€€ "
 .
-ıı" #
+€€" #
 
 Parameters
-ıı# -
+€€# -
 .
-ıı- .
+€€- .
 WebRootPath
-ıı. 9
+€€. 9
 ,
-ıı9 :
+€€9 :
 SWCmsConstants
-ˆˆ "
+‹‹ "
 .
-ˆˆ" #
+‹‹" #
 
 Parameters
-ˆˆ# -
+‹‹# -
 .
-ˆˆ- .
+‹‹- .
 
 FileFolder
-ˆˆ. 8
+‹‹. 8
 ,
-ˆˆ8 9
+‹‹8 9
 file
-˜˜ 
+›› 
 .
-˜˜ 
+›› 
 
 FileFolder
-˜˜ #
+›› #
 }
-¯¯ 
+ﬁﬁ 
 )
-¯¯ 
+ﬁﬁ 
 ;
-¯¯ 
+ﬁﬁ 
 if
-˘˘ 
+ﬂﬂ 
 (
-˘˘ 
+ﬂﬂ 
 !
-˘˘ 
+ﬂﬂ 
 string
-˘˘ 
+ﬂﬂ 
 .
-˘˘ 
+ﬂﬂ 
 IsNullOrEmpty
-˘˘ )
+ﬂﬂ )
 (
-˘˘) *
+ﬂﬂ) *
 file
-˘˘* .
+ﬂﬂ* .
 .
-˘˘. /
+ﬂﬂ. /
 Filename
-˘˘/ 7
+ﬂﬂ/ 7
 )
-˘˘7 8
+ﬂﬂ7 8
 )
-˘˘8 9
+ﬂﬂ8 9
 {
-˙˙ '
+‡‡ '
 CreateDirectoryIfNotExist
-˚˚ -
+·· -
 (
-˚˚- .
+··- .
 fullPath
-˚˚. 6
+··. 6
 )
-˚˚6 7
+··6 7
 ;
-˚˚7 8
+··7 8
 string
-˝˝ 
+„„ 
 fileName
-˝˝ #
+„„ #
 =
-˝˝$ %
+„„$ %
 SWCmsHelper
-˝˝& 1
+„„& 1
 .
-˝˝1 2
+„„1 2
 GetFullPath
-˝˝2 =
+„„2 =
 (
-˝˝= >
+„„= >
 new
-˝˝> A
+„„> A
 string
-˝˝B H
+„„B H
 [
-˝˝H I
+„„H I
 ]
-˝˝I J
+„„I J
 {
-˝˝K L
+„„K L
 fullPath
-˝˝M U
+„„M U
 ,
-˝˝U V
+„„U V
 file
-˝˝W [
+„„W [
 .
-˝˝[ \
+„„[ \
 Filename
-˝˝\ d
+„„\ d
 +
-˝˝e f
+„„e f
 file
-˝˝g k
+„„g k
 .
-˝˝k l
+„„k l
 	Extension
-˝˝l u
+„„l u
 }
-˝˝v w
+„„v w
 )
-˝˝w x
+„„w x
 ;
-˝˝x y
+„„x y
 if
-ˇˇ 
+‰‰ 
 (
-ˇˇ 
+‰‰ 
 File
-ˇˇ 
+‰‰ 
 .
-ˇˇ 
+‰‰ 
 Exists
-ˇˇ #
+‰‰ #
 (
-ˇˇ# $
+‰‰# $
 fileName
-ˇˇ$ ,
+‰‰$ ,
 )
-ˇˇ, -
+‰‰, -
 )
-ˇˇ- .
+‰‰- .
 {
-ÄÄ 
+ÂÂ 
 
 DeleteFile
-ÅÅ "
+ÊÊ "
 (
-ÅÅ" #
+ÊÊ" #
 fileName
-ÅÅ# +
+ÊÊ# +
 )
-ÅÅ+ ,
+ÊÊ+ ,
 ;
-ÅÅ, -
+ÊÊ, -
 }
-ÇÇ 
+ÁÁ 
 if
-ÉÉ 
+ËË 
 (
-ÉÉ 
+ËË 
 string
-ÉÉ 
+ËË 
 .
-ÉÉ 
+ËË 
 IsNullOrEmpty
-ÉÉ ,
+ËË ,
 (
-ÉÉ, -
+ËË, -
 file
-ÉÉ- 1
+ËË- 1
 .
-ÉÉ1 2
+ËË1 2
 
 FileStream
-ÉÉ2 <
+ËË2 <
 )
-ÉÉ< =
+ËË< =
 )
-ÉÉ= >
+ËË= >
 {
-ÑÑ 
+ÈÈ 
 using
-ÖÖ 
+ÍÍ 
 (
-ÖÖ 
+ÍÍ 
 var
-ÖÖ "
+ÍÍ "
 writer
-ÖÖ# )
+ÍÍ# )
 =
-ÖÖ* +
+ÍÍ* +
 File
-ÖÖ, 0
+ÍÍ, 0
 .
-ÖÖ0 1
+ÍÍ0 1
 
 CreateText
-ÖÖ1 ;
+ÍÍ1 ;
 (
-ÖÖ; <
+ÍÍ; <
 fileName
-ÖÖ< D
+ÍÍ< D
 )
-ÖÖD E
+ÍÍD E
 )
-ÖÖE F
+ÍÍE F
 {
-ÜÜ 
+ÎÎ 
 writer
-áá "
+ÏÏ "
 .
-áá" #
+ÏÏ" #
 	WriteLine
-áá# ,
+ÏÏ# ,
 (
-áá, -
+ÏÏ, -
 file
-áá- 1
+ÏÏ- 1
 .
-áá1 2
+ÏÏ1 2
 Content
-áá2 9
+ÏÏ2 9
 )
-áá9 :
+ÏÏ9 :
 ;
-áá: ;
+ÏÏ: ;
 return
-àà "
+ÌÌ "
 true
-àà# '
+ÌÌ# '
 ;
-àà' (
+ÌÌ' (
 }
-ââ 
+ÓÓ 
 }
-ää 
+ÔÔ 
 else
-ãã 
+ 
 {
-åå 
+ÒÒ 
 string
-çç 
+ÚÚ 
 base64
-çç %
+ÚÚ %
 =
-çç& '
+ÚÚ& '
 file
-çç( ,
+ÚÚ( ,
 .
-çç, -
+ÚÚ, -
 
 FileStream
-çç- 7
+ÚÚ- 7
 .
-çç7 8
+ÚÚ7 8
 Split
-çç8 =
+ÚÚ8 =
 (
-çç= >
+ÚÚ= >
 $char
-çç> A
+ÚÚ> A
 )
-ççA B
+ÚÚA B
 [
-ççB C
+ÚÚB C
 $num
-ççC D
+ÚÚC D
 ]
-ççD E
+ÚÚD E
 ;
-ççE F
+ÚÚE F
 byte
-éé 
+ÛÛ 
 [
-éé 
+ÛÛ 
 ]
-éé 
+ÛÛ 
 bytes
-éé $
+ÛÛ $
 =
-éé% &
+ÛÛ% &
 Convert
-éé' .
+ÛÛ' .
 .
-éé. /
+ÛÛ. /
 FromBase64String
-éé/ ?
+ÛÛ/ ?
 (
-éé? @
+ÛÛ? @
 base64
-éé@ F
+ÛÛ@ F
 )
-ééF G
+ÛÛF G
 ;
-ééG H
+ÛÛG H
 using
-èè 
+ÙÙ 
 (
-èè 
+ÙÙ 
 var
-èè "
+ÙÙ "
 writer
-èè# )
+ÙÙ# )
 =
-èè* +
+ÙÙ* +
 File
-èè, 0
+ÙÙ, 0
 .
-èè0 1
+ÙÙ0 1
 Create
-èè1 7
+ÙÙ1 7
 (
-èè7 8
+ÙÙ7 8
 fileName
-èè8 @
+ÙÙ8 @
 )
-èè@ A
+ÙÙ@ A
 )
-èèA B
+ÙÙA B
 {
-êê 
+ıı 
 writer
-ëë "
+ˆˆ "
 .
-ëë" #
+ˆˆ" #
 Write
-ëë# (
+ˆˆ# (
 (
-ëë( )
+ˆˆ( )
 bytes
-ëë) .
+ˆˆ) .
 ,
-ëë. /
+ˆˆ. /
 $num
-ëë0 1
+ˆˆ0 1
 ,
-ëë1 2
+ˆˆ1 2
 bytes
-ëë3 8
+ˆˆ3 8
 .
-ëë8 9
+ˆˆ8 9
 Length
-ëë9 ?
+ˆˆ9 ?
 )
-ëë? @
+ˆˆ? @
 ;
-ëë@ A
+ˆˆ@ A
 return
-íí "
+˜˜ "
 true
-íí# '
+˜˜# '
 ;
-íí' (
+˜˜' (
 }
-ìì 
+¯¯ 
 }
-îî 
+˘˘ 
 }
-ïï 
+˙˙ 
 else
-ññ 
+˚˚ 
 {
-óó 
+¸¸ 
 return
-òò 
+˝˝ 
 false
-òò  
+˝˝  
 ;
-òò  !
+˝˝  !
 }
-ôô 
+˛˛ 
 }
-öö 
+ˇˇ 
 catch
-õõ 
+ÄÄ 
 {
-úú 
+ÅÅ 
 return
-ùù 
+ÇÇ 
 false
-ùù 
+ÇÇ 
 ;
-ùù 
+ÇÇ 
 }
-ûû 
+ÉÉ 
 }
-üü 	
+ÑÑ 	
 public
-°° 
+ÜÜ 
 string
-°° 
+ÜÜ 
 SaveFile
-°° 
+ÜÜ 
 (
-°° 
+ÜÜ 
 	IFormFile
-°° (
+ÜÜ (
 file
-°°) -
+ÜÜ) -
 ,
-°°- .
+ÜÜ- .
 string
-°°/ 5
+ÜÜ/ 5
 fullPath
-°°6 >
+ÜÜ6 >
 )
-°°> ?
+ÜÜ> ?
 {
-¢¢ 	
+áá 	
 try
-££ 
+àà 
 {
-§§ 
+ââ 
+if
+ää 
+(
+ää 
+file
+ää 
+.
+ää 
+Length
+ää 
+>
+ää  !
+$num
+ää" #
+)
+ää# $
+{
+ãã '
+CreateDirectoryIfNotExist
+åå -
+(
+åå- .
+fullPath
+åå. 6
+)
+åå6 7
+;
+åå7 8
+string
+éé 
+filename
+éé #
+=
+éé$ %
+file
+éé& *
+.
+éé* +
+FileName
+éé+ 3
+;
+éé3 4
+string
+èè 
+filePath
+èè #
+=
+èè$ %
+SWCmsHelper
+èè& 1
+.
+èè1 2
+GetFullPath
+èè2 =
+(
+èè= >
+new
+èè> A
+string
+èèB H
+[
+èèH I
+]
+èèI J
+{
+èèK L
+fullPath
+èèM U
+,
+èèU V
+filename
+èèW _
+}
+èè` a
+)
+èèa b
+;
+èèb c
+if
+êê 
+(
+êê 
+File
+êê 
+.
+êê 
+Exists
+êê #
+(
+êê# $
+filePath
+êê$ ,
+)
+êê, -
+)
+êê- .
+{
+ëë 
+
+DeleteFile
+íí "
+(
+íí" #
+filePath
+íí# +
+)
+íí+ ,
+;
+íí, -
+}
+ìì 
+using
+îî 
+(
+îî 
+var
+îî 
+stream
+îî %
+=
+îî& '
+new
+îî( +
+
+FileStream
+îî, 6
+(
+îî6 7
+filePath
+îî7 ?
+,
+îî? @
+FileMode
+îîA I
+.
+îîI J
+Create
+îîJ P
+)
+îîP Q
+)
+îîQ R
+{
+ïï 
+file
+ññ 
+.
+ññ 
+CopyTo
+ññ #
+(
+ññ# $
+stream
+ññ$ *
+)
+ññ* +
+;
+ññ+ ,
+}
+óó 
+return
+òò 
+filename
+òò #
+;
+òò# $
+}
+ôô 
+else
+öö 
+{
+õõ 
+return
+úú 
+string
+úú !
+.
+úú! "
+Empty
+úú" '
+;
+úú' (
+}
+ùù 
+}
+ûû 
+catch
+üü 
+{
+†† 
+return
+°° 
+string
+°° 
+.
+°° 
+Empty
+°° #
+;
+°°# $
+}
+¢¢ 
+}
+££ 	
+public
+•• 
+bool
+•• 
+SaveFile
+•• 
+(
+•• 
+FileViewModel
+•• *
+file
+••+ /
+)
+••/ 0
+{
+¶¶ 	
+try
+ßß 
+{
+®® 
 if
 ©© 
 (
-©© 
-file
-©© 
-.
-©© 
-Length
-©© 
->
-©©  !
-$num
-©©" #
-)
-©©# $
-{
-™™ '
-CreateDirectoryIfNotExist
-´´ -
-(
-´´- .
-fullPath
-´´. 6
-)
-´´6 7
-;
-´´7 8
-string
-≠≠ 
-filename
-≠≠ #
-=
-≠≠$ %
-file
-≠≠& *
-.
-≠≠* +
-FileName
-≠≠+ 3
-;
-≠≠3 4
-string
-ÆÆ 
-filePath
-ÆÆ #
-=
-ÆÆ$ %
-SWCmsHelper
-ÆÆ& 1
-.
-ÆÆ1 2
-GetFullPath
-ÆÆ2 =
-(
-ÆÆ= >
-new
-ÆÆ> A
-string
-ÆÆB H
-[
-ÆÆH I
-]
-ÆÆI J
-{
-ÆÆK L
-fullPath
-ÆÆM U
-,
-ÆÆU V
-filename
-ÆÆW _
-}
-ÆÆ` a
-)
-ÆÆa b
-;
-ÆÆb c
-if
-∞∞ 
-(
-∞∞ 
-File
-∞∞ 
-.
-∞∞ 
-Exists
-∞∞ #
-(
-∞∞# $
-filePath
-∞∞$ ,
-)
-∞∞, -
-)
-∞∞- .
-{
-±± 
-
-DeleteFile
-≤≤ "
-(
-≤≤" #
-filePath
-≤≤# +
-)
-≤≤+ ,
-;
-≤≤, -
-}
-≥≥ 
-using
-¥¥ 
-(
-¥¥ 
-var
-¥¥ 
-stream
-¥¥ %
-=
-¥¥& '
-new
-¥¥( +
-
-FileStream
-¥¥, 6
-(
-¥¥6 7
-filePath
-¥¥7 ?
-,
-¥¥? @
-FileMode
-¥¥A I
-.
-¥¥I J
-Create
-¥¥J P
-)
-¥¥P Q
-)
-¥¥Q R
-{
-µµ 
-file
-∂∂ 
-.
-∂∂ 
-CopyTo
-∂∂ #
-(
-∂∂# $
-stream
-∂∂$ *
-)
-∂∂* +
-;
-∂∂+ ,
-}
-∑∑ 
-return
-∏∏ 
-filename
-∏∏ #
-;
-∏∏# $
-}
-ππ 
-else
-∫∫ 
-{
-ªª 
-return
-ºº 
-string
-ºº !
-.
-ºº! "
-Empty
-ºº" '
-;
-ºº' (
-}
-ΩΩ 
-}
-ææ 
-catch
-øø 
-{
-¿¿ 
-return
-¡¡ 
-string
-¡¡ 
-.
-¡¡ 
-Empty
-¡¡ #
-;
-¡¡# $
-}
-¬¬ 
-}
-√√ 	
-public
-≈≈ 
-bool
-≈≈ 
-SaveFile
-≈≈ 
-(
-≈≈ 
-FileViewModel
-≈≈ *
-file
-≈≈+ /
-)
-≈≈/ 0
-{
-∆∆ 	
-try
-«« 
-{
-»» 
-if
-…… 
-(
-…… 
+©© 
 !
-…… 
+©© 
 string
-…… 
+©© 
 .
-…… 
+©© 
 IsNullOrEmpty
-…… )
+©© )
 (
-……) *
+©©) *
 file
-……* .
+©©* .
 .
-……. /
+©©. /
 Content
-……/ 6
+©©/ 6
 )
-……6 7
+©©6 7
 )
-……7 8
+©©7 8
 {
-   
+™™ 
 string
-ÀÀ 
+´´ 
 folder
-ÀÀ !
+´´ !
 =
-ÀÀ" #
+´´" #
 Path
-ÀÀ$ (
+´´$ (
 .
-ÀÀ( )
+´´( )
 Combine
-ÀÀ) 0
+´´) 0
 (
-ÀÀ0 1
+´´0 1
 CurrentDirectory
-ÀÀ1 A
+´´1 A
 ,
-ÀÀA B
+´´A B
 file
-ÀÀC G
+´´C G
 .
-ÀÀG H
+´´G H
 
 FileFolder
-ÀÀH R
+´´H R
 )
-ÀÀR S
+´´R S
 ;
-ÀÀS T
+´´S T
 if
-ÃÃ 
+¨¨ 
 (
-ÃÃ 
+¨¨ 
 !
-ÃÃ 
+¨¨ 
 	Directory
-ÃÃ "
+¨¨ "
 .
-ÃÃ" #
+¨¨" #
 Exists
-ÃÃ# )
+¨¨# )
 (
-ÃÃ) *
+¨¨) *
 folder
-ÃÃ* 0
+¨¨* 0
 )
-ÃÃ0 1
+¨¨0 1
 )
-ÃÃ1 2
+¨¨1 2
 {
-ÕÕ 
+≠≠ 
 	Directory
-ŒŒ !
+ÆÆ !
 .
-ŒŒ! "
+ÆÆ! "
 CreateDirectory
-ŒŒ" 1
+ÆÆ" 1
 (
-ŒŒ1 2
+ÆÆ1 2
 file
-ŒŒ2 6
+ÆÆ2 6
 .
-ŒŒ6 7
+ÆÆ6 7
 
 FileFolder
-ŒŒ7 A
+ÆÆ7 A
 )
-ŒŒA B
+ÆÆA B
 ;
-ŒŒB C
+ÆÆB C
 }
-œœ 
+ØØ 
 string
-–– 
+∞∞ 
 fileName
-–– #
+∞∞ #
 =
-––$ %
+∞∞$ %
 SWCmsHelper
-––& 1
+∞∞& 1
 .
-––1 2
+∞∞1 2
 GetFullPath
-––2 =
+∞∞2 =
 (
-––= >
+∞∞= >
 new
-––> A
+∞∞> A
 string
-––B H
+∞∞B H
 [
-––H I
+∞∞H I
 ]
-––I J
+∞∞I J
 {
-––K L
+∞∞K L
 folder
-––M S
+∞∞M S
 ,
-––S T
+∞∞S T
 file
-––U Y
+∞∞U Y
 .
-––Y Z
+∞∞Y Z
 Filename
-––Z b
+∞∞Z b
 +
-––c d
+∞∞c d
 file
-––e i
+∞∞e i
 .
-––i j
+∞∞i j
 	Extension
-––j s
+∞∞j s
 }
-––t u
+∞∞t u
 )
-––u v
+∞∞u v
 ;
-––v w
+∞∞v w
 using
-““ 
+±± 
 (
-““ 
+±± 
 var
-““ 
+±± 
 writer
-““ %
+±± %
 =
-““& '
+±±& '
 File
-““( ,
+±±( ,
 .
-““, -
+±±, -
 
 CreateText
-““- 7
+±±- 7
 (
-““7 8
+±±7 8
 fileName
-““8 @
+±±8 @
 )
-““@ A
+±±@ A
 )
-““A B
+±±A B
 {
-”” 
+≤≤ 
 writer
-‘‘ 
+≥≥ 
 .
-‘‘ 
+≥≥ 
 	WriteLine
-‘‘ (
+≥≥ (
 (
-‘‘( )
+≥≥( )
 file
-‘‘) -
+≥≥) -
 .
-‘‘- .
+≥≥- .
 Content
-‘‘. 5
+≥≥. 5
 )
-‘‘5 6
+≥≥5 6
 ;
-‘‘6 7
+≥≥6 7
 return
-’’ 
+¥¥ 
 true
-’’ #
+¥¥ #
 ;
-’’# $
+¥¥# $
 }
-÷÷ 
+µµ 
 }
-◊◊ 
+∂∂ 
 else
-ÿÿ 
+∑∑ 
 {
-ŸŸ 
+∏∏ 
 return
-⁄⁄ 
+ππ 
 false
-⁄⁄  
+ππ  
 ;
-⁄⁄  !
+ππ  !
 }
-€€ 
+∫∫ 
 }
-‹‹ 
+ªª 
 catch
-›› 
+ºº 
 {
-ﬁﬁ 
+ΩΩ 
 return
-ﬂﬂ 
+ææ 
 false
-ﬂﬂ 
+ææ 
 ;
-ﬂﬂ 
+ææ 
 }
-‡‡ 
+øø 
 }
-·· 	
+¿¿ 	
 public
-„„ 
+¬¬ 
 string
-„„ 
+¬¬ 
 SaveWebFile
-„„ !
+¬¬ !
 (
-„„! "
+¬¬! "
 	IFormFile
-„„" +
+¬¬" +
 file
-„„, 0
+¬¬, 0
 ,
-„„0 1
+¬¬0 1
 string
-„„2 8
+¬¬2 8
 folder
-„„9 ?
+¬¬9 ?
 )
-„„? @
+¬¬? @
 {
-‰‰ 	
+√√ 	
 try
-ÂÂ 
+ƒƒ 
 {
-ÊÊ 
+≈≈ 
 string
-ÁÁ 
+∆∆ 
 fullPath
-ÁÁ 
+∆∆ 
 =
-ÁÁ  !
+∆∆  !
 CommonHelper
-ÁÁ" .
+∆∆" .
 .
-ÁÁ. /
+∆∆. /
 GetFullPath
-ÁÁ/ :
+∆∆/ :
 (
-ÁÁ: ;
+∆∆: ;
 new
-ÁÁ; >
+∆∆; >
 string
-ÁÁ? E
+∆∆? E
 [
-ÁÁE F
+∆∆E F
 ]
-ÁÁF G
+∆∆F G
 {
-ÁÁH I
+∆∆H I
 SWCmsConstants
-ËË "
+«« "
 .
-ËË" #
+««" #
 
 Parameters
-ËË# -
+««# -
 .
-ËË- .
+««- .
 WebRootPath
-ËË. 9
+««. 9
 ,
-ËË9 :
+««9 :
 folder
-ÈÈ 
+»» 
 }
-ÍÍ 
+…… 
 )
-ÍÍ 
+…… 
 ;
-ÍÍ 
+…… 
 return
-ÎÎ 
+   
 SaveFile
-ÎÎ 
+   
 (
-ÎÎ  
+    
 file
-ÎÎ  $
+    $
 ,
-ÎÎ$ %
+  $ %
 fullPath
-ÎÎ& .
+  & .
 )
-ÎÎ. /
+  . /
 ;
-ÎÎ/ 0
+  / 0
 }
-ÏÏ 
+ÀÀ 
 catch
-ÌÌ 
+ÃÃ 
 {
-ÓÓ 
+ÕÕ 
 return
-ÔÔ 
+ŒŒ 
 string
-ÔÔ 
+ŒŒ 
 .
-ÔÔ 
+ŒŒ 
 Empty
-ÔÔ #
+ŒŒ #
 ;
-ÔÔ# $
+ŒŒ# $
 }
- 
+œœ 
 }
-ÒÒ 	
+–– 	
 public
-ÛÛ 
+““ 
 void
-ÛÛ 
+““ 
 	UnZipFile
-ÛÛ 
+““ 
 (
-ÛÛ 
+““ 
 string
-ÛÛ $
+““ $
 fileName
-ÛÛ% -
+““% -
 ,
-ÛÛ- .
+““- .
 string
-ÛÛ/ 5
+““/ 5
 folder
-ÛÛ6 <
+““6 <
 )
-ÛÛ< =
+““< =
 {
-ÙÙ 	
+”” 	
 string
-ıı 
+‘‘ 
 filePath
-ıı 
+‘‘ 
 =
-ıı 
+‘‘ 
 SWCmsHelper
-ıı )
+‘‘ )
 .
-ıı) *
+‘‘) *
 GetFullPath
-ıı* 5
+‘‘* 5
 (
-ıı5 6
+‘‘5 6
 new
-ıı6 9
+‘‘6 9
 string
-ıı: @
+‘‘: @
 [
-ıı@ A
+‘‘@ A
 ]
-ııA B
+‘‘A B
 {
-ııC D
+‘‘C D
 SWCmsConstants
-ˆˆ 
+’’ 
 .
-ˆˆ 
+’’ 
 
 Parameters
-ˆˆ )
+’’ )
 .
-ˆˆ) *
+’’) *
 WebRootPath
-ˆˆ* 5
+’’* 5
 ,
-ˆˆ5 6
+’’5 6
 folder
-˜˜ 
+÷÷ 
 ,
-˜˜ 
+÷÷ 
 fileName
-¯¯ 
+◊◊ 
 }
-¯¯ 
+◊◊ 
 )
-¯¯ 
+◊◊ 
 ;
-¯¯ 
+◊◊ 
 string
-˘˘ 
+ÿÿ 
 	webFolder
-˘˘ 
+ÿÿ 
 =
-˘˘ 
+ÿÿ 
 SWCmsHelper
-˘˘ *
+ÿÿ *
 .
-˘˘* +
+ÿÿ* +
 GetFullPath
-˘˘+ 6
+ÿÿ+ 6
 (
-˘˘6 7
+ÿÿ6 7
 new
-˘˘7 :
+ÿÿ7 :
 string
-˘˘; A
+ÿÿ; A
 [
-˘˘A B
+ÿÿA B
 ]
-˘˘B C
+ÿÿB C
 {
-˙˙ 
+ŸŸ 
 SWCmsConstants
-˚˚ 
+⁄⁄ 
 .
-˚˚ 
+⁄⁄ 
 
 Parameters
-˚˚ )
+⁄⁄ )
 .
-˚˚) *
+⁄⁄) *
 WebRootPath
-˚˚* 5
+⁄⁄* 5
 ,
-˚˚5 6
+⁄⁄5 6
 folder
-¸¸ 
+€€ 
 }
-˝˝ 
+‹‹ 
 )
-˝˝ 
+‹‹ 
 ;
-˝˝ 
+‹‹ 
 try
-˛˛ 
+›› 
 {
-ˇˇ 
+ﬁﬁ 
 ZipFile
-ÄÄ 
+ﬂﬂ 
 .
-ÄÄ  
+ﬂﬂ  
 ExtractToDirectory
-ÄÄ *
+ﬂﬂ *
 (
-ÄÄ* +
+ﬂﬂ* +
 filePath
-ÄÄ+ 3
+ﬂﬂ+ 3
 ,
-ÄÄ3 4
+ﬂﬂ3 4
 	webFolder
-ÄÄ5 >
+ﬂﬂ5 >
 )
-ÄÄ> ?
+ﬂﬂ> ?
 ;
-ÄÄ? @
+ﬂﬂ? @
 }
-ÅÅ 
+‡‡ 
 catch
-ÇÇ 
+·· 
 {
-ÉÉ 
+‚‚ 
 }
-ÑÑ 
+„„ 
 }
-ÖÖ 	
+‰‰ 	
 }
-ÜÜ 
-}áá ¸
-aE:\_Workspace\Github\Swastika-IO-Core\src\Swastika.Cms.Lib\Repositories\RefreshTokenRepository.cs
+ÂÂ 
+}ÊÊ ˚
+`D:\Workspace\GitHub\Swastika-IO-Core\src\Swastika.Cms.Lib\Repositories\RefreshTokenRepository.cs
 	namespace 	
 Swastika
  
@@ -58805,8 +58805,8 @@ aE:\_Workspace\Github\Swastika-IO-Core\src\Swastika.Cms.Lib\Repositories\Refresh
 }		 
 }
 
- ÑR
-]E:\_Workspace\Github\Swastika-IO-Core\src\Swastika.Cms.Lib\Repositories\TemplateRepository.cs
+ ÉR
+\D:\Workspace\GitHub\Swastika-IO-Core\src\Swastika.Cms.Lib\Repositories\TemplateRepository.cs
 	namespace 	
 Swastika
  
@@ -59468,8 +59468,8 @@ CreateText
 íí 	
 }
 ìì 
-}îî çÂ
-aE:\_Workspace\Github\Swastika-IO-Core\src\Swastika.Cms.Lib\Services\GlobalConfigurationService.cs
+}îî åÂ
+`D:\Workspace\GitHub\Swastika-IO-Core\src\Swastika.Cms.Lib\Services\GlobalConfigurationService.cs
 	namespace 	
 Swastika
  
@@ -63629,8 +63629,8 @@ Repository
 ÍÍ 	
 }
 ÎÎ 
-}ÏÏ ‰ì
-\E:\_Workspace\Github\Swastika-IO-Core\src\Swastika.Cms.Lib\Services\GlobalLanguageService.cs
+}ÏÏ „ì
+[D:\Workspace\GitHub\Swastika-IO-Core\src\Swastika.Cms.Lib\Services\GlobalLanguageService.cs
 	namespace 	
 Swastika
  
@@ -65232,8 +65232,8 @@ Translator
 ÙÙ 	
 }
 ıı 
-}ˆˆ î&
-YE:\_Workspace\Github\Swastika-IO-Core\src\Swastika.Cms.Lib\Services\IViewRenderService.cs
+}ˆˆ ì&
+XD:\Workspace\GitHub\Swastika-IO-Core\src\Swastika.Cms.Lib\Services\IViewRenderService.cs
 	namespace 	
 Swastika
  
@@ -65486,8 +65486,8 @@ viewResultCC  
 }EE 
 }FF 	
 }GG 
-}HH ‡x
-LE:\_Workspace\Github\Swastika-IO-Core\src\Swastika.Cms.Lib\SWCmsConstants.cs
+}HH ﬂx
+KD:\Workspace\GitHub\Swastika-IO-Core\src\Swastika.Cms.Lib\SWCmsConstants.cs
 	namespace 	
 Swastika
  
@@ -66792,8 +66792,8 @@ FileFolder
 ˛˛ 	
 }
 ˇˇ 
-}ÄÄ è⁄
-IE:\_Workspace\Github\Swastika-IO-Core\src\Swastika.Cms.Lib\SWCmsHelper.cs
+}ÄÄ é⁄
+HD:\Workspace\GitHub\Swastika-IO-Core\src\Swastika.Cms.Lib\SWCmsHelper.cs
 	namespace 	
 Swastika
  
@@ -69153,8 +69153,8 @@ FileStream
 ºº 	
 }
 ΩΩ 
-}ææ ÆQ
-\E:\_Workspace\Github\Swastika-IO-Core\src\Swastika.Cms.Lib\TagHelpers\ActiveMenuTagHelper.cs
+}ææ ≠Q
+[D:\Workspace\GitHub\Swastika-IO-Core\src\Swastika.Cms.Lib\TagHelpers\ActiveMenuTagHelper.cs
 	namespace 	
 Swastika
  
@@ -69772,8 +69772,8 @@ Attributesdd !
 }gg 
 }hh 	
 }ii 
-}jj «?
-]E:\_Workspace\Github\Swastika-IO-Core\src\Swastika.Cms.Lib\TagHelpers\ActiveRouteTagHelper.cs
+}jj ∆?
+\D:\Workspace\GitHub\Swastika-IO-Core\src\Swastika.Cms.Lib\TagHelpers\ActiveRouteTagHelper.cs
 	namespace 	
 Swastika
  
@@ -70247,8 +70247,8 @@ Attributes`` !
 }cc 
 }dd 	
 }ee 
-}ff ËI
-cE:\_Workspace\Github\Swastika-IO-Core\src\Swastika.Cms.Lib\TagHelpers\GravatarHtmlHelper_NetCore.cs
+}ff ÁI
+bD:\Workspace\GitHub\Swastika-IO-Core\src\Swastika.Cms.Lib\TagHelpers\GravatarHtmlHelper_NetCore.cs
 public 
 static 
 class 
@@ -70952,8 +70952,8 @@ MemberInfo
 ™™ 
 }
 ´´ 
-}¨¨ €
-fE:\_Workspace\Github\Swastika-IO-Core\src\Swastika.Cms.Lib\ViewModels\Account\RefreshTokenViewModel.cs
+}¨¨ ⁄
+eD:\Workspace\GitHub\Swastika-IO-Core\src\Swastika.Cms.Lib\ViewModels\Account\RefreshTokenViewModel.cs
 	namespace 	
 Swastika
  
@@ -71108,8 +71108,8 @@ ExpiresUtc "
 {.. 	
 }// 	
 }22 
-}33 ‰
-^E:\_Workspace\Github\Swastika-IO-Core\src\Swastika.Cms.Lib\ViewModels\Account\RoleViewModel.cs
+}33 „
+]D:\Workspace\GitHub\Swastika-IO-Core\src\Swastika.Cms.Lib\ViewModels\Account\RoleViewModel.cs
 	namespace 	
 Swastika
  
@@ -71298,8 +71298,8 @@ ParseModel55 "
 ;55: ;
 }66 	
 }== 
-}>> —
-bE:\_Workspace\Github\Swastika-IO-Core\src\Swastika.Cms.Lib\ViewModels\Account\UserRoleViewModel.cs
+}>> –
+aD:\Workspace\GitHub\Swastika-IO-Core\src\Swastika.Cms.Lib\ViewModels\Account\UserRoleViewModel.cs
 	namespace 	
 Swastika
  
@@ -71488,8 +71488,8 @@ ParseModel33 "
 ;33: ;
 }44 	
 };; 
-}<< Õ'
-^E:\_Workspace\Github\Swastika-IO-Core\src\Swastika.Cms.Lib\ViewModels\Account\UserViewModel.cs
+}<< Ã'
+]D:\Workspace\GitHub\Swastika-IO-Core\src\Swastika.Cms.Lib\ViewModels\Account\UserViewModel.cs
 	namespace
 
  	
@@ -71798,8 +71798,8 @@ JsonIgnore&&	 
 {?? 	
 }@@ 	
 }LL 
-}MM ˛ 
-hE:\_Workspace\Github\Swastika-IO-Core\src\Swastika.Cms.Lib\ViewModels\BackEnd\BEArticleMediaViewModel.cs
+}MM ˝ 
+gD:\Workspace\GitHub\Swastika-IO-Core\src\Swastika.Cms.Lib\ViewModels\BackEnd\BEArticleMediaViewModel.cs
 	namespace
 
  	
@@ -72059,8 +72059,8 @@ Repository==2 <
 }DD 
 }EE 	
 }HH 
-}II ‘Z
-iE:\_Workspace\Github\Swastika-IO-Core\src\Swastika.Cms.Lib\ViewModels\BackEnd\BEArticleModuleViewModel.cs
+}II ”Z
+hD:\Workspace\GitHub\Swastika-IO-Core\src\Swastika.Cms.Lib\ViewModels\BackEnd\BEArticleModuleViewModel.cs
 	namespace 	
 Swastika
  
@@ -72729,8 +72729,8 @@ saveResultwwE O
 ;yy 
 }zz 	
 } 
-}ÄÄ …é
-cE:\_Workspace\Github\Swastika-IO-Core\src\Swastika.Cms.Lib\ViewModels\BackEnd\BEArticleViewModel.cs
+}ÄÄ »é
+bD:\Workspace\GitHub\Swastika-IO-Core\src\Swastika.Cms.Lib\ViewModels\BackEnd\BEArticleViewModel.cs
 	namespace 	
 Swastika
  
@@ -80664,8 +80664,8 @@ Repository
 ÙÙ 	
 }
 ˜˜ 
-}¯¯ ûÛ
-dE:\_Workspace\Github\Swastika-IO-Core\src\Swastika.Cms.Lib\ViewModels\BackEnd\BECategoryViewModel.cs
+}¯¯ ùÛ
+cD:\Workspace\GitHub\Swastika-IO-Core\src\Swastika.Cms.Lib\ViewModels\BackEnd\BECategoryViewModel.cs
 	namespace 	
 Swastika
  
@@ -86711,8 +86711,8 @@ currentNav
 ØØ 	
 }
 ≤≤ 
-}≥≥ Ü>
-cE:\_Workspace\Github\Swastika-IO-Core\src\Swastika.Cms.Lib\ViewModels\BackEnd\BECultureViewModel.cs
+}≥≥ Ö>
+bD:\Workspace\GitHub\Swastika-IO-Core\src\Swastika.Cms.Lib\ViewModels\BackEnd\BECultureViewModel.cs
 	namespace 	
 Swastika
  
@@ -87175,8 +87175,8 @@ RepositoryRR: D
 ;cc 
 }dd 	
 }gg 
-}hh Ã;
-dE:\_Workspace\Github\Swastika-IO-Core\src\Swastika.Cms.Lib\ViewModels\BackEnd\BELanguageViewModel.cs
+}hh À;
+cD:\Workspace\GitHub\Swastika-IO-Core\src\Swastika.Cms.Lib\ViewModels\BackEnd\BELanguageViewModel.cs
 	namespace 	
 Swastika
  
@@ -87604,8 +87604,8 @@ ExpandView** '
 ;UU 
 }VV 	
 }YY 
-}ZZ ÷H
-aE:\_Workspace\Github\Swastika-IO-Core\src\Swastika.Cms.Lib\ViewModels\BackEnd\BEMediaViewModel.cs
+}ZZ ’H
+`D:\Workspace\GitHub\Swastika-IO-Core\src\Swastika.Cms.Lib\ViewModels\BackEnd\BEMediaViewModel.cs
 	namespace 	
 Swastika
  
@@ -88139,8 +88139,8 @@ FileFolder~~T ^
 ÅÅ 	
 }
 ÑÑ 
-}ÖÖ €À
-fE:\_Workspace\Github\Swastika-IO-Core\src\Swastika.Cms.Lib\ViewModels\BackEnd\BEModuleDataViewModel.cs
+}ÖÖ ⁄À
+eD:\Workspace\GitHub\Swastika-IO-Core\src\Swastika.Cms.Lib\ViewModels\BackEnd\BEModuleDataViewModel.cs
 	namespace 	
 Swastika
  
@@ -90324,8 +90324,8 @@ CategoryId
 ìì 	
 }
 ññ 
-}óó Æ¡
-bE:\_Workspace\Github\Swastika-IO-Core\src\Swastika.Cms.Lib\ViewModels\BackEnd\BEModuleViewModel.cs
+}óó ≠¡
+aD:\Workspace\GitHub\Swastika-IO-Core\src\Swastika.Cms.Lib\ViewModels\BackEnd\BEModuleViewModel.cs
 	namespace 	
 Swastika
  
@@ -93984,8 +93984,8 @@ Repository
 ÚÚ 	
 }
 ıı 
-}ˆˆ ∫
-eE:\_Workspace\Github\Swastika-IO-Core\src\Swastika.Cms.Lib\ViewModels\BackEnd\BEParameterViewModel.cs
+}ˆˆ π
+dD:\Workspace\GitHub\Swastika-IO-Core\src\Swastika.Cms.Lib\ViewModels\BackEnd\BEParameterViewModel.cs
 	namespace
 
  	
@@ -94127,8 +94127,8 @@ ViewModels
 {'' 	
 }(( 	
 }++ 
-},, ≠
-dE:\_Workspace\Github\Swastika-IO-Core\src\Swastika.Cms.Lib\ViewModels\BackEnd\BEPositionViewModel.cs
+},, ¨
+cD:\Workspace\GitHub\Swastika-IO-Core\src\Swastika.Cms.Lib\ViewModels\BackEnd\BEPositionViewModel.cs
 	namespace
 
  	
@@ -94255,8 +94255,8 @@ ViewModels
 {$$ 	
 }%% 	
 }(( 
-})) ˛ 
-hE:\_Workspace\Github\Swastika-IO-Core\src\Swastika.Cms.Lib\ViewModels\BackEnd\BEProductMediaViewModel.cs
+})) ˝ 
+gD:\Workspace\GitHub\Swastika-IO-Core\src\Swastika.Cms.Lib\ViewModels\BackEnd\BEProductMediaViewModel.cs
 	namespace
 
  	
@@ -94516,8 +94516,8 @@ Repository==2 <
 }DD 
 }EE 	
 }HH 
-}II ƒ‰
-cE:\_Workspace\Github\Swastika-IO-Core\src\Swastika.Cms.Lib\ViewModels\BackEnd\BEProductViewModel.cs
+}II “Â
+bD:\Workspace\GitHub\Swastika-IO-Core\src\Swastika.Cms.Lib\ViewModels\BackEnd\BEProductViewModel.cs
 	namespace 	
 Swastika
  
@@ -95066,36 +95066,45 @@ TotalSaledll 
 (
 áá 
 $str
-áá "
+áá 
 )
-áá" #
+áá 
 ]
-áá# $
+áá  
 public
-àà 
-List
-àà 
-<
-àà )
-NavCategoryProductViewModel
-àà /
->
-àà/ 0
-
-Categories
-àà1 ;
-{
-àà< =
-get
-àà> A
+àà 
+string
+àà 
+Domain
+àà 
+=>
+àà (
+GlobalConfigurationService
+àà  :
+.
+àà: ;
+Instance
+àà; C
+.
+ààC D
+GetLocalString
+ààD R
+(
+ààR S
+$str
+ààS [
+,
+àà[ \
+Specificulture
+àà] k
+,
+ààk l
+$str
+ààm p
+)
+ààp q
 ;
-ààA B
-set
-ààC F
-;
-ààF G
-}
-ààH I
+ààq r
 [
 ää 	
 JsonProperty
@@ -95103,35 +95112,36 @@ Categories
 (
 ää 
 $str
-ää 
+ää "
 )
-ää  
+ää" #
 ]
-ää  !
+ää# $
 public
 ãã 
 List
 ãã 
 <
-ãã '
-NavModuleProductViewModel
-ãã -
+ãã )
+NavCategoryProductViewModel
+ãã /
 >
-ãã- .
-Modules
-ãã/ 6
+ãã/ 0
+
+Categories
+ãã1 ;
 {
-ãã7 8
-get
-ãã9 <
-;
 ãã< =
-set
+get
 ãã> A
 ;
-ããA B
+ããA B
+set
+ããC F
+;
+ããF G
 }
-ããC D
+ããH I
 [
 çç 	
 JsonProperty
@@ -95139,36 +95149,35 @@ Categories
 (
 çç 
 $str
-çç "
+çç 
 )
-çç" #
+çç  
 ]
-çç# $
+çç  !
 public
 éé 
 List
 éé 
 <
 éé '
-NavProductModuleViewModel
+NavModuleProductViewModel
 éé -
 >
-éé- .
-
-ModuleNavs
-éé/ 9
+éé- .
+Modules
+éé/ 6
 {
-éé: ;
+éé7 8
 get
-éé< ?
+éé9 <
 ;
-éé? @
+éé< =
 set
-ééA D
+éé> A
 ;
-ééD E
+ééA B
 }
-ééF G
+ééC D
 [
 êê 	
 JsonProperty
@@ -95176,35 +95185,36 @@ ModuleNavs
 (
 êê 
 $str
-êê !
+êê "
 )
-êê! "
+êê" #
 ]
-êê" #
+êê# $
 public
 ëë 
 List
 ëë 
 <
-ëë &
-NavProductMediaViewModel
-ëë ,
+ëë '
+NavProductModuleViewModel
+ëë -
 >
-ëë, -
-	MediaNavs
-ëë. 7
+ëë- .
+
+ModuleNavs
+ëë/ 9
 {
-ëë8 9
+ëë: ;
 get
-ëë: =
+ëë< ?
 ;
-ëë= >
+ëë? @
 set
-ëë? B
+ëëA D
 ;
-ëëB C
-}
 ëëD E
+}
+ëëF G
 [
 ìì 	
 JsonProperty
@@ -95212,45 +95222,35 @@ ModuleNavs
 (
 ìì 
 $str
-ìì "
+ìì !
 )
-ìì" #
+ìì! "
 ]
-ìì# $
+ìì" #
 public
-îî 
-JArray
-îî 
-
-JMediaNavs
-îî  
-{
-îî! "
-get
-îî# &
-{
-îî' (
-return
-îî) /
-JArray
-îî0 6
-.
-îî6 7
-
-FromObject
-îî7 A
-(
-îîA B
+îî 
+List
+îî 
+<
+îî &
+NavProductMediaViewModel
+îî ,
+>
+îî, -
 	MediaNavs
-îîB K
-)
-îîK L
+îî. 7
+{
+îî8 9
+get
+îî: =
 ;
-îîL M
+îî= >
+set
+îî? B
+;
+îîB C
 }
-îîN O
-}
-îîP Q
+îîD E
 [
 ññ 	
 JsonProperty
@@ -95258,35 +95258,45 @@ FromObject
 (
 ññ 
 $str
-ññ #
+ññ "
 )
-ññ# $
+ññ" #
 ]
-ññ$ %
+ññ# $
 public
-óó 
-List
-óó 
-<
-óó (
-NavRelatedProductViewModel
-óó .
->
-óó. /
-ProductNavs
-óó0 ;
+óó 
+JArray
+óó 
+
+JMediaNavs
+óó  
 {
-óó< =
+óó! "
 get
-óó> A
+óó# &
+{
+óó' (
+return
+óó) /
+JArray
+óó0 6
+.
+óó6 7
+
+FromObject
+óó7 A
+(
+óóA B
+	MediaNavs
+óóB K
+)
+óóK L
 ;
-óóA B
-set
-óóC F
-;
-óóF G
+óóL M
 }
-óóH I
+óóN O
+}
+óóP Q
 [
 ôô 	
 JsonProperty
@@ -95294,60 +95304,35 @@ FromObject
 (
 ôô 
 $str
-ôô $
+ôô #
 )
-ôô$ %
+ôô# $
 ]
-ôô% &
+ôô$ %
 public
-öö 
-JArray
-öö 
-JProductNavs
-öö "
-{
-öö# $
-get
-öö% (
-{
-öö) *
-return
-öö+ 1
-JArray
-öö2 8
-.
-öö8 9
-
-FromObject
-öö9 C
-(
-ööC D
-ProductNavs
-ööD O
-??
-ööP R
-new
-ööS V
+öö 
 List
-ööW [
+öö 
 <
-öö[ \(
+öö (
 NavRelatedProductViewModel
-öö\ v
+öö .
 >
-ööv w
-(
-ööw x
-)
-ööx y
-)
-ööy z
+öö. /
+ProductNavs
+öö0 ;
+{
+öö< =
+get
+öö> A
 ;
-ööz {
+ööA B
+set
+ööC F
+;
+ööF G
 }
-öö| }
-}
-öö~ 
+ööH I
 [
 úú 	
 JsonProperty
@@ -95355,35 +95340,60 @@ FromObject
 (
 úú 
 $str
-úú &
+úú $
 )
-úú& '
+úú$ %
 ]
-úú' (
+úú% &
 public
-ùù 
-List
-ùù 
-<
-ùù 
-BEModuleViewModel
-ùù %
->
-ùù% &
-ActivedModules
-ùù' 5
+ùù 
+JArray
+ùù 
+JProductNavs
+ùù "
 {
-ùù6 7
+ùù# $
 get
-ùù8 ;
+ùù% (
+{
+ùù) *
+return
+ùù+ 1
+JArray
+ùù2 8
+.
+ùù8 9
+
+FromObject
+ùù9 C
+(
+ùùC D
+ProductNavs
+ùùD O
+??
+ùùP R
+new
+ùùS V
+List
+ùùW [
+<
+ùù[ \(
+NavRelatedProductViewModel
+ùù\ v
+>
+ùùv w
+(
+ùùw x
+)
+ùùx y
+)
+ùùy z
 ;
-ùù; <
-set
-ùù= @
-;
-ùù@ A
+ùùz {
 }
-ùùB C
+ùù| }
+}
+ùù~ 
 [
 üü 	
 JsonProperty
@@ -95391,41 +95401,35 @@ FromObject
 (
 üü 
 $str
-üü 
+üü &
 )
-üü  
+üü& '
 ]
-üü  !
+üü' (
 public
-†† 
-JArray
-†† 
-ListTag
-†† 
+†† 
+List
+†† 
+<
+†† 
+BEModuleViewModel
+†† %
+>
+††% &
+ActivedModules
+††' 5
 {
-†† 
+††6 7
 get
-††  #
+††8 ;
 ;
-††# $
+††; <
 set
-††% (
+††= @
 ;
-††( )
+††@ A
 }
-††* +
-=
-††, -
-new
-††. 1
-JArray
-††2 8
-(
-††8 9
-)
-††9 :
-;
-††: ;
+††B C
 [
 ¢¢ 	
 JsonProperty
@@ -95433,29 +95437,41 @@ FromObject
 (
 ¢¢ 
 $str
-¢¢ '
+¢¢ 
 )
-¢¢' (
+¢¢  
 ]
-¢¢( )
+¢¢  !
 public
-££ !
-FileStreamViewModel
-££ "
-ImageFileStream
-££# 2
+££ 
+JArray
+££ 
+ListTag
+££ 
 {
-££3 4
+££ 
 get
-££5 8
+££  #
 ;
-££8 9
+££# $
 set
-££: =
+££% (
 ;
-££= >
+££( )
 }
-££? @
+££* +
+=
+££, -
+new
+££. 1
+JArray
+££2 8
+(
+££8 9
+)
+££9 :
+;
+££: ;
 [
 •• 	
 JsonProperty
@@ -95463,29 +95479,29 @@ FromObject
 (
 •• 
 $str
-•• +
+•• '
 )
-••+ ,
+••' (
 ]
-••, -
+••( )
 public
 ¶¶ !
 FileStreamViewModel
-¶¶ "!
-ThumbnailFileStream
-¶¶# 6
+¶¶ "
+ImageFileStream
+¶¶# 2
 {
-¶¶7 8
+¶¶3 4
 get
-¶¶9 <
+¶¶5 8
 ;
-¶¶< =
+¶¶8 9
 set
-¶¶> A
+¶¶: =
 ;
-¶¶A B
+¶¶= >
 }
-¶¶C D
+¶¶? @
 [
 ®® 	
 JsonProperty
@@ -95493,29 +95509,29 @@ FromObject
 (
 ®® 
 $str
-®® &
+®® +
 )
-®®& '
+®®+ ,
 ]
-®®' (
+®®, -
 public
-©© 
-string
-©© 
-StrNormalPrice
-©© $
+©© !
+FileStreamViewModel
+©© "!
+ThumbnailFileStream
+©©# 6
 {
-©©% &
+©©7 8
 get
-©©' *
+©©9 <
 ;
-©©* +
+©©< =
 set
-©©, /
+©©> A
 ;
-©©/ 0
+©©A B
 }
-©©1 2
+©©C D
 [
 ´´ 	
 JsonProperty
@@ -95523,29 +95539,29 @@ FromObject
 (
 ´´ 
 $str
-´´ $
+´´ &
 )
-´´$ %
+´´& '
 ]
-´´% &
+´´' (
 public
 ¨¨ 
 string
-¨¨ 
-StrDealPrice
-¨¨ "
+¨¨ 
+StrNormalPrice
+¨¨ $
 {
-¨¨# $
+¨¨% &
 get
-¨¨% (
+¨¨' *
 ;
-¨¨( )
+¨¨* +
 set
-¨¨* -
+¨¨, /
 ;
-¨¨- .
-}
 ¨¨/ 0
+}
+¨¨1 2
 [
 ÆÆ 	
 JsonProperty
@@ -95553,59 +95569,59 @@ FromObject
 (
 ÆÆ 
 $str
-ÆÆ &
+ÆÆ $
 )
-ÆÆ& '
+ÆÆ$ %
 ]
-ÆÆ' (
+ÆÆ% &
 public
 ØØ 
 string
-ØØ 
-StrImportPrice
-ØØ $
+ØØ 
+StrDealPrice
+ØØ "
 {
-ØØ% &
+ØØ# $
 get
-ØØ' *
+ØØ% (
 ;
-ØØ* +
+ØØ( )
 set
-ØØ, /
+ØØ* -
 ;
+ØØ- .
+}
 ØØ/ 0
-}
-ØØ1 2
 [
-≥≥ 	
+±± 	
 JsonProperty
-≥≥	 
+±±	 
 (
-≥≥ 
+±± 
 $str
-≥≥ 
+±± &
 )
-≥≥ 
+±±& '
 ]
-≥≥ 
+±±' (
 public
-¥¥ !
-BETemplateViewModel
-¥¥ "
-View
-¥¥# '
+≤≤ 
+string
+≤≤ 
+StrImportPrice
+≤≤ $
 {
-¥¥( )
+≤≤% &
 get
-¥¥* -
+≤≤' *
 ;
-¥¥- .
+≤≤* +
 set
-¥¥/ 2
+≤≤, /
 ;
-¥¥2 3
+≤≤/ 0
 }
-¥¥4 5
+≤≤1 2
 [
 ∂∂ 	
 JsonProperty
@@ -95613,247 +95629,241 @@ FromObject
 (
 ∂∂ 
 $str
-∂∂ !
+∂∂ 
 )
-∂∂! "
+∂∂ 
 ]
-∂∂" #
+∂∂ 
 public
-∑∑ 
-List
-∑∑ 
-<
-∑∑ !
+∑∑ !
 BETemplateViewModel
-∑∑ '
->
-∑∑' (
-	Templates
-∑∑) 2
+∑∑ "
+View
+∑∑# '
 {
-∑∑3 4
+∑∑( )
 get
-∑∑5 8
+∑∑* -
 ;
-∑∑8 9
+∑∑- .
 set
-∑∑: =
+∑∑/ 2
 ;
-∑∑= >
+∑∑2 3
 }
-∑∑? @
+∑∑4 5
 [
-ππ 	
-
-JsonIgnore
-ππ	 
-]
-ππ 
-public
-∫∫ 
-string
-∫∫ 
-ActivedTemplate
-∫∫ %
-{
-ªª 	
-get
-ºº 
-{
-ΩΩ 
-return
-ææ (
-GlobalConfigurationService
-ææ 1
-.
-ææ1 2
-Instance
-ææ2 :
-.
-ææ: ;
-GetLocalString
-ææ; I
-(
-ææI J
-SWCmsConstants
-ææJ X
-.
-ææX Y"
-ConfigurationKeyword
-ææY m
-.
-ææm n
-Theme
-ææn s
-,
-ææs t
-Specificultureææu É
-,ææÉ Ñ
-SWCmsConstantsææÖ ì
-.ææì î
-Defaultææî õ
-.ææõ ú%
-DefaultTemplateFolderææú ±
-)ææ± ≤
-;ææ≤ ≥
-}
-øø 
-}
-¿¿ 	
-[
-¬¬ 	
-
-JsonIgnore
-¬¬	 
-]
-¬¬ 
-public
-√√ 
-string
-√√  
-TemplateFolderType
-√√ (
-{
-√√) *
-get
-√√+ .
-{
-√√/ 0
-return
-√√1 7
-SWCmsConstants
-√√8 F
-.
-√√F G 
-TemplateFolderEnum
-√√G Y
-.
-√√Y Z
-Products
-√√Z b
-.
-√√b c
-ToString
-√√c k
-(
-√√k l
-)
-√√l m
-;
-√√m n
-}
-√√o p
-}
-√√q r
-[
-≈≈ 	
+ππ 	
 JsonProperty
-≈≈	 
+ππ	 
 (
-≈≈ 
+ππ 
 $str
-≈≈ &
+ππ !
 )
-≈≈& '
+ππ! "
 ]
-≈≈' (
+ππ" #
+public
+∫∫ 
+List
+∫∫ 
+<
+∫∫ !
+BETemplateViewModel
+∫∫ '
+>
+∫∫' (
+	Templates
+∫∫) 2
+{
+∫∫3 4
+get
+∫∫5 8
+;
+∫∫8 9
+set
+∫∫: =
+;
+∫∫= >
+}
+∫∫? @
+[
+ºº 	
+
+JsonIgnore
+ºº	 
+]
+ºº 
+public
+ΩΩ 
+string
+ΩΩ 
+ActivedTemplate
+ΩΩ %
+{
+ææ 	
+get
+øø 
+{
+¿¿ 
+return
+¡¡ (
+GlobalConfigurationService
+¡¡ 1
+.
+¡¡1 2
+Instance
+¡¡2 :
+.
+¡¡: ;
+GetLocalString
+¡¡; I
+(
+¡¡I J
+SWCmsConstants
+¡¡J X
+.
+¡¡X Y"
+ConfigurationKeyword
+¡¡Y m
+.
+¡¡m n
+Theme
+¡¡n s
+,
+¡¡s t
+Specificulture¡¡u É
+,¡¡É Ñ
+SWCmsConstants¡¡Ö ì
+.¡¡ì î
+Default¡¡î õ
+.¡¡õ ú%
+DefaultTemplateFolder¡¡ú ±
+)¡¡± ≤
+;¡¡≤ ≥
+}
+¬¬ 
+}
+√√ 	
+[
+≈≈ 	
+
+JsonIgnore
+≈≈	 
+]
+≈≈ 
 public
 ∆∆ 
 string
-∆∆ 
-TemplateFolder
-∆∆ $
+∆∆  
+TemplateFolderType
+∆∆ (
 {
-«« 	
+∆∆) *
 get
-»» 
+∆∆+ .
 {
-…… 
+∆∆/ 0
 return
-   
-SWCmsHelper
-   "
-.
-  " #
-GetFullPath
-  # .
-(
-  . /
-new
-  / 2
-string
-  3 9
-[
-  9 :
-]
-  : ;
-{
-ÀÀ 
+∆∆1 7
 SWCmsConstants
-ÃÃ "
+∆∆8 F
 .
-ÃÃ" #
+∆∆F G 
+TemplateFolderEnum
+∆∆G Y
+.
+∆∆Y Z
+Products
+∆∆Z b
+.
+∆∆b c
+ToString
+∆∆c k
+(
+∆∆k l
+)
+∆∆l m
+;
+∆∆m n
+}
+∆∆o p
+}
+∆∆q r
+[
+»» 	
+JsonProperty
+»»	 
+(
+»» 
+$str
+»» &
+)
+»»& '
+]
+»»' (
+public
+…… 
+string
+…… 
+TemplateFolder
+…… $
+{
+   	
+get
+ÀÀ 
+{
+ÃÃ 
+return
+ÕÕ 
+SWCmsHelper
+ÕÕ "
+.
+ÕÕ" #
+GetFullPath
+ÕÕ# .
+(
+ÕÕ. /
+new
+ÕÕ/ 2
+string
+ÕÕ3 9
+[
+ÕÕ9 :
+]
+ÕÕ: ;
+{
+ŒŒ 
+SWCmsConstants
+œœ "
+.
+œœ" #
 
 Parameters
-ÃÃ# -
+œœ# -
 .
-ÃÃ- .
+œœ- .
 TemplatesFolder
-ÃÃ. =
+œœ. =
 ,
-ÕÕ 
+–– 
 ActivedTemplate
-ÕÕ %
+–– %
 ,
-ŒŒ  
+——  
 TemplateFolderType
-ŒŒ (
+—— (
 }
-œœ 
+““ 
 )
-–– 
+”” 
 ;
-–– 
+”” 
 }
-—— 
+‘‘ 
 }
-““ 	
-[
-÷÷ 	
-JsonProperty
-÷÷	 
-(
-÷÷ 
-$str
-÷÷ 
-)
-÷÷ 
-]
-÷÷  
-public
-◊◊ 
-string
-◊◊ 
-Domain
-◊◊ 
-{
-◊◊ 
-get
-◊◊ "
-;
-◊◊" #
-set
-◊◊$ '
-;
-◊◊' (
-}
-◊◊) *
-=
-◊◊+ ,
-$str
-◊◊- 0
-;
-◊◊0 1
+’’ 	
 [
 ŸŸ 	
 JsonProperty
@@ -103636,8 +103646,8 @@ Repository
 ÈÈ 	
 }
 ÏÏ 
-}ÌÌ ¢|
-dE:\_Workspace\Github\Swastika-IO-Core\src\Swastika.Cms.Lib\ViewModels\BackEnd\BETemplateViewModel.cs
+}ÌÌ °|
+cD:\Workspace\GitHub\Swastika-IO-Core\src\Swastika.Cms.Lib\ViewModels\BackEnd\BETemplateViewModel.cs
 	namespace 	
 Swastika
  
@@ -104852,8 +104862,8 @@ FileFolder
 ◊◊ 	
 }
 ‹‹ 
-}›› •Á
-aE:\_Workspace\Github\Swastika-IO-Core\src\Swastika.Cms.Lib\ViewModels\BackEnd\BEThemeViewModel.cs
+}›› §Á
+`D:\Workspace\GitHub\Swastika-IO-Core\src\Swastika.Cms.Lib\ViewModels\BackEnd\BEThemeViewModel.cs
 	namespace 	
 Swastika
  
@@ -108951,8 +108961,8 @@ TemplateId
 ¶¶ 	
 }
 ´´ 
-}¨¨ Û
-aE:\_Workspace\Github\Swastika-IO-Core\src\Swastika.Cms.Lib\ViewModels\CategoryArticleViewModel.cs
+}¨¨ Ú
+`D:\Workspace\GitHub\Swastika-IO-Core\src\Swastika.Cms.Lib\ViewModels\CategoryArticleViewModel.cs
 	namespace
 
  	
@@ -109093,8 +109103,8 @@ CategoryId 
 ;!!, -
 }!!. /
 }PP 
-}QQ Ø
-bE:\_Workspace\Github\Swastika-IO-Core\src\Swastika.Cms.Lib\ViewModels\CategoryCategoryViewModel.cs
+}QQ Æ
+aD:\Workspace\GitHub\Swastika-IO-Core\src\Swastika.Cms.Lib\ViewModels\CategoryCategoryViewModel.cs
 	namespace
 
  	
@@ -109230,8 +109240,8 @@ ViewModels
 ;FF, -
 }FF. /
 }GG 
-}HH ©
-`E:\_Workspace\Github\Swastika-IO-Core\src\Swastika.Cms.Lib\ViewModels\CategoryModuleViewModel.cs
+}HH ®
+_D:\Workspace\GitHub\Swastika-IO-Core\src\Swastika.Cms.Lib\ViewModels\CategoryModuleViewModel.cs
 	namespace
 
  	
@@ -109369,8 +109379,8 @@ CategoryId 
 ;  , -
 }  . /
 }!! 
-}"" è
-bE:\_Workspace\Github\Swastika-IO-Core\src\Swastika.Cms.Lib\ViewModels\CategoryPositionViewModel.cs
+}"" é
+aD:\Workspace\GitHub\Swastika-IO-Core\src\Swastika.Cms.Lib\ViewModels\CategoryPositionViewModel.cs
 	namespace		 	
 Swastika		
  
@@ -109477,1234 +109487,1352 @@ CategoryId 
 ;, -
 }. /
 }KK 
-}LL ê~
-YE:\_Workspace\Github\Swastika-IO-Core\src\Swastika.Cms.Lib\ViewModels\CommonViewModels.cs
-	namespace 	
-Swastika
+}LL ËÖ
+XD:\Workspace\GitHub\Swastika-IO-Core\src\Swastika.Cms.Lib\ViewModels\CommonViewModels.cs
+	namespace 	
+Swastika
  
-. 
-Cms 
-. 
-Lib 
-. 
+. 
+Cms 
+. 
+Lib 
+. 
 
-ViewModels %
-{ 
-public 
+ViewModels %
+{ 
+public 
 
-class 
-DashboardViewModel #
-{ 
-[ 	
-JsonProperty	 
-( 
-$str !
-)! "
-]" #
-public 
-int 
-	TotalPage 
-{ 
-get "
-;" #
-set$ '
-;' (
-}) *
-[ 	
-JsonProperty	 
-( 
-$str $
-)$ %
-]% &
-public 
-int 
-TotalArticle 
-{  !
-get" %
-;% &
-set' *
-;* +
-}, -
-[ 	
-JsonProperty	 
-( 
-$str $
-)$ %
-]% &
-public 
-int 
-TotalProduct 
-{  !
-get" %
-;% &
-set' *
-;* +
-}, -
-[ 	
-JsonProperty	 
-( 
-$str #
-)# $
-]$ %
-public 
-int 
-TotalModule 
-{  
-get! $
-;$ %
-set& )
-;) *
-}+ ,
-[ 	
-JsonProperty	 
-( 
-$str !
-)! "
-]" #
-public 
-int 
-	TotalUser 
-{ 
-get "
-;" #
-set$ '
-;' (
-}) *
-public 
-DashboardViewModel !
-(! "
-)" #
-{   	
-using!! 
-(!! 
-SiocCmsContext!! !
-context!!" )
-=!!* +
-new!!, /
-SiocCmsContext!!0 >
-(!!> ?
-)!!? @
-)!!@ A
-{"" 
-	TotalPage## 
-=## 
-context## #
-.### $
-SiocCategory##$ 0
-.##0 1
-Count##1 6
-(##6 7
-)##7 8
-;##8 9
-TotalArticle$$ 
-=$$ 
-context$$ &
-.$$& '
-SiocArticle$$' 2
-.$$2 3
-Count$$3 8
-($$8 9
-)$$9 :
-;$$: ;
-TotalProduct%% 
-=%% 
-context%% &
-.%%& '
-SiocProduct%%' 2
-.%%2 3
-Count%%3 8
-(%%8 9
-)%%9 :
-;%%: ;
-}&& 
-}'' 	
-}(( 
-public** 
+class 
+DashboardViewModel #
+{ 
+[ 	
+JsonProperty	 
+( 
+$str !
+)! "
+]" #
+public 
+int 
+	TotalPage 
+{ 
+get "
+;" #
+set$ '
+;' (
+}) *
+[ 	
+JsonProperty	 
+( 
+$str $
+)$ %
+]% &
+public 
+int 
+TotalArticle 
+{  !
+get" %
+;% &
+set' *
+;* +
+}, -
+[ 	
+JsonProperty	 
+( 
+$str $
+)$ %
+]% &
+public 
+int 
+TotalProduct 
+{  !
+get" %
+;% &
+set' *
+;* +
+}, -
+[ 	
+JsonProperty	 
+( 
+$str #
+)# $
+]$ %
+public 
+int 
+TotalModule 
+{  
+get! $
+;$ %
+set& )
+;) *
+}+ ,
+[   	
+JsonProperty  	 
+(   
+$str   !
+)  ! "
+]  " #
+public!! 
+int!! 
+	TotalUser!! 
+{!! 
+get!! "
+;!!" #
+set!!$ '
+;!!' (
+}!!) *
+public## 
+DashboardViewModel## !
+(##! "
+)##" #
+{$$ 	
+using%% 
+(%% 
+SiocCmsContext%% !
+context%%" )
+=%%* +
+new%%, /
+SiocCmsContext%%0 >
+(%%> ?
+)%%? @
+)%%@ A
+{&& 
+	TotalPage'' 
+='' 
+context'' #
+.''# $
+SiocCategory''$ 0
+.''0 1
+Count''1 6
+(''6 7
+)''7 8
+;''8 9
+TotalArticle(( 
+=(( 
+context(( &
+.((& '
+SiocArticle((' 2
+.((2 3
+Count((3 8
+(((8 9
+)((9 :
+;((: ;
+TotalProduct)) 
+=)) 
+context)) &
+.))& '
+SiocProduct))' 2
+.))2 3
+Count))3 8
+())8 9
+)))9 :
+;)): ;
+}** 
+}++ 	
+},, 
+public.. 
 
-class** 
-InitCmsViewModel** !
-{++ 
-[,, 	
-JsonProperty,,	 
-(,, 
-$str,, &
-),,& '
-],,' (
-public-- 
-string-- 
-DataBaseServer-- $
-{--% &
-get--' *
-;--* +
-set--, /
-;--/ 0
-}--1 2
-[// 	
-JsonProperty//	 
-(// 
-$str// $
-)//$ %
-]//% &
-public00 
-string00 
-DataBaseName00 "
-{00# $
-get00% (
-;00( )
-set00* -
-;00- .
-}00/ 0
-[22 	
-JsonProperty22	 
-(22 
-$str22 $
-)22$ %
-]22% &
-public33 
-string33 
-DataBaseUser33 "
-{33# $
-get33% (
-;33( )
-set33* -
-;33- .
-}33/ 0
-[55 	
-JsonProperty55	 
-(55 
-$str55 (
-)55( )
-]55) *
-public66 
-string66 
-DataBasePassword66 &
-{66' (
-get66) ,
-;66, -
-set66. 1
-;661 2
-}663 4
-[88 	
-JsonProperty88	 
-(88 
-$str88 "
-)88" #
-]88# $
-public99 
-bool99 
+class.. 
+InitCmsViewModel.. !
+{// 
+[00 	
+JsonProperty00	 
+(00 
+$str00 &
+)00& '
+]00' (
+public11 
+string11 
+DataBaseServer11 $
+{11% &
+get11' *
+;11* +
+set11, /
+;11/ 0
+}111 2
+[33 	
+JsonProperty33	 
+(33 
+$str33 $
+)33$ %
+]33% &
+public44 
+string44 
+DataBaseName44 "
+{44# $
+get44% (
+;44( )
+set44* -
+;44- .
+}44/ 0
+[66 	
+JsonProperty66	 
+(66 
+$str66 $
+)66$ %
+]66% &
+public77 
+string77 
+DataBaseUser77 "
+{77# $
+get77% (
+;77( )
+set77* -
+;77- .
+}77/ 0
+[99 	
+JsonProperty99	 
+(99 
+$str99 (
+)99( )
+]99) *
+public:: 
+string:: 
+DataBasePassword:: &
+{::' (
+get::) ,
+;::, -
+set::. 1
+;::1 2
+}::3 4
+[<< 	
+JsonProperty<<	 
+(<< 
+$str<< "
+)<<" #
+]<<# $
+public== 
+bool== 
 
-IsUseLocal99 
-{99  
-get99! $
-;99$ %
-set99& )
-;99) *
-}99+ ,
-[;; 	
-JsonProperty;;	 
-(;; 
-$str;; #
-);;# $
-];;$ %
-public<< 
-string<< 
-LocalDbName<< !
-{<<" #
-get<<$ '
-;<<' (
-set<<) ,
-;<<, -
-}<<. /
-[>> 	
-JsonProperty>>	 
-(>> 
-$str>> /
-)>>/ 0
-]>>0 1
-public?? 
-string?? #
-LocalDbConnectionString?? -
-{??. /
-get??0 3
-;??3 4
-set??5 8
-;??8 9
-}??: ;
-[AA 	
-JsonPropertyAA	 
-(AA 
-$strAA "
-)AA" #
-]AA# $
-publicBB 
-stringBB 
+IsUseLocal== 
+{==  
+get==! $
+;==$ %
+set==& )
+;==) *
+}==+ ,
+[?? 	
+JsonProperty??	 
+(?? 
+$str?? #
+)??# $
+]??$ %
+public@@ 
+string@@ 
+LocalDbName@@ !
+{@@" #
+get@@$ '
+;@@' (
+set@@) ,
+;@@, -
+}@@. /
+[BB 	
+JsonPropertyBB	 
+(BB 
+$strBB /
+)BB/ 0
+]BB0 1
+publicCC 
+stringCC #
+LocalDbConnectionStringCC -
+{CC. /
+getCC0 3
+;CC3 4
+setCC5 8
+;CC8 9
+}CC: ;
+[EE 	
+JsonPropertyEE	 
+(EE 
+$strEE "
+)EE" #
+]EE# $
+publicFF 
+stringFF 
 
-SuperAdminBB  
-{BB! "
-getBB# &
-;BB& '
-setBB( +
-;BB+ ,
-}BB- .
-[DD 	
-JsonPropertyDD	 
-(DD 
-$strDD %
-)DD% &
-]DD& '
-publicEE 
-stringEE 
-AdminPasswordEE #
-{EE$ %
-getEE& )
-;EE) *
-setEE+ .
-;EE. /
-}EE0 1
-}FF 
-publicHH 
+SuperAdminFF  
+{FF! "
+getFF# &
+;FF& '
+setFF( +
+;FF+ ,
+}FF- .
+[HH 	
+JsonPropertyHH	 
+(HH 
+$strHH %
+)HH% &
+]HH& '
+publicII 
+stringII 
+AdminPasswordII #
+{II$ %
+getII& )
+;II) *
+setII+ .
+;II. /
+}II0 1
+}JJ 
+publicLL 
 
-classHH 
-FileStreamViewModelHH $
-{II 
-publicJJ 
-stringJJ 
-Base64JJ 
-{JJ 
-getJJ "
-;JJ" #
-setJJ$ '
-;JJ' (
-}JJ) *
-publicKK 
-stringKK 
-NameKK 
-{KK 
-getKK  
-;KK  !
-setKK" %
-;KK% &
-}KK' (
-publicLL 
-intLL 
-SizeLL 
-{LL 
-getLL 
-;LL 
-setLL "
-;LL" #
-}LL$ %
-publicMM 
-stringMM 
-TypeMM 
-{MM 
-getMM  
-;MM  !
-setMM" %
-;MM% &
-}MM' (
-}NN 
-publicPP 
+classLL 
+FileStreamViewModelLL $
+{MM 
+publicNN 
+stringNN 
+Base64NN 
+{NN 
+getNN "
+;NN" #
+setNN$ '
+;NN' (
+}NN) *
+publicOO 
+stringOO 
+NameOO 
+{OO 
+getOO  
+;OO  !
+setOO" %
+;OO% &
+}OO' (
+publicPP 
+intPP 
+SizePP 
+{PP 
+getPP 
+;PP 
+setPP "
+;PP" #
+}PP$ %
+publicQQ 
+stringQQ 
+TypeQQ 
+{QQ 
+getQQ  
+;QQ  !
+setQQ" %
+;QQ% &
+}QQ' (
+}RR 
+publicTT 
 
-classPP 
-FileViewModelPP 
-{QQ 
-publicRR 
-stringRR 
-FullPathRR 
-{RR  
-getSS 
-{SS 
-returnTT 
-CommonHelperTT #
-.TT# $
-GetFullPathTT$ /
-(TT/ 0
-newTT0 3
-stringTT4 :
-[TT: ;
-]TT; <
-{TT= >
-$strUU 
-,UU 
-SWCmsConstantsVV "
-.VV" #
+classTT 
+FileViewModelTT 
+{UU 
+publicVV 
+stringVV 
+FullPathVV 
+{VV  
+getWW 
+{WW 
+returnXX 
+CommonHelperXX #
+.XX# $
+GetFullPathXX$ /
+(XX/ 0
+newXX0 3
+stringXX4 :
+[XX: ;
+]XX; <
+{XX= >
+$strYY 
+,YY 
+SWCmsConstantsZZ "
+.ZZ" #
 
-ParametersVV# -
-.VV- .
+ParametersZZ# -
+.ZZ- .
 
-FileFolderVV. 8
-,VV8 9
+FileFolderZZ. 8
+,ZZ8 9
 
-FileFolderWW 
-,WW 
-stringXX 
-.XX 
-FormatXX !
-(XX! "
-$strXX" *
-,XX* +
-FilenameXX, 4
-,XX4 5
-	ExtensionXX6 ?
-)XX? @
-}YY 
-)YY 
-;YY 
-}ZZ 
-set[[ 
-{[[ 
-}[[ 
-}\\ 	
-public^^ 
-string^^ 
-
-FolderName^^  
-{^^! "
-get^^# &
-;^^& '
-set^^( +
-;^^+ ,
-}^^- .
-public__ 
-string__ 
-
-FileFolder__  
-{__! "
-get__# &
-;__& '
-set__( +
-;__+ ,
-}__- .
-public`` 
-string`` 
-Filename`` 
-{``  
-get``! $
-;``$ %
-set``& )
-;``) *
-}``+ ,
-publicaa 
-stringaa 
-	Extensionaa 
-{aa  !
-getaa" %
-;aa% &
-setaa' *
-;aa* +
-}aa, -
+FileFolder[[ 
+,[[ 
+string\\ 
+.\\ 
+Format\\ !
+(\\! "
+$str\\" *
+,\\* +
+Filename\\, 4
+,\\4 5
+	Extension\\6 ?
+)\\? @
+}]] 
+)]] 
+;]] 
+}^^ 
+set__ 
+{__ 
+}__ 
+}`` 	
 publicbb 
-stringbb 
-Contentbb 
-{bb 
-getbb  #
-;bb# $
-setbb% (
-;bb( )
-}bb* +
+stringbb 
+
+FolderNamebb  
+{bb! "
+getbb# &
+;bb& '
+setbb( +
+;bb+ ,
+}bb- .
 publiccc 
 stringcc 
 
-FileStreamcc  
+FileFoldercc  
 {cc! "
 getcc# &
 ;cc& '
 setcc( +
 ;cc+ ,
-}cc- .
-}dd 
-publicff 
-
-classff 
-TemplateViewModelff "
-{gg 
-publichh 
-stringhh 
+}cc- .
+publicdd 
+stringdd 
+Filenamedd 
+{dd  
+getdd! $
+;dd$ %
+setdd& )
+;dd) *
+}dd+ ,
+publicee 
+stringee 
+	Extensionee 
+{ee  !
+getee" %
+;ee% &
+setee' *
+;ee* +
+}ee, -
+publicff 
+stringff 
+Contentff 
+{ff 
+getff  #
+;ff# $
+setff% (
+;ff( )
+}ff* +
+publicgg 
+stringgg 
 
-FileFolderhh  
-{hh! "
-gethh# &
-;hh& '
-sethh( +
-;hh+ ,
-}hh- .
-[jj 	
-Requiredjj	 
-]jj 
-publickk 
-stringkk 
-Filenamekk 
-{kk  
-getkk! $
-;kk$ %
-setkk& )
-;kk) *
-}kk+ ,
-publicmm 
-stringmm 
-	Extensionmm 
-{mm  !
-getmm" %
-;mm% &
-setmm' *
-;mm* +
-}mm, -
-publicnn 
-stringnn 
-Contentnn 
-{nn 
-getnn  #
-;nn# $
-setnn% (
-;nn( )
-}nn* +
+FileStreamgg  
+{gg! "
+getgg# &
+;gg& '
+setgg( +
+;gg+ ,
+}gg- .
+}hh 
+publicjj 
+
+classjj 
+TemplateViewModeljj "
+{kk 
+publicll 
+stringll 
+
+FileFolderll  
+{ll! "
+getll# &
+;ll& '
+setll( +
+;ll+ ,
+}ll- .
+[nn 	
+Requirednn	 
+]nn 
 publicoo 
-stringoo 
-Scriptsoo 
-{oo 
-getoo  #
-;oo# $
-setoo% (
-;oo( )
-}oo* +
-publicpp 
-stringpp 
-Stylespp 
-{pp 
-getpp "
-;pp" #
-setpp$ '
-;pp' (
-}pp) *
+stringoo 
+Filenameoo 
+{oo  
+getoo! $
+;oo$ %
+setoo& )
+;oo) *
+}oo+ ,
 publicqq 
-stringqq 
+stringqq 
+	Extensionqq 
+{qq  !
+getqq" %
+;qq% &
+setqq' *
+;qq* +
+}qq, -
+publicrr 
+stringrr 
+Contentrr 
+{rr 
+getrr  #
+;rr# $
+setrr% (
+;rr( )
+}rr* +
+publicss 
+stringss 
+Scriptsss 
+{ss 
+getss  #
+;ss# $
+setss% (
+;ss( )
+}ss* +
+publictt 
+stringtt 
+Stylestt 
+{tt 
+gettt "
+;tt" #
+settt$ '
+;tt' (
+}tt) *
+publicuu 
+stringuu 
 
-FileStreamqq  
-{qq! "
-getqq# &
-;qq& '
-setqq( +
-;qq+ ,
-}qq- .
-}rr 
-publictt 
+FileStreamuu  
+{uu! "
+getuu# &
+;uu& '
+setuu( +
+;uu+ ,
+}uu- .
+}vv 
+publicxx 
 
-classtt  
-ModuleFieldViewModeltt %
-{uu 
-[vv 	
-JsonPropertyvv	 
-(vv 
-$strvv 
-)vv 
-]vv 
-publicww 
-stringww 
-Nameww 
-{ww 
-getww  
-;ww  !
-setww" %
-;ww% &
-}ww' (
-[yy 	
-JsonPropertyyy	 
-(yy 
-$stryy  
-)yy  !
-]yy! "
-publiczz 
-intzz 
-Priorityzz 
-{zz 
-getzz !
-;zz! "
-setzz# &
-;zz& '
-}zz( )
-[|| 	
-JsonProperty||	 
-(|| 
-$str||  
-)||  !
-]||! "
-public}} 
-SWCmsConstants}} 
-.}} 
-DataType}} &
-DataType}}' /
-{}}0 1
-get}}2 5
-;}}5 6
-set}}7 :
-;}}: ;
-}}}< =
-[ 	
-JsonProperty	 
-( 
-$str !
-)! "
-]" #
+classxx  
+ModuleFieldViewModelxx %
+{yy 
+[zz 	
+JsonPropertyzz	 
+(zz 
+$strzz 
+)zz 
+]zz 
+public{{ 
+string{{ 
+Name{{ 
+{{{ 
+get{{  
+;{{  !
+set{{" %
+;{{% &
+}{{' (
+[}} 	
+JsonProperty}}	 
+(}} 
+$str}}  
+)}}  !
+]}}! "
+public~~ 
+int~~ 
+Priority~~ 
+{~~ 
+get~~ !
+;~~! "
+set~~# &
+;~~& '
+}~~( )
+[
+ÄÄ 	
+JsonProperty
+ÄÄ	 
+(
+ÄÄ 
+$str
+ÄÄ  
+)
+ÄÄ  !
+]
+ÄÄ! "
 public
-ÄÄ 
+ÅÅ 
+SWCmsConstants
+ÅÅ 
+.
+ÅÅ 
+DataType
+ÅÅ &
+DataType
+ÅÅ' /
+{
+ÅÅ0 1
+get
+ÅÅ2 5
+;
+ÅÅ5 6
+set
+ÅÅ7 :
+;
+ÅÅ: ;
+}
+ÅÅ< =
+[
+ÉÉ 	
+JsonProperty
+ÉÉ	 
+(
+ÉÉ 
+$str
+ÉÉ !
+)
+ÉÉ! "
+]
+ÉÉ" #
+public
+ÑÑ 
 bool
-ÄÄ 
+ÑÑ 
 	IsDisplay
-ÄÄ 
+ÑÑ 
 {
-ÄÄ 
+ÑÑ 
 get
-ÄÄ  #
+ÑÑ  #
 ;
-ÄÄ# $
+ÑÑ# $
 set
-ÄÄ% (
+ÑÑ% (
 ;
-ÄÄ( )
+ÑÑ( )
 }
-ÄÄ* +
+ÑÑ* +
 [
-ÇÇ 	
+ÜÜ 	
 JsonProperty
-ÇÇ	 
+ÜÜ	 
 (
-ÇÇ 
+ÜÜ 
 $str
-ÇÇ 
+ÜÜ 
 )
-ÇÇ 
+ÜÜ 
 ]
-ÇÇ 
+ÜÜ 
 public
-ÉÉ 
+áá 
 int
-ÉÉ 
+áá 
 Width
-ÉÉ 
+áá 
 {
-ÉÉ 
+áá 
 get
-ÉÉ 
+áá 
 ;
-ÉÉ 
+áá 
 set
-ÉÉ  #
+áá  #
 ;
-ÉÉ# $
+áá# $
 }
-ÉÉ% &
+áá% &
 }
-ÑÑ 
+àà 
 public
-ÜÜ 
+ää 
 
 class
-ÜÜ &
+ää &
 ModuleDataValueViewModel
-ÜÜ )
+ää )
 {
-áá 
+ãã 
 [
-àà 	
+åå 	
 JsonProperty
-àà	 
+åå	 
 (
-àà 
+åå 
 $str
-àà  
+åå  
 )
-àà  !
+åå  !
 ]
-àà! "
+åå! "
 public
-ââ 
+çç 
 int
-ââ 
+çç 
 ModuleId
-ââ 
+çç 
 {
-ââ 
+çç 
 get
-ââ !
+çç !
 ;
-ââ! "
+çç! "
 set
-ââ# &
+çç# &
 ;
-ââ& '
+çç& '
 }
-ââ( )
+çç( )
 [
-ãã 	
+èè 	
 JsonProperty
-ãã	 
+èè	 
 (
-ãã 
+èè 
 $str
-ãã 
+èè 
 )
-ãã 
+èè 
 ]
-ãã 
+èè 
 public
-åå 
+êê 
 string
-åå 
+êê 
 Name
-åå 
+êê 
 {
-åå 
+êê 
 get
-åå  
+êê  
 ;
-åå  !
+êê  !
 set
-åå" %
+êê" %
 ;
-åå% &
+êê% &
 }
-åå' (
+êê' (
 [
-éé 	
+íí 	
 JsonProperty
-éé	 
+íí	 
 (
-éé 
+íí 
 $str
-éé  
+íí  
 )
-éé  !
+íí  !
 ]
-éé! "
+íí! "
 public
-èè 
+ìì 
 SWCmsConstants
-èè 
+ìì 
 .
-èè 
+ìì 
 DataType
-èè &
+ìì &
 DataType
-èè' /
+ìì' /
 {
-èè0 1
+ìì0 1
 get
-èè2 5
+ìì2 5
 ;
-èè5 6
+ìì5 6
 set
-èè7 :
+ìì7 :
 ;
-èè: ;
+ìì: ;
 }
-èè< =
+ìì< =
 [
-ëë 	
+ïï 	
 JsonProperty
-ëë	 
+ïï	 
 (
-ëë 
+ïï 
 $str
-ëë 
+ïï 
 )
-ëë 
+ïï 
 ]
-ëë 
+ïï 
 public
-íí 
+ññ 
 IConvertible
-íí 
+ññ 
 Value
-íí !
+ññ !
 {
-íí" #
+ññ" #
 get
-íí$ '
+ññ$ '
 ;
-íí' (
+ññ' (
 set
-íí) ,
+ññ) ,
 ;
-íí, -
+ññ, -
 }
-íí. /
+ññ. /
 [
-îî 	
+òò 	
 JsonProperty
-îî	 
+òò	 
 (
-îî 
+òò 
 $str
-îî #
+òò #
 )
-îî# $
+òò# $
 ]
-îî$ %
+òò$ %
 public
-ïï 
+ôô 
 string
-ïï 
+ôô 
 StringValue
-ïï !
+ôô !
 {
-ïï" #
+ôô" #
 get
-ïï$ '
+ôô$ '
 ;
-ïï' (
+ôô' (
 set
-ïï) ,
+ôô) ,
 ;
-ïï, -
+ôô, -
 }
-ïï. /
+ôô. /
 public
-óó 
+õõ 
 T
-óó 
+õõ 
 GetValue
-óó 
+õõ 
 <
-óó 
+õõ 
 T
-óó 
+õõ 
 >
-óó 
+õõ 
 (
-óó 
+õõ 
 )
-óó 
+õõ 
 {
-òò 	
+úú 	
 return
-ôô 
+ùù 
 this
-ôô 
+ùù 
 .
-ôô 
+ùù 
 Value
-ôô 
+ùù 
 !=
-ôô  
+ùù  
 null
-ôô! %
+ùù! %
 ?
-ôô& '
+ùù& '
 (
-ôô( )
+ùù( )
 T
-ôô) *
+ùù) *
 )
-ôô* +
+ùù* +
 Value
-ôô+ 0
+ùù+ 0
 :
-ôô1 2
+ùù1 2
 default
-ôô3 :
+ùù3 :
 (
-ôô: ;
+ùù: ;
 T
-ôô; <
+ùù; <
 )
-ôô< =
+ùù< =
 ;
-ôô= >
+ùù= >
 }
-öö 	
+ûû 	
 }
-õõ 
+üü 
 public
-ùù 
+°° 
 
 class
-ùù 
+°° 
 ExtraProperty
-ùù 
+°° 
 {
-ûû 
+¢¢ 
 [
-üü 	
+££ 	
 JsonProperty
-üü	 
+££	 
 (
-üü 
+££ 
 $str
-üü  
+££  
 )
-üü  !
+££  !
 ]
-üü! "
+££! "
 public
-†† 
+§§ 
 int
-†† 
+§§ 
 Priority
-†† 
+§§ 
 {
-†† 
+§§ 
 get
-†† !
+§§ !
 ;
-††! "
+§§! "
 set
-††# &
+§§# &
 ;
-††& '
+§§& '
 }
-††( )
+§§( )
 [
-¢¢ 	
+¶¶ 	
 JsonProperty
-¢¢	 
+¶¶	 
 (
-¢¢ 
+¶¶ 
 $str
-¢¢ 
+¶¶ 
 )
-¢¢ 
+¶¶ 
 ]
-¢¢ 
+¶¶ 
 public
-££ 
+ßß 
 string
-££ 
+ßß 
 Name
-££ 
+ßß 
 {
-££ 
+ßß 
 get
-££  
+ßß  
 ;
-££  !
+ßß  !
 set
-££" %
+ßß" %
 ;
-££% &
+ßß% &
 }
-££' (
+ßß' (
 [
-•• 	
+©© 	
 JsonProperty
-••	 
+©©	 
 (
-•• 
+©© 
 $str
-••  
+©©  
 )
-••  !
+©©  !
 ]
-••! "
+©©! "
 public
-¶¶ 
+™™ 
 SWCmsConstants
-¶¶ 
+™™ 
 .
-¶¶ 
+™™ 
 DataType
-¶¶ &
+™™ &
 DataType
-¶¶' /
+™™' /
 {
-¶¶0 1
+™™0 1
 get
-¶¶2 5
+™™2 5
 ;
-¶¶5 6
+™™5 6
 set
-¶¶7 :
+™™7 :
 ;
-¶¶: ;
+™™: ;
 }
-¶¶< =
+™™< =
 [
-®® 	
+¨¨ 	
 JsonProperty
-®®	 
+¨¨	 
 (
-®® 
+¨¨ 
 $str
-®® 
+¨¨ 
 )
-®® 
+¨¨ 
 ]
-®® 
+¨¨ 
 public
-©© 
+≠≠ 
 string
-©© 
+≠≠ 
 Value
-©© 
+≠≠ 
 {
-©© 
+≠≠ 
 get
-©© !
+≠≠ !
 ;
-©©! "
+≠≠! "
 set
-©©# &
+≠≠# &
 ;
-©©& '
+≠≠& '
 }
-©©( )
+≠≠( )
 }
-ØØ 
+≥≥ 
 public
-±± 
+µµ 
 
 class
-±± "
+µµ "
 AccessTokenViewModel
-±± %
+µµ %
 {
-≤≤ 
+∂∂ 
 [
-≥≥ 	
+∑∑ 	
 JsonProperty
-≥≥	 
+∑∑	 
 (
-≥≥ 
+∑∑ 
 $str
-≥≥ $
+∑∑ $
 )
-≥≥$ %
+∑∑$ %
 ]
-≥≥% &
+∑∑% &
 public
-¥¥ 
+∏∏ 
 string
-¥¥ 
+∏∏ 
 Access_token
-¥¥ "
+∏∏ "
 {
-¥¥# $
+∏∏# $
 get
-¥¥% (
+∏∏% (
 ;
-¥¥( )
+∏∏( )
 set
-¥¥* -
+∏∏* -
 ;
-¥¥- .
+∏∏- .
 }
-¥¥/ 0
+∏∏/ 0
 [
-∂∂ 	
+∫∫ 	
 JsonProperty
-∂∂	 
+∫∫	 
 (
-∂∂ 
+∫∫ 
 $str
-∂∂ "
+∫∫ "
 )
-∂∂" #
+∫∫" #
 ]
-∂∂# $
+∫∫# $
 public
-∑∑ 
+ªª 
 string
-∑∑ 
+ªª 
 
 Token_type
-∑∑  
+ªª  
 {
-∑∑! "
+ªª! "
 get
-∑∑# &
+ªª# &
 ;
-∑∑& '
+ªª& '
 set
-∑∑( +
+ªª( +
 ;
-∑∑+ ,
+ªª+ ,
 }
-∑∑- .
+ªª- .
 [
-ππ 	
+ΩΩ 	
 JsonProperty
-ππ	 
+ΩΩ	 
 (
-ππ 
+ΩΩ 
 $str
-ππ %
+ΩΩ %
 )
-ππ% &
+ΩΩ% &
 ]
-ππ& '
+ΩΩ& '
 public
-∫∫ 
+ææ 
 string
-∫∫ 
+ææ 
 Refresh_token
-∫∫ #
+ææ #
 {
-∫∫$ %
+ææ$ %
 get
-∫∫& )
+ææ& )
 ;
-∫∫) *
+ææ) *
 set
-∫∫+ .
+ææ+ .
 ;
-∫∫. /
+ææ. /
 }
-∫∫0 1
+ææ0 1
 [
-ºº 	
+¿¿ 	
 JsonProperty
-ºº	 
+¿¿	 
 (
-ºº 
+¿¿ 
 $str
-ºº "
+¿¿ "
 )
-ºº" #
+¿¿" #
 ]
-ºº# $
+¿¿# $
 public
-ΩΩ 
+¡¡ 
 int
-ΩΩ 
+¡¡ 
 
 Expires_in
-ΩΩ 
+¡¡ 
 {
-ΩΩ 
+¡¡ 
 get
-ΩΩ  #
+¡¡  #
 ;
-ΩΩ# $
+¡¡# $
 set
-ΩΩ% (
+¡¡% (
 ;
-ΩΩ( )
+¡¡( )
 }
-ΩΩ* +
+¡¡* +
 [
-øø 	
+√√ 	
 JsonProperty
-øø	 
+√√	 
 (
-øø 
+√√ 
 $str
-øø !
+√√ !
 )
-øø! "
+√√! "
 ]
-øø" #
+√√" #
 public
-¿¿ 
+ƒƒ 
 string
-¿¿ 
+ƒƒ 
 	Client_id
-¿¿ 
+ƒƒ 
 {
-¿¿  !
+ƒƒ  !
 get
-¿¿" %
+ƒƒ" %
 ;
-¿¿% &
+ƒƒ% &
 set
-¿¿' *
+ƒƒ' *
 ;
-¿¿* +
+ƒƒ* +
 }
-¿¿, -
+ƒƒ, -
 [
-¬¬ 	
+∆∆ 	
 JsonProperty
-¬¬	 
+∆∆	 
 (
-¬¬ 
+∆∆ 
 $str
-¬¬ 
+∆∆ 
 )
-¬¬ 
+∆∆ 
 ]
-¬¬  
+∆∆  
 public
-√√ 
+«« 
 DateTime
-√√ 
+«« 
 Issued
-√√ 
+«« 
 {
-√√  
+««  
 get
-√√! $
+««! $
 ;
-√√$ %
+««$ %
 set
-√√& )
+««& )
 ;
-√√) *
+««) *
 }
-√√+ ,
+««+ ,
 [
-≈≈ 	
+…… 	
 JsonProperty
-≈≈	 
+……	 
 (
-≈≈ 
+…… 
 $str
-≈≈ 
+…… 
 )
-≈≈  
+……  
 ]
-≈≈  !
+……  !
 public
-∆∆ 
+   
 DateTime
-∆∆ 
+   
 Expires
-∆∆ 
+   
 {
-∆∆  !
+    !
 get
-∆∆" %
+  " %
 ;
-∆∆% &
+  % &
 set
-∆∆' *
+  ' *
 ;
-∆∆* +
+  * +
 }
-∆∆, -
+  , -
 [
-»» 	
+ÃÃ 	
 JsonProperty
-»»	 
+ÃÃ	 
 (
-»» 
+ÃÃ 
 $str
-»»  
+ÃÃ  
 )
-»»  !
+ÃÃ  !
 ]
-»»! "
+ÃÃ! "
 public
-…… 
+ÕÕ 
 string
-…… 
+ÕÕ 
 DeviceId
-…… 
+ÕÕ 
 {
-……  
+ÕÕ  
 get
-……! $
+ÕÕ! $
 ;
-……$ %
+ÕÕ$ %
 set
-……& )
+ÕÕ& )
 ;
-……) *
+ÕÕ) *
 }
-……+ ,
+ÕÕ+ ,
+public
+œœ 
+InfoUserViewModel
+œœ  
+UserData
+œœ! )
+{
+œœ* +
+get
+œœ, /
+;
+œœ/ 0
+set
+œœ1 4
+;
+œœ4 5
 }
-ÃÃ 
-}ÕÕ ¢/
-_E:\_Workspace\Github\Swastika-IO-Core\src\Swastika.Cms.Lib\ViewModels\ConfigurationViewModel.cs
+œœ6 7
+}
+–– 
+public
+““ 
+
+class
+““ #
+SiteSettingsViewModel
+““ &
+{
+”” 
+[
+‘‘ 	
+JsonProperty
+‘‘	 
+(
+‘‘ 
+$str
+‘‘ 
+)
+‘‘ 
+]
+‘‘ 
+public
+’’ 
+string
+’’ 
+Lang
+’’ 
+{
+’’ 
+get
+’’  
+;
+’’  !
+set
+’’" %
+;
+’’% &
+}
+’’' (
+[
+÷÷ 	
+JsonProperty
+÷÷	 
+(
+÷÷ 
+$str
+÷÷  
+)
+÷÷  !
+]
+÷÷! "
+public
+◊◊ 
+List
+◊◊ 
+<
+◊◊ 
+SupportedCulture
+◊◊ $
+>
+◊◊$ %
+Cultures
+◊◊& .
+{
+◊◊/ 0
+get
+◊◊1 4
+;
+◊◊4 5
+set
+◊◊6 9
+;
+◊◊9 :
+}
+◊◊; <
+}
+ÿÿ 
+}ŸŸ °/
+^D:\Workspace\GitHub\Swastika-IO-Core\src\Swastika.Cms.Lib\ViewModels\ConfigurationViewModel.cs
 	namespace 	
 Swastika
  
@@ -111039,8 +111167,8 @@ Repository.. 
 ;CC 
 }DD 	
 }GG 
-}HH ™
-jE:\_Workspace\Github\Swastika-IO-Core\src\Swastika.Cms.Lib\ViewModels\FrontEnd\FEArticleModuleViewModel.cs
+}HH ©
+iD:\Workspace\GitHub\Swastika-IO-Core\src\Swastika.Cms.Lib\ViewModels\FrontEnd\FEArticleModuleViewModel.cs
 	namespace
 
  	
@@ -111275,8 +111403,8 @@ Repository::4 >
 }>> 
 }?? 	
 }BB 
-}CC ¨ù
-dE:\_Workspace\Github\Swastika-IO-Core\src\Swastika.Cms.Lib\ViewModels\FrontEnd\FEArticleViewModel.cs
+}CC ´ù
+cD:\Workspace\GitHub\Swastika-IO-Core\src\Swastika.Cms.Lib\ViewModels\FrontEnd\FEArticleViewModel.cs
 	namespace 	
 Swastika
  
@@ -112878,8 +113006,8 @@ Properties
 ÛÛ 	
 }
 ˆˆ 
-}˜˜ ë∑
-eE:\_Workspace\Github\Swastika-IO-Core\src\Swastika.Cms.Lib\ViewModels\FrontEnd\FECategoryViewModel.cs
+}˜˜ ê∑
+dD:\Workspace\GitHub\Swastika-IO-Core\src\Swastika.Cms.Lib\ViewModels\FrontEnd\FECategoryViewModel.cs
 	namespace 	
 Swastika
  
@@ -116253,8 +116381,8 @@ CategoryId
 ˚˚ 	
 }
 ˛˛ 
-}ˇˇ  H
-bE:\_Workspace\Github\Swastika-IO-Core\src\Swastika.Cms.Lib\ViewModels\FrontEnd\FEMediaViewModel.cs
+}ˇˇ …H
+aD:\Workspace\GitHub\Swastika-IO-Core\src\Swastika.Cms.Lib\ViewModels\FrontEnd\FEMediaViewModel.cs
 	namespace 	
 Swastika
  
@@ -116783,8 +116911,8 @@ FileFolder{{T ^
 }~~ 	
 }
 ÅÅ 
-}ÇÇ ™î
-cE:\_Workspace\Github\Swastika-IO-Core\src\Swastika.Cms.Lib\ViewModels\FrontEnd\FEModuleViewModel.cs
+}ÇÇ ©î
+bD:\Workspace\GitHub\Swastika-IO-Core\src\Swastika.Cms.Lib\ViewModels\FrontEnd\FEModuleViewModel.cs
 	namespace 	
 Swastika
  
@@ -118364,8 +118492,8 @@ Repository
 ·· 	
 }
 ‰‰ 
-}ÂÂ †Ã
-dE:\_Workspace\Github\Swastika-IO-Core\src\Swastika.Cms.Lib\ViewModels\FrontEnd\FEProductViewModel.cs
+}ÂÂ üÃ
+cD:\Workspace\GitHub\Swastika-IO-Core\src\Swastika.Cms.Lib\ViewModels\FrontEnd\FEProductViewModel.cs
 	namespace 	
 Swastika
  
@@ -120551,8 +120679,8 @@ Repository
 ∑∑ 	
 }
 ∫∫ 
-}ªª ˆ›
-eE:\_Workspace\Github\Swastika-IO-Core\src\Swastika.Cms.Lib\ViewModels\FrontEnd\FETemplateViewModel.cs
+}ªª ı›
+dD:\Workspace\GitHub\Swastika-IO-Core\src\Swastika.Cms.Lib\ViewModels\FrontEnd\FETemplateViewModel.cs
 	namespace 	
 Swastika
  
@@ -123047,8 +123175,8 @@ subElement
 ÔÔ 	
 }
  
-}ÒÒ Ê
-hE:\_Workspace\Github\Swastika-IO-Core\src\Swastika.Cms.Lib\ViewModels\Info\InfoArticleModuleViewModel.cs
+}ÒÒ Â
+gD:\Workspace\GitHub\Swastika-IO-Core\src\Swastika.Cms.Lib\ViewModels\Info\InfoArticleModuleViewModel.cs
 	namespace
 
  	
@@ -123206,8 +123334,8 @@ ViewModels
 {** 	
 }++ 	
 }.. 
-}// •¥
-bE:\_Workspace\Github\Swastika-IO-Core\src\Swastika.Cms.Lib\ViewModels\Info\InfoArticleViewModel.cs
+}// §¥
+aD:\Workspace\GitHub\Swastika-IO-Core\src\Swastika.Cms.Lib\ViewModels\Info\InfoArticleViewModel.cs
 	namespace 	
 Swastika
  
@@ -125174,8 +125302,8 @@ Repository
 ®® 	
 }
 ≠≠ 
-}ÆÆ ¯`
-cE:\_Workspace\Github\Swastika-IO-Core\src\Swastika.Cms.Lib\ViewModels\Info\InfoCategoryViewModel.cs
+}ÆÆ ˜`
+bD:\Workspace\GitHub\Swastika-IO-Core\src\Swastika.Cms.Lib\ViewModels\Info\InfoCategoryViewModel.cs
 	namespace 	
 Swastika
  
@@ -126040,8 +126168,8 @@ CategoryId
 ≠≠ 	
 }
 ∞∞ 
-}±± ∏
-hE:\_Workspace\Github\Swastika-IO-Core\src\Swastika.Cms.Lib\ViewModels\Info\InfoConfigurationViewModel.cs
+}±± ∑
+gD:\Workspace\GitHub\Swastika-IO-Core\src\Swastika.Cms.Lib\ViewModels\Info\InfoConfigurationViewModel.cs
 	namespace 	
 Swastika
  
@@ -126190,8 +126318,8 @@ ViewModels %
 {11 	
 }22 	
 }77 
-}88 ÈX
-_E:\_Workspace\Github\Swastika-IO-Core\src\Swastika.Cms.Lib\ViewModels\Info\InfoFileViewModel.cs
+}88 ËX
+^D:\Workspace\GitHub\Swastika-IO-Core\src\Swastika.Cms.Lib\ViewModels\Info\InfoFileViewModel.cs
 	namespace 	
 Swastika
  
@@ -126946,8 +127074,8 @@ FileFolder
 ôô 	
 }
 ûû 
-}üü ˘
-jE:\_Workspace\Github\Swastika-IO-Core\src\Swastika.Cms.Lib\ViewModels\Info\InfoModuleAttributeViewModel.cs
+}üü ¯
+iD:\Workspace\GitHub\Swastika-IO-Core\src\Swastika.Cms.Lib\ViewModels\Info\InfoModuleAttributeViewModel.cs
 	namespace
 
  	
@@ -127137,8 +127265,8 @@ ViewModels
 {00 	
 }11 	
 }44 
-}55 ¨ 
-eE:\_Workspace\Github\Swastika-IO-Core\src\Swastika.Cms.Lib\ViewModels\Info\InfoModuleDataViewModel.cs
+}55 ´ 
+dD:\Workspace\GitHub\Swastika-IO-Core\src\Swastika.Cms.Lib\ViewModels\Info\InfoModuleDataViewModel.cs
 	namespace 	
 Swastika
  
@@ -129282,8 +129410,8 @@ CategoryId
 ää 	
 }
 çç 
-}éé ƒ
-aE:\_Workspace\Github\Swastika-IO-Core\src\Swastika.Cms.Lib\ViewModels\Info\InfoModuleViewModel.cs
+}éé √
+`D:\Workspace\GitHub\Swastika-IO-Core\src\Swastika.Cms.Lib\ViewModels\Info\InfoModuleViewModel.cs
 	namespace 	
 Swastika
  
@@ -129512,8 +129640,8 @@ SiocModule<<# -
 {== 	
 }>> 	
 }AA 
-}BB  -
-eE:\_Workspace\Github\Swastika-IO-Core\src\Swastika.Cms.Lib\ViewModels\Info\InfoPortalPageViewModel.cs
+}BB …-
+dD:\Workspace\GitHub\Swastika-IO-Core\src\Swastika.Cms.Lib\ViewModels\Info\InfoPortalPageViewModel.cs
 	namespace 	
 Swastika
  
@@ -129848,8 +129976,8 @@ $SiocPortalPageNavigationIdNavigationMM <
 }SS 
 }TT 	
 }WW 
-}XX ƒﬁ
-bE:\_Workspace\Github\Swastika-IO-Core\src\Swastika.Cms.Lib\ViewModels\Info\InfoProductViewModel.cs
+}XX √ﬁ
+aD:\Workspace\GitHub\Swastika-IO-Core\src\Swastika.Cms.Lib\ViewModels\Info\InfoProductViewModel.cs
 	namespace 	
 Swastika
  
@@ -132266,8 +132394,8 @@ Repository
 ﬂﬂ 	
 }
 ‰‰ 
-}ÂÂ ÅC
-cE:\_Workspace\Github\Swastika-IO-Core\src\Swastika.Cms.Lib\ViewModels\Info\InfoTemplateViewModel.cs
+}ÂÂ ÄC
+bD:\Workspace\GitHub\Swastika-IO-Core\src\Swastika.Cms.Lib\ViewModels\Info\InfoTemplateViewModel.cs
 	namespace 	
 Swastika
  
@@ -132751,8 +132879,8 @@ TemplateId	zz| Ü
 }~~ 	
 }
 ÅÅ 
-}ÇÇ Ô"
-`E:\_Workspace\Github\Swastika-IO-Core\src\Swastika.Cms.Lib\ViewModels\Info\InfoThemeViewModel.cs
+}ÇÇ Ó"
+_D:\Workspace\GitHub\Swastika-IO-Core\src\Swastika.Cms.Lib\ViewModels\Info\InfoThemeViewModel.cs
 	namespace 	
 Swastika
  
@@ -133001,245 +133129,276 @@ Parameters<<N X
 {MM 	
 }NN 	
 }QQ 
-}RR ≥
-_E:\_Workspace\Github\Swastika-IO-Core\src\Swastika.Cms.Lib\ViewModels\Info\InfoUserViewModel.cs
-	namespace 	
-Swastika
+}RR ˙#
+^D:\Workspace\GitHub\Swastika-IO-Core\src\Swastika.Cms.Lib\ViewModels\Info\InfoUserViewModel.cs
+	namespace 	
+Swastika
  
-. 
-Cms 
-. 
-Lib 
-. 
+. 
+Cms 
+. 
+Lib 
+. 
 
-ViewModels %
-.% &
-Info& *
-{ 
-public		 
+ViewModels %
+.% &
+Info& *
+{		 
+public
+
+ 
 
-class		 
-InfoUserViewModel		 "
-:
+class
 
- 	
-ViewModelBase
-
-
- 
-<
-
- 
-SiocCmsContext
-
- &
-,
-
-& '
-SiocCmsUser
-
-( 3
-,
-
-3 4
+ 
 InfoUserViewModel
 
-5 F
->
-
-F G
-{ 
-[ 	
-JsonProperty	 
-( 
-$str 
-) 
-] 
-public 
-string 
-Id 
-{ 
-get 
-; 
-set  #
-;# $
-}% &
-[ 	
-JsonProperty	 
-( 
-$str  
-)  !
-]! "
-public 
-string 
-Username 
-{  
-get! $
-;$ %
-set& )
-;) *
-}+ ,
-[ 	
-JsonProperty	 
-( 
-$str !
-)! "
-]" #
-public 
-string 
-	FirstName 
-{  !
-get" %
-;% &
-set' *
-;* +
-}, -
-[ 	
-JsonProperty	 
-( 
-$str "
-)" #
-]# $
-public 
-string 
+ "
+: 	
+ViewModelBase
+ 
+< 
+SiocCmsContext &
+,& '
+SiocCmsUser( 3
+,3 4
+InfoUserViewModel5 F
+>F G
+{ 
+[ 	
+JsonProperty	 
+( 
+$str 
+) 
+] 
+public 
+string 
+Id 
+{ 
+get 
+; 
+set  #
+;# $
+}% &
+[ 	
+JsonProperty	 
+( 
+$str  
+)  !
+]! "
+public 
+string 
+Username 
+{  
+get! $
+;$ %
+set& )
+;) *
+}+ ,
+[ 	
+JsonProperty	 
+( 
+$str !
+)! "
+]" #
+public 
+string 
+	FirstName 
+{  !
+get" %
+;% &
+set' *
+;* +
+}, -
+[ 	
+JsonProperty	 
+( 
+$str "
+)" #
+]# $
+public 
+string 
 
-MiddleName  
-{! "
-get# &
-;& '
-set( +
-;+ ,
-}- .
-[ 	
-JsonProperty	 
-( 
-$str  
-)  !
-]! "
-public 
-string 
-LastName 
-{  
-get! $
-;$ %
-set& )
-;) *
-}+ ,
-[ 	
-JsonProperty	 
-( 
-$str 
-) 
-]  
-public 
-string 
-Avatar 
-{ 
-get "
-;" #
-set$ '
-;' (
-}) *
-[ 	
-JsonProperty	 
-( 
-$str 
-)  
-]  !
-public 
-string 
-Address 
-{ 
-get  #
-;# $
-set% (
-;( )
-}* +
-[ 	
-JsonProperty	 
-( 
-$str #
-)# $
-]$ %
-public   
-string   
-PhoneNumber   !
-{  " #
-get  $ '
-;  ' (
-set  ) ,
-;  , -
-}  . /
-[!! 	
-JsonProperty!!	 
-(!! 
-$str!! '
-)!!' (
-]!!( )
-public"" 
-DateTime"" 
-CreatedDateTime"" '
-{""( )
-get""* -
-;""- .
-set""/ 2
-;""2 3
-}""4 5
-[## 	
-JsonProperty##	 
-(## 
-$str## !
-)##! "
-]##" #
-public$$ 
-string$$ 
-	CreatedBy$$ 
-{$$  !
-get$$" %
-;$$% &
-set$$' *
-;$$* +
-}$$, -
-public00 
-InfoUserViewModel00  
-(00  !
-)00! "
-:00# $
-base00% )
-(00) *
-)00* +
-{11 	
-}22 	
-public44 
-InfoUserViewModel44  
-(44  !
-SiocCmsUser44! ,
-model44- 2
-,442 3
-SiocCmsContext444 B
-_context44C K
-=44L M
-null44N R
-,44R S!
-IDbContextTransaction44T i
-_transaction44j v
-=44w x
-null44y }
-)44} ~
-:55 
-base55 
-(55 
-model55 
-,55 
-_context55 "
-,55" #
-_transaction55$ 0
-)550 1
-{66 	
-}77 	
-}BB 
-}CC ı
-_E:\_Workspace\Github\Swastika-IO-Core\src\Swastika.Cms.Lib\ViewModels\ModuleArticleViewModel.cs
+MiddleName  
+{! "
+get# &
+;& '
+set( +
+;+ ,
+}- .
+[ 	
+JsonProperty	 
+( 
+$str  
+)  !
+]! "
+public 
+string 
+LastName 
+{  
+get! $
+;$ %
+set& )
+;) *
+}+ ,
+[ 	
+JsonProperty	 
+( 
+$str 
+) 
+]  
+public 
+string 
+Avatar 
+{ 
+get "
+;" #
+set$ '
+;' (
+}) *
+[ 	
+JsonProperty	 
+( 
+$str 
+)  
+]  !
+public 
+string 
+Address 
+{ 
+get  #
+;# $
+set% (
+;( )
+}* +
+[   	
+JsonProperty  	 
+(   
+$str   #
+)  # $
+]  $ %
+public!! 
+string!! 
+PhoneNumber!! !
+{!!" #
+get!!$ '
+;!!' (
+set!!) ,
+;!!, -
+}!!. /
+["" 	
+JsonProperty""	 
+("" 
+$str"" '
+)""' (
+]""( )
+public## 
+DateTime## 
+CreatedDateTime## '
+{##( )
+get##* -
+;##- .
+set##/ 2
+;##2 3
+}##4 5
+[$$ 	
+JsonProperty$$	 
+($$ 
+$str$$ !
+)$$! "
+]$$" #
+public%% 
+string%% 
+	CreatedBy%% 
+{%%  !
+get%%" %
+;%%% &
+set%%' *
+;%%* +
+}%%, -
+[++ 	
+JsonProperty++	 
+(++ 
+$str++ "
+)++" #
+]++# $
+public,, 
+string,, 
+
+DetailsUrl,,  
+{,,! "
+get,,# &
+;,,& '
+set,,( +
+;,,+ ,
+},,- .
+[.. 	
+JsonProperty..	 
+(.. 
+$str.. 
+).. 
+].. 
+public// 
+List// 
+<// 
+string// 
+>// 
+Roles// !
+{//" #
+get//$ '
+;//' (
+set//) ,
+;//, -
+}//. /
+=//0 1
+new//2 5
+List//6 :
+<//: ;
+string//; A
+>//A B
+(//B C
+)//C D
+;//D E
+public66 
+InfoUserViewModel66  
+(66  !
+)66! "
+:66# $
+base66% )
+(66) *
+)66* +
+{77 	
+}88 	
+public:: 
+InfoUserViewModel::  
+(::  !
+SiocCmsUser::! ,
+model::- 2
+,::2 3
+SiocCmsContext::4 B
+_context::C K
+=::L M
+null::N R
+,::R S!
+IDbContextTransaction::T i
+_transaction::j v
+=::w x
+null::y }
+)::} ~
+:;; 
+base;; 
+(;; 
+model;; 
+,;; 
+_context;; "
+,;;" #
+_transaction;;$ 0
+);;0 1
+{<< 	
+}== 	
+}HH 
+}II Ù
+^D:\Workspace\GitHub\Swastika-IO-Core\src\Swastika.Cms.Lib\ViewModels\ModuleArticleViewModel.cs
 	namespace
 
  	
@@ -133388,8 +133547,8 @@ ViewModels
 ;  , -
 }  . /
 }NN 
-}OO ß
-fE:\_Workspace\Github\Swastika-IO-Core\src\Swastika.Cms.Lib\ViewModels\ModuleAttributeValueViewModel.cs
+}OO ¶
+eD:\Workspace\GitHub\Swastika-IO-Core\src\Swastika.Cms.Lib\ViewModels\ModuleAttributeValueViewModel.cs
 	namespace
 
  	
@@ -133607,8 +133766,8 @@ ViewModels
 ;**I J
 }++ 	
 }.. 
-}// Ç!
-lE:\_Workspace\Github\Swastika-IO-Core\src\Swastika.Cms.Lib\ViewModels\Navigation\NavArticleMediaViewModel.cs
+}// Å!
+kD:\Workspace\GitHub\Swastika-IO-Core\src\Swastika.Cms.Lib\ViewModels\Navigation\NavArticleMediaViewModel.cs
 	namespace 	
 Swastika
  
@@ -133850,8 +134009,8 @@ RepositoryAA, 6
 ;DD! "
 }EE 	
 }HH 
-}II ª
-oE:\_Workspace\Github\Swastika-IO-Core\src\Swastika.Cms.Lib\ViewModels\Navigation\NavCategoryArticleViewModel.cs
+}II ∫
+nD:\Workspace\GitHub\Swastika-IO-Core\src\Swastika.Cms.Lib\ViewModels\Navigation\NavCategoryArticleViewModel.cs
 	namespace 	
 Swastika
  
@@ -134075,8 +134234,8 @@ getArticle88 $
 }99 
 }:: 	
 }gg 
-}hh ≥'
-pE:\_Workspace\Github\Swastika-IO-Core\src\Swastika.Cms.Lib\ViewModels\Navigation\NavCategoryCategoryViewModel.cs
+}hh ≤'
+oD:\Workspace\GitHub\Swastika-IO-Core\src\Swastika.Cms.Lib\ViewModels\Navigation\NavCategoryCategoryViewModel.cs
 	namespace 	
 Swastika
  
@@ -134352,8 +134511,8 @@ Repository::2 <
 }@@ 
 }AA 	
 }DD 
-}EE ¢
-oE:\_Workspace\Github\Swastika-IO-Core\src\Swastika.Cms.Lib\ViewModels\Navigation\NavCategoryProductViewModel.cs
+}EE °
+nD:\Workspace\GitHub\Swastika-IO-Core\src\Swastika.Cms.Lib\ViewModels\Navigation\NavCategoryProductViewModel.cs
 	namespace 	
 Swastika
  
@@ -134568,8 +134727,8 @@ getProduct22 $
 }33 
 }44 	
 }aa 
-}bb ú
-mE:\_Workspace\Github\Swastika-IO-Core\src\Swastika.Cms.Lib\ViewModels\Navigation\NavModuleArticleViewModel.cs
+}bb õ
+lD:\Workspace\GitHub\Swastika-IO-Core\src\Swastika.Cms.Lib\ViewModels\Navigation\NavModuleArticleViewModel.cs
 	namespace
 
  	
@@ -134781,8 +134940,8 @@ getArticle-- $
 }.. 
 }// 	
 }[[ 
-}\\ §
-mE:\_Workspace\Github\Swastika-IO-Core\src\Swastika.Cms.Lib\ViewModels\Navigation\NavModuleProductViewModel.cs
+}\\ £
+lD:\Workspace\GitHub\Swastika-IO-Core\src\Swastika.Cms.Lib\ViewModels\Navigation\NavModuleProductViewModel.cs
 	namespace 	
 Swastika
  
@@ -135004,8 +135163,8 @@ getProduct00 $
 }11 
 }22 	
 }^^ 
-}__ á'
-nE:\_Workspace\Github\Swastika-IO-Core\src\Swastika.Cms.Lib\ViewModels\Navigation\NavPortalPageRoleViewModel.cs
+}__ Ü'
+mD:\Workspace\GitHub\Swastika-IO-Core\src\Swastika.Cms.Lib\ViewModels\Navigation\NavPortalPageRoleViewModel.cs
 	namespace 	
 Swastika
  
@@ -135281,8 +135440,8 @@ Repository<<4 >
 }BB 
 }CC 	
 }FF 
-}GG ˇ&
-jE:\_Workspace\Github\Swastika-IO-Core\src\Swastika.Cms.Lib\ViewModels\Navigation\NavPortalPageViewModel.cs
+}GG ˛&
+iD:\Workspace\GitHub\Swastika-IO-Core\src\Swastika.Cms.Lib\ViewModels\Navigation\NavPortalPageViewModel.cs
 	namespace 	
 Swastika
  
@@ -135558,8 +135717,8 @@ Repository<<4 >
 }BB 
 }CC 	
 }FF 
-}GG „Z
-mE:\_Workspace\Github\Swastika-IO-Core\src\Swastika.Cms.Lib\ViewModels\Navigation\NavProductModuleViewModel.cs
+}GG ‚Z
+lD:\Workspace\GitHub\Swastika-IO-Core\src\Swastika.Cms.Lib\ViewModels\Navigation\NavProductModuleViewModel.cs
 	namespace 	
 Swastika
  
@@ -136230,8 +136389,8 @@ saveResultxxE O
 }{{ 	
 }
 ÄÄ 
-}ÅÅ Ó(
-mE:\_Workspace\Github\Swastika-IO-Core\src\Swastika.Cms.Lib\ViewModels\Navigation\NavPropductMediaViewModel.cs
+}ÅÅ Ì(
+lD:\Workspace\GitHub\Swastika-IO-Core\src\Swastika.Cms.Lib\ViewModels\Navigation\NavPropductMediaViewModel.cs
 	namespace 	
 Swastika
  
@@ -136529,8 +136688,8 @@ ParseModelMM "
 ;MM$ %
 }NN 	
 }QQ 
-}RR ã'
-nE:\_Workspace\Github\Swastika-IO-Core\src\Swastika.Cms.Lib\ViewModels\Navigation\NavRelatedProductViewModel.cs
+}RR ä'
+mD:\Workspace\GitHub\Swastika-IO-Core\src\Swastika.Cms.Lib\ViewModels\Navigation\NavRelatedProductViewModel.cs
 	namespace 	
 Swastika
  
@@ -136813,8 +136972,8 @@ ParseModelNN "
 ;NN$ %
 }OO 	
 }RR 
-}SS ˇ~
-`E:\_Workspace\Github\Swastika-IO-Core\src\Swastika.Cms.Lib\ViewModels\Spa\SpaArticleViewModel.cs
+}SS ˛~
+_D:\Workspace\GitHub\Swastika-IO-Core\src\Swastika.Cms.Lib\ViewModels\Spa\SpaArticleViewModel.cs
 	namespace 	
 Swastika
  
@@ -138031,8 +138190,8 @@ getModules
 ◊◊ 	
 }
 ⁄⁄ 
-}€€ ﬂW
-cE:\_Workspace\Github\Swastika-IO-Core\src\Swastika.Cms.Lib\ViewModels\Spa\SpaModuleDataViewModel.cs
+}€€ ﬁW
+bD:\Workspace\GitHub\Swastika-IO-Core\src\Swastika.Cms.Lib\ViewModels\Spa\SpaModuleDataViewModel.cs
 	namespace 	
 Swastika
  
@@ -139023,8 +139182,8 @@ Formatting
 ﬁﬁ 	
 }
 ﬂﬂ 
-}‡‡ ‹á
-_E:\_Workspace\Github\Swastika-IO-Core\src\Swastika.Cms.Lib\ViewModels\Spa\SpaModuleViewModel.cs
+}‡‡ €á
+^D:\Workspace\GitHub\Swastika-IO-Core\src\Swastika.Cms.Lib\ViewModels\Spa\SpaModuleViewModel.cs
 	namespace 	
 Swastika
  
@@ -140362,8 +140521,8 @@ Repository
 «« 	
 }
    
-}ÀÀ ı(
-aE:\_Workspace\Github\Swastika-IO-Core\src\Swastika.Cms.Lib\ViewModels\Spa\SpaTemplateViewModel.cs
+}ÀÀ Ù(
+`D:\Workspace\GitHub\Swastika-IO-Core\src\Swastika.Cms.Lib\ViewModels\Spa\SpaTemplateViewModel.cs
 	namespace 	
 Swastika
  
