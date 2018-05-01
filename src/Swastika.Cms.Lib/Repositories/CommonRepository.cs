@@ -44,17 +44,10 @@ namespace Swastika.Cms.Lib.Repositories
 
         #region Category-Article Navigator
 
-        public RepositoryResponse<List<CategoryArticleViewModel>> GetCategoryArticleNav(
-            string articleId,
-            string specificulture,
-            SiocCmsContext _context = null,
-            IDbContextTransaction _transaction = null)
+        private IQueryable<CategoryArticleViewModel> GetCategoryArticleViewModel(string articleId, string specificulture, SiocCmsContext _context = null, IDbContextTransaction _transaction = null)
         {
             SiocCmsContext context = _context ?? new SiocCmsContext();
-            var transaction = _transaction ?? context.Database.BeginTransaction();
-            try
-            {
-                var categoryArticleViewModels = context.SiocCategory.Include(cp => cp.SiocCategoryArticle)
+            return context.SiocCategory.Include(cp => cp.SiocCategoryArticle)
                     .Where(a => a.Specificulture == specificulture
                                 && (a.Type == (int)SWCmsConstants.CateType.List
                                 || a.Type == (int)SWCmsConstants.CateType.Home))
@@ -70,6 +63,37 @@ namespace Swastika.Cms.Lib.Repositories
                         IsActived = p.SiocCategoryArticle.Count(cp => cp.ArticleId == articleId && cp.Specificulture == specificulture) > 0,
                         Description = p.Title
                     });
+        }
+
+        public RepositoryResponse<List<CategoryArticleViewModel>> GetCategoryArticleNav(
+            string articleId,
+            string specificulture,
+            SiocCmsContext _context = null,
+            IDbContextTransaction _transaction = null)
+        {
+            SiocCmsContext context = _context ?? new SiocCmsContext();
+            var transaction = _transaction ?? context.Database.BeginTransaction();
+            try
+            {
+                //var categoryArticleViewModels = context.SiocCategory.Include(cp => cp.SiocCategoryArticle)
+                //    .Where(a => a.Specificulture == specificulture
+                //                && (a.Type == (int)SWCmsConstants.CateType.List
+                //                || a.Type == (int)SWCmsConstants.CateType.Home))
+                //    .Select(p => new CategoryArticleViewModel(
+                //        new SiocCategoryArticle()
+                //        {
+                //            ArticleId = articleId,
+                //            CategoryId = p.Id,
+                //            Specificulture = specificulture
+                //        },
+                //        _context, _transaction)
+                //    {
+                //        IsActived = p.SiocCategoryArticle.Count(cp => cp.ArticleId == articleId && cp.Specificulture == specificulture) > 0,
+                //        Description = p.Title
+                //    });
+
+                var categoryArticleViewModels = GetCategoryArticleViewModel(articleId, specificulture, context, transaction);
+
                 return new RepositoryResponse<List<CategoryArticleViewModel>>()
                 {
                     IsSucceed = true,
@@ -107,19 +131,24 @@ namespace Swastika.Cms.Lib.Repositories
             var transaction = _transaction ?? context.Database.BeginTransaction();
             try
             {
-                var categoryArticleViewModels = context.SiocCategory.Include(cp => cp.SiocCategoryArticle).Where(a => a.Specificulture == specificulture && a.Type == (int)SWCmsConstants.CateType.List)
-                    .Select(p => new CategoryArticleViewModel(
-                        new SiocCategoryArticle()
-                        {
-                            ArticleId = articleId,
-                            CategoryId = p.Id,
-                            Specificulture = specificulture
-                        },
-                        _context, _transaction)
-                    {
-                        IsActived = p.SiocCategoryArticle.Count(cp => cp.ArticleId == articleId && cp.Specificulture == specificulture) > 0,
-                        Description = p.Title
-                    });
+                //var categoryArticleViewModels = context.SiocCategory.Include(cp => cp.SiocCategoryArticle)
+                //    .Where(a => a.Specificulture == specificulture
+                //        && a.Type == (int)SWCmsConstants.CateType.List)
+                //    .Select(p => new CategoryArticleViewModel(
+                //        new SiocCategoryArticle()
+                //        {
+                //            ArticleId = articleId,
+                //            CategoryId = p.Id,
+                //            Specificulture = specificulture
+                //        },
+                //        _context, _transaction)
+                //    {
+                //        IsActived = p.SiocCategoryArticle.Count(cp => cp.ArticleId == articleId && cp.Specificulture == specificulture) > 0,
+                //        Description = p.Title
+                //    });
+
+                var categoryArticleViewModels = GetCategoryArticleViewModel(articleId, specificulture, context, transaction);
+
                 return new RepositoryResponse<List<CategoryArticleViewModel>>()
                 {
                     IsSucceed = true,
