@@ -4,8 +4,12 @@
 
 using Newtonsoft.Json;
 using Swastika.Cms.Lib.Models.Cms;
+using Swastika.Cms.Lib.ViewModels.Info;
 using Swastika.Common.Helper;
+using Swastika.Domain.Core.Models;
+using Swastika.Identity.Models;
 using System;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
 
@@ -193,6 +197,14 @@ namespace Swastika.Cms.Lib.ViewModels
         [JsonProperty("deviceId")]
         public string DeviceId { get; set; }
 
-        //public ApplicationUser UserData { get; set; }
+        public InfoUserViewModel UserData { get; set; }
+    }
+
+    public class SiteSettingsViewModel
+    {
+        [JsonProperty("lang")]
+        public string Lang { get; set; }
+        [JsonProperty("cultures")]
+        public List<SupportedCulture> Cultures { get; set; }
     }
 }

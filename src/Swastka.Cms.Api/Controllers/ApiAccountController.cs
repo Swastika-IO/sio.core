@@ -13,12 +13,11 @@ using Microsoft.IdentityModel.Tokens;
 using Swastika.Api.Controllers;
 using Swastika.Cms.Lib;
 using Swastika.Cms.Lib.Models.Account;
+using Swastika.Cms.Lib.Models.Cms;
 using Swastika.Cms.Lib.ViewModels;
 using Swastika.Cms.Lib.ViewModels.Account;
 using Swastika.Cms.Lib.ViewModels.Info;
 using Swastika.Domain.Core.ViewModels;
-using Swastika.Identity.Identity.Models.AccountViewModels;
-using Swastika.Identity.Infrastructure;
 using Swastika.Identity.Models;
 using Swastika.Identity.Models.AccountViewModels;
 using Swastika.Identity.Services;
@@ -27,8 +26,8 @@ using System;
 using System.Collections.Generic;
 using System.IdentityModel.Tokens.Jwt;
 using System.Linq;
+using System.Linq.Expressions;
 using System.Security.Claims;
-using System.Security.Principal;
 using System.Threading.Tasks;
 
 namespace Swastika.Core.Controllers
@@ -79,7 +78,7 @@ namespace Swastika.Core.Controllers
         [HttpPost]
         [AllowAnonymous]
         //[ValidateAntiForgeryToken]
-        public async Task<RepositoryResponse<AccessTokenViewModel>> Login(LoginViewModel model)
+        public async Task<RepositoryResponse<AccessTokenViewModel>> Login([FromBody] LoginViewModel model)
         {
             RepositoryResponse<AccessTokenViewModel> loginResult = new RepositoryResponse<AccessTokenViewModel>();
             if (ModelState.IsValid)
@@ -91,9 +90,14 @@ namespace Swastika.Core.Controllers
                 if (result.Succeeded)
                 {
                     var user = await _userManager.FindByNameAsync(model.UserName).ConfigureAwait(false);
+                    var roles = await _userManager.GetRolesAsync(user);
+                    var info = await InfoUserViewModel.Repository.GetSingleModelAsync(u => u.Username == user.UserName);
+                    info.Data.Roles = roles.ToList();
+
                     var token = await GenerateAccessTokenAsync(user);
                     if (token != null)
                     {
+                        token.UserData = info.Data;
                         loginResult.IsSucceed = true;
                         loginResult.Status = 1;
                         loginResult.Data = token;
@@ -277,6 +281,39 @@ namespace Swastika.Core.Controllers
             result.Data = errors.Count == 0;
             result.Errors = errors;
             return result;
+        }
+
+        // POST api/account/list
+        [HttpPost, HttpOptions]
+        [Route("list")]
+        public async Task<RepositoryResponse<PaginationModel<InfoUserViewModel>>> GetList(RequestPaging request)
+        {
+            Expression<Func<SiocCmsUser, bool>> predicate = model =>
+                (!request.Status.HasValue || model.Status == (int)request.Status.Value)
+                && (string.IsNullOrWhiteSpace(request.Keyword)
+                || (
+                    model.Username.Contains(request.Keyword)
+                   || model.FirstName.Contains(request.Keyword)
+                   || model.LastName.Contains(request.Keyword)
+                   )
+                )
+                && (!request.FromDate.HasValue
+                    || (model.CreatedDateTime >= request.FromDate.Value.ToUniversalTime())
+                )
+                && (!request.ToDate.HasValue
+                    || (model.CreatedDateTime <= request.ToDate.Value.ToUniversalTime())
+                );
+
+            var data = await InfoUserViewModel.Repository.GetModelListByAsync(predicate, request.OrderBy, request.Direction, request.PageSize, request.PageIndex).ConfigureAwait(false);
+            if (data.IsSucceed)
+            {
+                data.Data.Items.ForEach(a =>
+                {
+                    a.DetailsUrl = SWCmsHelper.GetRouterUrl(
+                        "Profile", new { a.Id }, Request, Url);                }
+                );
+            }
+            return data;
         }
 
         private async Task<AccessTokenViewModel> GenerateAccessTokenAsync(ApplicationUser user)

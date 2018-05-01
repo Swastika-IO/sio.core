@@ -1,0 +1,18 @@
+﻿<div class="row">
+    <div class="col-md-12">
+        <h2 class="form-login-heading">Login</h2>
+        <input type="text" class="form-control ng-pristine ng-invalid ng-invalid-required" placeholder="Email" 
+               ng-model="loginData.username" required="" autofocus="">
+        <input type="password" class="form-control hidden ng-pristine ng-invalid ng-invalid-required" placeholder="DeviceId" 
+               ng-model="loginData.password" required="">
+        <div class="checkbox hidden">
+            <label>
+                <input type="checkbox" ng-model="loginData.rememberme" class="ng-pristine ng-valid"><strong> Remember</strong>
+            </label>
+        </div>
+        <div ng-hide="message == ''" class="alert alert-danger ng-binding ng-hide">
+            {{message}}
+        </div>
+        <button class="btn btn-md btn-info btn-block" style="margin-top: 10px;" type="submit" ng-click="login()">Login</button>
+    </div>
+</div>

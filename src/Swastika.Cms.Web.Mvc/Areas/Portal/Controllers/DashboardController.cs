@@ -23,9 +23,16 @@ namespace Swastika.Cms.Mvc.Areas.Portal.Controllers
 
         //[Route("/portal/Dashboard")]
         [HttpGet]
-        [Route("{pageSize:int?}/{pageIndex:int?}")]
-        [Route("Index/{pageSize:int?}/{pageIndex:int?}")]
-        public IActionResult Index(string keyword, int pageSize = 10, int pageIndex = 0)
+        [Route("")]
+        public IActionResult Index()
+        {
+            return View();
+        }
+        
+        //[Route("/portal/Dashboard")]
+        [HttpGet]
+        [Route("Dashboard/{pageSize:int?}/{pageIndex:int?}")]
+        public IActionResult Dashboard(string keyword, int pageSize = 10, int pageIndex = 0)
         {
             DashboardViewModel dashboard = new DashboardViewModel();
             return View(dashboard);

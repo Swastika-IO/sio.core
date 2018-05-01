@@ -421,19 +421,6 @@ namespace Swastika.Cms.Lib.Repositories
                         Extension = file.Extension,
                         //Content = s.ReadToEnd()
                     });
-                    //using (StreamReader s = file.OpenText())
-                    //{
-                    //    result.Add(new FileViewModel()
-                    //    {
-                    //        FolderName = folderName,
-                    //        FileFolder = CommonHelper.GetFullPath(new string[] { fullPath, folderName }),
-                    //        Filename = file.Name.Substring(0, file.Name.LastIndexOf('.')),
-                    //        Extension = file.Extension,
-                    //        Content = s.ReadToEnd()
-
-                    //    });
-
-                    //}
                 }
             }
             return result;
@@ -471,19 +458,6 @@ namespace Swastika.Cms.Lib.Repositories
                         Extension = file.Extension,
                         //Content = s.ReadToEnd()
                     });
-                    //using (StreamReader s = file.OpenText())
-                    //{
-                    //    result.Add(new FileViewModel()
-                    //    {
-                    //        FolderName = path.Name,
-                    //        FileFolder = folderName,//CommonHelper.GetFullPath(new string[] { folderName, path.Name }),
-                    //        Filename = file.Name.Substring(0, file.Name.LastIndexOf('.')),
-                    //        Extension = file.Extension,
-                    //        Content = s.ReadToEnd()
-
-                    //    });
-
-                    //}
                 }
             }
             return result;
@@ -510,8 +484,7 @@ namespace Swastika.Cms.Lib.Repositories
                     {
                         Directory.CreateDirectory(fullPath);
                     }
-                    string fileName = SWCmsHelper.GetFullPath(new string[] { fullPath, file.Filename + file.Extension }); //string.Format(file.FileFolder, file.Filename);
-                    //var logPath = System.IO.Path.GetTempFileName();
+                    string fileName = SWCmsHelper.GetFullPath(new string[] { fullPath, file.Filename + file.Extension });
                     if (File.Exists(fileName))
                     {
                         DeleteFile(fileName);
@@ -550,19 +523,14 @@ namespace Swastika.Cms.Lib.Repositories
         {
             try
             {
-                //string fullPath = CommonHelper.GetFullPath(new string[] {
-                //    SWCmsConstants.Parameters.WebRootPath,
-                //    folder
-                //});
                 if (file.Length > 0)
                 {
                     if (!Directory.Exists(fullPath))
                     {
                         Directory.CreateDirectory(fullPath);
                     }
-                    string filename = file.FileName;// Guid.NewGuid().ToString("N");
+                    string filename = file.FileName;
                     string filePath = SWCmsHelper.GetFullPath(new string[] { fullPath, filename });
-                    //var logPath = System.IO.Path.GetTempFileName();
                     if (File.Exists(filePath))
                     {
                         DeleteFile(filePath);
@@ -595,8 +563,7 @@ namespace Swastika.Cms.Lib.Repositories
                     {
                         Directory.CreateDirectory(file.FileFolder);
                     }
-                    string fileName = SWCmsHelper.GetFullPath(new string[] { folder, file.Filename + file.Extension }); //string.Format(file.FileFolder, file.Filename);
-                    //var logPath = System.IO.Path.GetTempFileName();
+                    string fileName = SWCmsHelper.GetFullPath(new string[] { folder, file.Filename + file.Extension });
                     using (var writer = File.CreateText(fileName))
                     {
                         writer.WriteLine(file.Content); //or .Write(), if you wish

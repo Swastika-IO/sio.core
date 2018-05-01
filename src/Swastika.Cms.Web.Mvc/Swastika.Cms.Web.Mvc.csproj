@@ -43,6 +43,10 @@
     <Compile Remove="Views\Shared\Templates\Modus\**" />
     <Compile Remove="Views\Shared\Templates\Now-UI-Kit-PRO\**" />
     <Compile Remove="Views\Shared\Widgets\**" />
+    <Compile Remove="wwwroot\app-portal\components\**" />
+    <Compile Remove="wwwroot\app-portal\controllers\**" />
+    <Compile Remove="wwwroot\app-portal\plugins\**" />
+    <Compile Remove="wwwroot\app-portal\services\**" />
     <Compile Remove="wwwroot\lib\**" />
     <Content Remove="Areas\Portal\Data\**" />
     <Content Remove="Areas\Portal\Models\**" />
@@ -61,6 +65,10 @@
     <Content Remove="Views\Shared\Templates\Modus\**" />
     <Content Remove="Views\Shared\Templates\Now-UI-Kit-PRO\**" />
     <Content Remove="Views\Shared\Widgets\**" />
+    <Content Remove="wwwroot\app-portal\components\**" />
+    <Content Remove="wwwroot\app-portal\controllers\**" />
+    <Content Remove="wwwroot\app-portal\plugins\**" />
+    <Content Remove="wwwroot\app-portal\services\**" />
     <!--<Content Remove="wwwroot\lib\**" />-->
     <EmbeddedResource Remove="Areas\Portal\Data\**" />
     <EmbeddedResource Remove="Areas\Portal\Models\**" />
@@ -79,6 +87,10 @@
     <EmbeddedResource Remove="Views\Shared\Templates\Modus\**" />
     <EmbeddedResource Remove="Views\Shared\Templates\Now-UI-Kit-PRO\**" />
     <EmbeddedResource Remove="Views\Shared\Widgets\**" />
+    <EmbeddedResource Remove="wwwroot\app-portal\components\**" />
+    <EmbeddedResource Remove="wwwroot\app-portal\controllers\**" />
+    <EmbeddedResource Remove="wwwroot\app-portal\plugins\**" />
+    <EmbeddedResource Remove="wwwroot\app-portal\services\**" />
     <EmbeddedResource Remove="wwwroot\lib\**" />
     <None Remove="Areas\Portal\Data\**" />
     <None Remove="Areas\Portal\Models\**" />
@@ -97,6 +109,10 @@
     <None Remove="Views\Shared\Templates\Modus\**" />
     <None Remove="Views\Shared\Templates\Now-UI-Kit-PRO\**" />
     <None Remove="Views\Shared\Widgets\**" />
+    <None Remove="wwwroot\app-portal\components\**" />
+    <None Remove="wwwroot\app-portal\controllers\**" />
+    <None Remove="wwwroot\app-portal\plugins\**" />
+    <None Remove="wwwroot\app-portal\services\**" />
     <None Remove="wwwroot\lib\**" />
   </ItemGroup>
 
@@ -176,7 +192,7 @@
   <ItemGroup>
     <Folder Include="Areas\Portal\Views\Shared\Widgets\" />
     <Folder Include="Areas\User\Models\" />
-    <Folder Include="wwwroot\app-portal\views\" />
+    <Folder Include="wwwroot\app-portal\components\shared\" />
     <Folder Include="wwwroot\app\services\" />
     <Folder Include="wwwroot\lib\" />
   </ItemGroup>
@@ -291,12 +307,12 @@
     <None Include="Views\Shared\Templates\Starceramic\Products\_Default.cshtml" />
     <None Include="Views\_ViewImports.cshtml" />
     <None Include="Views\_ViewStart.cshtml" />
-    <None Include="wwwroot\app-portal\controllers\register-controller.js" />
-    <None Include="wwwroot\app-portal\controllers\user-controller.js" />
-    <None Include="wwwroot\app-portal\services\auth-services.js" />
-    <None Include="wwwroot\app-portal\services\common-services.js" />
-    <None Include="wwwroot\app-portal\services\register-services.js" />
-    <None Include="wwwroot\app-portal\services\user-services.js" />
+    <None Include="wwwroot\app-portal\pages\shared\services\auth-services.js" />
+    <None Include="wwwroot\app-portal\pages\shared\services\common-services.js" />
+    <None Include="wwwroot\app-portal\plunk\editableField.js" />
+    <None Include="wwwroot\app-portal\plunk\heroDetail.js" />
+    <None Include="wwwroot\app-portal\plunk\heroList.js" />
+    <None Include="wwwroot\app-portal\plunk\index.js" />
     <None Include="wwwroot\app\app-portal.js" />
     <None Include="wwwroot\app\controllers\portal-controller.js" />
   </ItemGroup>
@@ -304,6 +320,21 @@
   <ItemGroup>
     <ProjectReference Include="..\Swastika.Cms.Lib\Swastika.Cms.Lib.csproj" />
     <ProjectReference Include="..\Swastka.Cms.Api\Swastka.Cms.Api.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Update="Areas\Portal\Views\Dashboard\Dashboard.cshtml">
+      <Pack>$(IncludeRazorContentInPack)</Pack>
+    </Content>
+    <Content Update="Areas\Portal\Views\Shared\_LayoutPortal_Angularbk.cshtml">
+      <Pack>$(IncludeRazorContentInPack)</Pack>
+    </Content>
+    <Content Update="Areas\Portal\Views\Shared\_LayoutPortal_Angular.cshtml">
+      <Pack>$(IncludeRazorContentInPack)</Pack>
+    </Content>
+    <Content Update="Areas\Portal\Views\Team\Index.cshtml">
+      <Pack>$(IncludeRazorContentInPack)</Pack>
+    </Content>
   </ItemGroup>
 
   <ProjectExtensions>

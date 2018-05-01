@@ -237,7 +237,6 @@ namespace Swastka.Cms.Api.Controllers
         }
 
         // GET api/articles
-
         [HttpPost, HttpOptions]
         [Route("list")]
         public async Task<RepositoryResponse<PaginationModel<InfoArticleViewModel>>> GetList(RequestPaging request)

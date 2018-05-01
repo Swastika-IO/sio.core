@@ -1,0 +1,36 @@
+﻿<div class="sw-toc-item mt-1 mb-1 mb-1" is-active-menu asp-controllers="Articles">
+    <div class="inner">
+        <div class="btn-group btn-group-sm" role="group">
+            <a ng-repeat="m in $ctrl.item.subMenus"
+               href="{{m.href}}" class="btn btn-light">
+                <span class="{{m.icon}}"></span>
+            </a>
+        </div>
+    </div>
+    <div class="sw-toc-link" data-toggle="collapse" data-target="#{{$ctrl.item.title}}" role="button" aria-expanded="false"
+         aria-controls="{{$ctrl.item.title}}">
+        <i class="mi mi-ReadingList mi-lg mi-fw"></i>
+        <span class="text" ng-bind="$ctrl.item.title"></span>
+    </div>
+    <ul id="{{$ctrl.item.title}}" class="collapse list-unstyled" role="tabpanel" data-parent="#sw-docs-nav">
+        <li ng-repeat="m in $ctrl.item.subMenus">
+            <a href="{{m.href}}" class="sw-toc-sub-link mb-1">
+                <i class="{{m.icon}}"></i>                
+                <span class="text" ng-bind="m.title"></span>
+            </a>
+        </li>
+        <li class="hide-on-sb-inactive">
+            <div class="sw-toc-sub-link mb-1">
+                <i class="mi mi-ReadingList mi-fw"></i>
+                <span class="text" ng-bind="$ctrl.item.shortTitle"></span>
+                <div class="inner">
+                    <div class="btn-group btn-group-sm" role="group">
+                        <a ng-repeat="m in $ctrl.item.subMenus" class="btn btn-light">
+                            <span class="{{m.icon}}"></span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </li>
+    </ul>
+</div>

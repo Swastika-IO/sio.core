@@ -76,7 +76,7 @@ namespace Swastka.Cms.Api.Controllers
             return new RepositoryResponse<BEProductViewModel>()
             {
                 IsSucceed = true,
-                Data = new BEProductViewModel(product) { Domain = this._domain, Status = SWStatus.Preview }
+                Data = new BEProductViewModel(product) { Status = SWStatus.Preview }
             };
         }
 
@@ -98,7 +98,7 @@ namespace Swastka.Cms.Api.Controllers
                     var be = new RepositoryResponse<BEProductViewModel>()
                     {
                         IsSucceed = true,
-                        Data = new BEProductViewModel(product) { Domain = this._domain, Status = SWStatus.Preview }
+                        Data = new BEProductViewModel(product) { Status = SWStatus.Preview }
                     };
                     return JObject.FromObject(be);
                 default:
@@ -245,10 +245,6 @@ namespace Swastka.Cms.Api.Controllers
             if (product != null)
             {
                 var result = await product.SaveModelAsync(true).ConfigureAwait(false);
-                if (result.IsSucceed)
-                {
-                    result.Data.Domain = this._domain;
-                }
                 return result;
             }
             return new RepositoryResponse<BEProductViewModel>();
@@ -275,7 +271,7 @@ namespace Swastka.Cms.Api.Controllers
 
         [HttpPost, HttpOptions]
         [Route("list")]
-        public async Task<RepositoryResponse<PaginationModel<InfoProductViewModel>>> GetList(RequestPaging request)
+        public async Task<RepositoryResponse<PaginationModel<InfoProductViewModel>>> GetList([FromBody] RequestPaging request)
         {
             string domain = string.Format("{0}://{1}", Request.Scheme, Request.Host);
 

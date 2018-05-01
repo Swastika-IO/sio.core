@@ -132,6 +132,9 @@ namespace Swastika.Cms.Lib.ViewModels.BackEnd
 
         #region Views
 
+        [JsonProperty("domain")]
+        public string Domain => GlobalConfigurationService.Instance.GetLocalString("Domain", Specificulture, "/");
+
         [JsonProperty("categories")]
         public List<NavCategoryProductViewModel> Categories { get; set; }
 
@@ -210,9 +213,6 @@ namespace Swastika.Cms.Lib.ViewModels.BackEnd
         }
 
         #endregion Template
-
-        [JsonProperty("domain")]
-        public string Domain { get; set; } = "/";
 
         [JsonProperty("imageUrl")]
         public string ImageUrl

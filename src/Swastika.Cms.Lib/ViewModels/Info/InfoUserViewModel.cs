@@ -3,6 +3,7 @@ using Swastika.Domain.Data.ViewModels;
 using Microsoft.EntityFrameworkCore.Storage;
 using Newtonsoft.Json;
 using Swastika.Cms.Lib.Models.Cms;
+using System.Collections.Generic;
 
 namespace Swastika.Cms.Lib.ViewModels.Info
 {
@@ -34,11 +35,16 @@ namespace Swastika.Cms.Lib.ViewModels.Info
         public DateTime CreatedDateTime { get; set; }
         [JsonProperty("createdBy")]
         public string CreatedBy { get; set; }
-        
+
         #endregion
 
         #region Views
 
+        [JsonProperty("detailsUrl")]
+        public string DetailsUrl { get; set; }
+
+        [JsonProperty("roles")]
+        public List<string> Roles { get; set; } = new List<string>();
         #endregion
 
         #endregion
