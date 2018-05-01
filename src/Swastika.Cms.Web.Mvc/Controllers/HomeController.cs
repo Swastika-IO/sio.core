@@ -93,14 +93,14 @@ namespace Swastika.Cms.Mvc.Controllers
                     {
                         getPage.Data.Articles.Items.ForEach(a =>
                         {
-                            a.Article.DetailsUrl = SWCmsHelper.GetRouterUrl("Article", new { a.Article.SeoName }, Request, Url);
+                            a.Article.DetailsUrl = SwCmsHelper.GetRouterUrl("Article", new { a.Article.SeoName }, Request, Url);
                         });
                     }
                     if (getPage.Data.Type == SWCmsConstants.CateType.ListProduct)
                     {
                         getPage.Data.Products.Items.ForEach(p =>
                         {
-                            p.Product.DetailsUrl = SWCmsHelper.GetRouterUrl("Product", new { p.Product.SeoName }, Request, Url);
+                            p.Product.DetailsUrl = SwCmsHelper.GetRouterUrl("Product", new { p.Product.SeoName }, Request, Url);
                         });
                     }
                     ViewBag.pageClass = getPage.Data.CssClass;

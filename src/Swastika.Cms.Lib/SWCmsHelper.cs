@@ -1,4 +1,8 @@
 ﻿// Licensed to the Swastika I/O Foundation under one or more agreements.
+// The Swastika I/O Foundation licenses this file to you under the GNU General Public License v3.0 license.
+// See the LICENSE file in the project root for more information.
+
+// Licensed to the Swastika I/O Foundation under one or more agreements.
 // The Swastika I/O Foundation licenses this file to you under the GNU General Public License v3.0.
 // See the LICENSE file in the project root for more information.
 
@@ -16,7 +20,7 @@ using System.Text.RegularExpressions;
 
 namespace Swastika.Cms.Lib
 {
-    public class SWCmsHelper
+    public static class SwCmsHelper
     {
         public static Translator GetTranslator(string culture)
         {
@@ -165,7 +169,7 @@ namespace Swastika.Cms.Lib
             bool result = false;
             try
             {
-                string fullPath = SWCmsHelper.GetFullPath(new string[]
+                string fullPath = SwCmsHelper.GetFullPath(new string[]
                {
                     SWCmsConstants.Parameters.WebRootPath,
                     filePath
@@ -178,6 +182,7 @@ namespace Swastika.Cms.Lib
             }
             catch
             {
+                throw;
             }
             return result;
         }
@@ -188,12 +193,12 @@ namespace Swastika.Cms.Lib
             //this image is a single pixel (black)
             try
             {
-                string webFolder = SWCmsHelper.GetFullPath(new string[]
+                string webFolder = SwCmsHelper.GetFullPath(new string[]
                {
                     SWCmsConstants.Parameters.WebRootPath,
                     folder
                });
-                string fullPath = SWCmsHelper.GetFullPath(new string[]
+                string fullPath = SwCmsHelper.GetFullPath(new string[]
                 {
                     webFolder,
                     filename

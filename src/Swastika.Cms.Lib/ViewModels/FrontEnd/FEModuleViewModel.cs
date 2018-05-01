@@ -78,7 +78,7 @@ namespace Swastika.Cms.Lib.ViewModels.FrontEnd
         public string TemplatePath {
             get {
                 return string.Format("../{0}", Template);
-                //return SWCmsHelper.GetFullPath(new string[]
+                //return SwCmsHelper.GetFullPath(new string[]
                 //{
                 //    ""
                 //    , SWCmsConstants.Parameters.TemplatesFolder

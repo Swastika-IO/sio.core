@@ -92,7 +92,7 @@ namespace Swastika.Cms.Lib.ViewModels.Info
             get {
                 if (Image != null && Image.IndexOf("http") == -1)
                 {
-                    return SWCmsHelper.GetFullPath(new string[] {
+                    return SwCmsHelper.GetFullPath(new string[] {
                     Domain,  Image
                 });
                 }
@@ -108,7 +108,7 @@ namespace Swastika.Cms.Lib.ViewModels.Info
             get {
                 if (Thumbnail != null && Thumbnail.IndexOf("http") == -1)
                 {
-                    return SWCmsHelper.GetFullPath(new string[] {
+                    return SwCmsHelper.GetFullPath(new string[] {
                     Domain,  Thumbnail
                 });
                 }

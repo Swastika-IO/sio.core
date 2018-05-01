@@ -1,4 +1,8 @@
 ﻿// Licensed to the Swastika I/O Foundation under one or more agreements.
+// The Swastika I/O Foundation licenses this file to you under the GNU General Public License v3.0 license.
+// See the LICENSE file in the project root for more information.
+
+// Licensed to the Swastika I/O Foundation under one or more agreements.
 // The Swastika I/O Foundation licenses this file to you under the GNU General Public License v3.0.
 // See the LICENSE file in the project root for more information.
 
@@ -90,10 +94,8 @@ namespace Swastika.Cms.Lib.ViewModels.FrontEnd
 
         [JsonIgnore]
         [JsonProperty("assetFolder")]
-        public string AssetFolder
-        {
-            get
-            {
+        public string AssetFolder {
+            get {
                 return CommonHelper.GetFullPath(new string[] {
                     SWCmsConstants.Parameters.FileFolder,
                     SWCmsConstants.Parameters.TemplatesAssetFolder,
@@ -103,19 +105,15 @@ namespace Swastika.Cms.Lib.ViewModels.FrontEnd
 
         [JsonIgnore]
         [JsonProperty("templateFolder")]
-        public string TemplateFolder
-        {
-            get
-            {
+        public string TemplateFolder {
+            get {
                 return CommonHelper.GetFullPath(new string[] { SWCmsConstants.Parameters.TemplatesFolder, TemplateName });
             }
         }
 
-        public string TemplatePath
-        {
-            get
-            {
-                return SWCmsHelper.GetFullPath(new string[]
+        public string TemplatePath {
+            get {
+                return SwCmsHelper.GetFullPath(new string[]
                 {
                     ""
                     , TemplateFolder
@@ -126,28 +124,22 @@ namespace Swastika.Cms.Lib.ViewModels.FrontEnd
 
         [JsonIgnore]
         [JsonProperty("spaView")]
-        public XElement SpaView
-        {
-            get
-            {
+        public XElement SpaView {
+            get {
                 return !string.IsNullOrEmpty(SpaContent) ? XElement.Parse(Regex.Replace(SpaContent, "(?<!\r)\n|\r\n|\t", "").Trim()) : new XElement("div");
             }
         }
 
         [JsonProperty("mobileView")]
-        public JObject MobileView
-        {
-            get
-            {
+        public JObject MobileView {
+            get {
                 return !string.IsNullOrEmpty(MobileContent) ? JObject.Parse(MobileContent) : new JObject();
             }
         }
 
         [JsonProperty("mobileComponent")]
-        public MobileComponent mobileComponent
-        {
-            get
-            {
+        public MobileComponent mobileComponent {
+            get {
                 return new MobileComponent(SpaView);
             }
         }
@@ -189,7 +181,7 @@ namespace Swastika.Cms.Lib.ViewModels.FrontEnd
             {
                 CreatedDateTime = DateTime.UtcNow;
             }
-            FileFolder = SWCmsHelper.GetFullPath(new string[]
+            FileFolder = SwCmsHelper.GetFullPath(new string[]
                 {
                     SWCmsConstants.Parameters.TemplatesFolder
                     , TemplateName
@@ -296,14 +288,19 @@ namespace Swastika.Cms.Lib.ViewModels.FrontEnd
     {
         [JsonProperty("id")]
         public int Id { get; set; }
+
         [JsonProperty("componentType")]
         public string ComponentType { get; set; }
+
         [JsonProperty("styleName")]
         public string StyleName { get; set; }
+
         [JsonProperty("dataType")]
         public string DataType { get; set; }
+
         [JsonProperty("dataValue")]
         public string DataValue { get; set; }
+
         [JsonProperty("dataSource")]
         public List<MobileComponent> DataSource { get; set; }
 
@@ -315,7 +312,7 @@ namespace Swastika.Cms.Lib.ViewModels.FrontEnd
 
                 DataSource = new List<MobileComponent>();
                 var subElements = element.Elements();
-                if (subElements.Count() > 0)
+                if (subElements.Any())
                 {
                     if (element.Attribute("data") != null)
                     {
@@ -330,7 +327,7 @@ namespace Swastika.Cms.Lib.ViewModels.FrontEnd
                     }
                     foreach (var subElement in subElements)
                     {
-                        if (subElement.Name!="br")
+                        if (subElement.Name != "br")
                         {
                             DataSource.Add(new MobileComponent(subElement));
                         }
@@ -345,8 +342,10 @@ namespace Swastika.Cms.Lib.ViewModels.FrontEnd
                             DataType = "image_url";
                             DataValue = element.Attribute("src")?.Value.Replace("Model.", "@Model.").Replace("{{", "").Replace("}}", "");
                             break;
+
                         case "br":
                             break;
+
                         default:
                             ComponentType = "Text";
 

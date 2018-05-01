@@ -142,7 +142,7 @@ namespace Swastka.Cms.Api.Controllers
                 m => m.Status != (int)SWStatus.Deleted && m.Specificulture == _lang, orderBy, direction, pageSize, pageIndex).ConfigureAwait(false); //base.Get(orderBy, direction, pageSize, pageIndex);
             if (data.IsSucceed)
             {
-                data.Data.Items.ForEach(a => a.DetailsUrl = SWCmsHelper.GetRouterUrl("Article", new { a.SeoName }, Request, Url));
+                data.Data.Items.ForEach(a => a.DetailsUrl = SwCmsHelper.GetRouterUrl("Article", new { a.SeoName }, Request, Url));
             }
             return data;
         }
@@ -263,7 +263,7 @@ namespace Swastka.Cms.Api.Controllers
             {
                 data.Data.Items.ForEach(a =>
                 {
-                    a.DetailsUrl = SWCmsHelper.GetRouterUrl(
+                    a.DetailsUrl = SwCmsHelper.GetRouterUrl(
                         "Article", new { a.SeoName }, Request, Url);
                     a.Domain = domain;
                 }

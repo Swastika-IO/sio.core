@@ -35,7 +35,7 @@ namespace Swastika.Cms.Web.Mvc.Areas.Portal.Controllers
         private readonly UserManager<ApplicationUser> _userManager;
         private readonly SignInManager<ApplicationUser> _signInManager;
         private readonly RoleManager<IdentityRole> _roleManager;
-        private readonly JWTSettings _options;
+        private readonly JwtSettings _options;
         private readonly IEmailSender _emailSender;
         private readonly ISmsSender _smsSender;
         private readonly ILogger _logger;
@@ -45,7 +45,7 @@ namespace Swastika.Cms.Web.Mvc.Areas.Portal.Controllers
             UserManager<ApplicationUser> userManager,
             SignInManager<ApplicationUser> signInManager,
             RoleManager<IdentityRole> roleManager,
-            IOptions<JWTSettings> optionsAccessor,
+            IOptions<JwtSettings> optionsAccessor,
             IEmailSender emailSender,
             ISmsSender smsSender,
             ILoggerFactory loggerFactory) : base(env)

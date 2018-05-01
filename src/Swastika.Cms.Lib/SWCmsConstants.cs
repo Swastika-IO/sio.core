@@ -1,4 +1,8 @@
 ﻿// Licensed to the Swastika I/O Foundation under one or more agreements.
+// The Swastika I/O Foundation licenses this file to you under the GNU General Public License v3.0 license.
+// See the LICENSE file in the project root for more information.
+
+// Licensed to the Swastika I/O Foundation under one or more agreements.
 // The Swastika I/O Foundation licenses this file to you under the GNU General Public License v3.0.
 // See the LICENSE file in the project root for more information.
 
@@ -149,7 +153,7 @@ namespace Swastika.Cms.Lib
             BackEnd = 1
         }
 
-        public class AuthConfiguration
+        public static class AuthConfiguration
         {
             public const string ApiEndPoint = "/";
             public const string AuthCookieAccessDeniedPath = "";
@@ -179,7 +183,7 @@ namespace Swastika.Cms.Lib
             // In Seconds
             public static string Audience { get; } = "MyAudience";
 
-            public static RsaSecurityKey AuthTokenKey { get; } = new RsaSecurityKey(SWCmsHelper.GenerateKey());
+            public static RsaSecurityKey AuthTokenKey { get; } = new RsaSecurityKey(SwCmsHelper.GenerateKey());
             public static SigningCredentials SigningCredentials { get; } = new SigningCredentials(AuthTokenKey, SecurityAlgorithms.RsaSha256Signature);
             public static string TokenType { get; } = "Bearer";
 
@@ -192,20 +196,20 @@ namespace Swastika.Cms.Lib
                 };
         }
 
-        public class ConfigurationKeyword
+        public static class ConfigurationKeyword
         {
             public const string ConnectionString = "ConnectionString";
             public const string Theme = "Theme";
             public const string ThemeId = "ThemeId";
         }
 
-        public class ConfigurationType
+        public static class ConfigurationType
         {
             public const string System = "System";
             public const string User = "User";
         }
 
-        public class Default
+        public static class Default
         {
             public const string DefaultTemplate = @"_Default";
             public const string DefaultTemplateFolder = @"Default-Templates";
@@ -217,7 +221,7 @@ namespace Swastika.Cms.Lib
             public const string Specificulture = @"en-us";
         }
 
-        public class FileFolder
+        public static class FileFolder
         {
             public const string Fonts = "Fonts";
             public const string Images = "Images";
@@ -226,7 +230,7 @@ namespace Swastika.Cms.Lib
             public const string Styles = "Styles";
         }
 
-        public class JWTSettings
+        public static class JwtSettings
         {
             public const string AUDIENCE = "http://localhost:58510/";
             public const int EXPIRED_IN = 10;
@@ -235,7 +239,7 @@ namespace Swastika.Cms.Lib
             // MINUTES
         }
 
-        public class Parameters
+        public static class Parameters
         {
             public const string FileFolder = @"Content";
             public const string TemplateExtension = @".cshtml";
@@ -245,7 +249,7 @@ namespace Swastika.Cms.Lib
             public const string WebRootPath = @"wwwroot";
         }
 
-        public class TemplateFolder
+        public static class TemplateFolder
         {
             public const string Articles = "Articles";
             public const string Layouts = "Layouts";

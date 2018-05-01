@@ -94,7 +94,7 @@ namespace Swastika.Cms.Lib.ViewModels.BackEnd
 
         public string TemplatePath {
             get {
-                return SWCmsHelper.GetFullPath(new string[]
+                return SwCmsHelper.GetFullPath(new string[]
                 {
                     ""
                     , TemplateFolder
@@ -146,7 +146,7 @@ namespace Swastika.Cms.Lib.ViewModels.BackEnd
             {
                 CreatedDateTime = DateTime.UtcNow;
             }
-            FileFolder = SWCmsHelper.GetFullPath(new string[]
+            FileFolder = SwCmsHelper.GetFullPath(new string[]
                 {
                     SWCmsConstants.Parameters.TemplatesFolder
                     , TemplateName

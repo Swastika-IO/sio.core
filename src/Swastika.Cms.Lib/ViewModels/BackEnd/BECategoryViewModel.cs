@@ -136,7 +136,7 @@ namespace Swastika.Cms.Lib.ViewModels.BackEnd
             {
                 if (Image != null && Image.IndexOf("http") == -1)
                 {
-                    return SWCmsHelper.GetFullPath(new string[] {
+                    return SwCmsHelper.GetFullPath(new string[] {
                     Domain,  Image
                 });
                 }
@@ -154,7 +154,7 @@ namespace Swastika.Cms.Lib.ViewModels.BackEnd
             {
                 if (Thumbnail != null && Thumbnail.IndexOf("http") == -1)
                 {
-                    return SWCmsHelper.GetFullPath(new string[] {
+                    return SwCmsHelper.GetFullPath(new string[] {
                     Domain,  Thumbnail
                 });
                 }
@@ -196,7 +196,7 @@ namespace Swastika.Cms.Lib.ViewModels.BackEnd
         {
             get
             {
-                return SWCmsHelper.GetFullPath(new string[]
+                return SwCmsHelper.GetFullPath(new string[]
                 {
                     SWCmsConstants.Parameters.TemplatesFolder
                     , ActivedTemplate
@@ -274,7 +274,7 @@ namespace Swastika.Cms.Lib.ViewModels.BackEnd
                     Content = "<div></div>"
                 });
             }
-            this.Template = SWCmsHelper.GetFullPath(new string[]
+            this.Template = SwCmsHelper.GetFullPath(new string[]
                {
                     this.View?.FileFolder
                     , this.View?.FileName
@@ -564,7 +564,7 @@ namespace Swastika.Cms.Lib.ViewModels.BackEnd
         {
             if (string.IsNullOrEmpty(this.SeoName))
             {
-                this.SeoName = SEOHelper.GetSEOString(this.Title);
+                this.SeoName = SeoHelper.GetSEOString(this.Title);
             }
             int i = 1;
             string name = SeoName;
@@ -577,17 +577,17 @@ namespace Swastika.Cms.Lib.ViewModels.BackEnd
 
             if (string.IsNullOrEmpty(this.SeoTitle))
             {
-                this.SeoTitle = SEOHelper.GetSEOString(this.Title);
+                this.SeoTitle = SeoHelper.GetSEOString(this.Title);
             }
 
             if (string.IsNullOrEmpty(this.SeoDescription))
             {
-                this.SeoDescription = SEOHelper.GetSEOString(this.Title);
+                this.SeoDescription = SeoHelper.GetSEOString(this.Title);
             }
 
             if (string.IsNullOrEmpty(this.SeoKeywords))
             {
-                this.SeoKeywords = SEOHelper.GetSEOString(this.Title);
+                this.SeoKeywords = SeoHelper.GetSEOString(this.Title);
             }
         }
 

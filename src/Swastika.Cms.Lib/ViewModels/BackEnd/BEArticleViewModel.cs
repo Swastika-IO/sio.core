@@ -149,7 +149,7 @@ namespace Swastika.Cms.Lib.ViewModels.BackEnd
         [JsonProperty("templateFolder")]
         public string TemplateFolder {
             get {
-                return SWCmsHelper.GetFullPath(new string[]
+                return SwCmsHelper.GetFullPath(new string[]
                 {
                     SWCmsConstants.Parameters.TemplatesFolder
                     , ActivedTemplate
@@ -169,7 +169,7 @@ namespace Swastika.Cms.Lib.ViewModels.BackEnd
             get {
                 if (Image != null && Image.IndexOf("http") == -1)
                 {
-                    return SWCmsHelper.GetFullPath(new string[] {
+                    return SwCmsHelper.GetFullPath(new string[] {
                     Domain,  Image
                 });
                 }
@@ -185,7 +185,7 @@ namespace Swastika.Cms.Lib.ViewModels.BackEnd
             get {
                 if (Thumbnail != null && Thumbnail.IndexOf("http") == -1)
                 {
-                    return SWCmsHelper.GetFullPath(new string[] {
+                    return SwCmsHelper.GetFullPath(new string[] {
                     Domain,  Thumbnail
                 });
                 }
@@ -251,7 +251,7 @@ namespace Swastika.Cms.Lib.ViewModels.BackEnd
                     Content = "<div></div>"
                 });
             }
-            this.Template = SWCmsHelper.GetFullPath(new string[]
+            this.Template = SwCmsHelper.GetFullPath(new string[]
                {
                     this.View?.FileFolder
                     , this.View?.FileName
@@ -318,30 +318,30 @@ namespace Swastika.Cms.Lib.ViewModels.BackEnd
             Template = View != null ? string.Format(@"{0}/{1}{2}", View.FolderType, View.FileName, View.Extension) : Template;
             if (ThumbnailFileStream != null)
             {
-                string folder = SWCmsHelper.GetFullPath(new string[]
+                string folder = SwCmsHelper.GetFullPath(new string[]
                 {
                     SWCmsConstants.Parameters.UploadFolder, "Articles", DateTime.UtcNow.ToString("dd-MM-yyyy")
                 });
-                string filename = SWCmsHelper.GetRandomName(ThumbnailFileStream.Name);
-                bool saveThumbnail = SWCmsHelper.SaveFileBase64(folder, filename, ThumbnailFileStream.Base64);
+                string filename = SwCmsHelper.GetRandomName(ThumbnailFileStream.Name);
+                bool saveThumbnail = SwCmsHelper.SaveFileBase64(folder, filename, ThumbnailFileStream.Base64);
                 if (saveThumbnail)
                 {
-                    SWCmsHelper.RemoveFile(Thumbnail);
-                    Thumbnail = SWCmsHelper.GetFullPath(new string[] { folder, filename });
+                    SwCmsHelper.RemoveFile(Thumbnail);
+                    Thumbnail = SwCmsHelper.GetFullPath(new string[] { folder, filename });
                 }
             }
             if (ImageFileStream != null)
             {
-                string folder = SWCmsHelper.GetFullPath(new string[]
+                string folder = SwCmsHelper.GetFullPath(new string[]
                 {
                     SWCmsConstants.Parameters.UploadFolder, "Articles", DateTime.UtcNow.ToString("dd-MM-yyyy")
                 });
-                string filename = SWCmsHelper.GetRandomName(ImageFileStream.Name);
-                bool saveImage = SWCmsHelper.SaveFileBase64(folder, filename, ImageFileStream.Base64);
+                string filename = SwCmsHelper.GetRandomName(ImageFileStream.Name);
+                bool saveImage = SwCmsHelper.SaveFileBase64(folder, filename, ImageFileStream.Base64);
                 if (saveImage)
                 {
-                    SWCmsHelper.RemoveFile(Image);
-                    Image = SWCmsHelper.GetFullPath(new string[] { folder, filename });
+                    SwCmsHelper.RemoveFile(Image);
+                    Image = SwCmsHelper.GetFullPath(new string[] { folder, filename });
                 }
             }
 
@@ -871,7 +871,7 @@ namespace Swastika.Cms.Lib.ViewModels.BackEnd
         {
             if (string.IsNullOrEmpty(this.SeoName))
             {
-                this.SeoName = SEOHelper.GetSEOString(this.Title);
+                this.SeoName = SeoHelper.GetSEOString(this.Title);
             }
             int i = 1;
             string name = SeoName;
@@ -883,17 +883,17 @@ namespace Swastika.Cms.Lib.ViewModels.BackEnd
 
             if (string.IsNullOrEmpty(this.SeoTitle))
             {
-                this.SeoTitle = SEOHelper.GetSEOString(this.Title);
+                this.SeoTitle = SeoHelper.GetSEOString(this.Title);
             }
 
             if (string.IsNullOrEmpty(this.SeoDescription))
             {
-                this.SeoDescription = SEOHelper.GetSEOString(this.Title);
+                this.SeoDescription = SeoHelper.GetSEOString(this.Title);
             }
 
             if (string.IsNullOrEmpty(this.SeoKeywords))
             {
-                this.SeoKeywords = SEOHelper.GetSEOString(this.Title);
+                this.SeoKeywords = SeoHelper.GetSEOString(this.Title);
             }
         }
 

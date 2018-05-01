@@ -359,7 +359,7 @@ namespace Swastika.Cms.Mvc.Areas.Portal.Controllers
             {
                 try
                 {
-                    var result = await ModuleData.SaveModelAsync();//.ConfigureAwait(false);
+                    var result = await ModuleData.SaveModelAsync().ConfigureAwait(false);
                     if (result.IsSucceed)
                     {
                         return RedirectToAction("Details", new RouteValueDictionary(

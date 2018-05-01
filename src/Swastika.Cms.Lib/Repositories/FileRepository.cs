@@ -1,4 +1,8 @@
 ﻿// Licensed to the Swastika I/O Foundation under one or more agreements.
+// The Swastika I/O Foundation licenses this file to you under the GNU General Public License v3.0 license.
+// See the LICENSE file in the project root for more information.
+
+// Licensed to the Swastika I/O Foundation under one or more agreements.
 // The Swastika I/O Foundation licenses this file to you under the GNU General Public License v3.0.
 // See the LICENSE file in the project root for more information.
 
@@ -31,10 +35,8 @@ namespace Swastika.Cms.Lib.Repositories
         /// Gets the instance.
         /// </summary>
         /// <returns></returns>
-        public static FileRepository Instance
-        {
-            get
-            {
+        public static FileRepository Instance {
+            get {
                 if (instance == null)
                 {
                     lock (syncRoot)
@@ -45,8 +47,7 @@ namespace Swastika.Cms.Lib.Repositories
                 }
                 return instance;
             }
-            set
-            {
+            set {
                 instance = value;
             }
         }
@@ -155,7 +156,7 @@ namespace Swastika.Cms.Lib.Repositories
         {
             FileViewModel result = null;
 
-            string folder = SWCmsHelper.GetFullPath(new string[] { SWCmsConstants.Parameters.UploadFolder, FileFolder });
+            string folder = SwCmsHelper.GetFullPath(new string[] { SWCmsConstants.Parameters.UploadFolder, FileFolder });
             string fullPath = string.Format(@"{0}/{1}.{2}", folder, name, ext);
 
             FileInfo file = new FileInfo(fullPath);
@@ -219,16 +220,13 @@ namespace Swastika.Cms.Lib.Repositories
                     Content = defaultContent
                 };
             }
-            else
-            {
-            }
 
             return result ?? new FileViewModel() { FileFolder = FileFolder };
         }
 
         public bool DeleteFile(string name, string extension, string FileFolder)
         {
-            string folder = SWCmsHelper.GetFullPath(new string[] { SWCmsConstants.Parameters.UploadFolder, FileFolder });
+            string folder = SwCmsHelper.GetFullPath(new string[] { SWCmsConstants.Parameters.UploadFolder, FileFolder });
             string fullPath = string.Format(@"{0}/{1}{2}", folder, name, extension);
 
             if (File.Exists(fullPath))
@@ -288,7 +286,7 @@ namespace Swastika.Cms.Lib.Repositories
 
         public List<FileViewModel> GetUploadFiles(string folder)
         {
-            string fullPath = SWCmsHelper.GetFullPath(new string[] { SWCmsConstants.Parameters.UploadFolder, folder });
+            string fullPath = SwCmsHelper.GetFullPath(new string[] { SWCmsConstants.Parameters.UploadFolder, folder });
 
             CreateDirectoryIfNotExist(fullPath);
 
@@ -476,7 +474,7 @@ namespace Swastika.Cms.Lib.Repositories
                 {
                     CreateDirectoryIfNotExist(fullPath);
 
-                    string fileName = SWCmsHelper.GetFullPath(new string[] { fullPath, file.Filename + file.Extension });
+                    string fileName = SwCmsHelper.GetFullPath(new string[] { fullPath, file.Filename + file.Extension });
                     if (File.Exists(fileName))
                     {
                         DeleteFile(fileName);
@@ -520,7 +518,7 @@ namespace Swastika.Cms.Lib.Repositories
                     CreateDirectoryIfNotExist(fullPath);
 
                     string filename = file.FileName;
-                    string filePath = SWCmsHelper.GetFullPath(new string[] { fullPath, filename });
+                    string filePath = SwCmsHelper.GetFullPath(new string[] { fullPath, filename });
                     if (File.Exists(filePath))
                     {
                         DeleteFile(filePath);
@@ -553,7 +551,7 @@ namespace Swastika.Cms.Lib.Repositories
                     {
                         Directory.CreateDirectory(file.FileFolder);
                     }
-                    string fileName = SWCmsHelper.GetFullPath(new string[] { folder, file.Filename + file.Extension });
+                    string fileName = SwCmsHelper.GetFullPath(new string[] { folder, file.Filename + file.Extension });
                     using (var writer = File.CreateText(fileName))
                     {
                         writer.WriteLine(file.Content); //or .Write(), if you wish
@@ -589,11 +587,11 @@ namespace Swastika.Cms.Lib.Repositories
 
         public void UnZipFile(string fileName, string folder)
         {
-            string filePath = SWCmsHelper.GetFullPath(new string[] {
+            string filePath = SwCmsHelper.GetFullPath(new string[] {
                 SWCmsConstants.Parameters.WebRootPath,
                 folder,
                 fileName });
-            string webFolder = SWCmsHelper.GetFullPath(new string[]
+            string webFolder = SwCmsHelper.GetFullPath(new string[]
             {
                 SWCmsConstants.Parameters.WebRootPath,
                 folder
@@ -606,7 +604,6 @@ namespace Swastika.Cms.Lib.Repositories
             {
                 throw;
             }
-            
         }
     }
 }
