@@ -22,7 +22,10 @@ bld/
 [Bb]in/
 [Oo]bj/
 
-!**/sonar-scanner/**/*
+!sonar-scanner/sonar-scanner-3.1.0.1141/bin/sonar-scanner
+!sonar-scanner/sonar-scanner-3.1.0.1141/bin/sonar-scanner.bat
+!sonar-scanner/sonar-scanner-3.1.0.1141/bin/sonar-scanner-debug
+!sonar-scanner/sonar-scanner-3.1.0.1141/bin/sonar-scanner-debug.bat
 
 # Visual Studio 2015 cache/options directory
 .vs/
