@@ -139,7 +139,7 @@ Select your &lt;a href="https://about.sonarcloud.io"&gt;plan&lt;/a&gt; and start
   </ServerSettings>
   <LocalSettings>
     <Property Name="sonar.host.url">https://sonarcloud.io</Property>
-    <Property Name="sonar.exclusions">**/wwwroot/lib/**,**/*.jpg,**/*.png,**/*.svg,**/*.xml,**/wwwroot/Content/**, **/wwwroot/js/plugins/**, **/*.txt, **/wwwroot/js/smoothscroll.js, **/wwwroot/app-portal/**, **/wwwroot/app/**, **/wwwroot/js/**</Property>
+    <Property Name="sonar.exclusions">**/wwwroot/lib/**,**/*.jpg,**/*.png,**/*.svg,**/*.xml,**/wwwroot/Content/**, **/wwwroot/js/plugins/**, **/*.txt, **/wwwroot/js/smoothscroll.js, **/wwwroot/app-portal/**, **/wwwroot/app/**, **/wwwroot/js/**, **/ViewModels/**, **/Migrations/**, **/Models/**</Property>
     <Property Name="sonar.coverage.exclusions">/**</Property>
     <Property Name="sonar.organization">swastika-io</Property>
   </LocalSettings>
