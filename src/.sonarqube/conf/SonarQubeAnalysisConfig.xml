@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <AnalysisConfig xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns="http://www.sonarsource.com/msbuild/integration/2015/1">
-  <SonarConfigDir>E:\_Workspace\Github\Swastika-IO-Core\src\.sonarqube\conf</SonarConfigDir>
-  <SonarOutputDir>E:\_Workspace\Github\Swastika-IO-Core\src\.sonarqube\out</SonarOutputDir>
-  <SonarBinDir>E:\_Workspace\Github\Swastika-IO-Core\src\.sonarqube\bin</SonarBinDir>
-  <SonarScannerWorkingDirectory>E:\_Workspace\Github\Swastika-IO-Core\src</SonarScannerWorkingDirectory>
+  <SonarConfigDir>D:\Workspace\GitHub\Swastika-IO-Core\src\.sonarqube\conf</SonarConfigDir>
+  <SonarOutputDir>D:\Workspace\GitHub\Swastika-IO-Core\src\.sonarqube\out</SonarOutputDir>
+  <SonarBinDir>D:\Workspace\GitHub\Swastika-IO-Core\src\.sonarqube\bin</SonarBinDir>
+  <SonarScannerWorkingDirectory>D:\Workspace\GitHub\Swastika-IO-Core\src</SonarScannerWorkingDirectory>
   <HasBeginStepCommandLineCredentials>true</HasBeginStepCommandLineCredentials>
   <SonarQubeHostUrl>https://sonarcloud.io</SonarQubeHostUrl>
   <SonarQubeVersion>7.1.1.10702</SonarQubeVersion>
@@ -11,7 +11,7 @@
   <AdditionalConfig>
     <ConfigSetting Id="BuildUri" />
     <ConfigSetting Id="TfsUri" />
-    <ConfigSetting Id="settings.file.path" Value="E:\_Workspace\Github\Swastika-IO-Core\sonar-scanner\SonarQube.Analysis.xml" />
+    <ConfigSetting Id="settings.file.path" Value="D:\Workspace\GitHub\Swastika-IO-Core\sonar-scanner\SonarQube.Analysis.xml" />
   </AdditionalConfig>
   <ServerSettings>
     <Property Name="qualinsight.badges.activation.measure">true</Property>
@@ -139,26 +139,26 @@ Select your &lt;a href="https://about.sonarcloud.io"&gt;plan&lt;/a&gt; and start
   </ServerSettings>
   <LocalSettings>
     <Property Name="sonar.host.url">https://sonarcloud.io</Property>
-    <Property Name="sonar.exclusions">**/wwwroot/lib/**,**/*.jpg,**/*.png,**/*.svg,**/*.xml,**/wwwroot/Content/**, **/wwwroot/js/plugins/**</Property>
+    <Property Name="sonar.exclusions">**/wwwroot/lib/**,**/*.jpg,**/*.png,**/*.svg,**/*.xml,**/wwwroot/Content/**, **/wwwroot/js/plugins/**, **/*.txt, **/wwwroot/js/smoothscroll.js</Property>
     <Property Name="sonar.coverage.exclusions">/**</Property>
     <Property Name="sonar.organization">swastika-io</Property>
   </LocalSettings>
   <AnalyzersSettings>
     <AnalyzerSettings>
       <Language>cs</Language>
-      <RuleSetFilePath>E:\_Workspace\Github\Swastika-IO-Core\src\.sonarqube\conf\SonarQubeRoslyn-cs.ruleset</RuleSetFilePath>
+      <RuleSetFilePath>D:\Workspace\GitHub\Swastika-IO-Core\src\.sonarqube\conf\SonarQubeRoslyn-cs.ruleset</RuleSetFilePath>
       <AnalyzerAssemblyPaths>
         <Path>C:\Users\smile\AppData\Local\Temp\.sonarqube\resources\0\Google.Protobuf.dll</Path>
         <Path>C:\Users\smile\AppData\Local\Temp\.sonarqube\resources\0\SonarAnalyzer.CSharp.dll</Path>
         <Path>C:\Users\smile\AppData\Local\Temp\.sonarqube\resources\0\SonarAnalyzer.dll</Path>
       </AnalyzerAssemblyPaths>
       <AdditionalFilePaths>
-        <Path>E:\_Workspace\Github\Swastika-IO-Core\src\.sonarqube\conf\cs\SonarLint.xml</Path>
+        <Path>D:\Workspace\GitHub\Swastika-IO-Core\src\.sonarqube\conf\cs\SonarLint.xml</Path>
       </AdditionalFilePaths>
     </AnalyzerSettings>
     <AnalyzerSettings>
       <Language>vbnet</Language>
-      <RuleSetFilePath>E:\_Workspace\Github\Swastika-IO-Core\src\.sonarqube\conf\SonarQubeRoslyn-vbnet.ruleset</RuleSetFilePath>
+      <RuleSetFilePath>D:\Workspace\GitHub\Swastika-IO-Core\src\.sonarqube\conf\SonarQubeRoslyn-vbnet.ruleset</RuleSetFilePath>
       <AnalyzerAssemblyPaths>
         <Path>C:\Users\smile\AppData\Local\Temp\.sonarqube\resources\1\SonarAnalyzer.VisualBasic.nuspec</Path>
         <Path>C:\Users\smile\AppData\Local\Temp\.sonarqube\resources\1\[Content_Types].xml</Path>
@@ -171,7 +171,7 @@ Select your &lt;a href="https://about.sonarcloud.io"&gt;plan&lt;/a&gt; and start
         <Path>C:\Users\smile\AppData\Local\Temp\.sonarqube\resources\1\_rels\.rels</Path>
       </AnalyzerAssemblyPaths>
       <AdditionalFilePaths>
-        <Path>E:\_Workspace\Github\Swastika-IO-Core\src\.sonarqube\conf\vbnet\SonarLint.xml</Path>
+        <Path>D:\Workspace\GitHub\Swastika-IO-Core\src\.sonarqube\conf\vbnet\SonarLint.xml</Path>
       </AdditionalFilePaths>
     </AnalyzerSettings>
   </AnalyzersSettings>

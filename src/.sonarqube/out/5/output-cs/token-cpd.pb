@@ -1,5 +1,5 @@
-¿G
-XE:\_Workspace\Github\Swastika-IO-Core\src\Swastika.Cms.Web.Mvc\App_Start\Startup.Auth.cs
+øG
+WD:\Workspace\GitHub\Swastika-IO-Core\src\Swastika.Cms.Web.Mvc\App_Start\Startup.Auth.cs
 	namespace 	
 Swastika
  
@@ -481,8 +481,8 @@ LogoutPathoo &
 }zz 
 }{{ 	
 }|| 
-}}} ÄÌ
-sE:\_Workspace\Github\Swastika-IO-Core\src\Swastika.Cms.Web.Mvc\Areas\Portal\Controllers\Apis\ApiModuleController.cs
+}}} ˇÏ
+rD:\Workspace\GitHub\Swastika-IO-Core\src\Swastika.Cms.Web.Mvc\Areas\Portal\Controllers\Apis\ApiModuleController.cs
 	namespace 	
 Swastika
  
@@ -3165,8 +3165,8 @@ Repository
 ıı 	
 }
 ¯¯ 
-}˘˘ ‡∂
-mE:\_Workspace\Github\Swastika-IO-Core\src\Swastika.Cms.Web.Mvc\Areas\Portal\Controllers\ArticlesController.cs
+}˘˘ ﬂ∂
+lD:\Workspace\GitHub\Swastika-IO-Core\src\Swastika.Cms.Web.Mvc\Areas\Portal\Controllers\ArticlesController.cs
 	namespace 	
 Swastika
  
@@ -5135,8 +5135,8 @@ getArticle
 ¶¶ 	
 }
 ßß 
-}®® ¸Ø
-iE:\_Workspace\Github\Swastika-IO-Core\src\Swastika.Cms.Web.Mvc\Areas\Portal\Controllers\AuthController.cs
+}®® ˚Ø
+hD:\Workspace\GitHub\Swastika-IO-Core\src\Swastika.Cms.Web.Mvc\Areas\Portal\Controllers\AuthController.cs
 	namespace 	
 Swastika
  
@@ -6980,8 +6980,8 @@ IsLocalUrl
 ¶¶ 	
 }
 ©© 
-}™™ Œ
-aE:\_Workspace\Github\Swastika-IO-Core\src\Swastika.Cms.Web.Mvc\Areas\Portal\Controllers\Common.cs
+}™™ Õ
+`D:\Workspace\GitHub\Swastika-IO-Core\src\Swastika.Cms.Web.Mvc\Areas\Portal\Controllers\Common.cs
 	namespace 	
 Swastika
  
@@ -7006,8 +7006,8 @@ aE:\_Workspace\Github\Swastika-IO-Core\src\Swastika.Cms.Web.Mvc\Areas\Portal\Con
 }		 
 }
 
- éP
-lE:\_Workspace\Github\Swastika-IO-Core\src\Swastika.Cms.Web.Mvc\Areas\Portal\Controllers\CultureController.cs
+ çP
+kD:\Workspace\GitHub\Swastika-IO-Core\src\Swastika.Cms.Web.Mvc\Areas\Portal\Controllers\CultureController.cs
 	namespace 	
 Swastika
  
@@ -7676,8 +7676,8 @@ Repository
 ïï 	
 }
 ññ 
-}óó Û
-nE:\_Workspace\Github\Swastika-IO-Core\src\Swastika.Cms.Web.Mvc\Areas\Portal\Controllers\DashboardController.cs
+}óó Ú
+mD:\Workspace\GitHub\Swastika-IO-Core\src\Swastika.Cms.Web.Mvc\Areas\Portal\Controllers\DashboardController.cs
 	namespace
 
  	
@@ -7829,8 +7829,8 @@ AspNetCore 
 ;&&" #
 }'' 	
 }(( 
-})) ã~
-iE:\_Workspace\Github\Swastika-IO-Core\src\Swastika.Cms.Web.Mvc\Areas\Portal\Controllers\FileController.cs
+})) ä~
+hD:\Workspace\GitHub\Swastika-IO-Core\src\Swastika.Cms.Web.Mvc\Areas\Portal\Controllers\FileController.cs
 	namespace 	
 Swastika
  
@@ -8999,8 +8999,8 @@ ModelState
 ≥≥ 	
 }
 ¥¥ 
-}µµ Ôc
-mE:\_Workspace\Github\Swastika-IO-Core\src\Swastika.Cms.Web.Mvc\Areas\Portal\Controllers\LanguageController.cs
+}µµ Óc
+lD:\Workspace\GitHub\Swastika-IO-Core\src\Swastika.Cms.Web.Mvc\Areas\Portal\Controllers\LanguageController.cs
 	namespace 	
 Swastika
  
@@ -9921,8 +9921,8 @@ Repository
 ¥¥ 	
 }
 ∑∑ 
-}∏∏ †
-jE:\_Workspace\Github\Swastika-IO-Core\src\Swastika.Cms.Web.Mvc\Areas\Portal\Controllers\MediaController.cs
+}∏∏ ü
+iD:\Workspace\GitHub\Swastika-IO-Core\src\Swastika.Cms.Web.Mvc\Areas\Portal\Controllers\MediaController.cs
 	namespace		 	
 Swastika		
  
@@ -10028,8 +10028,8 @@ AspNetCore 
 ; 
 } 	
 } 
-}   É‘
-kE:\_Workspace\Github\Swastika-IO-Core\src\Swastika.Cms.Web.Mvc\Areas\Portal\Controllers\ModuleController.cs
+}   Ç‘
+jD:\Workspace\GitHub\Swastika-IO-Core\src\Swastika.Cms.Web.Mvc\Areas\Portal\Controllers\ModuleController.cs
 	namespace 	
 Swastika
  
@@ -12435,8 +12435,8 @@ Repository
 üü 	
 }
 ¢¢ 
-}££ Üc
-jE:\_Workspace\Github\Swastika-IO-Core\src\Swastika.Cms.Web.Mvc\Areas\Portal\Controllers\PagesController.cs
+}££ Öc
+iD:\Workspace\GitHub\Swastika-IO-Core\src\Swastika.Cms.Web.Mvc\Areas\Portal\Controllers\PagesController.cs
 	namespace 	
 Swastika
  
@@ -13397,8 +13397,8 @@ categoryId
 ≥≥ 	
 }
 ¥¥ 
-}µµ ¯ê
-kE:\_Workspace\Github\Swastika-IO-Core\src\Swastika.Cms.Web.Mvc\Areas\Portal\Controllers\PortalController.cs
+}µµ ˜ê
+jD:\Workspace\GitHub\Swastika-IO-Core\src\Swastika.Cms.Web.Mvc\Areas\Portal\Controllers\PortalController.cs
 	namespace 	
 Swastika
  
@@ -14759,8 +14759,8 @@ searchType
 ∑∑ 	
 }
 ∏∏ 
-}ππ £∑
-lE:\_Workspace\Github\Swastika-IO-Core\src\Swastika.Cms.Web.Mvc\Areas\Portal\Controllers\ProductController.cs
+}ππ ¢∑
+kD:\Workspace\GitHub\Swastika-IO-Core\src\Swastika.Cms.Web.Mvc\Areas\Portal\Controllers\ProductController.cs
 	namespace 	
 Swastika
  
@@ -16724,8 +16724,8 @@ getProduct
 ßß 	
 }
 ®® 
-}©© û®
-lE:\_Workspace\Github\Swastika-IO-Core\src\Swastika.Cms.Web.Mvc\Areas\Portal\Controllers\ProfileController.cs
+}©© ù®
+kD:\Workspace\GitHub\Swastika-IO-Core\src\Swastika.Cms.Web.Mvc\Areas\Portal\Controllers\ProfileController.cs
 	namespace 	
 Swastika
  
@@ -19940,8 +19940,8 @@ ModelState
 ÛÛ 	
 }
 ˆˆ 
-}˜˜ ’V
-lE:\_Workspace\Github\Swastika-IO-Core\src\Swastika.Cms.Web.Mvc\Areas\Portal\Controllers\SettingController.cs
+}˜˜ ‘V
+kD:\Workspace\GitHub\Swastika-IO-Core\src\Swastika.Cms.Web.Mvc\Areas\Portal\Controllers\SettingController.cs
 	namespace 	
 Swastika
  
@@ -20664,8 +20664,8 @@ Repository
 üü 	
 }
 ¢¢ 
-}££ ›
-iE:\_Workspace\Github\Swastika-IO-Core\src\Swastika.Cms.Web.Mvc\Areas\Portal\Controllers\TeamController.cs
+}££ ‹
+hD:\Workspace\GitHub\Swastika-IO-Core\src\Swastika.Cms.Web.Mvc\Areas\Portal\Controllers\TeamController.cs
 	namespace 	
 Swastika
  
@@ -20753,8 +20753,8 @@ iE:\_Workspace\Github\Swastika-IO-Core\src\Swastika.Cms.Web.Mvc\Areas\Portal\Con
 ; 
 } 	
 } 
-} Õp
-mE:\_Workspace\Github\Swastika-IO-Core\src\Swastika.Cms.Web.Mvc\Areas\Portal\Controllers\TemplateController.cs
+} Ãp
+lD:\Workspace\GitHub\Swastika-IO-Core\src\Swastika.Cms.Web.Mvc\Areas\Portal\Controllers\TemplateController.cs
 	namespace 	
 Swastika
  
@@ -21805,8 +21805,8 @@ FolderType
 ßß 	
 }
 ®® 
-}ØØ ◊u
-jE:\_Workspace\Github\Swastika-IO-Core\src\Swastika.Cms.Web.Mvc\Areas\Portal\Controllers\ThemeController.cs
+}ØØ ÷u
+iD:\Workspace\GitHub\Swastika-IO-Core\src\Swastika.Cms.Web.Mvc\Areas\Portal\Controllers\ThemeController.cs
 	namespace 	
 Swastika
  
@@ -22926,8 +22926,8 @@ Repository
 ¿¿ 	
 }
 ¡¡ 
-}»» ¡
-iE:\_Workspace\Github\Swastika-IO-Core\src\Swastika.Cms.Web.Mvc\Areas\Portal\ViewComponents\Breadcrumbs.cs
+}»» ¿
+hD:\Workspace\GitHub\Swastika-IO-Core\src\Swastika.Cms.Web.Mvc\Areas\Portal\ViewComponents\Breadcrumbs.cs
 	namespace 	
 Swastika
  
@@ -22964,8 +22964,8 @@ iE:\_Workspace\Github\Swastika-IO-Core\src\Swastika.Cms.Web.Mvc\Areas\Portal\Vie
 ; 
 } 	
 } 
-} «
-lE:\_Workspace\Github\Swastika-IO-Core\src\Swastika.Cms.Web.Mvc\Areas\Portal\ViewComponents\ControlSidebar.cs
+} ∆
+kD:\Workspace\GitHub\Swastika-IO-Core\src\Swastika.Cms.Web.Mvc\Areas\Portal\ViewComponents\ControlSidebar.cs
 	namespace 	
 Swastika
  
@@ -23002,8 +23002,8 @@ lE:\_Workspace\Github\Swastika-IO-Core\src\Swastika.Cms.Web.Mvc\Areas\Portal\Vie
 ; 
 } 	
 } 
-} √
-jE:\_Workspace\Github\Swastika-IO-Core\src\Swastika.Cms.Web.Mvc\Areas\Portal\ViewComponents\HeaderNavbar.cs
+} ¬
+iD:\Workspace\GitHub\Swastika-IO-Core\src\Swastika.Cms.Web.Mvc\Areas\Portal\ViewComponents\HeaderNavbar.cs
 	namespace 	
 Swastika
  
@@ -23040,8 +23040,8 @@ jE:\_Workspace\Github\Swastika-IO-Core\src\Swastika.Cms.Web.Mvc\Areas\Portal\Vie
 ; 
 } 	
 } 
-} ø
-hE:\_Workspace\Github\Swastika-IO-Core\src\Swastika.Cms.Web.Mvc\Areas\Portal\ViewComponents\MainFooter.cs
+} æ
+gD:\Workspace\GitHub\Swastika-IO-Core\src\Swastika.Cms.Web.Mvc\Areas\Portal\ViewComponents\MainFooter.cs
 	namespace 	
 Swastika
  
@@ -23079,8 +23079,8 @@ MainFooter		 
 ; 
 } 	
 } 
-} ¡
-iE:\_Workspace\Github\Swastika-IO-Core\src\Swastika.Cms.Web.Mvc\Areas\Portal\ViewComponents\MainSidebar.cs
+} ¿
+hD:\Workspace\GitHub\Swastika-IO-Core\src\Swastika.Cms.Web.Mvc\Areas\Portal\ViewComponents\MainSidebar.cs
 	namespace 	
 Swastika
  
@@ -23117,8 +23117,8 @@ iE:\_Workspace\Github\Swastika-IO-Core\src\Swastika.Cms.Web.Mvc\Areas\Portal\Vie
 ; 
 } 	
 } 
-} ∑
-dE:\_Workspace\Github\Swastika-IO-Core\src\Swastika.Cms.Web.Mvc\Areas\Portal\ViewComponents\Modals.cs
+} ∂
+cD:\Workspace\GitHub\Swastika-IO-Core\src\Swastika.Cms.Web.Mvc\Areas\Portal\ViewComponents\Modals.cs
 	namespace 	
 Swastika
  
@@ -23155,8 +23155,8 @@ dE:\_Workspace\Github\Swastika-IO-Core\src\Swastika.Cms.Web.Mvc\Areas\Portal\Vie
 ; 
 } 	
 } 
-} ≠á
-iE:\_Workspace\Github\Swastika-IO-Core\src\Swastika.Cms.Web.Mvc\Areas\User\Controllers\ManageController.cs
+} ¨á
+hD:\Workspace\GitHub\Swastika-IO-Core\src\Swastika.Cms.Web.Mvc\Areas\User\Controllers\ManageController.cs
 	namespace 	
 Swastika
  
@@ -26037,8 +26037,8 @@ ModelState
 ÙÙ 	
 }
 ˜˜ 
-}¯¯ µH
-\E:\_Workspace\Github\Swastika-IO-Core\src\Swastika.Cms.Web.Mvc\Controllers\BaseController.cs
+}¯¯ ¥H
+[D:\Workspace\GitHub\Swastika-IO-Core\src\Swastika.Cms.Web.Mvc\Controllers\BaseController.cs
 	namespace 	
 Swastika
  
@@ -26540,8 +26540,8 @@ folderPathyy> H
 ÄÄ 	
 }
 ÅÅ 
-}ÇÇ ì„
-\E:\_Workspace\Github\Swastika-IO-Core\src\Swastika.Cms.Web.Mvc\Controllers\HomeController.cs
+}ÇÇ í„
+[D:\Workspace\GitHub\Swastika-IO-Core\src\Swastika.Cms.Web.Mvc\Controllers\HomeController.cs
 	namespace 	
 Swastika
  
@@ -29028,8 +29028,8 @@ SpaContent
 ππ 	
 }
 ∫∫ 
-}ªª ≠
-_E:\_Workspace\Github\Swastika-IO-Core\src\Swastika.Cms.Web.Mvc\Controllers\InitCmsController.cs
+}ªª ¨
+^D:\Workspace\GitHub\Swastika-IO-Core\src\Swastika.Cms.Web.Mvc\Controllers\InitCmsController.cs
 	namespace 	
 Swastika
  
@@ -29242,8 +29242,8 @@ superAdmin,, 
 }66 
 }77 	
 }88 
-}99 Å
-WE:\_Workspace\Github\Swastika-IO-Core\src\Swastika.Cms.Web.Mvc\Models\ErrorViewModel.cs
+}99 Ä
+VD:\Workspace\GitHub\Swastika-IO-Core\src\Swastika.Cms.Web.Mvc\Models\ErrorViewModel.cs
 	namespace 	
 Swastika
  
@@ -29283,8 +29283,8 @@ WE:\_Workspace\Github\Swastika-IO-Core\src\Swastika.Cms.Web.Mvc\Models\ErrorView
 )D E
 ;E F
 } 
-} ˝
-]E:\_Workspace\Github\Swastika-IO-Core\src\Swastika.Cms.Web.Mvc\Models\Identity\JWTSettings.cs
+} ¸
+\D:\Workspace\GitHub\Swastika-IO-Core\src\Swastika.Cms.Web.Mvc\Models\Identity\JWTSettings.cs
 	namespace 	
 Swastika
  
@@ -29350,9 +29350,9 @@ WE:\_Workspace\Github\Swastika-IO-Core\src\Swastika.Cms.Web.Mvc\Models\ErrorView
 ;) *
 }+ ,
 } 
-} Ö
+} Ñ
 
-IE:\_Workspace\Github\Swastika-IO-Core\src\Swastika.Cms.Web.Mvc\Program.cs
+HD:\Workspace\GitHub\Swastika-IO-Core\src\Swastika.Cms.Web.Mvc\Program.cs
 	namespace 	
 Swastika
  
@@ -29430,8 +29430,8 @@ UseStartup 
 ) 
 ; 
 } 
-} ∞b
-IE:\_Workspace\Github\Swastika-IO-Core\src\Swastika.Cms.Web.Mvc\Startup.cs
+} Øb
+HD:\Workspace\GitHub\Swastika-IO-Core\src\Swastika.Cms.Web.Mvc\Startup.cs
 	namespace 	
 Swastika
  
@@ -30307,8 +30307,8 @@ GetSectionjj3 =
 ∫∫ 	
 }
 ªª 
-}ºº §	
-]E:\_Workspace\Github\Swastika-IO-Core\src\Swastika.Cms.Web.Mvc\ViewComponents\FooterNavbar.cs
+}ºº £	
+\D:\Workspace\GitHub\Swastika-IO-Core\src\Swastika.Cms.Web.Mvc\ViewComponents\FooterNavbar.cs
 	namespace
 
  	
@@ -30387,8 +30387,8 @@ GetSectionjj3 =
 ;C D
 } 	
 } 
-} á
-]E:\_Workspace\Github\Swastika-IO-Core\src\Swastika.Cms.Web.Mvc\ViewComponents\HeaderNavbar.cs
+} Ü
+\D:\Workspace\GitHub\Swastika-IO-Core\src\Swastika.Cms.Web.Mvc\ViewComponents\HeaderNavbar.cs
 	namespace
 
  	
