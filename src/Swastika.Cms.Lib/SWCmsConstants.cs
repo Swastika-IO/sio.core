@@ -10,7 +10,7 @@ namespace Swastika.Cms.Lib
     public class SWCmsConstants
     {
         public const string CONST_DEFAULT_CONNECTION = "CmsConnection";
-        
+
         /// The constant path home access denied
         /// </summary>
         public const string CONST_PATH_HOME_ACCESS_DENIED = "/home/access-denied";
@@ -64,9 +64,9 @@ namespace Swastika.Cms.Lib
         /// The constant default extension file name
         /// </summary>
         public const string CONST_DEFAULT_EXTENSION_FILE_NAME = "extensions.json";
+
         public enum CatePosition
         {
-
             Top = 1,
             Left = 2,
             Footer = 3,
@@ -159,7 +159,7 @@ namespace Swastika.Cms.Lib
             public const int AuthCookieRefreshExpiration = 3000;
 
             public const string AuthTokenIssuer = "Swastika";
-            public const string ConnectionString = @"Server=115.77.190.113,4444;Database=stag_swastika_io;UID=sa;Pwd=sqlP@ssw0rd;MultipleActiveResultSets=true";
+            public const string ConnectionString = @"";
             public const string FacebookId = "";
             public const string FacebookSecret = "";
 
@@ -211,7 +211,7 @@ namespace Swastika.Cms.Lib
             public const string DefaultTemplateLayoutBody = "<div>@RenderBody();</div>";
             public const string OrderBy = @"Priority";
             public const int PageSizeArticle = 20;
-            public const string Password = @"1234qwe@";
+            public const string Password = @"";
             public const string Specificulture = @"en-us";
         }
 
