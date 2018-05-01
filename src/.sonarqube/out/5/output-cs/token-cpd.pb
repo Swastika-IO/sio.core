@@ -1,5 +1,5 @@
-ÉH
-WD:\Workspace\GitHub\Swastika-IO-Core\src\Swastika.Cms.Web.Mvc\App_Start\Startup.Auth.cs
+ÑH
+XE:\_Workspace\Github\Swastika-IO-Core\src\Swastika.Cms.Web.Mvc\App_Start\Startup.Auth.cs
 	namespace 	
 Swastika
  
@@ -485,21 +485,23 @@ LogoutPathoo &
 }zz 
 }{{ 	
 }|| 
-}}} ⁄Ï
-rD:\Workspace\GitHub\Swastika-IO-Core\src\Swastika.Cms.Web.Mvc\Areas\Portal\Controllers\Apis\ApiModuleController.cs
-	namespace 	
-TTS
- 
-. 
-Web 
-. 
-Areas 
-. 
-Portal 
-. 
-Controllers *
-.* +
-Apis+ /
+}}} ÄÌ
+sE:\_Workspace\Github\Swastika-IO-Core\src\Swastika.Cms.Web.Mvc\Areas\Portal\Controllers\Apis\ApiModuleController.cs
+	namespace 	
+Swastika
+ 
+. 
+Cms 
+. 
+Mvc 
+. 
+Areas  
+.  !
+Portal! '
+.' (
+Controllers( 3
+.3 4
+Apis4 8
 { 
 [ 
 Area 	
@@ -2280,895 +2282,895 @@ ModuleData
 )
 åå' (
 {
-éé 
+çç 
 Id
-èè 
+éé 
 =
-èè 
+éé 
 Guid
-èè !
+éé !
 .
-èè! "
+éé! "
 NewGuid
-èè" )
+éé" )
 (
-èè) *
+éé) *
 )
-èè* +
+éé* +
 .
-èè+ ,
+éé+ ,
 ToString
-èè, 4
+éé, 4
 (
-èè4 5
+éé4 5
 $str
-èè5 8
+éé5 8
 )
-èè8 9
+éé8 9
 ,
-èè9 :
+éé9 :
 ModuleId
-êê  
+èè  
 =
-êê! "
+èè! "
 id
-êê# %
+èè# %
 ,
-êê% &
+èè% &
 Specificulture
-ëë &
+êê &
 =
-ëë' (
+êê' (
 CurrentLanguage
-ëë) 8
+êê) 8
 ,
-ëë8 9
+êê8 9
 Fields
-íí 
+ëë 
 =
-íí  
+ëë  
 module
-íí! '
+ëë! '
 .
-íí' (
+ëë' (
 Fields
-íí( .
+ëë( .
 }
-ìì 
+íí 
 )
-ìì 
+íí 
 ;
-ìì 
+íí 
 return
-îî 
+ìì 
 View
-îî 
+ìì 
 (
-îî 
+ìì 
 
 ModuleData
-îî &
+ìì &
 )
-îî& '
+ìì& '
 ;
-îî' (
+ìì' (
 }
-ïï 
+îî 
 else
-ññ 
+ïï 
 {
-óó 
+ññ 
 return
-òò 
+óó 
 NotFound
-òò 
+óó 
 (
-òò  
+óó  
 )
-òò  !
+óó  !
 ;
-òò! "
+óó! "
 }
-ôô 
+òò 
 }
-öö 	
+ôô 	
 [
-üü 	
+ûû 	
 Route
-üü	 
+ûû	 
 (
-üü 
+ûû 
 $str
-üü '
+ûû '
 )
-üü' (
+ûû' (
 ]
-üü( )
+ûû( )
 [
-†† 	
+üü 	
 HttpPost
-††	 
+üü	 
 ]
-†† 
+üü 
 [
-°° 	&
+†† 	&
 ValidateAntiForgeryToken
-°°	 !
+††	 !
 ]
-°°! "
+††! "
 public
-¢¢ 
+°° 
 async
-¢¢ 
+°° 
 Task
-¢¢ 
+°° 
 <
-¢¢ 
+°° 
 IActionResult
-¢¢ '
+°° '
 >
-¢¢' (
+°°' (
 AddModuleData
-¢¢) 6
+°°) 6
 (
-¢¢6 7%
+°°6 7%
 InfoModuleDataViewModel
-¢¢7 N
+°°7 N
 
 ModuleData
-¢¢O Y
+°°O Y
 )
-¢¢Y Z
+°°Y Z
 {
-££ 	
+¢¢ 	
 if
-§§ 
+££ 
 (
-§§ 
+££ 
 
 ModelState
-§§ 
+££ 
 .
-§§ 
+££ 
 IsValid
-§§ "
+££ "
 )
-§§" #
+££" #
 {
-•• 
+§§ 
 
 ModuleData
-¶¶ 
+•• 
 .
-¶¶ 
+•• 
 CreatedDateTime
-¶¶ *
+•• *
 =
-¶¶+ ,
+••+ ,
 DateTime
-¶¶- 5
+••- 5
 .
-¶¶5 6
+••5 6
 UtcNow
-¶¶6 <
+••6 <
 ;
-¶¶< =
+••< =
 var
-ßß 
+¶¶ 
+result
+¶¶ 
+=
+¶¶ 
+await
+¶¶ "
+
+ModuleData
+¶¶# -
+.
+¶¶- .
+SaveModelAsync
+¶¶. <
+(
+¶¶< =
+)
+¶¶= >
+;
+¶¶> ?
+if
+ßß 
+(
+ßß 
 result
 ßß 
-=
-ßß 
-await
-ßß "
-
-ModuleData
-ßß# -
 .
-ßß- .
-SaveModelAsync
-ßß. <
-(
-ßß< =
-)
-ßß= >
-;
-ßß> ?
-if
-®® 
-(
-®® 
-result
-®® 
-.
-®® 
+ßß 
 	IsSucceed
-®® $
+ßß $
 )
-®®$ %
+ßß$ %
 {
-©© 
+®® 
 return
-™™ 
+©© 
 RedirectToAction
-™™ +
+©© +
 (
-™™+ ,
+©©+ ,
 $str
-™™, 5
+©©, 5
 ,
-™™5 6
+©©5 6
 new
-™™7 :"
+©©7 :"
 RouteValueDictionary
-™™; O
+©©; O
 (
-™™O P
+©©O P
 new
-™™P S
+©©P S
 {
-™™T U
+©©T U
 id
-™™V X
+©©V X
 =
-™™Y Z
+©©Y Z
 
 ModuleData
-™™[ e
+©©[ e
 .
-™™e f
+©©e f
 ModuleId
-™™f n
+©©f n
 }
-™™o p
+©©o p
 )
-™™p q
+©©p q
 )
-™™q r
+©©q r
 ;
-™™r s
+©©r s
 }
-´´ 
+™™ 
 else
-¨¨ 
+´´ 
 {
-≠≠ 
+¨¨ 
 throw
-ÆÆ 
+≠≠ 
 new
-ÆÆ 
+≠≠ 
 	Exception
-ÆÆ '
+≠≠ '
 (
-ÆÆ' (
+≠≠' (
 result
-ÆÆ( .
+≠≠( .
 .
-ÆÆ. /
+≠≠. /
 	Exception
-ÆÆ/ 8
+≠≠/ 8
 .
-ÆÆ8 9
+≠≠8 9
 
 StackTrace
-ÆÆ9 C
+≠≠9 C
 )
-ÆÆC D
+≠≠C D
 ;
-ÆÆD E
+≠≠D E
 }
-ØØ 
+ÆÆ 
 }
-∞∞ 
+ØØ 
 return
-±± 
+∞∞ 
 View
-±± 
+∞∞ 
 (
-±± 
+∞∞ 
 
 ModuleData
-±± "
+∞∞ "
 )
-±±" #
+∞∞" #
 ;
-±±# $
+∞∞# $
 }
-≤≤ 	
+±± 	
 [
-µµ 	
+¥¥ 	
 HttpGet
-µµ	 
+¥¥	 
 ]
-µµ 
+¥¥ 
 [
-∂∂ 	
+µµ 	
 Route
-∂∂	 
+µµ	 
 (
-∂∂ 
+µµ 
 $str
-∂∂ -
+µµ -
 )
-∂∂- .
+µµ- .
 ]
-∂∂. /
+µµ. /
 public
-∑∑ 
+∂∂ 
 async
-∑∑ 
+∂∂ 
 Task
-∑∑ 
+∂∂ 
 <
-∑∑ 
+∂∂ 
 IActionResult
-∑∑ '
+∂∂ '
 >
-∑∑' (
+∂∂' (
 EditModuleData
-∑∑) 7
+∂∂) 7
 (
-∑∑7 8
+∂∂7 8
 int
-∑∑8 ;
+∂∂8 ;
 id
-∑∑< >
+∂∂< >
 ,
-∑∑> ?
+∂∂> ?
 string
-∑∑@ F
+∂∂@ F
 dataId
-∑∑G M
+∂∂G M
 )
-∑∑M N
+∂∂M N
 {
-∏∏ 	
+∑∑ 	
 var
-ππ 
+∏∏ 
 getModuleData
-ππ 
+∏∏ 
 =
-ππ 
+∏∏ 
 await
-ππ  %%
+∏∏  %%
 InfoModuleDataViewModel
-ππ& =
+∏∏& =
 .
-ππ= >
+∏∏= >
 
 Repository
-ππ> H
+∏∏> H
 .
-ππH I!
+∏∏H I!
 GetSingleModelAsync
-ππI \
+∏∏I \
 (
-ππ\ ]
+∏∏\ ]
 m
-∫∫ 
+ππ 
 =>
-∫∫ 
+ππ 
 m
-∫∫ 
+ππ 
 .
-∫∫ 
+ππ 
 Id
-∫∫ 
+ππ 
 ==
-∫∫ 
+ππ 
 dataId
-∫∫ #
+ππ #
 )
-∫∫# $
+ππ# $
 ;
-∫∫$ %
+ππ$ %
 if
-ªª 
+∫∫ 
 (
-ªª 
+∫∫ 
 getModuleData
-ªª 
+∫∫ 
 .
-ªª 
+∫∫ 
 	IsSucceed
-ªª '
+∫∫ '
 )
-ªª' (
+∫∫' (
 {
-ºº 
+ªª 
 return
-ΩΩ 
+ºº 
 View
-ΩΩ 
+ºº 
 (
-ΩΩ 
+ºº 
 getModuleData
-ΩΩ )
+ºº )
 .
-ΩΩ) *
+ºº) *
 Data
-ΩΩ* .
+ºº* .
 )
-ΩΩ. /
+ºº. /
 ;
-ΩΩ/ 0
+ºº/ 0
 }
-ææ 
+ΩΩ 
 return
-øø 
+ææ 
 RedirectToAction
-øø #
+ææ #
 (
-øø# $
+ææ# $
 $str
-øø$ +
+ææ$ +
 )
-øø+ ,
+ææ+ ,
 ;
-øø, -
+ææ, -
 }
-¿¿ 	
+øø 	
 [
-≈≈ 	
+ƒƒ 	
 Route
-≈≈	 
+ƒƒ	 
 (
-≈≈ 
+ƒƒ 
 $str
-≈≈ -
+ƒƒ -
 )
-≈≈- .
+ƒƒ- .
 ]
-≈≈. /
+ƒƒ. /
 [
-∆∆ 	
+≈≈ 	
 HttpPost
-∆∆	 
+≈≈	 
 ]
-∆∆ 
+≈≈ 
 [
-«« 	&
+∆∆ 	&
 ValidateAntiForgeryToken
-««	 !
+∆∆	 !
 ]
-««! "
+∆∆! "
 public
-»» 
+«« 
 async
-»» 
+«« 
 Task
-»» 
+«« 
 <
-»» 
+«« 
 IActionResult
-»» '
+«« '
 >
-»»' (
+««' (
 EditModuleData
-»») 7
+««) 7
 (
-»»7 8%
+««7 8%
 InfoModuleDataViewModel
-»»8 O
+««8 O
 
 ModuleData
-»»P Z
+««P Z
 )
-»»Z [
+««Z [
 {
-…… 	
+»» 	
 if
-   
+…… 
 (
-   
+…… 
 
 ModelState
-   
+…… 
 .
-   
+…… 
 IsValid
-   "
+…… "
 )
-  " #
+……" #
 {
-ÀÀ 
+   
 try
-ÃÃ 
+ÀÀ 
 {
-ÕÕ 
+ÃÃ 
 var
-ŒŒ 
+ÕÕ 
+result
+ÕÕ 
+=
+ÕÕ  
+await
+ÕÕ! &
+
+ModuleData
+ÕÕ' 1
+.
+ÕÕ1 2
+SaveModelAsync
+ÕÕ2 @
+(
+ÕÕ@ A
+)
+ÕÕA B
+;
+ÕÕB C
+if
+ŒŒ 
+(
+ŒŒ 
 result
 ŒŒ 
-=
-ŒŒ  
-await
-ŒŒ! &
-
-ModuleData
-ŒŒ' 1
 .
-ŒŒ1 2
-SaveModelAsync
-ŒŒ2 @
-(
-ŒŒ@ A
-)
-ŒŒA B
-;
-ŒŒB C
-if
-œœ 
-(
-œœ 
-result
-œœ 
-.
-œœ 
+ŒŒ 
 	IsSucceed
-œœ (
+ŒŒ (
 )
-œœ( )
+ŒŒ( )
 {
-–– 
+œœ 
 return
-—— 
+–– 
 RedirectToAction
-—— /
+–– /
 (
-——/ 0
+––/ 0
 $str
-——0 9
+––0 9
 ,
-——9 :
+––9 :
 new
-——; >"
+––; >"
 RouteValueDictionary
-——? S
+––? S
 (
-——S T
+––S T
 new
-““ 
+—— 
 {
-““  !
+——  !
 id
-““" $
+——" $
 =
-““% &
+——% &
 
 ModuleData
-““' 1
+——' 1
 .
-““1 2
+——1 2
 ModuleId
-““2 :
+——2 :
 }
-““; <
+——; <
 )
-““< =
+——< =
 )
-““= >
+——= >
 ;
-““> ?
+——> ?
 }
-”” 
+““ 
 else
-‘‘ 
+”” 
 {
-’’ 
+‘‘ 
 
 ModelState
-÷÷ "
+’’ "
 .
-÷÷" #
+’’" #
 AddModelError
-÷÷# 0
+’’# 0
 (
-÷÷0 1
+’’0 1
 string
-÷÷1 7
+’’1 7
 .
-÷÷7 8
+’’7 8
 Empty
-÷÷8 =
+’’8 =
 ,
-÷÷= >
+’’= >
 result
-÷÷? E
+’’? E
 .
-÷÷E F
+’’E F
 	Exception
-÷÷F O
+’’F O
 .
-÷÷O P
+’’O P
 Message
-÷÷P W
+’’P W
 )
-÷÷W X
+’’W X
 ;
-÷÷X Y
+’’X Y
 return
-◊◊ 
+÷÷ 
 View
-◊◊ #
+÷÷ #
 (
-◊◊# $
+÷÷# $
 
 ModuleData
-◊◊$ .
+÷÷$ .
 )
-◊◊. /
+÷÷. /
 ;
-◊◊/ 0
+÷÷/ 0
 }
-ÿÿ 
+◊◊ 
 }
-ŸŸ 
+ÿÿ 
 catch
-⁄⁄ 
+ŸŸ 
 (
-⁄⁄ *
+ŸŸ *
 DbUpdateConcurrencyException
-⁄⁄ 3
+ŸŸ 3
 )
-⁄⁄3 4
+ŸŸ3 4
 {
-€€ 
+⁄⁄ 
 if
-‹‹ 
+€€ 
 (
-‹‹ 
+€€ 
 !
-‹‹ %
+€€ %
 InfoModuleDataViewModel
-‹‹ 0
+€€ 0
 .
-‹‹0 1
+€€0 1
 
 Repository
-‹‹1 ;
+€€1 ;
 .
-‹‹; <
+€€; <
 CheckIsExists
-‹‹< I
+€€< I
 (
-‹‹I J
+€€I J
 m
-‹‹J K
+€€J K
 =>
-‹‹L N
+€€L N
 m
-‹‹O P
+€€O P
 .
-‹‹P Q
+€€P Q
 Id
-‹‹Q S
+€€Q S
 ==
-‹‹T V
+€€T V
 
 ModuleData
-‹‹W a
+€€W a
 .
-‹‹a b
+€€a b
 Id
-‹‹b d
+€€b d
 )
-‹‹d e
+€€d e
 )
-‹‹e f
+€€e f
 {
-›› 
+‹‹ 
 return
-ﬁﬁ 
+›› 
 NotFound
-ﬁﬁ '
+›› '
 (
-ﬁﬁ' (
+››' (
 )
-ﬁﬁ( )
+››( )
 ;
-ﬁﬁ) *
+››) *
 }
-ﬂﬂ 
+ﬁﬁ 
 else
-‡‡ 
+ﬂﬂ 
 {
-·· 
+‡‡ 
 throw
-‚‚ 
+·· 
 ;
-‚‚ 
+·· 
 }
-„„ 
+‚‚ 
 }
-‰‰ 
+„„ 
 }
-ÊÊ 
+ÂÂ 
 return
-ÁÁ 
+ÊÊ 
 View
-ÁÁ 
+ÊÊ 
 (
-ÁÁ 
+ÊÊ 
 
 ModuleData
-ÁÁ "
+ÊÊ "
 )
-ÁÁ" #
+ÊÊ" #
 ;
-ÁÁ# $
+ÊÊ# $
 }
-ËË 	
+ÁÁ 	
 [
-ÍÍ 	
+ÈÈ 	
 HttpGet
-ÍÍ	 
+ÈÈ	 
 ]
-ÍÍ 
+ÈÈ 
 [
-ÎÎ 	
+ÍÍ 	
 Route
-ÎÎ	 
+ÍÍ	 
 (
-ÎÎ 
+ÍÍ 
 $str
-ÎÎ &
+ÍÍ &
 )
-ÎÎ& '
+ÍÍ& '
 ]
-ÎÎ' (
+ÍÍ' (
 public
-ÏÏ 
+ÎÎ 
 async
-ÏÏ 
+ÎÎ 
 Task
-ÏÏ 
+ÎÎ 
 <
-ÏÏ 
+ÎÎ 
 IActionResult
-ÏÏ '
+ÎÎ '
 >
-ÏÏ' (
+ÎÎ' (
 DeleteModuleData
-ÏÏ) 9
+ÎÎ) 9
 (
-ÏÏ9 :
+ÎÎ9 :
 string
-ÏÏ: @
+ÎÎ: @
 id
-ÏÏA C
+ÎÎA C
 )
-ÏÏC D
+ÎÎC D
 {
-ÌÌ 	
+ÏÏ 	
 var
-ÓÓ 
+ÌÌ 
 getData
-ÓÓ 
+ÌÌ 
 =
-ÓÓ 
+ÌÌ 
 await
-ÓÓ %
+ÌÌ %
 InfoModuleDataViewModel
-ÓÓ  7
+ÌÌ  7
 .
-ÓÓ7 8
+ÌÌ7 8
 
 Repository
-ÓÓ8 B
+ÌÌ8 B
 .
-ÓÓB C!
+ÌÌB C!
 GetSingleModelAsync
-ÓÓC V
+ÌÌC V
 (
-ÓÓV W
+ÌÌV W
 m
-ÔÔ 
+ÓÓ 
 =>
-ÔÔ 
+ÓÓ 
 m
-ÔÔ 
+ÓÓ 
 .
-ÔÔ 
+ÓÓ 
 Id
-ÔÔ 
+ÓÓ 
 ==
-ÔÔ 
+ÓÓ 
 id
-ÔÔ 
+ÓÓ 
 )
-ÔÔ  
+ÓÓ  
 ;
-ÔÔ  !
+ÓÓ  !
 if
- 
+ÔÔ 
 (
- 
+ÔÔ 
 getData
- 
+ÔÔ 
 .
- 
+ÔÔ 
 	IsSucceed
- !
+ÔÔ !
 )
-! "
+ÔÔ! "
 {
-ÒÒ 
+ 
 await
-ÚÚ %
+ÒÒ %
 InfoModuleDataViewModel
-ÚÚ -
+ÒÒ -
 .
-ÚÚ- .
+ÒÒ- .
 
 Repository
-ÚÚ. 8
+ÒÒ. 8
 .
-ÚÚ8 9
+ÒÒ8 9
 RemoveModelAsync
-ÚÚ9 I
+ÒÒ9 I
 (
-ÚÚI J
+ÒÒI J
 m
-ÚÚJ K
+ÒÒJ K
 =>
-ÚÚL N
+ÒÒL N
 m
-ÚÚO P
+ÒÒO P
 .
-ÚÚP Q
+ÒÒP Q
 Id
-ÚÚQ S
+ÒÒQ S
 ==
-ÚÚT V
+ÒÒT V
 id
-ÚÚW Y
+ÒÒW Y
 )
-ÚÚY Z
+ÒÒY Z
 ;
-ÚÚZ [
+ÒÒZ [
 }
-ÛÛ 
+ÚÚ 
 return
-ıı 
+ÙÙ 
 RedirectToAction
-ıı #
+ÙÙ #
 (
-ıı# $
+ÙÙ# $
 $str
-ıı$ -
+ÙÙ$ -
 ,
-ıı- .
+ÙÙ- .
 new
-ıı/ 2"
+ÙÙ/ 2"
 RouteValueDictionary
-ıı3 G
+ÙÙ3 G
 (
-ııG H
+ÙÙG H
 new
-ııH K
+ÙÙH K
 {
-ııL M
+ÙÙL M
 id
-ııN P
+ÙÙN P
 =
-ııQ R
+ÙÙQ R
 id
-ııS U
+ÙÙS U
 }
-ııV W
+ÙÙV W
 )
-ııW X
+ÙÙW X
 )
-ııX Y
+ÙÙX Y
 ;
-ııY Z
+ÙÙY Z
 }
-ˆˆ 	
+ıı 	
 }
-˘˘ 
-}˙˙ ﬂ∂
-lD:\Workspace\GitHub\Swastika-IO-Core\src\Swastika.Cms.Web.Mvc\Areas\Portal\Controllers\ArticlesController.cs
+¯¯ 
+}˘˘ ‡∂
+mE:\_Workspace\Github\Swastika-IO-Core\src\Swastika.Cms.Web.Mvc\Areas\Portal\Controllers\ArticlesController.cs
 	namespace 	
 Swastika
  
@@ -5137,8 +5139,8 @@ getArticle
 ¶¶ 	
 }
 ßß 
-}®® ˚Ø
-hD:\Workspace\GitHub\Swastika-IO-Core\src\Swastika.Cms.Web.Mvc\Areas\Portal\Controllers\AuthController.cs
+}®® ¸Ø
+iE:\_Workspace\Github\Swastika-IO-Core\src\Swastika.Cms.Web.Mvc\Areas\Portal\Controllers\AuthController.cs
 	namespace 	
 Swastika
  
@@ -6982,8 +6984,8 @@ IsLocalUrl
 ¶¶ 	
 }
 ©© 
-}™™ Õ
-`D:\Workspace\GitHub\Swastika-IO-Core\src\Swastika.Cms.Web.Mvc\Areas\Portal\Controllers\Common.cs
+}™™ Œ
+aE:\_Workspace\Github\Swastika-IO-Core\src\Swastika.Cms.Web.Mvc\Areas\Portal\Controllers\Common.cs
 	namespace 	
 Swastika
  
@@ -7008,8 +7010,8 @@ IsLocalUrl
 }		 
 }
 
- çP
-kD:\Workspace\GitHub\Swastika-IO-Core\src\Swastika.Cms.Web.Mvc\Areas\Portal\Controllers\CultureController.cs
+ éP
+lE:\_Workspace\Github\Swastika-IO-Core\src\Swastika.Cms.Web.Mvc\Areas\Portal\Controllers\CultureController.cs
 	namespace 	
 Swastika
  
@@ -7678,8 +7680,8 @@ Repository
 ïï 	
 }
 ññ 
-}óó Í
-mD:\Workspace\GitHub\Swastika-IO-Core\src\Swastika.Cms.Web.Mvc\Areas\Portal\Controllers\DashboardController.cs
+}óó Î
+nE:\_Workspace\Github\Swastika-IO-Core\src\Swastika.Cms.Web.Mvc\Areas\Portal\Controllers\DashboardController.cs
 	namespace
 
  	
@@ -7816,8 +7818,8 @@ AspNetCore 
 ;" #
 }   	
 }!! 
-}"" ä~
-hD:\Workspace\GitHub\Swastika-IO-Core\src\Swastika.Cms.Web.Mvc\Areas\Portal\Controllers\FileController.cs
+}"" ã~
+iE:\_Workspace\Github\Swastika-IO-Core\src\Swastika.Cms.Web.Mvc\Areas\Portal\Controllers\FileController.cs
 	namespace 	
 Swastika
  
@@ -8986,8 +8988,8 @@ ModelState
 ≥≥ 	
 }
 ¥¥ 
-}µµ Óc
-lD:\Workspace\GitHub\Swastika-IO-Core\src\Swastika.Cms.Web.Mvc\Areas\Portal\Controllers\LanguageController.cs
+}µµ Ôc
+mE:\_Workspace\Github\Swastika-IO-Core\src\Swastika.Cms.Web.Mvc\Areas\Portal\Controllers\LanguageController.cs
 	namespace 	
 Swastika
  
@@ -9908,8 +9910,8 @@ Repository
 ¥¥ 	
 }
 ∑∑ 
-}∏∏ ü
-iD:\Workspace\GitHub\Swastika-IO-Core\src\Swastika.Cms.Web.Mvc\Areas\Portal\Controllers\MediaController.cs
+}∏∏ †
+jE:\_Workspace\Github\Swastika-IO-Core\src\Swastika.Cms.Web.Mvc\Areas\Portal\Controllers\MediaController.cs
 	namespace		 	
 Swastika		
  
@@ -10015,8 +10017,8 @@ AspNetCore 
 ; 
 } 	
 } 
-}   Ç‘
-jD:\Workspace\GitHub\Swastika-IO-Core\src\Swastika.Cms.Web.Mvc\Areas\Portal\Controllers\ModuleController.cs
+}   É‘
+kE:\_Workspace\Github\Swastika-IO-Core\src\Swastika.Cms.Web.Mvc\Areas\Portal\Controllers\ModuleController.cs
 	namespace 	
 Swastika
  
@@ -12422,8 +12424,8 @@ Repository
 üü 	
 }
 ¢¢ 
-}££ Öc
-iD:\Workspace\GitHub\Swastika-IO-Core\src\Swastika.Cms.Web.Mvc\Areas\Portal\Controllers\PagesController.cs
+}££ Üc
+jE:\_Workspace\Github\Swastika-IO-Core\src\Swastika.Cms.Web.Mvc\Areas\Portal\Controllers\PagesController.cs
 	namespace 	
 Swastika
  
@@ -13384,8 +13386,8 @@ categoryId
 ≥≥ 	
 }
 ¥¥ 
-}µµ µí
-jD:\Workspace\GitHub\Swastika-IO-Core\src\Swastika.Cms.Web.Mvc\Areas\Portal\Controllers\PortalController.cs
+}µµ ∂í
+kE:\_Workspace\Github\Swastika-IO-Core\src\Swastika.Cms.Web.Mvc\Areas\Portal\Controllers\PortalController.cs
 	namespace 	
 Swastika
  
@@ -14756,8 +14758,8 @@ searchType
 ∑∑ 	
 }
 ∏∏ 
-}ππ ¢∑
-kD:\Workspace\GitHub\Swastika-IO-Core\src\Swastika.Cms.Web.Mvc\Areas\Portal\Controllers\ProductController.cs
+}ππ £∑
+lE:\_Workspace\Github\Swastika-IO-Core\src\Swastika.Cms.Web.Mvc\Areas\Portal\Controllers\ProductController.cs
 	namespace 	
 Swastika
  
@@ -16721,8 +16723,8 @@ getProduct
 ßß 	
 }
 ®® 
-}©© ù®
-kD:\Workspace\GitHub\Swastika-IO-Core\src\Swastika.Cms.Web.Mvc\Areas\Portal\Controllers\ProfileController.cs
+}©© û®
+lE:\_Workspace\Github\Swastika-IO-Core\src\Swastika.Cms.Web.Mvc\Areas\Portal\Controllers\ProfileController.cs
 	namespace 	
 Swastika
  
@@ -19937,8 +19939,8 @@ ModelState
 ÛÛ 	
 }
 ˆˆ 
-}˜˜ ‘V
-kD:\Workspace\GitHub\Swastika-IO-Core\src\Swastika.Cms.Web.Mvc\Areas\Portal\Controllers\SettingController.cs
+}˜˜ ’V
+lE:\_Workspace\Github\Swastika-IO-Core\src\Swastika.Cms.Web.Mvc\Areas\Portal\Controllers\SettingController.cs
 	namespace 	
 Swastika
  
@@ -20661,8 +20663,8 @@ Repository
 üü 	
 }
 ¢¢ 
-}££ Ãp
-lD:\Workspace\GitHub\Swastika-IO-Core\src\Swastika.Cms.Web.Mvc\Areas\Portal\Controllers\TemplateController.cs
+}££ Õp
+mE:\_Workspace\Github\Swastika-IO-Core\src\Swastika.Cms.Web.Mvc\Areas\Portal\Controllers\TemplateController.cs
 	namespace 	
 Swastika
  
@@ -21713,8 +21715,8 @@ FolderType
 ßß 	
 }
 ®® 
-}ØØ ÷u
-iD:\Workspace\GitHub\Swastika-IO-Core\src\Swastika.Cms.Web.Mvc\Areas\Portal\Controllers\ThemeController.cs
+}ØØ ◊u
+jE:\_Workspace\Github\Swastika-IO-Core\src\Swastika.Cms.Web.Mvc\Areas\Portal\Controllers\ThemeController.cs
 	namespace 	
 Swastika
  
@@ -22834,8 +22836,8 @@ Repository
 ¿¿ 	
 }
 ¡¡ 
-}»» ¿
-hD:\Workspace\GitHub\Swastika-IO-Core\src\Swastika.Cms.Web.Mvc\Areas\Portal\ViewComponents\Breadcrumbs.cs
+}»» ¡
+iE:\_Workspace\Github\Swastika-IO-Core\src\Swastika.Cms.Web.Mvc\Areas\Portal\ViewComponents\Breadcrumbs.cs
 	namespace 	
 Swastika
  
@@ -22872,8 +22874,8 @@ hD:\Workspace\GitHub\Swastika-IO-Core\src\Swastika.Cms.Web.Mvc\Areas\Portal\View
 ; 
 } 	
 } 
-} ∆
-kD:\Workspace\GitHub\Swastika-IO-Core\src\Swastika.Cms.Web.Mvc\Areas\Portal\ViewComponents\ControlSidebar.cs
+} «
+lE:\_Workspace\Github\Swastika-IO-Core\src\Swastika.Cms.Web.Mvc\Areas\Portal\ViewComponents\ControlSidebar.cs
 	namespace 	
 Swastika
  
@@ -22910,8 +22912,8 @@ kD:\Workspace\GitHub\Swastika-IO-Core\src\Swastika.Cms.Web.Mvc\Areas\Portal\View
 ; 
 } 	
 } 
-} ¬
-iD:\Workspace\GitHub\Swastika-IO-Core\src\Swastika.Cms.Web.Mvc\Areas\Portal\ViewComponents\HeaderNavbar.cs
+} √
+jE:\_Workspace\Github\Swastika-IO-Core\src\Swastika.Cms.Web.Mvc\Areas\Portal\ViewComponents\HeaderNavbar.cs
 	namespace 	
 Swastika
  
@@ -22948,8 +22950,8 @@ iD:\Workspace\GitHub\Swastika-IO-Core\src\Swastika.Cms.Web.Mvc\Areas\Portal\View
 ; 
 } 	
 } 
-} æ
-gD:\Workspace\GitHub\Swastika-IO-Core\src\Swastika.Cms.Web.Mvc\Areas\Portal\ViewComponents\MainFooter.cs
+} ø
+hE:\_Workspace\Github\Swastika-IO-Core\src\Swastika.Cms.Web.Mvc\Areas\Portal\ViewComponents\MainFooter.cs
 	namespace 	
 Swastika
  
@@ -22987,8 +22989,8 @@ MainFooter		 
 ; 
 } 	
 } 
-} ¿
-hD:\Workspace\GitHub\Swastika-IO-Core\src\Swastika.Cms.Web.Mvc\Areas\Portal\ViewComponents\MainSidebar.cs
+} ¡
+iE:\_Workspace\Github\Swastika-IO-Core\src\Swastika.Cms.Web.Mvc\Areas\Portal\ViewComponents\MainSidebar.cs
 	namespace 	
 Swastika
  
@@ -23025,8 +23027,8 @@ hD:\Workspace\GitHub\Swastika-IO-Core\src\Swastika.Cms.Web.Mvc\Areas\Portal\View
 ; 
 } 	
 } 
-} ∂
-cD:\Workspace\GitHub\Swastika-IO-Core\src\Swastika.Cms.Web.Mvc\Areas\Portal\ViewComponents\Modals.cs
+} ∑
+dE:\_Workspace\Github\Swastika-IO-Core\src\Swastika.Cms.Web.Mvc\Areas\Portal\ViewComponents\Modals.cs
 	namespace 	
 Swastika
  
@@ -23063,8 +23065,8 @@ cD:\Workspace\GitHub\Swastika-IO-Core\src\Swastika.Cms.Web.Mvc\Areas\Portal\View
 ; 
 } 	
 } 
-} ¨á
-hD:\Workspace\GitHub\Swastika-IO-Core\src\Swastika.Cms.Web.Mvc\Areas\User\Controllers\ManageController.cs
+} ≠á
+iE:\_Workspace\Github\Swastika-IO-Core\src\Swastika.Cms.Web.Mvc\Areas\User\Controllers\ManageController.cs
 	namespace 	
 Swastika
  
@@ -25945,8 +25947,8 @@ ModelState
 ÙÙ 	
 }
 ˜˜ 
-}¯¯ ¥H
-[D:\Workspace\GitHub\Swastika-IO-Core\src\Swastika.Cms.Web.Mvc\Controllers\BaseController.cs
+}¯¯ µH
+\E:\_Workspace\Github\Swastika-IO-Core\src\Swastika.Cms.Web.Mvc\Controllers\BaseController.cs
 	namespace 	
 Swastika
  
@@ -26448,8 +26450,8 @@ folderPathyy> H
 ÄÄ 	
 }
 ÅÅ 
-}ÇÇ í„
-[D:\Workspace\GitHub\Swastika-IO-Core\src\Swastika.Cms.Web.Mvc\Controllers\HomeController.cs
+}ÇÇ ì„
+\E:\_Workspace\Github\Swastika-IO-Core\src\Swastika.Cms.Web.Mvc\Controllers\HomeController.cs
 	namespace 	
 Swastika
  
@@ -28936,8 +28938,8 @@ SpaContent
 ππ 	
 }
 ∫∫ 
-}ªª ¨
-^D:\Workspace\GitHub\Swastika-IO-Core\src\Swastika.Cms.Web.Mvc\Controllers\InitCmsController.cs
+}ªª ≠
+_E:\_Workspace\Github\Swastika-IO-Core\src\Swastika.Cms.Web.Mvc\Controllers\InitCmsController.cs
 	namespace 	
 Swastika
  
@@ -29150,8 +29152,8 @@ superAdmin,, 
 }66 
 }77 	
 }88 
-}99 Ä
-VD:\Workspace\GitHub\Swastika-IO-Core\src\Swastika.Cms.Web.Mvc\Models\ErrorViewModel.cs
+}99 Å
+WE:\_Workspace\Github\Swastika-IO-Core\src\Swastika.Cms.Web.Mvc\Models\ErrorViewModel.cs
 	namespace 	
 Swastika
  
@@ -29191,8 +29193,8 @@ VD:\Workspace\GitHub\Swastika-IO-Core\src\Swastika.Cms.Web.Mvc\Models\ErrorViewM
 )D E
 ;E F
 } 
-} ¸
-\D:\Workspace\GitHub\Swastika-IO-Core\src\Swastika.Cms.Web.Mvc\Models\Identity\JWTSettings.cs
+} ˝
+]E:\_Workspace\Github\Swastika-IO-Core\src\Swastika.Cms.Web.Mvc\Models\Identity\JWTSettings.cs
 	namespace 	
 Swastika
  
@@ -29258,9 +29260,9 @@ VD:\Workspace\GitHub\Swastika-IO-Core\src\Swastika.Cms.Web.Mvc\Models\ErrorViewM
 ;) *
 }+ ,
 } 
-} Ñ
+} Ö
 
-HD:\Workspace\GitHub\Swastika-IO-Core\src\Swastika.Cms.Web.Mvc\Program.cs
+IE:\_Workspace\Github\Swastika-IO-Core\src\Swastika.Cms.Web.Mvc\Program.cs
 	namespace 	
 Swastika
  
@@ -29338,8 +29340,8 @@ UseStartup 
 ) 
 ; 
 } 
-} °Ñ
-HD:\Workspace\GitHub\Swastika-IO-Core\src\Swastika.Cms.Web.Mvc\Startup.cs
+} ¢Ñ
+IE:\_Workspace\Github\Swastika-IO-Core\src\Swastika.Cms.Web.Mvc\Startup.cs
 	namespace 	
 Swastika
  
@@ -30632,8 +30634,8 @@ FromResult
 „„ 	
 }
 ‰‰ 
-}ÂÂ £	
-\D:\Workspace\GitHub\Swastika-IO-Core\src\Swastika.Cms.Web.Mvc\ViewComponents\FooterNavbar.cs
+}ÂÂ §	
+]E:\_Workspace\Github\Swastika-IO-Core\src\Swastika.Cms.Web.Mvc\ViewComponents\FooterNavbar.cs
 	namespace
 
  	
@@ -30712,8 +30714,8 @@ FromResult
 ;C D
 } 	
 } 
-} Ü
-\D:\Workspace\GitHub\Swastika-IO-Core\src\Swastika.Cms.Web.Mvc\ViewComponents\HeaderNavbar.cs
+} á
+]E:\_Workspace\Github\Swastika-IO-Core\src\Swastika.Cms.Web.Mvc\ViewComponents\HeaderNavbar.cs
 	namespace
 
  	

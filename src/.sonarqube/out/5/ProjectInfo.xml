@@ -4,14 +4,14 @@
   <ProjectLanguage>C#</ProjectLanguage>
   <ProjectType>Product</ProjectType>
   <ProjectGuid>8421c37a-6fa8-44c9-b08d-a9ea28bf8884</ProjectGuid>
-  <FullPath>D:\Workspace\GitHub\Swastika-IO-Core\src\Swastika.Cms.Web.Mvc\Swastika.Cms.Web.Mvc.csproj</FullPath>
+  <FullPath>E:\_Workspace\Github\Swastika-IO-Core\src\Swastika.Cms.Web.Mvc\Swastika.Cms.Web.Mvc.csproj</FullPath>
   <IsExcluded>false</IsExcluded>
   <AnalysisResults>
-    <AnalysisResult Id="FilesToAnalyze" Location="D:\Workspace\GitHub\Swastika-IO-Core\src\.sonarqube\out\5\FilesToAnalyze.txt" />
+    <AnalysisResult Id="FilesToAnalyze" Location="E:\_Workspace\Github\Swastika-IO-Core\src\.sonarqube\out\5\FilesToAnalyze.txt" />
   </AnalysisResults>
   <AnalysisSettings>
-    <Property Name="sonar.cs.roslyn.reportFilePath">D:\Workspace\GitHub\Swastika-IO-Core\src\Swastika.Cms.Web.Mvc\bin\Debug\netcoreapp2.0\Swastika.Cms.Web.Mvc.dll.RoslynCA.json</Property>
-    <Property Name="sonar.cs.analyzer.projectOutPath">D:\Workspace\GitHub\Swastika-IO-Core\src\.sonarqube\out\5</Property>
+    <Property Name="sonar.cs.roslyn.reportFilePath">E:\_Workspace\Github\Swastika-IO-Core\src\Swastika.Cms.Web.Mvc\bin\Debug\netcoreapp2.0\Swastika.Cms.Web.Mvc.dll.RoslynCA.json</Property>
+    <Property Name="sonar.cs.analyzer.projectOutPath">E:\_Workspace\Github\Swastika-IO-Core\src\.sonarqube\out\5</Property>
   </AnalysisSettings>
   <Configuration>Debug</Configuration>
   <Platform>AnyCPU</Platform>
