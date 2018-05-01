@@ -1,1 +1,1 @@
-E:\_Workspace\Github\Swastika-IO-Core\src\.sonarqube\out\3
+D:\Workspace\GitHub\Swastika-IO-Core\src\.sonarqube\out\3
