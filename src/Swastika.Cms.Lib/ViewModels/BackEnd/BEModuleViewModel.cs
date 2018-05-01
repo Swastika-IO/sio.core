@@ -150,7 +150,7 @@ namespace Swastika.Cms.Lib.ViewModels.BackEnd
                     c => !string.IsNullOrEmpty(c.Name)))) : new JArray();
             Fields = arrField.ToString(Newtonsoft.Json.Formatting.None);
 
-            return base.ParseModel();
+            return base.ParseModel(_context, _transaction);
         }
 
         public override void ExpandView(SiocCmsContext _context = null, IDbContextTransaction _transaction = null)

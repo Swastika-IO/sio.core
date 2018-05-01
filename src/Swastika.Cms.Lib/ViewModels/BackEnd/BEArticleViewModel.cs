@@ -218,20 +218,15 @@ namespace Swastika.Cms.Lib.ViewModels.BackEnd
         {
             ListSupportedCulture = GlobalLanguageService.ListSupportedCulture;
 
-            //if (!string.IsNullOrEmpty(this.Tags))
-            //{
-            //    ListTag = JArray.Parse(this.Tags);
-            //}
             Properties = new List<ExtraProperty>();
             if (!string.IsNullOrEmpty(ExtraProperties))
             {
                 JArray arr = JArray.Parse(ExtraProperties);
-                foreach (JObject item in arr)
+                foreach (JToken item in arr)
                 {
                     Properties.Add(item.ToObject<ExtraProperty>());
                 }
             }
-            //Get Templates
             this.Templates = this.Templates ??
                 BETemplateViewModel.Repository.GetModelListBy(
                 t => t.Template.Name == ActivedTemplate && t.FolderType == this.TemplateFolderType).Data;
@@ -306,7 +301,7 @@ namespace Swastika.Cms.Lib.ViewModels.BackEnd
         {
             if (string.IsNullOrEmpty(Id))
             {
-                Id = Guid.NewGuid().ToString(); //Common.Common.GetBase62(8);
+                Id = Guid.NewGuid().ToString();
                 CreatedDateTime = DateTime.UtcNow;
             }
 
@@ -350,11 +345,9 @@ namespace Swastika.Cms.Lib.ViewModels.BackEnd
                 }
             }
 
-            //Tags = ListTag.ToString(Newtonsoft.Json.Formatting.None);
-
             GenerateSEO();
 
-            return base.ParseModel();
+            return base.ParseModel(_context, _transaction);
         }
 
         #region Async Methods
@@ -434,6 +427,12 @@ namespace Swastika.Cms.Lib.ViewModels.BackEnd
                         if (bEArticleModuleViewModel.IsActived)
                         {
                             var saveResult = await bEArticleModuleViewModel.SaveModelAsync(false, _context, _transaction).ConfigureAwait(false);
+                            result = saveResult.IsSucceed;
+                            if (!result)
+                            {
+                                Errors.AddRange(saveResult.Errors);
+                                Exception = saveResult.Exception;
+                            }
                         }
                         else
                         {
@@ -448,7 +447,6 @@ namespace Swastika.Cms.Lib.ViewModels.BackEnd
                     }
                 }
 
-                //save submodules data
                 if (result)
                 {
                     foreach (var bEModuleViewModel in ActivedModules)
@@ -510,6 +508,12 @@ namespace Swastika.Cms.Lib.ViewModels.BackEnd
                         {
                             navArticleMediaViewModel.ArticleId = parent.Id;
                             var saveResult = await navArticleMediaViewModel.SaveModelAsync(false, _context, _transaction);
+                            result = saveResult.IsSucceed;
+                            if (!result)
+                            {
+                                Errors.AddRange(saveResult.Errors);
+                                Exception = saveResult.Exception;
+                            }
                         }
                         else
                         {
@@ -535,7 +539,6 @@ namespace Swastika.Cms.Lib.ViewModels.BackEnd
             }
             catch (Exception ex) // TODO: Add more specific exeption types instead of Exception only
             {
-                result = false;
                 return new RepositoryResponse<bool>()
                 {
                     IsSucceed = false,
@@ -622,7 +625,7 @@ namespace Swastika.Cms.Lib.ViewModels.BackEnd
 
         #region Sync Methods
 
-        public override RepositoryResponse<bool> RemoveRelatedModels(BEArticleViewModel model, SiocCmsContext _context = null, IDbContextTransaction _transaction = null)
+        public override RepositoryResponse<bool> RemoveRelatedModels(BEArticleViewModel view, SiocCmsContext _context = null, IDbContextTransaction _transaction = null)
         {
             RepositoryResponse<bool> result = new RepositoryResponse<bool>()
             {
@@ -631,7 +634,7 @@ namespace Swastika.Cms.Lib.ViewModels.BackEnd
 
             if (result.IsSucceed)
             {
-                foreach (var item in model.Categories)
+                foreach (var item in view.Categories)
                 {
                     result = item.RemoveModel(false, _context, _transaction);
                 }
@@ -639,7 +642,7 @@ namespace Swastika.Cms.Lib.ViewModels.BackEnd
 
             if (result.IsSucceed)
             {
-                foreach (var item in model.Modules)
+                foreach (var item in view.Modules)
                 {
                     result = item.RemoveModel(false, _context, _transaction);
                 }
@@ -647,7 +650,7 @@ namespace Swastika.Cms.Lib.ViewModels.BackEnd
 
             if (result.IsSucceed)
             {
-                foreach (var item in model.ModuleNavs)
+                foreach (var item in view.ModuleNavs)
                 {
                     result = item.RemoveModel(false, _context, _transaction);
                 }
@@ -655,7 +658,7 @@ namespace Swastika.Cms.Lib.ViewModels.BackEnd
 
             if (result.IsSucceed)
             {
-                foreach (var item in model.MediaNavs)
+                foreach (var item in view.MediaNavs)
                 {
                     result = item.RemoveModel(false, _context, _transaction);
                 }
@@ -736,6 +739,12 @@ namespace Swastika.Cms.Lib.ViewModels.BackEnd
                         if (item.IsActived)
                         {
                             var saveResult = item.SaveModel(false, _context, _transaction);
+                            result = saveResult.IsSucceed;
+                            if (!result)
+                            {
+                                Errors.AddRange(saveResult.Errors);
+                                Exception = saveResult.Exception;
+                            }
                         }
                         else
                         {
@@ -812,6 +821,12 @@ namespace Swastika.Cms.Lib.ViewModels.BackEnd
                         {
                             navMedia.ArticleId = parent.Id;
                             var saveResult = navMedia.SaveModel(false, _context, _transaction);
+                            result = saveResult.IsSucceed;
+                            if (!result)
+                            {
+                                Errors.AddRange(saveResult.Errors);
+                                Exception = saveResult.Exception;
+                            }
                         }
                         else
                         {
@@ -837,7 +852,6 @@ namespace Swastika.Cms.Lib.ViewModels.BackEnd
             }
             catch (Exception ex) // TODO: Add more specific exeption types instead of Exception only
             {
-                result = false;
                 return new RepositoryResponse<bool>()
                 {
                     IsSucceed = false,

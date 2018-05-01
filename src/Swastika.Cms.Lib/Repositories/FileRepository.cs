@@ -31,8 +31,10 @@ namespace Swastika.Cms.Lib.Repositories
         /// Gets the instance.
         /// </summary>
         /// <returns></returns>
-        public static FileRepository Instance {
-            get {
+        public static FileRepository Instance
+        {
+            get
+            {
                 if (instance == null)
                 {
                     lock (syncRoot)
@@ -43,7 +45,8 @@ namespace Swastika.Cms.Lib.Repositories
                 }
                 return instance;
             }
-            set {
+            set
+            {
                 instance = value;
             }
         }
@@ -79,27 +82,24 @@ namespace Swastika.Cms.Lib.Repositories
             });
             FileInfo file = new FileInfo(fullPath);
             FileViewModel result = null;
-            if (file != null)
+            try
             {
-                try
+                DirectoryInfo path = new DirectoryInfo(folderPath);
+                using (StreamReader s = file.OpenText())
                 {
-                    DirectoryInfo path = new DirectoryInfo(folderPath);
-                    using (StreamReader s = file.OpenText())
+                    result = new FileViewModel()
                     {
-                        result = new FileViewModel()
-                        {
-                            FolderName = path.Name,
-                            FileFolder = folder,
-                            Filename = file.Name.Substring(0, file.Name.LastIndexOf('.')),
-                            Extension = file.Extension,
-                            Content = s.ReadToEnd()
-                        };
-                    }
+                        FolderName = path.Name,
+                        FileFolder = folder,
+                        Filename = file.Name.Substring(0, file.Name.LastIndexOf('.')),
+                        Extension = file.Extension,
+                        Content = s.ReadToEnd()
+                    };
                 }
-                catch
-                {
-                    // File invalid
-                }
+            }
+            catch
+            {
+                // File invalid
             }
 
             return result ?? new FileViewModel() { FileFolder = folder };
@@ -155,32 +155,28 @@ namespace Swastika.Cms.Lib.Repositories
         {
             FileViewModel result = null;
 
-            string folder = string.Format(SWCmsConstants.Parameters.UploadFolder, FileFolder);
+            string folder = SWCmsHelper.GetFullPath(new string[] { SWCmsConstants.Parameters.UploadFolder, FileFolder });
             string fullPath = string.Format(@"{0}/{1}.{2}", folder, name, ext);
 
             FileInfo file = new FileInfo(fullPath);
 
-            if (file != null)
+            try
             {
-                try
+                using (StreamReader s = file.OpenText())
                 {
-                    using (StreamReader s = file.OpenText())
+                    result = new FileViewModel()
                     {
-                        result = new FileViewModel()
-                        {
-                            FileFolder = FileFolder,
-                            Filename = file.Name.Substring(0, file.Name.LastIndexOf('.')),
-                            Extension = file.Extension.Remove(0, 1),
-                            Content = s.ReadToEnd()
-                        };
-                    }
-                }
-                catch
-                {
-                    // File invalid
+                        FileFolder = FileFolder,
+                        Filename = file.Name.Substring(0, file.Name.LastIndexOf('.')),
+                        Extension = file.Extension.Remove(0, 1),
+                        Content = s.ReadToEnd()
+                    };
                 }
             }
-
+            catch
+            {
+                // File invalid
+            }
             return result ?? new FileViewModel() { FileFolder = FileFolder };
         }
 
@@ -192,7 +188,7 @@ namespace Swastika.Cms.Lib.Repositories
 
             FileInfo file = new FileInfo(fullPath);
 
-            if (file != null)
+            if (file.Length > 0)
             {
                 try
                 {
@@ -229,7 +225,7 @@ namespace Swastika.Cms.Lib.Repositories
 
         public bool DeleteFile(string name, string extension, string FileFolder)
         {
-            string folder = string.Format(SWCmsConstants.Parameters.UploadFolder, FileFolder);
+            string folder = SWCmsHelper.GetFullPath(new string[] { SWCmsConstants.Parameters.UploadFolder, FileFolder });
             string fullPath = string.Format(@"{0}/{1}{2}", folder, name, extension);
 
             if (File.Exists(fullPath))
@@ -289,7 +285,7 @@ namespace Swastika.Cms.Lib.Repositories
 
         public List<FileViewModel> GetUploadFiles(string folder)
         {
-            string fullPath = string.Format(SWCmsConstants.Parameters.UploadFolder, folder);
+            string fullPath = SWCmsHelper.GetFullPath(new string[] { SWCmsConstants.Parameters.UploadFolder, folder });
 
             CreateDirectoryIfNotExist(fullPath);
 
@@ -320,7 +316,6 @@ namespace Swastika.Cms.Lib.Repositories
                 SWCmsConstants.Parameters.FileFolder,
                 folder
             });
-            // CreateDirectoryIfNotExist(fullPath);
             List<string> result = new List<string>();
             if (Directory.Exists(fullPath))
             {
@@ -370,7 +365,7 @@ namespace Swastika.Cms.Lib.Repositories
             CreateDirectoryIfNotExist(fullPath);
 
             //DirectoryInfo d = new DirectoryInfo(fullPath); //Assuming Test is your Folder
-            FileInfo[] Files = { };
+            FileInfo[] Files;
             List<FileViewModel> result = new List<FileViewModel>();
             foreach (string dirPath in Directory.GetDirectories(fullPath, "*",
                 SearchOption.AllDirectories))
@@ -401,8 +396,7 @@ namespace Swastika.Cms.Lib.Repositories
         {
             CreateDirectoryIfNotExist(fullPath);
 
-            //DirectoryInfo d = new DirectoryInfo(fullPath); //Assuming Test is your Folder
-            FileInfo[] Files = { };
+            FileInfo[] Files;
             List<FileViewModel> result = new List<FileViewModel>();
             foreach (string dirPath in Directory.GetDirectories(fullPath, "*",
                 SearchOption.AllDirectories))
@@ -435,8 +429,7 @@ namespace Swastika.Cms.Lib.Repositories
 
             CreateDirectoryIfNotExist(fullPath);
 
-            //DirectoryInfo d = new DirectoryInfo(fullPath); //Assuming Test is your Folder
-            FileInfo[] Files = { };
+            FileInfo[] Files;
             List<FileViewModel> result = new List<FileViewModel>();
             foreach (string dirPath in Directory.GetDirectories(fullPath, "*",
                 SearchOption.AllDirectories))
@@ -523,7 +516,7 @@ namespace Swastika.Cms.Lib.Repositories
                 {
                     CreateDirectoryIfNotExist(fullPath);
 
-                    string filename = file.FileName; // Guid.NewGuid().ToString("N");
+                    string filename = file.FileName;
                     string filePath = SWCmsHelper.GetFullPath(new string[] { fullPath, filename });
                     if (File.Exists(filePath))
                     {
@@ -608,7 +601,9 @@ namespace Swastika.Cms.Lib.Repositories
             }
             catch
             {
+                throw;
             }
+            
         }
     }
 }

@@ -74,7 +74,7 @@ namespace Swastika.Cms.Lib.ViewModels.Navigation
         {
             Description = Description ?? Media?.FileName;
             Image = Media?.FullPath;
-            return base.ParseModel();
+            return base.ParseModel(_context, _transaction);
         }
 
         #endregion Overrides

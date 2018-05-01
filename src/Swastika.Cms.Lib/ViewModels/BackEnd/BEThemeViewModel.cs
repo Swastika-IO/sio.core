@@ -99,7 +99,7 @@ namespace Swastika.Cms.Lib.ViewModels.BackEnd
             {
                 CreatedDateTime = DateTime.UtcNow;
             }
-            return base.ParseModel();
+            return base.ParseModel(_context, _transaction);
         }
 
         public override void ExpandView(SiocCmsContext _context = null, IDbContextTransaction _transaction = null)

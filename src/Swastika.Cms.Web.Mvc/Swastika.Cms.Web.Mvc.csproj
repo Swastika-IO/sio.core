@@ -44,6 +44,7 @@
     <Compile Remove="wwwroot\app-portal\components\**" />
     <Compile Remove="wwwroot\app-portal\controllers\**" />
     <Compile Remove="wwwroot\app-portal\plugins\**" />
+    <Compile Remove="wwwroot\app-portal\plunk\**" />
     <Compile Remove="wwwroot\app-portal\services\**" />
     <Compile Remove="wwwroot\lib\**" />
     <Content Remove="Areas\Portal\Data\**" />
@@ -61,6 +62,10 @@
     <Content Remove="Views\Shared\Templates\Modus\**" />
     <Content Remove="Views\Shared\Templates\Now-UI-Kit-PRO\**" />
     <Content Remove="Views\Shared\Widgets\**" />
+    <Content Remove="wwwroot\app-portal\components\**" />
+    <Content Remove="wwwroot\app-portal\controllers\**" />
+    <Content Remove="wwwroot\app-portal\plunk\**" />
+    <Content Remove="wwwroot\app-portal\services\**" />
     <Content Remove="wwwroot\lib\**" />
     <!--<Content Remove="wwwroot\lib\**" />-->
     <EmbeddedResource Remove="Areas\Portal\Data\**" />
@@ -81,6 +86,7 @@
     <EmbeddedResource Remove="wwwroot\app-portal\components\**" />
     <EmbeddedResource Remove="wwwroot\app-portal\controllers\**" />
     <EmbeddedResource Remove="wwwroot\app-portal\plugins\**" />
+    <EmbeddedResource Remove="wwwroot\app-portal\plunk\**" />
     <EmbeddedResource Remove="wwwroot\app-portal\services\**" />
     <EmbeddedResource Remove="wwwroot\lib\**" />
     <None Remove="Areas\Portal\Data\**" />
@@ -101,6 +107,7 @@
     <None Remove="wwwroot\app-portal\components\**" />
     <None Remove="wwwroot\app-portal\controllers\**" />
     <None Remove="wwwroot\app-portal\plugins\**" />
+    <None Remove="wwwroot\app-portal\plunk\**" />
     <None Remove="wwwroot\app-portal\services\**" />
     <None Remove="wwwroot\lib\**" />
   </ItemGroup>
@@ -186,7 +193,6 @@
   <ItemGroup>
     <Folder Include="Areas\Portal\Views\Shared\Widgets\" />
     <Folder Include="Areas\User\Models\" />
-    <Folder Include="wwwroot\app-portal\components\shared\" />
     <Folder Include="wwwroot\app\services\" />
   </ItemGroup>
 
@@ -301,10 +307,6 @@
     <None Include="Views\_ViewStart.cshtml" />
     <None Include="wwwroot\app-portal\pages\shared\services\auth-services.js" />
     <None Include="wwwroot\app-portal\pages\shared\services\common-services.js" />
-    <None Include="wwwroot\app-portal\plunk\editableField.js" />
-    <None Include="wwwroot\app-portal\plunk\heroDetail.js" />
-    <None Include="wwwroot\app-portal\plunk\heroList.js" />
-    <None Include="wwwroot\app-portal\plunk\index.js" />
     <None Include="wwwroot\app\app-portal.js" />
     <None Include="wwwroot\app\controllers\portal-controller.js" />
   </ItemGroup>

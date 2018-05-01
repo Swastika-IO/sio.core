@@ -86,7 +86,7 @@ namespace Swastika.Cms.Lib.ViewModels.Info
                 FileName += Extension;
             }
             Content = Content.Trim();
-            return base.ParseModel();
+            return base.ParseModel(_context, _transaction);
         }
 
         #endregion Common
