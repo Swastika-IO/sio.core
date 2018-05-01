@@ -25,6 +25,10 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Compile Include="App_Start\Startup.Auth.txt" />
+  </ItemGroup>
+
+  <ItemGroup>
     <Folder Include="wwwroot\" />
   </ItemGroup>
 
@@ -37,10 +41,6 @@
 
   <ItemGroup>
     <DotNetCliToolReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Tools" Version="2.0.0" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <None Include="App_Start\Startup.Auth.cs" />
   </ItemGroup>
 
   <ItemGroup>

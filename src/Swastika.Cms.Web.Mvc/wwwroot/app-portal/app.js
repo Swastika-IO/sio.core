@@ -1,5 +1,5 @@
 ﻿'use strict';
-var app = angular.module('SwastikaPortal', ['ngRoute', 'ngAnimate', 'LocalStorageModule', 'angular-loading-bar', 'ngLoadScript', 'ckeditor', 'bw.paging']);
+var app = angular.module('SwastikaPortal', ['ngRoute', 'components', 'ngFileUpload', 'ngAnimate', 'LocalStorageModule', 'angular-loading-bar', 'ngLoadScript', 'ckeditor', 'bw.paging']);
 var serviceBase = "/";
 
 app.config(function ($routeProvider, $locationProvider, $sceProvider) {
