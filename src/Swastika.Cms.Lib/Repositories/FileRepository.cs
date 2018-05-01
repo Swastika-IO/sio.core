@@ -279,13 +279,20 @@ namespace Swastika.Cms.Lib.Repositories
             return true;
         }
 
-        public List<FileViewModel> GetUploadFiles(string folder)
+        private void CreateDirectoryIfNotExist(string fullPath)
         {
-            string fullPath = string.Format(SWCmsConstants.Parameters.UploadFolder, folder);
             if (!Directory.Exists(fullPath))
             {
                 Directory.CreateDirectory(fullPath);
             }
+        }
+
+        public List<FileViewModel> GetUploadFiles(string folder)
+        {
+            string fullPath = string.Format(SWCmsConstants.Parameters.UploadFolder, folder);
+
+            CreateDirectoryIfNotExist(fullPath);
+
             DirectoryInfo d = new DirectoryInfo(fullPath); //Assuming Test is your Folder
             FileInfo[] Files = d.GetFiles();
             List<FileViewModel> result = new List<FileViewModel>();
@@ -313,10 +320,7 @@ namespace Swastika.Cms.Lib.Repositories
                 SWCmsConstants.Parameters.FileFolder,
                 folder
             });
-            //if (!Directory.Exists(fullPath))
-            //{
-            //    Directory.CreateDirectory(fullPath);
-            //}
+            // CreateDirectoryIfNotExist(fullPath);
             List<string> result = new List<string>();
             if (Directory.Exists(fullPath))
             {
@@ -363,10 +367,8 @@ namespace Swastika.Cms.Lib.Repositories
 
         public List<FileViewModel> GetFilesWithContent(string fullPath)
         {
-            if (!Directory.Exists(fullPath))
-            {
-                Directory.CreateDirectory(fullPath);
-            }
+            CreateDirectoryIfNotExist(fullPath);
+
             //DirectoryInfo d = new DirectoryInfo(fullPath); //Assuming Test is your Folder
             FileInfo[] Files = { };
             List<FileViewModel> result = new List<FileViewModel>();
@@ -397,10 +399,8 @@ namespace Swastika.Cms.Lib.Repositories
 
         public List<FileViewModel> GetFiles(string fullPath)
         {
-            if (!Directory.Exists(fullPath))
-            {
-                Directory.CreateDirectory(fullPath);
-            }
+            CreateDirectoryIfNotExist(fullPath);
+
             //DirectoryInfo d = new DirectoryInfo(fullPath); //Assuming Test is your Folder
             FileInfo[] Files = { };
             List<FileViewModel> result = new List<FileViewModel>();
@@ -446,10 +446,8 @@ namespace Swastika.Cms.Lib.Repositories
                     folder
                 });
 
-            if (!Directory.Exists(fullPath))
-            {
-                Directory.CreateDirectory(fullPath);
-            }
+            CreateDirectoryIfNotExist(fullPath);
+
             //DirectoryInfo d = new DirectoryInfo(fullPath); //Assuming Test is your Folder
             FileInfo[] Files = { };
             List<FileViewModel> result = new List<FileViewModel>();
@@ -506,10 +504,8 @@ namespace Swastika.Cms.Lib.Repositories
                 });
                 if (!string.IsNullOrEmpty(file.Filename))
                 {
-                    if (!Directory.Exists(fullPath))
-                    {
-                        Directory.CreateDirectory(fullPath);
-                    }
+                    CreateDirectoryIfNotExist(fullPath);
+
                     string fileName = SWCmsHelper.GetFullPath(new string[] { fullPath, file.Filename + file.Extension }); //string.Format(file.FileFolder, file.Filename);
                     //var logPath = System.IO.Path.GetTempFileName();
                     if (File.Exists(fileName))
@@ -556,10 +552,8 @@ namespace Swastika.Cms.Lib.Repositories
                 //});
                 if (file.Length > 0)
                 {
-                    if (!Directory.Exists(fullPath))
-                    {
-                        Directory.CreateDirectory(fullPath);
-                    }
+                    CreateDirectoryIfNotExist(fullPath);
+
                     string filename = file.FileName; // Guid.NewGuid().ToString("N");
                     string filePath = SWCmsHelper.GetFullPath(new string[] { fullPath, filename });
                     //var logPath = System.IO.Path.GetTempFileName();
