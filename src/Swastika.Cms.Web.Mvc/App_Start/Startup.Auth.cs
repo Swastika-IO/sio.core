@@ -21,7 +21,7 @@ namespace Swastika.Cms.Web.Mvc
 {
     public partial class Startup
     {
-        public static void ConfigIdentity(IServiceCollection services, IConfigurationRoot Configuration, string connectionName)
+        protected void ConfigIdentity(IServiceCollection services, IConfigurationRoot Configuration, string connectionName)
         {
             services.AddDbContext<ApplicationDbContext>();
 
@@ -54,7 +54,7 @@ namespace Swastika.Cms.Web.Mvc
              ;
         }
 
-        public static void ConfigJWTToken(IServiceCollection services, IConfigurationRoot Configuration)
+        protected void ConfigJWTToken(IServiceCollection services, IConfigurationRoot Configuration)
         {
             services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
                     .AddJwtBearer(options =>
@@ -87,7 +87,7 @@ namespace Swastika.Cms.Web.Mvc
                     });
         }
 
-        public static void ConfigCookieAuth(IServiceCollection services, IConfigurationRoot Configuration)
+        protected void ConfigCookieAuth(IServiceCollection services, IConfigurationRoot Configuration)
         {
             services.ConfigureApplicationCookie(options =>
             {
@@ -114,7 +114,7 @@ namespace Swastika.Cms.Web.Mvc
                 });
         }
 
-        public static class JwtSecurityKey
+        protected class JwtSecurityKey
         {
             public static SymmetricSecurityKey Create(string secret)
             {
