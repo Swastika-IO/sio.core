@@ -1,5 +1,5 @@
-ó©
-\D:\Workspace\GitHub\Swastika-IO-Core\src\Swastka.Cms.Api\Controllers\ApiAccountController.cs
+ò©
+]E:\_Workspace\Github\Swastika-IO-Core\src\Swastka.Cms.Api\Controllers\ApiAccountController.cs
 	namespace!! 	
 Swastika!!
  
@@ -3325,8 +3325,8 @@ roleClaims
 ÜÜ 	
 }
 áá 
-}àà Æ⁄
-\D:\Workspace\GitHub\Swastika-IO-Core\src\Swastka.Cms.Api\Controllers\ApiArticleController.cs
+}àà Ø⁄
+]E:\_Workspace\Github\Swastika-IO-Core\src\Swastka.Cms.Api\Controllers\ApiArticleController.cs
 	namespace 	
 Swastka
  
@@ -5658,8 +5658,8 @@ DetailsUrl
 êê 	
 }
 ìì 
-}îî œç
-[D:\Workspace\GitHub\Swastika-IO-Core\src\Swastka.Cms.Api\Controllers\ApiCommonController.cs
+}îî –ç
+\E:\_Workspace\Github\Swastika-IO-Core\src\Swastka.Cms.Api\Controllers\ApiCommonController.cs
 	namespace 	
 Swastka
  
@@ -7009,8 +7009,8 @@ DetailsUrl
 ¡¡ 	
 }
 ƒƒ 
-}≈≈ ´
-YD:\Workspace\GitHub\Swastika-IO-Core\src\Swastka.Cms.Api\Controllers\ApiFileController.cs
+}≈≈ ¨
+ZE:\_Workspace\Github\Swastika-IO-Core\src\Swastka.Cms.Api\Controllers\ApiFileController.cs
 	namespace
 
  	
@@ -7118,8 +7118,8 @@ ModelState 
 ;  6 7
 }!! 	
 }"" 
-}## ±ë
-ZD:\Workspace\GitHub\Swastika-IO-Core\src\Swastka.Cms.Api\Controllers\ApiMediaController.cs
+}## ≤ë
+[E:\_Workspace\Github\Swastika-IO-Core\src\Swastka.Cms.Api\Controllers\ApiMediaController.cs
 	namespace 	
 Swastka
  
@@ -8533,8 +8533,8 @@ Repository
 √√ 	
 }
 ”” 
-}‘‘ ¶ù
-[D:\Workspace\GitHub\Swastika-IO-Core\src\Swastka.Cms.Api\Controllers\ApiModuleController.cs
+}‘‘ ßù
+\E:\_Workspace\Github\Swastika-IO-Core\src\Swastka.Cms.Api\Controllers\ApiModuleController.cs
 	namespace 	
 Swastka
  
@@ -10030,8 +10030,8 @@ Repository
 øø 	
 }
 ¬¬ 
-}√√ áò
-_D:\Workspace\GitHub\Swastika-IO-Core\src\Swastka.Cms.Api\Controllers\ApiModuleDataController.cs
+}√√ àò
+`E:\_Workspace\Github\Swastika-IO-Core\src\Swastka.Cms.Api\Controllers\ApiModuleDataController.cs
 	namespace 	
 Swastka
  
@@ -11614,8 +11614,8 @@ Newtonsoft
 ΩΩ 	
 }
 ææ 
-}øø •
-_D:\Workspace\GitHub\Swastika-IO-Core\src\Swastka.Cms.Api\Controllers\ApiNavigationController.cs
+}øø ¶
+`E:\_Workspace\Github\Swastika-IO-Core\src\Swastka.Cms.Api\Controllers\ApiNavigationController.cs
 	namespace 	
 Swastka
  
@@ -11828,8 +11828,8 @@ Repository66< F
 }99 
 }:: 	
 }@@ 
-}AA ”å
-YD:\Workspace\GitHub\Swastika-IO-Core\src\Swastka.Cms.Api\Controllers\ApiPageController.cs
+}AA ‘å
+ZE:\_Workspace\Github\Swastika-IO-Core\src\Swastka.Cms.Api\Controllers\ApiPageController.cs
 	namespace 	
 Swastka
  
@@ -13152,8 +13152,8 @@ DetailsUrl
 ∏∏ 	
 }
 ªª 
-}ºº —
-\D:\Workspace\GitHub\Swastika-IO-Core\src\Swastka.Cms.Api\Controllers\ApiProductController.cs
+}ºº “
+]E:\_Workspace\Github\Swastika-IO-Core\src\Swastka.Cms.Api\Controllers\ApiProductController.cs
 	namespace 	
 Swastka
  
@@ -15811,8 +15811,8 @@ DetailsUrl
 ≤≤ 	
 }
 µµ 
-}∂∂ ∂:
-YD:\Workspace\GitHub\Swastika-IO-Core\src\Swastka.Cms.Api\Controllers\ApiRoleController.cs
+}∂∂ ∑:
+ZE:\_Workspace\Github\Swastika-IO-Core\src\Swastka.Cms.Api\Controllers\ApiRoleController.cs
 	namespace 	
 Swastka
  
@@ -16219,8 +16219,8 @@ Repository[[- 7
 ;\\ 
 }]] 	
 }`` 
-}aa ≤d
-]D:\Workspace\GitHub\Swastika-IO-Core\src\Swastka.Cms.Api\Controllers\ApiTemplateController.cs
+}aa ≥d
+^E:\_Workspace\Github\Swastika-IO-Core\src\Swastka.Cms.Api\Controllers\ApiTemplateController.cs
 	namespace 	
 Swastka
  
@@ -17008,8 +17008,8 @@ Repository
 ãã 	
 }
 éé 
-}èè ç	
-CD:\Workspace\GitHub\Swastika-IO-Core\src\Swastka.Cms.Api\Program.cs
+}èè é	
+DE:\_Workspace\Github\Swastika-IO-Core\src\Swastka.Cms.Api\Program.cs
 	namespace 	
 Swastka
  
@@ -17081,8 +17081,8 @@ UseStartup 
 ) 
 ; 
 } 
-} –
-CD:\Workspace\GitHub\Swastika-IO-Core\src\Swastka.Cms.Api\Startup.cs
+} —
+DE:\_Workspace\Github\Swastika-IO-Core\src\Swastka.Cms.Api\Startup.cs
 	namespace
 
  	
@@ -17215,4 +17215,132 @@ AddMvcCore 
 ;)) 
 }** 	
 }++ 
-},, 
+},, ¡
+TE:\_Workspace\Github\Swastika-IO-Core\src\Swastka.Cms.Api\App_Start\Startup.Auth.txt
+	namespace
+
+ 	
+Swastka
+
+
+ 
+.
+
+ 
+Cms
+
+ 
+.
+
+ 
+Api
+
+ 
+{ 
+public 
+
+partial 
+class 
+Startup  
+{ 
+public 
+static 
+void 
+ConfigureApi '
+(' (
+IServiceCollection 
+services '
+)' (
+{ 	
+services 
+. 
+AddAuthentication &
+(& '
+JwtBearerDefaults' 8
+.8 9 
+AuthenticationScheme9 M
+)M N
+. 
+AddJwtBearer !
+(! "
+options" )
+=>* ,
+{ 
+options 
+.  %
+TokenValidationParameters  9
+=: ;
+new  %
+TokenValidationParameters! :
+{ 
+ValidateIssuer! /
+=0 1
+true2 6
+,6 7
+ValidateAudience! 1
+=2 3
+true4 8
+,8 9
+ValidateLifetime! 1
+=2 3
+true4 8
+,8 9$
+ValidateIssuerSigningKey! 9
+=: ;
+true< @
+,@ A
+ValidIssuer! ,
+=- .
+$str/ I
+,I J
+ValidAudience! .
+=/ 0
+$str1 K
+,K L
+IssuerSigningKey! 1
+=2 3
+JwtSecurityKey" 0
+.0 1
+Create1 7
+(7 8
+$str8 H
+)H I
+}   
+;   
+}!! 
+)!! 
+;!! 
+}$$ 	
+}.. 
+public00 
+
+static00 
+class00 
+JwtSecurityKey00 &
+{11 
+public22 
+static22  
+SymmetricSecurityKey22 *
+Create22+ 1
+(221 2
+string222 8
+secret229 ?
+)22? @
+{33 	
+return44 
+new44  
+SymmetricSecurityKey44 +
+(44+ ,
+Encoding44, 4
+.444 5
+ASCII445 :
+.44: ;
+GetBytes44; C
+(44C D
+secret44D J
+)44J K
+)44K L
+;44L M
+}55 	
+}66 
+}77 

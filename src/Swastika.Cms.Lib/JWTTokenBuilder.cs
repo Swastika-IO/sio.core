@@ -52,7 +52,7 @@ namespace Swastika.Cms.Lib
 
         public JwtTokenBuilder AddClaims(Dictionary<string, string> claims)
         {
-            this.claims.Union(claims);
+            var res = this.claims.Union(claims);
             return this;
         }
 

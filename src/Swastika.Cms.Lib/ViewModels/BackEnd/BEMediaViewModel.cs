@@ -118,6 +118,7 @@ namespace Swastika.Cms.Lib.ViewModels.BackEnd
         }
 
 #pragma warning disable CS1998 // Async method lacks 'await' operators and will run synchronously
+
         public override async Task<RepositoryResponse<bool>> RemoveRelatedModelsAsync(BEMediaViewModel view, SiocCmsContext _context = null, IDbContextTransaction _transaction = null)
 #pragma warning restore CS1998 // Async method lacks 'await' operators and will run synchronously
         {

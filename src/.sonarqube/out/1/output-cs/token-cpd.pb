@@ -1,5 +1,5 @@
-‡
-GD:\Workspace\GitHub\Swastika-IO-Core\src\Swastika.Cms.Test\UnitTest1.cs
+ˆ
+HE:\_Workspace\Github\Swastika-IO-Core\src\Swastika.Cms.Test\UnitTest1.cs
 	namespace 	
 Swastika
  

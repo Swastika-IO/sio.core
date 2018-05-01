@@ -1,5 +1,5 @@
-Œ4
-\D:\Workspace\GitHub\Swastika-IO-Core\src\Swastka.Cms.Api\Controllers\ApiAccountController.cs
+Ô4
+]E:\_Workspace\Github\Swastika-IO-Core\src\Swastka.Cms.Api\Controllers\ApiAccountController.cs
  H
  k
  A
@@ -265,6 +265,8 @@
 ‚‚ #
 ‰‰ Y
 ÊÊ$ '
+ÊÊ( :
+ÊÊ; I
 ÊÊQ _
 ÊÊ` kÊÊy ã
 ÁÁ 
@@ -309,8 +311,8 @@
 ÖÖ 
 ÖÖ 
 ÖÖ 
-ÖÖ* 9Â,
-\D:\Workspace\GitHub\Swastika-IO-Core\src\Swastka.Cms.Api\Controllers\ApiArticleController.cs
+ÖÖ* 9Ê,
+]E:\_Workspace\Github\Swastika-IO-Core\src\Swastka.Cms.Api\Controllers\ApiArticleController.cs
  H
  c
  A
@@ -525,8 +527,8 @@
 ââ# .
 ää !
 ää# &
-èè ˛
-[D:\Workspace\GitHub\Swastika-IO-Core\src\Swastka.Cms.Api\Controllers\ApiCommonController.cs
+èè ˇ
+\E:\_Workspace\Github\Swastika-IO-Core\src\Swastka.Cms.Api\Controllers\ApiCommonController.cs
  H
  O
  A
@@ -630,8 +632,8 @@
 ªª# .
 ºº 
 ºº  #
-¿¿ √
-YD:\Workspace\GitHub\Swastika-IO-Core\src\Swastka.Cms.Api\Controllers\ApiFileController.cs
+¿¿ ƒ
+ZE:\_Workspace\Github\Swastika-IO-Core\src\Swastka.Cms.Api\Controllers\ApiFileController.cs
  H
  c
  A
@@ -643,8 +645,8 @@ YD:\Workspace\GitHub\Swastika-IO-Core\src\Swastka.Cms.Api\Controllers\ApiFileCon
 
  	    
   
-  "% 6     < Q 	  	   " /   +      " *  , 5À
-ZD:\Workspace\GitHub\Swastika-IO-Core\src\Swastka.Cms.Api\Controllers\ApiMediaController.cs
+  "% 6     < Q 	  	   " /   +      " *  , 5Ã
+[E:\_Workspace\Github\Swastika-IO-Core\src\Swastka.Cms.Api\Controllers\ApiMediaController.cs
  H
  c
  A
@@ -762,8 +764,8 @@ ZD:\Workspace\GitHub\Swastika-IO-Core\src\Swastka.Cms.Api\Controllers\ApiMediaCo
 ÕÕ 
 ŒŒ 
 œœ 
-–– œ 
-[D:\Workspace\GitHub\Swastika-IO-Core\src\Swastka.Cms.Api\Controllers\ApiModuleController.cs
+–– – 
+\E:\_Workspace\Github\Swastika-IO-Core\src\Swastka.Cms.Api\Controllers\ApiModuleController.cs
  H
  c
  A
@@ -879,8 +881,8 @@ ZD:\Workspace\GitHub\Swastika-IO-Core\src\Swastka.Cms.Api\Controllers\ApiMediaCo
 ææ 
 ææ 
 ææ )
-ææ* .± 
-_D:\Workspace\GitHub\Swastika-IO-Core\src\Swastka.Cms.Api\Controllers\ApiModuleDataController.cs
+ææ* .≤ 
+`E:\_Workspace\Github\Swastika-IO-Core\src\Swastka.Cms.Api\Controllers\ApiModuleDataController.cs
  H
  c
  A
@@ -1015,8 +1017,8 @@ _D:\Workspace\GitHub\Swastika-IO-Core\src\Swastka.Cms.Api\Controllers\ApiModuleD
 ∫∫$ '
 ∫∫( ,
 ∫∫B I
-ºº ó
-_D:\Workspace\GitHub\Swastika-IO-Core\src\Swastka.Cms.Api\Controllers\ApiNavigationController.cs
+ºº ò
+`E:\_Workspace\Github\Swastika-IO-Core\src\Swastka.Cms.Api\Controllers\ApiNavigationController.cs
  H
  c
  A
@@ -1040,8 +1042,8 @@ _D:\Workspace\GitHub\Swastika-IO-Core\src\Swastka.Cms.Api\Controllers\ApiNavigat
   
   (   &' :$$ &&	 && ''	 '' %(( (( (( (( ,((- <((= W((c p** ** ,, ,,  ,,! ;
 --à ç// 11 33 33 33  2334 855 66 66  66! ;
-66æ √88 ∞
-YD:\Workspace\GitHub\Swastika-IO-Core\src\Swastka.Cms.Api\Controllers\ApiPageController.cs
+66æ √88 ±
+ZE:\_Workspace\Github\Swastika-IO-Core\src\Swastka.Cms.Api\Controllers\ApiPageController.cs
  H
  O
  A
@@ -1132,8 +1134,8 @@ YD:\Workspace\GitHub\Swastika-IO-Core\src\Swastka.Cms.Api\Controllers\ApiPageCon
 ≤≤# .
 ≥≥ 
 ≥≥  #
-∑∑ ô1
-\D:\Workspace\GitHub\Swastika-IO-Core\src\Swastka.Cms.Api\Controllers\ApiProductController.cs
+∑∑ ö1
+]E:\_Workspace\Github\Swastika-IO-Core\src\Swastka.Cms.Api\Controllers\ApiProductController.cs
  H
  c
  A
@@ -1395,8 +1397,8 @@ YD:\Workspace\GitHub\Swastika-IO-Core\src\Swastka.Cms.Api\Controllers\ApiPageCon
 ≠≠# .
 ÆÆ !
 ÆÆ# &
-±± ”
-YD:\Workspace\GitHub\Swastika-IO-Core\src\Swastka.Cms.Api\Controllers\ApiRoleController.cs
+±± ‘
+ZE:\_Workspace\Github\Swastika-IO-Core\src\Swastka.Cms.Api\Controllers\ApiRoleController.cs
  
  
  
@@ -1419,8 +1421,8 @@ YD:\Workspace\GitHub\Swastika-IO-Core\src\Swastka.Cms.Api\Controllers\ApiRoleCon
  
  	    
   
-  "% 6   $% 4   &' 6   $% 1   %             ! ,  - <!! !! )"" "" $## $$ $$ %--	 --+ <..	 .. // // 11 22 99	 99+ <99[ g::	 :: ;;	 ;; << << << << ,<<- 1<<2 ?>> >> >> &AA	 AA+ <AA[ gBB	 CC	 CC DD DD DD DD ,DD- 9DDA GFF FF FF 'II LL LL NN NN NN )NN* 6RR4 6RR> @RRO PVV	 VV+ <VV[ gWW	 XX	 XX YY YY YY YY ,YY- 1YY; A[[ [[ [[ ,\\  
-]D:\Workspace\GitHub\Swastika-IO-Core\src\Swastka.Cms.Api\Controllers\ApiTemplateController.cs
+  "% 6   $% 4   &' 6   $% 1   %             ! ,  - <!! !! )"" "" $## $$ $$ %--	 --+ <..	 .. // // 11 22 99	 99+ <99[ g::	 :: ;;	 ;; << << << << ,<<- 1<<2 ?>> >> >> &AA	 AA+ <AA[ gBB	 CC	 CC DD DD DD DD ,DD- 9DDA GFF FF FF 'II LL LL NN NN NN )NN* 6RR4 6RR> @RRO PVV	 VV+ <VV[ gWW	 XX	 XX YY YY YY YY ,YY- 1YY; A[[ [[ [[ ,\\ À
+^E:\_Workspace\Github\Swastika-IO-Core\src\Swastka.Cms.Api\Controllers\ApiTemplateController.cs
  H
  c
  A
@@ -1450,8 +1452,8 @@ YD:\Workspace\GitHub\Swastika-IO-Core\src\Swastka.Cms.Api\Controllers\ApiRoleCon
 àà 
 àà 
 àà 0àà≥ ∏
-ää µ
-CD:\Workspace\GitHub\Swastika-IO-Core\src\Swastka.Cms.Api\Program.cs
+ää ƒ
+DE:\_Workspace\Github\Swastika-IO-Core\src\Swastka.Cms.Api\Program.cs
  H
  c
  A
@@ -1464,8 +1466,8 @@ CD:\Workspace\GitHub\Swastika-IO-Core\src\Swastka.Cms.Api\Program.cs
 
  
 
-      &   , 2 Ñ
-CD:\Workspace\GitHub\Swastika-IO-Core\src\Swastka.Cms.Api\Startup.cs
+      &   , 2  #Ö
+DE:\_Workspace\Github\Swastika-IO-Core\src\Swastka.Cms.Api\Startup.cs
  H
  c
  A
@@ -1476,4 +1478,17 @@ CD:\Workspace\GitHub\Swastika-IO-Core\src\Swastka.Cms.Api\Startup.cs
 
 
  	 
-       : HI P   %  . 1  & 8' /         1'' $(( -	((N Ç
+       : HI P   %  . 1  & 8' /         1'' $(( -	((N Çÿ
+TE:\_Workspace\Github\Swastika-IO-Core\src\Swastka.Cms.Api\App_Start\Startup.Auth.txt
+ H
+ c
+ A
+ 
+ 
+ 
+ 
+
+
+ 	 
+        ' 8  ! :2 64 84 8< @/ I1 K" 08 H##  &&  '' &(( &)) ** &,, +-- 00 
+00 00 00 &22 22 22 *222 844 44 44 +44, 4

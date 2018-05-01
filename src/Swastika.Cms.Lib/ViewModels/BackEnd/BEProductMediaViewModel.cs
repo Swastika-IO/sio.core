@@ -60,7 +60,7 @@ namespace Swastika.Cms.Lib.ViewModels.BackEnd
         {
             var getMediaResult = BEMediaViewModel.Repository.GetSingleModel(
                 m => m.Id == MediaId && m.Specificulture == Specificulture
-                && ProductId == ProductId
+                && m.Id == MediaId
                 , _context: _context, _transaction: _transaction);
             if (getMediaResult.IsSucceed)
             {

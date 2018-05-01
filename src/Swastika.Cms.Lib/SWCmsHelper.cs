@@ -286,17 +286,8 @@ namespace Swastika.Cms.Lib
                 return false;
             }
             number = number.Replace(",", "");
-            try
-            {
-                double.Parse(number);
-                return true;
-            }
-            catch
-            {
-                return false;
-            }
-            //Regex rgx = new Regex("^(0|[1-9][0-9]*)$");
-            //return rgx.IsMatch(number);
+
+            return double.TryParse(number, out double t);
         }
 
         public static double ReversePrice(string formatedPrice)

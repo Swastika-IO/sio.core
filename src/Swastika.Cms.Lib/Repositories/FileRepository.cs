@@ -219,6 +219,9 @@ namespace Swastika.Cms.Lib.Repositories
                     Content = defaultContent
                 };
             }
+            else
+            {
+            }
 
             return result ?? new FileViewModel() { FileFolder = FileFolder };
         }
