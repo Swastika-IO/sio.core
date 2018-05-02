@@ -22,7 +22,7 @@ using System.Threading.Tasks;
 namespace Swastika.Cms.Mvc.Areas.Portal.Controllers
 {
     [Area("Portal")]
-    [Route("{culture}/Portal")]
+    [Route("Portal")]
     //[Route("Admin")]
     public class PortalController : BaseController<PortalController>
     {

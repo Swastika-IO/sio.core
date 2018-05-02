@@ -18,6 +18,7 @@ namespace Swastika.Cms.Web.Mvc.Controllers
 {
     public class InitCmsController : BaseController<InitCmsController>
     {
+        private const string InitUrl = "/Portal/Init";
         private readonly UserManager<ApplicationUser> _userManager;
         private readonly RoleManager<IdentityRole> _roleManager;
         public InitCmsController(IHostingEnvironment env,
@@ -34,9 +35,9 @@ namespace Swastika.Cms.Web.Mvc.Controllers
         [Route("{culture}")]
         public async System.Threading.Tasks.Task<IActionResult> Index()
         {
-            if (string.IsNullOrEmpty(GlobalConfigurationService.Instance.GetConfigConnectionKey()))
+            if (string.IsNullOrEmpty(GlobalConfigurationService.Instance.GetConnectionString()))
             {
-                return RedirectToAction("Init", "Portal", new { culture = ROUTE_DEFAULT_CULTURE });
+                return Redirect(InitUrl);
             }
             else
             {
