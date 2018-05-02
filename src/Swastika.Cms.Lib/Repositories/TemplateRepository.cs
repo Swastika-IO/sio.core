@@ -78,7 +78,7 @@ namespace Swastika.Cms.Lib.Repositories
 
         public bool DeleteTemplate(string name, string templateFolder)
         {
-            string fullPath = SWCmsHelper.GetFullPath(new string[]
+            string fullPath = SwCmsHelper.GetFullPath(new string[]
             {
                 templateFolder,
                 name + SWCmsConstants.Parameters.TemplateExtension
@@ -126,7 +126,7 @@ namespace Swastika.Cms.Lib.Repositories
                     {
                         Directory.CreateDirectory(file.FileFolder);
                     }
-                    string fileName = SWCmsHelper.GetFullPath(new string[] { file.FileFolder, file.Filename + file.Extension }); //string.Format(file.FileFolder, file.Filename);
+                    string fileName = SwCmsHelper.GetFullPath(new string[] { file.FileFolder, file.Filename + file.Extension }); //string.Format(file.FileFolder, file.Filename);
                     //var logPath = System.IO.Path.GetTempFileName();
                     using (var writer = File.CreateText(fileName))
                     {

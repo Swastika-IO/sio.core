@@ -107,7 +107,7 @@ namespace Swastika.Cms.Lib.ViewModels.Spa
             get {
                 if (Image != null && Image.IndexOf("http") == -1)
                 {
-                    return SWCmsHelper.GetFullPath(new string[] {
+                    return SwCmsHelper.GetFullPath(new string[] {
                     Domain,  Image
                 });
                 }
@@ -123,7 +123,7 @@ namespace Swastika.Cms.Lib.ViewModels.Spa
             get {
                 if (Thumbnail != null && Thumbnail.IndexOf("http") == -1)
                 {
-                    return SWCmsHelper.GetFullPath(new string[] {
+                    return SwCmsHelper.GetFullPath(new string[] {
                     Domain,  Thumbnail
                 });
                 }
@@ -136,7 +136,7 @@ namespace Swastika.Cms.Lib.ViewModels.Spa
 
         public string TemplatePath {
             get {
-                return SWCmsHelper.GetFullPath(new string[]
+                return SwCmsHelper.GetFullPath(new string[]
                 {
                     ""
                     , SWCmsConstants.Parameters.TemplatesFolder
@@ -195,22 +195,22 @@ namespace Swastika.Cms.Lib.ViewModels.Spa
         {
             if (string.IsNullOrEmpty(this.SeoName))
             {
-                this.SeoName = SEOHelper.GetSEOString(this.Title);
+                this.SeoName = SeoHelper.GetSEOString(this.Title);
             }
 
             if (string.IsNullOrEmpty(this.SeoTitle))
             {
-                this.SeoTitle = SEOHelper.GetSEOString(this.Title);
+                this.SeoTitle = SeoHelper.GetSEOString(this.Title);
             }
 
             if (string.IsNullOrEmpty(this.SeoDescription))
             {
-                this.SeoDescription = SEOHelper.GetSEOString(this.Title);
+                this.SeoDescription = SeoHelper.GetSEOString(this.Title);
             }
 
             if (string.IsNullOrEmpty(this.SeoKeywords))
             {
-                this.SeoKeywords = SEOHelper.GetSEOString(this.Title);
+                this.SeoKeywords = SeoHelper.GetSEOString(this.Title);
             }
         }
 

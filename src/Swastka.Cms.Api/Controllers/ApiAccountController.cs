@@ -300,7 +300,7 @@ namespace Swastika.Core.Controllers
             {
                 data.Data.Items.ForEach(a =>
                 {
-                    a.DetailsUrl = SWCmsHelper.GetRouterUrl(
+                    a.DetailsUrl = SwCmsHelper.GetRouterUrl(
                         "Profile", new { a.Id }, Request, Url);                }
                 );
             }
@@ -349,13 +349,13 @@ namespace Swastika.Core.Controllers
                     new Claim("RefreshToken", refreshToken)
                 });
             JwtSecurityToken jwtSecurityToken = new JwtSecurityToken(
-                issuer: SWCmsConstants.JWTSettings.ISSUER,
-                audience: SWCmsConstants.JWTSettings.AUDIENCE,
+                issuer: SWCmsConstants.JwtSettings.ISSUER,
+                audience: SWCmsConstants.JwtSettings.AUDIENCE,
                 notBefore: DateTime.UtcNow,
                 claims: claims,
                 // our token will live 1 hour, but you can change you token lifetime here
                 expires: expires,
-                signingCredentials: new SigningCredentials(JwtSecurityKey.Create(SWCmsConstants.JWTSettings.SECRET_KEY), SecurityAlgorithms.HmacSha256));
+                signingCredentials: new SigningCredentials(JwtSecurityKey.Create(SWCmsConstants.JwtSettings.SECRET_KEY), SecurityAlgorithms.HmacSha256));
             return new JwtSecurityTokenHandler().WriteToken(jwtSecurityToken);
         }
 

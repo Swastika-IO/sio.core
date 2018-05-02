@@ -115,7 +115,7 @@ namespace Swastka.Cms.Api.Controllers
                 var fileUpload = files.FirstOrDefault();
 
                 string folderPath = //$"{SWCmsConstants.Parameters.UploadFolder}/{fileFolder}/{DateTime.UtcNow.ToString("MMM-yyyy")}";
-                SWCmsHelper.GetFullPath(new[] {
+                SwCmsHelper.GetFullPath(new[] {
                     SWCmsConstants.Parameters.UploadFolder,
                     fileFolder,
                     DateTime.UtcNow.ToString("MMM-yyyy")
@@ -124,7 +124,7 @@ namespace Swastka.Cms.Api.Controllers
                 //return ImageHelper.ResizeImage(Image.FromStream(fileUpload.OpenReadStream()), System.IO.Path.Combine(_env.WebRootPath, folderPath));
                 //var fileName = await Common.UploadFileAsync(filePath, files.FirstOrDefault());
                 string fileName =
-                SWCmsHelper.GetFullPath(new[] {
+                SwCmsHelper.GetFullPath(new[] {
                     "/",
                     await UploadFileAsync(files.FirstOrDefault(), folderPath).ConfigureAwait(false)
                 });

@@ -1,5 +1,5 @@
-Х
-ME:\_Workspace\Github\Swastika-IO-Core\src\Swastika.Cms.Lib\JWTTokenBuilder.csP
+Ф
+LD:\Workspace\GitHub\Swastika-IO-Core\src\Swastika.Cms.Lib\JWTTokenBuilder.csP
  '  ## )) // 55 ;; (
  ' RR= H\\  (
   GG: A__* 1(
@@ -44,8 +44,8 @@ ME:\_Workspace\Github\Swastika-IO-Core\src\Swastika.Cms.Lib\JWTTokenBuilder.csP
 
 uu 
 
-vv ЖI
-]E:\_Workspace\Github\Swastika-IO-Core\src\Swastika.Cms.Lib\Migrations\20180312150946_first.cs
+vv ЕI
+\D:\Workspace\GitHub\Swastika-IO-Core\src\Swastika.Cms.Lib\Migrations\20180312150946_first.cs
 
  
 
@@ -848,8 +848,8 @@ ME:\_Workspace\Github\Swastika-IO-Core\src\Swastika.Cms.Lib\JWTTokenBuilder.csP
 ¤¤ 
 А	А	 
 Г	Г	 
-Ж	Ж	 ╒
-cE:\_Workspace\Github\Swastika-IO-Core\src\Swastika.Cms.Lib\Migrations\20180319080926_upd_product.cs
+Ж	Ж	 ╘
+bD:\Workspace\GitHub\Swastika-IO-Core\src\Swastika.Cms.Lib\Migrations\20180319080926_upd_product.cs
 
  $
 
@@ -857,8 +857,8 @@ cE:\_Workspace\Github\Swastika-IO-Core\src\Swastika.Cms.Lib\Migrations\201803190
 		4 D    $$ ** 00 66 << 
 
 CC  $d
-CC6 FEE II MM QQ UU YY ]] aa ee └
-tE:\_Workspace\Github\Swastika-IO-Core\src\Swastika.Cms.Lib\Migrations\SiocCmsAccount\20180111051125_First_Account.cs
+CC6 FEE II MM QQ UU YY ]] aa ee ┐
+sD:\Workspace\GitHub\Swastika-IO-Core\src\Swastika.Cms.Lib\Migrations\SiocCmsAccount\20180111051125_First_Account.cs
 
  &
 
@@ -986,8 +986,8 @@ tE:\_Workspace\Github\Swastika-IO-Core\src\Swastika.Cms.Lib\Migrations\SiocCmsAc
 кк 
 нн 
 ░░ 
-││ з
-]E:\_Workspace\Github\Swastika-IO-Core\src\Swastika.Cms.Lib\Models\Account\AspNetRoleClaims.cs
+││ ж
+\D:\Workspace\GitHub\Swastika-IO-Core\src\Swastika.Cms.Lib\Models\Account\AspNetRoleClaims.cs
 
  )
 
@@ -1001,8 +1001,8 @@ tE:\_Workspace\Github\Swastika-IO-Core\src\Swastika.Cms.Lib\Migrations\SiocCmsAc
 
  
 
- ╬
-XE:\_Workspace\Github\Swastika-IO-Core\src\Swastika.Cms.Lib\Models\Account\AspNetRoles.cs
+ ═
+WD:\Workspace\GitHub\Swastika-IO-Core\src\Swastika.Cms.Lib\Models\Account\AspNetRoles.cs
 
  $
 
@@ -1018,8 +1018,8 @@ XE:\_Workspace\Github\Swastika-IO-Core\src\Swastika.Cms.Lib\Models\Account\AspNe
 
  
 
- $┐
-]E:\_Workspace\Github\Swastika-IO-Core\src\Swastika.Cms.Lib\Models\Account\AspNetUserClaims.cs
+ $╛
+\D:\Workspace\GitHub\Swastika-IO-Core\src\Swastika.Cms.Lib\Models\Account\AspNetUserClaims.cs
 
  )
 
@@ -1037,8 +1037,8 @@ XE:\_Workspace\Github\Swastika-IO-Core\src\Swastika.Cms.Lib\Models\Account\AspNe
 
  *
 
- ┐
-]E:\_Workspace\Github\Swastika-IO-Core\src\Swastika.Cms.Lib\Models\Account\AspNetUserLogins.cs
+ ╛
+\D:\Workspace\GitHub\Swastika-IO-Core\src\Swastika.Cms.Lib\Models\Account\AspNetUserLogins.cs
 
  )
 
@@ -1056,8 +1056,8 @@ XE:\_Workspace\Github\Swastika-IO-Core\src\Swastika.Cms.Lib\Models\Account\AspNe
 
  *
 
- ▓
-\E:\_Workspace\Github\Swastika-IO-Core\src\Swastika.Cms.Lib\Models\Account\AspNetUserRoles.cs
+ ▒
+[D:\Workspace\GitHub\Swastika-IO-Core\src\Swastika.Cms.Lib\Models\Account\AspNetUserRoles.cs
 
  (
 
@@ -1073,8 +1073,8 @@ XE:\_Workspace\Github\Swastika-IO-Core\src\Swastika.Cms.Lib\Models\Account\AspNe
 
  
 
- ▄
-XE:\_Workspace\Github\Swastika-IO-Core\src\Swastika.Cms.Lib\Models\Account\AspNetUsers.cs
+ █
+WD:\Workspace\GitHub\Swastika-IO-Core\src\Swastika.Cms.Lib\Models\Account\AspNetUsers.cs
 
  $
 
@@ -1143,8 +1143,8 @@ XE:\_Workspace\Github\Swastika-IO-Core\src\Swastika.Cms.Lib\Models\Account\AspNe
 
 -- $
 
-.. з
-]E:\_Workspace\Github\Swastika-IO-Core\src\Swastika.Cms.Lib\Models\Account\AspNetUserTokens.cs
+.. ж
+\D:\Workspace\GitHub\Swastika-IO-Core\src\Swastika.Cms.Lib\Models\Account\AspNetUserTokens.cs
 
  )
 
@@ -1158,8 +1158,8 @@ XE:\_Workspace\Github\Swastika-IO-Core\src\Swastika.Cms.Lib\Models\Account\AspNe
 
  
 
- ╢
-TE:\_Workspace\Github\Swastika-IO-Core\src\Swastika.Cms.Lib\Models\Account\Clients.cs
+ ╡
+SD:\Workspace\GitHub\Swastika-IO-Core\src\Swastika.Cms.Lib\Models\Account\Clients.cs
 
   
 
@@ -1177,8 +1177,8 @@ TE:\_Workspace\Github\Swastika-IO-Core\src\Swastika.Cms.Lib\Models\Account\Clien
 
  '
 
- ░
-ZE:\_Workspace\Github\Swastika-IO-Core\src\Swastika.Cms.Lib\Models\Account\RefreshTokens.cs
+ п
+YD:\Workspace\GitHub\Swastika-IO-Core\src\Swastika.Cms.Lib\Models\Account\RefreshTokens.cs
 
  &
 
@@ -1194,8 +1194,8 @@ ZE:\_Workspace\Github\Swastika-IO-Core\src\Swastika.Cms.Lib\Models\Account\Refre
 
  "
 
- !│
-cE:\_Workspace\Github\Swastika-IO-Core\src\Swastika.Cms.Lib\Models\Account\_SiocCmsAccountContext.cs
+ !▓
+bD:\Workspace\GitHub\Swastika-IO-Core\src\Swastika.Cms.Lib\Models\Account\_SiocCmsAccountContext.cs
 
  .
 
@@ -1375,8 +1375,8 @@ cE:\_Workspace\Github\Swastika-IO-Core\src\Swastika.Cms.Lib\Models\Account\_Sioc
 ║║% &
 
 ╝╝  !
-╝╝% &Є
-TE:\_Workspace\Github\Swastika-IO-Core\src\Swastika.Cms.Lib\Models\Cms\SiocArticle.cs
+╝╝% &ё
+SD:\Workspace\GitHub\Swastika-IO-Core\src\Swastika.Cms.Lib\Models\Cms\SiocArticle.cs
 
  $
 
@@ -1436,8 +1436,8 @@ TE:\_Workspace\Github\Swastika-IO-Core\src\Swastika.Cms.Lib\Models\Cms\SiocArtic
 
 '' 
 
-)) 3▀
-YE:\_Workspace\Github\Swastika-IO-Core\src\Swastika.Cms.Lib\Models\Cms\SiocArticleMedia.cs
+)) 3▐
+XD:\Workspace\GitHub\Swastika-IO-Core\src\Swastika.Cms.Lib\Models\Cms\SiocArticleMedia.cs
 
  )
 
@@ -1461,8 +1461,8 @@ YE:\_Workspace\Github\Swastika-IO-Core\src\Swastika.Cms.Lib\Models\Cms\SiocArtic
 
  &
 
- "Ш
-ZE:\_Workspace\Github\Swastika-IO-Core\src\Swastika.Cms.Lib\Models\Cms\SiocArticleModule.cs
+ "Ч
+YD:\Workspace\GitHub\Swastika-IO-Core\src\Swastika.Cms.Lib\Models\Cms\SiocArticleModule.cs
 
  *
 
@@ -1490,8 +1490,8 @@ ZE:\_Workspace\Github\Swastika-IO-Core\src\Swastika.Cms.Lib\Models\Cms\SiocArtic
 
  &
 
- $л
-UE:\_Workspace\Github\Swastika-IO-Core\src\Swastika.Cms.Lib\Models\Cms\SiocCategory.cs
+ $к
+TD:\Workspace\GitHub\Swastika-IO-Core\src\Swastika.Cms.Lib\Models\Cms\SiocCategory.cs
 
  %
 
@@ -1555,8 +1555,8 @@ UE:\_Workspace\Github\Swastika-IO-Core\src\Swastika.Cms.Lib\Models\Cms\SiocCateg
 
 ** 
 
-,, 3╓
-\E:\_Workspace\Github\Swastika-IO-Core\src\Swastika.Cms.Lib\Models\Cms\SiocCategoryArticle.cs
+,, 3╒
+[D:\Workspace\GitHub\Swastika-IO-Core\src\Swastika.Cms.Lib\Models\Cms\SiocCategoryArticle.cs
 
  ,
 
@@ -1578,8 +1578,8 @@ UE:\_Workspace\Github\Swastika-IO-Core\src\Swastika.Cms.Lib\Models\Cms\SiocCateg
 
  &
 
- (╫
-]E:\_Workspace\Github\Swastika-IO-Core\src\Swastika.Cms.Lib\Models\Cms\SiocCategoryCategory.cs
+ (╓
+\D:\Workspace\GitHub\Swastika-IO-Core\src\Swastika.Cms.Lib\Models\Cms\SiocCategoryCategory.cs
 
  -
 
@@ -1601,8 +1601,8 @@ UE:\_Workspace\Github\Swastika-IO-Core\src\Swastika.Cms.Lib\Models\Cms\SiocCateg
 
  (
 
- 2Щ
-[E:\_Workspace\Github\Swastika-IO-Core\src\Swastika.Cms.Lib\Models\Cms\SiocCategoryModule.cs
+ 2Ш
+ZD:\Workspace\GitHub\Swastika-IO-Core\src\Swastika.Cms.Lib\Models\Cms\SiocCategoryModule.cs
 
  +
 
@@ -1630,8 +1630,8 @@ UE:\_Workspace\Github\Swastika-IO-Core\src\Swastika.Cms.Lib\Models\Cms\SiocCateg
 
  (
 
- $╦
-]E:\_Workspace\Github\Swastika-IO-Core\src\Swastika.Cms.Lib\Models\Cms\SiocCategoryPosition.cs
+ $╩
+\D:\Workspace\GitHub\Swastika-IO-Core\src\Swastika.Cms.Lib\Models\Cms\SiocCategoryPosition.cs
 
  -
 
@@ -1651,8 +1651,8 @@ UE:\_Workspace\Github\Swastika-IO-Core\src\Swastika.Cms.Lib\Models\Cms\SiocCateg
 
  $
 
- (╓
-\E:\_Workspace\Github\Swastika-IO-Core\src\Swastika.Cms.Lib\Models\Cms\SiocCategoryProduct.cs
+ (╒
+[D:\Workspace\GitHub\Swastika-IO-Core\src\Swastika.Cms.Lib\Models\Cms\SiocCategoryProduct.cs
 
  ,
 
@@ -1674,8 +1674,8 @@ UE:\_Workspace\Github\Swastika-IO-Core\src\Swastika.Cms.Lib\Models\Cms\SiocCateg
 
  (
 
- &Є
-TE:\_Workspace\Github\Swastika-IO-Core\src\Swastika.Cms.Lib\Models\Cms\SiocCmsUser.cs
+ &ё
+SD:\Workspace\GitHub\Swastika-IO-Core\src\Swastika.Cms.Lib\Models\Cms\SiocCmsUser.cs
 
  $
 
@@ -1703,8 +1703,8 @@ TE:\_Workspace\Github\Swastika-IO-Core\src\Swastika.Cms.Lib\Models\Cms\SiocCmsUs
 
  
 
- К
-TE:\_Workspace\Github\Swastika-IO-Core\src\Swastika.Cms.Lib\Models\Cms\SiocComment.cs
+ Й
+SD:\Workspace\GitHub\Swastika-IO-Core\src\Swastika.Cms.Lib\Models\Cms\SiocComment.cs
 
  $
 
@@ -1736,8 +1736,8 @@ TE:\_Workspace\Github\Swastika-IO-Core\src\Swastika.Cms.Lib\Models\Cms\SiocComme
 
  
 
- (╘
-ZE:\_Workspace\Github\Swastika-IO-Core\src\Swastika.Cms.Lib\Models\Cms\SiocConfiguration.cs
+ (╙
+YD:\Workspace\GitHub\Swastika-IO-Core\src\Swastika.Cms.Lib\Models\Cms\SiocConfiguration.cs
 
  *
 
@@ -1759,8 +1759,8 @@ ZE:\_Workspace\Github\Swastika-IO-Core\src\Swastika.Cms.Lib\Models\Cms\SiocConfi
 
  
 
- 3з
-QE:\_Workspace\Github\Swastika-IO-Core\src\Swastika.Cms.Lib\Models\Cms\SiocCopy.cs
+ 3ж
+PD:\Workspace\GitHub\Swastika-IO-Core\src\Swastika.Cms.Lib\Models\Cms\SiocCopy.cs
 
  !
 
@@ -1776,8 +1776,8 @@ QE:\_Workspace\Github\Swastika-IO-Core\src\Swastika.Cms.Lib\Models\Cms\SiocCopy.
 
  
 
- ▐
-TE:\_Workspace\Github\Swastika-IO-Core\src\Swastika.Cms.Lib\Models\Cms\SiocCulture.cs
+ ▌
+SD:\Workspace\GitHub\Swastika-IO-Core\src\Swastika.Cms.Lib\Models\Cms\SiocCulture.cs
 
  $
 
@@ -1807,8 +1807,8 @@ TE:\_Workspace\Github\Swastika-IO-Core\src\Swastika.Cms.Lib\Models\Cms\SiocCultu
 
  $
 
- З
-QE:\_Workspace\Github\Swastika-IO-Core\src\Swastika.Cms.Lib\Models\Cms\SiocFile.cs
+ Ж
+PD:\Workspace\GitHub\Swastika-IO-Core\src\Swastika.Cms.Lib\Models\Cms\SiocFile.cs
 
  !
 
@@ -1840,8 +1840,8 @@ QE:\_Workspace\Github\Swastika-IO-Core\src\Swastika.Cms.Lib\Models\Cms\SiocFile.
 
  
 
- ╧
-UE:\_Workspace\Github\Swastika-IO-Core\src\Swastika.Cms.Lib\Models\Cms\SiocLanguage.cs
+ ╬
+TD:\Workspace\GitHub\Swastika-IO-Core\src\Swastika.Cms.Lib\Models\Cms\SiocLanguage.cs
 
  %
 
@@ -1863,8 +1863,8 @@ UE:\_Workspace\Github\Swastika-IO-Core\src\Swastika.Cms.Lib\Models\Cms\SiocLangu
 
  
 
- 3╠
-RE:\_Workspace\Github\Swastika-IO-Core\src\Swastika.Cms.Lib\Models\Cms\SiocMedia.cs
+ 3╦
+QD:\Workspace\GitHub\Swastika-IO-Core\src\Swastika.Cms.Lib\Models\Cms\SiocMedia.cs
 
  "
 
@@ -1902,8 +1902,8 @@ RE:\_Workspace\Github\Swastika-IO-Core\src\Swastika.Cms.Lib\Models\Cms\SiocMedia
 
  
 
- п
-SE:\_Workspace\Github\Swastika-IO-Core\src\Swastika.Cms.Lib\Models\Cms\SiocModule.cs
+ о
+RD:\Workspace\GitHub\Swastika-IO-Core\src\Swastika.Cms.Lib\Models\Cms\SiocModule.cs
 
  #
 
@@ -1944,8 +1944,8 @@ SE:\_Workspace\Github\Swastika-IO-Core\src\Swastika.Cms.Lib\Models\Cms\SiocModul
 
  
 
-!! 3╘
-ZE:\_Workspace\Github\Swastika-IO-Core\src\Swastika.Cms.Lib\Models\Cms\SiocModuleArticle.cs
+!! 3╙
+YD:\Workspace\GitHub\Swastika-IO-Core\src\Swastika.Cms.Lib\Models\Cms\SiocModuleArticle.cs
 
  *
 
@@ -1967,8 +1967,8 @@ ZE:\_Workspace\Github\Swastika-IO-Core\src\Swastika.Cms.Lib\Models\Cms\SiocModul
 
  &
 
- $╖
-_E:\_Workspace\Github\Swastika-IO-Core\src\Swastika.Cms.Lib\Models\Cms\SiocModuleAttributeSet.cs
+ $╢
+^D:\Workspace\GitHub\Swastika-IO-Core\src\Swastika.Cms.Lib\Models\Cms\SiocModuleAttributeSet.cs
 
  /
 
@@ -2003,8 +2003,8 @@ _E:\_Workspace\Github\Swastika-IO-Core\src\Swastika.Cms.Lib\Models\Cms\SiocModul
 
 " 4
 
- $ 
-aE:\_Workspace\Github\Swastika-IO-Core\src\Swastika.Cms.Lib\Models\Cms\SiocModuleAttributeValue.cs
+ $■
+`D:\Workspace\GitHub\Swastika-IO-Core\src\Swastika.Cms.Lib\Models\Cms\SiocModuleAttributeValue.cs
 
  1
 
@@ -2032,8 +2032,8 @@ aE:\_Workspace\Github\Swastika-IO-Core\src\Swastika.Cms.Lib\Models\Cms\SiocModul
 
  
 
-& <Щ
-WE:\_Workspace\Github\Swastika-IO-Core\src\Swastika.Cms.Lib\Models\Cms\SiocModuleData.cs
+& <Ш
+VD:\Workspace\GitHub\Swastika-IO-Core\src\Swastika.Cms.Lib\Models\Cms\SiocModuleData.cs
 
  '
 
@@ -2067,8 +2067,8 @@ WE:\_Workspace\Github\Swastika-IO-Core\src\Swastika.Cms.Lib\Models\Cms\SiocModul
 
 " 4
 
- $╘
-ZE:\_Workspace\Github\Swastika-IO-Core\src\Swastika.Cms.Lib\Models\Cms\SiocModuleProduct.cs
+ $╙
+YD:\Workspace\GitHub\Swastika-IO-Core\src\Swastika.Cms.Lib\Models\Cms\SiocModuleProduct.cs
 
  *
 
@@ -2090,8 +2090,8 @@ ZE:\_Workspace\Github\Swastika-IO-Core\src\Swastika.Cms.Lib\Models\Cms\SiocModul
 
  $
 
- &а
-VE:\_Workspace\Github\Swastika-IO-Core\src\Swastika.Cms.Lib\Models\Cms\SiocParameter.cs
+ &Я
+UD:\Workspace\GitHub\Swastika-IO-Core\src\Swastika.Cms.Lib\Models\Cms\SiocParameter.cs
 
  &
 
@@ -2105,8 +2105,8 @@ VE:\_Workspace\Github\Swastika-IO-Core\src\Swastika.Cms.Lib\Models\Cms\SiocParam
 
  
 
- ╖
-WE:\_Workspace\Github\Swastika-IO-Core\src\Swastika.Cms.Lib\Models\Cms\SiocPortalPage.cs
+ ╢
+VD:\Workspace\GitHub\Swastika-IO-Core\src\Swastika.Cms.Lib\Models\Cms\SiocPortalPage.cs
 
  '
 
@@ -2137,8 +2137,8 @@ WE:\_Workspace\Github\Swastika-IO-Core\src\Swastika.Cms.Lib\Models\Cms\SiocPorta
 
  
 
- ╧
-aE:\_Workspace\Github\Swastika-IO-Core\src\Swastika.Cms.Lib\Models\Cms\SiocPortalPageNavigation.cs
+ ╬
+`D:\Workspace\GitHub\Swastika-IO-Core\src\Swastika.Cms.Lib\Models\Cms\SiocPortalPageNavigation.cs
 
  1
 
@@ -2158,8 +2158,8 @@ aE:\_Workspace\Github\Swastika-IO-Core\src\Swastika.Cms.Lib\Models\Cms\SiocPorta
 
  *
 
- $╔
-[E:\_Workspace\Github\Swastika-IO-Core\src\Swastika.Cms.Lib\Models\Cms\SiocPortalPageRole.cs
+ $╚
+ZD:\Workspace\GitHub\Swastika-IO-Core\src\Swastika.Cms.Lib\Models\Cms\SiocPortalPageRole.cs
 
  +
 
@@ -2179,8 +2179,8 @@ aE:\_Workspace\Github\Swastika-IO-Core\src\Swastika.Cms.Lib\Models\Cms\SiocPorta
 
  
 
- "╡
-UE:\_Workspace\Github\Swastika-IO-Core\src\Swastika.Cms.Lib\Models\Cms\SiocPosition.cs
+ "┤
+TD:\Workspace\GitHub\Swastika-IO-Core\src\Swastika.Cms.Lib\Models\Cms\SiocPosition.cs
 
  %
 
@@ -2195,8 +2195,8 @@ UE:\_Workspace\Github\Swastika-IO-Core\src\Swastika.Cms.Lib\Models\Cms\SiocPosit
 
  
 
- в
-TE:\_Workspace\Github\Swastika-IO-Core\src\Swastika.Cms.Lib\Models\Cms\SiocProduct.cs
+ б
+SD:\Workspace\GitHub\Swastika-IO-Core\src\Swastika.Cms.Lib\Models\Cms\SiocProduct.cs
 
  $
 
@@ -2280,8 +2280,8 @@ TE:\_Workspace\Github\Swastika-IO-Core\src\Swastika.Cms.Lib\Models\Cms\SiocProdu
 
 44 
 
-66 3▀
-YE:\_Workspace\Github\Swastika-IO-Core\src\Swastika.Cms.Lib\Models\Cms\SiocProductMedia.cs
+66 3▐
+XD:\Workspace\GitHub\Swastika-IO-Core\src\Swastika.Cms.Lib\Models\Cms\SiocProductMedia.cs
 
  )
 
@@ -2305,8 +2305,8 @@ YE:\_Workspace\Github\Swastika-IO-Core\src\Swastika.Cms.Lib\Models\Cms\SiocProdu
 
  "
 
- &р
-ZE:\_Workspace\Github\Swastika-IO-Core\src\Swastika.Cms.Lib\Models\Cms\SiocProductModule.cs
+ &▀
+YD:\Workspace\GitHub\Swastika-IO-Core\src\Swastika.Cms.Lib\Models\Cms\SiocProductModule.cs
 
  *
 
@@ -2330,8 +2330,8 @@ ZE:\_Workspace\Github\Swastika-IO-Core\src\Swastika.Cms.Lib\Models\Cms\SiocProdu
 
  $
 
- &╒
-[E:\_Workspace\Github\Swastika-IO-Core\src\Swastika.Cms.Lib\Models\Cms\SiocRelatedProduct.cs
+ &╘
+ZD:\Workspace\GitHub\Swastika-IO-Core\src\Swastika.Cms.Lib\Models\Cms\SiocRelatedProduct.cs
 
  +
 
@@ -2353,8 +2353,8 @@ ZE:\_Workspace\Github\Swastika-IO-Core\src\Swastika.Cms.Lib\Models\Cms\SiocProdu
 
  
 
- &╗
-UE:\_Workspace\Github\Swastika-IO-Core\src\Swastika.Cms.Lib\Models\Cms\SiocTemplate.cs
+ &║
+TD:\Workspace\GitHub\Swastika-IO-Core\src\Swastika.Cms.Lib\Models\Cms\SiocTemplate.cs
 
  %
 
@@ -2394,8 +2394,8 @@ UE:\_Workspace\Github\Swastika-IO-Core\src\Swastika.Cms.Lib\Models\Cms\SiocTempl
 
  "
 
- !ь
-RE:\_Workspace\Github\Swastika-IO-Core\src\Swastika.Cms.Lib\Models\Cms\SiocTheme.cs
+ !ы
+QD:\Workspace\GitHub\Swastika-IO-Core\src\Swastika.Cms.Lib\Models\Cms\SiocTheme.cs
 
  "
 
@@ -2417,8 +2417,8 @@ RE:\_Workspace\Github\Swastika-IO-Core\src\Swastika.Cms.Lib\Models\Cms\SiocTheme
 
  
 
- да
-XE:\_Workspace\Github\Swastika-IO-Core\src\Swastika.Cms.Lib\Models\Cms\_SiocCmsContext.cs
+ га
+WD:\Workspace\GitHub\Swastika-IO-Core\src\Swastika.Cms.Lib\Models\Cms\_SiocCmsContext.cs
  '44/ =
 
 * 5
@@ -4520,8 +4520,8 @@ XE:\_Workspace\Github\Swastika-IO-Core\src\Swastika.Cms.Lib\Models\Cms\_SiocCmsC
 є	є	% &
 
 ї	ї	  !
-ї	ї	% &ё.
-[E:\_Workspace\Github\Swastika-IO-Core\src\Swastika.Cms.Lib\Repositories\CommonRepository.cs
+ї	ї	% &Ё.
+ZD:\Workspace\GitHub\Swastika-IO-Core\src\Swastika.Cms.Lib\Repositories\CommonRepository.cs
  !  0 &2
 1 9 "" $## $'' 
 ' /   "
@@ -5080,505 +5080,505 @@ XE:\_Workspace\Github\Swastika-IO-Core\src\Swastika.Cms.Lib\Models\Cms\_SiocCmsC
 РР! ;
 
 УУ 
-ЭЭ  "▀'
-YE:\_Workspace\Github\Swastika-IO-Core\src\Swastika.Cms.Lib\Repositories\FileRepository.cs
-   ."" $,
- &88 
-┐┐+ ;
-оо1 A<
-/ 7$$ (( $)) $,, // 
-' /&& "
+ЭЭ  "╩'
+XD:\Workspace\GitHub\Swastika-IO-Core\src\Swastika.Cms.Lib\Repositories\FileRepository.cs
+   .&& $,
+ &<< 
+╝╝+ ;
+ее1 A<
+/ 7(( ,, $-- $00 33 
+  ' /** "
 
-""% -
-66 ))+ 9
-.. //  
+&&% -
+:: --+ 9
+22 33  
 
-;; $
-;;, 4==? G==Z b
-;;J O== 
-;;X b>>@ J
-== >> 
-==$ %==L M
+?? $
+??, 4AA? GAAZ b
+??J OAA 
+??X bBB@ J
+AA BB 
+AA$ %AAL M
 
-AA '
-AA/ 7HH 2
-AA@ FGG NN \\) /ii@ F
-CC PP) 1
-JJ VV; E<
-PP RR WW, 0]]' +]]> B^^( ,
-QQ  YY ii 
-VV" &[[) -
-WW( )__& '
+EE '
+EE/ 7LL 2
+EE@ FKK RR ^^% +jj@ F
+GG TT) 1
+NN XX7 A2
+TT YY( ,__# '__: >``$ (
+UU  [[ jj 
+XX "]]% )
+YY$ %aa" #
 
-ll !
-ll) 1ss 
-ll: @rr 
-nn vv $xx( 0
+mm !
+mm) 1tt 
+mm: @ss 
+oo ww $yy( 0
 
-}} !
-}}) 1
-ВВ "
- 
-ЕЕ $
-ЗЗ( 0
+~~ !
+~~) 1
+ГГ $
 
-ММ #
+АА 
+ЖЖ $
+ИИ( 0
 
-ММ+ 5
-РР $
+НН #
 
-ОО 
-УУ! )
-ХХ! )
+НН+ 5
+СС $
 
-ЪЪ *
+ПП 
+ФФ! )
+ЦЦ! )
 
-ЪЪ2 6
-ЯЯD H
+ЫЫ *
 
-ЪЪ? B
-ЯЯJ M0
+ЫЫ2 6
+ааD H
 
-ЪЪK U
-ЮЮR \
-лл) 3
-╕╕@ J$
+ЫЫ? B
+ааJ M0
 
-ЬЬ  
-йй 
-╕╕ 
+ЫЫK U
+ЯЯk u
+кк% /
+╡╡@ J$
 
-ЮЮ 
-ЯЯ< B
+ЭЭ  
+ии 
+╡╡ 
 
-ЯЯ 
-бб) 1H
+ЯЯ 
+аа< B
 
-бб 
-гг 
-зз, 0
-мм' +
-мм> B
-нн( ,
+аа 
+вв) 1<
 
-зз( )
-оо& '
+вв 
+жж( ,
+лл# '
+лл: >
+мм$ (
 
-╗╗ $0
+жж$ %
+нн" #
 
-╗╗, 0
-┐┐a e
-╠╠' +
-▌▌ #0
+╕╕ $0
 
-╗╗9 <
-┐┐g j
-══( +
-▐▐  #<
+╕╕, 0
+╝╝a e
+╔╔' +
+┌┌ #0
 
-╗╗E O
-┐┐= G
-╦╦) 3
-▄▄! +
-цц@ J
+╕╕9 <
+╝╝g j
+╩╩( +
+██  #<
 
-╗╗V ^
-╫╫ 
+╕╕E O
+╝╝= G
+╚╚) 3
+┘┘! +
+рр@ J
 
-╗╗o }
-▀▀ ,0
+╕╕V ^
+╘╘ 
 
-╜╜  
-╔╔ 
-┌┌ 
-цц 
+╕╕o }
+▄▄ ,0
 
-┐┐ 
-┴┴) 10
+║║  
+╞╞ 
+╫╫ 
+рр 
 
-┴┴ 
-├├ 
-╟╟, 0
-┘┘ 
+╝╝ 
+╛╛) 10
 
-╟╟( )
-╬╬& '
+╛╛ 
+└└ 
+──, 0
+╓╓ 
 
-щщ 
+──( )
+╦╦& '
 
-щщ& *
-ььC G
+уу 
 
-щщ3 <
-ььI R
+уу& *
+ццC G
 
-щщE O
-ыыR \
+уу3 <
+ццI R
 
-ыы 
-ьь; A$
+ууE O
+ххk u
 
-ьь 
-юю $
-ЁЁ( 0$
+хх 
+цц; A$
 
-її 
-щщ "
-ХХ "$
+цц 
+шш $
+ъъ( 0$
 
-її& .
-ўў $
-∙∙( 0
+яя 
+рр "
+ММ "$
 
-■■  $
+яя& .
+ёё $
+єє( 0
 
-■■( 2
-АА! +
-ВВ! +
+°°  $
 
-ИИ !H
+°°( 2
+··! +
+№№! +
 
-ИИ) 0
-КК 
-ННD K
-ПП> E
-УУ> E
-ХХ7 >0
+ВВ !H
 
-ИИ9 @
-КК "
-ППG N
-ХХ@ G
+ВВ) 0
+ДД 
+ЗЗD K
+ЙЙ> E
+НН> E
+ПП7 >0
+
+ВВ9 @
+ДД "
+ЙЙG N
+ПП@ G
+
+ЗЗ  '
+ЙЙ. 5$
 
 НН  '
-ПП. 5$
+ПП %
+ПП' .T
 
-УУ  '
-ХХ %
-ХХ' .T
+ЧЧ .
+гг %
+юю %
+ОО %
+пп %
+██ -
+ЖЖ -$
 
-ЭЭ .
-йй %
-її %
-ХХ %
-╖╖ %
-фф -
-ПП -$
+ЧЧ6 >
+ЩЩ" *
+ЫЫ* 2
 
-ЭЭ6 >
-ЯЯ" *
-бб* 2
+ЯЯ# 1
+══ !$
 
-ее# 1
-╓╓ !$
+ЯЯ9 ?
+ббm s
+оо% +$
 
-ее9 ?
-ззT Z
-┤┤% +$
+бб 
+гг& .
+ее0 8
 
-зз 
-йй& .
-лл0 8
+ее 
+жж  
 
-лл 
-мм  
+жж 
+ии! &$
 
-мм 
-оо! &$
+зз  &
+мм 
+╡╡ <
 
-нн  &
-▓▓ 
-╗╗ <
+ии 
+кк( ,
+пп# '
+пп: >
+░░$ (
 
-оо 
-░░( ,
-╡╡# '
-╡╡: >
-╢╢$ (
+ии9 :
+ии> ?
 
-оо9 :
-оо> ?
+кк$ %
+▒▒" #
 
-░░$ %
-╖╖" #
+╕╕ -
 
-╛╛ -
+╕╕5 ;
+╛╛ $
 
-╛╛5 ;
-── $
+║║ 
+┴┴! )
+├├D L$
 
-└└ 
-╚╚! )
-╩╩D L$
+└└ 
+╟╟ 
+╩╩ 
 
-╟╟ 
-╬╬ 
-╤╤ 
+├├  '
+╞╞; B
 
-╩╩  '
-══; B
+╞╞" &
+╟╟ #
 
-══" &
-╬╬ #
+══# .$
 
-╘╘# .$
+══6 <
+╙╙ 
+сс% +$
 
-╘╘6 <
-┌┌ 
-шш% +$
+╧╧ 
+╓╓! )
+╪╪7 ?$
 
-╓╓ 
-▌▌! )
-▀▀7 ?$
+╒╒  &
+▐▐ 
+щщ $
 
-▄▄  &
-хх 
-ЁЁ $
+╪╪ "
+┘┘$ (
+██  
 
-▀▀ "
-рр$ (
-тт  
+┘┘ !
+рр% /
 
-рр !
-чч% /
+██ 
+▄▄% *<
 
-тт 
-уу% *<
+▄▄ !
+уу# '
+уу: >
+уу\ `
+фф$ (
 
-уу !
-ъъ# '
-ъъ: >
-ъъ\ `
-ыы$ (
+▄▄= >
+▄▄B C
 
-уу= >
-ууB C
+ьь# 60
 
-єє# 60
+ьь> F
+юю& .
+єє@ H
+ББQ Y$
 
-єє> F
-її& .
-··@ H
-ИИQ Y$
+ёё 
+∙∙ 
+··% *$
 
-°° 
-АА 
-ББ% *$
+ЄЄ  &
+■■ 
+ЙЙ 
 
-∙∙  &
-ЕЕ 
-РР 
+єє #
+ЎЎ7 >$
 
-·· #
-¤¤7 >$
+ЎЎ "
+ўў$ (
+∙∙ $
 
-¤¤ "
-■■$ (
-АА $
+ўў !
+АА) 3
+ББ[ e<
 
-■■ !
-ЗЗ) 3
-ИИ[ e<
+·· !
+№№, 0
+ВВ' +
+ВВ> B
+ГГ( ,
 
-ББ !
-ГГ, 0
-ЙЙ' +
-ЙЙ> B
-КК( ,
+··= >
+··B C
 
-ББ= >
-ББB C
+№№( )
+ДД& '
 
-ГГ( )
-ЛЛ& '
+ММ# +0
 
-УУ# +0
+ММ3 ;
+ОО& .
+ТТ@ H
+ЮЮM U$
 
-УУ3 ;
-ХХ& .
-ЪЪ@ H
-жжM U$
+РР 
+ШШ 
+ЩЩ% *$
 
-ШШ 
-аа 
-бб% *$
+СС  &
+ЫЫ 
+ее 
 
-ЩЩ  &
-гг 
-нн 
+ТТ #
+ХХ7 >$
 
-ЪЪ #
-ЭЭ7 >$
+ХХ "
+ЦЦ$ (
+ШШ $
 
-ЭЭ "
-ЮЮ$ (
-аа $
+ЦЦ !
+ЭЭ% /
+ЮЮW a0
 
-ЮЮ !
-ее% /
-жжW a0
+ЩЩ !
+ЯЯ# '
+ЯЯ: >
+аа$ (
 
-бб !
-зз# '
-зз: >
-ии$ (
+ЩЩ= >
+ЩЩB C
 
-бб= >
-ббB C
+ии# .
 
-░░# .
+ии6 <
+мм $
 
-░░6 <
-┤┤ $
+кк 
+пп& .
+││@ H$
 
-▓▓ 
-╖╖& .
-╝╝@ H$
+▒▒ 
+╣╣ 
+║║% *$
 
-║║ 
-┬┬ 
-├├% *$
+▓▓  &
+╝╝ 
+╟╟ 
 
-╗╗  &
-┼┼ 
-╨╨ 
+││ #
+╢╢7 >0
 
-╝╝ #
-┐┐7 >0
+╢╢ "
+╖╖$ (
+╣╣ 
+╛╛% )
 
-┐┐ "
-└└$ (
-┬┬ 
-╟╟% )
+╖╖ !
+┐┐% /H
 
-└└ !
-╚╚% /H
+║║ !
+└└# '
+└└E I
+└└\ `
+┴┴& *
+┬┬$ (
 
-├├ !
-╔╔# '
-╔╔E I
-╔╔\ `
-╩╩& *
-╦╦$ (
+║║= >
+║║B C
 
-├├= >
-├├B C
+╩╩# +
 
-╙╙# +
+╩╩F P
+╠╠ &
 
-╙╙F P
-╒╒ &
+╠╠ 
+══" (
 
-╒╒ 
-╓╓" (
+╨╨ `
 
-┘┘ `
+╨╨. 2
+╫╫ 
+┘┘* .
+▌▌W [
+▌▌g k
+тт- 1
+цц- 1
+ьь( ,$
 
-┘┘. 2
-рр 
-тт* .
-ццW [
-ццg k
-ыы- 1
-яя- 1
-її( ,$
+╘╘ 
+██. 6
+▌▌M U<
 
-▌▌ 
-фф. 6
-ццM U<
+▌▌ #
+▐▐$ ,
+рр# +
+фф< D
+юю8 @
 
-цц #
-чч$ ,
-щщ# +
-ээ< D
-ўў8 @
+фф# )
+цц "
 
-ээ# )
-яя "
+ьь %
+ээ@ F$
 
-її %
-ЎЎ@ F$
+ээ $
+ЁЁ) .
+ЁЁ3 8
 
-ЎЎ $
-∙∙) .
-∙∙3 8
+юю# )
+ЁЁ "
 
-ўў# )
-∙∙ "
+АА 
+── 0
 
-ЙЙ 
-══ 0
+АА) -
+ДД 
+ИИ& *
+РР $
 
-ЙЙ) -
-НН 
-СС& *
-ЩЩ $
+АА6 >
+ЖЖ. 6
+ЙЙM U$
 
-ЙЙ6 >
-ПП. 6
-ТТM U$
+ИИ #
+ЙЙW _
+ТТ #0
 
-СС #
-ТТW _
-ЫЫ #0
+ЙЙ #
+КК$ ,
+ММ# +
+ОО7 ?
 
-ТТ #
-УУ$ ,
-ХХ# +
-ЧЧ7 ?
+ОО %
+РР$ *
 
-ЧЧ %
-ЩЩ$ *
+ЯЯ T
 
-ии T
+ЯЯ+ /
+гг* .
+ееC G
+ии2 6
+ккU Y
+ккe i
+нн) -$
 
-ии+ /
-мм* .
-ооC G
-▒▒2 6
-││U Y
-││e i
-╢╢) -$
+ее !
+жж* 0
+ккM S
 
-оо !
-пп* 0
-││M S
+кк #
+лл8 @
 
-││ #
-┤┤8 @
+лл %
+нн 
 
-┤┤ %
-╢╢ 
+╝╝ !
 
-┼┼ !
+╝╝, 0
+──  $
 
-┼┼, 0
-══  $
+╝╝9 ?
+┬┬ 
 
-┼┼9 ?
-╦╦ 
+└└ 
+──& .
 
-╔╔ 
-══& .
+╠╠ 
 
-╒╒ 
+╠╠% -
+╤╤ $
 
-╒╒% -
-┌┌ $
+╠╠6 <
+╨╨ 
+╒╒ 
 
-╒╒6 <
-┘┘ 
-▐▐ 
+╬╬ 
+┘┘+ 3
 
-╫╫ 
-тт+ 3
+╥╥ 
+┘┘5 >n
+`D:\Workspace\GitHub\Swastika-IO-Core\src\Swastika.Cms.Lib\Repositories\RefreshTokenRepository.cs
 
-██ 
-тт5 >o
-aE:\_Workspace\Github\Swastika-IO-Core\src\Swastika.Cms.Lib\Repositories\RefreshTokenRepository.cs
-
- )Е
-]E:\_Workspace\Github\Swastika-IO-Core\src\Swastika.Cms.Lib\Repositories\TemplateRepository.cs
+ )Д
+\D:\Workspace\GitHub\Swastika-IO-Core\src\Swastika.Cms.Lib\Repositories\TemplateRepository.cs
  #  2 (2
 3 ;   $$ $%% $(( 
 ' /"" "
@@ -5626,8 +5626,8 @@ aE:\_Workspace\Github\Swastika-IO-Core\src\Swastika.Cms.Lib\Repositories\Refresh
 ГГ8 @
 
 ГГ %
-ЕЕ Ч%
-aE:\_Workspace\Github\Swastika-IO-Core\src\Swastika.Cms.Lib\Services\GlobalConfigurationService.cs
+ЕЕ Ц%
+`D:\Workspace\GitHub\Swastika-IO-Core\src\Swastika.Cms.Lib\Services\GlobalConfigurationService.cs
  +77 199 0
  /!! ($$ !
 
@@ -6062,8 +6062,8 @@ aE:\_Workspace\Github\Swastika-IO-Core\src\Swastika.Cms.Lib\Services\GlobalConfi
 
 хх5 ;
 чч 
-щщ Н
-\E:\_Workspace\Github\Swastika-IO-Core\src\Swastika.Cms.Lib\Services\GlobalLanguageService.cs*
+щщ М
+[D:\Workspace\GitHub\Swastika-IO-Core\src\Swastika.Cms.Lib\Services\GlobalLanguageService.cs*
  &LL ,NN +
 єє (
 ' /RR "
@@ -6290,8 +6290,8 @@ aE:\_Workspace\Github\Swastika-IO-Core\src\Swastika.Cms.Lib\Services\GlobalConfi
 
 ёё! $
 єєF I
-єєZ ]╟
-YE:\_Workspace\Github\Swastika-IO-Core\src\Swastika.Cms.Lib\Services\IViewRenderService.cs
+єєZ ]╞
+XD:\Workspace\GitHub\Swastika-IO-Core\src\Swastika.Cms.Lib\Services\IViewRenderService.cs
  '% 7
 
  (
@@ -6318,507 +6318,513 @@ YE:\_Workspace\Github\Swastika-IO-Core\src\Swastika.Cms.Lib\Services\IViewRender
 ,, ?? DD (
 .. 00 << CC  
 55 "== "
-:: CC2 =┤
-LE:\_Workspace\Github\Swastika-IO-Core\src\Swastika.Cms.Lib\SWCmsConstants.cs
+:: CC2 =┼
+KD:\Workspace\GitHub\Swastika-IO-Core\src\Swastika.Cms.Lib\SWCmsConstants.cs
 
-
-
- 
+ 
 
- 4
+ 1
 
- 9
+ 4
 
- 1
+ 9
 
- 1
+ 1
 
- /
+   1
 
-$$ '
+%% /
 
-)) +
+** '
 
-.. @
+// +
 
-33 F
+44 @
 
-88 5
+99 F
 
-== >
+>> 5
 
-BB =
+CC >
 
-DD  
+HH =
 
-FF 
+JJ  
 
-GG 
+LL 
 
-HH 
+MM 
 
-II 
+NN 
 
-LL 
+OO 
 
-NN 
+RR 
 
-OO 
+TT 
 
-PP 
+UU 
 
-QQ 
+VV 
 
-RR 
+WW 
 
-SS 
+XX 
 
-TT 
+YY 
 
-WW )
+ZZ 
 
-YY 
+]] )
 
-ZZ 
+__ 
 
-[[ 
+`` 
 
-^^ 
+aa 
 
-`` 
+dd 
 
-aa 
+ff 
 
-bb 
+gg 
 
-cc 
+hh 
 
-dd 
+ii 
 
-ee 
+jj 
 
-ff 
+kk 
 
-gg 
+ll 
 
-hh 
+mm 
 
-kk "
+nn 
 
-mm 
+qq "
 
-nn 
+ss 
 
-oo 
+tt 
 
-pp 
+uu 
 
-qq 
+vv 
 
-tt 
+ww 
 
-vv 
+zz 
 
-ww 
+|| 
 
-xx 
+}} 
 
-yy 
+~~ 
 
-zz 
+ 
 
-}} 
+АА 
 
- 
+ГГ 
 
-АА 
+ЕЕ 
 
-ББ 
+ЖЖ 
 
-ВВ 
+ЗЗ 
 
-ЕЕ &
+ИИ 
 
-ЗЗ 
-
-ИИ 
-
-ЙЙ 
-
-КК 
-
-ЛЛ 
-
-ММ 
+ЛЛ &
 
 НН 
 
-РР !
+ОО 
 
-ТТ 
+ПП 
+
+РР 
+
+СС 
+
+ТТ 
 
 УУ 
 
-ЦЦ &
+ЦЦ !
 
-ШШ  +
+ШШ 
 
-ЩЩ  :
+ЩЩ 
 
-ЪЪ 1
+ЬЬ -
 
-ЫЫ  3
+ЮЮ  +
 
-ЬЬ  4
+ЯЯ  :
 
-ЯЯ 8
+аа 1
 
-бб  /
+бб  3
 
-вв  0
+вв  4
 
-гг  *
+ее 8
 
-дд  .
+зз  /
 
-жж  (
+ии  0
 
-зз  ,
+йй  *
 
-йй  +
+кк  .
 
-кк  /
+мм  (
 
-мм  /
+нн  ,
 
-нн  .
+пп  +
 
-оо  *
+░░  /
 
-пп  -
+▓▓  /
 
-▓▓! )
+││  .
 
-┤┤) 5
-╡╡b n
+┤┤  *
 
-╡╡- ?
+╡╡  -
 
-╢╢! *
+╕╕! )
 
-╕╕' 1
+║║) 5
+╗╗b n
 
-┴┴ )
+╗╗- ?
 
-├├  0
+╝╝! *
 
-──  %
+╛╛' 1
 
-┼┼  '
+╟╟ 0
 
-╚╚ &
+╔╔  0
 
-╩╩  &
+╩╩  %
 
-╦╦  $
+╦╦  '
 
-╬╬ 
+╬╬ -
 
-╨╨  /
+╨╨  &
 
-╤╤  5
+╤╤  $
 
-╥╥  5
+╘╘ #
 
-╙╙  9
+╓╓  /
 
-╘╘  '
+╫╫  5
 
-╒╒ ,
+╪╪  5
 
-╓╓  (
+┘┘  9
 
-╫╫  .
+┌┌  '
 
-┌┌ 
+██ ,
 
-▄▄  %
+▄▄  (
 
-▌▌  &
+▌▌  .
 
-▐▐  &
+рр 
 
-▀▀  '
+тт  %
 
-рр  &
+уу  &
 
-уу  
+фф  &
 
-хх  (
+хх  '
 
-цц '
+цц  &
 
-чч  &
+щщ '
 
-шш  *
+ыы  (
 
-ьь 
+ьь '
+
+ээ  &
 
 юю  *
 
-яя  1
+ЄЄ &
 
-ЁЁ  4
+ЇЇ  *
 
-ёё  /
+її  1
 
-ЄЄ  ,
+ЎЎ  4
 
-єє  +
+ўў  /
 
-ЎЎ #
+°°  ,
 
-°°  (
+∙∙  +
 
-∙∙  '
+№№ *
 
-··  '
+■■  (
 
-√√  %
+    '
 
-№№  (
+АА  '
 
-¤¤  'И
-IE:\_Workspace\Github\Swastika-IO-Core\src\Swastika.Cms.Lib\SWCmsHelper.cs.
- 
-ии" -
-┐┐# .
-──" -
+ББ  %
 
-! .
-6 =* 1
-  
+ВВ  (
 
-$ /
-  
+ГГ  'У
+HD:\Workspace\GitHub\Swastika-IO-Core\src\Swastika.Cms.Lib\SWCmsHelper.cs.
+ #
+мм" -
+──# .
+╔╔" -
 
-##( 1
-##9 =%%W [
+! .
+6 =* 1
+  
 
-##F M
-%% && 
-%%H I%%M N
+$ /
+!! ## 
 
-))2 =
-))I L88) ,GG$ '2
-))U \,,& -88D KGG? FKKn u
-	))z В--( 0>
+''( 1
+''9 =))W [
 
-))Л Х00 00 #JJ/ 9KKE OOO (
-++ // #
-,, ,, ,,1 2
--- -- 
-// 11! &SS В
-11 33 66. 2== ==$ (GG GGR VJJ JJ" &KK LL PP PP% )
-66% *88 !88W \(
-LL$ %NN OO PP7 8
+''F M
+)) ** 
+))H I))M N
 
-VV2 =
-VVI Ldd) ,ss$ '4
-VVU \YY& -ddD Kss? F
-xxЖ Н
-VVv ~YY@ H>
+--2 =
+--I L<<) ,KK$ '2
+--U \00& -<<D KKK? FOOn u
+	--z В11( 0>
 
-VVЗ С\\ \\ #xx! +xx] g~~ (
-XX [[ #
-YY YY YY1 2 
-[[ ]]! &
-ВВ В
-]] __ bb. 2ii ii$ (ss ssS Www xx xx0 4{{  % )
-bb% *dd !ddX ](
-{{$ %}} ~~ 7 80
+--Л Х44 44 #NN/ 9OOE OSS (
+// 33 #
+00 00 001 2
+11 11 
+33 55! &WW В
+55 77 ::. 2AA AA$ (KK KKR VNN NN" &OO PP TT TT% )
+::% *<< !<<W \(
+PP$ %RR SS TT7 8
 
-ЕЕ (
-ии. 9
-┐┐/ :
-──. 9<
+ZZ2 =
+ZZI Lhh) ,ww$ '4
+ZZU \]]& -hhD Kww? F
+||Ж Н
+ZZv ~]]@ H@
 
-ЕЕ2 :
-ЙЙ  (
-ММ !
-ММ1 9
-ТТ. 6$
+ZZЗ С`` `` #||! +||] g
+ВВ (
+\\ __ #
+]] ]] ]]1 2 
+__ aa! &
+ЖЖ Ж
+aa cc ff. 2mm mm$ (ww wwS W{{ || ||0 4 
+ГГ 
+ГГ% )
+ff% *hh !hhX ].
+$ %
+ББ 
+ВВ 
+ГГ7 80
 
-ЗЗ 
-ТТ 
-УУ $
+ЙЙ (
+мм. 9
+──/ :
+╔╔. 9<
 
-ИИ 
-РР 
-ТТ# ,H
+ЙЙ2 :
+НН  (
+РР !
+РР1 9
+ЦЦ. 6$
 
-ЙЙ 
-ЙЙ 
-ЙЙ1 2
-ММ 
-ММ: ;
-РР$ %$
+ЛЛ 
+ЦЦ 
+ЧЧ $
 
-ЛЛ  
-ОО 
-РР. 7
+ММ 
+ФФ 
+ЦЦ# ,H
 
-ЦЦ *
+НН 
+НН 
+НН1 2
+РР 
+РР: ;
+ФФ$ %$
 
-ЦЦ2 :
-ШШ !
+ПП  
+ТТ 
+ФФ. 7
 
-ШШ 
-ЩЩJ M
+ЪЪ *
 
-ЬЬ )
+ЪЪ2 :
+ЬЬ !
 
-ЬЬ1 ;
-ЯЯ% /
+ЬЬ 
+ЭЭJ M
 
-ЬЬD O
-ЯЯ1 <$
+аа )
 
-ЬЬ] d
-ЮЮ1 8
-ЮЮA H
+аа1 ;
+гг% /
 
-ЬЬq t
-ЯЯ 
+ааD O
+гг1 <$
 
-гг %
+аа] d
+вв1 8
+ввA H
 
-гг- 5
-лл $
+ааq t
+гг 
 
-ее 
-░░ 
-╢╢ $
+зз %
 
-ии 
-нн  (
-пп  (
+зз- 5
+пп $
 
-╣╣ )
+йй 
+┤┤ 
+╗╗ $
 
-╣╣1 7
-┬┬ 
+мм 
+▒▒  (
+││  (
 
-╣╣@ H
-╟╟ $
+╛╛ )
 
-╣╣Q Z
-╔╔" +
-╔╔6 ?0
+╛╛1 7
+╟╟ 
 
-┐┐  
-╞╞ 
-╠╠& /
-╬╬. 70
+╛╛@ H
+╠╠ $
 
-── 
-╤╤  (
-╙╙  (
-╓╓/ 7
+╛╛Q Z
+╬╬" +
+╬╬6 ?0
+
+──  
+╦╦ 
+╤╤& /
+╙╙. 70
 
 ╔╔ 
-╩╩8 @
+╓╓  (
+╪╪  (
+██/ 7
 
-╩╩ 
-┌┌ !$
+╬╬ 
+╧╧8 @
 
-╓╓ 
-╫╫2 4
-▐▐ $
+╧╧ 
+▀▀ !$
 
-╫╫ 
-┌┌ 
-▀▀ 
+██ 
+▄▄2 4
+уу $
 
-щщ +0
+▄▄ 
+▀▀ 
+фф 
 
-щщ3 ;
-ээ $
-яя $
-ЄЄ+ 3$
+юю +0
 
-щщD M
-ыы '
-ыы2 ;
+юю3 ;
+ЄЄ $
+ЇЇ $
+ўў+ 3$
 
-ыы 
-ьь4 <
+ююD M
+ЁЁ '
+ЁЁ2 ;
 
-ьь 
-ЎЎ $
+ЁЁ 
+ёё4 <
 
-ЄЄ 
-єє. 0
-·· $
+ёё 
+√√ $
 
-єє 
-ЎЎ 
-√√ 
+ўў 
+°°. 0
+   $
 
-   &0
+°° 
+√√ 
+АА 
 
-  . 1
-ББ 
-ББ* -
-ВВ $
+ДД &0
 
-  7 =
-ББ! '
-ВВ# )
+ДД. 1
+ЖЖ 
+ЖЖ* -
+ЗЗ $
 
-ЕЕ (
+ДД7 =
+ЖЖ! '
+ЗЗ# )
 
-ЕЕ1 6
-ЗЗ #
+КК (
 
-ЕЕ? G
-ЧЧ 0
+КК1 6
+ММ #
 
-ЗЗ 
-ИИ% -
-ММ 
-НН  
+КК? G
+ЬЬ 0
 
-ММ H
+ММ 
+НН% -
+СС 
+ТТ  
 
-НН 
-ОО 
-СС# %
-УУ 
-УУ% '
-ХХ 
+СС H
 
-ЪЪ '
-ОО $
+ТТ 
+УУ 
+ЦЦ# %
+ШШ 
+ШШ% '
+ЪЪ 
 
-РР 
-СС 
-УУ <
+ЯЯ '
+УУ $
 
-ЪЪ/ 5
-ЬЬ 
-аа 
-аа 
-вв# )
+ХХ 
+ЦЦ 
+ШШ <
 
-вв6 7
+ЯЯ/ 5
+бб 
+ее 
+ее 
+зз# )
 
-ее )$
+зз6 7
 
-ее1 >
-йй) 6
-нн$ 1┐
-\E:\_Workspace\Github\Swastika-IO-Core\src\Swastika.Cms.Lib\TagHelpers\ActiveMenuTagHelper.cs
+кк )$
+
+кк1 >
+оо) 6
+▓▓$ 1╛
+[D:\Workspace\GitHub\Swastika-IO-Core\src\Swastika.Cms.Lib\TagHelpers\ActiveMenuTagHelper.cs
 
  $(
  !<<B M<<f q??+ 6(
@@ -6844,8 +6850,8 @@ IE:\_Workspace\Github\Swastika-IO-Core\src\Swastika.Cms.Lib\SWCmsHelper.cs.
 >> (FF; J(
 ZZ0 6\\ "`` dd P
 \\ ]] __ ``& /bb bb0 9dd8 Aff 
-\\= >\\B CХ
-]E:\_Workspace\Github\Swastika-IO-Core\src\Swastika.Cms.Lib\TagHelpers\ActiveRouteTagHelper.cs
+\\= >\\B CФ
+\D:\Workspace\GitHub\Swastika-IO-Core\src\Swastika.Cms.Lib\TagHelpers\ActiveRouteTagHelper.cs
 
  %(
 , 8!! (!!2 >$$ !
@@ -6865,8 +6871,8 @@ IE:\_Workspace\Github\Swastika-IO-Core\src\Swastika.Cms.Lib\SWCmsHelper.cs.
 JJ2 <LL> HMM4 >MMR \(
 VV0 6XX "\\ `` P
 XX YY [[ \\& /^^ ^^0 9``8 Abb 
-XX= >XXB CМ
-cE:\_Workspace\Github\Swastika-IO-Core\src\Swastika.Cms.Lib\TagHelpers\GravatarHtmlHelper_NetCore.cs
+XX= >XXB CЛ
+bD:\Workspace\GitHub\Swastika-IO-Core\src\Swastika.Cms.Lib\TagHelpers\GravatarHtmlHelper_NetCore.cs
 
  *
   aa
@@ -6941,8 +6947,8 @@ cE:\_Workspace\Github\Swastika-IO-Core\src\Swastika.Cms.Lib\TagHelpers\GravatarH
 
 жж 
 ии 
-йй2 7Ы
-fE:\_Workspace\Github\Swastika-IO-Core\src\Swastika.Cms.Lib\ViewModels\Account\RefreshTokenViewModel.cs
+йй2 7Ъ
+eD:\Workspace\GitHub\Swastika-IO-Core\src\Swastika.Cms.Lib\ViewModels\Account\RefreshTokenViewModel.cs
  &> S
 
  
@@ -6963,8 +6969,8 @@ fE:\_Workspace\Github\Swastika-IO-Core\src\Swastika.Cms.Lib\ViewModels\Account\R
 --P X
 --Ъ в
 	--w Г
---д ░╠
-^E:\_Workspace\Github\Swastika-IO-Core\src\Swastika.Cms.Lib\ViewModels\Account\RoleViewModel.cs
+--д ░╦
+]D:\Workspace\GitHub\Swastika-IO-Core\src\Swastika.Cms.Lib\ViewModels\Account\RoleViewModel.cs
 
 
  < I
@@ -6985,8 +6991,8 @@ fE:\_Workspace\Github\Swastika-IO-Core\src\Swastika.Cms.Lib\ViewModels\Account\R
 
 //$ .
 //E M55# +
-//l x55- 9╤
-bE:\_Workspace\Github\Swastika-IO-Core\src\Swastika.Cms.Lib\ViewModels\Account\UserRoleViewModel.cs
+//l x55- 9╨
+aD:\Workspace\GitHub\Swastika-IO-Core\src\Swastika.Cms.Lib\ViewModels\Account\UserRoleViewModel.cs
 
 
  "@ Q
@@ -7007,8 +7013,8 @@ bE:\_Workspace\Github\Swastika-IO-Core\src\Swastika.Cms.Lib\ViewModels\Account\U
 
 --( 2
 --I Q33# +
---p |33- 9Д
-^E:\_Workspace\Github\Swastika-IO-Core\src\Swastika.Cms.Lib\ViewModels\Account\UserViewModel.cs
+--p |33- 9Г
+]D:\Workspace\GitHub\Swastika-IO-Core\src\Swastika.Cms.Lib\ViewModels\Account\UserViewModel.cs
  < I
 
  
@@ -7046,8 +7052,8 @@ bE:\_Workspace\Github\Swastika-IO-Core\src\Swastika.Cms.Lib\ViewModels\Account\U
 == 
 ==) .>> 
 ==F N>> "
-==m y>>$ 0╔
-hE:\_Workspace\Github\Swastika-IO-Core\src\Swastika.Cms.Lib\ViewModels\BackEnd\BEArticleMediaViewModel.cs
+==m y>>$ 0╚
+gD:\Workspace\GitHub\Swastika-IO-Core\src\Swastika.Cms.Lib\ViewModels\BackEnd\BEArticleMediaViewModel.cs
  (: Q
 
  
@@ -7074,9 +7080,9 @@ hE:\_Workspace\Github\Swastika-IO-Core\src\Swastika.Cms.Lib\ViewModels\BackEnd\B
 ;;7 ?@@ $
 ;;^ j@@4 @
 == AA CC +(
->> >> >>( )?? о
+>> >> >>( )?? н
 
-iE:\_Workspace\Github\Swastika-IO-Core\src\Swastika.Cms.Lib\ViewModels\BackEnd\BEArticleModuleViewModel.cs(
+hD:\Workspace\GitHub\Swastika-IO-Core\src\Swastika.Cms.Lib\ViewModels\BackEnd\BEArticleModuleViewModel.cs(
  ); SJJE ]ddP h(
  BB &LL_ hffd m(
  AA %MM& .gg& .
@@ -7134,81 +7140,81 @@ iE:\_Workspace\Github\Swastika-IO-Core\src\Swastika.Cms.Lib\ViewModels\BackEnd\B
 jjа мqqL XF
 ll% +tt uu ww ww $ww1 7yy (
 mm oo pp qq' +2
-qq rr tt+ 5uu' 1wwE OшB
-cE:\_Workspace\Github\Swastika-IO-Core\src\Swastika.Cms.Lib\ViewModels\BackEnd\BEArticleViewModel.cs8
+qq rr tt+ 5uu' 1wwE O╫D
+bD:\Workspace\GitHub\Swastika-IO-Core\src\Swastika.Cms.Lib\ViewModels\BackEnd\BEArticleViewModel.cs8
  #5 G
-ддQ c
-──V h
-ёёE WЁ
+ззQ c
+╟╟V h
+ЇЇE WЁ
 !! 
-ЙЙQ S
-ППQ S
-ХХQ S
-ЫЫi k
-вв" $
-гг5 7
-мм@ B
-││% '
-╡╡ 
-¤¤= ?
-ЧЧ; =
-▒▒= ?
-╧╧, .
-оо' )
-лл) +
-┼┼) +
-▀▀) +
-¤¤, .ррЙ ЛF
+ДДQ S
+ККQ S
+РРQ S
+ЦЦi k
+ЭЭ" $
+ЮЮ5 7
+зз@ B
+оо% '
+░░ 
+ЎЎ= ?
+РР; =
+кк= ?
+══, .
+▒▒' )
+оо) +
+╚╚) +
+тт) +
+ЖЖ, .ююЙ ЛF
 $$ 
-юю& .
-ЁЁ: B
-ГГ 
-├├ 
-├├u }R
+щщ& .
+ыы: B
+■■ 
+╛╛ 
+╛╛u }R
 '' 
 ║║ 
 ║║) 2
 ╜╜ &
 ┬┬ $
-╬╬+ 4
-╧╧ R
+╔╔+ 4
+╩╩ R
 ** 
 кк 
 кк% *
 нн "
 ▓▓  
-▄▄+ 0
-▌▌ .
+╫╫+ 0
+╪╪ .
 .. %
-тт& 5
-фф* 9
-└└ 
+▐▐& 5
+рр* 9
+╗╗ 
 
 11 :
 55 
-▄▄; @
-шш< A
-ээB G
-ЄЄ? D
+ъъ; @
+ЎЎ< A
+√√B G
+АА? D
 
 88 
 
 ;; F
 >> 
-┌┌* 1
-▄▄ 
-▀▀ !
-тт 
-фф "
+шш* 1
+ъъ 
+ээ !
+ЁЁ 
+ЄЄ "
 AA 
-цц* 2
-шш "
+ЇЇ* 2
+ЎЎ "
 DD $
-ыы* 8
-ээ #"
+∙∙* 8
+√√ #"
 GG !
-ЁЁ* 5
-ЄЄ  
+■■* 5
+АА  
 
 JJ 
 
@@ -7216,100 +7222,100 @@ cE:\_Workspace\Github\Swastika-IO-Core\src\Swastika.Cms.Lib\ViewModels\BackEnd\B
 
 PP 
 SS '
-╢╢ 
+▒▒ 
 
 VV 
 
 YY %
 \\  
-  ! +
+··! +
 
 __ F
 ff. 8
-ММ 
-√√= G
-══* 4
-··+ 5
-йй) 3F
+ЗЗ 
+ЇЇ= G
+╨╨* 4
+¤¤* 4
+мм) 3F
 ii, 3
-ТТ 
-ХХ; B
-╒╒* 1
-ВВ+ 2
-├├) 0^
+НН 
+ОО; B
+╪╪* 1
+ЕЕ* 1
+╞╞) 0^
 ll. 8
-ШШ 
-жж( 2
-пп= G
-нн$ .
-▌▌* 4
-КК+ 5
-▌▌) 3P
+УУ 
+бб( 2
+ии= G
+░░$ .
+рр* 4
+НН* 4
+рр) 3P
 oo. 7rrB K
-ЮЮ 
-√√= F
-хх* 3
-ТТ+ 4
-йй- 6
+ЩЩ 
+∙∙= F
+шш* 3
+ХХ* 3
+▓▓- 6
 
 rr  R
 uu' 5
-ее 
-лл '
-мм '
-╞╞6 D
-зз# 1
-ЇЇ+ 9
+аа 
+жж '
+зз '
+──6 D
+кк# 1
+¤¤+ 9
 
 xx .
 {{# 2
-╥╥ 
-╪╪< K
-┘┘N ].
+══ 
+╙╙< K
+╘╘N ].
 ~~# 6
-── #
-╩╩< O
-╦╦R e<
+┐┐ #
+┼┼< O
+╞╞R e<
 
 ББ# -
-сс 
-чч 
-╣╣ 
-╝╝" ,и
+▌▌ 
+уу 
+┤┤ 
+╖╖" ,и
 
 ЖЖ# '
+ыы 
+юю 
+юю 
 ЁЁ 
-єє 
-єє 
-її 
-ўў 
-ЕЕ 
-ЖЖ 
-├├ 
-├├C G
-├├T X
-├├c g
-ЄЄ) -
-аа# '<
+ЄЄ 
+АА 
+ББ 
+╛╛ 
+╛╛C G
+╛╛T X
+╛╛c g
+ыы) -
+гг# '<
 
 ЙЙ) 2
-ыы 
-ыы" +
-ЁЁ %
-єє  )0
+цц 
+цц" +
+ыы %
+юю  )0
 
 ММ %
 ЫЫ %
-ээ( 7
-√√# 20
+шш( 7
+ЎЎ# 20
 
 УУ (
 ЬЬ (
-ээP b
-№№! 3
+шшP b
+ўў! 3
 
 ЦЦ $
-¤¤& 4$
+°°& 4$
 
 ее 
 нн 
@@ -7332,621 +7338,641 @@ cE:\_Workspace\Github\Swastika-IO-Core\src\Swastika.Cms.Lib\ViewModels\BackEnd\B
 ┘┘ 'X
 
 ┘┘7 ?
-ЙЙe m
-ППe m
-ХХe mЫЫУ Ы
-ггa iииЧ ЯX
+ДДe m
+ККe m
+РРe mЦЦУ Ы
+ЮЮa iггЧ ЯX
 
 ┘┘^ j
-ЙЙo {
-ППo {
-ХХo {ЫЫЭ й
-ггk wииб н
+ДДo {
+ККo {
+РРo {ЦЦЭ й
+ЮЮk wггб н
 
-фф 
-хх) ,
+рр 
+сс( +
 
-хх! %
-чч# '$
+сс  $
+уу# '$
 
-ээ 
-ээ 
-ээ; <
+шш 
+шш 
+шш; <
 
-ЁЁ5 6
-ЁЁL M$
+ыы5 6
+ыыL M$
 
-ЙЙ 
-КК 
-ММ" 0$
+ДД 
+ЕЕ 
+ЗЗ" 0$
 
-ПП  
+КК  
+ЛЛ  
+НН /$
+
 РР  
-ТТ /$
+СС  
+УУ" 2$
 
-ХХ  
-ЦЦ  
-ШШ" 2$
+ЦЦ 
+ЧЧ 
+ЩЩ +$
 
-ЫЫ 
-ЬЬ 
-ЮЮ +$
+ЦЦU V
+ЦЦZ [
+ЦЦo p
 
-ЫЫU V
-ЫЫZ [
-ЫЫo p
+ЩЩ9 :
+ЩЩ> ?0
 
-ЮЮ9 :
-ЮЮ> ?0
+ЬЬ. /
+ЬЬ3 4
+ЭЭ) *
+ЮЮO P$
 
-бб. /
-бб3 4
-вв) *
-ггO P$
+ЮЮ( )
+ЮЮ- .
+ЮЮ; <&
 
-гг( )
-гг- .
-гг; <&
+бб 
+ггY _ггА Ж
 
-жж 
-ииY _ииА Ж
+бб9 :
+бб> ?$
 
-жж9 :
-жж> ?$
+гг 
+дд 
+жж, 5$
 
-ии 
-йй 
-лл, 5$
+ггL M
+ггQ R
+ггl m
 
-ииL M
-ииQ R
-ииl m
+зз0 1
+зз5 6
 
-мм0 1
-мм5 6
+мм$ .
 
-▒▒$ .
+мм> F
+▐▐# +
 
-▒▒> F
+ммe q
+▐▐- 9$
 
-▒▒e q$
+╢╢ $
+╣╣ !
+╗╗" /
 
-╗╗ $
-╛╛ !
-└└" /
+╖╖ 
+╣╣9 :$
 
-╝╝ 
-╛╛9 :$
+╖╖3 4
+╖╖N O
+╖╖p q
+╖╖Б В╖╖Ж З$
 
-╝╝3 4
-╝╝N O
-╝╝p q
-╝╝Б В╝╝Ж З$
+┴┴ 
+╞╞@ F
+╩╩G M$
 
-╞╞ 
-╦╦@ F
-╧╧G M$
+┼┼ 
+╞╞H P
+╩╩O W
 
-╩╩ 
-╦╦H P
-╧╧O W
+╞╞ "
+╟╟ !$
 
-╦╦ "
-╠╠ !$
+╧╧ 
+╘╘< B
+╪╪C I$
 
-╘╘ 
-┘┘< B
-▌▌C I$
+╙╙ 
+╘╘D L
+╪╪K S
 
-╪╪ 
-┘┘D L
-▌▌K S
+╘╘ 
+╒╒ 
 
-┘┘ 
-┌┌ 
+цц  
+▄▄ 
 
-╪╪  
-уу 
+уу= O$
 
-ъъ= O$
+фф 
+¤¤A G
+ИИA GД
 
-ыы 
-  A G
-ДДA GД
+хх %
+ыыD L
+∙∙b j
+ВВd l
+УУ` h
+ЬЬb j
+ннb j
+╖╖c k
+шшP X
+■■b j
+ЙЙd lД
 
-ьь %
-ЄЄD L
-ААb j
-ЙЙd l
-ЪЪ` h
-ггb j
-┤┤b j
-╕╕c k
-ъъP X
-ААb j
-ЕЕd lД
+ххD P
+ыыN Z
+∙∙l x
+ВВn z
+УУj v
+ЬЬl x
+ннl x
+╖╖m y
+шшZ f
+■■l x
+ЙЙn zА
 
-ььD P
-ЄЄN Z
-ААl x
-ЙЙn z
-ЪЪj v
-ггl x
-┤┤l x
-╕╕m y
-ъъZ f
-ААl x
-ЕЕn z▄
+чч 
+ёё 
+ёё 
+ЄЄ 
+·· "
+··% +
+√√! '
+ГГ "
+ГГ% +
+ДД! '
+ММ 
+ФФ "
+ФФ% +
+ХХ! '
+ЭЭ "
+ЭЭ% +
+ЮЮ! '
+жж 
+оо "
+пп! '
+╕╕ "
+╣╣! '
+┬┬ 
+ЄЄ "
+ЄЄ% +
+ўў 
+   "
+АА! '
+КК "
+ЛЛ! '
+ЦЦ  &
+ЧЧ !<
 
-юю 
-°° 
-°° 
-∙∙ 
-ББ "
-ББ% +
-ВВ! '
-КК "
-КК% +
-ЛЛ! '
-УУ 
-ЫЫ "
-ЫЫ% +
-ЬЬ! '
-дд "
-дд% +
-ее! '
-нн 
-╣╣ "
-║║! '
-── 
-ЇЇ "
-ЇЇ% +
-∙∙ 
-ЖЖ "
-ЗЗ! '
-ТТ  &
-УУ !
-ЪЪ <
+ыы  
+ьь !
+юю$ 0
+яя  ,
+ёё# /<
 
-ЄЄ  
-єє !
-її$ 0
-ЎЎ  ,
-°°# /<
+ЇЇ! 9
+ЎЎ 0
+ўў 4
+∙∙3 K
+ВВ3 K$
 
-√√! 9
-¤¤ 0
-■■ 4
-АА3 K
-ЙЙ3 K$
+∙∙  *
+··/ 9
+¤¤0 :$
 
-АА  *
-ББ/ 9
-ДД0 :$
+ВВ  *
+ГГ/ 9
+ЖЖ0 :<
 
-ЙЙ  *
-КК/ 9
-НН0 :<
+ОО! 7
+РР .
+СС 2
+УУ3 I
+ЬЬ3 I$
 
-ХХ! 7
-ЧЧ .
-ШШ 2
-ЪЪ3 I
-гг3 I$
+УУ  *
+ФФ/ 9
+ЧЧ0 :$
 
-ЪЪ  *
-ЫЫ/ 9
-ЮЮ0 :$
+ЬЬ  *
+ЭЭ/ 9
+аа0 :<
 
-гг  *
-дд/ 9
-зз0 :<
+ии! 9
+кк 0
+лл 4
+нн3 K
+╖╖3 K0
 
-пп! 9
-▒▒ 0
-▓▓ 4
-┤┤3 K
-╕╕3 K
+нн  *
+оо% /
+▒▒0 :
+▓▓, 60
 
-┤┤  *0
+╖╖  *
+╕╕% /
+╗╗0 :
+╝╝, 6`
 
-╕╕  *
-╣╣% /
-╝╝0 :
-╜╜, 6`
+──! 2
+╞╞ )
+╟╟- >
+╠╠1 B
+╬╬+ <
+╧╧) :
+╘╘> O
+ыы  1$
 
-╞╞! 2
-╚╚ )
-╔╔- >
-╬╬1 B
-╨╨+ <
-╤╤) :
-╓╓> O
-ээ  1$
+╟╟% )
+╦╦% )
+╫╫7 ;$
 
-╔╔% )
-══% )
-┘┘7 ;$
+╔╔+ 0
+фф !
+ццE J
 
-╦╦+ 0
-цц !
-шшE J
+╘╘7 ;
+┘┘* .$
 
-╓╓7 ;
-██* .$
+╒╒$ '
+сс$ '
+фф* -0
 
-╫╫$ '
-уу$ '
-цц* -0
+╫╫/ 3
+┘┘M Q
+▀▀? C
+сс: >$
 
-┘┘/ 3
-██M Q
-сс? C
-уу: >$
+┘┘$ '
+┌┌$ '
+▐▐B E
 
-██$ '
-▄▄$ '
-ррB E
+┘┘> ?
+┘┘C D
 
-██> ?
-██C D
+▄▄, 4
+ссE M$
 
-▐▐, 4
-ууE M$
+цц  &
+шш3 9
+ыыA G<
 
-шш  &
-ъъ3 9
-ээA G<
+шш  *
+щщ  *
+яя0 :
+ЁЁ, 6
+ЄЄ/ 9H
 
-ъъ  *
-ыы  *
-ёё0 :
-ЄЄ, 6
-ЇЇ/ 9H
-
-√√! 9
+∙∙! 9
+√√ 4
 ¤¤ 4
-   4
-АА3 K
-ДД 4
-ЕЕ3 K
+■■3 K
+ИИ 4
+ЙЙ3 K0
 
-АА  *0
+■■  *
+  % /
+ВВ0 :
+ГГ, 60
 
-ЕЕ  *
-ЖЖ% /
-ЙЙ0 :
-КК, 6
+ЙЙ  *
+КК% /
+НН0 :
+ОО, 6
 
-ШШ 
-ЯЯ  "
+ЬЬ 
+вв  "
 
-дд= P
+зз= P
 
-ддd j&
-ддГ Р
-ккH U
-ппO \&
-ддб й
-ккW _
-пп^ f&
-дд╚ ╘
-ккa m
-ппh t`
+ззd j&
+ззГ Р
+ннH U
+▓▓O \&
+ззб й
+ннW _
+▓▓^ f&
+зз╚ ╘
+ннa m
+▓▓h t`
 
-жж% +
-▓▓ 
-╢╢ 
-╖╖ 
-╕╕ 
-╜╜ 
-╛╛ 
-┴┴ H
+йй% +
+╡╡ 
+╣╣ 
+║║ 
+╗╗ 
+└└ 
+┴┴ 
+── H
 
-зз 
-йй 
-кк( .
-кк: @
-ннQ W
-ооA G0
+кк 
+мм 
+нн( .
+нн: @
+░░Q W
+▒▒A G0
 
-кк 
-лл 
-╜╜+ 6
-╛╛' 2$
+нн 
+оо 
+└└+ 6
+┴┴' 2$
 
-нн !
-пп) 2
-пп> G0
+░░ !
+▓▓) 2
+▓▓> G0
 
-нн> ?
-ннC D
-оо 
-оо- .H
+░░> ?
+░░C D
+▒▒ 
+▒▒- .H
 
-пп  
-░░  
-▓▓+ 3
-╢╢+ 3
-╖╖/ 7
-╕╕+ 3
+▓▓  
+││  
+╡╡+ 3
+╣╣+ 3
+║║/ 7
+╗╗+ 3
 
-──= U<
+╟╟= U<
 
-──i m
-══% )
-╒╒% )
-▌▌% )
-хх% )=
-──~ Ж
-╧╧@ H
-╫╫@ H
-▀▀@ H
-чч@ H>
-──е ▒
-╧╧J V
-╫╫J V
-▀▀J V
-ччJ Vx
+╟╟i m
+╨╨% )
+╪╪% )
+рр% )
+шш% )=
+╟╟~ Ж
+╥╥@ H
+┌┌@ H
+тт@ H
+ъъ@ H>
+╟╟е ▒
+╥╥J V
+┌┌J V
+ттJ V
+ъъJ Vx
 
-╞╞% +
-╦╦ 
-╧╧ 
-╙╙ 
-╫╫ 
-██ 
-▀▀ 
-уу 
-чч 
-ъъ 
+╔╔% +
+╬╬ 
+╥╥ 
+╓╓ 
+┌┌ 
+▐▐ 
+тт 
+цц 
+ъъ 
+ээ 
 
-══ !
-╧╧# '
+╨╨ !
+╥╥# '
 
-══; <
-══@ A
+╨╨; <
+╨╨@ A
 
-╒╒ !
-╫╫# '
+╪╪ !
+┌┌# '
 
-╒╒8 9
-╒╒= >
+╪╪8 9
+╪╪= >
 
-▌▌ !
-▀▀# '
+рр !
+тт# '
 
-▌▌; <
-▌▌@ A
+рр; <
+рр@ A
 
-хх !
-чч# '
+шш !
+ъъ# '
 
-ёё1 D<
+ЇЇ1 D<
 
-ёёX ]
-··% *
-ВВ% *
-КК% *
-ТТ% *<
+ЇЇX \
+¤¤% )
+ЕЕ% )
+НН% )
+ХХ% )<
 
-ёёn v
-№№5 =
-ДД5 =
-ММ5 =
-ФФ5 =>
-ёёХ б
-№№? K
-ДД? K
-ММ? K
-ФФ? Kx
+ЇЇm u
+  5 =
+ЗЗ5 =
+ПП5 =
+ЧЧ5 =>
+ЇЇФ а
+  ? K
+ЗЗ? K
+ПП? K
+ЧЧ? Kx
 
-єє% +
-°° 
-№№ 
-АА 
-ДД 
-ИИ 
-ММ 
-РР 
-ФФ 
-ЧЧ 
+ЎЎ% +
+√√ 
+   
+ГГ 
+ЗЗ 
+ЛЛ 
+ПП 
+УУ 
+ЧЧ 
+ЪЪ 
 
-·· !
-№№ !
+¤¤ !
+   !
 
-ВВ !
-ДД !
+ЕЕ !
+ЗЗ !
 
-КК !
-ММ !
+НН !
+ПП !
 
-ТТ !
-ФФ !
+ХХ !
+ЧЧ !
 
-ЪЪ1 >$
+ЭЭ1 >$
 
-ЪЪK Q
-нн1 7
-▓▓1 7Д
+ЭЭK Q
+╢╢1 7
+┴┴1 7Д
 
-ЪЪb j
-аа9 A
-ооC K
-╖╖E M
-╚╚C K
-╤╤E M
-ттC K
-ццD L
-ШШE M
-ооG O
-││I QЖ
-ЪЪЙ Х
-ааC O
-ооM Y
-╖╖O [
-╚╚M Y
-╤╤O [
-ттM Y
-ццN Z
-ШШO [
-ооQ ]
-││S _▄
+ЭЭb j
+гг9 A
+▒▒C K
+║║E M
+╦╦C K
+╘╘E M
+ххC K
+яяD L
+ббE M
+╖╖G O
+┬┬I QЖ
+ЭЭЙ Х
+ггC O
+▒▒M Y
+║║O [
+╦╦M Y
+╘╘O [
+ххM Y
+яяN Z
+ббO [
+╖╖Q ]
+┬┬S _А
 
-ЬЬ 
-жж 
-жж 
-зз 
-пп "
-пп% +
-░░! '
-╕╕ "
-╕╕% +
-╣╣! '
-┴┴ 
-╔╔ "
-╔╔% +
-╩╩! '
-╥╥ "
-╥╥% +
-╙╙! '
-██ 
-чч "
-шш! '
-ЄЄ 
-вв "
-вв% +
-зз 
-┤┤ "
-╡╡! '
-└└  &
-┴┴ !
-╚╚ <
+ЯЯ 
+йй 
+йй 
+кк 
+▓▓ "
+▓▓% +
+││! '
+╗╗ "
+╗╗% +
+╝╝! '
+── 
+╠╠ "
+╠╠% +
+══! '
+╒╒ "
+╒╒% +
+╓╓! '
+▐▐ 
+цц "
+чч! '
+ЁЁ "
+ёё! '
+√√ 
+лл "
+лл% +
+░░ 
+╕╕ "
+╣╣! '
+├├ "
+──! '
+╧╧  &
+╨╨ !<
 
-аа  
-бб !
-гг$ 0
-дд  ,
-жж# /<
+гг  
+дд !
+жж$ 0
+зз  ,
+йй# /<
 
-йй! %
-лл 
-мм  
-оо- 1
-╖╖- 1$
+мм! %
+оо 
+пп  
+▒▒- 1
+║║- 1$
 
-оо  *
-пп/ 9
-▓▓0 :$
+▒▒  *
+▓▓/ 9
+╡╡0 :$
 
-╖╖  *
-╕╕/ 9
-╗╗0 :<
+║║  *
+╗╗/ 9
+╛╛0 :<
 
-├├! %
-┼┼ 
-╞╞  
-╚╚- 1
-╤╤- 1$
+╞╞! %
+╚╚ 
+╔╔  
+╦╦- 1
+╘╘- 1$
 
-╚╚  *
-╔╔/ 9
-╠╠0 :$
+╦╦  *
+╠╠/ 9
+╧╧0 :$
 
-╤╤  *
-╥╥/ 9
-╒╒0 :<
+╘╘  *
+╒╒/ 9
+╪╪0 :<
 
-▌▌! %
-▀▀ 
-рр  
-тт- 1
-цц- 1
+рр! %
+тт 
+уу  
+хх- 1
+яя- 10
 
-тт  *0
+хх  *
+цц% /
+щщ0 :
+ъъ, 60
 
-цц  *
-чч% /
-ъъ0 :
-ыы, 6`
+яя  *
+ЁЁ% /
+єє0 :
+ЇЇ, 6`
 
-ЇЇ! '
-ЎЎ 
-ўў- 3
-№№1 7
-■■+ 1
-  ) /
-ДД> D
-ЫЫ  &$
+¤¤! '
+   
+АА- 3
+ЕЕ1 7
+ЗЗ+ 1
+ИИ) /
+НН> D
+дд  &$
 
-ўў% )
-√√% )
-ЗЗ7 ;$
+АА% )
+ДД% )
+РР7 ;$
 
-∙∙+ 0
-ФФ !
-ЦЦE J
+ВВ+ 0
+ЭЭ !
+ЯЯE J
 
-ДД7 ;
-ЙЙ* .$
+НН7 ;
+ТТ* .$
 
-ЕЕ$ '
-СС$ '
-ФФ* -0
+ОО$ '
+ЪЪ$ '
+ЭЭ* -0
 
-ЗЗ/ 3
-ЙЙM Q
-ПП? C
-СС: >$
+РР/ 3
+ТТM Q
+ШШ? C
+ЪЪ: >$
 
-ЙЙ$ '
-КК$ '
-ООB E
+ТТ$ '
+УУ$ '
+ЧЧB E
 
-ЙЙ> ?
-ЙЙC D
+ТТ> ?
+ТТC D
 
-ММ, 4
-ССE M$
+ХХ, 4
+ЪЪE M$
 
-ЦЦ  &
-ШШ- 3
-ЫЫ6 <<
+ЯЯ  &
+бб- 3
+дд6 <<
 
-ШШ  *
-ЩЩ  *
-ЯЯ0 :
-аа, 6
-вв/ 9H
+бб  *
+вв  *
+ии0 :
+йй, 6
+лл/ 9H
 
-йй! )
-лл $
-нн $
-оо- 5
-▓▓ $
-││- 5
+▓▓! )
+┤┤ $
+╢╢ $
+╖╖- 5
+┴┴ $
+┬┬- 50
 
-оо  *0
+╖╖  *
+╕╕% /
+╗╗0 :
+╝╝, 60
 
-││  *
-┤┤% /
-╖╖0 :
-╕╕, 6
+┬┬  *
+├├% /
+╞╞0 :
+╟╟, 6
 
-╞╞ 
-══  "
+╒╒ 
+██  "
 
-▐▐ 
-тт' (0
+ьь 
+ЁЁ' (0
 
-▀▀ 
-ррS W
-тт 
-фф 2
+ээ 
+ююS W
+ЁЁ 
+ЄЄ 2
 
-ррA B
-ррF G
-рр[ \ррБ Вф5
-dE:\_Workspace\Github\Swastika-IO-Core\src\Swastika.Cms.Lib\ViewModels\BackEnd\BECategoryViewModel.cs
+ююA B
+ююF G
+юю[ \ююБ Ву5
+cD:\Workspace\GitHub\Swastika-IO-Core\src\Swastika.Cms.Lib\ViewModels\BackEnd\BECategoryViewModel.cs
  $6 IТ
 !! 
 юю 
@@ -8610,8 +8636,8 @@ dE:\_Workspace\Github\Swastika-IO-Core\src\Swastika.Cms.Lib\ViewModels\BackEnd\B
 ккC D
 
 оо" #
-оо' (▀
-cE:\_Workspace\Github\Swastika-IO-Core\src\Swastika.Cms.Lib\ViewModels\BackEnd\BECultureViewModel.cs
+оо' (▐
+bD:\Workspace\GitHub\Swastika-IO-Core\src\Swastika.Cms.Lib\ViewModels\BackEnd\BECultureViewModel.cs
  #5 G>>V h
 
  
@@ -8654,8 +8680,8 @@ cE:\_Workspace\Github\Swastika-IO-Core\src\Swastika.Cms.Lib\ViewModels\BackEnd\B
 RR SS UU) 2
 RRY ZRR^ _
 UU! %WW1 5(
-WW (XX? K[[3 ?\\/ ;д
-dE:\_Workspace\Github\Swastika-IO-Core\src\Swastika.Cms.Lib\ViewModels\BackEnd\BELanguageViewModel.cs(
+WW (XX? K[[3 ?\\/ ;г
+cD:\Workspace\GitHub\Swastika-IO-Core\src\Swastika.Cms.Lib\ViewModels\BackEnd\BELanguageViewModel.cs(
  $' :00+ >::6 I
 
  
@@ -8710,13 +8736,13 @@ dE:\_Workspace\Github\Swastika-IO-Core\src\Swastika.Cms.Lib\ViewModels\BackEnd\B
 NNБ ЙPPL T
 
 NNи ┤PPV b
-PP QQ UU Ц
-aE:\_Workspace\Github\Swastika-IO-Core\src\Swastika.Cms.Lib\ViewModels\BackEnd\BEMediaViewModel.cs2
- !3 Cbb %ooE UyyV f
+PP QQ UU й
+`D:\Workspace\GitHub\Swastika-IO-Core\src\Swastika.Cms.Lib\ViewModels\BackEnd\BEMediaViewModel.cs2
+ !3 Cbb %ooE UzzV f
  `` bb (
- FF! *ssI R~~I R(
-  EE ssT ^~~T ^(
-"" FF ss? G~~? G
+ FF! *ssI RI R(
+  EE ssT ^T ^(
+"" FF ss? G? G
 
 %% 
 
@@ -8741,11 +8767,9 @@ aE:\_Workspace\Github\Swastika-IO-Core\src\Swastika.Cms.Lib\ViewModels\BackEnd\B
 UU@ HVV "
 UUg sVV$ 0
 
-^^" ,
-
-^^< D
-
-^^c o
+^^" ,
+^^< Dee# +
+^^c oee- 9
 bb5 6bb: ;
 
 hh '
@@ -8764,205 +8788,194 @@ aE:\_Workspace\Github\Swastika-IO-Core\src\Swastika.Cms.Lib\ViewModels\BackEnd\B
 ooТ Ю
 qq uu 
 
-yy= U
+zz= U
 
-yyg k
-	yy| Д
+zzg k
+	zz| Д
 
-yyг п
-|| 
-АА ╩
-fE:\_Workspace\Github\Swastika-IO-Core\src\Swastika.Cms.Lib\ViewModels\BackEnd\BEModuleDataViewModel.cs
- &7 L6
- XX% 'ZZ 
-  $ &
-ЗЗ$ &,
-!! nnP X
-УУ '
-ИИ* 24
-$$ nn pp& ,rr/ 5
-КК( .4
-'' aa jj  jj9 >
-ЛЛ' ,
+zzг п
+}} 
+ББ ў
+eD:\Workspace\GitHub\Swastika-IO-Core\src\Swastika.Cms.Lib\ViewModels\BackEnd\BEModuleDataViewModel.cs
+ &7 L*
+ VV% 'XX 
+ўў$ & 
+!! kkP X
+ММ '(
+$$ kk mm& ,oo/ 5(
+'' __ hh  hh9 >
+
 ** 
-ММ+ 4
 
--- 
-00 
-ОО, 6 
-33 '[[ 
-ПП1 @
-66 (__ t
-==. <ll 
-мм #
-╕╕% 3
-╠╠% 3
-рр! /
-ьь %
-ЄЄ %
-°° !
-ББ! /*
-@@* 1oo ~~  
-ББ  '
+-- 
 
-JJ $
+00 
+33 'YY 
+66 (]] t
+==. <jj 
+ее #
+░░% 3
+──% 3
+╪╪! /
+фф %
+ъъ %
+ЁЁ !
+∙∙! /(
+@@* 1ll {{  ~~  '
 
-NN $
-NN4 9
-NNН Т
-NNJ R
-NNФ Ь
-NNq }
-NNЮ к
+HH $
 
-VV' 1
+LL $
+LL4 9
+LLН Т
+LLJ R
+LLФ Ь
+LLq }
+LLЮ к
 
-VVA I
+TT' 1
+TTA I``# +
+TTh t``- 9
 
-VVh t
+╒╒ &__ $
 
-▌▌ &aa $
+cc '
+cc7 ?
+kkА И
+cc^ j
+kkК Ц
+hh 
+АА! )
+kkC DkkH Ikk\ ]
+oo qq& .Z
+qq "uuB Gvv# (vv? DwwA Fxx  %xx9 >yy$ )yyA F
+ss) 2{{% .F
+~~ 
+АА3 6
+ЕЕ+ .
+ИИ) ,
+НН8 ;
+СС x
 
-ee '
-ee7 ?
-nnА И
-ee^ j
-nnК Ц
-jj 
-ЕЕ! )
-nnC DnnH Inn\ ]
-rr tt& .Z
-tt "xxB Gyy# (yy? DzzA F{{  %{{9 >||$ )||A F
-vv) 2~~% .H
+АА 
+ББ 
+ИИ 
+ОО> B
+ПП" &
+ФФ( ,
+ФФH L
+ШШ> B
+ШШ` d
+вв( ,
 
-ББ 
-ЕЕ3 6
-КК+ .
-НН) ,
-ФФ8 ;
-ШШ x
+ГГ 
+ИИ3 6<
 
-ЕЕ 
-ЖЖ 
-НН 
-ХХ> B
-ЦЦ" &
-ЫЫ( ,
-ЫЫH L
-ЯЯ> B
-ЯЯ` d
-йй( ,
+КК 
+ФФ 
+ШШ 
+вв 
+ее( /
 
-ИИ 
-НН3 6<
+лл1 <
 
-СС 
-ЫЫ 
-ЯЯ 
-йй 
-мм( /
+ллB W
+нн* ?
 
-││1 <
+ллp x
+ннA I
+ллЧ г
+ннK W$
 
-││B W
-╡╡* ?
+нн 
+оо 
+╕╕ $
 
-││p x
-╡╡A I
-││Ч г
-╡╡K W$
+░░ !
+▓▓ 
+┤┤> B
 
-╡╡ 
-╢╢ 
-└└ $
+┐┐= M
 
-╕╕ !
-║║ 
-╝╝> B
+┐┐S h
+┴┴5 J
+┐┐Б Й
+┴┴L T
+┐┐и ┤
+┴┴V b$
 
-╟╟= M
+┴┴ 
+┬┬ 
+╠╠ $
 
-╟╟S h
-╔╔5 J
-╟╟Б Й
-╔╔L T
-╟╟и ┤
-╔╔V b$
+── !
+╞╞ 
+╚╚> B$
 
-╔╔ 
-╩╩ 
-╘╘ $
+╫╫ 
+▌▌ 
+▀▀ 0
 
-╠╠ !
-╬╬ 
-╨╨> B$
+╪╪ 
+██2 6
+▄▄/ 3
+▌▌L P0
 
-▀▀ 
-хх 
-чч 0
+┌┌ 
+██ 
+▄▄ 
+▌▌X [
 
-рр 
-уу2 6
-фф/ 3
-ххL P0
+тт $
 
-тт 
-уу 
-фф 
-ххX [
+тт, 0
+ффD H0
 
-ъъ $
+фф 
+хх 
+хх# '
+хх8 <
 
-ъъ, 0
-ььD H0
+фф5 6
+фф: ;<
 
-ьь 
-ээ 
-ээ# '
-ээ8 <
+шш 
+шш 
+шш0 1
+ыы9 :
+ыыP Q
 
-ьь5 6
-ьь: ;<
+шш 
 
-ЁЁ 
-ЁЁ 
-ЁЁ0 1
-єє9 :
-єєP Q
+шш$ (
+ъъD H0
 
-ЁЁ 
+ъъ 
+ыы 
+ыы# '
+ыы; ?
 
-ЁЁ$ (
-ЄЄD H0
+ъъ5 6
+ъъ: ;
 
-ЄЄ 
-єє 
-єє# '
-єє; ?
+юю( 7
 
-ЄЄ5 6
-ЄЄ: ;
+юю? C
+ЁЁ@ D
 
-ЎЎ( 7
+ЁЁ1 2
+ЁЁ6 7
 
-ЎЎ? C
-°°@ D
+єє  $
 
-°°1 2
-°°6 7
+її 
+√√ 
+¤¤ $
 
-√√  $
-
-¤¤ 
-ГГ 
-ТТ $
-
-ББ 
-ГГL P
-ГГX \
-
-ЕЕ ч
-bE:\_Workspace\Github\Swastika-IO-Core\src\Swastika.Cms.Lib\ViewModels\BackEnd\BEModuleViewModel.cs8
+∙∙ 
+√√L P
+√√X \■
+aD:\Workspace\GitHub\Swastika-IO-Core\src\Swastika.Cms.Lib\ViewModels\BackEnd\BEModuleViewModel.cs8
  "3 D
 ёёQ b
 ХХ@ Q
@@ -9058,11 +9071,13 @@ bE:\_Workspace\Github\Swastika-IO-Core\src\Swastika.Cms.Lib\ViewModels\BackEnd\B
 
 ЕЕi uЕЕЦ в
 
-НН# -
+НН# -
 
-НН= E
+НН= E
+ЩЩ# +
 
-ННd p
+ННd p
+ЩЩ- 9
 
 ФФ 
 ЧЧ 
@@ -9323,8 +9338,8 @@ bE:\_Workspace\Github\Swastika-IO-Core\src\Swastika.Cms.Lib\ViewModels\BackEnd\B
 уу 
 
 яя1 2
-яяW XБ
-eE:\_Workspace\Github\Swastika-IO-Core\src\Swastika.Cms.Lib\ViewModels\BackEnd\BEParameterViewModel.cs
+яяW XА
+dD:\Workspace\GitHub\Swastika-IO-Core\src\Swastika.Cms.Lib\ViewModels\BackEnd\BEParameterViewModel.cs
  %7 K
 
  
@@ -9341,8 +9356,8 @@ eE:\_Workspace\Github\Swastika-IO-Core\src\Swastika.Cms.Lib\ViewModels\BackEnd\B
 &&H P
 &&Т Ъ
 &&o {
-&&Ь иЇ
-dE:\_Workspace\Github\Swastika-IO-Core\src\Swastika.Cms.Lib\ViewModels\BackEnd\BEPositionViewModel.cs
+&&Ь иє
+cD:\Workspace\GitHub\Swastika-IO-Core\src\Swastika.Cms.Lib\ViewModels\BackEnd\BEPositionViewModel.cs
  $6 I
 
  
@@ -9357,11 +9372,12 @@ dE:\_Workspace\Github\Swastika-IO-Core\src\Swastika.Cms.Lib\ViewModels\BackEnd\B
 ##F N
 ##Р Ш
 ##m y
-##Ъ ж╔
-hE:\_Workspace\Github\Swastika-IO-Core\src\Swastika.Cms.Lib\ViewModels\BackEnd\BEProductMediaViewModel.cs
- (: Q
- ?? ??  )
- >> $
+##Ъ ж╚
+gD:\Workspace\GitHub\Swastika-IO-Core\src\Swastika.Cms.Lib\ViewModels\BackEnd\BEProductMediaViewModel.cs
+ (: Q
+
+ 
+ >> $?? "
 
  
 
@@ -9383,9 +9399,9 @@ hE:\_Workspace\Github\Swastika-IO-Core\src\Swastika.Cms.Lib\ViewModels\BackEnd\B
 ;; '
 ;;7 ?@@ $
 ;;^ j@@4 @
-== AA CC +
->> >> >>( )ЦL
-cE:\_Workspace\Github\Swastika-IO-Core\src\Swastika.Cms.Lib\ViewModels\BackEnd\BEProductViewModel.csD
+== AA CC +(
+>> >> >>( )?? ХL
+bD:\Workspace\GitHub\Swastika-IO-Core\src\Swastika.Cms.Lib\ViewModels\BackEnd\BEProductViewModel.csD
  #5 G
 ЙЙQ c
 ммV h
@@ -10315,9 +10331,9 @@ cE:\_Workspace\Github\Swastika-IO-Core\src\Swastika.Cms.Lib\ViewModels\BackEnd\B
 
 ╘╘? @
 ╘╘D E
-╘╘Y Z╘╘ Ац
+╘╘Y Z╘╘ А¤
 
-dE:\_Workspace\Github\Swastika-IO-Core\src\Swastika.Cms.Lib\ViewModels\BackEnd\BETemplateViewModel.cs
+cD:\Workspace\GitHub\Swastika-IO-Core\src\Swastika.Cms.Lib\ViewModels\BackEnd\BETemplateViewModel.cs
  $5 H
  
 СС 
@@ -10391,11 +10407,13 @@ dE:\_Workspace\Github\Swastika-IO-Core\src\Swastika.Cms.Lib\ViewModels\BackEnd\B
 ГГ+ /
 ЕЕ 
 
-ПП% /
+ПП% /
 
-ПП? G
+ПП? G
+вв# +
 
-ППf r
+ППf r
+вв- 9
 
 йй1 <
 
@@ -10442,8 +10460,8 @@ dE:\_Workspace\Github\Swastika-IO-Core\src\Swastika.Cms.Lib\ViewModels\BackEnd\B
 ══n v
 ╓╓3 ;
 ══Х б
-╓╓= I╡
-aE:\_Workspace\Github\Swastika-IO-Core\src\Swastika.Cms.Lib\ViewModels\BackEnd\BEThemeViewModel.cs,
+╓╓= I╚
+`D:\Workspace\GitHub\Swastika-IO-Core\src\Swastika.Cms.Lib\ViewModels\BackEnd\BEThemeViewModel.cs,
  !2 B
 ААV f
 ЬЬF V
@@ -10500,11 +10518,9 @@ aE:\_Workspace\Github\Swastika-IO-Core\src\Swastika.Cms.Lib\ViewModels\BackEnd\B
 WW@ HXX "
 WWg sXX$ 0
 
-``" ,
-
-``< D
-
-``c o
+``" ,
+``< Dff# +
+``c off- 9
 
 ii '
 ii7 ?ll "
@@ -10790,8 +10806,8 @@ aE:\_Workspace\Github\Swastika-IO-Core\src\Swastika.Cms.Lib\ViewModels\BackEnd\B
 ее 
 
 ЯЯG H
-ЯЯL MР
-aE:\_Workspace\Github\Swastika-IO-Core\src\Swastika.Cms.Lib\ViewModels\CategoryArticleViewModel.cs
+ЯЯL MП
+`D:\Workspace\GitHub\Swastika-IO-Core\src\Swastika.Cms.Lib\ViewModels\CategoryArticleViewModel.cs
  )_ w
 
  '
@@ -10809,8 +10825,8 @@ aE:\_Workspace\Github\Swastika-IO-Core\src\Swastika.Cms.Lib\ViewModels\CategoryA
 
  
 
-!! !С
-bE:\_Workspace\Github\Swastika-IO-Core\src\Swastika.Cms.Lib\ViewModels\CategoryCategoryViewModel.cs
+!! !Р
+aD:\Workspace\GitHub\Swastika-IO-Core\src\Swastika.Cms.Lib\ViewModels\CategoryCategoryViewModel.cs
  *a z
 
  (
@@ -10828,8 +10844,8 @@ bE:\_Workspace\Github\Swastika-IO-Core\src\Swastika.Cms.Lib\ViewModels\CategoryC
 
 == 
 
-FF !П
-`E:\_Workspace\Github\Swastika-IO-Core\src\Swastika.Cms.Lib\ViewModels\CategoryModuleViewModel.cs
+FF !О
+_D:\Workspace\GitHub\Swastika-IO-Core\src\Swastika.Cms.Lib\ViewModels\CategoryModuleViewModel.cs
  (< S
 
  &
@@ -10847,8 +10863,8 @@ bE:\_Workspace\Github\Swastika-IO-Core\src\Swastika.Cms.Lib\ViewModels\CategoryC
 
  
 
-   !Е
-bE:\_Workspace\Github\Swastika-IO-Core\src\Swastika.Cms.Lib\ViewModels\CategoryPositionViewModel.cs
+   !Д
+aD:\Workspace\GitHub\Swastika-IO-Core\src\Swastika.Cms.Lib\ViewModels\CategoryPositionViewModel.cs
  *a z
 
  (
@@ -10864,149 +10880,151 @@ bE:\_Workspace\Github\Swastika-IO-Core\src\Swastika.Cms.Lib\ViewModels\CategoryP
 
  
 
- ! 
-YE:\_Workspace\Github\Swastika-IO-Core\src\Swastika.Cms.Lib\ViewModels\CommonViewModels.cs
+ !─	
+XD:\Workspace\GitHub\Swastika-IO-Core\src\Swastika.Cms.Lib\ViewModels\CommonViewModels.cs
 
- #
- '' 
- (( 
- )) 
+ #
+ ++ 
+ ,, 
+ -- 
 
- 
+"" 
 
-!! 
+%% 
 
-## !(
-%%" )'' #(( &)) &
+'' !(
+))" )++ #,, &-- &
 
-.. !
+22 !
 
-11 $
+55 $
 
-44 "
+88 "
 
-77 "
+;; "
 
-:: &
+>> &
 
-== 
+AA 
 
-@@ !
+DD !
 
-CC -
+GG -
 
-FF  
+JJ  
 
-II #
+MM #
 
-LL $
+PP $
 
-NN 
+RR 
 
-OO 
+SS 
 
-PP 
+TT 
 
-QQ 
+UU 
 
-TT 
+XX (
+ZZ  ^^ ee  hh 
 
-VV 
-cc  [[ 
-dd \\, 4
-ee \\6 ?
-
-bb  
-
-ff 
-
-gg  
-
-jj "
+\\ 
+mm  aa 
+nn bb, 4
+oo bb6 ?
+gg hh !
 
 ll  
 
-oo 
+pp 
 
-qq 
+qq  
 
-rr 
+tt "
 
-ss 
+vv  
 
-tt 
+yy 
 
-uu  
+{{ 
 
-xx %
+|| 
 
-{{ 
+}} 
 
-~~ 
+~~ 
 
-ББ' /
+  
 
-ДД 
+ВВ %
 
-ЗЗ 
+ЕЕ 
 
-КК )
+ИИ 
 
-НН 
+ЛЛ' /
 
-РР 
+ОО 
 
-УУ' /$
+СС 
 
-ЦЦ !
-ЭЭ 
-ЭЭ+ 0
+ФФ )
 
-ЩЩ !0
+ЧЧ 
 
-ЫЫ 
-ЫЫ 
-ЭЭ) *
-ЭЭ; <
+ЪЪ 
 
-ЫЫ 
+ЭЭ' /$
 
-бб 
+аа !
+зз 
+зз+ 0
 
-дд 
+гг !0
 
-зз 
+ее 
+ее 
+зз) *
+зз; <
 
-кк' /
+ее 
 
-нн 
+лл 
 
-╡╡ %
+оо 
 
-╕╕ "
+▒▒ 
 
-╗╗  
+┤┤' /
 
-╛╛ #
+╖╖ 
 
-┴┴ 
+┐┐ %
 
-── 
+┬┬ "
 
-╟╟ 
+┼┼  
 
-╩╩ 
+╚╚ #
 
-══ 
+╦╦ 
 
-╧╧! )
+╬╬ 
 
-╥╥ &
+╤╤ 
 
-╒╒ 
+╘╘ 
 
-╫╫& .Ы
-_E:\_Workspace\Github\Swastika-IO-Core\src\Swastika.Cms.Lib\ViewModels\ConfigurationViewModel.cs(
+╫╫ 
+
+┘┘! )
+
+▄▄ &
+
+▀▀ 
+
+тт& .Ъ
+^D:\Workspace\GitHub\Swastika-IO-Core\src\Swastika.Cms.Lib\ViewModels\ConfigurationViewModel.cs(
  ', B22+ A<<6 L
  --" )..: A
 
@@ -11044,8 +11062,8 @@ _E:\_Workspace\Github\Swastika-IO-Core\src\Swastika.Cms.Lib\ViewModels\Configura
 <<Л У>>D L
 
 <<▓ ╛>>N Z
->> ?? CC Ч
-jE:\_Workspace\Github\Swastika-IO-Core\src\Swastika.Cms.Lib\ViewModels\FrontEnd\FEArticleModuleViewModel.cs
+>> ?? CC Ц
+iD:\Workspace\GitHub\Swastika-IO-Core\src\Swastika.Cms.Lib\ViewModels\FrontEnd\FEArticleModuleViewModel.cs
  ); S
 
  
@@ -11072,8 +11090,8 @@ jE:\_Workspace\Github\Swastika-IO-Core\src\Swastika.Cms.Lib\ViewModels\FrontEnd\
 
 88^ j
 :: ;; == -
-::N O::S T::g h╓
-dE:\_Workspace\Github\Swastika-IO-Core\src\Swastika.Cms.Lib\ViewModels\FrontEnd\FEArticleViewModel.cs
+::N O::S T::g h╒
+cD:\Workspace\GitHub\Swastika-IO-Core\src\Swastika.Cms.Lib\ViewModels\FrontEnd\FEArticleViewModel.cs
  #5 G"
  
 ║║$ &
@@ -11221,328 +11239,330 @@ dE:\_Workspace\Github\Swastika-IO-Core\src\Swastika.Cms.Lib\ViewModels\FrontEnd\
 ЄЄ 
 
 ёё1 2
-ёё6 7Х
-eE:\_Workspace\Github\Swastika-IO-Core\src\Swastika.Cms.Lib\ViewModels\FrontEnd\FECategoryViewModel.cs,
- $5 H
-╔╔V i
-ББE X└
- 
-╬╬z |
-╪╪z |
-ттv x
-ььx z
-ЎЎw yЎЎЕ З
-ЖЖo q
-РРo q
-ЪЪk m
-ддm o
-ооl n
-ооz |
-──% '
+ёё6 7Ш
+dD:\Workspace\GitHub\Swastika-IO-Core\src\Swastika.Cms.Lib\ViewModels\FrontEnd\FECategoryViewModel.cs,
+ $5 H
+╠╠V i
+ЕЕE X└
+!! 
+╤╤z |
+██z |
+ххv x
+яяx z
+∙∙w y∙∙Е З
+ККo q
+ФФo q
+ЮЮk m
+ииm o
+▓▓l n
+▓▓z |
+╟╟% '
 ▐▐% '
 ыы$ &
 
-   "
-## 
-ПП 
-ии> F
+$$ "
+'' 
+ТТ 
+лл> F
 
-&& 
+** 
 
-)) 
-,, 
-лл 
+-- 
+00 
+оо 
 
-// 
+33 
 
-22 
+66 
 
-55 
+99 
 
-88 
+<< 
 
-;; 2
->> nn nn% *qq "vv  
+?? 2
+BB rr rr% *uu "zz  
 
-AA 
+EE 
 
-DD 
+HH 
 
-GG 
+KK 
 
-JJ 
+NN 
 
-MM $
+QQ $
 
-PP !
+TT !
 
-SS 
+WW 
 
-VV '
+ZZ '
 
-YY (
+]] (
 
-\\ 
+`` 
 
-__ 
+cc 
 
-bb 
-hh qq 
+ff 
+mm uu 
 
-jj :
-{{# '
-ии 
-йй 
-╥╥  
-╙╙  
-~~< D
+pp <
+
+АА# '
+лл 
+мм 
+╙╙ 
+╘╘ 
+
+ГГ< D
 фф 
 
-ББ< D
+ЖЖ< D
 ЄЄ 0
 
-ДД' .
-╚╚ 
-╘╘ #
+ЙЙ' .
+╦╦ 
+╒╒ 
 ·· 
 
-ЖЖ "
+ЛЛ "
 
-ЪЪ "
+ЭЭ "
 
-ЮЮ "
+бб "
 
-ЮЮ0 5ЮЮЙ О
+бб0 5ббЙ О
 
-ЮЮF NЮЮР Ш
+ббF NббР Ш
 
-ЮЮm yЮЮЪ ж
+ббm yббЪ ж
 
-жж 'H
+йй 'H
 
-жж7 ?
-ииX `
-оо& .
-╕╕& .
-╝╝' /
-└└' /H
+йй7 ?
+ллX `
+▒▒& .
+╗╗& .
+┐┐' /
+├├' /H
 
-жж^ j
-ииb n
-оо0 <
-╕╕0 <
-╝╝1 =
-└└1 =$
+йй^ j
+ллb n
+▒▒0 <
+╗╗0 <
+┐┐1 =
+├├1 =$
 
-┴┴ "
-оо %
-╕╕ %
+── "
+▒▒ %
+╗╗ %
 
 ██ #
-╝╝ &
+┐┐ &
 
 шш #
-└└ &
+├├ &
 
-╔╔= U
+╠╠= U
 
-╔╔j nS
-╔╔ З╬╬д м╪╪д мтта иььв кЎЎ░ ╕T
-╔╔ж ▓╬╬о ║╪╪о ║ттк ╢ььм ╕ЎЎ║ ╞А
+╠╠j nS
+╠╠ З╤╤д м██д мхха ияяв к∙∙░ ╕T
+╠╠ж ▓╤╤о ║██о ║ххк ╢яям ╕∙∙║ ╞А
 
-╦╦% +
-╠╠ 
+╬╬% +
 ╧╧ 
-╧╧# )
-╨╨ 
-╥╥ 
-╙╙ 
-╓╓ 
+╥╥ 
+╥╥# )
+╙╙ 
+╒╒ 
+╓╓ 
 ┘┘ 
-┘┘# )
-┌┌ 
-▄▄ 
-▌▌ 
-рр 
+▄▄ 
+▄▄# )
+▌▌ 
+▀▀ 
+рр 
 уу 
-уу# )
-фф 
-цц 
-чч 
-ъъ 
+цц 
+цц# )
+чч 
+щщ 
+ъъ 
 ээ 
-ээ# )
-юю 
-ЁЁ 
-ёё 
-ЇЇ 
+ЁЁ 
+ЁЁ# )
+ёё 
+єє 
+ЇЇ 
 ўў 
-ўў# )
-°° 
-·· 
-√√ 
-   0
+·· 
+··# )
+√√ 
+¤¤ 
+■■ 
+ВВ 0
 
-╬╬  
-╧╧7 C
-╥╥+ 7
-╙╙' 3&
+╤╤  
+╥╥7 C
+╒╒+ 7
+╓╓' 3&
 
-╬╬e f
-╬╬j k╬╬А Б0
+╤╤e f
+╤╤j k╤╤А Б0
 
-╪╪  
-┘┘7 C
-▄▄+ 7
-▌▌' 3&
+██  
+▄▄7 C
+▀▀+ 7
+рр' 3&
 
-╪╪e f
-╪╪j k╪╪А Б0
+██e f
+██j k██А Б0
 
-тт  
-уу7 C
-цц+ 7
-чч' 3$
+хх  
+цц7 C
+щщ+ 7
+ъъ' 3$
 
-ттa b
-ттf g
-тт| }0
+ххa b
+ххf g
+хх| }0
 
-ьь  
-ээ7 C
-ЁЁ+ 7
-ёё' 3$
+яя  
+ЁЁ7 C
+єє+ 7
+ЇЇ' 3$
 
-ььc d
-ььh i
-ьь~ 0
+яяc d
+яяh i
+яя~ 0
 
-ЎЎ  
-ўў7 C
-··+ 7
-√√' 32
+∙∙  
+··7 C
+¤¤+ 7
+■■' 32
 
-ЎЎc d
-ЎЎi j
-ЎЎ} ~ЎЎМ Н
+∙∙c d
+∙∙i j
+∙∙} ~∙∙М Н
 
-ББ1 D
+ЕЕ1 D
 
-ББY ]R
+ЕЕY ]R
 
-ББn vЖЖЩ бРРЩ бЪЪХ ЭддЧ Яоое нT
-ББХ бЖЖг пРРг пЪЪЯ лддб нооп ╗А
+ЕЕn vККЩ бФФЩ бЮЮХ ЭииЧ Я▓▓е нT
+ЕЕХ бККг пФФг пЮЮЯ лииб н▓▓п ╗А
 
-ГГ% +
-ДД 
-ЗЗ 
-ЗЗ# )
-ИИ 
-КК 
-ЛЛ 
-ОО 
-СС 
-СС# )
-ТТ 
-ФФ 
-ХХ 
-ШШ 
-ЫЫ 
-ЫЫ# )
-ЬЬ 
-ЮЮ 
-ЯЯ 
-вв 
-ее 
-ее# )
-жж 
-ии 
-йй 
-мм 
-пп 
-пп# )
-░░ 
-▓▓ 
-││ 
-╖╖ 0
+ЗЗ% +
+ИИ 
+ЛЛ 
+ЛЛ# )
+ММ 
+ОО 
+ПП 
+ТТ 
+ХХ 
+ХХ# )
+ЦЦ 
+ШШ 
+ЩЩ 
+ЬЬ 
+ЯЯ 
+ЯЯ# )
+аа 
+вв 
+гг 
+жж 
+йй 
+йй# )
+кк 
+мм 
+нн 
+░░ 
+││ 
+││# )
+┤┤ 
+╢╢ 
+╖╖ 
+╗╗ 0
 
-ЖЖ  
-ЗЗ7 C
-КК+ 7
-ЛЛ' 3$
+КК  
+ЛЛ7 C
+ОО+ 7
+ПП' 3$
 
-ЖЖZ [
-ЖЖ_ `
-ЖЖu v0
+ККZ [
+КК_ `
+ККu v0
 
-РР  
-СС7 C
-ФФ+ 7
-ХХ' 3$
+ФФ  
+ХХ7 C
+ШШ+ 7
+ЩЩ' 3$
 
-РРZ [
-РР_ `
-РРu v0
+ФФZ [
+ФФ_ `
+ФФu v0
 
-ЪЪ  
-ЫЫ7 C
-ЮЮ+ 7
-ЯЯ' 3$
+ЮЮ  
+ЯЯ7 C
+вв+ 7
+гг' 3$
 
-ЪЪV W
-ЪЪ[ \
-ЪЪq r0
+ЮЮV W
+ЮЮ[ \
+ЮЮq r0
 
-дд  
-ее7 C
-ии+ 7
-йй' 3$
+ии  
+йй7 C
+мм+ 7
+нн' 3$
 
-ддX Y
-дд] ^
-ддs t0
+ииX Y
+ии] ^
+ииs t0
 
-оо  
-пп7 C
-▓▓+ 7
-││' 32
+▓▓  
+││7 C
+╢╢+ 7
+╖╖' 32
 
-ооX Y
-оо^ _
-ооr sооБ В$
+▓▓X Y
+▓▓^ _
+▓▓r s▓▓Б В$
 
-┴┴2 :
-┼┼ 
-══ "$
+──2 :
+╚╚ 
+╨╨ "$
 
-┴┴Y e
-┼┼ (
-══$ 0$
+──Y e
+╚╚ (
+╨╨$ 0$
 
-├├ 
 ╞╞ 
-╔╔$ +$
+╔╔ 
+╠╠$ +$
 
-── 
-── 
-──+ ,$
+╟╟ 
+╟╟ 
+╟╟+ ,$
 
-╔╔  
-╠╠% (
-╠╠5 8
+╠╠  
+╧╧% (
+╧╧5 8
 
-╔╔9 :
-╔╔> ?H
+╠╠9 :
+╠╠> ?H
 
-╦╦ !
 ╬╬ !
-╨╨ %
-╥╥, 5
-╙╙+ 4
-╘╘( 1
+╤╤ !
+╤╤/ 8
+╙╙( 1
+╘╘' 0
+╒╒$ -
 
-╠╠ 
-╠╠ 
+╧╧ 
+╧╧ 
 
 ██3 ;
 рр #
@@ -11578,66 +11598,67 @@ eE:\_Workspace\Github\Swastika-IO-Core\src\Swastika.Cms.Lib\ViewModels\FrontEnd\
 ··9 =
 
 ··* +
-··/ 0й
-bE:\_Workspace\Github\Swastika-IO-Core\src\Swastika.Cms.Lib\ViewModels\FrontEnd\FEMediaViewModel.cs2
- !3 Cbb %nnE UwwV f
- `` bb (
- FF! *rrI R{{I R(
-  EE rrT ^{{T ^(
-"" FF rr? G{{? G
+··/ 0к
+aD:\Workspace\GitHub\Swastika-IO-Core\src\Swastika.Cms.Lib\ViewModels\FrontEnd\FEMediaViewModel.cs2
+ !3 Cff %rrE U{{V f
+ dd ff (
+   JJ! *vvI RI R(
+##  II vvT ^T ^(
+&& JJ vv? G? G
 
-%% 
+)) 
 
-(( 
+,, 
 
-++ 
+// 
 
-.. !
-11 'cc 
+22 !
+55 'gg 
 
-44 %
+88 %
 
-77  
->> DD 
+;;  
+BB HH 
 
-AA 
+EE 
 
-QQ 
+UU 
 
-UU 
-UU* /VV 
-UU@ HVV "
-UUg sVV$ 0
+YY 
+YY* /ZZ 
+YY@ HZZ "
+YYg sZZ$ 0
 
-^^" ,
-^^< Dee# +
-^^c oee- 9
-bb5 6bb: ;
+bb" ,
+bb< Dii# +
+bbc oii- 9
+ff5 6ff: ;
 
-hh '
+ll '
 
-hh7 ?
+ll7 ?
 
-hh^ j
-kk. /kk3 4
+ll^ j
+oo. /oo3 4
 
-nn1 D
+rr1 D
 
-nnV Z
+rrV Z
 
-nnk s
+rrk s
 
-nnТ Ю
-pp tt 
+rrТ Ю
+tt xx 
 
-ww= U
+{{= U
 
-wwg k
-	ww| Д
+{{g k
+	{{| Д
 
-wwг п
-yy }} Я
-cE:\_Workspace\Github\Swastika-IO-Core\src\Swastika.Cms.Lib\ViewModels\FrontEnd\FEModuleViewModel.cs 
+{{г п
+}} 
+ББ Ю
+bD:\Workspace\GitHub\Swastika-IO-Core\src\Swastika.Cms.Lib\ViewModels\FrontEnd\FEModuleViewModel.cs 
  "3 D
 кк) :R
  
@@ -11809,8 +11830,8 @@ cE:\_Workspace\Github\Swastika-IO-Core\src\Swastika.Cms.Lib\ViewModels\FrontEnd\
 ╥╥ 
 
 ▐▐1 2
-▐▐W X╕
-dE:\_Workspace\Github\Swastika-IO-Core\src\Swastika.Cms.Lib\ViewModels\FrontEnd\FEProductViewModel.cs
+▐▐W X╖
+cD:\Workspace\GitHub\Swastika-IO-Core\src\Swastika.Cms.Lib\ViewModels\FrontEnd\FEProductViewModel.cs
  #5 G.
  
 її$ &
@@ -12007,233 +12028,234 @@ dE:\_Workspace\Github\Swastika-IO-Core\src\Swastika.Cms.Lib\ViewModels\FrontEnd\
 ЪЪ$ %
 ЪЪ) *
 
-вв  Я
-eE:\_Workspace\Github\Swastika-IO-Core\src\Swastika.Cms.Lib\ViewModels\FrontEnd\FETemplateViewModel.cs8
- $5 H
-ПП) <
-ТТ 2
-ТТT g
-   
-╝╝ 
+вв  ┤
+dD:\Workspace\GitHub\Swastika-IO-Core\src\Swastika.Cms.Lib\ViewModels\FrontEnd\FETemplateViewModel.cs8
+ $5 H
+ЗЗ) <
+КК 2
+ККT g
+$$ 
+┤┤ 
 
-$$ *
-(( "dd  nnj v
-├├ "
-,,  
-──  P
-00  zz  
-└└ 
-┘┘E O
-хх '
-єєE O
-   ':
-44 
-┘┘; C
-тт #
-єє; C
-№№ #"
-88 
-уу %
-¤¤ %:
-<< 
-╩╩ 
-╩╩ 
-фф !
-■■ !"
-@@ #
-ОО- :
-ООL Y"
-CC  
-ЕЕ- 7
-ЕЕX b"
-FF 
-╦╦ 
-╦╦ "
-II 
-╠╠ 
-╠╠ 
-MM '
-╛╛ 
+(( *
+,, "ff  nnj v
+╗╗ "
+00  
+╝╝  P
+44  xx  
+╕╕ 
+╤╤E O
+▌▌ '
+ыыE O
+ўў ':
+88 
+╤╤; C
+┌┌ #
+ыы; C
+ЇЇ #"
+<< 
+██ %
+її %:
+@@ 
+┬┬ 
+┬┬ 
+▄▄ !
+ЎЎ !"
+DD #
+ИИ- :
+ИИL Y"
+GG  
+ББ- 7
+ББX b"
+JJ 
+├├ 
+├├ "
+MM 
+── 
+── 
+QQ '
+╢╢ 
 
-QQ %
+UU %
 
-UU  
+YY  
 
-]] !
-jj $yy $
+aa !
+ll $ww $
 
-rr "
+rr "
+ 
+ПП+ 2
 
-ББ 
-ЧЧ+ 2
+ЖЖ !0
 
-КК !0
+ЯЯ  
+НН 
+▒▒ #
+╣╣& 5
 
-зз  
-УУ 
-┤┤ #
-╝╝& 5
+НН .$
 
-УУ .$
+││ 
+ПП *
+╠╠/ >
 
-╢╢ 
-ЧЧ *
-╧╧/ >
+ЩЩ "
 
-бб "
+ЮЮ "
 
-жж "
+ЮЮ0 5
+ЯЯ 
 
-жж0 5
-зз 
+ЮЮF N
+ЯЯ "
 
-жжF N
-зз "
+ЮЮm y
+ЯЯ$ 0
 
-жжm y
-зз$ 0
+йй '
 
-▒▒ '
+йй7 ?
 
-▒▒7 ?
+йй^ j
 
-▒▒^ j
+▓▓% /
 
-║║% /
+▓▓? G
+┼┼# +
 
-║║? G
+▓▓f r
+┼┼- 9
 
-║║f r
+╠╠1 <
 
-╘╘1 <
+╠╠B W
+╬╬* ?
 
-╘╘B W
-╓╓* ?
+╠╠p x
+╬╬A I
+╠╠Ч г
+╬╬K W$
 
-╘╘p x
-╓╓A I
-╘╘Ч г
-╓╓K W$
+╬╬ 
+╧╧ 
+╙╙ 
 
-╓╓ 
-╫╫ 
-██ 
+╓╓1 >
 
-▐▐1 >
+╓╓L R
+▀▀& ,
 
-▐▐L R
-чч& ,
+╓╓c k
+▀▀. 6
+╓╓К Ц
+▀▀8 D
 
-▐▐c k
-чч. 6
-▐▐К Ц
-чч8 D
+цц= M
 
-юю= M
+ццS h
+шш5 J
+ццБ Й
+шшL T
+цци ┤
+шшV b$
 
-ююS h
-ЁЁ5 J
-ююБ Й
-ЁЁL T
-ююи ┤
-ЁЁV b$
+шш 
+щщ 
+ээ 
 
-ЁЁ 
-ёё 
-її 
+ЁЁ7 I
 
-°°7 I
+ЁЁW ]
+∙∙+ 1
 
-°°W ]
-ББ+ 1
+ЁЁn v
+∙∙3 ;
+ЁЁХ б
+∙∙= I
 
-°°n v
-ББ3 ;
-°°Х б
-ББ= I
+ЗЗ> O
 
-ПП> O
+ЗЗW [
+ЛЛ  
 
-ППW [
-УУ  
+ЗЗd k
+ФФA H
 
-ППd k
-ЬЬA H
+ИИ %
+ЧЧ 
 
-РР %
-ЯЯ 
+ИИD P
+ЧЧ  ,<
 
-РРD P
-ЯЯ  ,<
-
-ТТ4 :
+КК4 :
+ОО 
+ПП 
 ЦЦ 
-ЧЧ 
-ЮЮ 
-бб 0
+ЩЩ 0
 
-УУ 
-ФФ 
-ЮЮH L
-ЮЮa e
+ЛЛ 
+ММ 
+ЦЦH L
+ЦЦa e
 
-ЫЫ !ЮЮК Ч0
+УУ !ЦЦК Ч0
 
-ЮЮ3 4
-ЮЮ8 9
-ЮЮS T
-ЮЮz {
+ЦЦ3 4
+ЦЦ8 9
+ЦЦS T
+ЦЦz {
 
-кк <
+вв <
 
-мм #
-┬┬ %
-╚╚ %
-╪╪ )
-▀▀ )
+ее #
+┐┐ %
+┼┼ %
+╒╒ )
+▐▐ )
+
+ии 
+╖╖ H
+
+лл 
+┴┴  
+╞╞  
+╓╓ $
+уу  (
+чч  (0
 
 оо 
-║║ H
+└└ !
+╫╫ %
+щщ %$
 
-░░ 
-──  
-╔╔  
-┘┘ $
-фф  (
-шш  (0
+▒▒% /
+╣╣ 
+╠╠ &x
 
-▓▓ 
-├├ !
-┌┌ %
-ъъ %$
+││( /
+╡╡ 
+╖╖ #
+║║" )
+╜╜ 
+└└$ +
+╥╥ #
+╫╫( /
+рр) 0
+щщ( /$
 
-┤┤% /
-╝╝ 
-╧╧ &x
+║║ 
+╗╗ 
+╚╚/ :$
 
-╢╢( /
-╕╕ 
-║║ #
-╜╜" )
-└└ 
-├├$ +
-╒╒ #
-┌┌( /
-сс) 0
-ъъ( /$
+╚╚! +
+╩╩ &
+╠╠? I$
 
-╜╜ 
-╛╛ 
-╦╦/ :$
-
-╦╦! +
-══ &
-╧╧? I$
-
-сс# &
-тт  #
-тт6 9С
-hE:\_Workspace\Github\Swastika-IO-Core\src\Swastika.Cms.Lib\ViewModels\Info\InfoArticleModuleViewModel.cs
+рр# &
+сс  #
+сс6 9Р
+gD:\Workspace\GitHub\Swastika-IO-Core\src\Swastika.Cms.Lib\ViewModels\Info\InfoArticleModuleViewModel.cs
  +: T
 
  
@@ -12252,8 +12274,8 @@ hE:\_Workspace\Github\Swastika-IO-Core\src\Swastika.Cms.Lib\ViewModels\Info\Info
 ))R Z
 ))Ь д
 	))y Е
-))ж ▓Э
-bE:\_Workspace\Github\Swastika-IO-Core\src\Swastika.Cms.Lib\ViewModels\Info\InfoArticleViewModel.csд
+))ж ▓Ь
+aD:\Workspace\GitHub\Swastika-IO-Core\src\Swastika.Cms.Lib\ViewModels\Info\InfoArticleViewModel.csд
  %4 H
 ППD X
 ЭЭ  4
@@ -12489,8 +12511,8 @@ bE:\_Workspace\Github\Swastika-IO-Core\src\Swastika.Cms.Lib\ViewModels\Info\Info
 
 РР 
 ТТ+ -
-ЭЭ  "Б
-cE:\_Workspace\Github\Swastika-IO-Core\src\Swastika.Cms.Lib\ViewModels\Info\InfoCategoryViewModel.cs
+ЭЭ  "А
+bD:\Workspace\GitHub\Swastika-IO-Core\src\Swastika.Cms.Lib\ViewModels\Info\InfoCategoryViewModel.cs
  &5 Jqq ).
  
 ЧЧP R
@@ -12590,8 +12612,8 @@ cE:\_Workspace\Github\Swastika-IO-Core\src\Swastika.Cms.Lib\ViewModels\Info\Info
 
 жжL M
 жжQ R
-жжg hЧ
-hE:\_Workspace\Github\Swastika-IO-Core\src\Swastika.Cms.Lib\ViewModels\Info\InfoConfigurationViewModel.cs
+жжg hЦ
+gD:\Workspace\GitHub\Swastika-IO-Core\src\Swastika.Cms.Lib\ViewModels\Info\InfoConfigurationViewModel.cs
  +: T
 
  
@@ -12609,89 +12631,85 @@ hE:\_Workspace\Github\Swastika-IO-Core\src\Swastika.Cms.Lib\ViewModels\Info\Info
 // )
 //< A00 
 //R Z00 "
-	//y Е00$ 0щ
-_E:\_Workspace\Github\Swastika-IO-Core\src\Swastika.Cms.Lib\ViewModels\Info\InfoFileViewModel.cs*
- "1 Bjj+ <
-ИИ6 G
- PP 
+	//y Е00$ 0°
+^D:\Workspace\GitHub\Swastika-IO-Core\src\Swastika.Cms.Lib\ViewModels\Info\InfoFileViewModel.cs*
+ "1 Bnn+ <
+ММ6 G
+ TT 
 
- J
- TT VV ee3 ;qq '
-ГГ3 ;
-СС# +
+ J
+"" XX ZZ ii3 ;uu '
+ЗЗ3 ;
+УУ '
 
-!!  6
-$$  eeH Rtt! +
-ГГH R
-ФФ% /
+%%  6
+((  iiH Rxx! +
+ЗЗH R
+ЦЦ! +
 
-'' J
-** TT! *VV %ee= Frr  )
-ГГ= F
-ТТ$ -4
--- XX XX ss %
-УУ" )
-00 'RR 
+++ J
+.. XX! *ZZ %ii= Fvv  )
+ЗЗ= F
+ФФ  )4
+11 \\ \\ ww %
+ХХ %
+44 'VV 
 
-33 %
+77 %
 
-66  
+::  
 
->>  
+BB  
 
-CC  
-CC* /DD 
-CC@ HDD "
-CCg sDD$ 0
+GG  
+GG* /HH 
+GG@ HHH "
+GGg sHH$ 0
 
-NN! +
+RR! +
+RR; C]]# +
+RRb n]]- 9
 
-NN; C
+dd1 <
+ddB Wff* ?
+ddp xffA I
 
-NNb n
+ddЧ гffK W
+ff gg kk 
 
-``1 <
-``B Wbb* ?
-``p xbbA I
+nn> G
+nnM \pp( 7
+nnu }pp9 A
 
-``Ч гbbK W
-bb cc gg 
+nnЬ иppC O
+pp qq {{ 
 
-jj> G
-jjM \ll( 7
-jju }ll9 A
+ВВ= M
 
-jjЬ иllC O
-ll mm ww 
+ВВS h
+ДД5 J
+ВВБ Й
+ДДL T
+ВВи ┤
+ДДV b$
 
-~~= M
-~~S h
-АА5 J
+ДД 
+ЕЕ 
+ЙЙ 
 
-~~Б Й
-ААL T
+ММJ X
 
-~~и ┤
-ААV b$
+ММ^ m
+ОО3 B
+ММЖ О
+ООD L
+ММн ╣
+ООN Z$
 
-АА 
-ББ 
-ЕЕ 
-
-ИИJ X
-
-ИИ^ m
-КК3 B
-ИИЖ О
-ККD L
-ИИн ╣
-ККN Z0
-
-КК 
-ЛЛ 
-НН 
-ШШ м
-jE:\_Workspace\Github\Swastika-IO-Core\src\Swastika.Cms.Lib\ViewModels\Info\InfoModuleAttributeViewModel.cs
+ОО 
+ПП 
+ЩЩ л
+iD:\Workspace\GitHub\Swastika-IO-Core\src\Swastika.Cms.Lib\ViewModels\Info\InfoModuleAttributeViewModel.cs
  -B ^
 
  
@@ -12715,8 +12733,8 @@ jE:\_Workspace\Github\Swastika-IO-Core\src\Swastika.Cms.Lib\ViewModels\Info\Info
 //е н
 
 //В О
-//п ╗╟
-eE:\_Workspace\Github\Swastika-IO-Core\src\Swastika.Cms.Lib\ViewModels\Info\InfoModuleDataViewModel.cs
+//п ╗┌
+dD:\Workspace\GitHub\Swastika-IO-Core\src\Swastika.Cms.Lib\ViewModels\Info\InfoModuleDataViewModel.cs
  (7 N6
  SS% 'UU 
 ЎЎ$ &
@@ -12763,11 +12781,9 @@ eE:\_Workspace\Github\Swastika-IO-Core\src\Swastika.Cms.Lib\ViewModels\Info\Info
 IIs 
 IIа м
 
-QQ' 1
-
-QQA I
-
-QQh t
+QQ' 1
+QQA IYY# +
+QQh tYY- 9
 
 ╘╘ &XX $
 
@@ -12901,8 +12917,8 @@ eE:\_Workspace\Github\Swastika-IO-Core\src\Swastika.Cms.Lib\ViewModels\Info\Info
 ··L P
 ··X \
 
-№№ ╤
-aE:\_Workspace\Github\Swastika-IO-Core\src\Swastika.Cms.Lib\ViewModels\Info\InfoModuleViewModel.cs
+№№ ╨
+`D:\Workspace\GitHub\Swastika-IO-Core\src\Swastika.Cms.Lib\ViewModels\Info\InfoModuleViewModel.cs
  $3 F
 
  
@@ -12933,8 +12949,8 @@ aE:\_Workspace\Github\Swastika-IO-Core\src\Swastika.Cms.Lib\ViewModels\Info\Info
 <<D L
 <<О Ц
 <<k w
-<<Ш д√
-eE:\_Workspace\Github\Swastika-IO-Core\src\Swastika.Cms.Lib\ViewModels\Info\InfoPortalPageViewModel.cs
+<<Ш д·
+dD:\Workspace\GitHub\Swastika-IO-Core\src\Swastika.Cms.Lib\ViewModels\Info\InfoPortalPageViewModel.cs
  (7 N33 +
  MMT V
 
@@ -12976,8 +12992,8 @@ eE:\_Workspace\Github\Swastika-IO-Core\src\Swastika.Cms.Lib\ViewModels\Info\Info
 JJ^ j
 LL PP RR "
 MM MM 
-MMA BMMF GЙ
-bE:\_Workspace\Github\Swastika-IO-Core\src\Swastika.Cms.Lib\ViewModels\Info\InfoProductViewModel.csд
+MMA BMMF GИ
+aD:\Workspace\GitHub\Swastika-IO-Core\src\Swastika.Cms.Lib\ViewModels\Info\InfoProductViewModel.csд
  %4 H
 ╞╞D X
 ╘╘  4
@@ -13258,8 +13274,8 @@ bE:\_Workspace\Github\Swastika-IO-Core\src\Swastika.Cms.Lib\ViewModels\Info\Info
 
 ╟╟ 
 ╔╔+ -
-╘╘  "│
-cE:\_Workspace\Github\Swastika-IO-Core\src\Swastika.Cms.Lib\ViewModels\Info\InfoTemplateViewModel.cs2
+╘╘  "▓
+bD:\Workspace\GitHub\Swastika-IO-Core\src\Swastika.Cms.Lib\ViewModels\Info\InfoTemplateViewModel.cs2
  &5 Jkk) >nn 4nnV k
 
  
@@ -13305,8 +13321,8 @@ cE:\_Workspace\Github\Swastika-IO-Core\src\Swastika.Cms.Lib\ViewModels\Info\Info
 oo pp zzH Lzza e
 ww !
 zzК Ч(
-zz3 4zz8 9zzS Tzzz {╥
-`E:\_Workspace\Github\Swastika-IO-Core\src\Swastika.Cms.Lib\ViewModels\Info\InfoThemeViewModel.cs
+zz3 4zz8 9zzS Tzzz {╤
+_D:\Workspace\GitHub\Swastika-IO-Core\src\Swastika.Cms.Lib\ViewModels\Info\InfoThemeViewModel.cs
  #2 D
 
  
@@ -13331,8 +13347,8 @@ cE:\_Workspace\Github\Swastika-IO-Core\src\Swastika.Cms.Lib\ViewModels\Info\Info
 KK !
 KK, 1LL 
 KKB JLL "
-KKi uLL$ 0с
-_E:\_Workspace\Github\Swastika-IO-Core\src\Swastika.Cms.Lib\ViewModels\Info\InfoUserViewModel.cs
+KKi uLL$ 0р
+^D:\Workspace\GitHub\Swastika-IO-Core\src\Swastika.Cms.Lib\ViewModels\Info\InfoUserViewModel.cs
 
 
  "5 F
@@ -13366,8 +13382,8 @@ _E:\_Workspace\Github\Swastika-IO-Core\src\Swastika.Cms.Lib\ViewModels\Info\Info
 ::  
 ::- 2;; 
 ::C K;; "
-::j v;;$ 0Ф
-_E:\_Workspace\Github\Swastika-IO-Core\src\Swastika.Cms.Lib\ViewModels\ModuleArticleViewModel.cs
+::j v;;$ 0У
+^D:\Workspace\GitHub\Swastika-IO-Core\src\Swastika.Cms.Lib\ViewModels\ModuleArticleViewModel.cs
  '[ q
 
  %
@@ -13388,8 +13404,8 @@ _E:\_Workspace\Github\Swastika-IO-Core\src\Swastika.Cms.Lib\ViewModels\ModuleArt
 
  
 
-   !░
-fE:\_Workspace\Github\Swastika-IO-Core\src\Swastika.Cms.Lib\ViewModels\ModuleAttributeValueViewModel.cs
+   !п
+eD:\Workspace\GitHub\Swastika-IO-Core\src\Swastika.Cms.Lib\ViewModels\ModuleAttributeValueViewModel.cs
  .B _(( )
 
  
@@ -13416,8 +13432,8 @@ fE:\_Workspace\Github\Swastika-IO-Core\src\Swastika.Cms.Lib\ViewModels\ModuleAtt
 ''1 D
 ((* .**, 0
 ((? G**2 :
-((f r**< H╗
-lE:\_Workspace\Github\Swastika-IO-Core\src\Swastika.Cms.Lib\ViewModels\Navigation\NavArticleMediaViewModel.cs
+((f r**< H║
+kD:\Workspace\GitHub\Swastika-IO-Core\src\Swastika.Cms.Lib\ViewModels\Navigation\NavArticleMediaViewModel.cs
  ): R
  AAS Z
 
@@ -13446,8 +13462,8 @@ lE:\_Workspace\Github\Swastika-IO-Core\src\Swastika.Cms.Lib\ViewModels\Navigatio
 ??7 ?BB  
 ??^ jBB0 <
 AA DD 
-AAF GAAK LAA^ _╢
-oE:\_Workspace\Github\Swastika-IO-Core\src\Swastika.Cms.Lib\ViewModels\Navigation\NavCategoryArticleViewModel.cs
+AAF GAAK LAA^ _╡
+nD:\Workspace\GitHub\Swastika-IO-Core\src\Swastika.Cms.Lib\ViewModels\Navigation\NavCategoryArticleViewModel.cs
  ,= X
 
  *
@@ -13471,8 +13487,8 @@ oE:\_Workspace\Github\Swastika-IO-Core\src\Swastika.Cms.Lib\ViewModels\Navigatio
 117 ?44 $
 11^ j444 @
 33 66 88 $
-33L M33Q R33f gл
-pE:\_Workspace\Github\Swastika-IO-Core\src\Swastika.Cms.Lib\ViewModels\Navigation\NavCategoryCategoryViewModel.cs
+33L M33Q R33f gк
+oD:\Workspace\GitHub\Swastika-IO-Core\src\Swastika.Cms.Lib\ViewModels\Navigation\NavCategoryCategoryViewModel.cs
  -> Z
 
  +
@@ -13498,8 +13514,8 @@ pE:\_Workspace\Github\Swastika-IO-Core\src\Swastika.Cms.Lib\ViewModels\Navigatio
 33 66 88 &?? $
 33N O33S T33a b
 :: == 
-::L M::Q R::e fк
-oE:\_Workspace\Github\Swastika-IO-Core\src\Swastika.Cms.Lib\ViewModels\Navigation\NavCategoryProductViewModel.cs
+::L M::Q R::e fй
+nD:\Workspace\GitHub\Swastika-IO-Core\src\Swastika.Cms.Lib\ViewModels\Navigation\NavCategoryProductViewModel.cs
  ,= X
 
  *
@@ -13521,8 +13537,8 @@ oE:\_Workspace\Github\Swastika-IO-Core\src\Swastika.Cms.Lib\ViewModels\Navigatio
 ++7 ?.. $
 ++^ j..4 @
 -- 00 22 $
---L M--Q R--f gо
-mE:\_Workspace\Github\Swastika-IO-Core\src\Swastika.Cms.Lib\ViewModels\Navigation\NavModuleArticleViewModel.cs
+--L M--Q R--f gн
+lD:\Workspace\GitHub\Swastika-IO-Core\src\Swastika.Cms.Lib\ViewModels\Navigation\NavModuleArticleViewModel.cs
  *^ w
 
  (
@@ -13547,8 +13563,8 @@ mE:\_Workspace\Github\Swastika-IO-Core\src\Swastika.Cms.Lib\ViewModels\Navigatio
 &&7 ?)) $
 &&^ j))4 @
 (( ++ -- $
-((L M((Q R((f gо
-mE:\_Workspace\Github\Swastika-IO-Core\src\Swastika.Cms.Lib\ViewModels\Navigation\NavModuleProductViewModel.cs
+((L M((Q R((f gн
+lD:\Workspace\GitHub\Swastika-IO-Core\src\Swastika.Cms.Lib\ViewModels\Navigation\NavModuleProductViewModel.cs
  *^ w
 
  (
@@ -13573,8 +13589,8 @@ mE:\_Workspace\Github\Swastika-IO-Core\src\Swastika.Cms.Lib\ViewModels\Navigatio
 ))7 ?,, $
 ))^ j,,4 @
 ++ .. 00 $
-++L M++Q R++f gХ
-nE:\_Workspace\Github\Swastika-IO-Core\src\Swastika.Cms.Lib\ViewModels\Navigation\NavPortalPageRoleViewModel.cs
+++L M++Q R++f gФ
+mD:\Workspace\GitHub\Swastika-IO-Core\src\Swastika.Cms.Lib\ViewModels\Navigation\NavPortalPageRoleViewModel.cs
  +< V
 
  )
@@ -13600,8 +13616,8 @@ nE:\_Workspace\Github\Swastika-IO-Core\src\Swastika.Cms.Lib\ViewModels\Navigatio
 55 88 :: "AA $
 55P Q55U V
 << ?? 
-<<N O<<S TС
-jE:\_Workspace\Github\Swastika-IO-Core\src\Swastika.Cms.Lib\ViewModels\Navigation\NavPortalPageViewModel.cs
+<<N O<<S TР
+iD:\Workspace\GitHub\Swastika-IO-Core\src\Swastika.Cms.Lib\ViewModels\Navigation\NavPortalPageViewModel.cs
  'B X
 
  %
@@ -13627,9 +13643,9 @@ jE:\_Workspace\Github\Swastika-IO-Core\src\Swastika.Cms.Lib\ViewModels\Navigatio
 55 88 :: "AA $
 55P Q55U V
 << ?? 
-<<N O<<S T▓
+<<N O<<S T▒
 
-mE:\_Workspace\Github\Swastika-IO-Core\src\Swastika.Cms.Lib\ViewModels\Navigation\NavProductModuleViewModel.cs(
+lD:\Workspace\GitHub\Swastika-IO-Core\src\Swastika.Cms.Lib\ViewModels\Navigation\NavProductModuleViewModel.cs(
  *; TKKE ^eeP i(
  CC &MM_ hggd m(
  BB %NN& .hh& .
@@ -13687,8 +13703,8 @@ mE:\_Workspace\Github\Swastika-IO-Core\src\Swastika.Cms.Lib\ViewModels\Navigatio
 kkа мrrL XF
 mm% +uu vv xx xx $xx1 7zz (
 nn pp qq rr' +2
-rr ss uu+ 5vv' 1xxE O║
-mE:\_Workspace\Github\Swastika-IO-Core\src\Swastika.Cms.Lib\ViewModels\Navigation\NavPropductMediaViewModel.cs
+rr ss uu+ 5vv' 1xxE O═
+lD:\Workspace\GitHub\Swastika-IO-Core\src\Swastika.Cms.Lib\ViewModels\Navigation\NavPropductMediaViewModel.cs
  ): R
  AAS Z
 
@@ -13717,12 +13733,10 @@ mE:\_Workspace\Github\Swastika-IO-Core\src\Swastika.Cms.Lib\ViewModels\Navigatio
 AA DD 
 AAF GAAK LAA^ _
 
-II) 3
-
-IIC K
-
-IIj vє
-nE:\_Workspace\Github\Swastika-IO-Core\src\Swastika.Cms.Lib\ViewModels\Navigation\NavRelatedProductViewModel.cs
+II) 3
+IIC KMM# +
+IIj vMM- 9Ж
+mD:\Workspace\GitHub\Swastika-IO-Core\src\Swastika.Cms.Lib\ViewModels\Navigation\NavRelatedProductViewModel.cs
  +< V
 
  %
@@ -13750,12 +13764,10 @@ nE:\_Workspace\Github\Swastika-IO-Core\src\Swastika.Cms.Lib\ViewModels\Navigatio
 ?? BB DD& 0
 @@ @@ @@1 2
 
-HH+ 5
-
-HHE M
-
-HHl x╢	
-`E:\_Workspace\Github\Swastika-IO-Core\src\Swastika.Cms.Lib\ViewModels\Spa\SpaArticleViewModel.cs
+HH+ 5
+HHE MNN# +
+HHl xNN- 9╡	
+_D:\Workspace\GitHub\Swastika-IO-Core\src\Swastika.Cms.Lib\ViewModels\Spa\SpaArticleViewModel.cs
  $5 H
  
 лл$ &"
@@ -13863,8 +13875,8 @@ nE:\_Workspace\Github\Swastika-IO-Core\src\Swastika.Cms.Lib\ViewModels\Navigatio
 ┤┤ 
 ┤┤6 7
 
-┬┬  ├
-cE:\_Workspace\Github\Swastika-IO-Core\src\Swastika.Cms.Lib\ViewModels\Spa\SpaModuleDataViewModel.cs
+┬┬  ┬
+bD:\Workspace\GitHub\Swastika-IO-Core\src\Swastika.Cms.Lib\ViewModels\Spa\SpaModuleDataViewModel.cs
  '7 M"
  
 ╣╣$ &
@@ -14004,8 +14016,8 @@ cE:\_Workspace\Github\Swastika-IO-Core\src\Swastika.Cms.Lib\ViewModels\Spa\SpaMo
 ▌▌) *
 ▌▌; <
 
-██ ї
-_E:\_Workspace\Github\Swastika-IO-Core\src\Swastika.Cms.Lib\ViewModels\Spa\SpaModuleViewModel.cs 
+██ Ї
+^D:\Workspace\GitHub\Swastika-IO-Core\src\Swastika.Cms.Lib\ViewModels\Spa\SpaModuleViewModel.cs 
  #3 E
 РР) ;N
  mm3 5yyH J
@@ -14141,8 +14153,8 @@ _E:\_Workspace\Github\Swastika-IO-Core\src\Swastika.Cms.Lib\ViewModels\Spa\SpaMo
 ╕╕ 
 
 ──1 2
-──W Xе
-aE:\_Workspace\Github\Swastika-IO-Core\src\Swastika.Cms.Lib\ViewModels\Spa\SpaTemplateViewModel.cs2
+──W Xд
+`D:\Workspace\GitHub\Swastika-IO-Core\src\Swastika.Cms.Lib\ViewModels\Spa\SpaTemplateViewModel.cs2
  %5 I==) =@@ 3@@U i
 
  

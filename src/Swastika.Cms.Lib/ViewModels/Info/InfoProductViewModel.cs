@@ -136,7 +136,7 @@ namespace Swastika.Cms.Lib.ViewModels.Info
             {
                 if (Image != null && Image.IndexOf("http") == -1)
                 {
-                    return SWCmsHelper.GetFullPath(new string[] {
+                    return SwCmsHelper.GetFullPath(new string[] {
                     Domain,  Image
                 });
                 }
@@ -152,7 +152,7 @@ namespace Swastika.Cms.Lib.ViewModels.Info
         {
             get
             {
-                return SWCmsHelper.FormatPrice(NormalPrice);
+                return SwCmsHelper.FormatPrice(NormalPrice);
             }
         }
 
@@ -161,7 +161,7 @@ namespace Swastika.Cms.Lib.ViewModels.Info
         {
             get
             {
-                return SWCmsHelper.FormatPrice(DealPrice);
+                return SwCmsHelper.FormatPrice(DealPrice);
             }
         }
 
@@ -170,7 +170,7 @@ namespace Swastika.Cms.Lib.ViewModels.Info
         {
             get
             {
-                return SWCmsHelper.FormatPrice(ImportPrice);
+                return SwCmsHelper.FormatPrice(ImportPrice);
             }
         }
 

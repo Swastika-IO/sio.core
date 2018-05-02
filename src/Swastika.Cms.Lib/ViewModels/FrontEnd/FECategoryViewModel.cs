@@ -1,4 +1,8 @@
 ﻿// Licensed to the Swastika I/O Foundation under one or more agreements.
+// The Swastika I/O Foundation licenses this file to you under the GNU General Public License v3.0 license.
+// See the LICENSE file in the project root for more information.
+
+// Licensed to the Swastika I/O Foundation under one or more agreements.
 // The Swastika I/O Foundation licenses this file to you under the GNU General Public License v3.0.
 // See the LICENSE file in the project root for more information.
 
@@ -100,16 +104,16 @@ namespace Swastika.Cms.Lib.ViewModels.FrontEnd
         #endregion Models
 
         #region Views
+
         [JsonProperty("domain")]
         public string Domain { get { return GlobalConfigurationService.Instance.GetLocalString("Domain", Specificulture, "/"); } }
+
         [JsonProperty("imageUrl")]
-        public string ImageUrl
-        {
-            get
-            {
+        public string ImageUrl {
+            get {
                 if (Image != null && Image.IndexOf("http") == -1)
                 {
-                    return SWCmsHelper.GetFullPath(new string[] {
+                    return SwCmsHelper.GetFullPath(new string[] {
                     Domain,  Image
                 });
                 }
@@ -119,6 +123,7 @@ namespace Swastika.Cms.Lib.ViewModels.FrontEnd
                 }
             }
         }
+
         [JsonProperty("view")]
         public FETemplateViewModel View { get; set; }
 
@@ -131,11 +136,9 @@ namespace Swastika.Cms.Lib.ViewModels.FrontEnd
         [JsonProperty("modules")]
         public List<FEModuleViewModel> Modules { get; set; } = new List<FEModuleViewModel>(); // Get All Module
 
-        public string TemplatePath
-        {
-            get
-            {
-                return SWCmsHelper.GetFullPath(new string[]
+        public string TemplatePath {
+            get {
+                return SwCmsHelper.GetFullPath(new string[]
                 {
                     ""
                     , SWCmsConstants.Parameters.TemplatesFolder
@@ -254,6 +257,7 @@ namespace Swastika.Cms.Lib.ViewModels.FrontEnd
 
             return result;
         }
+
         public override RepositoryResponse<bool> RemoveRelatedModels(FECategoryViewModel view, SiocCmsContext _context = null, IDbContextTransaction _transaction = null)
         {
             RepositoryResponse<bool> result = new RepositoryResponse<bool>() { IsSucceed = true };
@@ -311,7 +315,6 @@ namespace Swastika.Cms.Lib.ViewModels.FrontEnd
             return result;
         }
 
-
         #endregion Overrides
 
         #region Expands
@@ -331,14 +334,11 @@ namespace Swastika.Cms.Lib.ViewModels.FrontEnd
                     var getModule = FEModuleViewModel.Repository.GetSingleModel(
                         m => m.Id == nav.ModuleId && nav.Specificulture == Specificulture
                         , _context, _transaction);
-                    if (getModule.IsSucceed)
+                    if (getModule.IsSucceed && getModule.Data.View != null)
                     {
-                        if (getModule.Data.View != null)
-                        {
-                            View.Scripts += getModule.Data.View.Scripts;
-                            View.Styles += getModule.Data.View.Styles;
-                            Modules.Add(getModule.Data);
-                        }
+                        View.Scripts += getModule.Data.View.Scripts;
+                        View.Styles += getModule.Data.View.Styles;
+                        Modules.Add(getModule.Data);
                     }
                 }
             }

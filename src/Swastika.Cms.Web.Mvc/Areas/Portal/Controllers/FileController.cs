@@ -122,7 +122,7 @@ namespace Swastika.Cms.Mvc.Areas.Portal.Controllers
         {
             if (file?.Length > 0)
             {
-                folder = SWCmsHelper.GetFullPath(new string[]
+                folder = SwCmsHelper.GetFullPath(new string[]
                 {
                     SWCmsConstants.Parameters.FileFolder,
                     folder

@@ -69,7 +69,7 @@ namespace Swastika.Cms.Web.Mvc
 
             // Add application services.
             services.AddTransient<IEmailSender, AuthEmailMessageSender>();
-            services.AddTransient<ISmsSender, AuthSMSMessageSender>();
+            services.AddTransient<ISmsSender, AuthSmsMessageSender>();
 
             // Add Singleton Configs App Configs (load from db)
             services.AddSingleton<GlobalConfigurationService>();

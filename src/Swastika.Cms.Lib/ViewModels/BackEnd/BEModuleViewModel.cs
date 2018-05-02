@@ -100,7 +100,7 @@ namespace Swastika.Cms.Lib.ViewModels.BackEnd
         [JsonProperty("templateFolder")]
         public string TemplateFolder {
             get {
-                return SWCmsHelper.GetFullPath(new string[]
+                return SwCmsHelper.GetFullPath(new string[]
                 {
                     SWCmsConstants.Parameters.TemplatesFolder
                     , ActivedTemplate
@@ -195,7 +195,7 @@ namespace Swastika.Cms.Lib.ViewModels.BackEnd
                     Content = "<div></div>"
                 });
             }
-            this.Template = SWCmsHelper.GetFullPath(new string[]
+            this.Template = SwCmsHelper.GetFullPath(new string[]
                {
                     this.View?.FileFolder
                     , this.View?.FileName

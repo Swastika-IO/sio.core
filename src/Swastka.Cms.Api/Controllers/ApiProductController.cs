@@ -48,7 +48,7 @@ namespace Swastka.Cms.Api.Controllers
                     var beResult = await BEProductViewModel.Repository.GetSingleModelAsync(model => model.Id == id && model.Specificulture == _lang).ConfigureAwait(false);
                     if (beResult.IsSucceed)
                     {
-                        beResult.Data.DetailsUrl = SWCmsHelper.GetRouterUrl("Product", new { beResult.Data.SeoName }, Request, Url);
+                        beResult.Data.DetailsUrl = SwCmsHelper.GetRouterUrl("Product", new { beResult.Data.SeoName }, Request, Url);
                     }
                     return JObject.FromObject(beResult);
 
@@ -56,7 +56,7 @@ namespace Swastka.Cms.Api.Controllers
                     var feResult = await FEProductViewModel.Repository.GetSingleModelAsync(model => model.Id == id && model.Specificulture == _lang).ConfigureAwait(false);
                     if (feResult.IsSucceed)
                     {
-                        feResult.Data.DetailsUrl = SWCmsHelper.GetRouterUrl("Product", new { feResult.Data.SeoName }, Request, Url);
+                        feResult.Data.DetailsUrl = SwCmsHelper.GetRouterUrl("Product", new { feResult.Data.SeoName }, Request, Url);
                     }
                     return JObject.FromObject(feResult);
             }
@@ -176,7 +176,7 @@ namespace Swastka.Cms.Api.Controllers
                 m => m.Status != (int)SWStatus.Deleted && m.Specificulture == _lang, orderBy, direction, pageSize, pageIndex).ConfigureAwait(false); //base.Get(orderBy, direction, pageSize, pageIndex);
             if (data.IsSucceed)
             {
-                data.Data.Items.ForEach(a => a.DetailsUrl = SWCmsHelper.GetRouterUrl("Product", new { a.SeoName }, Request, Url));
+                data.Data.Items.ForEach(a => a.DetailsUrl = SwCmsHelper.GetRouterUrl("Product", new { a.SeoName }, Request, Url));
             }
             return data;
         }
@@ -298,7 +298,7 @@ namespace Swastka.Cms.Api.Controllers
             {
                 data.Data.Items.ForEach(a =>
                 {
-                    a.DetailsUrl = SWCmsHelper.GetRouterUrl(
+                    a.DetailsUrl = SwCmsHelper.GetRouterUrl(
                         "Product", new { a.SeoName }, Request, Url);
                 });
             }

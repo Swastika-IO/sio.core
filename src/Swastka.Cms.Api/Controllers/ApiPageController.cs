@@ -178,7 +178,7 @@ namespace Swastka.IO.Cms.Api.Controllers
             {
                 data.Data.Items.ForEach(a =>
                 {
-                    a.DetailsUrl = SWCmsHelper.GetRouterUrl(
+                    a.DetailsUrl = SwCmsHelper.GetRouterUrl(
                         "Page", new { a.SeoName }, Request, Url);
                 }
                 );

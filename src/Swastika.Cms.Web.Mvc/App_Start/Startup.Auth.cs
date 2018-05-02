@@ -67,9 +67,9 @@ namespace Swastika.Cms.Web.Mvc
                                  ValidateLifetime = true,
                                  ValidateIssuerSigningKey = true,
 
-                                 ValidIssuer = SWCmsConstants.JWTSettings.ISSUER,
-                                 ValidAudience = SWCmsConstants.JWTSettings.AUDIENCE,
-                                 IssuerSigningKey = JwtSecurityKey.Create(SWCmsConstants.JWTSettings.SECRET_KEY)
+                                 ValidIssuer = SWCmsConstants.JwtSettings.ISSUER,
+                                 ValidAudience = SWCmsConstants.JwtSettings.AUDIENCE,
+                                 IssuerSigningKey = JwtSecurityKey.Create(SWCmsConstants.JwtSettings.SECRET_KEY)
                              };
                         options.Events = new JwtBearerEvents
                         {
@@ -114,7 +114,7 @@ namespace Swastika.Cms.Web.Mvc
                 });
         }
 
-        protected class JwtSecurityKey
+        protected static class JwtSecurityKey
         {
             public static SymmetricSecurityKey Create(string secret)
             {

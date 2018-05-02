@@ -1,4 +1,8 @@
 ﻿// Licensed to the Swastika I/O Foundation under one or more agreements.
+// The Swastika I/O Foundation licenses this file to you under the GNU General Public License v3.0 license.
+// See the LICENSE file in the project root for more information.
+
+// Licensed to the Swastika I/O Foundation under one or more agreements.
 // The Swastika I/O Foundation licenses this file to you under the GNU General Public License v3.0.
 // See the LICENSE file in the project root for more information.
 
@@ -127,13 +131,13 @@ namespace Swastika.Cms.Web.Mvc.Areas.Portal.Controllers
         [Route("Edit/{id}")]
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> EditLanguage(string id, BELanguageViewModel ttsLanguage)
+        public async Task<IActionResult> EditLanguage(string id, BELanguageViewModel beLanguageViewModel)
         {
             if (ModelState.IsValid)
             {
                 try
                 {
-                    var result = await ttsLanguage.SaveModelAsync().ConfigureAwait(false); //_repo.EditModelAsync(ttsLanguage.ParseModel());
+                    var result = await beLanguageViewModel.SaveModelAsync().ConfigureAwait(false); //_repo.EditModelAsync(ttsLanguage.ParseModel());
                     if (result.IsSucceed)
                     {
                         GlobalLanguageService.Instance.Refresh();
@@ -153,7 +157,7 @@ namespace Swastika.Cms.Web.Mvc.Areas.Portal.Controllers
                 }
                 catch (DbUpdateConcurrencyException)
                 {
-                    if (!BELanguageViewModel.Repository.CheckIsExists(c => c.Specificulture == ttsLanguage.Specificulture))
+                    if (!BELanguageViewModel.Repository.CheckIsExists(c => c.Specificulture == beLanguageViewModel.Specificulture))
                     {
                         return NotFound();
                     }
@@ -164,7 +168,7 @@ namespace Swastika.Cms.Web.Mvc.Areas.Portal.Controllers
                 }
                 return RedirectToAction("Languages");
             }
-            return View(ttsLanguage);
+            return View(beLanguageViewModel);
         }
 
         [HttpGet]

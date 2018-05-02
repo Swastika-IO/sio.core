@@ -141,7 +141,7 @@ namespace Swastika.Cms.Lib.ViewModels.FrontEnd
             get {
                 if (Image != null && Image.IndexOf("http") == -1)
                 {
-                    return SWCmsHelper.GetFullPath(new string[] {
+                    return SwCmsHelper.GetFullPath(new string[] {
                     Domain,  Image
                 });
                 }
@@ -157,7 +157,7 @@ namespace Swastika.Cms.Lib.ViewModels.FrontEnd
             get {
                 if (Thumbnail != null && Thumbnail.IndexOf("http") == -1)
                 {
-                    return SWCmsHelper.GetFullPath(new string[] {
+                    return SwCmsHelper.GetFullPath(new string[] {
                     Domain,  Thumbnail
                 });
                 }
@@ -170,7 +170,7 @@ namespace Swastika.Cms.Lib.ViewModels.FrontEnd
 
         public string TemplatePath {
             get {
-                return SWCmsHelper.GetFullPath(new string[]
+                return SwCmsHelper.GetFullPath(new string[]
                 {
                     ""
                     , SWCmsConstants.Parameters.TemplatesFolder
@@ -195,7 +195,7 @@ namespace Swastika.Cms.Lib.ViewModels.FrontEnd
         {
             get
             {
-                return SWCmsHelper.FormatPrice(NormalPrice);
+                return SwCmsHelper.FormatPrice(NormalPrice);
             }
         }
 
@@ -204,7 +204,7 @@ namespace Swastika.Cms.Lib.ViewModels.FrontEnd
         {
             get
             {
-                return SWCmsHelper.FormatPrice(DealPrice);
+                return SwCmsHelper.FormatPrice(DealPrice);
             }
         }
 
@@ -213,7 +213,7 @@ namespace Swastika.Cms.Lib.ViewModels.FrontEnd
         {
             get
             {
-                return SWCmsHelper.FormatPrice(ImportPrice);
+                return SwCmsHelper.FormatPrice(ImportPrice);
             }
         }
 
@@ -291,22 +291,22 @@ namespace Swastika.Cms.Lib.ViewModels.FrontEnd
         {
             if (string.IsNullOrEmpty(this.SeoName))
             {
-                this.SeoName = SEOHelper.GetSEOString(this.Title);
+                this.SeoName = SeoHelper.GetSEOString(this.Title);
             }
 
             if (string.IsNullOrEmpty(this.SeoTitle))
             {
-                this.SeoTitle = SEOHelper.GetSEOString(this.Title);
+                this.SeoTitle = SeoHelper.GetSEOString(this.Title);
             }
 
             if (string.IsNullOrEmpty(this.SeoDescription))
             {
-                this.SeoDescription = SEOHelper.GetSEOString(this.Title);
+                this.SeoDescription = SeoHelper.GetSEOString(this.Title);
             }
 
             if (string.IsNullOrEmpty(this.SeoKeywords))
             {
-                this.SeoKeywords = SEOHelper.GetSEOString(this.Title);
+                this.SeoKeywords = SeoHelper.GetSEOString(this.Title);
             }
         }
 

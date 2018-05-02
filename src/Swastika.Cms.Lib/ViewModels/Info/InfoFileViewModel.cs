@@ -1,4 +1,8 @@
 ﻿// Licensed to the Swastika I/O Foundation under one or more agreements.
+// The Swastika I/O Foundation licenses this file to you under the GNU General Public License v3.0 license.
+// See the LICENSE file in the project root for more information.
+
+// Licensed to the Swastika I/O Foundation under one or more agreements.
 // The Swastika I/O Foundation licenses this file to you under the GNU General Public License v3.0.
 // See the LICENSE file in the project root for more information.
 
@@ -138,16 +142,13 @@ namespace Swastika.Cms.Lib.ViewModels.Info
             var result = await base.SaveModelAsync(isSaveSubModels, _context, _transaction);
             if (result.IsSucceed)
             {
-                if (result.IsSucceed)
+                FileRepository.Instance.SaveWebFile(new FileViewModel()
                 {
-                    FileRepository.Instance.SaveWebFile(new FileViewModel()
-                    {
-                        Filename = FileName,
-                        Extension = Extension,
-                        Content = Content,
-                        FileFolder = FileFolder
-                    });
-                }
+                    Filename = FileName,
+                    Extension = Extension,
+                    Content = Content,
+                    FileFolder = FileFolder
+                });
             }
             return result;
         }
