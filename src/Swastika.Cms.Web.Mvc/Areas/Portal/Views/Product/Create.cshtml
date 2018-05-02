@@ -5,7 +5,7 @@
     //Layout = "~/Areas/Portal/Views/Shared/_Layout.cshtml";
     string culture = ViewBag.culture;
     string currentId = ViewContext.RouteData.Values["Id"] == null ? string.Empty : ViewContext.RouteData.Values["Id"].ToString();
-    var translator = Swastika.Cms.Lib.SWCmsHelper.GetTranslator(culture);
+    var translator = Swastika.Cms.Lib.SwCmsHelper.GetTranslator(culture);
 }
 
 <!-- Main content -->

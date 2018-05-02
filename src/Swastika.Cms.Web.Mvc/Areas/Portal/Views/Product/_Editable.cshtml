@@ -5,7 +5,7 @@
     var templates = new SelectList(Model.Templates, "Filename", "Filename");
     var types = Html.GetEnumSelectList<Swastika.Cms.Lib.SWCmsConstants.DataType>();
     string culture = ViewBag.culture;
-    var translator = Swastika.Cms.Lib.SWCmsHelper.GetTranslator(culture);
+    var translator = Swastika.Cms.Lib.SwCmsHelper.GetTranslator(culture);
 }
 
 @if (!ViewData.ModelState.IsValid)

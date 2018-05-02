@@ -3,7 +3,7 @@
 
 @{
     string culture = ViewBag.culture;
-    List<InfoCategoryViewModel> topCates = SWCmsHelper.GetCategory(Url, ViewBag.culture, SWCmsConstants.CatePosition.Top, Context.Request.Path);
+    List<InfoCategoryViewModel> topCates = SwCmsHelper.GetCategory(Url, ViewBag.culture, SWCmsConstants.CatePosition.Top, Context.Request.Path);
 }
 <nav class="navbar navbar-expand-lg bg-white fixed-top navbar-transparent" color-on-scroll="500">
     <div class="container">

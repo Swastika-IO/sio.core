@@ -9,7 +9,7 @@
 @inject UserManager<ApplicationUser> UserManager
 
 @{
-    var translator = SWCmsHelper.GetTranslator(ViewBag.culture);
+    var translator = SwCmsHelper.GetTranslator(ViewBag.culture);
 
     var getListAvailbleModules = Swastika.Cms.Lib.ViewModels.Info.InfoModuleViewModel.Repository.GetModelListBy(
 m => m.Specificulture == ViewContext.RouteData.Values["culture"].ToString());
@@ -228,7 +228,7 @@ m => m.Specificulture == ViewContext.RouteData.Values["culture"].ToString());
                     <li class="hide-on-sb-inactive" is-active-menu asp-controllers="Pages" asp-action="AddData,EditData,Contents,Edit" asp-route-id="@cate.Id">
                         <div class="sw-toc-sub-link mb-1">
                             <i class="mi mi-Page mi-fw"></i>
-                            <span class="text">@SWCmsHelper.SubString(cate.Title, 20)</span>
+                            <span class="text">@SwCmsHelper.SubString(cate.Title, 20)</span>
                             <div class="inner">
                                 @if (cate.Type == SWCmsConstants.CateType.List || cate.Type == SWCmsConstants.CateType.ListProduct)
                                 {
@@ -276,7 +276,7 @@ m => m.Specificulture == ViewContext.RouteData.Values["culture"].ToString());
                         <li class="hide-on-sb-inactive">
                             <div class="sw-toc-sub-link mb-1">
                                 <i class="mi mi-Component mi-fw"></i>
-                                <span class="text">@SWCmsHelper.SubString(module.Title, 20)</span>
+                                <span class="text">@SwCmsHelper.SubString(module.Title, 20)</span>
 
                                 <div class="inner">
                                     <div class="btn-group btn-group-sm" role="group" aria-label="Basic example">
@@ -346,7 +346,7 @@ m => m.Specificulture == ViewContext.RouteData.Values["culture"].ToString());
                     <li class="hide-on-sb-inactive">
                         <div class="sw-toc-sub-link mb-1">
                             <i class="mi mi-Component mi-fw"></i>
-                            <span class="text">@SWCmsHelper.SubString(module.Title, 20)</span>
+                            <span class="text">@SwCmsHelper.SubString(module.Title, 20)</span>
 
                             <div class="inner">
                                 <div class="btn-group btn-group-sm" role="group" aria-label="Basic example">
