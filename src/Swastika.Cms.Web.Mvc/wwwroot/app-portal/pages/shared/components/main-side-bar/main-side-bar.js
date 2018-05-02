@@ -6,176 +6,176 @@
         ctrl.items = [
             {
                 title: 'Articles',
-                shortTitle: 'Articles ...',
+                shortTitle: 'Articles',
                 icon: 'mi mi-ReadingList',
                 subMenus: [
                     {
                         title: 'Create',
                         href: '#',
-                        icon: 'mi mi-Add mi-fw'
+                        icon: 'mi mi-Add'
                     },
                     {
                         title: 'List',
                         href: '#',
-                        icon: 'mi mi-List mi-fw'
+                        icon: 'mi mi-List'
                     },
                     {
                         title: 'Draft',
                         href: '#',
-                        icon: 'mi mi-Paste mi-fw'
+                        icon: 'mi mi-Paste'
                     }
                 ]
             },
             {
                 title: 'Products',
-                shortTitle: 'Products ...',
+                shortTitle: 'Products',
                 icon: 'mi mi-Package',
                 subMenus: [
                     {
                         title: 'Create',
                         href: '/admin/product/create',
-                        icon: 'mi mi-Add mi-fw'
+                        icon: 'mi mi-Add'
                     },
                     {
                         title: 'List',
                         href: '/admin/product/list',
-                        icon: 'mi mi-List mi-fw'
+                        icon: 'mi mi-List'
                     }
                 ]
             },
             {
                 title: 'Pages',
-                shortTitle: 'Products ...',
+                shortTitle: 'Pages',
                 icon: 'mi mi-Page',
                 subMenus: [
                     {
                         title: 'Create',
-                        href: '/admin/product/create',
-                        icon: 'mi mi-Add mi-fw'
+                        href: '/admin/page/create',
+                        icon: 'mi mi-Add'
                     },
                     {
                         title: 'List',
-                        href: '/admin/product/list',
-                        icon: 'mi mi-List mi-fw'
+                        href: '/admin/page/list',
+                        icon: 'mi mi-List'
                     }
                 ]
             },
             {
                 title: 'Forms',
-                shortTitle: 'Products ...',
+                shortTitle: 'Forms',
                 icon: 'mi mi-wpform',
                 subMenus: [
                     {
                         title: 'Create',
-                        href: '/admin/product/create',
-                        icon: 'mi mi-Add mi-fw'
+                        href: '/admin/forms/create',
+                        icon: 'mi mi-Add'
                     },
                     {
                         title: 'List',
-                        href: '/admin/product/list',
-                        icon: 'mi mi-List mi-fw'
+                        href: '/admin/forms/list',
+                        icon: 'mi mi-List'
                     }
                 ]
             },
             {
                 title: 'Modules',
-                shortTitle: 'Products ...',
+                shortTitle: 'Modules',
                 icon: 'mi mi-ResolutionLegacy',
                 subMenus: [
                     {
                         title: 'Create',
-                        href: '/admin/product/create',
-                        icon: 'mi mi-Add mi-fw'
+                        href: '/admin/modules/create',
+                        icon: 'mi mi-Add'
                     },
                     {
                         title: 'List',
-                        href: '/admin/product/list',
-                        icon: 'mi mi-List mi-fw'
+                        href: '/admin/modules/list',
+                        icon: 'mi mi-List'
                     }
                 ]
             },
             {
                 title: 'Widgets',
-                shortTitle: 'Products ...',
+                shortTitle: 'Widgets',
                 icon: 'mi mi-Component',
                 subMenus: [
                     {
                         title: 'Create',
-                        href: '/admin/product/create',
-                        icon: 'mi mi-Add mi-fw'
+                        href: '/admin/widgets/create',
+                        icon: 'mi mi-Add'
                     },
                     {
                         title: 'List',
-                        href: '/admin/product/list',
-                        icon: 'mi mi-List mi-fw'
+                        href: '/admin/widgets/list',
+                        icon: 'mi mi-List'
                     }
                 ]
             },
             {
                 title: 'Themes',
-                shortTitle: 'Products ...',
+                shortTitle: 'Themes',
                 icon: 'mi mi-Personalize',
                 subMenus: [
                     {
                         title: 'Create',
-                        href: '/admin/product/create',
-                        icon: 'mi mi-Add mi-fw'
+                        href: '/admin/themes/create',
+                        icon: 'mi mi-Add'
                     },
                     {
                         title: 'List',
-                        href: '/admin/product/list',
-                        icon: 'mi mi-List mi-fw'
+                        href: '/admin/themes/list',
+                        icon: 'mi mi-List'
                     }
                 ]
             },
             {
                 title: 'Media',
-                shortTitle: 'Products ...',
-                icon: 'mi mi-Photo2 mi-fw',
+                shortTitle: 'Media',
+                icon: 'mi mi-Photo2',
                 subMenus: [
                     {
                         title: 'Create',
-                        href: '/admin/product/create',
-                        icon: 'mi mi-Add mi-fw'
+                        href: '/admin/media/create',
+                        icon: 'mi mi-Add'
                     },
                     {
                         title: 'List',
-                        href: '/admin/product/list',
-                        icon: 'mi mi-List mi-fw'
+                        href: '/admin/media/list',
+                        icon: 'mi mi-List'
                     }
                 ]
             },
             {
                 title: 'Team',
-                shortTitle: 'Products ...',
+                shortTitle: 'Team',
                 icon: 'mi mi-Contact',
                 subMenus: [
                     {
                         title: 'Create',
-                        href: '/admin/product/create',
-                        icon: 'mi mi-Add mi-fw'
+                        href: '/admin/team/create',
+                        icon: 'mi mi-Add'
                     },
                     {
                         title: 'List',
-                        href: '/admin/product/list',
-                        icon: 'mi mi-List mi-fw'
+                        href: '/admin/team/list',
+                        icon: 'mi mi-List'
                     }
                 ]
             },
             {
                 title: 'Settings',
-                shortTitle: 'Products ...',
+                shortTitle: 'Settings',
                 icon: 'mi mi-Settings mi-spin',
                 subMenus: [
                     {
                         title: 'Create',
-                        href: '/admin/product/create',
-                        icon: 'mi mi-Add mi-fw'
+                        href: '/admin/settings/create',
+                        icon: 'mi mi-Add'
                     },
                     {
                         title: 'List',
-                        href: '/admin/product/list',
-                        icon: 'mi mi-List mi-fw'
+                        href: '/admin/settings/list',
+                        icon: 'mi mi-List'
                     }
                 ]
             }

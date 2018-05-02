@@ -15,7 +15,7 @@
     <ul id="{{$ctrl.item.title}}" class="collapse list-unstyled" role="tabpanel" data-parent="#sw-docs-nav">
         <li ng-repeat="m in $ctrl.item.subMenus">
             <a href="{{m.href}}" class="sw-toc-sub-link mb-1">
-                <i class="{{m.icon}}"></i>
+                <i class="{{m.icon}} mi-fw"></i>
                 <span class="text" ng-bind="m.title"></span>
             </a>
         </li>
@@ -26,7 +26,7 @@
                 <div class="inner">
                     <div class="btn-group btn-group-sm" role="group">
                         <a ng-repeat="m in $ctrl.item.subMenus" class="btn btn-light">
-                            <span class="{{m.icon}}"></span>
+                            <span class="{{m.icon}} mi-fw"></span>
                         </a>
                     </div>
                 </div>
