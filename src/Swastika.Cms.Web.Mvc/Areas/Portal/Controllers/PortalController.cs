@@ -23,7 +23,7 @@ namespace Swastika.Cms.Mvc.Areas.Portal.Controllers
 {
     [Area("Portal")]
     [Route("{culture}/Portal")]
-    [Route("Admin")]
+    //[Route("Admin")]
     public class PortalController : BaseController<PortalController>
     {
         private readonly UserManager<ApplicationUser> _userManager;

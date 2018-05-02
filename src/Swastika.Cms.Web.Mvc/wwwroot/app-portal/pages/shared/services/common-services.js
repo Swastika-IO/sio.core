@@ -24,51 +24,34 @@ app.factory('commonServices', ['$location', '$http', '$rootScope', 'authService'
         else return true;
     };
 
-    var _getSiteSettings = function () {
-        var settings = localStorageService.get('siteSettings');
-        if (settings && settings.cultures.length > 0) {
-            _settings = settings;
-            return settings;
-        }
-        else {
-            var req = {
-                method: 'GET',
-                url: 'api/portal/settings',
-            };
-            return this.getApiResult(req).then(function (result) {
-                _settings = result.data.data;
-                return settings;
-            });;
-        }
+    var _getSiteSettings = async function () {
+        return localStorageService.get('siteSettings');
     };
 
-    var _setSiteSettings = function (settings) {
+    var _setSiteSettings = async function (settings) {
         if (settings && settings.cultures.length > 0) {
             localStorageService.set('siteSettings', settings);
             window.top.location = location.href;
         }
     };
 
-    var _fillSettings = function () {
-
-        var settings = localStorageService.get('siteSettings');
-        if (settings && settings.cultures.length > 0) {
-            _settings = settings;
-        }
-        else {
-            this.getSiteSettings().then(function (result) {
-                var resp = result.data;
-                if (resp.isSucceed) {
-                    _settings = resp.data;
-                    localStorageService.set('siteSettings', _settings);
-                }
-                return result;
-            });;
+    var _fillSettings = async function () {
+        if (!this._settings) {
+            var req = {
+                method: 'GET',
+                url: 'api/portal/settings',
+            };
+            var resp = await this.getApiResult(req);
+            if (resp.data.isSucceed) {
+                _settings = resp.data.data;
+                localStorageService.set('siteSettings', _settings);
+                return _settings;
+            }
+        } else {
+            return this._settings;
         }
     };
-
-    var _getApiResult = function (req) {
-        if (!$rootScope.isBusy) {
+    var _getApiResult = async function (req) {
             $rootScope.isBusy = true;
             req.Authorization = authService.authentication.token;
             var headers = {
@@ -77,7 +60,8 @@ app.factory('commonServices', ['$location', '$http', '$rootScope', 'authService'
             };
             req.headers = headers;
             return $http(req).then(function (results) {
-                if (results.data.responseKey === 'NotAuthorized') {
+                var resp = results.data;
+                if (resp.data.responseKey === 'NotAuthorized') {
                     //Try again with new token from previous Request (optional)                
                     setTimeout(function () {
                         headers = {
@@ -86,13 +70,13 @@ app.factory('commonServices', ['$location', '$http', '$rootScope', 'authService'
                         };
                         req.headers = headers;
                         return $http(req).then(function (results) {
-                            if (results.data.responseKey === 'NotAuthorized') {
+                            if (resp.data.responseKey === 'NotAuthorized') {
                                 authService.logOut();
                                 $location.path('/admin/login');
                             }
                             else {
-                                if (results) {
-                                    return results.data;
+                                if (resp) {
+                                    return resp.data;
                                 }
                                 else {
                                     return {
@@ -104,8 +88,8 @@ app.factory('commonServices', ['$location', '$http', '$rootScope', 'authService'
                         });
                     }, 2000);
                 }
-                else if (results.data.authData !== null && results.data.authData !== undefined) {
-                    var authData = results.data.authData;
+                else if (resp.data.authData !== null && resp.data.authData !== undefined) {
+                    var authData = resp.data.authData;
                     localStorageService.set('authorizationData', { token: authData.access_token, userName: authData.userData.NickName, roleNames: authData.userData.RoleNames, avatar: authData.userData.Avatar, refresh_token: authData.refresh_token, userId: authData.userData.Id });
                     authService.authentication.isAuth = true;
                     authService.authentication.isAdmin = $.inArray("Admin", authData.userData.RoleNames) >= 0;
@@ -122,7 +106,6 @@ app.factory('commonServices', ['$location', '$http', '$rootScope', 'authService'
                 function (error) {
                     $rootScope.isBusy = false;
                 });
-        }
     };
     adminCommonFactory.getApiResult = _getApiResult;
     adminCommonFactory.getSiteSettings = _getSiteSettings;

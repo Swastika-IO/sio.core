@@ -7,56 +7,56 @@ app.factory('ProductServices', ['$http', '$rootScope', 'commonServices', functio
 
     var settings = commonServices.getSiteSettings();
 
-    var _getProduct = function (id, type) {
+    var _getProduct = async function (id, type) {
         var apiUrl = '/api/' + settings.lang + '/product/';
         var req = {
             method: 'GET',
             url: apiUrl + 'details/' + type + '/' + id
         };
-
-        return commonServices.getApiResult(req);
+        var resp = await commonServices.getApiResult(req)
+        return resp.data;
     };
 
-    var _initProduct = function (type) {
+    var _initProduct = async function (type) {
         var apiUrl = '/api/' + settings.lang + '/product/';
         var req = {
             method: 'GET',
             url: apiUrl + 'init/' + type,
         };
-
-        return commonServices.getApiResult(req);
+        var resp = await commonServices.getApiResult(req)
+        return resp.data;
     };
 
-    var _getProducts = function (request) {
+    var _getProducts = async function (request) {
         var apiUrl = '/api/' + settings.lang + '/product/';
         var req = {
             method: 'POST',
             url: apiUrl + 'list',
             data: JSON.stringify(request)
         };
-
-        return commonServices.getApiResult(req);
+        var resp = await commonServices.getApiResult(req)
+        return resp.data;
     };
 
-    var _removeProduct = function (id) {
+    var _removeProduct = async function (id) {
         var apiUrl = '/api/' + settings.lang + '/product/';
         var req = {
             method: 'GET',
             url: apiUrl + 'remove/' + id
         };
-
-        return commonServices.getApiResult(req);
+        var resp = await commonServices.getApiResult(req)
+        return resp.data;
     };
 
-    var _saveProduct = function (product) {
+    var _saveProduct = async function (product) {
         var apiUrl = '/api/' + settings.lang + '/product/';
         var req = {
             method: 'POST',
             url: apiUrl + 'save',
             data: JSON.stringify(product)
         };
-
-        return commonServices.getApiResult(req);
+        var resp = await commonServices.getApiResult(req)
+        return resp.data;
     };
 
     productsServiceFactory.getProduct = _getProduct;

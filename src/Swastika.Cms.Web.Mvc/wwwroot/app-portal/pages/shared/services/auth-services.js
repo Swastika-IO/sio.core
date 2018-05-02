@@ -60,7 +60,7 @@ app.factory('authService', ['$http', '$q', 'localStorageService', 'ngAuthSetting
 
         }, function (error) {
             _logOut();
-            deferred.reject(err);
+            deferred.reject(error);
         });
         return deferred.promise;
     };

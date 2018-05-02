@@ -87,9 +87,8 @@ app.controller('ProductController', ['$scope', '$rootScope','$routeParams', '$ti
                 });
             }
         };
-        $scope.loadProducts = function (pageIndex) {
+        $scope.loadProducts = async function (pageIndex) {
             if (!$scope.isBusy) {
-                $scope.isBusy = true;
                 if (pageIndex != undefined) {
                     $scope.request.pageIndex = pageIndex;
                 }
@@ -100,45 +99,76 @@ app.controller('ProductController', ['$scope', '$rootScope','$routeParams', '$ti
                 if ($scope.request.toDate != null) {
                     $scope.request.toDate = $scope.request.toDate.toISOString();
                 }
+                var resp = await productServices.getProducts($scope.request);
+                if (resp.isSucceed) {
 
-                productServices.getProducts($scope.request).then(function (result) {
-                    var resp = result.data;
-                    if (resp.isSucceed) {
-
-                        ($scope.data = resp.data);
-                        $("html, body").animate({ "scrollTop": "0px" }, 500);
-                        $.each($scope.data.items, function (i, product) {
-
-                            $.each($scope.activedProducts, function (i, e) {
-                                if (e.productId == product.id) {
-                                    product.isHidden = true;
-                                }
-                            })
-                        })
-                        $scope.isBusy = false;
-                        setTimeout(function () {
-                            $('[data-toggle="popover"]').popover({
-                                html: true,
-                                content: function () {
-                                    var content = $(this).next('.popover-body');
-                                    return $(content).html();
-                                },
-                                title: function () {
-                                    var title = $(this).attr("data-popover-content");
-                                    return $(title).children(".popover-heading").html();
-                                }
-                            });
-                        }, 200);
-                    }
-                    else {
-                        alert('failed! ' + data.errors);
-                    }
-                }, function (a, b, c) {
-                    errors.push(a, b, c);
-                    $scope.isBusy = false;
+                    ($scope.data = resp.data);
                     $("html, body").animate({ "scrollTop": "0px" }, 500);
-                    $scope.$apply();
-                });
+                    $.each($scope.data.items, function (i, product) {
+
+                        $.each($scope.activedProducts, function (i, e) {
+                            if (e.productId == product.id) {
+                                product.isHidden = true;
+                            }
+                        })
+                    })
+                    setTimeout(function () {
+                        $('[data-toggle="popover"]').popover({
+                            html: true,
+                            content: function () {
+                                var content = $(this).next('.popover-body');
+                                return $(content).html();
+                            },
+                            title: function () {
+                                var title = $(this).attr("data-popover-content");
+                                return $(title).children(".popover-heading").html();
+                            }
+                        });
+                    }, 200);
+                    $("html, body").animate({ "scrollTop": "0px" }, 500);
+                }
+                else {
+                    $scope.errors = resp.errors;
+                    $("html, body").animate({ "scrollTop": "0px" }, 500);
+                }
+                //productServices.getProducts($scope.request).then(function (result) {
+                //    var resp = result.data;
+                //    if (resp.isSucceed) {
+
+                //        ($scope.data = resp.data);
+                //        $("html, body").animate({ "scrollTop": "0px" }, 500);
+                //        $.each($scope.data.items, function (i, product) {
+
+                //            $.each($scope.activedProducts, function (i, e) {
+                //                if (e.productId == product.id) {
+                //                    product.isHidden = true;
+                //                }
+                //            })
+                //        })
+                //        $scope.isBusy = false;
+                //        setTimeout(function () {
+                //            $('[data-toggle="popover"]').popover({
+                //                html: true,
+                //                content: function () {
+                //                    var content = $(this).next('.popover-body');
+                //                    return $(content).html();
+                //                },
+                //                title: function () {
+                //                    var title = $(this).attr("data-popover-content");
+                //                    return $(title).children(".popover-heading").html();
+                //                }
+                //            });
+                //        }, 200);
+                //    }
+                //    else {
+                //        alert('failed! ' + data.errors);
+                //    }
+                //}, function (a, b, c) {
+                //    errors.push(a, b, c);
+                //    $scope.isBusy = false;
+                //    $("html, body").animate({ "scrollTop": "0px" }, 500);
+                //    $scope.$apply();
+                //});
             }
         };
 
@@ -148,33 +178,43 @@ app.controller('ProductController', ['$scope', '$rootScope','$routeParams', '$ti
                     $scope.loadProducts();
                 }).error(function (a, b, c) {
                     errors.push(a, b, c);
-                    $scope.isBusy = false;
                     $("html, body").animate({ "scrollTop": "0px" }, 500);
                 });;
             }
         };
-        $scope.saveProduct = function (product) {
+        $scope.saveProduct = async function (product) {
             if (!isBusy) {
 
-                $scope.isBusy = true;
                 product.content = $('.editor-content').val();
+                var resp = await productServices.saveProduct(product);
+                if (resp.isSucceed) {
+                    $scope.activedProduct = resp.data;
+                    $scope.message.content = 'Thành công';
+                    $scope.message.class = 'success';
+                    $("html, body").animate({ "scrollTop": "0px" }, 500);
+                }
+                else {
+                    $scope.errors = resp.errors;
+                    $("html, body").animate({ "scrollTop": "0px" }, 500);
+                }
+              
 
-                productServices.saveProduct(product).then(function (response) {
-                    if (data.isSucceed) {
-                        $scope.activedProduct = data.data;
-                        $scope.message.content = 'Thành công';
-                        $scope.message.class = 'success';
-                    }
-                    else {
-                        $scope.errors = data.errors;
-                    }
-                    $("html, body").animate({ "scrollTop": "0px" }, 500);
-                    $scope.isBusy = false;
-                }).error(function (a, b, c) {
-                    errors.push(a, b, c);
-                    $scope.isBusy = false;
-                    $("html, body").animate({ "scrollTop": "0px" }, 500);
-                });
+                //productServices.saveProduct(product).then(function (response) {
+                //    if (data.isSucceed) {
+                //        $scope.activedProduct = data.data;
+                //        $scope.message.content = 'Thành công';
+                //        $scope.message.class = 'success';
+                //    }
+                //    else {
+                //        $scope.errors = data.errors;
+                //    }
+                //    $("html, body").animate({ "scrollTop": "0px" }, 500);
+                //    $scope.isBusy = false;
+                //}).error(function (a, b, c) {
+                //    errors.push(a, b, c);
+                //    $scope.isBusy = false;
+                //    $("html, body").animate({ "scrollTop": "0px" }, 500);
+                //});
             }
         };
 

@@ -32,12 +32,12 @@ modules.component('mainSideBar', {
                 subMenus: [
                     {
                         title: 'Create',
-                        href: '/admin/product/create',
+                        href: '/backend/product/create',
                         icon: 'mi mi-Add mi-fw'
                     },
                     {
                         title: 'List',
-                        href: '/admin/product/list',
+                        href: '/backend/product/list',
                         icon: 'mi mi-List mi-fw'
                     }
                 ]

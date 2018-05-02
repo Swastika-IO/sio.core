@@ -6,9 +6,7 @@ using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Http.Features;
-using Microsoft.AspNetCore.Localization;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Rewrite;
 using Microsoft.AspNetCore.Routing;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
@@ -18,12 +16,8 @@ using Microsoft.Extensions.WebEncoders;
 using Swastika.Cms.Lib.Models.Cms;
 using Swastika.Cms.Lib.Services;
 using Swastika.Identity.Services;
-using System;
-using System.IO;
 using System.Text.Encodings.Web;
 using System.Text.Unicode;
-using System.Threading.Tasks;
-using RewriteRules;
 
 namespace Swastika.Cms.Web.Mvc
 {
@@ -142,22 +136,25 @@ namespace Swastika.Cms.Web.Mvc
 
             app.UseMvc(routes =>
             {
-                routes.MapRoute(
-                    name: "areaRoute",
-                    template: "{culture=" + CONST_ROUTE_DEFAULT_CULTURE + "}/{area:exists}/{controller=Portal}/{action=Index}");
-                routes.MapRoute(
-                    name: "areaRoute2",
-                    template: "{culture=" + CONST_ROUTE_DEFAULT_CULTURE + "}/{area:exists}/{controller=Portal}/{action=Index}/{id?}");
+                //routes.MapRoute(
+                //    name: "areaRoute",
+                //    template: "{culture=" + CONST_ROUTE_DEFAULT_CULTURE + "}/{area:exists}/{controller=Portal}/{action=Index}");
+                //routes.MapRoute(
+                //    name: "areaRoute2",
+                //    template: "{culture=" + CONST_ROUTE_DEFAULT_CULTURE + "}/{area:exists}/{controller=Portal}/{action=Index}/{id?}");
 
-                routes.MapRoute(
-                    name: "apiRoute",
-                    template: "api/{culture=" + CONST_ROUTE_DEFAULT_CULTURE + "}/{area:exists}/{controller=Portal}/{action=Index}");
-                routes.MapRoute(
-                    name: "apiCommonRoute",
-                    template: "api/{area:exists}/{controller=Portal}/{action=Index}");
-                routes.MapRoute(
-                    name: "default",
-                    template: "{culture=" + CONST_ROUTE_DEFAULT_CULTURE + "}/{controller=InitCms}/{action=Index}/{id?}");
+                //routes.MapRoute(
+                //    name: "apiRoute",
+                //    template: "api/{culture=" + CONST_ROUTE_DEFAULT_CULTURE + "}/{area:exists}/{controller=Portal}/{action=Index}");
+                //routes.MapRoute(
+                //    name: "apiCommonRoute",
+                //    template: "api/{area:exists}/{controller=Portal}/{action=Index}");
+                //routes.MapRoute(
+                //    name: "defaultOnePage",
+                //    template: "{controller=Backend}");
+                //routes.MapRoute(
+                //    name: "default",
+                //    template: "{culture=" + CONST_ROUTE_DEFAULT_CULTURE + "}/{controller=InitCms}/{action=Index}/{id?}");
                 routes.MapRoute(
                     name: "Page",
                     template: "{culture=" + CONST_ROUTE_DEFAULT_CULTURE + "}/{seoName}");
@@ -171,24 +168,6 @@ namespace Swastika.Cms.Web.Mvc
                     name: "Product",
                     template: "{culture=" + CONST_ROUTE_DEFAULT_CULTURE + "}/product/{seoName}");
             });
-
-            using (StreamReader apacheModRewriteStreamReader =
-                File.OpenText("ApacheModRewrite.txt"))
-            using (StreamReader iisUrlRewriteStreamReader =
-                File.OpenText("IISUrlRewrite.xml"))
-            {
-                var options = new RewriteOptions()
-                    .AddRedirect("admin/(.*)", "admin/$1")
-                    .AddRewrite(@"^admin/*", "/admin",
-                        skipRemainingRules: true)
-                    .AddApacheModRewrite(apacheModRewriteStreamReader)
-                    .AddIISUrlRewrite(iisUrlRewriteStreamReader)
-                    .Add(MethodRules.RedirectXMLRequests)
-                    .Add(new RedirectImageRequests(".png", "/png-images"))
-                    .Add(new RedirectImageRequests(".jpg", "/jpg-images"));
-
-                app.UseRewriter(options);
-            }
         }
 
         /// <summary>

@@ -5,27 +5,32 @@ var serviceBase = "/";
 app.config(function ($routeProvider, $locationProvider, $sceProvider) {
     $locationProvider.html5Mode(true);
 
-    $routeProvider.when("/admin", {
+    $routeProvider.when("/backend", {
         controller: "DashboardController",
         templateUrl: "/app-portal/pages/dashboard/dashboard.html"
     });
 
-    $routeProvider.when("/admin/login", {
+    $routeProvider.when("/backend/login", {
         controller: "loginController",
         templateUrl: "/app-portal/pages/login/login.html"
     });
 
-    $routeProvider.when("/admin/product/list", {
+    $routeProvider.when("/backend/product/list", {
         controller: "ProductController",
         templateUrl: "/app-portal/pages/product/list.html"
     });
 
-    $routeProvider.when("/admin/product/details/:id", {
+    $routeProvider.when("/backend/product/details/:id", {
         controller: "ProductController",
         templateUrl: "/app-portal/pages/product/details.html"
     });
 
-    $routeProvider.otherwise({ redirectTo: "/admin" });
+    $routeProvider.when("/backend/product/create", {
+        controller: "ProductController",
+        templateUrl: "/app-portal/pages/product/details.html"
+    });
+
+    $routeProvider.otherwise({ redirectTo: "/backend/product/list" });
 });
 
 app.directive('ngEnter', function () {
@@ -61,8 +66,9 @@ app.directive('ngEnter', function () {
         clientId: 'ngAuthApp',
         facebookAppId: '464285300363325'
     });
-app.run(['$rootScope', '$location', 'authService', function ($rootScope, $location, authService) {
+app.run(['$rootScope', '$location', 'commonServices', 'authService', async function ($rootScope, $location, commonServices, authService) {
     authService.fillAuthData();
+    $rootScope.siteSettings =  await commonServices.fillSettings();
     $rootScope.currentContext = $rootScope;
     $rootScope.message = {
         title: '',
@@ -172,11 +178,11 @@ app.run(['$rootScope', '$location', 'authService', function ($rootScope, $locati
 
     $rootScope.logOut = function () {
         authService.logOut();
-        $location.path('/admin/login');
+        $location.path('/backend/login');
     };
     if (!authService.authentication.isAuth || !authService.authentication.isAdmin) {
         authService.authentication.referredUrl = $location.path();
-        $location.path('/admin/login');
+        $location.path('/backend/login');
     }
 
     $rootScope.executeFunctionByName = function (functionName, args, context) {

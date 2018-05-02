@@ -89,13 +89,17 @@ namespace Swastika.Core.Controllers
                 {
                     var user = await _userManager.FindByNameAsync(model.UserName).ConfigureAwait(false);
                     var roles = await _userManager.GetRolesAsync(user);
-                    var info = await InfoUserViewModel.Repository.GetSingleModelAsync(u => u.Username == user.UserName);
-                    info.Data.Roles = roles.ToList();
-
+                    
                     var token = await GenerateAccessTokenAsync(user);
                     if (token != null)
                     {
-                        token.UserData = info.Data;
+                        var info = await InfoUserViewModel.Repository.GetSingleModelAsync(u => u.Username == user.UserName);
+                        if (info.IsSucceed)
+                        {
+                            info.Data.Roles = roles.ToList();
+                            token.UserData = info.Data;
+                        }
+                        
                         loginResult.IsSucceed = true;
                         loginResult.Status = 1;
                         loginResult.Data = token;
