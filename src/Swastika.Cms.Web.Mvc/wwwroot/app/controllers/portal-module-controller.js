@@ -33,7 +33,7 @@ app.controller('ModuleController', function ModuleController($scope) {
 
     // Load module from API
     $scope.loadModule = function (moduleId, isNew) {
-        $scope.isBusy = true;
+        $rootScope.isBusy = true;
         var url = '';
 
         if (isNew) {
@@ -60,14 +60,14 @@ app.controller('ModuleController', function ModuleController($scope) {
                 $scope.initEditor();
             }
 
-            $scope.isBusy = false;
+            $rootScope.isBusy = false;
             $scope.$apply();
         });
     };
 
     // Load list of module from API
     $scope.loadModules = function (pageIndex) {
-        $scope.isBusy = true;
+        $rootScope.isBusy = true;
 
         if (pageIndex != undefined) {
             $scope.request.pageIndex = pageIndex;
@@ -105,7 +105,7 @@ app.controller('ModuleController', function ModuleController($scope) {
                         })
                     })
 
-                    $scope.isBusy = false;
+                    $rootScope.isBusy = false;
 
                     setTimeout(function () {
                         $('[data-toggle="popover"]').popover({
@@ -159,7 +159,7 @@ app.controller('ModuleController', function ModuleController($scope) {
 
     // Save module
     $scope.saveModule = function (module) {
-        $scope.isBusy = true;
+        $rootScope.isBusy = true;
         module.content = $('.editor-content').val();
         var json = (angular.toJson(module));
 
@@ -186,12 +186,12 @@ app.controller('ModuleController', function ModuleController($scope) {
                 }
 
                 $("html, body").animate({ "scrollTop": "0px" }, 500);
-                $scope.isBusy = false;
+                $rootScope.isBusy = false;
                 $scope.$apply();
             },
             error: function (a, b, c) {
                 console.log(a + " " + b + " " + c);
-                $scope.isBusy = false;
+                $rootScope.isBusy = false;
                 $scope.$apply();
             }
         });

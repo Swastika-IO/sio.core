@@ -40,25 +40,51 @@ namespace Swastka.Cms.Api.Controllers
         // GET api/products/id
         [HttpGet]
         [Route("details/{viewType}/{id}")]
+        [Route("details/{viewType}")]
         public async Task<JObject> BEDetails(string viewType, string id)
         {
             switch (viewType)
             {
                 case "be":
-                    var beResult = await BEProductViewModel.Repository.GetSingleModelAsync(model => model.Id == id && model.Specificulture == _lang).ConfigureAwait(false);
-                    if (beResult.IsSucceed)
+                    if (!string.IsNullOrEmpty(id))
                     {
-                        beResult.Data.DetailsUrl = SwCmsHelper.GetRouterUrl("Product", new { beResult.Data.SeoName }, Request, Url);
+                        var beResult = await BEProductViewModel.Repository.GetSingleModelAsync(model => model.Id == id && model.Specificulture == _lang).ConfigureAwait(false);
+                        if (beResult.IsSucceed)
+                        {
+                            beResult.Data.DetailsUrl = SwCmsHelper.GetRouterUrl("Product", new { beResult.Data.SeoName }, Request, Url);
+                        }
+                        return JObject.FromObject(beResult);
                     }
-                    return JObject.FromObject(beResult);
-
+                    else
+                    {
+                        var model = new SiocProduct();
+                        RepositoryResponse<BEProductViewModel> result = new RepositoryResponse<BEProductViewModel>()
+                        {
+                            IsSucceed = true,
+                            Data = new BEProductViewModel(model) { Specificulture = _lang }
+                        };
+                        return JObject.FromObject(result);
+                    }
                 default:
-                    var feResult = await FEProductViewModel.Repository.GetSingleModelAsync(model => model.Id == id && model.Specificulture == _lang).ConfigureAwait(false);
-                    if (feResult.IsSucceed)
+                    if (!string.IsNullOrEmpty(id))
                     {
-                        feResult.Data.DetailsUrl = SwCmsHelper.GetRouterUrl("Product", new { feResult.Data.SeoName }, Request, Url);
+                        var beResult = await FEProductViewModel.Repository.GetSingleModelAsync(model => model.Id == id && model.Specificulture == _lang).ConfigureAwait(false);
+                        if (beResult.IsSucceed)
+                        {
+                            beResult.Data.DetailsUrl = SwCmsHelper.GetRouterUrl("Product", new { beResult.Data.SeoName }, Request, Url);
+                        }
+                        return JObject.FromObject(beResult);
                     }
-                    return JObject.FromObject(feResult);
+                    else
+                    {
+                        var model = new SiocProduct();
+                        RepositoryResponse<FEProductViewModel> result = new RepositoryResponse<FEProductViewModel>()
+                        {
+                            IsSucceed = true,
+                            Data = new FEProductViewModel(model) { Specificulture = _lang }
+                        };
+                        return JObject.FromObject(result);
+                    }
             }
         }
 
@@ -71,7 +97,7 @@ namespace Swastka.Cms.Api.Controllers
             {
                 //Id = Guid.NewGuid().ToString(),
                 Specificulture = _lang
-                
+
             };
             return new RepositoryResponse<BEProductViewModel>()
             {

@@ -14,7 +14,7 @@ app.controller('ProductController', ['$scope', '$rootScope','$routeParams', '$ti
         
         $scope.activedArticle = null;
         $scope.relatedArticles = [];
-        $scope.isBusy = false;
+        $rootScope.isBusy = false;
         $scope.data = [];
         $scope.errors = [];
         $scope.message = {
@@ -29,18 +29,18 @@ app.controller('ProductController', ['$scope', '$rootScope','$routeParams', '$ti
         };
 
         $scope.getArticle = function (id) {
-            if (!$scope.isBusy) {
-                $scope.isBusy = true;
+            if (!$rootScope.isBusy) {
+                $rootScope.isBusy = true;
                 articleServices.getArticle(id, 'be').then(function (response) {
                     if (response.isSucceed) {
                         $scope.activedArticle = response.data;
                         $rootScope.initEditor();
                     }
-                    $scope.isBusy = false;
+                    $rootScope.isBusy = false;
                     $scope.$apply();
                 }).error(function (a, b, c) {
                     errors.push(a, b, c);
-                    $scope.isBusy = false;
+                    $rootScope.isBusy = false;
                     $("html, body").animate({ "scrollTop": "0px" }, 500);
                     $scope.$apply();
                 });
@@ -48,26 +48,26 @@ app.controller('ProductController', ['$scope', '$rootScope','$routeParams', '$ti
         };
 
         $scope.initArticle = function () {
-            if (!$scope.isBusy) {
-                $scope.isBusy = true;
+            if (!$rootScope.isBusy) {
+                $rootScope.isBusy = true;
                 articleServices.initArticle('be').then(function (response) {
                     if (response.isSucceed) {
                         $scope.activedArticle = response.data;
                         $rootScope.initEditor();
                     }
-                    $scope.isBusy = false;
+                    $rootScope.isBusy = false;
                     $scope.$apply();
                 }).error(function (a, b, c) {
                     errors.push(a, b, c);
-                    $scope.isBusy = false;
+                    $rootScope.isBusy = false;
                     $("html, body").animate({ "scrollTop": "0px" }, 500);                    
                 });
             }
         };
 
         $scope.loadArticle = function () {
-            if (!$scope.isBusy) {
-                $scope.isBusy = true;
+            if (!$rootScope.isBusy) {
+                $rootScope.isBusy = true;
                 var id = $routeParams.id;
 
                 articleServices.getArticle(id,'be').then(function (response) {
@@ -81,14 +81,14 @@ app.controller('ProductController', ['$scope', '$rootScope','$routeParams', '$ti
 
                 }, function (a, b, c) {
                     errors.push(a, b, c);
-                    $scope.isBusy = false;
+                    $rootScope.isBusy = false;
                     $("html, body").animate({ "scrollTop": "0px" }, 500);
                     
                 });
             }
         };
         $scope.loadArticles = async function (pageIndex) {
-            if (!$scope.isBusy) {
+            if (!$rootScope.isBusy) {
                 if (pageIndex != undefined) {
                     $scope.request.pageIndex = pageIndex;
                 }
@@ -145,7 +145,7 @@ app.controller('ProductController', ['$scope', '$rootScope','$routeParams', '$ti
                 //                }
                 //            })
                 //        })
-                //        $scope.isBusy = false;
+                //        $rootScope.isBusy = false;
                 //        setTimeout(function () {
                 //            $('[data-toggle="popover"]').popover({
                 //                html: true,
@@ -165,7 +165,7 @@ app.controller('ProductController', ['$scope', '$rootScope','$routeParams', '$ti
                 //    }
                 //}, function (a, b, c) {
                 //    errors.push(a, b, c);
-                //    $scope.isBusy = false;
+                //    $rootScope.isBusy = false;
                 //    $("html, body").animate({ "scrollTop": "0px" }, 500);
                 //    $scope.$apply();
                 //});
@@ -209,10 +209,10 @@ app.controller('ProductController', ['$scope', '$rootScope','$routeParams', '$ti
                 //        $scope.errors = data.errors;
                 //    }
                 //    $("html, body").animate({ "scrollTop": "0px" }, 500);
-                //    $scope.isBusy = false;
+                //    $rootScope.isBusy = false;
                 //}).error(function (a, b, c) {
                 //    errors.push(a, b, c);
-                //    $scope.isBusy = false;
+                //    $rootScope.isBusy = false;
                 //    $("html, body").animate({ "scrollTop": "0px" }, 500);
                 //});
             }

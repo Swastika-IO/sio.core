@@ -18,8 +18,8 @@ app.controller('loginController', ['$rootScope', '$scope', '$location', 'authSer
         $rootScope.isBusy = false;
     });
     $scope.login = function () {
-        if (authService.authentication.referredUrl == "/admin/login") {
-            authService.authentication.referredUrl = "/admin";
+        if (authService.authentication.referredUrl == "/backend/login") {
+            authService.authentication.referredUrl = "/backend";
         }
         authService.login($scope.loginData).then(function (response) {
             $scope.message = "";

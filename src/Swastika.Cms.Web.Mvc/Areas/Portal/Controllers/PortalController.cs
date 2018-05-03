@@ -23,7 +23,7 @@ namespace Swastika.Cms.Mvc.Areas.Portal.Controllers
 {
     [Area("Portal")]
     [Route("Portal")]
-    //[Route("Admin")]
+    [Route("Admin")]
     public class PortalController : BaseController<PortalController>
     {
         private readonly UserManager<ApplicationUser> _userManager;
@@ -42,8 +42,8 @@ namespace Swastika.Cms.Mvc.Areas.Portal.Controllers
         [Route("")]
         public IActionResult Index()
         {
-            //return RedirectToAction("", "Dashboard", new { culture = CurrentLanguage });
-            return View();
+            return RedirectToAction("", "Dashboard", new { culture = CurrentLanguage });
+            //return View();
         }
 
         [HttpGet]

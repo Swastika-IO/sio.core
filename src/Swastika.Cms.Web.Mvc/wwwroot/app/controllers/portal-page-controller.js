@@ -10,7 +10,7 @@ app.controller('PageController', function PhoneListController($filter, $scope) {
     $scope.data = [];
 
     $scope.loadPages = function (pageIndex) {
-        $scope.isBusy = true;
+        $rootScope.isBusy = true;
         if (pageIndex != undefined) {
             $scope.request.pageIndex = pageIndex;
         }
@@ -33,7 +33,7 @@ app.controller('PageController', function PhoneListController($filter, $scope) {
                     }
                 })
             })
-            $scope.isBusy = false;
+            $rootScope.isBusy = false;
             $scope.$apply();
         });
     };

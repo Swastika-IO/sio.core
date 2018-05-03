@@ -44,6 +44,7 @@ app.factory('commonServices', ['$location', '$http', '$rootScope', 'authService'
             var resp = await this.getApiResult(req);
             if (resp.data.isSucceed) {
                 _settings = resp.data.data;
+                $rootScope.siteSettings = _settings;
                 localStorageService.set('siteSettings', _settings);
                 return _settings;
             }

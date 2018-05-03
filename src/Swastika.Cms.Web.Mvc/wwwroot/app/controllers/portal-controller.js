@@ -1,8 +1,8 @@
 ﻿(function (angular) {
     'use strict';
-    app.controller('PortalController', function PhoneListController($scope, $locale) {
+    app.controller('PortalController', ['$scope', '$rootScope', function ($scope, $rootScope) {
         $scope.currentLanguage = 'vi-vn';
-        $scope.isBusy = true;
+        $rootScope.isBusy = true;
         $scope.isLocalDb = false;
         $scope.mediaData = {};
         $scope.mediaFile = {
@@ -293,5 +293,5 @@
                 });
             }, 200)
         }
-    });
+    }]);
 })(window.angular);

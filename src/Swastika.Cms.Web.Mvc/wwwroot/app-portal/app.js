@@ -2,37 +2,6 @@
 var app = angular.module('SwastikaPortal', ['ngRoute', 'components', 'ngFileUpload', 'LocalStorageModule', 'bw.paging']);
 var serviceBase = "/";
 
-app.config(function ($routeProvider, $locationProvider, $sceProvider) {
-    $locationProvider.html5Mode(true);
-
-    $routeProvider.when("/backend", {
-        controller: "DashboardController",
-        templateUrl: "/app-portal/pages/dashboard/dashboard.html"
-    });
-
-    $routeProvider.when("/backend/login", {
-        controller: "loginController",
-        templateUrl: "/app-portal/pages/login/login.html"
-    });
-
-    $routeProvider.when("/backend/product/list", {
-        controller: "ProductController",
-        templateUrl: "/app-portal/pages/product/list.html"
-    });
-
-    $routeProvider.when("/backend/product/details/:id", {
-        controller: "ProductController",
-        templateUrl: "/app-portal/pages/product/details.html"
-    });
-
-    $routeProvider.when("/backend/product/create", {
-        controller: "ProductController",
-        templateUrl: "/app-portal/pages/product/details.html"
-    });
-
-    $routeProvider.otherwise({ redirectTo: "/backend/product/list" });
-});
-
 app.directive('ngEnter', function () {
     return function (scope, element, attrs) {
         element.bind("keydown keypress", function (event) {
@@ -59,17 +28,19 @@ app.directive('ngEnter', function () {
             });
         }
     };
-})
-    .filter('utcToLocal', Filter)
-    .constant('ngAuthSettings', {
+}).filter('utcToLocal', Filter)
+.constant('ngAuthSettings', {
         apiServiceBaseUri: '/',
         clientId: 'ngAuthApp',
         facebookAppId: '464285300363325'
-    });
+});
+
 app.run(['$rootScope', '$location', 'commonServices', 'authService', async function ($rootScope, $location, commonServices, authService) {
     authService.fillAuthData();
-    $rootScope.siteSettings =  await commonServices.fillSettings();
+    $rootScope.siteSettings = [];
+    commonServices.fillSettings();
     $rootScope.currentContext = $rootScope;
+    $rootScope.errors = [];
     $rootScope.message = {
         title: '',
         value: '',
@@ -176,6 +147,16 @@ app.run(['$rootScope', '$location', 'commonServices', 'authService', async funct
         return input;
     };
 
+    $rootScope.$watch('isBusy', function (newValue, oldValue) {
+        if (newValue) {
+            $rootScope.message.content = '';
+            $rootScope.errors = [];
+        }
+    });
+    $rootScope.showErrors = function (errors) {
+        $rootScope.errors = errors;
+        $("html, body").animate({ "scrollTop": "0px" }, 500);
+    }
     $rootScope.logOut = function () {
         authService.logOut();
         $location.path('/backend/login');

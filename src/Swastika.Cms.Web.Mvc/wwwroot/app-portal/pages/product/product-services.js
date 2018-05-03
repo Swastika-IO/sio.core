@@ -5,13 +5,17 @@ app.factory('ProductServices', ['$http', '$rootScope', 'commonServices', functio
 
     var productsServiceFactory = {};
 
-    var settings = commonServices.getSiteSettings();
+    var settings = $rootScope.siteSettings;
 
     var _getProduct = async function (id, type) {
         var apiUrl = '/api/' + settings.lang + '/product/';
+        var url = apiUrl + 'details/' + type;
+        if (id) {
+            url += + '/' + id;
+        }
         var req = {
             method: 'GET',
-            url: apiUrl + 'details/' + type + '/' + id
+            url: url
         };
         var resp = await commonServices.getApiResult(req)
         return resp.data;

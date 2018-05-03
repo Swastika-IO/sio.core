@@ -33,12 +33,12 @@
                 subMenus: [
                     {
                         title: 'Create',
-                        href: '/admin/product/create',
+                        href: '/backend/product/create',
                         icon: 'mi mi-Add'
                     },
                     {
                         title: 'List',
-                        href: '/admin/product/list',
+                        href: '/backend/product/list',
                         icon: 'mi mi-List'
                     }
                 ]
@@ -50,12 +50,12 @@
                 subMenus: [
                     {
                         title: 'Create',
-                        href: '/admin/page/create',
+                        href: '/backend/page/create',
                         icon: 'mi mi-Add'
                     },
                     {
                         title: 'List',
-                        href: '/admin/page/list',
+                        href: '/backend/page/list',
                         icon: 'mi mi-List'
                     }
                 ]
@@ -67,12 +67,12 @@
                 subMenus: [
                     {
                         title: 'Create',
-                        href: '/admin/forms/create',
+                        href: '/backend/forms/create',
                         icon: 'mi mi-Add'
                     },
                     {
                         title: 'List',
-                        href: '/admin/forms/list',
+                        href: '/backend/forms/list',
                         icon: 'mi mi-List'
                     }
                 ]
@@ -84,12 +84,12 @@
                 subMenus: [
                     {
                         title: 'Create',
-                        href: '/admin/modules/create',
+                        href: '/backend/modules/create',
                         icon: 'mi mi-Add'
                     },
                     {
                         title: 'List',
-                        href: '/admin/modules/list',
+                        href: '/backend/modules/list',
                         icon: 'mi mi-List'
                     }
                 ]
@@ -101,12 +101,12 @@
                 subMenus: [
                     {
                         title: 'Create',
-                        href: '/admin/widgets/create',
+                        href: '/backend/widgets/create',
                         icon: 'mi mi-Add'
                     },
                     {
                         title: 'List',
-                        href: '/admin/widgets/list',
+                        href: '/backend/widgets/list',
                         icon: 'mi mi-List'
                     }
                 ]
@@ -118,12 +118,12 @@
                 subMenus: [
                     {
                         title: 'Create',
-                        href: '/admin/themes/create',
+                        href: '/backend/themes/create',
                         icon: 'mi mi-Add'
                     },
                     {
                         title: 'List',
-                        href: '/admin/themes/list',
+                        href: '/backend/themes/list',
                         icon: 'mi mi-List'
                     }
                 ]
@@ -135,12 +135,12 @@
                 subMenus: [
                     {
                         title: 'Create',
-                        href: '/admin/media/create',
+                        href: '/backend/media/create',
                         icon: 'mi mi-Add'
                     },
                     {
                         title: 'List',
-                        href: '/admin/media/list',
+                        href: '/backend/media/list',
                         icon: 'mi mi-List'
                     }
                 ]
@@ -152,12 +152,12 @@
                 subMenus: [
                     {
                         title: 'Create',
-                        href: '/admin/team/create',
+                        href: '/backend/team/create',
                         icon: 'mi mi-Add'
                     },
                     {
                         title: 'List',
-                        href: '/admin/team/list',
+                        href: '/backend/team/list',
                         icon: 'mi mi-List'
                     }
                 ]
@@ -169,12 +169,12 @@
                 subMenus: [
                     {
                         title: 'Create',
-                        href: '/admin/settings/create',
+                        href: '/backend/settings/create',
                         icon: 'mi mi-Add'
                     },
                     {
                         title: 'List',
-                        href: '/admin/settings/list',
+                        href: '/backend/settings/list',
                         icon: 'mi mi-List'
                     }
                 ]

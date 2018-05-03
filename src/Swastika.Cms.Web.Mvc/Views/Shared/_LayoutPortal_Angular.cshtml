@@ -105,7 +105,7 @@
     @RenderSection("Styles", required: false)
 </head>
 
-<body ng-app="SwastikaPortal">
+<body ng-app="SwastikaPortal" ng-init="initApp()">
     <input type="hidden" id="lang" name="curentLanguage" value="@ViewBag.culture" />
     <div class="loader-container" ng-show="isBusy">
         <div id="loader"></div>
@@ -175,6 +175,7 @@
     <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.2.13/angular-animate.js"></script>
     <script src="/app-portal/plugins/angular-local-storage.min.js"></script>
     <script src="/app-portal/app.js"></script>
+    <script src="/app-portal/app.route.js"></script>
 
     <!-- Services-->
     <script src="/app-portal/pages/shared/services/auth-services.js"></script>
