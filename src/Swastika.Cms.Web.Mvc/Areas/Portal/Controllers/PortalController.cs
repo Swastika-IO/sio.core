@@ -43,7 +43,6 @@ namespace Swastika.Cms.Mvc.Areas.Portal.Controllers
         public IActionResult Index()
         {
             return RedirectToAction("", "Dashboard", new { culture = CurrentLanguage });
-            //return View();
         }
 
         [HttpGet]

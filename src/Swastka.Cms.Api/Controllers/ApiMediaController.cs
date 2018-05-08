@@ -120,13 +120,18 @@ namespace Swastka.Cms.Api.Controllers
                     fileFolder,
                     DateTime.UtcNow.ToString("MMM-yyyy")
                 });
+                // save web files in wwwRoot
+                string uploadPath = SwCmsHelper.GetFullPath(new[] {
+                    SWCmsConstants.Parameters.WebRootPath,
+                    folderPath
+                });
                 // string.Format("Uploads/{0}", fileFolder);
                 //return ImageHelper.ResizeImage(Image.FromStream(fileUpload.OpenReadStream()), System.IO.Path.Combine(_env.WebRootPath, folderPath));
                 //var fileName = await Common.UploadFileAsync(filePath, files.FirstOrDefault());
                 string fileName =
                 SwCmsHelper.GetFullPath(new[] {
                     "/",
-                    await UploadFileAsync(files.FirstOrDefault(), folderPath).ConfigureAwait(false)
+                    await UploadFileAsync(files.FirstOrDefault(), uploadPath).ConfigureAwait(false)
                 });
                 BEMediaViewModel media = new BEMediaViewModel(new SiocMedia()
                 {

@@ -20,16 +20,17 @@ namespace Swastika.Cms.Mvc.Areas.Portal.Controllers
         {
         }
 
-        //[Route("/portal/Dashboard")]
-        [HttpGet]
-        [Route("")]
-        public IActionResult Index()
-        {
-            return View();
-        }
+        ////[Route("/portal/Dashboard")]
+        //[HttpGet]
+        //[Route("")]
+        //public IActionResult Index()
+        //{
+        //    return View();
+        //}
         
         //[Route("/portal/Dashboard")]
         [HttpGet]
+        [Route("")]
         [Route("Dashboard/{pageSize:int?}/{pageIndex:int?}")]
         public IActionResult Dashboard(string keyword, int pageSize = 10, int pageIndex = 0)
         {

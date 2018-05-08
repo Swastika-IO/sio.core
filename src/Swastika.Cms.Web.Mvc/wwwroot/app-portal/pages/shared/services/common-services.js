@@ -24,93 +24,101 @@ app.factory('commonServices', ['$location', '$http', '$rootScope', 'authService'
         else return true;
     };
 
-    var _getSiteSettings = async function () {
-        return localStorageService.get('siteSettings');
+    var _getSettings = function () {
+        var settings = localStorageService.get('settings');
+        if (settings) {
+            return settings;
+        }
+        else {
+            var req = {
+                method: 'GET',
+                url: 'api/portal/settings',
+            };
+            return _getApiResult(req).then(function (response) {
+                return response.data;
+            });
+        }
     };
 
-    var _setSiteSettings = async function (settings) {
+    var _setSettings = async function (settings) {
         if (settings && settings.cultures.length > 0) {
-            localStorageService.set('siteSettings', settings);
+            localStorageService.set('settings', settings);
             window.top.location = location.href;
         }
     };
 
     var _fillSettings = async function () {
-        if (!this._settings) {
-            var req = {
-                method: 'GET',
-                url: 'api/portal/settings',
-            };
-            var resp = await this.getApiResult(req);
-            if (resp.data.isSucceed) {
-                _settings = resp.data.data;
-                $rootScope.siteSettings = _settings;
-                localStorageService.set('siteSettings', _settings);
-                return _settings;
-            }
-        } else {
-            return this._settings;
+        var settings = localStorageService.get('settings');
+        if (settings) {
+            _settings = settings;
+            return settings;
         }
+        else {
+            settings = await _getSettings();
+            localStorageService.set('settings', settings);
+            return settings;
+        }
+        
     };
     var _getApiResult = async function (req) {
-            $rootScope.isBusy = true;
-            req.Authorization = authService.authentication.token;
-            var headers = {
-                'Content-Type': 'application/json',
-                'RefreshToken': authService.authentication.refresh_token
-            };
-            req.headers = headers;
-            return $http(req).then(function (results) {
-                var resp = results.data;
-                if (resp.data.responseKey === 'NotAuthorized') {
-                    //Try again with new token from previous Request (optional)                
-                    setTimeout(function () {
-                        headers = {
-                            'Content-Type': 'application/json',
-                            'RefreshToken': authService.authentication.refresh_token
-                        };
-                        req.headers = headers;
-                        return $http(req).then(function (results) {
-                            if (resp.data.responseKey === 'NotAuthorized') {
-                                authService.logOut();
-                                $location.path('/admin/login');
+        $rootScope.isBusy = true;
+        req.Authorization = authService.authentication.token;
+        var headers = {
+            'Content-Type': 'application/json',
+            'RefreshToken': authService.authentication.refresh_token
+        };
+        req.headers = headers;
+        return $.ajax(req).then(function (resp) {
+            //var resp = results.data;
+            if (resp.data.responseKey === 'NotAuthorized') {
+                //Try again with new token from previous Request (optional)                
+                setTimeout(function () {
+                    headers = {
+                        'Content-Type': 'application/json',
+                        'RefreshToken': authService.authentication.refresh_token
+                    };
+                    req.headers = headers;
+                    return $http(req).then(function (results) {
+                        if (resp.data.responseKey === 'NotAuthorized') {
+                            authService.logOut();
+                            $location.path('/admin/login');
+                        }
+                        else {
+                            if (resp) {
+                                return resp.data;
                             }
                             else {
-                                if (resp) {
-                                    return resp.data;
-                                }
-                                else {
-                                    return {
-                                        isSucceed: false,
-                                        data: null
-                                    }
+                                return {
+                                    isSucceed: false,
+                                    data: null
                                 }
                             }
-                        });
-                    }, 2000);
-                }
-                else if (resp.data.authData !== null && resp.data.authData !== undefined) {
-                    var authData = resp.data.authData;
-                    localStorageService.set('authorizationData', { token: authData.access_token, userName: authData.userData.NickName, roleNames: authData.userData.RoleNames, avatar: authData.userData.Avatar, refresh_token: authData.refresh_token, userId: authData.userData.Id });
-                    authService.authentication.isAuth = true;
-                    authService.authentication.isAdmin = $.inArray("Admin", authData.userData.RoleNames) >= 0;
-                    authService.authentication.userName = authData.userData.NickName;
-                    authService.authentication.roleNames = authData.userData.RoleNames;
-                    authService.authentication.userId = authData.userData.Id;
-                    authService.authentication.avatar = authData.userData.Avatar;
-                    authService.authentication.token = authData.access_token;
-                    authService.authentication.refresh_token = authData.refresh_token;
-                }
+                        }
+                    });
+                }, 2000);
+            }
+            else if (resp.data.authData !== null && resp.data.authData !== undefined) {
+                var authData = resp.data.authData;
+                localStorageService.set('authorizationData', { token: authData.access_token, userName: authData.userData.NickName, roleNames: authData.userData.RoleNames, avatar: authData.userData.Avatar, refresh_token: authData.refresh_token, userId: authData.userData.Id });
+                authService.authentication.isAuth = true;
+                authService.authentication.isAdmin = $.inArray("Admin", authData.userData.RoleNames) >= 0;
+                authService.authentication.userName = authData.userData.NickName;
+                authService.authentication.roleNames = authData.userData.RoleNames;
+                authService.authentication.userId = authData.userData.Id;
+                authService.authentication.avatar = authData.userData.Avatar;
+                authService.authentication.token = authData.access_token;
+                authService.authentication.refresh_token = authData.refresh_token;
+            }
+            $rootScope.isBusy = false;
+            return resp;
+        },
+            function (error) {
                 $rootScope.isBusy = false;
-                return results;
-            },
-                function (error) {
-                    $rootScope.isBusy = false;
-                });
+            });
     };
     adminCommonFactory.getApiResult = _getApiResult;
-    adminCommonFactory.getSiteSettings = _getSiteSettings;
-    adminCommonFactory.setSiteSettings = _setSiteSettings;
+    adminCommonFactory.getSettings = _getSettings;
+    adminCommonFactory.setSettings = _setSettings;
     adminCommonFactory.showAlertMsg = _showAlertMsg;
     adminCommonFactory.checkfile = _checkfile;
     adminCommonFactory.fillSettings = _fillSettings;

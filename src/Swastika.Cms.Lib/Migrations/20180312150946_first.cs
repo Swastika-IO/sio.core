@@ -74,7 +74,7 @@ namespace Swastika.Cms.Lib.Migrations
                 columns: table => new
                 {
                     Id = table.Column<int>(nullable: false),
-                    Specificulture = table.Column<string>(maxLength: 10, nullable: false, defaultValueSql: "(N'en-us')"),
+                    Specificulture = table.Column<string>(maxLength: 10, nullable: false, defaultValueSql: "('en-us')"),
                     CreatedDateTime = table.Column<DateTime>(type: "datetime", nullable: false),
                     Description = table.Column<string>(maxLength: 4000, nullable: true),
                     Extension = table.Column<string>(maxLength: 50, nullable: false),

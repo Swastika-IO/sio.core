@@ -36,6 +36,7 @@ namespace Swastka.IO.Cms.Api.Controllers
             SiteSettingsViewModel settings = new SiteSettingsViewModel()
             {
                 Lang = _lang,
+                ThemeId = GlobalConfigurationService.GetLocalInt(SWCmsConstants.ConfigurationKeyword.ThemeId, _lang),
                 Cultures = GlobalLanguageService.ListSupportedCulture
             };
             return new RepositoryResponse<SiteSettingsViewModel>()

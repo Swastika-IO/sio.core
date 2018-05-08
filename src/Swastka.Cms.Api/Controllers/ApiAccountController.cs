@@ -94,12 +94,13 @@ namespace Swastika.Core.Controllers
                     if (token != null)
                     {
                         var info = await InfoUserViewModel.Repository.GetSingleModelAsync(u => u.Username == user.UserName);
-                        if (info.IsSucceed)
+                        if (!info.IsSucceed)
                         {
-                            info.Data.Roles = roles.ToList();
-                            token.UserData = info.Data;
+                            info.Data = new InfoUserViewModel();
                         }
-                        
+                        info.Data.Roles = roles.ToList();
+                        token.UserData = info.Data;
+
                         loginResult.IsSucceed = true;
                         loginResult.Status = 1;
                         loginResult.Data = token;
@@ -225,7 +226,7 @@ namespace Swastika.Core.Controllers
             return result;
         }
 
-        [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme, Roles = "SuperAdmin")]
+        //[Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme, Roles = "SuperAdmin")]
         [Route("user-in-role")]
         [HttpPost]
         public async Task<RepositoryResponse<bool>> ManageUserInRole(UserRoleModel model)

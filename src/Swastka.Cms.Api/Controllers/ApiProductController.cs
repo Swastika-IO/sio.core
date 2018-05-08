@@ -61,7 +61,7 @@ namespace Swastka.Cms.Api.Controllers
                         RepositoryResponse<BEProductViewModel> result = new RepositoryResponse<BEProductViewModel>()
                         {
                             IsSucceed = true,
-                            Data = new BEProductViewModel(model) { Specificulture = _lang }
+                            Data = new BEProductViewModel(model) { Specificulture = _lang, Status = SWStatus.Preview }
                         };
                         return JObject.FromObject(result);
                     }
@@ -81,7 +81,7 @@ namespace Swastka.Cms.Api.Controllers
                         RepositoryResponse<FEProductViewModel> result = new RepositoryResponse<FEProductViewModel>()
                         {
                             IsSucceed = true,
-                            Data = new FEProductViewModel(model) { Specificulture = _lang }
+                            Data = new FEProductViewModel(model) { Specificulture = _lang, Status = SWStatus.Preview }
                         };
                         return JObject.FromObject(result);
                     }
@@ -297,7 +297,7 @@ namespace Swastka.Cms.Api.Controllers
 
         [HttpPost, HttpOptions]
         [Route("list")]
-        public async Task<RepositoryResponse<PaginationModel<InfoProductViewModel>>> GetList([FromBody] RequestPaging request)
+        public async Task<RepositoryResponse<PaginationModel<InfoProductViewModel>>> GetList([FromBody]RequestPaging request)
         {
             string domain = string.Format("{0}://{1}", Request.Scheme, Request.Host);
 

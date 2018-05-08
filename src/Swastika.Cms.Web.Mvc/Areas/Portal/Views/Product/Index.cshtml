@@ -130,7 +130,7 @@
             </tr>
         </thead>
 
-        <tbody class="sortable" ng-init="data = loadProducts()">
+        <tbody class="sortable" ng-init="loadProducts()">
             <tr ng-repeat="item in data.items track by $index"
                 class="sortable-item" sort-model="product" sort-model-id="{{item.id}}">
                 <td style="cursor:move;" class="drag-header">
@@ -147,7 +147,7 @@
                 </td>
                 <td>
                     <div ng-if="item.image!=''">
-                        <img height="50" src="{{item.imageUrl}}" />
+                        <img height="50" ng-src="{{item.imageUrl}}" imageonload />
                     </div>
                     @*<small>
                             {{item.excerpt}}
@@ -204,5 +204,5 @@
     </nav>
 </section>
 @section scripts{
-    <script src="~/app/controllers/portal-product-controller.js"></script>
+    <script src="~/app/controllers/portal-product-controller.js"></script>    
 }

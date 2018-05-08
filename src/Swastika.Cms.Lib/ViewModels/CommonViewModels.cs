@@ -222,6 +222,9 @@ namespace Swastika.Cms.Lib.ViewModels
         [JsonProperty("lang")]
         public string Lang { get; set; }
 
+        [JsonProperty("themeId")]
+        public int ThemeId { get; set; }
+
         [JsonProperty("cultures")]
         public List<SupportedCulture> Cultures { get; set; }
     }

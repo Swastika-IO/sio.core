@@ -34,6 +34,8 @@
     <Compile Remove="Migrations\20180305042908_Add-Page-Layout.cs" />
     <Compile Remove="Migrations\20180305042908_Add-Page-Layout.Designer.cs" />
     <Compile Remove="Migrations\20180319080440_update-product.cs" />
+    <Compile Remove="Migrations\20180507062026_upd_05072018.cs" />
+    <Compile Remove="Migrations\20180507062026_upd_05072018.Designer.cs" />
     <Compile Remove="Models\Cms\AspNetRoleClaims.cs" />
     <Compile Remove="Models\Cms\AspNetRoles.cs" />
     <Compile Remove="Models\Cms\AspNetUserClaims.cs" />
@@ -73,6 +75,7 @@
     <PackageReference Include="AngleSharp" Version="0.9.9.2" />
     <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="2.0.3" />
     <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="2.0.2" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Sqlite" Version="2.0.2" />
     <PackageReference Include="Microsoft.Extensions.Configuration" Version="2.0.1" />
     <PackageReference Include="Microsoft.IdentityModel.Tokens" Version="5.2.2" />
     <PackageReference Include="SonarAnalyzer.CSharp" Version="6.8.2.4717" />

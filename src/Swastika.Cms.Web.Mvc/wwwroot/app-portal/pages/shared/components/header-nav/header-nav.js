@@ -1,12 +1,12 @@
 ﻿(function (angular) {
     app.component('headerNav', {
         templateUrl: '/app-portal/pages/shared/components/header-nav/headerNav.html',
-        controller: ['$rootScope', function ($rootScope) {
+        controller: ['commonServices', function (commonServices) {
             var ctrl = this;
-            ctrl.settings = $rootScope.siteSettings;
+            ctrl.settings = commonServices.getSettings();
             ctrl.changeLang = function (lang) {
                 ctrl.settings.lang = lang;
-                commonServices.setSiteSettings(ctrl.settings);
+                commonServices.setSettings(ctrl.settings);
             }
         }],
         bindings: {

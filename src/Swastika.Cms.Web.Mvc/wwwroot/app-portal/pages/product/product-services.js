@@ -5,7 +5,7 @@ app.factory('ProductServices', ['$http', '$rootScope', 'commonServices', functio
 
     var productsServiceFactory = {};
 
-    var settings = $rootScope.siteSettings;
+    var settings = commonServices.getSettings();
 
     var _getProduct = async function (id, type) {
         var apiUrl = '/api/' + settings.lang + '/product/';
@@ -17,8 +17,7 @@ app.factory('ProductServices', ['$http', '$rootScope', 'commonServices', functio
             method: 'GET',
             url: url
         };
-        var resp = await commonServices.getApiResult(req)
-        return resp.data;
+        return await commonServices.getApiResult(req)
     };
 
     var _initProduct = async function (type) {
@@ -27,8 +26,7 @@ app.factory('ProductServices', ['$http', '$rootScope', 'commonServices', functio
             method: 'GET',
             url: apiUrl + 'init/' + type,
         };
-        var resp = await commonServices.getApiResult(req)
-        return resp.data;
+        return await commonServices.getApiResult(req)
     };
 
     var _getProducts = async function (request) {
@@ -38,8 +36,8 @@ app.factory('ProductServices', ['$http', '$rootScope', 'commonServices', functio
             url: apiUrl + 'list',
             data: JSON.stringify(request)
         };
-        var resp = await commonServices.getApiResult(req)
-        return resp.data;
+        
+        return await commonServices.getApiResult(req);
     };
 
     var _removeProduct = async function (id) {
@@ -48,8 +46,7 @@ app.factory('ProductServices', ['$http', '$rootScope', 'commonServices', functio
             method: 'GET',
             url: apiUrl + 'remove/' + id
         };
-        var resp = await commonServices.getApiResult(req)
-        return resp.data;
+        return await commonServices.getApiResult(req)
     };
 
     var _saveProduct = async function (product) {
@@ -59,8 +56,7 @@ app.factory('ProductServices', ['$http', '$rootScope', 'commonServices', functio
             url: apiUrl + 'save',
             data: JSON.stringify(product)
         };
-        var resp = await commonServices.getApiResult(req)
-        return resp.data;
+        return await commonServices.getApiResult(req)
     };
 
     productsServiceFactory.getProduct = _getProduct;

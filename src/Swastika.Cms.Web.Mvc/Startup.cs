@@ -23,7 +23,7 @@ namespace Swastika.Cms.Web.Mvc
 {
     public partial class Startup
     {
-        public const string CONST_ROUTE_DEFAULT_CULTURE = "en-us";
+        public const string CONST_ROUTE_DEFAULT_CULTURE = "vi-vn";
 
         public Startup(IHostingEnvironment env)
         {
@@ -49,9 +49,9 @@ namespace Swastika.Cms.Web.Mvc
         {
             // Add framework services.
             //ConfigureSignalRServices(services);
-            services.AddDbContext<SiocCmsContext>(options =>
-                options.UseSqlServer(Configuration.GetConnectionString(Swastika.Cms.Lib.SWCmsConstants.CONST_DEFAULT_CONNECTION)));
-
+            services.AddDbContext<SiocCmsContext>();
+            //options =>
+            //options.UseSqlServer(Configuration.GetConnectionString(Swastika.Cms.Lib.SWCmsConstants.CONST_DEFAULT_CONNECTION))
             //When View Page Source That changes only the HTML encoder, leaving the JavaScript and URL encoders with their (ASCII) defaults.
             services.Configure<WebEncoderOptions>(options => options.TextEncoderSettings = new TextEncoderSettings(UnicodeRanges.All));
             services.Configure<FormOptions>(options => options.MultipartBodyLengthLimit = 100000000);

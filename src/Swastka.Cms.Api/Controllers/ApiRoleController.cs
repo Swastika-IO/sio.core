@@ -42,7 +42,7 @@ namespace Swastka.Cms.Api.Controllers
             _logger = logger;
         }
 
-        [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
+        //[Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
         [HttpGet("claims")]
         public object Claims()
         {
@@ -62,7 +62,7 @@ namespace Swastka.Cms.Api.Controllers
             return await RoleViewModel.Repository.GetModelListAsync();
         }
 
-        [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme, Roles = "SuperAdmin")]
+        //[Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme, Roles = "SuperAdmin")]
         [HttpPost]
         [Route("save")]
         public async Task<RepositoryResponse<IdentityRole>> Save(string name)

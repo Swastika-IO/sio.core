@@ -60,15 +60,15 @@ namespace Swastika.Cms.Lib.Models.Cms
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            if (!optionsBuilder.IsConfigured)
-            {
+            //if (!optionsBuilder.IsConfigured)
+            //{
                 // define the database to use
                 string cnn = GlobalConfigurationService.Instance.GetConnectionString();
                 if (!string.IsNullOrEmpty(cnn))
                 {
                     optionsBuilder.UseSqlServer(cnn);
                 }
-            }
+            //}
         }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)

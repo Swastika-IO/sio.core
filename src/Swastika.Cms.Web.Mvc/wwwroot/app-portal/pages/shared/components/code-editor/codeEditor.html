@@ -3,7 +3,7 @@
     <div class="form-group">
         <div class="input-group mb-3">
             <select class="btn btn-outline-secondary custom-select col-sm-4"
-                    ng-model="$ctrl.activedMaster" ng-init="$ctrl.masters = $ctrl.loadTemplates(-1, 'layout', 'Masters')"
+                    ng-model="$ctrl.activedMaster" ng-init="$ctrl.loadTemplates(-1, 'layout', 'Masters')"
                     ng-options="item as item.fileName for item in $ctrl.templates track by item.id"
                     ></select>
             <input class="form-control sel-filename" type="text" id="Layout" name="Layout" value="{{$ctrl.activedMaster.fileName}}" placeholder="_BlankLayout">
@@ -13,7 +13,7 @@
         <h6>Layout</h6>
         <div class="input-group mb-3">
             <select class="btn btn-outline-secondary custom-select col-sm-4"
-                    ng-model="$ctrl.activedTemplate" ng-init="$ctrl.templates = $ctrl.loadTemplates($ctrl.template.id, $ctrl.template.fileName, $ctrl.template.folderType)"
+                    ng-model="$ctrl.activedTemplate" ng-init="$ctrl.loadTemplates($ctrl.template.id, $ctrl.template.fileName, $ctrl.template.folderType)"
                     ng-options="item as item.fileName for item in $ctrl.templates track by item.id"
                     ng-change="$ctrl.updateEditors()"></select>
 

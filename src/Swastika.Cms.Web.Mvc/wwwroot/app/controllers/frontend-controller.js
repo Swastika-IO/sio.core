@@ -3,7 +3,7 @@ app.controller('ModuleDataController', function PhoneListController($scope) {
     var vm = this
     vm.data = null;
 
-    vm.currentLanguage = 'en-us';
+    vm.currentLanguage = 'vi-vn';
 
     vm.settings = {
         "async": true,

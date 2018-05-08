@@ -33,7 +33,7 @@ app.controller('ProductController', function ProductController($scope) {
 
     // Load product from API
     $scope.loadProduct = function (productId, isNew) {
-        $rootScope.isBusy = true;
+        $scope.isBusy = true;
         var url = '';
 
         if (isNew) {
@@ -60,14 +60,14 @@ app.controller('ProductController', function ProductController($scope) {
                 $scope.initEditor();
             }
 
-            $rootScope.isBusy = false;
+            $scope.isBusy = false;
             $scope.$apply();
         });
     };
 
     // Load list of product from API
     $scope.loadProducts = function (pageIndex) {
-        $rootScope.isBusy = true;
+        $scope.isBusy = true;
 
         if (pageIndex != undefined) {
             $scope.request.pageIndex = pageIndex;
@@ -105,7 +105,7 @@ app.controller('ProductController', function ProductController($scope) {
                         })
                     })
 
-                    $rootScope.isBusy = false;
+                    $scope.isBusy = false;
 
                     setTimeout(function () {
                         $('[data-toggle="popover"]').popover({
@@ -159,7 +159,7 @@ app.controller('ProductController', function ProductController($scope) {
 
     // Save product
     $scope.saveProduct = function (product) {
-        $rootScope.isBusy = true;
+        $scope.isBusy = true;
         product.content = $('.editor-content').val();
         var json = (angular.toJson(product));
 
@@ -186,12 +186,12 @@ app.controller('ProductController', function ProductController($scope) {
                 }
 
                 $("html, body").animate({ "scrollTop": "0px" }, 500);
-                $rootScope.isBusy = false;
+                $scope.isBusy = false;
                 $scope.$apply();
             },
             error: function (a, b, c) {
                 console.log(a + " " + b + " " + c);
-                $rootScope.isBusy = false;
+                $scope.isBusy = false;
                 $scope.$apply();
             }
         });

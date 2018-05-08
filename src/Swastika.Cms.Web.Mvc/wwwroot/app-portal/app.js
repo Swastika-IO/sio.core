@@ -28,17 +28,29 @@ app.directive('ngEnter', function () {
             });
         }
     };
+}).directive('imageonload', function () {
+    return {
+        restrict: 'A',
+        link: function (scope, element, attrs) {
+            element.bind('load', function () {
+            });
+            element.bind('error', function () {
+            });
+        }
+    };
 }).filter('utcToLocal', Filter)
-.constant('ngAuthSettings', {
+    .constant('ngAuthSettings', {
         apiServiceBaseUri: '/',
         clientId: 'ngAuthApp',
         facebookAppId: '464285300363325'
-});
+    });
 
-app.run(['$rootScope', '$location', 'commonServices', 'authService', async function ($rootScope, $location, commonServices, authService) {
+app.run(['$rootScope', '$location', 'commonServices', 'authService', function ($rootScope, $location, commonServices, authService) {
     authService.fillAuthData();
-    $rootScope.siteSettings = [];
-    commonServices.fillSettings();
+    commonServices.fillSettings().then(function (response) {
+        $rootScope.settings = response;
+    });
+
     $rootScope.currentContext = $rootScope;
     $rootScope.errors = [];
     $rootScope.message = {

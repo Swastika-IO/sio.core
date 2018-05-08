@@ -5,7 +5,7 @@ app.factory('ArticleServices', ['$http', '$rootScope', 'commonServices', functio
 
     var productsServiceFactory = {};
 
-    var settings = commonServices.getSiteSettings();
+    var settings = commonServices.getSettings();
 
     var _getArticle = async function (id, type) {
         var apiUrl = '/api/' + settings.lang + '/article/';

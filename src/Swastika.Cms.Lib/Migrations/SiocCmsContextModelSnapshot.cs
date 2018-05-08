@@ -421,7 +421,6 @@ namespace Swastika.Cms.Lib.Migrations
                         .HasMaxLength(50);
 
                     b.Property<string>("CreatedBy")
-                        .IsRequired()
                         .HasMaxLength(50);
 
                     b.Property<DateTime>("CreatedDateTime")

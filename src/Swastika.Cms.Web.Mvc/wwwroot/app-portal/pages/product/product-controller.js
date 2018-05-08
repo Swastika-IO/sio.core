@@ -34,9 +34,11 @@ app.controller('ProductController', ['$scope', '$rootScope', '$routeParams', '$t
             if (resp.isSucceed) {
                 $scope.activedProduct = resp.data;
                 $rootScope.initEditor();
+                $scope.$apply();
             }
             else {
                 $rootScope.showErrors(resp.errors);
+                $scope.$apply();
             }
         };
 
@@ -65,9 +67,11 @@ app.controller('ProductController', ['$scope', '$rootScope', '$routeParams', '$t
             if (response.isSucceed) {
                 $scope.activedProduct = response.data;
                 $rootScope.initEditor();
+                $scope.$apply();
             }
             else {
                 $rootScope.showErrors(response.errors);
+                $scope.$apply();
             }
         };
         $scope.loadProducts = async function (pageIndex) {
@@ -107,10 +111,11 @@ app.controller('ProductController', ['$scope', '$rootScope', '$routeParams', '$t
                         }
                     });
                 }, 200);
-                $("html, body").animate({ "scrollTop": "0px" }, 500);
+                $scope.$apply();
             }
             else {
                 $rootScope.showErrors(resp.errors);
+                $scope.$apply();
             }
         };
 
@@ -127,20 +132,18 @@ app.controller('ProductController', ['$scope', '$rootScope', '$routeParams', '$t
         };
 
         $scope.saveProduct = async function (product) {
-            if (!isBusy) {
-
                 product.content = $('.editor-content').val();
                 var resp = await productServices.saveProduct(product);
                 if (resp.isSucceed) {
-                    $scope.activedProduct = resp.data;
-                    $scope.message.content = 'Thành công';
-                    $scope.message.class = 'success';
-                    $("html, body").animate({ "scrollTop": "0px" }, 500);
+                    //$scope.activedProduct = resp.data;
+                    //$scope.message.content = 'Thành công';
+                    //$scope.message.class = 'success';
+                    $location.path('/backend/product/details/' + resp.data.id);
                 }
                 else {
                     $rootScope.showErrors(resp.errors);
+                    $scope.$apply();
                 }
-            }
         };
 
     }]);

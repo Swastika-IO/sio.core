@@ -1,7 +1,6 @@
 ﻿'use strict';
-app.controller('PortalTemplateController', function PortalTemplateController($scope) {
-    var vm = this;
-    vm.currentLanguage = 'vi-vn';
+app.controller('PortalTemplateController', ['$rootScope', '$scope', function PortalTemplateController($rootScope, $scope) {
+    var vm = this;    
     vm.templates = [];
     vm.activedId = -1;
     vm.masters = [];
@@ -33,7 +32,7 @@ app.controller('PortalTemplateController', function PortalTemplateController($sc
         return input;
     };
 
-    vm.loadTemplates = async function (themeId = 0, activedId, activedName, folder) {
+    vm.loadTemplates = async function (activedId, activedName, folder) {
         setTimeout(async function () {
             if (folder) {
                 vm.folder = folder;
@@ -50,10 +49,10 @@ app.controller('PortalTemplateController', function PortalTemplateController($sc
                 "pageIndex": 0,
                 "orderBy": 'fileName',
                 "direction": 0,
-                "key": themeId,
+                "key": $rootScope.settings.themeId,
                 "keyword": vm.folder
             }
-            var url = '/api/' + vm.currentLanguage + '/template/list';//byProduct/' + productId;
+            var url = '/api/' + $rootScope.settings.lang + '/template/list';//byProduct/' + productId;
             vm.settings.url = url;// + '/true';
             vm.settings.data = request;
             var response = await $.ajax(vm.settings);
@@ -115,4 +114,4 @@ app.controller('PortalTemplateController', function PortalTemplateController($sc
             });
         }, 200);
     };
-});
+}]);
