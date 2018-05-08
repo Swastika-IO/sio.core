@@ -228,12 +228,12 @@ namespace Swastika.Cms.Lib.ViewModels.BackEnd
 
         public override SiocCategory ParseModel(SiocCmsContext _context = null, IDbContextTransaction _transaction = null)
         {
-            GenerateSEO(_context, _transaction);
+            GenerateSEO();
 
-            if (ParentNavs.Any(p => p.IsActived))
-            {
-                Level = ParentNavs.Where(p => p.IsActived).Max(n => n.Parent.Level) + 1;
-            }
+            //if (ParentNavs.Any(p => p.IsActived))
+            //{
+                //Level = ParentNavs.Where(p => p.IsActived).Max(n => n.Parent.Level) + 1;
+            //}
             Template = View != null ? string.Format(@"{0}/{1}{2}", View.FolderType, View.FileName, View.Extension) : Template;
             if (Id == 0)
             {
@@ -290,133 +290,127 @@ namespace Swastika.Cms.Lib.ViewModels.BackEnd
 
         public override RepositoryResponse<bool> SaveSubModels(SiocCategory parent, SiocCmsContext _context = null, IDbContextTransaction _transaction = null)
         {
-            bool result = true;
+            var result = new RepositoryResponse<bool> { IsSucceed = true };
             var saveTemplate = View.SaveModel(true, _context, _transaction);
-            if (!saveTemplate.IsSucceed)
+            result.IsSucceed = result.IsSucceed && saveTemplate.IsSucceed;
+            if (saveTemplate.IsSucceed)
             {
-                Exception = saveTemplate.Exception;
-                Errors.AddRange(saveTemplate.Errors);
+                result.Errors.AddRange(saveTemplate.Errors);
+                result.Exception = saveTemplate.Exception;
             }
-            result = result && saveTemplate.IsSucceed;
 
-            if (result)
+            if (result.IsSucceed)
             {
                 foreach (var item in ModuleNavs)
                 {
-                    item.CategoryId = Id;
+                    item.CategoryId = parent.Id;
                     if (item.IsActived)
                     {
                         var saveResult = item.SaveModel(false, _context, _transaction);
-                        result = result && saveResult.IsSucceed;
-                        if (!result)
+                        result.IsSucceed = saveResult.IsSucceed;
+                        if (!result.IsSucceed)
                         {
-                            Exception = saveResult.Exception;
+                            result.Exception = saveResult.Exception;
                             Errors.AddRange(saveResult.Errors);
                         }
                     }
                     else
                     {
                         var saveResult = item.RemoveModel(false, _context, _transaction);
-                        result = result && saveResult.IsSucceed;
-                        if (!result)
+                        result.IsSucceed = saveResult.IsSucceed;
+                        if (!result.IsSucceed)
                         {
-                            Exception = saveResult.Exception;
+                            result.Exception = saveResult.Exception;
                             Errors.AddRange(saveResult.Errors);
                         }
                     }
                 }
             }
 
-            if (result)
+            if (result.IsSucceed)
             {
                 foreach (var item in PositionNavs)
                 {
-                    item.CategoryId = Id;
+                    item.CategoryId = parent.Id;
                     if (item.IsActived)
                     {
                         var saveResult = item.SaveModel(false, _context, _transaction);
-                        result = result && saveResult.IsSucceed;
-                        if (!result)
+                        result.IsSucceed = saveResult.IsSucceed;
+                        if (!result.IsSucceed)
                         {
-                            Exception = saveResult.Exception;
+                            result.Exception = saveResult.Exception;
                             Errors.AddRange(saveResult.Errors);
                         }
                     }
                     else
                     {
                         var saveResult = item.RemoveModel(false, _context, _transaction);
-                        result = result && saveResult.IsSucceed;
-                        if (!result)
+                        result.IsSucceed = saveResult.IsSucceed;
+                        if (!result.IsSucceed)
                         {
-                            Exception = saveResult.Exception;
+                            result.Exception = saveResult.Exception;
                             Errors.AddRange(saveResult.Errors);
                         }
                     }
                 }
             }
 
-            if (result)
+            if (result.IsSucceed)
             {
                 foreach (var item in ParentNavs)
                 {
-                    item.Id = Id;
+                    item.Id = parent.Id;
                     if (item.IsActived)
                     {
                         var saveResult = item.SaveModel(false, _context, _transaction);
-                        result = result && saveResult.IsSucceed;
-                        if (!result)
+                        result.IsSucceed = saveResult.IsSucceed;
+                        if (!result.IsSucceed)
                         {
-                            Exception = saveResult.Exception;
+                            result.Exception = saveResult.Exception;
                             Errors.AddRange(saveResult.Errors);
                         }
                     }
                     else
                     {
                         var saveResult = item.RemoveModel(false, _context, _transaction);
-                        result = result && saveResult.IsSucceed;
-                        if (!result)
+                        result.IsSucceed = saveResult.IsSucceed;
+                        if (!result.IsSucceed)
                         {
-                            Exception = saveResult.Exception;
+                            result.Exception = saveResult.Exception;
                             Errors.AddRange(saveResult.Errors);
                         }
                     }
                 }
             }
 
-            if (result)
+            if (result.IsSucceed)
             {
                 foreach (var item in ChildNavs)
                 {
-                    item.ParentId = Id;
+                    item.ParentId = parent.Id;
                     if (item.IsActived)
                     {
                         var saveResult = item.SaveModel(false, _context, _transaction);
-                        result = result && saveResult.IsSucceed;
-                        if (!result)
+                        result.IsSucceed = saveResult.IsSucceed;
+                        if (!result.IsSucceed)
                         {
-                            Exception = saveResult.Exception;
+                            result.Exception = saveResult.Exception;
                             Errors.AddRange(saveResult.Errors);
                         }
                     }
                     else
                     {
                         var saveResult = item.RemoveModel(false, _context, _transaction);
-                        result = result && saveResult.IsSucceed;
-                        if (!result)
+                        result.IsSucceed = saveResult.IsSucceed;
+                        if (!result.IsSucceed)
                         {
-                            Exception = saveResult.Exception;
+                            result.Exception = saveResult.Exception;
                             Errors.AddRange(saveResult.Errors);
                         }
                     }
                 }
             }
-            return new RepositoryResponse<bool>()
-            {
-                IsSucceed = result,
-                Data = result,
-                Errors = Errors,
-                Exception = Exception
-            };
+            return result;
         }
 
         #endregion Sync
@@ -425,133 +419,127 @@ namespace Swastika.Cms.Lib.ViewModels.BackEnd
 
         public override async Task<RepositoryResponse<bool>> SaveSubModelsAsync(SiocCategory parent, SiocCmsContext _context = null, IDbContextTransaction _transaction = null)
         {
-            bool result = true;
+            var result = new RepositoryResponse<bool> { IsSucceed = true };
             var saveTemplate = await View.SaveModelAsync(true, _context, _transaction);
-            if (!saveTemplate.IsSucceed)
+            result.IsSucceed = result.IsSucceed && saveTemplate.IsSucceed;
+            if (saveTemplate.IsSucceed)
             {
-                Exception = saveTemplate.Exception;
-                Errors.AddRange(saveTemplate.Errors);
+                result.Errors.AddRange(saveTemplate.Errors);
+                result.Exception = saveTemplate.Exception;
             }
-            result = result && saveTemplate.IsSucceed;
 
-            if (result)
+            if (result.IsSucceed)
             {
                 foreach (var item in ModuleNavs)
                 {
-                    item.CategoryId = Id;
+                    item.CategoryId = parent.Id;
                     if (item.IsActived)
                     {
                         var saveResult = await item.SaveModelAsync(false, _context, _transaction);
-                        result = result && saveResult.IsSucceed;
-                        if (!result)
+                        result.IsSucceed = saveResult.IsSucceed;
+                        if (!result.IsSucceed)
                         {
-                            Exception = saveResult.Exception;
+                            result.Exception = saveResult.Exception;
                             Errors.AddRange(saveResult.Errors);
                         }
                     }
                     else
                     {
                         var saveResult = await item.RemoveModelAsync(false, _context, _transaction);
-                        result = result && saveResult.IsSucceed;
-                        if (!result)
+                        result.IsSucceed = saveResult.IsSucceed;
+                        if (!result.IsSucceed)
                         {
-                            Exception = saveResult.Exception;
+                            result.Exception = saveResult.Exception;
                             Errors.AddRange(saveResult.Errors);
                         }
                     }
                 }
             }
 
-            if (result)
+            if (result.IsSucceed)
             {
                 foreach (var item in PositionNavs)
                 {
-                    item.CategoryId = Id;
+                    item.CategoryId = parent.Id;
                     if (item.IsActived)
                     {
                         var saveResult = await item.SaveModelAsync(false, _context, _transaction);
-                        result = result && saveResult.IsSucceed;
-                        if (!result)
+                        result.IsSucceed = saveResult.IsSucceed;
+                        if (!result.IsSucceed)
                         {
-                            Exception = saveResult.Exception;
+                            result.Exception = saveResult.Exception;
                             Errors.AddRange(saveResult.Errors);
                         }
                     }
                     else
                     {
                         var saveResult = await item.RemoveModelAsync(false, _context, _transaction);
-                        result = result && saveResult.IsSucceed;
-                        if (!result)
+                        result.IsSucceed = saveResult.IsSucceed;
+                        if (!result.IsSucceed)
                         {
-                            Exception = saveResult.Exception;
+                            result.Exception = saveResult.Exception;
                             Errors.AddRange(saveResult.Errors);
                         }
                     }
                 }
             }
 
-            if (result)
+            if (result.IsSucceed)
             {
                 foreach (var item in ParentNavs)
                 {
-                    item.Id = Id;
+                    item.Id = parent.Id;
                     if (item.IsActived)
                     {
                         var saveResult = await item.SaveModelAsync(false, _context, _transaction);
-                        result = result && saveResult.IsSucceed;
-                        if (!result)
+                        result.IsSucceed = saveResult.IsSucceed;
+                        if (!result.IsSucceed)
                         {
-                            Exception = saveResult.Exception;
+                            result.Exception = saveResult.Exception;
                             Errors.AddRange(saveResult.Errors);
                         }
                     }
                     else
                     {
                         var saveResult = await item.RemoveModelAsync(false, _context, _transaction);
-                        result = result && saveResult.IsSucceed;
-                        if (!result)
+                        result.IsSucceed = saveResult.IsSucceed;
+                        if (!result.IsSucceed)
                         {
-                            Exception = saveResult.Exception;
+                            result.Exception = saveResult.Exception;
                             Errors.AddRange(saveResult.Errors);
                         }
                     }
                 }
             }
 
-            if (result)
+            if (result.IsSucceed)
             {
                 foreach (var item in ChildNavs)
                 {
-                    item.ParentId = Id;
+                    item.ParentId = parent.Id;
                     if (item.IsActived)
                     {
                         var saveResult = await item.SaveModelAsync(false, _context, _transaction);
-                        result = result && saveResult.IsSucceed;
-                        if (!result)
+                        result.IsSucceed = saveResult.IsSucceed;
+                        if (!result.IsSucceed)
                         {
-                            Exception = saveResult.Exception;
+                            result.Exception = saveResult.Exception;
                             Errors.AddRange(saveResult.Errors);
                         }
                     }
                     else
                     {
                         var saveResult = await item.RemoveModelAsync(false, _context, _transaction);
-                        result = result && saveResult.IsSucceed;
-                        if (!result)
+                        result.IsSucceed = saveResult.IsSucceed;
+                        if (!result.IsSucceed)
                         {
-                            Exception = saveResult.Exception;
+                            result.Exception = saveResult.Exception;
                             Errors.AddRange(saveResult.Errors);
                         }
                     }
                 }
             }
-            return new RepositoryResponse<bool>()
-            {
-                IsSucceed = result,
-                Data = result,
-                Errors = Errors,
-                Exception = Exception
-            };
+            return result;
         }
 
         #endregion Async
@@ -560,7 +548,7 @@ namespace Swastika.Cms.Lib.ViewModels.BackEnd
 
         #region Expands
 
-        private void GenerateSEO(SiocCmsContext _context = null, IDbContextTransaction _transaction = null)
+        private void GenerateSEO()
         {
             if (string.IsNullOrEmpty(this.SeoName))
             {
@@ -568,7 +556,7 @@ namespace Swastika.Cms.Lib.ViewModels.BackEnd
             }
             int i = 1;
             string name = SeoName;
-            while (InfoCategoryViewModel.Repository.CheckIsExists(a => a.SeoName == name, _context, _transaction))
+            while (Repository.CheckIsExists(a => a.SeoName == name && a.Specificulture == Specificulture && a.Id != Id))
             {
                 name = SeoName + "_" + i;
                 i++;

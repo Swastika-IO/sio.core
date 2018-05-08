@@ -48,7 +48,7 @@ app.controller('ProductController', function ProductController($scope) {
         // Ajax setting
         $scope.settings.method = "GET";
         $scope.settings.url = url;// + '/true';
-        $scope.settings.data = $scope.request;
+        $scope.settings.data = JSON.stringify($scope.request);
 
         // Ajax call
         $.ajax($scope.settings).done(function (response) {
@@ -66,69 +66,54 @@ app.controller('ProductController', function ProductController($scope) {
     };
 
     // Load list of product from API
-    $scope.loadProducts = function (pageIndex) {
-        $scope.isBusy = true;
-
+    $scope.loadProducts = function (pageIndex) {       
         if (pageIndex != undefined) {
             $scope.request.pageIndex = pageIndex;
         }
-
         if ($scope.request.fromDate != null) {
-            var d = new Date($scope.request.fromDate);
-            $scope.request.fromDate = d.toISOString();
+            $scope.request.fromDate = $filter('date')($scope.request.fromDate, "yyyy-MM-dd");
         }
-
         if ($scope.request.toDate != null) {
-            $scope.request.toDate = $scope.request.toDate.toISOString();
+            $scope.request.toDate = $filter('date')($scope.request.toDate, "yyyy-MM-dd");
         }
-
-        // Set ajax request URL for get all products
         var url = '/api/' + $scope.currentLanguage + '/product/list';//byProduct/' + productId;
+        $scope.settings.url = url;// + '/true';
+        $scope.settings.data = JSON.stringify($scope.request);
+        $.ajax($scope.settings).done(function (response) {
+            //$scope.loadArticle();
+            if (response.isSucceed) {
+                // If ajax call is succeed
+                ($scope.data = response.data);
+                $("html, body").animate({ "scrollTop": "0px" }, 500);
 
-        // Ajax call
-        $.ajax({
-            method: 'POST',
-            url: url,
-            data: $scope.request,
-            success: function (response) {
-                //$scope.loadArticle();
-                if (response.isSucceed) {
-                    // If ajax call is succeed
-                    ($scope.data = response.data);
-                    $("html, body").animate({ "scrollTop": "0px" }, 500);
-
-                    $.each($scope.data.items, function (i, product) {
-                        $.each($scope.activedProducts, function (i, e) {
-                            if (e.productId == product.id) {
-                                product.isHidden = true;
-                            }
-                        })
+                $.each($scope.data.items, function (i, product) {
+                    $.each($scope.activedProducts, function (i, e) {
+                        if (e.productId == product.id) {
+                            product.isHidden = true;
+                        }
                     })
+                })
 
-                    $scope.isBusy = false;
+                $scope.isBusy = false;
 
-                    setTimeout(function () {
-                        $('[data-toggle="popover"]').popover({
-                            html: true,
-                            content: function () {
-                                var content = $(this).next('.popover-body');
-                                return $(content).html();
-                            },
-                            title: function () {
-                                var title = $(this).attr("data-popover-content");
-                                return $(title).children(".popover-heading").html();
-                            }
-                        });
-                    }, 200);
+                setTimeout(function () {
+                    $('[data-toggle="popover"]').popover({
+                        html: true,
+                        content: function () {
+                            var content = $(this).next('.popover-body');
+                            return $(content).html();
+                        },
+                        title: function () {
+                            var title = $(this).attr("data-popover-content");
+                            return $(title).children(".popover-heading").html();
+                        }
+                    });
+                }, 200);
 
-                    $scope.$apply();
-                }
-                else {
-                    alert('failed! ' + data.errors);
-                }
-            },
-            error: function (a, b, c) {
-                console.log(a + " " + b + " " + c);
+                $scope.$apply();
+            }
+            else {
+                alert('failed! ' + data.errors);
             }
         });
     };

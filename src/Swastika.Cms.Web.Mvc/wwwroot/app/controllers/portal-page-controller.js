@@ -10,7 +10,7 @@ app.controller('PageController', function PhoneListController($filter, $scope) {
     $scope.data = [];
 
     $scope.loadPages = function (pageIndex) {
-        $rootScope.isBusy = true;
+        $scope.isBusy = true;
         if (pageIndex != undefined) {
             $scope.request.pageIndex = pageIndex;
         }
@@ -22,7 +22,7 @@ app.controller('PageController', function PhoneListController($filter, $scope) {
         }
         var url = '/api/' + $scope.currentLanguage + '/page/list';//byProduct/' + productId;
         $scope.settings.url = url;// + '/true';
-        $scope.settings.data = $scope.request;
+        $scope.settings.data = JSON.stringify($scope.request);
         $.ajax($scope.settings).done(function (response) {
             $scope.data = response.data;
 
@@ -33,7 +33,7 @@ app.controller('PageController', function PhoneListController($filter, $scope) {
                     }
                 })
             })
-            $rootScope.isBusy = false;
+            $scope.isBusy = false;
             $scope.$apply();
         });
     };
