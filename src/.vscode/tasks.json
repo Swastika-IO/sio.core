@@ -1,0 +1,15 @@
+{
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "label": "build",
+            "command": "dotnet",
+            "type": "process",
+            "args": [
+                "build",
+                "${workspaceFolder}/Swastika.Cms.Web.Mvc/Swastika.Cms.Web.Mvc.csproj"
+            ],
+            "problemMatcher": "$msCompile"
+        }
+    ]
+}
