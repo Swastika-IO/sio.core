@@ -79,8 +79,9 @@ app.controller('ProductController', function ProductController($scope) {
         var url = '/api/' + $scope.currentLanguage + '/product/list';//byProduct/' + productId;
         $scope.settings.url = url;// + '/true';
         $scope.settings.data = JSON.stringify($scope.request);
+        $scope.isBusy = true;
         $.ajax($scope.settings).done(function (response) {
-            //$scope.loadArticle();
+            
             if (response.isSucceed) {
                 // If ajax call is succeed
                 ($scope.data = response.data);

@@ -230,10 +230,15 @@ namespace Swastika.Cms.Lib.ViewModels.BackEnd
         {
             GenerateSEO();
 
-            //if (ParentNavs.Any(p => p.IsActived))
-            //{
-                //Level = ParentNavs.Where(p => p.IsActived).Max(n => n.Parent.Level) + 1;
-            //}
+            if (ParentNavs.Any(p => p.IsActived))
+            {
+                Level = ParentNavs.Where(p => p.IsActived).Max(n => n.Category.Level) + 1;
+            }
+            else
+            {
+                Level = 0;
+            }
+
             Template = View != null ? string.Format(@"{0}/{1}{2}", View.FolderType, View.FileName, View.Extension) : Template;
             if (Id == 0)
             {
@@ -640,10 +645,11 @@ namespace Swastika.Cms.Lib.ViewModels.BackEnd
             var result = query.ToList();
             result.ForEach(nav =>
             {
-                var currentNav = context.SiocCategoryCategory.FirstOrDefault(
-                        m => m.ParentId == nav.Id && m.Id == Id && m.Specificulture == Specificulture);
-                nav.Priority = currentNav?.Priority;
-                nav.IsActived = currentNav != null;
+                //var currentNav = context.SiocCategoryCategory.FirstOrDefaault(
+                //        m => m.ParentId == nav.Id && m.Id == Id && m.Specificulture == Specificulture);
+                //nav.Priority = currentNav?.Priority;
+                nav.IsActived = context.SiocCategoryCategory.Any(
+                        m => m.ParentId == nav.ParentId && m.Id == Id && m.Specificulture == Specificulture);//currentNav != null;
             });
             return result.OrderBy(m => m.Priority).ToList();
         }

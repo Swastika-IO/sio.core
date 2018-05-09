@@ -115,7 +115,7 @@
                 <td>
                     <div class="btn-group btn-group-sm btn-group-sm" role="group" aria-label="Actions">
 
-                        <a class="btn btn-light" data-toggle="collapse" href="#collapse-page{{item.id}}-childs" role="button" aria-expanded="false" aria-controls="collapse-page{{item.id}}-childs">
+                        <a ng-if="item.childs.length>0" class="btn btn-light" data-toggle="collapse" href="#collapse-page{{item.id}}-childs" role="button" aria-expanded="false" aria-controls="collapse-page{{item.id}}-childs">
                             <span class="fas fa-sitemap text-success"></span>
                         </a>
                         <a href="/{{currentLanguage}}/portal/pages/edit/{{item.id}}" class="btn btn-light"> <span class="fas fa-pencil-alt text-primary"></span></a>
@@ -137,7 +137,7 @@
             <tr>
                 <td colspan="7" style="padding:0">
                     <div class="collapse" id="collapse-page{{item.id}}-childs" data-parent="#list-page">
-                        <table class="table table-sm table-hover mb-0" cellspacing="0" style="background-color: #eee;">
+                        <table class="table table-sm table-hover mb-0" cellspacing="0" style="background-color: #eee;" ng-if="item.childs.length>0">
                             <thead style="font-size:small; font-weight:normal">
                                 <tr>
                                     <th scope="col" width="3%">
@@ -164,7 +164,7 @@
                             </thead>
 
                             <tbody class="sortable">
-                                <tr class="sortable-item">
+                                <tr class="sortable-item" ng-repeat="c in item.childs track by $index">
                                     <td style="cursor:move;" class="drag-header">
                                         <span class="fas fa-sort" style="font-size:small"></span>
                                     </td>
@@ -172,86 +172,26 @@
                                         <input type="text" value="0" class="item-priority form-control form-control-sm d-inline" style="width:40px;">
                                     </td>
                                     <td>
-                                        AJ-32501
+                                        <span ng-bind="c.title" />
                                     </td>
                                     <td>
-                                        Gạch Lót AJ-32501
+                                        <span ng-bind="c.excerpt" />
                                     </td>
                                     <td>
                                         <small>
-                                            16.04.2018 - 04:09:42 PM
+                                            {{item.createdDateTime | utcToLocal:'dd.MM.yy - hh:mm a'}}
                                         </small>
                                     </td>
-                                    <td></td>
+                                    <td>
+                                        {{item.createdBy}}
+                                    </td>
 
                                     <td>
                                         <div class="btn-group btn-group-sm btn-group-sm" role="group" aria-label="Actions">
                                             <a href="/vi-vn/portal/product/edit/807fa8dd-b7ff-4011-a0ec-ba24ee1eec0a" class="btn btn-light"> <span class="fas fa-pencil-alt text-primary"></span></a>
                                             <a href="http://localhost:58511/vi-vn/product/gach-lot-aj32501_1" target="_blank" class="btn btn-light"><span class="fas fa-eye text-info"></span></a>
 
-                                            <button type="button" class="btn btn-light del-popover" ng-click="removeProduct(item.id)">
-                                                <span class="fas fa-times text-danger"></span>
-                                            </button>
-                                        </div>
-                                    </td>
-                                </tr>
-                                <tr class="sortable-item">
-                                    <td style="cursor:move;" class="drag-header">
-                                        <span class="fas fa-sort" style="font-size:small"></span>
-                                    </td>
-                                    <td>
-                                        <input type="text" value="0" class="item-priority form-control form-control-sm d-inline" style="width:40px;">
-                                    </td>
-                                    <td>
-                                        AJ-32501
-                                    </td>
-                                    <td>
-                                        Gạch Lót AJ-32501
-                                    </td>
-                                    <td>
-                                        <small>
-                                            16.04.2018 - 04:09:42 PM
-                                        </small>
-                                    </td>
-                                    <td></td>
-
-                                    <td>
-                                        <div class="btn-group btn-group-sm btn-group-sm" role="group" aria-label="Actions">
-                                            <a href="/vi-vn/portal/product/edit/807fa8dd-b7ff-4011-a0ec-ba24ee1eec0a" class="btn btn-light"> <span class="fas fa-pencil-alt text-primary"></span></a>
-                                            <a href="http://localhost:58511/vi-vn/product/gach-lot-aj32501_1" target="_blank" class="btn btn-light"><span class="fas fa-eye text-info"></span></a>
-
-                                            <button type="button" class="btn btn-light del-popover" ng-click="removeProduct(item.id)">
-                                                <span class="fas fa-times text-danger"></span>
-                                            </button>
-                                        </div>
-                                    </td>
-                                </tr>
-                                <tr class="sortable-item">
-                                    <td style="cursor:move;" class="drag-header">
-                                        <span class="fas fa-sort" style="font-size:small"></span>
-                                    </td>
-                                    <td>
-                                        <input type="text" value="0" class="item-priority form-control form-control-sm d-inline" style="width:40px;">
-                                    </td>
-                                    <td>
-                                        AJ-32501
-                                    </td>
-                                    <td>
-                                        Gạch Lót AJ-32501
-                                    </td>
-                                    <td>
-                                        <small>
-                                            16.04.2018 - 04:09:42 PM
-                                        </small>
-                                    </td>
-                                    <td></td>
-
-                                    <td>
-                                        <div class="btn-group btn-group-sm btn-group-sm" role="group" aria-label="Actions">
-                                            <a href="/vi-vn/portal/product/edit/807fa8dd-b7ff-4011-a0ec-ba24ee1eec0a" class="btn btn-light"> <span class="fas fa-pencil-alt text-primary"></span></a>
-                                            <a href="http://localhost:58511/vi-vn/product/gach-lot-aj32501_1" target="_blank" class="btn btn-light"><span class="fas fa-eye text-info"></span></a>
-
-                                            <button type="button" class="btn btn-light del-popover" ng-click="removeProduct(item.id)">
+                                            <button type="button" class="btn btn-light del-popover" ng-click="removePage(item.id)">
                                                 <span class="fas fa-times text-danger"></span>
                                             </button>
                                         </div>
