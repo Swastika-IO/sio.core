@@ -18,7 +18,7 @@
                 <div class="btn-group btn-group-sm mr-2" role="group" aria-label="First group">
                     <a asp-area="Portal" asp-controller="Culture" asp-action="Create" class="btn btn-secondary"><i class="fas fa-plus"></i></a>
                     @*<a asp-area="Portal" asp-controller="Pages" asp-action="Index" class="btn btn-secondary"><i class="fas fa-bars"></i></a>
-        <a asp-area="Portal" asp-controller="Pages" asp-action="Draft" class="btn btn-secondary"><i class="fas fa-clipboard"></i></a>*@
+                        <a asp-area="Portal" asp-controller="Pages" asp-action="Draft" class="btn btn-secondary"><i class="fas fa-clipboard"></i></a>*@
                 </div>
                 <div class="btn-group btn-group-sm mr-2" role="group" aria-label="Button group with nested dropdown">
                     <div class="btn-group" role="group">
@@ -117,15 +117,15 @@
                     </td>
 
                     <td>
-                        <div class="btn-group btn-group-sm btn-group-sm" role="group" aria-label="Actions">
+                        <div class="btn-group btn-group-sm btn-group-sm float-right" role="group" aria-label="Actions">
                             <a asp-action="Edit" asp-route-id="@item.Id" class="btn btn-sm btn-light"> <span class="fas fa-pencil-alt text-primary"></span></a>
                             @*<a asp-action="Details" asp-route-id="@item.Id" class="btn btn-sm btn-info"> <span class="fas fa-eye"></span> </a>*@
                             @*<a asp-action="Delete" asp-route-id="@item.Id" class="btn btn-sm btn-light" data-popout="true" data-toggle="confirmation" data-singleton="true"> <span class="fas fa-times text-danger"></span> </a>*@
 
-                           <button type="button" class="btn btn-light del-popover"
-                                            data-toggle="popover" data-html="true">
-                                        <span class="fas fa-times text-danger"></span>
-                                    </button>
+                            <button type="button" class="btn btn-light del-popover"
+                                    data-toggle="popover" data-html="true">
+                                <span class="fas fa-times text-danger"></span>
+                            </button>
                             <div class="popover-body d-none">
                                 <a asp-action="Delete" asp-route-id="@item.Id" class="btn btn btn-danger">Yes, I want to delete!</a>
                             </div>

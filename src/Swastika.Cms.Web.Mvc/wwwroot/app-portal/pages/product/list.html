@@ -1,5 +1,5 @@
 ﻿<section class="content container-fluid">
-    <filter-list request="request" callback="loadProducts(pageIndex)"/>
+    <filter-list request="request" callback="loadProducts(pageIndex)" />
 
     <table class="table table-sm table-hover" cellspacing="0">
         <thead class="thead-light">
@@ -63,7 +63,7 @@
                 </td>
 
                 <td>
-                    <div class="btn-group btn-group-sm btn-group-sm" role="group" aria-label="Actions">
+                    <div class="btn-group btn-group-sm btn-group-sm float-right" role="group" aria-label="Actions">
                         <a href="/admin/product/details/{{item.id}}" class="btn btn-light">
                             <span class="fas fa-pencil-alt text-primary"></span>
                         </a>
