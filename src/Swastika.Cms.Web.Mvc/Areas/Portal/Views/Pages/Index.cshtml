@@ -78,12 +78,12 @@
                     By
                 </th>
 
-                <th scope="col" width="5%">Actions</th>
+                <th scope="col" width="5%" class="text-right">Actions</th>
             </tr>
         </thead>
 
         <tbody class="sortable-item" ng-repeat="item in data.items track by $index">
-            <tr class="" sort-model="category" sort-model-id="{{item.id}}">
+            <tr class="" sort-model="category" sort-model-id="{{item.id}}" data-toggle="collapse" href="#collapse-page{{item.id}}-childs" role="button" aria-expanded="false" aria-controls="collapse-page{{item.id}}-childs">
 
                 <td style="cursor:move;" class="drag-header">
                     <span class="fas fa-sort"></span>
@@ -113,7 +113,7 @@
                 </td>
 
                 <td>
-                    <div class="btn-group btn-group-sm btn-group-sm" role="group" aria-label="Actions">
+                    <div class="btn-group btn-group-sm btn-group-sm float-right" role="group" aria-label="Actions">
 
                         <a ng-if="item.childs.length>0" class="btn btn-light" data-toggle="collapse" href="#collapse-page{{item.id}}-childs" role="button" aria-expanded="false" aria-controls="collapse-page{{item.id}}-childs">
                             <span class="fas fa-sitemap text-success"></span>
@@ -159,7 +159,7 @@
                                         Created By
                                     </th>
 
-                                    <th scope="col" width="5%">Actions</th>
+                                    <th scope="col" width="5%" class="text-right">Actions</th>
                                 </tr>
                             </thead>
 
@@ -187,7 +187,7 @@
                                     </td>
 
                                     <td>
-                                        <div class="btn-group btn-group-sm btn-group-sm" role="group" aria-label="Actions">
+                                        <div class="btn-group btn-group-sm btn-group-sm float-right" role="group" aria-label="Actions">
                                             <a href="/vi-vn/portal/product/edit/807fa8dd-b7ff-4011-a0ec-ba24ee1eec0a" class="btn btn-light"> <span class="fas fa-pencil-alt text-primary"></span></a>
                                             <a href="http://localhost:58511/vi-vn/product/gach-lot-aj32501_1" target="_blank" class="btn btn-light"><span class="fas fa-eye text-info"></span></a>
 
