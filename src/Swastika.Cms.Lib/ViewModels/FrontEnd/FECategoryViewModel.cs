@@ -105,6 +105,9 @@ namespace Swastika.Cms.Lib.ViewModels.FrontEnd
 
         #region Views
 
+        [JsonProperty("details")]
+        public string DetailsUrl { get; set; }
+
         [JsonProperty("domain")]
         public string Domain { get { return GlobalConfigurationService.Instance.GetLocalString("Domain", Specificulture, "/"); } }
 

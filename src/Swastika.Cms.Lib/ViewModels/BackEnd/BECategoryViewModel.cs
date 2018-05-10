@@ -109,6 +109,9 @@ namespace Swastika.Cms.Lib.ViewModels.BackEnd
 
         #region Views
 
+        [JsonProperty("details")]
+        public string DetailsUrl { get; set; }
+
         [JsonProperty("moduleNavs")]
         public List<CategoryModuleViewModel> ModuleNavs { get; set; } // Parent to Modules
 
@@ -230,15 +233,13 @@ namespace Swastika.Cms.Lib.ViewModels.BackEnd
         {
             GenerateSEO();
 
-            if (ParentNavs.Any(p => p.IsActived))
-            {
-                Level = ParentNavs.Where(p => p.IsActived).Max(n => n.Category.Level) + 1;
-            }
-            else
-            {
-                Level = 0;
-            }
+            var navParent = ParentNavs.FirstOrDefault(p => p.IsActived);
 
+            if (navParent!=null)
+            {
+                Level = InfoCategoryViewModel.Repository.GetSingleModel(c => c.Id == navParent.Id, _context, _transaction).Data.Level + 1;
+            }
+            
             Template = View != null ? string.Format(@"{0}/{1}{2}", View.FolderType, View.FileName, View.Extension) : Template;
             if (Id == 0)
             {
@@ -632,14 +633,13 @@ namespace Swastika.Cms.Lib.ViewModels.BackEnd
                 .Include(cp => cp.SiocCategoryCategorySiocCategory)
                 .Where(Category => Category.Specificulture == Specificulture && Category.Id != Id)
                 .Select(Category =>
-                    new NavCategoryCategoryViewModel(
-                      new SiocCategoryCategory()
-                      {
-                          Id = Id,
-                          ParentId = Category.Id,
-                          Specificulture = Specificulture,
-                          Description = Category.Title,
-                      }, context, transaction)
+                    new NavCategoryCategoryViewModel()
+                    {
+                        Id = Id,
+                        ParentId = Category.Id,
+                        Specificulture = Specificulture,
+                        Description = Category.Title,
+                    } 
                 );
 
             var result = query.ToList();

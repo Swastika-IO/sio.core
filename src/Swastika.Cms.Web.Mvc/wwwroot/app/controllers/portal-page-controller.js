@@ -20,7 +20,7 @@ app.controller('PageController', function PhoneListController($filter, $scope) {
         if ($scope.request.toDate != null) {
             $scope.request.toDate = $filter('date')($scope.request.toDate, "yyyy-MM-dd");
         }
-        var url = '/api/' + $scope.currentLanguage + '/page/list';//byProduct/' + productId;
+        var url = '/api/' + $scope.currentLanguage + '/page/list/0';//byProduct/' + productId;
         $scope.settings.url = url;// + '/true';
         $scope.settings.data = JSON.stringify($scope.request);
         $.ajax($scope.settings).done(function (response) {

@@ -4,6 +4,7 @@
 
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Data.OData.Query;
+using Newtonsoft.Json.Linq;
 using Swastika.Api.Controllers;
 using Swastika.Cms.Lib;
 using Swastika.Cms.Lib.Models.Cms;
@@ -58,6 +59,56 @@ namespace Swastka.IO.Cms.Api.Controllers
                 {
                     IsSucceed = false
                 };
+            }
+        }
+
+        [HttpGet]
+        [Route("details/{viewType}/{id}")]
+        [Route("details/{viewType}")]
+        public async Task<JObject> Details(string viewType, int? id = null)
+        {
+            switch (viewType)
+            {
+                case "be":
+                    if (id.HasValue)
+                    {
+                        var beResult = await BECategoryViewModel.Repository.GetSingleModelAsync(model => model.Id == id.Value && model.Specificulture == _lang).ConfigureAwait(false);
+                        if (beResult.IsSucceed)
+                        {
+                            beResult.Data.DetailsUrl = SwCmsHelper.GetRouterUrl("Page", new { beResult.Data.SeoName }, Request, Url);
+                        }
+                        return JObject.FromObject(beResult);
+                    }
+                    else
+                    {
+                        var model = new SiocCategory();
+                        RepositoryResponse<BECategoryViewModel> result = new RepositoryResponse<BECategoryViewModel>()
+                        {
+                            IsSucceed = true,
+                            Data = new BECategoryViewModel(model) { Specificulture = _lang, Status = SWStatus.Preview }
+                        };
+                        return JObject.FromObject(result);
+                    }
+                default:
+                    if (id.HasValue)
+                    {
+                        var beResult = await FECategoryViewModel.Repository.GetSingleModelAsync(model => model.Id == id.Value && model.Specificulture == _lang).ConfigureAwait(false);
+                        if (beResult.IsSucceed)
+                        {
+                            beResult.Data.DetailsUrl = SwCmsHelper.GetRouterUrl("Page", new { beResult.Data.SeoName }, Request, Url);
+                        }
+                        return JObject.FromObject(beResult);
+                    }
+                    else
+                    {
+                        var model = new SiocProduct();
+                        RepositoryResponse<FEProductViewModel> result = new RepositoryResponse<FEProductViewModel>()
+                        {
+                            IsSucceed = true,
+                            Data = new FEProductViewModel(model) { Specificulture = _lang, Status = SWStatus.Preview }
+                        };
+                        return JObject.FromObject(result);
+                    }
             }
         }
 
@@ -143,12 +194,20 @@ namespace Swastka.IO.Cms.Api.Controllers
         {
             if (fields != null)
             {
+                var result = new RepositoryResponse<bool>() { IsSucceed = true };
                 foreach (var property in fields)
                 {
-                    var result = await InfoCategoryViewModel.Repository.UpdateFieldsAsync(c => c.Id == id && c.Specificulture == _lang, fields).ConfigureAwait(false);
-
-                    return result;
+                    if (result.IsSucceed)
+                    {
+                        result = await InfoCategoryViewModel.Repository.UpdateFieldsAsync(c => c.Id == id && c.Specificulture == _lang, fields).ConfigureAwait(false);
+                    }
+                    else
+                    {
+                        break;
+                    }
+                    
                 }
+                return result;
             }
             return new RepositoryResponse<bool>();
         }
@@ -156,12 +215,14 @@ namespace Swastka.IO.Cms.Api.Controllers
         // GET api/category
         [HttpPost, HttpOptions]
         [Route("list")]
-        public async Task<RepositoryResponse<PaginationModel<InfoCategoryViewModel>>> GetList([FromBody] RequestPaging request)
+        [Route("list/{level}")]
+        public async Task<RepositoryResponse<PaginationModel<InfoCategoryViewModel>>> GetList([FromBody] RequestPaging request, int? level = 0)
         {
             string domain = string.Format("{0}://{1}", Request.Scheme, Request.Host);
 
             Expression<Func<SiocCategory, bool>> predicate = model =>
                 model.Specificulture == _lang
+                && model.Level == level
                 && (string.IsNullOrWhiteSpace(request.Keyword)
                     || (model.Title.Contains(request.Keyword)
                     || model.Excerpt.Contains(request.Keyword)))

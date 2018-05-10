@@ -38,8 +38,9 @@ namespace Swastika.Cms.Lib.ViewModels.Navigation
         public string Description { get; set; }
 
         #region Views
-
+        [JsonProperty("category")]
         public InfoCategoryViewModel Category { get; set; }
+        [JsonProperty("parent")]
         public InfoCategoryViewModel Parent { get; set; }
 
         #endregion Views
@@ -48,19 +49,19 @@ namespace Swastika.Cms.Lib.ViewModels.Navigation
 
         public override void ExpandView(SiocCmsContext _context = null, IDbContextTransaction _transaction = null)
         {
-            var getCategory = InfoCategoryViewModel.Repository.GetSingleModel(p => p.Id == Id && p.Specificulture == Specificulture
+            var getCategory = InfoCategoryViewModel.Repository.GetModelListBy(p => p.Id == Id && p.Specificulture == Specificulture
                 , _context: _context, _transaction: _transaction
             );
-            if (getCategory.IsSucceed)
+            if (getCategory.IsSucceed && getCategory.Data.Count>0)
             {
-                Category = getCategory.Data;
+                Category = getCategory.Data[0];
             }
-            var getParent = InfoCategoryViewModel.Repository.GetSingleModel(p => p.Id == ParentId && p.Specificulture == Specificulture
+            var getParent = InfoCategoryViewModel.Repository.GetModelListBy(p => p.Id == ParentId && p.Specificulture == Specificulture
                 , _context: _context, _transaction: _transaction
             );
-            if (getParent.IsSucceed)
+            if (getParent.IsSucceed && getCategory.Data.Count > 0)
             {
-                Parent = getCategory.Data;
+                Parent = getCategory.Data[0];
             }
         }
 
