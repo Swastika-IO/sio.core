@@ -1,5 +1,5 @@
 ﻿'use strict';
-app.controller('PortalTemplateController', ['$rootScope', '$scope', function PortalTemplateController($rootScope, $scope) {
+app.controller('TemplateController', ['$rootScope', '$scope', function TemplateController($rootScope, $scope) {
     var vm = this;    
     vm.templates = [];
     vm.activedId = -1;
@@ -33,13 +33,13 @@ app.controller('PortalTemplateController', ['$rootScope', '$scope', function Por
     };
 
     vm.loadTemplates = async function (activedId, activedName, folder) {
-        setTimeout(async function () {
+        setTimeout(function () {
             if (folder) {
                 vm.folder = folder;
                 vm.activedId = activedId;
                 vm.activedName = activedName;
             }
-            else if (vm.template != null) {
+            else if (vm.template) {
                 vm.folder = vm.template.folderType;
                 vm.activedId = vm.template.id;
                 vm.activedName = vm.template.fileName;
@@ -52,12 +52,14 @@ app.controller('PortalTemplateController', ['$rootScope', '$scope', function Por
                 "key": $rootScope.settings.themeId,
                 "keyword": vm.folder
             }
-            var url = '/api/' + $rootScope.settings.lang + '/template/list';//byProduct/' + productId;
-            vm.settings.url = url;// + '/true';
+            var url = '/api/' + $rootScope.settings.lang + '/template/list';
+            vm.settings.url = url;
             vm.settings.data = request;
-            var response = await $.ajax(vm.settings);
-            var t = await vm.initTemplate(response, vm.activedId, vm.activedName);
-        }, 300)
+            console.log(request);
+            $.ajax(vm.settings).then(function (response) { 
+                vm.initTemplate(response, vm.activedId, vm.activedName);
+            });
+        }, 2000)
     };
     vm.initTemplate = function (response, activedId, activedName) {
         const ph = {};

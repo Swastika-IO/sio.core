@@ -57,11 +57,11 @@ namespace Swastka.Cms.Api.Controllers
                     }
                     else
                     {
-                        var model = new SiocProduct();
+                        var model = new SiocProduct() { Specificulture = _lang, Status = (int)SWStatus.Preview };
                         RepositoryResponse<BEProductViewModel> result = new RepositoryResponse<BEProductViewModel>()
                         {
                             IsSucceed = true,
-                            Data = new BEProductViewModel(model) { Specificulture = _lang, Status = SWStatus.Preview }
+                            Data = new BEProductViewModel(model)
                         };
                         return JObject.FromObject(result);
                     }
@@ -271,6 +271,10 @@ namespace Swastka.Cms.Api.Controllers
             if (product != null)
             {
                 var result = await product.SaveModelAsync(true).ConfigureAwait(false);
+                if (result.IsSucceed)
+                {
+                    result.Data.DetailsUrl = SwCmsHelper.GetRouterUrl("Product", new { seoName = product.SeoName }, Request, Url);
+                }
                 return result;
             }
             return new RepositoryResponse<BEProductViewModel>();

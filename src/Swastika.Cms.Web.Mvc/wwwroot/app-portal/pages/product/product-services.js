@@ -11,7 +11,7 @@ app.factory('ProductServices', ['$http', '$rootScope', 'commonServices', functio
         var apiUrl = '/api/' + settings.lang + '/product/';
         var url = apiUrl + 'details/' + type;
         if (id) {
-            url += + '/' + id;
+            url += '/' + id;
         }
         var req = {
             method: 'GET',
@@ -44,7 +44,7 @@ app.factory('ProductServices', ['$http', '$rootScope', 'commonServices', functio
         var apiUrl = '/api/' + settings.lang + '/product/';
         var req = {
             method: 'GET',
-            url: apiUrl + 'remove/' + id
+            url: apiUrl + 'delete/' + id
         };
         return await commonServices.getApiResult(req)
     };

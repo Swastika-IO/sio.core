@@ -1,9 +1,8 @@
 ﻿
-modules.controller('ImageController', function PortalTemplateController($scope) {
+modules.controller('ImageController', function PortalTemplateController($rootScope, $scope) {
     var ctrl = this;
     ctrl.selectFile = function (file, errFiles) {
         if (file !== undefined && file !== null) {
-            console.log('asdfasdf', ctrl.auto)
             if (ctrl.auto) {
                 var fileName = ctrl.uploadFile(file);
             }

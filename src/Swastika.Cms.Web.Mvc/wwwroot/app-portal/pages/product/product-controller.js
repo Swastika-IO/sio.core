@@ -21,7 +21,7 @@ app.controller('ProductController', ['$scope', '$rootScope', '$routeParams', '$t
             class: 'info',
             content: ''
         };
-        
+
         $scope.range = function (max) {
             var input = [];
             for (var i = 1; i <= max; i += 1) input.push(i);
@@ -132,18 +132,21 @@ app.controller('ProductController', ['$scope', '$rootScope', '$routeParams', '$t
         };
 
         $scope.saveProduct = async function (product) {
-                product.content = $('.editor-content').val();
-                var resp = await productServices.saveProduct(product);
-                if (resp.isSucceed) {
-                    //$scope.activedProduct = resp.data;
-                    //$scope.message.content = 'Thành công';
-                    //$scope.message.class = 'success';
-                    $location.path('/backend/product/details/' + resp.data.id);
-                }
-                else {
-                    $rootScope.showErrors(resp.errors);
-                    $scope.$apply();
-                }
+            product.content = $('.editor-content').val();
+            var resp = await productServices.saveProduct(product);
+            if (resp.isSucceed) {
+                $scope.activedProduct = resp.data;
+                $scope.message.content = 'Thành công';
+                $scope.message.class = 'success';
+                $("html, body").animate({ "scrollTop": "0px" }, 500);
+                $rootScope.isBusy = false;
+                $scope.$apply();
+                //$location.path('/backend/product/details/' + resp.data.id);
+            }
+            else {
+                $rootScope.showErrors(resp.errors);
+                $scope.$apply();
+            }
         };
 
     }]);
