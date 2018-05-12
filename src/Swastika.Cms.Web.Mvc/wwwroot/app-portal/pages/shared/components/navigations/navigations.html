@@ -1,0 +1,10 @@
+﻿<ul class="nav">
+    <li class="col-sm-12" ng-repeat="nav in $ctrl.data track by $index">
+        <span class="switch switch-sm">
+            <input type="checkbox" ng-model="nav.isActived" id="{{$ctrl.prefix}}_{{$index}}" class="switch">
+            <label class="switch" for="{{$ctrl.prefix}}_{{$index}}">
+                {{nav.description}}
+            </label>
+        </span>
+    </li>
+</ul>
