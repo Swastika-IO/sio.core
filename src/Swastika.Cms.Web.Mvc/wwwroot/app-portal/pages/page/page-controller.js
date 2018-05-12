@@ -1,19 +1,19 @@
 ﻿'use strict';
-app.controller('ProductController', ['$scope', '$rootScope', '$routeParams', '$timeout', '$location', 'authService', 'ProductServices',
-    function ($scope, $rootScope, $routeParams, $timeout, $location, authService, productServices) {
+app.controller('PageController', ['$scope', '$rootScope', '$routeParams', '$timeout', '$location', 'authService', 'PageServices',
+    function ($scope, $rootScope, $routeParams, $timeout, $location, authService, pageServices) {
         $scope.request = {
             pageSize: '10',
             pageIndex: 0,
             status: $rootScope.swStatus[1],
-            orderBy: 'CreatedDateTime',
-            direction: '1',
+            orderBy: 'Priority',
+            direction: '0',
             fromDate: null,
             toDate: null,
             keyword: ''
         };
 
-        $scope.activedProduct = null;
-        $scope.relatedProducts = [];
+        $scope.activedPage = null;
+        $scope.relatedPages = [];
         $rootScope.isBusy = false;
         $scope.data = [];
         $scope.errors = [];
@@ -24,11 +24,11 @@ app.controller('ProductController', ['$scope', '$rootScope', '$routeParams', '$t
             return input;
         };
 
-        $scope.getProduct = async function (id) {
+        $scope.getPage = async function (id) {
             $rootScope.isBusy = true;
-            var resp = await productServices.getProduct(id, 'be');
+            var resp = await pageServices.getPage(id, 'be');
             if (resp.isSucceed) {
-                $scope.activedProduct = resp.data;
+                $scope.activedPage = resp.data;
                 $rootScope.initEditor();
                 $scope.$apply();
             }
@@ -38,12 +38,12 @@ app.controller('ProductController', ['$scope', '$rootScope', '$routeParams', '$t
             }
         };
 
-        $scope.initProduct = function () {
+        $scope.initPage = function () {
             if (!$rootScope.isBusy) {
                 $rootScope.isBusy = true;
-                productServices.initProduct('be').then(function (response) {
+                pageServices.initPage('be').then(function (response) {
                     if (response.isSucceed) {
-                        $scope.activedProduct = response.data;
+                        $scope.activedPage = response.data;
                         $rootScope.initEditor();
                     }
                     $rootScope.isBusy = false;
@@ -56,12 +56,12 @@ app.controller('ProductController', ['$scope', '$rootScope', '$routeParams', '$t
             }
         };
 
-        $scope.loadProduct = async function () {
+        $scope.loadPage = async function () {
             $rootScope.isBusy = true;
             var id = $routeParams.id;
-            var response = await productServices.getProduct(id, 'be');
+            var response = await pageServices.getPage(id, 'be');
             if (response.isSucceed) {
-                $scope.activedProduct = response.data;
+                $scope.activedPage = response.data;
                 $rootScope.initEditor();
                 $scope.$apply();
             }
@@ -70,7 +70,7 @@ app.controller('ProductController', ['$scope', '$rootScope', '$routeParams', '$t
                 $scope.$apply();
             }
         };
-        $scope.loadProducts = async function (pageIndex) {
+        $scope.loadPages = async function (pageIndex) {
             if (pageIndex != undefined) {
                 $scope.request.pageIndex = pageIndex;
             }
@@ -81,16 +81,16 @@ app.controller('ProductController', ['$scope', '$rootScope', '$routeParams', '$t
             if ($scope.request.toDate != null) {
                 $scope.request.toDate = $scope.request.toDate.toISOString();
             }
-            var resp = await productServices.getProducts($scope.request);
+            var resp = await pageServices.getPages($scope.request);
             if (resp.isSucceed) {
 
                 ($scope.data = resp.data);
                 //$("html, body").animate({ "scrollTop": "0px" }, 500);
-                $.each($scope.data.items, function (i, product) {
+                $.each($scope.data.items, function (i, page) {
 
-                    $.each($scope.activedProducts, function (i, e) {
-                        if (e.productId == product.id) {
-                            product.isHidden = true;
+                    $.each($scope.activedPages, function (i, e) {
+                        if (e.pageId == page.id) {
+                            page.isHidden = true;
                         }
                     })
                 })
@@ -115,11 +115,11 @@ app.controller('ProductController', ['$scope', '$rootScope', '$routeParams', '$t
             }
         };
 
-        $scope.removeProduct = async function (id) {
+        $scope.removePage = async function (id) {
             if (confirm("Are you sure!")) {
-                var resp = await productServices.removeProduct(id);
+                var resp = await pageServices.removePage(id);
                 if (resp.isSucceed) {
-                    $scope.loadProducts();
+                    $scope.loadPages();
                 }
                 else {
                     $rootScope.showErrors(resp.errors);
@@ -127,15 +127,15 @@ app.controller('ProductController', ['$scope', '$rootScope', '$routeParams', '$t
             }
         };
 
-        $scope.saveProduct = async function (product) {
-            product.content = $('.editor-content').val();
-            var resp = await productServices.saveProduct(product);
+        $scope.savePage = async function (page) {
+            page.content = $('.editor-content').val();
+            var resp = await pageServices.savePage(page);
             if (resp.isSucceed) {
-                $scope.activedProduct = resp.data;
+                $scope.activedPage = resp.data;
                 $rootScope.showMessage('Thành công', 'success');
                 $rootScope.isBusy = false;
                 $scope.$apply();
-                //$location.path('/backend/product/details/' + resp.data.id);
+                //$location.path('/backend/page/details/' + resp.data.id);
             }
             else {
                 $rootScope.showErrors(resp.errors);

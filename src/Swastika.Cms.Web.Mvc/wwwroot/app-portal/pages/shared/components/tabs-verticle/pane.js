@@ -1,7 +1,7 @@
 ﻿'use trick'
-modules.directive('pane', function () {
+modules.directive('paneV', function () {
     return {
-        require: '^tabs',
+        require: '^tabs-v',
         restrict: 'E',
         transclude: true,
         scope: { title: '@' },

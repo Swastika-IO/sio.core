@@ -241,6 +241,12 @@ namespace Swastka.IO.Cms.Api.Controllers
                 {
                     a.DetailsUrl = SwCmsHelper.GetRouterUrl(
                         "Page", new { a.SeoName }, Request, Url);
+                    a.Childs.ForEach(c =>
+                    {
+                        c.DetailsUrl = SwCmsHelper.GetRouterUrl(
+                            "Page", new { c.SeoName }, Request, Url);
+                    }
+                );
                 }
                 );
             }

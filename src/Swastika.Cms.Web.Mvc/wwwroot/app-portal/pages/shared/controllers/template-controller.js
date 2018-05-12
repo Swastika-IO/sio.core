@@ -55,7 +55,6 @@ app.controller('TemplateController', ['$rootScope', '$scope', function TemplateC
             var url = '/api/' + $rootScope.settings.lang + '/template/list';
             vm.settings.url = url;
             vm.settings.data = request;
-            console.log(request);
             $.ajax(vm.settings).then(function (response) { 
                 vm.initTemplate(response, vm.activedId, vm.activedName);
             });

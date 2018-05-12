@@ -43,6 +43,7 @@ angular.module('bw.paging', []).directive('paging', function () {
             disabled: '@',
             dots: '@',
             ulClass: '@',
+            aClass: '@',
             activeClass: '@',
             disabledClass: '@',
             adjacent: '@',
@@ -91,13 +92,13 @@ angular.module('bw.paging', []).directive('paging', function () {
      */
     function fieldTemplate(el, attrs){
             return '<ul data-ng-hide="Hide" data-ng-class="ulClass"> ' +
-                '<li ' +
+                '<li class="page-item"' +
                     'title="{{Item.title}}" ' +
                     'data-ng-class="Item.liClass" ' +
                     'data-ng-repeat="Item in List"> ' +
                         '<a ' + 
                             (attrs.pgHref ? 'data-ng-href="{{Item.pgHref}}" ' : 'href ') +
-                            'data-ng-class="Item.aClass" ' +
+                            'data-ng-class="aClass" ' +
                             'data-ng-click="Item.action()" ' +
                             'data-ng-bind="Item.value">'+ 
                         '</a> ' +
@@ -230,7 +231,8 @@ angular.module('bw.paging', []).directive('paging', function () {
 
         // If allowed scroll up to the top of the page
         if (scope.scrollTop) {
-            scrollTo(0, 0);
+            //scrollTo(0, 0);
+            $("html, body").animate({ "scrollTop": "0px" }, 500);
         }
     }
 

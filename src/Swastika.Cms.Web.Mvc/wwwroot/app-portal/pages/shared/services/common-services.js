@@ -111,9 +111,11 @@ app.factory('commonServices', ['$location', '$http', '$rootScope', 'authService'
             }
             $rootScope.isBusy = false;
             return resp;
-        },
+        },            
             function (error) {
+                var t = { isSucceed: false, errors: [error.statusText] };
                 $rootScope.isBusy = false;
+                return t;
             });
     };
     adminCommonFactory.getApiResult = _getApiResult;

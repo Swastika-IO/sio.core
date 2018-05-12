@@ -171,6 +171,12 @@
   </ItemGroup>
 
   <ItemGroup>
+    <_ContentIncludedByDefault Remove="wwwroot\app-portal\pages\page\components\related\productRelated.html" />
+    <_ContentIncludedByDefault Remove="wwwroot\app-portal\pages\page\components\related\productRelated.js" />
+    <_ContentIncludedByDefault Remove="wwwroot\app-portal\pages\page\details.html" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="angular-file-upload" Version="12.2.13" />
     <PackageReference Include="angularjs" Version="1.6.10" />
     <PackageReference Include="JWT" Version="4.0.0" />
@@ -328,6 +334,15 @@
     </Content>
     <Content Update="Views\Shared\_LayoutPortal_Angular.cshtml">
       <Pack>$(IncludeRazorContentInPack)</Pack>
+    </Content>
+    <Content Update="wwwroot\app-portal\pages\page\list.html">
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Update="wwwroot\app-portal\pages\page\page-controller.js">
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Update="wwwroot\app-portal\pages\page\page-services.js">
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
     </Content>
   </ItemGroup>
 
