@@ -55,7 +55,8 @@ app.run(['$rootScope', '$location', 'commonServices', 'authService', function ($
     $rootScope.errors = [];
     $rootScope.message = {
         title: '',
-        value: '',
+        content: '',
+        errors: [],
         okFuncName: null,
         okArgs: [],
         cancelFuncName: null,
@@ -165,10 +166,23 @@ app.run(['$rootScope', '$location', 'commonServices', 'authService', function ($
             $rootScope.errors = [];
         }
     });
+
     $rootScope.showErrors = function (errors) {
-        $rootScope.errors = errors;
-        $("html, body").animate({ "scrollTop": "0px" }, 500);
+        $rootScope.message.title = 'Errors';
+        $rootScope.message.errors = errors;
+        $rootScope.message.class = 'danger';
+        $('#dlg-msg').modal("show");
     }
+
+    //type: success / info / danger / warning - bootstrap 
+    $rootScope.showMessage = function (content, type) {
+        type = type || 'info';
+        $rootScope.message.title = 'Result';
+        $rootScope.message.content = content;
+        $rootScope.message.class = type;
+        $('#dlg-msg').modal("show");
+    }
+
     $rootScope.logOut = function () {
         authService.logOut();
         $location.path('/backend/login');

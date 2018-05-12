@@ -1,0 +1,15 @@
+﻿<nav aria-label="Page navigation example">
+    <ul class="pagination justify-content-end">
+        <li class="page-item">
+            <a class="page-link active" href="javascript:void(0)" ng-click="$ctrl.loadData($ctrl.data.pageIndex-1)"
+               ng-hide="$ctrl.data.pageIndex==0">Prev</a>
+        </li>
+        <li class="page-item" ng-class="{active: n-1==$ctrl.data.pageIndex}" ng-repeat="n in range($ctrl.data.totalPage)">
+            <a class="page-link" href="javascript:void(0)" ng-click="$ctrl.loadData(n-1)">{{n}}</a>
+        </li>
+        <li class="page-item">
+            <a class="page-link" href="javascript:void(0)" ng-click="$ctrl.loadData($ctrl.data.pageIndex + 1)"
+               ng-hide="$ctrl.data.pageIndex >= ($ctrl.data.totalPage-1)">Next</a>
+        </li>
+    </ul>
+</nav>

@@ -5,17 +5,17 @@
                 <div class="row">
                     <div class="col text-center">
                         <button type="submit" class="btn btn-link btn-block">
-                            <span class="oi oi-cloud-upload"></span> SAVE
+                            <span class="oi oi-cloud-upload"></span> <span class=" text-success">SAVE</span>
                         </button>
                     </div>
                     <div class="col text-center" ng-show="$ctrl.previewUrl">
-                        <a href="{{$ctrl.previewUrl}}" class="btn btn-link" target="_blank">
-                            <span class="oi oi-eye"></span> PREVIEW
+                        <a href="{{$ctrl.previewUrl}}" class="btn btn-link " target="_blank">
+                            <span class="oi oi-eye"></span> <span class="text-info">PREVIEW</span>
                         </a>
                     </div>
                     <div class="col text-center" ng-show="$ctrl.backUrl">
                         <a href="{{$ctrl.backUrl}}" class="btn btn-link">
-                            <span class="oi oi-arrow-left"></span> BACK
+                            <span class="oi oi-arrow-left"></span> <span class=" text-warning">BACK</span>
                         </a>
                     </div>
                 </div>

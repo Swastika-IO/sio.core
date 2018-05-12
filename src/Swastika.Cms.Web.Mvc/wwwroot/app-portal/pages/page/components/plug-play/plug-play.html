@@ -1,0 +1,21 @@
+﻿<div class="tab-pane">
+    <div class="row">
+        
+        <div class="col-9">
+            <div class="tab-content" id="v-pills-tabContent">
+                <div class="tab-pane fade active show" id="v-pills-parent" role="tabpanel" aria-labelledby="v-pills-parent-tab">
+                    <ul class="nav">
+                        <li class="col-sm-12" ng-repeat="cate in $ctrl.page.parentNavs track by $index">
+                            <span class="switch switch-sm">
+                                <input type="checkbox" ng-model="cate.isActived" id="cate_{{$index}}" class="switch">
+                                <label class="switch" for="cate_{{$index}}">
+                                    {{cate.description}}
+                                </label>
+                            </span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

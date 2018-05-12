@@ -1,17 +1,17 @@
 ﻿<div class="row">
-    <div class="col-md-8">
+    <div class="col-md-9">
         <div class="btn-toolbar mb-3" role="toolbar" aria-label="Toolbar with button groups">
             <select class="btn btn-outline-secondary custom-select col-sm-3"
                     ng-model="$ctrl.request.orderBy"
                     ng-change="$ctrl.callback({pageIndex: 0})">
                 <option ng-repeat="item in $ctrl.orders track by $index" value="{{item.value}}">{{item.title}}</option>
             </select>
-            <select class="btn btn-outline-secondary custom-select col-sm-1"
+            <select class="btn btn-outline-secondary custom-select col-sm-2"
                     ng-model="$ctrl.request.direction"
                     ng-change="callback({pageIndex: 0})">
                 <option ng-repeat="item in $ctrl.directions track by $index" value="{{item.value}}">{{item.title}}</option>
             </select>
-            <select class="btn btn-outline-secondary custom-select col-sm-1"
+            <select class="btn btn-outline-secondary custom-select col-sm-2"
                     ng-model="$ctrl.request.pageSize"
                     ng-change="$ctrl.callback({pageIndex: 0})">
                 <option ng-repeat="item in $ctrl.pageSizes track by $index" value="{{item}}">{{item}}</option>
@@ -20,7 +20,7 @@
             <input type="date" data-date-format="dd.MM.yyyy - hh:mm:ss a" ng-model="$ctrl.request.toDate" />
         </div>
     </div>
-    <div class="col-md-4">
+    <div class="col-md-3">
         <div class="input-group">
             <div class="input-group-prepend" ng-click="$ctrl.callback({pageIndex: 0})">
                 <div class="input-group-text" id="btnGroupAddon"><i class="mi mi-Search" style="top:0;"></i></div>
