@@ -237,7 +237,11 @@ namespace Swastika.Cms.Lib.ViewModels.BackEnd
 
             if (navParent!=null)
             {
-                Level = InfoCategoryViewModel.Repository.GetSingleModel(c => c.Id == navParent.Id, _context, _transaction).Data.Level + 1;
+                Level = InfoCategoryViewModel.Repository.GetSingleModel(c => c.Id == navParent.ParentId, _context, _transaction).Data.Level + 1;
+            }
+            else
+            {
+                Level = 0;
             }
             
             Template = View != null ? string.Format(@"{0}/{1}{2}", View.FolderType, View.FileName, View.Extension) : Template;

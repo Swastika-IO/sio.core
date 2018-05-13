@@ -8,7 +8,7 @@
             </select>
             <select class="btn btn-outline-secondary custom-select col-sm-2"
                     ng-model="$ctrl.request.direction"
-                    ng-change="callback({pageIndex: 0})">
+                    ng-change="$ctrl.callback({pageIndex: 0})">
                 <option ng-repeat="item in $ctrl.directions track by $index" value="{{item.value}}">{{item.title}}</option>
             </select>
             <select class="btn btn-outline-secondary custom-select col-sm-2"
