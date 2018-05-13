@@ -227,5 +227,8 @@ namespace Swastika.Cms.Lib.ViewModels
 
         [JsonProperty("cultures")]
         public List<SupportedCulture> Cultures { get; set; }
+
+        [JsonProperty("pageTypes")]
+        public List<string> PageTypes { get; set; }
     }
 }

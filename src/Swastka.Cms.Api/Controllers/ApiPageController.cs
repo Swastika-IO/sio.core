@@ -2,6 +2,8 @@
 // The Swastika I/O Foundation licenses this file to you under the MIT license.
 // See the LICENSE file in the project root for more information.
 
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Data.OData.Query;
 using Newtonsoft.Json.Linq;
@@ -33,16 +35,6 @@ namespace Swastka.IO.Cms.Api.Controllers
 
         // GET api/category/id
         [HttpGet]
-        [Route("details/{id}")]
-        public Task<RepositoryResponse<FECategoryViewModel>> Details(int id)
-        {
-            return FECategoryViewModel.Repository.GetSingleModelAsync(
-                model => model.Id == id && model.Specificulture == _lang);
-        }
-
-
-        // GET api/category/id
-        [HttpGet]
         [Route("delete/{id}")]
         public async Task<RepositoryResponse<bool>> DeleteAsync(int id)
         {
@@ -62,17 +54,38 @@ namespace Swastka.IO.Cms.Api.Controllers
             }
         }
 
+        // GET api/pages/id
         [HttpGet]
         [Route("details/{viewType}/{id}")]
         [Route("details/{viewType}")]
-        public async Task<JObject> Details(string viewType, int? id = null)
+        public async Task<JObject> BEDetails(string viewType, int? id)
         {
             switch (viewType)
             {
                 case "be":
                     if (id.HasValue)
                     {
-                        var beResult = await BECategoryViewModel.Repository.GetSingleModelAsync(model => model.Id == id.Value && model.Specificulture == _lang).ConfigureAwait(false);
+                        var beResult = await BECategoryViewModel.Repository.GetSingleModelAsync(model => model.Id == id && model.Specificulture == _lang).ConfigureAwait(false);
+                        if (beResult.IsSucceed)
+                        {
+                            beResult.Data.DetailsUrl = SwCmsHelper.GetRouterUrl("Page", new { beResult.Data.SeoName }, Request, Url);
+                        }
+                        return JObject.FromObject(beResult);
+                    }
+                    else
+                    {
+                        var model = new SiocCategory() { Specificulture = _lang, Status = (int)SWStatus.Preview };
+                        RepositoryResponse<BECategoryViewModel> result = new RepositoryResponse<BECategoryViewModel>()
+                        {
+                            IsSucceed = true,
+                            Data = new BECategoryViewModel(model)
+                        };
+                        return JObject.FromObject(result);
+                    }
+                default:
+                    if (id.HasValue)
+                    {
+                        var beResult = await FECategoryViewModel.Repository.GetSingleModelAsync(model => model.Id == id && model.Specificulture == _lang).ConfigureAwait(false);
                         if (beResult.IsSucceed)
                         {
                             beResult.Data.DetailsUrl = SwCmsHelper.GetRouterUrl("Page", new { beResult.Data.SeoName }, Request, Url);
@@ -82,43 +95,14 @@ namespace Swastka.IO.Cms.Api.Controllers
                     else
                     {
                         var model = new SiocCategory();
-                        RepositoryResponse<BECategoryViewModel> result = new RepositoryResponse<BECategoryViewModel>()
+                        RepositoryResponse<FECategoryViewModel> result = new RepositoryResponse<FECategoryViewModel>()
                         {
                             IsSucceed = true,
-                            Data = new BECategoryViewModel(model) { Specificulture = _lang, Status = SWStatus.Preview }
-                        };
-                        return JObject.FromObject(result);
-                    }
-                default:
-                    if (id.HasValue)
-                    {
-                        var beResult = await FECategoryViewModel.Repository.GetSingleModelAsync(model => model.Id == id.Value && model.Specificulture == _lang).ConfigureAwait(false);
-                        if (beResult.IsSucceed)
-                        {
-                            beResult.Data.DetailsUrl = SwCmsHelper.GetRouterUrl("Page", new { beResult.Data.SeoName }, Request, Url);
-                        }
-                        return JObject.FromObject(beResult);
-                    }
-                    else
-                    {
-                        var model = new SiocProduct();
-                        RepositoryResponse<FEProductViewModel> result = new RepositoryResponse<FEProductViewModel>()
-                        {
-                            IsSucceed = true,
-                            Data = new FEProductViewModel(model) { Specificulture = _lang, Status = SWStatus.Preview }
+                            Data = new FECategoryViewModel(model) { Specificulture = _lang, Status = SWStatus.Preview }
                         };
                         return JObject.FromObject(result);
                     }
             }
-        }
-
-        // GET api/category/id
-        [HttpGet]
-        [Route("details/backend/{id}")]
-        public Task<RepositoryResponse<BECategoryViewModel>> BEDetails(int id)
-        {
-            return BECategoryViewModel.Repository.GetSingleModelAsync(
-                model => model.Id == id && model.Specificulture == _lang);
         }
 
         // GET api/category/id
@@ -175,12 +159,14 @@ namespace Swastka.IO.Cms.Api.Controllers
         #region Post
 
         // POST api/category
+        [Authorize]
         [HttpPost, HttpOptions]
         [Route("save")]
         public async Task<RepositoryResponse<BECategoryViewModel>> Post([FromBody]BECategoryViewModel model)
         {
             if (model != null)
             {
+                model.CreatedBy = User.Identity.Name;
                 var result = await model.SaveModelAsync(true).ConfigureAwait(false);
                 return result;
             }

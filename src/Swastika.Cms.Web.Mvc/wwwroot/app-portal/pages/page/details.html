@@ -8,7 +8,9 @@
         <div class="row">
             <section class="col-lg-9">
                 <div class="row">
+                    <div class="col-lg-12">
                     <page-main page="activedPage" />
+                        </div>
                 </div>
                 <div class="row">
                     <tabs-v>
@@ -29,13 +31,6 @@
                                 <template-editor template="activedPage.view"></template-editor>
                             </div>
                         </pane-v>
-                        <pane-v title="Medias">
-                            <page-medias page="activedPage" medias="mediaData"></page-medias>
-
-                        </pane-v>
-                        <pane-v title="Related">
-                            <page-related page="activedPage" list="data"></page-related>
-                        </pane-v>
                     </tabs-v>
 
                 </div>
@@ -52,7 +47,7 @@
                                        ng-switch="stt"
                                        ng-class="{active: $index == activedPage.status}"
                                        class="btn btn-outline-primary btn-block mt-0">
-                                    <input ng-model="activedPage.status" type="radio" value="{{$index}}" class="custom-control-input" id="pageType_{{$index}}" />
+                                    <input ng-model="activedPage.status" type="radio" value="{{$index}}" class="custom-control-input" id="page_status_{{$index}}" />
                                     <i ng-switch-when="Deleted" class="mi mi-Delete mi-lg mi-fw" title="{{stt}}"></i>
                                     <i ng-switch-when="Preview" class="mi mi-Preview mi-lg mi-fw" title="{{stt}}"></i>
                                     <i ng-switch-when="Published" class="mi mi-Page mi-lg mi-fw" title="{{stt}}"></i>

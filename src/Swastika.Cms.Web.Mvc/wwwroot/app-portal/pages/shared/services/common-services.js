@@ -70,7 +70,7 @@ app.factory('commonServices', ['$location', '$http', '$rootScope', 'authService'
         req.headers = headers;
         return $.ajax(req).then(function (resp) {
             //var resp = results.data;
-            if (resp.data.responseKey === 'NotAuthorized') {
+            if (resp.responseKey === 'NotAuthorized') {
                 //Try again with new token from previous Request (optional)                
                 setTimeout(function () {
                     headers = {
@@ -97,7 +97,7 @@ app.factory('commonServices', ['$location', '$http', '$rootScope', 'authService'
                     });
                 }, 2000);
             }
-            else if (resp.data.authData !== null && resp.data.authData !== undefined) {
+            else if (resp.authData !== null && resp.authData !== undefined) {
                 var authData = resp.data.authData;
                 localStorageService.set('authorizationData', { token: authData.access_token, userName: authData.userData.NickName, roleNames: authData.userData.RoleNames, avatar: authData.userData.Avatar, refresh_token: authData.refresh_token, userId: authData.userData.Id });
                 authService.authentication.isAuth = true;

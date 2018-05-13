@@ -64,7 +64,7 @@
 
                 <td>
                     <div class="btn-group btn-group-sm btn-group-sm float-right" role="group" aria-label="Actions">
-                        <a href="/admin/product/details/{{item.id}}" class="btn btn-light">
+                        <a href="/backend/product/details/{{item.id}}" class="btn btn-light">
                             <span class="fas fa-pencil-alt text-primary"></span>
                         </a>
                         <a href="{{item.detailsUrl}}" target="_blank" class="btn btn-light">
@@ -83,19 +83,11 @@
             </tr>
         </tbody>
     </table>
-    <nav aria-label="Page navigation example">
-        <ul class="pagination justify-content-end">
-            <li class="page-item">
-                <a class="page-link active" href="javascript:void(0)" ng-click="loadProducts(data.pageIndex-1)"
-                   ng-hide="data.pageIndex==0">Prev</a>
-            </li>
-            <li class="page-item" ng-class="{active: n-1==data.pageIndex}" ng-repeat="n in range(data.totalPage)">
-                <a class="page-link" href="javascript:void(0)" ng-click="loadProducts(n-1)">{{n}}</a>
-            </li>
-            <li class="page-item">
-                <a class="page-link" href="javascript:void(0)" ng-click="loadProducts(data.pageIndex + 1)"
-                   ng-hide="data.pageIndex >= (data.totalPage-1)">Next</a>
-            </li>
-        </ul>
-    </nav>
+    <paging class="small" page="data.pageIndex+1"
+            page-size="data.pageSize"
+            total="data.totalItems"
+            ul-class="pagination justify-content-end"     
+            a-class="page-link"
+            paging-action="loadProducts(page-1)"
+            scroll-top="true"/>
 </section>

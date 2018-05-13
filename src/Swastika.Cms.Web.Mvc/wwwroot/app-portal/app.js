@@ -170,6 +170,7 @@ app.run(['$rootScope', '$location', 'commonServices', 'authService', function ($
     $rootScope.showErrors = function (errors) {
         $rootScope.message.title = 'Errors';
         $rootScope.message.errors = errors;
+        $rootScope.message.content = '';
         $rootScope.message.class = 'danger';
         $('#dlg-msg').modal("show");
     }
@@ -179,6 +180,7 @@ app.run(['$rootScope', '$location', 'commonServices', 'authService', function ($
         type = type || 'info';
         $rootScope.message.title = 'Result';
         $rootScope.message.content = content;
+        $rootScope.message.errors = [];
         $rootScope.message.class = type;
         $('#dlg-msg').modal("show");
     }

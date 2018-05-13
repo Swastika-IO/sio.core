@@ -15,6 +15,7 @@ using Swastika.Cms.Lib.ViewModels.Info;
 using Swastika.Domain.Core.ViewModels;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Linq.Expressions;
 using System.Threading.Tasks;
 using static Swastika.Common.Utility.Enums;
@@ -37,8 +38,9 @@ namespace Swastka.IO.Cms.Api.Controllers
             {
                 Lang = _lang,
                 ThemeId = GlobalConfigurationService.GetLocalInt(SWCmsConstants.ConfigurationKeyword.ThemeId, _lang),
-                Cultures = GlobalLanguageService.ListSupportedCulture
-            };
+                Cultures = GlobalLanguageService.ListSupportedCulture,
+                PageTypes = Enum.GetNames(typeof(SWCmsConstants.CateType)).ToList()
+        };
             return new RepositoryResponse<SiteSettingsViewModel>()
             {
                 IsSucceed = true,

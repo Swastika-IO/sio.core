@@ -21,6 +21,11 @@
         templateUrl: "/app-portal/pages/product/details.html"
     });
 
+    $routeProvider.when("/backend/product/create", {
+        controller: "ProductController",
+        templateUrl: "/app-portal/pages/product/details.html"
+    });
+
     $routeProvider.when("/backend/page/list", {
         controller: "PageController",
         templateUrl: "/app-portal/pages/page/list.html"
@@ -31,9 +36,9 @@
         templateUrl: "/app-portal/pages/page/details.html"
     });
 
-    $routeProvider.when("/backend/product/create", {
-        controller: "ProductController",
-        templateUrl: "/app-portal/pages/product/details.html"
+    $routeProvider.when("/backend/page/create", {
+        controller: "PageController",
+        templateUrl: "/app-portal/pages/page/details.html"
     });
 
     $routeProvider.otherwise({ redirectTo: "/backend" });

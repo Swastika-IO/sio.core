@@ -4,12 +4,14 @@
           ng-submit="saveProduct(activedProduct)">
 
         <actions preview-url="activedProduct.detailsUrl" back-url="'/backend/product/list'"></actions>
-        
+
         <div class="row">
             <section class="col-lg-9">
-                <div class="row">                    
-                <product-main product="activedProduct"></product-main>
+                <div class="row">
+                    <div class="col-lg-12">
+                        <product-main product="activedProduct"></product-main>
                     </div>
+                </div>
                 <div class="row">
                     <tabs>
                         <pane title="General">
