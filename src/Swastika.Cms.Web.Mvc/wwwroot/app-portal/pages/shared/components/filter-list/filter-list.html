@@ -2,17 +2,17 @@
     <div class="col-9">
         <div class="btn-toolbar mb-3" role="toolbar" aria-label="Toolbar with button groups">
             <div class="input-group input-group-sm mr-2" role="group" aria-label="First group">
-                <select class="btn custom-select col-6"
+                <select class="btn custom-select custom-select-sm col-6"
                         ng-model="$ctrl.request.orderBy"
                         ng-change="$ctrl.callback({pageIndex: 0})">
                     <option ng-repeat="item in $ctrl.orders track by $index" value="{{item.value}}">{{item.title}}</option>
                 </select>
-                <select class="btn custom-select col-3"
+                <select class="btn custom-select custom-select-sm col-3"
                         ng-model="$ctrl.request.direction"
                         ng-change="$ctrl.callback({pageIndex: 0})">
                     <option ng-repeat="item in $ctrl.directions track by $index" value="{{item.value}}">{{item.title}}</option>
                 </select>
-                <select class="btn custom-select col-3"
+                <select class="btn custom-select custom-select-sm col-3"
                         ng-model="$ctrl.request.pageSize"
                         ng-change="$ctrl.callback({pageIndex: 0})">
                     <option ng-repeat="item in $ctrl.pageSizes track by $index" value="{{item}}">{{item}}</option>
