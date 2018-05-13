@@ -4,13 +4,13 @@
           ng-submit="savePage(activedPage)">
 
         <actions preview-url="activedPage.detailsUrl" back-url="'/backend/page/list'"></actions>
-
+        <div class="m-4"></div>
         <div class="row">
             <section class="col-lg-9">
                 <div class="row">
                     <div class="col-lg-12">
-                    <page-main page="activedPage" />
-                        </div>
+                        <page-main page="activedPage" />
+                    </div>
                 </div>
                 <div class="row">
                     <tabs-v>
@@ -32,7 +32,6 @@
                             </div>
                         </pane-v>
                     </tabs-v>
-
                 </div>
             </section>
             <section class="col-lg-3" style="padding-left:0">
@@ -86,15 +85,10 @@
                     </div>
                 </div>
 
-
                 <custom-image header="'Feature Image'" type="'Pages'" folder="activedPage.seoName" srcUrl="activedPage.imageUrl" src="activedPage.imageUrl" auto="'true'"></custom-image>
                 <custom-image header="'Feature Thumnail'" type="'Pages'" folder="activedPage.seoName" srcUrl="activedPage.thumbnailUrl" src="activedPage.thumbnail" auto="'true'"></custom-image>
-
-
             </section>
         </div>
-
-
     </form>
 </section>
 <!-- /.content -->
