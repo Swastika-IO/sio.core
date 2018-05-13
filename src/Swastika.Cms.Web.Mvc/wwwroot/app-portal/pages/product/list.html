@@ -5,12 +5,12 @@
         <thead class="thead-light">
             <tr>
                 <th scope="col" style="width: 3%;">
-                    <span class="fas fa-sort"></span>
+                    <span class="oi oi-sort-ascending"></span>
                 </th>
-                <th scope="col" style="width: 4%;">
+                <!--<th scope="col" style="width: 4%;">
                     <span class="fas fa-sort-numeric-down"></span>
-                </th>
-                <th scope="col" style="width: 5%;">
+                </th>-->
+                <th scope="col" style="width: 10%;">
                     Code
                 </th>
                 <th scope="col" style="width: 25%;">
@@ -34,11 +34,16 @@
             <tr ng-repeat="item in data.items track by $index"
                 class="sortable-item" sort-model="product" sort-model-id="{{item.id}}">
                 <td style="cursor:move;" class="drag-header">
-                    <span class="fas fa-sort"></span>
+                    <!--<span class="fas fa-sort"></span>-->
+
+                    <div class="btn-group btn-group-sm" role="group" aria-label="Basic example">
+                        <button type="button" class="btn btn-light"><span class="oi oi-chevron-top small"></span></button>
+                        <button type="button" class="btn btn-light"><span class="oi oi-chevron-bottom small"></span></button>
+                    </div>
                 </td>
-                <td>
+                <!--<td>
                     <input type="text" value="{{item.priority}}" class="item-priority form-control form-control-sm d-inline" style="width:40px;" />
-                </td>
+                </td>-->
                 <td>
                     {{item.code}}
                 </td>
@@ -55,7 +60,7 @@
                 </td>
                 <td>
                     <small>
-                        {{item.createdDateTime | utcToLocal:'dd.MM.yyyy - hh:mm:ss a'}}
+                        {{item.createdDateTime | utcToLocal:'d.M.yyyy h:mm a'}}
                     </small>
                 </td>
                 <td>
@@ -65,15 +70,15 @@
                 <td>
                     <div class="btn-group btn-group-sm btn-group-sm float-right" role="group" aria-label="Actions">
                         <a href="/backend/product/details/{{item.id}}" class="btn btn-light">
-                            <span class="fas fa-pencil-alt text-primary"></span>
+                            <span class="oi oi-pencil text-primary"></span>
                         </a>
                         <a href="{{item.detailsUrl}}" target="_blank" class="btn btn-light">
-                            <span class="fas fa-eye text-info"></span>
+                            <span class="oi oi-eye text-primary"></span>
                         </a>
 
                         <button type="button" class="btn btn-light del-popover"
                                 ng-click="removeProduct(item.id)">
-                            <span class="fas fa-times text-danger"></span>
+                            <span class="oi oi-x text-danger"></span>
                         </button>
                         <div class="popover-body d-none">
                             <a href="/{{currentLanguage}}/portal/products/delete/{{item.id}}" class="btn btn btn-danger">Yes, I want to delete!</a>
@@ -86,8 +91,8 @@
     <paging class="small" page="data.pageIndex+1"
             page-size="data.pageSize"
             total="data.totalItems"
-            ul-class="pagination justify-content-end"     
+            ul-class="pagination justify-content-end"
             a-class="page-link"
             paging-action="loadProducts(page-1)"
-            scroll-top="true"/>
+            scroll-top="true" />
 </section>
