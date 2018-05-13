@@ -10,13 +10,13 @@
                 icon: 'mi mi-ReadingList',
                 subMenus: [
                     {
-                        title: '/backend/article/create',
-                        href: '#',
+                        title: 'Create',
+                        href: '/backend/article/create',
                         icon: 'mi mi-Add'
                     },
                     {
-                        title: '/backend/article/list',
-                        href: '#',
+                        title: 'List',
+                        href: '/backend/article/list',
                         icon: 'mi mi-List'
                     },
                     {
