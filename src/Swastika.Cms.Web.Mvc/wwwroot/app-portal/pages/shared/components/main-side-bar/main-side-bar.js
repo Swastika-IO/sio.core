@@ -10,12 +10,12 @@
                 icon: 'mi mi-ReadingList',
                 subMenus: [
                     {
-                        title: 'Create',
+                        title: '/backend/article/create',
                         href: '#',
                         icon: 'mi mi-Add'
                     },
                     {
-                        title: 'List',
+                        title: '/backend/article/list',
                         href: '#',
                         icon: 'mi mi-List'
                     },
