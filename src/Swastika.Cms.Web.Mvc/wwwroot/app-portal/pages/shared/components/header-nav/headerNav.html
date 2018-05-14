@@ -19,7 +19,7 @@
         </li>
         <li class="nav-item dropdown mr-2">
             <a class="nav-link p-2" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                <i class="mi mi-World"></i>
+                <span class="flag-icon flag-icon-{{$ctrl.settings.lang.substring(3, 5)}}"></span>
             </a>
             <div class="dropdown-menu dropdown-menu-right" aria-labelledby="sw-versions">
                 <a class="dropdown-item" ng-repeat="culture in $ctrl.settings.cultures"

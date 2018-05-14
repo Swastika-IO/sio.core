@@ -1,15 +1,15 @@
-﻿<section class="content container-fluid">
+﻿<section class="">
     <filter-list request="request" callback="loadPages(pageIndex)" />
 
-    <table id="list-page" class="table table-hover sortable" cellspacing="0" ng-init="data = loadPages()">
+    <table id="list-page" class="table table-sm table-hover sortable" cellspacing="0" ng-init="data = loadPages()">
         <thead class="thead-light">
             <tr>
-                <th scope="col" width="3%">
-                    <span class="fas fa-sort"></span>
-                </th>
                 <th scope="col" width="4%">
-                    <span class="fas fa-sort-numeric-down"></span>
+                    <span class="oi oi-sort-ascending"></span>
                 </th>
+                <!--<th scope="col" width="3%">
+                    <span class="fas fa-sort"></span>
+                </th>-->
                 <th scope="col" width="20%">
                     Title
                 </th>
@@ -27,14 +27,19 @@
             </tr>
         </thead>
 
-        <tbody class="sortable-item" ng-repeat="item in data.items track by $index">
+        <tbody class="sortable-item" ng-repeat="item in data.items track by $index" style="border: 1px;">
             <tr class="" sort-model="category" sort-model-id="{{item.id}}" data-toggle="collapse" href="#collapse-page{{item.id}}-childs" role="button" aria-expanded="false" aria-controls="collapse-page{{item.id}}-childs">
 
-                <td style="cursor:move;" class="drag-header">
-                    <span class="fas fa-sort"></span>
-                </td>
-                <td>
+                <!--<td>
                     <input type="text" value="{{item.priority}}" class="item-priority form-control form-control-sm d-inline" style="width:40px;" />
+                </td>-->
+                <td class="drag-header">
+                    <!--<span class="fas fa-sort"></span>-->
+
+                    <div class="btn-group btn-group-sm" role="group" aria-label="Basic example">
+                        <button type="button" class="btn btn-light"><span class="oi oi-chevron-top small"></span></button>
+                        <button type="button" class="btn btn-light"><span class="oi oi-chevron-bottom small"></span></button>
+                    </div>
                 </td>
 
                 <td>
@@ -47,7 +52,7 @@
                 </td>
                 <td>
                     <small>
-                        {{item.createdDateTime | utcToLocal:'dd.MM.yy - hh:mm a'}}
+                        {{item.createdDateTime | utcToLocal:'dd.MM.yy hh:mm a'}}
                     </small>
                 </td>
                 <td>
@@ -58,13 +63,16 @@
                     <div class="btn-group btn-group-sm btn-group-sm float-right" role="group" aria-label="Actions">
 
                         <a ng-if="item.childs.length>0" class="btn btn-light" data-toggle="collapse" href="" role="button" aria-expanded="false" aria-controls="collapse-page{{item.id}}-childs">
-                            <span class="fas fa-sitemap text-success"></span>
+                            <span class="oi oi-list text-primary"></span>
                         </a>
-                        <a href="/backend/page/details/{{item.id}}" class="btn btn-light"> <span class="fas fa-pencil-alt text-primary"></span></a>
-                        <a href="{{item.detailsUrl}}" target="_blank" class="btn btn-light"><span class="fas fa-eye text-info"></span></a>
+                        <!--<a class="btn btn-light text-primary" data-toggle="popover" title="{{item.title}}" data-content="{{item.excerpt}}">
+                            <span class="oi oi-ellipses"></span>
+                        </a>-->
+                        <a href="/backend/page/details/{{item.id}}" class="btn btn-light"><span class="oi oi-pencil text-primary"></span></a>
+                        <a href="{{item.detailsUrl}}" target="_blank" class="btn btn-light"><span class="oi oi-eye text-primary"></span></a>
                         <a href="#" class="btn btn-light"
                            ng-click="removePage(item.id)">
-                            <span class="fas fa-times text-danger"></span>
+                            <span class="oi oi-x text-danger"></span>
                         </a>
                     </div>
                 </td>
@@ -72,14 +80,14 @@
             <tr>
                 <td colspan="7" style="padding:0">
                     <div class="collapse" id="collapse-page{{item.id}}-childs" data-parent="#list-page">
-                        <table class="table table-sm table-hover mb-0" cellspacing="0" style="background-color: #eee;" ng-if="item.childs.length>0">
+                        <table class="table table-sm table-hover mb-0" cellspacing="0" style="background-color: #f5f5f5;" ng-if="item.childs.length>0">
                             <thead style="font-size:small; font-weight:normal">
                                 <tr>
+                                    <!--<th scope="col" width="4%">
+                                        <span class="fas fa-sort"></span>
+                                    </th>-->
                                     <th scope="col" width="3%">
-                                        <span class="fas fa-sort" style="font-size:small"></span>
-                                    </th>
-                                    <th scope="col" width="4%">
-                                        <span class="fas fa-sort-numeric-down"></span>
+                                        <span class="oi oi-sort-ascending"></span>
                                     </th>
                                     <th scope="col" width="20%">
                                         Title
@@ -100,11 +108,16 @@
 
                             <tbody class="sortable">
                                 <tr class="sortable-item" ng-repeat="c in item.childs track by $index">
+                                    <!--<td>
+                                        <label class="item-priority d-inline" style="width:40px;"></label>
+                                    </td>-->
                                     <td style="cursor:move;" class="drag-header">
-                                        <span class="fas fa-sort" style="font-size:small"></span>
-                                    </td>
-                                    <td>
-                                        <input type="text" value="0" class="item-priority form-control form-control-sm d-inline" style="width:40px;">
+                                        <!--<span class="fas fa-sort" style="font-size:small"></span>-->
+
+                                        <div class="btn-group btn-group-sm" role="group" aria-label="Basic example">
+                                            <button type="button" class="btn btn-link"><span class="oi oi-chevron-top small"></span></button>
+                                            <button type="button" class="btn btn-link"><span class="oi oi-chevron-bottom small"></span></button>
+                                        </div>
                                     </td>
                                     <td>
                                         <span ng-bind="c.title" />
@@ -123,11 +136,11 @@
 
                                     <td>
                                         <div class="btn-group btn-group-sm btn-group-sm float-right" role="group" aria-label="Actions">
-                                            <a href="/backend/page/details/{{c.id}}" class="btn btn-light"> <span class="fas fa-pencil-alt text-primary"></span></a>
-                                            <a href="{{c.detailsUrl}}" target="_blank" class="btn btn-light"><span class="fas fa-eye text-info"></span></a>
+                                            <a href="/backend/page/details/{{c.id}}" class="btn btn-light"><span class="oi oi-pencil text-primary small"></span></a>
+                                            <a href="{{c.detailsUrl}}" target="_blank" class="btn btn-light"><span class="oi oi-eye text-primary small"></span></a>
 
                                             <button type="button" class="btn btn-light del-popover" ng-click="removePage(c.id)">
-                                                <span class="fas fa-times text-danger"></span>
+                                                <span class="oi oi-x text-danger small"></span>
                                             </button>
                                         </div>
                                     </td>
@@ -142,8 +155,8 @@
     <paging class="small"
             page-size="data.pageSize"
             total="data.totalItems"
-            ul-class="pagination justify-content-end"     
+            ul-class="pagination justify-content-end"
             a-class="page-link"
             paging-action="loadPages(page-1)"
-            scroll-top="true"/>
+            scroll-top="true" />
 </section>

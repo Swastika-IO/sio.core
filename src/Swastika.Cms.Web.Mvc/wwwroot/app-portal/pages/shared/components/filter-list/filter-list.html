@@ -1,27 +1,31 @@
 ﻿<div class="row">
-    <div class="col-md-9">
+    <div class="col-9">
         <div class="btn-toolbar mb-3" role="toolbar" aria-label="Toolbar with button groups">
-            <select class="btn btn-outline-secondary custom-select col-sm-3"
-                    ng-model="$ctrl.request.orderBy"
-                    ng-change="$ctrl.callback({pageIndex: 0})">
-                <option ng-repeat="item in $ctrl.orders track by $index" value="{{item.value}}">{{item.title}}</option>
-            </select>
-            <select class="btn btn-outline-secondary custom-select col-sm-2"
-                    ng-model="$ctrl.request.direction"
-                    ng-change="$ctrl.callback({pageIndex: 0})">
-                <option ng-repeat="item in $ctrl.directions track by $index" value="{{item.value}}">{{item.title}}</option>
-            </select>
-            <select class="btn btn-outline-secondary custom-select col-sm-2"
-                    ng-model="$ctrl.request.pageSize"
-                    ng-change="$ctrl.callback({pageIndex: 0})">
-                <option ng-repeat="item in $ctrl.pageSizes track by $index" value="{{item}}">{{item}}</option>
-            </select>
-            <input type="date" data-date-format="dd.MM.yyyy - hh:mm:ss a" ng-model="$ctrl.request.fromDate" />
-            <input type="date" data-date-format="dd.MM.yyyy - hh:mm:ss a" ng-model="$ctrl.request.toDate" />
+            <div class="input-group input-group-sm mr-2" role="group" aria-label="First group">
+                <select class="btn custom-select custom-select-sm col-6"
+                        ng-model="$ctrl.request.orderBy"
+                        ng-change="$ctrl.callback({pageIndex: 0})">
+                    <option ng-repeat="item in $ctrl.orders track by $index" value="{{item.value}}">{{item.title}}</option>
+                </select>
+                <select class="btn custom-select custom-select-sm col-3"
+                        ng-model="$ctrl.request.direction"
+                        ng-change="$ctrl.callback({pageIndex: 0})">
+                    <option ng-repeat="item in $ctrl.directions track by $index" value="{{item.value}}">{{item.title}}</option>
+                </select>
+                <select class="btn custom-select custom-select-sm col-3"
+                        ng-model="$ctrl.request.pageSize"
+                        ng-change="$ctrl.callback({pageIndex: 0})">
+                    <option ng-repeat="item in $ctrl.pageSizes track by $index" value="{{item}}">{{item}}</option>
+                </select>
+            </div>
+            <div class="input-group input-group-sm" role="group" aria-label="First group">
+                <input type="date" data-date-format="dd.MM.yyyy" ng-model="$ctrl.request.fromDate" class="form-control form-control-sm" />
+                <input type="date" data-date-format="dd.MM.yyyy" ng-model="$ctrl.request.toDate" class="form-control form-control-sm" />
+            </div>
         </div>
     </div>
-    <div class="col-md-3">
-        <div class="input-group">
+    <div class="col-3">
+        <div class="input-group input-group-sm">
             <div class="input-group-prepend" ng-click="$ctrl.callback({pageIndex: 0})">
                 <div class="input-group-text" id="btnGroupAddon"><i class="mi mi-Search" style="top:0;"></i></div>
             </div>
