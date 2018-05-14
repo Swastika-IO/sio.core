@@ -1,6 +1,6 @@
 ﻿'use strict';
-app.controller('ProductController', ['$scope', '$rootScope', '$routeParams', '$timeout', '$location', 'authService', 'ProductServices',
-    function ($scope, $rootScope, $routeParams, $timeout, $location, authService, productServices) {
+app.controller('ArticleController', ['$scope', '$rootScope', '$routeParams', '$timeout', '$location', 'authService', 'ArticleServices',
+    function ($scope, $rootScope, $routeParams, $timeout, $location, authService, articleServices) {
         $scope.request = {
             pageSize: '10',
             pageIndex: 0,
@@ -12,10 +12,14 @@ app.controller('ProductController', ['$scope', '$rootScope', '$routeParams', '$t
             keyword: ''
         };
 
-        $scope.activedProduct = null;
-        $scope.relatedProducts = [];
+        $scope.activedArticle = null;
+        $scope.relatedArticles = [];
         $rootScope.isBusy = false;
-        $scope.data = [];
+        $scope.data = {
+            pageIndex: 0,
+            pageSize: 1,
+            totalItems: 0,
+        };
         $scope.errors = [];
         
         $scope.range = function (max) {
@@ -24,11 +28,11 @@ app.controller('ProductController', ['$scope', '$rootScope', '$routeParams', '$t
             return input;
         };
 
-        $scope.getProduct = async function (id) {
+        $scope.getArticle = async function (id) {
             $rootScope.isBusy = true;
-            var resp = await productServices.getProduct(id, 'be');
+            var resp = await articleServices.getArticle(id, 'be');
             if (resp.isSucceed) {
-                $scope.activedProduct = resp.data;
+                $scope.activedArticle = resp.data;
                 $rootScope.initEditor();
                 $scope.$apply();
             }
@@ -38,12 +42,12 @@ app.controller('ProductController', ['$scope', '$rootScope', '$routeParams', '$t
             }
         };
 
-        $scope.initProduct = function () {
+        $scope.initArticle = function () {
             if (!$rootScope.isBusy) {
                 $rootScope.isBusy = true;
-                productServices.initProduct('be').then(function (response) {
+                articleServices.initArticle('be').then(function (response) {
                     if (response.isSucceed) {
-                        $scope.activedProduct = response.data;
+                        $scope.activedArticle = response.data;
                         $rootScope.initEditor();
                     }
                     $rootScope.isBusy = false;
@@ -56,12 +60,12 @@ app.controller('ProductController', ['$scope', '$rootScope', '$routeParams', '$t
             }
         };
 
-        $scope.loadProduct = async function () {
+        $scope.loadArticle = async function () {
             $rootScope.isBusy = true;
             var id = $routeParams.id;
-            var response = await productServices.getProduct(id, 'be');
+            var response = await articleServices.getArticle(id, 'be');
             if (response.isSucceed) {
-                $scope.activedProduct = response.data;
+                $scope.activedArticle = response.data;
                 $rootScope.initEditor();
                 $scope.$apply();
             }
@@ -70,7 +74,7 @@ app.controller('ProductController', ['$scope', '$rootScope', '$routeParams', '$t
                 $scope.$apply();
             }
         };
-        $scope.loadProducts = async function (pageIndex) {
+        $scope.loadArticles = async function (pageIndex) {
             if (pageIndex != undefined) {
                 $scope.request.pageIndex = pageIndex;
             }
@@ -81,16 +85,16 @@ app.controller('ProductController', ['$scope', '$rootScope', '$routeParams', '$t
             if ($scope.request.toDate != null) {
                 $scope.request.toDate = $scope.request.toDate.toISOString();
             }
-            var resp = await productServices.getProducts($scope.request);
+            var resp = await articleServices.getArticles($scope.request);
             if (resp.isSucceed) {
 
                 ($scope.data = resp.data);
                 //$("html, body").animate({ "scrollTop": "0px" }, 500);
-                $.each($scope.data.items, function (i, product) {
+                $.each($scope.data.items, function (i, article) {
 
-                    $.each($scope.activedProducts, function (i, e) {
-                        if (e.productId == product.id) {
-                            product.isHidden = true;
+                    $.each($scope.activedArticles, function (i, e) {
+                        if (e.articleId == article.id) {
+                            article.isHidden = true;
                         }
                     })
                 })
@@ -115,11 +119,11 @@ app.controller('ProductController', ['$scope', '$rootScope', '$routeParams', '$t
             }
         };
 
-        $scope.removeProduct = async function (id) {
+        $scope.removeArticle = async function (id) {
             if (confirm("Are you sure!")) {
-                var resp = await productServices.removeProduct(id);
+                var resp = await articleServices.removeArticle(id);
                 if (resp.isSucceed) {
-                    $scope.loadProducts();
+                    $scope.loadArticles();
                 }
                 else {
                     $rootScope.showErrors(resp.errors);
@@ -127,15 +131,15 @@ app.controller('ProductController', ['$scope', '$rootScope', '$routeParams', '$t
             }
         };
 
-        $scope.saveProduct = async function (product) {
-            product.content = $('.editor-content').val();
-            var resp = await productServices.saveProduct(product);
+        $scope.saveArticle = async function (article) {
+            article.content = $('.editor-content').val();
+            var resp = await articleServices.saveArticle(article);
             if (resp.isSucceed) {
-                $scope.activedProduct = resp.data;
+                $scope.activedArticle = resp.data;
                 $rootScope.showMessage('Thành công', 'success');
                 $rootScope.isBusy = false;
                 $scope.$apply();
-                //$location.path('/backend/product/details/' + resp.data.id);
+                //$location.path('/backend/article/details/' + resp.data.id);
             }
             else {
                 $rootScope.showErrors(resp.errors);

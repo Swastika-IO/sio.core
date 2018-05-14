@@ -7,22 +7,17 @@
             {
                 title: 'Articles',
                 shortTitle: 'Articles',
-                icon: 'mi mi-ReadingList',
+                icon: 'mi mi-Package',
                 subMenus: [
                     {
                         title: 'Create',
-                        href: '#',
+                        href: '/backend/article/create',
                         icon: 'mi mi-Add'
                     },
                     {
                         title: 'List',
-                        href: '#',
+                        href: '/backend/article/list',
                         icon: 'mi mi-List'
-                    },
-                    {
-                        title: 'Draft',
-                        href: '#',
-                        icon: 'mi mi-Paste'
                     }
                 ]
             },

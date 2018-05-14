@@ -1,14 +1,14 @@
 ﻿'use strict';
-app.factory('ProductServices', ['$http', '$rootScope', 'commonServices', function ($http, $rootScope, commonServices) {
+app.factory('ArticleServices', ['$http', '$rootScope', 'commonServices', function ($http, $rootScope, commonServices) {
 
     //var serviceBase = 'http://ngauthenticationapi.azurewebsites.net/';
 
-    var productsServiceFactory = {};
+    var articlesServiceFactory = {};
 
     var settings = commonServices.getSettings();
 
-    var _getProduct = async function (id, type) {
-        var apiUrl = '/api/' + settings.lang + '/product/';
+    var _getArticle = async function (id, type) {
+        var apiUrl = '/api/' + settings.lang + '/article/';
         var url = apiUrl + 'details/' + type;
         if (id) {
             url += '/' + id;
@@ -20,8 +20,8 @@ app.factory('ProductServices', ['$http', '$rootScope', 'commonServices', functio
         return await commonServices.getApiResult(req)
     };
 
-    var _initProduct = async function (type) {
-        var apiUrl = '/api/' + settings.lang + '/product/';
+    var _initArticle = async function (type) {
+        var apiUrl = '/api/' + settings.lang + '/article/';
         var req = {
             method: 'GET',
             url: apiUrl + 'init/' + type,
@@ -29,8 +29,8 @@ app.factory('ProductServices', ['$http', '$rootScope', 'commonServices', functio
         return await commonServices.getApiResult(req)
     };
 
-    var _getProducts = async function (request) {
-        var apiUrl = '/api/' + settings.lang + '/product/';
+    var _getArticles = async function (request) {
+        var apiUrl = '/api/' + settings.lang + '/article/';
         var req = {
             method: 'POST',
             url: apiUrl + 'list',
@@ -40,8 +40,8 @@ app.factory('ProductServices', ['$http', '$rootScope', 'commonServices', functio
         return await commonServices.getApiResult(req);
     };
 
-    var _removeProduct = async function (id) {
-        var apiUrl = '/api/' + settings.lang + '/product/';
+    var _removeArticle = async function (id) {
+        var apiUrl = '/api/' + settings.lang + '/article/';
         var req = {
             method: 'GET',
             url: apiUrl + 'delete/' + id
@@ -49,21 +49,21 @@ app.factory('ProductServices', ['$http', '$rootScope', 'commonServices', functio
         return await commonServices.getApiResult(req)
     };
 
-    var _saveProduct = async function (product) {
-        var apiUrl = '/api/' + settings.lang + '/product/';
+    var _saveArticle = async function (article) {
+        var apiUrl = '/api/' + settings.lang + '/article/';
         var req = {
             method: 'POST',
             url: apiUrl + 'save',
-            data: JSON.stringify(product)
+            data: JSON.stringify(article)
         };
         return await commonServices.getApiResult(req)
     };
 
-    productsServiceFactory.getProduct = _getProduct;
-    productsServiceFactory.initProduct = _initProduct;
-    productsServiceFactory.getProducts = _getProducts;
-    productsServiceFactory.removeProduct = _removeProduct;
-    productsServiceFactory.saveProduct = _saveProduct;
-    return productsServiceFactory;
+    articlesServiceFactory.getArticle = _getArticle;
+    articlesServiceFactory.initArticle = _initArticle;
+    articlesServiceFactory.getArticles = _getArticles;
+    articlesServiceFactory.removeArticle = _removeArticle;
+    articlesServiceFactory.saveArticle = _saveArticle;
+    return articlesServiceFactory;
 
 }]);

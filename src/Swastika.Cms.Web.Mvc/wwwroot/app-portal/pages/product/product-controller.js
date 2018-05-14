@@ -15,7 +15,11 @@ app.controller('ProductController', ['$scope', '$rootScope', '$routeParams', '$t
         $scope.activedProduct = null;
         $scope.relatedProducts = [];
         $rootScope.isBusy = false;
-        $scope.data = [];
+        $scope.data = {
+            pageIndex: 0,
+            pageSize: 1,
+            totalItems: 0,
+        };
         $scope.errors = [];
         
         $scope.range = function (max) {

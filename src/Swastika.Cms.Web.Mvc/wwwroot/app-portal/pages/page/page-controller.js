@@ -15,7 +15,11 @@ app.controller('PageController', ['$scope', '$rootScope', '$routeParams', '$time
         $scope.activedPage = null;
         $scope.relatedPages = [];
         $rootScope.isBusy = false;
-        $scope.data = [];
+        $scope.data = {
+            pageIndex: 0,
+            pageSize: 1,
+            totalItems: 0
+        };
         $scope.errors = [];
         
         $scope.range = function (max) {

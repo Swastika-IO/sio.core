@@ -26,6 +26,21 @@
         templateUrl: "/app-portal/pages/product/details.html"
     });
 
+    $routeProvider.when("/backend/article/list", {
+        controller: "ArticleController",
+        templateUrl: "/app-portal/pages/article/list.html"
+    });
+
+    $routeProvider.when("/backend/article/details/:id", {
+        controller: "ArticleController",
+        templateUrl: "/app-portal/pages/article/details.html"
+    });
+
+    $routeProvider.when("/backend/article/create", {
+        controller: "ArticleController",
+        templateUrl: "/app-portal/pages/article/details.html"
+    });
+
     $routeProvider.when("/backend/page/list", {
         controller: "PageController",
         templateUrl: "/app-portal/pages/page/list.html"

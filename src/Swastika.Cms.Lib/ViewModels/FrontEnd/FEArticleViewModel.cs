@@ -92,6 +92,9 @@ namespace Swastika.Cms.Lib.ViewModels.FrontEnd
         #endregion Models
 
         #region Views
+        [JsonProperty("detailsUrl")]
+        public string DetailsUrl { get; set; }
+
 
         [JsonProperty("view")]
         public FETemplateViewModel View { get; set; }
