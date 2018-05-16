@@ -56,5 +56,36 @@
         templateUrl: "/app-portal/pages/page/details.html"
     });
 
+    $routeProvider.when("/backend/module/list", {
+        controller: "ModuleController",
+        templateUrl: "/app-portal/pages/module/list.html"
+    });
+
+    $routeProvider.when("/backend/module/details/:id", {
+        controller: "ModuleController",
+        templateUrl: "/app-portal/pages/module/details.html"
+    });
+
+    $routeProvider.when("/backend/module/create", {
+        controller: "ModuleController",
+        templateUrl: "/app-portal/pages/module/details.html"
+    });
+
+    
+    $routeProvider.when("/backend/media/list", {
+        controller: "MediaController",
+        templateUrl: "/app-portal/pages/media/list.html"
+    });
+
+    $routeProvider.when("/backend/media/details/:id", {
+        controller: "MediaController",
+        templateUrl: "/app-portal/pages/media/details.html"
+    });
+
+    $routeProvider.when("/backend/media/create", {
+        controller: "MediaController",
+        templateUrl: "/app-portal/pages/media/details.html"
+    });
+
     $routeProvider.otherwise({ redirectTo: "/backend" });
 });

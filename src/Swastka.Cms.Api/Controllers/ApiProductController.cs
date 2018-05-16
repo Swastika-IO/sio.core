@@ -304,7 +304,7 @@ namespace Swastka.Cms.Api.Controllers
         public async Task<RepositoryResponse<PaginationModel<InfoProductViewModel>>> GetList([FromBody]RequestPaging request)
         {
             string domain = string.Format("{0}://{1}", Request.Scheme, Request.Host);
-
+            ParseRequestPagingDate(request);
             Expression<Func<SiocProduct, bool>> predicate = model =>
                 model.Specificulture == _lang
                 && (!request.Status.HasValue || model.Status == (int)request.Status.Value)
@@ -317,10 +317,10 @@ namespace Swastka.Cms.Api.Controllers
                     )
                 )
                 && (!request.FromDate.HasValue
-                    || (model.CreatedDateTime >= request.FromDate.Value.ToUniversalTime())
+                    || (model.CreatedDateTime >= request.FromDate.Value)
                 )
                 && (!request.ToDate.HasValue
-                    || (model.CreatedDateTime <= request.ToDate.Value.ToUniversalTime())
+                    || (model.CreatedDateTime <= request.ToDate.Value)
                 );
 
             var data = await InfoProductViewModel.Repository.GetModelListByAsync(predicate, request.OrderBy, request.Direction, request.PageSize, request.PageIndex).ConfigureAwait(false);

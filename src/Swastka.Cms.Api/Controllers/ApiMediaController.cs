@@ -172,14 +172,22 @@ namespace Swastka.Cms.Api.Controllers
 
         [HttpPost, HttpOptions]
         [Route("list")]
-        public async Task<RepositoryResponse<PaginationModel<BEMediaViewModel>>> GetList(RequestPaging request)
+        public async Task<RepositoryResponse<PaginationModel<BEMediaViewModel>>> GetList([FromBody]RequestPaging request)
         {
+            ParseRequestPagingDate(request);
             Expression<Func<SiocMedia, bool>> predicate = model =>
                 model.Specificulture == _lang
                 && (string.IsNullOrWhiteSpace(request.Keyword)
                 || (model.FileName.Contains(request.Keyword)
                 || model.Title.Contains(request.Keyword)
-                || model.Description.Contains(request.Keyword)));
+                || model.Description.Contains(request.Keyword)))
+                && (!request.FromDate.HasValue
+                    || (model.CreatedDateTime >= request.FromDate.Value)
+                )
+                && (!request.ToDate.HasValue
+                    || (model.CreatedDateTime <= request.ToDate.Value)
+                );
+            
             var data = await BEMediaViewModel.Repository.GetModelListByAsync(predicate, request.OrderBy, request.Direction, request.PageSize, request.PageIndex).ConfigureAwait(false);
 
             return data;

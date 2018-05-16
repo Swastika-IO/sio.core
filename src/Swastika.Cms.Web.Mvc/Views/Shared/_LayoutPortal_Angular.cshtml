@@ -177,23 +177,30 @@
 
     <!-- Services-->
     <script src="/app-portal/pages/shared/services/auth-services.js"></script>
-    <script src="/app-portal/pages/shared/services/common-services.js"></script>
-    @*<script src="/app-portal/services/user-services.js"></script>*@
-    <script src="/app-portal/pages/product/product-services.js"></script>
-    <script src="~/app-portal/pages/article/article-services.js"></script>
-    <script src="/app-portal/pages/page/page-services.js"></script>
-
-    <!-- End Services -->
-    <!-- Controllers -->
-    @*<script src="/app-portal/controllers/template-controller.js"></script>
-        <script src="/app-portal/controllers/portal-controller.js"></script>*@
-    <script src="~/app-portal/pages/shared/controllers/template-controller.js"></script>
     <script src="/app-portal/pages/login/login-controller.js"></script>
+    <script src="/app-portal/pages/shared/services/common-services.js"></script>
+    
+    <script src="/app-portal/pages/product/product-services.js"></script>
+    <script src="/app-portal/pages/product/product-controller.js"></script>
+    
+    <script src="~/app-portal/pages/article/article-services.js"></script>
+    <script src="/app-portal/pages/article/article-controller.js"></script>
+
+    <script src="/app-portal/pages/page/page-services.js"></script>
+    <script src="/app-portal/pages/page/page-controller.js"></script>
+
+    <script src="/app-portal/pages/module/module-services.js"></script>
+    <script src="/app-portal/pages/module/module-controller.js"></script>
+
+    <script src="/app-portal/pages/media/media-services.js"></script>
+    <script src="/app-portal/pages/media/media-controller.js"></script>
+
     <script src="/app-portal/pages/dashboard/dashboard-controller.js"></script>
     <script src="~/app-portal/pages/dashboard/dashboard-services.js"></script>
-    <script src="/app-portal/pages/product/product-controller.js"></script>
-    <script src="/app-portal/pages/article/article-controller.js"></script>
-    <script src="/app-portal/pages/page/page-controller.js"></script>
+
+    <!-- End Services -->
+    <script src="~/app-portal/pages/shared/controllers/template-controller.js"></script>
+    
     <!-- Controllers -->
     <!-- Components -->
     <script src="/app-portal/plugins/paging.js"></script>
@@ -245,6 +252,9 @@
     <script src="/app-portal/pages/page/components/parents/parents.js"></script>
     <script src="/app-portal/pages/page/components/plug-play/plug-play.js"></script>
     <script src="/app-portal/pages/page/components/seo/seo.js"></script>
+
+    <!-- module-components -->
+    <script src="/app-portal/pages/module/components/main/main.js"></script>
 
     <!-- End Components -->
     @RenderSection("Scripts", required: false)

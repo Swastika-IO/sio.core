@@ -1,0 +1,78 @@
+﻿<!-- Main content -->
+<section class="" ng-init="loadModule()">
+    <form ng-class="{'submitted': submitted}"
+          ng-submit="saveModule(activedModule)">
+
+        <actions preview-url="activedModule.detailsUrl" back-url="'/backend/module/list'"></actions>
+        <div class="m-4"></div>
+        <div class="row">
+            <section class="col-lg-9">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <module-main module="activedModule" />
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-lg-12">
+                        <template-editor template="activedModule.view"></template-editor>
+                    </div>
+                </div>
+            </section>
+            <section class="col-lg-3" style="padding-left:0">
+                <div class="card">
+                    <div class="card-header">
+                        Info
+                    </div>
+                    <div class="card-body">
+                        <div class="form-group">
+                            <div class="btn-group btn-group-sm btn-group-toggle d-flex w-100">
+                                <label ng-repeat="stt in swStatus track by $index"
+                                       ng-switch="stt"
+                                       ng-class="{active: $index == activedModule.status}"
+                                       class="btn btn-outline-primary btn-block mt-0">
+                                    <input ng-model="activedModule.status" type="radio" value="{{$index}}" class="custom-control-input" id="module_status_{{$index}}" />
+                                    <i ng-switch-when="Deleted" class="mi mi-Delete mi-lg mi-fw" title="{{stt}}"></i>
+                                    <i ng-switch-when="Preview" class="mi mi-Preview mi-lg mi-fw" title="{{stt}}"></i>
+                                    <i ng-switch-when="Published" class="mi mi-Module mi-lg mi-fw" title="{{stt}}"></i>
+                                    <i ng-switch-when="Draft" class="fas fa-pencil-alt mi-lg mi-flip-horizontal" title="{{stt}}"></i>
+                                    <i ng-switch-when="Schedule" class="mi mi-Calendar mi-lg mi-flip-horizontal" title="{{stt}}"></i>
+                                </label>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <span class="switch">
+                                <label>
+                                    <input type="checkbox" ng-model="activedModule.isClone" class="switch">
+                                    Clone
+                                </label>
+                            </span>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label">Created Date Time</label>
+                            <div class="input-group input-group-sm mb-3">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text" id="basic-addon1"><i class="mi mi-Calendar"></i></span>
+                                </div>
+                                <input ng-model="activedModule.createdDateTime" type="text" class="form-control" readonly />
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="control-label">Created By</label>
+                            <div class="input-group input-group-sm mb-3">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text" id="basic-addon1"><i class="mi mi-Contact"></i></span>
+                                </div>
+                                <input ng-model="activedModule.createdBy" class="form-control" readonly />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <custom-image header="'Feature Image'" type="'Modules'" folder="activedModule.seoName" srcUrl="activedModule.imageUrl" src="activedModule.imageUrl" auto="'true'"></custom-image>
+                <custom-image header="'Feature Thumnail'" type="'Modules'" folder="activedModule.seoName" srcUrl="activedModule.thumbnailUrl" src="activedModule.thumbnail" auto="'true'"></custom-image>
+            </section>
+        </div>
+    </form>
+</section>
+<!-- /.content -->

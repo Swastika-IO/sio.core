@@ -19,8 +19,10 @@
                 </select>
             </div>
             <div class="input-group input-group-sm" role="group" aria-label="First group">
-                <input type="date" data-date-format="dd.MM.yyyy" ng-model="$ctrl.request.fromDate" class="form-control form-control-sm" />
-                <input type="date" data-date-format="dd.MM.yyyy" ng-model="$ctrl.request.toDate" class="form-control form-control-sm" />
+                <input type="date" data-date-format="dd.MM.yyyy" ng-model="$ctrl.dateRange.fromDate" class="form-control form-control-sm" 
+                       ng-change="$ctrl.updateDate()"/>
+                <input type="date" data-date-format="dd.MM.yyyy" ng-model="$ctrl.dateRange.toDate" class="form-control form-control-sm" 
+                       ng-change="$ctrl.updateDate()"/>
             </div>
         </div>
     </div>

@@ -79,12 +79,12 @@
                 subMenus: [
                     {
                         title: 'Create',
-                        href: '/backend/modules/create',
+                        href: '/backend/module/create',
                         icon: 'mi mi-Add'
                     },
                     {
                         title: 'List',
-                        href: '/backend/modules/list',
+                        href: '/backend/module/list',
                         icon: 'mi mi-List'
                     }
                 ]

@@ -2,6 +2,7 @@
 // The Swastika I/O Foundation licenses this file to you under the GNU General Public License v3.0.
 // See the LICENSE file in the project root for more information.
 
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Data.OData.Query;
@@ -117,77 +118,84 @@ namespace Swastka.IO.Cms.Api.Controllers
 
         #region Post
 
-        // GET api/modules
-        [HttpPost, HttpOptions]
-        [Route("list")]
-        public async Task<RepositoryResponse<PaginationModel<InfoModuleViewModel>>> GetList(RequestPaging request)
-        {
-            if (string.IsNullOrEmpty(request.Keyword))
-            {
-                var data = await InfoModuleViewModel.Repository.GetModelListByAsync(m => m.Specificulture == _lang, request.OrderBy, request.Direction, request.PageSize, request.PageIndex).ConfigureAwait(false);
-                string domain = string.Format("{0}://{1}", Request.Scheme, Request.Host);
-
-                return data;
-            }
-            else
-            {
-                Expression<Func<SiocModule, bool>> predicate = model =>
-                    model.Specificulture == _lang
-                    && (string.IsNullOrWhiteSpace(request.Keyword)
-                    || (model.Title.Contains(request.Keyword)
-                    || model.Description.Contains(request.Keyword)));
-
-                return await InfoModuleViewModel.Repository.GetModelListByAsync(predicate, request.OrderBy, request.Direction, request.PageSize, request.PageIndex).ConfigureAwait(false);
-            }
-        }
-
-        // GET api/articles/id
-        [HttpPost, HttpOptions]
-        [Route("addToArticle")]
-        public async Task<RepositoryResponse<bool>> AddToArticle([FromBody]BEArticleModuleViewModel view)
-        {
-            if (view.IsActived)
-            {
-                var addResult = await view.SaveModelAsync().ConfigureAwait(false);
-                return new RepositoryResponse<bool>()
-                {
-                    IsSucceed = addResult.IsSucceed,
-                    Data = addResult.IsSucceed
-                };
-            }
-            else
-            {
-                return await view.RemoveModelAsync().ConfigureAwait(false);
-            }
-        }
-
         // POST api/module
+        [Authorize]
         [HttpPost, HttpOptions]
         [Route("save")]
         public async Task<RepositoryResponse<BEModuleViewModel>> Post([FromBody]BEModuleViewModel model)
         {
             if (model != null)
             {
-                return await model.SaveModelAsync(true).ConfigureAwait(false);
+                //model.CreatedBy = User.Identity.Name;
+                var result = await model.SaveModelAsync(true).ConfigureAwait(false);
+                return result;
             }
             return new RepositoryResponse<BEModuleViewModel>();
         }
 
-        // POST api/category
+        // POST api/module
         [HttpPost, HttpOptions]
         [Route("save/{id}")]
         public async Task<RepositoryResponse<bool>> SaveFields(int id, [FromBody]List<EntityField> fields)
         {
             if (fields != null)
             {
+                var result = new RepositoryResponse<bool>() { IsSucceed = true };
                 foreach (var property in fields)
                 {
-                    var result = await BEModuleViewModel.Repository.UpdateFieldsAsync(c => c.Id == id, fields).ConfigureAwait(false);
+                    if (result.IsSucceed)
+                    {
+                        result = await InfoModuleViewModel.Repository.UpdateFieldsAsync(c => c.Id == id && c.Specificulture == _lang, fields).ConfigureAwait(false);
+                    }
+                    else
+                    {
+                        break;
+                    }
 
-                    return result;
                 }
+                return result;
             }
             return new RepositoryResponse<bool>();
+        }
+
+        // GET api/module
+        [HttpPost, HttpOptions]
+        [Route("list")]
+        [Route("list/{level}")]
+        public async Task<RepositoryResponse<PaginationModel<InfoModuleViewModel>>> GetList([FromBody] RequestPaging request, int? level = 0)
+        {
+            string domain = string.Format("{0}://{1}", Request.Scheme, Request.Host);
+
+            Expression<Func<SiocModule, bool>> predicate = model =>
+                model.Specificulture == _lang
+                && (string.IsNullOrWhiteSpace(request.Keyword)
+                    || (model.Title.Contains(request.Keyword)
+                    || model.Description.Contains(request.Keyword)))
+                && (!request.FromDate.HasValue
+                    || (model.LastModified >= request.FromDate.Value.ToUniversalTime())
+                )
+                && (!request.ToDate.HasValue
+                    || (model.LastModified <= request.ToDate.Value.ToUniversalTime())
+                )
+                    ;
+
+            var data = await InfoModuleViewModel.Repository.GetModelListByAsync(predicate, request.OrderBy, request.Direction, request.PageSize, request.PageIndex).ConfigureAwait(false);
+            //if (data.IsSucceed)
+            //{
+            //    data.Data.Items.ForEach(a =>
+            //    {
+            //        a.DetailsUrl = SwCmsHelper.GetRouterUrl(
+            //            "Page", new { a.SeoName }, Request, Url);
+            //        a.Childs.ForEach(c =>
+            //        {
+            //            c.DetailsUrl = SwCmsHelper.GetRouterUrl(
+            //                "Page", new { c.SeoName }, Request, Url);
+            //        }
+            //    );
+            //    }
+            //    );
+            //}
+            return data;
         }
 
         #endregion Post

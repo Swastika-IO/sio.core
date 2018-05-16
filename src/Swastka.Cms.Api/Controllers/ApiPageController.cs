@@ -75,10 +75,11 @@ namespace Swastka.IO.Cms.Api.Controllers
                     else
                     {
                         var model = new SiocCategory() { Specificulture = _lang, Status = (int)SWStatus.Preview };
+
                         RepositoryResponse<BECategoryViewModel> result = new RepositoryResponse<BECategoryViewModel>()
                         {
                             IsSucceed = true,
-                            Data = new BECategoryViewModel(model)
+                            Data = await BECategoryViewModel.InitAsync(model)
                         };
                         return JObject.FromObject(result);
                     }
@@ -205,7 +206,7 @@ namespace Swastka.IO.Cms.Api.Controllers
         public async Task<RepositoryResponse<PaginationModel<InfoCategoryViewModel>>> GetList([FromBody] RequestPaging request, int? level = 0)
         {
             string domain = string.Format("{0}://{1}", Request.Scheme, Request.Host);
-
+            ParseRequestPagingDate(request);
             Expression<Func<SiocCategory, bool>> predicate = model =>
                 model.Specificulture == _lang
                 && model.Level == level
@@ -213,10 +214,10 @@ namespace Swastka.IO.Cms.Api.Controllers
                     || (model.Title.Contains(request.Keyword)
                     || model.Excerpt.Contains(request.Keyword)))
                 && (!request.FromDate.HasValue
-                    || (model.CreatedDateTime >= request.FromDate.Value.ToUniversalTime())
+                    || (model.CreatedDateTime >= request.FromDate.Value)
                 )
                 && (!request.ToDate.HasValue
-                    || (model.CreatedDateTime <= request.ToDate.Value.ToUniversalTime())
+                    || (model.CreatedDateTime <= request.ToDate.Value)
                 )
                     ;
 

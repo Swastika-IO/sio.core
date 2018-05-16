@@ -1,0 +1,108 @@
+﻿<!-- Main content -->
+<section class="content container-fluid" ng-init="loadArticle()">
+    <form ng-class="{'submitted': submitted}"
+          ng-submit="saveArticle(activedArticle)">
+
+        <actions preview-url="activedArticle.detailsUrl" back-url="'/backend/article/list'"></actions>
+
+        <div class="row">
+            <section class="col-lg-9">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <article-main article="activedArticle"></article-main>
+                    </div>
+                </div>
+                <div class="row">
+                    <tabs>
+                        <pane title="General">
+                            <article-general article="activedArticle"></article-general>
+                        </pane>
+                        <pane title="Seo">
+                            <article-seo article="activedArticle"></article-seo>
+                        </pane>
+                        <pane title="Parents">
+                            <article-parents article="activedArticle"></article-parents>
+                        </pane>
+                        <pane title="Modules">
+                            <article-modules article="activedArticle"></article-modules>
+                        </pane>
+                        <pane title="Layout">
+                            <div class="tab-pane">
+                                <template-editor template="activedArticle.view"></template-editor>
+                            </div>
+                        </pane>
+                        <pane title="Medias">
+                         <!--   <article-medias article="activedArticle" medias="mediaData"></article-medias>-->
+                            <navs data="activedArticle.mediaNavs" prefix="media"/>
+
+                        </pane>
+                        <pane title="Related">
+                            <article-related article="activedArticle" list="data"></article-related>
+                        </pane>
+                    </tabs>
+
+                </div>
+            </section>
+            <section class="col-lg-3" style="padding-left:0">
+                <div class="card">
+                    <div class="card-header">
+                        Info
+                    </div>
+                    <div class="card-body">
+                        <div class="form-group">
+                            <div class="btn-group btn-group-sm btn-group-toggle d-flex w-100">
+                                <label ng-repeat="stt in swStatus track by $index"
+                                       ng-switch="stt"
+                                       ng-class="{active: $index == activedArticle.status}"
+                                       class="btn btn-outline-primary btn-block mt-0">
+                                    <input ng-model="activedArticle.status" type="radio" value="{{$index}}" class="custom-control-input" id="pageType_{{$index}}" />
+                                    <i ng-switch-when="Deleted" class="mi mi-Delete mi-lg mi-fw" title="{{stt}}"></i>
+                                    <i ng-switch-when="Preview" class="mi mi-Preview mi-lg mi-fw" title="{{stt}}"></i>
+                                    <i ng-switch-when="Published" class="mi mi-Page mi-lg mi-fw" title="{{stt}}"></i>
+                                    <i ng-switch-when="Draft" class="fas fa-pencil-alt mi-lg mi-flip-horizontal" title="{{stt}}"></i>
+                                    <i ng-switch-when="Schedule" class="mi mi-Calendar mi-lg mi-flip-horizontal" title="{{stt}}"></i>
+                                </label>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <span class="switch">
+                                <label>
+                                    <input type="checkbox" ng-model="activedArticle.isClone" class="switch">
+                                    Clone
+                                </label>
+                            </span>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label">Created Date Time</label>
+                            <div class="input-group mb-3">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text" id="basic-addon1"><i class="mi mi-Calendar"></i></span>
+                                </div>
+                                <input ng-model="activedArticle.createdDateTime" type="text" class="form-control" readonly />
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="control-label">Created By</label>
+                            <div class="input-group mb-3">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text" id="basic-addon1"><i class="mi mi-Contact"></i></span>
+                                </div>
+                                <input ng-model="activedArticle.createdBy" class="form-control" readonly />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+                <custom-image header="'Feature Image'" type="'Articles'" folder="activedArticle.seoName" srcUrl="activedArticle.imageUrl" src="activedArticle.imageUrl" auto="'true'"></custom-image>
+                <custom-image header="'Feature Thumnail'" type="'Articles'" folder="activedArticle.seoName" srcUrl="activedArticle.thumbnailUrl" src="activedArticle.thumbnail" auto="'true'"></custom-image>
+
+
+            </section>
+        </div>
+
+
+    </form>
+</section>
+<!-- /.content -->

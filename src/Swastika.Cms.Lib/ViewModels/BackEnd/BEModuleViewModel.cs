@@ -27,6 +27,7 @@ namespace Swastika.Cms.Lib.ViewModels.BackEnd
     public class BEModuleViewModel
        : ViewModelBase<SiocCmsContext, SiocModule, BEModuleViewModel>
     {
+        
         #region Properties
 
         #region Models
@@ -143,6 +144,7 @@ namespace Swastika.Cms.Lib.ViewModels.BackEnd
             if (Id == 0)
             {
                 Id = InfoModuleViewModel.Repository.Count().Data + 1;
+                LastModified = DateTime.UtcNow;
             }
             Template = View != null ? string.Format(@"{0}/{1}{2}", View.FolderType, View.FileName, View.Extension) : Template;
             var arrField = Columns != null ? JArray.Parse(
