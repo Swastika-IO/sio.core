@@ -118,7 +118,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Content Remove="Areas\Portal\Views\Articles\IndexOld.cshtml" />
+    <Content Remove="Areas\Portal\Views\Article\IndexOld.cshtml" />
     <Content Remove="Areas\Portal\Views\Module\DetailsOld.cshtml" />
     <Content Remove="Areas\Portal\Views\Module\IndexOld.cshtml" />
     <Content Remove="Areas\Portal\Views\Pages\IndexOld.cshtml" />
@@ -205,13 +205,13 @@
     <None Include="Areas\Portal\Views\Apperance\Templates.cshtml" />
     <None Include="Areas\Portal\Views\Apperance\Themes.cshtml" />
     <None Include="Areas\Portal\Views\Apperance\_Editable_Template.cshtml" />
-    <None Include="Areas\Portal\Views\Articles\Create.cshtml" />
-    <None Include="Areas\Portal\Views\Articles\Details.cshtml" />
-    <None Include="Areas\Portal\Views\Articles\Draft.cshtml" />
-    <None Include="Areas\Portal\Views\Articles\Edit.cshtml" />
-    <None Include="Areas\Portal\Views\Articles\Index.cshtml" />
-    <None Include="Areas\Portal\Views\Articles\_Editable.cshtml" />
-    <None Include="Areas\Portal\Views\Articles\_EditableSide.cshtml" />
+    <None Include="Areas\Portal\Views\Article\Create.cshtml" />
+    <None Include="Areas\Portal\Views\Article\Details.cshtml" />
+    <None Include="Areas\Portal\Views\Article\Draft.cshtml" />
+    <None Include="Areas\Portal\Views\Article\Edit.cshtml" />
+    <None Include="Areas\Portal\Views\Article\Index.cshtml" />
+    <None Include="Areas\Portal\Views\Article\_Editable.cshtml" />
+    <None Include="Areas\Portal\Views\Article\_EditableSide.cshtml" />
     <None Include="Areas\Portal\Views\Collaborators\AddMember.cshtml" />
     <None Include="Areas\Portal\Views\Collaborators\Index.cshtml" />
     <None Include="Areas\Portal\Views\Collaborators\Members.cshtml" />

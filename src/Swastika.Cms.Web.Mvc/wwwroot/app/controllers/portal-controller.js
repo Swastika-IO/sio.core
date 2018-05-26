@@ -125,10 +125,15 @@
                 $scope.request.pageIndex = pageIndex;
             }
             var url = '/api/' + $scope.currentLanguage + '/media/list';//byProduct/' + productId;
+            var headers = {
+                'Content-Type': 'application/json',
+            };
+
             $.ajax({
                 method: 'POST',
                 url: url,
-                data: $scope.request,
+                headers: headers,
+                data: JSON.stringify($scope.request),
                 success: function (response) {
                     $scope.$apply($scope.mediaData = response.data);
 

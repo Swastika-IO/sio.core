@@ -5,13 +5,13 @@
         <label class="control-label">Source</label>
         <input type="text"
                class="form-control"
-               ng-model="$ctrl.product.source" />
+               ng-model="$ctrl.article.source" />
     </div>
     <div class="form-group">
         <label class="control-label">Tags</label>
         <input type="text"
                class="form-control tags"
-               ng-model="$ctrl.product.tags" />
+               ng-model="$ctrl.article.tags" />
     </div>
 
     <div class="row">
@@ -19,7 +19,7 @@
             <div class="card">
                 <div class="card-header">
                     Extra Properties (<label class="control-label">ExtraProperties)</label>)
-                    <a class="btn btn-primary btn-sm float-right text-white" ng-click="$ctrl.addProperty('$ctrl.product')">
+                    <a class="btn btn-primary btn-sm float-right text-white" ng-click="$ctrl.addProperty('$ctrl.article')">
                         Add New
                     </a>
                 </div>
@@ -39,7 +39,7 @@
                             </tr>
                         </thead>
                         <tbody class="sortable">
-                            <tr ng-repeat="prop in $ctrl.product.properties track by $index" class="sortable-item $ctrl.product-property">
+                            <tr ng-repeat="prop in $ctrl.article.properties track by $index" class="sortable-item $ctrl.article-property">
                                 <td style="cursor:move;">
                                     <span class="oi oi-move"></span>
                                 </td>
@@ -61,7 +61,7 @@
                                             <input class="form-control form-control-sm" type="number" ng-model="prop.value"/>
                                         </div>                                          
                                         <div class="animate-switch" ng-switch-when="2">
-                                            <custom-file header="'Feature Image'" folder="'Products/Properties'" src="prop.value" auto="'true'"></custom-file>
+                                            <custom-file header="'Feature Image'" folder="'articles/Properties'" src="prop.value" auto="'true'"></custom-file>
                                         </div>
                                         <div class="animate-switch" ng-switch-when="7">
                                             <input class="form-control form-control-sm" type="checkbox" ng-true-value="'true'" ng-model="prop.value"/>

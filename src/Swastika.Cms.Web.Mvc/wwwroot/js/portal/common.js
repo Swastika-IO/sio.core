@@ -93,10 +93,10 @@
         init: async function () {
             var clipboard = new ClipboardJS('.btn-clipboard');
 
-            $("#modal-files").on('show.bs.modal', function () {
-                var container = $("#modal-files").find('table');
-                SW.Common.loadFiles(container);
-            });
+            //$("#modal-files").on('show.bs.modal', function () {
+            //    var container = $("#modal-files").find('table');
+            //    SW.Common.loadFiles(container);
+            //});
 
             $('[data-toggle="popover"]').popover({
                 html: true,

@@ -10,7 +10,7 @@
                    class="form-control form-control-lg"
                    ng-model="$ctrl.product.title" />
         </div>
-        <div class="form-group">
+        <!--<div class="form-group">
             <label>Code</label>
             <input type="text"
                    class="form-control form-control-lg"
@@ -39,15 +39,15 @@
             <input type="text"
                    class="form-control form-control-lg"
                    ng-model="$ctrl.product.strDealPrice" />
-        </div>
+        </div>-->
         <div class="form-group">
             <label>Mô tả</label>
-            <textarea class="form-control form-control-lg"
+            <textarea class="form-control editor-content excerpt"
                       ng-model="$ctrl.product.excerpt">{{$ctrl.product.excerpt}}</textarea>
         </div>
         <div class="form-group">
             <label>Nội dung</label>
-            <textarea class="form-control editor-content"
+            <textarea class="form-control editor-content content"
                       ng-model="$ctrl.product.content">{{$ctrl.product.content}}</textarea>
         </div>
     </div>

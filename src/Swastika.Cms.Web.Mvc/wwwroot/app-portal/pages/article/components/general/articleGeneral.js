@@ -1,6 +1,6 @@
 ﻿
-app.component('productGeneral', {
-    templateUrl: '/app-portal/pages/product/components/general/productGeneral.html',
+app.component('articleGeneral', {
+    templateUrl: '/app-portal/pages/article/components/general/articleGeneral.html',
     controller: function ($scope) {
         var ctrl = this;
         ctrl.dataTypes = [
@@ -60,7 +60,7 @@ app.component('productGeneral', {
         };
         ctrl.addProperty = function (type) {
             var i = $(".property").length;
-            ctrl.product.properties.push({
+            ctrl.article.properties.push({
                 priority: 0,
                 name: '',
                 value: null,
@@ -99,7 +99,7 @@ app.component('productGeneral', {
         }
     },
     bindings: {
-        product: '=',
+        article: '=',
         onDelete: '&',
         onUpdate: '&'
     }

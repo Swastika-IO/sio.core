@@ -17,6 +17,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq.Expressions;
 using System.Threading.Tasks;
+using static Swastika.Common.Utility.Enums;
 
 namespace Swastka.IO.Cms.Api.Controllers
 {
@@ -31,37 +32,64 @@ namespace Swastka.IO.Cms.Api.Controllers
 
         #region Get
 
-        // GET api/articles/id
-        [HttpGet]
-        [Route("details/{id}")]
-        public async Task<RepositoryResponse<FEModuleViewModel>> Details(int id)
-        {
-            var result = await FEModuleViewModel.Repository.GetSingleModelAsync(model => model.Id == id && model.Specificulture == _lang).ConfigureAwait(false);
-            if (result.IsSucceed)
-            {
-                result.Data.LoadData();
-            }
-            return result;
-        }
-
         // GET api/module/details/spa/1
         [HttpGet]
         [Route("details/{viewType}/{id}")]
-        public async Task<JObject> DetailsByType(string viewType, int id)
+        [Route("details/{viewType}")]
+        public async Task<JObject> DetailsByType(string viewType, int? id = null)
         {
             switch (viewType)
             {
                 case "spa":
-                    var spaResult = await SpaModuleViewModel.Repository.GetSingleModelAsync(model => model.Id == id && model.Specificulture == _lang).ConfigureAwait(false);
-                    return JObject.FromObject(spaResult);
+                    if (id.HasValue)
+                    {
+                        var spaResult = await SpaModuleViewModel.Repository.GetSingleModelAsync(model => model.Id == id && model.Specificulture == _lang).ConfigureAwait(false);
+                        return JObject.FromObject(spaResult);
+                    }
+                    else
+                    {
+                        var model = new SiocModule() { Specificulture = _lang, Status = (int)SWStatus.Preview };
 
+                        RepositoryResponse<SpaModuleViewModel> result = new RepositoryResponse<SpaModuleViewModel>()
+                        {
+                            IsSucceed = true,
+                            Data = await SpaModuleViewModel.InitAsync(model)
+                        };
+                        return JObject.FromObject(result);
+                    }
                 case "be":
-                    var beResult = await BEModuleViewModel.Repository.GetSingleModelAsync(model => model.Id == id && model.Specificulture == _lang).ConfigureAwait(false);
-                    return JObject.FromObject(beResult);
+                    if (id.HasValue)
+                    {
+                        var beResult = await BEModuleViewModel.Repository.GetSingleModelAsync(model => model.Id == id && model.Specificulture == _lang).ConfigureAwait(false);
+                        return JObject.FromObject(beResult);
+                    }
+                    else
+                    {
+                        var model = new SiocModule() { Specificulture = _lang, Status = (int)SWStatus.Preview };
 
+                        RepositoryResponse<BEModuleViewModel> result = new RepositoryResponse<BEModuleViewModel>()
+                        {
+                            IsSucceed = true,
+                            Data = await BEModuleViewModel.InitAsync(model)
+                        };
+                        return JObject.FromObject(result);
+                    }
                 default:
-                    var feResult = await FEModuleViewModel.Repository.GetSingleModelAsync(model => model.Id == id && model.Specificulture == _lang).ConfigureAwait(false);
-                    return JObject.FromObject(feResult);
+                    if (id.HasValue)
+                    {
+                        var beResult = await FEModuleViewModel.Repository.GetSingleModelAsync(model => model.Id == id && model.Specificulture == _lang).ConfigureAwait(false);
+                        return JObject.FromObject(beResult);
+                    }
+                    else
+                    {
+                        var model = new SiocModule();
+                        RepositoryResponse<FEModuleViewModel> result = new RepositoryResponse<FEModuleViewModel>()
+                        {
+                            IsSucceed = true,
+                            Data = new FEModuleViewModel(model) { Specificulture = _lang, Status = SWStatus.Preview }
+                        };
+                        return JObject.FromObject(result);
+                    }
             }
         }
 

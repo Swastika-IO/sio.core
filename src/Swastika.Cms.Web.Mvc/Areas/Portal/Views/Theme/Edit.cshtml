@@ -8,7 +8,8 @@
 <!-- Main content -->
 <section class="content container-fluid">
     <form asp-controller="@ViewContext.RouteData.Values["controller"].ToString()"
-          asp-action="@ViewContext.RouteData.Values["action"].ToString()">
+          asp-action="@ViewContext.RouteData.Values["action"].ToString()"
+          enctype="multipart/form-data">
 
         @await Html.PartialAsync("EditableSides/_Editable_ActionsBar")
         <div class="row">

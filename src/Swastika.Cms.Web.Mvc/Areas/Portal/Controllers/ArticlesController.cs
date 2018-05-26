@@ -21,10 +21,10 @@ namespace Swastika.Cms.Mvc.Areas.Portal.Controllers
 {
     //[Microsoft.AspNetCore.Authorization.Authorize(Policy ="AddEditUser")]
     [Area("Portal")]
-    [Route("{culture}/Portal/Articles")]
-    public class ArticlesController : BaseController<ArticlesController>
+    [Route("{culture}/portal/article")]
+    public class ArticleController : BaseController<ArticleController>
     {
-        public ArticlesController(IHostingEnvironment hostingEnvironment
+        public ArticleController(IHostingEnvironment hostingEnvironment
             //, IStringLocalizer<PortalController> portalLocalizer, IStringLocalizer<SharedResource> localizer
             )
             : base(hostingEnvironment)
@@ -85,7 +85,7 @@ namespace Swastika.Cms.Mvc.Areas.Portal.Controllers
             };
             if (categoryId.HasValue)
             {
-                CategoryArticleViewModel categoryArticleViewModel = bEArticleViewModel.Categories.Find(c => c.CategoryId == categoryId);
+                var categoryArticleViewModel = bEArticleViewModel.Categories.Find(c => c.CategoryId == categoryId);
                 if (categoryArticleViewModel != null)
                 {
                     categoryArticleViewModel.IsActived = true;

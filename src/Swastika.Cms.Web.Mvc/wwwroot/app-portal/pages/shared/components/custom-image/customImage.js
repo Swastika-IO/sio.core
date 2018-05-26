@@ -1,69 +1,66 @@
 ﻿
-modules.controller('ImageController', function PortalTemplateController($rootScope, $scope) {
-    var ctrl = this;
-    ctrl.selectFile = function (file, errFiles) {
-        if (file !== undefined && file !== null) {
-            if (ctrl.auto) {
-                var fileName = ctrl.uploadFile(file);
-            }
-            else {
-                ctrl.getBase64(file);
-            }
-        }
-    };
-
-    ctrl.uploadFile = function (file) {
-        // Create FormData object
-        var files = new FormData();
-        var folder = ctrl.folder;
-        var title = ctrl.title;
-        var description = ctrl.description;
-        // Looping over all files and add it to FormData object
-        files.append(file.name, file);
-
-        // Adding one more key to FormData object
-        files.append('fileFolder', folder);
-        files.append('title', title);
-        files.append('description', description);
-        $.ajax({
-            url: '/api/' + $rootScope.lang + '/media/upload', //'/api/tts/UploadImage',
-            type: "POST",
-            contentType: false, // Not to set any content header
-            processData: false, // Not to process data
-            data: files,
-            success: function (result) {
-                ctrl.src = result.data.fullPath;
-                $scope.$apply();
-            },
-            error: function (err) {
-                return '';
-            }
-        });
-        
-    }
-    ctrl.getBase64 = function (file) {
-        if (file !== null) {
-            var reader = new FileReader();
-            reader.readAsDataURL(file);
-            reader.onload = function () {
-                var index = reader.result.indexOf(',') + 1;
-                var base64 = reader.result.substring(index);
-               
-                ctrl.src = base64;
-                $scope.$apply();
-            };
-            reader.onerror = function (error) {
-                console.log(error);
-            };
-        }
-        else {
-            return null;
-        }
-    }
-});
+//modules.controller('ImageController', );
 modules.component('customImage', {
     templateUrl: '/app-portal/pages/shared/components/custom-image/customImage.html',
-    controller: 'ImageController',
+    controller: ['$rootScope', '$scope', 'MediaServices', function PortalTemplateController($rootScope, $scope, mediaServices) {
+        var ctrl = this;
+        ctrl.mediaFile = {
+            file: null,
+            fullPath: '',
+            folder: 'Media',
+            title: '',
+            description: ''
+        };
+        ctrl.selectFile = function (file, errFiles) {
+
+           
+            if (file !== undefined && file !== null) {
+                ctrl.mediaFile.folder = ctrl.folder ? ctrl.folder : 'Media';
+                ctrl.mediaFile.title = ctrl.title ? ctrl.title : '';
+                ctrl.mediaFile.description = ctrl.description ? ctrl.description : '';
+                ctrl.mediaFile.file = file;
+                if (ctrl.auto) {
+                    ctrl.uploadFile();
+                }
+                else {
+                    ctrl.getBase64(file);
+                }
+            }
+        };
+
+        ctrl.uploadFile = async function () {
+
+
+            var resp = await mediaServices.uploadMedia(ctrl.mediaFile);
+            if (resp.isSucceed) {
+                ctrl.src = result.data.fullPath;
+                $scope.$apply();
+            }
+            else {
+                $rootScope.showErrors(resp.errors);
+                $scope.$apply();
+            }
+        }
+        ctrl.getBase64 = function (file) {
+            if (file !== null) {
+                var reader = new FileReader();
+                reader.readAsDataURL(file);
+                reader.onload = function () {
+                    var index = reader.result.indexOf(',') + 1;
+                    var base64 = reader.result.substring(index);
+
+                    ctrl.src = base64;
+                    $scope.$apply();
+                };
+                reader.onerror = function (error) {
+                    console.log(error);
+                };
+            }
+            else {
+                return null;
+            }
+        }
+    }],
     bindings: {
         header: '=',
         title: '=',

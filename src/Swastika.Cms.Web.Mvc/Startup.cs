@@ -179,7 +179,6 @@ namespace Swastika.Cms.Web.Mvc
             {
                 if (!values.ContainsKey("culture"))
                     return false;
-
                 var culture = values["culture"].ToString();
                 return culture == "en" || culture == "vi";
             }

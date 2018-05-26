@@ -177,6 +177,31 @@ namespace Swastika.Cms.Lib.ViewModels.Info
         [JsonProperty("detailsUrl")]
         public string DetailsUrl { get; set; }
 
+        public string ThumbnailUrl
+        {
+            get
+            {
+                if (!string.IsNullOrEmpty(Thumbnail))
+                {
+                    if (Thumbnail.IndexOf("http") == -1)
+                    {
+                        return SwCmsHelper.GetFullPath(new string[] {
+                            Domain,  Thumbnail
+
+                        });
+                    }
+                    else
+                    {
+                        return Thumbnail;
+                    }
+
+                }
+                else
+                {
+                    return ImageUrl;
+                }
+            }
+        }
         #endregion Views
 
         #endregion Properties

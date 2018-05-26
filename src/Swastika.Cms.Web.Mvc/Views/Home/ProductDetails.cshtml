@@ -32,6 +32,10 @@ else
 }
 @section scripts{
     @Html.Raw(Model.View?.Scripts)
+
+    <script src="~/js/angular.min.js"></script>
+    <script src="~/app/app-frontend.js"></script>
+    <script src="~/app/controllers/frontend-controller.js"></script>
 }
 @section styles{
     @Html.Raw(Model.View?.Styles)

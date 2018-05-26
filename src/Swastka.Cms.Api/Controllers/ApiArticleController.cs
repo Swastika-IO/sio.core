@@ -2,8 +2,6 @@
 // The Swastika I/O Foundation licenses this file to you under the GNU General Public License v3.0.
 // See the LICENSE file in the project root for more information.
 
-using Microsoft.AspNetCore.Authentication.JwtBearer;
-using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Data.OData.Query;
@@ -28,18 +26,18 @@ namespace Swastka.Cms.Api.Controllers
     //    //, Policy = "AddEditUser"
     //    )]
     //[Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
-    [Route("api/{culture}/article")]
+    [Produces("application/json")]
+    [Route("api/{culture}/Article")]
     public class ApiArticleController :
         BaseApiController
     {
-
         public ApiArticleController()
         {
         }
 
         #region Get
 
-        // GET api/articles/id
+        // GET api/Articles/id
         [HttpGet]
         [Route("details/{viewType}/{id}")]
         [Route("details/{viewType}")]
@@ -90,12 +88,12 @@ namespace Swastka.Cms.Api.Controllers
             }
         }
 
-        // GET api/articles/id
+        // GET api/Articles/id
         [HttpGet]
         [Route("create")]
         public RepositoryResponse<BEArticleViewModel> Create()
         {
-            SiocArticle article = new SiocArticle()
+            SiocArticle Article = new SiocArticle()
             {
                 //Id = Guid.NewGuid().ToString(),
                 Specificulture = _lang
@@ -104,16 +102,16 @@ namespace Swastka.Cms.Api.Controllers
             return new RepositoryResponse<BEArticleViewModel>()
             {
                 IsSucceed = true,
-                Data = new BEArticleViewModel(article) { Status = SWStatus.Preview }
+                Data = new BEArticleViewModel(Article) { Status = SWStatus.Preview }
             };
         }
 
-        // GET api/articles/id
+        // GET api/Articles/id
         [HttpGet]
         [Route("init/{viewType}")]
         public JObject Init(string viewType)
         {
-            SiocArticle article = new SiocArticle()
+            SiocArticle Article = new SiocArticle()
             {
                 //Id = Guid.NewGuid().ToString(),
                 Specificulture = _lang
@@ -126,20 +124,20 @@ namespace Swastka.Cms.Api.Controllers
                     var be = new RepositoryResponse<BEArticleViewModel>()
                     {
                         IsSucceed = true,
-                        Data = new BEArticleViewModel(article) { Status = SWStatus.Preview }
+                        Data = new BEArticleViewModel(Article) { Status = SWStatus.Preview }
                     };
                     return JObject.FromObject(be);
                 default:
                     var fe = new RepositoryResponse<InfoArticleViewModel>()
                     {
                         IsSucceed = true,
-                        Data = new InfoArticleViewModel(article) { Status = SWStatus.Preview }
+                        Data = new InfoArticleViewModel(Article) { Status = SWStatus.Preview }
                     };
                     return JObject.FromObject(fe);
             }
         }
 
-        // GET api/articles/id
+        // GET api/Articles/id
         [HttpGet]
         [Route("recycle/{id}")]
         public async Task<RepositoryResponse<InfoArticleViewModel>> Recycle(string id)
@@ -157,7 +155,7 @@ namespace Swastka.Cms.Api.Controllers
             }
         }
 
-        // GET api/articles/id
+        // GET api/Articles/id
         [HttpGet]
         [Route("restore/{id}")]
         public async Task<RepositoryResponse<InfoArticleViewModel>> Restore(string id)
@@ -175,7 +173,7 @@ namespace Swastka.Cms.Api.Controllers
             }
         }
 
-        // GET api/articles/id
+        // GET api/Articles/id
         [HttpGet]
         [Route("delete/{id}")]
         public async Task<RepositoryResponse<bool>> Delete(string id)
@@ -191,7 +189,7 @@ namespace Swastka.Cms.Api.Controllers
             }
         }
 
-        // GET api/articles
+        // GET api/Articles
         [HttpGet]
         //[Authorize]
         [Route("list")]
@@ -209,7 +207,7 @@ namespace Swastka.Cms.Api.Controllers
             return data;
         }
 
-        // GET api/articles
+        // GET api/Articles
         [HttpGet]
         [Route("search/{keyword}")]
         [Route("search/{pageSize:int?}/{pageIndex:int?}/{keyword}")]
@@ -226,14 +224,14 @@ namespace Swastka.Cms.Api.Controllers
             var data = await InfoArticleViewModel.Repository.GetModelListByAsync(predicate, orderBy, direction, pageSize, pageIndex).ConfigureAwait(false); // base.Search(predicate, orderBy, direction, pageSize, pageIndex, keyword);
             //if (data.IsSucceed)
             //{
-            //    data.Data.Items.ForEach(d => d.DetailsUrl = string.Format("{0}{1}", _domain, this.Url.Action("Details", "articles", new { id = d.Id })));
-            //    data.Data.Items.ForEach(d => d.EditUrl = string.Format("{0}{1}", _domain, this.Url.Action("Edit", "articles", new { id = d.Id })));
+            //    data.Data.Items.ForEach(d => d.DetailsUrl = string.Format("{0}{1}", _domain, this.Url.Action("Details", "Articles", new { id = d.Id })));
+            //    data.Data.Items.ForEach(d => d.EditUrl = string.Format("{0}{1}", _domain, this.Url.Action("Edit", "Articles", new { id = d.Id })));
             //    data.Data.Items.ForEach(d => d.Domain = _domain);
             //}
             return data;
         }
 
-        // GET api/articles
+        // GET api/Articles
         [HttpGet]
         [Route("draft/{keyword}")]
         [Route("draft/{pageSize:int?}/{pageIndex:int?}")]
@@ -254,8 +252,8 @@ namespace Swastka.Cms.Api.Controllers
             var data = await InfoArticleViewModel.Repository.GetModelListByAsync(predicate, orderBy, direction, pageSize, pageIndex).ConfigureAwait(false); // base.Search(predicate, orderBy, direction, pageSize, pageIndex, keyword);
             //if (data.IsSucceed)
             //{
-            //    data.Data.Items.ForEach(d => d.DetailsUrl = string.Format("{0}{1}", _domain, this.Url.Action("Details", "articles", new { id = d.Id })));
-            //    data.Data.Items.ForEach(d => d.EditUrl = string.Format("{0}{1}", _domain, this.Url.Action("Edit", "articles", new { id = d.Id })));
+            //    data.Data.Items.ForEach(d => d.DetailsUrl = string.Format("{0}{1}", _domain, this.Url.Action("Details", "Articles", new { id = d.Id })));
+            //    data.Data.Items.ForEach(d => d.EditUrl = string.Format("{0}{1}", _domain, this.Url.Action("Edit", "Articles", new { id = d.Id })));
             //    data.Data.Items.ForEach(d => d.Domain = _domain);
             //}
             return data;
@@ -265,17 +263,18 @@ namespace Swastka.Cms.Api.Controllers
 
         #region Post
 
-        // POST api/articles
+        // POST api/Articles
         [HttpPost]
         [Route("save")]
-        public async Task<RepositoryResponse<BEArticleViewModel>> Save([FromBody] BEArticleViewModel article)
+        public async Task<RepositoryResponse<BEArticleViewModel>> Save([FromBody] BEArticleViewModel Article)
         {
-            if (article != null)
+            if (Article != null)
             {
-                var result = await article.SaveModelAsync(true).ConfigureAwait(false);
+                Article.CreatedBy = User.Identity.Name;
+                var result = await Article.SaveModelAsync(true).ConfigureAwait(false);
                 if (result.IsSucceed)
                 {
-                    result.Data.DetailsUrl = SwCmsHelper.GetRouterUrl("Article", new { seoName = article.SeoName }, Request, Url);
+                    result.Data.DetailsUrl = SwCmsHelper.GetRouterUrl("Article", new { seoName = Article.SeoName }, Request, Url);
                 }
                 return result;
             }
@@ -299,14 +298,13 @@ namespace Swastka.Cms.Api.Controllers
             return new RepositoryResponse<bool>();
         }
 
-        // GET api/articles
+        // GET api/Articles
 
         [HttpPost, HttpOptions]
         [Route("list")]
         public async Task<RepositoryResponse<PaginationModel<InfoArticleViewModel>>> GetList([FromBody]RequestPaging request)
         {
-            string domain = string.Format("{0}://{1}", Request.Scheme, Request.Host);
-
+            ParseRequestPagingDate(request);
             Expression<Func<SiocArticle, bool>> predicate = model =>
                 model.Specificulture == _lang
                 && (!request.Status.HasValue || model.Status == (int)request.Status.Value)
@@ -318,10 +316,10 @@ namespace Swastka.Cms.Api.Controllers
                     )
                 )
                 && (!request.FromDate.HasValue
-                    || (model.CreatedDateTime >= request.FromDate.Value.ToUniversalTime())
+                    || (model.CreatedDateTime >= request.FromDate.Value)
                 )
                 && (!request.ToDate.HasValue
-                    || (model.CreatedDateTime <= request.ToDate.Value.ToUniversalTime())
+                    || (model.CreatedDateTime <= request.ToDate.Value)
                 );
 
             var data = await InfoArticleViewModel.Repository.GetModelListByAsync(predicate, request.OrderBy, request.Direction, request.PageSize, request.PageIndex).ConfigureAwait(false);

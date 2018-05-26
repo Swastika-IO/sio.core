@@ -37,14 +37,24 @@ namespace Swastka.Cms.Api.Controllers
         // GET api/medias/id
         [HttpGet]
         [Route("details/{viewType}/{id}")]
-        public async Task<JObject> BEDetails(string viewType, int id)
+        [Route("details/{viewType}")]
+        public async Task<JObject> BEDetails(string viewType, int? id = null)
         {
             switch (viewType)
             {
                 default:
-                    var feResult = await BEMediaViewModel.Repository.GetSingleModelAsync(
+                    if (id.HasValue)
+                    {
+                        var feResult = await BEMediaViewModel.Repository.GetSingleModelAsync(
                         model => model.Id == id && model.Specificulture == _lang).ConfigureAwait(false);
-                    return JObject.FromObject(feResult);
+                        return JObject.FromObject(feResult);
+                    }
+                    else
+                    {
+                        var media = new SiocMedia() { Specificulture = _lang };
+                        return JObject.FromObject((await BEMediaViewModel.InitAsync(media)));
+                    }
+
             }
         }
 
@@ -114,8 +124,7 @@ namespace Swastka.Cms.Api.Controllers
             {
                 var fileUpload = files.FirstOrDefault();
 
-                string folderPath = //$"{SWCmsConstants.Parameters.UploadFolder}/{fileFolder}/{DateTime.UtcNow.ToString("MMM-yyyy")}";
-                SwCmsHelper.GetFullPath(new[] {
+                string folderPath = SwCmsHelper.GetFullPath(new[] {
                     SWCmsConstants.Parameters.UploadFolder,
                     fileFolder,
                     DateTime.UtcNow.ToString("MMM-yyyy")
@@ -125,9 +134,7 @@ namespace Swastka.Cms.Api.Controllers
                     SWCmsConstants.Parameters.WebRootPath,
                     folderPath
                 });
-                // string.Format("Uploads/{0}", fileFolder);
-                //return ImageHelper.ResizeImage(Image.FromStream(fileUpload.OpenReadStream()), System.IO.Path.Combine(_env.WebRootPath, folderPath));
-                //var fileName = await Common.UploadFileAsync(filePath, files.FirstOrDefault());
+
                 string fileName =
                 SwCmsHelper.GetFullPath(new[] {
                     "/",
@@ -145,8 +152,7 @@ namespace Swastka.Cms.Api.Controllers
                     Title = title ?? fileName,
                     Description = description ?? fileName
                 });
-                //media.SaveModel();
-                return media.SaveModel();
+                return await media.SaveModelAsync();
             }
             else
             {
@@ -187,7 +193,7 @@ namespace Swastka.Cms.Api.Controllers
                 && (!request.ToDate.HasValue
                     || (model.CreatedDateTime <= request.ToDate.Value)
                 );
-            
+
             var data = await BEMediaViewModel.Repository.GetModelListByAsync(predicate, request.OrderBy, request.Direction, request.PageSize, request.PageIndex).ConfigureAwait(false);
 
             return data;

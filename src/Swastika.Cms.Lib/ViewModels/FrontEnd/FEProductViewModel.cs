@@ -137,8 +137,10 @@ namespace Swastika.Cms.Lib.ViewModels.FrontEnd
         public string Domain { get { return GlobalConfigurationService.Instance.GetLocalString("Domain", Specificulture, "/"); } }
 
         [JsonProperty("imageUrl")]
-        public string ImageUrl {
-            get {
+        public string ImageUrl
+        {
+            get
+            {
                 if (Image != null && Image.IndexOf("http") == -1)
                 {
                     return SwCmsHelper.GetFullPath(new string[] {
@@ -153,23 +155,36 @@ namespace Swastika.Cms.Lib.ViewModels.FrontEnd
         }
 
         [JsonProperty("thumbnailUrl")]
-        public string ThumbnailUrl {
-            get {
-                if (Thumbnail != null && Thumbnail.IndexOf("http") == -1)
+        public string ThumbnailUrl
+        {
+            get
+            {
+                if (!string.IsNullOrEmpty(Thumbnail))
                 {
-                    return SwCmsHelper.GetFullPath(new string[] {
-                    Domain,  Thumbnail
-                });
+                    if (Thumbnail.IndexOf("http") == -1)
+                    {
+                        return SwCmsHelper.GetFullPath(new string[] {
+                            Domain,  Thumbnail
+
+                        });
+                    }
+                    else
+                    {
+                        return Thumbnail;
+                    }
+
                 }
                 else
                 {
-                    return Thumbnail;
+                    return ImageUrl;
                 }
             }
         }
 
-        public string TemplatePath {
-            get {
+        public string TemplatePath
+        {
+            get
+            {
                 return SwCmsHelper.GetFullPath(new string[]
                 {
                     ""

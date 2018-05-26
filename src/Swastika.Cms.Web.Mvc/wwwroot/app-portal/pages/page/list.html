@@ -152,11 +152,12 @@
             </tr>
         </tbody>
     </table>
-    <paging class="small"
+      <paging class="small" 
+            page="data.pageIndex+1"
             page-size="data.pageSize"
             total="data.totalItems"
             ul-class="pagination justify-content-end"
             a-class="page-link"
-            paging-action="loadPages(page-1)"
+            paging-action="loadProducts(page-1)"
             scroll-top="true" />
 </section>

@@ -100,7 +100,6 @@ namespace Swastika.Cms.Lib.ViewModels.BackEnd
         [JsonProperty("tags")]
         public string Tags { get; set; }
 
-        [Required]
         [JsonProperty("code")]
         public string Code { get; set; }
 
@@ -623,7 +622,7 @@ namespace Swastika.Cms.Lib.ViewModels.BackEnd
                     {
                         navProduct.SourceProductId = parent.Id;
                         navProduct.Specificulture = parent.Specificulture;
-                        navProduct.CreatedBy = parent.CreatedBy;
+                        navProduct.CreatedBy = parent.CreatedBy ?? "Unknown";
                         if (navProduct.IsActived)
                         {
                             var saveResult = await navProduct.SaveModelAsync(false, _context, _transaction);

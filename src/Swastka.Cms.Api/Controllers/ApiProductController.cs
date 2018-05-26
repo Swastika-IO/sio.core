@@ -270,6 +270,7 @@ namespace Swastka.Cms.Api.Controllers
         {
             if (product != null)
             {
+                product.CreatedBy = User.Identity.Name;
                 var result = await product.SaveModelAsync(true).ConfigureAwait(false);
                 if (result.IsSucceed)
                 {

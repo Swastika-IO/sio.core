@@ -44,60 +44,32 @@ namespace Swastika.Cms.Lib.Repositories
 
         #region Category-Article Navigator
 
-        private IQueryable<CategoryArticleViewModel> GetCategoryArticleViewModel(string articleId, string specificulture, SiocCmsContext _context = null, IDbContextTransaction _transaction = null)
-        {
-            SiocCmsContext context = _context ?? new SiocCmsContext();
-            return context.SiocCategory.Include(cp => cp.SiocCategoryArticle)
-                    .Where(a => a.Specificulture == specificulture
-                                && (a.Type == (int)SWCmsConstants.CateType.List
-                                || a.Type == (int)SWCmsConstants.CateType.Home))
-                    .Select(p => new CategoryArticleViewModel(
-                        new SiocCategoryArticle()
-                        {
-                            ArticleId = articleId,
-                            CategoryId = p.Id,
-                            Specificulture = specificulture
-                        },
-                        _context, _transaction)
-                    {
-                        IsActived = p.SiocCategoryArticle.Count(cp => cp.ArticleId == articleId && cp.Specificulture == specificulture) > 0,
-                        Description = p.Title
-                    });
-        }
-
-        public RepositoryResponse<List<CategoryArticleViewModel>> GetCategoryArticleNav(
-            string articleId,
-            string specificulture,
-            SiocCmsContext _context = null,
-            IDbContextTransaction _transaction = null)
+        public RepositoryResponse<List<NavCategoryArticleViewModel>> GetCategoryArticleNav(string ArticleId, string specificulture
+            , SiocCmsContext _context = null, IDbContextTransaction _transaction = null)
         {
             SiocCmsContext context = _context ?? new SiocCmsContext();
             var transaction = _transaction ?? context.Database.BeginTransaction();
             try
             {
-                //var categoryArticleViewModels = context.SiocCategory.Include(cp => cp.SiocCategoryArticle)
-                //    .Where(a => a.Specificulture == specificulture
-                //                && (a.Type == (int)SWCmsConstants.CateType.List
-                //                || a.Type == (int)SWCmsConstants.CateType.Home))
-                //    .Select(p => new CategoryArticleViewModel(
-                //        new SiocCategoryArticle()
-                //        {
-                //            ArticleId = articleId,
-                //            CategoryId = p.Id,
-                //            Specificulture = specificulture
-                //        },
-                //        _context, _transaction)
-                //    {
-                //        IsActived = p.SiocCategoryArticle.Count(cp => cp.ArticleId == articleId && cp.Specificulture == specificulture) > 0,
-                //        Description = p.Title
-                //    });
-
-                var categoryArticleViewModels = GetCategoryArticleViewModel(articleId, specificulture, context, transaction);
-
-                return new RepositoryResponse<List<CategoryArticleViewModel>>()
+                var navCategoryArticleViewModels = context.SiocCategory.Include(cp => cp.SiocCategoryArticle)
+                    .Where(a => a.Specificulture == specificulture
+                    && a.Type == (int)SWCmsConstants.CateType.List)
+                    .Select(p => new NavCategoryArticleViewModel(
+                        new SiocCategoryArticle()
+                        {
+                            ArticleId = ArticleId,
+                            CategoryId = p.Id,
+                            Specificulture = specificulture
+                        },
+                        _context, _transaction)
+                    {
+                        IsActived = p.SiocCategoryArticle.Any(cp => cp.ArticleId == ArticleId && cp.Specificulture == specificulture),
+                        Description = p.Title
+                    });
+                return new RepositoryResponse<List<NavCategoryArticleViewModel>>()
                 {
                     IsSucceed = true,
-                    Data = categoryArticleViewModels.ToList()
+                    Data = navCategoryArticleViewModels.ToList()
                 };
             }
             catch (Exception ex) // TODO: Add more specific exeption types instead of Exception only
@@ -106,7 +78,7 @@ namespace Swastika.Cms.Lib.Repositories
                 {
                     transaction.Rollback();
                 }
-                return new RepositoryResponse<List<CategoryArticleViewModel>>()
+                return new RepositoryResponse<List<NavCategoryArticleViewModel>>()
                 {
                     IsSucceed = true,
                     Data = null,
@@ -124,35 +96,30 @@ namespace Swastika.Cms.Lib.Repositories
             }
         }
 
-        public async System.Threading.Tasks.Task<RepositoryResponse<List<CategoryArticleViewModel>>> GetCategoryArticleNavAsync(string articleId, string specificulture
+        public async System.Threading.Tasks.Task<RepositoryResponse<List<NavCategoryArticleViewModel>>> GetCategoryArticleNavAsync(string ArticleId, string specificulture
            , SiocCmsContext _context = null, IDbContextTransaction _transaction = null)
         {
             SiocCmsContext context = _context ?? new SiocCmsContext();
             var transaction = _transaction ?? context.Database.BeginTransaction();
             try
             {
-                //var categoryArticleViewModels = context.SiocCategory.Include(cp => cp.SiocCategoryArticle)
-                //    .Where(a => a.Specificulture == specificulture
-                //        && a.Type == (int)SWCmsConstants.CateType.List)
-                //    .Select(p => new CategoryArticleViewModel(
-                //        new SiocCategoryArticle()
-                //        {
-                //            ArticleId = articleId,
-                //            CategoryId = p.Id,
-                //            Specificulture = specificulture
-                //        },
-                //        _context, _transaction)
-                //    {
-                //        IsActived = p.SiocCategoryArticle.Count(cp => cp.ArticleId == articleId && cp.Specificulture == specificulture) > 0,
-                //        Description = p.Title
-                //    });
-
-                var categoryArticleViewModels = GetCategoryArticleViewModel(articleId, specificulture, context, transaction);
-
-                return new RepositoryResponse<List<CategoryArticleViewModel>>()
+                var navCategoryArticleViewModels = context.SiocCategory.Include(cp => cp.SiocCategoryArticle).Where(a => a.Specificulture == specificulture && a.Type == (int)SWCmsConstants.CateType.List)
+                    .Select(p => new NavCategoryArticleViewModel(
+                        new SiocCategoryArticle()
+                        {
+                            ArticleId = ArticleId,
+                            CategoryId = p.Id,
+                            Specificulture = specificulture
+                        },
+                        _context, _transaction)
+                    {
+                        IsActived = p.SiocCategoryArticle.Count(cp => cp.ArticleId == ArticleId && cp.Specificulture == specificulture) > 0,
+                        Description = p.Title
+                    });
+                return new RepositoryResponse<List<NavCategoryArticleViewModel>>()
                 {
                     IsSucceed = true,
-                    Data = await categoryArticleViewModels.ToListAsync().ConfigureAwait(false)
+                    Data = await navCategoryArticleViewModels.ToListAsync().ConfigureAwait(false)
                 };
             }
             catch (Exception ex) // TODO: Add more specific exeption types instead of Exception only
@@ -161,7 +128,7 @@ namespace Swastika.Cms.Lib.Repositories
                 {
                     transaction.Rollback();
                 }
-                return new RepositoryResponse<List<CategoryArticleViewModel>>()
+                return new RepositoryResponse<List<NavCategoryArticleViewModel>>()
                 {
                     IsSucceed = true,
                     Data = null,
@@ -183,56 +150,56 @@ namespace Swastika.Cms.Lib.Repositories
 
         #region Module-Article Navigator
 
-        private IQueryable<ModuleArticleViewModel> GetModuleArticleViewModel(string articleId, string specificulture
+        private IQueryable<NavModuleArticleViewModel> GetNavModuleArticleViewModel(string ArticleId, string specificulture
             , SiocCmsContext _context = null, IDbContextTransaction _transaction = null)
         {
             SiocCmsContext context = _context ?? new SiocCmsContext();
             return context.SiocModule.Include(cp => cp.SiocModuleArticle)
                     .Where(a => a.Specificulture == specificulture
                     && a.Type == (int)SWCmsConstants.ModuleType.Root)
-                     .Select(p => new ModuleArticleViewModel(
+                     .Select(p => new NavModuleArticleViewModel(
                          new SiocModuleArticle()
                          {
-                             ArticleId = articleId,
+                             ArticleId = ArticleId,
                              ModuleId = p.Id,
                              Specificulture = specificulture
                          },
                          _context, _transaction)
                      {
-                         IsActived = p.SiocModuleArticle.Count(cp => cp.ArticleId == articleId && cp.Specificulture == specificulture) > 0,
+                         IsActived = p.SiocModuleArticle.Count(cp => cp.ArticleId == ArticleId && cp.Specificulture == specificulture) > 0,
                          Description = p.Title
                      });
         }
 
-        public RepositoryResponse<List<ModuleArticleViewModel>> GetModuleArticleNav(string articleId, string specificulture
+        public RepositoryResponse<List<NavModuleArticleViewModel>> GetModuleArticleNav(string ArticleId, string specificulture
             , SiocCmsContext _context = null, IDbContextTransaction _transaction = null)
         {
             SiocCmsContext context = _context ?? new SiocCmsContext();
             var transaction = _transaction ?? context.Database.BeginTransaction();
             try
             {
-                //var moduleArticleViewModels = context.SiocModule.Include(cp => cp.SiocModuleArticle)
+                //var navModuleArticleViewModels = context.SiocModule.Include(cp => cp.SiocModuleArticle)
                 //    .Where(a => a.Specificulture == specificulture
                 //    && a.Type == (int)SWCmsConstants.ModuleType.Root)
-                //     .Select(p => new ModuleArticleViewModel(
+                //     .Select(p => new NavModuleArticleViewModel(
                 //         new SiocModuleArticle()
                 //         {
-                //             ArticleId = articleId,
+                //             ArticleId = ArticleId,
                 //             ModuleId = p.Id,
                 //             Specificulture = specificulture
                 //         },
                 //         _context, _transaction)
                 //     {
-                //         IsActived = p.SiocModuleArticle.Count(cp => cp.ArticleId == articleId && cp.Specificulture == specificulture) > 0,
+                //         IsActived = p.SiocModuleArticle.Count(cp => cp.ArticleId == ArticleId && cp.Specificulture == specificulture) > 0,
                 //         Description = p.Title
                 //     });
 
-                var moduleArticleViewModels = GetModuleArticleViewModel(articleId, specificulture, context, transaction);
+                var navModuleArticleViewModels = GetNavModuleArticleViewModel(ArticleId, specificulture, context, transaction);
 
-                return new RepositoryResponse<List<ModuleArticleViewModel>>()
+                return new RepositoryResponse<List<NavModuleArticleViewModel>>()
                 {
                     IsSucceed = true,
-                    Data = moduleArticleViewModels.ToList()
+                    Data = navModuleArticleViewModels.ToList()
                 };
             }
             catch (Exception ex) // TODO: Add more specific exeption types instead of Exception only
@@ -241,7 +208,7 @@ namespace Swastika.Cms.Lib.Repositories
                 {
                     transaction.Rollback();
                 }
-                return new RepositoryResponse<List<ModuleArticleViewModel>>()
+                return new RepositoryResponse<List<NavModuleArticleViewModel>>()
                 {
                     IsSucceed = true,
                     Data = null,
@@ -259,35 +226,35 @@ namespace Swastika.Cms.Lib.Repositories
             }
         }
 
-        public async System.Threading.Tasks.Task<RepositoryResponse<List<ModuleArticleViewModel>>> GetModuleArticleNavAsync(string articleId, string specificulture
+        public async System.Threading.Tasks.Task<RepositoryResponse<List<NavModuleArticleViewModel>>> GetModuleArticleNavAsync(string ArticleId, string specificulture
            , SiocCmsContext _context = null, IDbContextTransaction _transaction = null)
         {
             SiocCmsContext context = _context ?? new SiocCmsContext();
             var transaction = _transaction ?? context.Database.BeginTransaction();
             try
             {
-                //var moduleArticleViewModels = context.SiocModule.Include(cp => cp.SiocModuleArticle)
+                //var navModuleArticleViewModels = context.SiocModule.Include(cp => cp.SiocModuleArticle)
                 //    .Where(a => a.Specificulture == specificulture
                 //    && a.Type == (int)SWCmsConstants.ModuleType.Root)
-                //    .Select(p => new ModuleArticleViewModel(
+                //    .Select(p => new NavModuleArticleViewModel(
                 //        new SiocModuleArticle()
                 //        {
-                //            ArticleId = articleId,
+                //            ArticleId = ArticleId,
                 //            ModuleId = p.Id,
                 //            Specificulture = specificulture
                 //        },
                 //        _context, _transaction)
                 //    {
-                //        IsActived = p.SiocModuleArticle.Count(cp => cp.ArticleId == articleId && cp.Specificulture == specificulture) > 0,
+                //        IsActived = p.SiocModuleArticle.Count(cp => cp.ArticleId == ArticleId && cp.Specificulture == specificulture) > 0,
                 //        Description = p.Title
                 //    });
 
-                var moduleArticleViewModels = GetModuleArticleViewModel(articleId, specificulture, context, transaction);
+                var navModuleArticleViewModels = GetNavModuleArticleViewModel(ArticleId, specificulture, context, transaction);
 
-                return new RepositoryResponse<List<ModuleArticleViewModel>>()
+                return new RepositoryResponse<List<NavModuleArticleViewModel>>()
                 {
                     IsSucceed = true,
-                    Data = await moduleArticleViewModels.ToListAsync().ConfigureAwait(false)
+                    Data = await navModuleArticleViewModels.ToListAsync().ConfigureAwait(false)
                 };
             }
             catch (Exception ex) // TODO: Add more specific exeption types instead of Exception only
@@ -296,7 +263,7 @@ namespace Swastika.Cms.Lib.Repositories
                 {
                     transaction.Rollback();
                 }
-                return new RepositoryResponse<List<ModuleArticleViewModel>>()
+                return new RepositoryResponse<List<NavModuleArticleViewModel>>()
                 {
                     IsSucceed = true,
                     Data = null,
@@ -318,34 +285,58 @@ namespace Swastika.Cms.Lib.Repositories
 
         #region Article-Module Navigator
 
-        public RepositoryResponse<List<BEArticleModuleViewModel>> GetArticleModuleNav(string articleId, string specificulture
+        private IQueryable<NavArticleModuleViewModel> GetNavArticleModuleViewModels(string ArticleId, string specificulture
             , SiocCmsContext _context = null, IDbContextTransaction _transaction = null)
         {
             SiocCmsContext context = _context ?? new SiocCmsContext();
-            var transaction = _transaction ?? context.Database.BeginTransaction();
-            try
-            {
-                var bEArticleModuleViewModels = context.SiocModule.Include(cp => cp.SiocArticleModule)
+            return context.SiocModule.Include(cp => cp.SiocArticleModule)
                     .Where(a => a.Specificulture == specificulture
-                    && a.Type == (int)SWCmsConstants.ModuleType.SubArticle
-                    )
-                     .Select(p => new BEArticleModuleViewModel(
+                    && a.Type == (int)SWCmsConstants.ModuleType.SubArticle)
+                     .Select(p => new NavArticleModuleViewModel(
                          new SiocArticleModule()
                          {
-                             ArticleId = articleId,
+                             ArticleId = ArticleId,
                              ModuleId = p.Id,
                              Specificulture = specificulture,
                          },
 
                          _context, _transaction)
                      {
-                         IsActived = p.SiocArticleModule.Count(cp => cp.ArticleId == articleId && cp.Specificulture == specificulture) > 0,
+                         IsActived = p.SiocArticleModule.Count(cp => cp.ArticleId == ArticleId && cp.Specificulture == specificulture) > 0,
                          Description = p.Title
                      });
-                return new RepositoryResponse<List<BEArticleModuleViewModel>>()
+        }
+
+        public RepositoryResponse<List<NavArticleModuleViewModel>> GetArticleModuleNav(string ArticleId, string specificulture
+            , SiocCmsContext _context = null, IDbContextTransaction _transaction = null)
+        {
+            SiocCmsContext context = _context ?? new SiocCmsContext();
+            var transaction = _transaction ?? context.Database.BeginTransaction();
+            try
+            {
+                //var navArticleModuleViewModels = context.SiocModule.Include(cp => cp.SiocArticleModule)
+                //    .Where(a => a.Specificulture == specificulture
+                //    && a.Type == (int)SWCmsConstants.ModuleType.SubArticle)
+                //     .Select(p => new NavArticleModuleViewModel(
+                //         new SiocArticleModule()
+                //         {
+                //             ArticleId = ArticleId,
+                //             ModuleId = p.Id,
+                //             Specificulture = specificulture,
+                //         },
+
+                //         _context, _transaction)
+                //     {
+                //         IsActived = p.SiocArticleModule.Count(cp => cp.ArticleId == ArticleId && cp.Specificulture == specificulture) > 0,
+                //         Description = p.Title
+                //     });
+
+                var navArticleModuleViewModels = GetNavArticleModuleViewModels(ArticleId, specificulture, context, transaction);
+
+                return new RepositoryResponse<List<NavArticleModuleViewModel>>()
                 {
                     IsSucceed = true,
-                    Data = bEArticleModuleViewModels.ToList()
+                    Data = navArticleModuleViewModels.ToList()
                 };
             }
             catch (Exception ex) // TODO: Add more specific exeption types instead of Exception only
@@ -354,7 +345,7 @@ namespace Swastika.Cms.Lib.Repositories
                 {
                     transaction.Rollback();
                 }
-                return new RepositoryResponse<List<BEArticleModuleViewModel>>()
+                return new RepositoryResponse<List<NavArticleModuleViewModel>>()
                 {
                     IsSucceed = false,
                     Data = null,
@@ -373,33 +364,34 @@ namespace Swastika.Cms.Lib.Repositories
             }
         }
 
-        public async System.Threading.Tasks.Task<RepositoryResponse<List<InfoArticleModuleViewModel>>> GetArticleModuleNavAsync(string articleId, string specificulture
+        public async System.Threading.Tasks.Task<RepositoryResponse<List<NavArticleModuleViewModel>>> GetArticleModuleNavAsync(string ArticleId, string specificulture
            , SiocCmsContext _context = null, IDbContextTransaction _transaction = null)
         {
             SiocCmsContext context = _context ?? new SiocCmsContext();
             var transaction = _transaction ?? context.Database.BeginTransaction();
             try
             {
-                var infoArticleModuleViewModels = context.SiocModule.Include(cp => cp.SiocArticleModule)
-                    .Where(a => a.Specificulture == specificulture
-                    && a.Type == (int)SWCmsConstants.ModuleType.SubArticle)
-                    .Select(p => new InfoArticleModuleViewModel(
-                        new SiocArticleModule()
-                        {
-                            ArticleId = articleId,
-                            ModuleId = p.Id,
-                            Specificulture = specificulture,
-                        },
+                //var navArticleModuleViewModels = context.SiocModule.Include(cp => cp.SiocArticleModule)
+                //    .Where(a => a.Specificulture == specificulture
+                //    && a.Type == (int)SWCmsConstants.ModuleType.SubArticle)
+                //    .Select(p => new NavArticleModuleViewModel(
+                //        new SiocArticleModule()
+                //        {
+                //            ArticleId = ArticleId,
+                //            ModuleId = p.Id,
+                //            Specificulture = specificulture,
+                //        },
 
-                        _context, _transaction)
-                    {
-                        IsActived = p.SiocArticleModule.Count(cp => cp.ArticleId == articleId && cp.Specificulture == specificulture) > 0,
-                        Description = p.Title
-                    });
-                return new RepositoryResponse<List<InfoArticleModuleViewModel>>()
+                //        _context, _transaction)
+                //    {
+                //        IsActived = p.SiocArticleModule.Count(cp => cp.ArticleId == ArticleId && cp.Specificulture == specificulture) > 0,
+                //        Description = p.Title
+                //    });
+                var navArticleModuleViewModels = GetNavArticleModuleViewModels(ArticleId, specificulture, context, transaction);
+                return new RepositoryResponse<List<NavArticleModuleViewModel>>()
                 {
                     IsSucceed = true,
-                    Data = await infoArticleModuleViewModels.ToListAsync().ConfigureAwait(false)
+                    Data = await navArticleModuleViewModels.ToListAsync().ConfigureAwait(false)
                 };
             }
             catch (Exception ex) // TODO: Add more specific exeption types instead of Exception only
@@ -408,7 +400,7 @@ namespace Swastika.Cms.Lib.Repositories
                 {
                     transaction.Rollback();
                 }
-                return new RepositoryResponse<List<InfoArticleModuleViewModel>>()
+                return new RepositoryResponse<List<NavArticleModuleViewModel>>()
                 {
                     IsSucceed = true,
                     Data = null,

@@ -146,7 +146,8 @@ app.controller('ProductController', function ProductController($scope) {
     // Save product
     $scope.saveProduct = function (product) {
         $scope.isBusy = true;
-        product.content = $('.editor-content').val();
+        product.content = $('.editor-content.content').val();
+        product.excerpt = $('.editor-content.excerpt').val();
         var json = (angular.toJson(product));
 
         // Set ajax call URL to save product API

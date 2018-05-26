@@ -1,0 +1,192 @@
+﻿@{
+    ViewData["Title"] = "Articles";
+    ViewData["Description"] = "Manage site navigations and menus";
+}
+<!-- Main content -->
+<section class="content container-fluid" ng-controller="ArticleController">
+    <div class="loader-container" ng-show="isBusy">
+        <div id="loader"></div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-9">
+            <div class="btn-toolbar mb-3" role="toolbar" aria-label="Toolbar with button groups">
+                <div class="btn-group btn-group-sm mr-2" role="group" aria-label="First group">
+                    <a asp-area="Portal" asp-controller="Articles" asp-action="Create" class="btn btn-secondary"><i class="fas fa-plus"></i></a>
+                    <a asp-area="Portal" asp-controller="Articles" asp-action="Index" class="btn btn-secondary"><i class="fas fa-bars"></i></a>
+                    <a asp-area="Portal" asp-controller="Articles" asp-action="Draft" class="btn btn-secondary"><i class="fas fa-clipboard"></i></a>
+                </div>
+                <div class="btn-group btn-group-sm dropdown mr-2">
+                    <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownOrderBy" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        {{request.status}}
+                    </button>
+                    <div class="dropdown-menu" aria-labelledby="dropdownOrderBy">
+                        <button class="dropdown-item" ng-repeat="item in swStatus track by $index" ng-model="request.status" ng-click="request.status=item;loadArticles();"
+                                value="{{item}}">
+                            {{item}}
+                        </button>
+                    </div>
+                </div>
+                <div class="btn-group btn-group-sm dropdown mr-2">
+                    <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownOrderBy" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        {{request.orderBy}}
+                    </button>
+                    <div class="dropdown-menu" aria-labelledby="dropdownOrderBy">
+                        <button class="dropdown-item" ng-repeat="item in orders track by $index" ng-model="request.orderBy" ng-click="request.orderBy=item.value;loadArticles();" value="{{item.value}}">{{item.title}}</button>
+                    </div>
+                </div>
+                <div class="btn-group btn-group-sm mr-2" role="group" aria-label="First group">
+                    <button class="btn btn-secondary" ng-repeat="item in directions track by $index" ng-model="request.direction" ng-click="request.direction=item.value;loadArticles();" value="{{item.value}}">{{item.title}}</button>
+                </div>
+                <div class="btn-group btn-group-sm dropdown mr-2">
+                    <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownItemPerPage" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        {{request.pageSize}} items
+                    </button>
+                    <div class="dropdown-menu" aria-labelledby="dropdownItemPerPage">
+                        <button class="dropdown-item" ng-repeat="item in pageSizes track by $index" ng-model="request.pageSize" ng-click="request.pageSize=item;loadArticles();" value="{{item}}">{{item}}</button>
+                    </div>
+                </div>
+                <div class="input-group input-group-sm mr-2" role="group" aria-label="First group">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text" id=""><i class="mi mi-Calendar"></i></span>
+                    </div>
+                    <input type="date" ng-model="request.fromDate" ng-change="loadArticles()" class="form-control" />
+                    <input type="date" ng-model="request.toDate" ng-change="loadArticles()" class="form-control" />
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="input-group input-group-sm">
+                <div class="input-group-prepend" ng-click="loadArticles()">
+                    <div class="input-group-text" id="btnGroupAddon"><i class="mi mi-Search" style="top:0;"></i></div>
+                </div>
+                <input ng-model="request.keyword" ng-enter="loadArticles()" type="text" class="form-control" placeholder="Search..." aria-label="Search..." aria-describedby="btnGroupAddon">
+            </div>
+        </div>
+    </div>
+
+    @*<div class="row">
+            <div class="col-md-8">
+                <div class="btn-toolbar mb-3" role="toolbar" aria-label="Toolbar with button groups">
+                    <div class="btn-group btn-group-sm mr-2" role="group" aria-label="First group">
+                        <a asp-area="Portal" asp-controller="Articles" asp-action="Create" class="btn btn-secondary"><i class="fas fa-plus"></i></a>
+                        <a asp-area="Portal" asp-controller="Articles" asp-action="Index" class="btn btn-secondary"><i class="fas fa-bars"></i></a>
+                        <a asp-area="Portal" asp-controller="Articles" asp-action="Draft" class="btn btn-secondary"><i class="fas fa-clipboard"></i></a>
+                    </div>
+                    <select class="btn btn-outline-secondary custom-select col-sm-3"
+                            ng-model="request.orderBy"
+                            ng-change="loadArticles()">
+                        <option ng-repeat="item in orders track by $index" value="{{item.value}}">{{item.title}}</option>
+                    </select>
+                    <select class="btn btn-outline-secondary custom-select col-sm-1"
+                            ng-model="request.direction"
+                            ng-change="loadArticles()">
+                        <option ng-repeat="item in directions track by $index" value="{{item.value}}">{{item.title}}</option>
+                    </select>
+                    <select class="btn btn-outline-secondary custom-select col-sm-1"
+                            ng-model="request.pageSize"
+                            ng-change="loadArticles(0)">
+                        <option ng-repeat="item in pageSizes track by $index" value="{{item}}">{{item}}</option>
+                    </select>
+                    <input type="date" data-date-format="dd.MM.yyyy - hh:mm:ss a" ng-model="request.fromDate" />
+                    <input type="date" data-date-format="dd.MM.yyyy - hh:mm:ss a" ng-model="request.toDate" />
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="input-group">
+                    <div class="input-group-prepend" ng-click="loadArticles()">
+                        <div class="input-group-text" id="btnGroupAddon"><i class="mi mi-Search" style="top:0;"></i></div>
+                    </div>
+                    <input ng-model="request.keyword" ng-enter="loadArticles()" type="text" class="form-control" placeholder="Search..." aria-label="Search..." aria-describedby="btnGroupAddon">
+                </div>
+            </div>
+        </div>*@
+    <table class="table table-sm table-hover" cellspacing="0">
+        <thead class="thead-light">
+            <tr>
+                <th scope="col" style="width: 3%;">
+                    <span class="fas fa-sort"></span>
+                </th>
+                <th scope="col" style="width: 4%;">
+                    <span class="fas fa-sort-numeric-down"></span>
+                </th>
+                <th scope="col" style="width: 15%;">
+                    Title
+                </th>
+                <th scope="col">
+                    Description
+                </th>
+                <th scope="col" style="width: 10%;">
+                    Created Date
+                </th>
+                <th scope="col" style="width: 10%;">
+                    Created By
+                </th>
+
+                <th scope="col" style="width: 5%;" class="text-right">Actions</th>
+            </tr>
+        </thead>
+
+        <tbody class="sortable" ng-init="data = loadArticles()">
+            <tr ng-repeat="item in data.items track by $index"
+                class="sortable-item" sort-model="article" sort-model-id="{{item.id}}">
+                <td style="cursor:move;" class="drag-header">
+                    <span class="fas fa-sort"></span>
+                </td>
+                <td>
+                    <input type="text" value="{{item.priority}}" class="item-priority form-control form-control-sm d-inline" style="width:40px;" />
+                </td>
+
+                <td>
+                    {{item.title}}
+                </td>
+                <td>
+                    <small>
+                        {{item.excerpt}}
+                    </small>
+                </td>
+                <td>
+                    {{item.createdDateTime | utcToLocal:'dd.MM.yyyy - hh:mm:ss a'}}
+                </td>
+                <td>
+                    {{item.createdBy}}
+                </td>
+
+                <td>
+                    <div class="btn-group btn-group-sm btn-group-sm float-right" role="group" aria-label="Actions">
+                        <a href="/{{currentLanguage}}/portal/article/edit/{{item.id}}" class="btn btn-light"> <span class="fas fa-pencil-alt text-primary"></span></a>
+                        <a href="{{item.detailsUrl}}" target="_blank" class="btn btn-light"><span class="fas fa-eye text-info"></span></a>
+
+                        <button type="button" class="btn btn-light del-popover"
+                                ng-click="removeArticle(item.id)">
+                            <span class="fas fa-times text-danger"></span>
+                        </button>
+                        @*<button type="button" class="btn btn-light del-popover"
+                                    data-toggle="popover" data-html="true" ng-click="removeArticle(item.id)">
+                                <span class="fas fa-times text-danger"></span>
+                            </button>
+                            <div class="popover-body d-none">
+                                <a href="/{{currentLanguage}}/portal/article/delete/{{item.id}}" class="btn btn btn-danger">Yes, I want to delete!</a>
+                            </div>*@
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <nav aria-label="Page navigation example">
+        <ul class="pagination justify-content-end">
+            <li class="page-item">
+                <a class="page-link active" href="javascript:void(0)" ng-click="loadArticles(data.pageIndex-1)"
+                   ng-hide="data.pageIndex==0">Prev</a>
+            </li>
+            <li class="page-item" ng-class="{active: n-1==data.pageIndex}" ng-repeat="n in range(data.totalPage)"><a class="page-link" href="javascript:void(0)" ng-click="loadArticles(n-1)">{{n}}</a></li>
+            <li class="page-item">
+                <a class="page-link" href="javascript:void(0)" ng-click="loadArticles(data.pageIndex + 1)"
+                   ng-hide="data.pageIndex >= (data.totalPage-1)">Next</a>
+            </li>
+        </ul>
+    </nav>
+</section>
+@section scripts{
+    <script src="~/app/controllers/portal-article-controller.js"></script>
+}

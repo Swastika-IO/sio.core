@@ -45,16 +45,16 @@ m => m.Specificulture == ViewContext.RouteData.Values["culture"].ToString());
         </li>
 
         <!-- ARTICLE -->
-        <li class="sw-toc-item mt-1 mb-1 mb-1" is-active-menu asp-controllers="Articles">
+        <li class="sw-toc-item mt-1 mb-1 mb-1" is-active-menu asp-controllers="Article">
             <div class="inner">
                 <div class="btn-group btn-group-sm" role="group" aria-label="Basic example">
-                    <a asp-area="Portal" asp-controller="Articles" asp-action="Create" class="btn btn-light">
+                    <a asp-area="Portal" asp-controller="Article" asp-action="Create" class="btn btn-light">
                         <span class="fas fa-plus"></span>
                     </a>
-                    <a asp-area="Portal" asp-controller="Articles" asp-action="Index" class="btn btn-light">
+                    <a asp-area="Portal" asp-controller="Article" asp-action="Index" class="btn btn-light">
                         <span class="fas fa-bars"></span>
                     </a>
-                    <a asp-area="Portal" asp-controller="Articles" asp-action="Draft" class="btn btn-light">
+                    <a asp-area="Portal" asp-controller="Article" asp-action="Draft" class="btn btn-light">
                         <span class="fas fa-clipboard"></span>
                     </a>
                     <a href="#" class="btn btn-light" data-toggle="collapse" data-target="#collapseArticleSubMenus" role="button" aria-expanded="false"
@@ -66,23 +66,23 @@ m => m.Specificulture == ViewContext.RouteData.Values["culture"].ToString());
             <div class="sw-toc-link" data-toggle="collapse" data-target="#collapseArticleSubMenus" role="button" aria-expanded="false"
                  aria-controls="collapseArticleSubMenus">
                 <i class="mi mi-ReadingList mi-lg mi-fw"></i>
-                <span class="text">@translator.Get("Articles")</span>
+                <span class="text">@translator.Get("Article")</span>
             </div>
             <ul id="collapseArticleSubMenus" class="collapse list-unstyled" role="tabpanel" data-parent="#sw-docs-nav">
                 <li>
-                    <a asp-area="Portal" asp-controller="Articles" asp-action="Create" class="sw-toc-sub-link mb-1">
+                    <a asp-area="Portal" asp-controller="Article" asp-action="Create" class="sw-toc-sub-link mb-1">
                         <i class="mi mi-Add mi-fw"></i>
                         <span class="text">@translator.Get("Create Article")</span>
                     </a>
                 </li>
                 <li>
-                    <a asp-area="Portal" asp-controller="Articles" asp-action="Index" class="sw-toc-sub-link mb-1">
+                    <a asp-area="Portal" asp-controller="Article" asp-action="Index" class="sw-toc-sub-link mb-1">
                         <i class="mi mi-List mi-fw"></i>
                         <span class="text">@translator.Get("List Article")</span>
                     </a>
                 </li>
                 <li>
-                    <a asp-area="Portal" asp-controller="Articles" asp-action="Draft" class="sw-toc-sub-link mb-1">
+                    <a asp-area="Portal" asp-controller="Article" asp-action="Draft" class="sw-toc-sub-link mb-1">
                         <i class="mi mi-Paste mi-fw"></i>
                         <span class="text">@translator.Get("Draft")</span>
                     </a>

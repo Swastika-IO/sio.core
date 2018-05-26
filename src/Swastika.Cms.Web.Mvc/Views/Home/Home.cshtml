@@ -3,42 +3,41 @@
     //string culture = ViewBag.culture;
     //Layout = string.Format("Layouts/{0}", Swastika.Cms.Lib.Services.GlobalConfigurationService.Instance.GetLocalString("Layout", culture, "_Layout_Corlate"));// "_Layout_Corlate";
     string master = LocalizerService.GetLocalString(SWCmsConstants.ConfigurationKeyword.Theme, ViewBag.culture, "Default");
-    Layout = (Model.Layout?.ToLower() == "_blank") ? null : $"Templates/{master}/Masters/{Model.Layout??"_Layout"}";
+    Layout = (Model.Layout?.ToLower() == "_blank") ? null : $"Templates/{master}/Masters/{Model.Layout ?? "_Layout"}";
 
     ViewData["Title"] = Model.Title;
     ViewData["SeoTitle"] = Model.SeoTitle;
     ViewData["SeoKeywords"] = Model.SeoKeywords;
     ViewData["SeoDescription"] = Model.SeoDescription;
 }
-<div>
-    @if (!string.IsNullOrEmpty(Model.TemplatePath))
-    {
 
-        try
-        {
-            @Html.Partial(Model.TemplatePath, Model)
-        }
-        catch (System.InvalidOperationException invalidOperationException)
-        {
-            <p class="danger text-center has-error">Unable load template with Exception detail below:</p>
-            <code>
-                @invalidOperationException
-            </code>
+@if (!string.IsNullOrEmpty(Model.TemplatePath))
+{
 
-        }
-        catch (Exception ex)
-        {
-            @ex
-            <p class="danger text-center has-error">Unable load template</p>
-        }
-    }
-    else
+    try
     {
-        <section class="container">
-            <h1>@Swastika.Cms.Lib.Services.GlobalConfigurationService.Instance.GetLocalString("Please choose template", ViewBag.culture)</h1>
-        </section>
+        @Html.Partial(Model.TemplatePath, Model)
     }
-</div>
+    catch (System.InvalidOperationException invalidOperationException)
+    {
+        <p class="danger text-center has-error">Unable load template with Exception detail below:</p>
+        <code>
+            @invalidOperationException
+        </code>
+
+    }
+    catch (Exception ex)
+    {
+        @ex
+        <p class="danger text-center has-error">Unable load template</p>
+    }
+}
+else
+{
+    <section class="container">
+        <h1>@Swastika.Cms.Lib.Services.GlobalConfigurationService.Instance.GetLocalString("Please choose template", ViewBag.culture)</h1>
+    </section>
+}
 @section scripts{
     @Html.Raw(Model.View?.Scripts)
 

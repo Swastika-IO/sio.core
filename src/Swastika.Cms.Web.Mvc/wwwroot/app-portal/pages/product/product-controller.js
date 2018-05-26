@@ -132,7 +132,8 @@ app.controller('ProductController', ['$scope', '$rootScope', '$routeParams', '$t
         };
 
         $scope.saveProduct = async function (product) {
-            product.content = $('.editor-content').val();
+            product.content = $('.editor-content.content').val();
+            product.excerpt = $('.editor-content.excerpt').val();
             var resp = await productServices.saveProduct(product);
             if (resp.isSucceed) {
                 $scope.activedProduct = resp.data;
