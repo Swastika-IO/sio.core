@@ -2,24 +2,22 @@
 // The Swastika I/O Foundation licenses this file to you under the GNU General Public License v3.0.
 // See the LICENSE file in the project root for more information.
 
-using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Data.OData.Query;
-using Newtonsoft.Json.Linq;
 using Swastika.Api.Controllers;
 using Swastika.Cms.Lib.Models.Cms;
-using Swastika.Cms.Lib.ViewModels;
+using Swastika.Cms.Lib.ViewModels.Api;
 using Swastika.Cms.Lib.ViewModels.BackEnd;
 using Swastika.Cms.Lib.ViewModels.Info;
 using Swastika.Domain.Core.ViewModels;
 using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Linq.Expressions;
 using System.Threading.Tasks;
 
 namespace Swastka.Cms.Api.Controllers
 {
+    [Produces("application/json")]
     [Route("api/{culture}/module-data")]
     public class ApiModuleDataController :
         BaseApiController
@@ -30,30 +28,10 @@ namespace Swastka.Cms.Api.Controllers
 
         [HttpPost]
         [Route("save")]
-        public async Task<RepositoryResponse<BEModuleDataViewModel>> SaveAsync(BEModuleDataViewModel data)
+        public async Task<RepositoryResponse<ApiModuleDataViewModel>> SaveAsync([FromBody]ApiModuleDataViewModel data)
         {
             var result = await data.SaveModelAsync().ConfigureAwait(false);
             return result;
-
-            //var model = data["model"].ToObject<SiocModuleData>();
-            //List<ModuleFieldViewModel> cols = data["columns"].ToObject<List<ModuleFieldViewModel>>();
-            //JObject val = new JObject();
-            //foreach (JProperty prop in data.Properties())
-            //{
-            //    if (prop.Name != "model" && prop.Name != "columns")
-            //    {
-            //        var col = cols.Find(c => c.Name == prop.Name);
-            //        JObject fieldVal = new JObject
-            //        {
-            //            new JProperty("dataType", col.DataType),
-            //            new JProperty("value", prop.Value)
-            //        };
-            //        val.Add(new JProperty(prop.Name, fieldVal));
-            //    }
-            //}
-            //model.Value = val.ToString(Newtonsoft.Json.Formatting.None);
-            //var vmData = new InfoModuleDataViewModel(model);
-            //return vmData.SaveModelAsync();
         }
 
         // POST api/category
@@ -114,6 +92,40 @@ namespace Swastka.Cms.Api.Controllers
             else
             {
                 return new RepositoryResponse<BEModuleDataViewModel>()
+                {
+                    IsSucceed = false,
+                    Data = null,
+                    Exception = getModule.Exception,
+                    Errors = getModule.Errors
+                };
+            }
+        }
+
+        // GET api/module-data/create/id
+        [HttpGet]
+        [Route("init/{moduleName}")]
+        public async Task<RepositoryResponse<ApiModuleDataViewModel>> InitAsync(string moduleName)
+        {
+            var getModule = await InfoModuleViewModel.Repository.GetSingleModelAsync(
+                m => m.Name == moduleName && m.Specificulture == _lang).ConfigureAwait(false);
+            if (getModule.IsSucceed)
+            {
+                var ModuleData = new ApiModuleDataViewModel(
+                    new SiocModuleData()
+                    {
+                        ModuleId = getModule.Data.Id,
+                        Specificulture = _lang,
+                        Fields = getModule.Data.Fields
+                    });
+                return new RepositoryResponse<ApiModuleDataViewModel>()
+                {
+                    IsSucceed = true,
+                    Data = ModuleData
+                };
+            }
+            else
+            {
+                return new RepositoryResponse<ApiModuleDataViewModel>()
                 {
                     IsSucceed = false,
                     Data = null,

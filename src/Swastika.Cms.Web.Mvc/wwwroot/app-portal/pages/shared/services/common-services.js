@@ -63,11 +63,13 @@ app.factory('commonServices', ['$location', '$http', '$rootScope', 'authService'
     var _getApiResult = async function (req) {
         $rootScope.isBusy = true;
         req.Authorization = authService.authentication.token;
-        var headers = {
-            'Content-Type': 'application/json',
-            'RefreshToken': authService.authentication.refresh_token
-        };
-        req.headers = headers;
+        
+        if (!req.headers) {
+            req.headers = {
+                'Content-Type': 'application/json'
+            };
+        }
+        req.headers.RefreshToken = authService.authentication.refresh_token;
         return $.ajax(req).then(function (resp) {
             //var resp = results.data;
             if (resp.responseKey === 'NotAuthorized') {

@@ -168,6 +168,22 @@ namespace Swastika.Cms.Lib.ViewModels
         }
     }
 
+    public class SpaModuleDataValueViewModel
+    {
+        [JsonProperty("moduleId")]
+        public int ModuleId { get; set; }
+
+        [JsonProperty("name")]
+        public string Name { get; set; }
+
+        [JsonProperty("dataType")]
+        public SWCmsConstants.DataType DataType { get; set; }
+
+        [JsonProperty("value")]
+        public string value { get; set; }
+
+    }
+
     public class ExtraProperty
     {
         [JsonProperty("priority")]
