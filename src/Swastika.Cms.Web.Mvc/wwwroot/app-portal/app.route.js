@@ -61,6 +61,21 @@
         templateUrl: "/app-portal/pages/module/list.html"
     });
 
+    $routeProvider.when("/backend/module/data/:id", {
+        controller: "ModuleController",
+        templateUrl: "/app-portal/pages/module/data.html"
+    });
+
+    $routeProvider.when("/backend/module-data/details/:moduleId/:id", {
+        controller: "ModuleDataController",
+        templateUrl: "/app-portal/pages/moduleData/details.html"
+    });
+
+    $routeProvider.when("/backend/module-data/details/:moduleId", {
+        controller: "ModuleDataController",
+        templateUrl: "/app-portal/pages/moduleData/details.html"
+    });
+
     $routeProvider.when("/backend/module/details/:id", {
         controller: "ModuleController",
         templateUrl: "/app-portal/pages/module/details.html"

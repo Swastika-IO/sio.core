@@ -2,9 +2,7 @@
 @model BEModuleViewModel
 @{
     ViewData["Title"] = "Module [" + Model.Name + "]";
-    //Layout = "~/Areas/Portal/Views/Shared/_Layout.cshtml";
     var Data = Model.Data;
-
     int fromValue = Data.PageIndex * Data.PageSize + 1;
     int toValue = fromValue + Data.PageSize;
     int prevPage = Data.PageIndex > 0 ? Data.PageIndex - 1 : 0;

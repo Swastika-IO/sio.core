@@ -6,7 +6,6 @@
                     ng-model="$ctrl.template" ng-init="$ctrl.loadTemplates()"
                     ng-options="item as item.fileName for item in $ctrl.templates track by item.id"
                     ng-change="$ctrl.updateEditors()"></select>
-
             <input class="form-control sel-filename" type="text" ng-model="$ctrl.template.fileName" value="{{$ctrl.template.fileName}}"
                    placeholder="Input template name here...">
             <input class="template-id" type="hidden" ng-model="$ctrl.template.id" value="{{$ctrl.template.id}}">

@@ -5,9 +5,17 @@
         var culture = $('#lang').val();
         ctrl.items = [
             {
+                title: 'Dashboard',
+                shortTitle: 'Dashboard',
+                icon: 'mi mi-Tiles',
+                href: '/backend',
+                subMenus: []
+            },
+            {
                 title: 'Articles',
                 shortTitle: 'Articles',
                 icon: 'mi mi-Package',
+                href: '#',
                 subMenus: [
                     {
                         title: 'Create',
@@ -25,6 +33,7 @@
                 title: 'Products',
                 shortTitle: 'Products',
                 icon: 'mi mi-Package',
+                href: '#',
                 subMenus: [
                     {
                         title: 'Create',
@@ -42,6 +51,7 @@
                 title: 'Pages',
                 shortTitle: 'Pages',
                 icon: 'mi mi-Page',
+                href: '#',
                 subMenus: [
                     {
                         title: 'Create',
@@ -56,26 +66,10 @@
                 ]
             },
             {
-                title: 'Forms',
-                shortTitle: 'Forms',
-                icon: 'mi mi-wpform',
-                subMenus: [
-                    {
-                        title: 'Create',
-                        href: '/backend/forms/create',
-                        icon: 'mi mi-Add'
-                    },
-                    {
-                        title: 'List',
-                        href: '/backend/forms/list',
-                        icon: 'mi mi-List'
-                    }
-                ]
-            },
-            {
                 title: 'Modules',
                 shortTitle: 'Modules',
                 icon: 'mi mi-ResolutionLegacy',
+                href: '#',
                 subMenus: [
                     {
                         title: 'Create',
@@ -93,6 +87,7 @@
                 title: 'Widgets',
                 shortTitle: 'Widgets',
                 icon: 'mi mi-Component',
+                href: '#',
                 subMenus: [
                     {
                         title: 'Create',
@@ -110,6 +105,7 @@
                 title: 'Themes',
                 shortTitle: 'Themes',
                 icon: 'mi mi-Personalize',
+                href: '#',
                 subMenus: [
                     {
                         title: 'Create',
@@ -127,6 +123,7 @@
                 title: 'Media',
                 shortTitle: 'Media',
                 icon: 'mi mi-Photo2',
+                href: '#',
                 subMenus: [
                     {
                         title: 'Create',
@@ -144,6 +141,7 @@
                 title: 'Team',
                 shortTitle: 'Team',
                 icon: 'mi mi-Contact',
+                href: '#',
                 subMenus: [
                     {
                         title: 'Create',
@@ -161,6 +159,7 @@
                 title: 'Settings',
                 shortTitle: 'Settings',
                 icon: 'mi mi-Settings mi-spin',
+                href: '#',
                 subMenus: [
                     {
                         title: 'Create',

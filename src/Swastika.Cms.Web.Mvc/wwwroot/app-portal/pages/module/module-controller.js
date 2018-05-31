@@ -11,7 +11,23 @@ app.controller('ModuleController', ['$scope', '$rootScope', '$routeParams', '$ti
             toDate: null,
             keyword: ''
         };
-
+        $scope.defaultAttr = {
+            name: '',
+            priority: 0,
+            dataType: 0,
+            isDisplay: true,
+            width: 3
+        };
+        $scope.dataTypes = [
+            { title: 'string', value: 0 },
+            { title: 'int', value: 1 },
+            { title: 'image', value: 2 },
+            { title: 'codeEditor', value:4 },
+            { title: 'html', value: 5 },
+            { title: 'textArea', value: 6 },
+            { title: 'boolean', value: 7 },
+            { title: 'mdTextArea', value: 8 },
+        ];
         $scope.activedModule = null;
         $scope.relatedModules = [];
         $rootScope.isBusy = false;
@@ -21,7 +37,7 @@ app.controller('ModuleController', ['$scope', '$rootScope', '$routeParams', '$ti
             totalItems: 0,
         };
         $scope.errors = [];
-        
+
         $scope.range = function (max) {
             var input = [];
             for (var i = 1; i <= max; i += 1) input.push(i);
@@ -74,6 +90,22 @@ app.controller('ModuleController', ['$scope', '$rootScope', '$routeParams', '$ti
                 $scope.$apply();
             }
         };
+
+        $scope.loadModuleDatas = async function () {
+            $rootScope.isBusy = true;
+            var id = $routeParams.id;
+            var response = await moduleServices.getModule(id, 'fe');
+            if (response.isSucceed) {
+                $scope.activedModule = response.data;
+                $rootScope.initEditor();
+                $scope.$apply();
+            }
+            else {
+                $rootScope.showErrors(response.errors);
+                $scope.$apply();
+            }
+        };
+
         $scope.loadModules = async function (pageIndex) {
             if (pageIndex != undefined) {
                 $scope.request.pageIndex = pageIndex;
@@ -146,5 +178,10 @@ app.controller('ModuleController', ['$scope', '$rootScope', '$routeParams', '$ti
                 $scope.$apply();
             }
         };
+        $scope.addAttr = function () {
+            if ($scope.activedModule) {
+                $scope.activedModule.columns.push($scope.defaultAttr);
+            }
+        }
 
     }]);

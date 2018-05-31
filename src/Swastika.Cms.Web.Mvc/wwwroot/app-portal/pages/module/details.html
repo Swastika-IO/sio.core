@@ -13,6 +13,65 @@
                     </div>
                 </div>
                 <div class="row">
+                    <div class="col-sm-12">
+                        <div class="card">
+                            <div class="card-header">
+                                Module Attributes (<label asp-for="Columns" class="control-label"></label>)
+                                <a ng-click="addAttr()" class="btn btn-primary btn-sm float-right text-white">Add New</a>
+                            </div>
+                            <div class="card-body p-1">
+                                <input type="hidden" asp-for="Id" />
+                                <input type="hidden" asp-for="Specificulture" />
+                                <input type="hidden" asp-for="Priority" />
+                                <table class="table table-sm table-hover" id="Table">
+                                    <thead class="thead-light">
+                                        <tr>
+                                            <th scope="col" width="5%">
+                                                <span class="fas fa-sort"></span>
+                                            </th>
+                                            <th scope="col" width="5%">
+                                                <span class="fas fa-sort-numeric-down"></span>
+                                            </th>
+                                            <th scope="col">Name</th>
+                                            <th scope="col" width="20%">Data Type</th>
+                                            <th scope="col" width="5%">Width</th>
+                                            <th scope="col" width="5%">Display</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody class="sortable">
+                                        <tr class="sortable-item module-column" ng-repeat="col in activedModule.columns track by $index">
+                                            <td style="cursor:move;" class="drag-header">
+                                                <span class="fas fa-sort"></span>
+                                            </td>
+                                            <td>
+                                                <input type="text" ng-model="col.priority" class="item-priority form-control form-control-sm d-inline" style="width:40px;" />
+                                            </td>
+                                            <td>
+                                                <input ng-model="col.name" class="form-control form-control-sm" />
+                                            </td>
+                                            <td>
+                                                <select class="form-control form-control-sm" ng-model="col.dataType"
+                                                        >
+                                                    <option ng-repeat="item in dataTypes" ng-value="item.value">{{item.title}}</option>
+                                                </select>
+                                            </td>
+                                            <td>
+                                                <input ng-model="col.width" class="form-control form-control-sm" />
+                                            </td>
+                                            <td>
+                                                <span class="switch switch-sm">
+                                                    <input type="checkbox" class="switch" ng-model="col.isDisplay">
+                                                    <label ng-model="col.isDisplay">&nbsp;</label>
+                                                </span>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
                     <div class="col-lg-12">
                         <template-editor template="activedModule.view"></template-editor>
                     </div>

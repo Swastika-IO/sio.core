@@ -65,7 +65,9 @@
                         <a href="{{item.detailsUrl}}" target="_blank" class="btn btn-light">
                             <span class="oi oi-eye text-primary"></span>
                         </a>
-
+                        <a href="/backend/module/data/{{item.id}}" class="btn btn-light">
+                            <span class="fas fa-list text-info"></span>
+                        </a>
                         <button type="button" class="btn btn-light del-popover"
                                 ng-click="removeModule(item.id)">
                             <span class="oi oi-x text-danger"></span>

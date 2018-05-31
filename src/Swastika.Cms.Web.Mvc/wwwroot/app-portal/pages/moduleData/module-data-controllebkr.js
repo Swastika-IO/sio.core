@@ -1,42 +1,39 @@
 ﻿'use strict';
-app.controller('PageController', ['$scope', '$rootScope', '$routeParams', '$timeout', '$location', 'authService', 'PageServices',
-    function ($scope, $rootScope, $routeParams, $timeout, $location, authService, pageServices) {
+app.controller('ModuleDataControllerbk', ['$scope', '$rootScope', '$routeParams', '$timeout', '$location', 'authService', 'ModuleDataServices',
+    function ($scope, $rootScope, $routeParams, $timeout, $location, authService, moduleDataServices) {
+
         $scope.request = {
             pageSize: '10',
             pageIndex: 0,
             status: $rootScope.swStatus[1],
-            orderBy: 'Priority',
-            direction: '0',
+            orderBy: 'CreatedDateTime',
+            direction: '1',
             fromDate: null,
             toDate: null,
             keyword: ''
         };
 
-        $scope.activedPage = null;
-
-        $scope.relatedPages = [];
-
+        $scope.activedModuleData = null;
+        $scope.relatedModuleDatas = [];
         $rootScope.isBusy = false;
-
         $scope.data = {
             pageIndex: 0,
             pageSize: 1,
-            totalItems: 0
+            totalItems: 0,
         };
-
         $scope.errors = [];
-        
+
         $scope.range = function (max) {
             var input = [];
             for (var i = 1; i <= max; i += 1) input.push(i);
             return input;
         };
 
-        $scope.getPage = async function (id) {
+        $scope.getModuleData = async function (id) {
             $rootScope.isBusy = true;
-            var resp = await pageServices.getPage(id, 'be');
+            var resp = await moduleDataServices.getModuleData(id, 'be');
             if (resp.isSucceed) {
-                $scope.activedPage = resp.data;
+                $scope.activedModuleData = resp.data;
                 $rootScope.initEditor();
                 $scope.$apply();
             }
@@ -46,12 +43,12 @@ app.controller('PageController', ['$scope', '$rootScope', '$routeParams', '$time
             }
         };
 
-        $scope.initPage = function () {
+        $scope.initModuleData = function () {
             if (!$rootScope.isBusy) {
                 $rootScope.isBusy = true;
-                pageServices.initPage('be').then(function (response) {
+                moduleDataServices.initModuleData('be').then(function (response) {
                     if (response.isSucceed) {
-                        $scope.activedPage = response.data;
+                        $scope.activedModuleData = response.data;
                         $rootScope.initEditor();
                     }
                     $rootScope.isBusy = false;
@@ -59,15 +56,18 @@ app.controller('PageController', ['$scope', '$rootScope', '$routeParams', '$time
                 }).error(function (a, b, c) {
                     errors.push(a, b, c);
                     $rootScope.isBusy = false;
-                });            }
+                    //$("html, body").animate({ "scrollTop": "0px" }, 500);
+                });
+            }
         };
 
-        $scope.loadPage = async function () {
+        $scope.loadModuleData = async function () {
             $rootScope.isBusy = true;
             var id = $routeParams.id;
-            var response = await pageServices.getPage(id, 'be');
+            var moduleId = $routeParams.moduleId;
+            var response = await moduleDataServices.getModuleData(moduleId, id, 'be');
             if (response.isSucceed) {
-                $scope.activedPage = response.data;
+                $scope.activedModuleData = response.data;
                 $rootScope.initEditor();
                 $scope.$apply();
             }
@@ -76,7 +76,7 @@ app.controller('PageController', ['$scope', '$rootScope', '$routeParams', '$time
                 $scope.$apply();
             }
         };
-        $scope.loadPages = async function (pageIndex) {
+        $scope.loadModuleDatas = async function (pageIndex) {
             if (pageIndex != undefined) {
                 $scope.request.pageIndex = pageIndex;
             }
@@ -87,16 +87,16 @@ app.controller('PageController', ['$scope', '$rootScope', '$routeParams', '$time
             if ($scope.request.toDate != null) {
                 $scope.request.toDate = $scope.request.toDate.toISOString();
             }
-            var resp = await pageServices.getPages($scope.request);
+            var resp = await moduleDataServices.getModuleDatas($scope.request);
             if (resp.isSucceed) {
 
                 ($scope.data = resp.data);
                 //$("html, body").animate({ "scrollTop": "0px" }, 500);
-                $.each($scope.data.items, function (i, page) {
+                $.each($scope.data.items, function (i, moduleData) {
 
-                    $.each($scope.activedPages, function (i, e) {
-                        if (e.pageId == page.id) {
-                            page.isHidden = true;
+                    $.each($scope.activedModuleDatas, function (i, e) {
+                        if (e.moduleDataId == moduleData.id) {
+                            moduleData.isHidden = true;
                         }
                     })
                 })
@@ -121,11 +121,11 @@ app.controller('PageController', ['$scope', '$rootScope', '$routeParams', '$time
             }
         };
 
-        $scope.removePage = async function (id) {
+        $scope.removeModuleData = async function (id) {
             if (confirm("Are you sure!")) {
-                var resp = await pageServices.removePage(id);
+                var resp = await moduleDataServices.removeModuleData(id);
                 if (resp.isSucceed) {
-                    $scope.loadPages();
+                    $scope.loadModuleDatas();
                 }
                 else {
                     $rootScope.showErrors(resp.errors);
@@ -133,15 +133,15 @@ app.controller('PageController', ['$scope', '$rootScope', '$routeParams', '$time
             }
         };
 
-        $scope.savePage = async function (page) {
-            page.content = $('.editor-content').val();
-            var resp = await pageServices.savePage(page);
+        $scope.saveModuleData = async function (moduleData) {
+            moduleData.content = $('.editor-content').val();
+            var resp = await moduleDataServices.saveModuleData(moduleData);
             if (resp.isSucceed) {
-                $scope.activedPage = resp.data;
+                $scope.activedModuleData = resp.data;
                 $rootScope.showMessage('Thành công', 'success');
                 $rootScope.isBusy = false;
                 $scope.$apply();
-                //$location.path('/backend/page/details/' + resp.data.id);
+                //$location.path('/backend/moduleData/details/' + resp.data.id);
             }
             else {
                 $rootScope.showErrors(resp.errors);

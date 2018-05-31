@@ -1,5 +1,5 @@
 ﻿'use strict';
-app.controller('DashboardController', ['$scope', '$rootScope', '$timeout', '$location', function ($scope, $rootScope, $timeout, $location) {
+app.controller('DashboardController', ['$scope', '$rootScope', '$timeout', '$location', 'DashboardServices', function ($scope, $rootScope, $timeout, $location, dashboardServices) {
     $scope.pageClass = 'page-dashboard';
     $('.side-nav li').removeClass('active');
     $('.side-nav .page-dashboard').addClass('active');
@@ -14,11 +14,15 @@ app.controller('DashboardController', ['$scope', '$rootScope', '$timeout', '$loc
         $rootScope.isBusy = false;
 
     });
-    $scope.getUserDemographicInfo = function () {
-        //dashboardServices.getUserDemographicInfo().then(function (results) {
-        //    //$scope.loadData();
-        //}, function (error) {
-        //    //alert(error.data.message);
-        //});
+    $scope.getDashboardInfo = async function () {
+        var response = await dashboardServices.getDashboardInfo();
+        if (response.isSucceed) {
+            $scope.data = response.data;
+            $scope.$apply();
+        }
+        else {
+            $rootScope.showErrors(response.errors);
+            $scope.$apply();
+        }
     }
 }]);

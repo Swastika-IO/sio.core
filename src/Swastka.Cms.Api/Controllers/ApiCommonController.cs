@@ -47,6 +47,18 @@ namespace Swastka.IO.Cms.Api.Controllers
                 Data = settings
             };
         }
+        
+        // GET api/category/id
+        [HttpGet]
+        [Route("dashboard")]
+        public RepositoryResponse<DashboardViewModel> Dashboard(int id)
+        {
+            return new RepositoryResponse<DashboardViewModel>()
+            {
+                IsSucceed = true,
+                Data = new DashboardViewModel()
+            };
+        }
 
 
         // GET api/category/id
