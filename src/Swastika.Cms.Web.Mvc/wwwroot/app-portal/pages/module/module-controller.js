@@ -1,6 +1,8 @@
 ﻿'use strict';
-app.controller('ModuleController', ['$scope', '$rootScope', '$routeParams', '$timeout', '$location', 'authService', 'ModuleServices',
-    function ($scope, $rootScope, $routeParams, $timeout, $location, authService, moduleServices) {
+app.controller('ModuleController', ['$scope', '$rootScope', '$routeParams', '$timeout'
+    , '$location', 'authService', 'ModuleServices', 'ModuleDataServices',
+    function ($scope, $rootScope, $routeParams, $timeout,
+        $location, authService, moduleServices, moduleDataServices) {
         $scope.request = {
             pageSize: '10',
             pageIndex: 0,
@@ -181,6 +183,30 @@ app.controller('ModuleController', ['$scope', '$rootScope', '$routeParams', '$ti
         $scope.addAttr = function () {
             if ($scope.activedModule) {
                 $scope.activedModule.columns.push($scope.defaultAttr);
+            }
+        }
+
+        $scope.removeAttr = function (index) {
+            if ($scope.activedModule) {
+
+                $scope.activedModule.columns.splice(index, 1);
+            }
+        }
+
+        $scope.removeData = function (id) {
+            if ($scope.activedModule) {
+                $rootScope.showConfirm($scope, 'removeDataConfirmed', [ id ], null, 'Remove Data', 'Are you sure');
+            }
+        }
+
+        $scope.removeDataConfirmed = async function (id) {
+            var result = await moduleDataServices.removeModuleData(id);
+            if (result.isSucceed) {
+                $scope.loadModuleDatas();
+            }
+            else {
+                $rootScope.showMessage('failed');
+                $scope.$apply();
             }
         }
 

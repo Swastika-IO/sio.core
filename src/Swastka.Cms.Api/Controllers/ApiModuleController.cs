@@ -9,6 +9,7 @@ using Microsoft.Data.OData.Query;
 using Newtonsoft.Json.Linq;
 using Swastika.Api.Controllers;
 using Swastika.Cms.Lib.Models.Cms;
+using Swastika.Cms.Lib.ViewModels.Api;
 using Swastika.Cms.Lib.ViewModels.BackEnd;
 using Swastika.Cms.Lib.ViewModels.FrontEnd;
 using Swastika.Cms.Lib.ViewModels.Info;
@@ -60,17 +61,17 @@ namespace Swastka.IO.Cms.Api.Controllers
                 case "be":
                     if (id.HasValue)
                     {
-                        var beResult = await BEModuleViewModel.Repository.GetSingleModelAsync(model => model.Id == id && model.Specificulture == _lang).ConfigureAwait(false);
+                        var beResult = await ApiModuleViewModel.Repository.GetSingleModelAsync(model => model.Id == id && model.Specificulture == _lang).ConfigureAwait(false);
                         return JObject.FromObject(beResult);
                     }
                     else
                     {
                         var model = new SiocModule() { Specificulture = _lang, Status = (int)SWStatus.Preview };
 
-                        RepositoryResponse<BEModuleViewModel> result = new RepositoryResponse<BEModuleViewModel>()
+                        RepositoryResponse<ApiModuleViewModel> result = new RepositoryResponse<ApiModuleViewModel>()
                         {
                             IsSucceed = true,
-                            Data = await BEModuleViewModel.InitAsync(model)
+                            Data = await ApiModuleViewModel.InitAsync(model)
                         };
                         return JObject.FromObject(result);
                     }
@@ -147,18 +148,16 @@ namespace Swastka.IO.Cms.Api.Controllers
         #region Post
 
         // POST api/module
-        [Authorize]
         [HttpPost, HttpOptions]
         [Route("save")]
-        public async Task<RepositoryResponse<BEModuleViewModel>> Post([FromBody]BEModuleViewModel model)
+        public async Task<RepositoryResponse<ApiModuleViewModel>> Post([FromBody]ApiModuleViewModel model)
         {
             if (model != null)
             {
-                //model.CreatedBy = User.Identity.Name;
                 var result = await model.SaveModelAsync(true).ConfigureAwait(false);
                 return result;
             }
-            return new RepositoryResponse<BEModuleViewModel>();
+            return new RepositoryResponse<ApiModuleViewModel>();
         }
 
         // POST api/module

@@ -36,6 +36,7 @@
                                             <th scope="col" width="20%">Data Type</th>
                                             <th scope="col" width="5%">Width</th>
                                             <th scope="col" width="5%">Display</th>
+                                            <th scope="col" width="5%"></th>
                                         </tr>
                                     </thead>
                                     <tbody class="sortable">
@@ -50,8 +51,7 @@
                                                 <input ng-model="col.name" class="form-control form-control-sm" />
                                             </td>
                                             <td>
-                                                <select class="form-control form-control-sm" ng-model="col.dataType"
-                                                        >
+                                                <select class="form-control form-control-sm" ng-model="col.dataType">
                                                     <option ng-repeat="item in dataTypes" ng-value="item.value">{{item.title}}</option>
                                                 </select>
                                             </td>
@@ -63,6 +63,12 @@
                                                     <input type="checkbox" class="switch" ng-model="col.isDisplay">
                                                     <label ng-model="col.isDisplay">&nbsp;</label>
                                                 </span>
+                                            </td>
+                                            <td>
+                                                <a class="btn btn-light del-popover"
+                                                        ng-click="removeAttr($index);">
+                                                    <span class="fas fa-times text-danger"></span>
+                                                </a>
                                             </td>
                                         </tr>
                                     </tbody>

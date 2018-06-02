@@ -56,7 +56,7 @@ app.controller('ModuleDataController', ['$scope', '$rootScope', '$routeParams', 
             else {
                 var resp = await moduleDataServices.initModuleForm($scope.name);
             }
-            
+
             if (resp.isSucceed) {
                 $scope.activedModuleData = resp.data;
                 $scope.$apply();
@@ -72,7 +72,7 @@ app.controller('ModuleDataController', ['$scope', '$rootScope', '$routeParams', 
             $scope.dataId = $routeParams.id;
             $scope.backUrl = '/backend/module/data/' + $routeParams.moduleId;
             $scope.moduleId = $routeParams.moduleId;
-            
+
         }
         $scope.loadModuleData = async function () {
             $rootScope.isBusy = true;
@@ -89,7 +89,8 @@ app.controller('ModuleDataController', ['$scope', '$rootScope', '$routeParams', 
                 $scope.$apply();
             }
         };
-        $scope.loadModuleDatas = async function (pageIndex) {
+        $scope.loadModuleDatas = async function (moduleId, pageIndex) {
+            $scope.request.key = moduleId;
             if (pageIndex != undefined) {
                 $scope.request.pageIndex = pageIndex;
             }

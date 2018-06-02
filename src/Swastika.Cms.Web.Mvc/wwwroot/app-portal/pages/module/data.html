@@ -51,10 +51,10 @@
                 <td>
                     <div class="btn-group btn-group-sm" role="group" aria-label="Actions">
                         <a href="/backend/module-data/details/{{activedModule.id}}/{{item.id}}" class="btn btn-sm btn-light"> <span class="fas fa-pencil-alt text-primary"></span></a>
-                        <button type="button" class="btn btn-light del-popover"
+                        <a ng-click="removeData(item.id);" class="btn btn-light del-popover"
                                 data-toggle="popover" data-html="true">
                             <span class="fas fa-times text-danger"></span>
-                        </button>
+                        </a>
                         <div class="popover-body d-none">
                             <a asp-action="DeleteModuleData" asp-route-id="@Data.Items[i].Id" class="btn btn btn-danger">Yes, I want to delete!</a>
                         </div>

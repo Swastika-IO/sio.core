@@ -79,7 +79,7 @@ modules.component('moduleForm', {
                             e.value = $(form).find('.' + e.name).val();
                             break;
                         default:
-                            e.value = e ? e.value.toString() : null;
+                            e.value = e.value ? e.value.toString() : null;
                             break;
                     }
                 });

@@ -194,7 +194,7 @@ app.run(['$rootScope', '$location', 'commonServices', 'authService', function ($
         $location.path('/backend/login');
     }
 
-    $rootScope.executeFunctionByName = function (functionName, args, context) {
+    $rootScope.executeFunctionByName = async function (functionName, args, context) {
         if (functionName !== null) {
             var namespaces = functionName.split(".");
             var func = namespaces.pop();
@@ -206,19 +206,20 @@ app.run(['$rootScope', '$location', 'commonServices', 'authService', function ($
         }
     };
 
-    $rootScope.showConfirm = function (context, okFuncName, okArgs, cancelFuncName, title, msg, cancelArgs, lblOK, lblCancel) {
-        $rootScope.message = {
+    $rootScope.showConfirm = function (context, okFuncName, okArgs, cancelFuncName, title, msg
+        , cancelArgs, lblOK, lblCancel) {
+        $rootScope.confirmMessage = {
             title: title,
-            value: msg,
-            context: $scope,
+            content: msg,
+            context: context,
             okFuncName: okFuncName,
             okArgs: okArgs,
-            cancelFuncName: cancelArgs,
+            cancelFuncName: cancelFuncName,
             cancelArgs: cancelArgs,
-            lblOK: lblOK,
-            lblCancel: lblCancel
+            lblOK: lblOK ? lblOK : 'OK',
+            lblCancel: lblCancel ? lblCancel : 'Cancel'
         };
-        $('#modal-confirm').modal('show');
+        $('#dlg-confirm-msg').modal('show');
     };
     $rootScope.initEditor = function () {
         setTimeout(function () {
