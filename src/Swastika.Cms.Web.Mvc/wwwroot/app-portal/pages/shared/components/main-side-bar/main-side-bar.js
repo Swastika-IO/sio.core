@@ -82,25 +82,7 @@
                         icon: 'mi mi-List'
                     }
                 ]
-            },
-            {
-                title: 'Widgets',
-                shortTitle: 'Widgets',
-                icon: 'mi mi-Component',
-                href: '#',
-                subMenus: [
-                    {
-                        title: 'Create',
-                        href: '/backend/widgets/create',
-                        icon: 'mi mi-Add'
-                    },
-                    {
-                        title: 'List',
-                        href: '/backend/widgets/list',
-                        icon: 'mi mi-List'
-                    }
-                ]
-            },
+            },            
             {
                 title: 'Themes',
                 shortTitle: 'Themes',
@@ -109,12 +91,12 @@
                 subMenus: [
                     {
                         title: 'Create',
-                        href: '/backend/themes/create',
+                        href: '/backend/theme/create',
                         icon: 'mi mi-Add'
                     },
                     {
                         title: 'List',
-                        href: '/backend/themes/list',
+                        href: '/backend/theme/list',
                         icon: 'mi mi-List'
                     }
                 ]

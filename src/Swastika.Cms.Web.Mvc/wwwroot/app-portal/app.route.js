@@ -102,5 +102,20 @@
         templateUrl: "/app-portal/pages/media/details.html"
     });
 
+    $routeProvider.when("/backend/theme/list", {
+        controller: "ThemeController",
+        templateUrl: "/app-portal/pages/theme/list.html"
+    });
+
+    $routeProvider.when("/backend/theme/details/:id", {
+        controller: "ThemeController",
+        templateUrl: "/app-portal/pages/theme/details.html"
+    });
+
+    $routeProvider.when("/backend/theme/create", {
+        controller: "ThemeController",
+        templateUrl: "/app-portal/pages/theme/details.html"
+    });
+
     $routeProvider.otherwise({ redirectTo: "/backend" });
 });

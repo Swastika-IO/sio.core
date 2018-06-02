@@ -1,0 +1,151 @@
+﻿'use strict';
+app.controller('ThemeController', ['$scope', '$rootScope', '$routeParams', '$timeout', '$location', 'authService', 'ThemeServices',
+    function ($scope, $rootScope, $routeParams, $timeout, $location, authService, themeServices) {
+        $scope.request = {
+            themeSize: '10',
+            themeIndex: 0,
+            status: $rootScope.swStatus[1],
+            orderBy: 'Priority',
+            direction: '0',
+            fromDate: null,
+            toDate: null,
+            keyword: ''
+        };
+
+        $scope.activedTheme = null;
+
+        $scope.relatedThemes = [];
+
+        $rootScope.isBusy = false;
+
+        $scope.data = {
+            themeIndex: 0,
+            themeSize: 1,
+            totalItems: 0
+        };
+
+        $scope.errors = [];
+        
+        $scope.range = function (max) {
+            var input = [];
+            for (var i = 1; i <= max; i += 1) input.push(i);
+            return input;
+        };
+
+        $scope.getTheme = async function (id) {
+            $rootScope.isBusy = true;
+            var resp = await themeServices.getTheme(id, 'be');
+            if (resp.isSucceed) {
+                $scope.activedTheme = resp.data;
+                $rootScope.initEditor();
+                $scope.$apply();
+            }
+            else {
+                $rootScope.showErrors(resp.errors);
+                $scope.$apply();
+            }
+        };
+
+        $scope.loadTheme = async function () {
+            $rootScope.isBusy = true;
+            var id = $routeParams.id;
+            var response = await themeServices.getTheme(id, 'be');
+            if (response.isSucceed) {
+                $scope.activedTheme = response.data;
+                $scope.$apply();
+            }
+            else {
+                $rootScope.showErrors(response.errors);
+                $scope.$apply();
+            }
+        };
+        $scope.loadThemes = async function (themeIndex) {
+            if (themeIndex != undefined) {
+                $scope.request.themeIndex = themeIndex;
+            }
+            if ($scope.request.fromDate != null) {
+                var d = new Date($scope.request.fromDate);
+                $scope.request.fromDate = d.toISOString();
+            }
+            if ($scope.request.toDate != null) {
+                $scope.request.toDate = $scope.request.toDate.toISOString();
+            }
+            var resp = await themeServices.getThemes($scope.request);
+            if (resp.isSucceed) {
+
+                ($scope.data = resp.data);
+                //$("html, body").animate({ "scrollTop": "0px" }, 500);
+                $.each($scope.data.items, function (i, theme) {
+
+                    $.each($scope.activedThemes, function (i, e) {
+                        if (e.themeId == theme.id) {
+                            theme.isHidden = true;
+                        }
+                    })
+                })
+                setTimeout(function () {
+                    $('[data-toggle="popover"]').popover({
+                        html: true,
+                        content: function () {
+                            var content = $(this).next('.popover-body');
+                            return $(content).html();
+                        },
+                        title: function () {
+                            var title = $(this).attr("data-popover-content");
+                            return $(title).children(".popover-heading").html();
+                        }
+                    });
+                }, 200);
+                $scope.$apply();
+            }
+            else {
+                $rootScope.showErrors(resp.errors);
+                $scope.$apply();
+            }
+        };
+
+        $scope.removeTheme = async function (id) {
+            if (confirm("Are you sure!")) {
+                var resp = await themeServices.removeTheme(id);
+                if (resp.isSucceed) {
+                    $scope.loadThemes();
+                }
+                else {
+                    $rootScope.showErrors(resp.errors);
+                }
+            }
+        };
+
+        $scope.saveTheme = async function (theme) {
+            theme.content = $('.editor-content').val();
+            var resp = await themeServices.saveTheme(theme);
+            if (resp.isSucceed) {
+                $scope.activedTheme = resp.data;
+                $rootScope.showMessage('Thành công', 'success');
+                $rootScope.isBusy = false;
+                $scope.$apply();
+                //$location.path('/backend/theme/details/' + resp.data.id);
+            }
+            else {
+                $rootScope.showErrors(resp.errors);
+                $scope.$apply();
+            }
+        };
+
+        $scope.removeData = function (id) {
+            if ($scope.activedModule) {
+                $rootScope.showConfirm($scope, 'removeDataConfirmed', [id], null, 'Remove Data', 'Are you sure');
+            }
+        }
+
+        $scope.removeDataConfirmed = async function (id) {
+            var result = await themeServices.removeTheme(id);
+            if (result.isSucceed) {
+                $scope.loadThemes();
+            }
+            else {
+                $rootScope.showMessage('failed');
+                $scope.$apply();
+            }
+        }
+    }]);
