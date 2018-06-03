@@ -1,7 +1,8 @@
 ﻿'use strict';
 app.controller('TemplateController', ['$scope', '$rootScope', '$routeParams', '$timeout', '$location', 'authService', 'TemplateServices',
     function ($scope, $rootScope, $routeParams, $timeout, $location, authService, templateServices) {
-        $scope.request = {
+        var ctrl = this;
+        ctrl.request = {
             pageSize: '10',
             pageIndex: 0,
             status: $rootScope.swStatus[1],
@@ -11,8 +12,8 @@ app.controller('TemplateController', ['$scope', '$rootScope', '$routeParams', '$
             toDate: null,
             keyword: ''
         };
-        $scope.folderType = 'Masters';
-        $scope.folderTypes = [
+        ctrl.folderType = 'Masters';
+        ctrl.folderTypes = [
             'Masters',
             'Layouts',
             'Pages',
@@ -21,37 +22,37 @@ app.controller('TemplateController', ['$scope', '$rootScope', '$routeParams', '$
             'Articles',
             'Widgets',
         ];
-        $scope.templateFile = {
+        ctrl.templateFile = {
             file: null,
             fullPath: '',
             folder: 'Template',
             title: '',
             description: ''
         };
-        $scope.listUrl = '/backend/template/list/';
-        $scope.activedTemplate = null;
-        $scope.relatedTemplates = [];
+        ctrl.listUrl = '/backend/template/list/';
+        ctrl.activedTemplate = null;
+        ctrl.relatedTemplates = [];
         $rootScope.isBusy = false;
-        $scope.data = {
+        ctrl.data = {
             pageIndex: 0,
             pageSize: 1,
             totalItems: 0,
         };
-        $scope.errors = [];
+        ctrl.errors = [];
 
-        $scope.range = function (max) {
+        ctrl.range = function (max) {
             var input = [];
             for (var i = 1; i <= max; i += 1) input.push(i);
             return input;
         };
 
-        $scope.getTemplate = async function (id) {
+        ctrl.getTemplate = async function (id) {
             $rootScope.isBusy = true;
             var resp = await templateServices.getTemplate(id, 'be');
             if (resp.isSucceed) {
-                $scope.activedTemplate = resp.data;
-                $scope.listUrl = '/backend/template/list/' + resp.data.folderType;
-                $scope.initEditor();
+                ctrl.activedTemplate = resp.data;
+                ctrl.listUrl = '/backend/template/list/' + resp.data.folderType;
+                ctrl.initEditor();
                 $scope.$apply();
             }
             else {
@@ -60,22 +61,22 @@ app.controller('TemplateController', ['$scope', '$rootScope', '$routeParams', '$
             }
         };
 
-        $scope.loadParams = async function () {
+        ctrl.loadParams = async function () {
             $rootScope.isBusy = true;
-            $scope.folderType = $routeParams.folderType ? $routeParams.folderType : 'Masters';
-            $scope.backUrl = '/backend/template/list/' + $routeParams.themeId;
-            $scope.themeId = $routeParams.themeId;
+            ctrl.folderType = $routeParams.folderType ? $routeParams.folderType : 'Masters';
+            ctrl.backUrl = '/backend/template/list/' + $routeParams.themeId;
+            ctrl.themeId = $routeParams.themeId;
 
         }
 
-        $scope.loadTemplate = async function () {
+        ctrl.loadTemplate = async function () {
             $rootScope.isBusy = true;
             var id = $routeParams.id;
             var response = await templateServices.getTemplate(id, 'be');
             if (response.isSucceed) {
-                $scope.activedTemplate = response.data;
-                $scope.listUrl = '/backend/template/list/' + response.data.templateId + '/' + response.data.folderType;
-                $scope.initEditor();
+                ctrl.activedTemplate = response.data;
+                ctrl.listUrl = '/backend/template/list/' + response.data.templateId + '/' + response.data.folderType;
+                ctrl.initEditor();
                 $scope.$apply();
             }
             else {
@@ -83,22 +84,22 @@ app.controller('TemplateController', ['$scope', '$rootScope', '$routeParams', '$
                 $scope.$apply();
             }
         };
-        $scope.loadTemplates = async function (pageIndex) {
-            $scope.request.key = $routeParams.themeId;
-            $scope.folderType = this.folderType;
+        ctrl.loadTemplates = async function (pageIndex) {
+            ctrl.request.key = $routeParams.themeId;
+            ctrl.folderType = this.folderType;
             if (pageIndex != undefined) {
-                $scope.request.pageIndex = pageIndex;
+                ctrl.request.pageIndex = pageIndex;
             }
-            if ($scope.request.fromDate != null) {
-                var d = new Date($scope.request.fromDate);
-                $scope.request.fromDate = d.toISOString();
+            if (ctrl.request.fromDate != null) {
+                var d = new Date(ctrl.request.fromDate);
+                ctrl.request.fromDate = d.toISOString();
             }
-            if ($scope.request.toDate != null) {
-                $scope.request.toDate = $scope.request.toDate.toISOString();
+            if (ctrl.request.toDate != null) {
+                ctrl.request.toDate = ctrl.request.toDate.toISOString();
             }
-            var resp = await templateServices.getTemplates($scope.request, $scope.folderType);
+            var resp = await templateServices.getTemplates(ctrl.request, ctrl.folderType);
             if (resp.isSucceed) {
-                $scope.data = resp.data;
+                ctrl.data = resp.data;
                 $scope.$apply();
             }
             else {
@@ -107,11 +108,11 @@ app.controller('TemplateController', ['$scope', '$rootScope', '$routeParams', '$
             }
         };
 
-        $scope.removeTemplate = async function (id) {
+        ctrl.removeTemplate = async function (id) {
             if (confirm("Are you sure!")) {
                 var resp = await templateServices.removeTemplate(id);
                 if (resp.isSucceed) {
-                    $scope.loadTemplates();
+                    ctrl.loadTemplates();
                 }
                 else {
                     $rootScope.showErrors(resp.errors);
@@ -119,10 +120,10 @@ app.controller('TemplateController', ['$scope', '$rootScope', '$routeParams', '$
             }
         };
 
-        $scope.saveTemplate = async function () {
-            var resp = await templateServices.saveTemplate($scope.activedTemplate);
+        ctrl.saveTemplate = async function () {
+            var resp = await templateServices.saveTemplate(ctrl.activedTemplate);
             if (resp.isSucceed) {
-                $scope.activedTemplate = resp.data;
+                ctrl.activedTemplate = resp.data;
                 $rootScope.showMessage('Thành công', 'success');
                 $rootScope.isBusy = false;
                 $scope.$apply();
@@ -134,7 +135,7 @@ app.controller('TemplateController', ['$scope', '$rootScope', '$routeParams', '$
             }
         };
 
-        $scope.initEditor = function () {
+        ctrl.initEditor = function () {
             setTimeout(function () {
                 $.each($('.code-editor'), function (i, e) {
                     var container = $(this);
