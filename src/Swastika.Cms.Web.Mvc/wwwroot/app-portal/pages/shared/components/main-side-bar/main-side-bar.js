@@ -120,6 +120,24 @@
                 ]
             },
             {
+                title: 'File',
+                shortTitle: 'File',
+                icon: 'mi mi-Photo2',
+                href: '#',
+                subMenus: [
+                    {
+                        title: 'Create',
+                        href: '/backend/file/create',
+                        icon: 'mi mi-Add'
+                    },
+                    {
+                        title: 'List',
+                        href: '/backend/file/list',
+                        icon: 'mi mi-List'
+                    }
+                ]
+            },
+            {
                 title: 'Team',
                 shortTitle: 'Team',
                 icon: 'mi mi-Contact',

@@ -3,9 +3,15 @@
 // See the LICENSE file in the project root for more information.
 
 using Microsoft.AspNetCore.Mvc;
+using Newtonsoft.Json.Linq;
 using Swastika.Api.Controllers;
+using Swastika.Cms.Lib;
 using Swastika.Cms.Lib.Repositories;
 using Swastika.Cms.Lib.ViewModels;
+using Swastika.Cms.Lib.ViewModels.Api;
+using Swastika.Domain.Core.ViewModels;
+using System.Collections.Generic;
+using System.Threading.Tasks;
 
 namespace Swastka.IO.Cms.Api.Controllers
 {
@@ -13,6 +19,50 @@ namespace Swastka.IO.Cms.Api.Controllers
     [Route("api/file")]
     public class ApiFileController : BaseApiController
     {
+        #region Post
+
+        // Post api/files/id
+        [HttpPost]
+        [Route("details")]
+        [Route("details")]
+        public RepositoryResponse<FileViewModel> Details(RequestObject request)
+        {
+            // Request: Key => folder, Keyword => filename
+
+            if (!string.IsNullOrEmpty(request.Key))
+            {
+                var file = FileRepository.Instance.GetWebFile(request.Keyword, request.Key);
+
+                return new RepositoryResponse<FileViewModel>()
+                {
+                    IsSucceed = file != null,
+                    Data = file
+                };
+            }
+            else
+            {
+                return new RepositoryResponse<FileViewModel>();
+            }
+        }
+
+        // GET api/files/id
+        [HttpGet]
+        [Route("delete/{id}")]
+        public RepositoryResponse<bool> Delete(RequestObject request)
+        {
+            string fullPath = SwCmsHelper.GetFullPath(new string[]
+            {
+                request.Key,
+                request.Keyword
+            });
+            var result = FileRepository.Instance.DeleteWebFile(fullPath);
+            return new RepositoryResponse<bool>()
+            {
+                IsSucceed = result,
+                Data = result
+            };
+        }
+
         // POST api/values
         /// <summary>
         /// Uploads the image.
@@ -31,5 +81,45 @@ namespace Swastka.IO.Cms.Api.Controllers
             }
             return GetErrorResult("failed", "invalid");
         }
+
+        // POST api/files
+        [HttpPost, HttpOptions]
+        [Route("save")]
+        public async Task<RepositoryResponse<FileViewModel>> Save(FileViewModel model)
+        {
+            if (model != null)
+            {
+                var result = FileRepository.Instance.SaveWebFile(model);
+                return new RepositoryResponse<FileViewModel>()
+                {
+                    IsSucceed = result,
+                    Data = model
+                };
+            }
+            return new RepositoryResponse<FileViewModel>();
+        }
+
+        // GET api/files
+
+        [HttpPost, HttpOptions]
+        [Route("list")]
+        public RepositoryResponse<ApiFilePageViewModel> GetList([FromBody]RequestPaging request)
+        {
+            ParseRequestPagingDate(request);
+            var files = FileRepository.Instance.GetTopFiles(request.Key);
+            var directories = FileRepository.Instance.GetTopDirectories(request.Key);
+            return new RepositoryResponse<ApiFilePageViewModel>()
+            {
+                IsSucceed = true,
+                Data = new ApiFilePageViewModel()
+                {
+                    Files = files,
+                    Directories = directories
+                }
+            };
+        }
+        #endregion Post
+
+
     }
 }

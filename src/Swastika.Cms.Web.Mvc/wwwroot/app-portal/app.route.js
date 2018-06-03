@@ -86,7 +86,6 @@
         templateUrl: "/app-portal/pages/module/details.html"
     });
 
-    
     $routeProvider.when("/backend/media/list", {
         controller: "MediaController",
         templateUrl: "/app-portal/pages/media/list.html"
@@ -100,6 +99,21 @@
     $routeProvider.when("/backend/media/create", {
         controller: "MediaController",
         templateUrl: "/app-portal/pages/media/details.html"
+    });
+
+    $routeProvider.when("/backend/file/list", {
+        controller: "FileController",
+        templateUrl: "/app-portal/pages/file/list.html"
+    });
+
+    $routeProvider.when("/backend/file/details/:id", {
+        controller: "FileController",
+        templateUrl: "/app-portal/pages/file/details.html"
+    });
+
+    $routeProvider.when("/backend/file/create", {
+        controller: "FileController",
+        templateUrl: "/app-portal/pages/file/details.html"
     });
 
     $routeProvider.when("/backend/theme/list", {
