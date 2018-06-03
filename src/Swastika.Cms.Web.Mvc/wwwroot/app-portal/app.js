@@ -54,7 +54,7 @@ app.run(['$rootScope', '$location', 'commonServices', 'authService', function ($
     $rootScope.currentContext = $rootScope;
     $rootScope.errors = [];
     $rootScope.message = {
-        title: '',
+        title: 'test',
         content: '',
         errors: [],
         okFuncName: null,
