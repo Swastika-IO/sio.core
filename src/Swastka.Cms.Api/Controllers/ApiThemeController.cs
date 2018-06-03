@@ -2,16 +2,12 @@
 // The Swastika I/O Foundation licenses this file to you under the MIT license.
 // See the LICENSE file in the project root for more information.
 
-using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.Data.OData.Query;
 using Newtonsoft.Json.Linq;
 using Swastika.Api.Controllers;
-using Swastika.Cms.Lib;
 using Swastika.Cms.Lib.Models.Cms;
-using Swastika.Cms.Lib.ViewModels.BackEnd;
-using Swastika.Cms.Lib.ViewModels.FrontEnd;
+using Swastika.Cms.Lib.ViewModels.Api;
 using Swastika.Cms.Lib.ViewModels.Info;
 using Swastika.Domain.Core.ViewModels;
 using System;
@@ -37,7 +33,7 @@ namespace Swastka.IO.Cms.Api.Controllers
         [Route("delete/{id}")]
         public async Task<RepositoryResponse<bool>> DeleteAsync(int id)
         {
-            var getPage = await BEThemeViewModel.Repository.GetSingleModelAsync(
+            var getPage = await ApiThemeViewModel.Repository.GetSingleModelAsync(
                 model => model.Id == id);
             if (getPage.IsSucceed)
             {
@@ -64,34 +60,38 @@ namespace Swastka.IO.Cms.Api.Controllers
                 case "be":
                     if (id.HasValue)
                     {
-                        var beResult = await BEThemeViewModel.Repository.GetSingleModelAsync(model => model.Id == id).ConfigureAwait(false);
+                        var beResult = await ApiThemeViewModel.Repository.GetSingleModelAsync(model => model.Id == id).ConfigureAwait(false);
+                        beResult.Data.Specificulture = _lang;
                         return JObject.FromObject(beResult);
                     }
                     else
                     {
                         var model = new SiocTheme() { Status = (int)SWStatus.Preview };
 
-                        RepositoryResponse<BEThemeViewModel> result = new RepositoryResponse<BEThemeViewModel>()
+                        RepositoryResponse<ApiThemeViewModel> result = new RepositoryResponse<ApiThemeViewModel>()
                         {
                             IsSucceed = true,
-                            Data = await BEThemeViewModel.InitAsync(model)
+                            Data = await ApiThemeViewModel.InitAsync(model)
                         };
+                        result.Data.Specificulture = _lang;
                         return JObject.FromObject(result);
                     }
                 default:
                     if (id.HasValue)
                     {
-                        var beResult = await BEThemeViewModel.Repository.GetSingleModelAsync(model => model.Id == id).ConfigureAwait(false);
+                        var beResult = await ApiThemeViewModel.Repository.GetSingleModelAsync(model => model.Id == id).ConfigureAwait(false);
+                        beResult.Data.Specificulture = _lang;
                         return JObject.FromObject(beResult);
                     }
                     else
                     {
                         var model = new SiocTheme();
-                        RepositoryResponse<BEThemeViewModel> result = new RepositoryResponse<BEThemeViewModel>()
+                        RepositoryResponse<ApiThemeViewModel> result = new RepositoryResponse<ApiThemeViewModel>()
                         {
                             IsSucceed = true,
-                            Data = new BEThemeViewModel(model) { Status = SWStatus.Preview }
+                            Data = new ApiThemeViewModel(model) { Status = SWStatus.Preview }
                         };
+                        result.Data.Specificulture = _lang;
                         return JObject.FromObject(result);
                     }
             }
@@ -101,10 +101,9 @@ namespace Swastka.IO.Cms.Api.Controllers
         #region Post
 
         // POST api/theme
-        [Authorize]
         [HttpPost, HttpOptions]
         [Route("save")]
-        public async Task<RepositoryResponse<BEThemeViewModel>> Post([FromBody]BEThemeViewModel model)
+        public async Task<RepositoryResponse<ApiThemeViewModel>> Save([FromBody]ApiThemeViewModel model)
         {
             if (model != null)
             {
@@ -112,7 +111,7 @@ namespace Swastka.IO.Cms.Api.Controllers
                 var result = await model.SaveModelAsync(true).ConfigureAwait(false);
                 return result;
             }
-            return new RepositoryResponse<BEThemeViewModel>();
+            return new RepositoryResponse<ApiThemeViewModel>();
         }
 
         // POST api/theme

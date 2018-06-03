@@ -251,6 +251,11 @@ app.run(['$rootScope', '$location', 'commonServices', 'authService', function ($
             });
         }, 200)
     }
+
+    if (!authService.authentication.isAuth || !authService.authentication.isAdmin) {
+        authService.authentication.referredUrl = $location.path();
+        $location.path('/backend/login');
+    }
 }]);
 
 

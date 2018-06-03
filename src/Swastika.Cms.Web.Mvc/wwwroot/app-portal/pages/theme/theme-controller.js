@@ -25,7 +25,7 @@ app.controller('ThemeController', ['$scope', '$rootScope', '$routeParams', '$tim
         };
 
         $scope.errors = [];
-        
+
         $scope.range = function (max) {
             var input = [];
             for (var i = 1; i <= max; i += 1) input.push(i);
@@ -104,18 +104,6 @@ app.controller('ThemeController', ['$scope', '$rootScope', '$routeParams', '$tim
             }
         };
 
-        $scope.removeTheme = async function (id) {
-            if (confirm("Are you sure!")) {
-                var resp = await themeServices.removeTheme(id);
-                if (resp.isSucceed) {
-                    $scope.loadThemes();
-                }
-                else {
-                    $rootScope.showErrors(resp.errors);
-                }
-            }
-        };
-
         $scope.saveTheme = async function (theme) {
             theme.content = $('.editor-content').val();
             var resp = await themeServices.saveTheme(theme);
@@ -132,13 +120,11 @@ app.controller('ThemeController', ['$scope', '$rootScope', '$routeParams', '$tim
             }
         };
 
-        $scope.removeData = function (id) {
-            if ($scope.activedModule) {
-                $rootScope.showConfirm($scope, 'removeDataConfirmed', [id], null, 'Remove Data', 'Are you sure');
-            }
+        $scope.removeTheme = function (id) {
+            $rootScope.showConfirm($scope, 'removeThemeConfirmed', [id], null, 'Remove Theme', 'Are you sure');
         }
 
-        $scope.removeDataConfirmed = async function (id) {
+        $scope.removeThemeConfirmed = async function (id) {
             var result = await themeServices.removeTheme(id);
             if (result.isSucceed) {
                 $scope.loadThemes();

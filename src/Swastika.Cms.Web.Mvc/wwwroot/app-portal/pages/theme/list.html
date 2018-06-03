@@ -1,4 +1,17 @@
 ﻿<section class="content container-fluid">
+    <div class="row">
+        <div class="col-md-8">
+            <div class="btn-toolbar mb-3" role="toolbar" aria-label="Toolbar with button groups">
+                <div class="btn-group mr-2" role="group" aria-label="First group">
+                    <a href="/backend/theme/create" class="btn btn-secondary">
+                        <i class="fas fa-plus"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+        </div>
+    </div>
     <filter-list request="request" callback="loadThemes(pageIndex)" />
 
     <table class="table table-sm table-hover" cellspacing="0">
@@ -53,7 +66,8 @@
                 </td>
                 <td>
                     <div class="btn-group btn-group-sm btn-group-sm float-right" role="group" aria-label="Actions">
-                        <a asp-controller="Template" asp-action="Index" asp-route-folder="Layouts" asp-route-templateId="@Model.Items[i].Id" class="btn btn-light">
+                        <a href="/backend/template/list/{{item.id}}"
+                           class="btn btn-light">
                             <span class="fas fa-paint-brush text-info"></span>
                         </a>
                         <a href="@filesUrl" class="btn btn-light">
@@ -65,8 +79,8 @@
                         <a href="/backend/theme/details/{{item.id}}" class="btn btn-light">
                             <span class="fas fa-pencil-alt text-primary"></span>
                         </a>
-                        <a ng-click="removeTheme(item.id);" class="btn btn-light del-popover"
-                           data-toggle="popover" data-html="true">
+                        <a ng-click="removeTheme(item.id);" 
+                           class="btn btn-light">
                             <span class="fas fa-times text-danger"></span>
                         </a>
                     </div>

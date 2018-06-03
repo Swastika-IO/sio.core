@@ -35,8 +35,10 @@ namespace Swastika.Cms.Lib.Repositories
         /// Gets the instance.
         /// </summary>
         /// <returns></returns>
-        public static FileRepository Instance {
-            get {
+        public static FileRepository Instance
+        {
+            get
+            {
                 if (instance == null)
                 {
                     lock (syncRoot)
@@ -47,7 +49,8 @@ namespace Swastika.Cms.Lib.Repositories
                 }
                 return instance;
             }
-            set {
+            set
+            {
                 instance = value;
             }
         }
@@ -467,7 +470,6 @@ namespace Swastika.Cms.Lib.Repositories
             {
                 string fullPath = CommonHelper.GetFullPath(new string[] {
                     SWCmsConstants.Parameters.WebRootPath,
-                    SWCmsConstants.Parameters.FileFolder,
                     file.FileFolder
                 });
                 if (!string.IsNullOrEmpty(file.Filename))
@@ -479,7 +481,7 @@ namespace Swastika.Cms.Lib.Repositories
                     {
                         DeleteFile(fileName);
                     }
-                    if (string.IsNullOrEmpty(file.FileStream))
+                    if (!string.IsNullOrEmpty(file.Content))
                     {
                         using (var writer = File.CreateText(fileName))
                         {
@@ -596,6 +598,30 @@ namespace Swastika.Cms.Lib.Repositories
                 SWCmsConstants.Parameters.WebRootPath,
                 folder
             });
+            try
+            {
+                ZipFile.ExtractToDirectory(filePath, webFolder);
+            }
+            catch
+            {
+                throw;
+            }
+        }
+
+        public void UnZipFile(FileViewModel file)
+        {
+            string filePath = SwCmsHelper.GetFullPath(new string[]
+            {
+                 SWCmsConstants.Parameters.WebRootPath,
+                file.FileFolder,
+                $"{file.Filename}{file.Extension}"
+            });
+            string webFolder = SwCmsHelper.GetFullPath(new string[]
+            {
+                SWCmsConstants.Parameters.WebRootPath,
+                file.FileFolder,
+                file.FolderName
+        });
             try
             {
                 ZipFile.ExtractToDirectory(filePath, webFolder);

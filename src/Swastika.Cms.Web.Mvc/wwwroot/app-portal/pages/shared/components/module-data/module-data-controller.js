@@ -127,8 +127,6 @@ app.controller('ModuleDataController', ['$scope', '$rootScope', '$routeParams', 
         };
 
         $scope.saveModuleData = async function () {
-            //$scope.activedModuleData.content = $('.editor-content.content').val();
-            //$scope.activedModuleData.excerpt = $('.editor-content.excerpt').val();
             var resp = await moduleDataServices.saveModuleData($scope.activedModuleData);
             if (resp.isSucceed) {
                 $scope.activedModuleData = resp.data;

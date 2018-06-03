@@ -117,5 +117,25 @@
         templateUrl: "/app-portal/pages/theme/details.html"
     });
 
+    $routeProvider.when("/backend/template/list/:themeId/:folderType", {
+        controller: "TemplateController",
+        templateUrl: "/app-portal/pages/template/list.html"
+    });
+
+     $routeProvider.when("/backend/template/list/:themeId", {
+        controller: "TemplateController",
+        templateUrl: "/app-portal/pages/template/list.html"
+    });
+
+    $routeProvider.when("/backend/template/details/:id", {
+        controller: "TemplateController",
+        templateUrl: "/app-portal/pages/template/details.html"
+    });
+
+    $routeProvider.when("/backend/template/create", {
+        controller: "TemplateController",
+        templateUrl: "/app-portal/pages/template/details.html"
+    });
+
     $routeProvider.otherwise({ redirectTo: "/backend" });
 });

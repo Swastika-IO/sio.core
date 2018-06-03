@@ -4,6 +4,7 @@
 
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Data.OData.Query;
+using Newtonsoft.Json.Linq;
 using Swastika.Api.Controllers;
 using Swastika.Cms.Lib.Models.Cms;
 using Swastika.Cms.Lib.ViewModels.BackEnd;
@@ -14,6 +15,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq.Expressions;
 using System.Threading.Tasks;
+using static Swastika.Common.Utility.Enums;
 
 namespace Swastka.IO.Cms.Api.Controllers
 {
@@ -27,22 +29,29 @@ namespace Swastka.IO.Cms.Api.Controllers
         }
         #region Get
 
-        // GET api/template/id
         [HttpGet]
-        [Route("details/{id}")]
-        public Task<RepositoryResponse<FETemplateViewModel>> Details(int id)
+        [Route("details/{viewType}/{id}")]
+        [Route("details/{viewType}")]
+        public async Task<RepositoryResponse<BETemplateViewModel>> DetailsAsync(string viewType, int? id)
         {
-            return FETemplateViewModel.Repository.GetSingleModelAsync(
-                model => model.Id == id);
-        }
+            if (id.HasValue)
+            {
+                var beResult = await BETemplateViewModel.Repository.GetSingleModelAsync(model => model.Id == id).ConfigureAwait(false);
+                beResult.Data.Specificulture = _lang;
+                return beResult;
+            }
+            else
+            {
+                var model = new SiocTemplate() { Status = (int)SWStatus.Preview };
 
-        // GET api/template/id
-        [HttpGet]
-        [Route("details/backend/{id}")]
-        public Task<RepositoryResponse<BETemplateViewModel>> BEDetails(int id)
-        {
-            return BETemplateViewModel.Repository.GetSingleModelAsync(
-                model => model.Id == id);
+                RepositoryResponse<BETemplateViewModel> result = new RepositoryResponse<BETemplateViewModel>()
+                {
+                    IsSucceed = true,
+                    Data = await BETemplateViewModel.InitAsync(model)
+                };
+                result.Data.Specificulture = _lang;
+                return result;
+            }
         }
 
 
@@ -89,11 +98,12 @@ namespace Swastka.IO.Cms.Api.Controllers
         // POST api/template
         [HttpPost, HttpOptions]
         [Route("save")]
-        public async Task<RepositoryResponse<BETemplateViewModel>> Post(BETemplateViewModel model)
+        public async Task<RepositoryResponse<BETemplateViewModel>> Save(
+            [FromBody] BETemplateViewModel model)
         {
             if (model != null)
             {
-                var result = await model.SaveModelAsync(true).ConfigureAwait(false);                
+                var result = await model.SaveModelAsync(true).ConfigureAwait(false);
                 return result;
             }
             return new RepositoryResponse<BETemplateViewModel>();
@@ -109,8 +119,6 @@ namespace Swastka.IO.Cms.Api.Controllers
                 foreach (var property in fields)
                 {
                     var result = await InfoTemplateViewModel.Repository.UpdateFieldsAsync(c => c.Id == id, fields).ConfigureAwait(false);
-
-                    return result;
                 }
             }
             return new RepositoryResponse<bool>();
@@ -119,13 +127,17 @@ namespace Swastka.IO.Cms.Api.Controllers
         // GET api/template
         [HttpPost, HttpOptions]
         [Route("list")]
-        public async Task<RepositoryResponse<PaginationModel<BETemplateViewModel>>> GetList(RequestPaging request)
+        [Route("list/{folder}")]
+        public async Task<RepositoryResponse<PaginationModel<InfoTemplateViewModel>>> GetList(
+            [FromBody]RequestPaging request,
+            [FromRoute] string folder = null
+            )
         {
-            string domain = string.Format("{0}://{1}", Request.Scheme, Request.Host);
             int.TryParse(request.Key, out int themeId);
             Expression<Func<SiocTemplate, bool>> predicate = model =>
-                model.TemplateId == themeId &&
-                (string.IsNullOrWhiteSpace(request.Keyword)
+                model.TemplateId == themeId
+                && (string.IsNullOrEmpty(folder) || (model.FolderType == folder))
+                && (string.IsNullOrWhiteSpace(request.Keyword)
                     ||
                     (
                         model.FileName.Contains(request.Keyword)
@@ -133,7 +145,7 @@ namespace Swastka.IO.Cms.Api.Controllers
                         || model.FolderType == request.Keyword
                     ));
 
-            var data = await BETemplateViewModel.Repository.GetModelListByAsync(predicate, request.OrderBy, request.Direction, request.PageSize, request.PageIndex).ConfigureAwait(false);
+            var data = await InfoTemplateViewModel.Repository.GetModelListByAsync(predicate, request.OrderBy, request.Direction, request.PageSize, request.PageIndex).ConfigureAwait(false);
 
             return data;
         }

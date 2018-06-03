@@ -88,14 +88,13 @@ namespace Swastika.Cms.Lib.ViewModels
     public class FileViewModel
     {
         private string _fullPath = string.Empty;
-
+        [JsonProperty("fullPath")]
         public string FullPath {
             get {
                 _fullPath = CommonHelper.GetFullPath(new string[] {
-                    "",
-                    SWCmsConstants.Parameters.FileFolder,
                     FileFolder,
-                    string.Format("{0}{1}", Filename, Extension)
+                    FolderName,
+                    $"{Filename}{Extension}"
                 });
 
                 return _fullPath;
@@ -104,12 +103,17 @@ namespace Swastika.Cms.Lib.ViewModels
                 _fullPath = value;
             }
         }
-
+        [JsonProperty("folderName")]
         public string FolderName { get; set; }
+        [JsonProperty("fileFolder")]
         public string FileFolder { get; set; }
+        [JsonProperty("fileName")]
         public string Filename { get; set; }
+        [JsonProperty("extension")]
         public string Extension { get; set; }
+        [JsonProperty("content")]
         public string Content { get; set; }
+        [JsonProperty("fileStream")]
         public string FileStream { get; set; }
     }
 
