@@ -228,6 +228,7 @@ namespace Swastika.Cms.Lib
             public const string Others = "Others";
             public const string Scripts = "Scripts";
             public const string Styles = "Styles";
+            public const string Medias = "Medias";
         }
 
         public static class JwtSettings

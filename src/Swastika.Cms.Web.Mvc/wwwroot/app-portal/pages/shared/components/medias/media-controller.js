@@ -52,6 +52,7 @@ app.controller('MediaController', ['$scope', '$rootScope', '$routeParams', '$tim
             var resp = await mediaServices.uploadMedia($scope.mediaFile);
             if (resp.isSucceed) {
                 $scope.activedMedia = resp.data;
+                $scope.loadMedias();
                 $scope.$apply();
             }
             else {

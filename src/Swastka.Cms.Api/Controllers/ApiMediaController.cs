@@ -51,8 +51,18 @@ namespace Swastka.Cms.Api.Controllers
                     }
                     else
                     {
-                        var media = new SiocMedia() { Specificulture = _lang };
-                        return JObject.FromObject((await BEMediaViewModel.InitAsync(media)));
+                        var media = new SiocMedia()
+                        {
+                            Specificulture = _lang
+                            ,
+                            FileFolder = $"{SWCmsConstants.Parameters.FileFolder}/{SWCmsConstants.FileFolder.Medias}/{DateTime.UtcNow.ToShortDateString()}"
+                        };
+                        var result = new RepositoryResponse<BEMediaViewModel>()
+                        { 
+                            IsSucceed = true,
+                            Data = (await BEMediaViewModel.InitAsync(media))
+                        };
+                        return JObject.FromObject(result);
                     }
 
             }

@@ -141,7 +141,7 @@ namespace Swastika.Cms.Lib
             for (int i = 0; i < subPaths.Length; i++)
             {
                 string connector = string.Empty;
-                if ((i < subPaths.Length - 1) && subPaths[i + 1][0] != '/')
+                if ((i < subPaths.Length - 1) && !string.IsNullOrEmpty(subPaths[i + 1]))
                 {
                     connector = "/";
                 }

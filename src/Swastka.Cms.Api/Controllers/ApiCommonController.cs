@@ -179,8 +179,6 @@ namespace Swastka.IO.Cms.Api.Controllers
         [Route("list")]
         public async Task<RepositoryResponse<PaginationModel<InfoCategoryViewModel>>> GetList(RequestPaging request)
         {
-            string domain = string.Format("{0}://{1}", Request.Scheme, Request.Host);
-
             Expression<Func<SiocCategory, bool>> predicate = model =>
                 model.Specificulture == _lang
                 && (string.IsNullOrWhiteSpace(request.Keyword)
