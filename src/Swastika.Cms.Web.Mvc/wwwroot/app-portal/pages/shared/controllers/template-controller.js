@@ -1,8 +1,7 @@
 ﻿'use strict';
 app.controller('TemplateController', ['$scope', '$rootScope', '$routeParams', '$timeout', '$location', 'authService', 'TemplateServices',
     function ($scope, $rootScope, $routeParams, $timeout, $location, authService, templateServices) {
-        var ctrl = this;
-        ctrl.request = {
+        $scope.request = {
             pageSize: '10',
             pageIndex: 0,
             status: $rootScope.swStatus[1],
@@ -12,8 +11,8 @@ app.controller('TemplateController', ['$scope', '$rootScope', '$routeParams', '$
             toDate: null,
             keyword: ''
         };
-        ctrl.folderType = 'Masters';
-        ctrl.folderTypes = [
+        $scope.folderType = 'Masters';
+        $scope.folderTypes = [
             'Masters',
             'Layouts',
             'Pages',
@@ -22,37 +21,37 @@ app.controller('TemplateController', ['$scope', '$rootScope', '$routeParams', '$
             'Articles',
             'Widgets',
         ];
-        ctrl.templateFile = {
+        $scope.templateFile = {
             file: null,
             fullPath: '',
             folder: 'Template',
             title: '',
             description: ''
         };
-        ctrl.listUrl = '/backend/template/list/';
-        ctrl.activedTemplate = null;
-        ctrl.relatedTemplates = [];
+        $scope.listUrl = '/backend/template/list/';
+        $scope.activedTemplate = null;
+        $scope.relatedTemplates = [];
         $rootScope.isBusy = false;
-        ctrl.data = {
+        $scope.data = {
             pageIndex: 0,
             pageSize: 1,
             totalItems: 0,
         };
-        ctrl.errors = [];
+        $scope.errors = [];
 
-        ctrl.range = function (max) {
+        $scope.range = function (max) {
             var input = [];
             for (var i = 1; i <= max; i += 1) input.push(i);
             return input;
         };
 
-        ctrl.getTemplate = async function (id) {
+        $scope.getTemplate = async function (id) {
             $rootScope.isBusy = true;
             var resp = await templateServices.getTemplate(id, 'be');
             if (resp.isSucceed) {
-                ctrl.activedTemplate = resp.data;
-                ctrl.listUrl = '/backend/template/list/' + resp.data.folderType;
-                ctrl.initEditor();
+                $scope.activedTemplate = resp.data;
+                $scope.listUrl = '/backend/template/list/' + resp.data.folderType;
+                $scope.initEditor();
                 $scope.$apply();
             }
             else {
@@ -61,22 +60,22 @@ app.controller('TemplateController', ['$scope', '$rootScope', '$routeParams', '$
             }
         };
 
-        ctrl.loadParams = async function () {
+        $scope.loadParams = async function () {
             $rootScope.isBusy = true;
-            ctrl.folderType = $routeParams.folderType ? $routeParams.folderType : 'Masters';
-            ctrl.backUrl = '/backend/template/list/' + $routeParams.themeId;
-            ctrl.themeId = $routeParams.themeId;
+            $scope.folderType = $routeParams.folderType ? $routeParams.folderType : 'Masters';
+            $scope.backUrl = '/backend/template/list/' + $routeParams.themeId;
+            $scope.themeId = $routeParams.themeId;
 
         }
 
-        ctrl.loadTemplate = async function () {
+        $scope.loadTemplate = async function () {
             $rootScope.isBusy = true;
             var id = $routeParams.id;
             var response = await templateServices.getTemplate(id, 'be');
             if (response.isSucceed) {
-                ctrl.activedTemplate = response.data;
-                ctrl.listUrl = '/backend/template/list/' + response.data.templateId + '/' + response.data.folderType;
-                ctrl.initEditor();
+                $scope.activedTemplate = response.data;
+                $scope.listUrl = '/backend/template/list/' + response.data.templateId + '/' + response.data.folderType;
+                $scope.initEditor();
                 $scope.$apply();
             }
             else {
@@ -84,22 +83,22 @@ app.controller('TemplateController', ['$scope', '$rootScope', '$routeParams', '$
                 $scope.$apply();
             }
         };
-        ctrl.loadTemplates = async function (pageIndex) {
-            ctrl.request.key = $routeParams.themeId;
-            ctrl.folderType = this.folderType;
+        $scope.loadTemplates = async function (pageIndex) {
+            $scope.request.key = $routeParams.themeId;
+            $scope.folderType = this.folderType;
             if (pageIndex != undefined) {
-                ctrl.request.pageIndex = pageIndex;
+                $scope.request.pageIndex = pageIndex;
             }
-            if (ctrl.request.fromDate != null) {
-                var d = new Date(ctrl.request.fromDate);
-                ctrl.request.fromDate = d.toISOString();
+            if ($scope.request.fromDate != null) {
+                var d = new Date($scope.request.fromDate);
+                $scope.request.fromDate = d.toISOString();
             }
-            if (ctrl.request.toDate != null) {
-                ctrl.request.toDate = ctrl.request.toDate.toISOString();
+            if ($scope.request.toDate != null) {
+                $scope.request.toDate = $scope.request.toDate.toISOString();
             }
-            var resp = await templateServices.getTemplates(ctrl.request, ctrl.folderType);
+            var resp = await templateServices.getTemplates($scope.request, $scope.folderType);
             if (resp.isSucceed) {
-                ctrl.data = resp.data;
+                $scope.data = resp.data;
                 $scope.$apply();
             }
             else {
@@ -108,11 +107,11 @@ app.controller('TemplateController', ['$scope', '$rootScope', '$routeParams', '$
             }
         };
 
-        ctrl.removeTemplate = async function (id) {
+        $scope.removeTemplate = async function (id) {
             if (confirm("Are you sure!")) {
                 var resp = await templateServices.removeTemplate(id);
                 if (resp.isSucceed) {
-                    ctrl.loadTemplates();
+                    $scope.loadTemplates();
                 }
                 else {
                     $rootScope.showErrors(resp.errors);
@@ -120,10 +119,13 @@ app.controller('TemplateController', ['$scope', '$rootScope', '$routeParams', '$
             }
         };
 
-        ctrl.saveTemplate = async function () {
-            var resp = await templateServices.saveTemplate(ctrl.activedTemplate);
+        $scope.saveTemplate = async function () {
+            $scope.activedTemplate.content = $('#content-razor').val();
+            $scope.activedTemplate.scripts = $('#content-scripts').val();
+            $scope.activedTemplate.styles = $('#content-styles').val();
+            var resp = await templateServices.saveTemplate($scope.activedTemplate);
             if (resp.isSucceed) {
-                ctrl.activedTemplate = resp.data;
+                $scope.activedTemplate = resp.data;
                 $rootScope.showMessage('Thành công', 'success');
                 $rootScope.isBusy = false;
                 $scope.$apply();
@@ -135,7 +137,7 @@ app.controller('TemplateController', ['$scope', '$rootScope', '$routeParams', '$
             }
         };
 
-        ctrl.initEditor = function () {
+        $scope.initEditor = function () {
             setTimeout(function () {
                 $.each($('.code-editor'), function (i, e) {
                     var container = $(this);
@@ -157,6 +159,7 @@ app.controller('TemplateController', ['$scope', '$rootScope', '$routeParams', '$
                     editor.getSession().on('change', function (e) {
                         // e.type, etc
                         $(container).parent().find('.code-content').val(editor.getValue());
+                       
                     });
                 });
             }, 200);
