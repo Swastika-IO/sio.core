@@ -13,8 +13,7 @@ namespace Swastika.Cms.Mvc.Controllers
     public class BackendController : BaseController<BackendController>
     {
         public BackendController(IHostingEnvironment env) : base(env)
-        {
-        }
+        {}
 
         [Route("")]
         [Route("{page}")]
