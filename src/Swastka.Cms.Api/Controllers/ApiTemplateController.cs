@@ -128,7 +128,7 @@ namespace Swastka.IO.Cms.Api.Controllers
         [HttpPost, HttpOptions]
         [Route("list")]
         [Route("list/{folder}")]
-        public async Task<RepositoryResponse<PaginationModel<InfoTemplateViewModel>>> GetList(
+        public async Task<RepositoryResponse<PaginationModel<BETemplateViewModel>>> GetList(
             [FromBody]RequestPaging request,
             [FromRoute] string folder = null
             )
@@ -145,7 +145,7 @@ namespace Swastka.IO.Cms.Api.Controllers
                         || model.FolderType == request.Keyword
                     ));
 
-            var data = await InfoTemplateViewModel.Repository.GetModelListByAsync(predicate, request.OrderBy, request.Direction, request.PageSize, request.PageIndex).ConfigureAwait(false);
+            var data = await BETemplateViewModel.Repository.GetModelListByAsync(predicate, request.OrderBy, request.Direction, request.PageSize, request.PageIndex).ConfigureAwait(false);
 
             return data;
         }

@@ -1,6 +1,6 @@
 ﻿modules.component('templateEditor', {
     templateUrl: '/app-portal/pages/shared/components/template-editor/templateEditor.html',
-    controller: ['$rootScope', '$scope', function ($rootScope, $scope) {
+    controller: ['$rootScope', '$scope', 'commonServices', function ($rootScope, $scope, commonServices) {
         var vm = this;
         vm.templates = [];
         vm.activedId = -1;
@@ -33,33 +33,38 @@
             return input;
         };
 
-        vm.loadTemplates = function (activedId, activedName, folder) {
-            setTimeout(function () {
-                if (folder) {
-                    vm.folder = folder;
-                    vm.activedId = activedId;
-                    vm.activedName = activedName;
-                }
-                else if (vm.template) {
-                    vm.folder = vm.template.folderType;
-                    vm.activedId = vm.template.id;
-                    vm.activedName = vm.template.fileName;
-                }
-                var request = {
-                    "pageSize": null,
-                    "pageIndex": 0,
-                    "orderBy": 'fileName',
-                    "direction": 0,
-                    "key": $rootScope.settings.themeId,
-                    "keyword": vm.template.folderType
-                }
-                var url = '/api/' + $rootScope.settings.lang + '/template/list';
-                vm.settings.url = url;
-                vm.settings.data = request;
-                $.ajax(vm.settings).then(function (response) {
-                    vm.initTemplate(response, vm.activedId, vm.activedName);
-                });
-            }, 2000)
+        vm.loadTemplates = async function (activedId, activedName, folder) {
+
+            if (folder) {
+                vm.folder = folder;
+                vm.activedId = activedId;
+                vm.activedName = activedName;
+            }
+            else if (vm.template) {
+                vm.folder = vm.template.folderType;
+                vm.activedId = vm.template.id;
+                vm.activedName = vm.template.fileName;
+            }
+            var url = '/api/' + $rootScope.settings.lang + '/template/list';
+            var request = {
+                pageSize: null,
+                pageIndex: 0,
+                orderBy: 'fileName',
+                direction: 0,
+                key: $rootScope.settings.themeId,
+                keyword: vm.template.folderType,
+                url: url
+            }
+            var req = {
+                method: 'POST',
+                url: url,
+                data: JSON.stringify(request)
+            };
+            var result = await commonServices.getApiResult(req);
+            if (result.isSucceed) {
+                vm.initTemplate(result, vm.activedId, vm.activedName);
+            }
+
         };
         vm.initTemplate = function (response, activedId, activedName) {
             const ph = {};
