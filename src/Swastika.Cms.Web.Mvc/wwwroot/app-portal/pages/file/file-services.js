@@ -7,12 +7,9 @@ app.factory('FileServices', ['$http', '$rootScope', 'commonServices', function (
 
     var settings = commonServices.getSettings();
 
-    var _getFile = async function (fullPath) {
+    var _getFile = async function (folder, filename) {
         var apiUrl = '/api/file/';
-        var url = apiUrl + 'details/' + type;
-        if (id) {
-            url += '/' + id;
-        }
+        var url = apiUrl + 'details?folder=' + folder + '&filename=' + filename;        
         var req = {
             method: 'GET',
             url: url

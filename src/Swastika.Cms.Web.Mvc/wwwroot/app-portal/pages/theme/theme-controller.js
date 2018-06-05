@@ -111,6 +111,7 @@ app.controller('ThemeController', ['$scope', '$rootScope', '$routeParams', '$tim
                 $scope.activedTheme = resp.data;
                 $rootScope.showMessage('Thành công', 'success');
                 $rootScope.isBusy = false;
+                $rootScope.updateSettings();
                 $scope.$apply();
                 //$location.path('/backend/theme/details/' + resp.data.id);
             }

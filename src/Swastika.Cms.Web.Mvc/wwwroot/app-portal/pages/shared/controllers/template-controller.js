@@ -1,6 +1,7 @@
 ﻿'use strict';
 app.controller('TemplateController', ['$scope', '$rootScope', '$routeParams', '$timeout', '$location', 'authService', 'TemplateServices',
     function ($scope, $rootScope, $routeParams, $timeout, $location, authService, templateServices) {
+        $scope.themeId = 0;
         $scope.request = {
             pageSize: '10',
             pageIndex: 0,
@@ -45,21 +46,6 @@ app.controller('TemplateController', ['$scope', '$rootScope', '$routeParams', '$
             return input;
         };
 
-        $scope.getTemplate = async function (id) {
-            $rootScope.isBusy = true;
-            var resp = await templateServices.getTemplate(id, 'be');
-            if (resp.isSucceed) {
-                $scope.activedTemplate = resp.data;
-                $scope.listUrl = '/backend/template/list/' + resp.data.folderType;
-                $scope.initEditor();
-                $scope.$apply();
-            }
-            else {
-                $rootScope.showErrors(resp.errors);
-                $scope.$apply();
-            }
-        };
-
         $scope.loadParams = async function () {
             $rootScope.isBusy = true;
             $scope.folderType = $routeParams.folderType ? $routeParams.folderType : 'Masters';
@@ -71,10 +57,11 @@ app.controller('TemplateController', ['$scope', '$rootScope', '$routeParams', '$
         $scope.loadTemplate = async function () {
             $rootScope.isBusy = true;
             var id = $routeParams.id;
-            var response = await templateServices.getTemplate(id, 'be');
+            var themeId = $routeParams.themeId;
+            var response = await templateServices.getTemplate(themeId, id, 'be');
             if (response.isSucceed) {
                 $scope.activedTemplate = response.data;
-                $scope.listUrl = '/backend/template/list/' + response.data.templateId + '/' + response.data.folderType;
+                $scope.listUrl = '/backend/template/list/' + themeId;                
                 $scope.initEditor();
                 $scope.$apply();
             }
@@ -83,7 +70,9 @@ app.controller('TemplateController', ['$scope', '$rootScope', '$routeParams', '$
                 $scope.$apply();
             }
         };
+
         $scope.loadTemplates = async function (pageIndex) {
+            $scope.themeId = $routeParams.themeId;
             $scope.request.key = $routeParams.themeId;
             $scope.folderType = this.folderType;
             if (pageIndex != undefined) {

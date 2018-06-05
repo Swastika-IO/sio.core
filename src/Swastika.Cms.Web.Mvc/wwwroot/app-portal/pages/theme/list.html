@@ -70,10 +70,10 @@
                            class="btn btn-light">
                             <span class="fas fa-paint-brush text-info"></span>
                         </a>
-                        <a href="@filesUrl" class="btn btn-light">
+                        <a href="/backend/file/list?folder={{item.assetFolder}}" class="btn btn-light">
                             <span class="fas fa-file text-secondary"></span>
                         </a>
-                        <a asp-controller="Theme" asp-action="SyncFromLocal" asp-route-id="@Model.Items[i].Id"
+                        <a 
                            class="btn btn-sm btn-light d-inline-block "><span class="fas fa-sync-alt text-primary"></span></a>
 
                         <a href="/backend/theme/details/{{item.id}}" class="btn btn-light">

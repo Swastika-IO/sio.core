@@ -53,6 +53,7 @@ app.run(['$rootScope', '$location', 'commonServices', 'authService', function ($
 
     $rootScope.currentContext = $rootScope;
     $rootScope.errors = [];
+    
     $rootScope.message = {
         title: 'test',
         content: '',
@@ -193,7 +194,14 @@ app.run(['$rootScope', '$location', 'commonServices', 'authService', function ($
         authService.authentication.referredUrl = $location.path();
         $location.path('/backend/login');
     }
-
+    $rootScope.updateSettings = function () {
+        commonServices.removeSettings();
+        commonServices.fillSettings().then(function (response) {
+            $rootScope.settings = response;
+            
+        });
+        $rootScope.isBusy = false;
+    }
     $rootScope.executeFunctionByName = async function (functionName, args, context) {
         if (functionName !== null) {
             var namespaces = functionName.split(".");

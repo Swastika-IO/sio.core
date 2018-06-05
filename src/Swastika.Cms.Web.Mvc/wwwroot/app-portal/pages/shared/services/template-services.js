@@ -7,8 +7,8 @@ app.factory('TemplateServices', ['$http', '$rootScope', 'commonServices', functi
 
     var settings = commonServices.getSettings();
 
-    var _getTemplate = async function (id, type) {
-        var apiUrl = '/api/' + settings.lang + '/template/details/' + type;
+    var _getTemplate = async function (themeId, id, type) {
+        var apiUrl = '/api/' + settings.lang + '/template/details/' + type + '/' + themeId;
         if (id) {
             apiUrl += '/' + id;
         }

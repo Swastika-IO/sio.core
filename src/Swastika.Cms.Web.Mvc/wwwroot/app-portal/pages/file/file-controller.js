@@ -29,27 +29,14 @@ app.controller('FileController', ['$scope', '$rootScope', '$routeParams', '$time
             return input;
         };
 
-        $scope.getFile = async function (id) {
-            $rootScope.isBusy = true;
-            var resp = await fileServices.getFile(id, 'be');
-            if (resp.isSucceed) {
-                $scope.activedFile = resp.data;
-                $rootScope.initEditor();
-                $scope.$apply();
-            }
-            else {
-                $rootScope.showErrors(resp.errors);
-                $scope.$apply();
-            }
-        };
         $scope.loadFile = async function () {
             $rootScope.isBusy = true;
-            var id = $routeParams.id;
-            var response = await fileServices.getFile(id, 'be');
+            $scope.listUrl = '/backend/file/list?folder=' + $routeParams.folder;
+            var response = await fileServices.getFile($routeParams.folder, $routeParams.filename);
             if (response.isSucceed) {
-                $scope.activedFile = response.data;
-                $rootScope.initEditor();
+                $scope.activedFile = response.data;                
                 $scope.$apply();
+                $rootScope.initEditor();
             }
             else {
                 $rootScope.showErrors(response.errors);
@@ -60,6 +47,8 @@ app.controller('FileController', ['$scope', '$rootScope', '$routeParams', '$time
             if (folder) {
                 $scope.request.key += ($scope.request.key != '') ? '/' : '';
                 $scope.request.key += folder;
+            } else {
+                $scope.request.key = $routeParams.folder ? $routeParams.folder : '';
             }
 
             var resp = await fileServices.getFiles($scope.request);
@@ -108,7 +97,7 @@ app.controller('FileController', ['$scope', '$rootScope', '$routeParams', '$time
         };
 
         $scope.saveFile = async function (file) {
-            file.content = $('.editor-content').val();
+            file.content = $('.code-content').val();
             var resp = await fileServices.saveFile(file);
             if (resp.isSucceed) {
                 $scope.activedFile = resp.data;

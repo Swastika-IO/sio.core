@@ -47,6 +47,10 @@ app.factory('commonServices', ['$location', '$http', '$rootScope', 'authService'
         }
     };
 
+    var _removeSettings = async function (settings) {
+            localStorageService.remove('settings');
+    };
+
     var _fillSettings = async function () {
         var settings = localStorageService.get('settings');
         if (settings) {
@@ -123,6 +127,7 @@ app.factory('commonServices', ['$location', '$http', '$rootScope', 'authService'
     adminCommonFactory.getApiResult = _getApiResult;
     adminCommonFactory.getSettings = _getSettings;
     adminCommonFactory.setSettings = _setSettings;
+    adminCommonFactory.removeSettings = _removeSettings;
     adminCommonFactory.showAlertMsg = _showAlertMsg;
     adminCommonFactory.checkfile = _checkfile;
     adminCommonFactory.fillSettings = _fillSettings;

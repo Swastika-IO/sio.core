@@ -106,7 +106,7 @@
         templateUrl: "/app-portal/pages/file/list.html"
     });
 
-    $routeProvider.when("/backend/file/details/:id", {
+    $routeProvider.when("/backend/file/details", {
         controller: "FileController",
         templateUrl: "/app-portal/pages/file/details.html"
     });
@@ -141,12 +141,12 @@
         templateUrl: "/app-portal/pages/template/list.html"
     });
 
-    $routeProvider.when("/backend/template/details/:id", {
+    $routeProvider.when("/backend/template/details/:themeId/:id", {
         controller: "TemplateController",
         templateUrl: "/app-portal/pages/template/details.html"
     });
 
-    $routeProvider.when("/backend/template/create", {
+    $routeProvider.when("/backend/template/create/:themeId", {
         controller: "TemplateController",
         templateUrl: "/app-portal/pages/template/details.html"
     });
