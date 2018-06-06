@@ -2,10 +2,6 @@
 
 @{
     string culture = ViewBag.culture;
-    //Layout = string.Format("Layouts/{0}", Swastika.Cms.Lib.Services.GlobalConfigurationService.Instance.GetLocalString("Layout", culture, "_Layout_Corlate"));// "_Layout_Corlate";
-    Layout = string.Format("Templates/{0}/Layouts/_Layout",
-        Swastika.Cms.Lib.Services.GlobalConfigurationService.Instance.GetLocalString(Swastika.Cms.Lib.SWCmsConstants.ConfigurationKeyword.Theme, culture, "Default"));
-
     ViewData["Title"] = "Search Results";
     var translator = SwCmsHelper.GetTranslator(ViewBag.culture);
     PaginationModel<InfoProductViewModel> products = ViewData["Products"] as PaginationModel<InfoProductViewModel>;

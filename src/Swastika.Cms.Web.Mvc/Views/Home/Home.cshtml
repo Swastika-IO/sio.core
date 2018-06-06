@@ -1,16 +1,10 @@
 ﻿@model Swastika.Cms.Lib.ViewModels.FrontEnd.FECategoryViewModel
 @{
-    //string culture = ViewBag.culture;
-    //Layout = string.Format("Layouts/{0}", Swastika.Cms.Lib.Services.GlobalConfigurationService.Instance.GetLocalString("Layout", culture, "_Layout_Corlate"));// "_Layout_Corlate";
-    string master = LocalizerService.GetLocalString(SWCmsConstants.ConfigurationKeyword.Theme, ViewBag.culture, "Default");
-    Layout = (Model.Layout?.ToLower() == "_blank") ? null : $"Templates/{master}/Masters/{Model.Layout ?? "_Layout"}";
-
     ViewData["Title"] = Model.Title;
     ViewData["SeoTitle"] = Model.SeoTitle;
     ViewData["SeoKeywords"] = Model.SeoKeywords;
     ViewData["SeoDescription"] = Model.SeoDescription;
 }
-<h1>@master</h1>
 @if (!string.IsNullOrEmpty(Model.TemplatePath))
 {
 
