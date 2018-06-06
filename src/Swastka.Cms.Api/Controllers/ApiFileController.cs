@@ -22,16 +22,14 @@ namespace Swastka.IO.Cms.Api.Controllers
         #region Post
 
         // Post api/files/id
-        [HttpPost]
+        [HttpGet]
         [Route("details")]
-        [Route("details")]
-        public RepositoryResponse<FileViewModel> Details(RequestObject request)
+        public RepositoryResponse<FileViewModel> Details(string folder, string filename)
         {
             // Request: Key => folder, Keyword => filename
-
-            if (!string.IsNullOrEmpty(request.Key))
+            if (!string.IsNullOrEmpty(folder))
             {
-                var file = FileRepository.Instance.GetWebFile(request.Keyword, request.Key);
+                var file = FileRepository.Instance.GetWebFile(filename, folder);
 
                 return new RepositoryResponse<FileViewModel>()
                 {
@@ -85,7 +83,7 @@ namespace Swastka.IO.Cms.Api.Controllers
         // POST api/files
         [HttpPost, HttpOptions]
         [Route("save")]
-        public async Task<RepositoryResponse<FileViewModel>> Save(FileViewModel model)
+        public RepositoryResponse<FileViewModel> Save([FromBody]FileViewModel model)
         {
             if (model != null)
             {

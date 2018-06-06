@@ -48,7 +48,6 @@ namespace Swastika.Cms.Lib.ViewModels.Info
         public string AssetFolder {
             get {
                 return CommonHelper.GetFullPath(new string[] {
-                    SWCmsConstants.Parameters.FileFolder,
                     SWCmsConstants.Parameters.TemplatesAssetFolder,
                     Name });
             }

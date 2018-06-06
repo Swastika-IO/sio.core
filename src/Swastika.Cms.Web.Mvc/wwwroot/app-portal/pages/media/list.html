@@ -1,6 +1,25 @@
 ﻿<section class="content container-fluid">
-    <filter-list request="request" callback="loadMedias(pageIndex)" />
+    <div class="row">
+        <div class="col-md-12">
+            <filter-list request="request" callback="loadMedias(pageIndex)" />
+        </div>
 
+        <div class="col-md-12 d-flex justify-content-end">
+            <div class="btn-toolbar mb-3" role="toolbar" aria-label="Toolbar with button groups">
+                <div class="input-group mr-2">
+                    <label class="custom-file">
+                        <img imageonload ng-src="{{mediaFile.fullPath}}" name="pic" class="d-block" style="max-height: 150px; width: auto; margin: 0 auto;" accept="image/*" width="100%" />
+                        <input type="hidden" ng-model="mediaFile.folder" class="folder-val" />
+                        <input type="file" name="pic" class="" data-file="mediaFile.file">
+                        <input type="text" class="form-control d-none" ng-model="mediaFile.fullPath">
+                    </label>
+                </div>
+                <div class="btn-group mr-2" role="group" aria-label="First group">
+                    <button type="button" ng-click="uploadMedia()" class="btn btn-secondary"><i class="mi mi-Upload"></i> Upload</button>
+                </div>
+            </div>
+        </div>
+    </div>
     <table class="table table-sm table-hover" cellspacing="0">
         <thead class="thead-light">
             <tr>
@@ -22,7 +41,7 @@
                 <th scope="col" width="10%">
                     Created Date
                 </th>
-                
+
                 <th scope="col" style="width: 5%;">Actions</th>
             </tr>
         </thead>
@@ -42,10 +61,16 @@
                     {{item.priority}}
                 </td>
                 <td>
-                    {{item.title}}
+
+                    <div class="input-group input-group-sm mb-3">
+                        <input id="path-modal-{{$index}}" value="{{item.fullPath}}" onclick="this.select()" class="form-control form-control-sm" readonly />
+                        <div class="input-group-append">
+                            <button class="btn btn-outline-secondary btn-clipboard" type="button" data-clipboard-target="#path-modal-{{$index}}"><i class="mi mi-Copy"></i></button>
+                        </div>
+                    </div>
                 </td>
                 <td>
-                    <img imageonload src="{{item.fullPath}}" height="50"/>
+                    <img imageonload src="{{item.fullPath}}" height="50" />
                 </td>
                 <td>
                     <small>
@@ -73,7 +98,7 @@
             </tr>
         </tbody>
     </table>
-    <paging class="small" 
+    <paging class="small"
             page="data.page"
             page-size="data.pageSize"
             total="data.totalItems"

@@ -26,39 +26,7 @@ app.controller('ProductController', ['$scope', '$rootScope', '$routeParams', '$t
             var input = [];
             for (var i = 1; i <= max; i += 1) input.push(i);
             return input;
-        };
-
-        $scope.getProduct = async function (id) {
-            $rootScope.isBusy = true;
-            var resp = await productServices.getProduct(id, 'be');
-            if (resp.isSucceed) {
-                $scope.activedProduct = resp.data;
-                $rootScope.initEditor();
-                $scope.$apply();
-            }
-            else {
-                $rootScope.showErrors(resp.errors);
-                $scope.$apply();
-            }
-        };
-
-        $scope.initProduct = function () {
-            if (!$rootScope.isBusy) {
-                $rootScope.isBusy = true;
-                productServices.initProduct('be').then(function (response) {
-                    if (response.isSucceed) {
-                        $scope.activedProduct = response.data;
-                        $rootScope.initEditor();
-                    }
-                    $rootScope.isBusy = false;
-                    $scope.$apply();
-                }).error(function (a, b, c) {
-                    errors.push(a, b, c);
-                    $rootScope.isBusy = false;
-                    //$("html, body").animate({ "scrollTop": "0px" }, 500);
-                });
-            }
-        };
+        }
 
         $scope.loadProduct = async function () {
             $rootScope.isBusy = true;
@@ -67,10 +35,12 @@ app.controller('ProductController', ['$scope', '$rootScope', '$routeParams', '$t
             if (response.isSucceed) {
                 $scope.activedProduct = response.data;
                 $rootScope.initEditor();
+                $rootScope.isBusy = false;
                 $scope.$apply();
             }
             else {
                 $rootScope.showErrors(response.errors);
+                $rootScope.isBusy = false;
                 $scope.$apply();
             }
         };
@@ -111,10 +81,12 @@ app.controller('ProductController', ['$scope', '$rootScope', '$routeParams', '$t
                         }
                     });
                 }, 200);
+                $rootScope.isBusy = false;
                 $scope.$apply();
             }
             else {
                 $rootScope.showErrors(resp.errors);
+                $rootScope.isBusy = false;
                 $scope.$apply();
             }
         };
@@ -144,6 +116,7 @@ app.controller('ProductController', ['$scope', '$rootScope', '$routeParams', '$t
             }
             else {
                 $rootScope.showErrors(resp.errors);
+                $rootScope.isBusy = false;
                 $scope.$apply();
             }
         };

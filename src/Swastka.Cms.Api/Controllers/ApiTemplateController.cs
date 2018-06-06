@@ -30,66 +30,39 @@ namespace Swastka.IO.Cms.Api.Controllers
         #region Get
 
         [HttpGet]
-        [Route("details/{viewType}/{id}")]
-        [Route("details/{viewType}")]
-        public async Task<RepositoryResponse<BETemplateViewModel>> DetailsAsync(string viewType, int? id)
+        [Route("details/{viewType}/{themeId}/{id}")]
+        [Route("details/{viewType}/{themeId}")]
+        public async Task<RepositoryResponse<BETemplateViewModel>> DetailsAsync(string viewType, int themeId, int? id)
         {
             if (id.HasValue)
             {
-                var beResult = await BETemplateViewModel.Repository.GetSingleModelAsync(model => model.Id == id).ConfigureAwait(false);
+                var beResult = await BETemplateViewModel.Repository.GetSingleModelAsync(
+                    model => model.Id == id && model.TemplateId == themeId).ConfigureAwait(false);
                 beResult.Data.Specificulture = _lang;
                 return beResult;
             }
             else
             {
-                var model = new SiocTemplate() { Status = (int)SWStatus.Preview };
-
-                RepositoryResponse<BETemplateViewModel> result = new RepositoryResponse<BETemplateViewModel>()
+                var getTheme =await InfoThemeViewModel.Repository.GetSingleModelAsync(t => t.Id == themeId);
+                if (getTheme.IsSucceed)
                 {
-                    IsSucceed = true,
-                    Data = await BETemplateViewModel.InitAsync(model)
-                };
-                result.Data.Specificulture = _lang;
-                return result;
+                    var model = new SiocTemplate() { Status = (int)SWStatus.Preview, TemplateId = themeId, TemplateName = getTheme.Data.Name };
+
+                    RepositoryResponse<BETemplateViewModel> result = new RepositoryResponse<BETemplateViewModel>()
+                    {
+                        IsSucceed = true,
+                        Data = await BETemplateViewModel.InitAsync(model)
+                    };
+                    result.Data.Specificulture = _lang;
+                    return result;
+                }
+                else
+                {
+                    return new RepositoryResponse<BETemplateViewModel>();
+                }
             }
         }
 
-
-        // GET api/Template
-        [HttpGet]
-        [Route("list")]
-        [Route("list/{PageSize:int?}/{PageIndex:int?}")]
-        [Route("list/{orderBy}/{direction}")]
-        [Route("list/{PageSize:int?}/{PageIndex:int?}/{orderBy}/{direction}")]
-        public async Task<RepositoryResponse<PaginationModel<InfoTemplateViewModel>>> Get(
-            int? PageSize = 15, int? PageIndex = 0, string orderBy = "Id"
-            , OrderByDirection direction = OrderByDirection.Ascending)
-        {
-            var data = await InfoTemplateViewModel.Repository.GetModelListAsync(orderBy, direction, PageSize, PageIndex).ConfigureAwait(false);
-            string domain = string.Format("{0}://{1}", Request.Scheme, Request.Host);
-            return data;
-        }
-
-        // GET api/Template
-        [HttpGet]
-        [Route("search/{keyword}")]
-        [Route("search/{PageSize:int?}/{PageIndex:int?}/{keyword}")]
-        [Route("search/{PageSize:int?}/{PageIndex:int?}/{keyword}/{description}")]
-        [Route("search/{PageSize:int?}/{PageIndex:int?}/{orderBy}/{direction}/{keyword}")]
-        [Route("search/{PageSize:int?}/{PageIndex:int?}/{orderBy}/{direction}/{keyword}/{description}")]
-        public Task<RepositoryResponse<PaginationModel<InfoTemplateViewModel>>> Search(
-            string keyword = null,
-            string description = null,
-            int? PageSize = null, int? PageIndex = null, string orderBy = "Id"
-            , OrderByDirection direction = OrderByDirection.Ascending)
-        {
-            Expression<Func<SiocTemplate, bool>> predicate = model =>
-            (string.IsNullOrWhiteSpace(keyword) || (model.FileName.Contains(keyword)))
-            && (string.IsNullOrWhiteSpace(description) || (model.FileFolder.Contains(description)));
-            return InfoTemplateViewModel
-                .Repository
-                .GetModelListByAsync(predicate, orderBy, direction, PageSize, PageIndex); // base.Search(predicate, orderBy, direction, PageSize, PageIndex, keyword);
-        }
 
         #endregion Get
 

@@ -113,8 +113,6 @@ namespace Swastka.IO.Cms.Api.Controllers
         {
             var data = await InfoCategoryViewModel.Repository.GetModelListByAsync(m => m.Specificulture == _lang, orderBy, direction, PageSize, PageIndex).ConfigureAwait(false); //base.Get(orderBy, direction, PageSize, PageIndex);
             string domain = string.Format("{0}://{1}", Request.Scheme, Request.Host);
-            //data.Data.Items.ForEach(d => d.DetailsUrl = string.Format("{0}{1}", domain, this.Url.Action("Details", "Category", new { id = d.Id })));
-            //data.Data.Items.ForEach(d => d.EditUrl = string.Format("{0}{1}", domain, this.Url.Action("Edit", "Category", new { id = d.Id })));
             return data;
         }
 

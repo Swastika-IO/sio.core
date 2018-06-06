@@ -63,6 +63,13 @@
             var result = await commonServices.getApiResult(req);
             if (result.isSucceed) {
                 vm.initTemplate(result, vm.activedId, vm.activedName);
+                $rootScope.isBusy = false;
+                $scope.$apply();
+            }
+            else {
+                $rootScope.showErrors(resp.errors);
+                $rootScope.isBusy = false;
+                $scope.$apply();
             }
 
         };
@@ -89,6 +96,7 @@
                     }
                 });
                 vm.updateEditors();
+                $rootScope.isBusy = false;
                 $scope.$apply();
                 ph.resolve(true);
             }

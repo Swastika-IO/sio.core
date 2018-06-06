@@ -27,39 +27,7 @@ app.controller('ArticleController', ['$scope', '$rootScope', '$routeParams', '$t
             for (var i = 1; i <= max; i += 1) input.push(i);
             return input;
         };
-
-        $scope.getArticle = async function (id) {
-            $rootScope.isBusy = true;
-            var resp = await articleServices.getArticle(id, 'be');
-            if (resp.isSucceed) {
-                $scope.activedArticle = resp.data;
-                $rootScope.initEditor();
-                $scope.$apply();
-            }
-            else {
-                $rootScope.showErrors(resp.errors);
-                $scope.$apply();
-            }
-        };
-
-        $scope.initArticle = function () {
-            if (!$rootScope.isBusy) {
-                $rootScope.isBusy = true;
-                articleServices.initArticle('be').then(function (response) {
-                    if (response.isSucceed) {
-                        $scope.activedArticle = response.data;
-                        $rootScope.initEditor();
-                    }
-                    $rootScope.isBusy = false;
-                    $scope.$apply();
-                }).error(function (a, b, c) {
-                    errors.push(a, b, c);
-                    $rootScope.isBusy = false;
-                    //$("html, body").animate({ "scrollTop": "0px" }, 500);
-                });
-            }
-        };
-
+        
         $scope.loadArticle = async function () {
             $rootScope.isBusy = true;
             var id = $routeParams.id;
@@ -67,10 +35,12 @@ app.controller('ArticleController', ['$scope', '$rootScope', '$routeParams', '$t
             if (response.isSucceed) {
                 $scope.activedArticle = response.data;
                 $rootScope.initEditor();
+                $rootScope.isBusy = false;
                 $scope.$apply();
             }
             else {
                 $rootScope.showErrors(response.errors);
+                $rootScope.isBusy = false;
                 $scope.$apply();
             }
         };

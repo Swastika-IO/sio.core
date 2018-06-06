@@ -46,8 +46,8 @@ modules.component('apiFile', {
                 reader.onload = function () {
                     var index = reader.result.indexOf(',') + 1;
                     var base64 = reader.result.substring(index);
-                    ctrl.postedFile.fileName = file.name.split('.')[0];
-                    ctrl.postedFile.extension = '.' + file.name.split('.')[1];
+                    ctrl.postedFile.fileName = file.name.substring(0, file.name.lastIndexOf('.'));
+                    ctrl.postedFile.extension = file.name.substring(file.name.lastIndexOf('.'));
                     ctrl.postedFile.fileStream = reader.result;
                     $rootScope.isBusy = false;
                     $scope.$apply();

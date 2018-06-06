@@ -6,7 +6,9 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json.Linq;
 using Swastika.Api.Controllers;
+using Swastika.Cms.Lib;
 using Swastika.Cms.Lib.Models.Cms;
+using Swastika.Cms.Lib.Services;
 using Swastika.Cms.Lib.ViewModels.Api;
 using Swastika.Cms.Lib.ViewModels.Info;
 using Swastika.Domain.Core.ViewModels;
@@ -62,6 +64,7 @@ namespace Swastka.IO.Cms.Api.Controllers
                     {
                         var beResult = await ApiThemeViewModel.Repository.GetSingleModelAsync(model => model.Id == id).ConfigureAwait(false);
                         beResult.Data.Specificulture = _lang;
+                        beResult.Data.IsActived = GlobalConfigurationService.Instance.GetLocalInt(SWCmsConstants.ConfigurationKeyword.ThemeId, _lang, 0) == beResult.Data.Id;
                         return JObject.FromObject(beResult);
                     }
                     else
@@ -81,6 +84,7 @@ namespace Swastka.IO.Cms.Api.Controllers
                     {
                         var beResult = await ApiThemeViewModel.Repository.GetSingleModelAsync(model => model.Id == id).ConfigureAwait(false);
                         beResult.Data.Specificulture = _lang;
+                        beResult.Data.IsActived = GlobalConfigurationService.Instance.GetLocalInt(SWCmsConstants.ConfigurationKeyword.ThemeId, _lang, 0) == beResult.Data.Id;
                         return JObject.FromObject(beResult);
                     }
                     else
@@ -146,7 +150,6 @@ namespace Swastka.IO.Cms.Api.Controllers
         [Route("list/{level}")]
         public async Task<RepositoryResponse<PaginationModel<InfoThemeViewModel>>> GetList([FromBody] RequestPaging request, int? level = 0)
         {
-            string domain = string.Format("{0}://{1}", Request.Scheme, Request.Host);
             ParseRequestPagingDate(request);
             Expression<Func<SiocTheme, bool>> predicate = model =>
                 string.IsNullOrWhiteSpace(request.Keyword)

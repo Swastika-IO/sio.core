@@ -53,7 +53,7 @@ namespace Swastika.Cms.Lib.ViewModels.Api
             get
             {
                 return CommonHelper.GetFullPath(new string[] {
-                    SWCmsConstants.Parameters.FileFolder,
+                    //SWCmsConstants.Parameters.FileFolder,
                     SWCmsConstants.Parameters.TemplatesAssetFolder,
                     Name });
             }
@@ -118,7 +118,7 @@ namespace Swastika.Cms.Lib.ViewModels.Api
         {
             RepositoryResponse<bool> result = new RepositoryResponse<bool>() { IsSucceed = true };
 
-            if (Asset != null)
+            if (Asset.Content != null || Asset.FileStream != null)
             {
                 Asset.FileFolder = AssetFolder;
                 var isSaved = FileRepository.Instance.SaveWebFile(Asset);
@@ -231,33 +231,33 @@ namespace Swastika.Cms.Lib.ViewModels.Api
                 result.IsSucceed = result.IsSucceed && saveResult.IsSucceed;
             }
 
-            //            if (Asset != null && Asset.Length > 0 && Id == 0)
-            //            {
-            //                var files = FileRepository.Instance.GetWebFiles(AssetFolder);
-            //                string strStyles = string.Empty;
-            //                foreach (var css in files.Where(f => f.Extension == ".css"))
-            //                {
-            //                    strStyles += string.Format(@"   <link href='{0}/{1}{2}' rel='stylesheet'/>
-            //", css.FileFolder, css.Filename, css.Extension);
-            //                }
-            //                string strScripts = string.Empty;
-            //                foreach (var js in files.Where(f => f.Extension == ".js"))
-            //                {
-            //                    strScripts += string.Format(@"  <script src='{0}/{1}{2}'></script>
-            //", js.FileFolder, js.Filename, js.Extension);
-            //                }
-            //                var layout = ApiTemplateViewModel.Repository.GetSingleModel(
-            //                    t => t.FileName == "_Layout" && t.TemplateId == Model.Id
-            //                    , _context, _transaction);
-            //                layout.Data.Content = layout.Data.Content.Replace("<!--[STYLES]-->"
-            //                    , string.Format(@"{0}"
-            //                    , strStyles));
-            //                layout.Data.Content = layout.Data.Content.Replace("<!--[SCRIPTS]-->"
-            //                    , string.Format(@"{0}"
-            //                    , strScripts));
+            if (Asset.Content != null || Asset.FileStream != null)
+            {
+                var files = FileRepository.Instance.GetWebFiles(AssetFolder);
+                string strStyles = string.Empty;
+                foreach (var css in files.Where(f => f.Extension == ".css"))
+                {
+                    strStyles += string.Format(@"   <link href='{0}/{1}{2}' rel='stylesheet'/>
+            ", css.FileFolder, css.Filename, css.Extension);
+                }
+                string strScripts = string.Empty;
+                foreach (var js in files.Where(f => f.Extension == ".js"))
+                {
+                    strScripts += string.Format(@"  <script src='{0}/{1}{2}'></script>
+            ", js.FileFolder, js.Filename, js.Extension);
+                }
+                var layout = ApiTemplateViewModel.Repository.GetSingleModel(
+                    t => t.FileName == "_Layout" && t.FolderType== "Masters" && t.TemplateId == Model.Id
+                    , _context, _transaction);
+                layout.Data.Content = layout.Data.Content.Replace("<!--[STYLES]-->"
+                    , string.Format(@"{0}"
+                    , strStyles));
+                layout.Data.Content = layout.Data.Content.Replace("<!--[SCRIPTS]-->"
+                    , string.Format(@"{0}"
+                    , strScripts));
 
-            //                await layout.Data.SaveModelAsync(true, _context, _transaction);
-            //            }
+                await layout.Data.SaveModelAsync(true, _context, _transaction);
+            }
 
             return result;
         }

@@ -11,7 +11,13 @@ app.controller('MediaController', ['$scope', '$rootScope', '$routeParams', '$tim
             toDate: null,
             keyword: ''
         };
-
+        $scope.mediaFile = {
+            file: null,
+            fullPath: '',
+            folder: 'Media',
+            title: '',
+            description: ''
+        };
         $scope.activedMedia = null;
         $scope.relatedMedias = [];
         $rootScope.isBusy = false;
@@ -55,6 +61,22 @@ app.controller('MediaController', ['$scope', '$rootScope', '$routeParams', '$tim
                 $scope.$apply();
             }
         };
+
+
+        $scope.uploadMedia = async function () {
+            var resp = await mediaServices.uploadMedia($scope.mediaFile);
+            if (resp.isSucceed) {
+                $scope.activedMedia = resp.data;
+                $scope.loadMedias();
+                $scope.$apply();
+            }
+            else {
+                $rootScope.showErrors(resp.errors);
+                $scope.$apply();
+            }
+        };
+
+
         $scope.loadMedias = async function (pageIndex) {
             if (pageIndex != undefined) {
                 $scope.request.pageIndex = pageIndex;

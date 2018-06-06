@@ -63,10 +63,12 @@ app.controller('TemplateController', ['$scope', '$rootScope', '$routeParams', '$
                 $scope.activedTemplate = response.data;
                 $scope.listUrl = '/backend/template/list/' + themeId;                
                 $scope.initEditor();
+                $rootScope.isBusy = false;
                 $scope.$apply();
             }
             else {
                 $rootScope.showErrors(response.errors);
+                $rootScope.isBusy = false;
                 $scope.$apply();
             }
         };
@@ -88,10 +90,12 @@ app.controller('TemplateController', ['$scope', '$rootScope', '$routeParams', '$
             var resp = await templateServices.getTemplates($scope.request, $scope.folderType);
             if (resp.isSucceed) {
                 $scope.data = resp.data;
+                $rootScope.isBusy = false;
                 $scope.$apply();
             }
             else {
                 $rootScope.showErrors(resp.errors);
+                $rootScope.isBusy = false;
                 $scope.$apply();
             }
         };
