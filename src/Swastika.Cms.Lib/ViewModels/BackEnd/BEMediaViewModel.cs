@@ -45,6 +45,9 @@ namespace Swastika.Cms.Lib.ViewModels.BackEnd
         [JsonProperty("description")]
         public string Description { get; set; }
 
+        [JsonProperty("tags")]
+        public string Tags { get; set; }
+
         [JsonProperty("createdDateTime")]
         public DateTime CreatedDateTime { get; set; }
 
@@ -62,8 +65,10 @@ namespace Swastika.Cms.Lib.ViewModels.BackEnd
         public string Domain { get { return GlobalConfigurationService.Instance.GetLocalString("Domain", Specificulture, "/"); } }
 
         [JsonProperty("fullPath")]
-        public string FullPath {
-            get {
+        public string FullPath
+        {
+            get
+            {
                 return SwCmsHelper.GetFullPath(new string[]{
                     Domain,
                     FileFolder,
@@ -72,6 +77,8 @@ namespace Swastika.Cms.Lib.ViewModels.BackEnd
             }
         }
 
+        [JsonProperty("mediaFile")]
+        public FileViewModel MediaFile { get; set; }
         #endregion Views
 
         #endregion Properties
@@ -98,7 +105,33 @@ namespace Swastika.Cms.Lib.ViewModels.BackEnd
                 Id = BEMediaViewModel.Repository.Max(c => c.Id).Data + 1;
                 CreatedDateTime = DateTime.UtcNow;
             }
+
+            if (MediaFile.FileStream != null)
+            {
+                MediaFile.FileFolder = SwCmsHelper.GetFullPath(new[] {
+                    SWCmsConstants.Parameters.UploadFolder,
+                    DateTime.UtcNow.ToString("MMM-yyyy")
+                }); ;
+                var isSaved = FileRepository.Instance.SaveWebFile(MediaFile);
+                if (isSaved)
+                {
+                    Extension = MediaFile.Extension;
+                    FileName = MediaFile.Filename;
+                    FileFolder = MediaFile.FileFolder;
+                }
+                else
+                {
+                    IsValid = false;
+                }
+
+            }
             return base.ParseModel(_context, _transaction);
+        }
+
+        public override void Validate(SiocCmsContext _context = null, IDbContextTransaction _transaction = null)
+        {
+            base.Validate(_context, _transaction);
+            
         }
 
         public override void ExpandView(SiocCmsContext _context = null, IDbContextTransaction _transaction = null)
@@ -106,6 +139,7 @@ namespace Swastika.Cms.Lib.ViewModels.BackEnd
             IsClone = false;
             ListSupportedCulture = GlobalLanguageService.ListSupportedCulture;
             this.ListSupportedCulture.ForEach(c => c.IsSupported = true);
+            MediaFile = new FileViewModel();
         }
 
         public override RepositoryResponse<bool> RemoveRelatedModels(BEMediaViewModel view, SiocCmsContext _context = null, IDbContextTransaction _transaction = null)

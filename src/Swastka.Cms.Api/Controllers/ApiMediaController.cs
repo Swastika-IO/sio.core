@@ -159,8 +159,8 @@ namespace Swastka.Cms.Api.Controllers
                     CreatedDateTime = DateTime.UtcNow,
                     FileType = fileUpload.ContentType.Split('/')[0],
                     FileSize = fileUpload.Length,
-                    Title = title ?? fileName,
-                    Description = description ?? fileName
+                    Title = title ?? fileName.Split('.')[0].Substring(fileName.LastIndexOf('/') + 1),
+                    Description = description ?? fileName.Split('.')[0].Substring(fileName.LastIndexOf('/') + 1)
                 });
                 return await media.SaveModelAsync();
             }
@@ -173,7 +173,7 @@ namespace Swastka.Cms.Api.Controllers
         // POST api/medias
         [HttpPost, HttpOptions]
         [Route("save")]
-        public async Task<RepositoryResponse<BEMediaViewModel>> Post(BEMediaViewModel model)
+        public async Task<RepositoryResponse<BEMediaViewModel>> Post([FromBody]BEMediaViewModel model)
         {
             if (model != null)
             {

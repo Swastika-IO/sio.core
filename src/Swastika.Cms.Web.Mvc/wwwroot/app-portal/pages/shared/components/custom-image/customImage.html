@@ -1,6 +1,6 @@
 ﻿<div class="card">
     <div class="card-header">
-        {{$ctrl.header}} {{$ctrl.type}}
+        {{$ctrl.header}}
     </div>
     <div class="card-body p-0" style="background:url(/images/upload-image-thumbnail.png) no-repeat center;  cursor:pointer;">
         <span class="custom-file" style="min-height:210px; overflow:hidden;">
@@ -10,7 +10,7 @@
             </button>
 
             <input type="file" name="pic" ngf-select="$ctrl.selectFile($file, $invalidFiles)" data-file="file.file" class="position-absolute" style="height:130px; cursor:pointer;">
-            <img imageonload src="{{$ctrl.src}}" name="pic" class="custom-file-img d-block"
+            <img imageonload src="{{$ctrl.srcUrl}}" name="pic" class="custom-file-img d-block"
                  style="max-height: 150px; width: auto; margin: 35px auto;" accept="image/*" />
             <input type="hidden" value="{{$ctrl.type}}/{{$ctrl.folder}}" class="folder-val" />
             <input type="text" ng-model="$ctrl.src" class="form-control custom-file-val">

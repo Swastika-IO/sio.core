@@ -62,12 +62,12 @@ namespace Swastika.Cms.Lib.Models.Cms
         {
             //if (!optionsBuilder.IsConfigured)
             //{
-                // define the database to use
-                string cnn = GlobalConfigurationService.Instance.GetConnectionString();
-                if (!string.IsNullOrEmpty(cnn))
-                {
-                    optionsBuilder.UseSqlServer(cnn);
-                }
+            // define the database to use
+            string cnn = GlobalConfigurationService.Instance.GetConnectionString();
+            if (!string.IsNullOrEmpty(cnn))
+            {
+                optionsBuilder.UseSqlServer(cnn);
+            }
             //}
         }
 
@@ -630,6 +630,8 @@ namespace Swastika.Cms.Lib.Models.Cms
                 entity.Property(e => e.CreatedDateTime).HasColumnType("datetime");
 
                 entity.Property(e => e.Description).HasMaxLength(4000);
+
+                entity.Property(e => e.Tags).HasMaxLength(400);
 
                 entity.Property(e => e.Extension)
                     .IsRequired()

@@ -15,6 +15,7 @@ namespace Swastika.Cms.Lib.Models.Cms
         public string Specificulture { get; set; }
         public DateTime CreatedDateTime { get; set; }
         public string Description { get; set; }
+        public string Tags { get; set; }
         public string Extension { get; set; }
         public string FileFolder { get; set; }
         public string FileName { get; set; }

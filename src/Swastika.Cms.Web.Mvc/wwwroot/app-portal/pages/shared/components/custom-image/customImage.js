@@ -19,6 +19,7 @@ modules.component('customImage', {
                 ctrl.mediaFile.title = ctrl.title ? ctrl.title : '';
                 ctrl.mediaFile.description = ctrl.description ? ctrl.description : '';
                 ctrl.mediaFile.file = file;
+                
                 if (ctrl.auto) {
                     ctrl.uploadFile();
                 }
@@ -34,6 +35,7 @@ modules.component('customImage', {
             var resp = await mediaServices.uploadMedia(ctrl.mediaFile);
             if (resp.isSucceed) {
                 ctrl.src = resp.data.fullPath;
+                ctrl.srcUrl = resp.data.fullPath;
                 $scope.$apply();
             }
             else {
@@ -42,18 +44,22 @@ modules.component('customImage', {
             }
         }
         ctrl.getBase64 = function (file) {
-            if (file !== null) {
+            if (file !== null && ctrl.postedFile) {
+                $rootScope.isBusy = true;
                 var reader = new FileReader();
                 reader.readAsDataURL(file);
                 reader.onload = function () {
                     var index = reader.result.indexOf(',') + 1;
                     var base64 = reader.result.substring(index);
-
-                    ctrl.src = base64;
+                    ctrl.postedFile.fileName = file.name.substring(0, file.name.lastIndexOf('.'));
+                    ctrl.postedFile.extension = file.name.substring(file.name.lastIndexOf('.'));
+                    ctrl.postedFile.fileStream = reader.result;
+                    ctrl.srcUrl = reader.result;
+                    $rootScope.isBusy = false;
                     $scope.$apply();
                 };
                 reader.onerror = function (error) {
-                    console.log(error);
+
                 };
             }
             else {
@@ -67,6 +73,7 @@ modules.component('customImage', {
         description: '=',
         src: '=',
         srcUrl: '=',
+        postedFile: '=',
         type: '=',
         folder: '=',
         auto: '=',

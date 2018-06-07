@@ -59,7 +59,7 @@ namespace Swastika.Cms.Lib.ViewModels.Api
             get
             {
                 return CommonHelper.GetFullPath(new string[] {
-                    //SWCmsConstants.Parameters.FileFolder,
+                    SWCmsConstants.Parameters.FileFolder,
                     SWCmsConstants.Parameters.TemplatesAssetFolder,
                     Name });
             }
@@ -293,8 +293,7 @@ namespace Swastika.Cms.Lib.ViewModels.Api
 
         public override async Task<RepositoryResponse<bool>> RemoveRelatedModelsAsync(ApiThemeViewModel view, SiocCmsContext _context = null, IDbContextTransaction _transaction = null)
         {
-            RepositoryResponse<bool> result = new RepositoryResponse<bool>() { IsSucceed = true };
-            result = await InfoTemplateViewModel.Repository.RemoveListModelAsync(t => t.TemplateId == Id);
+            RepositoryResponse<bool> result = await InfoTemplateViewModel.Repository.RemoveListModelAsync(t => t.TemplateId == Id);
             if (result.IsSucceed)
             {
                 FileRepository.Instance.DeleteWebFolder(AssetFolder);
