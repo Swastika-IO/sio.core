@@ -66,6 +66,9 @@
                 </td>
                 <td>
                     <div class="btn-group btn-group-sm btn-group-sm float-right" role="group" aria-label="Actions">
+                        <a ng-if="item.previewUrl" href="{{item.previewUrl}}" target="_blank" class="btn btn-light">
+                            <span class="fas fa-eye text-info"></span>
+                        </a>
                         <a href="/backend/template/list/{{item.id}}"
                            class="btn btn-light">
                             <span class="fas fa-paint-brush text-info"></span>
@@ -73,13 +76,12 @@
                         <a href="/backend/file/list?folder={{item.assetFolder}}" class="btn btn-light">
                             <span class="fas fa-file text-secondary"></span>
                         </a>
-                        <a 
-                           class="btn btn-sm btn-light d-inline-block "><span class="fas fa-sync-alt text-primary"></span></a>
+                        <a class="btn btn-sm btn-light d-inline-block "><span class="fas fa-sync-alt text-primary"></span></a>
 
                         <a href="/backend/theme/details/{{item.id}}" class="btn btn-light">
                             <span class="fas fa-pencil-alt text-primary"></span>
                         </a>
-                        <a ng-click="removeTheme(item.id);" 
+                        <a ng-click="removeTheme(item.id);"
                            class="btn btn-light">
                             <span class="fas fa-times text-danger"></span>
                         </a>

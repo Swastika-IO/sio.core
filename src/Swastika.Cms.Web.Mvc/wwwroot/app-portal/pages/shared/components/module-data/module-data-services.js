@@ -5,7 +5,7 @@ app.factory('ModuleDataServices', ['$http', '$rootScope', 'commonServices', func
 
     var moduleDatasServiceFactory = {};
 
-    var settings = commonServices.getSettings();
+    var settings = $rootScope.settings
 
     var _getModuleData = async function (moduleId, id, type) {
         var apiUrl = '/api/' + settings.lang + '/module-data/';

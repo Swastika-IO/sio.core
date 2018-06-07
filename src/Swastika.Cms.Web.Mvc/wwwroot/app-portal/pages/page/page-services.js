@@ -5,7 +5,7 @@ app.factory('PageServices', ['$http', '$rootScope', 'commonServices', function (
 
     var pagesServiceFactory = {};
 
-    var settings = commonServices.getSettings();
+    var settings = $rootScope.settings
 
     var _getPage = async function (id, type) {
         var apiUrl = '/api/' + settings.lang + '/page/';

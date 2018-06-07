@@ -161,15 +161,6 @@ namespace Swastika.Cms.Lib.ViewModels.BackEnd
         [JsonProperty("thumbnailFileStream")]
         public FileStreamViewModel ThumbnailFileStream { get; set; }
 
-        [JsonProperty("strNormalPrice")]
-        public string StrNormalPrice { get; set; }
-
-        [JsonProperty("strDealPrice")]
-        public string StrDealPrice { get; set; }
-
-        [JsonProperty("strImportPrice")]
-        public string StrImportPrice { get; set; }
-
         #region Template
 
         [JsonProperty("view")]
@@ -212,7 +203,7 @@ namespace Swastika.Cms.Lib.ViewModels.BackEnd
         {
             get
             {
-                if (Image != null && Image.IndexOf("http") == -1)
+                if (Image != null && (Image.IndexOf("http") == -1 && Image[0] != '/'))
                 {
                     return SwCmsHelper.GetFullPath(new string[] {
                     Domain,  Image
@@ -268,10 +259,6 @@ namespace Swastika.Cms.Lib.ViewModels.BackEnd
         public override void ExpandView(SiocCmsContext _context = null, IDbContextTransaction _transaction = null)
         {
             ListSupportedCulture = GlobalLanguageService.ListSupportedCulture;
-            StrNormalPrice = SwCmsHelper.FormatPrice(NormalPrice);
-            StrDealPrice = SwCmsHelper.FormatPrice(DealPrice);
-            StrImportPrice = SwCmsHelper.FormatPrice(ImportPrice);
-
             //if (!string.IsNullOrEmpty(this.Tags))
             //{
             //    ListTag = JArray.Parse(this.Tags);
@@ -365,7 +352,7 @@ namespace Swastika.Cms.Lib.ViewModels.BackEnd
         {
             if (string.IsNullOrEmpty(Id))
             {
-                Id = Guid.NewGuid().ToString(); //Common.Common.GetBase62(8);
+                Id = Guid.NewGuid().ToString();
                 CreatedDateTime = DateTime.UtcNow;
             }
             if (Properties.Count > 0)
@@ -409,10 +396,6 @@ namespace Swastika.Cms.Lib.ViewModels.BackEnd
             }
 
             //Tags = ListTag.ToString(Newtonsoft.Json.Formatting.None);
-            NormalPrice = SwCmsHelper.ReversePrice(StrNormalPrice);
-            DealPrice = SwCmsHelper.ReversePrice(StrDealPrice);
-            ImportPrice = SwCmsHelper.ReversePrice(StrImportPrice);
-
             GenerateSEO();
 
             return base.ParseModel(_context, _transaction);

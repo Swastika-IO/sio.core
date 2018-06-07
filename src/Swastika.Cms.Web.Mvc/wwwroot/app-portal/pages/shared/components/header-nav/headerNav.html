@@ -1,4 +1,4 @@
-﻿<header class="navbar navbar-expand flex-column flex-md-row sw-navbar">
+﻿<header class="navbar navbar-expand flex-column flex-md-row sw-navbar" ng-init="$ctrl.loadSettings()">
     <a class="navbar-brand mr-0 mr-md-2" href="/" aria-label="Swastika I/O">
         <img src="/css/portal/img/swastika-io-logo-blue.png" alt="Swastika I/O" width="35">
     </a>
@@ -11,7 +11,7 @@
         <breadcrumbs area="'Portal'" controller="'Controller'" action="'Action'"></breadcrumbs>
     </div>
 
-    <ul class="navbar-nav flex-row ml-md-auto d-none d-md-flex">
+    <ul class="navbar-nav flex-row ml-md-auto d-none d-md-flex" ng-if="$ctrl.settings">
         <li class="nav-item mr-2">
             <a class="nav-link p-2" href="#" data-toggle="modal" data-target="#modal-files">
                 <i class="mi mi-Media"></i>

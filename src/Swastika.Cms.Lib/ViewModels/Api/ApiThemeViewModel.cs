@@ -34,6 +34,12 @@ namespace Swastika.Cms.Lib.ViewModels.Api
         [JsonProperty("name")]
         public string Name { get; set; }
 
+        [JsonProperty("image")]
+        public string Image { get; set; }
+
+        [JsonProperty("previewUrl")]
+        public string PreviewUrl { get; set; }
+
         [JsonProperty("createdBy")]
         public string CreatedBy { get; set; }
 
@@ -73,6 +79,29 @@ namespace Swastika.Cms.Lib.ViewModels.Api
         [JsonProperty("asset")]
         public FileViewModel Asset { get; set; }
 
+        [JsonProperty("imageFileStream")]
+        public FileStreamViewModel ImageFileStream { get; set; }
+
+        [JsonProperty("domain")]
+        public string Domain => GlobalConfigurationService.Instance.GetLocalString("Domain", Specificulture, "/");
+
+        [JsonProperty("imageUrl")]
+        public string ImageUrl
+        {
+            get
+            {
+                if (Image != null && (Image.IndexOf("http") == -1 && Image[0] != '/'))
+                {
+                    return SwCmsHelper.GetFullPath(new string[] {
+                    Domain,  Image
+                });
+                }
+                else
+                {
+                    return Image;
+                }
+            }
+        }
         #endregion Views
 
         #endregion Properties
@@ -237,13 +266,13 @@ namespace Swastika.Cms.Lib.ViewModels.Api
                 string strStyles = string.Empty;
                 foreach (var css in files.Where(f => f.Extension == ".css"))
                 {
-                    strStyles += string.Format(@"   <link href='{0}/{1}{2}' rel='stylesheet'/>
+                    strStyles += string.Format(@"<link href='{0}/{1}{2}' rel='stylesheet'/>
             ", css.FileFolder, css.Filename, css.Extension);
                 }
                 string strScripts = string.Empty;
                 foreach (var js in files.Where(f => f.Extension == ".js"))
                 {
-                    strScripts += string.Format(@"  <script src='{0}/{1}{2}'></script>
+                    strScripts += string.Format(@"<script src='{0}/{1}{2}'></script>
             ", js.FileFolder, js.Filename, js.Extension);
                 }
                 var layout = ApiTemplateViewModel.Repository.GetSingleModel(

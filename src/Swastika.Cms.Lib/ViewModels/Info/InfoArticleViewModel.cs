@@ -90,7 +90,7 @@ namespace Swastika.Cms.Lib.ViewModels.Info
         [JsonProperty("imageUrl")]
         public string ImageUrl {
             get {
-                if (Image != null && Image.IndexOf("http") == -1)
+                if (Image != null && (Image.IndexOf("http") == -1 && Image[0] != '/'))
                 {
                     return SwCmsHelper.GetFullPath(new string[] {
                     Domain,  Image

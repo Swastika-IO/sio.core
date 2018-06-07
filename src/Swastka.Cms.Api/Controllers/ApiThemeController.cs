@@ -28,6 +28,7 @@ namespace Swastka.IO.Cms.Api.Controllers
         public ApiThemeController()
         {
         }
+
         #region Get
 
         // GET api/theme/id

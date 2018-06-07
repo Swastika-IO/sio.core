@@ -5,7 +5,7 @@ app.factory('ThemeServices', ['$http', '$rootScope', 'commonServices', function 
 
     var themesServiceFactory = {};
 
-    var settings = commonServices.getSettings();
+    var settings = $rootScope.settings;
 
     var _getTheme = async function (id, type) {
         var apiUrl = '/api/' + settings.lang + '/theme/';

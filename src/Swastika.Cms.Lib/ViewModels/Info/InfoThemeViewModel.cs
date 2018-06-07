@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.EntityFrameworkCore.Storage;
 using Newtonsoft.Json;
 using Swastika.Cms.Lib.Models.Cms;
+using Swastika.Cms.Lib.Services;
 using Swastika.Common.Helper;
 using Swastika.Domain.Data.ViewModels;
 using System;
@@ -24,6 +25,9 @@ namespace Swastika.Cms.Lib.ViewModels.Info
 
         [JsonProperty("name")]
         public string Name { get; set; }
+
+        [JsonProperty("previewUrl")]
+        public string PreviewUrl { get; set; }
 
         [JsonProperty("image")]
         public string Image { get; set; }
@@ -45,8 +49,10 @@ namespace Swastika.Cms.Lib.ViewModels.Info
         public IFormFile Asset { get; set; }// = new FileViewModel();
 
         [JsonProperty("assetFolder")]
-        public string AssetFolder {
-            get {
+        public string AssetFolder
+        {
+            get
+            {
                 return CommonHelper.GetFullPath(new string[] {
                     SWCmsConstants.Parameters.TemplatesAssetFolder,
                     Name });
@@ -54,12 +60,34 @@ namespace Swastika.Cms.Lib.ViewModels.Info
         }
 
         [JsonProperty("templateFolder")]
-        public string TemplateFolder {
-            get {
+        public string TemplateFolder
+        {
+            get
+            {
                 return CommonHelper.GetFullPath(new string[] { SWCmsConstants.Parameters.TemplatesFolder, Name });
             }
         }
 
+        [JsonProperty("domain")]
+        public string Domain => GlobalConfigurationService.Instance.GetLocalString("Domain", Specificulture, "/");
+
+        [JsonProperty("imageUrl")]
+        public string ImageUrl
+        {
+            get
+            {
+                if (Image != null && (Image.IndexOf("http") == -1 && Image[0] != '/'))
+                {
+                    return SwCmsHelper.GetFullPath(new string[] {
+                    Domain,  Image
+                });
+                }
+                else
+                {
+                    return Image;
+                }
+            }
+        }
         #endregion Views
 
         #endregion Properties

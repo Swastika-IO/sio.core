@@ -31,8 +31,9 @@ namespace Swastka.IO.Cms.Api.Controllers
 
         // GET api/category/id
         [HttpGet]
+        [Route("{culture}/settings")]
         [Route("settings")]
-        public RepositoryResponse<SiteSettingsViewModel> Settings(int id)
+        public RepositoryResponse<SiteSettingsViewModel> Settings()
         {
             SiteSettingsViewModel settings = new SiteSettingsViewModel()
             {

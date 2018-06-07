@@ -24,15 +24,20 @@ app.factory('commonServices', ['$location', '$http', '$rootScope', 'authService'
         else return true;
     };
 
-    var _getSettings = function () {
+    var _getSettings = async function (culture) {
         var settings = localStorageService.get('settings');
         if (settings) {
             return settings;
         }
         else {
+            var url = 'api/portal';
+            if (culture) {
+                url += '/' + culture;
+            }
+            url += '/settings';
             var req = {
                 method: 'GET',
-                url: 'api/portal/settings',
+                url: url
             };
             return _getApiResult(req).then(function (response) {
                 return response.data;
@@ -48,26 +53,26 @@ app.factory('commonServices', ['$location', '$http', '$rootScope', 'authService'
     };
 
     var _removeSettings = async function (settings) {
-            localStorageService.remove('settings');
+        localStorageService.remove('settings');
     };
 
-    var _fillSettings = async function () {
+    var _fillSettings = async function (culture) {
         var settings = localStorageService.get('settings');
         if (settings) {
             _settings = settings;
             return settings;
         }
         else {
-            settings = await _getSettings();
+            settings = await _getSettings(culture);
             localStorageService.set('settings', settings);
             return settings;
         }
-        
+
     };
     var _getApiResult = async function (req) {
         $rootScope.isBusy = true;
         req.Authorization = authService.authentication.token;
-        
+
         if (!req.headers) {
             req.headers = {
                 'Content-Type': 'application/json'
@@ -117,7 +122,7 @@ app.factory('commonServices', ['$location', '$http', '$rootScope', 'authService'
             }
             $rootScope.isBusy = false;
             return resp;
-        },            
+        },
             function (error) {
                 var t = { isSucceed: false, errors: [error.statusText] };
                 $rootScope.isBusy = false;

@@ -5,7 +5,7 @@ app.factory('ProductServices', ['$http', '$rootScope', 'commonServices', functio
 
     var productsServiceFactory = {};
 
-    var settings = commonServices.getSettings();
+    var settings = $rootScope.settings
 
     var _getProduct = async function (id, type) {
         var apiUrl = '/api/' + settings.lang + '/product/';

@@ -5,7 +5,7 @@ app.factory('FileServices', ['$http', '$rootScope', 'commonServices', function (
 
     var filesServiceFactory = {};
 
-    var settings = commonServices.getSettings();
+    var settings = $rootScope.settings
 
     var _getFile = async function (folder, filename) {
         var apiUrl = '/api/file/';

@@ -196,7 +196,7 @@ app.run(['$rootScope', '$location', 'commonServices', 'authService', function ($
     }
     $rootScope.updateSettings = function () {
         commonServices.removeSettings();
-        commonServices.fillSettings().then(function (response) {
+        commonServices.fillSettings($rootScope.settings.lang).then(function (response) {
             $rootScope.settings = response;
             
         });

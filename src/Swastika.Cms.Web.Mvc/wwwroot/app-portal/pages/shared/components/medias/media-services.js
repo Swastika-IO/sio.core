@@ -5,7 +5,7 @@ app.factory('MediaServices', ['$http', '$rootScope', 'commonServices', function 
 
     var mediasServiceFactory = {};
 
-    var settings = commonServices.getSettings();
+    var settings = $rootScope.settings
 
     var _getMedia = async function (id, type) {
         var apiUrl = '/api/' + settings.lang + '/media/';

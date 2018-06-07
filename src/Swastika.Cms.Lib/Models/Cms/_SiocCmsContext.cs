@@ -1264,6 +1264,9 @@ namespace Swastika.Cms.Lib.Models.Cms
                     .IsRequired()
                     .HasMaxLength(250);
 
+                entity.Property(e => e.PreviewUrl)
+                    .HasMaxLength(450);
+
                 entity.Property(e => e.Priority).HasDefaultValueSql("((0))");
 
                 entity.Property(e => e.Status).HasDefaultValueSql("((1))");

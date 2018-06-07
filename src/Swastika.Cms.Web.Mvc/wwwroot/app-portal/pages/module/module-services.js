@@ -5,7 +5,7 @@ app.factory('ModuleServices', ['$http', '$rootScope', 'commonServices', function
 
     var modulesServiceFactory = {};
 
-    var settings = commonServices.getSettings();
+    var settings = $rootScope.settings
 
     var _getModule = async function (id, type) {
         var apiUrl = '/api/' + settings.lang + '/module/';
