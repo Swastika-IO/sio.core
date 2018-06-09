@@ -152,6 +152,11 @@
                         title: 'List',
                         href: '/backend/user/list',
                         icon: 'mi mi-List'
+                    },
+                    {
+                        title: 'Roles',
+                        href: '/backend/role/list',
+                        icon: 'mi mi-List'
                     }
                 ]
             },

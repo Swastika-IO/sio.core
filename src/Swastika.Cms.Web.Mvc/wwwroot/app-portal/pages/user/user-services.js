@@ -74,6 +74,16 @@ app.factory('UserServices', ['$http', 'commonServices', function ($http, commonS
         return await commonServices.getApiResult(req)
     };
 
+    var _register = async function (user) {
+        var apiUrl = '/api/account/';
+        var req = {
+            method: 'POST',
+            url: apiUrl + 'register',
+            data: JSON.stringify(user)
+        };
+        return await commonServices.getApiResult(req)
+    };
+
     var _removeUser = function (user) {
         var req = {
             method: 'POST',
@@ -88,6 +98,7 @@ app.factory('UserServices', ['$http', 'commonServices', function ($http, commonS
     usersServiceFactory.getUsers = _getUsers;
     usersServiceFactory.getUser = _getUser;
     usersServiceFactory.saveUser = _saveUser;
+    usersServiceFactory.register = _register;
     usersServiceFactory.removeUser = _removeUser;
     usersServiceFactory.updateRoleStatus = _updateRoleStatus;
     usersServiceFactory.getUserDemographicInfo = _getUserDemographicInfo;

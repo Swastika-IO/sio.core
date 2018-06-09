@@ -65,15 +65,11 @@
                         </a>
                         <a href="{{item.detailsUrl}}" target="_blank" class="btn btn-light">
                             <span class="oi oi-eye text-primary"></span>
+                        </a>        
+                        <a ng-click="removeProduct(item.id);"
+                           class="btn btn-light">
+                            <span class="fas fa-times text-danger"></span>
                         </a>
-
-                        <button type="button" class="btn btn-light del-popover"
-                                ng-click="removeProduct(item.id)">
-                            <span class="oi oi-x text-danger"></span>
-                        </button>
-                        <div class="popover-body d-none">
-                            <a href="/{{currentLanguage}}/portal/products/delete/{{item.id}}" class="btn btn btn-danger">Yes, I want to delete!</a>
-                        </div>
                     </div>
                 </td>
             </tr>

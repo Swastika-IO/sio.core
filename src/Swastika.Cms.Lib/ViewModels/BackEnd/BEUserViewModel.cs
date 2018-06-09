@@ -48,6 +48,12 @@ namespace Swastika.Cms.Lib.ViewModels.Backend
 
         #region Views
 
+        [JsonProperty("password")]
+        public string Password { get; set; }
+
+        [JsonProperty("confirmPassword")]
+        public string ConfirmPassword { get; set; }
+
         [JsonProperty("detailsUrl")]
         public string DetailsUrl { get; set; }
 

@@ -91,17 +91,20 @@ app.controller('ProductController', ['$scope', '$rootScope', '$routeParams', '$t
             }
         };
 
-        $scope.removeProduct = async function (id) {
-            if (confirm("Are you sure!")) {
-                var resp = await productServices.removeProduct(id);
-                if (resp && resp.isSucceed) {
-                    $scope.loadProducts();
-                }
-                else {
-                    if (resp) { $rootScope.showErrors(resp.errors); }
-                }
+        $scope.removeProduct = function (id) {
+            $rootScope.showConfirm($scope, 'removeProductConfirmed', [id], null, 'Remove Product', 'Are you sure');
+        }
+
+        $scope.removeProductConfirmed = async function (id) {
+            var result = await productServices.removeProduct(id);
+            if (result.isSucceed) {
+                $scope.loadProducts();
             }
-        };
+            else {
+                $rootScope.showMessage('failed');
+                $scope.$apply();
+            }
+        }
 
         $scope.saveProduct = async function (product) {
             product.content = $('.editor-content.content').val();

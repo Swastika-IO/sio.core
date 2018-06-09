@@ -56,11 +56,11 @@
                     <div class="btn-group btn-group-sm btn-group-sm float-right" role="group" aria-label="Actions">
                         <a href="/backend/user/details/{{item.id}}" class="btn btn-light">
                             <span class="oi oi-pencil text-primary"></span>
-                        </a>                        
-                        <button type="button" class="btn btn-light del-popover"
-                                ng-click="removeUser(item.id)">
-                            <span class="oi oi-x text-danger"></span>
-                        </button>                        
+                        </a>        
+                        <a ng-click="removeUser(item.id);"
+                           class="btn btn-light">
+                            <span class="fas fa-times text-danger"></span>
+                        </a>                       
                     </div>
                 </td>
             </tr>

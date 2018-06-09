@@ -425,9 +425,9 @@ namespace Swastika.Cms.Lib.Models.Cms
 
                 entity.Property(e => e.Id).ValueGeneratedNever();
 
-                entity.Property(e => e.Address).HasMaxLength(50);
+                entity.Property(e => e.Address).HasMaxLength(450);
 
-                entity.Property(e => e.Avatar).HasMaxLength(50);
+                entity.Property(e => e.Avatar).HasMaxLength(250);
 
                 entity.Property(e => e.CreatedBy).HasMaxLength(50);
 

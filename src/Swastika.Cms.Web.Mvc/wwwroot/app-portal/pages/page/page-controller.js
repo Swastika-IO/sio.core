@@ -121,17 +121,21 @@ app.controller('PageController', ['$scope', '$rootScope', '$routeParams', '$time
             }
         };
 
-        $scope.removePage = async function (id) {
-            if (confirm("Are you sure!")) {
-                var resp = await pageServices.removePage(id);
-                if (resp && resp.isSucceed) {
-                    $scope.loadPages();
-                }
-                else {
-                    if (resp) { $rootScope.showErrors(resp.errors); }
-                }
+        $scope.removePage = function (id) {
+            $rootScope.showConfirm($scope, 'removePageConfirmed', [id], null, 'Remove Page', 'Are you sure');
+        }
+
+        $scope.removePageConfirmed = async function (id) {
+            var result = await pageServices.removePage(id);
+            if (result.isSucceed) {
+                $scope.loadPages();
             }
-        };
+            else {
+                $rootScope.showMessage('failed');
+                $scope.$apply();
+            }
+        }
+
 
         $scope.savePage = async function (page) {
             page.content = $('.editor-content').val();

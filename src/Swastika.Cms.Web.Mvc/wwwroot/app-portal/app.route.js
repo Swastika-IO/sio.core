@@ -151,6 +151,11 @@
         templateUrl: "/app-portal/pages/template/details.html"
     });
 
+    $routeProvider.when("/backend/role/list", {
+        controller: "RoleController",
+        templateUrl: "/app-portal/pages/role/list.html"
+    });
+
     $routeProvider.when("/backend/user/list", {
         controller: "UserController",
         templateUrl: "/app-portal/pages/user/list.html"
@@ -163,7 +168,7 @@
 
     $routeProvider.when("/backend/user/create", {
         controller: "UserController",
-        templateUrl: "/app-portal/pages/user/details.html"
+        templateUrl: "/app-portal/pages/user/register.html"
     });
 
     $routeProvider.otherwise({ redirectTo: "/backend" });

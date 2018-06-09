@@ -139,9 +139,10 @@
                                             <a href="/backend/page/details/{{c.id}}" class="btn btn-light"><span class="oi oi-pencil text-primary small"></span></a>
                                             <a href="{{c.detailsUrl}}" target="_blank" class="btn btn-light"><span class="oi oi-eye text-primary small"></span></a>
 
-                                            <button type="button" class="btn btn-light del-popover" ng-click="removePage(c.id)">
-                                                <span class="oi oi-x text-danger small"></span>
-                                            </button>
+                                            <a ng-click="removePage(item.id);"
+                                               class="btn btn-light">
+                                                <span class="fas fa-times text-danger"></span>
+                                            </a>
                                         </div>
                                     </td>
                                 </tr>
@@ -152,7 +153,7 @@
             </tr>
         </tbody>
     </table>
-      <paging class="small" 
+    <paging class="small"
             page="data.pageIndex+1"
             page-size="data.pageSize"
             total="data.totalItems"

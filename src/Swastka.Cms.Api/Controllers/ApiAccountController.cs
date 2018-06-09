@@ -165,14 +165,14 @@ namespace Swastika.Core.Controllers
         [Route("Register")]
         [HttpPost]
         [AllowAnonymous]
-        public async Task<RepositoryResponse<AccessTokenViewModel>> Register(RegisterViewModel model)
+        public async Task<RepositoryResponse<AccessTokenViewModel>> Register([FromBody] BEUserViewModel model)
         {
             RepositoryResponse<AccessTokenViewModel> result = new RepositoryResponse<AccessTokenViewModel>();
             if (ModelState.IsValid)
             {
                 var user = new ApplicationUser
                 {
-                    UserName = model.UserName,
+                    UserName = model.Username,
                     Email = model.Email,
                     FirstName = model.FirstName,
                     LastName = model.LastName,
@@ -184,17 +184,11 @@ namespace Swastika.Core.Controllers
                     _logger.LogInformation("User created a new account with password.");
 
                     user = await _userManager.FindByEmailAsync(model.Email).ConfigureAwait(false);
-
+                    model.Id = user.Id;
+                    model.CreatedDateTime = DateTime.UtcNow;
                     // Save to cms db context
-                    InfoUserViewModel cmsUser = new InfoUserViewModel()
-                    {
-                        Id = user.Id,
-                        Username = model.UserName,
-                        FirstName = model.FirstName,
-                        LastName = model.LastName,
-                        CreatedDateTime = DateTime.UtcNow
-                    };
-                    await cmsUser.SaveModelAsync();
+                    
+                    await model.SaveModelAsync();
 
                     var token = await GenerateAccessTokenAsync(user, true);
                     if (token != null)

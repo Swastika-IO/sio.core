@@ -11,6 +11,7 @@ app.controller('UserController', ['$scope', '$rootScope', '$routeParams', '$time
             toDate: null,
             keyword: ''
         };
+        
         $scope.mediaFile = {
             file: null,
             fullPath: '',
@@ -86,20 +87,40 @@ app.controller('UserController', ['$scope', '$rootScope', '$routeParams', '$time
             }
         };
 
-        $scope.removeUser = async function (id) {
-            if (confirm("Are you sure!")) {
-                var resp = await userServices.removeUser(id);
-                if (resp && resp.isSucceed) {
-                    $scope.loadUsers();
-                }
-                else {
-                    if (resp) { $rootScope.showErrors(resp.errors); }
-                }
+        $scope.removeUser = function (id) {
+            $rootScope.showConfirm($scope, 'removeUserConfirmed', [id], null, 'Remove User', 'Are you sure');
+        }
+
+        $scope.removeUserConfirmed = async function (id) {
+            var result = await userServices.removeUser(id);
+            if (result.isSucceed) {
+                $scope.loadUsers();
+            }
+            else {
+                $rootScope.showMessage('failed');
+                $scope.$apply();
+            }
+        }
+
+        $scope.saveUser = async function (user) {
+            //if (user.avatar != user.avatarUrl) {
+            //    user.avatar = user.avatarUrl;
+            //}
+            var resp = await userServices.saveUser(user);
+            if (resp && resp.isSucceed) {
+                //$scope.activedUser = resp.data;
+                $rootScope.showMessage('Thành công', 'success');
+                $rootScope.isBusy = false;
+                $scope.$apply();
+            }
+            else {
+                if (resp) { $rootScope.showErrors(resp.errors); }
+                $scope.$apply();
             }
         };
 
-        $scope.saveUser = async function (user) {
-            var resp = await userServices.saveUser(user);
+        $scope.register = async function (user) {
+            var resp = await userServices.register(user);
             if (resp && resp.isSucceed) {
                 $scope.activedUser = resp.data;
                 $rootScope.showMessage('Thành công', 'success');

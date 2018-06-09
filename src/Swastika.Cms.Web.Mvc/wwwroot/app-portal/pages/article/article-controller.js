@@ -89,17 +89,21 @@ app.controller('ArticleController', ['$scope', '$rootScope', '$routeParams', '$t
             }
         };
 
-        $scope.removeArticle = async function (id) {
-            if (confirm("Are you sure!")) {
-                var resp = await articleServices.removeArticle(id);
-                if (resp && resp.isSucceed) {
-                    $scope.loadArticles();
-                }
-                else {
-                    if (resp) { $rootScope.showErrors(resp.errors); }
-                }
+        $scope.removeArticle = function (id) {
+            $rootScope.showConfirm($scope, 'removeArticleConfirmed', [id], null, 'Remove Article', 'Are you sure');
+        }
+
+        $scope.removeArticleConfirmed = async function (id) {
+            var result = await articleServices.removeArticle(id);
+            if (result.isSucceed) {
+                $scope.loadArticles();
             }
-        };
+            else {
+                $rootScope.showMessage('failed');
+                $scope.$apply();
+            }
+        }
+
 
         $scope.saveArticle = async function (article) {
             article.content = $('.editor-content').val();

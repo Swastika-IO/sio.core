@@ -67,14 +67,11 @@
                         </a>
                         <a href="/backend/module/data/{{item.id}}" class="btn btn-light">
                             <span class="fas fa-list text-info"></span>
+                        </a>                                
+                        <a ng-click="removeModule(item.id);"
+                           class="btn btn-light">
+                            <span class="fas fa-times text-danger"></span>
                         </a>
-                        <button type="button" class="btn btn-light del-popover"
-                                ng-click="removeModule(item.id)">
-                            <span class="oi oi-x text-danger"></span>
-                        </button>
-                        <div class="popover-body d-none">
-                            <a href="/{{currentLanguage}}/portal/modules/delete/{{item.id}}" class="btn btn btn-danger">Yes, I want to delete!</a>
-                        </div>
                     </div>
                 </td>
             </tr>

@@ -9,6 +9,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
+using Newtonsoft.Json.Linq;
 using Swastika.Api.Controllers;
 using Swastika.Cms.Lib.Models.Cms;
 using Swastika.Cms.Lib.ViewModels.Account;
@@ -16,6 +17,7 @@ using Swastika.Domain.Core.ViewModels;
 using Swastika.Identity.Data;
 using Swastika.Identity.Models;
 using Swastika.Identity.Services;
+using static Swastika.Common.Utility.Enums;
 
 namespace Swastka.Cms.Api.Controllers
 {
@@ -65,8 +67,8 @@ namespace Swastka.Cms.Api.Controllers
 
         [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme, Roles = "SuperAdmin")]
         [HttpPost]
-        [Route("save")]
-        public async Task<RepositoryResponse<IdentityRole>> Save(string name)
+        [Route("create")]
+        public async Task<RepositoryResponse<IdentityRole>> Save([FromBody]string name)
         {
             var role = new IdentityRole()
             {
@@ -87,7 +89,7 @@ namespace Swastka.Cms.Api.Controllers
         [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme, Roles = "SuperAdmin")]
         [HttpPost]
         [Route("delete")]
-        public async Task<RepositoryResponse<bool>> Delete(string name)
+        public async Task<RepositoryResponse<bool>> Delete([FromBody] string name)
         {
             if (name != "SuperAdmin")
             {

@@ -153,17 +153,21 @@ app.controller('ModuleController', ['$scope', '$rootScope', '$routeParams', '$ti
             }
         };
 
-        $scope.removeModule = async function (id) {
-            if (confirm("Are you sure!")) {
-                var resp = await moduleServices.removeModule(id);
-                if (resp && resp.isSucceed) {
-                    $scope.loadModules();
-                }
-                else {
-                    if (resp) { $rootScope.showErrors(resp.errors); }
-                }
+        $scope.removeModule = function (id) {
+            $rootScope.showConfirm($scope, 'removeModuleConfirmed', [id], null, 'Remove Module', 'Are you sure');
+        }
+
+        $scope.removeModuleConfirmed = async function (id) {
+            var result = await moduleServices.removeModule(id);
+            if (result.isSucceed) {
+                $scope.loadModules();
             }
-        };
+            else {
+                $rootScope.showMessage('failed');
+                $scope.$apply();
+            }
+        }
+
 
         $scope.saveModule = async function (module) {
             module.content = $('.editor-content').val();
