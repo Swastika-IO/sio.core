@@ -151,5 +151,20 @@
         templateUrl: "/app-portal/pages/template/details.html"
     });
 
+    $routeProvider.when("/backend/user/list", {
+        controller: "UserController",
+        templateUrl: "/app-portal/pages/user/list.html"
+    });
+
+    $routeProvider.when("/backend/user/details/:id", {
+        controller: "UserController",
+        templateUrl: "/app-portal/pages/user/details.html"
+    });
+
+    $routeProvider.when("/backend/user/create", {
+        controller: "UserController",
+        templateUrl: "/app-portal/pages/user/details.html"
+    });
+
     $routeProvider.otherwise({ redirectTo: "/backend" });
 });

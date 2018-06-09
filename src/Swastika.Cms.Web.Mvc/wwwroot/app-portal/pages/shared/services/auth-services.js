@@ -44,11 +44,18 @@ app.factory('authService', ['$http', '$q', 'localStorageService', 'ngAuthSetting
             var data = response.data.data;
             localStorageService.set('authorizationData',
                 {
+                    userRoles: data.userData.userRoles,
                     token: data.access_token, userName: data.userData.firstName, roleNames: data.userData.roles,
                     avatar: data.userData.avatar, refresh_token: data.refresh_token, userId: data.userData.id
                 });
             _authentication.isAuth = true;
-            _authentication.isAdmin = $.inArray("SuperAdmin", data.userData.roles) >= 0;
+            angular.forEach(data.userData.userRoles, function (value, key) {
+                if (value.role.name === 'SuperAdmin'
+                    || value.role.name === 'Admin') {
+                    _authentication.isAdmin = true;
+                }
+            });
+            //_authentication.isAdmin = $.inArray("SuperAdmin", data.userData.roles) >= 0;
             //_authentication.userName = data.userData.NickName;
             _authentication.roleNames = data.userData.roles;
             _authentication.userId = data.userData.id;
@@ -81,7 +88,13 @@ app.factory('authService', ['$http', '$q', 'localStorageService', 'ngAuthSetting
         var authData = localStorageService.get('authorizationData');
         if (authData) {
             _authentication.isAuth = true;
-            _authentication.isAdmin = $.inArray("SuperAdmin", authData.roleNames) >= 0;
+            angular.forEach(authData.userRoles, function (value, key) {
+                if (value.role.name === 'SuperAdmin'
+                    || value.role.name === 'Admin') {
+                    _authentication.isAdmin = true;
+                }
+            });
+            //_authentication.isAdmin = $.inArray("SuperAdmin", authData.roleNames) >= 0;
             _authentication.userName = authData.userName;
             _authentication.roleNames = authData.roleNames;
             _authentication.userId = authData.userId;

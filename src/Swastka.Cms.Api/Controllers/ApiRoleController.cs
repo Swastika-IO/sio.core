@@ -46,6 +46,7 @@ namespace Swastka.Cms.Api.Controllers
         [HttpGet("claims")]
         public object Claims()
         {
+
             return User.Claims.Select(c =>
             new
             {

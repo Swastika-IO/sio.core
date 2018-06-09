@@ -2,6 +2,7 @@
 // The Swastika I/O Foundation licenses this file to you under the MIT license.
 // See the LICENSE file in the project root for more information.
 
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json.Linq;
@@ -14,12 +15,15 @@ using Swastika.Cms.Lib.ViewModels.Info;
 using Swastika.Domain.Core.ViewModels;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Linq.Expressions;
 using System.Threading.Tasks;
 using static Swastika.Common.Utility.Enums;
 
 namespace Swastka.IO.Cms.Api.Controllers
 {
+    [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme, 
+        Roles = "SuperAdmin")]
     [Produces("application/json")]
     [Route("api/{culture}/theme")]
     public class ApiThemeController :
@@ -112,7 +116,7 @@ namespace Swastka.IO.Cms.Api.Controllers
         {
             if (model != null)
             {
-                model.CreatedBy = User.Identity.Name;
+                model.CreatedBy = User.Claims.ToList().Find(c=>c.Type=="Username")?.Value;
                 var result = await model.SaveModelAsync(true).ConfigureAwait(false);
                 return result;
             }

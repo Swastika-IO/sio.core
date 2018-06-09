@@ -191,7 +191,7 @@ app.run(['$rootScope', '$location', 'commonServices', 'authService', function ($
         $location.path('/backend/login');
     };
     if (!authService.authentication.isAuth || !authService.authentication.isAdmin) {
-        authService.authentication.referredUrl = $location.path();
+        authService.authentication.referredUrl = $location.$$url;
         $location.path('/backend/login');
     }
     $rootScope.updateSettings = function () {

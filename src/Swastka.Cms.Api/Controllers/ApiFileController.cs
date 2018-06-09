@@ -2,6 +2,8 @@
 // The Swastika I/O Foundation licenses this file to you under the GNU General Public License v3.0.
 // See the LICENSE file in the project root for more information.
 
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json.Linq;
 using Swastika.Api.Controllers;
@@ -15,6 +17,8 @@ using System.Threading.Tasks;
 
 namespace Swastka.IO.Cms.Api.Controllers
 {
+    [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme,
+        Roles = "SuperAdmin")]
     [Produces("application/json")]
     [Route("api/file")]
     public class ApiFileController : BaseApiController

@@ -13,8 +13,6 @@ namespace Swastika.Cms.Lib.ViewModels.Account
         #region Properties
 
         #region Models
-        [JsonProperty("id")]
-        public string Id { get; set; }
         [JsonProperty("userId")]
         public string UserId { get; set; }
         [JsonProperty("roleId")]
@@ -24,6 +22,9 @@ namespace Swastika.Cms.Lib.ViewModels.Account
         #endregion
 
         #region Views
+
+        [JsonProperty("role")]
+        public RoleViewModel Role { get; set; }
 
         #endregion
         #endregion
@@ -42,13 +43,10 @@ namespace Swastika.Cms.Lib.ViewModels.Account
         #endregion
 
         #region Overrides
-        public override AspNetUserRoles ParseModel(SiocCmsAccountContext _context = null, IDbContextTransaction _transaction = null)
+
+        public override void ExpandView(SiocCmsAccountContext _context = null, IDbContextTransaction _transaction = null)
         {
-            if (string.IsNullOrEmpty(Id))
-            {
-                Id = Guid.NewGuid().ToString();
-            }
-            return base.ParseModel(_context, _transaction);
+            Role = RoleViewModel.Repository.GetSingleModel(r => r.Id == RoleId, _context, _transaction).Data;
         }
         #endregion
 

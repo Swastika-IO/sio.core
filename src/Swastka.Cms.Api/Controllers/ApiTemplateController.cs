@@ -2,6 +2,8 @@
 // The Swastika I/O Foundation licenses this file to you under the GNU General Public License v3.0.
 // See the LICENSE file in the project root for more information.
 
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Data.OData.Query;
 using Newtonsoft.Json.Linq;
@@ -19,6 +21,8 @@ using static Swastika.Common.Utility.Enums;
 
 namespace Swastka.IO.Cms.Api.Controllers
 {
+    [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme,
+        Roles = "SuperAdmin")]
     [Produces("application/json")]
     [Route("api/{culture}/template")]
     public class ApiTemplateController :

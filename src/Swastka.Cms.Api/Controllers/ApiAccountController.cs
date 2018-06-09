@@ -10,6 +10,7 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using Microsoft.IdentityModel.Tokens;
+using Newtonsoft.Json.Linq;
 using Swastika.Api.Controllers;
 using Swastika.Cms.Lib;
 using Swastika.Cms.Lib.Models.Account;
@@ -29,9 +30,12 @@ using System.Linq;
 using System.Linq.Expressions;
 using System.Security.Claims;
 using System.Threading.Tasks;
+using static Swastika.Common.Utility.Enums;
 
 namespace Swastika.Core.Controllers
 {
+    //[Authorize(Roles = "SuperAdmin,Admin")]
+    [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme, Roles = "SuperAdmin")]
     [Route("api/account")]
     public class ApiAccountController : BaseApiController
     {
@@ -88,8 +92,8 @@ namespace Swastika.Core.Controllers
                 if (result.Succeeded)
                 {
                     var user = await _userManager.FindByNameAsync(model.UserName).ConfigureAwait(false);
-                    var roles = await _userManager.GetRolesAsync(user);
-                    
+                    //var roles = await _userManager.GetRolesAsync(user);
+
                     var token = await GenerateAccessTokenAsync(user);
                     if (token != null)
                     {
@@ -98,7 +102,7 @@ namespace Swastika.Core.Controllers
                         {
                             info.Data = new InfoUserViewModel();
                         }
-                        info.Data.Roles = roles.ToList();
+                        //info.Data.Roles = roles.ToList();
                         token.UserData = info.Data;
 
                         loginResult.IsSucceed = true;
@@ -279,6 +283,49 @@ namespace Swastika.Core.Controllers
             return result;
         }
 
+
+        // GET api/users/id
+        [HttpGet]
+        [Route("details/{viewType}/{id}")]
+        [Route("details/{viewType}")]
+        public async Task<JObject> BEDetails(string viewType, string id = null)
+        {
+            if (!string.IsNullOrEmpty(id))
+            {
+                var beResult = await InfoUserViewModel.Repository.GetSingleModelAsync(
+                    model => model.Id == id).ConfigureAwait(false);
+                beResult.Data.Specificulture = _lang;
+                return JObject.FromObject(beResult);
+            }
+            else
+            {
+                var model = new SiocCmsUser() { Status = (int)SWStatus.Preview };
+
+                RepositoryResponse<InfoUserViewModel> result = new RepositoryResponse<InfoUserViewModel>()
+                {
+                    IsSucceed = true,
+                    Data = await InfoUserViewModel.InitAsync(model)
+                };
+                result.Data.Specificulture = _lang;
+                return JObject.FromObject(result);
+            }
+        }
+
+
+        // POST api/template
+        [HttpPost, HttpOptions]
+        [Route("save")]
+        public async Task<RepositoryResponse<InfoUserViewModel>> Save(
+            [FromBody] InfoUserViewModel model)
+        {
+            if (model != null)
+            {
+                var result = await model.SaveModelAsync(true).ConfigureAwait(false);
+                return result;
+            }
+            return new RepositoryResponse<InfoUserViewModel>();
+        }
+
         // POST api/account/list
         [HttpPost, HttpOptions]
         [Route("list")]
@@ -306,7 +353,8 @@ namespace Swastika.Core.Controllers
                 data.Data.Items.ForEach(a =>
                 {
                     a.DetailsUrl = SwCmsHelper.GetRouterUrl(
-                        "Profile", new { a.Id }, Request, Url);                }
+                        "Profile", new { a.Id }, Request, Url);
+                }
                 );
             }
             return data;
@@ -351,6 +399,7 @@ namespace Swastika.Core.Controllers
             claims.AddRange(new[]
                 {
                     new Claim("Id", user.Id.ToString()),
+                    new Claim("Username", user.UserName),
                     new Claim("RefreshToken", refreshToken)
                 });
             JwtSecurityToken jwtSecurityToken = new JwtSecurityToken(

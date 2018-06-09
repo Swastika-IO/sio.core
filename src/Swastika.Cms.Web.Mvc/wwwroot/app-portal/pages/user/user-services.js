@@ -1,5 +1,5 @@
 ﻿'use strict';
-app.factory('userServices', ['$http', 'commonServices', function ($http, commonServices) {
+app.factory('UserServices', ['$http', 'commonServices', function ($http, commonServices) {
 
     //var serviceBase = 'http://ngauthenticationapi.azurewebsites.net/';
 
@@ -15,6 +15,8 @@ app.factory('userServices', ['$http', 'commonServices', function ($http, commonS
         return commonServices.getApiResult(req);
     };
 
+
+
     var _importUsers = function (strBase64) {
         var url = 'import-users';
         var req = {
@@ -27,7 +29,7 @@ app.factory('userServices', ['$http', 'commonServices', function ($http, commonS
     };
 
     var _getUsers = function (request) {
-        
+
         var req = {
             method: 'POST',
             url: apiUrl + 'list',
@@ -35,6 +37,19 @@ app.factory('userServices', ['$http', 'commonServices', function ($http, commonS
         };
 
         return commonServices.getApiResult(req);
+    };
+
+    var _getUser = async function (id) {
+        var apiUrl = '/api/account/';
+        var url = apiUrl + 'details/info';
+        if (id) {
+            url += '/' + id;
+        }
+        var req = {
+            method: 'GET',
+            url: url
+        };
+        return await commonServices.getApiResult(req)
     };
 
     var _updateRoleStatus = function (userInRole) {
@@ -49,6 +64,16 @@ app.factory('userServices', ['$http', 'commonServices', function ($http, commonS
         return commonServices.getApiResult(req);
     };
 
+    var _saveUser = async function (user) {
+        var apiUrl = '/api/account/';
+        var req = {
+            method: 'POST',
+            url: apiUrl + 'save',
+            data: JSON.stringify(user)
+        };
+        return await commonServices.getApiResult(req)
+    };
+
     var _removeUser = function (user) {
         var req = {
             method: 'POST',
@@ -61,6 +86,8 @@ app.factory('userServices', ['$http', 'commonServices', function ($http, commonS
 
     usersServiceFactory.importUsers = _importUsers;
     usersServiceFactory.getUsers = _getUsers;
+    usersServiceFactory.getUser = _getUser;
+    usersServiceFactory.saveUser = _saveUser;
     usersServiceFactory.removeUser = _removeUser;
     usersServiceFactory.updateRoleStatus = _updateRoleStatus;
     usersServiceFactory.getUserDemographicInfo = _getUserDemographicInfo;

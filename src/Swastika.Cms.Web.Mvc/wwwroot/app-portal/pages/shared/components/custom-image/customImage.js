@@ -35,7 +35,6 @@ modules.component('customImage', {
             var resp = await mediaServices.uploadMedia(ctrl.mediaFile);
             if (resp.isSucceed) {
                 ctrl.src = resp.data.fullPath;
-                ctrl.srcUrl = resp.data.fullPath;
                 $scope.$apply();
             }
             else {
@@ -66,6 +65,7 @@ modules.component('customImage', {
                 return null;
             }
         }
+        
     }],
     bindings: {
         header: '=',

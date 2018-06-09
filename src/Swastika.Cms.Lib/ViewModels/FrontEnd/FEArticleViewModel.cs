@@ -124,7 +124,7 @@ namespace Swastika.Cms.Lib.ViewModels.FrontEnd
         [JsonProperty("thumbnailUrl")]
         public string ThumbnailUrl {
             get {
-                if (Thumbnail != null && Thumbnail.IndexOf("http") == -1)
+                if (Thumbnail != null && Thumbnail.IndexOf("http") == -1 && Thumbnail[0] != '/')
                 {
                     return SwCmsHelper.GetFullPath(new string[] {
                     Domain,  Thumbnail

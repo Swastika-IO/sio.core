@@ -138,19 +138,19 @@
                 ]
             },
             {
-                title: 'Team',
-                shortTitle: 'Team',
+                title: 'Users',
+                shortTitle: 'Users',
                 icon: 'mi mi-Contact',
                 href: '#',
                 subMenus: [
                     {
                         title: 'Create',
-                        href: '/backend/team/create',
+                        href: '/backend/user/create',
                         icon: 'mi mi-Add'
                     },
                     {
                         title: 'List',
-                        href: '/backend/team/list',
+                        href: '/backend/user/list',
                         icon: 'mi mi-List'
                     }
                 ]

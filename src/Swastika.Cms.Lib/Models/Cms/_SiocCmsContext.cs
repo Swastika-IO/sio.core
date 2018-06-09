@@ -446,6 +446,8 @@ namespace Swastika.Cms.Lib.Models.Cms
                 entity.Property(e => e.Status).HasDefaultValueSql("((1))");
 
                 entity.Property(e => e.Username).HasMaxLength(256);
+
+                entity.Property(e => e.Email).HasMaxLength(256);
             });
 
             modelBuilder.Entity<SiocComment>(entity =>

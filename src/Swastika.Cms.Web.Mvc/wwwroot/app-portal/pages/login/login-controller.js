@@ -2,7 +2,7 @@
 app.controller('loginController', ['$rootScope', '$scope', '$location', 'authService', 'ngAuthSettings', function ($rootScope, $scope, $location, authService, ngAuthSettings) {
     if (authService.authentication.isAuth && authService.authentication.isAdmin) {
         authService.authentication.referredUrl = $location.path();
-        $location.path('/admin');
+        $location.path('/backend');
     }
 
     $scope.pageClass = 'page-login';
