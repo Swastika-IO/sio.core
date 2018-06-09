@@ -63,7 +63,7 @@ namespace Swastka.Cms.Api.Controllers
             return await RoleViewModel.Repository.GetModelListAsync();
         }
 
-        //[Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme, Roles = "SuperAdmin")]
+        [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme, Roles = "SuperAdmin")]
         [HttpPost]
         [Route("save")]
         public async Task<RepositoryResponse<IdentityRole>> Save(string name)
@@ -89,8 +89,18 @@ namespace Swastka.Cms.Api.Controllers
         [Route("delete")]
         public async Task<RepositoryResponse<bool>> Delete(string name)
         {
-            var result = await RoleViewModel.Repository.RemoveModelAsync(r => r.Name == name);
-            return result;
+            if (name != "SuperAdmin")
+            {
+
+                var result = await RoleViewModel.Repository.RemoveModelAsync(r => r.Name == name);
+                return result;
+            }
+            else
+            {
+                return new RepositoryResponse<bool>()
+                {
+                };
+            }
         }
 
 

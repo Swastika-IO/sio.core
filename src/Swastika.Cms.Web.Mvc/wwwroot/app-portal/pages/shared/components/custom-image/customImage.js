@@ -33,12 +33,12 @@ modules.component('customImage', {
 
 
             var resp = await mediaServices.uploadMedia(ctrl.mediaFile);
-            if (resp.isSucceed) {
+            if (resp && resp.isSucceed) {
                 ctrl.src = resp.data.fullPath;
                 $scope.$apply();
             }
             else {
-                $rootScope.showErrors(resp.errors);
+                if (resp) { $rootScope.showErrors(resp.errors); }
                 $scope.$apply();
             }
         }

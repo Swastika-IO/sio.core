@@ -4,6 +4,8 @@ using Microsoft.EntityFrameworkCore.Storage;
 using Newtonsoft.Json;
 using Swastika.Cms.Lib.Models.Account;
 using System.ComponentModel.DataAnnotations;
+using Swastika.Domain.Core.ViewModels;
+using System.Threading.Tasks;
 
 namespace Swastika.Cms.Lib.ViewModels.Account
 {
@@ -52,6 +54,12 @@ namespace Swastika.Cms.Lib.ViewModels.Account
             }
             return base.ParseModel(_context, _transaction);
         }
+        public override async Task<RepositoryResponse<bool>> RemoveRelatedModelsAsync(RoleViewModel view, SiocCmsAccountContext _context = null, IDbContextTransaction _transaction = null)
+        {
+            var result = await UserRoleViewModel.Repository.RemoveListModelAsync(ur => ur.RoleId == Id, _context, _transaction);
+            return result;
+        }
+
         #endregion
 
         #region Expands

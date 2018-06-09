@@ -79,51 +79,39 @@ app.factory('commonServices', ['$location', '$http', '$rootScope', 'authService'
                 'Authorization': 'Bearer ' + authService.authentication.token
             };
         }
-        req.headers.RefreshToken = authService.authentication.refresh_token;
-        return $.ajax(req).then(function (resp) {
+        return $http(req).then(function (resp) {
             //var resp = results.data;
-            if (resp.authData !== null && resp.authData !== undefined) {
-                var authData = resp.data.authData;
-                localStorageService.set('authorizationData', { token: authData.access_token, userName: authData.userData.NickName, roleNames: authData.userData.RoleNames, avatar: authData.userData.Avatar, refresh_token: authData.refresh_token, userId: authData.userData.Id });
-                authService.authentication.isAuth = true;
-                authService.authentication.isAdmin = ($.inArray("Admin", authData.userData.RoleNames) >= 0 || $.inArray("SuperAdmin", authData.userData.RoleNames) >= 0);
-                authService.authentication.userName = authData.userData.NickName;
-                authService.authentication.roleNames = authData.userData.RoleNames;
-                authService.authentication.userId = authData.userData.Id;
-                authService.authentication.avatar = authData.userData.Avatar;
-                authService.authentication.token = authData.access_token;
-                authService.authentication.refresh_token = authData.refresh_token;
-            }
             $rootScope.isBusy = false;
-            return resp;
+            return resp.data;
         },
             function (error) {
                 if (error.status === 401) {
                     //Try again with new token from previous Request (optional)                
-
-                    var headers = {
-                        'Content-Type': 'application/json',
-                        'RefreshToken': authService.authentication.refresh_token
-                    };
-                    req.headers = headers;
-                    return $http(req).then(function (results) {
-
-                        return resp.data;
-                    },
-                        function (err) {
-
-                            var t = { isSucceed: false, errors: [err.statusText] };
+                    return authService.refreshToken(authService.authentication.refresh_token).then(function () {
+                        req.headers.Authorization = 'Bearer ' + authService.authentication.token;
+                        return $http(req).then(function (results) {
                             $rootScope.isBusy = false;
-                            if (err.status === 401) {
-                                authService.logOut();
-                                authService.authentication.token = null;
-                                authService.authentication.refresh_token = null;
-                                authService.authentication.referredUrl = $location.$$url;
-                                $location.path('/backend/login');
-                            }
-                            return t;
-                            
+                            return results.data;
+                        }, function (err) {
+                            $rootScope.isBusy = false;
+                            authService.logOut();
+                            authService.authentication.token = null;
+                            authService.authentication.refresh_token = null;
+                            authService.authentication.referredUrl = $location.$$url;
+                            $location.path('/backend/login');
                         });
+                    }, function (err) {
+
+                        var t = { isSucceed: false, errors: [err.statusText] };
+                        $rootScope.isBusy = false;
+                        authService.logOut();
+                        authService.authentication.token = null;
+                        authService.authentication.refresh_token = null;
+                        authService.authentication.referredUrl = $location.$$url;
+                        $location.path('/backend/login');
+                        return t;
+                    }
+                    );
                 }
                 else {
                     var t = { isSucceed: false, errors: [error.statusText] };

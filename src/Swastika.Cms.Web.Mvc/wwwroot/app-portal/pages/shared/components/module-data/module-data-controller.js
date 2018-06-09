@@ -37,13 +37,13 @@ app.controller('ModuleDataController', ['$scope', '$rootScope', '$routeParams', 
         $scope.getModuleData = async function (id) {
             $rootScope.isBusy = true;
             var resp = await moduleDataServices.getModuleData(id, 'be');
-            if (resp.isSucceed) {
+            if (resp && resp.isSucceed) {
                 $scope.activedModuleData = resp.data;
                 $rootScope.initEditor();
                 $scope.$apply();
             }
             else {
-                $rootScope.showErrors(resp.errors);
+                if (resp) { $rootScope.showErrors(resp.errors); }
                 $scope.$apply();
             }
         };
@@ -57,12 +57,12 @@ app.controller('ModuleDataController', ['$scope', '$rootScope', '$routeParams', 
                 var resp = await moduleDataServices.initModuleForm($scope.name);
             }
 
-            if (resp.isSucceed) {
+            if (resp && resp.isSucceed) {
                 $scope.activedModuleData = resp.data;
                 $scope.$apply();
             }
             else {
-                $rootScope.showErrors(resp.errors);
+                if (resp) { $rootScope.showErrors(resp.errors); }
                 $scope.$apply();
             }
         };
@@ -102,14 +102,14 @@ app.controller('ModuleDataController', ['$scope', '$rootScope', '$routeParams', 
                 $scope.request.toDate = $scope.request.toDate.toISOString();
             }
             var resp = await moduleDataServices.getModuleDatas($scope.request);
-            if (resp.isSucceed) {
+            if (resp && resp.isSucceed) {
 
                 $scope.data = resp.data;
                 console.log($scope.data);
                 $scope.$apply();
             }
             else {
-                $rootScope.showErrors(resp.errors);
+                if (resp) { $rootScope.showErrors(resp.errors); }
                 $scope.$apply();
             }
         };
@@ -117,18 +117,18 @@ app.controller('ModuleDataController', ['$scope', '$rootScope', '$routeParams', 
         $scope.removeModuleData = async function (id) {
             if (confirm("Are you sure!")) {
                 var resp = await moduleDataServices.removeModuleData(id);
-                if (resp.isSucceed) {
+                if (resp && resp.isSucceed) {
                     $scope.loadModuleDatas();
                 }
                 else {
-                    $rootScope.showErrors(resp.errors);
+                    if (resp) { $rootScope.showErrors(resp.errors); }
                 }
             }
         };
 
         $scope.saveModuleData = async function () {
             var resp = await moduleDataServices.saveModuleData($scope.activedModuleData);
-            if (resp.isSucceed) {
+            if (resp && resp.isSucceed) {
                 $scope.activedModuleData = resp.data;
                 $rootScope.showMessage('Thành công', 'success');
                 $rootScope.isBusy = false;
@@ -136,7 +136,7 @@ app.controller('ModuleDataController', ['$scope', '$rootScope', '$routeParams', 
                 //$location.path('/backend/moduleData/details/' + resp.data.id);
             }
             else {
-                $rootScope.showErrors(resp.errors);
+                if (resp) { $rootScope.showErrors(resp.errors); }
                 $scope.$apply();
             }
         };

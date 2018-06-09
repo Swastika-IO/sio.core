@@ -35,13 +35,13 @@ app.controller('PageController', ['$scope', '$rootScope', '$routeParams', '$time
         $scope.getPage = async function (id) {
             $rootScope.isBusy = true;
             var resp = await pageServices.getPage(id, 'be');
-            if (resp.isSucceed) {
+            if (resp && resp.isSucceed) {
                 $scope.activedPage = resp.data;
                 $rootScope.initEditor();
                 $scope.$apply();
             }
             else {
-                $rootScope.showErrors(resp.errors);
+                if (resp) { $rootScope.showErrors(resp.errors); }
                 $scope.$apply();
             }
         };
@@ -88,7 +88,7 @@ app.controller('PageController', ['$scope', '$rootScope', '$routeParams', '$time
                 $scope.request.toDate = $scope.request.toDate.toISOString();
             }
             var resp = await pageServices.getPages($scope.request);
-            if (resp.isSucceed) {
+            if (resp && resp.isSucceed) {
 
                 ($scope.data = resp.data);
                 //$("html, body").animate({ "scrollTop": "0px" }, 500);
@@ -116,7 +116,7 @@ app.controller('PageController', ['$scope', '$rootScope', '$routeParams', '$time
                 $scope.$apply();
             }
             else {
-                $rootScope.showErrors(resp.errors);
+                if (resp) { $rootScope.showErrors(resp.errors); }
                 $scope.$apply();
             }
         };
@@ -124,11 +124,11 @@ app.controller('PageController', ['$scope', '$rootScope', '$routeParams', '$time
         $scope.removePage = async function (id) {
             if (confirm("Are you sure!")) {
                 var resp = await pageServices.removePage(id);
-                if (resp.isSucceed) {
+                if (resp && resp.isSucceed) {
                     $scope.loadPages();
                 }
                 else {
-                    $rootScope.showErrors(resp.errors);
+                    if (resp) { $rootScope.showErrors(resp.errors); }
                 }
             }
         };
@@ -136,7 +136,7 @@ app.controller('PageController', ['$scope', '$rootScope', '$routeParams', '$time
         $scope.savePage = async function (page) {
             page.content = $('.editor-content').val();
             var resp = await pageServices.savePage(page);
-            if (resp.isSucceed) {
+            if (resp && resp.isSucceed) {
                 $scope.activedPage = resp.data;
                 $rootScope.showMessage('Thành công', 'success');
                 $rootScope.isBusy = false;
@@ -144,7 +144,7 @@ app.controller('PageController', ['$scope', '$rootScope', '$routeParams', '$time
                 //$location.path('/backend/page/details/' + resp.data.id);
             }
             else {
-                $rootScope.showErrors(resp.errors);
+                if (resp) { $rootScope.showErrors(resp.errors); }
                 $scope.$apply();
             }
         };

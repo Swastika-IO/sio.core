@@ -20,9 +20,11 @@ namespace Swastika.Cms.Lib.ViewModels
             : base(model, _context, _transaction)
         {
         }
-
+        [JsonProperty("moduleId")]
         public int ModuleId { get; set; }
+        [JsonProperty("categoryId")]
         public int CategoryId { get; set; }
+        [JsonProperty("isActived")]
         public bool IsActived { get; set; }
 
         [JsonProperty("image")]

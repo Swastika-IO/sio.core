@@ -56,7 +56,7 @@ app.controller('ArticleController', ['$scope', '$rootScope', '$routeParams', '$t
                 $scope.request.toDate = $scope.request.toDate.toISOString();
             }
             var resp = await articleServices.getArticles($scope.request);
-            if (resp.isSucceed) {
+            if (resp && resp.isSucceed) {
 
                 ($scope.data = resp.data);
                 //$("html, body").animate({ "scrollTop": "0px" }, 500);
@@ -84,7 +84,7 @@ app.controller('ArticleController', ['$scope', '$rootScope', '$routeParams', '$t
                 $scope.$apply();
             }
             else {
-                $rootScope.showErrors(resp.errors);
+                if (resp) { $rootScope.showErrors(resp.errors); }
                 $scope.$apply();
             }
         };
@@ -92,11 +92,11 @@ app.controller('ArticleController', ['$scope', '$rootScope', '$routeParams', '$t
         $scope.removeArticle = async function (id) {
             if (confirm("Are you sure!")) {
                 var resp = await articleServices.removeArticle(id);
-                if (resp.isSucceed) {
+                if (resp && resp.isSucceed) {
                     $scope.loadArticles();
                 }
                 else {
-                    $rootScope.showErrors(resp.errors);
+                    if (resp) { $rootScope.showErrors(resp.errors); }
                 }
             }
         };
@@ -104,7 +104,7 @@ app.controller('ArticleController', ['$scope', '$rootScope', '$routeParams', '$t
         $scope.saveArticle = async function (article) {
             article.content = $('.editor-content').val();
             var resp = await articleServices.saveArticle(article);
-            if (resp.isSucceed) {
+            if (resp && resp.isSucceed) {
                 $scope.activedArticle = resp.data;
                 $rootScope.showMessage('Thành công', 'success');
                 $rootScope.isBusy = false;
@@ -112,7 +112,7 @@ app.controller('ArticleController', ['$scope', '$rootScope', '$routeParams', '$t
                 //$location.path('/backend/article/details/' + resp.data.id);
             }
             else {
-                $rootScope.showErrors(resp.errors);
+                if (resp) { $rootScope.showErrors(resp.errors); }
                 $scope.$apply();
             }
         };

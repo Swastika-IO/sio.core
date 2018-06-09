@@ -17,6 +17,7 @@ using Swastika.Cms.Lib.Models.Account;
 using Swastika.Cms.Lib.Models.Cms;
 using Swastika.Cms.Lib.ViewModels;
 using Swastika.Cms.Lib.ViewModels.Account;
+using Swastika.Cms.Lib.ViewModels.Backend;
 using Swastika.Cms.Lib.ViewModels.Info;
 using Swastika.Domain.Core.ViewModels;
 using Swastika.Identity.Models;
@@ -92,9 +93,8 @@ namespace Swastika.Core.Controllers
                 if (result.Succeeded)
                 {
                     var user = await _userManager.FindByNameAsync(model.UserName).ConfigureAwait(false);
-                    //var roles = await _userManager.GetRolesAsync(user);
 
-                    var token = await GenerateAccessTokenAsync(user);
+                    var token = await GenerateAccessTokenAsync(user, model.RememberMe);
                     if (token != null)
                     {
                         var info = await InfoUserViewModel.Repository.GetSingleModelAsync(u => u.Username == user.UserName);
@@ -102,7 +102,6 @@ namespace Swastika.Core.Controllers
                         {
                             info.Data = new InfoUserViewModel();
                         }
-                        //info.Data.Roles = roles.ToList();
                         token.UserData = info.Data;
 
                         loginResult.IsSucceed = true;
@@ -127,7 +126,7 @@ namespace Swastika.Core.Controllers
             }
         }
 
-        [Route("refreshToken/{refreshTokenId}")]
+        [Route("refresh-token/{refreshTokenId}")]
         [HttpGet]
         [AllowAnonymous]
         public async Task<RepositoryResponse<AccessTokenViewModel>> RefreshToken(string refreshTokenId)
@@ -140,7 +139,7 @@ namespace Swastika.Core.Controllers
                 if (oldToken.ExpiresUtc > DateTime.UtcNow)
                 {
                     var user = await _userManager.FindByEmailAsync(oldToken.Email);
-                    var token = await GenerateAccessTokenAsync(user);
+                    var token = await GenerateAccessTokenAsync(user, true);
                     if (token != null)
                     {
                         await oldToken.RemoveModelAsync();
@@ -197,7 +196,7 @@ namespace Swastika.Core.Controllers
                     };
                     await cmsUser.SaveModelAsync();
 
-                    var token = await GenerateAccessTokenAsync(user);
+                    var token = await GenerateAccessTokenAsync(user, true);
                     if (token != null)
                     {
                         result.IsSucceed = true;
@@ -230,10 +229,11 @@ namespace Swastika.Core.Controllers
             return result;
         }
 
-        //[Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme, Roles = "SuperAdmin")]
+        [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme,
+        Roles = "SuperAdmin")]
         [Route("user-in-role")]
         [HttpPost]
-        public async Task<RepositoryResponse<bool>> ManageUserInRole(UserRoleModel model)
+        public async Task<RepositoryResponse<bool>> ManageUserInRole([FromBody]UserRoleModel model)
         {
             var role = await _roleManager.FindByIdAsync(model.RoleId);
             var result = new RepositoryResponse<bool>();
@@ -283,31 +283,53 @@ namespace Swastika.Core.Controllers
             return result;
         }
 
-
-        // GET api/users/id
         [HttpGet]
         [Route("details/{viewType}/{id}")]
         [Route("details/{viewType}")]
-        public async Task<JObject> BEDetails(string viewType, string id = null)
+        public async Task<JObject> Details(string viewType, string id = null)
         {
-            if (!string.IsNullOrEmpty(id))
+            switch (viewType)
             {
-                var beResult = await InfoUserViewModel.Repository.GetSingleModelAsync(
-                    model => model.Id == id).ConfigureAwait(false);
-                beResult.Data.Specificulture = _lang;
-                return JObject.FromObject(beResult);
-            }
-            else
-            {
-                var model = new SiocCmsUser() { Status = (int)SWStatus.Preview };
+                case "be":
+                    if (!string.IsNullOrEmpty(id))
+                    {
+                        var beResult = await BEUserViewModel.Repository.GetSingleModelAsync(
+                            model => model.Id == id).ConfigureAwait(false);
+                        beResult.Data.Specificulture = _lang;
+                        return JObject.FromObject(beResult);
+                    }
+                    else
+                    {
+                        var model = new SiocCmsUser() { Status = (int)SWStatus.Preview };
 
-                RepositoryResponse<InfoUserViewModel> result = new RepositoryResponse<InfoUserViewModel>()
-                {
-                    IsSucceed = true,
-                    Data = await InfoUserViewModel.InitAsync(model)
-                };
-                result.Data.Specificulture = _lang;
-                return JObject.FromObject(result);
+                        RepositoryResponse<BEUserViewModel> result = new RepositoryResponse<BEUserViewModel>()
+                        {
+                            IsSucceed = true,
+                            Data = await BEUserViewModel.InitAsync(model)
+                        };
+                        result.Data.Specificulture = _lang;
+                        return JObject.FromObject(result);
+                    }
+                default:
+                    if (!string.IsNullOrEmpty(id))
+                    {
+                        var beResult = await InfoUserViewModel.Repository.GetSingleModelAsync(
+                            model => model.Id == id).ConfigureAwait(false);
+                        beResult.Data.Specificulture = _lang;
+                        return JObject.FromObject(beResult);
+                    }
+                    else
+                    {
+                        var model = new SiocCmsUser() { Status = (int)SWStatus.Preview };
+
+                        RepositoryResponse<InfoUserViewModel> result = new RepositoryResponse<InfoUserViewModel>()
+                        {
+                            IsSucceed = true,
+                            Data = await InfoUserViewModel.InitAsync(model)
+                        };
+                        result.Data.Specificulture = _lang;
+                        return JObject.FromObject(result);
+                    }
             }
         }
 
@@ -360,30 +382,36 @@ namespace Swastika.Core.Controllers
             return data;
         }
 
-        private async Task<AccessTokenViewModel> GenerateAccessTokenAsync(ApplicationUser user)
+        private async Task<AccessTokenViewModel> GenerateAccessTokenAsync(ApplicationUser user, bool isRemember)
         {
-            string refreshToken = Guid.NewGuid().ToString();
             var dtIssued = DateTime.UtcNow;
             var dtExpired = dtIssued.AddMinutes(SWCmsConstants.AuthConfiguration.AuthCookieExpiration);
             var dtRefreshTokenExpired = dtIssued.AddDays(SWCmsConstants.AuthConfiguration.AuthCookieExpiration);
+            string refreshTokenId = string.Empty;
+            string refreshToken = string.Empty;
+            if (isRemember)
+            {
+                refreshToken = Guid.NewGuid().ToString();
+                RefreshTokenViewModel vmRefreshToken = new RefreshTokenViewModel(
+                            new RefreshTokens()
+                            {
+                                Id = refreshToken,
+                                Email = user.Email,
+                                IssuedUtc = dtIssued,
+                                ClientId = SWCmsConstants.AuthConfiguration.Audience,
+                                Username = user.UserName,
+                                //Subject = SWCmsConstants.AuthConfiguration.Audience,
+                                ExpiresUtc = dtRefreshTokenExpired
+                            });
 
-            RefreshTokenViewModel vmRefreshToken = new RefreshTokenViewModel(
-                        new RefreshTokens()
-                        {
-                            Id = refreshToken,
-                            Email = user.Email,
-                            IssuedUtc = dtIssued,
-                            ClientId = SWCmsConstants.AuthConfiguration.Audience,
-                            Username = user.UserName,
-                            //Subject = SWCmsConstants.AuthConfiguration.Audience,
-                            ExpiresUtc = dtRefreshTokenExpired
-                        });
+                var saveRefreshTokenResult = await vmRefreshToken.SaveModelAsync();
+                refreshTokenId = saveRefreshTokenResult.Data?.Id;
+            }
 
-            var saveRefreshTokenResult = await vmRefreshToken.SaveModelAsync();
             AccessTokenViewModel token = new AccessTokenViewModel()
             {
                 Access_token = await GenerateTokenAsync(user, dtExpired, refreshToken),
-                Refresh_token = saveRefreshTokenResult.Data.Id,
+                Refresh_token = refreshTokenId,
                 Token_type = SWCmsConstants.AuthConfiguration.TokenType,
                 Expires_in = SWCmsConstants.AuthConfiguration.AuthCookieExpiration,
                 //UserData = user,

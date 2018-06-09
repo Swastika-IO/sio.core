@@ -49,13 +49,13 @@ app.controller('ModuleController', ['$scope', '$rootScope', '$routeParams', '$ti
         $scope.getModule = async function (id) {
             $rootScope.isBusy = true;
             var resp = await moduleServices.getModule(id, 'be');
-            if (resp.isSucceed) {
+            if (resp && resp.isSucceed) {
                 $scope.activedModule = resp.data;
                 $rootScope.initEditor();
                 $scope.$apply();
             }
             else {
-                $rootScope.showErrors(resp.errors);
+                if (resp) { $rootScope.showErrors(resp.errors); }
                 $scope.$apply();
             }
         };
@@ -120,7 +120,7 @@ app.controller('ModuleController', ['$scope', '$rootScope', '$routeParams', '$ti
                 $scope.request.toDate = $scope.request.toDate.toISOString();
             }
             var resp = await moduleServices.getModules($scope.request);
-            if (resp.isSucceed) {
+            if (resp && resp.isSucceed) {
 
                 ($scope.data = resp.data);
                 //$("html, body").animate({ "scrollTop": "0px" }, 500);
@@ -148,7 +148,7 @@ app.controller('ModuleController', ['$scope', '$rootScope', '$routeParams', '$ti
                 $scope.$apply();
             }
             else {
-                $rootScope.showErrors(resp.errors);
+                if (resp) { $rootScope.showErrors(resp.errors); }
                 $scope.$apply();
             }
         };
@@ -156,11 +156,11 @@ app.controller('ModuleController', ['$scope', '$rootScope', '$routeParams', '$ti
         $scope.removeModule = async function (id) {
             if (confirm("Are you sure!")) {
                 var resp = await moduleServices.removeModule(id);
-                if (resp.isSucceed) {
+                if (resp && resp.isSucceed) {
                     $scope.loadModules();
                 }
                 else {
-                    $rootScope.showErrors(resp.errors);
+                    if (resp) { $rootScope.showErrors(resp.errors); }
                 }
             }
         };
@@ -168,7 +168,7 @@ app.controller('ModuleController', ['$scope', '$rootScope', '$routeParams', '$ti
         $scope.saveModule = async function (module) {
             module.content = $('.editor-content').val();
             var resp = await moduleServices.saveModule(module);
-            if (resp.isSucceed) {
+            if (resp && resp.isSucceed) {
                 $scope.activedModule = resp.data;
                 $rootScope.showMessage('Thành công', 'success');
                 $rootScope.isBusy = false;
@@ -176,7 +176,7 @@ app.controller('ModuleController', ['$scope', '$rootScope', '$routeParams', '$ti
                 //$location.path('/backend/module/details/' + resp.data.id);
             }
             else {
-                $rootScope.showErrors(resp.errors);
+                if (resp) { $rootScope.showErrors(resp.errors); }
                 $scope.$apply();
             }
         };

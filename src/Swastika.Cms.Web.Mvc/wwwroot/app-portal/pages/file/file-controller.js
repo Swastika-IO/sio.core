@@ -52,7 +52,7 @@ app.controller('FileController', ['$scope', '$rootScope', '$routeParams', '$time
             }
 
             var resp = await fileServices.getFiles($scope.request);
-            if (resp.isSucceed) {
+            if (resp && resp.isSucceed) {
 
                 ($scope.data = resp.data);
                 $.each($scope.data.items, function (i, file) {
@@ -79,7 +79,7 @@ app.controller('FileController', ['$scope', '$rootScope', '$routeParams', '$time
                 $scope.$apply();
             }
             else {
-                $rootScope.showErrors(resp.errors);
+                if (resp) { $rootScope.showErrors(resp.errors); }
                 $scope.$apply();
             }
         };
@@ -87,11 +87,11 @@ app.controller('FileController', ['$scope', '$rootScope', '$routeParams', '$time
         $scope.removeFile = async function (id) {
             if (confirm("Are you sure!")) {
                 var resp = await fileServices.removeFile(id);
-                if (resp.isSucceed) {
+                if (resp && resp.isSucceed) {
                     $scope.loadFiles();
                 }
                 else {
-                    $rootScope.showErrors(resp.errors);
+                    if (resp) { $rootScope.showErrors(resp.errors); }
                 }
             }
         };
@@ -99,14 +99,14 @@ app.controller('FileController', ['$scope', '$rootScope', '$routeParams', '$time
         $scope.saveFile = async function (file) {
             file.content = $('.code-content').val();
             var resp = await fileServices.saveFile(file);
-            if (resp.isSucceed) {
+            if (resp && resp.isSucceed) {
                 $scope.activedFile = resp.data;
                 $rootScope.showMessage('Thành công', 'success');
                 $rootScope.isBusy = false;
                 $scope.$apply();
             }
             else {
-                $rootScope.showErrors(resp.errors);
+                if (resp) { $rootScope.showErrors(resp.errors); }
                 $scope.$apply();
             }
         };

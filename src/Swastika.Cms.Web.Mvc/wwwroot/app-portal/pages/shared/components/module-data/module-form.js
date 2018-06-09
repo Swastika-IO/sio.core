@@ -45,13 +45,13 @@ modules.component('moduleForm', {
                 else {
                     resp = await moduleDataServices.getModuleData(ctrl.moduleId, ctrl.d, 'be');
                 }
-                if (resp.isSucceed) {
+                if (resp && resp.isSucceed) {
                     ctrl.data = resp.data;
                     $scope.$apply();
                     ctrl.initEditor();
                 }
                 else {
-                    $rootScope.showErrors(resp.errors);
+                    if (resp) { $rootScope.showErrors(resp.errors); }
                     $scope.$apply();
                 }
 
@@ -84,7 +84,7 @@ modules.component('moduleForm', {
                     }
                 });
                 var resp = await moduleDataServices.saveModuleData(ctrl.data);
-                if (resp.isSucceed) {
+                if (resp && resp.isSucceed) {
                     ctrl.data = resp.data;
                     $rootScope.showMessage('Thành công', 'success');
                     $rootScope.isBusy = false;
@@ -92,7 +92,7 @@ modules.component('moduleForm', {
                     //$location.path('/backend/moduleData/details/' + resp.data.id);
                 }
                 else {
-                    $rootScope.showErrors(resp.errors);
+                    if (resp) { $rootScope.showErrors(resp.errors); }
                     $scope.$apply();
                 }
             };

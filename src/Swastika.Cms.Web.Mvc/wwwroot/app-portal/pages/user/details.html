@@ -23,7 +23,9 @@
                            class="form-control tags"
                            ng-model="activedUser.lastName" />
                 </div>
-
+                <div class="tab-pane" ng-if="activedUser.userRoles.length>0">
+                    <navs data="activedUser.userRoles" callback="updateRoleStatus(nav)"></navs>
+                </div>
                 <custom-image header="''" type="'Users'"
                               folder="'Avatars'"
                               src-url="activedUser.avatarUrl"

@@ -37,13 +37,13 @@ app.controller('MediaController', ['$scope', '$rootScope', '$routeParams', '$tim
         $scope.getMedia = async function (id) {
             $rootScope.isBusy = true;
             var resp = await mediaServices.getMedia(id, 'be');
-            if (resp.isSucceed) {
+            if (resp && resp.isSucceed) {
                 $scope.activedMedia = resp.data;
                 $rootScope.initEditor();
                 $scope.$apply();
             }
             else {
-                $rootScope.showErrors(resp.errors);
+                if (resp) { $rootScope.showErrors(resp.errors); }
                 $scope.$apply();
             }
         };
@@ -65,13 +65,13 @@ app.controller('MediaController', ['$scope', '$rootScope', '$routeParams', '$tim
 
         $scope.uploadMedia = async function () {
             var resp = await mediaServices.uploadMedia($scope.mediaFile);
-            if (resp.isSucceed) {
+            if (resp && resp.isSucceed) {
                 $scope.activedMedia = resp.data;
                 $scope.loadMedias();
                 $scope.$apply();
             }
             else {
-                $rootScope.showErrors(resp.errors);
+                if (resp) { $rootScope.showErrors(resp.errors); }
                 $scope.$apply();
             }
         };
@@ -83,7 +83,7 @@ app.controller('MediaController', ['$scope', '$rootScope', '$routeParams', '$tim
             }
             
             var resp = await mediaServices.getMedias($scope.request);
-            if (resp.isSucceed) {
+            if (resp && resp.isSucceed) {
 
                 ($scope.data = resp.data);
                 $.each($scope.data.items, function (i, media) {
@@ -110,7 +110,7 @@ app.controller('MediaController', ['$scope', '$rootScope', '$routeParams', '$tim
                 $scope.$apply();
             }
             else {
-                $rootScope.showErrors(resp.errors);
+                if (resp) { $rootScope.showErrors(resp.errors); }
                 $scope.$apply();
             }
         };
@@ -118,11 +118,11 @@ app.controller('MediaController', ['$scope', '$rootScope', '$routeParams', '$tim
         $scope.removeMedia = async function (id) {
             if (confirm("Are you sure!")) {
                 var resp = await mediaServices.removeMedia(id);
-                if (resp.isSucceed) {
+                if (resp && resp.isSucceed) {
                     $scope.loadMedias();
                 }
                 else {
-                    $rootScope.showErrors(resp.errors);
+                    if (resp) { $rootScope.showErrors(resp.errors); }
                 }
             }
         };
@@ -130,14 +130,14 @@ app.controller('MediaController', ['$scope', '$rootScope', '$routeParams', '$tim
         $scope.saveMedia = async function (media) {
             media.content = $('.editor-content').val();
             var resp = await mediaServices.saveMedia(media);
-            if (resp.isSucceed) {
+            if (resp && resp.isSucceed) {
                 $scope.activedMedia = resp.data;
                 $rootScope.showMessage('Thành công', 'success');
                 $rootScope.isBusy = false;
                 $scope.$apply();
             }
             else {
-                $rootScope.showErrors(resp.errors);
+                if (resp) { $rootScope.showErrors(resp.errors); }
                 $scope.$apply();
             }
         };

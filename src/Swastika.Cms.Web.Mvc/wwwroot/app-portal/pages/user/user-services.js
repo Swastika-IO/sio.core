@@ -39,9 +39,9 @@ app.factory('UserServices', ['$http', 'commonServices', function ($http, commonS
         return commonServices.getApiResult(req);
     };
 
-    var _getUser = async function (id) {
+    var _getUser = async function (id, viewType) {
         var apiUrl = '/api/account/';
-        var url = apiUrl + 'details/info';
+        var url = apiUrl + 'details/' + viewType;
         if (id) {
             url += '/' + id;
         }

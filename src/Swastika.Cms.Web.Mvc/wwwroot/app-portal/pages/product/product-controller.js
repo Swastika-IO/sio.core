@@ -56,7 +56,7 @@ app.controller('ProductController', ['$scope', '$rootScope', '$routeParams', '$t
                 $scope.request.toDate = $scope.request.toDate.toISOString();
             }
             var resp = await productServices.getProducts($scope.request);
-            if (resp.isSucceed) {
+            if (resp && resp.isSucceed) {
 
                 ($scope.data = resp.data);
                 //$("html, body").animate({ "scrollTop": "0px" }, 500);
@@ -85,7 +85,7 @@ app.controller('ProductController', ['$scope', '$rootScope', '$routeParams', '$t
                 $scope.$apply();
             }
             else {
-                $rootScope.showErrors(resp.errors);
+                if (resp) { $rootScope.showErrors(resp.errors); }
                 $rootScope.isBusy = false;
                 $scope.$apply();
             }
@@ -94,11 +94,11 @@ app.controller('ProductController', ['$scope', '$rootScope', '$routeParams', '$t
         $scope.removeProduct = async function (id) {
             if (confirm("Are you sure!")) {
                 var resp = await productServices.removeProduct(id);
-                if (resp.isSucceed) {
+                if (resp && resp.isSucceed) {
                     $scope.loadProducts();
                 }
                 else {
-                    $rootScope.showErrors(resp.errors);
+                    if (resp) { $rootScope.showErrors(resp.errors); }
                 }
             }
         };
@@ -107,7 +107,7 @@ app.controller('ProductController', ['$scope', '$rootScope', '$routeParams', '$t
             product.content = $('.editor-content.content').val();
             product.excerpt = $('.editor-content.excerpt').val();
             var resp = await productServices.saveProduct(product);
-            if (resp.isSucceed) {
+            if (resp && resp.isSucceed) {
                 $scope.activedProduct = resp.data;
                 $rootScope.showMessage('Thành công', 'success');
                 $rootScope.isBusy = false;
@@ -115,7 +115,7 @@ app.controller('ProductController', ['$scope', '$rootScope', '$routeParams', '$t
                 //$location.path('/backend/product/details/' + resp.data.id);
             }
             else {
-                $rootScope.showErrors(resp.errors);
+                if (resp) { $rootScope.showErrors(resp.errors); }
                 $rootScope.isBusy = false;
                 $scope.$apply();
             }

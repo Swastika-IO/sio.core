@@ -24,7 +24,6 @@ namespace Swastika.Cms.Lib.ViewModels.Navigation
         [JsonProperty("moduleId")]
         public int ModuleId { get; set; }
 
-        //public string Specificulture { get; set; }
         [JsonProperty("isActived")]
         public bool IsActived { get; set; }
         [JsonProperty("description")]

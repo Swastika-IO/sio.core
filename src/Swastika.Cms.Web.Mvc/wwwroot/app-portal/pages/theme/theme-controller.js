@@ -35,13 +35,13 @@ app.controller('ThemeController', ['$scope', '$rootScope', '$routeParams', '$tim
         $scope.getTheme = async function (id) {
             $rootScope.isBusy = true;
             var resp = await themeServices.getTheme(id, 'be');
-            if (resp.isSucceed) {
+            if (resp && resp.isSucceed) {
                 $scope.activedTheme = resp.data;
                 $rootScope.initEditor();
                 $scope.$apply();
             }
             else {
-                $rootScope.showErrors(resp.errors);
+                if (resp) { $rootScope.showErrors(resp.errors); }
                 $scope.$apply();
             }
         };
@@ -71,7 +71,7 @@ app.controller('ThemeController', ['$scope', '$rootScope', '$routeParams', '$tim
                 $scope.request.toDate = $scope.request.toDate.toISOString();
             }
             var resp = await themeServices.getThemes($scope.request);
-            if (resp.isSucceed) {
+            if (resp && resp.isSucceed) {
 
                 ($scope.data = resp.data);
                 //$("html, body").animate({ "scrollTop": "0px" }, 500);
@@ -99,7 +99,7 @@ app.controller('ThemeController', ['$scope', '$rootScope', '$routeParams', '$tim
                 $scope.$apply();
             }
             else {
-                $rootScope.showErrors(resp.errors);
+                if (resp) { $rootScope.showErrors(resp.errors); }
                 $scope.$apply();
             }
         };
@@ -107,7 +107,7 @@ app.controller('ThemeController', ['$scope', '$rootScope', '$routeParams', '$tim
         $scope.saveTheme = async function (theme) {
             theme.content = $('.editor-content').val();
             var resp = await themeServices.saveTheme(theme);
-            if (resp.isSucceed) {
+            if (resp && resp.isSucceed) {
                 $scope.activedTheme = resp.data;
                 $rootScope.showMessage('Thành công', 'success');
                 $rootScope.isBusy = false;
@@ -116,7 +116,7 @@ app.controller('ThemeController', ['$scope', '$rootScope', '$routeParams', '$tim
                 //$location.path('/backend/theme/details/' + resp.data.id);
             }
             else {
-                $rootScope.showErrors(resp.errors);
+                if (resp) { $rootScope.showErrors(resp.errors); }
                 $scope.$apply();
             }
         };

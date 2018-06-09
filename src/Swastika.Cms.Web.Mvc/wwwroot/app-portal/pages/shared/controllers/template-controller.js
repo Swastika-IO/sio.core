@@ -88,13 +88,13 @@ app.controller('TemplateController', ['$scope', '$rootScope', '$routeParams', '$
                 $scope.request.toDate = $scope.request.toDate.toISOString();
             }
             var resp = await templateServices.getTemplates($scope.request, $scope.folderType);
-            if (resp.isSucceed) {
+            if (resp && resp.isSucceed) {
                 $scope.data = resp.data;
                 $rootScope.isBusy = false;
                 $scope.$apply();
             }
             else {
-                $rootScope.showErrors(resp.errors);
+                if (resp) { $rootScope.showErrors(resp.errors); }
                 $rootScope.isBusy = false;
                 $scope.$apply();
             }
@@ -103,11 +103,11 @@ app.controller('TemplateController', ['$scope', '$rootScope', '$routeParams', '$
         $scope.removeTemplate = async function (id) {
             if (confirm("Are you sure!")) {
                 var resp = await templateServices.removeTemplate(id);
-                if (resp.isSucceed) {
+                if (resp && resp.isSucceed) {
                     $scope.loadTemplates();
                 }
                 else {
-                    $rootScope.showErrors(resp.errors);
+                    if (resp) { $rootScope.showErrors(resp.errors); }
                 }
             }
         };
@@ -117,7 +117,7 @@ app.controller('TemplateController', ['$scope', '$rootScope', '$routeParams', '$
             $scope.activedTemplate.scripts = $('#content-scripts').val();
             $scope.activedTemplate.styles = $('#content-styles').val();
             var resp = await templateServices.saveTemplate($scope.activedTemplate);
-            if (resp.isSucceed) {
+            if (resp && resp.isSucceed) {
                 $scope.activedTemplate = resp.data;
                 $rootScope.showMessage('Thành công', 'success');
                 $rootScope.isBusy = false;
@@ -125,7 +125,7 @@ app.controller('TemplateController', ['$scope', '$rootScope', '$routeParams', '$
                 //$location.path('/backend/template/details/' + resp.data.id);
             }
             else {
-                $rootScope.showErrors(resp.errors);
+                if (resp) { $rootScope.showErrors(resp.errors); }
                 $scope.$apply();
             }
         };

@@ -55,7 +55,7 @@ app.controller('UserController', ['$scope', '$rootScope', '$routeParams', '$time
             }
 
             var resp = await userServices.getUsers($scope.request);
-            if (resp.isSucceed) {
+            if (resp && resp.isSucceed) {
                 $scope.data = resp.data;
                 $.each($scope.data.items, function (i, user) {
 
@@ -81,7 +81,7 @@ app.controller('UserController', ['$scope', '$rootScope', '$routeParams', '$time
                 $scope.$apply();
             }
             else {
-                $rootScope.showErrors(resp.errors);
+                if (resp) { $rootScope.showErrors(resp.errors); }
                 $scope.$apply();
             }
         };
@@ -89,27 +89,45 @@ app.controller('UserController', ['$scope', '$rootScope', '$routeParams', '$time
         $scope.removeUser = async function (id) {
             if (confirm("Are you sure!")) {
                 var resp = await userServices.removeUser(id);
-                if (resp.isSucceed) {
+                if (resp && resp.isSucceed) {
                     $scope.loadUsers();
                 }
                 else {
-                    $rootScope.showErrors(resp.errors);
+                    if (resp) { $rootScope.showErrors(resp.errors); }
                 }
             }
         };
 
         $scope.saveUser = async function (user) {
             var resp = await userServices.saveUser(user);
-            if (resp.isSucceed) {
+            if (resp && resp.isSucceed) {
                 $scope.activedUser = resp.data;
                 $rootScope.showMessage('Thành công', 'success');
                 $rootScope.isBusy = false;
                 $scope.$apply();
             }
             else {
-                $rootScope.showErrors(resp.errors);
+                if (resp) { $rootScope.showErrors(resp.errors); }
                 $scope.$apply();
             }
         };
 
+        $scope.updateRoleStatus = async function (nav) {
+            var userRole = {
+                userId: nav.userId,
+                roleId: nav.roleId,
+                roleName: nav.description,
+                isUserInRole: nav.isActived
+            };
+            var resp = await userServices.updateRoleStatus(userRole);
+            if (resp && resp.isSucceed) {
+                $rootScope.showMessage('Thành công', 'success');
+                $rootScope.isBusy = false;
+                $scope.$apply();
+            }
+            else {
+                if (resp) { $rootScope.showErrors(resp.errors); }
+                $scope.$apply();
+            }
+        };
     }]);
