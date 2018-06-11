@@ -65,7 +65,7 @@ app.factory('MediaServices', ['$http', '$rootScope', 'commonServices', function 
 
             var req = {
                 url: '/api/' + settings.lang + '/media/upload', //'/api/tts/UploadImage',
-                type: "POST",
+                method: "POST",
                 headers: {
                 },
                 contentType: false, // Not to set any content header

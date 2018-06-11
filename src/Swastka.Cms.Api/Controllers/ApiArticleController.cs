@@ -28,7 +28,7 @@ namespace Swastka.Cms.Api.Controllers
     //    //, Policy = "AddEditUser"
     //    )]
     [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme,
-        Roles = "SuperAdmin")]
+        Roles = "SuperAdmin, Admin")]
     [Produces("application/json")]
     [Route("api/{culture}/Article")]
     public class ApiArticleController :

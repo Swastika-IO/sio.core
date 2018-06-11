@@ -168,12 +168,12 @@
                 subMenus: [
                     {
                         title: 'Create',
-                        href: '/backend/settings/create',
+                        href: '/backend/configuration/create',
                         icon: 'mi mi-Add'
                     },
                     {
                         title: 'List',
-                        href: '/backend/settings/list',
+                        href: '/backend/configuration/list',
                         icon: 'mi mi-List'
                     }
                 ]

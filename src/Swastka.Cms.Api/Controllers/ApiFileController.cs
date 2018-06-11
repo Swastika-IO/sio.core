@@ -18,7 +18,7 @@ using System.Threading.Tasks;
 namespace Swastka.IO.Cms.Api.Controllers
 {
     [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme,
-        Roles = "SuperAdmin")]
+        Roles = "SuperAdmin, Admin")]
     [Produces("application/json")]
     [Route("api/file")]
     public class ApiFileController : BaseApiController

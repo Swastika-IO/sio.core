@@ -20,16 +20,7 @@ app.controller('ModuleController', ['$scope', '$rootScope', '$routeParams', '$ti
             isDisplay: true,
             width: 3
         };
-        $scope.dataTypes = [
-            { title: 'string', value: 0 },
-            { title: 'int', value: 1 },
-            { title: 'image', value: 2 },
-            { title: 'codeEditor', value:4 },
-            { title: 'html', value: 5 },
-            { title: 'textArea', value: 6 },
-            { title: 'boolean', value: 7 },
-            { title: 'mdTextArea', value: 8 },
-        ];
+        $scope.dataTypes = $rootScope.configurations.dataTypes;
         $scope.activedModule = null;
         $scope.relatedModules = [];
         $rootScope.isBusy = false;
@@ -171,6 +162,7 @@ app.controller('ModuleController', ['$scope', '$rootScope', '$routeParams', '$ti
 
         $scope.saveModule = async function (module) {
             module.content = $('.editor-content').val();
+            module.name = module.title.replace(/ /g, "_");//(' ', '_');
             var resp = await moduleServices.saveModule(module);
             if (resp && resp.isSucceed) {
                 $scope.activedModule = resp.data;
@@ -186,7 +178,8 @@ app.controller('ModuleController', ['$scope', '$rootScope', '$routeParams', '$ti
         };
         $scope.addAttr = function () {
             if ($scope.activedModule) {
-                $scope.activedModule.columns.push($scope.defaultAttr);
+                var t = angular.copy($scope.defaultAttr);
+                $scope.activedModule.columns.push(t);
             }
         }
 

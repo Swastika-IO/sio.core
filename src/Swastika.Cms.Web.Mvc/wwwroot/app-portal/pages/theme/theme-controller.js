@@ -2,8 +2,8 @@
 app.controller('ThemeController', ['$scope', '$rootScope', '$routeParams', '$timeout', '$location', 'authService', 'ThemeServices',
     function ($scope, $rootScope, $routeParams, $timeout, $location, authService, themeServices) {
         $scope.request = {
-            themeSize: '10',
-            themeIndex: 0,
+            pageSize: '10',
+            pageIndex: 0,
             status: $rootScope.swStatus[1],
             orderBy: 'Priority',
             direction: '0',
@@ -19,8 +19,8 @@ app.controller('ThemeController', ['$scope', '$rootScope', '$routeParams', '$tim
         $rootScope.isBusy = false;
 
         $scope.data = {
-            themeIndex: 0,
-            themeSize: 1,
+            pageIndex: 0,
+            pageSize: 1,
             totalItems: 0
         };
 
@@ -59,9 +59,9 @@ app.controller('ThemeController', ['$scope', '$rootScope', '$routeParams', '$tim
                 $scope.$apply();
             }
         };
-        $scope.loadThemes = async function (themeIndex) {
-            if (themeIndex != undefined) {
-                $scope.request.themeIndex = themeIndex;
+        $scope.loadThemes = async function (pageIndex) {
+            if (pageIndex != undefined) {
+                $scope.request.pageIndex = pageIndex;
             }
             if ($scope.request.fromDate != null) {
                 var d = new Date($scope.request.fromDate);

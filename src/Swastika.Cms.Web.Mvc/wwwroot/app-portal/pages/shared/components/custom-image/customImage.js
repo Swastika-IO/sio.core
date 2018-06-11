@@ -11,9 +11,8 @@ modules.component('customImage', {
             title: '',
             description: ''
         };
+        ctrl.media = null;
         ctrl.selectFile = function (file, errFiles) {
-
-           
             if (file !== undefined && file !== null) {
                 ctrl.mediaFile.folder = ctrl.folder ? ctrl.folder : 'Media';
                 ctrl.mediaFile.title = ctrl.title ? ctrl.title : '';
@@ -21,7 +20,7 @@ modules.component('customImage', {
                 ctrl.mediaFile.file = file;
                 
                 if (ctrl.auto) {
-                    ctrl.uploadFile();
+                    ctrl.uploadFile(file);
                 }
                 else {
                     ctrl.getBase64(file);
@@ -29,18 +28,41 @@ modules.component('customImage', {
             }
         };
 
-        ctrl.uploadFile = async function () {
+        ctrl.uploadFile = async function (file) {
+            if (file !== null) {
+                $rootScope.isBusy = true;
+                var reader = new FileReader();
+                reader.readAsDataURL(file);
+                reader.onload = async function () {
+                    var getMedia = await mediaServices.getMedia(null, 'be');
+                    if (getMedia.isSucceed) {
+                        var index = reader.result.indexOf(',') + 1;
+                        var base64 = reader.result.substring(index);
+                        ctrl.mediaFile.fileName = file.name.substring(0, file.name.lastIndexOf('.'));
+                        ctrl.mediaFile.extension = file.name.substring(file.name.lastIndexOf('.'));
+                        ctrl.mediaFile.fileStream = reader.result;
+                        var media = getMedia.data;
+                        media.mediaFile = ctrl.mediaFile;
+                        var resp = await mediaServices.saveMedia(media);
+                        if (resp && resp.isSucceed) {
+                            ctrl.src = resp.data.fullPath;
+                            $scope.$apply();
+                        }
+                        else {
+                            if (resp) { $rootScope.showErrors(resp.errors); }
+                            $scope.$apply();
+                        }    
+                    }
+                    
+                };
+                reader.onerror = function (error) {
 
-
-            var resp = await mediaServices.uploadMedia(ctrl.mediaFile);
-            if (resp && resp.isSucceed) {
-                ctrl.src = resp.data.fullPath;
-                $scope.$apply();
+                };
             }
             else {
-                if (resp) { $rootScope.showErrors(resp.errors); }
-                $scope.$apply();
+                return null;
             }
+           
         }
         ctrl.getBase64 = function (file) {
             if (file !== null && ctrl.postedFile) {

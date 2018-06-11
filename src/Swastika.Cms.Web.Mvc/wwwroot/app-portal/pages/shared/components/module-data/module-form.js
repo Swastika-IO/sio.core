@@ -8,34 +8,7 @@ modules.component('moduleForm', {
 
 
             ctrl.initEditor = function () {
-                setTimeout(function () {
-                    // Init Code editor
-                    $.each($('.code-editor'), function (i, e) {
-                        var container = $(this);
-                        var editor = ace.edit(e);
-                        if (container.hasClass('json')) {
-                            editor.session.setMode("ace/mode/json");
-                        }
-                        else {
-                            editor.session.setMode("ace/mode/razor");
-                        }
-                        editor.setTheme("ace/theme/chrome");
-                        //editor.setReadOnly(true);
-
-                        editor.session.setUseWrapMode(true);
-                        editor.setOptions({
-                            maxLines: Infinity
-                        });
-                        editor.getSession().on('change', function (e) {
-                            // e.type, etc
-                            $(container).parent().find('.code-content').val(editor.getValue());
-                        });
-                    })
-                    $.each($('.editor-content'), function (i, e) {
-                        var $demoTextarea = $(e);
-                        $demoTextarea.trumbowyg($rootScope.configurations.plugins);
-                    });
-                }, 200)
+                $rootScope.initEditor();
             }
             ctrl.initModuleForm = async function () {
                 var resp = null;

@@ -69,7 +69,7 @@ namespace Swastika.Cms.Lib.ViewModels.BackEnd
         {
             get
             {
-                return SwCmsHelper.GetFullPath(new string[]{
+                return string.IsNullOrEmpty(FileName) ? string.Empty : SwCmsHelper.GetFullPath(new string[]{
                     Domain,
                     FileFolder,
                     $"{FileName}{Extension}"
@@ -125,13 +125,14 @@ namespace Swastika.Cms.Lib.ViewModels.BackEnd
                 }
 
             }
+            FileType = FileType ?? "image";
             return base.ParseModel(_context, _transaction);
         }
 
         public override void Validate(SiocCmsContext _context = null, IDbContextTransaction _transaction = null)
         {
             base.Validate(_context, _transaction);
-            
+
         }
 
         public override void ExpandView(SiocCmsContext _context = null, IDbContextTransaction _transaction = null)

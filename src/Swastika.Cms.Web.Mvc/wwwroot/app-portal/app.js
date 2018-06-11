@@ -153,7 +153,17 @@ app.run(['$rootScope', '$location', 'commonServices', 'authService', function ($
                     urlPropertyName: 'data.link'
                 }
             }
-        }
+        },
+        dataTypes: [
+            { title: 'string', value: 0 },
+            { title: 'int', value: 1 },
+            { title: 'image', value: 2 },
+            { title: 'codeEditor', value: 4 },
+            { title: 'html', value: 5 },
+            { title: 'textArea', value: 6 },
+            { title: 'boolean', value: 7 },
+            { title: 'mdTextArea', value: 8 },
+        ]
     };
     $rootScope.range = function (max) {
         var input = [];

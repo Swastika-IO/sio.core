@@ -23,7 +23,6 @@ namespace Swastka.Cms.Api.Controllers
     //    //, Policy = "AddEditUser"
     //    )]
     //[Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
-    [Produces("application/json")]
     [Route("api/{culture}/media")]
     public class ApiMediaController :
         BaseApiController

@@ -24,21 +24,11 @@
                            ng-model="activedMedia.tags" />
                 </div>
                 <input type="text" class="form-control d-none" ng-model="activedMedia.fullPath">
-                <div class="animate-switch-container"
-                     ng-switch on="activedMedia.extension">
-                    <div class="animate-switch" ng-switch-when=".png|.jpg|.jpeg|.gif" ng-switch-when-separator="|">
-                        <!--<img imageonload src="{{activedMedia.fullPath}}" />-->
-                        <custom-image header="''" type="'Medias'"
-                                      folder="activedMedia.folder"
-                                      src-url="activedMedia.fullPath"
-                                      src="activedMedia.fullPath"
-                                      posted-file="activedMedia.mediaFile"></custom-image>
-                    </div>
-
-                    <div class="animate-switch" ng-switch-default>
-                        <input class="form-control form-control-sm" type="text" ng-model="activedMedia.fullPath" value="$ctrl.dataType" />
-                    </div>
-                </div>
+                <custom-image header="''" type="'Medias'"
+                              folder="activedMedia.folder"
+                              src-url="activedMedia.fullPath"
+                              src="activedMedia.fullPath"
+                              posted-file="activedMedia.mediaFile"></custom-image>
 
 
             </section>
