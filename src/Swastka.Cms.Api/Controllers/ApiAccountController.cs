@@ -11,7 +11,6 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using Microsoft.IdentityModel.Tokens;
 using Newtonsoft.Json.Linq;
-using Swastika.Api.Controllers;
 using Swastika.Cms.Lib;
 using Swastika.Cms.Lib.Models.Account;
 using Swastika.Cms.Lib.Models.Cms;
@@ -24,6 +23,7 @@ using Swastika.Identity.Models;
 using Swastika.Identity.Models.AccountViewModels;
 using Swastika.Identity.Services;
 using Swastka.Cms.Api;
+using Swastka.Cms.Api.Controllers;
 using System;
 using System.Collections.Generic;
 using System.IdentityModel.Tokens.Jwt;
@@ -33,7 +33,7 @@ using System.Security.Claims;
 using System.Threading.Tasks;
 using static Swastika.Common.Utility.Enums;
 
-namespace Swastika.Core.Controllers
+namespace Swastika.Cms.Api.Controllers
 {
     //[Authorize(Roles = "SuperAdmin,Admin")]
     [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme, Roles = "SuperAdmin")]
@@ -189,7 +189,10 @@ namespace Swastika.Core.Controllers
                     // Save to cms db context
                     
                     await model.SaveModelAsync();
-
+                    if (_userManager.Users.Count()==1)
+                    {
+                        await _userManager.AddToRoleAsync(user, "SuperAdmin");
+                    }
                     var token = await GenerateAccessTokenAsync(user, true);
                     if (token != null)
                     {
@@ -202,13 +205,6 @@ namespace Swastika.Core.Controllers
                     {
                         return result;
                     }
-
-                    //var code = await _userManager.GenerateEmailConfirmationTokenAsync(user);
-                    //var callbackUrl = Url.EmailConfirmationLink(user.Id, code, Request.Scheme);
-                    //await _emailSender.SendEmailConfirmationAsync(model.Email, callbackUrl);
-
-                    //await _signInManager.SignInAsync(user, isPersistent: false);
-                    //_logger.LogInformation("User created a new account with password.");
                 }
                 else
                 {

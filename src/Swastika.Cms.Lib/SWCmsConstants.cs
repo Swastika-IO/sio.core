@@ -218,7 +218,7 @@ namespace Swastika.Cms.Lib
             public const string OrderBy = @"Priority";
             public const int PageSizeArticle = 20;
             public const string Password = @"";
-            public const string Specificulture = @"vi-vn";
+            public static string Specificulture { get; set; } = @"vi-vn";
         }
 
         public class FileFolder

@@ -4,7 +4,7 @@
 <html lang="en">
 
 <head>
-    <base href="/admin">
+    <base href="/backend">
 
     <title>@ViewData["Title"] - Angular Swastika I/O</title>
     <!-- Required meta tags -->
@@ -31,77 +31,7 @@
     <link href="/lib/cropperjs-1.2.2/dist/cropper.min.css" rel="stylesheet" />
     <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 
-    <style>
-        .sw-content {
-            width: 100% !important;
-        }
-
-        input[type="date"]::-webkit-inner-spin-button {
-            display: none;
-        }
-        /* helper to ensure that razor (which is correctly detected by ACE) is also highlighted */
-        .ace_razor {
-            background-color: yellow;
-        }
-
-        /* make sure the highlighted text is also black, otherwise it a kind of gray */
-        .ace_punctuation.ace_short.ace_razor {
-            color: black;
-        }
-
-        .ace_punctuation.ace_block.ace_razor {
-            color: black;
-        }
-
-        /* Center the loader */
-        .loader-container {
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            position: fixed;
-            background-color: black;
-            opacity: 0.2;
-            z-index: 9999;
-        }
-
-        #loader {
-            position: absolute;
-            left: 50%;
-            top: 50%;
-            z-index: 1;
-            width: 150px;
-            height: 150px;
-            margin: -75px 0 0 -75px;
-            border: 16px solid #f3f3f3;
-            border-radius: 50%;
-            border-top: 16px solid #3498db;
-            width: 120px;
-            height: 120px;
-            -webkit-animation: spin 2s linear infinite;
-            animation: spin 2s linear infinite;
-        }
-
-        @@-webkit-keyframes spin {
-            0% {
-                -webkit-transform: rotate(0deg);
-            }
-
-            100% {
-                -webkit-transform: rotate(360deg);
-            }
-        }
-
-        @@keyframes spin {
-            0% {
-                transform: rotate(0deg);
-            }
-
-            100% {
-                transform: rotate(360deg);
-            }
-        }
-    </style>
+    
     @RenderSection("Styles", required: false)
 </head>
 
@@ -171,13 +101,15 @@
 
     <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.2.16/angular-route.min.js"></script>
     <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.2.13/angular-animate.js"></script>
-    <script src="/app-portal/plugins/angular-local-storage.min.js"></script>
+    
     <script src="/app-portal/app.js"></script>
     <script src="/app-portal/app.route.js"></script>
 
     <!-- Services-->
+    <script src="/app-portal/plugins/angular-local-storage.min.js"></script>
     <script src="/app-portal/pages/shared/services/auth-services.js"></script>
     <script src="/app-portal/pages/login/login-controller.js"></script>
+    
     <script src="/app-portal/pages/shared/services/common-services.js"></script>
     <script src="~/app-portal/pages/shared/services/template-services.js"></script>
     <script src="/app-portal/pages/product/product-services.js"></script>
@@ -282,12 +214,12 @@
 
     <!-- module-components -->
     <script src="/app-portal/pages/module/components/main/main.js"></script>
-
+    <script type="text/javascript" src="/js/portal/common.js"></script>
     <!-- End Components -->
     @RenderSection("Scripts", required: false)
 
     <!--Datatables-->
-    <script type="text/javascript" src="/js/portal/common.js"></script>
+    
 
     @*@RenderSection("Modals", required: false)*@
     @*@await Component.InvokeAsync(typeof(Swastika.Cms.Mvc.Areas.Portal.ViewComponents.Modals))*@

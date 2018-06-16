@@ -290,3 +290,5 @@ ModelManifest.xml
 /src/Swastika.Cms.Web.Mvc/appSettings.json
 /src/Swastika.Cms.Web.Mvc/Views/Account
 src/Swastika.Cms.Web.Mvc/appsettings.json
+/src/Swastika.Cms.Web.Mvc/wwwroot/lib/micon/less/*.less
+/src/Swastika.Cms.Web.Mvc/wwwroot/lib/micon/scss/*.scss

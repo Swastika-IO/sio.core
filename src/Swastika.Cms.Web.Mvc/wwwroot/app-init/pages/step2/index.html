@@ -1,0 +1,92 @@
+﻿<div class="row">
+    <div class="col-md-4 ml-auto mr-auto">
+        <div class="info info-horizontal">
+            <div class="icon icon-primary">
+                <i class="now-ui-icons media-2_sound-wave"></i>
+            </div>
+            <div class="description">
+                <h5 class="info-title">High Performance</h5>
+                <p class="description">
+                    Extremely fast with the power of ASP.NET Core.
+                </p>
+            </div>
+        </div>
+
+        <div class="info info-horizontal">
+            <div class="icon icon-primary">
+                <i class="now-ui-icons media-1_button-pause"></i>
+            </div>
+            <div class="description">
+                <h5 class="info-title">Customizable Designs</h5>
+                <p class="description">
+                    We've developed the website with HTML5 and CSS3.
+                </p>
+            </div>
+        </div>
+
+        <div class="info info-horizontal">
+            <div class="icon icon-info">
+                <i class="now-ui-icons users_single-02"></i>
+            </div>
+            <div class="description">
+                <h5 class="info-title">Open source</h5>
+                <p class="description">
+                    Released as open source software.
+                </p>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-4 mr-auto" style="z-index:9999;">
+
+        <div class="card card-signup">
+            <div class="card-body">
+                <h4 class="card-title text-center">Create Administrator Account</h4>
+                <form class="form-horizontal"
+                      ng-class="{'submitted': submitted}"
+                      ng-submit="register()">
+                    <div class="input-group">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text"><i class="now-ui-icons users_circle-08"></i></span>
+                        </div>
+                        <input ng-model="user.userName" class="form-control" required placeholder="input admin username..." />
+                    </div>
+
+                    <div class="input-group">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text"><i class="now-ui-icons ui-1_email-85"></i></span>
+                        </div>
+                        <input ng-model="user.email" class="form-control" type="email" required placeholder="Email..." type="text" />
+                    </div>
+
+                    <div class="input-group">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text"><i class="now-ui-icons objects_key-25"></i></span>
+                        </div>
+                        <input ng-model="user.password" type="password" required class="form-control" placeholder="input admin password..." />
+                    </div>
+                    <div class="input-group">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text"><i class="now-ui-icons objects_key-25"></i></span>
+                        </div>
+                        <input ng-model="user.confirmPassword" type="password" required class="form-control" placeholder="Input confirm password..." />
+                    </div>
+
+                    <!-- If you want to add a checkbox to this form, uncomment this code -->
+
+                    <div class="form-check">
+                        <label class="form-check-label">
+                            <input class="form-check-input" type="checkbox">
+                            <span class="form-check-sign"></span>
+                            I agree to the terms and <a href="#something">conditions</a>.
+                        </label>
+                    </div>
+
+                    <div class="card-footer text-center">
+                        <button type="submit" class="btn btn-primary btn-round btn-lg">Get Started</button>
+                    </div>
+
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

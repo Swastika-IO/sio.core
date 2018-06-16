@@ -4,20 +4,13 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
-using Newtonsoft.Json.Linq;
-using Swastika.Api.Controllers;
-using Swastika.Cms.Lib.Models.Cms;
 using Swastika.Cms.Lib.ViewModels.Account;
 using Swastika.Domain.Core.ViewModels;
-using Swastika.Identity.Data;
 using Swastika.Identity.Models;
 using Swastika.Identity.Services;
-using static Swastika.Common.Utility.Enums;
 
 namespace Swastka.Cms.Api.Controllers
 {

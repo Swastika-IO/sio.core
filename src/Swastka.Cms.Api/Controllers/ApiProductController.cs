@@ -2,17 +2,14 @@
 // The Swastika I/O Foundation licenses this file to you under the GNU General Public License v3.0.
 // See the LICENSE file in the project root for more information.
 
-using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Data.OData.Query;
 using Newtonsoft.Json.Linq;
-using Swastika.Api.Controllers;
 using Swastika.Cms.Lib;
 using Swastika.Cms.Lib.Models.Cms;
 using Swastika.Cms.Lib.ViewModels.BackEnd;
 using Swastika.Cms.Lib.ViewModels.FrontEnd;
 using Swastika.Cms.Lib.ViewModels.Info;
-using Swastika.Cms.Lib.ViewModels.Spa;
 using Swastika.Domain.Core.ViewModels;
 using System;
 using System.Collections.Generic;
@@ -199,7 +196,7 @@ namespace Swastka.Cms.Api.Controllers
         public async Task<RepositoryResponse<PaginationModel<InfoProductViewModel>>> Get(int? pageSize = 15, int? pageIndex = 0, string orderBy = "Id", OrderByDirection direction = OrderByDirection.Ascending)
         {
             var data = await InfoProductViewModel.Repository.GetModelListByAsync(
-                m => m.Status != (int)SWStatus.Deleted && m.Specificulture == _lang, orderBy, direction, pageSize, pageIndex).ConfigureAwait(false); //base.Get(orderBy, direction, pageSize, pageIndex);
+                m => m.Status != (int)SWStatus.Deleted && m.Specificulture == _lang, orderBy, direction, pageSize, pageIndex).ConfigureAwait(false);
             if (data.IsSucceed)
             {
                 data.Data.Items.ForEach(a => a.DetailsUrl = SwCmsHelper.GetRouterUrl("Product", new { a.SeoName }, Request, Url));
@@ -221,13 +218,8 @@ namespace Swastka.Cms.Api.Controllers
                     || (model.Title.Contains(keyword)
                     || model.Content.Contains(keyword)));
 
-            var data = await InfoProductViewModel.Repository.GetModelListByAsync(predicate, orderBy, direction, pageSize, pageIndex).ConfigureAwait(false); // base.Search(predicate, orderBy, direction, pageSize, pageIndex, keyword);
-            //if (data.IsSucceed)
-            //{
-            //    data.Data.Items.ForEach(d => d.DetailsUrl = string.Format("{0}{1}", _domain, this.Url.Action("Details", "products", new { id = d.Id })));
-            //    data.Data.Items.ForEach(d => d.EditUrl = string.Format("{0}{1}", _domain, this.Url.Action("Edit", "products", new { id = d.Id })));
-            //    data.Data.Items.ForEach(d => d.Domain = _domain);
-            //}
+            var data = await InfoProductViewModel.Repository.GetModelListByAsync(
+                predicate, orderBy, direction, pageSize, pageIndex).ConfigureAwait(false);
             return data;
         }
 
@@ -249,13 +241,8 @@ namespace Swastka.Cms.Api.Controllers
             string.IsNullOrWhiteSpace(keyword)
                 || (model.Title.Contains(keyword) || model.Content.Contains(keyword))
                 );
-            var data = await InfoProductViewModel.Repository.GetModelListByAsync(predicate, orderBy, direction, pageSize, pageIndex).ConfigureAwait(false); // base.Search(predicate, orderBy, direction, pageSize, pageIndex, keyword);
-            //if (data.IsSucceed)
-            //{
-            //    data.Data.Items.ForEach(d => d.DetailsUrl = string.Format("{0}{1}", _domain, this.Url.Action("Details", "products", new { id = d.Id })));
-            //    data.Data.Items.ForEach(d => d.EditUrl = string.Format("{0}{1}", _domain, this.Url.Action("Edit", "products", new { id = d.Id })));
-            //    data.Data.Items.ForEach(d => d.Domain = _domain);
-            //}
+            var data = await InfoProductViewModel.Repository.GetModelListByAsync(
+                predicate, orderBy, direction, pageSize, pageIndex).ConfigureAwait(false);
             return data;
         }
 
@@ -286,16 +273,19 @@ namespace Swastka.Cms.Api.Controllers
         [Route("save/{id}")]
         public async Task<RepositoryResponse<bool>> SaveFields(string id, [FromBody]List<EntityField> fields)
         {
+            var result = new RepositoryResponse<bool>();
             if (fields != null)
             {
                 foreach (var property in fields)
                 {
-                    var result = await BEProductViewModel.Repository.UpdateFieldsAsync(c => c.Id == id, fields).ConfigureAwait(false);
-
-                    return result;
+                    result = await BEProductViewModel.Repository.UpdateFieldsAsync(c => c.Id == id, fields).ConfigureAwait(false);
                 }
+                return result;
             }
-            return new RepositoryResponse<bool>();
+            else
+            {
+                return result;
+            }
         }
 
         // GET api/products
@@ -304,7 +294,6 @@ namespace Swastka.Cms.Api.Controllers
         [Route("list")]
         public async Task<RepositoryResponse<PaginationModel<InfoProductViewModel>>> GetList([FromBody]RequestPaging request)
         {
-            string domain = string.Format("{0}://{1}", Request.Scheme, Request.Host);
             ParseRequestPagingDate(request);
             Expression<Func<SiocProduct, bool>> predicate = model =>
                 model.Specificulture == _lang

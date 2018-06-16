@@ -2,11 +2,9 @@
 // The Swastika I/O Foundation licenses this file to you under the GNU General Public License v3.0.
 // See the LICENSE file in the project root for more information.
 
-using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Data.OData.Query;
 using Newtonsoft.Json.Linq;
-using Swastika.Api.Controllers;
 using Swastika.Cms.Lib;
 using Swastika.Cms.Lib.Models.Cms;
 using Swastika.Cms.Lib.ViewModels.BackEnd;
@@ -95,7 +93,7 @@ namespace Swastka.Cms.Api.Controllers
             , OrderByDirection direction = OrderByDirection.Ascending)
         {
             var data = await BEMediaViewModel.Repository.GetModelListByAsync(
-                m => m.Specificulture == _lang, orderBy, direction, pageSize, pageIndex).ConfigureAwait(false); //base.Get(orderBy, direction, pageSize, pageIndex);
+                m => m.Specificulture == _lang, orderBy, direction, pageSize, pageIndex).ConfigureAwait(false);
             return data;
         }
 
@@ -114,7 +112,7 @@ namespace Swastka.Cms.Api.Controllers
             string.IsNullOrWhiteSpace(keyword)
                 || model.FileName.Contains(keyword)
                 );
-            var data = await BEMediaViewModel.Repository.GetModelListByAsync(predicate, orderBy, direction, pageSize, pageIndex).ConfigureAwait(false); // base.Search(predicate, orderBy, direction, pageSize, pageIndex, keyword);
+            var data = await BEMediaViewModel.Repository.GetModelListByAsync(predicate, orderBy, direction, pageSize, pageIndex).ConfigureAwait(false);
 
             return data;
         }
@@ -223,18 +221,5 @@ namespace Swastka.Cms.Api.Controllers
         }
 
         #endregion Post
-
-        #region Helper
-
-        //string GetFileType(string ext)
-        //{
-        //    switch (ext)
-        //    {
-        //        default:
-        //            break;
-        //    }
-        //}
-
-        #endregion Helper
     }
 }

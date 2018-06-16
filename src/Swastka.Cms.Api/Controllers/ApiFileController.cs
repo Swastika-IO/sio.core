@@ -5,17 +5,13 @@
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using Newtonsoft.Json.Linq;
-using Swastika.Api.Controllers;
 using Swastika.Cms.Lib;
 using Swastika.Cms.Lib.Repositories;
 using Swastika.Cms.Lib.ViewModels;
 using Swastika.Cms.Lib.ViewModels.Api;
 using Swastika.Domain.Core.ViewModels;
-using System.Collections.Generic;
-using System.Threading.Tasks;
 
-namespace Swastka.IO.Cms.Api.Controllers
+namespace Swastka.Cms.Api.Controllers
 {
     [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme,
         Roles = "SuperAdmin, Admin")]

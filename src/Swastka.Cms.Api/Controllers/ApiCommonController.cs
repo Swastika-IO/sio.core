@@ -2,31 +2,42 @@
 // The Swastika I/O Foundation licenses this file to you under the MIT license.
 // See the LICENSE file in the project root for more information.
 
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.Data.OData.Query;
-using Swastika.Api.Controllers;
+using Newtonsoft.Json.Linq;
 using Swastika.Cms.Lib;
-using Swastika.Cms.Lib.Models.Cms;
+using Swastika.Cms.Lib.Repositories;
 using Swastika.Cms.Lib.Services;
 using Swastika.Cms.Lib.ViewModels;
-using Swastika.Cms.Lib.ViewModels.BackEnd;
-using Swastika.Cms.Lib.ViewModels.FrontEnd;
-using Swastika.Cms.Lib.ViewModels.Info;
+using Swastika.Cms.Lib.ViewModels.Account;
+using Swastika.Cms.Lib.ViewModels.Api;
 using Swastika.Domain.Core.ViewModels;
+using Swastika.Identity.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Linq.Expressions;
 using System.Threading.Tasks;
-using static Swastika.Common.Utility.Enums;
 
-namespace Swastka.IO.Cms.Api.Controllers
+namespace Swastka.Cms.Api.Controllers
 {
     [Produces("application/json")]
     [Route("api/portal")]
     public class ApiPortalController :
         BaseApiController
     {
+        private readonly UserManager<ApplicationUser> _userManager;
+        private readonly SignInManager<ApplicationUser> _signInManager;
+        private readonly RoleManager<IdentityRole> _roleManager;
+        public ApiPortalController(
+           UserManager<ApplicationUser> userManager,
+           SignInManager<ApplicationUser> signInManager,
+           RoleManager<IdentityRole> roleManager
+            )
+        {
+            _userManager = userManager;
+            _signInManager = signInManager;
+            _roleManager = roleManager;
+        }
         #region Get
 
         // GET api/category/id
@@ -41,14 +52,51 @@ namespace Swastka.IO.Cms.Api.Controllers
                 ThemeId = GlobalConfigurationService.GetLocalInt(SWCmsConstants.ConfigurationKeyword.ThemeId, _lang),
                 Cultures = GlobalLanguageService.ListSupportedCulture,
                 PageTypes = Enum.GetNames(typeof(SWCmsConstants.CateType)).ToList()
-        };
+            };
             return new RepositoryResponse<SiteSettingsViewModel>()
             {
                 IsSucceed = true,
                 Data = settings
             };
         }
-        
+
+        [HttpGet]
+        [Route("init-settings")]
+        public RepositoryResponse<SiteSettingsViewModel> InitSettings()
+        {
+            SiteSettingsViewModel settings = new SiteSettingsViewModel()
+            {
+                Lang = _lang,
+                ThemeId = 1,
+                Cultures = new List<Swastika.Domain.Core.Models.SupportedCulture>()
+                {
+                    new Swastika.Domain.Core.Models.SupportedCulture()
+                    {
+                        Specificulture = "en-us",
+                        FullName = "United States",
+                        Description = "United States",
+                        Icon = "flag-icon-us",
+                        Alias = "US"
+                    },
+                    new Swastika.Domain.Core.Models.SupportedCulture()
+                    {
+                        Specificulture = "vi-vn",
+                        FullName = "Vietnam",
+                        Description = "Việt Nam",
+                        Icon = "flag-icon-vn",
+                        Alias = "VN"
+                    }
+
+                },
+                PageTypes = Enum.GetNames(typeof(SWCmsConstants.CateType)).ToList()
+            };
+            return new RepositoryResponse<SiteSettingsViewModel>()
+            {
+                IsSucceed = true,
+                Data = settings
+            };
+        }
+
         // GET api/category/id
         [HttpGet]
         [Route("dashboard")]
@@ -61,149 +109,85 @@ namespace Swastka.IO.Cms.Api.Controllers
             };
         }
 
-
-        // GET api/category/id
-        [HttpGet]
-        [Route("delete/{id}")]
-        public async Task<RepositoryResponse<bool>> DeleteAsync(int id)
-        {
-            var getPage =await FECategoryViewModel.Repository.GetSingleModelAsync(
-                model => model.Id == id && model.Specificulture == _lang);
-            if (getPage.IsSucceed)
-            {
-
-                return await getPage.Data.RemoveModelAsync(true);
-            }
-            else
-            {
-                return new RepositoryResponse<bool>()
-                {
-                    IsSucceed = false
-                };
-            }
-        }
-
-        // GET api/category/id
-        [HttpGet]
-        [Route("details/backend/{id}")]
-        public Task<RepositoryResponse<BECategoryViewModel>> BEDetails(int id)
-        {
-            return BECategoryViewModel.Repository.GetSingleModelAsync(
-                model => model.Id == id && model.Specificulture == _lang);
-        }
-
-        // GET api/category/id
-        [HttpGet]
-        [Route("byArticle/{id}")]
-        [Route("byArticle/{id}/{articleId}")]
-        public Task<RepositoryResponse<FECategoryViewModel>> GetByArticle(int id, string articleId = null)
-        {
-            return FECategoryViewModel.Repository.GetSingleModelAsync(
-                model => model.Id == id && model.Specificulture == _lang);
-        }
-
-        // GET api/Category
-        [HttpGet]
-        [Route("list")]
-        [Route("list/{PageSize:int?}/{PageIndex:int?}")]
-        [Route("list/{orderBy}/{direction}")]
-        [Route("list/{PageSize:int?}/{PageIndex:int?}/{orderBy}/{direction}")]
-        public async Task<RepositoryResponse<PaginationModel<InfoCategoryViewModel>>> Get(
-            int? PageSize = 15, int? PageIndex = 0, string orderBy = "Id"
-            , OrderByDirection direction = OrderByDirection.Ascending)
-        {
-            var data = await InfoCategoryViewModel.Repository.GetModelListByAsync(m => m.Specificulture == _lang, orderBy, direction, PageSize, PageIndex).ConfigureAwait(false); //base.Get(orderBy, direction, PageSize, PageIndex);
-            string domain = string.Format("{0}://{1}", Request.Scheme, Request.Host);
-            return data;
-        }
-
-        // GET api/Category
-        [HttpGet]
-        [Route("search/{keyword}")]
-        [Route("search/{PageSize:int?}/{PageIndex:int?}/{keyword}")]
-        [Route("search/{PageSize:int?}/{PageIndex:int?}/{keyword}/{description}")]
-        [Route("search/{PageSize:int?}/{PageIndex:int?}/{orderBy}/{direction}/{keyword}")]
-        [Route("search/{PageSize:int?}/{PageIndex:int?}/{orderBy}/{direction}/{keyword}/{description}")]
-        public Task<RepositoryResponse<PaginationModel<InfoCategoryViewModel>>> Search(
-            string keyword = null,
-            string description = null,
-            int? PageSize = null, int? PageIndex = null, string orderBy = "Id"
-            , OrderByDirection direction = OrderByDirection.Ascending)
-        {
-            Expression<Func<SiocCategory, bool>> predicate = model =>
-            model.Specificulture == _lang
-            && (string.IsNullOrWhiteSpace(keyword) || (model.Title.Contains(keyword)))
-            && (string.IsNullOrWhiteSpace(description) || (model.Excerpt.Contains(description)));
-            return InfoCategoryViewModel
-                .Repository
-                .GetModelListByAsync(predicate, orderBy, direction, PageSize, PageIndex); // base.Search(predicate, orderBy, direction, PageSize, PageIndex, keyword);
-        }
-
         #endregion Get
 
         #region Post
 
         // POST api/category
         [HttpPost, HttpOptions]
-        [Route("save")]
-        public async Task<RepositoryResponse<BECategoryViewModel>> Post([FromBody]BECategoryViewModel model)
+        [Route("init-cms")]
+        public async Task<RepositoryResponse<bool>> Post([FromBody]ApiInitCmsViewModel model)
         {
             if (model != null)
             {
-                var result = await model.SaveModelAsync(true).ConfigureAwait(false);
+                var result = await InitCmsAsync(model).ConfigureAwait(false);
                 return result;
-            }
-            return new RepositoryResponse<BECategoryViewModel>();
-        }
-
-        // POST api/category
-        [HttpPost, HttpOptions]
-        [Route("save/{id}")]
-        public async Task<RepositoryResponse<bool>> SaveFields(int id, [FromBody]List<EntityField> fields)
-        {
-            if (fields != null)
-            {
-                foreach (var property in fields)
-                {
-                    var result = await InfoCategoryViewModel.Repository.UpdateFieldsAsync(c => c.Id == id && c.Specificulture == _lang, fields).ConfigureAwait(false);
-
-                    return result;
-                }
             }
             return new RepositoryResponse<bool>();
         }
 
-        // GET api/category
-        [HttpPost, HttpOptions]
-        [Route("list")]
-        public async Task<RepositoryResponse<PaginationModel<InfoCategoryViewModel>>> GetList(RequestPaging request)
-        {
-            Expression<Func<SiocCategory, bool>> predicate = model =>
-                model.Specificulture == _lang
-                && (string.IsNullOrWhiteSpace(request.Keyword)
-                    || (model.Title.Contains(request.Keyword)
-                    || model.Excerpt.Contains(request.Keyword)))
-                && (!request.FromDate.HasValue
-                    || (model.CreatedDateTime >= request.FromDate.Value.ToUniversalTime())
-                )
-                && (!request.ToDate.HasValue
-                    || (model.CreatedDateTime <= request.ToDate.Value.ToUniversalTime())
-                )
-                    ;
+        #endregion Post
 
-            var data = await InfoCategoryViewModel.Repository.GetModelListByAsync(predicate, request.OrderBy, request.Direction, request.PageSize, request.PageIndex).ConfigureAwait(false);
-            if (data.IsSucceed)
+        #region Helpers
+        public async Task<RepositoryResponse<bool>> InitCmsAsync(ApiInitCmsViewModel model)
+        {
+            var result = new RepositoryResponse<bool>();
+
+            var settings = FileRepository.Instance.GetFile("appsettings", ".json", string.Empty, true, "{}");
+            if (settings != null)
             {
-                data.Data.Items.ForEach(a =>
-                {
-                    a.DetailsUrl = SwCmsHelper.GetRouterUrl(
-                        "Page", new { a.SeoName }, Request, Url);
-                }
-                );
+                JObject jsonSettings = JObject.Parse(settings.Content);
+                jsonSettings["ConnectionStrings"][SWCmsConstants.CONST_DEFAULT_CONNECTION] = model.ConnectionString;
+                // Set connection string for identity ApplicationDbContext
+                jsonSettings["ConnectionStrings"]["AccountConnection"] = model.ConnectionString;
+                settings.Content = jsonSettings.ToString();
+                FileRepository.Instance.SaveFile(settings);
             }
-            return data;
+            GlobalConfigurationService.Instance.ConnectionString = model.ConnectionString;
+            var initResult = await GlobalConfigurationService.Instance.InitSWCms(
+                _userManager, _roleManager);
+            if (initResult.IsSucceed)
+            {
+                await InitRolesAsync();
+                SWCmsConstants.Default.Specificulture = model.Lang;
+                result.IsSucceed = true;
+            }
+            else
+            {
+                settings = FileRepository.Instance.GetFile("appsettings", ".json", string.Empty);
+                JObject jsonSettings = JObject.Parse(settings.Content);
+                jsonSettings["ConnectionStrings"][SWCmsConstants.CONST_DEFAULT_CONNECTION] = null;
+                jsonSettings["ConnectionStrings"]["AccountConnection"] = null;
+                settings.Content = jsonSettings.ToString();
+                FileRepository.Instance.SaveFile(settings);
+                if (initResult.Exception != null)
+                {
+                    result.Errors.Add(initResult.Exception.Message);
+                }
+                foreach (var item in initResult.Errors)
+                {
+                    result.Errors.Add(item);
+                }
+            }
+            return result;
         }
 
-        #endregion Post
+        private async Task<bool> InitRolesAsync()
+        {
+            bool isSucceed = true;
+            var getRoles = await RoleViewModel.Repository.GetModelListAsync();
+            if (getRoles.IsSucceed && getRoles.Data.Count == 0)
+            {
+                var saveResult = await _roleManager.CreateAsync(new IdentityRole()
+                {
+                    Id = Guid.NewGuid().ToString(),
+                    Name = "SuperAdmin"
+                });
+                isSucceed = saveResult.Succeeded;
+            }
+            return isSucceed;
+        }
+
+        #endregion
     }
 }

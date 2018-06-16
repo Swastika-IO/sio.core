@@ -6,7 +6,6 @@ using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json.Linq;
-using Swastika.Api.Controllers;
 using Swastika.Cms.Lib;
 using Swastika.Cms.Lib.Models.Cms;
 using Swastika.Cms.Lib.Services;
@@ -20,7 +19,7 @@ using System.Linq.Expressions;
 using System.Threading.Tasks;
 using static Swastika.Common.Utility.Enums;
 
-namespace Swastka.IO.Cms.Api.Controllers
+namespace Swastka.Cms.Api.Controllers
 {
     [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme, 
         Roles = "SuperAdmin")]

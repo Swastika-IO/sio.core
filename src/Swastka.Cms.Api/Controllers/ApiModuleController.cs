@@ -2,15 +2,11 @@
 // The Swastika I/O Foundation licenses this file to you under the GNU General Public License v3.0.
 // See the LICENSE file in the project root for more information.
 
-using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Data.OData.Query;
 using Newtonsoft.Json.Linq;
-using Swastika.Api.Controllers;
 using Swastika.Cms.Lib.Models.Cms;
 using Swastika.Cms.Lib.ViewModels.Api;
-using Swastika.Cms.Lib.ViewModels.BackEnd;
 using Swastika.Cms.Lib.ViewModels.FrontEnd;
 using Swastika.Cms.Lib.ViewModels.Info;
 using Swastika.Domain.Core.ViewModels;
@@ -20,7 +16,7 @@ using System.Linq.Expressions;
 using System.Threading.Tasks;
 using static Swastika.Common.Utility.Enums;
 
-namespace Swastka.IO.Cms.Api.Controllers
+namespace Swastka.Cms.Api.Controllers
 {
     [Produces("application/json")]
     [Route("api/{culture}/module")]
@@ -30,6 +26,7 @@ namespace Swastka.IO.Cms.Api.Controllers
         public ApiModuleController()
         {
         }
+
 
         #region Get
 
@@ -114,10 +111,8 @@ namespace Swastka.IO.Cms.Api.Controllers
             int? pageSize = 15, int? pageIndex = 0, string orderBy = "Id"
             , OrderByDirection direction = OrderByDirection.Ascending)
         {
-            var data = await InfoModuleViewModel.Repository.GetModelListByAsync(m => m.Specificulture == _lang, orderBy, direction, pageSize, pageIndex).ConfigureAwait(false); //base.Get(orderBy, direction, pageSize, pageIndex);
+            var data = await InfoModuleViewModel.Repository.GetModelListByAsync(m => m.Specificulture == _lang, orderBy, direction, pageSize, pageIndex).ConfigureAwait(false);
             string domain = string.Format("{0}://{1}", Request.Scheme, Request.Host);
-            //data.Data.Items.ForEach(d => d.DetailsUrl = string.Format("{0}{1}", domain, this.Url.Action("Details", "modules", new { id = d.Id })));
-            //data.Data.Items.ForEach(d => d.EditUrl = string.Format("{0}{1}", domain, this.Url.Action("Edit", "modules", new { id = d.Id })));
             return data;
         }
 
@@ -140,7 +135,7 @@ namespace Swastka.IO.Cms.Api.Controllers
             && (string.IsNullOrWhiteSpace(description) || (model.Description.Contains(description)));
             return InfoModuleViewModel
                 .Repository
-                .GetModelListByAsync(predicate, orderBy, direction, pageSize, pageIndex); // base.Search(predicate, orderBy, direction, pageSize, pageIndex, keyword);
+                .GetModelListByAsync(predicate, orderBy, direction, pageSize, pageIndex);
         }
 
         #endregion Get
@@ -181,6 +176,7 @@ namespace Swastka.IO.Cms.Api.Controllers
 
                 }
                 return result;
+
             }
             return new RepositoryResponse<bool>();
         }
@@ -191,7 +187,6 @@ namespace Swastka.IO.Cms.Api.Controllers
         [Route("list/{level}")]
         public async Task<RepositoryResponse<PaginationModel<InfoModuleViewModel>>> GetList([FromBody] RequestPaging request, int? level = 0)
         {
-            string domain = string.Format("{0}://{1}", Request.Scheme, Request.Host);
 
             Expression<Func<SiocModule, bool>> predicate = model =>
                 model.Specificulture == _lang
@@ -207,21 +202,6 @@ namespace Swastka.IO.Cms.Api.Controllers
                     ;
 
             var data = await InfoModuleViewModel.Repository.GetModelListByAsync(predicate, request.OrderBy, request.Direction, request.PageSize, request.PageIndex).ConfigureAwait(false);
-            //if (data.IsSucceed)
-            //{
-            //    data.Data.Items.ForEach(a =>
-            //    {
-            //        a.DetailsUrl = SwCmsHelper.GetRouterUrl(
-            //            "Page", new { a.SeoName }, Request, Url);
-            //        a.Childs.ForEach(c =>
-            //        {
-            //            c.DetailsUrl = SwCmsHelper.GetRouterUrl(
-            //                "Page", new { c.SeoName }, Request, Url);
-            //        }
-            //    );
-            //    }
-            //    );
-            //}
             return data;
         }
 

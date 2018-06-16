@@ -320,6 +320,9 @@
     <Content Update="Areas\Portal\Views\Dashboard\Dashboard.cshtml">
       <Pack>$(IncludeRazorContentInPack)</Pack>
     </Content>
+    <Content Update="Areas\Portal\Views\Portal\Init.cshtml">
+      <Pack>$(IncludeRazorContentInPack)</Pack>
+    </Content>
     <Content Update="Areas\Portal\Views\Shared\_LayoutPortal_Angularbk.cshtml">
       <Pack>$(IncludeRazorContentInPack)</Pack>
     </Content>

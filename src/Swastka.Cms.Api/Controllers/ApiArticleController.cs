@@ -4,17 +4,14 @@
 
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Data.OData.Query;
 using Newtonsoft.Json.Linq;
-using Swastika.Api.Controllers;
 using Swastika.Cms.Lib;
 using Swastika.Cms.Lib.Models.Cms;
 using Swastika.Cms.Lib.ViewModels.BackEnd;
 using Swastika.Cms.Lib.ViewModels.FrontEnd;
 using Swastika.Cms.Lib.ViewModels.Info;
-using Swastika.Cms.Lib.ViewModels.Spa;
 using Swastika.Domain.Core.ViewModels;
 using System;
 using System.Collections.Generic;
@@ -225,12 +222,6 @@ namespace Swastka.Cms.Api.Controllers
                     || model.Content.Contains(keyword)));
 
             var data = await InfoArticleViewModel.Repository.GetModelListByAsync(predicate, orderBy, direction, pageSize, pageIndex).ConfigureAwait(false); // base.Search(predicate, orderBy, direction, pageSize, pageIndex, keyword);
-            //if (data.IsSucceed)
-            //{
-            //    data.Data.Items.ForEach(d => d.DetailsUrl = string.Format("{0}{1}", _domain, this.Url.Action("Details", "Articles", new { id = d.Id })));
-            //    data.Data.Items.ForEach(d => d.EditUrl = string.Format("{0}{1}", _domain, this.Url.Action("Edit", "Articles", new { id = d.Id })));
-            //    data.Data.Items.ForEach(d => d.Domain = _domain);
-            //}
             return data;
         }
 
@@ -253,12 +244,6 @@ namespace Swastka.Cms.Api.Controllers
                 || (model.Title.Contains(keyword) || model.Content.Contains(keyword))
                 );
             var data = await InfoArticleViewModel.Repository.GetModelListByAsync(predicate, orderBy, direction, pageSize, pageIndex).ConfigureAwait(false); // base.Search(predicate, orderBy, direction, pageSize, pageIndex, keyword);
-            //if (data.IsSucceed)
-            //{
-            //    data.Data.Items.ForEach(d => d.DetailsUrl = string.Format("{0}{1}", _domain, this.Url.Action("Details", "Articles", new { id = d.Id })));
-            //    data.Data.Items.ForEach(d => d.EditUrl = string.Format("{0}{1}", _domain, this.Url.Action("Edit", "Articles", new { id = d.Id })));
-            //    data.Data.Items.ForEach(d => d.Domain = _domain);
-            //}
             return data;
         }
 

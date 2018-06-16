@@ -5,12 +5,8 @@
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.Data.OData.Query;
-using Newtonsoft.Json.Linq;
-using Swastika.Api.Controllers;
 using Swastika.Cms.Lib.Models.Cms;
 using Swastika.Cms.Lib.ViewModels.BackEnd;
-using Swastika.Cms.Lib.ViewModels.FrontEnd;
 using Swastika.Cms.Lib.ViewModels.Info;
 using Swastika.Domain.Core.ViewModels;
 using System;
@@ -19,7 +15,7 @@ using System.Linq.Expressions;
 using System.Threading.Tasks;
 using static Swastika.Common.Utility.Enums;
 
-namespace Swastka.IO.Cms.Api.Controllers
+namespace Swastka.Cms.Api.Controllers
 {
     [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme,
         Roles = "SuperAdmin")]
@@ -28,6 +24,7 @@ namespace Swastka.IO.Cms.Api.Controllers
     public class ApiTemplateController :
         BaseApiController
     {
+
         public ApiTemplateController()
         {
         }

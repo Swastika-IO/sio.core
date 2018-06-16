@@ -149,25 +149,29 @@ namespace Swastika.Cms.Lib.Services
 
                     if (isSucceed)
                     {
-                        BECategoryViewModel cate = new BECategoryViewModel(new SiocCategory()
+                        if (BECategoryViewModel.Repository.Count(context, transaction).Data == 0)
                         {
-                            Title = "Home",
-                            Specificulture = "vi-vn",
-                            Template = "_Home",
-                            Type = (int)SWCmsConstants.CateType.Home,
-                            CreatedBy = "Admin"
-                        });
 
-                        isSucceed = cate.SaveModel(false, context, transaction).IsSucceed;
-                        BECategoryViewModel uscate = new BECategoryViewModel(new SiocCategory()
-                        {
-                            Title = "Home",
-                            Specificulture = "en-us",
-                            Template = "_Home",
-                            Type = (int)SWCmsConstants.CateType.Home,
-                            CreatedBy = "Admin"
-                        });
-                        isSucceed = isSucceed && uscate.SaveModel(false, context, transaction).IsSucceed;
+                            BECategoryViewModel cate = new BECategoryViewModel(new SiocCategory()
+                            {
+                                Title = "Home",
+                                Specificulture = "vi-vn",
+                                Template = "_Home",
+                                Type = (int)SWCmsConstants.CateType.Home,
+                                CreatedBy = "Admin"
+                            });
+
+                            isSucceed = cate.SaveModel(false, context, transaction).IsSucceed;
+                            BECategoryViewModel uscate = new BECategoryViewModel(new SiocCategory()
+                            {
+                                Title = "Home",
+                                Specificulture = "en-us",
+                                Template = "_Home",
+                                Type = (int)SWCmsConstants.CateType.Home,
+                                CreatedBy = "Admin"
+                            });
+                            isSucceed = isSucceed && uscate.SaveModel(false, context, transaction).IsSucceed;
+                        }
                     }
 
                     if (isSucceed)

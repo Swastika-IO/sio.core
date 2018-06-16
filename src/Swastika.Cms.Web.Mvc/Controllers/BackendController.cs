@@ -24,5 +24,11 @@ namespace Swastika.Cms.Mvc.Controllers
         {
             return View();
         }
+
+        [Route("init")]
+        public IActionResult Init()
+        {
+            return View();
+        }
     }
 }

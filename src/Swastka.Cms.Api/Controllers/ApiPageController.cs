@@ -2,12 +2,10 @@
 // The Swastika I/O Foundation licenses this file to you under the MIT license.
 // See the LICENSE file in the project root for more information.
 
-using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Data.OData.Query;
 using Newtonsoft.Json.Linq;
-using Swastika.Api.Controllers;
 using Swastika.Cms.Lib;
 using Swastika.Cms.Lib.Models.Cms;
 using Swastika.Cms.Lib.ViewModels.BackEnd;
@@ -20,7 +18,7 @@ using System.Linq.Expressions;
 using System.Threading.Tasks;
 using static Swastika.Common.Utility.Enums;
 
-namespace Swastka.IO.Cms.Api.Controllers
+namespace Swastka.Cms.Api.Controllers
 {
     [Produces("application/json")]
     [Route("api/{culture}/page")]
@@ -126,10 +124,8 @@ namespace Swastka.IO.Cms.Api.Controllers
             int? PageSize = 15, int? PageIndex = 0, string orderBy = "Id"
             , OrderByDirection direction = OrderByDirection.Ascending)
         {
-            var data = await InfoCategoryViewModel.Repository.GetModelListByAsync(m => m.Specificulture == _lang, orderBy, direction, PageSize, PageIndex).ConfigureAwait(false); //base.Get(orderBy, direction, PageSize, PageIndex);
-            //string domain = string.Format("{0}://{1}", Request.Scheme, Request.Host);
-            //data.Data.Items.ForEach(d => d.DetailsUrl = string.Format("{0}{1}", domain, this.Url.Action("Details", "Category", new { id = d.Id })));
-            //data.Data.Items.ForEach(d => d.EditUrl = string.Format("{0}{1}", domain, this.Url.Action("Edit", "Category", new { id = d.Id })));
+            var data = await InfoCategoryViewModel.Repository.GetModelListByAsync(
+                m => m.Specificulture == _lang, orderBy, direction, PageSize, PageIndex).ConfigureAwait(false);
             return data;
         }
 
@@ -152,7 +148,7 @@ namespace Swastka.IO.Cms.Api.Controllers
             && (string.IsNullOrWhiteSpace(description) || (model.Excerpt.Contains(description)));
             return InfoCategoryViewModel
                 .Repository
-                .GetModelListByAsync(predicate, orderBy, direction, PageSize, PageIndex); // base.Search(predicate, orderBy, direction, PageSize, PageIndex, keyword);
+                .GetModelListByAsync(predicate, orderBy, direction, PageSize, PageIndex);
         }
 
         #endregion Get
@@ -203,9 +199,9 @@ namespace Swastka.IO.Cms.Api.Controllers
         [HttpPost, HttpOptions]
         [Route("list")]
         [Route("list/{level}")]
-        public async Task<RepositoryResponse<PaginationModel<InfoCategoryViewModel>>> GetList([FromBody] RequestPaging request, int? level = 0)
+        public async Task<RepositoryResponse<PaginationModel<InfoCategoryViewModel>>> GetList(
+            [FromBody] RequestPaging request, int? level = 0)
         {
-            string domain = string.Format("{0}://{1}", Request.Scheme, Request.Host);
             ParseRequestPagingDate(request);
             Expression<Func<SiocCategory, bool>> predicate = model =>
                 model.Specificulture == _lang

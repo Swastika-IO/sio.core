@@ -11,7 +11,6 @@ namespace Swastka.Cms.Web
 {
     public partial class Startup
     {
-        public const string CONST_ROUTE_DEFAULT_CULTURE = SWCmsConstants.Default.Specificulture;
 
         public Startup(IConfiguration configuration)
         {
@@ -37,7 +36,7 @@ namespace Swastka.Cms.Web
             {
                 routes.MapRoute(
                     name: "apiRoute",
-                    template: "api/{culture=" + CONST_ROUTE_DEFAULT_CULTURE + "}/{area:exists}/{controller=Portal}/{action=Index}");
+                    template: "api/{culture=" + SWCmsConstants.Default.Specificulture + "}/{area:exists}/{controller=Portal}/{action=Index}");
             });
         }
     }

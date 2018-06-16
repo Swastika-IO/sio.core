@@ -47,14 +47,10 @@ namespace Swastika.Cms.Mvc.Areas.Portal.Controllers
 
         [HttpGet]
         [Route("init")]
+        [Route("init/{step}")]
         public IActionResult Init()
         {
-            var model = new InitCmsViewModel()
-            {
-                LocalDbName = "aspnet-swastika.Cms.Db",
-                LocalDbConnectionString = $"Server=(localdb)\\mssqllocaldb;Database=aspnet-swastika.Cms.Db;Trusted_Connection=True;MultipleActiveResultSets=true"
-            };
-            return View(model);
+            return View();
         }
 
         [HttpPost]

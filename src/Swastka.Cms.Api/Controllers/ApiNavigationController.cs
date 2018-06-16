@@ -4,16 +4,10 @@
 
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.Data.OData.Query;
-using Newtonsoft.Json.Linq;
-using Swastika.Api.Controllers;
-using Swastika.Cms.Lib;
 using Swastika.Cms.Lib.Models.Cms;
-using Swastika.Cms.Lib.ViewModels.BackEnd;
 using Swastika.Cms.Lib.ViewModels.Navigation;
 using Swastika.Domain.Core.ViewModels;
 using System;
-using System.Linq;
 using System.Linq.Expressions;
 using System.Threading.Tasks;
 
