@@ -5,6 +5,7 @@
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Swastika.Cms.Lib;
 using Swastika.Cms.Lib.Models.Cms;
 using Swastika.Cms.Lib.ViewModels.BackEnd;
 using Swastika.Cms.Lib.ViewModels.Info;
@@ -31,9 +32,9 @@ namespace Swastka.Cms.Api.Controllers
         #region Get
 
         [HttpGet]
-        [Route("details/{viewType}/{themeId}/{id}")]
-        [Route("details/{viewType}/{themeId}")]
-        public async Task<RepositoryResponse<BETemplateViewModel>> DetailsAsync(string viewType, int themeId, int? id)
+        [Route("details/{viewType}/{themeId}/{folderType}/{id}")]
+        [Route("details/{viewType}/{themeId}/{folderType}")]
+        public async Task<RepositoryResponse<BETemplateViewModel>> DetailsAsync(string viewType, int themeId, string folderType, int? id)
         {
             if (id.HasValue)
             {
@@ -44,11 +45,18 @@ namespace Swastka.Cms.Api.Controllers
             }
             else
             {
-                var getTheme =await InfoThemeViewModel.Repository.GetSingleModelAsync(t => t.Id == themeId);
+                var getTheme = await InfoThemeViewModel.Repository.GetSingleModelAsync(t => t.Id == themeId);
                 if (getTheme.IsSucceed)
                 {
-                    var model = new SiocTemplate() { Status = (int)SWStatus.Preview, TemplateId = themeId, TemplateName = getTheme.Data.Name };
-
+                    var model = new SiocTemplate()
+                    {
+                        Status = (int)SWStatus.Preview,
+                        TemplateId = themeId,
+                        TemplateName = getTheme.Data.Name,
+                        Extension = SWCmsConstants.Parameters.TemplateExtension,
+                        FolderType = folderType
+                    };
+                    
                     RepositoryResponse<BETemplateViewModel> result = new RepositoryResponse<BETemplateViewModel>()
                     {
                         IsSucceed = true,

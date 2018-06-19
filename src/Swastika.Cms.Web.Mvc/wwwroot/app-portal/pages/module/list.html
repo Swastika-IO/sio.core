@@ -45,12 +45,7 @@
                     {{item.title}}
                 </td>
                 <td>
-                    <div ng-if="item.image!=''">
-                        <img height="50" src="{{item.imageUrl}}" />
-                    </div>
-                    <small>
-                        {{item.description}}
-                    </small>
+                    <img imageonload height="50" src="{{item.image}}" />
                 </td>
                 <td>
                     <small>

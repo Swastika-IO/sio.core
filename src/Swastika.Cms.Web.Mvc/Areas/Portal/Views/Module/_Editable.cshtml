@@ -25,6 +25,11 @@
                     <input asp-for="Title" class="form-control form-control-lg" placeholder="Enter your module title here..." />
                     <span asp-validation-for="Title" class="text-danger"></span>
                 </div>
+                <div class="form-group ">
+                    @*<label asp-for="Title" class="control-label"></label>*@
+                    <input asp-for="PageSize" class="form-control form-control-lg" placeholder="Enter your module PageSize here..." />
+                    <span asp-validation-for="PageSize" class="text-danger"></span>
+                </div>
                 <div class="form-group">
                     <label asp-for="Name" class="control-label">System Module Name</label>
                     <input asp-for="Name" class="form-control" />

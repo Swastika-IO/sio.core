@@ -64,6 +64,9 @@ namespace Swastika.Cms.Lib.ViewModels.BackEnd
         [JsonProperty("modifiedBy")]
         public string ModifiedBy { get; set; }
 
+        [JsonProperty("pageSize")]
+        public int? PageSize { get; set; }
+
         #endregion Models
 
         #region Views

@@ -27,7 +27,7 @@ app.controller('Step1Controller', ['$scope', '$rootScope', '$timeout', '$locatio
             var result = await step1Services.initCms($scope.initCmsModel);
             if (result.isSucceed) {
                 $rootScope.isBusy = false;
-                $location.path('/portal/init/step2');
+                window.location.href= '/portal/init/step2';
             }
             else {
                 if (result) { $rootScope.showMessage('', result.errors, 'danger'); }

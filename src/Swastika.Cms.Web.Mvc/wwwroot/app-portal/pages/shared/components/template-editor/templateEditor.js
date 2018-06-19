@@ -124,6 +124,7 @@
                     });
                     editor.getSession().on('change', function (e) {
                         // e.type, etc
+                        vm.template.content = editor.getValue();
                         $(container).parent().find('.code-content').val(editor.getValue());
                     });
                 });

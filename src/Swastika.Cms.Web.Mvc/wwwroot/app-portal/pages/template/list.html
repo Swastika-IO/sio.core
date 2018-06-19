@@ -3,7 +3,7 @@
         <div class="col-md-8">
             <div class="btn-toolbar mb-3" role="toolbar" aria-label="Toolbar with button groups">
                 <div class="btn-group mr-2" role="group" aria-label="First group">
-                    <a href="/backend/template/create/{{themeId}}" class="btn btn-secondary">
+                    <a href="/backend/template/create/{{themeId}}/{{folderType}}" class="btn btn-secondary">
                         <i class="fas fa-plus"></i>
                     </a>
                 </div>
@@ -60,7 +60,7 @@
                 </td>
                 <td>
                     <div class="btn-group btn-group-sm btn-group-sm float-right" role="group" aria-label="Actions">
-                        <a href="/backend/template/details/{{themeId}}/{{item.id}}" class="btn btn-light">
+                        <a href="/backend/template/details/{{themeId}}/{{folderType}}/{{item.id}}" class="btn btn-light">
                             <span class="fas fa-pencil-alt text-primary"></span>
                         </a>
                         <a ng-click="removeTemplate(item.id);" 

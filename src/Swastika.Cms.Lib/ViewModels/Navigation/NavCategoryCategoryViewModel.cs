@@ -47,6 +47,15 @@ namespace Swastika.Cms.Lib.ViewModels.Navigation
 
         #region overrides
 
+        public override SiocCategoryCategory ParseModel(SiocCmsContext _context = null, IDbContextTransaction _transaction = null)
+        {
+            if (Priority == 0)
+            {
+                Priority = Repository.Max(n => n.Priority).Data + 1;
+            }
+            return base.ParseModel(_context, _transaction);
+        }
+
         public override void ExpandView(SiocCmsContext _context = null, IDbContextTransaction _transaction = null)
         {
             var getCategory = InfoCategoryViewModel.Repository.GetModelListBy(p => p.Id == Id && p.Specificulture == Specificulture

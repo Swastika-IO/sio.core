@@ -29,6 +29,10 @@
                     <input asp-for="Title" class="form-control form-control-lg" placeholder="Enter your page title here..." />
                     <span asp-validation-for="Title" class="text-danger"></span>
                 </div>
+                <div class="form-group">
+                    <input asp-for="PageSize" class="form-control form-control-lg" placeholder="Enter your page PageSize here..." />
+                    <span asp-validation-for="PageSize" class="text-danger"></span>
+                </div>
 
                 <div class="form-group">
                     <textarea asp-for="Excerpt" class="form-control" placeholder="Excerpt" aria-describedby="excerptHelp"></textarea>

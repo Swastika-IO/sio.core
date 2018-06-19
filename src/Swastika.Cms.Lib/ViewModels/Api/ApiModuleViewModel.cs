@@ -28,7 +28,7 @@ namespace Swastika.Cms.Lib.ViewModels.Api
     public class ApiModuleViewModel
        : ViewModelBase<SiocCmsContext, SiocModule, ApiModuleViewModel>
     {
-        
+
         #region Properties
 
         #region Models
@@ -65,6 +65,9 @@ namespace Swastika.Cms.Lib.ViewModels.Api
         [JsonProperty("modifiedBy")]
         public string ModifiedBy { get; set; }
 
+        [JsonProperty("pageSize")]
+        public int? PageSize { get; set; }
+
         #endregion Models
 
         #region Views
@@ -77,12 +80,14 @@ namespace Swastika.Cms.Lib.ViewModels.Api
         [JsonProperty("view")]
         public BETemplateViewModel View { get; set; }
 
-        [JsonProperty("templates")]
-        public List<BETemplateViewModel> Templates { get; set; }// Article Templates
+        //[JsonProperty("templates")]
+        //public List<BETemplateViewModel> Templates { get; set; }// Article Templates
 
         [JsonIgnore]
-        public string ActivedTemplate {
-            get {
+        public string ActivedTemplate
+        {
+            get
+            {
                 return GlobalConfigurationService.Instance.GetLocalString(SWCmsConstants.ConfigurationKeyword.Theme, Specificulture, SWCmsConstants.Default.DefaultTemplateFolder);
             }
         }
@@ -91,8 +96,10 @@ namespace Swastika.Cms.Lib.ViewModels.Api
         public string TemplateFolderType { get { return SWCmsConstants.TemplateFolderEnum.Modules.ToString(); } }
 
         [JsonProperty("templateFolder")]
-        public string TemplateFolder {
-            get {
+        public string TemplateFolder
+        {
+            get
+            {
                 return SwCmsHelper.GetFullPath(new string[]
                 {
                     SWCmsConstants.Parameters.TemplatesFolder
@@ -170,11 +177,9 @@ namespace Swastika.Cms.Lib.ViewModels.Api
                 Columns.Add(thisField);
             }
 
-            //Get Templates
-            this.Templates = this.Templates ?? BETemplateViewModel.Repository.GetModelListBy(
-                t => t.Template.Name == ActivedTemplate && t.FolderType == this.TemplateFolderType).Data;
-            this.View = Templates.FirstOrDefault(t => !string.IsNullOrEmpty(this.Template) && this.Template.Contains(t.FileName + t.Extension));
-            this.View = View ?? Templates.FirstOrDefault();
+            View = BETemplateViewModel.Repository.GetSingleModel(t =>
+                    t.TemplateId == GlobalConfigurationService.GetLocalInt(SWCmsConstants.ConfigurationKeyword.ThemeId, Specificulture)
+                    && !string.IsNullOrEmpty(this.Template) && this.Template.Contains(t.FileName + t.Extension)).Data;
             if (this.View == null)
             {
                 this.View = new BETemplateViewModel(new SiocTemplate()
@@ -224,7 +229,7 @@ namespace Swastika.Cms.Lib.ViewModels.Api
 
         #endregion Async
 
-        
+
 
         #endregion Overrides
 

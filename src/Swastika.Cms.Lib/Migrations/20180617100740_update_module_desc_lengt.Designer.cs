@@ -11,9 +11,10 @@ using System;
 namespace Swastika.Cms.Lib.Migrations
 {
     [DbContext(typeof(SiocCmsContext))]
-    partial class SiocCmsContextModelSnapshot : ModelSnapshot
+    [Migration("20180617100740_update_module_desc_lengt")]
+    partial class update_module_desc_lengt
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -206,8 +207,6 @@ namespace Swastika.Cms.Lib.Migrations
 
                     b.Property<string>("ModifiedBy")
                         .HasMaxLength(250);
-
-                    b.Property<int?>("PageSize");
 
                     b.Property<int>("Priority")
                         .ValueGeneratedOnAdd()
@@ -781,8 +780,6 @@ namespace Swastika.Cms.Lib.Migrations
                     b.Property<string>("Name")
                         .IsRequired()
                         .HasMaxLength(50);
-
-                    b.Property<int?>("PageSize");
 
                     b.Property<int>("Priority")
                         .ValueGeneratedOnAdd()

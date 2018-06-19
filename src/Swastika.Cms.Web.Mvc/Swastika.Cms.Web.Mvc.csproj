@@ -353,8 +353,6 @@
   </ItemGroup>
 
   <ProjectExtensions>
-    <VisualStudio>
-      <UserProperties appsettings_1json__JSONSchema="http://json.schemastore.org/bower" />
-    </VisualStudio>
+    <VisualStudio><UserProperties appsettings_1json__JSONSchema="http://json.schemastore.org/commands" /></VisualStudio>
   </ProjectExtensions>
 </Project>

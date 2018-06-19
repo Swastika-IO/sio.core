@@ -79,7 +79,7 @@ namespace Swastika.Cms.Mvc.Areas.Portal.Controllers
                     settings.Content = jsonSettings.ToString();
                     FileRepository.Instance.SaveFile(settings);
                 }
-                GlobalConfigurationService.Instance.ConnectionString = cnnString;
+                //GlobalConfigurationService.Instance.ConnectionString = cnnString;
                 var initResult = await GlobalConfigurationService.Instance.InitSWCms(_userManager, _roleManager);
                 if (initResult.IsSucceed)
                 {

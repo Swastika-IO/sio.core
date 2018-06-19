@@ -270,9 +270,21 @@ app.run(['$rootScope', '$location', 'commonServices', 'authService', function ($
         }, 200)
     }
 
-    if (!authService.authentication.isAuth || !authService.authentication.isAdmin) {
-        authService.authentication.referredUrl = $location.path();
-        $location.path('/backend/login');
+    $rootScope.showMessagebk = function (content, type) {
+        var from = 'top';
+        var align = 'right';
+        $.notify({
+            icon: "now-ui-icons ui-1_bell-53",
+            message: content,
+
+        }, {
+                type: type,
+                timer: 8000,
+                placement: {
+                    from: from,
+                    align: align
+                }
+            });
     }
 }]);
 

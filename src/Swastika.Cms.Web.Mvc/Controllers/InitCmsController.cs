@@ -35,7 +35,7 @@ namespace Swastika.Cms.Web.Mvc.Controllers
         [Route("{culture}")]
         public async System.Threading.Tasks.Task<IActionResult> Index()
         {
-            if (string.IsNullOrEmpty(GlobalConfigurationService.Instance.GetConnectionString()))
+            if (string.IsNullOrEmpty(GlobalConfigurationService.Instance.GetConfigConnectionKey()))
             {
                 return Redirect(InitUrl);
             }

@@ -101,6 +101,8 @@ namespace Swastika.Cms.Lib.ViewModels.FrontEnd
         [JsonProperty("tags")]
         public string Tags { get; set; }
 
+        [JsonProperty("pageSize")]
+        public int? PageSize { get; set; }
         #endregion Models
 
         #region Views

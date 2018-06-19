@@ -228,6 +228,8 @@ namespace Swastika.Cms.Lib.Models.Cms
 
                 entity.Property(e => e.Priority).HasDefaultValueSql("((0))");
 
+                entity.Property(e => e.PageSize);
+
                 entity.Property(e => e.SeoDescription).HasMaxLength(4000);
 
                 entity.Property(e => e.SeoKeywords).HasMaxLength(4000);
@@ -676,7 +678,7 @@ namespace Swastika.Cms.Lib.Models.Cms
 
                 entity.Property(e => e.Specificulture).HasMaxLength(10);
 
-                entity.Property(e => e.Description).HasMaxLength(500);
+                entity.Property(e => e.Description).HasMaxLength(4000);
 
                 entity.Property(e => e.Fields).HasMaxLength(4000);
 
@@ -691,6 +693,8 @@ namespace Swastika.Cms.Lib.Models.Cms
                     .HasMaxLength(50);
 
                 entity.Property(e => e.Priority).HasDefaultValueSql("((0))");
+
+                entity.Property(e => e.PageSize);
 
                 entity.Property(e => e.Status).HasDefaultValueSql("((1))");
 

@@ -51,6 +51,7 @@ namespace Swastika.Cms.Mvc.Areas.Portal.Controllers
             {
                 Specificulture = CurrentLanguage,
                 CreatedBy = User.Identity.Name,
+                PageSize = 20
                 //CreatedDate = DateTime.UtcNow
             });
             return View(ttsMenu);

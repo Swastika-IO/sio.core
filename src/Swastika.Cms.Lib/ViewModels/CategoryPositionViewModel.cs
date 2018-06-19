@@ -29,7 +29,14 @@ namespace Swastika.Cms.Lib.ViewModels
         public string Description { get; set; }
 
         #region overrides
-
+        public override SiocCategoryPosition ParseModel(SiocCmsContext _context = null, IDbContextTransaction _transaction = null)
+        {
+            if (Priority == 0)
+            {
+                Priority = Repository.Max(n => n.Priority).Data + 1;
+            }
+            return base.ParseModel(_context, _transaction);
+        }
         #region Async
 
         //public override async Task<RepositoryResponse<CategoryPositionViewModel>> CloneAsync(string desSpecificulture, SiocCmsContext _context = null, IDbContextTransaction _transaction = null)

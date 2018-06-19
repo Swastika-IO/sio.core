@@ -156,12 +156,12 @@
         templateUrl: "/app-portal/pages/template/list.html"
     });
 
-    $routeProvider.when("/backend/template/details/:themeId/:id", {
+    $routeProvider.when("/backend/template/details/:themeId/:folderType/:id", {
         controller: "TemplateController",
         templateUrl: "/app-portal/pages/template/details.html"
     });
 
-    $routeProvider.when("/backend/template/create/:themeId", {
+    $routeProvider.when("/backend/template/create/:themeId/:folderType", {
         controller: "TemplateController",
         templateUrl: "/app-portal/pages/template/details.html"
     });

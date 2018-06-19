@@ -72,7 +72,11 @@ namespace Swastka.Cms.Api.Controllers
                     }
                     else
                     {
-                        var model = new SiocCategory() { Specificulture = _lang, Status = (int)SWStatus.Preview };
+                        var model = new SiocCategory()
+                        {
+                            Specificulture = _lang, Status = (int)SWStatus.Preview,
+                            PageSize = 20
+                        };
 
                         RepositoryResponse<BECategoryViewModel> result = new RepositoryResponse<BECategoryViewModel>()
                         {
@@ -97,7 +101,11 @@ namespace Swastka.Cms.Api.Controllers
                         RepositoryResponse<FECategoryViewModel> result = new RepositoryResponse<FECategoryViewModel>()
                         {
                             IsSucceed = true,
-                            Data = new FECategoryViewModel(model) { Specificulture = _lang, Status = SWStatus.Preview }
+                            Data = new FECategoryViewModel(model)
+                            {
+                                Specificulture = _lang, Status = SWStatus.Preview,
+                                PageSize = 20
+                            }
                         };
                         return JObject.FromObject(result);
                     }

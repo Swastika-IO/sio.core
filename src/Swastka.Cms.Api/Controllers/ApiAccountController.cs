@@ -117,6 +117,7 @@ namespace Swastika.Cms.Api.Controllers
                 }
                 else
                 {
+                    loginResult.Errors.Add("login failed");
                     return loginResult;
                 }
             }

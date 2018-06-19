@@ -176,7 +176,6 @@ namespace Swastka.Cms.Api.Controllers
 
                 }
                 return result;
-
             }
             return new RepositoryResponse<bool>();
         }

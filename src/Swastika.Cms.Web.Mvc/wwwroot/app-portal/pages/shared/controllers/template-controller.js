@@ -58,7 +58,8 @@ app.controller('TemplateController', ['$scope', '$rootScope', '$routeParams', '$
             $rootScope.isBusy = true;
             var id = $routeParams.id;
             var themeId = $routeParams.themeId;
-            var response = await templateServices.getTemplate(themeId, id, 'be');
+            var folderType = $routeParams.folderType;
+            var response = await templateServices.getTemplate(themeId, folderType, id, 'be');
             if (response.isSucceed) {
                 $scope.activedTemplate = response.data;
                 $scope.listUrl = '/backend/template/list/' + themeId;                

@@ -29,6 +29,7 @@ namespace Swastika.Cms.Lib.Models.Cms
         public int? Level { get; set; }
         public string ModifiedBy { get; set; }
         public int Priority { get; set; }
+        public int? PageSize { get; set; }
         public string SeoDescription { get; set; }
         public string SeoKeywords { get; set; }
         public string SeoName { get; set; }

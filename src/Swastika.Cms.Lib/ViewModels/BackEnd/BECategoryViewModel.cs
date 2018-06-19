@@ -105,6 +105,8 @@ namespace Swastika.Cms.Lib.ViewModels.BackEnd
         [JsonProperty("modifiedBy")]
         public string ModifiedBy { get; set; }
 
+        [JsonProperty("pageSize")]
+        public int? PageSize { get; set; }
         #endregion Models
 
         #region Views
@@ -443,6 +445,7 @@ namespace Swastika.Cms.Lib.ViewModels.BackEnd
                 foreach (var item in ModuleNavs)
                 {
                     item.CategoryId = parent.Id;
+                    
                     if (item.IsActived)
                     {
                         var saveResult = await item.SaveModelAsync(false, _context, _transaction);
