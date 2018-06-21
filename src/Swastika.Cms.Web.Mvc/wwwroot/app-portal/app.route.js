@@ -1,6 +1,11 @@
 ﻿app.config(function ($routeProvider, $locationProvider, $sceProvider) {
     $locationProvider.html5Mode(true);
 
+    $routeProvider.when("/backend/simple", {
+        controller: "SimpleDemoController",
+        templateUrl: "/app-portal/pages/simple/simple-frame.html"
+    });
+
     $routeProvider.when("/backend", {
         controller: "DashboardController",
         templateUrl: "/app-portal/pages/dashboard/dashboard.html"

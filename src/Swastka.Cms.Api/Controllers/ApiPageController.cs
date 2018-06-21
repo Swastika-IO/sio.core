@@ -76,6 +76,8 @@ namespace Swastka.Cms.Api.Controllers
                         {
                             Specificulture = _lang, Status = (int)SWStatus.Preview,
                             PageSize = 20
+                            ,
+                            Priority = BECategoryViewModel.Repository.Max(a => a.Priority).Data + 1
                         };
 
                         RepositoryResponse<BECategoryViewModel> result = new RepositoryResponse<BECategoryViewModel>()

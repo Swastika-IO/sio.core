@@ -53,9 +53,11 @@ namespace Swastka.Cms.Api.Controllers
                             Specificulture = _lang
                             ,
                             FileFolder = $"{SWCmsConstants.Parameters.FileFolder}/{SWCmsConstants.FileFolder.Medias}/{DateTime.UtcNow.ToShortDateString()}"
+                            ,
+                            Priority = BEMediaViewModel.Repository.Max(a => a.Priority).Data + 1
                         };
                         var result = new RepositoryResponse<BEMediaViewModel>()
-                        { 
+                        {
                             IsSucceed = true,
                             Data = (await BEMediaViewModel.InitAsync(media))
                         };

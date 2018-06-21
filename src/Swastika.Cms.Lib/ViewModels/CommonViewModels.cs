@@ -110,7 +110,6 @@ namespace Swastika.Cms.Lib.ViewModels
             get
             {
                 _webPath = CommonHelper.GetFullPath(new string[] {
-                    SWCmsConstants.Parameters.FileFolder,
                     FileFolder,
                     $"{Filename}{Extension}"
                 });

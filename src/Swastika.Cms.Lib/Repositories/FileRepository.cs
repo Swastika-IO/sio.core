@@ -74,7 +74,6 @@ namespace Swastika.Cms.Lib.Repositories
             string fullPath = CommonHelper.GetFullPath(new string[]
             {
                 SWCmsConstants.Parameters.WebRootPath,
-                SWCmsConstants.Parameters.FileFolder,
                 folder,
                 filename
             });
@@ -318,7 +317,6 @@ namespace Swastika.Cms.Lib.Repositories
             string fullPath = CommonHelper.GetFullPath(new string[]
             {
                 SWCmsConstants.Parameters.WebRootPath,
-                SWCmsConstants.Parameters.FileFolder,
                 folder
             });
             List<string> result = new List<string>();
@@ -339,7 +337,13 @@ namespace Swastika.Cms.Lib.Repositories
             string fullPath = CommonHelper.GetFullPath(new string[]
              {
                 SWCmsConstants.Parameters.WebRootPath,
-                SWCmsConstants.Parameters.FileFolder,
+                //SWCmsConstants.Parameters.FileFolder,
+                folder
+             });
+
+            string webPath = CommonHelper.GetFullPath(new string[]
+             {
+                //SWCmsConstants.Parameters.FileFolder,
                 folder
              });
             List<FileViewModel> result = new List<FileViewModel>();
@@ -354,7 +358,7 @@ namespace Swastika.Cms.Lib.Repositories
                     result.Add(new FileViewModel()
                     {
                         FolderName = folderName,
-                        FileFolder = folder,
+                        FileFolder = webPath,
 
                         Filename = file.Name.Substring(0, file.Name.LastIndexOf('.') >= 0 ? file.Name.LastIndexOf('.') : 0),
                         Extension = file.Extension,

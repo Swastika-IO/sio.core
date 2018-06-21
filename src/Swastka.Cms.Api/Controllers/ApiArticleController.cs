@@ -57,7 +57,12 @@ namespace Swastka.Cms.Api.Controllers
                     }
                     else
                     {
-                        var model = new SiocArticle() { Specificulture = _lang, Status = (int)SWStatus.Preview };
+                        var model = new SiocArticle()
+                        {
+                            Specificulture = _lang,
+                            Status = (int)SWStatus.Preview,
+                            Priority = BEArticleViewModel.Repository.Max(a => a.Priority).Data + 1
+                        };
                         RepositoryResponse<BEArticleViewModel> result = new RepositoryResponse<BEArticleViewModel>()
                         {
                             IsSucceed = true,

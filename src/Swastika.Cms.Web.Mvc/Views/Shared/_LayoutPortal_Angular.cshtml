@@ -31,7 +31,9 @@
     <link href="/lib/cropperjs-1.2.2/dist/cropper.min.css" rel="stylesheet" />
     <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 
-    
+    <script src="~/app-portal/plugins/bootstrap-notify.min.js"></script>
+
+    <link href="~/app-portal/app.css" rel="stylesheet" />
     @RenderSection("Styles", required: false)
 </head>
 
@@ -101,15 +103,15 @@
 
     <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.2.16/angular-route.min.js"></script>
     <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.2.13/angular-animate.js"></script>
-    
+
     <script src="/app-portal/app.js"></script>
     <script src="/app-portal/app.route.js"></script>
-
+    <script src="~/app-portal/plugins/angular-drag-and-drop-lists.min.js"></script>
     <!-- Services-->
     <script src="/app-portal/plugins/angular-local-storage.min.js"></script>
     <script src="/app-portal/pages/shared/services/auth-services.js"></script>
     <script src="/app-portal/pages/login/login-controller.js"></script>
-    
+
     <script src="/app-portal/pages/shared/services/common-services.js"></script>
     <script src="~/app-portal/pages/shared/services/template-services.js"></script>
     <script src="/app-portal/pages/product/product-services.js"></script>
@@ -219,8 +221,6 @@
     @RenderSection("Scripts", required: false)
 
     <!--Datatables-->
-    
-
     @*@RenderSection("Modals", required: false)*@
     @*@await Component.InvokeAsync(typeof(Swastika.Cms.Mvc.Areas.Portal.ViewComponents.Modals))*@
 </body>
