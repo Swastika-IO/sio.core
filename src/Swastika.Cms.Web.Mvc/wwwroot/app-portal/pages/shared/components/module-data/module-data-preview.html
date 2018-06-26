@@ -12,18 +12,18 @@
         <i class="{{$ctrl.data.value}}" />
     </div>
     <div ng-switch-when="4">
-        <p ng-bind="$ctrl.data.value" />
+        <p ng-bind-html="$ctrl.data.value" />
     </div>
     <div ng-switch-when="5">
-        <div ng-bind="$ctrl.data.value" />
+        <div ng-bind-html="$ctrl.data.value" />
     </div>
     <div ng-switch-when="6">
-        <p ng-bind="$ctrl.data.value" />
+        <p ng-bind-html="$ctrl.data.value" />
     </div>
     <div ng-switch-when="7">
         <input class="form-control" type="checkbox" ng-model="$ctrl.data.value">
     </div>
     <div ng-switch-when="8">
-        <div ng-bind="$ctrl.data.value" />
+        <p ng-bind-html="$ctrl.data.value"></p>
     </div>
 </div>

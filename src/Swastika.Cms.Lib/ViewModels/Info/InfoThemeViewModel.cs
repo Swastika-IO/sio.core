@@ -46,7 +46,7 @@ namespace Swastika.Cms.Lib.ViewModels.Info
         public bool IsActived { get; set; }
 
         [JsonProperty("asset")]
-        public IFormFile Asset { get; set; }// = new FileViewModel();
+        public IFormFile Asset { get; set; }
 
         [JsonProperty("assetFolder")]
         public string AssetFolder
@@ -54,8 +54,9 @@ namespace Swastika.Cms.Lib.ViewModels.Info
             get
             {
                 return CommonHelper.GetFullPath(new string[] {
+                    SWCmsConstants.Parameters.FileFolder,
                     SWCmsConstants.Parameters.TemplatesAssetFolder,
-                    Name });
+                    SeoHelper.GetSEOString(Name) });
             }
         }
 

@@ -61,7 +61,7 @@ namespace Swastika.Cms.Lib.ViewModels.Api
                 return CommonHelper.GetFullPath(new string[] {
                     SWCmsConstants.Parameters.FileFolder,
                     SWCmsConstants.Parameters.TemplatesAssetFolder,
-                    Name });
+                    SeoHelper.GetSEOString(Name) });
             }
         }
 
@@ -276,7 +276,7 @@ namespace Swastika.Cms.Lib.ViewModels.Api
             ", js.FileFolder, js.Filename, js.Extension);
                 }
                 var layout = ApiTemplateViewModel.Repository.GetSingleModel(
-                    t => t.FileName == "_Layout" && t.FolderType== "Masters" && t.TemplateId == Model.Id
+                    t => t.FileName == "_Layout" && t.FolderType == "Masters" && t.TemplateId == Model.Id
                     , _context, _transaction);
                 layout.Data.Content = layout.Data.Content.Replace("<!--[STYLES]-->"
                     , string.Format(@"{0}"

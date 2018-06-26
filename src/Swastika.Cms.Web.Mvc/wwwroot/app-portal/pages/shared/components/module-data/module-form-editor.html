@@ -32,19 +32,19 @@
             </div>
         </div>
         <div ng-switch-when="4">
-            <textarea ng-model="$ctrl.data.value" class="form-control code-editor {{$ctrl.data.name}}"></textarea>
+            <textarea ng-model="$ctrl.data.value" ng-init="$ctrl.initEditor()" class="form-control code-editor {{$ctrl.data.name}}"></textarea>
         </div>
         <div ng-switch-when="5">
-            <textarea ng-model="$ctrl.data.value" class="form-control editor-content {{$ctrl.data.name}}"></textarea>
+            <textarea ng-model="$ctrl.data.value" ng-init="$ctrl.initEditor()" class="form-control editor-content {{$ctrl.data.name}}"></textarea>
         </div>
         <div ng-switch-when="6">
-            <textarea ng-model="$ctrl.data.value" class="form-control">$ctrl.Value</textarea>
+            <textarea ng-model="$ctrl.data.value" ng-init="$ctrl.initEditor()" class="form-control">$ctrl.Value</textarea>
         </div>
         <div ng-switch-when="7">
             <input class="form-control" type="checkbox" ng-model="$ctrl.data.value">
         </div>
         <div ng-switch-when="8">
-            <textarea ng-model="$ctrl.data.value" class="form-control editor-content  {{$ctrl.data.name}}">$ctrl.Value</textarea>
+            <textarea ng-model="$ctrl.data.value" ng-init="$ctrl.initEditor()" class="form-control editor-content {{$ctrl.data.name}}">$ctrl.Value</textarea>
         </div>
     </div>
 </div>
