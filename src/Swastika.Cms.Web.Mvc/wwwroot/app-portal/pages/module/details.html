@@ -35,6 +35,8 @@
                                             <th scope="col">Name</th>
                                             <th scope="col" width="20%">Data Type</th>
                                             <th scope="col" width="5%">Width</th>
+                                            <th scope="col" width="5%">GroupBy</th>
+                                            <th scope="col" width="5%">Select</th>
                                             <th scope="col" width="5%">Display</th>
                                             <th scope="col" width="5%"></th>
                                         </tr>
@@ -60,15 +62,48 @@
                                             </td>
                                             <td>
                                                 <span class="switch switch-sm">
-                                                    <input type="checkbox" class="switch" ng-model="col.isDisplay">
-                                                    <label ng-model="col.isDisplay">&nbsp;</label>
+                                                    <input id="isGroupBy_{{$index}}" type="checkbox" class="switch" ng-model="col.isGroupBy">
+                                                    <label for="isGroupBy_{{$index}}">&nbsp;</label>
+                                                </span>
+                                            </td>
+                                            <td>
+                                                <span class="switch switch-sm">
+                                                    <input id="isSelect_{{$index}}" type="checkbox" class="switch" ng-model="col.isSelect">
+                                                    <label for="isSelect_{{$index}}">&nbsp;</label>
+                                                </span>
+                                            </td>
+                                            <td>
+                                                <span class="switch switch-sm">
+                                                    <input id="isDisplay_{{$index}}" type="checkbox" class="switch" ng-model="col.isDisplay">
+                                                    <label for="isDisplay_{{$index}}">&nbsp;</label>
                                                 </span>
                                             </td>
                                             <td>
                                                 <a class="btn btn-light del-popover"
-                                                        ng-click="removeAttr($index);">
+                                                   ng-click="removeAttr($index);">
                                                     <span class="fas fa-times text-danger"></span>
                                                 </a>
+                                            </td>
+                                        </tr>
+                                        <tr class="sortable-item module-column" ng-repeat="col in activedModule.columns track by $index" ng-if="col.isSelect">
+                                            <td colspan="8">
+                                                <div class="row">
+                                                    
+                                                    <div class="col-12">
+                                                        <h1 ng-bind="col.name"></h1>
+                                                        <input type="text" id="option_{{$index}}" ng-enter="addOption(col,$index)" placeholder="fill then enter to add options"  class="form-control" />
+                                                    </div>
+                                                </div>
+                                                <div class="row" ng-repeat="opt in col.options track by $index">
+                                                    <div class="col-8">
+                                                        <input type="text" class="form-control" ng-model="col.options[$index]" />
+                                                    </div>
+                                                    <div class="col-4 ">
+                                                        <a class="btn" ng-click="col.options.splice($index,1)">
+                                                            <span class="fas fa-times text-danger"></span>
+                                                        </a>
+                                                    </div>
+                                                </div>
                                             </td>
                                         </tr>
                                     </tbody>
@@ -120,13 +155,13 @@
                     </div>
                 </div>
 
-                <custom-image header="'Feature Image'" type="'Modules'" 
-                              folder="activedModule.seoName" 
-                              src-url="activedModule.image" 
+                <custom-image header="'Feature Image'" type="'Modules'"
+                              folder="activedModule.seoName"
+                              src-url="activedModule.image"
                               src="activedModule.image" auto="'true'"></custom-image>
-                <custom-image header="'Feature Thumnail'" type="'Modules'" 
-                              folder="activedModule.seoName" 
-                              src-url="activedModule.thumbnail" 
+                <custom-image header="'Feature Thumnail'" type="'Modules'"
+                              folder="activedModule.seoName"
+                              src-url="activedModule.thumbnail"
                               src="activedModule.thumbnail" auto="'true'"></custom-image>
             </section>
         </div>

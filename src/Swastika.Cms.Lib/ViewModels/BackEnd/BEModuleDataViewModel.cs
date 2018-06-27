@@ -141,6 +141,10 @@ namespace Swastika.Cms.Lib.ViewModels.BackEnd
                     ModuleId = ModuleId,
                     DataType = (SWCmsConstants.DataType)col.DataType,
                     Name = CommonHelper.ParseJsonPropertyName(prop.Name),
+                    IsDisplay = col.IsDisplay,
+                    IsSelect = col.IsSelect,
+                    IsGroupBy = col.IsGroupBy,
+                    Options = col.Options,
                     StringValue = prop.Value["value"].Value<string>()
                 };
                 switch (col.DataType)

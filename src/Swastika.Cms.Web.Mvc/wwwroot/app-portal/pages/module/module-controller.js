@@ -15,8 +15,11 @@ app.controller('ModuleController', ['$scope', '$rootScope', '$routeParams', '$ti
         };
         $scope.defaultAttr = {
             name: '',
+            options: [],
             priority: 0,
             dataType: 0,
+            isGroupBy: false,
+            isSelect: false,
             isDisplay: true,
             width: 3
         };
@@ -183,6 +186,12 @@ app.controller('ModuleController', ['$scope', '$rootScope', '$routeParams', '$ti
             }
         }
 
+        $scope.addOption = function (col, index) {
+            var val = angular.element('#option_' + index).val();
+            col.options.push(val);
+            angular.element('#option_' + index).val('');
+        }
+
         $scope.removeAttr = function (index) {
             if ($scope.activedModule) {
 
@@ -192,7 +201,7 @@ app.controller('ModuleController', ['$scope', '$rootScope', '$routeParams', '$ti
 
         $scope.removeData = function (id) {
             if ($scope.activedModule) {
-                $rootScope.showConfirm($scope, 'removeDataConfirmed', [ id ], null, 'Remove Data', 'Are you sure');
+                $rootScope.showConfirm($scope, 'removeDataConfirmed', [id], null, 'Remove Data', 'Are you sure');
             }
         }
 

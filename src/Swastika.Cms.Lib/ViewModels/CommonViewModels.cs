@@ -7,6 +7,7 @@
 // See the LICENSE file in the project root for more information.
 
 using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 using Swastika.Cms.Lib.Models.Cms;
 using Swastika.Cms.Lib.ViewModels.Info;
 using Swastika.Common.Helper;
@@ -153,6 +154,9 @@ namespace Swastika.Cms.Lib.ViewModels
         [JsonProperty("name")]
         public string Name { get; set; }
 
+        [JsonProperty("options")]
+        public JArray Options { get; set; } = new JArray();
+
         [JsonProperty("priority")]
         public int Priority { get; set; }
 
@@ -161,6 +165,12 @@ namespace Swastika.Cms.Lib.ViewModels
 
         [JsonProperty("isDisplay")]
         public bool IsDisplay { get; set; }
+
+        [JsonProperty("isSelect")]
+        public bool IsSelect { get; set; }
+
+        [JsonProperty("isGroupBy")]
+        public bool IsGroupBy { get; set; }
 
         [JsonProperty("width")]
         public int Width { get; set; }
@@ -187,6 +197,14 @@ namespace Swastika.Cms.Lib.ViewModels
         {
             return this.Value != null ? (T)Value : default(T);
         }
+        [JsonProperty("isDisplay")]
+        public bool IsDisplay { get; set; }
+        [JsonProperty("isSelect")]
+        public bool IsSelect { get; set; }
+        [JsonProperty("isGroupBy")]
+        public bool IsGroupBy { get; set; }
+        [JsonProperty("options")]
+        public JArray Options { get; set; } = new JArray();
     }
 
     public class SpaModuleDataValueViewModel
