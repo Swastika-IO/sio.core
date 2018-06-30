@@ -28,7 +28,7 @@ namespace Swastika.Cms.Mvc.Areas.Portal.Controllers
     {
         private readonly UserManager<ApplicationUser> _userManager;
         private readonly RoleManager<IdentityRole> _roleManager;
-        public PortalController(IHostingEnvironment env, IConfigurationRoot configuration,
+        public PortalController(IHostingEnvironment env, IConfiguration configuration,
             UserManager<ApplicationUser> userManager,
             RoleManager<IdentityRole> roleManager
             )

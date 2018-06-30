@@ -22,7 +22,7 @@ namespace Swastika.Cms.Mvc.Controllers
         public readonly string ROUTE_CULTURE_NAME = "culture";
         public readonly string ROUTE_DEFAULT_CULTURE = SWCmsConstants.Default.Specificulture;
         protected string _domain;
-        protected IConfigurationRoot _configuration;
+        protected IConfiguration _configuration;
         protected IHostingEnvironment _env;
         private string _currentLanguage;
 
@@ -38,7 +38,7 @@ namespace Swastika.Cms.Mvc.Controllers
             CultureInfo.DefaultThreadCurrentUICulture = cultureInfo;
         }
 
-        public BaseController(IHostingEnvironment env, IConfigurationRoot configuration)
+        public BaseController(IHostingEnvironment env, IConfiguration configuration)
         {
             _configuration = configuration;
             _env = env;

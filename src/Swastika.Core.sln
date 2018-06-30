@@ -21,11 +21,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Swastika.Cms.Lib", "Swastik
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Swastka.Cms.Api", "Swastka.Cms.Api\Swastka.Cms.Api.csproj", "{0236F35B-5B06-4020-8E30-A704E03C4A04}"
 EndProject
-Project("{E53339B2-1760-4266-BCC7-CA923CBCF16C}") = "docker-compose", "docker-compose.dcproj", "{03E107B0-AEE0-4763-8F52-0536B6C1102A}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebApplication1", "WebApplication1\WebApplication1.csproj", "{83A4C9C9-91CF-40DE-8D01-0D28728EC420}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "aspnetcore-template", "aspnetcore-template\aspnetcore-template.csproj", "{DCF1E797-0D35-4495-A2AC-A068F9F62CFD}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WebApplication1", "WebApplication1\WebApplication1.csproj", "{83A4C9C9-91CF-40DE-8D01-0D28728EC420}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -57,18 +53,10 @@ Global
 		{0236F35B-5B06-4020-8E30-A704E03C4A04}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{0236F35B-5B06-4020-8E30-A704E03C4A04}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{0236F35B-5B06-4020-8E30-A704E03C4A04}.Release|Any CPU.Build.0 = Release|Any CPU
-		{03E107B0-AEE0-4763-8F52-0536B6C1102A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{03E107B0-AEE0-4763-8F52-0536B6C1102A}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{03E107B0-AEE0-4763-8F52-0536B6C1102A}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{03E107B0-AEE0-4763-8F52-0536B6C1102A}.Release|Any CPU.Build.0 = Release|Any CPU
 		{83A4C9C9-91CF-40DE-8D01-0D28728EC420}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{83A4C9C9-91CF-40DE-8D01-0D28728EC420}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{83A4C9C9-91CF-40DE-8D01-0D28728EC420}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{83A4C9C9-91CF-40DE-8D01-0D28728EC420}.Release|Any CPU.Build.0 = Release|Any CPU
-		{DCF1E797-0D35-4495-A2AC-A068F9F62CFD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{DCF1E797-0D35-4495-A2AC-A068F9F62CFD}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{DCF1E797-0D35-4495-A2AC-A068F9F62CFD}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{DCF1E797-0D35-4495-A2AC-A068F9F62CFD}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -81,7 +69,6 @@ Global
 		{DF31FCFD-6D70-4ADC-A0A2-D774DBA837BB} = {7995F1E6-D8C1-4E09-BB44-056740F208E6}
 		{0236F35B-5B06-4020-8E30-A704E03C4A04} = {7995F1E6-D8C1-4E09-BB44-056740F208E6}
 		{83A4C9C9-91CF-40DE-8D01-0D28728EC420} = {7995F1E6-D8C1-4E09-BB44-056740F208E6}
-		{DCF1E797-0D35-4495-A2AC-A068F9F62CFD} = {7995F1E6-D8C1-4E09-BB44-056740F208E6}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {07795DAD-40EE-4909-A6F5-320D6B0D3B54}
