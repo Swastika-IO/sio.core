@@ -11,7 +11,8 @@ app.controller('ModuleController', ['$scope', '$rootScope', '$routeParams', '$ti
             direction: '1',
             fromDate: null,
             toDate: null,
-            keyword: ''
+            keyword: '',
+            key: ''
         };
         $scope.defaultAttr = {
             name: '',
@@ -101,6 +102,30 @@ app.controller('ModuleController', ['$scope', '$rootScope', '$routeParams', '$ti
                 $scope.$apply();
             }
         };
+
+        $scope.loadMoreModuleDatas = async function (pageIndex) {
+            $scope.request.key = $scope.activedModule.id;
+            if (pageIndex != undefined) {
+                $scope.request.pageIndex = pageIndex;
+            }
+            if ($scope.request.fromDate != null) {
+                var d = new Date($scope.request.fromDate);
+                $scope.request.fromDate = d.toISOString();
+            }
+            if ($scope.request.toDate != null) {
+                $scope.request.toDate = $scope.request.toDate.toISOString();
+            }
+            var resp = await moduleDataServices.getModuleDatas($scope.request);
+            if (resp && resp.isSucceed) {
+
+                $scope.activedModule.data = resp.data;
+                $scope.$apply();
+            }
+            else {
+                if (resp) { $rootScope.showErrors(resp.errors); }
+                $scope.$apply();
+            }
+        }
 
         $scope.loadModules = async function (pageIndex) {
             if (pageIndex != undefined) {

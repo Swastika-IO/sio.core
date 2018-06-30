@@ -1,5 +1,6 @@
 ﻿'use strict';
-var app = angular.module('SwastikaPortal', ['ngRoute', 'components', 'ngFileUpload', 'LocalStorageModule', 'bw.paging', 'dndLists','ngSanitize']);
+var modules = angular.module('components', []);
+var app = angular.module('SwastikaClient', []);
 var serviceBase = "/";
 
 app.directive('ngEnter', function () {
@@ -45,12 +46,7 @@ app.directive('ngEnter', function () {
         facebookAppId: '464285300363325'
     });
 
-app.run(['$rootScope', '$location', 'commonServices', 'authService', function ($rootScope, $location, commonServices, authService) {
-    authService.fillAuthData();
-    commonServices.fillSettings().then(function (response) {
-        $rootScope.settings = response;
-    });
-
+app.run(['$rootScope', '$location', function ($rootScope, $location) {
     $rootScope.currentContext = $rootScope;
     $rootScope.errors = [];
 
@@ -66,8 +62,6 @@ app.run(['$rootScope', '$location', 'commonServices', 'authService', function ($
         lblCancel: 'Cancel',
         context: $rootScope
     };
-
-    $rootScope.authentication = authService.authentication;
 
     $rootScope.swStatus = [
         'Deleted',
@@ -180,40 +174,6 @@ app.run(['$rootScope', '$location', 'commonServices', 'authService', function ($
         }
     });
 
-    $rootScope.showErrorsbk = function (errors) {
-        $rootScope.message.title = 'Errors';
-        $rootScope.message.errors = errors;
-        $rootScope.message.content = '';
-        $rootScope.message.class = 'danger';
-        $('#dlg-msg').modal("show");
-    }
-
-    //type: success / info / danger / warning - bootstrap 
-    $rootScope.showMessagebk = function (content, type) {
-        type = type || 'info';
-        $rootScope.message.title = 'Result';
-        $rootScope.message.content = content;
-        $rootScope.message.errors = [];
-        $rootScope.message.class = type;
-        $('#dlg-msg').modal("show");
-    }
-
-    $rootScope.logOut = function () {
-        authService.logOut();
-        $location.path('/backend/login');
-    };
-    if (!authService.authentication.isAuth || !authService.authentication.isAdmin) {
-        authService.authentication.referredUrl = $location.$$url;
-        $location.path('/backend/login');
-    }
-    $rootScope.updateSettings = function () {
-        commonServices.removeSettings();
-        commonServices.fillSettings($rootScope.settings.lang).then(function (response) {
-            $rootScope.settings = response;
-
-        });
-        $rootScope.isBusy = false;
-    }
     $rootScope.executeFunctionByName = async function (functionName, args, context) {
         if (functionName !== null) {
             var namespaces = functionName.split(".");
@@ -312,4 +272,3 @@ function Filter($filter) {
         return $filter('date')(utcDateString, format);
     };
 }
-var modules = angular.module('components', []);

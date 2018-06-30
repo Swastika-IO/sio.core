@@ -105,7 +105,6 @@ app.controller('ModuleDataController', ['$scope', '$rootScope', '$routeParams', 
             if (resp && resp.isSucceed) {
 
                 $scope.data = resp.data;
-                console.log($scope.data);
                 $scope.$apply();
             }
             else {

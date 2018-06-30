@@ -8,7 +8,7 @@
             <input class="form-control" type="number" ng-model="$ctrl.data.value">
         </div>
         <div ng-switch-when="2">
-            <custom-image header="''" type="'Modules'" folder="activedPage.seoName" 
+            <custom-image header="''" type="'Modules'" folder="activedPage.seoName"
                           src-url="$ctrl.data.value" src="$ctrl.data.value" auto="'true'" />
         </div>
         <div ng-switch-when="3">
@@ -45,6 +45,12 @@
         </div>
         <div ng-switch-when="8">
             <textarea ng-model="$ctrl.data.value" ng-init="$ctrl.initEditor()" class="form-control editor-content {{$ctrl.data.name}}">$ctrl.Value</textarea>
+        </div>
+        <div ng-switch-when="9">
+            <input class="form-control" type="date" ng-model="$ctrl.data.value" />
+        </div>
+        <div ng-switch-when="10">
+            <input class="form-control" type="datetime" ng-model="$ctrl.data.value" />
         </div>
     </div>
 </div>
