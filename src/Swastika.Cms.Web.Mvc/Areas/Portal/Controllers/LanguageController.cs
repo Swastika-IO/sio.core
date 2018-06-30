@@ -22,16 +22,12 @@ namespace Swastika.Cms.Web.Mvc.Areas.Portal.Controllers
     [Microsoft.AspNetCore.Authorization.Authorize]
     [Area("Portal")]
     [Route("{culture}/Portal/language")]
-    public class LanguageController : BaseController<LanguageController>
+    public class LanguageController : BaseController
     {
-        //private readonly GlobalConfigurationService _appService;
         public LanguageController(IHostingEnvironment env
-            //, IStringLocalizer<SharedResource> localizer
-            //, GlobalConfigurationService service
             )
             : base(env)
         {
-            //_appService = service;
         }
 
         #region Languages

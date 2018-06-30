@@ -97,7 +97,6 @@ namespace Swastika.Cms.Lib.ViewModels.Info
             var objValue = Value != null ? JObject.Parse(Value) : new JObject();
 
             this.DataProperties = new List<ModuleDataValueViewModel>();
-            //Columns = new List<ModuleFieldViewModel>(); // ModuleRepository.GetInstance().GetColumns(m => m.Id == ModuleId && m.Specificulture == Specificulture);
             Fields = InfoModuleViewModel.Repository.GetSingleModel(m => m.Id == ModuleId && m.Specificulture == Specificulture, _context, _transaction).Data.Fields;
             this.Columns = new List<ModuleFieldViewModel>();
             if (!string.IsNullOrEmpty(Fields))
@@ -122,8 +121,6 @@ namespace Swastika.Cms.Lib.ViewModels.Info
             }
             foreach (var col in Columns)
             {
-                //    foreach (var field in objValue.Properties())
-                //{
                 JProperty prop = objValue.Property(col.Name);
                 if (prop == null)
                 {
@@ -134,8 +131,6 @@ namespace Swastika.Cms.Lib.ViewModels.Info
                     };
                     prop = new JProperty(col.Name, val);
                 }
-                //foreach (var prop in objValue.Properties())
-                //{
                 var dataVal = new ModuleDataValueViewModel()
                 {
                     ModuleId = ModuleId,
@@ -168,7 +163,6 @@ namespace Swastika.Cms.Lib.ViewModels.Info
                         break;
                 }
                 this.DataProperties.Add(dataVal);
-                //}
             }
         }
 
@@ -256,19 +250,7 @@ namespace Swastika.Cms.Lib.ViewModels.Info
             {
                 result.Add(new JProperty(CommonHelper.ParseJsonPropertyName(prop.Name), prop.Value));
             }
-            JObject model = new JObject
-            {
-                new JProperty("id", Id),
-                new JProperty("moduleId", ModuleId),
-                new JProperty("specificulture", Specificulture),
-                new JProperty("fields", Fields),
-                new JProperty("value", Value),
-                new JProperty("articleId", ArticleId),
-                new JProperty("priority", Priority),
-                new JProperty("categoryId", CategoryId),
-                new JProperty("createdDateTime", CreatedDateTime)
-            };
-            //result.Add(new JProperty("model", model));
+            
             return result;
         }
 

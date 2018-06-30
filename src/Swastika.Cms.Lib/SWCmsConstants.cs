@@ -110,7 +110,7 @@ namespace Swastika.Cms.Lib
             MdTextArea = 8
         }
 
-        public enum FileFolderEnum
+        public enum EnumFileFolder
         {
             Styles,
             Scripts,
@@ -136,7 +136,7 @@ namespace Swastika.Cms.Lib
             Page
         }
 
-        public enum TemplateFolderEnum
+        public enum EnumTemplateFolder
         {
             Layouts,
             Pages,

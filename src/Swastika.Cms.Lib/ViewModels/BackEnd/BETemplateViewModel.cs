@@ -132,12 +132,6 @@ namespace Swastika.Cms.Lib.ViewModels.BackEnd
             {
                 Content = file.Content;
             }
-            //var file = FileRepository.Instance.GetFile("Style", ".Json", FileFolder);
-            //if (!string.IsNullOrWhiteSpace(file?.Content))
-            //{
-            //    string json = file.Content.Replace("\r\n", "").Trim();
-            //    MobileContent= JObject.Parse(json);
-            //}
         }
 
         public override SiocTemplate ParseModel(SiocCmsContext _context = null, IDbContextTransaction _transaction = null)
@@ -152,10 +146,7 @@ namespace Swastika.Cms.Lib.ViewModels.BackEnd
                     , TemplateName
                     , FolderType
                 });
-            //if (FileName.IndexOf(Extension)==-1)
-            //{
-            //    FileName += Extension;
-            //}
+            
             Content = Content?.Trim();
             Scripts = Scripts?.Trim();
             Styles = Styles?.Trim();

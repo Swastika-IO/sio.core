@@ -15,6 +15,7 @@ using Swastika.Domain.Data.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text;
 using System.Threading.Tasks;
 
 namespace Swastika.Cms.Lib.ViewModels.Api
@@ -168,7 +169,6 @@ namespace Swastika.Cms.Lib.ViewModels.Api
                 bool copyResult = FileRepository.Instance.CopyDirectory(defaultFolder, TemplateFolder);
                 var files = copyResult ? FileRepository.Instance.GetFilesWithContent(TemplateFolder) : new System.Collections.Generic.List<FileViewModel>();
                 //TODO: Create default asset
-                //FileRepository.Instance.CopyDirectory(TemplateFolder, TemplateFolder);
                 foreach (var file in files)
                 {
                     ApiTemplateViewModel template = new ApiTemplateViewModel(
@@ -263,17 +263,16 @@ namespace Swastika.Cms.Lib.ViewModels.Api
             if (Asset.Content != null || Asset.FileStream != null)
             {
                 var files = FileRepository.Instance.GetWebFiles(AssetFolder);
-                string strStyles = string.Empty;
+                StringBuilder strStyles = new StringBuilder();
+
                 foreach (var css in files.Where(f => f.Extension == ".css"))
                 {
-                    strStyles += string.Format(@"<link href='{0}/{1}{2}' rel='stylesheet'/>
-            ", css.FileFolder, css.Filename, css.Extension);
+                    strStyles.Append($"   <link href='{css.FileFolder}/{css.Filename}{css.Extension}' rel='stylesheet'/>");
                 }
-                string strScripts = string.Empty;
+                StringBuilder strScripts = new StringBuilder();
                 foreach (var js in files.Where(f => f.Extension == ".js"))
                 {
-                    strScripts += string.Format(@"<script src='{0}/{1}{2}'></script>
-            ", js.FileFolder, js.Filename, js.Extension);
+                    strScripts.Append($"  <script src='{js.FileFolder}/{js.Filename}{js.Extension}'></script>");
                 }
                 var layout = ApiTemplateViewModel.Repository.GetSingleModel(
                     t => t.FileName == "_Layout" && t.FolderType == "Masters" && t.TemplateId == Model.Id

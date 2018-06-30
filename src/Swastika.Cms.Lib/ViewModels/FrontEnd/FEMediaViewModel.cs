@@ -120,13 +120,10 @@ namespace Swastika.Cms.Lib.ViewModels.FrontEnd
             return result;
         }
 
-        public override async Task<RepositoryResponse<bool>> RemoveRelatedModelsAsync(FEMediaViewModel view, SiocCmsContext _context = null, IDbContextTransaction _transaction = null)
+        public override Task<RepositoryResponse<bool>> RemoveRelatedModelsAsync(FEMediaViewModel view, SiocCmsContext _context = null, IDbContextTransaction _transaction = null)
         {
-            var result = new RepositoryResponse<bool>
-            {
-                IsSucceed = FileRepository.Instance.DeleteFile(FileName, Extension, FileFolder)
-            };
-            return result;
+            FileRepository.Instance.DeleteFile(FileName, Extension, FileFolder);
+            return base.RemoveRelatedModelsAsync(view,_context,_transaction);
         }
 
         #endregion Overrides

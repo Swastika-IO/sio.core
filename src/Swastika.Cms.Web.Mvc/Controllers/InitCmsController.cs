@@ -16,7 +16,7 @@ using static Swastika.Common.Utility.Enums;
 
 namespace Swastika.Cms.Web.Mvc.Controllers
 {
-    public class InitCmsController : BaseController<InitCmsController>
+    public class InitCmsController : BaseController
     {
         private const string InitUrl = "/Portal/Init";
         private readonly UserManager<ApplicationUser> _userManager;

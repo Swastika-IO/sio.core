@@ -10,7 +10,7 @@ using Microsoft.AspNetCore.Hosting;
 namespace Swastika.Cms.Mvc.Controllers
 {
     [Route("backend")]
-    public class BackendController : BaseController<BackendController>
+    public class BackendController : BaseController
     {
         public BackendController(IHostingEnvironment env) : base(env)
         {}

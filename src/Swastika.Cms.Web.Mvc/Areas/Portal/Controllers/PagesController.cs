@@ -18,10 +18,9 @@ namespace Swastika.Cms.Mvc.Areas.Portal.Controllers
     [Microsoft.AspNetCore.Authorization.Authorize]
     [Area("Portal")]
     [Route("{culture}/Portal/Pages")]
-    public class PagesController : BaseController<PagesController>
+    public class PagesController : BaseController
     {
         public PagesController(IHostingEnvironment env
-            //, IStringLocalizer<PortalController> pageLocalizer, IStringLocalizer<SharedResource> localizer
             )
             : base(env)
         {

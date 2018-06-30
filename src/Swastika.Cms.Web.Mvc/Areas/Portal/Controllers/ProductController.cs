@@ -22,7 +22,7 @@ namespace Swastika.Cms.Mvc.Areas.Portal.Controllers
     //[Microsoft.AspNetCore.Authorization.Authorize(Policy ="AddEditUser")]
     [Area("Portal")]
     [Route("{culture}/Portal/Product")]
-    public class ProductController : BaseController<ProductController>
+    public class ProductController : BaseController
     {
         public ProductController(IHostingEnvironment env
             //, IStringLocalizer<PortalController> portalLocalizer, IStringLocalizer<SharedResource> localizer

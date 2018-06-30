@@ -49,42 +49,6 @@ namespace Swastika.Cms.Lib.ViewModels.Navigation
 
         #region Async
 
-        //public override async Task<RepositoryResponse<ModuleArticleViewModel>> CloneAsync(string desSpecificulture, SiocCmsContext _context = null, IDbContextTransaction _transaction = null)
-        //{
-        //    //Check is destinate cate and Article already defined in des culture
-        //    bool isValidDes = ModuleListItemViewModel.Repository.CheckIsExists(
-        //        c => c.Id == this.ModuleId && c.Specificulture == desSpecificulture, _context, _transaction)
-        //    && ModuleListItemViewModel.Repository.CheckIsExists(
-        //        c => c.Id == this.ModuleId && c.Specificulture == desSpecificulture, _context, _transaction);
-        //    RepositoryResponse<ModuleArticleViewModel> result = new RepositoryResponse<ModuleArticleViewModel>();
-
-        //    if (isValidDes)
-        //    {
-        //        var data = new ModuleArticleViewModel(
-        //            new SiocModuleArticle()
-        //            {
-        //                ArticleId = this.ArticleId,
-        //                Specificulture = desSpecificulture,
-        //                ModuleId = this.ModuleId
-        //            },
-        //            _context, _transaction)
-        //        {
-        //            IsActived = this.IsActived,
-        //            Description = this.Description
-        //        };
-        //        var saveResult = await data.SaveModelAsync(_context: _context, _transaction: _transaction);
-        //        if (saveResult.IsSucceed)
-        //        {
-        //            result.IsSucceed = true;
-        //            result.Data = data;
-        //        }
-        //        return result;
-        //    }
-        //    else
-        //    {
-        //        return result;
-        //    }
-        //}
 
         #endregion Async
 

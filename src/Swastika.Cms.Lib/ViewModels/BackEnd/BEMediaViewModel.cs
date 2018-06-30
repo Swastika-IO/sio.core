@@ -152,16 +152,10 @@ namespace Swastika.Cms.Lib.ViewModels.BackEnd
             return result;
         }
 
-#pragma warning disable CS1998 // Async method lacks 'await' operators and will run synchronously
-
-        public override async Task<RepositoryResponse<bool>> RemoveRelatedModelsAsync(BEMediaViewModel view, SiocCmsContext _context = null, IDbContextTransaction _transaction = null)
-#pragma warning restore CS1998 // Async method lacks 'await' operators and will run synchronously
+        public override Task<RepositoryResponse<bool>> RemoveRelatedModelsAsync(BEMediaViewModel view, SiocCmsContext _context = null, IDbContextTransaction _transaction = null)
         {
-            var result = new RepositoryResponse<bool>
-            {
-                IsSucceed = FileRepository.Instance.DeleteFile(FileName, Extension, FileFolder)
-            };
-            return result;
+            FileRepository.Instance.DeleteFile(FileName, Extension, FileFolder);
+            return base.RemoveRelatedModelsAsync(view,_context,_transaction);
         }
 
         #endregion Overrides

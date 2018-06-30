@@ -93,7 +93,7 @@ namespace Swastika.Cms.Lib.ViewModels.Api
         }
 
         [JsonIgnore]
-        public string TemplateFolderType { get { return SWCmsConstants.TemplateFolderEnum.Modules.ToString(); } }
+        public string TemplateFolderType { get { return SWCmsConstants.EnumTemplateFolder.Modules.ToString(); } }
 
         [JsonProperty("templateFolder")]
         public string TemplateFolder
@@ -210,12 +210,6 @@ namespace Swastika.Cms.Lib.ViewModels.Api
         public override Task<RepositoryResponse<bool>> RemoveModelAsync(bool isRemoveRelatedModels = false, SiocCmsContext _context = null, IDbContextTransaction _transaction = null)
         {
             return base.RemoveModelAsync(isRemoveRelatedModels, _context, _transaction);
-        }
-
-        public override async Task<RepositoryResponse<bool>> CloneSubModelsAsync(ApiModuleViewModel parent, List<SupportedCulture> cloneCultures, SiocCmsContext _context = null, IDbContextTransaction _transaction = null)
-        {
-            RepositoryResponse<bool> result = new RepositoryResponse<bool>() { IsSucceed = true };
-            return result;
         }
 
         public override async Task<RepositoryResponse<bool>> SaveSubModelsAsync(SiocModule parent, SiocCmsContext _context = null, IDbContextTransaction _transaction = null)

@@ -22,10 +22,9 @@ namespace Swastika.Cms.Mvc.Areas.Portal.Controllers
     //[Microsoft.AspNetCore.Authorization.Authorize(Policy ="AddEditUser")]
     [Area("Portal")]
     [Route("{culture}/portal/article")]
-    public class ArticleController : BaseController<ArticleController>
+    public class ArticleController : BaseController
     {
         public ArticleController(IHostingEnvironment hostingEnvironment
-            //, IStringLocalizer<PortalController> portalLocalizer, IStringLocalizer<SharedResource> localizer
             )
             : base(hostingEnvironment)
         {
@@ -41,14 +40,6 @@ namespace Swastika.Cms.Mvc.Areas.Portal.Controllers
         [Route("Index/{pageSize:int?}/{pageIndex:int?}")]
         public IActionResult Index(int pageSize = 10, int pageIndex = 0, string keyword = null)
         {
-            //RepositoryResponse<PaginationModel<InfoArticleViewModel>> getArticles =
-            //    await InfoArticleViewModel.Repository.GetModelListByAsync(
-            //    article => article.Specificulture == CurrentLanguage
-            //        && article.Status != (int)SWStatus.Deleted
-            //        && (string.IsNullOrEmpty(keyword) || article.Title.Contains(keyword)),
-            //    "Priority", OrderByDirection.Ascending
-            //    , pageSize, pageIndex).ConfigureAwait(false);
-            //ViewBag.keyword = keyword;
             return View();
         }
 

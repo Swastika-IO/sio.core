@@ -30,7 +30,7 @@ namespace Swastika.Cms.Web.Mvc.Areas.Portal.Controllers
 {
     [Area("Portal")]
     [Route("{culture}/Portal/auth")]
-    public class AuthController : BaseController<AuthController>
+    public class AuthController : BaseController
     {
         private readonly UserManager<ApplicationUser> _userManager;
         private readonly SignInManager<ApplicationUser> _signInManager;

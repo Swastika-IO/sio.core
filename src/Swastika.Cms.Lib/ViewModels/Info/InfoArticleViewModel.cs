@@ -46,19 +46,9 @@ namespace Swastika.Cms.Lib.ViewModels.Info
         [JsonProperty("excerpt")]
         public string Excerpt { get; set; }
 
-        //[JsonProperty("content")]
-        //public string Content { get; set; }
         [JsonProperty("seoName")]
         public string SeoName { get; set; }
 
-        //[JsonProperty("seoTitle")]
-        //public string SeoTitle { get; set; }
-        //[JsonProperty("seoDescription")]
-        //public string SeoDescription { get; set; }
-        //[JsonProperty("seoKeywords")]
-        //public string SeoKeywords { get; set; }
-        //[JsonProperty("source")]
-        //public string Source { get; set; }
         [JsonProperty("views")]
         public int? Views { get; set; }
 

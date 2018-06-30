@@ -98,7 +98,7 @@ namespace Swastika.Cms.Lib.ViewModels.BackEnd
         public string ModifiedBy { get; set; }
 
         [JsonProperty("tags")]
-        public string Tags { get; set; }
+        public string Tags { get; set; } = "[]";
 
         [JsonProperty("code")]
         public string Code { get; set; }
@@ -194,7 +194,7 @@ namespace Swastika.Cms.Lib.ViewModels.BackEnd
         }
 
         [JsonIgnore]
-        public string TemplateFolderType { get { return SWCmsConstants.TemplateFolderEnum.Products.ToString(); } }
+        public string TemplateFolderType { get { return SWCmsConstants.EnumTemplateFolder.Products.ToString(); } }
 
         [JsonProperty("templateFolder")]
         public string TemplateFolder
@@ -278,10 +278,10 @@ namespace Swastika.Cms.Lib.ViewModels.BackEnd
             StrDealPrice = SwCmsHelper.FormatPrice(DealPrice);
             StrImportPrice = SwCmsHelper.FormatPrice(ImportPrice);
 
-            //if (!string.IsNullOrEmpty(this.Tags))
-            //{
-            //    ListTag = JArray.Parse(this.Tags);
-            //}
+            if (!string.IsNullOrEmpty(this.Tags))
+            {
+                ListTag = JArray.Parse(this.Tags);
+            }
             Properties = new List<ExtraProperty>();
             if (!string.IsNullOrEmpty(ExtraProperties))
             {
@@ -378,7 +378,7 @@ namespace Swastika.Cms.Lib.ViewModels.BackEnd
         {
             if (string.IsNullOrEmpty(Id))
             {
-                Id = Guid.NewGuid().ToString(); //Common.Common.GetBase62(8);
+                Id = Guid.NewGuid().ToString();
                 CreatedDateTime = DateTime.UtcNow;
             }
             if (Properties.Count > 0)
@@ -421,7 +421,7 @@ namespace Swastika.Cms.Lib.ViewModels.BackEnd
                 }
             }
 
-            //Tags = ListTag.ToString(Newtonsoft.Json.Formatting.None);
+            Tags = ListTag.ToString(Newtonsoft.Json.Formatting.None);
             NormalPrice = SwCmsHelper.ReversePrice(StrNormalPrice);
             DealPrice = SwCmsHelper.ReversePrice(StrDealPrice);
             ImportPrice = SwCmsHelper.ReversePrice(StrImportPrice);

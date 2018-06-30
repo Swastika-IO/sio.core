@@ -16,6 +16,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Security.Cryptography;
+using System.Text;
 using System.Text.RegularExpressions;
 
 namespace Swastika.Cms.Lib
@@ -25,7 +26,7 @@ namespace Swastika.Cms.Lib
         public static Translator GetTranslator(string culture)
         {
             Translator t = new Translator(culture);
-            return t;// GlobalLanguageService.Instance.Translator[culture].ToObject<JObject>();
+            return t;
         }
 
         public static RSAParameters GenerateKey()
@@ -66,8 +67,6 @@ namespace Swastika.Cms.Lib
                         break;
 
                     case SWCmsConstants.CateType.Home:
-                    //cate.Href = string.Format("/{0}", culture);
-                    //break;
                     case SWCmsConstants.CateType.List:
                     case SWCmsConstants.CateType.Article:
                     case SWCmsConstants.CateType.Modules:
@@ -110,8 +109,6 @@ namespace Swastika.Cms.Lib
                         break;
 
                     case SWCmsConstants.CateType.Home:
-                    //cate.Href = string.Format("/{0}", culture);
-                    //break;
                     case SWCmsConstants.CateType.List:
                     case SWCmsConstants.CateType.Article:
                     case SWCmsConstants.CateType.Modules:
@@ -137,7 +134,7 @@ namespace Swastika.Cms.Lib
         public static string GetFullPath(string[] subPaths)
         {
             string result = string.Empty;
-            string strFormat = string.Empty;
+            StringBuilder strFormat = new StringBuilder();
             for (int i = 0; i < subPaths.Length; i++)
             {
                 string connector = string.Empty;
@@ -145,9 +142,9 @@ namespace Swastika.Cms.Lib
                 {
                     connector = "/";
                 }
-                strFormat += @"{" + i + "}" + connector;
+                strFormat.Append(@"{" + i + "}" + connector);
             }
-            result = string.Format(strFormat, subPaths).Replace("//", "/").Replace(":/", "://");
+            result = string.Format(strFormat.ToString(), subPaths).Replace("//", "/").Replace(":/", "://");
             return result;
         }
 
@@ -229,7 +226,7 @@ namespace Swastika.Cms.Lib
                 }
                 return true;
             }
-            catch//(Exception ex)
+            catch
             {
                 return false;
             }
@@ -270,7 +267,6 @@ namespace Swastika.Cms.Lib
             {
                 return "0";
             }
-            var arr = strPrice.Trim(new char[] { ',' });
             string s1 = strPrice.Replace(",", string.Empty);
             if (CheckIsPrice(s1))
             {

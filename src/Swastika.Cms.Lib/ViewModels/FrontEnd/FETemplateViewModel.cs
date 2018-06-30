@@ -166,15 +166,6 @@ namespace Swastika.Cms.Lib.ViewModels.FrontEnd
 
         #region Common
 
-        public override void ExpandView(SiocCmsContext _context = null, IDbContextTransaction _transaction = null)
-        {
-            //var file = FileRepository.Instance.GetFile(FileName, Extension, FileFolder);
-            //if (!string.IsNullOrWhiteSpace(file?.Content))
-            //{
-            //    Content = file.Content;
-            //}
-        }
-
         public override SiocTemplate ParseModel(SiocCmsContext _context = null, IDbContextTransaction _transaction = null)
         {
             if (Id == 0)
@@ -187,10 +178,6 @@ namespace Swastika.Cms.Lib.ViewModels.FrontEnd
                     , TemplateName
                     , FolderType
                 });
-            //if (FileName.IndexOf(Extension)==-1)
-            //{
-            //    FileName += Extension;
-            //}
             Content = Content?.Trim();
             Scripts = Scripts?.Trim();
             Styles = Styles?.Trim();

@@ -89,22 +89,6 @@ namespace Swastika.Cms.Lib.ViewModels.FrontEnd
         public override void ExpandView(SiocCmsContext _context = null, IDbContextTransaction _transaction = null)
         {
             this.View = SpaTemplateViewModel.GetTemplateByPath(Template, Specificulture, _context, _transaction).Data;
-            //Columns = new List<ModuleFieldViewModel>();
-            //JArray arrField = !string.IsNullOrEmpty(Fields) ? JArray.Parse(Fields) : new JArray();
-            //foreach (var field in arrField)
-            //{
-            //    ModuleFieldViewModel thisField = new ModuleFieldViewModel()
-            //    {
-            //        Name = CommonHelper.ParseJsonPropertyName(field["Name"].ToString()),
-            //        DataType = (SWCmsConstants.DataType)(int)field["DataType"],
-            //        Width = field["Width"] != null ? field["Width"].Value<int>() : 3,
-            //        IsDisplay = field["IsDisplay"] != null ? field["IsDisplay"].Value<bool>() : true
-            //    };
-            //    Columns.Add(thisField);
-            //}
-
-            //this.Templates = Templates ?? TemplateRepository.Instance.GetTemplates(SWCmsConstants.TemplateFolder.Modules);
-
             var getDataResult = SpaModuleDataViewModel.Repository
                 .GetModelListBy(m => m.ModuleId == Id && m.Specificulture == Specificulture
                 , "Priority", OrderByDirection.Ascending, null, null
@@ -115,8 +99,6 @@ namespace Swastika.Cms.Lib.ViewModels.FrontEnd
                 getDataResult.Data.Items.ForEach(d => getDataResult.Data.JsonItems.Add(d.JItem));
                 Data = getDataResult.Data;
             }
-
-            //LoadData(ArticleId, CategoryId, _context: _context, _transaction: _transaction);
 
             var getArticles = InfoArticleViewModel.GetModelListByModule(Id, Specificulture, SWCmsConstants.Default.OrderBy, OrderByDirection.Ascending
                 , 4, 0

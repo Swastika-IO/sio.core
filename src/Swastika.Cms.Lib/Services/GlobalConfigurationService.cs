@@ -28,37 +28,46 @@ namespace Swastika.Cms.Lib.Services
         public string Name { get; set; }
         public bool IsInit { get; set; }
 
-        public string ConnectionString {
-            get {
+        public string ConnectionString
+        {
+            get
+            {
                 return _connectionString;
             }
-            set {
+            set
+            {
                 _connectionString = value;
             }
         }
 
         private static List<ConfigurationViewModel> _listConfiguration;
 
-        public static List<ConfigurationViewModel> ListConfiguration {
-            get {
+        public static List<ConfigurationViewModel> ListConfiguration
+        {
+            get
+            {
                 if (_listConfiguration == null)
                 {
                     InitConfigurations();
                 }
                 return _listConfiguration;
             }
-            set {
+            set
+            {
                 _listConfiguration = value;
             }
         }
 
         private static GlobalConfigurationService _instance;
 
-        public static GlobalConfigurationService Instance {
-            get {
+        public static GlobalConfigurationService Instance
+        {
+            get
+            {
                 return _instance ?? (_instance = new GlobalConfigurationService());
             }
-            set {
+            set
+            {
                 _instance = value;
             }
         }
@@ -147,31 +156,28 @@ namespace Swastika.Cms.Lib.Services
                         isSucceed = true;
                     }
 
-                    if (isSucceed)
+                    if (isSucceed && BECategoryViewModel.Repository.Count(context, transaction).Data == 0)
                     {
-                        if (BECategoryViewModel.Repository.Count(context, transaction).Data == 0)
+
+                        BECategoryViewModel cate = new BECategoryViewModel(new SiocCategory()
                         {
+                            Title = "Home",
+                            Specificulture = "vi-vn",
+                            Template = "_Home",
+                            Type = (int)SWCmsConstants.CateType.Home,
+                            CreatedBy = "Admin"
+                        });
 
-                            BECategoryViewModel cate = new BECategoryViewModel(new SiocCategory()
-                            {
-                                Title = "Home",
-                                Specificulture = "vi-vn",
-                                Template = "_Home",
-                                Type = (int)SWCmsConstants.CateType.Home,
-                                CreatedBy = "Admin"
-                            });
-
-                            isSucceed = cate.SaveModel(false, context, transaction).IsSucceed;
-                            BECategoryViewModel uscate = new BECategoryViewModel(new SiocCategory()
-                            {
-                                Title = "Home",
-                                Specificulture = "en-us",
-                                Template = "_Home",
-                                Type = (int)SWCmsConstants.CateType.Home,
-                                CreatedBy = "Admin"
-                            });
-                            isSucceed = isSucceed && uscate.SaveModel(false, context, transaction).IsSucceed;
-                        }
+                        isSucceed = cate.SaveModel(false, context, transaction).IsSucceed;
+                        BECategoryViewModel uscate = new BECategoryViewModel(new SiocCategory()
+                        {
+                            Title = "Home",
+                            Specificulture = "en-us",
+                            Template = "_Home",
+                            Type = (int)SWCmsConstants.CateType.Home,
+                            CreatedBy = "Admin"
+                        });
+                        isSucceed = isSucceed && uscate.SaveModel(false, context, transaction).IsSucceed;
                     }
 
                     if (isSucceed)

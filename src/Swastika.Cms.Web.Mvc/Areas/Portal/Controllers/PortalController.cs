@@ -24,7 +24,7 @@ namespace Swastika.Cms.Mvc.Areas.Portal.Controllers
     [Area("Portal")]
     [Route("Portal")]
     [Route("Admin")]
-    public class PortalController : BaseController<PortalController>
+    public class PortalController : BaseController
     {
         private readonly UserManager<ApplicationUser> _userManager;
         private readonly RoleManager<IdentityRole> _roleManager;

@@ -17,10 +17,9 @@ namespace Swastika.Cms.Mvc.Areas.Portal.Controllers
     [Microsoft.AspNetCore.Authorization.Authorize]
     [Area("Portal")]
     [Route("{culture}/Portal/File")]
-    public class FileController : BaseController<FileController>
+    public class FileController : BaseController
     {
         public FileController(IHostingEnvironment env
-            //, IStringLocalizer<SharedResource> localizer
             )
             : base(env)
         {
@@ -99,7 +98,7 @@ namespace Swastika.Cms.Mvc.Areas.Portal.Controllers
                 name
           });
             string filePath = string.Format("{0}{1}", fullPath, ext);
-            var file = FileRepository.Instance.DeleteFile(filePath);
+            FileRepository.Instance.DeleteFile(filePath);
             return RedirectToAction("Theme", routeValues: new { themeName, folder });
         }
 
@@ -173,8 +172,6 @@ namespace Swastika.Cms.Mvc.Areas.Portal.Controllers
         [Route("Delete/{name}/{ext}")]
         public IActionResult Delete(string name, string ext, string folder)
         {
-            string filename = string.Format("{0}{1}", name, ext);
-            var template = FileRepository.Instance.DeleteWebFile(filename, folder);
             return RedirectToAction("", routeValues: new { folder });
         }
     }

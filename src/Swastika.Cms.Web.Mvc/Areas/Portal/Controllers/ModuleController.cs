@@ -26,18 +26,12 @@ namespace Swastika.Cms.Mvc.Areas.Portal.Controllers
     [Microsoft.AspNetCore.Authorization.Authorize]
     [Area("Portal")]
     [Route("{culture}/Portal/Module")]
-    public class ModuleController : BaseController<ModuleController>
+    public class ModuleController : BaseController
     {
-        //private GlobalConfigurationService _appService;
-
         public ModuleController(IHostingEnvironment env
-            //, IStringLocalizer<PortalController> moduleLocalizer
-            //, IStringLocalizer<SharedResource> localizer
-            //, GlobalConfigurationService appService
             )
             : base(env)
         {
-            //_appService = appService;
         }
 
         // GET: Portal/Modules

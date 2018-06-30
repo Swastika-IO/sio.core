@@ -92,7 +92,6 @@ namespace Swastika.Cms.Lib.Repositories
 
         public List<TemplateViewModel> GetTemplates(string folder)
         {
-            //string fullPath = string.Format(Constants.StringTemplates.TemplateFolder, folder);
             if (!Directory.Exists(folder))
             {
                 Directory.CreateDirectory(folder);
@@ -107,7 +106,7 @@ namespace Swastika.Cms.Lib.Repositories
                     result.Add(new TemplateViewModel()
                     {
                         FileFolder = folder,
-                        Filename = file.Name,//.Split('.').First(),
+                        Filename = file.Name,
                         Extension = SWCmsConstants.Parameters.TemplateExtension,
                         Content = s.ReadToEnd()
                     });
@@ -126,11 +125,10 @@ namespace Swastika.Cms.Lib.Repositories
                     {
                         Directory.CreateDirectory(file.FileFolder);
                     }
-                    string fileName = SwCmsHelper.GetFullPath(new string[] { file.FileFolder, file.Filename + file.Extension }); //string.Format(file.FileFolder, file.Filename);
-                    //var logPath = System.IO.Path.GetTempFileName();
+                    string fileName = SwCmsHelper.GetFullPath(new string[] { file.FileFolder, file.Filename + file.Extension });
                     using (var writer = File.CreateText(fileName))
                     {
-                        writer.WriteLine(file.Content); //or .Write(), if you wish
+                        writer.WriteLine(file.Content);
                         return true;
                     }
                 }

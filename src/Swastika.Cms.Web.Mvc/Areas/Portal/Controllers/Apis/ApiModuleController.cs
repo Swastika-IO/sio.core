@@ -20,7 +20,7 @@ namespace Swastika.Cms.Mvc.Areas.Portal.Controllers.Apis
 {
     [Area("Portal")]
     [Route("api/{culture}/Portal/Module")]
-    public class ApiModuleController : BaseController<ApiModuleController>
+    public class ApiModuleController : BaseController
     {
         public ApiModuleController(IHostingEnvironment env, IStringLocalizer<PortalController> localizer) : base(env)
         {

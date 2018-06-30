@@ -71,19 +71,6 @@ namespace Swastika.Web.Start.TagHelpers
                     );
             }
 
-            //if (!string.IsNullOrWhiteSpace(Controllers))
-            //{
-            //    foreach (string controller in Controllers.Split(','))
-            //    {
-            //        if (currentController.ToLower() == controller.ToLower())
-            //        {
-            //            rtn = true;
-            //            break;
-            //        }
-            //    }
-
-            //}
-
             return rtn;
         }
 

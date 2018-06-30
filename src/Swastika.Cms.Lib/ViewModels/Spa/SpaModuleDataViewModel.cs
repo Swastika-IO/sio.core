@@ -25,24 +25,8 @@ namespace Swastika.Cms.Lib.ViewModels.Spa
         [JsonProperty("id")]
         public string Id { get; set; }
 
-        //[JsonProperty("moduleId")]
-        //public int ModuleId { get; set; }
-        //[JsonProperty("fields")]
-        //public string Fields { get; set; } = "[]";
-        //[JsonProperty("value")]
         [JsonIgnore]
         public string Value { get; set; }
-
-        //[JsonProperty("articleId")]
-        //public string ArticleId { get; set; }
-        //[JsonProperty("productId")]
-        //public string ProductId { get; set; }
-        //[JsonProperty("categoryId")]
-        //public int? CategoryId { get; set; }
-        //[JsonProperty("createdDateTime")]
-        //public DateTime CreatedDateTime { get; set; }
-        //[JsonProperty("updatedDateTime")]
-        //public DateTime? UpdatedDateTime { get; set; }
 
         #endregion Models
 
@@ -75,73 +59,8 @@ namespace Swastika.Cms.Lib.ViewModels.Spa
             IsClone = true;
             ListSupportedCulture = GlobalLanguageService.ListSupportedCulture;
 
-            var objValue = Value != null ? JObject.Parse(Value) : new JObject();
-
             this.DataProperties = new List<ModuleDataValueViewModel>();
-            //Columns = new List<ModuleFieldViewModel>(); // ModuleRepository.GetInstance().GetColumns(m => m.Id == ModuleId && m.Specificulture == Specificulture);
-            //Fields = SpaModuleViewModel.Repository.GetSingleModel(m => m.Id == ModuleId && m.Specificulture == Specificulture, _context, _transaction).Data.Fields;
-            //this.Columns = new List<ModuleFieldViewModel>();
-            //if (!string.IsNullOrEmpty(Fields))
-            //{
-            //    JArray arrField = JArray.Parse(Fields);
-
-            //    foreach (var field in arrField)
-            //    {
-            //        ModuleFieldViewModel thisField = new ModuleFieldViewModel()
-            //        {
-            //            Name = CommonHelper.ParseJsonPropertyName(field["Name"].ToString()),
-            //            DataType = (SWCmsConstants.DataType)(int)field["DataType"],
-            //            Width = field["Width"] != null ? field["Width"].Value<int>() : 3,
-            //            IsDisplay = field["IsDisplay"] != null ? field["IsDisplay"].Value<bool>() : true
-            //        };
-            //        this.Columns.Add(thisField);
-            //    }
-            //}
-            //foreach (var col in Columns)
-            //{
-            //    //    foreach (var field in objValue.Properties())
-            //    //{
-            //    JProperty prop = objValue.Property(col.Name);
-            //    if (prop == null)
-            //    {
-            //        JObject val = new JObject
-            //        {
-            //            { "dataType", (int)col.DataType },
-            //            { "value", null }
-            //        };
-            //        prop = new JProperty(col.Name, val);
-            //    }
-            //    //foreach (var prop in objValue.Properties())
-            //    //{
-            //    var dataVal = new ModuleDataValueViewModel()
-            //    {
-            //        ModuleId = ModuleId,
-            //        DataType = (SWCmsConstants.DataType)col.DataType,
-            //        Name = CommonHelper.ParseJsonPropertyName(prop.Name),
-            //        StringValue = prop.Value["value"].Value<string>()
-            //    };
-            //    switch (col.DataType)
-            //    {
-            //        case SWCmsConstants.DataType.Int:
-            //            dataVal.Value = prop.Value["value"].HasValues ? prop.Value["value"].Value<int>() : 0;
-            //            break;
-
-            //        case SWCmsConstants.DataType.Boolean:
-            //            dataVal.Value = !string.IsNullOrEmpty(prop.Value["value"].ToString()) ? prop.Value["value"].Value<bool>() : false;
-            //            break;
-            //        case SWCmsConstants.DataType.String:
-            //        case SWCmsConstants.DataType.Image:
-            //        case SWCmsConstants.DataType.Icon:
-            //        case SWCmsConstants.DataType.CodeEditor:
-            //        case SWCmsConstants.DataType.Html:
-            //        case SWCmsConstants.DataType.TextArea:
-            //        default:
-            //            dataVal.Value = prop.Value["value"].Value<string>();
-            //            break;
-            //    }
-            //    this.DataProperties.Add(dataVal);
-            //    //}
-            //}
+            
         }
 
         #endregion Overrides
@@ -188,19 +107,6 @@ namespace Swastika.Cms.Lib.ViewModels.Spa
             {
                 result.Add(new JProperty(CommonHelper.ParseJsonPropertyName(prop.Name), prop.Value));
             }
-            JObject model = new JObject
-            {
-                new JProperty("id", Id),
-                //new JProperty("moduleId", ModuleId),
-                new JProperty("specificulture", Specificulture),
-                //new JProperty("fields", Fields),
-                new JProperty("value", Value),
-                //new JProperty("articleId", ArticleId),
-                new JProperty("priority", Priority),
-                //new JProperty("categoryId", CategoryId),
-                //new JProperty("createdDateTime", CreatedDateTime)
-            };
-            //result.Add(new JProperty("model", model));
             return result;
         }
 

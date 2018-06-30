@@ -236,11 +236,7 @@ namespace Swastika.Cms.Lib.ViewModels
 
         [JsonProperty("value")]
         public string Value { get; set; }
-
-        //public T GetValue<T>()
-        //{
-        //    return this.Value != null ? (T)Value : default(T);
-        //}
+        
     }
 
     public class AccessTokenViewModel

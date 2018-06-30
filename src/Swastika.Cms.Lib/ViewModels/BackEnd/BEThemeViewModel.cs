@@ -15,6 +15,7 @@ using Swastika.Domain.Data.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text;
 using System.Threading.Tasks;
 
 namespace Swastika.Cms.Lib.ViewModels.BackEnd
@@ -48,7 +49,7 @@ namespace Swastika.Cms.Lib.ViewModels.BackEnd
         public bool IsActived { get; set; }
 
         [JsonProperty("asset")]
-        public IFormFile Asset { get; set; }// = new FileViewModel();
+        public IFormFile Asset { get; set; }
 
         [JsonProperty("assetFolder")]
         public string AssetFolder
@@ -130,7 +131,6 @@ namespace Swastika.Cms.Lib.ViewModels.BackEnd
                 bool copyResult = FileRepository.Instance.CopyDirectory(defaultFolder, TemplateFolder);
                 var files = copyResult ? FileRepository.Instance.GetFilesWithContent(TemplateFolder) : new System.Collections.Generic.List<FileViewModel>();
                 //TODO: Create default asset
-                //FileRepository.Instance.CopyDirectory(TemplateFolder, TemplateFolder);
                 foreach (var file in files)
                 {
                     BETemplateViewModel template = new BETemplateViewModel(
@@ -225,17 +225,16 @@ namespace Swastika.Cms.Lib.ViewModels.BackEnd
             if (Asset != null && Asset.Length > 0 && Id == 0)
             {
                 var files = FileRepository.Instance.GetWebFiles(AssetFolder);
-                string strStyles = string.Empty;
+                StringBuilder strStyles = new StringBuilder();
+                
                 foreach (var css in files.Where(f => f.Extension == ".css"))
                 {
-                    strStyles += string.Format(@"   <link href='{0}/{1}{2}' rel='stylesheet'/>
-", css.FileFolder, css.Filename, css.Extension);
+                    strStyles.Append($"   <link href='{css.FileFolder}/{css.Filename}{css.Extension}' rel='stylesheet'/>");
                 }
-                string strScripts = string.Empty;
+                StringBuilder strScripts = new StringBuilder();
                 foreach (var js in files.Where(f => f.Extension == ".js"))
                 {
-                    strScripts += string.Format(@"  <script src='{0}/{1}{2}'></script>
-", js.FileFolder, js.Filename, js.Extension);
+                    strScripts.Append($"  <script src='{js.FileFolder}/{js.Filename}{js.Extension}'></script>");
                 }
                 var layout = BETemplateViewModel.Repository.GetSingleModel(
                     t => t.FileName == "_Layout" && t.TemplateId == Model.Id
@@ -255,8 +254,7 @@ namespace Swastika.Cms.Lib.ViewModels.BackEnd
 
         public override async Task<RepositoryResponse<bool>> RemoveRelatedModelsAsync(BEThemeViewModel view, SiocCmsContext _context = null, IDbContextTransaction _transaction = null)
         {
-            RepositoryResponse<bool> result = new RepositoryResponse<bool>() { IsSucceed = true };
-            result = await InfoTemplateViewModel.Repository.RemoveListModelAsync(t => t.TemplateId == Id);
+            var result = await InfoTemplateViewModel.Repository.RemoveListModelAsync(t => t.TemplateId == Id);
             if (result.IsSucceed)
             {
                 FileRepository.Instance.DeleteWebFolder(AssetFolder);
@@ -286,7 +284,6 @@ namespace Swastika.Cms.Lib.ViewModels.BackEnd
                 bool copyResult = FileRepository.Instance.CopyDirectory(defaultFolder, TemplateFolder);
                 var files = copyResult ? FileRepository.Instance.GetFilesWithContent(TemplateFolder) : new System.Collections.Generic.List<FileViewModel>();
                 //TODO: Create default asset
-                //FileRepository.Instance.CopyDirectory(TemplateFolder, TemplateFolder);
                 foreach (var file in files)
                 {
                     BETemplateViewModel template = new BETemplateViewModel(
@@ -381,17 +378,16 @@ namespace Swastika.Cms.Lib.ViewModels.BackEnd
             if (Asset != null && Asset.Length > 0 && Id == 0)
             {
                 var files = FileRepository.Instance.GetWebFiles(AssetFolder);
-                string strStyles = string.Empty;
+                StringBuilder strStyles = new StringBuilder();
+
                 foreach (var css in files.Where(f => f.Extension == ".css"))
                 {
-                    strStyles += string.Format(@"   <link href='{0}/{1}{2}' rel='stylesheet'/>
-", css.FileFolder, css.Filename, css.Extension);
+                    strStyles.Append($"   <link href='{css.FileFolder}/{css.Filename}{css.Extension}' rel='stylesheet'/>");
                 }
-                string strScripts = string.Empty;
+                StringBuilder strScripts = new StringBuilder();
                 foreach (var js in files.Where(f => f.Extension == ".js"))
                 {
-                    strScripts += string.Format(@"  <script src='{0}/{1}{2}'></script>
-", js.FileFolder, js.Filename, js.Extension);
+                    strScripts.Append($"  <script src='{js.FileFolder}/{js.Filename}{js.Extension}'></script>");
                 }
                 var layout = BETemplateViewModel.Repository.GetSingleModel(
                     t => t.FileName == "_Layout" && t.TemplateId == Model.Id
@@ -411,8 +407,7 @@ namespace Swastika.Cms.Lib.ViewModels.BackEnd
 
         public override  RepositoryResponse<bool> RemoveRelatedModels(BEThemeViewModel view, SiocCmsContext _context = null, IDbContextTransaction _transaction = null)
         {
-            RepositoryResponse<bool> result = new RepositoryResponse<bool>() { IsSucceed = true };
-            result =  InfoTemplateViewModel.Repository.RemoveListModel(t => t.TemplateId == Id);
+            var result =  InfoTemplateViewModel.Repository.RemoveListModel(t => t.TemplateId == Id);
             if (result.IsSucceed)
             {
                 FileRepository.Instance.DeleteWebFolder(AssetFolder);

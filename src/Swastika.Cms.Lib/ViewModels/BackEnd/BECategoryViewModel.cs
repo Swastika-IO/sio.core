@@ -192,7 +192,7 @@ namespace Swastika.Cms.Lib.ViewModels.BackEnd
         {
             get
             {
-                return SWCmsConstants.TemplateFolderEnum.Pages.ToString();
+                return SWCmsConstants.EnumTemplateFolder.Pages.ToString();
             }
         }
 
@@ -652,11 +652,8 @@ namespace Swastika.Cms.Lib.ViewModels.BackEnd
             var result = query.ToList();
             result.ForEach(nav =>
             {
-                //var currentNav = context.SiocCategoryCategory.FirstOrDefaault(
-                //        m => m.ParentId == nav.Id && m.Id == Id && m.Specificulture == Specificulture);
-                //nav.Priority = currentNav?.Priority;
                 nav.IsActived = context.SiocCategoryCategory.Any(
-                        m => m.ParentId == nav.ParentId && m.Id == Id && m.Specificulture == Specificulture);//currentNav != null;
+                        m => m.ParentId == nav.ParentId && m.Id == Id && m.Specificulture == Specificulture);
             });
             return result.OrderBy(m => m.Priority).ToList();
         }

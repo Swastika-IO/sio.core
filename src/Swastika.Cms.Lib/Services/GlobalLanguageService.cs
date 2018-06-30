@@ -19,7 +19,6 @@ namespace Swastika.Cms.Lib.Services
         /// </summary>
         private static readonly object syncRoot = new Object();
 
-        private static string _connectionString;
         public string Culture { get; set; }
         public string Name { get; set; }
         public bool IsInit { get; set; }
@@ -31,15 +30,6 @@ namespace Swastika.Cms.Lib.Services
             }
             set {
                 _translator = value;
-            }
-        }
-
-        public string ConnectionString {
-            get {
-                return _connectionString;
-            }
-            set {
-                _connectionString = value;
             }
         }
 
@@ -99,16 +89,12 @@ namespace Swastika.Cms.Lib.Services
             }
         }
 
-        //private readonly LanguageRepository _repo;
         public GlobalLanguageService()
         {
-            //_repo = LanguageRepository.GetInstance();
             if (_instance != null)
             {
                 InitCultures();
             }
-
-            //InitLanguages();
         }
 
         public SupportedCulture GetCulture(string specificulture)
@@ -209,13 +195,6 @@ namespace Swastika.Cms.Lib.Services
         {
             var config = ListLanguage.Find(c => c.Keyword == key && c.Specificulture == culture);
             return config != null ? config.Value : defaultValue;
-        }
-
-        public static int GetLocalInt(string key, string culture)
-        {
-            return 10;
-            //var config = ListLanguage.FirstOrDefault(c => c.Keyword == key && c.Specificulture == culture);
-            //return config != null ? config.Value : key;
         }
 
         public int GetLocalInt(string key, string culture, int defaultValue)

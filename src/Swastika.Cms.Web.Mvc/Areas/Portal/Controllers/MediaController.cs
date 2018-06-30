@@ -11,10 +11,9 @@ namespace Swastika.Cms.Mvc.Areas.Portal.Controllers
     [Microsoft.AspNetCore.Authorization.Authorize]
     [Area("Portal")]
     [Route("{culture}/Portal/Media")]
-    public class MediaController : BaseController<MediaController>
+    public class MediaController : BaseController
     {
         public MediaController(IHostingEnvironment env
-            //, IStringLocalizer<PortalController> pageLocalizer, IStringLocalizer<SharedResource> localizer
             )
             : base(env)
         {

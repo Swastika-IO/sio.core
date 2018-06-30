@@ -263,7 +263,7 @@ namespace Swastika.Cms.Lib.ViewModels.FrontEnd
             if (!string.IsNullOrEmpty(ExtraProperties))
             {
                 JArray arr = JArray.Parse(ExtraProperties);
-                foreach (JObject item in arr)
+                foreach (JToken item in arr)
                 {
                     Properties.Add(item.ToObject<ExtraProperty>());
                 }

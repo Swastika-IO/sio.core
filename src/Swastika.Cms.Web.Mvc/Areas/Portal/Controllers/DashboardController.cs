@@ -11,7 +11,7 @@ namespace Swastika.Cms.Mvc.Areas.Portal.Controllers
     [Microsoft.AspNetCore.Authorization.Authorize]
     [Area("Portal")]
     [Route("{culture}/Portal/Dashboard")]
-    public class DashboardController : BaseController<DashboardController>
+    public class DashboardController : BaseController
     {
         public DashboardController(IHostingEnvironment env
             //, IStringLocalizer<PortalController> pageLocalizer, IStringLocalizer<SharedResource> localizer
@@ -20,14 +20,6 @@ namespace Swastika.Cms.Mvc.Areas.Portal.Controllers
         {
         }
 
-        ////[Route("/portal/Dashboard")]
-        //[HttpGet]
-        //[Route("")]
-        //public IActionResult Index()
-        //{
-        //    return View();
-        //}
-        
         //[Route("/portal/Dashboard")]
         [HttpGet]
         [Route("")]

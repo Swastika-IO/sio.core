@@ -21,7 +21,7 @@ namespace Swastika.Cms.Mvc.Areas.Portal.Controllers
     [Area("Portal")]
     [Route("{culture}/Portal/Theme")]
     [RequestSizeLimit(int.MaxValue)]
-    public class ThemeController : BaseController<ThemeController>
+    public class ThemeController : BaseController
     {
         //private readonly IViewRenderService _viewRenderService;
         public ThemeController(IHostingEnvironment env

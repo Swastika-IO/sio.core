@@ -18,7 +18,7 @@ namespace Swastika.Cms.Mvc.Areas.Portal.Controllers
     [Microsoft.AspNetCore.Authorization.Authorize]
     [Area("Portal")]
     [Route("{culture}/Portal/Template")]
-    public class TemplateController : BaseController<TemplateController>
+    public class TemplateController : BaseController
     {
         //private readonly IViewRenderService _viewRenderService;
         public TemplateController(IHostingEnvironment env

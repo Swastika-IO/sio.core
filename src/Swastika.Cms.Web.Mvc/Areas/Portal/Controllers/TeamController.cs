@@ -6,7 +6,7 @@ namespace Swastika.Cms.Web.Mvc.Areas.Portal.Controllers
 {
     [Area("Portal")]
     [Route("{culture}/Portal/Team")]
-    public class TeamController : BaseController<TeamController>
+    public class TeamController : BaseController
     {
         public TeamController(IHostingEnvironment env) : base(env)
         {

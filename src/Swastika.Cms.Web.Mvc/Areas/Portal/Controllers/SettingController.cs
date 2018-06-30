@@ -18,7 +18,7 @@ namespace Swastika.Cms.Mvc.Areas.Portal.Controllers
     [Microsoft.AspNetCore.Authorization.Authorize]
     [Area("Portal")]
     [Route("{culture}/Portal/setting")]
-    public class SettingController : BaseController<SettingController>
+    public class SettingController : BaseController
     {
         //private readonly GlobalConfigurationService _appService;
         public SettingController(IHostingEnvironment env

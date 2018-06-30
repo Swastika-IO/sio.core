@@ -72,10 +72,6 @@ namespace Swastika.Cms.Lib.ViewModels.FrontEnd
         [JsonProperty("data")]
         public PaginationModel<BEModuleDataViewModel> Data { get; set; } = new PaginationModel<BEModuleDataViewModel>();
 
-        //[JsonProperty("columns")]
-        //public List<ModuleFieldViewModel> Columns { get; set; }
-        //[JsonProperty("templates")]
-        //public List<TemplateViewModel> Templates { get; set; }
         [JsonProperty("articles")]
         public PaginationModel<NavModuleArticleViewModel> Articles { get; set; } = new PaginationModel<NavModuleArticleViewModel>();
 
@@ -85,13 +81,6 @@ namespace Swastika.Cms.Lib.ViewModels.FrontEnd
         public string TemplatePath {
             get {
                 return string.Format("../{0}", Template);
-                //return SwCmsHelper.GetFullPath(new string[]
-                //{
-                //    ""
-                //    , SWCmsConstants.Parameters.TemplatesFolder
-                //    , ApplicationConfigService.Instance.GetLocalString(SWCmsConstants.ConfigurationKeyword.Theme, Specificulture, SWCmsConstants.Default.DefaultTemplateFolder)
-                //    , Template
-                //});
             }
         }
 
@@ -134,8 +123,6 @@ namespace Swastika.Cms.Lib.ViewModels.FrontEnd
                 Columns.Add(thisField);
             }
 
-            //this.Templates = Templates ?? TemplateRepository.Instance.GetTemplates(SWCmsConstants.TemplateFolder.Modules);
-
             var getDataResult = BEModuleDataViewModel.Repository
                 .GetModelListBy(m => m.ModuleId == Id && m.Specificulture == Specificulture
                 , "Priority", OrderByDirection.Ascending, null, null
@@ -146,8 +133,6 @@ namespace Swastika.Cms.Lib.ViewModels.FrontEnd
                 getDataResult.Data.Items.ForEach(d => getDataResult.Data.JsonItems.Add(d.JItem));
                 Data = getDataResult.Data;
             }
-
-            //LoadData(ArticleId, CategoryId, _context: _context, _transaction: _transaction);
 
             var getArticles = NavModuleArticleViewModel.Repository.GetModelListBy(n => n.ModuleId == Id && n.Specificulture == Specificulture
             , SWCmsConstants.Default.OrderBy, OrderByDirection.Ascending

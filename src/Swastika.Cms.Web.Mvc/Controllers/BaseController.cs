@@ -17,7 +17,7 @@ using System.Threading.Tasks;
 
 namespace Swastika.Cms.Mvc.Controllers
 {
-    public class BaseController<T> : Controller
+    public class BaseController: Controller
     {
         public readonly string ROUTE_CULTURE_NAME = "culture";
         public readonly string ROUTE_DEFAULT_CULTURE = SWCmsConstants.Default.Specificulture;
@@ -29,9 +29,6 @@ namespace Swastika.Cms.Mvc.Controllers
         public BaseController(IHostingEnvironment env)
         {
             _env = env;
-            string lang = RouteData != null && RouteData.Values[ROUTE_CULTURE_NAME] != null
-               ? RouteData.Values[ROUTE_CULTURE_NAME].ToString() : ROUTE_DEFAULT_CULTURE;
-
             // Set CultureInfo
             var cultureInfo = new CultureInfo(CurrentLanguage);
             CultureInfo.DefaultThreadCurrentCulture = cultureInfo;
@@ -42,9 +39,6 @@ namespace Swastika.Cms.Mvc.Controllers
         {
             _configuration = configuration;
             _env = env;
-            string lang = RouteData != null && RouteData.Values[ROUTE_CULTURE_NAME] != null
-               ? RouteData.Values[ROUTE_CULTURE_NAME].ToString() : ROUTE_DEFAULT_CULTURE;
-
             // Set CultureInfo
             var cultureInfo = new CultureInfo(CurrentLanguage);
             CultureInfo.DefaultThreadCurrentCulture = cultureInfo;
@@ -61,14 +55,6 @@ namespace Swastika.Cms.Mvc.Controllers
             }
         }
 
-        //public BaseController(IHostingEnvironment env, IStringLocalizer<SharedResource> localizer)
-        //{
-        //    _env = env;
-        //    string lang = RouteData != null && RouteData.Values[CONST_ROUTE_CULTURE_NAME] != null
-        //        ? RouteData.Values[CONST_ROUTE_CULTURE_NAME].ToString() : CONST_ROUTE_DEFAULT_CULTURE;
-        //    listCultures = listCultures ?? CultureRepository.GetInstance().GetModelList();
-        //}
-
         public override void OnActionExecuting(ActionExecutingContext context)
         {
             if (!string.IsNullOrEmpty(GlobalConfigurationService.Instance.ConnectionString))
@@ -80,15 +66,9 @@ namespace Swastika.Cms.Mvc.Controllers
 
         protected void GetLanguage()
         {
-            //_lang = RouteData != null && RouteData.Values[CONST_ROUTE_CULTURE_NAME] != null
-            //    ? RouteData.Values[CONST_ROUTE_CULTURE_NAME].ToString() : CONST_ROUTE_DEFAULT_CULTURE;
-
             _domain = string.Format("{0}://{1}", Request.Scheme, Request.Host);
 
             ViewBag.culture = CurrentLanguage;
-
-            //ViewBag.currentCulture = listCultures.FirstOrDefault(c => c.Specificulture == _lang);
-            //ViewBag.cultures = listCultures;
         }
 
         protected async Task<string> UploadFileAsync(IFormFile file, string folderPath)

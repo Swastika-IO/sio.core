@@ -99,7 +99,7 @@ namespace Swastika.Cms.Lib.ViewModels.BackEnd
         }
 
         [JsonIgnore]
-        public string TemplateFolderType { get { return SWCmsConstants.TemplateFolderEnum.Modules.ToString(); } }
+        public string TemplateFolderType { get { return SWCmsConstants.EnumTemplateFolder.Modules.ToString(); } }
 
         [JsonProperty("templateFolder")]
         public string TemplateFolder {

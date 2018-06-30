@@ -98,7 +98,7 @@ namespace Swastika.Cms.Lib.ViewModels.BackEnd
         public string ModifiedBy { get; set; }
 
         [JsonProperty("tags")]
-        public string Tags { get; set; }
+        public string Tags { get; set; } = "[]";
 
         [JsonProperty("code")]
         public string Code { get; set; }
@@ -179,7 +179,7 @@ namespace Swastika.Cms.Lib.ViewModels.BackEnd
         }
 
         [JsonIgnore]
-        public string TemplateFolderType { get { return SWCmsConstants.TemplateFolderEnum.Articles.ToString(); } }
+        public string TemplateFolderType { get { return SWCmsConstants.EnumTemplateFolder.Articles.ToString(); } }
 
         [JsonProperty("templateFolder")]
         public string TemplateFolder
@@ -259,10 +259,10 @@ namespace Swastika.Cms.Lib.ViewModels.BackEnd
         public override void ExpandView(SiocCmsContext _context = null, IDbContextTransaction _transaction = null)
         {
             ListSupportedCulture = GlobalLanguageService.ListSupportedCulture;
-            //if (!string.IsNullOrEmpty(this.Tags))
-            //{
-            //    ListTag = JArray.Parse(this.Tags);
-            //}
+            if (!string.IsNullOrEmpty(this.Tags))
+            {
+                ListTag = JArray.Parse(this.Tags);
+            }
             Properties = new List<ExtraProperty>();
             if (!string.IsNullOrEmpty(ExtraProperties))
             {
@@ -395,7 +395,7 @@ namespace Swastika.Cms.Lib.ViewModels.BackEnd
                 }
             }
 
-            //Tags = ListTag.ToString(Newtonsoft.Json.Formatting.None);
+            Tags = ListTag.ToString(Newtonsoft.Json.Formatting.None);
             GenerateSEO();
 
             return base.ParseModel(_context, _transaction);

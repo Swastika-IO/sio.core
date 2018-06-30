@@ -17,6 +17,7 @@ using Swastika.Domain.Data.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text;
 using System.Threading.Tasks;
 using static Swastika.Cms.Lib.SWCmsConstants;
 
@@ -334,6 +335,8 @@ namespace Swastika.Cms.Lib.ViewModels.FrontEnd
             if (getNavs.IsSucceed)
             {
                 Modules = new List<FEModuleViewModel>();
+                StringBuilder scripts = new StringBuilder();
+                StringBuilder styles = new StringBuilder();
                 foreach (var nav in getNavs.Data.OrderBy(n => n.Priority).ToList())
                 {
                     var getModule = FEModuleViewModel.Repository.GetSingleModel(
@@ -341,11 +344,13 @@ namespace Swastika.Cms.Lib.ViewModels.FrontEnd
                         , _context, _transaction);
                     if (getModule.IsSucceed && getModule.Data.View != null)
                     {
-                        View.Scripts += getModule.Data.View.Scripts;
-                        View.Styles += getModule.Data.View.Styles;
+                        scripts.Append(getModule.Data.View.Scripts);
+                        styles.Append(getModule.Data.View.Styles);
                         Modules.Add(getModule.Data);
                     }
                 }
+                View.Scripts = scripts.ToString();
+                View.Styles = styles.ToString();
             }
         }
 
