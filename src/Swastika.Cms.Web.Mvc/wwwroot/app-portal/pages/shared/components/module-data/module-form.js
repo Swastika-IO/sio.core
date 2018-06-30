@@ -6,10 +6,6 @@ modules.component('moduleForm', {
             var ctrl = this;
             $rootScope.isBusy = false;
 
-
-            ctrl.initEditor = function () {
-                $rootScope.initEditor();
-            }
             ctrl.initModuleForm = async function () {
                 var resp = null;
                 if (!ctrl.moduleId) {
@@ -21,7 +17,7 @@ modules.component('moduleForm', {
                 if (resp && resp.isSucceed) {
                     ctrl.data = resp.data;
                     $scope.$apply();
-                    ctrl.initEditor();
+                    //ctrl.initEditor();
                 }
                 else {
                     if (resp) { $rootScope.showErrors(resp.errors); }
@@ -36,7 +32,7 @@ modules.component('moduleForm', {
                 var response = await moduleDataServices.getModuleData(ctrl.moduleId, ctrl.d, 'be');
                 if (response.isSucceed) {
                     ctrl.data = response.data;
-                    $rootScope.initEditor();
+                    //$rootScope.initEditor();
                     $scope.$apply();
                 }
                 else {
@@ -44,6 +40,7 @@ modules.component('moduleForm', {
                     $scope.$apply();
                 }
             };
+
             ctrl.saveModuleData = async function () {
                 var form = $('#module-' + ctrl.data.moduleId);
                 $.each(ctrl.data.dataProperties, function (i, e) {
@@ -83,7 +80,7 @@ modules.component('moduleForm', {
 
 modules.component('moduleFormEditor', {
     templateUrl: '/app-portal/pages/shared/components/module-data/module-form-editor.html',
-    controller: ['$rootScope', function ($rootScope) {
+    controller: ['$rootScope', '$scope', function ($rootScope, $scope) {
         var ctrl = this;
         this.dataTypes = {
             'string': 0,
@@ -96,7 +93,40 @@ modules.component('moduleFormEditor', {
             'boolean': 7,
             'mdTextArea': 8
         };
+        ctrl.initEditor = function () {
+            setTimeout(function () {
+                // Init Code editor
+                $.each($('.code-editor'), function (i, e) {
+                    var container = $(this);
+                    var editor = ace.edit(e);
+                    if (container.hasClass('json')) {
+                        editor.session.setMode("ace/mode/json");
+                    }
+                    else {
+                        editor.session.setMode("ace/mode/razor");
+                    }
+                    editor.setTheme("ace/theme/chrome");
+                    //editor.setReadOnly(true);
 
+                    editor.session.setUseWrapMode(true);
+                    editor.setOptions({
+                        maxLines: Infinity
+                    });
+                    editor.getSession().on('change', function (e) {
+                        // e.type, etc
+                        $(container).parent().find('.code-content').val(editor.getValue());
+                    });
+                })
+                $.each($('.editor-content'), function (i, e) {
+                    var $demoTextarea = $(e);
+                    $demoTextarea.trumbowyg({
+                        semantic: false
+                    }).on('tbwblur', function () {
+                        ctrl.data.value = $demoTextarea.val();
+                    });
+                });
+            }, 200)
+        }
     }
     ],
     bindings: {

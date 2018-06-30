@@ -32,7 +32,8 @@
                         </pane>
                         <pane title="Medias">
                             <!--   <product-medias product="activedProduct" medias="mediaData"></product-medias>-->
-                            <navs data="activedProduct.mediaNavs" prefix="media" />
+                            <!--<navigation data="activedProduct.mediaNavs" prefix="media"></navigation>-->
+                            <navs data="activedProduct.mediaNavs" prefix="'media'" model="'nav-product-media'"></navs>
                         </pane>
                         <pane title="Related">
                             <product-related product="activedProduct" list="data"></product-related>

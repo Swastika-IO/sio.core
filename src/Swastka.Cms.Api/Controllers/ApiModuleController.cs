@@ -63,7 +63,13 @@ namespace Swastka.Cms.Api.Controllers
                     }
                     else
                     {
-                        var model = new SiocModule() { Specificulture = _lang, Status = (int)SWStatus.Preview };
+                        var model = new SiocModule()
+                        {
+                            Specificulture = _lang,
+                            Status = (int)SWStatus.Preview
+                        ,
+                            Priority = ApiModuleViewModel.Repository.Max(a => a.Priority).Data + 1
+                        };
 
                         RepositoryResponse<ApiModuleViewModel> result = new RepositoryResponse<ApiModuleViewModel>()
                         {

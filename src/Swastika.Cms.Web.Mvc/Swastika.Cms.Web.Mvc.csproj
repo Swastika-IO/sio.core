@@ -195,6 +195,7 @@
     <Folder Include="Areas\Portal\Views\Shared\Widgets\" />
     <Folder Include="Areas\User\Models\" />
     <Folder Include="wwwroot\app\services\" />
+    <Folder Include="wwwroot\app-shared\" />
   </ItemGroup>
 
   <ItemGroup>

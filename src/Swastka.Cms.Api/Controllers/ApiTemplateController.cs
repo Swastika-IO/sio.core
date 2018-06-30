@@ -72,6 +72,27 @@ namespace Swastka.Cms.Api.Controllers
             }
         }
 
+        // GET api/category/id
+        [HttpGet]
+        [Route("delete/{id}")]
+        public async Task<RepositoryResponse<bool>> DeleteAsync(int id)
+        {
+            var getPage = await BETemplateViewModel.Repository.GetSingleModelAsync(
+                model => model.Id == id);
+            if (getPage.IsSucceed)
+            {
+
+                return await getPage.Data.RemoveModelAsync(true);
+            }
+            else
+            {
+                return new RepositoryResponse<bool>()
+                {
+                    IsSucceed = false
+                };
+            }
+        }
+
 
         #endregion Get
 

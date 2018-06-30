@@ -100,9 +100,13 @@ namespace Swastika.Cms.Lib.ViewModels.Api
                     ModuleFieldViewModel thisField = new ModuleFieldViewModel()
                     {
                         Name = CommonHelper.ParseJsonPropertyName(field["name"].ToString()),
+                        
                         Priority = field["priority"] != null ? field["priority"].Value<int>() : 0,
                         DataType = (SWCmsConstants.DataType)(int)field["dataType"],
                         Width = field["width"] != null ? field["width"].Value<int>() : 3,
+                        Options = field["options"] != null ? field["options"].Value<JArray>() : new JArray(),
+                        IsSelect = field["isSelect"] != null ? field["isSelect"].Value<bool>() : false,
+                        IsGroupBy = field["isGroupBy"] != null ? field["isGroupBy"].Value<bool>() : false,
                         IsDisplay = field["isDisplay"] != null ? field["isDisplay"].Value<bool>() : true
                     };
                     this.Columns.Add(thisField);
@@ -125,6 +129,9 @@ namespace Swastika.Cms.Lib.ViewModels.Api
                     ModuleId = ModuleId,
                     DataType = (SWCmsConstants.DataType)col.DataType,
                     Name = CommonHelper.ParseJsonPropertyName(prop.Name),
+                    IsSelect = col.IsSelect,
+                    IsGroupBy = col.IsGroupBy,
+                    Options = col.Options,
                     Value = prop.Value["value"].Value<string>()
                 };
                 
@@ -173,5 +180,11 @@ namespace Swastika.Cms.Lib.ViewModels.Api
         public SWCmsConstants.DataType DataType { get; set; }
         [JsonProperty("value")]
         public string Value { get; set; }
+        [JsonProperty("isSelect")]
+        public bool IsSelect { get; set; }
+        [JsonProperty("isGroupBy")]
+        public bool IsGroupBy { get; set; }
+        [JsonProperty("options")]
+        public JArray Options { get; set; } = new JArray();
     }
 }

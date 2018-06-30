@@ -1,5 +1,5 @@
 ﻿'use strict';
-var app = angular.module('SwastikaPortal', ['ngRoute', 'components', 'ngFileUpload', 'LocalStorageModule', 'bw.paging']);
+var app = angular.module('SwastikaPortal', ['ngRoute', 'components', 'ngFileUpload', 'LocalStorageModule', 'bw.paging', 'dndLists','ngSanitize']);
 var serviceBase = "/";
 
 app.directive('ngEnter', function () {
@@ -53,7 +53,7 @@ app.run(['$rootScope', '$location', 'commonServices', 'authService', function ($
 
     $rootScope.currentContext = $rootScope;
     $rootScope.errors = [];
-    
+
     $rootScope.message = {
         title: 'test',
         content: '',
@@ -163,6 +163,8 @@ app.run(['$rootScope', '$location', 'commonServices', 'authService', function ($
             { title: 'textArea', value: 6 },
             { title: 'boolean', value: 7 },
             { title: 'mdTextArea', value: 8 },
+            { title: 'date', value: 9 },
+            { title: 'datetime', value: 10 },
         ]
     };
     $rootScope.range = function (max) {
@@ -178,7 +180,7 @@ app.run(['$rootScope', '$location', 'commonServices', 'authService', function ($
         }
     });
 
-    $rootScope.showErrors = function (errors) {
+    $rootScope.showErrorsbk = function (errors) {
         $rootScope.message.title = 'Errors';
         $rootScope.message.errors = errors;
         $rootScope.message.content = '';
@@ -187,7 +189,7 @@ app.run(['$rootScope', '$location', 'commonServices', 'authService', function ($
     }
 
     //type: success / info / danger / warning - bootstrap 
-    $rootScope.showMessage = function (content, type) {
+    $rootScope.showMessagebk = function (content, type) {
         type = type || 'info';
         $rootScope.message.title = 'Result';
         $rootScope.message.content = content;
@@ -208,7 +210,7 @@ app.run(['$rootScope', '$location', 'commonServices', 'authService', function ($
         commonServices.removeSettings();
         commonServices.fillSettings($rootScope.settings.lang).then(function (response) {
             $rootScope.settings = response;
-            
+
         });
         $rootScope.isBusy = false;
     }
@@ -270,8 +272,14 @@ app.run(['$rootScope', '$location', 'commonServices', 'authService', function ($
         }, 200)
     }
 
-    $rootScope.showMessagebk = function (content, type) {
-        var from = 'top';
+    $rootScope.showErrors = function (errors) {
+        $.each(errors, function (i, e) {
+            $rootScope.showMessage(e, 'danger');
+        });
+    }
+
+    $rootScope.showMessage = function (content, type) {
+        var from = 'bottom';
         var align = 'right';
         $.notify({
             icon: "now-ui-icons ui-1_bell-53",
@@ -279,7 +287,7 @@ app.run(['$rootScope', '$location', 'commonServices', 'authService', function ($
 
         }, {
                 type: type,
-                timer: 8000,
+                timer: 2000,
                 placement: {
                     from: from,
                     align: align
@@ -287,7 +295,6 @@ app.run(['$rootScope', '$location', 'commonServices', 'authService', function ($
             });
     }
 }]);
-
 
 function Filter($filter) {
     return function (utcDateString, format) {
@@ -305,3 +312,4 @@ function Filter($filter) {
         return $filter('date')(utcDateString, format);
     };
 }
+var modules = angular.module('components', []);

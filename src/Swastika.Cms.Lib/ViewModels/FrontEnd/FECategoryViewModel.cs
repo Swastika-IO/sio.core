@@ -337,7 +337,7 @@ namespace Swastika.Cms.Lib.ViewModels.FrontEnd
                 foreach (var nav in getNavs.Data.OrderBy(n => n.Priority).ToList())
                 {
                     var getModule = FEModuleViewModel.Repository.GetSingleModel(
-                        m => m.Id == nav.ModuleId && nav.Specificulture == Specificulture
+                        m => m.Id == nav.ModuleId && nav.Specificulture == m.Specificulture
                         , _context, _transaction);
                     if (getModule.IsSucceed && getModule.Data.View != null)
                     {

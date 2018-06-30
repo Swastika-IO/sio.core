@@ -11,12 +11,16 @@ app.controller('ModuleController', ['$scope', '$rootScope', '$routeParams', '$ti
             direction: '1',
             fromDate: null,
             toDate: null,
-            keyword: ''
+            keyword: '',
+            key: ''
         };
         $scope.defaultAttr = {
             name: '',
+            options: [],
             priority: 0,
             dataType: 0,
+            isGroupBy: false,
+            isSelect: false,
             isDisplay: true,
             width: 3
         };
@@ -98,6 +102,30 @@ app.controller('ModuleController', ['$scope', '$rootScope', '$routeParams', '$ti
                 $scope.$apply();
             }
         };
+
+        $scope.loadMoreModuleDatas = async function (pageIndex) {
+            $scope.request.key = $scope.activedModule.id;
+            if (pageIndex != undefined) {
+                $scope.request.pageIndex = pageIndex;
+            }
+            if ($scope.request.fromDate != null) {
+                var d = new Date($scope.request.fromDate);
+                $scope.request.fromDate = d.toISOString();
+            }
+            if ($scope.request.toDate != null) {
+                $scope.request.toDate = $scope.request.toDate.toISOString();
+            }
+            var resp = await moduleDataServices.getModuleDatas($scope.request);
+            if (resp && resp.isSucceed) {
+
+                $scope.activedModule.data = resp.data;
+                $scope.$apply();
+            }
+            else {
+                if (resp) { $rootScope.showErrors(resp.errors); }
+                $scope.$apply();
+            }
+        }
 
         $scope.loadModules = async function (pageIndex) {
             if (pageIndex != undefined) {
@@ -183,6 +211,12 @@ app.controller('ModuleController', ['$scope', '$rootScope', '$routeParams', '$ti
             }
         }
 
+        $scope.addOption = function (col, index) {
+            var val = angular.element('#option_' + index).val();
+            col.options.push(val);
+            angular.element('#option_' + index).val('');
+        }
+
         $scope.removeAttr = function (index) {
             if ($scope.activedModule) {
 
@@ -192,7 +226,7 @@ app.controller('ModuleController', ['$scope', '$rootScope', '$routeParams', '$ti
 
         $scope.removeData = function (id) {
             if ($scope.activedModule) {
-                $rootScope.showConfirm($scope, 'removeDataConfirmed', [ id ], null, 'Remove Data', 'Are you sure');
+                $rootScope.showConfirm($scope, 'removeDataConfirmed', [id], null, 'Remove Data', 'Are you sure');
             }
         }
 

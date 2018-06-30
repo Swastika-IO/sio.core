@@ -38,7 +38,7 @@ namespace Swastka.Cms.Api.Controllers
         [HttpGet]
         [Route("details/{viewType}/{id}")]
         [Route("details/{viewType}")]
-        public async Task<JObject> BEDetails(string viewType, string id)
+        public async Task<JObject> Details(string viewType, string id)
         {
             switch (viewType)
             {
@@ -82,55 +82,6 @@ namespace Swastka.Cms.Api.Controllers
                         };
                         return JObject.FromObject(result);
                     }
-            }
-        }
-
-        // GET api/products/id
-        [HttpGet]
-        [Route("create")]
-        public RepositoryResponse<BEProductViewModel> Create()
-        {
-            SiocProduct product = new SiocProduct()
-            {
-                //Id = Guid.NewGuid().ToString(),
-                Specificulture = _lang
-
-            };
-            return new RepositoryResponse<BEProductViewModel>()
-            {
-                IsSucceed = true,
-                Data = new BEProductViewModel(product) { Status = SWStatus.Preview }
-            };
-        }
-
-        // GET api/products/id
-        [HttpGet]
-        [Route("init/{viewType}")]
-        public JObject Init(string viewType)
-        {
-            SiocProduct product = new SiocProduct()
-            {
-                //Id = Guid.NewGuid().ToString(),
-                Specificulture = _lang
-
-            };
-
-            switch (viewType)
-            {
-                case "be":
-                    var be = new RepositoryResponse<BEProductViewModel>()
-                    {
-                        IsSucceed = true,
-                        Data = new BEProductViewModel(product) { Status = SWStatus.Preview }
-                    };
-                    return JObject.FromObject(be);
-                default:
-                    var fe = new RepositoryResponse<InfoProductViewModel>()
-                    {
-                        IsSucceed = true,
-                        Data = new InfoProductViewModel(product) { Status = SWStatus.Preview }
-                    };
-                    return JObject.FromObject(fe);
             }
         }
 

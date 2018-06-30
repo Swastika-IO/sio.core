@@ -8,7 +8,6 @@
         vm.activedMaster = {};
         vm.activedName = '';
         vm.folder = '';
-        vm.activedTemplate = {};
         vm.request = {
             pageSize: 10,
             pageIndex: 0,
@@ -71,14 +70,9 @@
                 $rootScope.isBusy = false;
                 $scope.$apply();
             }
-
         };
+
         vm.initTemplate = function (response, activedId, activedName) {
-            const ph = {};
-            var isInit = false;
-            const promise = new Promise(resolve => {
-                ph.resolve = resolve;
-            });
             vm.templates = response.data.items;
             if (vm.templates != undefined && vm.templates.length > 0) {
                 var newTemplate = angular.copy(vm.templates[0]);
@@ -89,19 +83,23 @@
                 var templates = vm.templates;
                 $.each(templates, function (i, e) {
                     if (e.id == activedId) {
-                        vm.activedTemplate = e;
+                        vm.template = e;
                     }
                     if (e.fileName == activedName) {
-                        vm.activedTemplate = e;
+                        vm.template = e;
                     }
                 });
                 vm.updateEditors();
                 $rootScope.isBusy = false;
                 $scope.$apply();
-                ph.resolve(true);
             }
-            return promise;
         };
+
+        vm.selectTemplate = function (template) {
+            vm.template = template;
+            vm.updateEditors();
+        };
+
         vm.updateEditors = function () {
             setTimeout(function () {
                 $.each($('.code-editor'), function (i, e) {

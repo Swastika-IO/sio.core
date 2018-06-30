@@ -112,6 +112,9 @@ namespace Swastika.Cms.Lib.ViewModels.Info
                         DataType = (SWCmsConstants.DataType)(int)field["dataType"],
                         Priority = field["priority"] != null ? field["priority"].Value<int>() : 0,
                         Width = field["width"] != null ? field["width"].Value<int>() : 3,
+                        Options = field["options"] != null ? field["options"].Value<JArray>() : new JArray(),
+                        IsSelect = field["isSelect"] != null ? field["isSelect"].Value<bool>() : false,
+                        IsGroupBy = field["isGroupBy"] != null ? field["isGroupBy"].Value<bool>() : false,
                         IsDisplay = field["isDisplay"] != null ? field["isDisplay"].Value<bool>() : true
                     };
                     this.Columns.Add(thisField);
@@ -138,6 +141,10 @@ namespace Swastika.Cms.Lib.ViewModels.Info
                     ModuleId = ModuleId,
                     DataType = (SWCmsConstants.DataType)col.DataType,
                     Name = CommonHelper.ParseJsonPropertyName(prop.Name),
+                    IsDisplay = col.IsDisplay,
+                    IsSelect = col.IsSelect,
+                    IsGroupBy = col.IsGroupBy,
+                    Options = col.Options,
                     StringValue = prop.Value["value"].Value<string>()
                 };
                 switch (col.DataType)
