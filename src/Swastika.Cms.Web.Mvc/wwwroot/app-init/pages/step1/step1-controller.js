@@ -9,7 +9,6 @@ app.controller('Step1Controller', ['$scope', '$rootScope', '$timeout', '$locatio
             dataBaseName: '',
             dataBaseUser: '',
             dataBasePassword: '',
-            isUseLocal: '',
             adminPassword: '',
             lang: 'en-us'
         }
