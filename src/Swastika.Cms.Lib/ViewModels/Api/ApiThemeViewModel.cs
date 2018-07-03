@@ -155,7 +155,12 @@ namespace Swastika.Cms.Lib.ViewModels.Api
                 result.IsSucceed = isSaved;
                 if (isSaved)
                 {
-                    FileRepository.Instance.UnZipFile(Asset);
+                    result.IsSucceed = FileRepository.Instance.UnZipFile(Asset);
+                    if (!result.IsSucceed)
+                    {
+                        result.Errors.Add("Cannot unzip file");
+                    }
+
                 }
                 else
                 {
