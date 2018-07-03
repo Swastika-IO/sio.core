@@ -3,7 +3,6 @@
          ng-init="$ctrl.loadTemplates()">
         <h6>Layout</h6>
         <div class="input-group mb-3">
-            {{$ctrl.template}}
             <select class="btn btn-outline-secondary custom-select col-sm-4"                    
                     ng-options="item as item.fileName for item in $ctrl.templates track by item.id"
                     ng-model="$ctrl.template" 

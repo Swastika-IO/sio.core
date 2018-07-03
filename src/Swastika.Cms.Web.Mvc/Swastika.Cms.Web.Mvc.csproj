@@ -336,6 +336,9 @@
     <Content Update="Views\Backend\Index.cshtml">
       <Pack>$(IncludeRazorContentInPack)</Pack>
     </Content>
+    <Content Update="Views\Shared\Templates\Default_Blank\Widgets\_Pagination.cshtml">
+      <Pack>$(IncludeRazorContentInPack)</Pack>
+    </Content>
     <Content Update="Views\Shared\_LayoutPortal_Angular.cshtml">
       <Pack>$(IncludeRazorContentInPack)</Pack>
     </Content>

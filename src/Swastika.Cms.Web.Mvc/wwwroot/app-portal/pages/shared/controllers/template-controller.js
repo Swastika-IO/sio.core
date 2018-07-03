@@ -76,7 +76,7 @@ app.controller('TemplateController', ['$scope', '$rootScope', '$routeParams', '$
 
         $scope.loadTemplates = async function (pageIndex) {
             $scope.themeId = $routeParams.themeId;
-            $scope.request.key = $routeParams.themeId;
+            $scope.request.key = this.folderType;
             $scope.folderType = this.folderType;
             if (pageIndex != undefined) {
                 $scope.request.pageIndex = pageIndex;

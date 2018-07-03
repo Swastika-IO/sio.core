@@ -21,10 +21,7 @@ app.factory('TemplateServices', ['$http', '$rootScope', 'commonServices', functi
 
 
     var _getTemplates = async function (request, folderType) {
-        var apiUrl = '/api/' + settings.lang + '/template/list';
-        if (folderType) {
-            apiUrl += '/' + folderType;
-        }
+        var apiUrl = '/api/' + settings.lang + '/template/list/' + settings.themeId;
         var req = {
             method: 'POST',
             url: apiUrl,
