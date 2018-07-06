@@ -151,6 +151,11 @@ namespace Swastika.Cms.Lib.ViewModels.Api
             if (Asset.Content != null || Asset.FileStream != null)
             {
                 Asset.FileFolder = AssetFolder;
+                string fullPath = CommonHelper.GetFullPath(new string[] {
+                    SWCmsConstants.Parameters.WebRootPath,
+                    Asset.FileFolder
+                });
+                FileRepository.Instance.EmptyFolder(fullPath);
                 var isSaved = FileRepository.Instance.SaveWebFile(Asset);
                 result.IsSucceed = isSaved;
                 if (isSaved)
