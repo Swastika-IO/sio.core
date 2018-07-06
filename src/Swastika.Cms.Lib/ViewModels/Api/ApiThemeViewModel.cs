@@ -155,7 +155,12 @@ namespace Swastika.Cms.Lib.ViewModels.Api
                 result.IsSucceed = isSaved;
                 if (isSaved)
                 {
-                    FileRepository.Instance.UnZipFile(Asset);
+                    result.IsSucceed = FileRepository.Instance.UnZipFile(Asset);
+                    if (!result.IsSucceed)
+                    {
+                        result.Errors.Add("Cannot unzip file");
+                    }
+
                 }
                 else
                 {
@@ -165,7 +170,7 @@ namespace Swastika.Cms.Lib.ViewModels.Api
             }
             if (Id == 0)
             {
-                string defaultFolder = CommonHelper.GetFullPath(new string[] { SWCmsConstants.Parameters.TemplatesFolder, Name == "Default" ? "Default" : SWCmsConstants.Default.DefaultTemplateFolder });
+                string defaultFolder = CommonHelper.GetFullPath(new string[] { SWCmsConstants.Parameters.TemplatesFolder, SWCmsConstants.Default.DefaultTemplateFolder });
                 bool copyResult = FileRepository.Instance.CopyDirectory(defaultFolder, TemplateFolder);
                 var files = copyResult ? FileRepository.Instance.GetFilesWithContent(TemplateFolder) : new System.Collections.Generic.List<FileViewModel>();
                 //TODO: Create default asset

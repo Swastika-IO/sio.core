@@ -129,21 +129,23 @@ namespace Swastka.Cms.Api.Controllers
 
         // GET api/template
         [HttpPost, HttpOptions]
-        [Route("list")]
-        [Route("list/{folder}")]
+        [Route("list/{themeId}")]
         public async Task<RepositoryResponse<PaginationModel<BETemplateViewModel>>> GetList(
-            [FromBody]RequestPaging request,
-            [FromRoute] string folder = null
+            int themeId,
+            [FromBody]RequestPaging request
             )
         {
-            int.TryParse(request.Key, out int themeId);
             Expression<Func<SiocTemplate, bool>> predicate = model =>
                 model.TemplateId == themeId
-                && (string.IsNullOrEmpty(folder) || (model.FolderType == folder))
+                 && (string.IsNullOrWhiteSpace(request.Key)
+                    ||
+                    (
+                        model.FolderType == (request.Key)
+                    ))
                 && (string.IsNullOrWhiteSpace(request.Keyword)
                     ||
                     (
-                        model.FileName.Contains(request.Keyword)
+                         model.FileName.Contains(request.Keyword)
                         || model.FileFolder.Contains(request.Keyword)
                         || model.FolderType == request.Keyword
                     ));

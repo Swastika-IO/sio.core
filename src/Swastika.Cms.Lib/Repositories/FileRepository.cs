@@ -257,6 +257,12 @@ namespace Swastika.Cms.Lib.Repositories
             }
             return false;
         }
+        public bool EmptyFolder(string folderPath)
+        {
+            DeleteFolder(folderPath);
+            CreateDirectoryIfNotExist(folderPath);
+            return true;
+        }
 
         public bool CopyDirectory(string srcPath, string desPath)
         {
@@ -614,7 +620,7 @@ namespace Swastika.Cms.Lib.Repositories
             }
         }
 
-        public void UnZipFile(FileViewModel file)
+        public bool UnZipFile(FileViewModel file)
         {
             string filePath = SwCmsHelper.GetFullPath(new string[]
             {
@@ -630,10 +636,11 @@ namespace Swastika.Cms.Lib.Repositories
             try
             {
                 ZipFile.ExtractToDirectory(filePath, webFolder);
+                return true;
             }
             catch
             {
-                throw;
+                return false;
             }
         }
     }

@@ -44,14 +44,14 @@
                 vm.activedId = vm.template.id;
                 vm.activedName = vm.template.fileName;
             }
-            var url = '/api/' + $rootScope.settings.lang + '/template/list';
+            var url = '/api/' + $rootScope.settings.lang + '/template/list/' + $rootScope.settings.themeId;
             var request = {
                 pageSize: null,
                 pageIndex: 0,
                 orderBy: 'fileName',
                 direction: 0,
-                key: $rootScope.settings.themeId,
-                keyword: vm.template.folderType,
+                key: vm.template.folderType,
+                keyword: '',
                 url: url
             }
             var req = {
@@ -77,7 +77,7 @@
             if (vm.templates != undefined && vm.templates.length > 0) {
                 var newTemplate = angular.copy(vm.templates[0]);
                 newTemplate.id = 0;
-                newTemplate.fileName = '_blank';
+                newTemplate.fileName = 'create new';
                 newTemplate.content = "<div></div>";
                 vm.templates.splice(0, 0, newTemplate);
                 var templates = vm.templates;
