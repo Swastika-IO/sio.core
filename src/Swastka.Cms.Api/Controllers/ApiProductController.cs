@@ -243,7 +243,7 @@ namespace Swastka.Cms.Api.Controllers
 
         [HttpPost, HttpOptions]
         [Route("list")]
-        public async Task<RepositoryResponse<PaginationModel<InfoProductViewModel>>> GetList([FromBody]RequestPaging request)
+        public async Task<JObject> GetList([FromBody]RequestPaging request)
         {
             ParseRequestPagingDate(request);
             Expression<Func<SiocProduct, bool>> predicate = model =>
@@ -264,16 +264,43 @@ namespace Swastka.Cms.Api.Controllers
                     || (model.CreatedDateTime <= request.ToDate.Value)
                 );
 
-            var data = await InfoProductViewModel.Repository.GetModelListByAsync(predicate, request.OrderBy, request.Direction, request.PageSize, request.PageIndex).ConfigureAwait(false);
-            if (data.IsSucceed)
+            switch (request.Key)
             {
-                data.Data.Items.ForEach(a =>
-                {
-                    a.DetailsUrl = SwCmsHelper.GetRouterUrl(
-                        "Product", new { a.SeoName }, Request, Url);
-                });
+                case "fe":
+                    var fedata = await FEProductViewModel.Repository.GetModelListByAsync(predicate, request.OrderBy, request.Direction, request.PageSize, request.PageIndex).ConfigureAwait(false);
+                    if (fedata.IsSucceed)
+                    {
+                        fedata.Data.Items.ForEach(a =>
+                        {
+                            a.DetailsUrl = SwCmsHelper.GetRouterUrl(
+                                "Product", new { a.SeoName }, Request, Url);
+                        });
+                    }
+                    return JObject.FromObject(fedata);
+                case "be":
+                    var bedata = await BEProductViewModel.Repository.GetModelListByAsync(predicate, request.OrderBy, request.Direction, request.PageSize, request.PageIndex).ConfigureAwait(false);
+                    if (bedata.IsSucceed)
+                    {
+                        bedata.Data.Items.ForEach(a =>
+                        {
+                            a.DetailsUrl = SwCmsHelper.GetRouterUrl(
+                                "Product", new { a.SeoName }, Request, Url);
+                        });
+                    }
+                    return JObject.FromObject(bedata);
+                default:
+                    var data = await InfoProductViewModel.Repository.GetModelListByAsync(predicate, request.OrderBy, request.Direction, request.PageSize, request.PageIndex).ConfigureAwait(false);
+                    if (data.IsSucceed)
+                    {
+                        data.Data.Items.ForEach(a =>
+                        {
+                            a.DetailsUrl = SwCmsHelper.GetRouterUrl(
+                                "Product", new { a.SeoName }, Request, Url);
+                        });
+                    }
+                    return JObject.FromObject(data);
             }
-            return data;
+            
         }
 
         #endregion Post

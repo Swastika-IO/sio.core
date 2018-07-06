@@ -10,9 +10,10 @@ using Swastika.Cms.Lib.Models.Cms;
 namespace Swastika.Cms.Lib.Migrations
 {
     [DbContext(typeof(SiocCmsContext))]
-    partial class SiocCmsContextModelSnapshot : ModelSnapshot
+    [Migration("20180706004523_add-is-notified")]
+    partial class addisnotified
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
