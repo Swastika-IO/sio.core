@@ -36,7 +36,7 @@ namespace Swastka.Cms.Api.Controllers
         [Route("delete/{id}")]
         public async Task<RepositoryResponse<bool>> DeleteAsync(int id)
         {
-            var getPage =await FECategoryViewModel.Repository.GetSingleModelAsync(
+            var getPage = await FECategoryViewModel.Repository.GetSingleModelAsync(
                 model => model.Id == id && model.Specificulture == _lang);
             if (getPage.IsSucceed)
             {
@@ -74,7 +74,8 @@ namespace Swastka.Cms.Api.Controllers
                     {
                         var model = new SiocCategory()
                         {
-                            Specificulture = _lang, Status = (int)SWStatus.Preview,
+                            Specificulture = _lang,
+                            Status = (int)SWStatus.Preview,
                             PageSize = 20
                             ,
                             Priority = BECategoryViewModel.Repository.Max(a => a.Priority).Data + 1
@@ -105,7 +106,8 @@ namespace Swastka.Cms.Api.Controllers
                             IsSucceed = true,
                             Data = new FECategoryViewModel(model)
                             {
-                                Specificulture = _lang, Status = SWStatus.Preview,
+                                Specificulture = _lang,
+                                Status = SWStatus.Preview,
                                 PageSize = 20
                             }
                         };
@@ -198,7 +200,7 @@ namespace Swastka.Cms.Api.Controllers
                     {
                         break;
                     }
-                    
+
                 }
                 return result;
             }
@@ -209,41 +211,86 @@ namespace Swastka.Cms.Api.Controllers
         [HttpPost, HttpOptions]
         [Route("list")]
         [Route("list/{level}")]
-        public async Task<RepositoryResponse<PaginationModel<InfoCategoryViewModel>>> GetList(
+        public async Task<JObject> GetList(
             [FromBody] RequestPaging request, int? level = 0)
         {
             ParseRequestPagingDate(request);
-            Expression<Func<SiocCategory, bool>> predicate = model =>
-                model.Specificulture == _lang
-                && model.Level == level
-                && (string.IsNullOrWhiteSpace(request.Keyword)
-                    || (model.Title.Contains(request.Keyword)
-                    || model.Excerpt.Contains(request.Keyword)))
-                && (!request.FromDate.HasValue
-                    || (model.CreatedDateTime >= request.FromDate.Value)
-                )
-                && (!request.ToDate.HasValue
-                    || (model.CreatedDateTime <= request.ToDate.Value)
-                )
-                    ;
-
-            var data = await InfoCategoryViewModel.Repository.GetModelListByAsync(predicate, request.OrderBy, request.Direction, request.PageSize, request.PageIndex).ConfigureAwait(false);
-            if (data.IsSucceed)
+            Expression<Func<SiocCategory, bool>> predicate;
+            switch (request.Key)
             {
-                data.Data.Items.ForEach(a =>
-                {
-                    a.DetailsUrl = SwCmsHelper.GetRouterUrl(
-                        "Page", new { a.SeoName }, Request, Url);
-                    a.Childs.ForEach(c =>
+                case "fe":
+                    predicate = model =>
+                        model.Specificulture == _lang
+                        && (string.IsNullOrWhiteSpace(request.Keyword)
+                            || (model.Title.Contains(request.Keyword)
+                            || model.Excerpt.Contains(request.Keyword)))
+                        && (!request.FromDate.HasValue
+                            || (model.CreatedDateTime >= request.FromDate.Value)
+                        )
+                        && (!request.ToDate.HasValue
+                            || (model.CreatedDateTime <= request.ToDate.Value)
+                        );
+                    var fedata = await FECategoryViewModel.Repository.GetModelListByAsync(predicate, request.OrderBy, request.Direction, request.PageSize, request.PageIndex).ConfigureAwait(false);
+                    if (fedata.IsSucceed)
                     {
-                        c.DetailsUrl = SwCmsHelper.GetRouterUrl(
-                            "Page", new { c.SeoName }, Request, Url);
+                        fedata.Data.Items.ForEach(a =>
+                        {
+                            a.DetailsUrl = SwCmsHelper.GetRouterUrl(
+                                "Page", new { a.SeoName }, Request, Url);
+                        });
                     }
-                );
-                }
-                );
+                    return JObject.FromObject(fedata);
+                case "be":
+                    predicate = model =>
+                        model.Specificulture == _lang
+                        && (string.IsNullOrWhiteSpace(request.Keyword)
+                            || (model.Title.Contains(request.Keyword)
+                            || model.Excerpt.Contains(request.Keyword)))
+                        && (!request.FromDate.HasValue
+                            || (model.CreatedDateTime >= request.FromDate.Value)
+                        )
+                        && (!request.ToDate.HasValue
+                            || (model.CreatedDateTime <= request.ToDate.Value)
+                        );
+                    var bedata = await BECategoryViewModel.Repository.GetModelListByAsync(predicate, request.OrderBy, request.Direction, request.PageSize, request.PageIndex).ConfigureAwait(false);
+                    if (bedata.IsSucceed)
+                    {
+                        bedata.Data.Items.ForEach(a =>
+                        {
+                            a.DetailsUrl = SwCmsHelper.GetRouterUrl(
+                                "Page", new { a.SeoName }, Request, Url);
+                        });
+                    }
+                    return JObject.FromObject(bedata);
+                default:
+                    predicate = model =>
+                        model.Specificulture == _lang
+                        && model.Level == level
+                        && (string.IsNullOrWhiteSpace(request.Keyword)
+                            || (model.Title.Contains(request.Keyword)
+                            || model.Excerpt.Contains(request.Keyword)))
+                        && (!request.FromDate.HasValue
+                            || (model.CreatedDateTime >= request.FromDate.Value)
+                        )
+                        && (!request.ToDate.HasValue
+                            || (model.CreatedDateTime <= request.ToDate.Value)
+                        );
+                    var data = await InfoCategoryViewModel.Repository.GetModelListByAsync(predicate, request.OrderBy, request.Direction, request.PageSize, request.PageIndex).ConfigureAwait(false);
+                    if (data.IsSucceed)
+                    {
+                        data.Data.Items.ForEach(a =>
+                        {
+                            a.DetailsUrl = SwCmsHelper.GetRouterUrl(
+                                "Page", new { a.SeoName }, Request, Url);
+                            a.Childs.ForEach(c =>
+                            {
+                                c.DetailsUrl = SwCmsHelper.GetRouterUrl(
+                                    "Page", new { c.SeoName }, Request, Url);
+                            });
+                        });
+                    }
+                    return JObject.FromObject(data);
             }
-            return data;
         }
 
         #endregion Post

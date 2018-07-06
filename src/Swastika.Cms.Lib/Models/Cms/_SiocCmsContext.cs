@@ -20,6 +20,7 @@ namespace Swastika.Cms.Lib.Models.Cms
         public virtual DbSet<SiocCategoryPosition> SiocCategoryPosition { get; set; }
         public virtual DbSet<SiocCategoryProduct> SiocCategoryProduct { get; set; }
         public virtual DbSet<SiocCmsUser> SiocCmsUser { get; set; }
+        public virtual DbSet<SiocCustomer> SiocCustomer { get; set; }
         public virtual DbSet<SiocComment> SiocComment { get; set; }
         public virtual DbSet<SiocConfiguration> SiocConfiguration { get; set; }
         public virtual DbSet<SiocCopy> SiocCopy { get; set; }
@@ -447,6 +448,45 @@ namespace Swastika.Cms.Lib.Models.Cms
                 entity.Property(e => e.Username).HasMaxLength(256);
 
                 entity.Property(e => e.Email).HasMaxLength(256);
+            });
+
+            modelBuilder.Entity<SiocCustomer>(entity =>
+            {
+                entity.ToTable("sioc_cms_customer");
+
+                entity.Property(e => e.Id).ValueGeneratedNever();
+
+                entity.Property(e => e.Address).HasMaxLength(450);
+
+                entity.Property(e => e.Avatar).HasMaxLength(250);
+
+                entity.Property(e => e.CreatedBy).HasMaxLength(50);
+
+                entity.Property(e => e.CreatedDateTime).HasColumnType("datetime");
+
+                entity.Property(e => e.BirthDay).HasColumnType("datetime");
+
+                entity.Property(e => e.FirstName).HasMaxLength(50);
+
+                entity.Property(e => e.LastName).HasMaxLength(50);
+
+                entity.Property(e => e.MiddleName).HasMaxLength(50);
+
+                entity.Property(e => e.FullName).HasMaxLength(250);
+
+                entity.Property(e => e.PhoneNumber).HasMaxLength(50);
+
+                entity.Property(e => e.Priority).HasDefaultValueSql("((0))");
+
+                entity.Property(e => e.Status).HasDefaultValueSql("((1))");
+
+                entity.Property(e => e.Username).HasMaxLength(256);
+
+                entity.Property(e => e.UserId).HasMaxLength(256);
+
+                entity.Property(e => e.Email).HasMaxLength(256);
+
+                entity.Property(e => e.IsAgreeNotified);
             });
 
             modelBuilder.Entity<SiocComment>(entity =>

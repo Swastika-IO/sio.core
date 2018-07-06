@@ -10,9 +10,10 @@ using Swastika.Cms.Lib.Models.Cms;
 namespace Swastika.Cms.Lib.Migrations
 {
     [DbContext(typeof(SiocCmsContext))]
-    partial class SiocCmsContextModelSnapshot : ModelSnapshot
+    [Migration("20180705120933_Add-Customer")]
+    partial class AddCustomer
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -631,8 +632,6 @@ namespace Swastika.Cms.Lib.Migrations
 
                     b.Property<string>("FullName")
                         .HasMaxLength(250);
-
-                    b.Property<bool>("IsAgreeNotified");
 
                     b.Property<string>("LastName")
                         .HasMaxLength(50);

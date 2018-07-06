@@ -87,7 +87,7 @@ namespace Swastika.Cms.Lib
             Home = 3,
             StaticUrl = 4,
             Modules = 5,
-            ListProduct
+            ListProduct = 6
         }
 
         public enum ConfigurationCategory

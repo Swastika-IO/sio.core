@@ -29,6 +29,8 @@ namespace Swastika.Cms.Web.Mvc
         }
 
         public static IWebHostBuilder CreateWebHostBuilder(string[] args) =>
+            //WebHost.CreateDefaultBuilder(args)
+            //.UseSetting(WebHostDefaults.PreventHostingStartupKey, "true")
             WebHost.CreateDefaultBuilder(args)
                 .UseStartup<Startup>();
     }
