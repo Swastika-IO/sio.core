@@ -175,7 +175,7 @@ namespace Swastika.Cms.Lib.ViewModels.Api
             }
             if (Id == 0)
             {
-                string defaultFolder = CommonHelper.GetFullPath(new string[] { SWCmsConstants.Parameters.TemplatesFolder, SWCmsConstants.Default.DefaultTemplateFolder });
+                string defaultFolder = CommonHelper.GetFullPath(new string[] { SWCmsConstants.Parameters.TemplatesFolder, Name == "Default" ? "Default" : SWCmsConstants.Default.DefaultTemplateFolder });
                 bool copyResult = FileRepository.Instance.CopyDirectory(defaultFolder, TemplateFolder);
                 var files = copyResult ? FileRepository.Instance.GetFilesWithContent(TemplateFolder) : new System.Collections.Generic.List<FileViewModel>();
                 //TODO: Create default asset
