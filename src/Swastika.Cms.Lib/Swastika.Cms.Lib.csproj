@@ -79,10 +79,7 @@
     <PackageReference Include="Microsoft.Extensions.Configuration" Version="2.0.2" />
     <PackageReference Include="Microsoft.IdentityModel.Tokens" Version="5.2.2" />
     <PackageReference Include="Swastika" Version="0.0.7" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <ProjectReference Include="..\..\..\..\Swastika\Swastika-Identity\src\Swastika.Identity\Swastika.Identity.csproj" />
+    <PackageReference Include="Swastika.Identity" Version="0.0.5" />
   </ItemGroup>
 
 </Project>
