@@ -302,13 +302,18 @@ namespace Swastika.Cms.Lib.ViewModels.Api
 
         public override async Task<RepositoryResponse<bool>> RemoveRelatedModelsAsync(ApiThemeViewModel view, SiocCmsContext _context = null, IDbContextTransaction _transaction = null)
         {
-            RepositoryResponse<bool> result = await InfoTemplateViewModel.Repository.RemoveListModelAsync(t => t.TemplateId == Id);
+            var result = await InfoTemplateViewModel.Repository.RemoveListModelAsync(t => t.TemplateId == Id);
             if (result.IsSucceed)
             {
                 FileRepository.Instance.DeleteWebFolder(AssetFolder);
                 FileRepository.Instance.DeleteFolder(TemplateFolder);
             }
-            return result;
+            return new RepositoryResponse<bool>()
+            {
+                IsSucceed = result.IsSucceed,
+                Errors = result.Errors,
+                Exception = result.Exception
+            };
         }
 
         #endregion Async

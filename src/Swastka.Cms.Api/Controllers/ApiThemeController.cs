@@ -37,7 +37,7 @@ namespace Swastka.Cms.Api.Controllers
         // GET api/theme/id
         [HttpGet]
         [Route("delete/{id}")]
-        public async Task<RepositoryResponse<bool>> DeleteAsync(int id)
+        public async Task<RepositoryResponse<SiocTheme>> DeleteAsync(int id)
         {
             var getPage = await ApiThemeViewModel.Repository.GetSingleModelAsync(
                 model => model.Id == id);
@@ -48,7 +48,7 @@ namespace Swastka.Cms.Api.Controllers
             }
             else
             {
-                return new RepositoryResponse<bool>()
+                return new RepositoryResponse<SiocTheme>()
                 {
                     IsSucceed = false
                 };
@@ -125,11 +125,11 @@ namespace Swastka.Cms.Api.Controllers
         // POST api/theme
         [HttpPost, HttpOptions]
         [Route("save/{id}")]
-        public async Task<RepositoryResponse<bool>> SaveFields(int id, [FromBody]List<EntityField> fields)
+        public async Task<RepositoryResponse<SiocTheme>> SaveFields(int id, [FromBody]List<EntityField> fields)
         {
             if (fields != null)
             {
-                var result = new RepositoryResponse<bool>() { IsSucceed = true };
+                var result = new RepositoryResponse<SiocTheme>() { IsSucceed = true };
                 foreach (var property in fields)
                 {
                     if (result.IsSucceed)
@@ -145,7 +145,7 @@ namespace Swastka.Cms.Api.Controllers
                 }
                 return result;
             }
-            return new RepositoryResponse<bool>();
+            return new RepositoryResponse<SiocTheme>();
         }
 
         // GET api/theme

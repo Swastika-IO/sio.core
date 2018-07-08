@@ -74,8 +74,14 @@ namespace Swastika.Cms.Lib.ViewModels.Navigation
 
         public override RepositoryResponse<bool> RemoveRelatedModels(NavArticleModuleViewModel view, SiocCmsContext _context = null, IDbContextTransaction _transaction = null)
         {
-            return InfoModuleDataViewModel.Repository.RemoveListModel(d => d.ArticleId == view.ArticleId
-                && d.ModuleId == view.ModuleId && d.Specificulture == view.Specificulture, _context, _transaction);
+            var result = InfoModuleDataViewModel.Repository.RemoveListModel(d => d.ArticleId == view.ArticleId
+               && d.ModuleId == view.ModuleId && d.Specificulture == view.Specificulture, _context, _transaction);
+            return new RepositoryResponse<bool>()
+            {
+                IsSucceed = result.IsSucceed,
+                Errors = result.Errors,
+                Exception = result.Exception
+            };
         }
 
         public override RepositoryResponse<bool> SaveSubModels(SiocArticleModule parent, SiocCmsContext _context = null, IDbContextTransaction _transaction = null)
@@ -98,10 +104,16 @@ namespace Swastika.Cms.Lib.ViewModels.Navigation
 
         #region Async
 
-        public override Task<RepositoryResponse<bool>> RemoveRelatedModelsAsync(NavArticleModuleViewModel view, SiocCmsContext _context = null, IDbContextTransaction _transaction = null)
+        public override async Task<RepositoryResponse<bool>> RemoveRelatedModelsAsync(NavArticleModuleViewModel view, SiocCmsContext _context = null, IDbContextTransaction _transaction = null)
         {
-            return InfoModuleDataViewModel.Repository.RemoveListModelAsync(d => d.ArticleId == view.ArticleId
+            var result = await InfoModuleDataViewModel.Repository.RemoveListModelAsync(d => d.ArticleId == view.ArticleId
                 && d.ModuleId == view.ModuleId && d.Specificulture == view.Specificulture, _context, _transaction);
+            return new RepositoryResponse<bool>()
+            {
+                IsSucceed = result.IsSucceed,
+                Errors = result.Errors,
+                Exception = result.Exception
+            };
         }
 
         public override async Task<RepositoryResponse<bool>> SaveSubModelsAsync(SiocArticleModule parent, SiocCmsContext _context = null, IDbContextTransaction _transaction = null)

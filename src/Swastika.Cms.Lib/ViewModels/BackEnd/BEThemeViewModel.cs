@@ -260,7 +260,12 @@ namespace Swastika.Cms.Lib.ViewModels.BackEnd
                 FileRepository.Instance.DeleteWebFolder(AssetFolder);
                 FileRepository.Instance.DeleteFolder(TemplateFolder);
             }
-            return result;
+            return new RepositoryResponse<bool>()
+            {
+                IsSucceed = result.IsSucceed,
+                Errors = result.Errors,
+                Exception = result.Exception
+            };
         }
 
         #endregion Async
@@ -413,7 +418,12 @@ namespace Swastika.Cms.Lib.ViewModels.BackEnd
                 FileRepository.Instance.DeleteWebFolder(AssetFolder);
                 FileRepository.Instance.DeleteFolder(TemplateFolder);
             }
-            return result;
+            return new RepositoryResponse<bool>()
+            {
+                IsSucceed = result.IsSucceed,
+                Errors = result.Errors,
+                Exception = result.Exception
+            };
         }
 
         #endregion 

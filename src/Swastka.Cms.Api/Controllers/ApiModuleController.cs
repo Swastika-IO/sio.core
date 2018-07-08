@@ -97,6 +97,28 @@ namespace Swastka.Cms.Api.Controllers
             }
         }
 
+        // GET api/category/id
+        [HttpGet]
+        [Route("delete/{id}")]
+        public async Task<RepositoryResponse<SiocModule>> DeleteAsync(int id)
+        {
+            var getModule = await FEModuleViewModel.Repository.GetSingleModelAsync(
+                model => model.Id == id && model.Specificulture == _lang);
+            if (getModule.IsSucceed)
+            {
+
+                return await getModule.Data.RemoveModelAsync(true);
+            }
+            else
+            {
+                return new RepositoryResponse<SiocModule>()
+                {
+                    IsSucceed = false
+                };
+            }
+        }
+
+
         // GET api/articles/id
         [HttpGet]
         [Route("byArticle/{id}")]
@@ -164,11 +186,11 @@ namespace Swastka.Cms.Api.Controllers
         // POST api/module
         [HttpPost, HttpOptions]
         [Route("save/{id}")]
-        public async Task<RepositoryResponse<bool>> SaveFields(int id, [FromBody]List<EntityField> fields)
+        public async Task<RepositoryResponse<SiocModule>> SaveFields(int id, [FromBody]List<EntityField> fields)
         {
             if (fields != null)
             {
-                var result = new RepositoryResponse<bool>() { IsSucceed = true };
+                var result = new RepositoryResponse<SiocModule>() { IsSucceed = true };
                 foreach (var property in fields)
                 {
                     if (result.IsSucceed)
@@ -183,7 +205,7 @@ namespace Swastka.Cms.Api.Controllers
                 }
                 return result;
             }
-            return new RepositoryResponse<bool>();
+            return new RepositoryResponse<SiocModule>();
         }
 
         // GET api/module

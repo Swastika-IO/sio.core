@@ -124,7 +124,7 @@ namespace Swastka.Cms.Api.Controllers
         // GET api/products/id
         [HttpGet]
         [Route("delete/{id}")]
-        public async Task<RepositoryResponse<bool>> Delete(string id)
+        public async Task<RepositoryResponse<SiocProduct>> Delete(string id)
         {
             var getProduct = BEProductViewModel.Repository.GetSingleModel(a => a.Id == id && a.Specificulture == _lang);
             if (getProduct.IsSucceed)
@@ -133,7 +133,7 @@ namespace Swastka.Cms.Api.Controllers
             }
             else
             {
-                return new RepositoryResponse<bool>() { IsSucceed = false };
+                return new RepositoryResponse<SiocProduct>() { IsSucceed = false };
             }
         }
 
@@ -222,9 +222,9 @@ namespace Swastka.Cms.Api.Controllers
         // POST api/category
         [HttpPost, HttpOptions]
         [Route("save/{id}")]
-        public async Task<RepositoryResponse<bool>> SaveFields(string id, [FromBody]List<EntityField> fields)
+        public async Task<RepositoryResponse<SiocProduct>> SaveFields(string id, [FromBody]List<EntityField> fields)
         {
-            var result = new RepositoryResponse<bool>();
+            var result = new RepositoryResponse<SiocProduct>();
             if (fields != null)
             {
                 foreach (var property in fields)

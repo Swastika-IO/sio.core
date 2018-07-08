@@ -238,7 +238,7 @@ namespace Swastika.Cms.Lib.ViewModels.BackEnd
 
         #region Async
 
-        public override Task<RepositoryResponse<bool>> RemoveModelAsync(bool isRemoveRelatedModels = false, SiocCmsContext _context = null, IDbContextTransaction _transaction = null)
+        public override Task<RepositoryResponse<SiocModule>> RemoveModelAsync(bool isRemoveRelatedModels = false, SiocCmsContext _context = null, IDbContextTransaction _transaction = null)
         {
             return base.RemoveModelAsync(isRemoveRelatedModels, _context, _transaction);
         }

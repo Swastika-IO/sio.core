@@ -168,7 +168,7 @@ namespace Swastika.Cms.Lib.ViewModels.Info
 
         #region Sync
 
-        public override RepositoryResponse<bool> RemoveModel(bool isRemoveRelatedModels = false, SiocCmsContext _context = null, IDbContextTransaction _transaction = null)
+        public override RepositoryResponse<SiocModuleData> RemoveModel(bool isRemoveRelatedModels = false, SiocCmsContext _context = null, IDbContextTransaction _transaction = null)
         {
             var result = base.RemoveModel(isRemoveRelatedModels, _context, _transaction);
             if (result.IsSucceed)
@@ -188,7 +188,7 @@ namespace Swastika.Cms.Lib.ViewModels.Info
 
         #region ASync
 
-        public override async Task<RepositoryResponse<bool>> RemoveModelAsync(bool isRemoveRelatedModels = false, SiocCmsContext _context = null, IDbContextTransaction _transaction = null)
+        public override async Task<RepositoryResponse<SiocModuleData>> RemoveModelAsync(bool isRemoveRelatedModels = false, SiocCmsContext _context = null, IDbContextTransaction _transaction = null)
         {
             var result = await base.RemoveModelAsync(isRemoveRelatedModels, _context, _transaction);
             if (result.IsSucceed)

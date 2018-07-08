@@ -181,7 +181,7 @@ namespace Swastka.Cms.Api.Controllers
         // GET api/Articles/id
         [HttpGet]
         [Route("delete/{id}")]
-        public async Task<RepositoryResponse<bool>> Delete(string id)
+        public async Task<RepositoryResponse<SiocArticle>> Delete(string id)
         {
             var getArticle = BEArticleViewModel.Repository.GetSingleModel(a => a.Id == id && a.Specificulture == _lang);
             if (getArticle.IsSucceed)
@@ -190,7 +190,7 @@ namespace Swastka.Cms.Api.Controllers
             }
             else
             {
-                return new RepositoryResponse<bool>() { IsSucceed = false };
+                return new RepositoryResponse<SiocArticle>() { IsSucceed = false };
             }
         }
 
@@ -277,18 +277,18 @@ namespace Swastka.Cms.Api.Controllers
         // POST api/category
         [HttpPost, HttpOptions]
         [Route("save/{id}")]
-        public async Task<RepositoryResponse<bool>> SaveFields(string id, [FromBody]List<EntityField> fields)
+        public async Task<RepositoryResponse<SiocArticle>> SaveFields(string id, [FromBody]List<EntityField> fields)
         {
             if (fields != null)
             {
+                var result = new RepositoryResponse<SiocArticle>();
                 foreach (var property in fields)
                 {
-                    var result = await BEArticleViewModel.Repository.UpdateFieldsAsync(c => c.Id == id, fields).ConfigureAwait(false);
-
-                    return result;
+                     result =  await BEArticleViewModel.Repository.UpdateFieldsAsync(c => c.Id == id, fields).ConfigureAwait(false);
                 }
+                return result;
             }
-            return new RepositoryResponse<bool>();
+            return new RepositoryResponse<SiocArticle>();
         }
 
         // GET api/Articles

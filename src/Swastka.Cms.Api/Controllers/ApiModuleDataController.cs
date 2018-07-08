@@ -27,9 +27,9 @@ namespace Swastka.Cms.Api.Controllers
 
         [HttpPost, HttpOptions]
         [Route("save/{id}")]
-        public async Task<RepositoryResponse<bool>> SaveFields(string id, [FromBody]List<EntityField> fields)
+        public async Task<RepositoryResponse<SiocModuleData>> SaveFields(string id, [FromBody]List<EntityField> fields)
         {
-            var result = new RepositoryResponse<bool>();
+            var result = new RepositoryResponse<SiocModuleData>();
             if (fields != null)
             {
                 foreach (var property in fields)
@@ -190,7 +190,7 @@ namespace Swastka.Cms.Api.Controllers
         // GET api/module-data/id
         [HttpGet]
         [Route("delete/{id}")]
-        public Task<RepositoryResponse<bool>> Delete(string id)
+        public Task<RepositoryResponse<SiocModuleData>> Delete(string id)
         {
             return InfoModuleDataViewModel.Repository.RemoveModelAsync(model => model.Id == id && model.Specificulture == _lang);
         }

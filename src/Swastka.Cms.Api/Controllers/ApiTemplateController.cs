@@ -75,7 +75,7 @@ namespace Swastka.Cms.Api.Controllers
         // GET api/category/id
         [HttpGet]
         [Route("delete/{id}")]
-        public async Task<RepositoryResponse<bool>> DeleteAsync(int id)
+        public async Task<RepositoryResponse<SiocTemplate>> DeleteAsync(int id)
         {
             var getPage = await BETemplateViewModel.Repository.GetSingleModelAsync(
                 model => model.Id == id);
@@ -86,7 +86,7 @@ namespace Swastka.Cms.Api.Controllers
             }
             else
             {
-                return new RepositoryResponse<bool>()
+                return new RepositoryResponse<SiocTemplate>()
                 {
                     IsSucceed = false
                 };

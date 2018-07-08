@@ -65,7 +65,7 @@ namespace Swastka.Cms.Api.Controllers
         // GET api/customers/id
         [HttpGet]
         [Route("delete/{id}")]
-        public async Task<RepositoryResponse<bool>> Delete(string id)
+        public async Task<RepositoryResponse<SiocCustomer>> Delete(string id)
         {
             var getCustomer = ApiCustomerViewModel.Repository.GetSingleModel(a => a.Id == id);
             if (getCustomer.IsSucceed)
@@ -74,7 +74,7 @@ namespace Swastka.Cms.Api.Controllers
             }
             else
             {
-                return new RepositoryResponse<bool>() { IsSucceed = false };
+                return new RepositoryResponse<SiocCustomer>() { IsSucceed = false };
             }
         }
 

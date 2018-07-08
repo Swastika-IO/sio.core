@@ -65,7 +65,7 @@ namespace Swastka.Cms.Api.Controllers
         // GET api/configurations/id
         [HttpGet]
         [Route("delete/{keyword}")]
-        public async Task<RepositoryResponse<bool>> Delete(string keyword)
+        public async Task<RepositoryResponse<SiocConfiguration>> Delete(string keyword)
         {
             var getConfiguration = BEConfigurationViewModel.Repository.GetSingleModel(a => a.Keyword == keyword && a.Specificulture == _lang);
             if (getConfiguration.IsSucceed)
@@ -74,7 +74,7 @@ namespace Swastka.Cms.Api.Controllers
             }
             else
             {
-                return new RepositoryResponse<bool>() { IsSucceed = false };
+                return new RepositoryResponse<SiocConfiguration>() { IsSucceed = false };
             }
         }
 

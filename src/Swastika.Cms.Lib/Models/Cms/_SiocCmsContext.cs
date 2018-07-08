@@ -5,6 +5,10 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Swastika.Cms.Lib.Services;
+using System.ComponentModel.DataAnnotations;
+using System.Linq;
+using System.Threading;
+using System.Threading.Tasks;
 
 namespace Swastika.Cms.Lib.Models.Cms
 {
@@ -57,6 +61,36 @@ namespace Swastika.Cms.Lib.Models.Cms
 
         public SiocCmsContext()
         {
+        }
+
+        public override int SaveChanges()
+        {
+            var entities = from e in ChangeTracker.Entries()
+                           where e.State == EntityState.Added
+                               || e.State == EntityState.Modified
+                           select e.Entity;
+            foreach (var entity in entities)
+            {
+                var validationContext = new ValidationContext(entity);
+                Validator.ValidateObject(entity, validationContext);
+            }
+
+            return base.SaveChanges();
+        }
+
+        public override Task<int> SaveChangesAsync(bool acceptAllChangesOnSuccess, CancellationToken cancellationToken = default(CancellationToken))
+        {
+            var entities = from e in ChangeTracker.Entries()
+                           where e.State == EntityState.Added
+                               || e.State == EntityState.Modified
+                           select e.Entity;
+            foreach (var entity in entities)
+            {
+                var validationContext = new ValidationContext(entity);
+                Validator.ValidateObject(entity, validationContext);
+            }
+
+            return base.SaveChangesAsync(acceptAllChangesOnSuccess, cancellationToken);
         }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)

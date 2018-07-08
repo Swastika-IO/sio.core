@@ -70,7 +70,7 @@ namespace Swastka.Cms.Api.Controllers
         // GET api/medias/id
         [HttpGet]
         [Route("delete/{id}")]
-        public async Task<RepositoryResponse<bool>> Delete(int id)
+        public async Task<RepositoryResponse<SiocMedia>> Delete(int id)
         {
             var getMedia = BEMediaViewModel.Repository.GetSingleModel(a => a.Id == id && a.Specificulture == _lang);
             if (getMedia.IsSucceed)
@@ -79,7 +79,7 @@ namespace Swastka.Cms.Api.Controllers
             }
             else
             {
-                return new RepositoryResponse<bool>() { IsSucceed = false };
+                return new RepositoryResponse<SiocMedia>() { IsSucceed = false };
             }
         }
 

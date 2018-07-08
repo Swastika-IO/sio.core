@@ -36,7 +36,7 @@ namespace Swastika.Cms.Lib.ViewModels.Api
         [JsonProperty("id")]
         public int Id { get; set; }
 
-        [Required]
+        //[Required]
         [JsonProperty("name")]
         public string Name { get; set; }
 
@@ -46,7 +46,7 @@ namespace Swastika.Cms.Lib.ViewModels.Api
         [JsonProperty("template")]
         public string Template { get; set; }
 
-        [Required]
+        //[Required]
         [JsonProperty("title")]
         public string Title { get; set; }
 
@@ -207,7 +207,7 @@ namespace Swastika.Cms.Lib.ViewModels.Api
 
         #region Async
 
-        public override Task<RepositoryResponse<bool>> RemoveModelAsync(bool isRemoveRelatedModels = false, SiocCmsContext _context = null, IDbContextTransaction _transaction = null)
+        public override Task<RepositoryResponse<SiocModule>> RemoveModelAsync(bool isRemoveRelatedModels = false, SiocCmsContext _context = null, IDbContextTransaction _transaction = null)
         {
             return base.RemoveModelAsync(isRemoveRelatedModels, _context, _transaction);
         }

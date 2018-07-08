@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
+using Swastika.Cms.Lib.Models.Account;
 using Swastika.Cms.Lib.ViewModels.Account;
 using Swastika.Domain.Core.ViewModels;
 using Swastika.Identity.Models;
@@ -82,7 +83,7 @@ namespace Swastka.Cms.Api.Controllers
         [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme, Roles = "SuperAdmin")]
         [HttpPost]
         [Route("delete")]
-        public async Task<RepositoryResponse<bool>> Delete([FromBody] string name)
+        public async Task<RepositoryResponse<AspNetRoles>> Delete([FromBody] string name)
         {
             if (name != "SuperAdmin")
             {
@@ -92,7 +93,7 @@ namespace Swastka.Cms.Api.Controllers
             }
             else
             {
-                return new RepositoryResponse<bool>()
+                return new RepositoryResponse<AspNetRoles>()
                 {
                 };
             }

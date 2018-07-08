@@ -51,9 +51,7 @@ namespace Swastika.Cms.Lib.Migrations
                     b.Property<string>("ModifiedBy")
                         .HasMaxLength(250);
 
-                    b.Property<int>("Priority")
-                        .ValueGeneratedOnAdd()
-                        .HasDefaultValueSql("((0))");
+                    b.Property<int>("Priority");
 
                     b.Property<string>("SeoDescription")
                         .HasMaxLength(4000);
@@ -116,9 +114,7 @@ namespace Swastika.Cms.Lib.Migrations
 
                     b.Property<int>("Position");
 
-                    b.Property<int>("Priority")
-                        .ValueGeneratedOnAdd()
-                        .HasDefaultValueSql("((0))");
+                    b.Property<int>("Priority");
 
                     b.Property<int>("Status")
                         .ValueGeneratedOnAdd()
@@ -151,9 +147,7 @@ namespace Swastika.Cms.Lib.Migrations
 
                     b.Property<int>("Position");
 
-                    b.Property<int>("Priority")
-                        .ValueGeneratedOnAdd()
-                        .HasDefaultValueSql("((0))");
+                    b.Property<int>("Priority");
 
                     b.Property<int>("Status")
                         .ValueGeneratedOnAdd()
@@ -208,9 +202,7 @@ namespace Swastika.Cms.Lib.Migrations
 
                     b.Property<int?>("PageSize");
 
-                    b.Property<int>("Priority")
-                        .ValueGeneratedOnAdd()
-                        .HasDefaultValueSql("((0))");
+                    b.Property<int>("Priority");
 
                     b.Property<string>("SeoDescription")
                         .HasMaxLength(4000);
@@ -300,9 +292,7 @@ namespace Swastika.Cms.Lib.Migrations
                     b.Property<string>("Image")
                         .HasMaxLength(250);
 
-                    b.Property<int>("Priority")
-                        .ValueGeneratedOnAdd()
-                        .HasDefaultValueSql("((0))");
+                    b.Property<int>("Priority");
 
                     b.Property<int>("Status")
                         .ValueGeneratedOnAdd()
@@ -334,9 +324,7 @@ namespace Swastika.Cms.Lib.Migrations
 
                     b.Property<int>("Position");
 
-                    b.Property<int>("Priority")
-                        .ValueGeneratedOnAdd()
-                        .HasDefaultValueSql("((0))");
+                    b.Property<int>("Priority");
 
                     b.Property<int>("Status")
                         .ValueGeneratedOnAdd()
@@ -363,9 +351,7 @@ namespace Swastika.Cms.Lib.Migrations
                     b.Property<string>("Description")
                         .HasMaxLength(250);
 
-                    b.Property<int>("Priority")
-                        .ValueGeneratedOnAdd()
-                        .HasDefaultValueSql("((0))");
+                    b.Property<int>("Priority");
 
                     b.Property<int>("Status")
                         .ValueGeneratedOnAdd()
@@ -394,9 +380,7 @@ namespace Swastika.Cms.Lib.Migrations
                     b.Property<string>("Image")
                         .HasMaxLength(250);
 
-                    b.Property<int>("Priority")
-                        .ValueGeneratedOnAdd()
-                        .HasDefaultValueSql("((0))");
+                    b.Property<int>("Priority");
 
                     b.Property<int>("Status")
                         .ValueGeneratedOnAdd()
@@ -411,9 +395,69 @@ namespace Swastika.Cms.Lib.Migrations
                     b.ToTable("sioc_category_product");
                 });
 
+            modelBuilder.Entity("Swastika.Cms.Lib.Models.Cms.SiocCmsCustomer", b =>
+                {
+                    b.Property<string>("Id")
+                        .HasMaxLength(50);
+
+                    b.Property<string>("Address")
+                        .HasMaxLength(450);
+
+                    b.Property<string>("Avatar")
+                        .HasMaxLength(250);
+
+                    b.Property<DateTime?>("BirthDay")
+                        .HasColumnType("datetime");
+
+                    b.Property<string>("CreatedBy")
+                        .HasMaxLength(50);
+
+                    b.Property<DateTime>("CreatedDateTime")
+                        .HasColumnType("datetime");
+
+                    b.Property<string>("Email")
+                        .HasMaxLength(256);
+
+                    b.Property<string>("FirstName")
+                        .HasMaxLength(50);
+
+                    b.Property<string>("FullName")
+                        .HasMaxLength(250);
+
+                    b.Property<bool>("IsAgreeNotified");
+
+                    b.Property<string>("LastName")
+                        .HasMaxLength(50);
+
+                    b.Property<string>("MiddleName")
+                        .HasMaxLength(50);
+
+                    b.Property<string>("PhoneNumber")
+                        .HasMaxLength(50);
+
+                    b.Property<int>("Priority");
+
+                    b.Property<int>("Status")
+                        .ValueGeneratedOnAdd()
+                        .HasDefaultValueSql("((1))");
+
+                    b.Property<string>("UserId")
+                        .HasMaxLength(50);
+
+                    b.Property<string>("Username")
+                        .HasMaxLength(256);
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("UserId");
+
+                    b.ToTable("sioc_cms_customer");
+                });
+
             modelBuilder.Entity("Swastika.Cms.Lib.Models.Cms.SiocCmsUser", b =>
                 {
-                    b.Property<string>("Id");
+                    b.Property<string>("Id")
+                        .HasMaxLength(50);
 
                     b.Property<string>("Address")
                         .HasMaxLength(450);
@@ -442,9 +486,7 @@ namespace Swastika.Cms.Lib.Migrations
                     b.Property<string>("PhoneNumber")
                         .HasMaxLength(50);
 
-                    b.Property<int>("Priority")
-                        .ValueGeneratedOnAdd()
-                        .HasDefaultValueSql("((0))");
+                    b.Property<int>("Priority");
 
                     b.Property<int>("Status")
                         .ValueGeneratedOnAdd()
@@ -484,9 +526,7 @@ namespace Swastika.Cms.Lib.Migrations
 
                     b.Property<bool?>("IsVisible");
 
-                    b.Property<int>("Priority")
-                        .ValueGeneratedOnAdd()
-                        .HasDefaultValueSql("((0))");
+                    b.Property<int>("Priority");
 
                     b.Property<int>("Status")
                         .ValueGeneratedOnAdd()
@@ -519,9 +559,7 @@ namespace Swastika.Cms.Lib.Migrations
                     b.Property<string>("Description")
                         .HasMaxLength(250);
 
-                    b.Property<int>("Priority")
-                        .ValueGeneratedOnAdd()
-                        .HasDefaultValueSql("((0))");
+                    b.Property<int>("Priority");
 
                     b.Property<int>("Status")
                         .ValueGeneratedOnAdd()
@@ -547,9 +585,7 @@ namespace Swastika.Cms.Lib.Migrations
                     b.Property<string>("Note")
                         .HasMaxLength(250);
 
-                    b.Property<int>("Priority")
-                        .ValueGeneratedOnAdd()
-                        .HasDefaultValueSql("((0))");
+                    b.Property<int>("Priority");
 
                     b.Property<int>("Status")
                         .ValueGeneratedOnAdd()
@@ -583,9 +619,7 @@ namespace Swastika.Cms.Lib.Migrations
                         .HasColumnName("LCID")
                         .HasMaxLength(50);
 
-                    b.Property<int>("Priority")
-                        .ValueGeneratedOnAdd()
-                        .HasDefaultValueSql("((0))");
+                    b.Property<int>("Priority");
 
                     b.Property<string>("Specificulture")
                         .IsRequired()
@@ -602,64 +636,6 @@ namespace Swastika.Cms.Lib.Migrations
                         .HasName("IX_TTS_Culture");
 
                     b.ToTable("sioc_culture");
-                });
-
-            modelBuilder.Entity("Swastika.Cms.Lib.Models.Cms.SiocCustomer", b =>
-                {
-                    b.Property<string>("Id");
-
-                    b.Property<string>("Address")
-                        .HasMaxLength(450);
-
-                    b.Property<string>("Avatar")
-                        .HasMaxLength(250);
-
-                    b.Property<DateTime?>("BirthDay")
-                        .HasColumnType("datetime");
-
-                    b.Property<string>("CreatedBy")
-                        .HasMaxLength(50);
-
-                    b.Property<DateTime>("CreatedDateTime")
-                        .HasColumnType("datetime");
-
-                    b.Property<string>("Email")
-                        .HasMaxLength(256);
-
-                    b.Property<string>("FirstName")
-                        .HasMaxLength(50);
-
-                    b.Property<string>("FullName")
-                        .HasMaxLength(250);
-
-                    b.Property<bool>("IsAgreeNotified");
-
-                    b.Property<string>("LastName")
-                        .HasMaxLength(50);
-
-                    b.Property<string>("MiddleName")
-                        .HasMaxLength(50);
-
-                    b.Property<string>("PhoneNumber")
-                        .HasMaxLength(50);
-
-                    b.Property<int>("Priority")
-                        .ValueGeneratedOnAdd()
-                        .HasDefaultValueSql("((0))");
-
-                    b.Property<int>("Status")
-                        .ValueGeneratedOnAdd()
-                        .HasDefaultValueSql("((1))");
-
-                    b.Property<string>("UserId")
-                        .HasMaxLength(256);
-
-                    b.Property<string>("Username")
-                        .HasMaxLength(256);
-
-                    b.HasKey("Id");
-
-                    b.ToTable("sioc_cms_customer");
                 });
 
             modelBuilder.Entity("Swastika.Cms.Lib.Models.Cms.SiocFile", b =>
@@ -696,9 +672,7 @@ namespace Swastika.Cms.Lib.Migrations
                     b.Property<string>("ModifiedBy")
                         .HasMaxLength(250);
 
-                    b.Property<int>("Priority")
-                        .ValueGeneratedOnAdd()
-                        .HasDefaultValueSql("((0))");
+                    b.Property<int>("Priority");
 
                     b.Property<int>("Status")
                         .ValueGeneratedOnAdd()
@@ -733,9 +707,7 @@ namespace Swastika.Cms.Lib.Migrations
                     b.Property<string>("Description")
                         .HasMaxLength(250);
 
-                    b.Property<int>("Priority")
-                        .ValueGeneratedOnAdd()
-                        .HasDefaultValueSql("((0))");
+                    b.Property<int>("Priority");
 
                     b.Property<int>("Status")
                         .ValueGeneratedOnAdd()
@@ -756,7 +728,7 @@ namespace Swastika.Cms.Lib.Migrations
 
                     b.Property<string>("Specificulture")
                         .ValueGeneratedOnAdd()
-                        .HasDefaultValueSql("(N'en-us')")
+                        .HasDefaultValueSql("('en-us')")
                         .HasMaxLength(10);
 
                     b.Property<DateTime>("CreatedDateTime")
@@ -780,9 +752,7 @@ namespace Swastika.Cms.Lib.Migrations
                     b.Property<string>("FileProperties")
                         .HasMaxLength(4000);
 
-                    b.Property<long>("FileSize")
-                        .ValueGeneratedOnAdd()
-                        .HasDefaultValueSql("((0))");
+                    b.Property<long>("FileSize");
 
                     b.Property<string>("FileType")
                         .IsRequired()
@@ -794,9 +764,7 @@ namespace Swastika.Cms.Lib.Migrations
                     b.Property<string>("ModifiedBy")
                         .HasMaxLength(250);
 
-                    b.Property<int>("Priority")
-                        .ValueGeneratedOnAdd()
-                        .HasDefaultValueSql("((0))");
+                    b.Property<int>("Priority");
 
                     b.Property<int>("Status")
                         .ValueGeneratedOnAdd()
@@ -841,9 +809,7 @@ namespace Swastika.Cms.Lib.Migrations
 
                     b.Property<int?>("PageSize");
 
-                    b.Property<int>("Priority")
-                        .ValueGeneratedOnAdd()
-                        .HasDefaultValueSql("((0))");
+                    b.Property<int>("Priority");
 
                     b.Property<int>("Status")
                         .ValueGeneratedOnAdd()
@@ -882,9 +848,7 @@ namespace Swastika.Cms.Lib.Migrations
                     b.Property<string>("Image")
                         .HasMaxLength(250);
 
-                    b.Property<int>("Priority")
-                        .ValueGeneratedOnAdd()
-                        .HasDefaultValueSql("((0))");
+                    b.Property<int>("Priority");
 
                     b.Property<int>("Status")
                         .ValueGeneratedOnAdd()
@@ -920,9 +884,7 @@ namespace Swastika.Cms.Lib.Migrations
                         .IsRequired()
                         .HasMaxLength(4000);
 
-                    b.Property<int>("Priority")
-                        .ValueGeneratedOnAdd()
-                        .HasDefaultValueSql("((0))");
+                    b.Property<int>("Priority");
 
                     b.Property<int>("Status")
                         .ValueGeneratedOnAdd()
@@ -964,9 +926,7 @@ namespace Swastika.Cms.Lib.Migrations
                     b.Property<string>("Name")
                         .HasMaxLength(250);
 
-                    b.Property<int>("Priority")
-                        .ValueGeneratedOnAdd()
-                        .HasDefaultValueSql("((0))");
+                    b.Property<int>("Priority");
 
                     b.Property<int>("Status")
                         .ValueGeneratedOnAdd()
@@ -975,9 +935,7 @@ namespace Swastika.Cms.Lib.Migrations
                     b.Property<string>("Title")
                         .HasMaxLength(250);
 
-                    b.Property<int>("Width")
-                        .ValueGeneratedOnAdd()
-                        .HasDefaultValueSql("((0))");
+                    b.Property<int>("Width");
 
                     b.HasKey("Id", "AttributeSetId", "Specificulture");
 
@@ -1008,9 +966,7 @@ namespace Swastika.Cms.Lib.Migrations
                         .IsRequired()
                         .HasMaxLength(4000);
 
-                    b.Property<int>("Priority")
-                        .ValueGeneratedOnAdd()
-                        .HasDefaultValueSql("((0))");
+                    b.Property<int>("Priority");
 
                     b.Property<string>("ProductId")
                         .HasMaxLength(50);
@@ -1053,9 +1009,7 @@ namespace Swastika.Cms.Lib.Migrations
                     b.Property<string>("Image")
                         .HasMaxLength(250);
 
-                    b.Property<int>("Priority")
-                        .ValueGeneratedOnAdd()
-                        .HasDefaultValueSql("((0))");
+                    b.Property<int>("Priority");
 
                     b.Property<int>("Status")
                         .ValueGeneratedOnAdd()
@@ -1070,6 +1024,73 @@ namespace Swastika.Cms.Lib.Migrations
                     b.ToTable("sioc_module_product");
                 });
 
+            modelBuilder.Entity("Swastika.Cms.Lib.Models.Cms.SiocOrder", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd();
+
+                    b.Property<string>("CreatedBy")
+                        .HasMaxLength(50);
+
+                    b.Property<DateTime>("CreatedDateTime")
+                        .HasColumnType("datetime");
+
+                    b.Property<string>("CustomerId")
+                        .HasMaxLength(50);
+
+                    b.Property<int>("Status");
+
+                    b.Property<int>("StoreId");
+
+                    b.Property<string>("UserId")
+                        .HasMaxLength(50);
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("CustomerId");
+
+                    b.HasIndex("UserId");
+
+                    b.ToTable("sioc_order");
+                });
+
+            modelBuilder.Entity("Swastika.Cms.Lib.Models.Cms.SiocOrderItem", b =>
+                {
+                    b.Property<int>("Id");
+
+                    b.Property<string>("Description")
+                        .HasMaxLength(4000);
+
+                    b.Property<int>("OrderId");
+
+                    b.Property<double>("Price");
+
+                    b.Property<string>("PriceUnit")
+                        .HasMaxLength(50);
+
+                    b.Property<string>("ProductId")
+                        .IsRequired()
+                        .HasMaxLength(50);
+
+                    b.Property<int>("Quantity");
+
+                    b.Property<string>("SiocProductId");
+
+                    b.Property<string>("SiocProductSpecificulture");
+
+                    b.Property<string>("Specificulture")
+                        .IsRequired()
+                        .HasMaxLength(10);
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("OrderId");
+
+                    b.HasIndex("SiocProductId", "SiocProductSpecificulture");
+
+                    b.ToTable("sioc_order_item");
+                });
+
             modelBuilder.Entity("Swastika.Cms.Lib.Models.Cms.SiocParameter", b =>
                 {
                     b.Property<string>("Name")
@@ -1077,9 +1098,7 @@ namespace Swastika.Cms.Lib.Migrations
 
                     b.Property<string>("Description");
 
-                    b.Property<int>("Priority")
-                        .ValueGeneratedOnAdd()
-                        .HasDefaultValueSql("((0))");
+                    b.Property<int>("Priority");
 
                     b.Property<int>("Status")
                         .ValueGeneratedOnAdd()
@@ -1107,9 +1126,7 @@ namespace Swastika.Cms.Lib.Migrations
 
                     b.Property<int?>("ParentId");
 
-                    b.Property<int>("Priority")
-                        .ValueGeneratedOnAdd()
-                        .HasDefaultValueSql("((0))");
+                    b.Property<int>("Priority");
 
                     b.Property<string>("RouteAction")
                         .HasMaxLength(50);
@@ -1148,9 +1165,7 @@ namespace Swastika.Cms.Lib.Migrations
                     b.Property<string>("Image")
                         .HasMaxLength(250);
 
-                    b.Property<int>("Priority")
-                        .ValueGeneratedOnAdd()
-                        .HasDefaultValueSql("((0))");
+                    b.Property<int>("Priority");
 
                     b.Property<int>("Status")
                         .ValueGeneratedOnAdd()
@@ -1177,9 +1192,7 @@ namespace Swastika.Cms.Lib.Migrations
 
                     b.Property<int>("PageId");
 
-                    b.Property<int>("Priority")
-                        .ValueGeneratedOnAdd()
-                        .HasDefaultValueSql("((0))");
+                    b.Property<int>("Priority");
 
                     b.Property<string>("RoleId")
                         .IsRequired()
@@ -1205,9 +1218,7 @@ namespace Swastika.Cms.Lib.Migrations
                         .IsRequired()
                         .HasMaxLength(250);
 
-                    b.Property<int>("Priority")
-                        .ValueGeneratedOnAdd()
-                        .HasDefaultValueSql("((0))");
+                    b.Property<int>("Priority");
 
                     b.Property<int>("Status")
                         .ValueGeneratedOnAdd()
@@ -1244,9 +1255,7 @@ namespace Swastika.Cms.Lib.Migrations
                         .ValueGeneratedOnAdd()
                         .HasDefaultValueSql("((0))");
 
-                    b.Property<double>("Discount")
-                        .ValueGeneratedOnAdd()
-                        .HasDefaultValueSql("((0))");
+                    b.Property<double>("Discount");
 
                     b.Property<string>("Excerpt");
 
@@ -1258,9 +1267,7 @@ namespace Swastika.Cms.Lib.Migrations
                     b.Property<string>("Image")
                         .HasMaxLength(250);
 
-                    b.Property<double>("ImportPrice")
-                        .ValueGeneratedOnAdd()
-                        .HasDefaultValueSql("((0))");
+                    b.Property<double>("ImportPrice");
 
                     b.Property<DateTime?>("LastModified")
                         .HasColumnType("datetime");
@@ -1271,24 +1278,18 @@ namespace Swastika.Cms.Lib.Migrations
                     b.Property<string>("ModifiedBy")
                         .HasMaxLength(250);
 
-                    b.Property<double>("NormalPrice")
-                        .ValueGeneratedOnAdd()
-                        .HasDefaultValueSql("((0))");
+                    b.Property<double>("NormalPrice");
 
                     b.Property<int>("PackageCount")
                         .ValueGeneratedOnAdd()
                         .HasDefaultValueSql("((1))");
 
-                    b.Property<double>("Price")
-                        .ValueGeneratedOnAdd()
-                        .HasDefaultValueSql("((0))");
+                    b.Property<double>("Price");
 
                     b.Property<string>("PriceUnit")
                         .HasMaxLength(10);
 
-                    b.Property<int>("Priority")
-                        .ValueGeneratedOnAdd()
-                        .HasDefaultValueSql("((0))");
+                    b.Property<int>("Priority");
 
                     b.Property<string>("SeoDescription")
                         .HasMaxLength(4000);
@@ -1325,9 +1326,7 @@ namespace Swastika.Cms.Lib.Migrations
                     b.Property<string>("Title")
                         .HasMaxLength(4000);
 
-                    b.Property<int>("TotalSaled")
-                        .ValueGeneratedOnAdd()
-                        .HasDefaultValueSql("((0))");
+                    b.Property<int>("TotalSaled");
 
                     b.Property<int>("Type");
 
@@ -1358,9 +1357,7 @@ namespace Swastika.Cms.Lib.Migrations
 
                     b.Property<int>("Position");
 
-                    b.Property<int>("Priority")
-                        .ValueGeneratedOnAdd()
-                        .HasDefaultValueSql("((0))");
+                    b.Property<int>("Priority");
 
                     b.Property<int>("Status")
                         .ValueGeneratedOnAdd()
@@ -1393,9 +1390,7 @@ namespace Swastika.Cms.Lib.Migrations
 
                     b.Property<int>("Position");
 
-                    b.Property<int>("Priority")
-                        .ValueGeneratedOnAdd()
-                        .HasDefaultValueSql("((0))");
+                    b.Property<int>("Priority");
 
                     b.Property<int>("Status")
                         .ValueGeneratedOnAdd()
@@ -1428,9 +1423,7 @@ namespace Swastika.Cms.Lib.Migrations
                     b.Property<DateTime>("CreatedDateTime")
                         .HasColumnType("datetime");
 
-                    b.Property<int>("Priority")
-                        .ValueGeneratedOnAdd()
-                        .HasDefaultValueSql("((0))");
+                    b.Property<int>("Priority");
 
                     b.Property<int>("Status");
 
@@ -1480,9 +1473,7 @@ namespace Swastika.Cms.Lib.Migrations
                     b.Property<string>("ModifiedBy")
                         .HasMaxLength(250);
 
-                    b.Property<int>("Priority")
-                        .ValueGeneratedOnAdd()
-                        .HasDefaultValueSql("((0))");
+                    b.Property<int>("Priority");
 
                     b.Property<string>("Scripts")
                         .HasColumnType("ntext");
@@ -1533,9 +1524,7 @@ namespace Swastika.Cms.Lib.Migrations
                     b.Property<string>("PreviewUrl")
                         .HasMaxLength(450);
 
-                    b.Property<int>("Priority")
-                        .ValueGeneratedOnAdd()
-                        .HasDefaultValueSql("((0))");
+                    b.Property<int>("Priority");
 
                     b.Property<int>("Status")
                         .ValueGeneratedOnAdd()
@@ -1658,6 +1647,13 @@ namespace Swastika.Cms.Lib.Migrations
                         .HasConstraintName("FK_TTS_Category_Product_TTS_Product");
                 });
 
+            modelBuilder.Entity("Swastika.Cms.Lib.Models.Cms.SiocCmsCustomer", b =>
+                {
+                    b.HasOne("Swastika.Cms.Lib.Models.Cms.SiocCmsUser", "User")
+                        .WithMany("SiocCmsCustomer")
+                        .HasForeignKey("UserId");
+                });
+
             modelBuilder.Entity("Swastika.Cms.Lib.Models.Cms.SiocConfiguration", b =>
                 {
                     b.HasOne("Swastika.Cms.Lib.Models.Cms.SiocCulture", "SpecificultureNavigation")
@@ -1767,6 +1763,30 @@ namespace Swastika.Cms.Lib.Migrations
                         .WithMany("SiocModuleProduct")
                         .HasForeignKey("ProductId", "Specificulture")
                         .HasConstraintName("FK_TTS_Module_Product_TTS_Product");
+                });
+
+            modelBuilder.Entity("Swastika.Cms.Lib.Models.Cms.SiocOrder", b =>
+                {
+                    b.HasOne("Swastika.Cms.Lib.Models.Cms.SiocCmsCustomer", "Customer")
+                        .WithMany("SiocOrder")
+                        .HasForeignKey("CustomerId")
+                        .HasConstraintName("FK_sioc_order_sioc_cms_customer");
+
+                    b.HasOne("Swastika.Cms.Lib.Models.Cms.SiocCmsUser", "User")
+                        .WithMany("SiocOrder")
+                        .HasForeignKey("UserId");
+                });
+
+            modelBuilder.Entity("Swastika.Cms.Lib.Models.Cms.SiocOrderItem", b =>
+                {
+                    b.HasOne("Swastika.Cms.Lib.Models.Cms.SiocOrder", "Order")
+                        .WithMany("SiocOrderItem")
+                        .HasForeignKey("OrderId")
+                        .HasConstraintName("FK_sioc_order_item_sioc_order");
+
+                    b.HasOne("Swastika.Cms.Lib.Models.Cms.SiocProduct", "SiocProduct")
+                        .WithMany("SiocOrderItem")
+                        .HasForeignKey("SiocProductId", "SiocProductSpecificulture");
                 });
 
             modelBuilder.Entity("Swastika.Cms.Lib.Models.Cms.SiocPortalPageNavigation", b =>

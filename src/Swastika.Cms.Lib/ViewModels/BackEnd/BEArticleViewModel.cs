@@ -642,7 +642,7 @@ namespace Swastika.Cms.Lib.ViewModels.BackEnd
             {
                 foreach (var item in view.Categories.Where(m => m.IsActived))
                 {
-                    result = await item.RemoveModelAsync(false, _context, _transaction).ConfigureAwait(false);
+                    result.IsSucceed = result.IsSucceed && (await item.RemoveModelAsync(false, _context, _transaction).ConfigureAwait(false)).IsSucceed;
                 }
             }
 
@@ -650,7 +650,7 @@ namespace Swastika.Cms.Lib.ViewModels.BackEnd
             {
                 foreach (var item in view.Modules.Where(m => m.IsActived))
                 {
-                    result = await item.RemoveModelAsync(false, _context, _transaction);
+                    result.IsSucceed = result.IsSucceed && (await item.RemoveModelAsync(false, _context, _transaction).ConfigureAwait(false)).IsSucceed;
                 }
             }
 
@@ -658,7 +658,7 @@ namespace Swastika.Cms.Lib.ViewModels.BackEnd
             {
                 foreach (var item in view.ModuleNavs.Where(m => m.IsActived))
                 {
-                    result = item.RemoveModel(false, _context, _transaction);
+                    result.IsSucceed = result.IsSucceed && (await item.RemoveModelAsync(false, _context, _transaction).ConfigureAwait(false)).IsSucceed;
                 }
             }
 
@@ -666,7 +666,7 @@ namespace Swastika.Cms.Lib.ViewModels.BackEnd
             {
                 foreach (var item in view.MediaNavs)
                 {
-                    result = await item.RemoveModelAsync(false, _context, _transaction);
+                    result.IsSucceed = result.IsSucceed && (await item.RemoveModelAsync(false, _context, _transaction).ConfigureAwait(false)).IsSucceed;
                 }
             }
             return result;
@@ -687,7 +687,7 @@ namespace Swastika.Cms.Lib.ViewModels.BackEnd
             {
                 foreach (var item in view.Categories)
                 {
-                    result = item.RemoveModel(false, _context, _transaction);
+                    result.IsSucceed = result.IsSucceed && item.RemoveModel(false, _context, _transaction).IsSucceed;
                 }
             }
 
@@ -695,7 +695,7 @@ namespace Swastika.Cms.Lib.ViewModels.BackEnd
             {
                 foreach (var item in view.Modules)
                 {
-                    result = item.RemoveModel(false, _context, _transaction);
+                    result.IsSucceed = result.IsSucceed && item.RemoveModel(false, _context, _transaction).IsSucceed;
                 }
             }
 
@@ -703,7 +703,7 @@ namespace Swastika.Cms.Lib.ViewModels.BackEnd
             {
                 foreach (var item in view.ModuleNavs)
                 {
-                    result = item.RemoveModel(false, _context, _transaction);
+                    result.IsSucceed = result.IsSucceed && item.RemoveModel(false, _context, _transaction).IsSucceed;
                 }
             }
 
@@ -711,7 +711,7 @@ namespace Swastika.Cms.Lib.ViewModels.BackEnd
             {
                 foreach (var item in view.MediaNavs)
                 {
-                    result = item.RemoveModel(false, _context, _transaction);
+                    result.IsSucceed = result.IsSucceed && item.RemoveModel(false, _context, _transaction).IsSucceed;
                 }
             }
             return result;

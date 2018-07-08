@@ -34,7 +34,7 @@ namespace Swastka.Cms.Api.Controllers
         // GET api/category/id
         [HttpGet]
         [Route("delete/{id}")]
-        public async Task<RepositoryResponse<bool>> DeleteAsync(int id)
+        public async Task<RepositoryResponse<SiocCategory>> DeleteAsync(int id)
         {
             var getPage = await FECategoryViewModel.Repository.GetSingleModelAsync(
                 model => model.Id == id && model.Specificulture == _lang);
@@ -45,7 +45,7 @@ namespace Swastka.Cms.Api.Controllers
             }
             else
             {
-                return new RepositoryResponse<bool>()
+                return new RepositoryResponse<SiocCategory>()
                 {
                     IsSucceed = false
                 };
@@ -185,11 +185,11 @@ namespace Swastka.Cms.Api.Controllers
         // POST api/category
         [HttpPost, HttpOptions]
         [Route("save/{id}")]
-        public async Task<RepositoryResponse<bool>> SaveFields(int id, [FromBody]List<EntityField> fields)
+        public async Task<RepositoryResponse<SiocCategory>> SaveFields(int id, [FromBody]List<EntityField> fields)
         {
             if (fields != null)
             {
-                var result = new RepositoryResponse<bool>() { IsSucceed = true };
+                var result = new RepositoryResponse<SiocCategory>() { IsSucceed = true };
                 foreach (var property in fields)
                 {
                     if (result.IsSucceed)
@@ -204,7 +204,7 @@ namespace Swastka.Cms.Api.Controllers
                 }
                 return result;
             }
-            return new RepositoryResponse<bool>();
+            return new RepositoryResponse<SiocCategory>();
         }
 
         // GET api/category
