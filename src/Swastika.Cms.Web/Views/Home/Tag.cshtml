@@ -1,0 +1,107 @@
+﻿@model PaginationModel<Swastika.Cms.Lib.ViewModels.Info.InfoArticleViewModel>
+
+@{
+    string culture = ViewBag.culture;
+    ViewData["Title"] = "Search Results";
+    var translator = SwCmsHelper.GetTranslator(ViewBag.culture);
+    PaginationModel<InfoProductViewModel> products = ViewData["Products"] as PaginationModel<InfoProductViewModel>;
+}
+
+
+<div class="main-content bg-color">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="tr-blog blog-two">
+
+                    @if (Model.Items.Count > 0)
+                    {
+                       
+                        <div class="row">
+
+                            @foreach (var item in Model.Items)
+                            {
+                                item.DetailsUrl = SwCmsHelper.GetRouterUrl("Article", new { SeoName = item.SeoName }, Context.Request, Url);
+                                <div class="col-lg-4">
+                                    <div class="tr-post">
+                                        <div class="entry-header">
+                                            <div class="entry-thumbnail">
+                                                <a href="@item.DetailsUrl"><img src="@item.Image" alt="Image" class="img-fluid"></a>
+                                            </div>
+                                        </div>
+                                        <div class="entry-content">
+                                            @*<div class="post-time">
+                                                <span>
+                                                    @item.CreatedDateTime.ToString("MMM")
+                                                    <span>@item.CreatedDateTime.ToString("dd")</span>
+                                                </span>
+                                            </div>*@
+                                            <div class="entry-meta">
+                                                <ul class="global-list">
+                                                    <li><a href="#">@item.CreatedBy</a></li>
+                                                </ul>
+                                            </div>
+                                            <h2 class="entry-title">
+                                                <a href="@item.DetailsUrl">@item.Title</a>
+                                            </h2>
+                                            <p>@item.Excerpt</p>
+                                        </div>
+                                    </div><!-- /.tr-post -->
+                                </div>
+                            }
+                        </div><!-- /.row -->
+
+                    }
+                   
+                </div><!-- /.tr-blog -->
+            </div>            
+        </div><!-- /.row -->
+
+        <div class="row">
+            <div class="col-md-12">
+                <div class="tr-blog blog-two">
+
+                    @if (products!=null && products.Items.Count > 0)
+                    {
+                       
+                        <div class="row">
+
+                            @foreach (var item in products.Items)
+                            {
+                                item.DetailsUrl = SwCmsHelper.GetRouterUrl("Product", new { SeoName = item.SeoName }, Context.Request, Url);
+                                <div class="col-lg-4">
+                                    <div class="tr-post">
+                                        <div class="entry-header">
+                                            <div class="entry-thumbnail">
+                                                <a href="@item.DetailsUrl"><img src="@item.Image" alt="Image" class="img-fluid"></a>
+                                            </div>
+                                        </div>
+                                        <div class="entry-content">
+                                            <div class="post-time">
+                                                <span>
+                                                    @item.CreatedDateTime.ToString("MMM")
+                                                    <span>@item.CreatedDateTime.ToString("dd")</span>
+                                                </span>
+                                            </div>
+                                            <div class="entry-meta">
+                                                <ul class="global-list">
+                                                    <li><a href="#">@item.CreatedBy</a></li>
+                                                </ul>
+                                            </div>
+                                            <h2 class="entry-title">
+                                                <a href="@item.DetailsUrl">@item.Title</a>
+                                            </h2>
+                                            <p>@item.Excerpt</p>
+                                        </div>
+                                    </div><!-- /.tr-post -->
+                                </div>
+                            }
+                        </div><!-- /.row -->
+
+                    }
+                   
+                </div><!-- /.tr-blog -->
+            </div>            
+        </div>
+    </div><!-- /.container -->
+</div><!-- /.main-content -->

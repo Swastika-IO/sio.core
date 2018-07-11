@@ -1,0 +1,18 @@
+﻿@using Swastika.Cms.Mvc
+@using Swastika.Identity.Models
+@using Swastika.Identity.Models.AccountViewModels
+@using Swastika.Identity.Models.ManageViewModels
+@using Microsoft.AspNetCore.Identity
+@using System.Globalization
+@using Microsoft.AspNetCore.Mvc.Localization
+@using Swastika.Cms.Lib.ViewModels.BackEnd
+@using Swastika.Cms.Lib.ViewModels.Info
+@using Swastika.Cms.Lib.ViewModels.FrontEnd
+@using Swastika.Domain.Core.ViewModels;
+@using Swastika.Cms.Lib.ViewModels;
+@using Swastika.Cms.Lib;
+@inject Swastika.Cms.Lib.Services.GlobalConfigurationService LocalizerService
+@inject Swastika.Cms.Lib.Services.GlobalLanguageService LanguageService
+@*@inject IViewLocalizer Localizer*@
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+@addTagHelper *, Swastika.Cms.Mvc

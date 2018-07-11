@@ -1,0 +1,228 @@
+﻿@using Microsoft.AspNetCore.Mvc.Localization
+@inject UserManager<ApplicationUser> UserManager
+<!doctype html>
+<html lang="en">
+
+<head>
+    <base href="/backend">
+
+    <title>@ViewData["Title"] - Angular Swastika I/O</title>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    @*<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">*@
+    <meta name="viewport" content="width=1920">
+    <link rel="stylesheet" href="/css/portal/portal.white.min.css">
+    <link href="/css/portal/main.css" rel="stylesheet" />
+    <link href="/lib/micon/css/micon.min.css" rel="stylesheet" />
+    <link href="/lib/fontawesome-free-5.0.10/css/fontawesome-all.css" rel="stylesheet" />
+    <link href="/lib/open-iconic-master/font/css/open-iconic-bootstrap.min.css" rel="stylesheet" />
+
+    <link href="/lib/bootstrap4-tagsinput-4.1.2/tagsinput.css" rel="stylesheet" />
+
+    <!-- TRUMBOWYG -->
+    <link href="/lib/Trumbowyg-2.9.0/ui/trumbowyg.min.css" rel="stylesheet" />
+    <link href="/lib/Trumbowyg-2.9.0/plugins/colors/ui/trumbowyg.colors.css" rel="stylesheet" />
+
+    <link href="https://use.fontawesome.com/releases/v5.0.7/css/all.css" rel="stylesheet">
+
+    <link href="/lib/flag-icon-css/css/flag-icon.min.css" rel="stylesheet" />
+    <link rel="icon" href="/css/portal/img/swastika-io-logo-blue.png">
+    @*<link rel="stylesheet" type="text/css" href="/lib/DataTables/datatables.min.css" />*@
+    <link href="/lib/cropperjs-1.2.2/dist/cropper.min.css" rel="stylesheet" />
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+    <script src="~/app-portal/plugins/bootstrap-notify.min.js"></script>
+
+    <link href="~/app-portal/app.css" rel="stylesheet" />
+    @RenderSection("Styles", required: false)
+</head>
+
+<body ng-app="SwastikaPortal" ng-init="initApp()">
+    <input type="hidden" id="lang" name="curentLanguage" value="@ViewBag.culture" />
+    <div class="loader-container" ng-show="isBusy">
+        <div id="loader"></div>
+    </div>
+    <header-nav></header-nav>
+    <div class="container-fluid wrapper">
+        <div class="row flex-xl-nowrap">
+            <main-side-bar></main-side-bar>
+            <main class="py-md-3 px-md-2 sw-content" role="main">
+
+                @RenderBody()
+
+                <footer class="footer d-block">
+                    <div class="container-fluid">
+                        <nav>
+                            <p class="copyright text-center">
+                                <script>
+                                    document.write(new Date().getFullYear())
+                                </script>
+                                <a href="http://www.swastika.io">Swastika I/O</a>, made on Earth by humans.
+                            </p>
+                        </nav>
+                    </div>
+                </footer>
+            </main>
+        </div>
+    </div>
+
+    <script src="/lib/jquery-ui-1.12.1/jquery-ui.min.js"></script>
+    <script src="/lib/popper.js-1.12.9/dist/umd/popper.min.js"></script>
+
+    <script type="text/javascript" src="/lib/bootstrap-4.0.0/js/bootstrap.min.js"></script>
+
+    <script type="text/javascript" src="/js/portal/portal.white.js"></script>
+
+    <!-- TRUMBOWYG -->
+    <script src="/lib/Trumbowyg-2.9.0/trumbowyg.min.js"></script>
+    <script src="/lib/Trumbowyg-2.9.0/plugins/base64/trumbowyg.base64.js"></script>
+    <script src="/lib/Trumbowyg-2.9.0/plugins/cleanpaste/trumbowyg.cleanpaste.js"></script>
+    <script src="/lib/Trumbowyg-2.9.0/plugins/colors/trumbowyg.colors.js"></script>
+    <script src="/lib/Trumbowyg-2.9.0/plugins/upload/trumbowyg.upload.js"></script>
+    <script src="/lib/Trumbowyg-2.9.0/plugins/noembed/trumbowyg.noembed.js"></script>
+
+    @*<script type="text/javascript" src="/lib/DataTables/datatables.min.js"></script>*@
+
+    <script type="text/javascript" src="/lib/cropperjs-1.2.2/dist/cropper.js"></script>
+
+    <script type="text/javascript" src="/lib/ace/src/ace.js"></script>
+    <script type="text/javascript" src="/lib/ace/src/mode-csharp.js"></script>
+    <script type="text/javascript" src="/lib/ace/src/mode-razor.js"></script>
+    <script type="text/javascript" src="/lib/ace/src/mode-json.js"></script>
+    <script type="text/javascript" src="/lib/ace/src/theme-chrome.js"></script>
+    <script type="text/javascript" src="/lib/ace/src/theme-clouds_midnight.js"></script>
+    <script type="text/javascript" src="/lib/ace/src/worker-json.js"></script>
+
+    <script src="/lib/clipboard.js-2.0.0/dist/clipboard.min.js"></script>
+
+    <script type="text/javascript" src="/lib/bootstrap4-tagsinput-4.1.2/tagsinput.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+
+    <script src="/js/plugins/ng-file-upload-bower-12.2.13/ng-file-upload-all.js"></script>
+    <script src="/js/plugins/ng-file-upload-bower-12.2.13/ng-file-upload-shim.js"></script>
+
+    <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.2.16/angular-route.min.js"></script>
+    <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.2.13/angular-animate.js"></script>
+    <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.3.8/angular-sanitize.js"></script>
+
+
+    <script src="/app-portal/app.js"></script>
+    <script src="/app-portal/app.route.js"></script>
+    <script src="~/app-portal/plugins/angular-drag-and-drop-lists.min.js"></script>
+    <!-- Services-->
+    <script src="/app-portal/plugins/angular-local-storage.min.js"></script>
+    <script src="/app-portal/pages/shared/services/auth-services.js"></script>
+    <script src="/app-portal/pages/login/login-controller.js"></script>
+
+    <script src="/app-portal/pages/shared/services/common-services.js"></script>
+    <script src="~/app-portal/pages/shared/services/template-services.js"></script>
+    <script src="/app-portal/pages/product/product-services.js"></script>
+    <script src="/app-portal/pages/product/product-controller.js"></script>
+
+    <script src="~/app-portal/pages/article/article-services.js"></script>
+    <script src="/app-portal/pages/article/article-controller.js"></script>
+
+    <script src="/app-portal/pages/page/page-services.js"></script>
+    <script src="/app-portal/pages/page/page-controller.js"></script>
+
+    <script src="/app-portal/pages/module/module-services.js"></script>
+    <script src="/app-portal/pages/module/module-controller.js"></script>
+
+    <script src="/app-portal/pages/media/media-services.js"></script>
+    <script src="/app-portal/pages/media/media-controller.js"></script>
+
+    <script src="/app-portal/pages/dashboard/dashboard-controller.js"></script>
+    <script src="~/app-portal/pages/dashboard/dashboard-services.js"></script>
+
+    <script src="~/app-portal/pages/user/user-controller.js"></script>
+    <script src="~/app-portal/pages/user/user-services.js"></script>
+
+    <script src="~/app-portal/pages/role/role-controller.js"></script>
+    <script src="~/app-portal/pages/role/role-services.js"></script>
+
+    <script src="~/app-portal/pages/configuration/configuration-controller.js"></script>
+    <script src="~/app-portal/pages/configuration/configuration-services.js"></script>
+    <!-- End Services -->
+    <script src="~/app-portal/pages/shared/controllers/template-controller.js"></script>
+
+    <!-- Controllers -->
+    <!-- Components -->
+    <script src="/app-portal/plugins/paging.js"></script>
+
+    <script src="/app-portal/pages/shared/components/header-nav/header-nav.js"></script>
+    <script src="/app-portal/pages/shared/components/directives/pane.js"></script>
+    <script src="/app-portal/pages/shared/components/directives/tabs.js"></script>
+    <script src="~/app-portal/pages/shared/components/tabs-verticle/tabs.js"></script>
+    <script src="~/app-portal/pages/shared/components/tabs-verticle/pane.js"></script>
+    <script src="~/app-portal/pages/shared/components/tabs-horizontal/tabs.js"></script>
+    <script src="~/app-portal/pages/shared/components/tabs-horizontal/pane.js"></script>
+    <script src="~/app-portal/pages/shared/components/ace-editor/aceEditor.js"></script>
+    <script src="/app-portal/pages/shared/components/template-editor/templateEditor.js"></script>
+    <script src="~/app-portal/pages/shared/components/api-file/api-file.js"></script>
+    <script src="~/app-portal/pages/shared/components/custom-image/customImage.js"></script>
+    <script src="/app-portal/pages/shared/components/actions/actions.js"></script>
+    <script src="~/app-portal/pages/shared/components/navigations/navigations.js"></script>
+    @*<script src="/app-portal/pages/shared/components/paging/paging.js"></script>*@
+    <script src="~/app-portal/pages/shared/components/statuses/statuses.js"></script>
+    <script src="~/app-portal/pages/shared/components/confirm/confirm.js"></script>
+    <script src="/app-portal/pages/shared/components/message/message.js"></script>
+    <script src="/app-portal/pages/shared/components/editor/editor.js"></script>
+    <script src="~/app-portal/pages/shared/components/medias/media-controller.js"></script>
+    <script src="/app-portal/pages/shared/components/breadcrumbs/breadcrumbs.js"></script>
+    <script src="/app-portal/pages/shared/components/main-side-bar/main-side-bar.js"></script>
+    <script src="/app-portal/pages/shared/components/main-side-bar-item/main-side-bar-item.js"></script>
+    <script src="/app-portal/pages/shared/components/filter-list/filter-list.js"></script>
+
+    <script src="~/app-portal/pages/shared/components/medias/media-controller.js"></script>
+    <script src="~/app-portal/pages/shared/components/medias/media-services.js"></script>
+    <script src="~/app-portal/pages/shared/components/medias/medias.js"></script>
+
+    <!-- File -->
+    <script src="~/app-portal/pages/file/file-controller.js"></script>
+    <script src="~/app-portal/pages/file/file-services.js"></script>
+    <!--Theme-->
+    <script src="~/app-portal/pages/theme/theme-controller.js"></script>
+    <script src="~/app-portal/pages/theme/theme-services.js"></script>
+
+    <!--module-data-->
+    <script src="~/app-portal/pages/shared/components/module-data/module-data-controller.js"></script>
+    <script src="~/app-portal/pages/shared/components/module-data/module-data-services.js"></script>
+    <script src="~/app-portal/pages/shared/components/module-data/module-form.js"></script>
+
+    <!--product-components-->
+    <script src="/app-portal/pages/product/components/general/productGeneral.js"></script>
+    <script src="/app-portal/pages/product/components/main/productMain.js"></script>
+    <script src="/app-portal/pages/product/components/medias/productMedias.js"></script>
+    <script src="/app-portal/pages/product/components/modules/productModules.js"></script>
+    <script src="/app-portal/pages/product/components/parents/productParents.js"></script>
+    <script src="/app-portal/pages/product/components/related/productRelated.js"></script>
+    <script src="/app-portal/pages/product/components/seo/productSeo.js"></script>
+
+    <!--article-components-->
+    <script src="/app-portal/pages/article/components/general/articleGeneral.js"></script>
+    <script src="/app-portal/pages/article/components/main/articleMain.js"></script>
+    <script src="/app-portal/pages/article/components/medias/articleMedias.js"></script>
+    <script src="/app-portal/pages/article/components/modules/articleModules.js"></script>
+    <script src="/app-portal/pages/article/components/parents/articleParents.js"></script>
+    <script src="/app-portal/pages/article/components/related/articleRelated.js"></script>
+    <script src="/app-portal/pages/article/components/seo/articleSeo.js"></script>
+
+    <!--page-components-->
+    <script src="/app-portal/pages/page/components/general/general.js"></script>
+    <script src="/app-portal/pages/page/components/main/main.js"></script>
+    <script src="/app-portal/pages/page/components/modules/modules.js"></script>
+    <script src="/app-portal/pages/page/components/parents/parents.js"></script>
+    <script src="/app-portal/pages/page/components/plug-play/plug-play.js"></script>
+    <script src="/app-portal/pages/page/components/seo/seo.js"></script>
+
+    <!-- module-components -->
+    <script src="/app-portal/pages/module/components/main/main.js"></script>
+    <script type="text/javascript" src="/js/portal/common.js"></script>
+    <!-- End Components -->
+    @RenderSection("Scripts", required: false)
+
+    <!--Datatables-->
+    @*@RenderSection("Modals", required: false)*@
+    @*@await Component.InvokeAsync(typeof(Swastika.Cms.Mvc.Areas.Portal.ViewComponents.Modals))*@
+</body>
+</html>

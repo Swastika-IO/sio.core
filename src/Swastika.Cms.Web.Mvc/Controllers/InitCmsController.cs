@@ -5,14 +5,9 @@
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
-using Swastika.Cms.Lib;
-using Swastika.Cms.Lib.Models.Cms;
 using Swastika.Cms.Lib.Services;
 using Swastika.Cms.Mvc.Controllers;
 using Swastika.Identity.Models;
-using System;
-using System.Linq;
-using static Swastika.Common.Utility.Enums;
 
 namespace Swastika.Cms.Web.Mvc.Controllers
 {

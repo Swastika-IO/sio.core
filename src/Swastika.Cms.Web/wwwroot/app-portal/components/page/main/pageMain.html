@@ -1,0 +1,27 @@
+﻿<div class="col-sm-12" ng-if="$ctrl.page!=null">
+    <div class="card">
+        <div class="card-header">
+            Main Content
+        </div>
+        <div class="card-body">
+
+            <div class="form-group">
+                <label>Title</label>
+                <input type="text"
+                       class="form-control form-control-lg"
+                       ng-model="$ctrl.page.title" />
+            </div>
+            
+            <div class="form-group">
+                <label>Mô tả</label>
+                <textarea class="form-control form-control-lg"
+                          ng-model="$ctrl.page.excerpt">{{$ctrl.page.excerpt}}</textarea>
+            </div>
+            <div class="form-group">
+                <label>Nội dung</label>
+                <textarea class="form-control editor-content"
+                          ng-model="$ctrl.page.content">{{$ctrl.page.content}}</textarea>
+            </div>
+        </div>
+    </div>
+</div>

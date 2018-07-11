@@ -1,0 +1,100 @@
+﻿<section class="content container-fluid">
+    <filter-list request="request" callback="loadModuleDatas(pageIndex)" />
+
+    <div ng-if="data.data.totalItems > 0">
+
+        <h5 class="">Module [@Model.Name] data items</h5>
+
+        <table class="table table-sm table-hover dataTable" cellspacing="0">
+            <thead class="thead-light">
+                <tr>
+                    <th scope="col" width="5%">
+                        <span class="fas fa-sort"></span>
+                    </th>
+                    <th scope="col" width="5%">
+                        <span class="fas fa-sort-numeric-down"></span>
+                    </th>
+                    @foreach (var col in Model.Columns.Where(c => c.IsDisplay))
+                    {
+                    <th scope="col">
+                        @col.Name
+                    </th>
+                    }
+
+                    <th scope="col" width="5%" class="text-right">
+                        Actions
+                    </th>
+                </tr>
+            </thead>
+            <tfoot>
+                <tr>
+                    <th scope="col">
+                        <span class="fas fa-sort"></span>
+                    </th>
+                    <th scope="col">
+                        <span class="fas fa-sort-numeric-down"></span>
+                    </th>
+                    @foreach (var col in Model.Columns.Where(c => c.IsDisplay))
+                    {
+                    <th scope="col">
+                        @col.Name
+                    </th>
+                    }
+
+                    <th scope="col" width="5%" class="text-right">
+                        Actions
+                    </th>
+                </tr>
+            </tfoot>
+            <tbody class="sortable">
+                @for (int i = 0; i < Data.Items.OrderBy(n => n.Priority).ToList().Count; i++)
+                {
+                <tr class="sortable-item" sort-model="moduleData" sort-model-id="@Data.Items[i].Id">
+                    <td style="cursor:move;" class="drag-header">
+                        <span class="fas fa-sort"></span>
+                    </td>
+                    <td>
+                        <input type="text" asp-for="@Data.Items[i].Priority" class="item-priority form-control form-control-sm d-inline" style="width:40px;" />
+                    </td>
+                    @foreach (var col in Model.Columns.Where(c => c.IsDisplay))
+                    {
+                    var prop = Data.Items[i].GetDataProperty(col.Name);
+                    <td>
+                        <small>
+                            @{Html.RenderPartial("_ViewByFieldType", new ViewDataDictionary(this.Vi‌​ewData) { { "dataType", prop.DataType }, { "Value", prop.Value } });}
+                        </small>
+                    </td>
+                    }
+                    <td>
+                        <div class="btn-group btn-group-sm" role="group" aria-label="Actions">
+                            <a asp-action="EditModuleData" asp-route-id="@Data.Items[i].ModuleId" asp-route-dataId="@Data.Items[i].Id" class="btn btn-sm btn-light"> <span class="fas fa-pencil-alt text-primary"></span></a>
+                            @*<a asp-action="DeleteModuleData" asp-route-id="@Data.Items[i].Id" class="btn btn-sm btn-light" data-popout="true" data-toggle="confirmation" data-singleton="true"> <span class="fas fa-times text-danger"></span> </a>*@
+
+                            <button type="button" class="btn btn-light del-popover"
+                                    data-toggle="popover" data-html="true">
+                                <span class="fas fa-times text-danger"></span>
+                            </button>
+                            <div class="popover-body d-none">
+                                <a asp-action="DeleteModuleData" asp-route-id="@Data.Items[i].Id" class="btn btn btn-danger">Yes, I want to delete!</a>
+                            </div>
+                        </div>
+                    </td>
+                </tr>
+                }
+            </tbody>
+
+            <tbody></tbody>
+        </table>
+        @await Html.PartialAsync("_Pagination", Model, new ViewDataDictionary(this.Vi‌​ewData) { { "PageSize", Model.Data.PageSize }, { "PageIndex", Model.Data.PageIndex }, { "TotalPage", Model.Data.TotalPage } })
+
+        }
+        <paging class="small"
+                page="data.pageIndex+1"
+                page-size="data.pageSize"
+                total="data.totalItems"
+                ul-class="pagination justify-content-end"
+                a-class="page-link"
+                paging-action="loadModuleDatas(page-1)"
+                scroll-top="true" />
+    </div>
+</section>

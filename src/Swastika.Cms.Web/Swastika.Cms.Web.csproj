@@ -1,0 +1,1876 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp2.1</TargetFramework>
+    <TypeScriptCompileBlocked>true</TypeScriptCompileBlocked>
+    <TypeScriptToolsVersion>Latest</TypeScriptToolsVersion>
+    <MvcRazorExcludeRefAssembliesFromPublish>false</MvcRazorExcludeRefAssembliesFromPublish>
+    <MvcRazorCompileOnPublish>false</MvcRazorCompileOnPublish>
+    <GenerateProgramFile>false</GenerateProgramFile>
+    <PublishWithAspNetCoreTargetManifest>False</PublishWithAspNetCoreTargetManifest>
+    <Version>0.0.4</Version>
+    <Authors>Swastika I/O Team, Smileway Team</Authors>
+    <Company>Swastika I/O</Company>
+    <Product>Swastika I/O Core CMS (MVC)</Product>
+    <Copyright>Swastika I/O, Smileway, Befirst.Solution</Copyright>
+    <PackageLicenseUrl>https://github.com/Swastika-IO/Swastika-IO-Core/blob/master/LICENSE</PackageLicenseUrl>
+    <PackageProjectUrl>https://www.swastika.io</PackageProjectUrl>
+    <PackageIconUrl>https://avatars2.githubusercontent.com/u/26378971</PackageIconUrl>
+    <RepositoryUrl>https://github.com/Swastika-IO/Swastika-IO-Core</RepositoryUrl>
+    <PackageTags>Asp.Net Core CMS, Asp.Net Core MVC CMS, C# Core CMS, NetCoreCMS, Core CMS, Modular Architecture, CMS Theme, CMS Widget, Multilangual CMS, .Net CMS Platform, .Net CMS Open Source, .Net CMS Comparison 2017, .Net CMS System, .Net CMS Framework, .Net CMS Open Source MVC, .Net CMS tools, .Net CMS website, Content Management System, Blog Engine, DotNet Core,</PackageTags>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <_ContentIncludedByDefault Remove="wwwroot\app-portal\app.css" />
+    <_ContentIncludedByDefault Remove="wwwroot\app-portal\app.js" />
+    <_ContentIncludedByDefault Remove="wwwroot\app-portal\app.route.js" />
+    <_ContentIncludedByDefault Remove="wwwroot\app-portal\pages\article\article-controller.js" />
+    <_ContentIncludedByDefault Remove="wwwroot\app-portal\pages\article\article-services.js" />
+    <_ContentIncludedByDefault Remove="wwwroot\app-portal\pages\article\components\general\articleGeneral.html" />
+    <_ContentIncludedByDefault Remove="wwwroot\app-portal\pages\article\components\general\articleGeneral.js" />
+    <_ContentIncludedByDefault Remove="wwwroot\app-portal\pages\article\components\main\articleMain.html" />
+    <_ContentIncludedByDefault Remove="wwwroot\app-portal\pages\article\components\main\articleMain.js" />
+    <_ContentIncludedByDefault Remove="wwwroot\app-portal\pages\article\components\medias\articleMedias.html" />
+    <_ContentIncludedByDefault Remove="wwwroot\app-portal\pages\article\components\medias\articleMedias.js" />
+    <_ContentIncludedByDefault Remove="wwwroot\app-portal\pages\article\components\modules\articleModules.html" />
+    <_ContentIncludedByDefault Remove="wwwroot\app-portal\pages\article\components\modules\articleModules.js" />
+    <_ContentIncludedByDefault Remove="wwwroot\app-portal\pages\article\components\parents\articleParents.html" />
+    <_ContentIncludedByDefault Remove="wwwroot\app-portal\pages\article\components\parents\articleParents.js" />
+    <_ContentIncludedByDefault Remove="wwwroot\app-portal\pages\article\components\related\articleRelated.html" />
+    <_ContentIncludedByDefault Remove="wwwroot\app-portal\pages\article\components\related\articleRelated.js" />
+    <_ContentIncludedByDefault Remove="wwwroot\app-portal\pages\article\components\seo\articleSeo.html" />
+    <_ContentIncludedByDefault Remove="wwwroot\app-portal\pages\article\components\seo\articleSeo.js" />
+    <_ContentIncludedByDefault Remove="wwwroot\app-portal\pages\article\details.html" />
+    <_ContentIncludedByDefault Remove="wwwroot\app-portal\pages\article\list.html" />
+    <_ContentIncludedByDefault Remove="wwwroot\app-portal\pages\configuration\configuration-controller.js" />
+    <_ContentIncludedByDefault Remove="wwwroot\app-portal\pages\configuration\configuration-services.js" />
+    <_ContentIncludedByDefault Remove="wwwroot\app-portal\pages\configuration\details.html" />
+    <_ContentIncludedByDefault Remove="wwwroot\app-portal\pages\configuration\list.html" />
+    <_ContentIncludedByDefault Remove="wwwroot\app-portal\pages\dashboard\dashboard-controller.js" />
+    <_ContentIncludedByDefault Remove="wwwroot\app-portal\pages\dashboard\dashboard-services.js" />
+    <_ContentIncludedByDefault Remove="wwwroot\app-portal\pages\dashboard\dashboard.html" />
+    <_ContentIncludedByDefault Remove="wwwroot\app-portal\pages\file\details.html" />
+    <_ContentIncludedByDefault Remove="wwwroot\app-portal\pages\file\file-controller.js" />
+    <_ContentIncludedByDefault Remove="wwwroot\app-portal\pages\file\file-services.js" />
+    <_ContentIncludedByDefault Remove="wwwroot\app-portal\pages\file\list.html" />
+    <_ContentIncludedByDefault Remove="wwwroot\app-portal\pages\form\list.html" />
+    <_ContentIncludedByDefault Remove="wwwroot\app-portal\pages\login\login-controller.js" />
+    <_ContentIncludedByDefault Remove="wwwroot\app-portal\pages\login\login.html" />
+    <_ContentIncludedByDefault Remove="wwwroot\app-portal\pages\media\details.html" />
+    <_ContentIncludedByDefault Remove="wwwroot\app-portal\pages\media\list.html" />
+    <_ContentIncludedByDefault Remove="wwwroot\app-portal\pages\media\media-controller.js" />
+    <_ContentIncludedByDefault Remove="wwwroot\app-portal\pages\media\media-services.js" />
+    <_ContentIncludedByDefault Remove="wwwroot\app-portal\pages\moduleData\components\main\main.html" />
+    <_ContentIncludedByDefault Remove="wwwroot\app-portal\pages\moduleData\components\main\main.js" />
+    <_ContentIncludedByDefault Remove="wwwroot\app-portal\pages\moduleData\details.html" />
+    <_ContentIncludedByDefault Remove="wwwroot\app-portal\pages\moduleData\list.html" />
+    <_ContentIncludedByDefault Remove="wwwroot\app-portal\pages\module\components\main\main.html" />
+    <_ContentIncludedByDefault Remove="wwwroot\app-portal\pages\module\components\main\main.js" />
+    <_ContentIncludedByDefault Remove="wwwroot\app-portal\pages\module\data.html" />
+    <_ContentIncludedByDefault Remove="wwwroot\app-portal\pages\module\details.html" />
+    <_ContentIncludedByDefault Remove="wwwroot\app-portal\pages\module\list.html" />
+    <_ContentIncludedByDefault Remove="wwwroot\app-portal\pages\module\module-controller.js" />
+    <_ContentIncludedByDefault Remove="wwwroot\app-portal\pages\module\module-services.js" />
+    <_ContentIncludedByDefault Remove="wwwroot\app-portal\pages\page\components\general\general.html" />
+    <_ContentIncludedByDefault Remove="wwwroot\app-portal\pages\page\components\general\general.js" />
+    <_ContentIncludedByDefault Remove="wwwroot\app-portal\pages\page\components\main\main.html" />
+    <_ContentIncludedByDefault Remove="wwwroot\app-portal\pages\page\components\main\main.js" />
+    <_ContentIncludedByDefault Remove="wwwroot\app-portal\pages\page\components\modules\modules.html" />
+    <_ContentIncludedByDefault Remove="wwwroot\app-portal\pages\page\components\modules\modules.js" />
+    <_ContentIncludedByDefault Remove="wwwroot\app-portal\pages\page\components\page-components.js" />
+    <_ContentIncludedByDefault Remove="wwwroot\app-portal\pages\page\components\parents\parents.html" />
+    <_ContentIncludedByDefault Remove="wwwroot\app-portal\pages\page\components\parents\parents.js" />
+    <_ContentIncludedByDefault Remove="wwwroot\app-portal\pages\page\components\plug-play\plug-play.html" />
+    <_ContentIncludedByDefault Remove="wwwroot\app-portal\pages\page\components\plug-play\plug-play.js" />
+    <_ContentIncludedByDefault Remove="wwwroot\app-portal\pages\page\components\related\productRelated.html" />
+    <_ContentIncludedByDefault Remove="wwwroot\app-portal\pages\page\components\related\productRelated.js" />
+    <_ContentIncludedByDefault Remove="wwwroot\app-portal\pages\page\components\seo\seo.html" />
+    <_ContentIncludedByDefault Remove="wwwroot\app-portal\pages\page\components\seo\seo.js" />
+    <_ContentIncludedByDefault Remove="wwwroot\app-portal\pages\page\details.html" />
+    <_ContentIncludedByDefault Remove="wwwroot\app-portal\pages\page\list.html" />
+    <_ContentIncludedByDefault Remove="wwwroot\app-portal\pages\page\page-controller.js" />
+    <_ContentIncludedByDefault Remove="wwwroot\app-portal\pages\page\page-services.js" />
+    <_ContentIncludedByDefault Remove="wwwroot\app-portal\pages\product\components\general\productGeneral.html" />
+    <_ContentIncludedByDefault Remove="wwwroot\app-portal\pages\product\components\general\productGeneral.js" />
+    <_ContentIncludedByDefault Remove="wwwroot\app-portal\pages\product\components\main\productMain.html" />
+    <_ContentIncludedByDefault Remove="wwwroot\app-portal\pages\product\components\main\productMain.js" />
+    <_ContentIncludedByDefault Remove="wwwroot\app-portal\pages\product\components\medias\productMedias.html" />
+    <_ContentIncludedByDefault Remove="wwwroot\app-portal\pages\product\components\medias\productMedias.js" />
+    <_ContentIncludedByDefault Remove="wwwroot\app-portal\pages\product\components\modules\productModules.html" />
+    <_ContentIncludedByDefault Remove="wwwroot\app-portal\pages\product\components\modules\productModules.js" />
+    <_ContentIncludedByDefault Remove="wwwroot\app-portal\pages\product\components\parents\productParents.html" />
+    <_ContentIncludedByDefault Remove="wwwroot\app-portal\pages\product\components\parents\productParents.js" />
+    <_ContentIncludedByDefault Remove="wwwroot\app-portal\pages\product\components\product-components.js" />
+    <_ContentIncludedByDefault Remove="wwwroot\app-portal\pages\product\components\related\productRelated.html" />
+    <_ContentIncludedByDefault Remove="wwwroot\app-portal\pages\product\components\related\productRelated.js" />
+    <_ContentIncludedByDefault Remove="wwwroot\app-portal\pages\product\components\seo\productSeo.html" />
+    <_ContentIncludedByDefault Remove="wwwroot\app-portal\pages\product\components\seo\productSeo.js" />
+    <_ContentIncludedByDefault Remove="wwwroot\app-portal\pages\product\details.html" />
+    <_ContentIncludedByDefault Remove="wwwroot\app-portal\pages\product\list.html" />
+    <_ContentIncludedByDefault Remove="wwwroot\app-portal\pages\product\product-controller.js" />
+    <_ContentIncludedByDefault Remove="wwwroot\app-portal\pages\product\product-services.js" />
+    <_ContentIncludedByDefault Remove="wwwroot\app-portal\pages\role\list.html" />
+    <_ContentIncludedByDefault Remove="wwwroot\app-portal\pages\role\role-controller.js" />
+    <_ContentIncludedByDefault Remove="wwwroot\app-portal\pages\role\role-services.js" />
+    <_ContentIncludedByDefault Remove="wwwroot\app-portal\pages\setting\list.html" />
+    <_ContentIncludedByDefault Remove="wwwroot\app-portal\pages\shared\components\ace-editor\aceEditor.html" />
+    <_ContentIncludedByDefault Remove="wwwroot\app-portal\pages\shared\components\ace-editor\aceEditor.js" />
+    <_ContentIncludedByDefault Remove="wwwroot\app-portal\pages\shared\components\actions\actions.html" />
+    <_ContentIncludedByDefault Remove="wwwroot\app-portal\pages\shared\components\actions\actions.js" />
+    <_ContentIncludedByDefault Remove="wwwroot\app-portal\pages\shared\components\api-file\api-file.html" />
+    <_ContentIncludedByDefault Remove="wwwroot\app-portal\pages\shared\components\api-file\api-file.js" />
+    <_ContentIncludedByDefault Remove="wwwroot\app-portal\pages\shared\components\breadcrumbs\breadcrumbs.html" />
+    <_ContentIncludedByDefault Remove="wwwroot\app-portal\pages\shared\components\breadcrumbs\breadcrumbs.js" />
+    <_ContentIncludedByDefault Remove="wwwroot\app-portal\pages\shared\components\confirm\confirm.html" />
+    <_ContentIncludedByDefault Remove="wwwroot\app-portal\pages\shared\components\confirm\confirm.js" />
+    <_ContentIncludedByDefault Remove="wwwroot\app-portal\pages\shared\components\custom-image\customImage.html" />
+    <_ContentIncludedByDefault Remove="wwwroot\app-portal\pages\shared\components\custom-image\customImage.js" />
+    <_ContentIncludedByDefault Remove="wwwroot\app-portal\pages\shared\components\directives\pane.js" />
+    <_ContentIncludedByDefault Remove="wwwroot\app-portal\pages\shared\components\directives\tabs.js" />
+    <_ContentIncludedByDefault Remove="wwwroot\app-portal\pages\shared\components\editor\editor.html" />
+    <_ContentIncludedByDefault Remove="wwwroot\app-portal\pages\shared\components\editor\editor.js" />
+    <_ContentIncludedByDefault Remove="wwwroot\app-portal\pages\shared\components\filter-list\filter-list.html" />
+    <_ContentIncludedByDefault Remove="wwwroot\app-portal\pages\shared\components\filter-list\filter-list.js" />
+    <_ContentIncludedByDefault Remove="wwwroot\app-portal\pages\shared\components\header-nav\header-nav.js" />
+    <_ContentIncludedByDefault Remove="wwwroot\app-portal\pages\shared\components\header-nav\headerNav.html" />
+    <_ContentIncludedByDefault Remove="wwwroot\app-portal\pages\shared\components\main-side-bar-item\main-side-bar-item.html" />
+    <_ContentIncludedByDefault Remove="wwwroot\app-portal\pages\shared\components\main-side-bar-item\main-side-bar-item.js" />
+    <_ContentIncludedByDefault Remove="wwwroot\app-portal\pages\shared\components\main-side-bar\main-side-bar.html" />
+    <_ContentIncludedByDefault Remove="wwwroot\app-portal\pages\shared\components\main-side-bar\main-side-bar.js" />
+    <_ContentIncludedByDefault Remove="wwwroot\app-portal\pages\shared\components\medias\media-controller.js" />
+    <_ContentIncludedByDefault Remove="wwwroot\app-portal\pages\shared\components\medias\media-services.js" />
+    <_ContentIncludedByDefault Remove="wwwroot\app-portal\pages\shared\components\medias\medias.html" />
+    <_ContentIncludedByDefault Remove="wwwroot\app-portal\pages\shared\components\medias\medias.js" />
+    <_ContentIncludedByDefault Remove="wwwroot\app-portal\pages\shared\components\message\message.html" />
+    <_ContentIncludedByDefault Remove="wwwroot\app-portal\pages\shared\components\message\message.js" />
+    <_ContentIncludedByDefault Remove="wwwroot\app-portal\pages\shared\components\module-data\module-data-controller.js" />
+    <_ContentIncludedByDefault Remove="wwwroot\app-portal\pages\shared\components\module-data\module-data-preview.html" />
+    <_ContentIncludedByDefault Remove="wwwroot\app-portal\pages\shared\components\module-data\module-data-services.js" />
+    <_ContentIncludedByDefault Remove="wwwroot\app-portal\pages\shared\components\module-data\module-form-editor.html" />
+    <_ContentIncludedByDefault Remove="wwwroot\app-portal\pages\shared\components\module-data\module-form.html" />
+    <_ContentIncludedByDefault Remove="wwwroot\app-portal\pages\shared\components\module-data\module-form.js" />
+    <_ContentIncludedByDefault Remove="wwwroot\app-portal\pages\shared\components\navigations\navigations.html" />
+    <_ContentIncludedByDefault Remove="wwwroot\app-portal\pages\shared\components\navigations\navigations.js" />
+    <_ContentIncludedByDefault Remove="wwwroot\app-portal\pages\shared\components\paging\paging.html" />
+    <_ContentIncludedByDefault Remove="wwwroot\app-portal\pages\shared\components\paging\paging.js" />
+    <_ContentIncludedByDefault Remove="wwwroot\app-portal\pages\shared\components\portal-search\portal-search.html" />
+    <_ContentIncludedByDefault Remove="wwwroot\app-portal\pages\shared\components\portal-search\portal-search.js" />
+    <_ContentIncludedByDefault Remove="wwwroot\app-portal\pages\shared\components\side-status\codeEditor.html" />
+    <_ContentIncludedByDefault Remove="wwwroot\app-portal\pages\shared\components\side-status\codeEditor.js" />
+    <_ContentIncludedByDefault Remove="wwwroot\app-portal\pages\shared\components\statuses\statuses.html" />
+    <_ContentIncludedByDefault Remove="wwwroot\app-portal\pages\shared\components\statuses\statuses.js" />
+    <_ContentIncludedByDefault Remove="wwwroot\app-portal\pages\shared\components\tabs-horizontal\pane.js" />
+    <_ContentIncludedByDefault Remove="wwwroot\app-portal\pages\shared\components\tabs-horizontal\tabs.html" />
+    <_ContentIncludedByDefault Remove="wwwroot\app-portal\pages\shared\components\tabs-horizontal\tabs.js" />
+    <_ContentIncludedByDefault Remove="wwwroot\app-portal\pages\shared\components\tabs-verticle\pane.js" />
+    <_ContentIncludedByDefault Remove="wwwroot\app-portal\pages\shared\components\tabs-verticle\tabs.html" />
+    <_ContentIncludedByDefault Remove="wwwroot\app-portal\pages\shared\components\tabs-verticle\tabs.js" />
+    <_ContentIncludedByDefault Remove="wwwroot\app-portal\pages\shared\components\template-editor\templateEditor.html" />
+    <_ContentIncludedByDefault Remove="wwwroot\app-portal\pages\shared\components\template-editor\templateEditor.js" />
+    <_ContentIncludedByDefault Remove="wwwroot\app-portal\pages\shared\components\templates\tabs.html" />
+    <_ContentIncludedByDefault Remove="wwwroot\app-portal\pages\shared\controllers\template-controller.js" />
+    <_ContentIncludedByDefault Remove="wwwroot\app-portal\pages\shared\controllers\template-controllerbk.js" />
+    <_ContentIncludedByDefault Remove="wwwroot\app-portal\pages\shared\services\auth-services.js" />
+    <_ContentIncludedByDefault Remove="wwwroot\app-portal\pages\shared\services\common-services.js" />
+    <_ContentIncludedByDefault Remove="wwwroot\app-portal\pages\shared\services\template-services.js" />
+    <_ContentIncludedByDefault Remove="wwwroot\app-portal\pages\template\details.html" />
+    <_ContentIncludedByDefault Remove="wwwroot\app-portal\pages\template\list.html" />
+    <_ContentIncludedByDefault Remove="wwwroot\app-portal\pages\theme\details.html" />
+    <_ContentIncludedByDefault Remove="wwwroot\app-portal\pages\theme\list.html" />
+    <_ContentIncludedByDefault Remove="wwwroot\app-portal\pages\theme\theme-controller.js" />
+    <_ContentIncludedByDefault Remove="wwwroot\app-portal\pages\theme\theme-services.js" />
+    <_ContentIncludedByDefault Remove="wwwroot\app-portal\pages\user\details.html" />
+    <_ContentIncludedByDefault Remove="wwwroot\app-portal\pages\user\list.html" />
+    <_ContentIncludedByDefault Remove="wwwroot\app-portal\pages\user\register.html" />
+    <_ContentIncludedByDefault Remove="wwwroot\app-portal\pages\user\user-controller.js" />
+    <_ContentIncludedByDefault Remove="wwwroot\app-portal\pages\user\user-services.js" />
+    <_ContentIncludedByDefault Remove="wwwroot\app-portal\plugins\angular-animate.min.js" />
+    <_ContentIncludedByDefault Remove="wwwroot\app-portal\plugins\angular-drag-and-drop-lists.min.js" />
+    <_ContentIncludedByDefault Remove="wwwroot\app-portal\plugins\angular-local-storage.min.js" />
+    <_ContentIncludedByDefault Remove="wwwroot\app-portal\plugins\angular-route.min.js" />
+    <_ContentIncludedByDefault Remove="wwwroot\app-portal\plugins\angular.min.js" />
+    <_ContentIncludedByDefault Remove="wwwroot\app-portal\plugins\bootstrap-notify.min.js" />
+    <_ContentIncludedByDefault Remove="wwwroot\app-portal\plugins\jquery-ui-1.12.1.custom\jquery-ui.min.css" />
+    <_ContentIncludedByDefault Remove="wwwroot\app-portal\plugins\jquery-ui-1.12.1.custom\jquery-ui.min.js" />
+    <_ContentIncludedByDefault Remove="wwwroot\app-portal\plugins\loading-bar.min.js" />
+    <_ContentIncludedByDefault Remove="wwwroot\app-portal\plugins\paging.js" />
+    <_ContentIncludedByDefault Remove="wwwroot\app\all-app-portal.min.js" />
+    <_ContentIncludedByDefault Remove="wwwroot\app\app-frontend.js" />
+    <_ContentIncludedByDefault Remove="wwwroot\app\app-portal.js" />
+    <_ContentIncludedByDefault Remove="wwwroot\app\controllers\frontend-controller.js" />
+    <_ContentIncludedByDefault Remove="wwwroot\app\controllers\portal-article-controller.js" />
+    <_ContentIncludedByDefault Remove="wwwroot\app\controllers\portal-controller.js" />
+    <_ContentIncludedByDefault Remove="wwwroot\app\controllers\portal-module-controller.js" />
+    <_ContentIncludedByDefault Remove="wwwroot\app\controllers\portal-page-controller.js" />
+    <_ContentIncludedByDefault Remove="wwwroot\app\controllers\portal-product-controller.js" />
+    <_ContentIncludedByDefault Remove="wwwroot\app\controllers\portal-template-controller.js" />
+    <_ContentIncludedByDefault Remove="wwwroot\app\portal\components\module\general\moduleGeneral.html" />
+    <_ContentIncludedByDefault Remove="wwwroot\app\portal\components\module\general\moduleGeneral.js" />
+    <_ContentIncludedByDefault Remove="wwwroot\app\portal\components\module\main\moduleMain.html" />
+    <_ContentIncludedByDefault Remove="wwwroot\app\portal\components\module\main\moduleMain.js" />
+    <_ContentIncludedByDefault Remove="wwwroot\app\portal\components\module\medias\moduleMedias.html" />
+    <_ContentIncludedByDefault Remove="wwwroot\app\portal\components\module\medias\moduleMedias.js" />
+    <_ContentIncludedByDefault Remove="wwwroot\app\portal\components\module\module-components.js" />
+    <_ContentIncludedByDefault Remove="wwwroot\app\portal\components\module\modules\moduleModules.html" />
+    <_ContentIncludedByDefault Remove="wwwroot\app\portal\components\module\modules\moduleModules.js" />
+    <_ContentIncludedByDefault Remove="wwwroot\app\portal\components\module\parents\moduleParents.html" />
+    <_ContentIncludedByDefault Remove="wwwroot\app\portal\components\module\parents\moduleParents.js" />
+    <_ContentIncludedByDefault Remove="wwwroot\app\portal\components\module\related\moduleRelated.html" />
+    <_ContentIncludedByDefault Remove="wwwroot\app\portal\components\module\related\moduleRelated.js" />
+    <_ContentIncludedByDefault Remove="wwwroot\app\portal\components\module\seo\moduleSeo.html" />
+    <_ContentIncludedByDefault Remove="wwwroot\app\portal\components\module\seo\moduleSeo.js" />
+    <_ContentIncludedByDefault Remove="wwwroot\app\portal\components\product\general\productGeneral.html" />
+    <_ContentIncludedByDefault Remove="wwwroot\app\portal\components\product\general\productGeneral.js" />
+    <_ContentIncludedByDefault Remove="wwwroot\app\portal\components\product\main\productMain.html" />
+    <_ContentIncludedByDefault Remove="wwwroot\app\portal\components\product\main\productMain.js" />
+    <_ContentIncludedByDefault Remove="wwwroot\app\portal\components\product\medias\productMedias.html" />
+    <_ContentIncludedByDefault Remove="wwwroot\app\portal\components\product\medias\productMedias.js" />
+    <_ContentIncludedByDefault Remove="wwwroot\app\portal\components\product\modules\productModules.html" />
+    <_ContentIncludedByDefault Remove="wwwroot\app\portal\components\product\modules\productModules.js" />
+    <_ContentIncludedByDefault Remove="wwwroot\app\portal\components\product\parents\productParents.html" />
+    <_ContentIncludedByDefault Remove="wwwroot\app\portal\components\product\parents\productParents.js" />
+    <_ContentIncludedByDefault Remove="wwwroot\app\portal\components\product\product-components.js" />
+    <_ContentIncludedByDefault Remove="wwwroot\app\portal\components\product\related\productRelated.html" />
+    <_ContentIncludedByDefault Remove="wwwroot\app\portal\components\product\related\productRelated.js" />
+    <_ContentIncludedByDefault Remove="wwwroot\app\portal\components\product\seo\productSeo.html" />
+    <_ContentIncludedByDefault Remove="wwwroot\app\portal\components\product\seo\productSeo.js" />
+    <_ContentIncludedByDefault Remove="wwwroot\app\portal\components\shared\actions\actions.html" />
+    <_ContentIncludedByDefault Remove="wwwroot\app\portal\components\shared\actions\actions.js" />
+    <_ContentIncludedByDefault Remove="wwwroot\app\portal\components\shared\code-editor\codeEditor.html" />
+    <_ContentIncludedByDefault Remove="wwwroot\app\portal\components\shared\code-editor\codeEditor.js" />
+    <_ContentIncludedByDefault Remove="wwwroot\app\portal\components\shared\components.js" />
+    <_ContentIncludedByDefault Remove="wwwroot\app\portal\components\shared\custom-file\customFile.html" />
+    <_ContentIncludedByDefault Remove="wwwroot\app\portal\components\shared\custom-file\customFile.js" />
+    <_ContentIncludedByDefault Remove="wwwroot\app\portal\components\shared\directives\pane.js" />
+    <_ContentIncludedByDefault Remove="wwwroot\app\portal\components\shared\directives\tabs.js" />
+    <_ContentIncludedByDefault Remove="wwwroot\app\portal\components\shared\editor\editor.html" />
+    <_ContentIncludedByDefault Remove="wwwroot\app\portal\components\shared\editor\editor.js" />
+    <_ContentIncludedByDefault Remove="wwwroot\app\portal\components\shared\side-status\codeEditor.html" />
+    <_ContentIncludedByDefault Remove="wwwroot\app\portal\components\shared\side-status\codeEditor.js" />
+    <_ContentIncludedByDefault Remove="wwwroot\app\portal\components\shared\templates\tabs.html" />
+    <_ContentIncludedByDefault Remove="wwwroot\Content\Templates\Default\assets\css\bootstrap.min.css" />
+    <_ContentIncludedByDefault Remove="wwwroot\Content\Templates\Default\assets\css\demo.css" />
+    <_ContentIncludedByDefault Remove="wwwroot\Content\Templates\Default\assets\css\now-ui-kit.css" />
+    <_ContentIncludedByDefault Remove="wwwroot\Content\Templates\Default\assets\fonts\nucleo-outline.eot" />
+    <_ContentIncludedByDefault Remove="wwwroot\Content\Templates\Default\assets\fonts\nucleo-outline.ttf" />
+    <_ContentIncludedByDefault Remove="wwwroot\Content\Templates\Default\assets\fonts\nucleo-outline.woff" />
+    <_ContentIncludedByDefault Remove="wwwroot\Content\Templates\Default\assets\fonts\nucleo-outline.woff2" />
+    <_ContentIncludedByDefault Remove="wwwroot\Content\Templates\Default\assets\img\apple-icon.png" />
+    <_ContentIncludedByDefault Remove="wwwroot\Content\Templates\Default\assets\img\balmain.jpg" />
+    <_ContentIncludedByDefault Remove="wwwroot\Content\Templates\Default\assets\img\bg1.jpg" />
+    <_ContentIncludedByDefault Remove="wwwroot\Content\Templates\Default\assets\img\bg11.jpg" />
+    <_ContentIncludedByDefault Remove="wwwroot\Content\Templates\Default\assets\img\bg14.jpg" />
+    <_ContentIncludedByDefault Remove="wwwroot\Content\Templates\Default\assets\img\bg15.jpg" />
+    <_ContentIncludedByDefault Remove="wwwroot\Content\Templates\Default\assets\img\bg16.jpg" />
+    <_ContentIncludedByDefault Remove="wwwroot\Content\Templates\Default\assets\img\bg17.jpg" />
+    <_ContentIncludedByDefault Remove="wwwroot\Content\Templates\Default\assets\img\bg18.jpg" />
+    <_ContentIncludedByDefault Remove="wwwroot\Content\Templates\Default\assets\img\bg19.jpg" />
+    <_ContentIncludedByDefault Remove="wwwroot\Content\Templates\Default\assets\img\bg20.jpg" />
+    <_ContentIncludedByDefault Remove="wwwroot\Content\Templates\Default\assets\img\bg21.jpg" />
+    <_ContentIncludedByDefault Remove="wwwroot\Content\Templates\Default\assets\img\bg22.jpg" />
+    <_ContentIncludedByDefault Remove="wwwroot\Content\Templates\Default\assets\img\bg23.jpg" />
+    <_ContentIncludedByDefault Remove="wwwroot\Content\Templates\Default\assets\img\bg24.jpg" />
+    <_ContentIncludedByDefault Remove="wwwroot\Content\Templates\Default\assets\img\bg25.jpg" />
+    <_ContentIncludedByDefault Remove="wwwroot\Content\Templates\Default\assets\img\bg26.jpg" />
+    <_ContentIncludedByDefault Remove="wwwroot\Content\Templates\Default\assets\img\bg27.jpg" />
+    <_ContentIncludedByDefault Remove="wwwroot\Content\Templates\Default\assets\img\bg28.jpg" />
+    <_ContentIncludedByDefault Remove="wwwroot\Content\Templates\Default\assets\img\bg29.jpg" />
+    <_ContentIncludedByDefault Remove="wwwroot\Content\Templates\Default\assets\img\bg3.jpg" />
+    <_ContentIncludedByDefault Remove="wwwroot\Content\Templates\Default\assets\img\bg30.jpg" />
+    <_ContentIncludedByDefault Remove="wwwroot\Content\Templates\Default\assets\img\bg31.jpg" />
+    <_ContentIncludedByDefault Remove="wwwroot\Content\Templates\Default\assets\img\bg32.jpg" />
+    <_ContentIncludedByDefault Remove="wwwroot\Content\Templates\Default\assets\img\bg35.jpg" />
+    <_ContentIncludedByDefault Remove="wwwroot\Content\Templates\Default\assets\img\bg37.jpg" />
+    <_ContentIncludedByDefault Remove="wwwroot\Content\Templates\Default\assets\img\bg38.jpg" />
+    <_ContentIncludedByDefault Remove="wwwroot\Content\Templates\Default\assets\img\bg39.jpg" />
+    <_ContentIncludedByDefault Remove="wwwroot\Content\Templates\Default\assets\img\bg4.jpg" />
+    <_ContentIncludedByDefault Remove="wwwroot\Content\Templates\Default\assets\img\bg40.jpg" />
+    <_ContentIncludedByDefault Remove="wwwroot\Content\Templates\Default\assets\img\bg41.jpg" />
+    <_ContentIncludedByDefault Remove="wwwroot\Content\Templates\Default\assets\img\bg43.jpg" />
+    <_ContentIncludedByDefault Remove="wwwroot\Content\Templates\Default\assets\img\bg44.jpg" />
+    <_ContentIncludedByDefault Remove="wwwroot\Content\Templates\Default\assets\img\bg45.jpg" />
+    <_ContentIncludedByDefault Remove="wwwroot\Content\Templates\Default\assets\img\bg5.jpg" />
+    <_ContentIncludedByDefault Remove="wwwroot\Content\Templates\Default\assets\img\bg51.jpg" />
+    <_ContentIncludedByDefault Remove="wwwroot\Content\Templates\Default\assets\img\bg6.jpg" />
+    <_ContentIncludedByDefault Remove="wwwroot\Content\Templates\Default\assets\img\bg7.jpg" />
+    <_ContentIncludedByDefault Remove="wwwroot\Content\Templates\Default\assets\img\bg8.jpg" />
+    <_ContentIncludedByDefault Remove="wwwroot\Content\Templates\Default\assets\img\bg9.jpg" />
+    <_ContentIncludedByDefault Remove="wwwroot\Content\Templates\Default\assets\img\blog1.jpg" />
+    <_ContentIncludedByDefault Remove="wwwroot\Content\Templates\Default\assets\img\blurred-image-1.jpg" />
+    <_ContentIncludedByDefault Remove="wwwroot\Content\Templates\Default\assets\img\boglioli.jpg" />
+    <_ContentIncludedByDefault Remove="wwwroot\Content\Templates\Default\assets\img\card-blog2.jpg" />
+    <_ContentIncludedByDefault Remove="wwwroot\Content\Templates\Default\assets\img\card-blog3.jpg" />
+    <_ContentIncludedByDefault Remove="wwwroot\Content\Templates\Default\assets\img\contact-us-image.png" />
+    <_ContentIncludedByDefault Remove="wwwroot\Content\Templates\Default\assets\img\contact1.jpg" />
+    <_ContentIncludedByDefault Remove="wwwroot\Content\Templates\Default\assets\img\cov1.jpg" />
+    <_ContentIncludedByDefault Remove="wwwroot\Content\Templates\Default\assets\img\creative-tim-white-slim2.png" />
+    <_ContentIncludedByDefault Remove="wwwroot\Content\Templates\Default\assets\img\default-avatar.png" />
+    <_ContentIncludedByDefault Remove="wwwroot\Content\Templates\Default\assets\img\emily.jpg" />
+    <_ContentIncludedByDefault Remove="wwwroot\Content\Templates\Default\assets\img\examples\card-blog10.jpg" />
+    <_ContentIncludedByDefault Remove="wwwroot\Content\Templates\Default\assets\img\examples\card-blog11.jpg" />
+    <_ContentIncludedByDefault Remove="wwwroot\Content\Templates\Default\assets\img\examples\card-blog12.jpg" />
+    <_ContentIncludedByDefault Remove="wwwroot\Content\Templates\Default\assets\img\examples\card-blog13.jpg" />
+    <_ContentIncludedByDefault Remove="wwwroot\Content\Templates\Default\assets\img\examples\card-blog14.jpg" />
+    <_ContentIncludedByDefault Remove="wwwroot\Content\Templates\Default\assets\img\examples\card-blog15.jpg" />
+    <_ContentIncludedByDefault Remove="wwwroot\Content\Templates\Default\assets\img\examples\card-blog16.jpg" />
+    <_ContentIncludedByDefault Remove="wwwroot\Content\Templates\Default\assets\img\examples\card-blog17.jpg" />
+    <_ContentIncludedByDefault Remove="wwwroot\Content\Templates\Default\assets\img\examples\card-blog18.jpg" />
+    <_ContentIncludedByDefault Remove="wwwroot\Content\Templates\Default\assets\img\examples\card-blog4.jpg" />
+    <_ContentIncludedByDefault Remove="wwwroot\Content\Templates\Default\assets\img\examples\card-blog5.jpg" />
+    <_ContentIncludedByDefault Remove="wwwroot\Content\Templates\Default\assets\img\examples\card-blog6.jpg" />
+    <_ContentIncludedByDefault Remove="wwwroot\Content\Templates\Default\assets\img\examples\card-blog7.jpg" />
+    <_ContentIncludedByDefault Remove="wwwroot\Content\Templates\Default\assets\img\examples\card-blog9.jpg" />
+    <_ContentIncludedByDefault Remove="wwwroot\Content\Templates\Default\assets\img\examples\card-profile1.jpg" />
+    <_ContentIncludedByDefault Remove="wwwroot\Content\Templates\Default\assets\img\examples\card-profile2.jpg" />
+    <_ContentIncludedByDefault Remove="wwwroot\Content\Templates\Default\assets\img\examples\card-profile3.jpg" />
+    <_ContentIncludedByDefault Remove="wwwroot\Content\Templates\Default\assets\img\examples\card-project1.jpg" />
+    <_ContentIncludedByDefault Remove="wwwroot\Content\Templates\Default\assets\img\examples\office1.jpg" />
+    <_ContentIncludedByDefault Remove="wwwroot\Content\Templates\Default\assets\img\favicon.png" />
+    <_ContentIncludedByDefault Remove="wwwroot\Content\Templates\Default\assets\img\flags\AD.png" />
+    <_ContentIncludedByDefault Remove="wwwroot\Content\Templates\Default\assets\img\flags\AE.png" />
+    <_ContentIncludedByDefault Remove="wwwroot\Content\Templates\Default\assets\img\flags\AG.png" />
+    <_ContentIncludedByDefault Remove="wwwroot\Content\Templates\Default\assets\img\flags\AM.png" />
+    <_ContentIncludedByDefault Remove="wwwroot\Content\Templates\Default\assets\img\flags\AR.png" />
+    <_ContentIncludedByDefault Remove="wwwroot\Content\Templates\Default\assets\img\flags\AT.png" />
+    <_ContentIncludedByDefault Remove="wwwroot\Content\Templates\Default\assets\img\flags\AU.png" />
+    <_ContentIncludedByDefault Remove="wwwroot\Content\Templates\Default\assets\img\flags\BE.png" />
+    <_ContentIncludedByDefault Remove="wwwroot\Content\Templates\Default\assets\img\flags\BF.png" />
+    <_ContentIncludedByDefault Remove="wwwroot\Content\Templates\Default\assets\img\flags\BG.png" />
+    <_ContentIncludedByDefault Remove="wwwroot\Content\Templates\Default\assets\img\flags\BO.png" />
+    <_ContentIncludedByDefault Remove="wwwroot\Content\Templates\Default\assets\img\flags\BR.png" />
+    <_ContentIncludedByDefault Remove="wwwroot\Content\Templates\Default\assets\img\flags\CA.png" />
+    <_ContentIncludedByDefault Remove="wwwroot\Content\Templates\Default\assets\img\flags\CD.png" />
+    <_ContentIncludedByDefault Remove="wwwroot\Content\Templates\Default\assets\img\flags\CG.png" />
+    <_ContentIncludedByDefault Remove="wwwroot\Content\Templates\Default\assets\img\flags\CH.png" />
+    <_ContentIncludedByDefault Remove="wwwroot\Content\Templates\Default\assets\img\flags\CL.png" />
+    <_ContentIncludedByDefault Remove="wwwroot\Content\Templates\Default\assets\img\flags\CM.png" />
+    <_ContentIncludedByDefault Remove="wwwroot\Content\Templates\Default\assets\img\flags\CN.png" />
+    <_ContentIncludedByDefault Remove="wwwroot\Content\Templates\Default\assets\img\flags\CO.png" />
+    <_ContentIncludedByDefault Remove="wwwroot\Content\Templates\Default\assets\img\flags\CZ.png" />
+    <_ContentIncludedByDefault Remove="wwwroot\Content\Templates\Default\assets\img\flags\DE.png" />
+    <_ContentIncludedByDefault Remove="wwwroot\Content\Templates\Default\assets\img\flags\DJ.png" />
+    <_ContentIncludedByDefault Remove="wwwroot\Content\Templates\Default\assets\img\flags\DK.png" />
+    <_ContentIncludedByDefault Remove="wwwroot\Content\Templates\Default\assets\img\flags\DZ.png" />
+    <_ContentIncludedByDefault Remove="wwwroot\Content\Templates\Default\assets\img\flags\EE.png" />
+    <_ContentIncludedByDefault Remove="wwwroot\Content\Templates\Default\assets\img\flags\EG.png" />
+    <_ContentIncludedByDefault Remove="wwwroot\Content\Templates\Default\assets\img\flags\ES.png" />
+    <_ContentIncludedByDefault Remove="wwwroot\Content\Templates\Default\assets\img\flags\FI.png" />
+    <_ContentIncludedByDefault Remove="wwwroot\Content\Templates\Default\assets\img\flags\FR.png" />
+    <_ContentIncludedByDefault Remove="wwwroot\Content\Templates\Default\assets\img\flags\GA.png" />
+    <_ContentIncludedByDefault Remove="wwwroot\Content\Templates\Default\assets\img\flags\GB.png" />
+    <_ContentIncludedByDefault Remove="wwwroot\Content\Templates\Default\assets\img\flags\GM.png" />
+    <_ContentIncludedByDefault Remove="wwwroot\Content\Templates\Default\assets\img\flags\GT.png" />
+    <_ContentIncludedByDefault Remove="wwwroot\Content\Templates\Default\assets\img\flags\HN.png" />
+    <_ContentIncludedByDefault Remove="wwwroot\Content\Templates\Default\assets\img\flags\HT.png" />
+    <_ContentIncludedByDefault Remove="wwwroot\Content\Templates\Default\assets\img\flags\HU.png" />
+    <_ContentIncludedByDefault Remove="wwwroot\Content\Templates\Default\assets\img\flags\ID.png" />
+    <_ContentIncludedByDefault Remove="wwwroot\Content\Templates\Default\assets\img\flags\IE.png" />
+    <_ContentIncludedByDefault Remove="wwwroot\Content\Templates\Default\assets\img\flags\IL.png" />
+    <_ContentIncludedByDefault Remove="wwwroot\Content\Templates\Default\assets\img\flags\IN.png" />
+    <_ContentIncludedByDefault Remove="wwwroot\Content\Templates\Default\assets\img\flags\IQ.png" />
+    <_ContentIncludedByDefault Remove="wwwroot\Content\Templates\Default\assets\img\flags\IR.png" />
+    <_ContentIncludedByDefault Remove="wwwroot\Content\Templates\Default\assets\img\flags\IT.png" />
+    <_ContentIncludedByDefault Remove="wwwroot\Content\Templates\Default\assets\img\flags\JM.png" />
+    <_ContentIncludedByDefault Remove="wwwroot\Content\Templates\Default\assets\img\flags\JO.png" />
+    <_ContentIncludedByDefault Remove="wwwroot\Content\Templates\Default\assets\img\flags\JP.png" />
+    <_ContentIncludedByDefault Remove="wwwroot\Content\Templates\Default\assets\img\flags\KG.png" />
+    <_ContentIncludedByDefault Remove="wwwroot\Content\Templates\Default\assets\img\flags\KN.png" />
+    <_ContentIncludedByDefault Remove="wwwroot\Content\Templates\Default\assets\img\flags\KP.png" />
+    <_ContentIncludedByDefault Remove="wwwroot\Content\Templates\Default\assets\img\flags\KR.png" />
+    <_ContentIncludedByDefault Remove="wwwroot\Content\Templates\Default\assets\img\flags\KW.png" />
+    <_ContentIncludedByDefault Remove="wwwroot\Content\Templates\Default\assets\img\flags\KZ.png" />
+    <_ContentIncludedByDefault Remove="wwwroot\Content\Templates\Default\assets\img\flags\LA.png" />
+    <_ContentIncludedByDefault Remove="wwwroot\Content\Templates\Default\assets\img\flags\LB.png" />
+    <_ContentIncludedByDefault Remove="wwwroot\Content\Templates\Default\assets\img\flags\LC.png" />
+    <_ContentIncludedByDefault Remove="wwwroot\Content\Templates\Default\assets\img\flags\LS.png" />
+    <_ContentIncludedByDefault Remove="wwwroot\Content\Templates\Default\assets\img\flags\LU.png" />
+    <_ContentIncludedByDefault Remove="wwwroot\Content\Templates\Default\assets\img\flags\LV.png" />
+    <_ContentIncludedByDefault Remove="wwwroot\Content\Templates\Default\assets\img\flags\MG.png" />
+    <_ContentIncludedByDefault Remove="wwwroot\Content\Templates\Default\assets\img\flags\MK.png" />
+    <_ContentIncludedByDefault Remove="wwwroot\Content\Templates\Default\assets\img\flags\ML.png" />
+    <_ContentIncludedByDefault Remove="wwwroot\Content\Templates\Default\assets\img\flags\MM.png" />
+    <_ContentIncludedByDefault Remove="wwwroot\Content\Templates\Default\assets\img\flags\MT.png" />
+    <_ContentIncludedByDefault Remove="wwwroot\Content\Templates\Default\assets\img\flags\MX.png" />
+    <_ContentIncludedByDefault Remove="wwwroot\Content\Templates\Default\assets\img\flags\NA.png" />
+    <_ContentIncludedByDefault Remove="wwwroot\Content\Templates\Default\assets\img\flags\NE.png" />
+    <_ContentIncludedByDefault Remove="wwwroot\Content\Templates\Default\assets\img\flags\NG.png" />
+    <_ContentIncludedByDefault Remove="wwwroot\Content\Templates\Default\assets\img\flags\NI.png" />
+    <_ContentIncludedByDefault Remove="wwwroot\Content\Templates\Default\assets\img\flags\NL.png" />
+    <_ContentIncludedByDefault Remove="wwwroot\Content\Templates\Default\assets\img\flags\NO.png" />
+    <_ContentIncludedByDefault Remove="wwwroot\Content\Templates\Default\assets\img\flags\OM.png" />
+    <_ContentIncludedByDefault Remove="wwwroot\Content\Templates\Default\assets\img\flags\PA.png" />
+    <_ContentIncludedByDefault Remove="wwwroot\Content\Templates\Default\assets\img\flags\PE.png" />
+    <_ContentIncludedByDefault Remove="wwwroot\Content\Templates\Default\assets\img\flags\PG.png" />
+    <_ContentIncludedByDefault Remove="wwwroot\Content\Templates\Default\assets\img\flags\PK.png" />
+    <_ContentIncludedByDefault Remove="wwwroot\Content\Templates\Default\assets\img\flags\PL.png" />
+    <_ContentIncludedByDefault Remove="wwwroot\Content\Templates\Default\assets\img\flags\PT.png" />
+    <_ContentIncludedByDefault Remove="wwwroot\Content\Templates\Default\assets\img\flags\PY.png" />
+    <_ContentIncludedByDefault Remove="wwwroot\Content\Templates\Default\assets\img\flags\QA.png" />
+    <_ContentIncludedByDefault Remove="wwwroot\Content\Templates\Default\assets\img\flags\RO.png" />
+    <_ContentIncludedByDefault Remove="wwwroot\Content\Templates\Default\assets\img\flags\RU.png" />
+    <_ContentIncludedByDefault Remove="wwwroot\Content\Templates\Default\assets\img\flags\RW.png" />
+    <_ContentIncludedByDefault Remove="wwwroot\Content\Templates\Default\assets\img\flags\SA.png" />
+    <_ContentIncludedByDefault Remove="wwwroot\Content\Templates\Default\assets\img\flags\SE.png" />
+    <_ContentIncludedByDefault Remove="wwwroot\Content\Templates\Default\assets\img\flags\SG.png" />
+    <_ContentIncludedByDefault Remove="wwwroot\Content\Templates\Default\assets\img\flags\SL.png" />
+    <_ContentIncludedByDefault Remove="wwwroot\Content\Templates\Default\assets\img\flags\SN.png" />
+    <_ContentIncludedByDefault Remove="wwwroot\Content\Templates\Default\assets\img\flags\SO.png" />
+    <_ContentIncludedByDefault Remove="wwwroot\Content\Templates\Default\assets\img\flags\SV.png" />
+    <_ContentIncludedByDefault Remove="wwwroot\Content\Templates\Default\assets\img\flags\TD.png" />
+    <_ContentIncludedByDefault Remove="wwwroot\Content\Templates\Default\assets\img\flags\TJ.png" />
+    <_ContentIncludedByDefault Remove="wwwroot\Content\Templates\Default\assets\img\flags\TL.png" />
+    <_ContentIncludedByDefault Remove="wwwroot\Content\Templates\Default\assets\img\flags\TR.png" />
+    <_ContentIncludedByDefault Remove="wwwroot\Content\Templates\Default\assets\img\flags\TZ.png" />
+    <_ContentIncludedByDefault Remove="wwwroot\Content\Templates\Default\assets\img\flags\UA.png" />
+    <_ContentIncludedByDefault Remove="wwwroot\Content\Templates\Default\assets\img\flags\US.png" />
+    <_ContentIncludedByDefault Remove="wwwroot\Content\Templates\Default\assets\img\flags\VE.png" />
+    <_ContentIncludedByDefault Remove="wwwroot\Content\Templates\Default\assets\img\flags\VN.png" />
+    <_ContentIncludedByDefault Remove="wwwroot\Content\Templates\Default\assets\img\flags\YE.png" />
+    <_ContentIncludedByDefault Remove="wwwroot\Content\Templates\Default\assets\img\github.jpg" />
+    <_ContentIncludedByDefault Remove="wwwroot\Content\Templates\Default\assets\img\gucci.jpg" />
+    <_ContentIncludedByDefault Remove="wwwroot\Content\Templates\Default\assets\img\hero-image-1.png" />
+    <_ContentIncludedByDefault Remove="wwwroot\Content\Templates\Default\assets\img\hero-image-2.png" />
+    <_ContentIncludedByDefault Remove="wwwroot\Content\Templates\Default\assets\img\hero-image-3.png" />
+    <_ContentIncludedByDefault Remove="wwwroot\Content\Templates\Default\assets\img\image_placeholder.jpg" />
+    <_ContentIncludedByDefault Remove="wwwroot\Content\Templates\Default\assets\img\invision-white-slim.png" />
+    <_ContentIncludedByDefault Remove="wwwroot\Content\Templates\Default\assets\img\ipad.png" />
+    <_ContentIncludedByDefault Remove="wwwroot\Content\Templates\Default\assets\img\ipad2-inverted.png" />
+    <_ContentIncludedByDefault Remove="wwwroot\Content\Templates\Default\assets\img\ipad2.png" />
+    <_ContentIncludedByDefault Remove="wwwroot\Content\Templates\Default\assets\img\ipad3.png" />
+    <_ContentIncludedByDefault Remove="wwwroot\Content\Templates\Default\assets\img\iphone2.png" />
+    <_ContentIncludedByDefault Remove="wwwroot\Content\Templates\Default\assets\img\james.jpg" />
+    <_ContentIncludedByDefault Remove="wwwroot\Content\Templates\Default\assets\img\julie.jpg" />
+    <_ContentIncludedByDefault Remove="wwwroot\Content\Templates\Default\assets\img\kingsman.jpg" />
+    <_ContentIncludedByDefault Remove="wwwroot\Content\Templates\Default\assets\img\landing.jpg" />
+    <_ContentIncludedByDefault Remove="wwwroot\Content\Templates\Default\assets\img\login.jpg" />
+    <_ContentIncludedByDefault Remove="wwwroot\Content\Templates\Default\assets\img\logo-square.jpg" />
+    <_ContentIncludedByDefault Remove="wwwroot\Content\Templates\Default\assets\img\logo.png" />
+    <_ContentIncludedByDefault Remove="wwwroot\Content\Templates\Default\assets\img\marie.jpg" />
+    <_ContentIncludedByDefault Remove="wwwroot\Content\Templates\Default\assets\img\michael.jpg" />
+    <_ContentIncludedByDefault Remove="wwwroot\Content\Templates\Default\assets\img\mike.jpg" />
+    <_ContentIncludedByDefault Remove="wwwroot\Content\Templates\Default\assets\img\now-logo.png" />
+    <_ContentIncludedByDefault Remove="wwwroot\Content\Templates\Default\assets\img\nucleo-logo.svg" />
+    <_ContentIncludedByDefault Remove="wwwroot\Content\Templates\Default\assets\img\olivia.jpg" />
+    <_ContentIncludedByDefault Remove="wwwroot\Content\Templates\Default\assets\img\placeholder.jpg" />
+    <_ContentIncludedByDefault Remove="wwwroot\Content\Templates\Default\assets\img\polo.jpg" />
+    <_ContentIncludedByDefault Remove="wwwroot\Content\Templates\Default\assets\img\pp-1.jpg" />
+    <_ContentIncludedByDefault Remove="wwwroot\Content\Templates\Default\assets\img\pp-2.jpg" />
+    <_ContentIncludedByDefault Remove="wwwroot\Content\Templates\Default\assets\img\pp-3.jpg" />
+    <_ContentIncludedByDefault Remove="wwwroot\Content\Templates\Default\assets\img\pp-4.jpg" />
+    <_ContentIncludedByDefault Remove="wwwroot\Content\Templates\Default\assets\img\pp-5.jpg" />
+    <_ContentIncludedByDefault Remove="wwwroot\Content\Templates\Default\assets\img\pp-cov.jpg" />
+    <_ContentIncludedByDefault Remove="wwwroot\Content\Templates\Default\assets\img\prada.jpg" />
+    <_ContentIncludedByDefault Remove="wwwroot\Content\Templates\Default\assets\img\presentation-page\basic_thumb.jpg" />
+    <_ContentIncludedByDefault Remove="wwwroot\Content\Templates\Default\assets\img\presentation-page\bg50.jpg" />
+    <_ContentIncludedByDefault Remove="wwwroot\Content\Templates\Default\assets\img\presentation-page\blogpost1.jpg" />
+    <_ContentIncludedByDefault Remove="wwwroot\Content\Templates\Default\assets\img\presentation-page\blogpost2.jpg" />
+    <_ContentIncludedByDefault Remove="wwwroot\Content\Templates\Default\assets\img\presentation-page\blogpost3.jpg" />
+    <_ContentIncludedByDefault Remove="wwwroot\Content\Templates\Default\assets\img\presentation-page\blogpost4.jpg" />
+    <_ContentIncludedByDefault Remove="wwwroot\Content\Templates\Default\assets\img\presentation-page\blogpost5.jpg" />
+    <_ContentIncludedByDefault Remove="wwwroot\Content\Templates\Default\assets\img\presentation-page\card1.jpg" />
+    <_ContentIncludedByDefault Remove="wwwroot\Content\Templates\Default\assets\img\presentation-page\card2.png" />
+    <_ContentIncludedByDefault Remove="wwwroot\Content\Templates\Default\assets\img\presentation-page\card3.jpg" />
+    <_ContentIncludedByDefault Remove="wwwroot\Content\Templates\Default\assets\img\presentation-page\card4.jpg" />
+    <_ContentIncludedByDefault Remove="wwwroot\Content\Templates\Default\assets\img\presentation-page\card5.jpg" />
+    <_ContentIncludedByDefault Remove="wwwroot\Content\Templates\Default\assets\img\presentation-page\card6.jpg" />
+    <_ContentIncludedByDefault Remove="wwwroot\Content\Templates\Default\assets\img\presentation-page\card7.jpg" />
+    <_ContentIncludedByDefault Remove="wwwroot\Content\Templates\Default\assets\img\presentation-page\cards_thumb.jpg" />
+    <_ContentIncludedByDefault Remove="wwwroot\Content\Templates\Default\assets\img\presentation-page\coloured-card-with-btn.jpg" />
+    <_ContentIncludedByDefault Remove="wwwroot\Content\Templates\Default\assets\img\presentation-page\coloured-card.jpg" />
+    <_ContentIncludedByDefault Remove="wwwroot\Content\Templates\Default\assets\img\presentation-page\contact1.jpg" />
+    <_ContentIncludedByDefault Remove="wwwroot\Content\Templates\Default\assets\img\presentation-page\contact2.jpg" />
+    <_ContentIncludedByDefault Remove="wwwroot\Content\Templates\Default\assets\img\presentation-page\content1.png" />
+    <_ContentIncludedByDefault Remove="wwwroot\Content\Templates\Default\assets\img\presentation-page\content3.jpg" />
+    <_ContentIncludedByDefault Remove="wwwroot\Content\Templates\Default\assets\img\presentation-page\content3.png" />
+    <_ContentIncludedByDefault Remove="wwwroot\Content\Templates\Default\assets\img\presentation-page\content4.jpg" />
+    <_ContentIncludedByDefault Remove="wwwroot\Content\Templates\Default\assets\img\presentation-page\content4.png" />
+    <_ContentIncludedByDefault Remove="wwwroot\Content\Templates\Default\assets\img\presentation-page\features1.jpg" />
+    <_ContentIncludedByDefault Remove="wwwroot\Content\Templates\Default\assets\img\presentation-page\features2.jpg" />
+    <_ContentIncludedByDefault Remove="wwwroot\Content\Templates\Default\assets\img\presentation-page\features3.jpg" />
+    <_ContentIncludedByDefault Remove="wwwroot\Content\Templates\Default\assets\img\presentation-page\features4.jpg" />
+    <_ContentIncludedByDefault Remove="wwwroot\Content\Templates\Default\assets\img\presentation-page\features5.jpg" />
+    <_ContentIncludedByDefault Remove="wwwroot\Content\Templates\Default\assets\img\presentation-page\features6.jpg" />
+    <_ContentIncludedByDefault Remove="wwwroot\Content\Templates\Default\assets\img\presentation-page\features7.jpg" />
+    <_ContentIncludedByDefault Remove="wwwroot\Content\Templates\Default\assets\img\presentation-page\features8.jpg" />
+    <_ContentIncludedByDefault Remove="wwwroot\Content\Templates\Default\assets\img\presentation-page\harvard.jpg" />
+    <_ContentIncludedByDefault Remove="wwwroot\Content\Templates\Default\assets\img\presentation-page\header1.jpg" />
+    <_ContentIncludedByDefault Remove="wwwroot\Content\Templates\Default\assets\img\presentation-page\header2.jpg" />
+    <_ContentIncludedByDefault Remove="wwwroot\Content\Templates\Default\assets\img\presentation-page\header3.jpg" />
+    <_ContentIncludedByDefault Remove="wwwroot\Content\Templates\Default\assets\img\presentation-page\header4.jpg" />
+    <_ContentIncludedByDefault Remove="wwwroot\Content\Templates\Default\assets\img\presentation-page\header5.jpg" />
+    <_ContentIncludedByDefault Remove="wwwroot\Content\Templates\Default\assets\img\presentation-page\linkedin-btn.jpg" />
+    <_ContentIncludedByDefault Remove="wwwroot\Content\Templates\Default\assets\img\presentation-page\microsoft.jpg" />
+    <_ContentIncludedByDefault Remove="wwwroot\Content\Templates\Default\assets\img\presentation-page\nuk-pro-back-sky-black.jpg" />
+    <_ContentIncludedByDefault Remove="wwwroot\Content\Templates\Default\assets\img\presentation-page\nuk-pro-back-sky-orange.jpg" />
+    <_ContentIncludedByDefault Remove="wwwroot\Content\Templates\Default\assets\img\presentation-page\nuk-pro-back-sky.jpg" />
+    <_ContentIncludedByDefault Remove="wwwroot\Content\Templates\Default\assets\img\presentation-page\nuk-pro-buildings-black.png" />
+    <_ContentIncludedByDefault Remove="wwwroot\Content\Templates\Default\assets\img\presentation-page\nuk-pro-buildings.png" />
+    <_ContentIncludedByDefault Remove="wwwroot\Content\Templates\Default\assets\img\presentation-page\pages2_thumb.jpg" />
+    <_ContentIncludedByDefault Remove="wwwroot\Content\Templates\Default\assets\img\presentation-page\pages\about-us.jpg" />
+    <_ContentIncludedByDefault Remove="wwwroot\Content\Templates\Default\assets\img\presentation-page\pages\blog-post.jpg" />
+    <_ContentIncludedByDefault Remove="wwwroot\Content\Templates\Default\assets\img\presentation-page\pages\blog-posts.jpg" />
+    <_ContentIncludedByDefault Remove="wwwroot\Content\Templates\Default\assets\img\presentation-page\pages\contact.jpg" />
+    <_ContentIncludedByDefault Remove="wwwroot\Content\Templates\Default\assets\img\presentation-page\pages\ecommerce.jpg" />
+    <_ContentIncludedByDefault Remove="wwwroot\Content\Templates\Default\assets\img\presentation-page\pages\landing.jpg" />
+    <_ContentIncludedByDefault Remove="wwwroot\Content\Templates\Default\assets\img\presentation-page\pages\login.jpg" />
+    <_ContentIncludedByDefault Remove="wwwroot\Content\Templates\Default\assets\img\presentation-page\pages\pricing.jpg" />
+    <_ContentIncludedByDefault Remove="wwwroot\Content\Templates\Default\assets\img\presentation-page\pages\product.jpg" />
+    <_ContentIncludedByDefault Remove="wwwroot\Content\Templates\Default\assets\img\presentation-page\pages\profile.jpg" />
+    <_ContentIncludedByDefault Remove="wwwroot\Content\Templates\Default\assets\img\presentation-page\pages\signup.jpg" />
+    <_ContentIncludedByDefault Remove="wwwroot\Content\Templates\Default\assets\img\presentation-page\pages_thumb.jpg" />
+    <_ContentIncludedByDefault Remove="wwwroot\Content\Templates\Default\assets\img\presentation-page\pricing1.jpg" />
+    <_ContentIncludedByDefault Remove="wwwroot\Content\Templates\Default\assets\img\presentation-page\pricing2.jpg" />
+    <_ContentIncludedByDefault Remove="wwwroot\Content\Templates\Default\assets\img\presentation-page\pricing3.jpg" />
+    <_ContentIncludedByDefault Remove="wwwroot\Content\Templates\Default\assets\img\presentation-page\pricing4.jpg" />
+    <_ContentIncludedByDefault Remove="wwwroot\Content\Templates\Default\assets\img\presentation-page\pricing5.jpg" />
+    <_ContentIncludedByDefault Remove="wwwroot\Content\Templates\Default\assets\img\presentation-page\projects1.jpg" />
+    <_ContentIncludedByDefault Remove="wwwroot\Content\Templates\Default\assets\img\presentation-page\projects2.jpg" />
+    <_ContentIncludedByDefault Remove="wwwroot\Content\Templates\Default\assets\img\presentation-page\projects3.jpg" />
+    <_ContentIncludedByDefault Remove="wwwroot\Content\Templates\Default\assets\img\presentation-page\projects4.jpg" />
+    <_ContentIncludedByDefault Remove="wwwroot\Content\Templates\Default\assets\img\presentation-page\projects5.jpg" />
+    <_ContentIncludedByDefault Remove="wwwroot\Content\Templates\Default\assets\img\presentation-page\sections_thumb.jpg" />
+    <_ContentIncludedByDefault Remove="wwwroot\Content\Templates\Default\assets\img\presentation-page\share-btn.jpg" />
+    <_ContentIncludedByDefault Remove="wwwroot\Content\Templates\Default\assets\img\presentation-page\social-row.jpg" />
+    <_ContentIncludedByDefault Remove="wwwroot\Content\Templates\Default\assets\img\presentation-page\stanford.jpg" />
+    <_ContentIncludedByDefault Remove="wwwroot\Content\Templates\Default\assets\img\presentation-page\table.jpg" />
+    <_ContentIncludedByDefault Remove="wwwroot\Content\Templates\Default\assets\img\presentation-page\team1.jpg" />
+    <_ContentIncludedByDefault Remove="wwwroot\Content\Templates\Default\assets\img\presentation-page\team2.jpg" />
+    <_ContentIncludedByDefault Remove="wwwroot\Content\Templates\Default\assets\img\presentation-page\team3.jpg" />
+    <_ContentIncludedByDefault Remove="wwwroot\Content\Templates\Default\assets\img\presentation-page\team4.jpg" />
+    <_ContentIncludedByDefault Remove="wwwroot\Content\Templates\Default\assets\img\presentation-page\team5.jpg" />
+    <_ContentIncludedByDefault Remove="wwwroot\Content\Templates\Default\assets\img\presentation-page\testimonials1.jpg" />
+    <_ContentIncludedByDefault Remove="wwwroot\Content\Templates\Default\assets\img\presentation-page\testimonials2.jpg" />
+    <_ContentIncludedByDefault Remove="wwwroot\Content\Templates\Default\assets\img\presentation-page\testimonials3.jpg" />
+    <_ContentIncludedByDefault Remove="wwwroot\Content\Templates\Default\assets\img\presentation-page\vodafone.jpg" />
+    <_ContentIncludedByDefault Remove="wwwroot\Content\Templates\Default\assets\img\pricing1.jpg" />
+    <_ContentIncludedByDefault Remove="wwwroot\Content\Templates\Default\assets\img\pricing2.jpg" />
+    <_ContentIncludedByDefault Remove="wwwroot\Content\Templates\Default\assets\img\pricing3.jpg" />
+    <_ContentIncludedByDefault Remove="wwwroot\Content\Templates\Default\assets\img\pricing4.jpg" />
+    <_ContentIncludedByDefault Remove="wwwroot\Content\Templates\Default\assets\img\product1.jpg" />
+    <_ContentIncludedByDefault Remove="wwwroot\Content\Templates\Default\assets\img\product2.jpg" />
+    <_ContentIncludedByDefault Remove="wwwroot\Content\Templates\Default\assets\img\product3.jpg" />
+    <_ContentIncludedByDefault Remove="wwwroot\Content\Templates\Default\assets\img\profile.jpg" />
+    <_ContentIncludedByDefault Remove="wwwroot\Content\Templates\Default\assets\img\project1.jpg" />
+    <_ContentIncludedByDefault Remove="wwwroot\Content\Templates\Default\assets\img\project10.jpg" />
+    <_ContentIncludedByDefault Remove="wwwroot\Content\Templates\Default\assets\img\project11.jpg" />
+    <_ContentIncludedByDefault Remove="wwwroot\Content\Templates\Default\assets\img\project12.jpg" />
+    <_ContentIncludedByDefault Remove="wwwroot\Content\Templates\Default\assets\img\project13.jpg" />
+    <_ContentIncludedByDefault Remove="wwwroot\Content\Templates\Default\assets\img\project14.jpg" />
+    <_ContentIncludedByDefault Remove="wwwroot\Content\Templates\Default\assets\img\project15.jpg" />
+    <_ContentIncludedByDefault Remove="wwwroot\Content\Templates\Default\assets\img\project16.jpg" />
+    <_ContentIncludedByDefault Remove="wwwroot\Content\Templates\Default\assets\img\project17.jpg" />
+    <_ContentIncludedByDefault Remove="wwwroot\Content\Templates\Default\assets\img\project18.jpg" />
+    <_ContentIncludedByDefault Remove="wwwroot\Content\Templates\Default\assets\img\project19.jpg" />
+    <_ContentIncludedByDefault Remove="wwwroot\Content\Templates\Default\assets\img\project2.jpg" />
+    <_ContentIncludedByDefault Remove="wwwroot\Content\Templates\Default\assets\img\project20.jpg" />
+    <_ContentIncludedByDefault Remove="wwwroot\Content\Templates\Default\assets\img\project21.jpg" />
+    <_ContentIncludedByDefault Remove="wwwroot\Content\Templates\Default\assets\img\project22.jpg" />
+    <_ContentIncludedByDefault Remove="wwwroot\Content\Templates\Default\assets\img\project23.jpg" />
+    <_ContentIncludedByDefault Remove="wwwroot\Content\Templates\Default\assets\img\project24.jpg" />
+    <_ContentIncludedByDefault Remove="wwwroot\Content\Templates\Default\assets\img\project4.jpg" />
+    <_ContentIncludedByDefault Remove="wwwroot\Content\Templates\Default\assets\img\project5 .jpg" />
+    <_ContentIncludedByDefault Remove="wwwroot\Content\Templates\Default\assets\img\project5.jpg" />
+    <_ContentIncludedByDefault Remove="wwwroot\Content\Templates\Default\assets\img\project6.jpg" />
+    <_ContentIncludedByDefault Remove="wwwroot\Content\Templates\Default\assets\img\project7.jpg" />
+    <_ContentIncludedByDefault Remove="wwwroot\Content\Templates\Default\assets\img\project8.jpg" />
+    <_ContentIncludedByDefault Remove="wwwroot\Content\Templates\Default\assets\img\project9.jpg" />
+    <_ContentIncludedByDefault Remove="wwwroot\Content\Templates\Default\assets\img\ryan.jpg" />
+    <_ContentIncludedByDefault Remove="wwwroot\Content\Templates\Default\assets\img\saint-laurent.jpg" />
+    <_ContentIncludedByDefault Remove="wwwroot\Content\Templates\Default\assets\img\saint-laurent1.jpg" />
+    <_ContentIncludedByDefault Remove="wwwroot\Content\Templates\Default\assets\img\sweeney.jpg" />
+    <_ContentIncludedByDefault Remove="wwwroot\Content\Templates\Default\assets\img\tom-ford.jpg" />
+    <_ContentIncludedByDefault Remove="wwwroot\Content\Templates\Default\assets\img\usher.jpg" />
+    <_ContentIncludedByDefault Remove="wwwroot\Content\Templates\Default\assets\img\wooyoungmi.jpg" />
+    <_ContentIncludedByDefault Remove="wwwroot\Content\Templates\Default\assets\js\core\bootstrap.min.js" />
+    <_ContentIncludedByDefault Remove="wwwroot\Content\Templates\Default\assets\js\core\jquery.3.2.1.min.js" />
+    <_ContentIncludedByDefault Remove="wwwroot\Content\Templates\Default\assets\js\core\popper.min.js" />
+    <_ContentIncludedByDefault Remove="wwwroot\Content\Templates\Default\assets\js\now-ui-kit.js" />
+    <_ContentIncludedByDefault Remove="wwwroot\Content\Templates\Default\assets\js\plugins\bootstrap-datetimepicker.min.js" />
+    <_ContentIncludedByDefault Remove="wwwroot\Content\Templates\Default\assets\js\plugins\bootstrap-selectpicker.js" />
+    <_ContentIncludedByDefault Remove="wwwroot\Content\Templates\Default\assets\js\plugins\bootstrap-switch.js" />
+    <_ContentIncludedByDefault Remove="wwwroot\Content\Templates\Default\assets\js\plugins\bootstrap-tagsinput.js" />
+    <_ContentIncludedByDefault Remove="wwwroot\Content\Templates\Default\assets\js\plugins\jasny-bootstrap.min.js" />
+    <_ContentIncludedByDefault Remove="wwwroot\Content\Templates\Default\assets\js\plugins\moment.min.js" />
+    <_ContentIncludedByDefault Remove="wwwroot\Content\Templates\Default\assets\js\plugins\nouislider.min.js" />
+    <_ContentIncludedByDefault Remove="wwwroot\Content\Templates\Default\assets\js\plugins\presentation-page\jquery.sharrre.js" />
+    <_ContentIncludedByDefault Remove="wwwroot\Content\Templates\Default\assets\js\plugins\presentation-page\rellax.min.js" />
+    <_ContentIncludedByDefault Remove="wwwroot\Content\Templates\Default\assets\sass\demo.scss" />
+    <_ContentIncludedByDefault Remove="wwwroot\Content\Templates\Default\assets\sass\now-ui-kit.scss" />
+    <_ContentIncludedByDefault Remove="wwwroot\Content\Templates\Default\assets\sass\now-ui-kit\mixins\_badges.scss" />
+    <_ContentIncludedByDefault Remove="wwwroot\Content\Templates\Default\assets\sass\now-ui-kit\mixins\_buttons.scss" />
+    <_ContentIncludedByDefault Remove="wwwroot\Content\Templates\Default\assets\sass\now-ui-kit\mixins\_cards.scss" />
+    <_ContentIncludedByDefault Remove="wwwroot\Content\Templates\Default\assets\sass\now-ui-kit\mixins\_datepicker.scss" />
+    <_ContentIncludedByDefault Remove="wwwroot\Content\Templates\Default\assets\sass\now-ui-kit\mixins\_dropdown.scss" />
+    <_ContentIncludedByDefault Remove="wwwroot\Content\Templates\Default\assets\sass\now-ui-kit\mixins\_inputs.scss" />
+    <_ContentIncludedByDefault Remove="wwwroot\Content\Templates\Default\assets\sass\now-ui-kit\mixins\_modals.scss" />
+    <_ContentIncludedByDefault Remove="wwwroot\Content\Templates\Default\assets\sass\now-ui-kit\mixins\_navbar.scss" />
+    <_ContentIncludedByDefault Remove="wwwroot\Content\Templates\Default\assets\sass\now-ui-kit\mixins\_pages.scss" />
+    <_ContentIncludedByDefault Remove="wwwroot\Content\Templates\Default\assets\sass\now-ui-kit\mixins\_popovers.scss" />
+    <_ContentIncludedByDefault Remove="wwwroot\Content\Templates\Default\assets\sass\now-ui-kit\mixins\_tags.scss" />
+    <_ContentIncludedByDefault Remove="wwwroot\Content\Templates\Default\assets\sass\now-ui-kit\mixins\_transparency.scss" />
+    <_ContentIncludedByDefault Remove="wwwroot\Content\Templates\Default\assets\sass\now-ui-kit\mixins\_vendor-prefixes.scss" />
+    <_ContentIncludedByDefault Remove="wwwroot\Content\Templates\Default\assets\sass\now-ui-kit\plugins\_plugin-bootstrap-select.scss" />
+    <_ContentIncludedByDefault Remove="wwwroot\Content\Templates\Default\assets\sass\now-ui-kit\plugins\_plugin-bootstrap-switch.scss" />
+    <_ContentIncludedByDefault Remove="wwwroot\Content\Templates\Default\assets\sass\now-ui-kit\plugins\_plugin-datetimepicker.scss" />
+    <_ContentIncludedByDefault Remove="wwwroot\Content\Templates\Default\assets\sass\now-ui-kit\plugins\_plugin-fileupload.scss" />
+    <_ContentIncludedByDefault Remove="wwwroot\Content\Templates\Default\assets\sass\now-ui-kit\plugins\_plugin-isometricGrids.scss" />
+    <_ContentIncludedByDefault Remove="wwwroot\Content\Templates\Default\assets\sass\now-ui-kit\plugins\_plugin-nouislider.scss" />
+    <_ContentIncludedByDefault Remove="wwwroot\Content\Templates\Default\assets\sass\now-ui-kit\plugins\_plugin-tagsinput.scss" />
+    <_ContentIncludedByDefault Remove="wwwroot\Content\Templates\Default\assets\sass\now-ui-kit\sections\_blogs.scss" />
+    <_ContentIncludedByDefault Remove="wwwroot\Content\Templates\Default\assets\sass\now-ui-kit\sections\_contactus.scss" />
+    <_ContentIncludedByDefault Remove="wwwroot\Content\Templates\Default\assets\sass\now-ui-kit\sections\_features.scss" />
+    <_ContentIncludedByDefault Remove="wwwroot\Content\Templates\Default\assets\sass\now-ui-kit\sections\_headers.scss" />
+    <_ContentIncludedByDefault Remove="wwwroot\Content\Templates\Default\assets\sass\now-ui-kit\sections\_pricing.scss" />
+    <_ContentIncludedByDefault Remove="wwwroot\Content\Templates\Default\assets\sass\now-ui-kit\sections\_projects.scss" />
+    <_ContentIncludedByDefault Remove="wwwroot\Content\Templates\Default\assets\sass\now-ui-kit\sections\_social-subscribe-lines.scss" />
+    <_ContentIncludedByDefault Remove="wwwroot\Content\Templates\Default\assets\sass\now-ui-kit\sections\_team.scss" />
+    <_ContentIncludedByDefault Remove="wwwroot\Content\Templates\Default\assets\sass\now-ui-kit\sections\_testimonials.scss" />
+    <_ContentIncludedByDefault Remove="wwwroot\Content\Templates\Default\assets\sass\now-ui-kit\_alerts.scss" />
+    <_ContentIncludedByDefault Remove="wwwroot\Content\Templates\Default\assets\sass\now-ui-kit\_badges.scss" />
+    <_ContentIncludedByDefault Remove="wwwroot\Content\Templates\Default\assets\sass\now-ui-kit\_buttons.scss" />
+    <_ContentIncludedByDefault Remove="wwwroot\Content\Templates\Default\assets\sass\now-ui-kit\_cards.scss" />
+    <_ContentIncludedByDefault Remove="wwwroot\Content\Templates\Default\assets\sass\now-ui-kit\_carousel.scss" />
+    <_ContentIncludedByDefault Remove="wwwroot\Content\Templates\Default\assets\sass\now-ui-kit\_checkboxes-radio.scss" />
+    <_ContentIncludedByDefault Remove="wwwroot\Content\Templates\Default\assets\sass\now-ui-kit\_dropdown.scss" />
+    <_ContentIncludedByDefault Remove="wwwroot\Content\Templates\Default\assets\sass\now-ui-kit\_example-pages.scss" />
+    <_ContentIncludedByDefault Remove="wwwroot\Content\Templates\Default\assets\sass\now-ui-kit\_footers.scss" />
+    <_ContentIncludedByDefault Remove="wwwroot\Content\Templates\Default\assets\sass\now-ui-kit\_images.scss" />
+    <_ContentIncludedByDefault Remove="wwwroot\Content\Templates\Default\assets\sass\now-ui-kit\_info-areas.scss" />
+    <_ContentIncludedByDefault Remove="wwwroot\Content\Templates\Default\assets\sass\now-ui-kit\_inputs.scss" />
+    <_ContentIncludedByDefault Remove="wwwroot\Content\Templates\Default\assets\sass\now-ui-kit\_media.scss" />
+    <_ContentIncludedByDefault Remove="wwwroot\Content\Templates\Default\assets\sass\now-ui-kit\_misc.scss" />
+    <_ContentIncludedByDefault Remove="wwwroot\Content\Templates\Default\assets\sass\now-ui-kit\_mixins.scss" />
+    <_ContentIncludedByDefault Remove="wwwroot\Content\Templates\Default\assets\sass\now-ui-kit\_modals.scss" />
+    <_ContentIncludedByDefault Remove="wwwroot\Content\Templates\Default\assets\sass\now-ui-kit\_navbar.scss" />
+    <_ContentIncludedByDefault Remove="wwwroot\Content\Templates\Default\assets\sass\now-ui-kit\_nucleo-outline.scss" />
+    <_ContentIncludedByDefault Remove="wwwroot\Content\Templates\Default\assets\sass\now-ui-kit\_pagination.scss" />
+    <_ContentIncludedByDefault Remove="wwwroot\Content\Templates\Default\assets\sass\now-ui-kit\_pills.scss" />
+    <_ContentIncludedByDefault Remove="wwwroot\Content\Templates\Default\assets\sass\now-ui-kit\_popups.scss" />
+    <_ContentIncludedByDefault Remove="wwwroot\Content\Templates\Default\assets\sass\now-ui-kit\_progress.scss" />
+    <_ContentIncludedByDefault Remove="wwwroot\Content\Templates\Default\assets\sass\now-ui-kit\_responsive.scss" />
+    <_ContentIncludedByDefault Remove="wwwroot\Content\Templates\Default\assets\sass\now-ui-kit\_sections.scss" />
+    <_ContentIncludedByDefault Remove="wwwroot\Content\Templates\Default\assets\sass\now-ui-kit\_tables.scss" />
+    <_ContentIncludedByDefault Remove="wwwroot\Content\Templates\Default\assets\sass\now-ui-kit\_tabs.scss" />
+    <_ContentIncludedByDefault Remove="wwwroot\Content\Templates\Default\assets\sass\now-ui-kit\_typography.scss" />
+    <_ContentIncludedByDefault Remove="wwwroot\Content\Templates\Default\assets\sass\now-ui-kit\_variables.scss" />
+    <_ContentIncludedByDefault Remove="wwwroot\flags\1x1\ad.svg" />
+    <_ContentIncludedByDefault Remove="wwwroot\flags\1x1\ae.svg" />
+    <_ContentIncludedByDefault Remove="wwwroot\flags\1x1\af.svg" />
+    <_ContentIncludedByDefault Remove="wwwroot\flags\1x1\ag.svg" />
+    <_ContentIncludedByDefault Remove="wwwroot\flags\1x1\ai.svg" />
+    <_ContentIncludedByDefault Remove="wwwroot\flags\1x1\al.svg" />
+    <_ContentIncludedByDefault Remove="wwwroot\flags\1x1\am.svg" />
+    <_ContentIncludedByDefault Remove="wwwroot\flags\1x1\ao.svg" />
+    <_ContentIncludedByDefault Remove="wwwroot\flags\1x1\aq.svg" />
+    <_ContentIncludedByDefault Remove="wwwroot\flags\1x1\ar.svg" />
+    <_ContentIncludedByDefault Remove="wwwroot\flags\1x1\as.svg" />
+    <_ContentIncludedByDefault Remove="wwwroot\flags\1x1\at.svg" />
+    <_ContentIncludedByDefault Remove="wwwroot\flags\1x1\au.svg" />
+    <_ContentIncludedByDefault Remove="wwwroot\flags\1x1\aw.svg" />
+    <_ContentIncludedByDefault Remove="wwwroot\flags\1x1\ax.svg" />
+    <_ContentIncludedByDefault Remove="wwwroot\flags\1x1\az.svg" />
+    <_ContentIncludedByDefault Remove="wwwroot\flags\1x1\ba.svg" />
+    <_ContentIncludedByDefault Remove="wwwroot\flags\1x1\bb.svg" />
+    <_ContentIncludedByDefault Remove="wwwroot\flags\1x1\bd.svg" />
+    <_ContentIncludedByDefault Remove="wwwroot\flags\1x1\be.svg" />
+    <_ContentIncludedByDefault Remove="wwwroot\flags\1x1\bf.svg" />
+    <_ContentIncludedByDefault Remove="wwwroot\flags\1x1\bg.svg" />
+    <_ContentIncludedByDefault Remove="wwwroot\flags\1x1\bh.svg" />
+    <_ContentIncludedByDefault Remove="wwwroot\flags\1x1\bi.svg" />
+    <_ContentIncludedByDefault Remove="wwwroot\flags\1x1\bj.svg" />
+    <_ContentIncludedByDefault Remove="wwwroot\flags\1x1\bl.svg" />
+    <_ContentIncludedByDefault Remove="wwwroot\flags\1x1\bm.svg" />
+    <_ContentIncludedByDefault Remove="wwwroot\flags\1x1\bn.svg" />
+    <_ContentIncludedByDefault Remove="wwwroot\flags\1x1\bo.svg" />
+    <_ContentIncludedByDefault Remove="wwwroot\flags\1x1\bq.svg" />
+    <_ContentIncludedByDefault Remove="wwwroot\flags\1x1\br.svg" />
+    <_ContentIncludedByDefault Remove="wwwroot\flags\1x1\bs.svg" />
+    <_ContentIncludedByDefault Remove="wwwroot\flags\1x1\bt.svg" />
+    <_ContentIncludedByDefault Remove="wwwroot\flags\1x1\bv.svg" />
+    <_ContentIncludedByDefault Remove="wwwroot\flags\1x1\bw.svg" />
+    <_ContentIncludedByDefault Remove="wwwroot\flags\1x1\by.svg" />
+    <_ContentIncludedByDefault Remove="wwwroot\flags\1x1\bz.svg" />
+    <_ContentIncludedByDefault Remove="wwwroot\flags\1x1\ca.svg" />
+    <_ContentIncludedByDefault Remove="wwwroot\flags\1x1\cc.svg" />
+    <_ContentIncludedByDefault Remove="wwwroot\flags\1x1\cd.svg" />
+    <_ContentIncludedByDefault Remove="wwwroot\flags\1x1\cf.svg" />
+    <_ContentIncludedByDefault Remove="wwwroot\flags\1x1\cg.svg" />
+    <_ContentIncludedByDefault Remove="wwwroot\flags\1x1\ch.svg" />
+    <_ContentIncludedByDefault Remove="wwwroot\flags\1x1\ci.svg" />
+    <_ContentIncludedByDefault Remove="wwwroot\flags\1x1\ck.svg" />
+    <_ContentIncludedByDefault Remove="wwwroot\flags\1x1\cl.svg" />
+    <_ContentIncludedByDefault Remove="wwwroot\flags\1x1\cm.svg" />
+    <_ContentIncludedByDefault Remove="wwwroot\flags\1x1\cn.svg" />
+    <_ContentIncludedByDefault Remove="wwwroot\flags\1x1\co.svg" />
+    <_ContentIncludedByDefault Remove="wwwroot\flags\1x1\cr.svg" />
+    <_ContentIncludedByDefault Remove="wwwroot\flags\1x1\cu.svg" />
+    <_ContentIncludedByDefault Remove="wwwroot\flags\1x1\cv.svg" />
+    <_ContentIncludedByDefault Remove="wwwroot\flags\1x1\cw.svg" />
+    <_ContentIncludedByDefault Remove="wwwroot\flags\1x1\cx.svg" />
+    <_ContentIncludedByDefault Remove="wwwroot\flags\1x1\cy.svg" />
+    <_ContentIncludedByDefault Remove="wwwroot\flags\1x1\cz.svg" />
+    <_ContentIncludedByDefault Remove="wwwroot\flags\1x1\de.svg" />
+    <_ContentIncludedByDefault Remove="wwwroot\flags\1x1\dj.svg" />
+    <_ContentIncludedByDefault Remove="wwwroot\flags\1x1\dk.svg" />
+    <_ContentIncludedByDefault Remove="wwwroot\flags\1x1\dm.svg" />
+    <_ContentIncludedByDefault Remove="wwwroot\flags\1x1\do.svg" />
+    <_ContentIncludedByDefault Remove="wwwroot\flags\1x1\dz.svg" />
+    <_ContentIncludedByDefault Remove="wwwroot\flags\1x1\ec.svg" />
+    <_ContentIncludedByDefault Remove="wwwroot\flags\1x1\ee.svg" />
+    <_ContentIncludedByDefault Remove="wwwroot\flags\1x1\eg.svg" />
+    <_ContentIncludedByDefault Remove="wwwroot\flags\1x1\eh.svg" />
+    <_ContentIncludedByDefault Remove="wwwroot\flags\1x1\er.svg" />
+    <_ContentIncludedByDefault Remove="wwwroot\flags\1x1\es-ct.svg" />
+    <_ContentIncludedByDefault Remove="wwwroot\flags\1x1\es.svg" />
+    <_ContentIncludedByDefault Remove="wwwroot\flags\1x1\et.svg" />
+    <_ContentIncludedByDefault Remove="wwwroot\flags\1x1\eu.svg" />
+    <_ContentIncludedByDefault Remove="wwwroot\flags\1x1\fi.svg" />
+    <_ContentIncludedByDefault Remove="wwwroot\flags\1x1\fj.svg" />
+    <_ContentIncludedByDefault Remove="wwwroot\flags\1x1\fk.svg" />
+    <_ContentIncludedByDefault Remove="wwwroot\flags\1x1\fm.svg" />
+    <_ContentIncludedByDefault Remove="wwwroot\flags\1x1\fo.svg" />
+    <_ContentIncludedByDefault Remove="wwwroot\flags\1x1\fr.svg" />
+    <_ContentIncludedByDefault Remove="wwwroot\flags\1x1\ga.svg" />
+    <_ContentIncludedByDefault Remove="wwwroot\flags\1x1\gb-eng.svg" />
+    <_ContentIncludedByDefault Remove="wwwroot\flags\1x1\gb-nir.svg" />
+    <_ContentIncludedByDefault Remove="wwwroot\flags\1x1\gb-sct.svg" />
+    <_ContentIncludedByDefault Remove="wwwroot\flags\1x1\gb-wls.svg" />
+    <_ContentIncludedByDefault Remove="wwwroot\flags\1x1\gb.svg" />
+    <_ContentIncludedByDefault Remove="wwwroot\flags\1x1\gd.svg" />
+    <_ContentIncludedByDefault Remove="wwwroot\flags\1x1\ge.svg" />
+    <_ContentIncludedByDefault Remove="wwwroot\flags\1x1\gf.svg" />
+    <_ContentIncludedByDefault Remove="wwwroot\flags\1x1\gg.svg" />
+    <_ContentIncludedByDefault Remove="wwwroot\flags\1x1\gh.svg" />
+    <_ContentIncludedByDefault Remove="wwwroot\flags\1x1\gi.svg" />
+    <_ContentIncludedByDefault Remove="wwwroot\flags\1x1\gl.svg" />
+    <_ContentIncludedByDefault Remove="wwwroot\flags\1x1\gm.svg" />
+    <_ContentIncludedByDefault Remove="wwwroot\flags\1x1\gn.svg" />
+    <_ContentIncludedByDefault Remove="wwwroot\flags\1x1\gp.svg" />
+    <_ContentIncludedByDefault Remove="wwwroot\flags\1x1\gq.svg" />
+    <_ContentIncludedByDefault Remove="wwwroot\flags\1x1\gr.svg" />
+    <_ContentIncludedByDefault Remove="wwwroot\flags\1x1\gs.svg" />
+    <_ContentIncludedByDefault Remove="wwwroot\flags\1x1\gt.svg" />
+    <_ContentIncludedByDefault Remove="wwwroot\flags\1x1\gu.svg" />
+    <_ContentIncludedByDefault Remove="wwwroot\flags\1x1\gw.svg" />
+    <_ContentIncludedByDefault Remove="wwwroot\flags\1x1\gy.svg" />
+    <_ContentIncludedByDefault Remove="wwwroot\flags\1x1\hk.svg" />
+    <_ContentIncludedByDefault Remove="wwwroot\flags\1x1\hm.svg" />
+    <_ContentIncludedByDefault Remove="wwwroot\flags\1x1\hn.svg" />
+    <_ContentIncludedByDefault Remove="wwwroot\flags\1x1\hr.svg" />
+    <_ContentIncludedByDefault Remove="wwwroot\flags\1x1\ht.svg" />
+    <_ContentIncludedByDefault Remove="wwwroot\flags\1x1\hu.svg" />
+    <_ContentIncludedByDefault Remove="wwwroot\flags\1x1\id.svg" />
+    <_ContentIncludedByDefault Remove="wwwroot\flags\1x1\ie.svg" />
+    <_ContentIncludedByDefault Remove="wwwroot\flags\1x1\il.svg" />
+    <_ContentIncludedByDefault Remove="wwwroot\flags\1x1\im.svg" />
+    <_ContentIncludedByDefault Remove="wwwroot\flags\1x1\in.svg" />
+    <_ContentIncludedByDefault Remove="wwwroot\flags\1x1\io.svg" />
+    <_ContentIncludedByDefault Remove="wwwroot\flags\1x1\iq.svg" />
+    <_ContentIncludedByDefault Remove="wwwroot\flags\1x1\ir.svg" />
+    <_ContentIncludedByDefault Remove="wwwroot\flags\1x1\is.svg" />
+    <_ContentIncludedByDefault Remove="wwwroot\flags\1x1\it.svg" />
+    <_ContentIncludedByDefault Remove="wwwroot\flags\1x1\je.svg" />
+    <_ContentIncludedByDefault Remove="wwwroot\flags\1x1\jm.svg" />
+    <_ContentIncludedByDefault Remove="wwwroot\flags\1x1\jo.svg" />
+    <_ContentIncludedByDefault Remove="wwwroot\flags\1x1\jp.svg" />
+    <_ContentIncludedByDefault Remove="wwwroot\flags\1x1\ke.svg" />
+    <_ContentIncludedByDefault Remove="wwwroot\flags\1x1\kg.svg" />
+    <_ContentIncludedByDefault Remove="wwwroot\flags\1x1\kh.svg" />
+    <_ContentIncludedByDefault Remove="wwwroot\flags\1x1\ki.svg" />
+    <_ContentIncludedByDefault Remove="wwwroot\flags\1x1\km.svg" />
+    <_ContentIncludedByDefault Remove="wwwroot\flags\1x1\kn.svg" />
+    <_ContentIncludedByDefault Remove="wwwroot\flags\1x1\kp.svg" />
+    <_ContentIncludedByDefault Remove="wwwroot\flags\1x1\kr.svg" />
+    <_ContentIncludedByDefault Remove="wwwroot\flags\1x1\kw.svg" />
+    <_ContentIncludedByDefault Remove="wwwroot\flags\1x1\ky.svg" />
+    <_ContentIncludedByDefault Remove="wwwroot\flags\1x1\kz.svg" />
+    <_ContentIncludedByDefault Remove="wwwroot\flags\1x1\la.svg" />
+    <_ContentIncludedByDefault Remove="wwwroot\flags\1x1\lb.svg" />
+    <_ContentIncludedByDefault Remove="wwwroot\flags\1x1\lc.svg" />
+    <_ContentIncludedByDefault Remove="wwwroot\flags\1x1\li.svg" />
+    <_ContentIncludedByDefault Remove="wwwroot\flags\1x1\lk.svg" />
+    <_ContentIncludedByDefault Remove="wwwroot\flags\1x1\lr.svg" />
+    <_ContentIncludedByDefault Remove="wwwroot\flags\1x1\ls.svg" />
+    <_ContentIncludedByDefault Remove="wwwroot\flags\1x1\lt.svg" />
+    <_ContentIncludedByDefault Remove="wwwroot\flags\1x1\lu.svg" />
+    <_ContentIncludedByDefault Remove="wwwroot\flags\1x1\lv.svg" />
+    <_ContentIncludedByDefault Remove="wwwroot\flags\1x1\ly.svg" />
+    <_ContentIncludedByDefault Remove="wwwroot\flags\1x1\ma.svg" />
+    <_ContentIncludedByDefault Remove="wwwroot\flags\1x1\mc.svg" />
+    <_ContentIncludedByDefault Remove="wwwroot\flags\1x1\md.svg" />
+    <_ContentIncludedByDefault Remove="wwwroot\flags\1x1\me.svg" />
+    <_ContentIncludedByDefault Remove="wwwroot\flags\1x1\mf.svg" />
+    <_ContentIncludedByDefault Remove="wwwroot\flags\1x1\mg.svg" />
+    <_ContentIncludedByDefault Remove="wwwroot\flags\1x1\mh.svg" />
+    <_ContentIncludedByDefault Remove="wwwroot\flags\1x1\mk.svg" />
+    <_ContentIncludedByDefault Remove="wwwroot\flags\1x1\ml.svg" />
+    <_ContentIncludedByDefault Remove="wwwroot\flags\1x1\mm.svg" />
+    <_ContentIncludedByDefault Remove="wwwroot\flags\1x1\mn.svg" />
+    <_ContentIncludedByDefault Remove="wwwroot\flags\1x1\mo.svg" />
+    <_ContentIncludedByDefault Remove="wwwroot\flags\1x1\mp.svg" />
+    <_ContentIncludedByDefault Remove="wwwroot\flags\1x1\mq.svg" />
+    <_ContentIncludedByDefault Remove="wwwroot\flags\1x1\mr.svg" />
+    <_ContentIncludedByDefault Remove="wwwroot\flags\1x1\ms.svg" />
+    <_ContentIncludedByDefault Remove="wwwroot\flags\1x1\mt.svg" />
+    <_ContentIncludedByDefault Remove="wwwroot\flags\1x1\mu.svg" />
+    <_ContentIncludedByDefault Remove="wwwroot\flags\1x1\mv.svg" />
+    <_ContentIncludedByDefault Remove="wwwroot\flags\1x1\mw.svg" />
+    <_ContentIncludedByDefault Remove="wwwroot\flags\1x1\mx.svg" />
+    <_ContentIncludedByDefault Remove="wwwroot\flags\1x1\my.svg" />
+    <_ContentIncludedByDefault Remove="wwwroot\flags\1x1\mz.svg" />
+    <_ContentIncludedByDefault Remove="wwwroot\flags\1x1\na.svg" />
+    <_ContentIncludedByDefault Remove="wwwroot\flags\1x1\nc.svg" />
+    <_ContentIncludedByDefault Remove="wwwroot\flags\1x1\ne.svg" />
+    <_ContentIncludedByDefault Remove="wwwroot\flags\1x1\nf.svg" />
+    <_ContentIncludedByDefault Remove="wwwroot\flags\1x1\ng.svg" />
+    <_ContentIncludedByDefault Remove="wwwroot\flags\1x1\ni.svg" />
+    <_ContentIncludedByDefault Remove="wwwroot\flags\1x1\nl.svg" />
+    <_ContentIncludedByDefault Remove="wwwroot\flags\1x1\no.svg" />
+    <_ContentIncludedByDefault Remove="wwwroot\flags\1x1\np.svg" />
+    <_ContentIncludedByDefault Remove="wwwroot\flags\1x1\nr.svg" />
+    <_ContentIncludedByDefault Remove="wwwroot\flags\1x1\nu.svg" />
+    <_ContentIncludedByDefault Remove="wwwroot\flags\1x1\nz.svg" />
+    <_ContentIncludedByDefault Remove="wwwroot\flags\1x1\om.svg" />
+    <_ContentIncludedByDefault Remove="wwwroot\flags\1x1\pa.svg" />
+    <_ContentIncludedByDefault Remove="wwwroot\flags\1x1\pe.svg" />
+    <_ContentIncludedByDefault Remove="wwwroot\flags\1x1\pf.svg" />
+    <_ContentIncludedByDefault Remove="wwwroot\flags\1x1\pg.svg" />
+    <_ContentIncludedByDefault Remove="wwwroot\flags\1x1\ph.svg" />
+    <_ContentIncludedByDefault Remove="wwwroot\flags\1x1\pk.svg" />
+    <_ContentIncludedByDefault Remove="wwwroot\flags\1x1\pl.svg" />
+    <_ContentIncludedByDefault Remove="wwwroot\flags\1x1\pm.svg" />
+    <_ContentIncludedByDefault Remove="wwwroot\flags\1x1\pn.svg" />
+    <_ContentIncludedByDefault Remove="wwwroot\flags\1x1\pr.svg" />
+    <_ContentIncludedByDefault Remove="wwwroot\flags\1x1\ps.svg" />
+    <_ContentIncludedByDefault Remove="wwwroot\flags\1x1\pt.svg" />
+    <_ContentIncludedByDefault Remove="wwwroot\flags\1x1\pw.svg" />
+    <_ContentIncludedByDefault Remove="wwwroot\flags\1x1\py.svg" />
+    <_ContentIncludedByDefault Remove="wwwroot\flags\1x1\qa.svg" />
+    <_ContentIncludedByDefault Remove="wwwroot\flags\1x1\re.svg" />
+    <_ContentIncludedByDefault Remove="wwwroot\flags\1x1\ro.svg" />
+    <_ContentIncludedByDefault Remove="wwwroot\flags\1x1\rs.svg" />
+    <_ContentIncludedByDefault Remove="wwwroot\flags\1x1\ru.svg" />
+    <_ContentIncludedByDefault Remove="wwwroot\flags\1x1\rw.svg" />
+    <_ContentIncludedByDefault Remove="wwwroot\flags\1x1\sa.svg" />
+    <_ContentIncludedByDefault Remove="wwwroot\flags\1x1\sb.svg" />
+    <_ContentIncludedByDefault Remove="wwwroot\flags\1x1\sc.svg" />
+    <_ContentIncludedByDefault Remove="wwwroot\flags\1x1\sd.svg" />
+    <_ContentIncludedByDefault Remove="wwwroot\flags\1x1\se.svg" />
+    <_ContentIncludedByDefault Remove="wwwroot\flags\1x1\sg.svg" />
+    <_ContentIncludedByDefault Remove="wwwroot\flags\1x1\sh.svg" />
+    <_ContentIncludedByDefault Remove="wwwroot\flags\1x1\si.svg" />
+    <_ContentIncludedByDefault Remove="wwwroot\flags\1x1\sj.svg" />
+    <_ContentIncludedByDefault Remove="wwwroot\flags\1x1\sk.svg" />
+    <_ContentIncludedByDefault Remove="wwwroot\flags\1x1\sl.svg" />
+    <_ContentIncludedByDefault Remove="wwwroot\flags\1x1\sm.svg" />
+    <_ContentIncludedByDefault Remove="wwwroot\flags\1x1\sn.svg" />
+    <_ContentIncludedByDefault Remove="wwwroot\flags\1x1\so.svg" />
+    <_ContentIncludedByDefault Remove="wwwroot\flags\1x1\sr.svg" />
+    <_ContentIncludedByDefault Remove="wwwroot\flags\1x1\ss.svg" />
+    <_ContentIncludedByDefault Remove="wwwroot\flags\1x1\st.svg" />
+    <_ContentIncludedByDefault Remove="wwwroot\flags\1x1\sv.svg" />
+    <_ContentIncludedByDefault Remove="wwwroot\flags\1x1\sx.svg" />
+    <_ContentIncludedByDefault Remove="wwwroot\flags\1x1\sy.svg" />
+    <_ContentIncludedByDefault Remove="wwwroot\flags\1x1\sz.svg" />
+    <_ContentIncludedByDefault Remove="wwwroot\flags\1x1\tc.svg" />
+    <_ContentIncludedByDefault Remove="wwwroot\flags\1x1\td.svg" />
+    <_ContentIncludedByDefault Remove="wwwroot\flags\1x1\tf.svg" />
+    <_ContentIncludedByDefault Remove="wwwroot\flags\1x1\tg.svg" />
+    <_ContentIncludedByDefault Remove="wwwroot\flags\1x1\th.svg" />
+    <_ContentIncludedByDefault Remove="wwwroot\flags\1x1\tj.svg" />
+    <_ContentIncludedByDefault Remove="wwwroot\flags\1x1\tk.svg" />
+    <_ContentIncludedByDefault Remove="wwwroot\flags\1x1\tl.svg" />
+    <_ContentIncludedByDefault Remove="wwwroot\flags\1x1\tm.svg" />
+    <_ContentIncludedByDefault Remove="wwwroot\flags\1x1\tn.svg" />
+    <_ContentIncludedByDefault Remove="wwwroot\flags\1x1\to.svg" />
+    <_ContentIncludedByDefault Remove="wwwroot\flags\1x1\tr.svg" />
+    <_ContentIncludedByDefault Remove="wwwroot\flags\1x1\tt.svg" />
+    <_ContentIncludedByDefault Remove="wwwroot\flags\1x1\tv.svg" />
+    <_ContentIncludedByDefault Remove="wwwroot\flags\1x1\tw.svg" />
+    <_ContentIncludedByDefault Remove="wwwroot\flags\1x1\tz.svg" />
+    <_ContentIncludedByDefault Remove="wwwroot\flags\1x1\ua.svg" />
+    <_ContentIncludedByDefault Remove="wwwroot\flags\1x1\ug.svg" />
+    <_ContentIncludedByDefault Remove="wwwroot\flags\1x1\um.svg" />
+    <_ContentIncludedByDefault Remove="wwwroot\flags\1x1\un.svg" />
+    <_ContentIncludedByDefault Remove="wwwroot\flags\1x1\us.svg" />
+    <_ContentIncludedByDefault Remove="wwwroot\flags\1x1\uy.svg" />
+    <_ContentIncludedByDefault Remove="wwwroot\flags\1x1\uz.svg" />
+    <_ContentIncludedByDefault Remove="wwwroot\flags\1x1\va.svg" />
+    <_ContentIncludedByDefault Remove="wwwroot\flags\1x1\vc.svg" />
+    <_ContentIncludedByDefault Remove="wwwroot\flags\1x1\ve.svg" />
+    <_ContentIncludedByDefault Remove="wwwroot\flags\1x1\vg.svg" />
+    <_ContentIncludedByDefault Remove="wwwroot\flags\1x1\vi.svg" />
+    <_ContentIncludedByDefault Remove="wwwroot\flags\1x1\vn.svg" />
+    <_ContentIncludedByDefault Remove="wwwroot\flags\1x1\vu.svg" />
+    <_ContentIncludedByDefault Remove="wwwroot\flags\1x1\wf.svg" />
+    <_ContentIncludedByDefault Remove="wwwroot\flags\1x1\ws.svg" />
+    <_ContentIncludedByDefault Remove="wwwroot\flags\1x1\ye.svg" />
+    <_ContentIncludedByDefault Remove="wwwroot\flags\1x1\yt.svg" />
+    <_ContentIncludedByDefault Remove="wwwroot\flags\1x1\za.svg" />
+    <_ContentIncludedByDefault Remove="wwwroot\flags\1x1\zm.svg" />
+    <_ContentIncludedByDefault Remove="wwwroot\flags\1x1\zw.svg" />
+    <_ContentIncludedByDefault Remove="wwwroot\flags\4x3\ad.svg" />
+    <_ContentIncludedByDefault Remove="wwwroot\flags\4x3\ae.svg" />
+    <_ContentIncludedByDefault Remove="wwwroot\flags\4x3\af.svg" />
+    <_ContentIncludedByDefault Remove="wwwroot\flags\4x3\ag.svg" />
+    <_ContentIncludedByDefault Remove="wwwroot\flags\4x3\ai.svg" />
+    <_ContentIncludedByDefault Remove="wwwroot\flags\4x3\al.svg" />
+    <_ContentIncludedByDefault Remove="wwwroot\flags\4x3\am.svg" />
+    <_ContentIncludedByDefault Remove="wwwroot\flags\4x3\ao.svg" />
+    <_ContentIncludedByDefault Remove="wwwroot\flags\4x3\aq.svg" />
+    <_ContentIncludedByDefault Remove="wwwroot\flags\4x3\ar.svg" />
+    <_ContentIncludedByDefault Remove="wwwroot\flags\4x3\as.svg" />
+    <_ContentIncludedByDefault Remove="wwwroot\flags\4x3\at.svg" />
+    <_ContentIncludedByDefault Remove="wwwroot\flags\4x3\au.svg" />
+    <_ContentIncludedByDefault Remove="wwwroot\flags\4x3\aw.svg" />
+    <_ContentIncludedByDefault Remove="wwwroot\flags\4x3\ax.svg" />
+    <_ContentIncludedByDefault Remove="wwwroot\flags\4x3\az.svg" />
+    <_ContentIncludedByDefault Remove="wwwroot\flags\4x3\ba.svg" />
+    <_ContentIncludedByDefault Remove="wwwroot\flags\4x3\bb.svg" />
+    <_ContentIncludedByDefault Remove="wwwroot\flags\4x3\bd.svg" />
+    <_ContentIncludedByDefault Remove="wwwroot\flags\4x3\be.svg" />
+    <_ContentIncludedByDefault Remove="wwwroot\flags\4x3\bf.svg" />
+    <_ContentIncludedByDefault Remove="wwwroot\flags\4x3\bg.svg" />
+    <_ContentIncludedByDefault Remove="wwwroot\flags\4x3\bh.svg" />
+    <_ContentIncludedByDefault Remove="wwwroot\flags\4x3\bi.svg" />
+    <_ContentIncludedByDefault Remove="wwwroot\flags\4x3\bj.svg" />
+    <_ContentIncludedByDefault Remove="wwwroot\flags\4x3\bl.svg" />
+    <_ContentIncludedByDefault Remove="wwwroot\flags\4x3\bm.svg" />
+    <_ContentIncludedByDefault Remove="wwwroot\flags\4x3\bn.svg" />
+    <_ContentIncludedByDefault Remove="wwwroot\flags\4x3\bo.svg" />
+    <_ContentIncludedByDefault Remove="wwwroot\flags\4x3\bq.svg" />
+    <_ContentIncludedByDefault Remove="wwwroot\flags\4x3\br.svg" />
+    <_ContentIncludedByDefault Remove="wwwroot\flags\4x3\bs.svg" />
+    <_ContentIncludedByDefault Remove="wwwroot\flags\4x3\bt.svg" />
+    <_ContentIncludedByDefault Remove="wwwroot\flags\4x3\bv.svg" />
+    <_ContentIncludedByDefault Remove="wwwroot\flags\4x3\bw.svg" />
+    <_ContentIncludedByDefault Remove="wwwroot\flags\4x3\by.svg" />
+    <_ContentIncludedByDefault Remove="wwwroot\flags\4x3\bz.svg" />
+    <_ContentIncludedByDefault Remove="wwwroot\flags\4x3\ca.svg" />
+    <_ContentIncludedByDefault Remove="wwwroot\flags\4x3\cc.svg" />
+    <_ContentIncludedByDefault Remove="wwwroot\flags\4x3\cd.svg" />
+    <_ContentIncludedByDefault Remove="wwwroot\flags\4x3\cf.svg" />
+    <_ContentIncludedByDefault Remove="wwwroot\flags\4x3\cg.svg" />
+    <_ContentIncludedByDefault Remove="wwwroot\flags\4x3\ch.svg" />
+    <_ContentIncludedByDefault Remove="wwwroot\flags\4x3\ci.svg" />
+    <_ContentIncludedByDefault Remove="wwwroot\flags\4x3\ck.svg" />
+    <_ContentIncludedByDefault Remove="wwwroot\flags\4x3\cl.svg" />
+    <_ContentIncludedByDefault Remove="wwwroot\flags\4x3\cm.svg" />
+    <_ContentIncludedByDefault Remove="wwwroot\flags\4x3\cn.svg" />
+    <_ContentIncludedByDefault Remove="wwwroot\flags\4x3\co.svg" />
+    <_ContentIncludedByDefault Remove="wwwroot\flags\4x3\cr.svg" />
+    <_ContentIncludedByDefault Remove="wwwroot\flags\4x3\cu.svg" />
+    <_ContentIncludedByDefault Remove="wwwroot\flags\4x3\cv.svg" />
+    <_ContentIncludedByDefault Remove="wwwroot\flags\4x3\cw.svg" />
+    <_ContentIncludedByDefault Remove="wwwroot\flags\4x3\cx.svg" />
+    <_ContentIncludedByDefault Remove="wwwroot\flags\4x3\cy.svg" />
+    <_ContentIncludedByDefault Remove="wwwroot\flags\4x3\cz.svg" />
+    <_ContentIncludedByDefault Remove="wwwroot\flags\4x3\de.svg" />
+    <_ContentIncludedByDefault Remove="wwwroot\flags\4x3\dj.svg" />
+    <_ContentIncludedByDefault Remove="wwwroot\flags\4x3\dk.svg" />
+    <_ContentIncludedByDefault Remove="wwwroot\flags\4x3\dm.svg" />
+    <_ContentIncludedByDefault Remove="wwwroot\flags\4x3\do.svg" />
+    <_ContentIncludedByDefault Remove="wwwroot\flags\4x3\dz.svg" />
+    <_ContentIncludedByDefault Remove="wwwroot\flags\4x3\ec.svg" />
+    <_ContentIncludedByDefault Remove="wwwroot\flags\4x3\ee.svg" />
+    <_ContentIncludedByDefault Remove="wwwroot\flags\4x3\eg.svg" />
+    <_ContentIncludedByDefault Remove="wwwroot\flags\4x3\eh.svg" />
+    <_ContentIncludedByDefault Remove="wwwroot\flags\4x3\er.svg" />
+    <_ContentIncludedByDefault Remove="wwwroot\flags\4x3\es-ct.svg" />
+    <_ContentIncludedByDefault Remove="wwwroot\flags\4x3\es.svg" />
+    <_ContentIncludedByDefault Remove="wwwroot\flags\4x3\et.svg" />
+    <_ContentIncludedByDefault Remove="wwwroot\flags\4x3\eu.svg" />
+    <_ContentIncludedByDefault Remove="wwwroot\flags\4x3\fi.svg" />
+    <_ContentIncludedByDefault Remove="wwwroot\flags\4x3\fj.svg" />
+    <_ContentIncludedByDefault Remove="wwwroot\flags\4x3\fk.svg" />
+    <_ContentIncludedByDefault Remove="wwwroot\flags\4x3\fm.svg" />
+    <_ContentIncludedByDefault Remove="wwwroot\flags\4x3\fo.svg" />
+    <_ContentIncludedByDefault Remove="wwwroot\flags\4x3\fr.svg" />
+    <_ContentIncludedByDefault Remove="wwwroot\flags\4x3\ga.svg" />
+    <_ContentIncludedByDefault Remove="wwwroot\flags\4x3\gb-eng.svg" />
+    <_ContentIncludedByDefault Remove="wwwroot\flags\4x3\gb-nir.svg" />
+    <_ContentIncludedByDefault Remove="wwwroot\flags\4x3\gb-sct.svg" />
+    <_ContentIncludedByDefault Remove="wwwroot\flags\4x3\gb-wls.svg" />
+    <_ContentIncludedByDefault Remove="wwwroot\flags\4x3\gb.svg" />
+    <_ContentIncludedByDefault Remove="wwwroot\flags\4x3\gd.svg" />
+    <_ContentIncludedByDefault Remove="wwwroot\flags\4x3\ge.svg" />
+    <_ContentIncludedByDefault Remove="wwwroot\flags\4x3\gf.svg" />
+    <_ContentIncludedByDefault Remove="wwwroot\flags\4x3\gg.svg" />
+    <_ContentIncludedByDefault Remove="wwwroot\flags\4x3\gh.svg" />
+    <_ContentIncludedByDefault Remove="wwwroot\flags\4x3\gi.svg" />
+    <_ContentIncludedByDefault Remove="wwwroot\flags\4x3\gl.svg" />
+    <_ContentIncludedByDefault Remove="wwwroot\flags\4x3\gm.svg" />
+    <_ContentIncludedByDefault Remove="wwwroot\flags\4x3\gn.svg" />
+    <_ContentIncludedByDefault Remove="wwwroot\flags\4x3\gp.svg" />
+    <_ContentIncludedByDefault Remove="wwwroot\flags\4x3\gq.svg" />
+    <_ContentIncludedByDefault Remove="wwwroot\flags\4x3\gr.svg" />
+    <_ContentIncludedByDefault Remove="wwwroot\flags\4x3\gs.svg" />
+    <_ContentIncludedByDefault Remove="wwwroot\flags\4x3\gt.svg" />
+    <_ContentIncludedByDefault Remove="wwwroot\flags\4x3\gu.svg" />
+    <_ContentIncludedByDefault Remove="wwwroot\flags\4x3\gw.svg" />
+    <_ContentIncludedByDefault Remove="wwwroot\flags\4x3\gy.svg" />
+    <_ContentIncludedByDefault Remove="wwwroot\flags\4x3\hk.svg" />
+    <_ContentIncludedByDefault Remove="wwwroot\flags\4x3\hm.svg" />
+    <_ContentIncludedByDefault Remove="wwwroot\flags\4x3\hn.svg" />
+    <_ContentIncludedByDefault Remove="wwwroot\flags\4x3\hr.svg" />
+    <_ContentIncludedByDefault Remove="wwwroot\flags\4x3\ht.svg" />
+    <_ContentIncludedByDefault Remove="wwwroot\flags\4x3\hu.svg" />
+    <_ContentIncludedByDefault Remove="wwwroot\flags\4x3\id.svg" />
+    <_ContentIncludedByDefault Remove="wwwroot\flags\4x3\ie.svg" />
+    <_ContentIncludedByDefault Remove="wwwroot\flags\4x3\il.svg" />
+    <_ContentIncludedByDefault Remove="wwwroot\flags\4x3\im.svg" />
+    <_ContentIncludedByDefault Remove="wwwroot\flags\4x3\in.svg" />
+    <_ContentIncludedByDefault Remove="wwwroot\flags\4x3\io.svg" />
+    <_ContentIncludedByDefault Remove="wwwroot\flags\4x3\iq.svg" />
+    <_ContentIncludedByDefault Remove="wwwroot\flags\4x3\ir.svg" />
+    <_ContentIncludedByDefault Remove="wwwroot\flags\4x3\is.svg" />
+    <_ContentIncludedByDefault Remove="wwwroot\flags\4x3\it.svg" />
+    <_ContentIncludedByDefault Remove="wwwroot\flags\4x3\je.svg" />
+    <_ContentIncludedByDefault Remove="wwwroot\flags\4x3\jm.svg" />
+    <_ContentIncludedByDefault Remove="wwwroot\flags\4x3\jo.svg" />
+    <_ContentIncludedByDefault Remove="wwwroot\flags\4x3\jp.svg" />
+    <_ContentIncludedByDefault Remove="wwwroot\flags\4x3\ke.svg" />
+    <_ContentIncludedByDefault Remove="wwwroot\flags\4x3\kg.svg" />
+    <_ContentIncludedByDefault Remove="wwwroot\flags\4x3\kh.svg" />
+    <_ContentIncludedByDefault Remove="wwwroot\flags\4x3\ki.svg" />
+    <_ContentIncludedByDefault Remove="wwwroot\flags\4x3\km.svg" />
+    <_ContentIncludedByDefault Remove="wwwroot\flags\4x3\kn.svg" />
+    <_ContentIncludedByDefault Remove="wwwroot\flags\4x3\kp.svg" />
+    <_ContentIncludedByDefault Remove="wwwroot\flags\4x3\kr.svg" />
+    <_ContentIncludedByDefault Remove="wwwroot\flags\4x3\kw.svg" />
+    <_ContentIncludedByDefault Remove="wwwroot\flags\4x3\ky.svg" />
+    <_ContentIncludedByDefault Remove="wwwroot\flags\4x3\kz.svg" />
+    <_ContentIncludedByDefault Remove="wwwroot\flags\4x3\la.svg" />
+    <_ContentIncludedByDefault Remove="wwwroot\flags\4x3\lb.svg" />
+    <_ContentIncludedByDefault Remove="wwwroot\flags\4x3\lc.svg" />
+    <_ContentIncludedByDefault Remove="wwwroot\flags\4x3\li.svg" />
+    <_ContentIncludedByDefault Remove="wwwroot\flags\4x3\lk.svg" />
+    <_ContentIncludedByDefault Remove="wwwroot\flags\4x3\lr.svg" />
+    <_ContentIncludedByDefault Remove="wwwroot\flags\4x3\ls.svg" />
+    <_ContentIncludedByDefault Remove="wwwroot\flags\4x3\lt.svg" />
+    <_ContentIncludedByDefault Remove="wwwroot\flags\4x3\lu.svg" />
+    <_ContentIncludedByDefault Remove="wwwroot\flags\4x3\lv.svg" />
+    <_ContentIncludedByDefault Remove="wwwroot\flags\4x3\ly.svg" />
+    <_ContentIncludedByDefault Remove="wwwroot\flags\4x3\ma.svg" />
+    <_ContentIncludedByDefault Remove="wwwroot\flags\4x3\mc.svg" />
+    <_ContentIncludedByDefault Remove="wwwroot\flags\4x3\md.svg" />
+    <_ContentIncludedByDefault Remove="wwwroot\flags\4x3\me.svg" />
+    <_ContentIncludedByDefault Remove="wwwroot\flags\4x3\mf.svg" />
+    <_ContentIncludedByDefault Remove="wwwroot\flags\4x3\mg.svg" />
+    <_ContentIncludedByDefault Remove="wwwroot\flags\4x3\mh.svg" />
+    <_ContentIncludedByDefault Remove="wwwroot\flags\4x3\mk.svg" />
+    <_ContentIncludedByDefault Remove="wwwroot\flags\4x3\ml.svg" />
+    <_ContentIncludedByDefault Remove="wwwroot\flags\4x3\mm.svg" />
+    <_ContentIncludedByDefault Remove="wwwroot\flags\4x3\mn.svg" />
+    <_ContentIncludedByDefault Remove="wwwroot\flags\4x3\mo.svg" />
+    <_ContentIncludedByDefault Remove="wwwroot\flags\4x3\mp.svg" />
+    <_ContentIncludedByDefault Remove="wwwroot\flags\4x3\mq.svg" />
+    <_ContentIncludedByDefault Remove="wwwroot\flags\4x3\mr.svg" />
+    <_ContentIncludedByDefault Remove="wwwroot\flags\4x3\ms.svg" />
+    <_ContentIncludedByDefault Remove="wwwroot\flags\4x3\mt.svg" />
+    <_ContentIncludedByDefault Remove="wwwroot\flags\4x3\mu.svg" />
+    <_ContentIncludedByDefault Remove="wwwroot\flags\4x3\mv.svg" />
+    <_ContentIncludedByDefault Remove="wwwroot\flags\4x3\mw.svg" />
+    <_ContentIncludedByDefault Remove="wwwroot\flags\4x3\mx.svg" />
+    <_ContentIncludedByDefault Remove="wwwroot\flags\4x3\my.svg" />
+    <_ContentIncludedByDefault Remove="wwwroot\flags\4x3\mz.svg" />
+    <_ContentIncludedByDefault Remove="wwwroot\flags\4x3\na.svg" />
+    <_ContentIncludedByDefault Remove="wwwroot\flags\4x3\nc.svg" />
+    <_ContentIncludedByDefault Remove="wwwroot\flags\4x3\ne.svg" />
+    <_ContentIncludedByDefault Remove="wwwroot\flags\4x3\nf.svg" />
+    <_ContentIncludedByDefault Remove="wwwroot\flags\4x3\ng.svg" />
+    <_ContentIncludedByDefault Remove="wwwroot\flags\4x3\ni.svg" />
+    <_ContentIncludedByDefault Remove="wwwroot\flags\4x3\nl.svg" />
+    <_ContentIncludedByDefault Remove="wwwroot\flags\4x3\no.svg" />
+    <_ContentIncludedByDefault Remove="wwwroot\flags\4x3\np.svg" />
+    <_ContentIncludedByDefault Remove="wwwroot\flags\4x3\nr.svg" />
+    <_ContentIncludedByDefault Remove="wwwroot\flags\4x3\nu.svg" />
+    <_ContentIncludedByDefault Remove="wwwroot\flags\4x3\nz.svg" />
+    <_ContentIncludedByDefault Remove="wwwroot\flags\4x3\om.svg" />
+    <_ContentIncludedByDefault Remove="wwwroot\flags\4x3\pa.svg" />
+    <_ContentIncludedByDefault Remove="wwwroot\flags\4x3\pe.svg" />
+    <_ContentIncludedByDefault Remove="wwwroot\flags\4x3\pf.svg" />
+    <_ContentIncludedByDefault Remove="wwwroot\flags\4x3\pg.svg" />
+    <_ContentIncludedByDefault Remove="wwwroot\flags\4x3\ph.svg" />
+    <_ContentIncludedByDefault Remove="wwwroot\flags\4x3\pk.svg" />
+    <_ContentIncludedByDefault Remove="wwwroot\flags\4x3\pl.svg" />
+    <_ContentIncludedByDefault Remove="wwwroot\flags\4x3\pm.svg" />
+    <_ContentIncludedByDefault Remove="wwwroot\flags\4x3\pn.svg" />
+    <_ContentIncludedByDefault Remove="wwwroot\flags\4x3\pr.svg" />
+    <_ContentIncludedByDefault Remove="wwwroot\flags\4x3\ps.svg" />
+    <_ContentIncludedByDefault Remove="wwwroot\flags\4x3\pt.svg" />
+    <_ContentIncludedByDefault Remove="wwwroot\flags\4x3\pw.svg" />
+    <_ContentIncludedByDefault Remove="wwwroot\flags\4x3\py.svg" />
+    <_ContentIncludedByDefault Remove="wwwroot\flags\4x3\qa.svg" />
+    <_ContentIncludedByDefault Remove="wwwroot\flags\4x3\re.svg" />
+    <_ContentIncludedByDefault Remove="wwwroot\flags\4x3\ro.svg" />
+    <_ContentIncludedByDefault Remove="wwwroot\flags\4x3\rs.svg" />
+    <_ContentIncludedByDefault Remove="wwwroot\flags\4x3\ru.svg" />
+    <_ContentIncludedByDefault Remove="wwwroot\flags\4x3\rw.svg" />
+    <_ContentIncludedByDefault Remove="wwwroot\flags\4x3\sa.svg" />
+    <_ContentIncludedByDefault Remove="wwwroot\flags\4x3\sb.svg" />
+    <_ContentIncludedByDefault Remove="wwwroot\flags\4x3\sc.svg" />
+    <_ContentIncludedByDefault Remove="wwwroot\flags\4x3\sd.svg" />
+    <_ContentIncludedByDefault Remove="wwwroot\flags\4x3\se.svg" />
+    <_ContentIncludedByDefault Remove="wwwroot\flags\4x3\sg.svg" />
+    <_ContentIncludedByDefault Remove="wwwroot\flags\4x3\sh.svg" />
+    <_ContentIncludedByDefault Remove="wwwroot\flags\4x3\si.svg" />
+    <_ContentIncludedByDefault Remove="wwwroot\flags\4x3\sj.svg" />
+    <_ContentIncludedByDefault Remove="wwwroot\flags\4x3\sk.svg" />
+    <_ContentIncludedByDefault Remove="wwwroot\flags\4x3\sl.svg" />
+    <_ContentIncludedByDefault Remove="wwwroot\flags\4x3\sm.svg" />
+    <_ContentIncludedByDefault Remove="wwwroot\flags\4x3\sn.svg" />
+    <_ContentIncludedByDefault Remove="wwwroot\flags\4x3\so.svg" />
+    <_ContentIncludedByDefault Remove="wwwroot\flags\4x3\sr.svg" />
+    <_ContentIncludedByDefault Remove="wwwroot\flags\4x3\ss.svg" />
+    <_ContentIncludedByDefault Remove="wwwroot\flags\4x3\st.svg" />
+    <_ContentIncludedByDefault Remove="wwwroot\flags\4x3\sv.svg" />
+    <_ContentIncludedByDefault Remove="wwwroot\flags\4x3\sx.svg" />
+    <_ContentIncludedByDefault Remove="wwwroot\flags\4x3\sy.svg" />
+    <_ContentIncludedByDefault Remove="wwwroot\flags\4x3\sz.svg" />
+    <_ContentIncludedByDefault Remove="wwwroot\flags\4x3\tc.svg" />
+    <_ContentIncludedByDefault Remove="wwwroot\flags\4x3\td.svg" />
+    <_ContentIncludedByDefault Remove="wwwroot\flags\4x3\tf.svg" />
+    <_ContentIncludedByDefault Remove="wwwroot\flags\4x3\tg.svg" />
+    <_ContentIncludedByDefault Remove="wwwroot\flags\4x3\th.svg" />
+    <_ContentIncludedByDefault Remove="wwwroot\flags\4x3\tj.svg" />
+    <_ContentIncludedByDefault Remove="wwwroot\flags\4x3\tk.svg" />
+    <_ContentIncludedByDefault Remove="wwwroot\flags\4x3\tl.svg" />
+    <_ContentIncludedByDefault Remove="wwwroot\flags\4x3\tm.svg" />
+    <_ContentIncludedByDefault Remove="wwwroot\flags\4x3\tn.svg" />
+    <_ContentIncludedByDefault Remove="wwwroot\flags\4x3\to.svg" />
+    <_ContentIncludedByDefault Remove="wwwroot\flags\4x3\tr.svg" />
+    <_ContentIncludedByDefault Remove="wwwroot\flags\4x3\tt.svg" />
+    <_ContentIncludedByDefault Remove="wwwroot\flags\4x3\tv.svg" />
+    <_ContentIncludedByDefault Remove="wwwroot\flags\4x3\tw.svg" />
+    <_ContentIncludedByDefault Remove="wwwroot\flags\4x3\tz.svg" />
+    <_ContentIncludedByDefault Remove="wwwroot\flags\4x3\ua.svg" />
+    <_ContentIncludedByDefault Remove="wwwroot\flags\4x3\ug.svg" />
+    <_ContentIncludedByDefault Remove="wwwroot\flags\4x3\um.svg" />
+    <_ContentIncludedByDefault Remove="wwwroot\flags\4x3\un.svg" />
+    <_ContentIncludedByDefault Remove="wwwroot\flags\4x3\us.svg" />
+    <_ContentIncludedByDefault Remove="wwwroot\flags\4x3\uy.svg" />
+    <_ContentIncludedByDefault Remove="wwwroot\flags\4x3\uz.svg" />
+    <_ContentIncludedByDefault Remove="wwwroot\flags\4x3\va.svg" />
+    <_ContentIncludedByDefault Remove="wwwroot\flags\4x3\vc.svg" />
+    <_ContentIncludedByDefault Remove="wwwroot\flags\4x3\ve.svg" />
+    <_ContentIncludedByDefault Remove="wwwroot\flags\4x3\vg.svg" />
+    <_ContentIncludedByDefault Remove="wwwroot\flags\4x3\vi.svg" />
+    <_ContentIncludedByDefault Remove="wwwroot\flags\4x3\vn.svg" />
+    <_ContentIncludedByDefault Remove="wwwroot\flags\4x3\vu.svg" />
+    <_ContentIncludedByDefault Remove="wwwroot\flags\4x3\wf.svg" />
+    <_ContentIncludedByDefault Remove="wwwroot\flags\4x3\ws.svg" />
+    <_ContentIncludedByDefault Remove="wwwroot\flags\4x3\ye.svg" />
+    <_ContentIncludedByDefault Remove="wwwroot\flags\4x3\yt.svg" />
+    <_ContentIncludedByDefault Remove="wwwroot\flags\4x3\za.svg" />
+    <_ContentIncludedByDefault Remove="wwwroot\flags\4x3\zm.svg" />
+    <_ContentIncludedByDefault Remove="wwwroot\flags\4x3\zw.svg" />
+    <_ContentIncludedByDefault Remove="wwwroot\flags\Afghanistan.png" />
+    <_ContentIncludedByDefault Remove="wwwroot\flags\African Union.png" />
+    <_ContentIncludedByDefault Remove="wwwroot\flags\Albania.png" />
+    <_ContentIncludedByDefault Remove="wwwroot\flags\Algeria.png" />
+    <_ContentIncludedByDefault Remove="wwwroot\flags\American Samoa.png" />
+    <_ContentIncludedByDefault Remove="wwwroot\flags\Andorra.png" />
+    <_ContentIncludedByDefault Remove="wwwroot\flags\Angola.png" />
+    <_ContentIncludedByDefault Remove="wwwroot\flags\Anguilla.png" />
+    <_ContentIncludedByDefault Remove="wwwroot\flags\Antarctica.png" />
+    <_ContentIncludedByDefault Remove="wwwroot\flags\Antigua &amp; Barbuda.png" />
+    <_ContentIncludedByDefault Remove="wwwroot\flags\Arab League.png" />
+    <_ContentIncludedByDefault Remove="wwwroot\flags\Argentina.png" />
+    <_ContentIncludedByDefault Remove="wwwroot\flags\Armenia.png" />
+    <_ContentIncludedByDefault Remove="wwwroot\flags\Aruba.png" />
+    <_ContentIncludedByDefault Remove="wwwroot\flags\ASEAN.png" />
+    <_ContentIncludedByDefault Remove="wwwroot\flags\Australia.png" />
+    <_ContentIncludedByDefault Remove="wwwroot\flags\Austria.png" />
+    <_ContentIncludedByDefault Remove="wwwroot\flags\Azerbaijan.png" />
+    <_ContentIncludedByDefault Remove="wwwroot\flags\Bahamas.png" />
+    <_ContentIncludedByDefault Remove="wwwroot\flags\Bahrain.png" />
+    <_ContentIncludedByDefault Remove="wwwroot\flags\Bangladesh.png" />
+    <_ContentIncludedByDefault Remove="wwwroot\flags\Barbados.png" />
+    <_ContentIncludedByDefault Remove="wwwroot\flags\Belarus.png" />
+    <_ContentIncludedByDefault Remove="wwwroot\flags\Belgium.png" />
+    <_ContentIncludedByDefault Remove="wwwroot\flags\Belize.png" />
+    <_ContentIncludedByDefault Remove="wwwroot\flags\Benin.png" />
+    <_ContentIncludedByDefault Remove="wwwroot\flags\Bermuda.png" />
+    <_ContentIncludedByDefault Remove="wwwroot\flags\Bhutan.png" />
+    <_ContentIncludedByDefault Remove="wwwroot\flags\Bolivia.png" />
+    <_ContentIncludedByDefault Remove="wwwroot\flags\Bosnia &amp; Herzegovina.png" />
+    <_ContentIncludedByDefault Remove="wwwroot\flags\Botswana.png" />
+    <_ContentIncludedByDefault Remove="wwwroot\flags\Brazil.png" />
+    <_ContentIncludedByDefault Remove="wwwroot\flags\Brunei.png" />
+    <_ContentIncludedByDefault Remove="wwwroot\flags\Bulgaria.png" />
+    <_ContentIncludedByDefault Remove="wwwroot\flags\Burkina Faso.png" />
+    <_ContentIncludedByDefault Remove="wwwroot\flags\Burundi.png" />
+    <_ContentIncludedByDefault Remove="wwwroot\flags\Cambodja.png" />
+    <_ContentIncludedByDefault Remove="wwwroot\flags\Cameroon.png" />
+    <_ContentIncludedByDefault Remove="wwwroot\flags\Canada.png" />
+    <_ContentIncludedByDefault Remove="wwwroot\flags\Cape Verde.png" />
+    <_ContentIncludedByDefault Remove="wwwroot\flags\CARICOM.png" />
+    <_ContentIncludedByDefault Remove="wwwroot\flags\Cayman Islands.png" />
+    <_ContentIncludedByDefault Remove="wwwroot\flags\Central African Republic.png" />
+    <_ContentIncludedByDefault Remove="wwwroot\flags\Chad.png" />
+    <_ContentIncludedByDefault Remove="wwwroot\flags\Chile.png" />
+    <_ContentIncludedByDefault Remove="wwwroot\flags\China.png" />
+    <_ContentIncludedByDefault Remove="wwwroot\flags\CIS.png" />
+    <_ContentIncludedByDefault Remove="wwwroot\flags\Colombia.png" />
+    <_ContentIncludedByDefault Remove="wwwroot\flags\Commonwealth.png" />
+    <_ContentIncludedByDefault Remove="wwwroot\flags\Comoros.png" />
+    <_ContentIncludedByDefault Remove="wwwroot\flags\Congo-Brazzaville.png" />
+    <_ContentIncludedByDefault Remove="wwwroot\flags\Congo-Kinshasa(Zaire).png" />
+    <_ContentIncludedByDefault Remove="wwwroot\flags\Cook Islands.png" />
+    <_ContentIncludedByDefault Remove="wwwroot\flags\Costa Rica.png" />
+    <_ContentIncludedByDefault Remove="wwwroot\flags\Cote d'Ivoire.png" />
+    <_ContentIncludedByDefault Remove="wwwroot\flags\Croatia.png" />
+    <_ContentIncludedByDefault Remove="wwwroot\flags\Cuba.png" />
+    <_ContentIncludedByDefault Remove="wwwroot\flags\Cyprus.png" />
+    <_ContentIncludedByDefault Remove="wwwroot\flags\Czech Republic.png" />
+    <_ContentIncludedByDefault Remove="wwwroot\flags\Denmark.png" />
+    <_ContentIncludedByDefault Remove="wwwroot\flags\Djibouti.png" />
+    <_ContentIncludedByDefault Remove="wwwroot\flags\Dominica.png" />
+    <_ContentIncludedByDefault Remove="wwwroot\flags\Dominican Republic.png" />
+    <_ContentIncludedByDefault Remove="wwwroot\flags\Ecuador.png" />
+    <_ContentIncludedByDefault Remove="wwwroot\flags\Egypt.png" />
+    <_ContentIncludedByDefault Remove="wwwroot\flags\El Salvador.png" />
+    <_ContentIncludedByDefault Remove="wwwroot\flags\England.png" />
+    <_ContentIncludedByDefault Remove="wwwroot\flags\Equatorial Guinea.png" />
+    <_ContentIncludedByDefault Remove="wwwroot\flags\Eritrea.png" />
+    <_ContentIncludedByDefault Remove="wwwroot\flags\Estonia.png" />
+    <_ContentIncludedByDefault Remove="wwwroot\flags\Ethiopia.png" />
+    <_ContentIncludedByDefault Remove="wwwroot\flags\European Union.png" />
+    <_ContentIncludedByDefault Remove="wwwroot\flags\Faroes.png" />
+    <_ContentIncludedByDefault Remove="wwwroot\flags\Fiji.png" />
+    <_ContentIncludedByDefault Remove="wwwroot\flags\Finland.png" />
+    <_ContentIncludedByDefault Remove="wwwroot\flags\France.png" />
+    <_ContentIncludedByDefault Remove="wwwroot\flags\Gabon.png" />
+    <_ContentIncludedByDefault Remove="wwwroot\flags\Gambia.png" />
+    <_ContentIncludedByDefault Remove="wwwroot\flags\Georgia.png" />
+    <_ContentIncludedByDefault Remove="wwwroot\flags\Germany.png" />
+    <_ContentIncludedByDefault Remove="wwwroot\flags\Ghana.png" />
+    <_ContentIncludedByDefault Remove="wwwroot\flags\Gibraltar.png" />
+    <_ContentIncludedByDefault Remove="wwwroot\flags\Greece.png" />
+    <_ContentIncludedByDefault Remove="wwwroot\flags\Greenland.png" />
+    <_ContentIncludedByDefault Remove="wwwroot\flags\Grenada.png" />
+    <_ContentIncludedByDefault Remove="wwwroot\flags\Guadeloupe.png" />
+    <_ContentIncludedByDefault Remove="wwwroot\flags\Guam.png" />
+    <_ContentIncludedByDefault Remove="wwwroot\flags\Guatemala.png" />
+    <_ContentIncludedByDefault Remove="wwwroot\flags\Guernsey.png" />
+    <_ContentIncludedByDefault Remove="wwwroot\flags\Guinea-Bissau.png" />
+    <_ContentIncludedByDefault Remove="wwwroot\flags\Guinea.png" />
+    <_ContentIncludedByDefault Remove="wwwroot\flags\Guyana.png" />
+    <_ContentIncludedByDefault Remove="wwwroot\flags\Haiti.png" />
+    <_ContentIncludedByDefault Remove="wwwroot\flags\Honduras.png" />
+    <_ContentIncludedByDefault Remove="wwwroot\flags\Hong Kong.png" />
+    <_ContentIncludedByDefault Remove="wwwroot\flags\Hungary.png" />
+    <_ContentIncludedByDefault Remove="wwwroot\flags\Iceland.png" />
+    <_ContentIncludedByDefault Remove="wwwroot\flags\India.png" />
+    <_ContentIncludedByDefault Remove="wwwroot\flags\Indonezia.png" />
+    <_ContentIncludedByDefault Remove="wwwroot\flags\Iran.png" />
+    <_ContentIncludedByDefault Remove="wwwroot\flags\Iraq.png" />
+    <_ContentIncludedByDefault Remove="wwwroot\flags\Ireland.png" />
+    <_ContentIncludedByDefault Remove="wwwroot\flags\Islamic Conference.png" />
+    <_ContentIncludedByDefault Remove="wwwroot\flags\Isle of Man.png" />
+    <_ContentIncludedByDefault Remove="wwwroot\flags\Israel.png" />
+    <_ContentIncludedByDefault Remove="wwwroot\flags\Italy.png" />
+    <_ContentIncludedByDefault Remove="wwwroot\flags\Jamaica.png" />
+    <_ContentIncludedByDefault Remove="wwwroot\flags\Japan.png" />
+    <_ContentIncludedByDefault Remove="wwwroot\flags\Jersey.png" />
+    <_ContentIncludedByDefault Remove="wwwroot\flags\Jordan.png" />
+    <_ContentIncludedByDefault Remove="wwwroot\flags\Kazakhstan.png" />
+    <_ContentIncludedByDefault Remove="wwwroot\flags\Kenya.png" />
+    <_ContentIncludedByDefault Remove="wwwroot\flags\Kiribati.png" />
+    <_ContentIncludedByDefault Remove="wwwroot\flags\Kosovo.png" />
+    <_ContentIncludedByDefault Remove="wwwroot\flags\Kuwait.png" />
+    <_ContentIncludedByDefault Remove="wwwroot\flags\Kyrgyzstan.png" />
+    <_ContentIncludedByDefault Remove="wwwroot\flags\Laos.png" />
+    <_ContentIncludedByDefault Remove="wwwroot\flags\Latvia.png" />
+    <_ContentIncludedByDefault Remove="wwwroot\flags\Lebanon.png" />
+    <_ContentIncludedByDefault Remove="wwwroot\flags\Lesotho.png" />
+    <_ContentIncludedByDefault Remove="wwwroot\flags\Liberia.png" />
+    <_ContentIncludedByDefault Remove="wwwroot\flags\Libya.png" />
+    <_ContentIncludedByDefault Remove="wwwroot\flags\Liechtenshein.png" />
+    <_ContentIncludedByDefault Remove="wwwroot\flags\Lithuania.png" />
+    <_ContentIncludedByDefault Remove="wwwroot\flags\Luxembourg.png" />
+    <_ContentIncludedByDefault Remove="wwwroot\flags\Macao.png" />
+    <_ContentIncludedByDefault Remove="wwwroot\flags\Macedonia.png" />
+    <_ContentIncludedByDefault Remove="wwwroot\flags\Madagascar.png" />
+    <_ContentIncludedByDefault Remove="wwwroot\flags\Malawi.png" />
+    <_ContentIncludedByDefault Remove="wwwroot\flags\Malaysia.png" />
+    <_ContentIncludedByDefault Remove="wwwroot\flags\Maldives.png" />
+    <_ContentIncludedByDefault Remove="wwwroot\flags\Mali.png" />
+    <_ContentIncludedByDefault Remove="wwwroot\flags\Malta.png" />
+    <_ContentIncludedByDefault Remove="wwwroot\flags\Marshall Islands.png" />
+    <_ContentIncludedByDefault Remove="wwwroot\flags\Martinique.png" />
+    <_ContentIncludedByDefault Remove="wwwroot\flags\Mauritania.png" />
+    <_ContentIncludedByDefault Remove="wwwroot\flags\Mauritius.png" />
+    <_ContentIncludedByDefault Remove="wwwroot\flags\Mexico.png" />
+    <_ContentIncludedByDefault Remove="wwwroot\flags\Micronesia.png" />
+    <_ContentIncludedByDefault Remove="wwwroot\flags\Moldova.png" />
+    <_ContentIncludedByDefault Remove="wwwroot\flags\Monaco.png" />
+    <_ContentIncludedByDefault Remove="wwwroot\flags\Mongolia.png" />
+    <_ContentIncludedByDefault Remove="wwwroot\flags\Montenegro.png" />
+    <_ContentIncludedByDefault Remove="wwwroot\flags\Montserrat.png" />
+    <_ContentIncludedByDefault Remove="wwwroot\flags\Morocco.png" />
+    <_ContentIncludedByDefault Remove="wwwroot\flags\Mozambique.png" />
+    <_ContentIncludedByDefault Remove="wwwroot\flags\Myanmar(Burma).png" />
+    <_ContentIncludedByDefault Remove="wwwroot\flags\Namibia.png" />
+    <_ContentIncludedByDefault Remove="wwwroot\flags\NATO.png" />
+    <_ContentIncludedByDefault Remove="wwwroot\flags\Nauru.png" />
+    <_ContentIncludedByDefault Remove="wwwroot\flags\Nepal.png" />
+    <_ContentIncludedByDefault Remove="wwwroot\flags\Netherlands Antilles.png" />
+    <_ContentIncludedByDefault Remove="wwwroot\flags\Netherlands.png" />
+    <_ContentIncludedByDefault Remove="wwwroot\flags\New Caledonia.png" />
+    <_ContentIncludedByDefault Remove="wwwroot\flags\New Zealand.png" />
+    <_ContentIncludedByDefault Remove="wwwroot\flags\Nicaragua.png" />
+    <_ContentIncludedByDefault Remove="wwwroot\flags\Niger.png" />
+    <_ContentIncludedByDefault Remove="wwwroot\flags\Nigeria.png" />
+    <_ContentIncludedByDefault Remove="wwwroot\flags\North Korea.png" />
+    <_ContentIncludedByDefault Remove="wwwroot\flags\Northern Cyprus.png" />
+    <_ContentIncludedByDefault Remove="wwwroot\flags\Northern Ireland.png" />
+    <_ContentIncludedByDefault Remove="wwwroot\flags\Norway.png" />
+    <_ContentIncludedByDefault Remove="wwwroot\flags\Olimpic Movement.png" />
+    <_ContentIncludedByDefault Remove="wwwroot\flags\Oman.png" />
+    <_ContentIncludedByDefault Remove="wwwroot\flags\OPEC.png" />
+    <_ContentIncludedByDefault Remove="wwwroot\flags\Pakistan.png" />
+    <_ContentIncludedByDefault Remove="wwwroot\flags\Palau.png" />
+    <_ContentIncludedByDefault Remove="wwwroot\flags\Palestine.png" />
+    <_ContentIncludedByDefault Remove="wwwroot\flags\Panama.png" />
+    <_ContentIncludedByDefault Remove="wwwroot\flags\Papua New Guinea.png" />
+    <_ContentIncludedByDefault Remove="wwwroot\flags\Paraguay.png" />
+    <_ContentIncludedByDefault Remove="wwwroot\flags\Peru.png" />
+    <_ContentIncludedByDefault Remove="wwwroot\flags\Philippines.png" />
+    <_ContentIncludedByDefault Remove="wwwroot\flags\Poland.png" />
+    <_ContentIncludedByDefault Remove="wwwroot\flags\Portugal.png" />
+    <_ContentIncludedByDefault Remove="wwwroot\flags\Puerto Rico.png" />
+    <_ContentIncludedByDefault Remove="wwwroot\flags\Qatar.png" />
+    <_ContentIncludedByDefault Remove="wwwroot\flags\Red Cross.png" />
+    <_ContentIncludedByDefault Remove="wwwroot\flags\Reunion.png" />
+    <_ContentIncludedByDefault Remove="wwwroot\flags\Romania.png" />
+    <_ContentIncludedByDefault Remove="wwwroot\flags\Russia.png" />
+    <_ContentIncludedByDefault Remove="wwwroot\flags\Rwanda.png" />
+    <_ContentIncludedByDefault Remove="wwwroot\flags\Saint Lucia.png" />
+    <_ContentIncludedByDefault Remove="wwwroot\flags\Samoa.png" />
+    <_ContentIncludedByDefault Remove="wwwroot\flags\San Marino.png" />
+    <_ContentIncludedByDefault Remove="wwwroot\flags\Sao Tome &amp; Principe.png" />
+    <_ContentIncludedByDefault Remove="wwwroot\flags\Saudi Arabia.png" />
+    <_ContentIncludedByDefault Remove="wwwroot\flags\Scotland.png" />
+    <_ContentIncludedByDefault Remove="wwwroot\flags\Senegal.png" />
+    <_ContentIncludedByDefault Remove="wwwroot\flags\Serbia(Yugoslavia).png" />
+    <_ContentIncludedByDefault Remove="wwwroot\flags\Seychelles.png" />
+    <_ContentIncludedByDefault Remove="wwwroot\flags\Sierra Leone.png" />
+    <_ContentIncludedByDefault Remove="wwwroot\flags\Singapore.png" />
+    <_ContentIncludedByDefault Remove="wwwroot\flags\Slovakia.png" />
+    <_ContentIncludedByDefault Remove="wwwroot\flags\Slovenia.png" />
+    <_ContentIncludedByDefault Remove="wwwroot\flags\Solomon Islands.png" />
+    <_ContentIncludedByDefault Remove="wwwroot\flags\Somalia.png" />
+    <_ContentIncludedByDefault Remove="wwwroot\flags\Somaliland.png" />
+    <_ContentIncludedByDefault Remove="wwwroot\flags\South Africa.png" />
+    <_ContentIncludedByDefault Remove="wwwroot\flags\South Korea.png" />
+    <_ContentIncludedByDefault Remove="wwwroot\flags\Spain.png" />
+    <_ContentIncludedByDefault Remove="wwwroot\flags\Sri Lanka.png" />
+    <_ContentIncludedByDefault Remove="wwwroot\flags\St Kitts &amp; Nevis.png" />
+    <_ContentIncludedByDefault Remove="wwwroot\flags\St Vincent &amp; the Grenadines.png" />
+    <_ContentIncludedByDefault Remove="wwwroot\flags\Sudan.png" />
+    <_ContentIncludedByDefault Remove="wwwroot\flags\Suriname.png" />
+    <_ContentIncludedByDefault Remove="wwwroot\flags\Swaziland.png" />
+    <_ContentIncludedByDefault Remove="wwwroot\flags\Sweden.png" />
+    <_ContentIncludedByDefault Remove="wwwroot\flags\Switzerland.png" />
+    <_ContentIncludedByDefault Remove="wwwroot\flags\Syria.png" />
+    <_ContentIncludedByDefault Remove="wwwroot\flags\Tahiti(French Polinesia).png" />
+    <_ContentIncludedByDefault Remove="wwwroot\flags\Taiwan.png" />
+    <_ContentIncludedByDefault Remove="wwwroot\flags\Tajikistan.png" />
+    <_ContentIncludedByDefault Remove="wwwroot\flags\Tanzania.png" />
+    <_ContentIncludedByDefault Remove="wwwroot\flags\Thailand.png" />
+    <_ContentIncludedByDefault Remove="wwwroot\flags\Timor-Leste.png" />
+    <_ContentIncludedByDefault Remove="wwwroot\flags\Togo.png" />
+    <_ContentIncludedByDefault Remove="wwwroot\flags\Tonga.png" />
+    <_ContentIncludedByDefault Remove="wwwroot\flags\Trinidad &amp; Tobago.png" />
+    <_ContentIncludedByDefault Remove="wwwroot\flags\Tunisia.png" />
+    <_ContentIncludedByDefault Remove="wwwroot\flags\Turkey.png" />
+    <_ContentIncludedByDefault Remove="wwwroot\flags\Turkmenistan.png" />
+    <_ContentIncludedByDefault Remove="wwwroot\flags\Turks and Caicos Islands.png" />
+    <_ContentIncludedByDefault Remove="wwwroot\flags\Tuvalu.png" />
+    <_ContentIncludedByDefault Remove="wwwroot\flags\Uganda.png" />
+    <_ContentIncludedByDefault Remove="wwwroot\flags\Ukraine.png" />
+    <_ContentIncludedByDefault Remove="wwwroot\flags\United Arab Emirates.png" />
+    <_ContentIncludedByDefault Remove="wwwroot\flags\United Nations.png" />
+    <_ContentIncludedByDefault Remove="wwwroot\flags\United-Kingdom.png" />
+    <_ContentIncludedByDefault Remove="wwwroot\flags\Uruguay.png" />
+    <_ContentIncludedByDefault Remove="wwwroot\flags\USA.png" />
+    <_ContentIncludedByDefault Remove="wwwroot\flags\Uzbekistan.png" />
+    <_ContentIncludedByDefault Remove="wwwroot\flags\Vanutau.png" />
+    <_ContentIncludedByDefault Remove="wwwroot\flags\Vatican City.png" />
+    <_ContentIncludedByDefault Remove="wwwroot\flags\Venezuela.png" />
+    <_ContentIncludedByDefault Remove="wwwroot\flags\Viet Nam.png" />
+    <_ContentIncludedByDefault Remove="wwwroot\flags\Virgin Islands British.png" />
+    <_ContentIncludedByDefault Remove="wwwroot\flags\Virgin Islands US.png" />
+    <_ContentIncludedByDefault Remove="wwwroot\flags\Wales.png" />
+    <_ContentIncludedByDefault Remove="wwwroot\flags\Western Sahara.png" />
+    <_ContentIncludedByDefault Remove="wwwroot\flags\Yemen.png" />
+    <_ContentIncludedByDefault Remove="wwwroot\flags\Zambia.png" />
+    <_ContentIncludedByDefault Remove="wwwroot\flags\Zimbabwe.png" />
+    <_ContentIncludedByDefault Remove="wwwroot\js\angular.min.js" />
+    <_ContentIncludedByDefault Remove="wwwroot\js\bootstrap.min.js" />
+    <_ContentIncludedByDefault Remove="wwwroot\js\jquery-ui.js" />
+    <_ContentIncludedByDefault Remove="wwwroot\js\jquery.counterup.min.js" />
+    <_ContentIncludedByDefault Remove="wwwroot\js\jquery.fitvids.js" />
+    <_ContentIncludedByDefault Remove="wwwroot\js\jquery.isotope.min.js" />
+    <_ContentIncludedByDefault Remove="wwwroot\js\jquery.magnific-popup.min.js" />
+    <_ContentIncludedByDefault Remove="wwwroot\js\jquery.min.js" />
+    <_ContentIncludedByDefault Remove="wwwroot\js\jquery.parallax.js" />
+    <_ContentIncludedByDefault Remove="wwwroot\js\masonry.pkgd.min.js" />
+    <_ContentIncludedByDefault Remove="wwwroot\js\messenger\angular-local-storage.min.js" />
+    <_ContentIncludedByDefault Remove="wwwroot\js\messenger\angular.min.js" />
+    <_ContentIncludedByDefault Remove="wwwroot\js\messenger\app.js" />
+    <_ContentIncludedByDefault Remove="wwwroot\js\messenger\authService.js" />
+    <_ContentIncludedByDefault Remove="wwwroot\js\messenger\common.js" />
+    <_ContentIncludedByDefault Remove="wwwroot\js\messenger\jquery.signalR-2.2.2.min.js" />
+    <_ContentIncludedByDefault Remove="wwwroot\js\messenger\MessengerController.js" />
+    <_ContentIncludedByDefault Remove="wwwroot\js\owl.carousel.min.js" />
+    <_ContentIncludedByDefault Remove="wwwroot\js\plugins\ng-file-upload-bower-12.2.13\.versions" />
+    <_ContentIncludedByDefault Remove="wwwroot\js\plugins\ng-file-upload-bower-12.2.13\bower.json" />
+    <_ContentIncludedByDefault Remove="wwwroot\js\plugins\ng-file-upload-bower-12.2.13\LICENSE" />
+    <_ContentIncludedByDefault Remove="wwwroot\js\plugins\ng-file-upload-bower-12.2.13\ng-file-upload-all.js" />
+    <_ContentIncludedByDefault Remove="wwwroot\js\plugins\ng-file-upload-bower-12.2.13\ng-file-upload-all.min.js" />
+    <_ContentIncludedByDefault Remove="wwwroot\js\plugins\ng-file-upload-bower-12.2.13\ng-file-upload-shim.js" />
+    <_ContentIncludedByDefault Remove="wwwroot\js\plugins\ng-file-upload-bower-12.2.13\ng-file-upload-shim.min.js" />
+    <_ContentIncludedByDefault Remove="wwwroot\js\plugins\ng-file-upload-bower-12.2.13\ng-file-upload.js" />
+    <_ContentIncludedByDefault Remove="wwwroot\js\plugins\ng-file-upload-bower-12.2.13\ng-file-upload.min.js" />
+    <_ContentIncludedByDefault Remove="wwwroot\js\plugins\ng-file-upload-bower-12.2.13\package.js" />
+    <_ContentIncludedByDefault Remove="wwwroot\js\plugins\ng-file-upload-bower-12.2.13\README.md" />
+    <_ContentIncludedByDefault Remove="wwwroot\js\portal\common.js" />
+    <_ContentIncludedByDefault Remove="wwwroot\js\portal\gmap.js" />
+    <_ContentIncludedByDefault Remove="wwwroot\js\portal\portal.white.js" />
+    <_ContentIncludedByDefault Remove="wwwroot\js\scripts.js" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.AspNetCore.App" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Swastika.Cms.Lib\Swastika.Cms.Lib.csproj" />
+    <ProjectReference Include="..\Swastka.Cms.Api\Swastka.Cms.Api.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Update="Views\Home\ArticleDetails.cshtml">
+      <Pack>$(IncludeRazorContentInPack)</Pack>
+    </Content>
+    <Content Update="Views\Home\Home.cshtml">
+      <Pack>$(IncludeRazorContentInPack)</Pack>
+    </Content>
+    <Content Update="Views\Home\ProductDetails.cshtml">
+      <Pack>$(IncludeRazorContentInPack)</Pack>
+    </Content>
+    <Content Update="Views\Home\Search.cshtml">
+      <Pack>$(IncludeRazorContentInPack)</Pack>
+    </Content>
+    <Content Update="Views\Home\Tag.cshtml">
+      <Pack>$(IncludeRazorContentInPack)</Pack>
+    </Content>
+    <Content Update="Views\Shared\Templates\Default\Articles\_Default.cshtml">
+      <Pack>$(IncludeRazorContentInPack)</Pack>
+    </Content>
+    <Content Update="Views\Shared\Templates\Default\Layouts\_Advanced.cshtml">
+      <Pack>$(IncludeRazorContentInPack)</Pack>
+    </Content>
+    <Content Update="Views\Shared\Templates\Default\Layouts\_Comments_Facebook.cshtml">
+      <Pack>$(IncludeRazorContentInPack)</Pack>
+    </Content>
+    <Content Update="Views\Shared\Templates\Default\Layouts\_Footer.cshtml">
+      <Pack>$(IncludeRazorContentInPack)</Pack>
+    </Content>
+    <Content Update="Views\Shared\Templates\Default\Layouts\_Header.cshtml">
+      <Pack>$(IncludeRazorContentInPack)</Pack>
+    </Content>
+    <Content Update="Views\Shared\Templates\Default\Layouts\_Top_Nav.cshtml">
+      <Pack>$(IncludeRazorContentInPack)</Pack>
+    </Content>
+    <Content Update="Views\Shared\Templates\Default\Masters\_Layout.cshtml">
+      <Pack>$(IncludeRazorContentInPack)</Pack>
+    </Content>
+    <Content Update="Views\Shared\Templates\Default\Modules\Blog-1.cshtml">
+      <Pack>$(IncludeRazorContentInPack)</Pack>
+    </Content>
+    <Content Update="Views\Shared\Templates\Default\Modules\Blog-2.cshtml">
+      <Pack>$(IncludeRazorContentInPack)</Pack>
+    </Content>
+    <Content Update="Views\Shared\Templates\Default\Modules\Blog-3.cshtml">
+      <Pack>$(IncludeRazorContentInPack)</Pack>
+    </Content>
+    <Content Update="Views\Shared\Templates\Default\Modules\Blog-4.cshtml">
+      <Pack>$(IncludeRazorContentInPack)</Pack>
+    </Content>
+    <Content Update="Views\Shared\Templates\Default\Modules\Blog-5.cshtml">
+      <Pack>$(IncludeRazorContentInPack)</Pack>
+    </Content>
+    <Content Update="Views\Shared\Templates\Default\Modules\features-1.cshtml">
+      <Pack>$(IncludeRazorContentInPack)</Pack>
+    </Content>
+    <Content Update="Views\Shared\Templates\Default\Modules\Features-2.cshtml">
+      <Pack>$(IncludeRazorContentInPack)</Pack>
+    </Content>
+    <Content Update="Views\Shared\Templates\Default\Modules\Features-3.cshtml">
+      <Pack>$(IncludeRazorContentInPack)</Pack>
+    </Content>
+    <Content Update="Views\Shared\Templates\Default\Modules\Features-4.cshtml">
+      <Pack>$(IncludeRazorContentInPack)</Pack>
+    </Content>
+    <Content Update="Views\Shared\Templates\Default\Modules\Features-5.cshtml">
+      <Pack>$(IncludeRazorContentInPack)</Pack>
+    </Content>
+    <Content Update="Views\Shared\Templates\Default\Modules\Features-6.cshtml">
+      <Pack>$(IncludeRazorContentInPack)</Pack>
+    </Content>
+    <Content Update="Views\Shared\Templates\Default\Modules\Features-7.cshtml">
+      <Pack>$(IncludeRazorContentInPack)</Pack>
+    </Content>
+    <Content Update="Views\Shared\Templates\Default\Modules\Features-8.cshtml">
+      <Pack>$(IncludeRazorContentInPack)</Pack>
+    </Content>
+    <Content Update="Views\Shared\Templates\Default\Modules\Header-2.cshtml">
+      <Pack>$(IncludeRazorContentInPack)</Pack>
+    </Content>
+    <Content Update="Views\Shared\Templates\Default\Modules\Header-3.cshtml">
+      <Pack>$(IncludeRazorContentInPack)</Pack>
+    </Content>
+    <Content Update="Views\Shared\Templates\Default\Modules\Header_1.cshtml">
+      <Pack>$(IncludeRazorContentInPack)</Pack>
+    </Content>
+    <Content Update="Views\Shared\Templates\Default\Modules\_AboutUs_Advanced.cshtml">
+      <Pack>$(IncludeRazorContentInPack)</Pack>
+    </Content>
+    <Content Update="Views\Shared\Templates\Default\Modules\_Banners.cshtml">
+      <Pack>$(IncludeRazorContentInPack)</Pack>
+    </Content>
+    <Content Update="Views\Shared\Templates\Default\Modules\_Default.cshtml">
+      <Pack>$(IncludeRazorContentInPack)</Pack>
+    </Content>
+    <Content Update="Views\Shared\Templates\Default\Modules\_Home_AboutUs.cshtml">
+      <Pack>$(IncludeRazorContentInPack)</Pack>
+    </Content>
+    <Content Update="Views\Shared\Templates\Default\Modules\_Home_Contact_Us.cshtml">
+      <Pack>$(IncludeRazorContentInPack)</Pack>
+    </Content>
+    <Content Update="Views\Shared\Templates\Default\Modules\_Home_Header.cshtml">
+      <Pack>$(IncludeRazorContentInPack)</Pack>
+    </Content>
+    <Content Update="Views\Shared\Templates\Default\Modules\_Home_Pricing.cshtml">
+      <Pack>$(IncludeRazorContentInPack)</Pack>
+    </Content>
+    <Content Update="Views\Shared\Templates\Default\Modules\_Home_What_Is_Alpha.cshtml">
+      <Pack>$(IncludeRazorContentInPack)</Pack>
+    </Content>
+    <Content Update="Views\Shared\Templates\Default\Modules\_Home_Work_With_Us.cshtml">
+      <Pack>$(IncludeRazorContentInPack)</Pack>
+    </Content>
+    <Content Update="Views\Shared\Templates\Default\Modules\_Latest_Blogposts.cshtml">
+      <Pack>$(IncludeRazorContentInPack)</Pack>
+    </Content>
+    <Content Update="Views\Shared\Templates\Default\Modules\_MainNavi.cshtml">
+      <Pack>$(IncludeRazorContentInPack)</Pack>
+    </Content>
+    <Content Update="Views\Shared\Templates\Default\Modules\_What_Clients_Say.cshtml">
+      <Pack>$(IncludeRazorContentInPack)</Pack>
+    </Content>
+    <Content Update="Views\Shared\Templates\Default\Pages\_AboutUs.cshtml">
+      <Pack>$(IncludeRazorContentInPack)</Pack>
+    </Content>
+    <Content Update="Views\Shared\Templates\Default\Pages\_Components.cshtml">
+      <Pack>$(IncludeRazorContentInPack)</Pack>
+    </Content>
+    <Content Update="Views\Shared\Templates\Default\Pages\_Default.cshtml">
+      <Pack>$(IncludeRazorContentInPack)</Pack>
+    </Content>
+    <Content Update="Views\Shared\Templates\Default\Pages\_Home.cshtml">
+      <Pack>$(IncludeRazorContentInPack)</Pack>
+    </Content>
+    <Content Update="Views\Shared\Templates\Default\Pages\_List_Post.cshtml">
+      <Pack>$(IncludeRazorContentInPack)</Pack>
+    </Content>
+    <Content Update="Views\Shared\Templates\Default\Pages\_List_Post_Item.cshtml">
+      <Pack>$(IncludeRazorContentInPack)</Pack>
+    </Content>
+    <Content Update="Views\Shared\Templates\Default\Pages\_Modules.cshtml">
+      <Pack>$(IncludeRazorContentInPack)</Pack>
+    </Content>
+    <Content Update="Views\Shared\Templates\Default\Products\_Default.cshtml">
+      <Pack>$(IncludeRazorContentInPack)</Pack>
+    </Content>
+    <Content Update="Views\Shared\Templates\Default\Widgets\_Comments_Facebook.cshtml">
+      <Pack>$(IncludeRazorContentInPack)</Pack>
+    </Content>
+    <Content Update="Views\Shared\Templates\Default\Widgets\_Tags.cshtml">
+      <Pack>$(IncludeRazorContentInPack)</Pack>
+    </Content>
+    <Content Update="Views\Shared\Templates\Default_Blank\Articles\_Default.cshtml">
+      <Pack>$(IncludeRazorContentInPack)</Pack>
+    </Content>
+    <Content Update="Views\Shared\Templates\Default_Blank\Layouts\_Advanced.cshtml">
+      <Pack>$(IncludeRazorContentInPack)</Pack>
+    </Content>
+    <Content Update="Views\Shared\Templates\Default_Blank\Layouts\_Comments_Facebook.cshtml">
+      <Pack>$(IncludeRazorContentInPack)</Pack>
+    </Content>
+    <Content Update="Views\Shared\Templates\Default_Blank\Layouts\_Footer.cshtml">
+      <Pack>$(IncludeRazorContentInPack)</Pack>
+    </Content>
+    <Content Update="Views\Shared\Templates\Default_Blank\Layouts\_Header.cshtml">
+      <Pack>$(IncludeRazorContentInPack)</Pack>
+    </Content>
+    <Content Update="Views\Shared\Templates\Default_Blank\Layouts\_Top_Nav.cshtml">
+      <Pack>$(IncludeRazorContentInPack)</Pack>
+    </Content>
+    <Content Update="Views\Shared\Templates\Default_Blank\Masters\_Layout.cshtml">
+      <Pack>$(IncludeRazorContentInPack)</Pack>
+    </Content>
+    <Content Update="Views\Shared\Templates\Default_Blank\Modules\_Default.cshtml">
+      <Pack>$(IncludeRazorContentInPack)</Pack>
+    </Content>
+    <Content Update="Views\Shared\Templates\Default_Blank\Pages\_Default.cshtml">
+      <Pack>$(IncludeRazorContentInPack)</Pack>
+    </Content>
+    <Content Update="Views\Shared\Templates\Default_Blank\Pages\_Modules.cshtml">
+      <Pack>$(IncludeRazorContentInPack)</Pack>
+    </Content>
+    <Content Update="Views\Shared\Templates\Default_Blank\Products\_Default.cshtml">
+      <Pack>$(IncludeRazorContentInPack)</Pack>
+    </Content>
+    <Content Update="Views\Shared\Templates\Default_Blank\Widgets\_Comments_Facebook.cshtml">
+      <Pack>$(IncludeRazorContentInPack)</Pack>
+    </Content>
+    <Content Update="Views\Shared\Templates\Default_Blank\Widgets\_Pagination.cshtml">
+      <Pack>$(IncludeRazorContentInPack)</Pack>
+    </Content>
+    <Content Update="Views\Shared\Templates\Default_Blank\Widgets\_Tags.cshtml">
+      <Pack>$(IncludeRazorContentInPack)</Pack>
+    </Content>
+    <Content Update="Views\Shared\_LayoutNowUI_Angular.cshtml">
+      <Pack>$(IncludeRazorContentInPack)</Pack>
+    </Content>
+    <Content Update="Views\Shared\_LayoutPortal_Angular.cshtml">
+      <Pack>$(IncludeRazorContentInPack)</Pack>
+    </Content>
+    <Content Update="wwwroot\android-icon-144x144.png">
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Update="wwwroot\android-icon-192x192.png">
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Update="wwwroot\android-icon-36x36.png">
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Update="wwwroot\android-icon-48x48.png">
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Update="wwwroot\android-icon-72x72.png">
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Update="wwwroot\android-icon-96x96.png">
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Update="wwwroot\app-client\app.js">
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Update="wwwroot\app-client\app.route.js">
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Update="wwwroot\app-init\app.js">
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Update="wwwroot\app-init\app.route.js">
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Update="wwwroot\app-init\pages\shared\services\common-services.js">
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Update="wwwroot\app-init\pages\step1\index.html">
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Update="wwwroot\app-init\pages\step1\step1-controller.js">
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Update="wwwroot\app-init\pages\step1\step1-services.js">
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Update="wwwroot\app-init\pages\step2\index.html">
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Update="wwwroot\app-init\pages\step2\step2-controller.js">
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Update="wwwroot\app-init\pages\step2\step2-services.js">
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Update="wwwroot\app-init\plugins\angular-animate.min.js">
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Update="wwwroot\app-init\plugins\angular-local-storage.min.js">
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Update="wwwroot\app-init\plugins\angular-route.min.js">
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Update="wwwroot\app-init\plugins\angular.min.js">
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Update="wwwroot\app-init\plugins\jquery-ui-1.12.1.custom\jquery-ui.min.css">
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Update="wwwroot\app-init\plugins\jquery-ui-1.12.1.custom\jquery-ui.min.js">
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Update="wwwroot\app-init\plugins\loading-bar.min.js">
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Update="wwwroot\app-init\plugins\paging.js">
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Update="wwwroot\apple-icon-114x114.png">
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Update="wwwroot\apple-icon-120x120.png">
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Update="wwwroot\apple-icon-144x144.png">
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Update="wwwroot\apple-icon-152x152.png">
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Update="wwwroot\apple-icon-180x180.png">
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Update="wwwroot\apple-icon-57x57.png">
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Update="wwwroot\apple-icon-60x60.png">
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Update="wwwroot\apple-icon-72x72.png">
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Update="wwwroot\apple-icon-76x76.png">
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Update="wwwroot\apple-icon-precomposed.png">
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Update="wwwroot\apple-icon.png">
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Update="wwwroot\browserconfig.xml">
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Update="wwwroot\css\portal\img\bg.jpg">
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Update="wwwroot\css\portal\img\blur-bg-blurred.jpg">
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Update="wwwroot\css\portal\img\swastika-io-logo-blue.png">
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Update="wwwroot\css\portal\img\swastika-io-logo-blue.svg">
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Update="wwwroot\css\portal\img\swastika-io-logo.svg">
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Update="wwwroot\css\portal\main.css">
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Update="wwwroot\css\portal\portal.white.min.css">
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Update="wwwroot\css\portal\portal.white.min.css.map">
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Update="wwwroot\Deal.png">
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Update="wwwroot\favicon-16x16.png">
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Update="wwwroot\favicon-32x32.png">
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Update="wwwroot\favicon-96x96.png">
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Update="wwwroot\favicon.ico">
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Update="wwwroot\images\bgs\book-open.jpeg">
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Update="wwwroot\images\Screenshot %281%29png">
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Update="wwwroot\images\swastika-io-logo-black.svg">
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Update="wwwroot\images\swastika-io-logo-white.svg">
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Update="wwwroot\images\upload-image-thumbnail.png">
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Update="wwwroot\js\site.js">
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Update="wwwroot\js\site.min.js">
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Update="wwwroot\js\smoothscroll.js">
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Update="wwwroot\js\waypoints.min.js">
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Update="wwwroot\ms-icon-144x144.png">
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Update="wwwroot\ms-icon-150x150.png">
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Update="wwwroot\ms-icon-310x310.png">
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Update="wwwroot\ms-icon-70x70.png">
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Update="wwwroot\sitemap.xml">
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Update="wwwroot\sitemap.xsl">
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Update="wwwroot\Sitemap\sitemap_addl.xml.gz">
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Update="wwwroot\Sitemap\sitemap_category.xml">
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Update="wwwroot\Sitemap\sitemap_channel.xml">
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Update="wwwroot\Sitemap\sitemap_region.xml">
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Update="wwwroot\Sitemap\sitemap_video.xml">
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Update="wwwroot\Sitemap\sitemap_video_0.xml">
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Update="wwwroot\Sitemap\sitemap_video_0.xml.gz">
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="wwwroot\app\services\" />
+  </ItemGroup>
+
+</Project>
