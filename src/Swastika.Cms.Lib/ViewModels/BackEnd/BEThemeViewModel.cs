@@ -304,7 +304,7 @@ namespace Swastika.Cms.Lib.ViewModels.BackEnd
                             TemplateName = Model.Name,
                             FolderType = file.FolderName,
                             ModifiedBy = CreatedBy
-                        });
+                        }, _context, _transaction);
                     var saveResult =  template.SaveModel(true, _context, _transaction);
                     result.IsSucceed = result.IsSucceed && saveResult.IsSucceed;
                     if (!saveResult.IsSucceed)
@@ -322,17 +322,19 @@ namespace Swastika.Cms.Lib.ViewModels.BackEnd
                 InfoConfigurationViewModel config = ( InfoConfigurationViewModel.Repository.GetSingleModel(
                     c => c.Keyword == SWCmsConstants.ConfigurationKeyword.Theme && c.Specificulture == Specificulture
                     , _context, _transaction)).Data;
+                GlobalConfigurationService.Instance.Refresh(_context, _transaction);
                 if (config == null)
                 {
-                    config = new InfoConfigurationViewModel()
+                    config = new InfoConfigurationViewModel( new SiocConfiguration()
                     {
                         Keyword = SWCmsConstants.ConfigurationKeyword.Theme,
                         Specificulture = Specificulture,
                         Category = SWCmsConstants.ConfigurationType.User,
-                        DataType = SWCmsConstants.DataType.String,
+                        DataType = (int)SWCmsConstants.DataType.String,
                         Description = "Cms Theme",
                         Value = Name
-                    };
+                    }, _context, _transaction)
+                    ;
                 }
                 else
                 {
@@ -354,15 +356,16 @@ namespace Swastika.Cms.Lib.ViewModels.BackEnd
                       c => c.Keyword == SWCmsConstants.ConfigurationKeyword.ThemeId && c.Specificulture == Specificulture, _context, _transaction)).Data;
                 if (configId == null)
                 {
-                    configId = new InfoConfigurationViewModel()
+                    configId = new InfoConfigurationViewModel(new SiocConfiguration()
                     {
                         Keyword = SWCmsConstants.ConfigurationKeyword.ThemeId,
                         Specificulture = Specificulture,
                         Category = SWCmsConstants.ConfigurationType.User,
-                        DataType = SWCmsConstants.DataType.String,
+                        DataType = (int)SWCmsConstants.DataType.String,
                         Description = "Cms Theme Id",
                         Value = Model.Id.ToString()
-                    };
+                    }, _context, _transaction)
+                    ;
                 }
                 else
                 {

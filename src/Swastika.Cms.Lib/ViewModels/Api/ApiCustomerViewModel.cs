@@ -10,10 +10,11 @@ using Swastika.Cms.Lib.Services;
 using Swastika.Domain.Core.ViewModels;
 using Swastika.Domain.Data.ViewModels;
 using System;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Threading.Tasks;
 
-namespace Swastika.Cms.Lib.ViewModels.BackEnd
+namespace Swastika.Cms.Lib.ViewModels.Api
 {
     public class ApiCustomerViewModel
         : ViewModelBase<SiocCmsContext, SiocCustomer, ApiCustomerViewModel>
@@ -28,13 +29,20 @@ namespace Swastika.Cms.Lib.ViewModels.BackEnd
         public string IsAgreeNotified { get; set; }
         [JsonProperty("fullName")]
         public string FullName { get; set; }
+        [Required]
         [JsonProperty("phoneNumber")]
         public string PhoneNumber { get; set; }
         [JsonProperty("birthday")]
         public DateTime? BirthDay { get; set; }
         [JsonProperty("createdDateTime")]
         public DateTime CreatedDateTime { get; set; }
-        
+
+        #endregion
+
+        #region Views
+
+        public List<ApiOrderViewModel> Orders { get; set; }
+
         #endregion
 
         #endregion
@@ -54,6 +62,18 @@ namespace Swastika.Cms.Lib.ViewModels.BackEnd
 
         #region Overrides
 
+        public override void Validate(SiocCmsContext _context = null, IDbContextTransaction _transaction = null)
+        {
+            base.Validate(_context, _transaction);
+            if (IsValid)
+            {
+                IsValid = ApiCustomerViewModel.Repository.CheckIsExists(c => c.PhoneNumber == PhoneNumber, _context, _transaction);
+                if (!IsValid)
+                {
+                    Errors.Add("This phone number already existed");
+                }
+            }
+        }
         public override SiocCustomer ParseModel(SiocCmsContext _context = null, IDbContextTransaction _transaction = null)
         {
             if (string.IsNullOrEmpty(Id))
@@ -62,6 +82,11 @@ namespace Swastika.Cms.Lib.ViewModels.BackEnd
                 CreatedDateTime = DateTime.UtcNow;
             }
             return base.ParseModel(_context, _transaction);
+        }
+
+        public override void ExpandView(SiocCmsContext _context = null, IDbContextTransaction _transaction = null)
+        {
+            Orders = ApiOrderViewModel.Repository.GetModelListBy(o => o.CustomerId == Id && o.Specificulture == Specificulture).Data;
         }
         #endregion Overrides
     }

@@ -10,6 +10,7 @@ namespace Swastika.Cms.Lib.Models.Cms
             SiocArticleMedia = new HashSet<SiocArticleMedia>();
             SiocArticleModule = new HashSet<SiocArticleModule>();
             SiocCategoryArticle = new HashSet<SiocCategoryArticle>();
+            SiocComment = new HashSet<SiocComment>();
             SiocModuleArticle = new HashSet<SiocModuleArticle>();
         }
 
@@ -42,6 +43,7 @@ namespace Swastika.Cms.Lib.Models.Cms
         public ICollection<SiocArticleMedia> SiocArticleMedia { get; set; }
         public ICollection<SiocArticleModule> SiocArticleModule { get; set; }
         public ICollection<SiocCategoryArticle> SiocCategoryArticle { get; set; }
+        public ICollection<SiocComment> SiocComment { get; set; }
         public ICollection<SiocModuleArticle> SiocModuleArticle { get; set; }
     }
 }

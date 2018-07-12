@@ -7,6 +7,7 @@ namespace Swastika.Cms.Lib.Models.Cms
     {
         public SiocOrder()
         {
+            SiocComment = new HashSet<SiocComment>();
             SiocOrderItem = new HashSet<SiocOrderItem>();
         }
 
@@ -16,10 +17,11 @@ namespace Swastika.Cms.Lib.Models.Cms
         public DateTime CreatedDateTime { get; set; }
         public string CreatedBy { get; set; }
         public int StoreId { get; set; }
+        public string Specificulture { get; set; }
         public int Status { get; set; }
 
-        public SiocCmsCustomer Customer { get; set; }
-        public SiocCmsUser User { get; set; }
+        public SiocCustomer Customer { get; set; }
+        public ICollection<SiocComment> SiocComment { get; set; }
         public ICollection<SiocOrderItem> SiocOrderItem { get; set; }
     }
 }

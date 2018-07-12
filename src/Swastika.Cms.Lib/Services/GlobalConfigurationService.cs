@@ -27,7 +27,7 @@ namespace Swastika.Cms.Lib.Services
         public string Culture { get; set; }
         public string Name { get; set; }
         public bool IsInit { get; set; }
-
+        private bool isSqlite = false;
         public string ConnectionString
         {
             get
@@ -71,6 +71,8 @@ namespace Swastika.Cms.Lib.Services
                 _instance = value;
             }
         }
+
+        public bool IsSqlite { get => isSqlite; set => isSqlite = value; }
 
         public GlobalConfigurationService()
         {
@@ -138,8 +140,8 @@ namespace Swastika.Cms.Lib.Services
                     await context.Database.MigrateAsync();
                     await accountContext.Database.MigrateAsync();
                     transaction = context.Database.BeginTransaction();
-                    accTransaction = accountContext.Database.BeginTransaction();
-                    var getCulture = await BECultureViewModel.Repository.GetModelListAsync();
+                    
+                    var getCulture = await BECultureViewModel.Repository.GetModelListAsync(_context: context, _transaction: transaction);
 
                     var isInit = getCulture.IsSucceed && getCulture.Data.Count > 0;
 
@@ -166,7 +168,7 @@ namespace Swastika.Cms.Lib.Services
                             Template = "_Home",
                             Type = (int)SWCmsConstants.CateType.Home,
                             CreatedBy = "Admin"
-                        });
+                        }, context, transaction);
 
                         isSucceed = cate.SaveModel(false, context, transaction).IsSucceed;
                         BECategoryViewModel uscate = new BECategoryViewModel(new SiocCategory()
@@ -176,7 +178,7 @@ namespace Swastika.Cms.Lib.Services
                             Template = "_Home",
                             Type = (int)SWCmsConstants.CateType.Home,
                             CreatedBy = "Admin"
-                        });
+                        }, context, transaction);
                         isSucceed = isSucceed && uscate.SaveModel(false, context, transaction).IsSucceed;
                     }
 
@@ -185,13 +187,11 @@ namespace Swastika.Cms.Lib.Services
                         GlobalLanguageService.Instance.RefreshCultures(context, transaction);
 
                         transaction.Commit();
-                        accTransaction.Commit();
                         IsInit = true;
                     }
                     else
                     {
                         transaction.Rollback();
-                        accTransaction.Rollback();
                         IsInit = false;
                     }
                 }
@@ -246,7 +246,7 @@ namespace Swastika.Cms.Lib.Services
                         Name = "Default",
 
                         CreatedBy = "Admin"
-                    })
+                    }, context, transaction)
                     {
                         IsActived = true,
                         Specificulture = "vi-vn"
@@ -260,16 +260,16 @@ namespace Swastika.Cms.Lib.Services
                 c => c.Keyword == SWCmsConstants.ConfigurationKeyword.Theme && c.Specificulture == "vi-vn", context, transaction)).Data;
                         if (config == null)
                         {
-                            config = new ConfigurationViewModel()
+                            config = new ConfigurationViewModel(new SiocConfiguration()
                             {
                                 Keyword = SWCmsConstants.ConfigurationKeyword.Theme,
                                 Specificulture = "vi-vn",
                                 Category = SWCmsConstants.ConfigurationType.User,
-                                DataType = SWCmsConstants.DataType.String,
+                                DataType = (int)SWCmsConstants.DataType.String,
                                 Description = "Cms Theme",
 
                                 Value = ""
-                            };
+                            }, context, transaction);
                         }
                         else
                         {
@@ -284,16 +284,17 @@ namespace Swastika.Cms.Lib.Services
                 c => c.Keyword == SWCmsConstants.ConfigurationKeyword.ThemeId && c.Specificulture == "vi-vn", context, transaction)).Data;
                         if (config == null)
                         {
-                            config = new ConfigurationViewModel()
+                            config = new ConfigurationViewModel(new SiocConfiguration()
                             {
                                 Keyword = SWCmsConstants.ConfigurationKeyword.Theme,
                                 Specificulture = "vi-vn",
                                 Category = SWCmsConstants.ConfigurationType.User,
-                                DataType = SWCmsConstants.DataType.String,
+                                DataType = (int)SWCmsConstants.DataType.String,
                                 Description = "Cms Theme",
 
                                 Value = theme.Model.Id.ToString()
-                            };
+                            }
+                            , context, transaction);
                         }
                         else
                         {
@@ -308,16 +309,16 @@ namespace Swastika.Cms.Lib.Services
                 c => c.Keyword == SWCmsConstants.ConfigurationKeyword.Theme && c.Specificulture == "en-us", context, transaction)).Data;
                         if (config == null)
                         {
-                            config = new ConfigurationViewModel()
+                            config = new ConfigurationViewModel(new SiocConfiguration()
                             {
                                 Keyword = SWCmsConstants.ConfigurationKeyword.Theme,
                                 Specificulture = "en-us",
                                 Category = SWCmsConstants.ConfigurationType.User,
-                                DataType = SWCmsConstants.DataType.String,
+                                DataType = (int)SWCmsConstants.DataType.String,
                                 Description = "Cms Theme",
 
                                 Value = theme.Name
-                            };
+                            }, context, transaction);
                         }
                         else
                         {
@@ -332,16 +333,16 @@ namespace Swastika.Cms.Lib.Services
                 c => c.Keyword == SWCmsConstants.ConfigurationKeyword.ThemeId && c.Specificulture == "en-us", context, transaction)).Data;
                         if (config == null)
                         {
-                            config = new ConfigurationViewModel()
+                            config = new ConfigurationViewModel(new SiocConfiguration()
                             {
                                 Keyword = SWCmsConstants.ConfigurationKeyword.ThemeId,
                                 Specificulture = "en-us",
                                 Category = SWCmsConstants.ConfigurationType.User,
-                                DataType = SWCmsConstants.DataType.String,
+                                DataType = (int)SWCmsConstants.DataType.String,
                                 Description = "Cms Theme",
 
                                 Value = theme.Model.Id.ToString()
-                            };
+                            }, context, transaction);
                         }
                         else
                         {
@@ -388,14 +389,15 @@ namespace Swastika.Cms.Lib.Services
 
             if (!getCulture.IsSucceed)
             {
-                BECultureViewModel cultureViewModel = new BECultureViewModel()
+                BECultureViewModel cultureViewModel = new BECultureViewModel( new SiocCulture()
                 {
                     Specificulture = "en-us",
                     FullName = "United States",
                     Description = "United States",
                     Icon = "flag-icon-us",
                     Alias = "US"
-                };
+                }, context, transaction)
+                ;
                 isSucceed = cultureViewModel.SaveModel(_context: context, _transaction: transaction).IsSucceed;
             }
 
@@ -407,14 +409,15 @@ namespace Swastika.Cms.Lib.Services
 
             if (isSucceed && !getCulture.IsSucceed)
             {
-                BECultureViewModel cultureViewModel = new BECultureViewModel()
+                BECultureViewModel cultureViewModel = new BECultureViewModel(new SiocCulture()
                 {
                     Specificulture = "vi-vn",
                     FullName = "Vietnam",
                     Description = "Việt Nam",
                     Icon = "flag-icon-vn",
                     Alias = "VN"
-                };
+                },_context: context,
+                _transaction: transaction);
                 isSucceed = cultureViewModel.SaveModel(_context: context, _transaction: transaction).IsSucceed;
             }
             return isSucceed;
@@ -426,25 +429,26 @@ namespace Swastika.Cms.Lib.Services
             var getPosition = BEPositionViewModel.Repository.GetModelList(_context: context, _transaction: transaction);
             if (!getPosition.IsSucceed || getPosition.Data.Count == 0)
             {
-                BEPositionViewModel p = new BEPositionViewModel()
+                BEPositionViewModel p = new BEPositionViewModel(new SiocPosition()
                 {
                     Description = nameof(SWCmsConstants.CatePosition.Nav)
-                };
+                }, _context:context, _transaction:transaction)
+                ;
                 isSucceed = p.SaveModel(_context: context, _transaction: transaction).IsSucceed;
-                p = new BEPositionViewModel()
+                p = new BEPositionViewModel(new SiocPosition()
                 {
                     Description = nameof(SWCmsConstants.CatePosition.Top)
-                };
+                }, _context: context, _transaction: transaction);
                 isSucceed = isSucceed && p.SaveModel(_context: context, _transaction: transaction).IsSucceed;
-                p = new BEPositionViewModel()
+                p = new BEPositionViewModel(new SiocPosition()
                 {
                     Description = nameof(SWCmsConstants.CatePosition.Left)
-                };
+                }, _context: context, _transaction: transaction);
                 isSucceed = isSucceed && p.SaveModel(_context: context, _transaction: transaction).IsSucceed;
-                p = new BEPositionViewModel()
+                p = new BEPositionViewModel(new SiocPosition()
                 {
                     Description = nameof(SWCmsConstants.CatePosition.Footer)
-                };
+                }, _context: context, _transaction: transaction);
                 isSucceed = isSucceed && p.SaveModel(_context: context, _transaction: transaction).IsSucceed;
             }
             return isSucceed;

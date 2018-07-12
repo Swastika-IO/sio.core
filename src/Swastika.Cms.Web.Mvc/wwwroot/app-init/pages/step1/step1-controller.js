@@ -5,12 +5,14 @@ app.controller('Step1Controller', ['$scope', '$rootScope', '$timeout', '$locatio
         $scope.initCmsModel = {
             isUseLocal: false,
             localDbConnectionString: 'Server=(localdb)\\mssqllocaldb;Database=aspnet-swastika.Cms.Db;Trusted_Connection=True;MultipleActiveResultSets=true',
+            sqliteDbConnectionString: 'Data Source=sw-cms.db',
             dataBaseServer: '',
             dataBaseName: '',
             dataBaseUser: '',
             dataBasePassword: '',
             adminPassword: '',
-            lang: 'en-us'
+            lang: 'en-us',
+            isSqlite:false
         }
         $scope.settings = null;
         $scope.loadSettings = async function () {

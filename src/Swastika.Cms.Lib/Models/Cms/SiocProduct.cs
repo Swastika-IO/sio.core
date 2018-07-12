@@ -8,7 +8,9 @@ namespace Swastika.Cms.Lib.Models.Cms
         public SiocProduct()
         {
             SiocCategoryProduct = new HashSet<SiocCategoryProduct>();
+            SiocComment = new HashSet<SiocComment>();
             SiocModuleProduct = new HashSet<SiocModuleProduct>();
+            SiocOrderItem = new HashSet<SiocOrderItem>();
             SiocProductMedia = new HashSet<SiocProductMedia>();
             SiocProductModule = new HashSet<SiocProductModule>();
             SiocRelatedProductS = new HashSet<SiocRelatedProduct>();
@@ -53,7 +55,9 @@ namespace Swastika.Cms.Lib.Models.Cms
 
         public SiocCulture SpecificultureNavigation { get; set; }
         public ICollection<SiocCategoryProduct> SiocCategoryProduct { get; set; }
+        public ICollection<SiocComment> SiocComment { get; set; }
         public ICollection<SiocModuleProduct> SiocModuleProduct { get; set; }
+        public ICollection<SiocOrderItem> SiocOrderItem { get; set; }
         public ICollection<SiocProductMedia> SiocProductMedia { get; set; }
         public ICollection<SiocProductModule> SiocProductModule { get; set; }
         public ICollection<SiocRelatedProduct> SiocRelatedProductS { get; set; }

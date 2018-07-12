@@ -25,11 +25,11 @@ namespace Swastika.Cms.Lib.Models.Cms
         public string ModifiedBy { get; set; }
         public string Name { get; set; }
         public int Priority { get; set; }
-        public int? PageSize { get; set; }
         public int Status { get; set; }
         public string Template { get; set; }
         public string Title { get; set; }
         public int Type { get; set; }
+        public int? PageSize { get; set; }
 
         public SiocCulture SpecificultureNavigation { get; set; }
         public ICollection<SiocArticleModule> SiocArticleModule { get; set; }

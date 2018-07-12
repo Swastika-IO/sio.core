@@ -29,7 +29,6 @@ namespace Swastika.Cms.Lib.Models.Cms
         public int? Level { get; set; }
         public string ModifiedBy { get; set; }
         public int Priority { get; set; }
-        public int? PageSize { get; set; }
         public string SeoDescription { get; set; }
         public string SeoKeywords { get; set; }
         public string SeoName { get; set; }
@@ -41,6 +40,7 @@ namespace Swastika.Cms.Lib.Models.Cms
         public string Title { get; set; }
         public int Type { get; set; }
         public int? Views { get; set; }
+        public int? PageSize { get; set; }
 
         public SiocCulture SpecificultureNavigation { get; set; }
         public ICollection<SiocCategoryArticle> SiocCategoryArticle { get; set; }

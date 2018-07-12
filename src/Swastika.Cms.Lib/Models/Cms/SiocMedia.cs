@@ -15,7 +15,6 @@ namespace Swastika.Cms.Lib.Models.Cms
         public string Specificulture { get; set; }
         public DateTime CreatedDateTime { get; set; }
         public string Description { get; set; }
-        public string Tags { get; set; }
         public string Extension { get; set; }
         public string FileFolder { get; set; }
         public string FileName { get; set; }
@@ -27,6 +26,7 @@ namespace Swastika.Cms.Lib.Models.Cms
         public int Priority { get; set; }
         public int Status { get; set; }
         public string Title { get; set; }
+        public string Tags { get; set; }
 
         public ICollection<SiocArticleMedia> SiocArticleMedia { get; set; }
         public ICollection<SiocProductMedia> SiocProductMedia { get; set; }

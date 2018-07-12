@@ -25,10 +25,16 @@
 
                     </div>
                     <div ng-show="initCmsModel.isUseLocal" class="input-group form-group-no-border input-lg">
+                         <label class="form-check-label">
+                            <input class="form-check-input" type="checkbox" ng-model="initCmsModel.isSqlite" />
+                            <span class="form-check-sign"></span>
+                            Use Sqlite
+                        </label>
                         <div class="input-group-prepend">
                             <span class="input-group-text"><i class="now-ui-icons business_chart-pie-36"></i></span>
                         </div>
-                        <input ng-model="initCmsModel.localDbConnectionString" class="form-control" placeholder="Local Db">
+                        <input ng-show="!initCmsModel.isSqlite" ng-model="initCmsModel.localDbConnectionString" class="form-control" placeholder="Local Db">
+                        <input ng-show="initCmsModel.isSqlite" ng-model="initCmsModel.sqliteDbConnectionString" class="form-control" placeholder="Local Db">
                     </div>
                 </div>
                 <div ng-hide="initCmsModel.isUseLocal">

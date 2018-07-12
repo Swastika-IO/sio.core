@@ -20,7 +20,7 @@ namespace Swastika.Cms.Lib.ViewModels.Api
             get
             {
                 return IsUseLocal
-                    ? LocalDbConnectionString
+                    ? IsSqlite ? SqliteDbConnectionString : LocalDbConnectionString
                     : $"Server={DataBaseServer};Database={DataBaseName}" +
                     $";UID={DataBaseUser};Pwd={DataBasePassword};MultipleActiveResultSets=true;"
                     ;
@@ -45,6 +45,9 @@ namespace Swastika.Cms.Lib.ViewModels.Api
         [JsonProperty("localDbConnectionString")]
         public string LocalDbConnectionString { get; set; } = $"Server=(localdb)\\mssqllocaldb;Database=aspnet-swastika.Cms.Db;Trusted_Connection=True;MultipleActiveResultSets=true";
 
+        [JsonProperty("sqliteDbConnectionString")]
+        public string SqliteDbConnectionString { get; set; } = $"Data Source=sw-cms.db";
+
         [JsonProperty("superAdminsuperAdmin")]
         public string SuperAdmin { get; set; }
 
@@ -53,11 +56,14 @@ namespace Swastika.Cms.Lib.ViewModels.Api
 
         [JsonProperty("lang")]
         public string Lang { get; set; }
+
+        [JsonProperty("isSqlite")]
+        public bool IsSqlite { get; set; }
         #endregion
 
         #region View
 
-        
+
         #endregion
 
         public ApiInitCmsViewModel()
@@ -65,6 +71,6 @@ namespace Swastika.Cms.Lib.ViewModels.Api
 
         }
 
-        
+
     }
 }

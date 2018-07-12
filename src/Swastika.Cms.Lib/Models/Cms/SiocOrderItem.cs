@@ -13,8 +13,9 @@ namespace Swastika.Cms.Lib.Models.Cms
         public string PriceUnit { get; set; }
         public string Specificulture { get; set; }
         public string Description { get; set; }
+        public int Status { get; set; }
 
-        public SiocOrder Order { get; set; }
+        public SiocOrder SiocOrder { get; set; }
         public SiocProduct SiocProduct { get; set; }
     }
 }

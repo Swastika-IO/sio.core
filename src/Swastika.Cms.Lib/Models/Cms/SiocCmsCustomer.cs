@@ -28,7 +28,6 @@ namespace Swastika.Cms.Lib.Models.Cms
         public int Priority { get; set; }
         public bool IsAgreeNotified { get; set; }
 
-        public SiocCmsUser User { get; set; }
         public ICollection<SiocOrder> SiocOrder { get; set; }
     }
 }

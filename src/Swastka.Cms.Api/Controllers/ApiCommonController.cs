@@ -140,10 +140,20 @@ namespace Swastka.Cms.Api.Controllers
                 jsonSettings["ConnectionStrings"][SWCmsConstants.CONST_DEFAULT_CONNECTION] = model.ConnectionString;
                 // Set connection string for identity ApplicationDbContext
                 jsonSettings["ConnectionStrings"]["AccountConnection"] = model.ConnectionString;
+                jsonSettings["isSqlite"] = model.IsSqlite;
                 settings.Content = jsonSettings.ToString();
                 FileRepository.Instance.SaveFile(settings);
             }
-            GlobalConfigurationService.Instance.ConnectionString = model.ConnectionString;
+            
+            GlobalConfigurationService.Instance.IsSqlite = model.IsSqlite;
+            if (model.IsSqlite)
+            {
+                GlobalConfigurationService.Instance.ConnectionString = model.SqliteDbConnectionString;
+            }
+            else
+            {
+                GlobalConfigurationService.Instance.ConnectionString = model.ConnectionString;
+            }
             var initResult = await GlobalConfigurationService.Instance.InitSWCms(
                 _userManager, _roleManager);
             if (initResult.IsSucceed)
@@ -158,6 +168,7 @@ namespace Swastka.Cms.Api.Controllers
                 JObject jsonSettings = JObject.Parse(settings.Content);
                 jsonSettings["ConnectionStrings"][SWCmsConstants.CONST_DEFAULT_CONNECTION] = null;
                 jsonSettings["ConnectionStrings"]["AccountConnection"] = null;
+                jsonSettings["isSqlite"] = false;
                 settings.Content = jsonSettings.ToString();
                 FileRepository.Instance.SaveFile(settings);
                 if (initResult.Exception != null)

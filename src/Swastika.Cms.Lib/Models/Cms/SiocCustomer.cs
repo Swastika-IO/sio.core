@@ -5,6 +5,11 @@ namespace Swastika.Cms.Lib.Models.Cms
 {
     public partial class SiocCustomer
     {
+        public SiocCustomer()
+        {
+            SiocOrder = new HashSet<SiocOrder>();
+        }
+
         public string Id { get; set; }
         public string UserId { get; set; }
         public string Username { get; set; }
@@ -17,10 +22,12 @@ namespace Swastika.Cms.Lib.Models.Cms
         public string Avatar { get; set; }
         public string Address { get; set; }
         public string PhoneNumber { get; set; }
-        public bool IsAgreeNotified { get; set; }
         public int Status { get; set; }
         public DateTime CreatedDateTime { get; set; }
         public string CreatedBy { get; set; }
         public int Priority { get; set; }
+        public bool IsAgreeNotified { get; set; }
+
+        public ICollection<SiocOrder> SiocOrder { get; set; }
     }
 }

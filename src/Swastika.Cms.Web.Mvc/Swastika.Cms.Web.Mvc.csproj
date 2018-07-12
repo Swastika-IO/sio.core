@@ -179,13 +179,13 @@
 
   <ItemGroup>
     <PackageReference Include="angular-file-upload" Version="12.2.13" />
-    <PackageReference Include="angularjs" Version="1.6.10" />
-    <PackageReference Include="JWT" Version="4.0.0" />
-    <PackageReference Include="Microsoft.AspNetCore.All" Version="2.1.0-preview2-final" />
-    <PackageReference Include="Microsoft.AspNetCore.Hosting.Abstractions" Version="2.1.0-preview2-final" />
-    <PackageReference Include="Microsoft.NET.Test.Sdk" Version="15.7.0" />
-    <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="2.1.0-preview2-final" />
-    <PackageReference Include="Scriban" Version="1.2.0" />
+    <PackageReference Include="angularjs" Version="1.7.2" />
+    <PackageReference Include="JWT" Version="5.0.0-beta2" />
+    <PackageReference Include="Microsoft.AspNetCore.All" Version="2.1.2" />
+    <PackageReference Include="Microsoft.AspNetCore.Hosting.Abstractions" Version="2.1.1" />
+    <PackageReference Include="Microsoft.NET.Test.Sdk" Version="15.8.0-preview-20180610-02" />
+    <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="2.1.1" />
+    <PackageReference Include="Scriban" Version="1.2.2" />
   </ItemGroup>
 
   <ItemGroup>

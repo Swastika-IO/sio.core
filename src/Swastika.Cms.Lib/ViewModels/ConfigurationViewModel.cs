@@ -52,7 +52,7 @@ namespace Swastika.Cms.Lib.ViewModels
             var result = base.SaveModel(isSaveSubModels, _context, _transaction);
             if (result.IsSucceed)
             {
-                GlobalConfigurationService.Instance.Refresh();
+                GlobalConfigurationService.Instance.Refresh(_context, _transaction);
             }
             return result;
         }
@@ -62,7 +62,7 @@ namespace Swastika.Cms.Lib.ViewModels
             var result = await base.SaveModelAsync(isSaveSubModels, _context, _transaction);
             if (result.IsSucceed)
             {
-                GlobalConfigurationService.Instance.Refresh();
+                GlobalConfigurationService.Instance.Refresh(_context, _transaction);
             }
             return result;
         }

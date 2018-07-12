@@ -38,12 +38,18 @@ namespace Swastika.Cms.Lib.Models.Account
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            var config = new ConfigurationBuilder()
-             .SetBasePath(Directory.GetCurrentDirectory())
-             .AddJsonFile(SWCmsConstants.CONST_FILE_APPSETTING)
-             .Build();
-            string cnn = config.GetConnectionString(Swastika.Identity.Const.CONST_DEFAULT_CONNECTION);
-            if (!string.IsNullOrEmpty(cnn))
+            
+            IConfiguration configuration = new ConfigurationBuilder()
+                    .SetBasePath(System.IO.Directory.GetCurrentDirectory())
+               .AddJsonFile(Common.Utility.Const.CONST_FILE_APPSETTING)
+               .Build();
+            bool.TryParse(configuration["isSqlite"], out bool isSqlite);
+            string cnn = configuration.GetConnectionString(Swastika.Identity.Const.CONST_DEFAULT_CONNECTION);
+            if (isSqlite)
+            {
+                optionsBuilder.UseSqlite(cnn);
+            }
+            else
             {
                 optionsBuilder.UseSqlServer(cnn);
             }
