@@ -237,7 +237,7 @@ namespace Swastika.Cms.Lib.ViewModels.BackEnd
 
             var navParent = ParentNavs.FirstOrDefault(p => p.IsActived);
 
-            if (navParent!=null)
+            if (navParent != null)
             {
                 Level = InfoCategoryViewModel.Repository.GetSingleModel(c => c.Id == navParent.ParentId, _context, _transaction).Data.Level + 1;
             }
@@ -245,11 +245,11 @@ namespace Swastika.Cms.Lib.ViewModels.BackEnd
             {
                 Level = 0;
             }
-            
+
             Template = View != null ? string.Format(@"{0}/{1}{2}", View.FolderType, View.FileName, View.Extension) : Template;
             if (Id == 0)
             {
-                Id = FECategoryViewModel.Repository.Max(c => c.Id).Data + 1;
+                Id = FECategoryViewModel.Repository.Max(c => c.Id, _context, _transaction).Data + 1;
                 CreatedDateTime = DateTime.UtcNow;
             }
             return base.ParseModel(_context, _transaction);
@@ -445,7 +445,7 @@ namespace Swastika.Cms.Lib.ViewModels.BackEnd
                 foreach (var item in ModuleNavs)
                 {
                     item.CategoryId = parent.Id;
-                    
+
                     if (item.IsActived)
                     {
                         var saveResult = await item.SaveModelAsync(false, _context, _transaction);
@@ -646,7 +646,7 @@ namespace Swastika.Cms.Lib.ViewModels.BackEnd
                         ParentId = Category.Id,
                         Specificulture = Specificulture,
                         Description = Category.Title,
-                    } 
+                    }
                 );
 
             var result = query.ToList();

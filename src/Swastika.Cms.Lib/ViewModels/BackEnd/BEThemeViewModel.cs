@@ -188,7 +188,7 @@ namespace Swastika.Cms.Lib.ViewModels.BackEnd
                 }
                 else
                 {
-                    GlobalConfigurationService.Instance.UpdateConfiguration(SWCmsConstants.ConfigurationKeyword.Theme, Specificulture, Name);
+                    GlobalConfigurationService.Instance.Refresh(_context, _transaction);
                 }
                 result.IsSucceed = result.IsSucceed && saveConfigResult.IsSucceed;
 
@@ -217,7 +217,7 @@ namespace Swastika.Cms.Lib.ViewModels.BackEnd
                 }
                 else
                 {
-                    GlobalConfigurationService.Instance.UpdateConfiguration(SWCmsConstants.ConfigurationKeyword.ThemeId, Specificulture, Model.Id.ToString());
+                    GlobalConfigurationService.Instance.Refresh(_context, _transaction);
                 }
                 result.IsSucceed = result.IsSucceed && saveResult.IsSucceed;
             }
@@ -322,7 +322,7 @@ namespace Swastika.Cms.Lib.ViewModels.BackEnd
                 InfoConfigurationViewModel config = ( InfoConfigurationViewModel.Repository.GetSingleModel(
                     c => c.Keyword == SWCmsConstants.ConfigurationKeyword.Theme && c.Specificulture == Specificulture
                     , _context, _transaction)).Data;
-                GlobalConfigurationService.Instance.Refresh(_context, _transaction);
+                
                 if (config == null)
                 {
                     config = new InfoConfigurationViewModel( new SiocConfiguration()
@@ -348,7 +348,7 @@ namespace Swastika.Cms.Lib.ViewModels.BackEnd
                 }
                 else
                 {
-                    GlobalConfigurationService.Instance.UpdateConfiguration(SWCmsConstants.ConfigurationKeyword.Theme, Specificulture, Name);
+                    GlobalConfigurationService.Instance.Refresh(_context, _transaction);
                 }
                 result.IsSucceed = result.IsSucceed && saveConfigResult.IsSucceed;
 
@@ -378,7 +378,7 @@ namespace Swastika.Cms.Lib.ViewModels.BackEnd
                 }
                 else
                 {
-                    GlobalConfigurationService.Instance.UpdateConfiguration(SWCmsConstants.ConfigurationKeyword.ThemeId, Specificulture, Model.Id.ToString());
+                    GlobalConfigurationService.Instance.Refresh(_context, _transaction);
                 }
                 result.IsSucceed = result.IsSucceed && saveResult.IsSucceed;
             }

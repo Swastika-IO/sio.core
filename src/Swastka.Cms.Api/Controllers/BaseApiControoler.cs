@@ -16,6 +16,7 @@ using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using Swastika.Cms.Lib;
+using Swastika.Cms.Lib.Services;
 
 namespace Swastka.Cms.Api.Controllers
 {
@@ -116,7 +117,7 @@ namespace Swastka.Cms.Api.Controllers
         /// </summary>
         protected void GetLanguage()
         {
-            _lang = RouteData?.Values["culture"] != null ? RouteData.Values["culture"].ToString() : SWCmsConstants.Default.Specificulture;
+            _lang = RouteData?.Values["culture"] != null ? RouteData.Values["culture"].ToString() : GlobalConfigurationService.Instance.CmsConfigurations.Language;
             ViewBag.culture = _lang;
 
             _domain = string.Format("{0}://{1}", Request.Scheme, Request.Host);
@@ -476,7 +477,7 @@ namespace Swastka.Cms.Api.Controllers
         protected void GetLanguage()
         {
             _lang = RouteData?.Values["culture"] != null
-                ? RouteData.Values["culture"].ToString() : SWCmsConstants.Default.Specificulture;
+                ? RouteData.Values["culture"].ToString() : GlobalConfigurationService.Instance.CmsConfigurations.Language;
             ViewBag.culture = _lang;
         }
 

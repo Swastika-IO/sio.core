@@ -66,7 +66,7 @@
                 $scope.$apply();
             }
             else {
-                if (resp) { $rootScope.showErrors(resp.errors); }
+                if (result) { $rootScope.showErrors(result.errors); }
                 $rootScope.isBusy = false;
                 $scope.$apply();
             }

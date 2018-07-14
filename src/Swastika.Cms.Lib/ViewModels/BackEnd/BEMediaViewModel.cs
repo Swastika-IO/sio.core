@@ -110,7 +110,7 @@ namespace Swastika.Cms.Lib.ViewModels.BackEnd
             {
                 MediaFile.FileFolder = SwCmsHelper.GetFullPath(new[] {
                     SWCmsConstants.Parameters.UploadFolder,
-                    DateTime.UtcNow.ToString("MMM-yyyy")
+                    DateTime.UtcNow.ToString("MM-yyyy")
                 }); ;
                 var isSaved = FileRepository.Instance.SaveWebFile(MediaFile);
                 if (isSaved)

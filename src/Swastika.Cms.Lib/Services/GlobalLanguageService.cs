@@ -24,67 +24,76 @@ namespace Swastika.Cms.Lib.Services
         public bool IsInit { get; set; }
         private static JObject _translator { get; set; }
 
-        public JObject Translator {
-            get {
+        public JObject Translator
+        {
+            get
+            {
                 return _translator;
             }
-            set {
+            set
+            {
                 _translator = value;
             }
         }
 
         private static List<BELanguageViewModel> _listLanguage;
 
-        public static List<BELanguageViewModel> ListLanguage {
-            get {
+        public static List<BELanguageViewModel> ListLanguage
+        {
+            get
+            {
                 if (_listLanguage == null)
                 {
                     InitLanguages();
                 }
                 return _listLanguage;
             }
-            set {
+            set
+            {
                 _listLanguage = value;
             }
         }
 
         private static List<SupportedCulture> _listSupportedLanguage;
 
-        public static List<SupportedCulture> ListSupportedCulture {
-            get {
+        public static List<SupportedCulture> ListSupportedCulture
+        {
+            get
+            {
                 if (_listSupportedLanguage == null)
                 {
                     InitCultures();
                 }
                 return _listSupportedLanguage;
             }
-            set {
+            set
+            {
                 _listSupportedLanguage = value;
             }
         }
 
         private static GlobalLanguageService _instance;
 
-        public static GlobalLanguageService Instance {
-            get {
+        public static GlobalLanguageService Instance
+        {
+            get
+            {
                 if (_instance == null)
                 {
                     lock (syncRoot)
                     {
                         if (_instance == null)
                         {
-                            string cnn = GlobalConfigurationService.Instance.GetConnectionString();
-                            if (!string.IsNullOrEmpty(cnn))
-                            {
-                                _instance = new GlobalLanguageService();
-                            }
+
+                            _instance = new GlobalLanguageService();
                         }
                     }
                 }
 
                 return _instance;
             }
-            set {
+            set
+            {
                 _instance = value;
             }
         }

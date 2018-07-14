@@ -17,10 +17,10 @@ using System.Threading.Tasks;
 
 namespace Swastika.Cms.Mvc.Controllers
 {
-    public class BaseController: Controller
+    public class BaseController : Controller
     {
         public readonly string ROUTE_CULTURE_NAME = "culture";
-        public readonly string ROUTE_DEFAULT_CULTURE = SWCmsConstants.Default.Specificulture;
+        public readonly string ROUTE_DEFAULT_CULTURE = GlobalConfigurationService.Instance.CmsConfigurations?.Language ?? "en-us";
         protected string _domain;
         protected IConfiguration _configuration;
         protected IHostingEnvironment _env;
@@ -47,8 +47,10 @@ namespace Swastika.Cms.Mvc.Controllers
 
         public ViewContext ViewContext { get; set; }
 
-        protected string CurrentLanguage {
-            get {
+        protected string CurrentLanguage
+        {
+            get
+            {
                 _currentLanguage = RouteData?.Values[ROUTE_CULTURE_NAME] != null
                                     ? RouteData.Values[ROUTE_CULTURE_NAME].ToString().ToLower() : ROUTE_DEFAULT_CULTURE.ToLower();
                 return _currentLanguage;
@@ -57,7 +59,7 @@ namespace Swastika.Cms.Mvc.Controllers
 
         public override void OnActionExecuting(ActionExecutingContext context)
         {
-            if (!string.IsNullOrEmpty(GlobalConfigurationService.Instance.ConnectionString))
+            if (!string.IsNullOrEmpty(GlobalConfigurationService.Instance.CmsConfigurations.CmsConnectionString))
             {
                 GetLanguage();
             }

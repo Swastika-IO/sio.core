@@ -98,15 +98,10 @@ namespace Swastika.Cms.Lib.Models.Cms
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             // define the database to use
-            string cnn = GlobalConfigurationService.Instance.GetConnectionString();
+            string cnn = GlobalConfigurationService.Instance.CmsConfigurations.CmsConnectionString;
             if (!string.IsNullOrEmpty(cnn))
             {
-                IConfiguration configuration = new ConfigurationBuilder()
-                    .SetBasePath(System.IO.Directory.GetCurrentDirectory())
-               .AddJsonFile(Common.Utility.Const.CONST_FILE_APPSETTING)
-               .Build();
-                bool.TryParse(configuration["isSqlite"], out bool isSqlite);
-                if (isSqlite)
+                if (GlobalConfigurationService.Instance.CmsConfigurations.IsSqlite)
                 {
                     optionsBuilder.UseSqlite(cnn);
                 }

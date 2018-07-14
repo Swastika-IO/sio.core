@@ -443,7 +443,7 @@ namespace Swastika.Cms.Lib.ViewModels.BackEnd
                 // Save Template
                 var saveTemplate = await View.SaveModelAsync(false, _context, _transaction);
                 result.IsSucceed = result.IsSucceed && saveTemplate.IsSucceed;
-                if (saveTemplate.IsSucceed)
+                if (!saveTemplate.IsSucceed)
                 {
                     result.Errors.AddRange(saveTemplate.Errors);
                     result.Exception = saveTemplate.Exception;

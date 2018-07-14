@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Swastika.Cms.Lib;
 using Swastika.Cms.Lib.Models.Cms;
+using Swastika.Cms.Lib.ViewModels.Api;
 using Swastika.Cms.Lib.ViewModels.BackEnd;
 using Swastika.Cms.Lib.ViewModels.Info;
 using Swastika.Domain.Core.ViewModels;
@@ -34,13 +35,12 @@ namespace Swastka.Cms.Api.Controllers
         [HttpGet]
         [Route("details/{viewType}/{themeId}/{folderType}/{id}")]
         [Route("details/{viewType}/{themeId}/{folderType}")]
-        public async Task<RepositoryResponse<BETemplateViewModel>> DetailsAsync(string viewType, int themeId, string folderType, int? id)
+        public async Task<RepositoryResponse<ApiTemplateViewModel>> DetailsAsync(string viewType, int themeId, string folderType, int? id)
         {
             if (id.HasValue)
             {
-                var beResult = await BETemplateViewModel.Repository.GetSingleModelAsync(
-                    model => model.Id == id && model.TemplateId == themeId).ConfigureAwait(false);
-                beResult.Data.Specificulture = _lang;
+                var beResult = await ApiTemplateViewModel.Repository.GetSingleModelAsync(
+                    model => model.Id == id && model.TemplateId == themeId).ConfigureAwait(false);                
                 return beResult;
             }
             else
@@ -57,17 +57,17 @@ namespace Swastka.Cms.Api.Controllers
                         FolderType = folderType
                     };
                     
-                    RepositoryResponse<BETemplateViewModel> result = new RepositoryResponse<BETemplateViewModel>()
+                    RepositoryResponse<ApiTemplateViewModel> result = new RepositoryResponse<ApiTemplateViewModel>()
                     {
                         IsSucceed = true,
-                        Data = await BETemplateViewModel.InitAsync(model)
+                        Data = await ApiTemplateViewModel.InitAsync(model)
                     };
                     result.Data.Specificulture = _lang;
                     return result;
                 }
                 else
                 {
-                    return new RepositoryResponse<BETemplateViewModel>();
+                    return new RepositoryResponse<ApiTemplateViewModel>();
                 }
             }
         }
@@ -77,7 +77,7 @@ namespace Swastka.Cms.Api.Controllers
         [Route("delete/{id}")]
         public async Task<RepositoryResponse<SiocTemplate>> DeleteAsync(int id)
         {
-            var getPage = await BETemplateViewModel.Repository.GetSingleModelAsync(
+            var getPage = await ApiTemplateViewModel.Repository.GetSingleModelAsync(
                 model => model.Id == id);
             if (getPage.IsSucceed)
             {
@@ -101,15 +101,15 @@ namespace Swastka.Cms.Api.Controllers
         // POST api/template
         [HttpPost, HttpOptions]
         [Route("save")]
-        public async Task<RepositoryResponse<BETemplateViewModel>> Save(
-            [FromBody] BETemplateViewModel model)
+        public async Task<RepositoryResponse<ApiTemplateViewModel>> Save(
+            [FromBody] ApiTemplateViewModel model)
         {
             if (model != null)
             {
                 var result = await model.SaveModelAsync(true).ConfigureAwait(false);
                 return result;
             }
-            return new RepositoryResponse<BETemplateViewModel>();
+            return new RepositoryResponse<ApiTemplateViewModel>();
         }
 
         // POST api/template
@@ -130,7 +130,7 @@ namespace Swastka.Cms.Api.Controllers
         // GET api/template
         [HttpPost, HttpOptions]
         [Route("list/{themeId}")]
-        public async Task<RepositoryResponse<PaginationModel<BETemplateViewModel>>> GetList(
+        public async Task<RepositoryResponse<PaginationModel<ApiTemplateViewModel>>> GetList(
             int themeId,
             [FromBody]RequestPaging request
             )
@@ -150,7 +150,7 @@ namespace Swastka.Cms.Api.Controllers
                         || model.FolderType == request.Keyword
                     ));
 
-            var data = await BETemplateViewModel.Repository.GetModelListByAsync(predicate, request.OrderBy, request.Direction, request.PageSize, request.PageIndex).ConfigureAwait(false);
+            var data = await ApiTemplateViewModel.Repository.GetModelListByAsync(predicate, request.OrderBy, request.Direction, request.PageSize, request.PageIndex).ConfigureAwait(false);
 
             return data;
         }

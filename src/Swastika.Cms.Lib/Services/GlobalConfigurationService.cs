@@ -22,42 +22,7 @@ using System.Threading.Tasks;
 namespace Swastika.Cms.Lib.Services
 {
     public class GlobalConfigurationService
-    {
-        private static string _connectionString;
-        public string Culture { get; set; }
-        public string Name { get; set; }
-        public bool IsInit { get; set; }
-        private bool isSqlite = false;
-        public string ConnectionString
-        {
-            get
-            {
-                return _connectionString;
-            }
-            set
-            {
-                _connectionString = value;
-            }
-        }
-
-        private static List<ConfigurationViewModel> _listConfiguration;
-
-        public static List<ConfigurationViewModel> ListConfiguration
-        {
-            get
-            {
-                if (_listConfiguration == null)
-                {
-                    InitConfigurations();
-                }
-                return _listConfiguration;
-            }
-            set
-            {
-                _listConfiguration = value;
-            }
-        }
-
+    {   
         private static GlobalConfigurationService _instance;
 
         public static GlobalConfigurationService Instance
@@ -72,55 +37,12 @@ namespace Swastika.Cms.Lib.Services
             }
         }
 
-        public bool IsSqlite { get => isSqlite; set => isSqlite = value; }
-
         public GlobalConfigurationService()
         {
+           
         }
 
-        public string GetConnectionString()
-        {
-            if (!string.IsNullOrEmpty(ConnectionString))
-            {
-                return ConnectionString;
-            }
-            else
-            {
-                InitConnectionString();
-                return ConnectionString;
-            }
-        }
-
-        public bool InitConnectionString()
-        {
-            {
-                try
-                {
-                    if (string.IsNullOrEmpty(ConnectionString))
-                    {
-                        ConnectionString = GetConfigConnectionKey();
-                        return !string.IsNullOrEmpty(ConnectionString);
-                    }
-                    else
-                    {
-                        return true;
-                    }
-                }
-                catch
-                {
-                    return false;
-                }
-            }
-        }
-
-        public string GetConfigConnectionKey()
-        {
-            IConfiguration configuration = new ConfigurationBuilder()
-               .SetBasePath(System.IO.Directory.GetCurrentDirectory())
-               .AddJsonFile(Common.Utility.Const.CONST_FILE_APPSETTING)
-               .Build();
-            return configuration.GetConnectionString(SWCmsConstants.CONST_DEFAULT_CONNECTION);
-        }
+        public CmsConfiguration CmsConfigurations { get; set; }
 
         public async Task<RepositoryResponse<bool>> InitSWCms(UserManager<ApplicationUser> userManager,
             RoleManager<IdentityRole> roleManager)
@@ -133,7 +55,7 @@ namespace Swastika.Cms.Lib.Services
             bool isSucceed = true;
             try
             {
-                if (InitConnectionString())
+                if (!string.IsNullOrEmpty(CmsConfigurations.CmsConnectionString))
                 {
                     context = new SiocCmsContext();
                     accountContext = new SiocCmsAccountContext();
@@ -187,12 +109,10 @@ namespace Swastika.Cms.Lib.Services
                         GlobalLanguageService.Instance.RefreshCultures(context, transaction);
 
                         transaction.Commit();
-                        IsInit = true;
                     }
                     else
                     {
                         transaction.Rollback();
-                        IsInit = false;
                     }
                 }
                 result.IsSucceed = isSucceed;
@@ -200,7 +120,6 @@ namespace Swastika.Cms.Lib.Services
             }
             catch (Exception ex) // TODO: Add more specific exeption types instead of Exception only
             {
-                IsInit = false;
                 transaction?.Rollback();
                 accTransaction?.Rollback();
                 result.IsSucceed = false;
@@ -322,7 +241,7 @@ namespace Swastika.Cms.Lib.Services
                         }
                         else
                         {
-                            config.Value = Name;
+                            config.Value = theme.Name;
                         }
                         isSucceed = isSucceed && config.SaveModel(false, context, transaction).IsSucceed;
                     }
@@ -352,7 +271,7 @@ namespace Swastika.Cms.Lib.Services
                     }
                     if (isSucceed)
                     {
-                        InitConfigurations(context, transaction);
+                        Refresh(context, transaction);
                     }
                 }
                 else
@@ -454,53 +373,26 @@ namespace Swastika.Cms.Lib.Services
             return isSucceed;
         }
 
+
+
         public void Refresh(SiocCmsContext _context = null, IDbContextTransaction _transaction = null)
         {
-            InitConfigurations(_context, _transaction);
-        }
-
-        private static void InitConfigurations(SiocCmsContext _context = null, IDbContextTransaction _transaction = null)
-        {
-            var getConfigurations = ConfigurationViewModel.Repository.GetModelList(_context, _transaction);
-            _listConfiguration = getConfigurations.Data ?? new List<ConfigurationViewModel>();
-        }
-
-        public void UpdateConfiguration(string key, string culture, string value)
-        {
-            var config = ListConfiguration.Find(c => c.Keyword == key && c.Specificulture == culture);
-            if (config != null)
+            this.CmsConfigurations = new CmsConfiguration();
+            if (!string.IsNullOrEmpty(CmsConfigurations.CmsConnectionString))
             {
-                config.Value = value;
-            }
+                CmsConfigurations.Init(_context, _transaction);
+            }            
         }
 
-        public string GetLocalString(string key, string culture)
+        public string GetLocalString(string key, string culture, string defaultValue = null)
         {
-            var config = ListConfiguration.Find(c => c.Keyword == key && c.Specificulture == culture);
-            return config != null ? config.Value : key;
+            return this.CmsConfigurations.GetLocalString(key, culture, defaultValue);
         }
 
-        public string GetLocalString(string key, string culture, string defaultValue)
+        public int GetLocalInt(string key, string culture, int defaultValue = 0)
         {
-            var config = ListConfiguration.Find(c => c.Keyword == key && c.Specificulture == culture);
-            return config != null ? config.Value : defaultValue;
+            return this.CmsConfigurations.GetLocalInt(key, culture, defaultValue);
         }
 
-        public static int GetLocalInt(string key, string culture)
-        {
-            var config = ListConfiguration.FirstOrDefault(c => c.Keyword == key && c.Specificulture == culture);
-            int.TryParse(config?.Value, out int result);
-            return result;
-        }
-
-        public int GetLocalInt(string key, string culture, int defaultValue)
-        {
-            var config = ListConfiguration.Find(c => c.Keyword == key && c.Specificulture == culture);
-            if (!int.TryParse(config?.Value, out int result))
-            {
-                result = defaultValue;
-            }
-            return result;
-        }
     }
 }

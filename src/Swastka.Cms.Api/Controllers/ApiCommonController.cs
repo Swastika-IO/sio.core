@@ -49,7 +49,7 @@ namespace Swastka.Cms.Api.Controllers
             SiteSettingsViewModel settings = new SiteSettingsViewModel()
             {
                 Lang = _lang,
-                ThemeId = GlobalConfigurationService.GetLocalInt(SWCmsConstants.ConfigurationKeyword.ThemeId, _lang),
+                ThemeId = GlobalConfigurationService.Instance.GetLocalInt(SWCmsConstants.ConfigurationKeyword.ThemeId, _lang),
                 Cultures = GlobalLanguageService.ListSupportedCulture,
                 PageTypes = Enum.GetNames(typeof(SWCmsConstants.CateType)).ToList()
             };
@@ -141,26 +141,29 @@ namespace Swastka.Cms.Api.Controllers
                 // Set connection string for identity ApplicationDbContext
                 jsonSettings["ConnectionStrings"]["AccountConnection"] = model.ConnectionString;
                 jsonSettings["isSqlite"] = model.IsSqlite;
+                jsonSettings["language"] = model.Lang;
                 settings.Content = jsonSettings.ToString();
                 FileRepository.Instance.SaveFile(settings);
             }
-            
-            GlobalConfigurationService.Instance.IsSqlite = model.IsSqlite;
-            if (model.IsSqlite)
-            {
-                GlobalConfigurationService.Instance.ConnectionString = model.SqliteDbConnectionString;
-            }
-            else
-            {
-                GlobalConfigurationService.Instance.ConnectionString = model.ConnectionString;
-            }
+
+            //GlobalConfigurationService.Instance.CmsConfigurations.IsSqlite = model.IsSqlite;
+            //if (model.IsSqlite)
+            //{
+            //    GlobalConfigurationService.Instance.ConnectionString = model.SqliteDbConnectionString;
+            //}
+            //else
+            //{
+            //    GlobalConfigurationService.Instance.ConnectionString = model.ConnectionString;
+            //}
+
+            GlobalConfigurationService.Instance.Refresh();
             var initResult = await GlobalConfigurationService.Instance.InitSWCms(
                 _userManager, _roleManager);
             if (initResult.IsSucceed)
             {
                 await InitRolesAsync();
-                SWCmsConstants.Default.Specificulture = model.Lang;
                 result.IsSucceed = true;
+                GlobalConfigurationService.Instance.Refresh();
             }
             else
             {
@@ -169,6 +172,7 @@ namespace Swastka.Cms.Api.Controllers
                 jsonSettings["ConnectionStrings"][SWCmsConstants.CONST_DEFAULT_CONNECTION] = null;
                 jsonSettings["ConnectionStrings"]["AccountConnection"] = null;
                 jsonSettings["isSqlite"] = false;
+                jsonSettings["lang"] = "en-us";
                 settings.Content = jsonSettings.ToString();
                 FileRepository.Instance.SaveFile(settings);
                 if (initResult.Exception != null)

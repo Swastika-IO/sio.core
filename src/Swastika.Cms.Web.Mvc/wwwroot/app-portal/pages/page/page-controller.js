@@ -92,6 +92,22 @@ app.controller('PageController', ['$scope', '$rootScope', '$routeParams', '$time
                 $scope.$apply();
             }
         };
+
+        $scope.loadPageDatas = async function () {
+            $rootScope.isBusy = true;
+            var id = $routeParams.id;
+            var response = await pageServices.getPage(id, 'fe');
+            if (response.isSucceed) {
+                $scope.activedPage = response.data;
+                $rootScope.initEditor();
+                $scope.$apply();
+            }
+            else {
+                $rootScope.showErrors(response.errors);
+                $scope.$apply();
+            }
+        };
+
         $scope.loadPages = async function (pageIndex) {
             if (pageIndex != undefined) {
                 $scope.request.pageIndex = pageIndex;

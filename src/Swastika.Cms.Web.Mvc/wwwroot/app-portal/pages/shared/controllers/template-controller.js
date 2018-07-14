@@ -51,7 +51,6 @@ app.controller('TemplateController', ['$scope', '$rootScope', '$routeParams', '$
             $scope.folderType = $routeParams.folderType ? $routeParams.folderType : 'Masters';
             $scope.backUrl = '/backend/template/list/' + $routeParams.themeId;
             $scope.themeId = $routeParams.themeId;
-
         }
 
         $scope.loadTemplate = async function () {
@@ -74,8 +73,8 @@ app.controller('TemplateController', ['$scope', '$rootScope', '$routeParams', '$
             }
         };
 
-        $scope.loadTemplates = async function (pageIndex) {
-            $scope.themeId = $routeParams.themeId;
+        $scope.loadTemplates = async function (pageIndex, themeId) {
+            $scope.themeId = themeId || $routeParams.themeId;
             $scope.request.key = this.folderType;
             $scope.folderType = this.folderType;
             if (pageIndex != undefined) {
@@ -88,7 +87,7 @@ app.controller('TemplateController', ['$scope', '$rootScope', '$routeParams', '$
             if ($scope.request.toDate != null) {
                 $scope.request.toDate = $scope.request.toDate.toISOString();
             }
-            var resp = await templateServices.getTemplates($scope.request, $scope.folderType);
+            var resp = await templateServices.getTemplates($scope.request, $scope.folderType, $scope.themeId);
             if (resp && resp.isSucceed) {
                 $scope.data = resp.data;
                 $rootScope.isBusy = false;
@@ -105,7 +104,7 @@ app.controller('TemplateController', ['$scope', '$rootScope', '$routeParams', '$
             if (confirm("Are you sure!")) {
                 var resp = await templateServices.removeTemplate(id);
                 if (resp && resp.isSucceed) {
-                    $scope.loadTemplates();
+                    $scope.loadTemplates(0, $scope.themeId);
                 }
                 else {
                     if (resp) { $rootScope.showErrors(resp.errors); }

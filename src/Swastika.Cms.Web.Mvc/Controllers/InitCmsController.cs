@@ -5,14 +5,9 @@
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
-using Swastika.Cms.Lib;
-using Swastika.Cms.Lib.Models.Cms;
 using Swastika.Cms.Lib.Services;
 using Swastika.Cms.Mvc.Controllers;
 using Swastika.Identity.Models;
-using System;
-using System.Linq;
-using static Swastika.Common.Utility.Enums;
 
 namespace Swastika.Cms.Web.Mvc.Controllers
 {
@@ -35,7 +30,7 @@ namespace Swastika.Cms.Web.Mvc.Controllers
         [Route("{culture}")]
         public async System.Threading.Tasks.Task<IActionResult> Index()
         {
-            if (string.IsNullOrEmpty(GlobalConfigurationService.Instance.GetConfigConnectionKey()))
+            if (string.IsNullOrEmpty(GlobalConfigurationService.Instance.CmsConfigurations.CmsConnectionString))
             {
                 return Redirect(InitUrl);
             }
@@ -48,8 +43,6 @@ namespace Swastika.Cms.Web.Mvc.Controllers
                 }
                 else
                 {
-                    GlobalConfigurationService.Instance.IsInit = true;
-                    GlobalConfigurationService.Instance.Refresh();
                     return Redirect($"/{ROUTE_DEFAULT_CULTURE}/Home");
                 }
             }

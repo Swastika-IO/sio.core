@@ -181,7 +181,7 @@ namespace Swastika.Cms.Lib.ViewModels.Api
             }
 
             View = BETemplateViewModel.Repository.GetSingleModel(t =>
-                    t.TemplateId == GlobalConfigurationService.GetLocalInt(SWCmsConstants.ConfigurationKeyword.ThemeId, Specificulture)
+                    t.TemplateId == GlobalConfigurationService.Instance.GetLocalInt(SWCmsConstants.ConfigurationKeyword.ThemeId, Specificulture, 0)
                     && !string.IsNullOrEmpty(this.Template) && this.Template.Contains(t.FileName + t.Extension)).Data;
             if (this.View == null)
             {

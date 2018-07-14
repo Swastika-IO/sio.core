@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Builder;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Swastika.Cms.Lib;
+using Swastika.Cms.Lib.Services;
 
 namespace Swastka.Cms.Web
 {
@@ -36,7 +37,7 @@ namespace Swastka.Cms.Web
             {
                 routes.MapRoute(
                     name: "apiRoute",
-                    template: "api/{culture=" + SWCmsConstants.Default.Specificulture + "}/{area:exists}/{controller=Portal}/{action=Index}");
+                    template: "api/{culture=" + GlobalConfigurationService.Instance.CmsConfigurations.Language + "}/{area:exists}/{controller=Portal}/{action=Index}");
             });
         }
     }

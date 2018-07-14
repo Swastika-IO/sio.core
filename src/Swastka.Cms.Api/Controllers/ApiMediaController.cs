@@ -50,10 +50,7 @@ namespace Swastka.Cms.Api.Controllers
                     {
                         var media = new SiocMedia()
                         {
-                            Specificulture = _lang
-                            ,
-                            FileFolder = $"{SWCmsConstants.Parameters.FileFolder}/{SWCmsConstants.FileFolder.Medias}/{DateTime.UtcNow.ToShortDateString()}"
-                            ,
+                            Specificulture = _lang,
                             Priority = BEMediaViewModel.Repository.Max(a => a.Priority).Data + 1
                         };
                         var result = new RepositoryResponse<BEMediaViewModel>()
@@ -136,7 +133,7 @@ namespace Swastka.Cms.Api.Controllers
                 string folderPath = SwCmsHelper.GetFullPath(new[] {
                     SWCmsConstants.Parameters.UploadFolder,
                     fileFolder,
-                    DateTime.UtcNow.ToString("MMM-yyyy")
+                    DateTime.UtcNow.ToString("MM-yyyy")
                 });
                 // save web files in wwwRoot
                 string uploadPath = SwCmsHelper.GetFullPath(new[] {

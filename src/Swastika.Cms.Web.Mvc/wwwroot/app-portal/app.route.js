@@ -56,6 +56,11 @@
         templateUrl: "/app-portal/pages/page/details.html"
     });
 
+    $routeProvider.when("/backend/page/data/:id", {
+        controller: "PageController",
+        templateUrl: "/app-portal/pages/page/data.html"
+    });
+
     $routeProvider.when("/backend/page/create", {
         controller: "PageController",
         templateUrl: "/app-portal/pages/page/details.html"

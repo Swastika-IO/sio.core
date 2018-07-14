@@ -40,15 +40,12 @@ namespace Swastika.Cms.Mvc.Areas.Portal.Controllers
         {
             PaginationModel<ConfigurationViewModel> pagingPages = new PaginationModel<ConfigurationViewModel>()
             {
-                Items = GlobalConfigurationService.ListConfiguration.Where(m => m.Specificulture == CurrentLanguage).ToList(),
+                Items = GlobalConfigurationService.Instance.CmsConfigurations.ListConfiguration.Where(m => m.Specificulture == CurrentLanguage).ToList(),
                 PageIndex = 0,
-                PageSize = GlobalConfigurationService.ListConfiguration.Count(m => m.Specificulture == CurrentLanguage),
-                TotalItems = GlobalConfigurationService.ListConfiguration.Count(m => m.Specificulture == CurrentLanguage),
+                PageSize = GlobalConfigurationService.Instance.CmsConfigurations.ListConfiguration.Count(m => m.Specificulture == CurrentLanguage),
+                TotalItems = GlobalConfigurationService.Instance.CmsConfigurations.ListConfiguration.Count(m => m.Specificulture == CurrentLanguage),
                 TotalPage = 1
             };
-            //  await ConfigurationRepository.GetInstance().GetModelListByAsync(m=> m.Specificulture == _lang,
-            //cate => cate.Description, "desc",
-            //pageSize, pageIndex, Swastika.Cms.Lib.SWCmsConstants.ViewModelType.FrontEnd);
             return View(pagingPages);
         }
 

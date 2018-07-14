@@ -86,7 +86,7 @@ namespace Swastika.Cms.Mvc.Areas.Portal.Controllers
 
 
                     await InitRolesAsync();
-                    return RedirectToAction("RegisterSuperAdmin", "Auth", new { culture = SWCmsConstants.Default.Specificulture });
+                    return RedirectToAction("RegisterSuperAdmin", "Auth", new { culture = GlobalConfigurationService.Instance.CmsConfigurations.Language });
                 }
                 else
                 {

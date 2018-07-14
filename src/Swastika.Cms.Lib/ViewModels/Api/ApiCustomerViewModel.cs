@@ -7,6 +7,7 @@ using Newtonsoft.Json;
 using Swastika.Cms.Lib.Models.Cms;
 using Swastika.Cms.Lib.Repositories;
 using Swastika.Cms.Lib.Services;
+using Swastika.Cms.Lib.ViewModels.Info;
 using Swastika.Domain.Core.ViewModels;
 using Swastika.Domain.Data.ViewModels;
 using System;
@@ -41,7 +42,7 @@ namespace Swastika.Cms.Lib.ViewModels.Api
 
         #region Views
 
-        public List<ApiOrderViewModel> Orders { get; set; }
+        public List<InfoOrderViewModel> Orders { get; set; }
 
         #endregion
 
@@ -67,7 +68,7 @@ namespace Swastika.Cms.Lib.ViewModels.Api
             base.Validate(_context, _transaction);
             if (IsValid)
             {
-                IsValid = ApiCustomerViewModel.Repository.CheckIsExists(c => c.PhoneNumber == PhoneNumber, _context, _transaction);
+                IsValid = !ApiCustomerViewModel.Repository.CheckIsExists(c => c.PhoneNumber == PhoneNumber, _context, _transaction);
                 if (!IsValid)
                 {
                     Errors.Add("This phone number already existed");
@@ -86,7 +87,7 @@ namespace Swastika.Cms.Lib.ViewModels.Api
 
         public override void ExpandView(SiocCmsContext _context = null, IDbContextTransaction _transaction = null)
         {
-            Orders = ApiOrderViewModel.Repository.GetModelListBy(o => o.CustomerId == Id && o.Specificulture == Specificulture).Data;
+            //Orders = InfoOrderViewModel.Repository.GetModelListBy(o => o.CustomerId == Id, _context, _transaction).Data;
         }
         #endregion Overrides
     }

@@ -13,7 +13,7 @@
                 <div class="btn-group mr-2" role="group" aria-label="First group">
                     <select class="btn custom-select"
                         ng-model="folderType"
-                        ng-change="loadTemplates(0)"
+                        ng-change="loadTemplates(0, themeId)"
                             >
                     <option ng-repeat="item in folderTypes track by $index" 
                             ng-value="item">{{item}}</option>

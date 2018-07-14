@@ -200,6 +200,8 @@ namespace Swastika.Cms.Lib
         {
             public const string ConnectionString = "ConnectionString";
             public const string Theme = "Theme";
+            public const string Language = "Language";
+            public const string IsSqlite = "IsSqlite";
             public const string ThemeId = "ThemeId";
         }
 
@@ -218,7 +220,7 @@ namespace Swastika.Cms.Lib
             public const string OrderBy = @"Priority";
             public const int PageSizeArticle = 20;
             public const string Password = @"";
-            public static string Specificulture { get; set; } = @"vi-vn";
+            //public static string Specificulture { get; set; } = @"en-us";
         }
 
         public class FileFolder
