@@ -204,51 +204,11 @@ namespace Swastka.Cms.Api.Controllers
         public async Task<RepositoryResponse<PaginationModel<InfoArticleViewModel>>> Get(int? pageSize = 15, int? pageIndex = 0, string orderBy = "Id", OrderByDirection direction = OrderByDirection.Ascending)
         {
             var data = await InfoArticleViewModel.Repository.GetModelListByAsync(
-                m => m.Status != (int)SWStatus.Deleted && m.Specificulture == _lang, orderBy, direction, pageSize, pageIndex).ConfigureAwait(false); //base.Get(orderBy, direction, pageSize, pageIndex);
+                m => m.Status != (int)SWStatus.Deleted && m.Specificulture == _lang, orderBy, direction, pageSize, pageIndex).ConfigureAwait(false);
             if (data.IsSucceed)
             {
                 data.Data.Items.ForEach(a => a.DetailsUrl = SwCmsHelper.GetRouterUrl("Article", new { a.SeoName }, Request, Url));
             }
-            return data;
-        }
-
-        // GET api/Articles
-        [HttpGet]
-        [Route("search/{keyword}")]
-        [Route("search/{pageSize:int?}/{pageIndex:int?}/{keyword}")]
-        [Route("search/{pageSize:int?}/{pageIndex:int?}/{orderBy}/{direction}/{keyword}")]
-        public async Task<RepositoryResponse<PaginationModel<InfoArticleViewModel>>> Search(string keyword = null, int? pageSize = null, int? pageIndex = null, string orderBy = "Id", OrderByDirection direction = OrderByDirection.Ascending)
-        {
-            Expression<Func<SiocArticle, bool>> predicate = model =>
-                model.Specificulture == _lang
-                && model.Status != (int)SWStatus.Deleted
-                && (string.IsNullOrWhiteSpace(keyword)
-                    || (model.Title.Contains(keyword)
-                    || model.Content.Contains(keyword)));
-
-            var data = await InfoArticleViewModel.Repository.GetModelListByAsync(predicate, orderBy, direction, pageSize, pageIndex).ConfigureAwait(false); // base.Search(predicate, orderBy, direction, pageSize, pageIndex, keyword);
-            return data;
-        }
-
-        // GET api/Articles
-        [HttpGet]
-        [Route("draft/{keyword}")]
-        [Route("draft/{pageSize:int?}/{pageIndex:int?}")]
-        [Route("draft/{pageSize:int?}/{pageIndex:int?}/{keyword}")]
-        [Route("draft/{pageSize:int?}/{pageIndex:int?}/{orderBy}/{direction}/{keyword}")]
-        public async Task<RepositoryResponse<PaginationModel<InfoArticleViewModel>>> Draft(
-            string keyword = null, int? pageSize = null, int? pageIndex = null, string orderBy = "Id"
-            , OrderByDirection direction = OrderByDirection.Ascending)
-        {
-            Expression<Func<SiocArticle, bool>> predicate = model =>
-            model.Specificulture == _lang
-
-            && model.Status != (int)SWStatus.Deleted
-            && (
-            string.IsNullOrWhiteSpace(keyword)
-                || (model.Title.Contains(keyword) || model.Content.Contains(keyword))
-                );
-            var data = await InfoArticleViewModel.Repository.GetModelListByAsync(predicate, orderBy, direction, pageSize, pageIndex).ConfigureAwait(false); // base.Search(predicate, orderBy, direction, pageSize, pageIndex, keyword);
             return data;
         }
 

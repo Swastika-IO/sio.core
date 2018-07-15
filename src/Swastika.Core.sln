@@ -21,8 +21,6 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Swastika.Cms.Lib", "Swastik
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Swastka.Cms.Api", "Swastka.Cms.Api\Swastka.Cms.Api.csproj", "{0236F35B-5B06-4020-8E30-A704E03C4A04}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Swastika.Cms.Web", "Swastika.Cms.Web\Swastika.Cms.Web.csproj", "{D170A2C4-4BFF-47E3-A4CE-672C5321D641}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -53,10 +51,6 @@ Global
 		{0236F35B-5B06-4020-8E30-A704E03C4A04}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{0236F35B-5B06-4020-8E30-A704E03C4A04}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{0236F35B-5B06-4020-8E30-A704E03C4A04}.Release|Any CPU.Build.0 = Release|Any CPU
-		{D170A2C4-4BFF-47E3-A4CE-672C5321D641}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{D170A2C4-4BFF-47E3-A4CE-672C5321D641}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{D170A2C4-4BFF-47E3-A4CE-672C5321D641}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{D170A2C4-4BFF-47E3-A4CE-672C5321D641}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -68,7 +62,6 @@ Global
 		{F9643BE2-329E-44F0-ADBB-379B87E97E38} = {96B08E7C-A426-437C-96BA-1A2DF11FD135}
 		{DF31FCFD-6D70-4ADC-A0A2-D774DBA837BB} = {7995F1E6-D8C1-4E09-BB44-056740F208E6}
 		{0236F35B-5B06-4020-8E30-A704E03C4A04} = {7995F1E6-D8C1-4E09-BB44-056740F208E6}
-		{D170A2C4-4BFF-47E3-A4CE-672C5321D641} = {7995F1E6-D8C1-4E09-BB44-056740F208E6}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {07795DAD-40EE-4909-A6F5-320D6B0D3B54}

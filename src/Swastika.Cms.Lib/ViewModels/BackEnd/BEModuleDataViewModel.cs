@@ -100,7 +100,7 @@ namespace Swastika.Cms.Lib.ViewModels.BackEnd
         public override void ExpandView(SiocCmsContext _context = null, IDbContextTransaction _transaction = null)
         {
             IsClone = false;
-            ListSupportedCulture = GlobalLanguageService.ListSupportedCulture;
+            ListSupportedCulture = GlobalConfigurationService.Instance.CmsCulture.ListSupportedCulture;
 
             var objValue = Value != null ? JObject.Parse(Value) : new JObject();
 

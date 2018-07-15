@@ -85,7 +85,7 @@ namespace Swastika.Cms.Lib.ViewModels.Api
         }
         public override void ExpandView(SiocCmsContext _context = null, IDbContextTransaction _transaction = null)
         {
-            ListSupportedCulture = GlobalLanguageService.ListSupportedCulture;
+            ListSupportedCulture = GlobalConfigurationService.Instance.CmsCulture.ListSupportedCulture;
 
             var objValue = Value != null ? JObject.Parse(Value) : new JObject();
             this.DataProperties = new List<ModuleDataValueViewModel>();

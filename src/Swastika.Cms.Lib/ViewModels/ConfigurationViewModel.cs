@@ -40,7 +40,7 @@ namespace Swastika.Cms.Lib.ViewModels
         public override void ExpandView(SiocCmsContext _context = null, IDbContextTransaction _transaction = null)
         {
             IsClone = true;
-            ListSupportedCulture = GlobalLanguageService.ListSupportedCulture;
+            ListSupportedCulture = GlobalConfigurationService.Instance.CmsCulture.ListSupportedCulture;
             this.ListSupportedCulture.ForEach(c => c.IsSupported =
             (string.IsNullOrEmpty(Keyword) && c.Specificulture == Specificulture)
             || Repository.CheckIsExists(a => a.Keyword == Keyword && a.Specificulture == c.Specificulture, _context, _transaction)
@@ -52,7 +52,7 @@ namespace Swastika.Cms.Lib.ViewModels
             var result = base.SaveModel(isSaveSubModels, _context, _transaction);
             if (result.IsSucceed)
             {
-                GlobalConfigurationService.Instance.Refresh(_context, _transaction);
+                GlobalConfigurationService.Instance.RefreshConfigurations(_context, _transaction);
             }
             return result;
         }
@@ -62,7 +62,7 @@ namespace Swastika.Cms.Lib.ViewModels
             var result = await base.SaveModelAsync(isSaveSubModels, _context, _transaction);
             if (result.IsSucceed)
             {
-                GlobalConfigurationService.Instance.Refresh(_context, _transaction);
+                GlobalConfigurationService.Instance.RefreshConfigurations(_context, _transaction);
             }
             return result;
         }

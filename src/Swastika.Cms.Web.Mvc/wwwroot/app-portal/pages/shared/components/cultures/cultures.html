@@ -1,0 +1,29 @@
+﻿<div class="row">
+    <div class="col-sm-12">
+        <div class="card sw-nav-action mb-0">
+            <div class="card-header">
+                <div class="row">
+                    <span class="switch switch-sm">
+                    <input type="checkbox" ng-model="$ctrl.isClone" id="isClone"
+                           class="switch">
+                    <label class="switch" for="isClone">                        
+                        <span>Clone</span>
+                    </label>
+                </span>
+                </div>
+            </div>
+            <div class="card-body" ng-show="$ctrl.isClone">                
+                <div class="row" ng-repeat="culture in $ctrl.data">
+                    <span class="switch switch-sm">
+                        <input type="checkbox" ng-model="culture.isSupported" id="culture_{{$index}}"
+                               class="switch">
+                        <label class="switch" for="culture_{{$index}}">
+                            <span class="flag-icon {{culture.icon}}"></span>
+                            <span ng-bind="culture.description"></span>
+                        </label>
+                    </span>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

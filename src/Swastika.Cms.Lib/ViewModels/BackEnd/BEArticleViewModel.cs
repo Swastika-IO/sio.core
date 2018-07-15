@@ -258,7 +258,7 @@ namespace Swastika.Cms.Lib.ViewModels.BackEnd
 
         public override void ExpandView(SiocCmsContext _context = null, IDbContextTransaction _transaction = null)
         {
-            ListSupportedCulture = GlobalLanguageService.ListSupportedCulture;
+            ListSupportedCulture = GlobalConfigurationService.Instance.CmsCulture.ListSupportedCulture;
             if (!string.IsNullOrEmpty(this.Tags))
             {
                 ListTag = JArray.Parse(this.Tags);

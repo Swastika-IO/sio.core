@@ -22,7 +22,7 @@ using System.Threading.Tasks;
 namespace Swastika.Cms.Lib.Services
 {
     public class GlobalConfigurationService
-    {   
+    {
         private static GlobalConfigurationService _instance;
 
         public static GlobalConfigurationService Instance
@@ -39,9 +39,9 @@ namespace Swastika.Cms.Lib.Services
 
         public GlobalConfigurationService()
         {
-           
-        }
 
+        }
+        public CmsCultureConfiguration CmsCulture { get; set; }
         public CmsConfiguration CmsConfigurations { get; set; }
 
         public async Task<RepositoryResponse<bool>> InitSWCms(UserManager<ApplicationUser> userManager,
@@ -62,7 +62,7 @@ namespace Swastika.Cms.Lib.Services
                     await context.Database.MigrateAsync();
                     await accountContext.Database.MigrateAsync();
                     transaction = context.Database.BeginTransaction();
-                    
+
                     var getCulture = await BECultureViewModel.Repository.GetModelListAsync(_context: context, _transaction: transaction);
 
                     var isInit = getCulture.IsSucceed && getCulture.Data.Count > 0;
@@ -106,7 +106,7 @@ namespace Swastika.Cms.Lib.Services
 
                     if (isSucceed)
                     {
-                        GlobalLanguageService.Instance.RefreshCultures(context, transaction);
+                        GlobalConfigurationService.Instance.RefreshAll(context, transaction);
 
                         transaction.Commit();
                     }
@@ -271,7 +271,7 @@ namespace Swastika.Cms.Lib.Services
                     }
                     if (isSucceed)
                     {
-                        Refresh(context, transaction);
+                        RefreshConfigurations(context, transaction);
                     }
                 }
                 else
@@ -308,7 +308,7 @@ namespace Swastika.Cms.Lib.Services
 
             if (!getCulture.IsSucceed)
             {
-                BECultureViewModel cultureViewModel = new BECultureViewModel( new SiocCulture()
+                BECultureViewModel cultureViewModel = new BECultureViewModel(new SiocCulture()
                 {
                     Specificulture = "en-us",
                     FullName = "United States",
@@ -335,7 +335,7 @@ namespace Swastika.Cms.Lib.Services
                     Description = "Việt Nam",
                     Icon = "flag-icon-vn",
                     Alias = "VN"
-                },_context: context,
+                }, _context: context,
                 _transaction: transaction);
                 isSucceed = cultureViewModel.SaveModel(_context: context, _transaction: transaction).IsSucceed;
             }
@@ -351,7 +351,7 @@ namespace Swastika.Cms.Lib.Services
                 BEPositionViewModel p = new BEPositionViewModel(new SiocPosition()
                 {
                     Description = nameof(SWCmsConstants.CatePosition.Nav)
-                }, _context:context, _transaction:transaction)
+                }, _context: context, _transaction: transaction)
                 ;
                 isSucceed = p.SaveModel(_context: context, _transaction: transaction).IsSucceed;
                 p = new BEPositionViewModel(new SiocPosition()
@@ -373,15 +373,28 @@ namespace Swastika.Cms.Lib.Services
             return isSucceed;
         }
 
+        public void RefreshAll(SiocCmsContext _context = null, IDbContextTransaction _transaction = null)
+        {
+            RefreshConfigurations(_context, _transaction);
+            RefreshCultures(_context, _transaction);
+        }
 
-
-        public void Refresh(SiocCmsContext _context = null, IDbContextTransaction _transaction = null)
+        public void RefreshConfigurations(SiocCmsContext _context = null, IDbContextTransaction _transaction = null)
         {
             this.CmsConfigurations = new CmsConfiguration();
             if (!string.IsNullOrEmpty(CmsConfigurations.CmsConnectionString))
             {
                 CmsConfigurations.Init(_context, _transaction);
-            }            
+            }
+        }
+
+        public void RefreshCultures(SiocCmsContext _context = null, IDbContextTransaction _transaction = null)
+        {
+            this.CmsCulture = new CmsCultureConfiguration();
+            if (!string.IsNullOrEmpty(CmsConfigurations.CmsConnectionString))
+            {
+                CmsCulture.Init(_context, _transaction);
+            }
         }
 
         public string GetLocalString(string key, string culture, string defaultValue = null)

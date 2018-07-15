@@ -53,8 +53,8 @@ namespace Swastika.Cms.Web.Mvc
             services.AddTransient<ISmsSender, AuthSmsMessageSender>();  
 
             services.AddSingleton<GlobalConfigurationService>();
-            GlobalConfigurationService.Instance.Refresh();
-            services.AddSingleton<GlobalLanguageService>();
+            GlobalConfigurationService.Instance.RefreshAll();
+            //services.AddSingleton<GlobalLanguageService>();
 
             services.AddMvc(options =>
             {

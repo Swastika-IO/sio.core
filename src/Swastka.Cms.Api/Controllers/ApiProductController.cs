@@ -45,7 +45,7 @@ namespace Swastka.Cms.Api.Controllers
                 case "be":
                     if (!string.IsNullOrEmpty(id))
                     {
-                        var beResult = await BEProductViewModel.Repository.GetSingleModelAsync(model => model.Id == id && model.Specificulture == _lang).ConfigureAwait(false);
+                        var beResult = await ApiProductViewModel.Repository.GetSingleModelAsync(model => model.Id == id && model.Specificulture == _lang).ConfigureAwait(false);
                         if (beResult.IsSucceed)
                         {
                             beResult.Data.DetailsUrl = SwCmsHelper.GetRouterUrl("Product", new { beResult.Data.SeoName }, Request, Url);
@@ -55,10 +55,10 @@ namespace Swastka.Cms.Api.Controllers
                     else
                     {
                         var model = new SiocProduct() { Specificulture = _lang, Status = (int)SWStatus.Preview };
-                        RepositoryResponse<BEProductViewModel> result = new RepositoryResponse<BEProductViewModel>()
+                        RepositoryResponse<ApiProductViewModel> result = new RepositoryResponse<ApiProductViewModel>()
                         {
                             IsSucceed = true,
-                            Data = new BEProductViewModel(model)
+                            Data = new ApiProductViewModel(model)
                         };
                         return JObject.FromObject(result);
                     }
@@ -126,7 +126,7 @@ namespace Swastka.Cms.Api.Controllers
         [Route("delete/{id}")]
         public async Task<RepositoryResponse<SiocProduct>> Delete(string id)
         {
-            var getProduct = BEProductViewModel.Repository.GetSingleModel(a => a.Id == id && a.Specificulture == _lang);
+            var getProduct = ApiProductViewModel.Repository.GetSingleModel(a => a.Id == id && a.Specificulture == _lang);
             if (getProduct.IsSucceed)
             {
                 return await getProduct.Data.RemoveModelAsync(true).ConfigureAwait(false);
@@ -204,7 +204,7 @@ namespace Swastka.Cms.Api.Controllers
         // POST api/products
         [HttpPost]
         [Route("save")]
-        public async Task<RepositoryResponse<BEProductViewModel>> Save([FromBody] BEProductViewModel product)
+        public async Task<RepositoryResponse<ApiProductViewModel>> Save([FromBody] ApiProductViewModel product)
         {
             if (product != null)
             {
@@ -216,7 +216,7 @@ namespace Swastka.Cms.Api.Controllers
                 }
                 return result;
             }
-            return new RepositoryResponse<BEProductViewModel>();
+            return new RepositoryResponse<ApiProductViewModel>();
         }
 
         // POST api/category
@@ -229,7 +229,7 @@ namespace Swastka.Cms.Api.Controllers
             {
                 foreach (var property in fields)
                 {
-                    result = await BEProductViewModel.Repository.UpdateFieldsAsync(c => c.Id == id, fields).ConfigureAwait(false);
+                    result = await ApiProductViewModel.Repository.UpdateFieldsAsync(c => c.Id == id, fields).ConfigureAwait(false);
                 }
                 return result;
             }
@@ -278,7 +278,7 @@ namespace Swastka.Cms.Api.Controllers
                     }
                     return JObject.FromObject(fedata);
                 case "be":
-                    var bedata = await BEProductViewModel.Repository.GetModelListByAsync(predicate, request.OrderBy, request.Direction, request.PageSize, request.PageIndex).ConfigureAwait(false);
+                    var bedata = await ApiProductViewModel.Repository.GetModelListByAsync(predicate, request.OrderBy, request.Direction, request.PageSize, request.PageIndex).ConfigureAwait(false);
                     if (bedata.IsSucceed)
                     {
                         bedata.Data.Items.ForEach(a =>

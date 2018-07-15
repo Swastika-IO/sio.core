@@ -121,17 +121,7 @@ namespace Swastka.Cms.Api.Controllers
             ViewBag.culture = _lang;
 
             _domain = string.Format("{0}://{1}", Request.Scheme, Request.Host);
-
-            //ViewBag.currentCulture = listCultures.FirstOrDefault(c => c.Specificulture == _lang);
-            //ViewBag.cultures = listCultures;
         }
-
-        // TODO: Still need?
-        //protected IActionResult GetResult<TResult>(int status, TResult data, string responseKey, string error, string message)
-        //{
-        //    var result = ApiHelper<TResult>.GetResult(status, data, responseKey, null);
-        //    return Ok(result);
-        //}
 
         /// <summary>
         /// Gets the success result.
@@ -201,173 +191,6 @@ namespace Swastka.Cms.Api.Controllers
             return result;
         }
     }
-
-    /// <summary>
-    /// </summary>
-    /// <typeparam name="TDbContext">The type of the database context.</typeparam>
-    /// <typeparam name="TModel">The type of the model.</typeparam>
-    /// <seealso cref="Microsoft.AspNetCore.Mvc.Controller"/>
-    //public class BaseApiController<TDbContext, TModel> : Controller
-    //    where TDbContext : DbContext
-    //    where TModel : class
-    //{
-    //    /// <summary>
-    //    /// The repo
-    //    /// </summary>
-    //    protected readonly DefaultRepository<TDbContext, TModel> _repo;
-
-    //    /// <summary>
-    //    /// The domain
-    //    /// </summary>
-    //    protected string _domain;
-
-    //    /// <summary>
-    //    /// The language
-    //    /// </summary>
-    //    protected string _lang;
-
-    //    protected IHostingEnvironment _env;
-
-    //    /// <summary>
-    //    /// Initializes a new instance of the <see cref="BaseApiController{TDbContext, TModel}"/> class.
-    //    /// </summary>
-    //    public BaseApiController(IHostingEnvironment env)
-    //    {
-    //        _env = env;
-    //        _repo = DefaultRepository<TDbContext, TModel>.Instance;
-    //    }
-
-    //    public BaseApiController()
-    //    {
-    //    }
-
-    //    protected async Task<string> UploadFileAsync(IFormFile file, string folderPath)
-    //    {
-    //        if (file?.Length > 0)
-    //        {
-    //            string fileName = await CommonHelper.UploadFileAsync(System.IO.Path.Combine(_env.WebRootPath, folderPath), file).ConfigureAwait(false);
-
-    //            if (!string.IsNullOrEmpty(fileName))
-    //            {
-    //                string filePath = string.Format("{0}/{1}", folderPath, fileName);
-    //                return filePath;
-    //            }
-    //            else
-    //            {
-    //                return string.Empty;
-    //            }
-    //        }
-    //        else
-    //        {
-    //            return string.Empty;
-    //        }
-    //    }
-
-    //    /// <summary>
-    //    /// Creates an <see cref="T:Microsoft.AspNetCore.Mvc.BadRequestObjectResult"/> that produces
-    //    /// a <see cref="F:Microsoft.AspNetCore.Http.StatusCodes.Status400BadRequest"/> response.
-    //    /// </summary>
-    //    /// <param name="modelState"></param>
-    //    /// <returns>
-    //    /// The created <see cref="T:Microsoft.AspNetCore.Mvc.BadRequestObjectResult"/> for the response.
-    //    /// </returns>
-    //    public override BadRequestObjectResult BadRequest(ModelStateDictionary modelState)
-    //    {
-    //        List<string> errors = new List<string>();
-    //        foreach (ModelStateEntry state in ViewData.ModelState.Values)
-    //        {
-    //            foreach (ModelError error in state.Errors)
-    //            {
-    //                errors.Add(error.ErrorMessage);
-    //            }
-    //        }
-    //        var result = ApiHelper<TModel>.GetResult(0, default(TModel), nameof(Enums.ResponseKey.BadRequest), errors);
-    //        return base.BadRequest(result);
-    //    }
-
-    //    /// <summary>
-    //    /// Creates an <see cref="T:Microsoft.AspNetCore.Mvc.BadRequestObjectResult"/> that produces
-    //    /// a <see cref="F:Microsoft.AspNetCore.Http.StatusCodes.Status400BadRequest"/> response.
-    //    /// </summary>
-    //    /// <param name="error"></param>
-    //    /// <returns>
-    //    /// The created <see cref="T:Microsoft.AspNetCore.Mvc.BadRequestObjectResult"/> for the response.
-    //    /// </returns>
-    //    public override BadRequestObjectResult BadRequest(object error)
-    //    {
-    //        var result = ApiHelper<TModel>.GetResult(0, default(TModel), nameof(Enums.ResponseKey.BadRequest), null);
-    //        return base.BadRequest(result);
-    //    }
-
-    //    /// <summary>
-    //    /// Creates an <see cref="T:Microsoft.AspNetCore.Mvc.NotFoundObjectResult"/> that produces a
-    //    /// <see cref="F:Microsoft.AspNetCore.Http.StatusCodes.Status404NotFound"/> response.
-    //    /// </summary>
-    //    /// <param name="value"></param>
-    //    /// <returns>
-    //    /// The created <see cref="T:Microsoft.AspNetCore.Mvc.NotFoundObjectResult"/> for the response.
-    //    /// </returns>
-    //    public override NotFoundObjectResult NotFound(object value)
-    //    {
-    //        var result = ApiHelper<TModel>.GetResult(0, default(TModel), nameof(Enums.ResponseKey.NotFound), null);
-    //        return base.NotFound(result);
-    //    }
-
-    //    /// <summary>
-    //    /// Called before the action method is invoked.
-    //    /// </summary>
-    //    /// <param name="context">The action executing context.</param>
-    //    public override void OnActionExecuting(ActionExecutingContext context)
-    //    {
-    //        GetLanguage();
-    //        base.OnActionExecuting(context);
-    //    }
-
-    //    /// <summary>
-    //    /// Gets the error result.
-    //    /// </summary>
-    //    /// <param name="responseKey">The response key.</param>
-    //    /// <param name="errorMsg">The error MSG.</param>
-    //    /// <returns></returns>
-    //    protected IActionResult GetErrorResult(string responseKey, string errorMsg)
-    //    {
-    //        var result = ApiHelper<TModel>.GetResult(0, default(TModel), responseKey, null);
-    //        return BadRequest(result);
-    //    }
-
-    //    /// <summary>
-    //    /// Gets the language.
-    //    /// </summary>
-    //    protected void GetLanguage()
-    //    {
-    //        _lang = RouteData?.Values["culture"] != null
-    //            ? RouteData.Values["culture"].ToString() : BaseApiController.SWCmsConstants.Default.Specificulture;
-    //        ViewBag.culture = _lang;
-
-    //        _domain = string.Format("{0}://{1}", Request.Scheme, Request.Host);
-
-    //        //ViewBag.currentCulture = listCultures.FirstOrDefault(c => c.Specificulture == _lang);
-    //        //ViewBag.cultures = listCultures;
-    //    }
-
-    //    //protected IActionResult GetResult<TResult>(int status, TResult data, string responseKey, string error, string message)
-    //    //{
-    //    //    var result = ApiHelper<TResult>.GetResult(status, data, responseKey, null);
-    //    //    return Ok(result);
-    //    //}
-
-    //    /// <summary>
-    //    /// Gets the success result.
-    //    /// </summary>
-    //    /// <typeparam name="TResult">The type of the result.</typeparam>
-    //    /// <param name="data">The data.</param>
-    //    /// <returns></returns>
-    //    protected IActionResult GetSuccessResult<TResult>(TResult data)
-    //    {
-    //        var result = ApiHelper<TResult>.GetResult(1, data, nameof(Enums.ResponseKey.OK), null);
-    //        return Ok(result);
-    //    }
-    //}
 
     /// <summary>
     /// </summary>
@@ -480,12 +303,6 @@ namespace Swastka.Cms.Api.Controllers
                 ? RouteData.Values["culture"].ToString() : GlobalConfigurationService.Instance.CmsConfigurations.Language;
             ViewBag.culture = _lang;
         }
-
-        //protected IActionResult GetResult<TResult>(int status, TResult data, string responseKey, string error, string message)
-        //{
-        //    var result = ApiHelper<TResult>.GetResult(status, data, responseKey, null);
-        //    return Ok(result);
-        //}
 
         /// <summary>
         /// Gets the success result.

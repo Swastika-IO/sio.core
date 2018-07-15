@@ -50,7 +50,7 @@ namespace Swastka.Cms.Api.Controllers
             {
                 Lang = _lang,
                 ThemeId = GlobalConfigurationService.Instance.GetLocalInt(SWCmsConstants.ConfigurationKeyword.ThemeId, _lang),
-                Cultures = GlobalLanguageService.ListSupportedCulture,
+                Cultures = GlobalConfigurationService.Instance.CmsCulture.ListSupportedCulture,
                 PageTypes = Enum.GetNames(typeof(SWCmsConstants.CateType)).ToList()
             };
             return new RepositoryResponse<SiteSettingsViewModel>()
@@ -146,24 +146,14 @@ namespace Swastka.Cms.Api.Controllers
                 FileRepository.Instance.SaveFile(settings);
             }
 
-            //GlobalConfigurationService.Instance.CmsConfigurations.IsSqlite = model.IsSqlite;
-            //if (model.IsSqlite)
-            //{
-            //    GlobalConfigurationService.Instance.ConnectionString = model.SqliteDbConnectionString;
-            //}
-            //else
-            //{
-            //    GlobalConfigurationService.Instance.ConnectionString = model.ConnectionString;
-            //}
-
-            GlobalConfigurationService.Instance.Refresh();
+            GlobalConfigurationService.Instance.RefreshConfigurations();
             var initResult = await GlobalConfigurationService.Instance.InitSWCms(
                 _userManager, _roleManager);
             if (initResult.IsSucceed)
             {
                 await InitRolesAsync();
                 result.IsSucceed = true;
-                GlobalConfigurationService.Instance.Refresh();
+                GlobalConfigurationService.Instance.RefreshConfigurations();
             }
             else
             {

@@ -1,5 +1,5 @@
 ﻿@{
-    LocalizerService.Refresh();
+    LocalizerService.RefreshConfigurations();
     string master = LocalizerService.GetLocalString(SWCmsConstants.ConfigurationKeyword.Theme, ViewBag.culture, "Default");
     Layout = $"Templates/{master}/Masters/{"_Layout"}";
 }

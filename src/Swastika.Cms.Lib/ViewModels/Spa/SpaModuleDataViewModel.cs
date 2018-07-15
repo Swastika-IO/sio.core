@@ -57,7 +57,7 @@ namespace Swastika.Cms.Lib.ViewModels.Spa
         public override void ExpandView(SiocCmsContext _context = null, IDbContextTransaction _transaction = null)
         {
             IsClone = true;
-            ListSupportedCulture = GlobalLanguageService.ListSupportedCulture;
+            ListSupportedCulture = GlobalConfigurationService.Instance.CmsCulture.ListSupportedCulture;
 
             this.DataProperties = new List<ModuleDataValueViewModel>();
             

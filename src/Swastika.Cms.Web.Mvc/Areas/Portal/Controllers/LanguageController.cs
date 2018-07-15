@@ -39,10 +39,10 @@ namespace Swastika.Cms.Web.Mvc.Areas.Portal.Controllers
         {
             PaginationModel<BELanguageViewModel> pagingPages = new PaginationModel<BELanguageViewModel>()
             {
-                Items = GlobalLanguageService.ListLanguage.Where(m => m.Specificulture == CurrentLanguage).ToList(),
+                Items = GlobalConfigurationService.Instance.CmsCulture.ListLanguage.Where(m => m.Specificulture == CurrentLanguage).ToList(),
                 PageIndex = 0,
-                PageSize = GlobalLanguageService.ListLanguage.Count(m => m.Specificulture == CurrentLanguage),
-                TotalItems = GlobalLanguageService.ListLanguage.Count(m => m.Specificulture == CurrentLanguage),
+                PageSize = GlobalConfigurationService.Instance.CmsCulture.ListLanguage.Count(m => m.Specificulture == CurrentLanguage),
+                TotalItems = GlobalConfigurationService.Instance.CmsCulture.ListLanguage.Count(m => m.Specificulture == CurrentLanguage),
                 TotalPage = 1
             };
             //  await LanguageRepository.GetInstance().GetModelListByAsync(m=> m.Specificulture == _lang,
@@ -78,7 +78,7 @@ namespace Swastika.Cms.Web.Mvc.Areas.Portal.Controllers
                 var result = await language.SaveModelAsync().ConfigureAwait(false);// BELanguageViewModel.Repository.CreateModelAsync(ttsLanguage);
                 if (result.IsSucceed)
                 {
-                    GlobalLanguageService.Instance.Refresh();
+                    GlobalConfigurationService.Instance.RefreshCultures();
                     return RedirectToAction("Languages");
                 }
                 else
@@ -136,7 +136,7 @@ namespace Swastika.Cms.Web.Mvc.Areas.Portal.Controllers
                     var result = await beLanguageViewModel.SaveModelAsync().ConfigureAwait(false); //_repo.EditModelAsync(ttsLanguage.ParseModel());
                     if (result.IsSucceed)
                     {
-                        GlobalLanguageService.Instance.Refresh();
+                        GlobalConfigurationService.Instance.RefreshCultures();
                     }
                     else
                     {
@@ -174,7 +174,7 @@ namespace Swastika.Cms.Web.Mvc.Areas.Portal.Controllers
             var result = await BELanguageViewModel.Repository.RemoveModelAsync(m => m.Keyword == id && m.Specificulture == CurrentLanguage).ConfigureAwait(false);
             if (result.IsSucceed)
             {
-                GlobalLanguageService.Instance.Refresh();
+                GlobalConfigurationService.Instance.RefreshCultures();
             }
             return RedirectToAction("Languages");
         }

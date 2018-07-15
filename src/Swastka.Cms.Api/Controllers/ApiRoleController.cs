@@ -19,11 +19,11 @@ namespace Swastka.Cms.Api.Controllers
     [Route("api/role")]
     public class ApiRoleController : BaseApiController
     {
-        private readonly UserManager<ApplicationUser> _userManager;
-        private readonly SignInManager<ApplicationUser> _signInManager;
-        private readonly RoleManager<IdentityRole> _roleManager;
-        private readonly IEmailSender _emailSender;
-        private readonly ILogger _logger;
+        protected readonly UserManager<ApplicationUser> _userManager;
+        protected readonly SignInManager<ApplicationUser> _signInManager;
+        protected readonly RoleManager<IdentityRole> _roleManager;
+        protected readonly IEmailSender _emailSender;
+        protected readonly ILogger _logger;
 
         public ApiRoleController(UserManager<ApplicationUser> userManager,
             SignInManager<ApplicationUser> signInManager,

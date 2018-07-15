@@ -188,7 +188,7 @@ namespace Swastika.Cms.Lib.ViewModels.BackEnd
                 }
                 else
                 {
-                    GlobalConfigurationService.Instance.Refresh(_context, _transaction);
+                    GlobalConfigurationService.Instance.RefreshConfigurations(_context, _transaction);
                 }
                 result.IsSucceed = result.IsSucceed && saveConfigResult.IsSucceed;
 
@@ -217,7 +217,7 @@ namespace Swastika.Cms.Lib.ViewModels.BackEnd
                 }
                 else
                 {
-                    GlobalConfigurationService.Instance.Refresh(_context, _transaction);
+                    GlobalConfigurationService.Instance.RefreshConfigurations(_context, _transaction);
                 }
                 result.IsSucceed = result.IsSucceed && saveResult.IsSucceed;
             }
@@ -348,7 +348,7 @@ namespace Swastika.Cms.Lib.ViewModels.BackEnd
                 }
                 else
                 {
-                    GlobalConfigurationService.Instance.Refresh(_context, _transaction);
+                    GlobalConfigurationService.Instance.RefreshConfigurations(_context, _transaction);
                 }
                 result.IsSucceed = result.IsSucceed && saveConfigResult.IsSucceed;
 
@@ -378,7 +378,7 @@ namespace Swastika.Cms.Lib.ViewModels.BackEnd
                 }
                 else
                 {
-                    GlobalConfigurationService.Instance.Refresh(_context, _transaction);
+                    GlobalConfigurationService.Instance.RefreshConfigurations(_context, _transaction);
                 }
                 result.IsSucceed = result.IsSucceed && saveResult.IsSucceed;
             }

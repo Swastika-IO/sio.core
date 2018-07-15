@@ -76,7 +76,7 @@ namespace Swastika.Cms.Mvc.Areas.Portal.Controllers
                 var result = await configuration.SaveModelAsync().ConfigureAwait(false);// ConfigurationViewModel.Repository.CreateModelAsync(ttsConfiguration);
                 if (result.IsSucceed)
                 {
-                    GlobalConfigurationService.Instance.Refresh();
+                    GlobalConfigurationService.Instance.RefreshConfigurations();
                     return RedirectToAction("Configurations");
                 }
                 else
@@ -124,7 +124,7 @@ namespace Swastika.Cms.Mvc.Areas.Portal.Controllers
                     var result = await ttsConfiguration.SaveModelAsync().ConfigureAwait(false); //_repo.EditModelAsync(ttsConfiguration.ParseModel());
                     if (result.IsSucceed)
                     {
-                        GlobalConfigurationService.Instance.Refresh();
+                        GlobalConfigurationService.Instance.RefreshConfigurations();
                     }
                 }
                 catch (DbUpdateConcurrencyException)
@@ -150,7 +150,7 @@ namespace Swastika.Cms.Mvc.Areas.Portal.Controllers
             var result = await ConfigurationViewModel.Repository.RemoveModelAsync(m => m.Keyword == id && m.Specificulture == CurrentLanguage).ConfigureAwait(false);
             if (result.IsSucceed)
             {
-                GlobalConfigurationService.Instance.Refresh();
+                GlobalConfigurationService.Instance.RefreshConfigurations();
             }
             return RedirectToAction("Configurations");
         }

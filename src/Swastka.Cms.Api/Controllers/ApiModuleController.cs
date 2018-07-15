@@ -140,7 +140,6 @@ namespace Swastka.Cms.Api.Controllers
             , OrderByDirection direction = OrderByDirection.Ascending)
         {
             var data = await InfoModuleViewModel.Repository.GetModelListByAsync(m => m.Specificulture == _lang, orderBy, direction, pageSize, pageIndex).ConfigureAwait(false);
-            string domain = string.Format("{0}://{1}", Request.Scheme, Request.Host);
             return data;
         }
 

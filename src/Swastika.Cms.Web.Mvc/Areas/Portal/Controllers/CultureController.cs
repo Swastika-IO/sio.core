@@ -76,10 +76,6 @@ namespace Swastika.Cms.Mvc.Areas.Portal.Controllers
             if (ModelState.IsValid)
             {
                 var result = await vmCulture.SaveModelAsync().ConfigureAwait(false);
-                if (result.IsSucceed)
-                {
-                    GlobalLanguageService.Instance.RefreshCultures();
-                }
                 return RedirectToAction("Index");
             }
             return View(vmCulture);
@@ -113,11 +109,7 @@ namespace Swastika.Cms.Mvc.Areas.Portal.Controllers
             {
                 try
                 {
-                    var result = await culture.SaveModelAsync().ConfigureAwait(false);
-                    if (result.IsSucceed)
-                    {
-                        GlobalLanguageService.Instance.RefreshCultures();
-                    }
+                    var result = await culture.SaveModelAsync().ConfigureAwait(false);                    
                 }
                 catch (DbUpdateConcurrencyException)
                 {

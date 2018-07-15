@@ -115,16 +115,26 @@ namespace Swastka.Cms.Api.Controllers
         // POST api/template
         [HttpPost, HttpOptions]
         [Route("save/{id}")]
-        public async Task<RepositoryResponse<bool>> SaveFields(int id, [FromBody]List<EntityField> fields)
+        public async Task<RepositoryResponse<SiocTemplate>> SaveFields(int id, [FromBody]List<EntityField> fields)
         {
             if (fields != null)
             {
+                var result = new RepositoryResponse<SiocTemplate>() { IsSucceed = true };
                 foreach (var property in fields)
                 {
-                    var result = await InfoTemplateViewModel.Repository.UpdateFieldsAsync(c => c.Id == id, fields).ConfigureAwait(false);
+                    if (result.IsSucceed)
+                    {
+                        result = await InfoTemplateViewModel.Repository.UpdateFieldsAsync(c => c.Id == id, fields).ConfigureAwait(false);
+                    }
+                    else
+                    {
+                        break;
+                    }
+
                 }
+                return result;
             }
-            return new RepositoryResponse<bool>();
+            return new RepositoryResponse<SiocTemplate>();
         }
 
         // GET api/template

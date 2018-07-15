@@ -41,7 +41,7 @@ namespace Swastika.Cms.Lib.ViewModels.BackEnd
 
         public override void ExpandView(SiocCmsContext _context = null, IDbContextTransaction _transaction = null)
         {
-            ListSupportedCulture = GlobalLanguageService.ListSupportedCulture;
+            ListSupportedCulture = GlobalConfigurationService.Instance.CmsCulture.ListSupportedCulture;
             this.ListSupportedCulture.ForEach(c => c.IsSupported = true);
         }
 
@@ -49,8 +49,8 @@ namespace Swastika.Cms.Lib.ViewModels.BackEnd
         {
             var result = base.SaveModel(isSaveSubModels, _context, _transaction);
             if (result.IsSucceed)
-            {
-                GlobalLanguageService.Instance.Refresh();
+            {                
+                GlobalConfigurationService.Instance.RefreshCultures(_context, _transaction);
             }
             return result;
         }
@@ -60,7 +60,7 @@ namespace Swastika.Cms.Lib.ViewModels.BackEnd
             var result = await base.SaveModelAsync(isSaveSubModels, _context, _transaction);
             if (result.IsSucceed)
             {
-                GlobalLanguageService.Instance.Refresh();
+                GlobalConfigurationService.Instance.RefreshCultures(_context, _transaction);
             }
             return result;
         }
@@ -70,7 +70,7 @@ namespace Swastika.Cms.Lib.ViewModels.BackEnd
             var result = base.RemoveModel(isRemoveRelatedModels, _context, _transaction);
             if (result.IsSucceed)
             {
-                GlobalLanguageService.Instance.Refresh();
+                GlobalConfigurationService.Instance.RefreshCultures(_context, _transaction);
             }
             return result;
         }
@@ -80,7 +80,7 @@ namespace Swastika.Cms.Lib.ViewModels.BackEnd
             var result = await base.RemoveModelAsync(isRemoveRelatedModels, _context, _transaction);
             if (result.IsSucceed)
             {
-                GlobalLanguageService.Instance.Refresh();
+                GlobalConfigurationService.Instance.RefreshCultures(_context, _transaction);
             }
             return result;
         }

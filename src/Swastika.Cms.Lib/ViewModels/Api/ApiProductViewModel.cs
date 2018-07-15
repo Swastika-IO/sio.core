@@ -22,8 +22,8 @@ using System.Threading.Tasks;
 
 namespace Swastika.Cms.Lib.ViewModels.BackEnd
 {
-    public class BEProductViewModel
-        : ViewModelBase<SiocCmsContext, SiocProduct, BEProductViewModel>
+    public class ApiProductViewModel
+        : ViewModelBase<SiocCmsContext, SiocProduct, ApiProductViewModel>
     {
         #region Properties
 
@@ -253,17 +253,18 @@ namespace Swastika.Cms.Lib.ViewModels.BackEnd
         public List<ExtraProperty> Properties { get; set; }
         [JsonProperty("detailsUrl")]
         public string DetailsUrl { get; set; }
+
         #endregion Views
 
         #endregion Properties
 
         #region Contructors
 
-        public BEProductViewModel() : base()
+        public ApiProductViewModel() : base()
         {
         }
 
-        public BEProductViewModel(SiocProduct model, SiocCmsContext _context = null, IDbContextTransaction _transaction = null) : base(model, _context, _transaction)
+        public ApiProductViewModel(SiocProduct model, SiocCmsContext _context = null, IDbContextTransaction _transaction = null) : base(model, _context, _transaction)
         {
         }
 
@@ -273,7 +274,7 @@ namespace Swastika.Cms.Lib.ViewModels.BackEnd
 
         public override void ExpandView(SiocCmsContext _context = null, IDbContextTransaction _transaction = null)
         {
-            ListSupportedCulture = GlobalConfigurationService.Instance.CmsCulture.ListSupportedCulture;
+            
             StrNormalPrice = SwCmsHelper.FormatPrice(NormalPrice);
             StrDealPrice = SwCmsHelper.FormatPrice(DealPrice);
             StrImportPrice = SwCmsHelper.FormatPrice(ImportPrice);
@@ -358,10 +359,6 @@ namespace Swastika.Cms.Lib.ViewModels.BackEnd
                 ProductNavs.ForEach(n => n.IsActived = true);
             }
 
-            this.ListSupportedCulture.ForEach(c => c.IsSupported =
-            (string.IsNullOrEmpty(Id) && c.Specificulture == Specificulture)
-            || Repository.CheckIsExists(a => a.Id == Id && a.Specificulture == c.Specificulture, _context, _transaction)
-            );
             this.ActivedModules = new List<BEModuleViewModel>();
             foreach (var module in this.ModuleNavs.Where(m => m.IsActived))
             {
@@ -372,6 +369,8 @@ namespace Swastika.Cms.Lib.ViewModels.BackEnd
                     this.ActivedModules.ForEach(m => m.LoadData(Id));
                 }
             }
+
+            ListSupportedCulture = CommonRepository.Instance.LoadCultures(Specificulture, _context, _transaction);
         }
 
         public override SiocProduct ParseModel(SiocCmsContext _context = null, IDbContextTransaction _transaction = null)
@@ -656,7 +655,7 @@ namespace Swastika.Cms.Lib.ViewModels.BackEnd
             }
         }
 
-        public override async Task<RepositoryResponse<bool>> CloneSubModelsAsync(BEProductViewModel parent, List<SupportedCulture> cloneCultures, SiocCmsContext _context = null, IDbContextTransaction _transaction = null)
+        public override async Task<RepositoryResponse<bool>> CloneSubModelsAsync(ApiProductViewModel parent, List<SupportedCulture> cloneCultures, SiocCmsContext _context = null, IDbContextTransaction _transaction = null)
         {
             RepositoryResponse<bool> result = new RepositoryResponse<bool>() { IsSucceed = true };
             if (ActivedModules.Count > 0)
@@ -691,7 +690,7 @@ namespace Swastika.Cms.Lib.ViewModels.BackEnd
             return result;
         }
 
-        public override async Task<RepositoryResponse<bool>> RemoveRelatedModelsAsync(BEProductViewModel view, SiocCmsContext _context = null, IDbContextTransaction _transaction = null)
+        public override async Task<RepositoryResponse<bool>> RemoveRelatedModelsAsync(ApiProductViewModel view, SiocCmsContext _context = null, IDbContextTransaction _transaction = null)
         {
             RepositoryResponse<bool> result = new RepositoryResponse<bool>()
             {
@@ -744,7 +743,7 @@ namespace Swastika.Cms.Lib.ViewModels.BackEnd
 
         #region Sync Methods
 
-        public override RepositoryResponse<bool> RemoveRelatedModels(BEProductViewModel view, SiocCmsContext _context = null, IDbContextTransaction _transaction = null)
+        public override RepositoryResponse<bool> RemoveRelatedModels(ApiProductViewModel view, SiocCmsContext _context = null, IDbContextTransaction _transaction = null)
         {
             RepositoryResponse<bool> result = new RepositoryResponse<bool>()
             {
@@ -1022,7 +1021,7 @@ namespace Swastika.Cms.Lib.ViewModels.BackEnd
             }
             int i = 1;
             string name = SeoName;
-            while (BEProductViewModel.Repository.CheckIsExists(a => a.SeoName == name && a.Specificulture == Specificulture && a.Id != Id))
+            while (ApiProductViewModel.Repository.CheckIsExists(a => a.SeoName == name && a.Specificulture == Specificulture && a.Id != Id))
             {
                 name = SeoName + "_" + i;
                 i++;

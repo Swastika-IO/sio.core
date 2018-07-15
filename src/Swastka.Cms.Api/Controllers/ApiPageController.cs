@@ -8,7 +8,7 @@ using Microsoft.Data.OData.Query;
 using Newtonsoft.Json.Linq;
 using Swastika.Cms.Lib;
 using Swastika.Cms.Lib.Models.Cms;
-using Swastika.Cms.Lib.ViewModels.BackEnd;
+using Swastika.Cms.Lib.ViewModels.Api;
 using Swastika.Cms.Lib.ViewModels.FrontEnd;
 using Swastika.Cms.Lib.ViewModels.Info;
 using Swastika.Domain.Core.ViewModels;
@@ -63,7 +63,7 @@ namespace Swastka.Cms.Api.Controllers
                 case "be":
                     if (id.HasValue)
                     {
-                        var beResult = await BECategoryViewModel.Repository.GetSingleModelAsync(model => model.Id == id && model.Specificulture == _lang).ConfigureAwait(false);
+                        var beResult = await ApiCategoryViewModel.Repository.GetSingleModelAsync(model => model.Id == id && model.Specificulture == _lang).ConfigureAwait(false);
                         if (beResult.IsSucceed)
                         {
                             beResult.Data.DetailsUrl = SwCmsHelper.GetRouterUrl("Page", new { beResult.Data.SeoName }, Request, Url);
@@ -78,13 +78,13 @@ namespace Swastka.Cms.Api.Controllers
                             Status = (int)SWStatus.Preview,
                             PageSize = 20
                             ,
-                            Priority = BECategoryViewModel.Repository.Max(a => a.Priority).Data + 1
+                            Priority = ApiCategoryViewModel.Repository.Max(a => a.Priority).Data + 1
                         };
 
-                        RepositoryResponse<BECategoryViewModel> result = new RepositoryResponse<BECategoryViewModel>()
+                        RepositoryResponse<ApiCategoryViewModel> result = new RepositoryResponse<ApiCategoryViewModel>()
                         {
                             IsSucceed = true,
-                            Data = await BECategoryViewModel.InitAsync(model)
+                            Data = await ApiCategoryViewModel.InitAsync(model)
                         };
                         return JObject.FromObject(result);
                     }
@@ -171,7 +171,7 @@ namespace Swastka.Cms.Api.Controllers
         [Authorize]
         [HttpPost, HttpOptions]
         [Route("save")]
-        public async Task<RepositoryResponse<BECategoryViewModel>> Post([FromBody]BECategoryViewModel model)
+        public async Task<RepositoryResponse<ApiCategoryViewModel>> Post([FromBody]ApiCategoryViewModel model)
         {
             if (model != null)
             {
@@ -179,7 +179,7 @@ namespace Swastka.Cms.Api.Controllers
                 var result = await model.SaveModelAsync(true).ConfigureAwait(false);
                 return result;
             }
-            return new RepositoryResponse<BECategoryViewModel>();
+            return new RepositoryResponse<ApiCategoryViewModel>();
         }
 
         // POST api/category
@@ -252,7 +252,7 @@ namespace Swastka.Cms.Api.Controllers
                         && (!request.ToDate.HasValue
                             || (model.CreatedDateTime <= request.ToDate.Value)
                         );
-                    var bedata = await BECategoryViewModel.Repository.GetModelListByAsync(predicate, request.OrderBy, request.Direction, request.PageSize, request.PageIndex).ConfigureAwait(false);
+                    var bedata = await ApiCategoryViewModel.Repository.GetModelListByAsync(predicate, request.OrderBy, request.Direction, request.PageSize, request.PageIndex).ConfigureAwait(false);
                     if (bedata.IsSucceed)
                     {
                         bedata.Data.Items.ForEach(a =>

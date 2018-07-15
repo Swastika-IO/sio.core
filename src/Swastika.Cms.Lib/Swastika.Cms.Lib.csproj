@@ -53,6 +53,7 @@
     <Compile Remove="Models\_SiocCmsContext.cs" />
     <Compile Remove="Repositories\AuthRepository.cs" />
     <Compile Remove="Repositories\AuthRepository1.cs" />
+    <Compile Remove="Services\GlobalLanguageService.cs" />
     <Compile Remove="ViewModels\AccessTokenViewModel.cs" />
     <Compile Remove="ViewModels\Account\AccountBindingViewModels.cs" />
     <Compile Remove="ViewModels\ArticleModuleViewModels.cs" />

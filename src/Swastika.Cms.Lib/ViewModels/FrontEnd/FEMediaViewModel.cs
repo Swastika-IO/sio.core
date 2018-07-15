@@ -107,7 +107,7 @@ namespace Swastika.Cms.Lib.ViewModels.FrontEnd
 
         public override void ExpandView(SiocCmsContext _context = null, IDbContextTransaction _transaction = null)
         {
-            ListSupportedCulture = GlobalLanguageService.ListSupportedCulture;
+            ListSupportedCulture = GlobalConfigurationService.Instance.CmsCulture.ListSupportedCulture;
             this.ListSupportedCulture.ForEach(c => c.IsSupported = true);
         }
 

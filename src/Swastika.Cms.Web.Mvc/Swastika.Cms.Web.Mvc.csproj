@@ -26,6 +26,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Areas\Portal\Controllers\Apis\**" />
     <Compile Remove="Areas\Portal\Data\**" />
     <Compile Remove="Areas\Portal\Models\**" />
     <Compile Remove="Areas\User\Models\AccountViewModels\**" />
@@ -46,6 +47,7 @@
     <Compile Remove="wwwroot\app-portal\plunk\**" />
     <Compile Remove="wwwroot\app-portal\services\**" />
     <Compile Remove="wwwroot\lib\**" />
+    <Content Remove="Areas\Portal\Controllers\Apis\**" />
     <Content Remove="Areas\Portal\Data\**" />
     <Content Remove="Areas\Portal\Models\**" />
     <Content Remove="Areas\User\Models\AccountViewModels\**" />
@@ -65,6 +67,7 @@
     <Content Remove="wwwroot\app-portal\plunk\**" />
     <Content Remove="wwwroot\app-portal\services\**" />
     <Content Remove="wwwroot\lib\**" />
+    <EmbeddedResource Remove="Areas\Portal\Controllers\Apis\**" />
     <!--<Content Remove="wwwroot\lib\**" />-->
     <EmbeddedResource Remove="Areas\Portal\Data\**" />
     <EmbeddedResource Remove="Areas\Portal\Models\**" />
@@ -86,6 +89,7 @@
     <EmbeddedResource Remove="wwwroot\app-portal\plunk\**" />
     <EmbeddedResource Remove="wwwroot\app-portal\services\**" />
     <EmbeddedResource Remove="wwwroot\lib\**" />
+    <None Remove="Areas\Portal\Controllers\Apis\**" />
     <None Remove="Areas\Portal\Data\**" />
     <None Remove="Areas\Portal\Models\**" />
     <None Remove="Areas\User\Models\AccountViewModels\**" />
@@ -110,8 +114,8 @@
 
   <ItemGroup>
     <Compile Remove="App_Start\Startup.SignalR.cs" />
-    <Compile Remove="Areas\Portal\Controllers\Apis\ModuleApiController.cs" />
     <Compile Remove="Areas\Portal\Controllers\ApperanceController.cs" />
+    <Compile Remove="Areas\Portal\Controllers\ProductController.cs" />
     <Compile Remove="Areas\User\Controllers\AccountController.cs" />
     <Compile Remove="Controllers\DefaultController.cs" />
     <Compile Remove="Controllers\ManageController.cs" />
@@ -166,7 +170,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <None Remove="Areas\Portal\Controllers\Apis\ModuleApiController.txt" />
     <None Remove="Areas\Portal\Controllers\ApperanceController.txt" />
     <None Remove="Startup.txt" />
   </ItemGroup>

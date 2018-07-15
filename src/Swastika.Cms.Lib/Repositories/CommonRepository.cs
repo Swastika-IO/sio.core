@@ -9,6 +9,7 @@ using Swastika.Cms.Lib.ViewModels;
 using Swastika.Cms.Lib.ViewModels.BackEnd;
 using Swastika.Cms.Lib.ViewModels.Info;
 using Swastika.Cms.Lib.ViewModels.Navigation;
+using Swastika.Domain.Core.Models;
 using Swastika.Domain.Core.ViewModels;
 using System;
 using System.Collections.Generic;
@@ -673,5 +674,31 @@ namespace Swastika.Cms.Lib.Repositories
         #endregion Product-Module Navigator
 
         #endregion Product
+
+        public List<SupportedCulture> LoadCultures(string initCulture = null, SiocCmsContext _context = null, IDbContextTransaction _transaction = null)
+        {
+            var getCultures = BECultureViewModel.Repository.GetModelList(_context, _transaction);
+            var result = new List<SupportedCulture>();
+            if (getCultures.IsSucceed)
+            {
+                foreach (var culture in getCultures.Data)
+                {
+                    result.Add(
+                        new SupportedCulture()
+                        {
+                            Icon = culture.Icon,
+                            Specificulture = culture.Specificulture,
+                            Alias = culture.Alias,
+                            FullName = culture.FullName,
+                            Description = culture.FullName,
+                            Id = culture.Id,
+                            Lcid = culture.Lcid,
+                            IsSupported = culture.Specificulture == initCulture
+                        });
+
+                }
+            }
+            return result;
+        }
     }
 }
