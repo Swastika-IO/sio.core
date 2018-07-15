@@ -43,7 +43,8 @@ namespace Swastika.Cms.Lib.ViewModels.Api
         public bool IsUseLocal { get; set; }
 
         [JsonProperty("localDbConnectionString")]
-        public string LocalDbConnectionString { get; set; } = $"Server=(localdb)\\mssqllocaldb;Database=aspnet-swastika.Cms.Db;Trusted_Connection=True;MultipleActiveResultSets=true";
+        public string LocalDbConnectionString { get; set; } =
+            $"Server=(localdb)\\MSSQLLocalDB;Initial Catalog=sw-cms.db;Integrated Security=True;Persist Security Info=False;Pooling=False;MultipleActiveResultSets=False;Encrypt=False;TrustServerCertificate=True";
 
         [JsonProperty("sqliteDbConnectionString")]
         public string SqliteDbConnectionString { get; set; } = $"Data Source=sw-cms.db";

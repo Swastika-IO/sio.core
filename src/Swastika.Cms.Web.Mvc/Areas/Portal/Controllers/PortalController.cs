@@ -79,7 +79,6 @@ namespace Swastika.Cms.Mvc.Areas.Portal.Controllers
                     settings.Content = jsonSettings.ToString();
                     FileRepository.Instance.SaveFile(settings);
                 }
-                //GlobalConfigurationService.Instance.ConnectionString = cnnString;
                 var initResult = await GlobalConfigurationService.Instance.InitSWCms(_userManager, _roleManager);
                 if (initResult.IsSucceed)
                 {
@@ -94,6 +93,7 @@ namespace Swastika.Cms.Mvc.Areas.Portal.Controllers
                     JObject jsonSettings = JObject.Parse(settings.Content);
                     jsonSettings["ConnectionStrings"][SWCmsConstants.CONST_DEFAULT_CONNECTION] = null;
                     jsonSettings["ConnectionStrings"]["AccountConnection"] = null;
+
                     settings.Content = jsonSettings.ToString();
                     FileRepository.Instance.SaveFile(settings);
                     if (initResult.Exception != null)

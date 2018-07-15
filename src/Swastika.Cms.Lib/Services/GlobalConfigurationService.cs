@@ -99,7 +99,8 @@ namespace Swastika.Cms.Lib.Services
                             Specificulture = "en-us",
                             Template = "_Home",
                             Type = (int)SWCmsConstants.CateType.Home,
-                            CreatedBy = "Admin"
+                            CreatedBy = "Admin",
+                            
                         }, context, transaction);
                         isSucceed = isSucceed && uscate.SaveModel(false, context, transaction).IsSucceed;
                     }

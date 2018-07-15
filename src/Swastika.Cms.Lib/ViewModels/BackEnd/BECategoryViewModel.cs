@@ -235,7 +235,7 @@ namespace Swastika.Cms.Lib.ViewModels.BackEnd
         {
             GenerateSEO();
 
-            var navParent = ParentNavs.FirstOrDefault(p => p.IsActived);
+            var navParent = ParentNavs?.FirstOrDefault(p => p.IsActived);
 
             if (navParent != null)
             {
