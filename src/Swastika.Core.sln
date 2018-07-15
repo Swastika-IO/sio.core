@@ -21,8 +21,6 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Swastika.Cms.Lib", "Swastik
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Swastka.Cms.Api", "Swastka.Cms.Api\Swastka.Cms.Api.csproj", "{0236F35B-5B06-4020-8E30-A704E03C4A04}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Swastika.Cms.Web", "Swastika.Cms.Web\Swastika.Cms.Web.csproj", "{D170A2C4-4BFF-47E3-A4CE-672C5321D641}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
