@@ -7,6 +7,7 @@ using Microsoft.EntityFrameworkCore.Storage;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using Swastika.Cms.Lib.Models.Cms;
+using Swastika.Cms.Lib.Repositories;
 using Swastika.Cms.Lib.Services;
 using Swastika.Cms.Lib.ViewModels.BackEnd;
 using Swastika.Cms.Lib.ViewModels.Info;
@@ -156,12 +157,7 @@ namespace Swastika.Cms.Lib.ViewModels.Api
 
         public override void ExpandView(SiocCmsContext _context = null, IDbContextTransaction _transaction = null)
         {
-            IsClone = true;
-            ListSupportedCulture = GlobalConfigurationService.Instance.CmsCulture.ListSupportedCulture;
-            this.ListSupportedCulture.ForEach(c => c.IsSupported =
-           (Id == 0 && c.Specificulture == Specificulture)
-           || Repository.CheckIsExists(a => a.Id == Id && a.Specificulture == c.Specificulture, _context, _transaction)
-           );
+            ListSupportedCulture = CommonRepository.Instance.LoadCultures(Specificulture, _context, _transaction);
             Columns = new List<ModuleFieldViewModel>();
             JArray arrField = !string.IsNullOrEmpty(Fields) ? JArray.Parse(Fields) : new JArray();
             foreach (var field in arrField)

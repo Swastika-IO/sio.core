@@ -4,6 +4,7 @@
 
 using Microsoft.EntityFrameworkCore.Storage;
 using Swastika.Cms.Lib.Models.Cms;
+using Swastika.Cms.Lib.Repositories;
 using Swastika.Cms.Lib.Services;
 using Swastika.Domain.Core.ViewModels;
 using Swastika.Domain.Data.ViewModels;
@@ -39,12 +40,7 @@ namespace Swastika.Cms.Lib.ViewModels
 
         public override void ExpandView(SiocCmsContext _context = null, IDbContextTransaction _transaction = null)
         {
-            IsClone = true;
-            ListSupportedCulture = GlobalConfigurationService.Instance.CmsCulture.ListSupportedCulture;
-            this.ListSupportedCulture.ForEach(c => c.IsSupported =
-            (string.IsNullOrEmpty(Keyword) && c.Specificulture == Specificulture)
-            || Repository.CheckIsExists(a => a.Keyword == Keyword && a.Specificulture == c.Specificulture, _context, _transaction)
-            );
+            ListSupportedCulture = CommonRepository.Instance.LoadCultures(Specificulture, _context, _transaction);          
         }
 
         public override RepositoryResponse<ConfigurationViewModel> SaveModel(bool isSaveSubModels = false, SiocCmsContext _context = null, IDbContextTransaction _transaction = null)

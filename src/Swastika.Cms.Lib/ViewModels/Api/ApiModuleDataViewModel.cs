@@ -6,6 +6,7 @@ using Microsoft.EntityFrameworkCore.Storage;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using Swastika.Cms.Lib.Models.Cms;
+using Swastika.Cms.Lib.Repositories;
 using Swastika.Cms.Lib.Services;
 using Swastika.Cms.Lib.ViewModels.Info;
 using Swastika.Common.Helper;
@@ -85,7 +86,7 @@ namespace Swastika.Cms.Lib.ViewModels.Api
         }
         public override void ExpandView(SiocCmsContext _context = null, IDbContextTransaction _transaction = null)
         {
-            ListSupportedCulture = GlobalConfigurationService.Instance.CmsCulture.ListSupportedCulture;
+            ListSupportedCulture = CommonRepository.Instance.LoadCultures(Specificulture, _context, _transaction);
 
             var objValue = Value != null ? JObject.Parse(Value) : new JObject();
             this.DataProperties = new List<ModuleDataValueViewModel>();

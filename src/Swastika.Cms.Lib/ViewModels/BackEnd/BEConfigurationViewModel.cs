@@ -74,8 +74,7 @@ namespace Swastika.Cms.Lib.ViewModels.BackEnd
 
         public override void ExpandView(SiocCmsContext _context = null, IDbContextTransaction _transaction = null)
         {
-            IsClone = false;
-            ListSupportedCulture = GlobalConfigurationService.Instance.CmsCulture.ListSupportedCulture;
+            ListSupportedCulture = CommonRepository.Instance.LoadCultures(Specificulture, _context, _transaction);
             this.ListSupportedCulture.ForEach(c => c.IsSupported = true);
             Property = new DataValueViewModel() { DataType = DataType, Value = Value, Name = Keyword };
         }

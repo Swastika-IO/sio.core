@@ -50,7 +50,7 @@ namespace Swastka.Cms.Api.Controllers
             {
                 Lang = _lang,
                 ThemeId = GlobalConfigurationService.Instance.GetLocalInt(SWCmsConstants.ConfigurationKeyword.ThemeId, _lang),
-                Cultures = GlobalConfigurationService.Instance.CmsCulture.ListSupportedCulture,
+                Cultures = CommonRepository.Instance.LoadCultures(),
                 PageTypes = Enum.GetNames(typeof(SWCmsConstants.CateType)).ToList()
             };
             return new RepositoryResponse<SiteSettingsViewModel>()

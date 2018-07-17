@@ -69,7 +69,7 @@ namespace Swastika.Cms.Mvc.Controllers
                 }
                 else
                 {
-                    return RedirectToAction("Index", "Portal", new { culture = CurrentLanguage });
+                    return RedirectToAction("Index", "Backend");
                 }
             }
             else

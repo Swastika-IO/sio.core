@@ -39,7 +39,7 @@ namespace Swastika.Cms.Web.Mvc.Controllers
                 var superAdmin = await _userManager.GetUsersInRoleAsync("SuperAdmin");
                 if (superAdmin.Count == 0)
                 {
-                    return Redirect($"/{ROUTE_DEFAULT_CULTURE}/Portal/Auth/RegisterSuperAdmin");
+                    return Redirect($"/portal/init/step2");
                 }
                 else
                 {

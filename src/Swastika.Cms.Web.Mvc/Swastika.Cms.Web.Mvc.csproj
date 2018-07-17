@@ -29,6 +29,26 @@
     <Compile Remove="Areas\Portal\Controllers\Apis\**" />
     <Compile Remove="Areas\Portal\Data\**" />
     <Compile Remove="Areas\Portal\Models\**" />
+    <Compile Remove="Areas\Portal\ViewComponents\**" />
+    <Compile Remove="Areas\Portal\Views\ApiModule\**" />
+    <Compile Remove="Areas\Portal\Views\Apperance\**" />
+    <Compile Remove="Areas\Portal\Views\Article\**" />
+    <Compile Remove="Areas\Portal\Views\Auth\**" />
+    <Compile Remove="Areas\Portal\Views\Collaborators\**" />
+    <Compile Remove="Areas\Portal\Views\Contents\**" />
+    <Compile Remove="Areas\Portal\Views\Culture\**" />
+    <Compile Remove="Areas\Portal\Views\Dashboard\**" />
+    <Compile Remove="Areas\Portal\Views\File\**" />
+    <Compile Remove="Areas\Portal\Views\Language\**" />
+    <Compile Remove="Areas\Portal\Views\Media\**" />
+    <Compile Remove="Areas\Portal\Views\Module\**" />
+    <Compile Remove="Areas\Portal\Views\Pages\**" />
+    <Compile Remove="Areas\Portal\Views\Product\**" />
+    <Compile Remove="Areas\Portal\Views\Profile\**" />
+    <Compile Remove="Areas\Portal\Views\Setting\**" />
+    <Compile Remove="Areas\Portal\Views\Team\**" />
+    <Compile Remove="Areas\Portal\Views\Template\**" />
+    <Compile Remove="Areas\Portal\Views\Theme\**" />
     <Compile Remove="Areas\User\Models\AccountViewModels\**" />
     <Compile Remove="Views\Shared\Articles\**" />
     <Compile Remove="Views\Shared\Components\**" />
@@ -50,6 +70,26 @@
     <Content Remove="Areas\Portal\Controllers\Apis\**" />
     <Content Remove="Areas\Portal\Data\**" />
     <Content Remove="Areas\Portal\Models\**" />
+    <Content Remove="Areas\Portal\ViewComponents\**" />
+    <Content Remove="Areas\Portal\Views\ApiModule\**" />
+    <Content Remove="Areas\Portal\Views\Apperance\**" />
+    <Content Remove="Areas\Portal\Views\Article\**" />
+    <Content Remove="Areas\Portal\Views\Auth\**" />
+    <Content Remove="Areas\Portal\Views\Collaborators\**" />
+    <Content Remove="Areas\Portal\Views\Contents\**" />
+    <Content Remove="Areas\Portal\Views\Culture\**" />
+    <Content Remove="Areas\Portal\Views\Dashboard\**" />
+    <Content Remove="Areas\Portal\Views\File\**" />
+    <Content Remove="Areas\Portal\Views\Language\**" />
+    <Content Remove="Areas\Portal\Views\Media\**" />
+    <Content Remove="Areas\Portal\Views\Module\**" />
+    <Content Remove="Areas\Portal\Views\Pages\**" />
+    <Content Remove="Areas\Portal\Views\Product\**" />
+    <Content Remove="Areas\Portal\Views\Profile\**" />
+    <Content Remove="Areas\Portal\Views\Setting\**" />
+    <Content Remove="Areas\Portal\Views\Team\**" />
+    <Content Remove="Areas\Portal\Views\Template\**" />
+    <Content Remove="Areas\Portal\Views\Theme\**" />
     <Content Remove="Areas\User\Models\AccountViewModels\**" />
     <Content Remove="Views\Shared\Articles\**" />
     <Content Remove="Views\Shared\Components\**" />
@@ -71,6 +111,26 @@
     <!--<Content Remove="wwwroot\lib\**" />-->
     <EmbeddedResource Remove="Areas\Portal\Data\**" />
     <EmbeddedResource Remove="Areas\Portal\Models\**" />
+    <EmbeddedResource Remove="Areas\Portal\ViewComponents\**" />
+    <EmbeddedResource Remove="Areas\Portal\Views\ApiModule\**" />
+    <EmbeddedResource Remove="Areas\Portal\Views\Apperance\**" />
+    <EmbeddedResource Remove="Areas\Portal\Views\Article\**" />
+    <EmbeddedResource Remove="Areas\Portal\Views\Auth\**" />
+    <EmbeddedResource Remove="Areas\Portal\Views\Collaborators\**" />
+    <EmbeddedResource Remove="Areas\Portal\Views\Contents\**" />
+    <EmbeddedResource Remove="Areas\Portal\Views\Culture\**" />
+    <EmbeddedResource Remove="Areas\Portal\Views\Dashboard\**" />
+    <EmbeddedResource Remove="Areas\Portal\Views\File\**" />
+    <EmbeddedResource Remove="Areas\Portal\Views\Language\**" />
+    <EmbeddedResource Remove="Areas\Portal\Views\Media\**" />
+    <EmbeddedResource Remove="Areas\Portal\Views\Module\**" />
+    <EmbeddedResource Remove="Areas\Portal\Views\Pages\**" />
+    <EmbeddedResource Remove="Areas\Portal\Views\Product\**" />
+    <EmbeddedResource Remove="Areas\Portal\Views\Profile\**" />
+    <EmbeddedResource Remove="Areas\Portal\Views\Setting\**" />
+    <EmbeddedResource Remove="Areas\Portal\Views\Team\**" />
+    <EmbeddedResource Remove="Areas\Portal\Views\Template\**" />
+    <EmbeddedResource Remove="Areas\Portal\Views\Theme\**" />
     <EmbeddedResource Remove="Areas\User\Models\AccountViewModels\**" />
     <EmbeddedResource Remove="Views\Shared\Articles\**" />
     <EmbeddedResource Remove="Views\Shared\Components\**" />
@@ -92,6 +152,26 @@
     <None Remove="Areas\Portal\Controllers\Apis\**" />
     <None Remove="Areas\Portal\Data\**" />
     <None Remove="Areas\Portal\Models\**" />
+    <None Remove="Areas\Portal\ViewComponents\**" />
+    <None Remove="Areas\Portal\Views\ApiModule\**" />
+    <None Remove="Areas\Portal\Views\Apperance\**" />
+    <None Remove="Areas\Portal\Views\Article\**" />
+    <None Remove="Areas\Portal\Views\Auth\**" />
+    <None Remove="Areas\Portal\Views\Collaborators\**" />
+    <None Remove="Areas\Portal\Views\Contents\**" />
+    <None Remove="Areas\Portal\Views\Culture\**" />
+    <None Remove="Areas\Portal\Views\Dashboard\**" />
+    <None Remove="Areas\Portal\Views\File\**" />
+    <None Remove="Areas\Portal\Views\Language\**" />
+    <None Remove="Areas\Portal\Views\Media\**" />
+    <None Remove="Areas\Portal\Views\Module\**" />
+    <None Remove="Areas\Portal\Views\Pages\**" />
+    <None Remove="Areas\Portal\Views\Product\**" />
+    <None Remove="Areas\Portal\Views\Profile\**" />
+    <None Remove="Areas\Portal\Views\Setting\**" />
+    <None Remove="Areas\Portal\Views\Team\**" />
+    <None Remove="Areas\Portal\Views\Template\**" />
+    <None Remove="Areas\Portal\Views\Theme\**" />
     <None Remove="Areas\User\Models\AccountViewModels\**" />
     <None Remove="Views\Shared\Articles\**" />
     <None Remove="Views\Shared\Components\**" />
@@ -115,21 +195,27 @@
   <ItemGroup>
     <Compile Remove="App_Start\Startup.SignalR.cs" />
     <Compile Remove="Areas\Portal\Controllers\ApperanceController.cs" />
+    <Compile Remove="Areas\Portal\Controllers\ArticlesController.cs" />
+    <Compile Remove="Areas\Portal\Controllers\AuthController.cs" />
+    <Compile Remove="Areas\Portal\Controllers\CultureController.cs" />
+    <Compile Remove="Areas\Portal\Controllers\DashboardController.cs" />
+    <Compile Remove="Areas\Portal\Controllers\FileController.cs" />
+    <Compile Remove="Areas\Portal\Controllers\LanguageController.cs" />
+    <Compile Remove="Areas\Portal\Controllers\MediaController.cs" />
+    <Compile Remove="Areas\Portal\Controllers\ModuleController.cs" />
+    <Compile Remove="Areas\Portal\Controllers\PagesController.cs" />
     <Compile Remove="Areas\Portal\Controllers\ProductController.cs" />
+    <Compile Remove="Areas\Portal\Controllers\ProfileController.cs" />
+    <Compile Remove="Areas\Portal\Controllers\SettingController.cs" />
+    <Compile Remove="Areas\Portal\Controllers\TeamController.cs" />
+    <Compile Remove="Areas\Portal\Controllers\TemplateController.cs" />
+    <Compile Remove="Areas\Portal\Controllers\ThemeController.cs" />
     <Compile Remove="Areas\User\Controllers\AccountController.cs" />
     <Compile Remove="Controllers\DefaultController.cs" />
     <Compile Remove="Controllers\ManageController.cs" />
   </ItemGroup>
 
   <ItemGroup>
-    <Content Remove="Areas\Portal\Views\Article\IndexOld.cshtml" />
-    <Content Remove="Areas\Portal\Views\Module\DetailsOld.cshtml" />
-    <Content Remove="Areas\Portal\Views\Module\IndexOld.cshtml" />
-    <Content Remove="Areas\Portal\Views\Pages\IndexOld.cshtml" />
-    <Content Remove="Areas\Portal\Views\Setting\CreateCulture.cshtml" />
-    <Content Remove="Areas\Portal\Views\Setting\Cultures.cshtml" />
-    <Content Remove="Areas\Portal\Views\Setting\EditCulture.cshtml" />
-    <Content Remove="Areas\Portal\Views\Setting\_Editable_Culture.cshtml" />
     <Content Remove="Areas\Portal\Views\Shared\Components\HeaderNavbar\DefaultOld.cshtml" />
     <Content Remove="Areas\Portal\Views\Shared\Widgets\_FeatureImage.cshtml" />
     <Content Remove="Areas\Portal\Views\Shared\Widgets\_ThumbnailImage.cshtml" />
@@ -203,72 +289,9 @@
   </ItemGroup>
 
   <ItemGroup>
-    <None Include="Areas\Portal\Views\ApiModule\_ModuleData.cshtml" />
-    <None Include="Areas\Portal\Views\ApiModule\_ModuleData_Record.cshtml" />
-    <None Include="Areas\Portal\Views\Apperance\EditTemplate.cshtml" />
-    <None Include="Areas\Portal\Views\Apperance\Menus.cshtml" />
-    <None Include="Areas\Portal\Views\Apperance\Templates.cshtml" />
-    <None Include="Areas\Portal\Views\Apperance\Themes.cshtml" />
-    <None Include="Areas\Portal\Views\Apperance\_Editable_Template.cshtml" />
-    <None Include="Areas\Portal\Views\Article\Create.cshtml" />
-    <None Include="Areas\Portal\Views\Article\Details.cshtml" />
-    <None Include="Areas\Portal\Views\Article\Draft.cshtml" />
-    <None Include="Areas\Portal\Views\Article\Edit.cshtml" />
-    <None Include="Areas\Portal\Views\Article\Index.cshtml" />
-    <None Include="Areas\Portal\Views\Article\_Editable.cshtml" />
-    <None Include="Areas\Portal\Views\Article\_EditableSide.cshtml" />
-    <None Include="Areas\Portal\Views\Collaborators\AddMember.cshtml" />
-    <None Include="Areas\Portal\Views\Collaborators\Index.cshtml" />
-    <None Include="Areas\Portal\Views\Collaborators\Members.cshtml" />
-    <None Include="Areas\Portal\Views\Collaborators\Permission.cshtml" />
-    <None Include="Areas\Portal\Views\Collaborators\Roles.cshtml" />
-    <None Include="Areas\Portal\Views\Contents\AddArticle.cshtml" />
-    <None Include="Areas\Portal\Views\Contents\Articles.cshtml" />
-    <None Include="Areas\Portal\Views\Contents\Categories.cshtml" />
-    <None Include="Areas\Portal\Views\Contents\Tags.cshtml" />
-    <None Include="Areas\Portal\Views\Culture\Create.cshtml" />
-    <None Include="Areas\Portal\Views\Culture\Delete.cshtml" />
-    <None Include="Areas\Portal\Views\Culture\Details.cshtml" />
-    <None Include="Areas\Portal\Views\Culture\Edit.cshtml" />
-    <None Include="Areas\Portal\Views\Culture\Index.cshtml" />
-    <None Include="Areas\Portal\Views\Culture\_Editable.cshtml" />
-    <None Include="Areas\Portal\Views\File\Edit.cshtml" />
-    <None Include="Areas\Portal\Views\File\Index.cshtml" />
-    <None Include="Areas\Portal\Views\File\_Editable_File.cshtml" />
-    <None Include="Areas\Portal\Views\Media\AddFile.cshtml" />
-    <None Include="Areas\Portal\Views\Media\Files.cshtml" />
-    <None Include="Areas\Portal\Views\Module\AddEmptyField.cshtml" />
-    <None Include="Areas\Portal\Views\Module\AddModuleData.cshtml" />
-    <None Include="Areas\Portal\Views\Module\Create.cshtml" />
-    <None Include="Areas\Portal\Views\Module\Details.cshtml" />
-    <None Include="Areas\Portal\Views\Module\Edit.cshtml" />
-    <None Include="Areas\Portal\Views\Module\EditModuleData.cshtml" />
-    <None Include="Areas\Portal\Views\Module\Index.cshtml" />
-    <None Include="Areas\Portal\Views\Module\_Editable.cshtml" />
-    <None Include="Areas\Portal\Views\Module\_EditableSide.cshtml" />
-    <None Include="Areas\Portal\Views\Module\_EditableSide_Data.cshtml" />
-    <None Include="Areas\Portal\Views\Module\_Editable_Data.cshtml" />
-    <None Include="Areas\Portal\Views\Module\_ModuleData.cshtml" />
-    <None Include="Areas\Portal\Views\Module\_ModuleData_Record.cshtml" />
-    <None Include="Areas\Portal\Views\Pages\AddPage.cshtml" />
-    <None Include="Areas\Portal\Views\Pages\Contents.cshtml" />
-    <None Include="Areas\Portal\Views\Pages\Create.cshtml" />
-    <None Include="Areas\Portal\Views\Pages\Edit.cshtml" />
-    <None Include="Areas\Portal\Views\Pages\_Editable.cshtml" />
-    <None Include="Areas\Portal\Views\Pages\_EditableSide.cshtml" />
     <None Include="Areas\Portal\Views\Portal\About.cshtml" />
     <None Include="Areas\Portal\Views\Portal\Contact.cshtml" />
     <None Include="Areas\Portal\Views\Portal\Search.cshtml" />
-    <None Include="Areas\Portal\Views\Profile\AddPhoneNumber.cshtml" />
-    <None Include="Areas\Portal\Views\Profile\ChangePassword.cshtml" />
-    <None Include="Areas\Portal\Views\Profile\Index.cshtml" />
-    <None Include="Areas\Portal\Views\Profile\ManageLogins.cshtml" />
-    <None Include="Areas\Portal\Views\Profile\SetPassword.cshtml" />
-    <None Include="Areas\Portal\Views\Profile\VerifyPhoneNumber.cshtml" />
-    <None Include="Areas\Portal\Views\Setting\Configurations.cshtml" />
-    <None Include="Areas\Portal\Views\Setting\CreateConfiguration.cshtml" />
-    <None Include="Areas\Portal\Views\Setting\EditConfiguration.cshtml" />
-    <None Include="Areas\Portal\Views\Setting\_Editable_Configuration.cshtml" />
     <None Include="Areas\Portal\Views\Shared\Components\Breadcrumbs\Default.cshtml" />
     <None Include="Areas\Portal\Views\Shared\Components\ControlSidebar\Default.cshtml" />
     <None Include="Areas\Portal\Views\Shared\Components\HeaderNavbar\Default.cshtml" />
@@ -283,7 +306,6 @@
     <None Include="Areas\Portal\Views\Shared\_Pagination.cshtml" />
     <None Include="Areas\Portal\Views\Shared\_ValidationScriptsPartial.cshtml" />
     <None Include="Areas\Portal\Views\Shared\_ViewByFieldType.cshtml" />
-    <None Include="Areas\Portal\Views\Theme\Index.cshtml" />
     <None Include="Areas\Portal\Views\_BlankTemplate.cshtml" />
     <None Include="Areas\Portal\Views\_ViewImports.cshtml" />
     <None Include="Areas\Portal\Views\_ViewStart.cshtml" />
@@ -322,9 +344,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Content Update="Areas\Portal\Views\Dashboard\Dashboard.cshtml">
-      <Pack>$(IncludeRazorContentInPack)</Pack>
-    </Content>
     <Content Update="Areas\Portal\Views\Portal\Init.cshtml">
       <Pack>$(IncludeRazorContentInPack)</Pack>
     </Content>
@@ -332,9 +351,6 @@
       <Pack>$(IncludeRazorContentInPack)</Pack>
     </Content>
     <Content Update="Areas\Portal\Views\Shared\_LayoutPortal_Angularkb.cshtml">
-      <Pack>$(IncludeRazorContentInPack)</Pack>
-    </Content>
-    <Content Update="Areas\Portal\Views\Team\Index.cshtml">
       <Pack>$(IncludeRazorContentInPack)</Pack>
     </Content>
     <Content Update="Views\Backend\Index.cshtml">
