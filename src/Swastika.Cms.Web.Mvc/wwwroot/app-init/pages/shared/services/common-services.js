@@ -83,17 +83,3 @@ app.factory('commonServices', ['$location', '$http', '$rootScope', 'localStorage
     return adminCommonFactory;
 
 }]);
-
-$(document).ready(function () {
-
-    // check all for list
-    $('.chkSelectAll').change(function () {
-        if ($(this).is(":checked")) {
-            $('.chkSelect').attr('checked', 'checked');
-        }
-        else {
-            $('.chkSelect').removeAttr('checked');
-        }
-    });
-
-});
