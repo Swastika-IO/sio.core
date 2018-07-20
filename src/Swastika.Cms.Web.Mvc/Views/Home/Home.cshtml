@@ -7,7 +7,7 @@
 }
 @if (!string.IsNullOrEmpty(Model.TemplatePath))
 {
-
+    @LocalizerService.GetLocalString("Phone", "vi-vn", "")
     try
     {
         @Html.Partial(Model.TemplatePath, Model)

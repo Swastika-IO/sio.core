@@ -6,6 +6,7 @@ using Swastika.Cms.Lib.ViewModels.BackEnd;
 using Swastika.Domain.Core.Models;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 
 namespace Swastika.Cms.Lib.Services
@@ -34,6 +35,17 @@ namespace Swastika.Cms.Lib.Services
         {
             var getLanguages = BELanguageViewModel.Repository.GetModelList(_context, _transaction);
             ListLanguage = getLanguages.Data ?? new List<BELanguageViewModel>();
+            Translator = new JObject();
+            foreach (var culture in GetSupportedCultures())
+            {
+                JObject arr = new JObject();
+                foreach (var lang in ListLanguage.Where(l=>l.Specificulture== culture.Specificulture))
+                {
+                    JProperty l = new JProperty(lang.Keyword, lang.Value);
+                    arr.Add(l);
+                }
+                Translator.Add(new JProperty(culture.Specificulture, arr));
+            }
         }
 
         public string Translate(string culture, string key)
