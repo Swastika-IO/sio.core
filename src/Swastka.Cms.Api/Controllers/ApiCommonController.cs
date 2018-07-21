@@ -140,7 +140,7 @@ namespace Swastka.Cms.Api.Controllers
                 jsonSettings["ConnectionStrings"][SWCmsConstants.CONST_DEFAULT_CONNECTION] = model.ConnectionString;
                 jsonSettings["ConnectionStrings"]["AccountConnection"] = model.ConnectionString;
                 jsonSettings["IsSqlite"] = false;
-                jsonSettings["Language"] = "en-us";
+                jsonSettings["Language"] = model.Lang;
                 settings.Content = jsonSettings.ToString();
                 FileRepository.Instance.SaveFile(settings);
             }

@@ -78,7 +78,7 @@ namespace Swastika.Cms.Lib.ViewModels.Api
             base.Validate(_context, _transaction);
             if (IsValid)
             {
-                var getCustomer = ApiCustomerViewModel.Repository.GetSingleModel(c => c.PhoneNumber == PhoneNumber, _context, _transaction);
+                var getCustomer = ApiCustomerViewModel.Repository.GetSingleModel(c => c.PhoneNumber == PhoneNumber || c.Id== CustomerId, _context, _transaction);
                 IsValid = getCustomer.IsSucceed;
                 if (!IsValid)
                 {
