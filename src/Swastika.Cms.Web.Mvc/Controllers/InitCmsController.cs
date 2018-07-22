@@ -15,14 +15,11 @@ namespace Swastika.Cms.Web.Mvc.Controllers
     {
         private const string InitUrl = "/Portal/Init";
         private readonly UserManager<ApplicationUser> _userManager;
-        private readonly RoleManager<IdentityRole> _roleManager;
         public InitCmsController(IHostingEnvironment env,
-             UserManager<ApplicationUser> userManager,
-            RoleManager<IdentityRole> roleManager
+             UserManager<ApplicationUser> userManager
             ) : base(env)
         {
             this._userManager = userManager;
-            this._roleManager = roleManager;
         }
 
         [HttpGet]
@@ -43,7 +40,7 @@ namespace Swastika.Cms.Web.Mvc.Controllers
                 }
                 else
                 {
-                    return Redirect($"/{ROUTE_DEFAULT_CULTURE}/Home");
+                    return Redirect($"/{GlobalConfigurationService.Instance.CmsConfigurations.Language}/Home");
                 }
             }
         }

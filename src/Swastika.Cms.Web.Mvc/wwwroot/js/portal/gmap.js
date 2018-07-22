@@ -64,7 +64,7 @@
     //  }
     //];
     SW.GMap = {
-        apiKey: 'AIzaSyCTDOBll7dfajw8mZ1aL4C2-KsvOY55hko',
+        apiKey: window.apiKey,
         map: null,
         markers: [],
         refLocation: {},

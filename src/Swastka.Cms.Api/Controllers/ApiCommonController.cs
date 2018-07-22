@@ -2,6 +2,7 @@
 // The Swastika I/O Foundation licenses this file to you under the MIT license.
 // See the LICENSE file in the project root for more information.
 
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json.Linq;
@@ -112,6 +113,37 @@ namespace Swastka.Cms.Api.Controllers
         #endregion Get
 
         #region Post
+
+        // GET 
+        [Authorize(Roles = "SuperAdmin")]
+        [HttpGet]
+        [Route("app-settings/details")]
+        public RepositoryResponse<JObject> LoadAppSettings()
+        {
+            var settings = FileRepository.Instance.GetFile("appsettings", ".json", string.Empty, true, "{}");
+            JObject jsonSettings = null;
+            if (settings != null)
+            {
+                jsonSettings = JObject.Parse(settings.Content);
+            }
+            return new RepositoryResponse<JObject>() { IsSucceed = jsonSettings != null, Data = jsonSettings };
+        }
+
+        // POST api/category
+        [Authorize(Roles = "SuperAdmin")]
+        [HttpPost]
+        [Route("app-settings/save")]
+        public RepositoryResponse<JObject> SaveAppSettings([FromBody]JObject model)
+        {
+            var settings = FileRepository.Instance.GetFile("appsettings", ".json", string.Empty, true, "{}");
+            if (model != null)
+            {
+                settings.Content = model.ToString();
+                FileRepository.Instance.SaveFile(settings);
+                GlobalConfigurationService.Instance.RefreshConfigurations();
+            }
+            return new RepositoryResponse<JObject>() { IsSucceed = model != null, Data = model };
+        }
 
         // POST api/category
         [HttpPost, HttpOptions]

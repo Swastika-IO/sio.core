@@ -49,7 +49,6 @@
     <Compile Remove="Areas\Portal\Views\Team\**" />
     <Compile Remove="Areas\Portal\Views\Template\**" />
     <Compile Remove="Areas\Portal\Views\Theme\**" />
-    <Compile Remove="Areas\User\Models\AccountViewModels\**" />
     <Compile Remove="Views\Shared\Articles\**" />
     <Compile Remove="Views\Shared\Components\**" />
     <Compile Remove="Views\Shared\Corlate\**" />
@@ -90,7 +89,6 @@
     <Content Remove="Areas\Portal\Views\Team\**" />
     <Content Remove="Areas\Portal\Views\Template\**" />
     <Content Remove="Areas\Portal\Views\Theme\**" />
-    <Content Remove="Areas\User\Models\AccountViewModels\**" />
     <Content Remove="Views\Shared\Articles\**" />
     <Content Remove="Views\Shared\Components\**" />
     <Content Remove="Views\Shared\Corlate\**" />
@@ -131,7 +129,6 @@
     <EmbeddedResource Remove="Areas\Portal\Views\Team\**" />
     <EmbeddedResource Remove="Areas\Portal\Views\Template\**" />
     <EmbeddedResource Remove="Areas\Portal\Views\Theme\**" />
-    <EmbeddedResource Remove="Areas\User\Models\AccountViewModels\**" />
     <EmbeddedResource Remove="Views\Shared\Articles\**" />
     <EmbeddedResource Remove="Views\Shared\Components\**" />
     <EmbeddedResource Remove="Views\Shared\Corlate\**" />
@@ -172,7 +169,6 @@
     <None Remove="Areas\Portal\Views\Team\**" />
     <None Remove="Areas\Portal\Views\Template\**" />
     <None Remove="Areas\Portal\Views\Theme\**" />
-    <None Remove="Areas\User\Models\AccountViewModels\**" />
     <None Remove="Views\Shared\Articles\**" />
     <None Remove="Views\Shared\Components\**" />
     <None Remove="Views\Shared\Corlate\**" />
@@ -210,7 +206,6 @@
     <Compile Remove="Areas\Portal\Controllers\TeamController.cs" />
     <Compile Remove="Areas\Portal\Controllers\TemplateController.cs" />
     <Compile Remove="Areas\Portal\Controllers\ThemeController.cs" />
-    <Compile Remove="Areas\User\Controllers\AccountController.cs" />
     <Compile Remove="Controllers\DefaultController.cs" />
     <Compile Remove="Controllers\ManageController.cs" />
   </ItemGroup>
@@ -283,7 +278,6 @@
 
   <ItemGroup>
     <Folder Include="Areas\Portal\Views\Shared\Widgets\" />
-    <Folder Include="Areas\User\Models\" />
     <Folder Include="wwwroot\app\services\" />
     <Folder Include="wwwroot\app-shared\" />
   </ItemGroup>
@@ -309,27 +303,6 @@
     <None Include="Areas\Portal\Views\_BlankTemplate.cshtml" />
     <None Include="Areas\Portal\Views\_ViewImports.cshtml" />
     <None Include="Areas\Portal\Views\_ViewStart.cshtml" />
-    <None Include="Areas\User\Views\Account\AccessDenied.cshtml" />
-    <None Include="Areas\User\Views\Account\ConfirmEmail.cshtml" />
-    <None Include="Areas\User\Views\Account\ExternalLoginConfirmation.cshtml" />
-    <None Include="Areas\User\Views\Account\ExternalLoginFailure.cshtml" />
-    <None Include="Areas\User\Views\Account\ForgotPassword.cshtml" />
-    <None Include="Areas\User\Views\Account\ForgotPasswordConfirmation.cshtml" />
-    <None Include="Areas\User\Views\Account\Lockout.cshtml" />
-    <None Include="Areas\User\Views\Account\Login.cshtml" />
-    <None Include="Areas\User\Views\Account\Register.cshtml" />
-    <None Include="Areas\User\Views\Account\ResetPassword.cshtml" />
-    <None Include="Areas\User\Views\Account\ResetPasswordConfirmation.cshtml" />
-    <None Include="Areas\User\Views\Account\SendCode.cshtml" />
-    <None Include="Areas\User\Views\Account\VerifyCode.cshtml" />
-    <None Include="Areas\User\Views\Manage\AddPhoneNumber.cshtml" />
-    <None Include="Areas\User\Views\Manage\ChangePassword.cshtml" />
-    <None Include="Areas\User\Views\Manage\Index.cshtml" />
-    <None Include="Areas\User\Views\Manage\ManageLogins.cshtml" />
-    <None Include="Areas\User\Views\Manage\SetPassword.cshtml" />
-    <None Include="Areas\User\Views\Manage\VerifyPhoneNumber.cshtml" />
-    <None Include="Areas\User\Views\_ViewImports.cshtml" />
-    <None Include="Areas\User\Views\_ViewStart.cshtml" />
     <None Include="Views\_ViewImports.cshtml" />
     <None Include="Views\_ViewStart.cshtml" />
     <None Include="wwwroot\app-portal\pages\shared\services\auth-services.js" />

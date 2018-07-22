@@ -196,5 +196,10 @@
         templateUrl: "/app-portal/pages/user/register.html"
     });
 
+    $routeProvider.when("/backend/app-settings/details", {
+        controller: "AppSettingsController",
+        templateUrl: "/app-portal/pages/app-settings/details.html"
+    });
+
     $routeProvider.otherwise({ redirectTo: "/backend" });
 });

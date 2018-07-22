@@ -167,6 +167,11 @@
                 href: '#',
                 subMenus: [
                     {
+                        title: 'App Settings',
+                        href: '/backend/app-settings/details',
+                        icon: 'mi mi-Pen'
+                    },
+                    {
                         title: 'Create',
                         href: '/backend/configuration/create',
                         icon: 'mi mi-Add'

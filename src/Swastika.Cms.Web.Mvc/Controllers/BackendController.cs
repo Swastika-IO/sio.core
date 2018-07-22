@@ -16,13 +16,13 @@ namespace Swastika.Cms.Mvc.Controllers
         {}
 
         [Route("")]
-        [Route("{page}")]
-        [Route("{page}/{type}")]
-        [Route("{page}/{type}/{param}")]
-        [Route("{page}/{type}/{param}/{param1}")]
-        [Route("{page}/{type}/{param}/{param1}/{param2}")]
-        [Route("{page}/{type}/{param}/{param1}/{param2}/{param3}")]
-        [Route("{page}/{type}/{param}/{param1}/{param2}/{param3}/{param4}")]
+        [Route("{pageName}")]
+        [Route("{pageName}/{type}")]
+        [Route("{pageName}/{type}/{param}")]
+        [Route("{pageName}/{type}/{param}/{param1}")]
+        [Route("{pageName}/{type}/{param}/{param1}/{param2}")]
+        [Route("{pageName}/{type}/{param}/{param1}/{param2}/{param3}")]
+        [Route("{pageName}/{type}/{param}/{param1}/{param2}/{param3}/{param4}")]
         public IActionResult Index()
         {
             return View();
