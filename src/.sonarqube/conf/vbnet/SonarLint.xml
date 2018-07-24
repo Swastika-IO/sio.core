@@ -12,13 +12,16 @@
   </Settings>
   <Rules>
     <Rule>
+      <Key>S1751</Key>
+    </Rule>
+    <Rule>
+      <Key>S1871</Key>
+    </Rule>
+    <Rule>
       <Key>S1656</Key>
     </Rule>
     <Rule>
       <Key>S1862</Key>
-    </Rule>
-    <Rule>
-      <Key>S1751</Key>
     </Rule>
     <Rule>
       <Key>S1764</Key>
@@ -85,9 +88,6 @@
           <Value>^[a-z][a-z0-9]*([A-Z]{1,3}[a-z0-9]+)*([A-Z]{2})?$</Value>
         </Parameter>
       </Parameters>
-    </Rule>
-    <Rule>
-      <Key>S1871</Key>
     </Rule>
     <Rule>
       <Key>S2304</Key>

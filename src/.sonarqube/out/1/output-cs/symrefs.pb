@@ -1,5 +1,5 @@
-Ø
-fD:\Workspace\GitHub\Swastika-Identity\src\Swastika.Identity\Identity\Authorization\ClaimRequirement.cs
+Ï
+]G:\_github\Swastika-Identity\src\Swastika.Identity\Identity\Authorization\ClaimRequirement.cs
 
 		 !
 
@@ -7,8 +7,8 @@ fD:\Workspace\GitHub\Swastika-Identity\src\Swastika.Identity\Identity\Authorizat
 ' 0 !
 9 C #
   
-$$   ˆ
-nD:\Workspace\GitHub\Swastika-Identity\src\Swastika.Identity\Identity\Authorization\ClaimsRequirementHandler.cs
+$$   ÿ
+eG:\_github\Swastika-Identity\src\Swastika.Identity\Identity\Authorization\ClaimsRequirementHandler.cs
 
  )
 
@@ -16,8 +16,8 @@ nD:\Workspace\GitHub\Swastika-Identity\src\Swastika.Identity\Identity\Authorizat
 S Z  (
 P [J U6 A  +
   ! &
-; <@ A—
-MD:\Workspace\GitHub\Swastika-Identity\src\Swastika.Identity\Identity\Const.cs
+; <@ AŽ
+DG:\_github\Swastika-Identity\src\Swastika.Identity\Identity\Const.cs
 
  
 
@@ -29,8 +29,8 @@ MD:\Workspace\GitHub\Swastika-Identity\src\Swastika.Identity\Identity\Const.cs
 
  
 
- Ã
-aD:\Workspace\GitHub\Swastika-Identity\src\Swastika.Identity\Identity\Data\ApplicationDbContext.cs
+ º
+XG:\_github\Swastika-Identity\src\Swastika.Identity\Identity\Data\ApplicationDbContext.cs
  %5 I
 
  #
@@ -48,13 +48,13 @@ aD:\Workspace\GitHub\Swastika-Identity\src\Swastika.Identity\Identity\Data\Appli
 >>  -
 >>F THH II# 1
 @@ DD 
-DD EE& )HH, /p
-VD:\Workspace\GitHub\Swastika-Identity\src\Swastika.Identity\Identity\Data\ClaimData.cs
+DD EE& )HH, /g
+MG:\_github\Swastika-Identity\src\Swastika.Identity\Identity\Data\ClaimData.cs
 
 		 )
 
-# -¹
-WD:\Workspace\GitHub\Swastika-Identity\src\Swastika.Identity\Identity\Entities\Client.cs
+# -°
+NG:\_github\Swastika-Identity\src\Swastika.Identity\Identity\Entities\Client.cs
 
 
 
@@ -72,8 +72,8 @@ WD:\Workspace\GitHub\Swastika-Identity\src\Swastika.Identity\Identity\Entities\C
 
  '
 
- #§
-]D:\Workspace\GitHub\Swastika-Identity\src\Swastika.Identity\Identity\Entities\RefreshToken.cs
+ #ž
+TG:\_github\Swastika-Identity\src\Swastika.Identity\Identity\Entities\RefreshToken.cs
 
 
 
@@ -87,8 +87,8 @@ WD:\Workspace\GitHub\Swastika-Identity\src\Swastika.Identity\Identity\Entities\C
 
  "
 
- Ä
-hD:\Workspace\GitHub\Swastika-Identity\src\Swastika.Identity\Identity\Extensions\EmailSenderExtensions.cs
+ »
+_G:\_github\Swastika-Identity\src\Swastika.Identity\Identity\Extensions\EmailSenderExtensions.cs
 
 
 
@@ -97,8 +97,8 @@ hD:\Workspace\GitHub\Swastika-Identity\src\Swastika.Identity\Identity\Extensions
  5
 H S 
 \ a. 3
-j nj nÏ
-mD:\Workspace\GitHub\Swastika-Identity\src\Swastika.Identity\Identity\Infrastructure\ApplicationUserManager.cs
+j nj nÆ
+dG:\_github\Swastika-Identity\src\Swastika.Identity\Identity\Infrastructure\ApplicationUserManager.cs
 
  '
 
@@ -112,8 +112,8 @@ mD:\Workspace\GitHub\Swastika-Identity\src\Swastika.Identity\Identity\Infrastruc
 # )n t
 < Dv ~
 l r
-€ †Ÿ
-mD:\Workspace\GitHub\Swastika-Identity\src\Swastika.Identity\Identity\Infrastructure\ExtendedClaimsProvider.cs
+€ †–
+dG:\_github\Swastika-Identity\src\Swastika.Identity\Identity\Infrastructure\ExtendedClaimsProvider.cs
 
  .
 
@@ -123,8 +123,8 @@ mD:\Workspace\GitHub\Swastika-Identity\src\Swastika.Identity\Identity\Infrastruc
  ' ,8 =
  ' &
 / 3 !
-< A# (Š
-XD:\Workspace\GitHub\Swastika-Identity\src\Swastika.Identity\Identity\Interfaces\IUser.cs
+< A# (
+OG:\_github\Swastika-Identity\src\Swastika.Identity\Identity\Interfaces\IUser.cs
 
 
 
@@ -134,30 +134,30 @@ XD:\Workspace\GitHub\Swastika-Identity\src\Swastika.Identity\Identity\Interfaces
 
  
 
-   ,‘
-wD:\Workspace\GitHub\Swastika-Identity\src\Swastika.Identity\Identity\Models\AccountViewModels\CreateRoleBindingModel.cs
+   ,ˆ
+nG:\_github\Swastika-Identity\src\Swastika.Identity\Identity\Models\AccountViewModels\CreateRoleBindingModel.cs
 
 
 
  '
 
- ž
-ƒD:\Workspace\GitHub\Swastika-Identity\src\Swastika.Identity\Identity\Models\AccountViewModels\ExternalLoginConfirmationViewModel.cs
+ ”
+zG:\_github\Swastika-Identity\src\Swastika.Identity\Identity\Models\AccountViewModels\ExternalLoginConfirmationViewModel.cs
 
 		 3
 
- ‘
-wD:\Workspace\GitHub\Swastika-Identity\src\Swastika.Identity\Identity\Models\AccountViewModels\ExternalLoginViewModel.cs
+ ˆ
+nG:\_github\Swastika-Identity\src\Swastika.Identity\Identity\Models\AccountViewModels\ExternalLoginViewModel.cs
 
 		 '
 
- ’
-xD:\Workspace\GitHub\Swastika-Identity\src\Swastika.Identity\Identity\Models\AccountViewModels\ForgotPasswordViewModel.cs
+ ‰
+oG:\_github\Swastika-Identity\src\Swastika.Identity\Identity\Models\AccountViewModels\ForgotPasswordViewModel.cs
 
 		 (
 
- ¹
-oD:\Workspace\GitHub\Swastika-Identity\src\Swastika.Identity\Identity\Models\AccountViewModels\LoginViewModel.cs
+ °
+fG:\_github\Swastika-Identity\src\Swastika.Identity\Identity\Models\AccountViewModels\LoginViewModel.cs
 
 		 
 
@@ -169,8 +169,8 @@ oD:\Workspace\GitHub\Swastika-Identity\src\Swastika.Identity\Identity\Models\Acc
 
 ,, 
 
-.. ¨
-vD:\Workspace\GitHub\Swastika-Identity\src\Swastika.Identity\Identity\Models\AccountViewModels\LoginWith2faViewModel.cs
+.. Ÿ
+mG:\_github\Swastika-Identity\src\Swastika.Identity\Identity\Models\AccountViewModels\LoginWith2faViewModel.cs
 
 
 
@@ -180,13 +180,13 @@ vD:\Workspace\GitHub\Swastika-Identity\src\Swastika.Identity\Identity\Models\Acc
 
  #
 
- ™
-D:\Workspace\GitHub\Swastika-Identity\src\Swastika.Identity\Identity\Models\AccountViewModels\LoginWithRecoveryCodeViewModel.cs
+ 
+vG:\_github\Swastika-Identity\src\Swastika.Identity\Identity\Models\AccountViewModels\LoginWithRecoveryCodeViewModel.cs
 
 		 /
 
- "ì
-rD:\Workspace\GitHub\Swastika-Identity\src\Swastika.Identity\Identity\Models\AccountViewModels\RegisterViewModel.cs
+ "ã
+iG:\_github\Swastika-Identity\src\Swastika.Identity\Identity\Models\AccountViewModels\RegisterViewModel.cs
 
  "
 
@@ -206,8 +206,8 @@ rD:\Workspace\GitHub\Swastika-Identity\src\Swastika.Identity\Identity\Models\Acc
 
 55 %
 
-77 µ
-wD:\Workspace\GitHub\Swastika-Identity\src\Swastika.Identity\Identity\Models\AccountViewModels\ResetPasswordViewModel.cs
+77 ¬
+nG:\_github\Swastika-Identity\src\Swastika.Identity\Identity\Models\AccountViewModels\ResetPasswordViewModel.cs
 
 		 '
 
@@ -217,8 +217,8 @@ wD:\Workspace\GitHub\Swastika-Identity\src\Swastika.Identity\Identity\Models\Acc
 
 )) %
 
-11 °
-rD:\Workspace\GitHub\Swastika-Identity\src\Swastika.Identity\Identity\Models\AccountViewModels\SendCodeViewModel.cs
+11 §
+iG:\_github\Swastika-Identity\src\Swastika.Identity\Identity\Models\AccountViewModels\SendCodeViewModel.cs
 
 
 
@@ -230,8 +230,8 @@ rD:\Workspace\GitHub\Swastika-Identity\src\Swastika.Identity\Identity\Models\Acc
 
 "" 
 
-** ¬
-nD:\Workspace\GitHub\Swastika-Identity\src\Swastika.Identity\Identity\Models\AccountViewModels\UserRoleModel.cs
+** £
+eG:\_github\Swastika-Identity\src\Swastika.Identity\Identity\Models\AccountViewModels\UserRoleModel.cs
 
 
 
@@ -243,8 +243,8 @@ nD:\Workspace\GitHub\Swastika-Identity\src\Swastika.Identity\Identity\Models\Acc
 
  
 
-  £
-qD:\Workspace\GitHub\Swastika-Identity\src\Swastika.Identity\Identity\Models\AccountViewModels\UsersInRoleModel.cs
+  š
+hG:\_github\Swastika-Identity\src\Swastika.Identity\Identity\Models\AccountViewModels\UsersInRoleModel.cs
 
  !
 
@@ -252,8 +252,8 @@ qD:\Workspace\GitHub\Swastika-Identity\src\Swastika.Identity\Identity\Models\Acc
 
  )
 
- (Ð
-nD:\Workspace\GitHub\Swastika-Identity\src\Swastika.Identity\Identity\Models\AccountViewModels\UserViewModel.cs
+ (Ç
+eG:\_github\Swastika-Identity\src\Swastika.Identity\Identity\Models\AccountViewModels\UserViewModel.cs
 
  
 
@@ -269,8 +269,8 @@ nD:\Workspace\GitHub\Swastika-Identity\src\Swastika.Identity\Identity\Models\Acc
 
  
 
-$ .¾
-tD:\Workspace\GitHub\Swastika-Identity\src\Swastika.Identity\Identity\Models\AccountViewModels\VerifyCodeViewModel.cs
+$ .µ
+kG:\_github\Swastika-Identity\src\Swastika.Identity\Identity\Models\AccountViewModels\VerifyCodeViewModel.cs
 
 		 $
 
@@ -282,8 +282,8 @@ tD:\Workspace\GitHub\Swastika-Identity\src\Swastika.Identity\Identity\Models\Acc
 
 ,, #
 
-55 ¬
-^D:\Workspace\GitHub\Swastika-Identity\src\Swastika.Identity\Identity\Models\ApplicationUser.cs
+55 £
+UG:\_github\Swastika-Identity\src\Swastika.Identity\Identity\Models\ApplicationUser.cs
 
   
 
@@ -317,8 +317,8 @@ tD:\Workspace\GitHub\Swastika-Identity\src\Swastika.Identity\Identity\Models\Acc
 
 ((> D
 
---> Dá
-YD:\Workspace\GitHub\Swastika-Identity\src\Swastika.Identity\Identity\Models\AspNetUser.cs
+--> DØ
+PG:\_github\Swastika-Identity\src\Swastika.Identity\Identity\Models\AspNetUser.cs
 
  2
 . 7 "" ',, 55 
@@ -330,13 +330,13 @@ YD:\Workspace\GitHub\Swastika-Identity\src\Swastika.Identity\Identity\Models\Asp
 
 ** #
 
-33" 3‘
-wD:\Workspace\GitHub\Swastika-Identity\src\Swastika.Identity\Identity\Models\ManageViewModels\AddPhoneNumberViewModel.cs
+33" 3ˆ
+nG:\_github\Swastika-Identity\src\Swastika.Identity\Identity\Models\ManageViewModels\AddPhoneNumberViewModel.cs
 
 		 (
 
- !©
-wD:\Workspace\GitHub\Swastika-Identity\src\Swastika.Identity\Identity\Models\ManageViewModels\ChangePasswordViewModel.cs
+ ! 
+nG:\_github\Swastika-Identity\src\Swastika.Identity\Identity\Models\ManageViewModels\ChangePasswordViewModel.cs
 
 		 (
 
@@ -344,8 +344,8 @@ wD:\Workspace\GitHub\Swastika-Identity\src\Swastika.Identity\Identity\Models\Man
 
    !
 
-++ %¡
-{D:\Workspace\GitHub\Swastika-Identity\src\Swastika.Identity\Identity\Models\ManageViewModels\ConfigureTwoFactorViewModel.cs
+++ %˜
+rG:\_github\Swastika-Identity\src\Swastika.Identity\Identity\Models\ManageViewModels\ConfigureTwoFactorViewModel.cs
 
 
 
@@ -353,13 +353,13 @@ wD:\Workspace\GitHub\Swastika-Identity\src\Swastika.Identity\Identity\Models\Man
 
  &
 
-+ 4‰
-oD:\Workspace\GitHub\Swastika-Identity\src\Swastika.Identity\Identity\Models\ManageViewModels\FactorViewModel.cs
++ 4€
+fG:\_github\Swastika-Identity\src\Swastika.Identity\Identity\Models\ManageViewModels\FactorViewModel.cs
 
   
 
- ¸
-nD:\Workspace\GitHub\Swastika-Identity\src\Swastika.Identity\Identity\Models\ManageViewModels\IndexViewModel.cs
+ ¯
+eG:\_github\Swastika-Identity\src\Swastika.Identity\Identity\Models\ManageViewModels\IndexViewModel.cs
 
 
 
@@ -373,36 +373,36 @@ nD:\Workspace\GitHub\Swastika-Identity\src\Swastika.Identity\Identity\Models\Man
 
 ** 
 
-22 %›
-uD:\Workspace\GitHub\Swastika-Identity\src\Swastika.Identity\Identity\Models\ManageViewModels\ManageLoginsViewModel.cs
+22 %’
+lG:\_github\Swastika-Identity\src\Swastika.Identity\Identity\Models\ManageViewModels\ManageLoginsViewModel.cs
 
  &
 
 $ 1
 
-+ 6š
-tD:\Workspace\GitHub\Swastika-Identity\src\Swastika.Identity\Identity\Models\ManageViewModels\RemoveLoginViewModel.cs
++ 6‘
+kG:\_github\Swastika-Identity\src\Swastika.Identity\Identity\Models\ManageViewModels\RemoveLoginViewModel.cs
 
  %
 
  #
 
- !š
-tD:\Workspace\GitHub\Swastika-Identity\src\Swastika.Identity\Identity\Models\ManageViewModels\SetPasswordViewModel.cs
+ !‘
+kG:\_github\Swastika-Identity\src\Swastika.Identity\Identity\Models\ManageViewModels\SetPasswordViewModel.cs
 
 		 %
 
  !
 
-   % 
-zD:\Workspace\GitHub\Swastika-Identity\src\Swastika.Identity\Identity\Models\ManageViewModels\VerifyPhoneNumberViewModel.cs
+   %—
+qG:\_github\Swastika-Identity\src\Swastika.Identity\Identity\Models\ManageViewModels\VerifyPhoneNumberViewModel.cs
 
 		 +
 
  
 
- !Å
-cD:\Workspace\GitHub\Swastika-Identity\src\Swastika.Identity\Identity\Repositories\AuthRepository.cs
+ !¼
+ZG:\_github\Swastika-Identity\src\Swastika.Identity\Identity\Repositories\AuthRepository.cs
 
  
 
@@ -416,8 +416,8 @@ cD:\Workspace\GitHub\Swastika-Identity\src\Swastika.Identity\Identity\Repositori
 # )n t
 < Dv ~
 l r
-€ †š
-\D:\Workspace\GitHub\Swastika-Identity\src\Swastika.Identity\Identity\Services\EmailSender.cs
+€ †‘
+SG:\_github\Swastika-Identity\src\Swastika.Identity\Identity\Services\EmailSender.cs
 
 		 
 
@@ -427,8 +427,8 @@ cD:\Workspace\GitHub\Swastika-Identity\src\Swastika.Identity\Identity\Repositori
 
 8 ?
 
-H O›
-]D:\Workspace\GitHub\Swastika-Identity\src\Swastika.Identity\Identity\Services\IEmailSender.cs
+H O’
+TG:\_github\Swastika-Identity\src\Swastika.Identity\Identity\Services\IEmailSender.cs
 
 		 !
 
@@ -438,8 +438,8 @@ cD:\Workspace\GitHub\Swastika-Identity\src\Swastika.Identity\Identity\Repositori
 
 1 8
 
-A H
-[D:\Workspace\GitHub\Swastika-Identity\src\Swastika.Identity\Identity\Services\ISmsSender.cs
+A H„
+RG:\_github\Swastika-Identity\src\Swastika.Identity\Identity\Services\ISmsSender.cs
 
 		 
 
@@ -447,8 +447,8 @@ cD:\Workspace\GitHub\Swastika-Identity\src\Swastika.Identity\Identity\Repositori
 
 ! '
 
-0 7Î
-`D:\Workspace\GitHub\Swastika-Identity\src\Swastika.Identity\Identity\Services\MessageServices.cs
+0 7Å
+WG:\_github\Swastika-Identity\src\Swastika.Identity\Identity\Services\MessageServices.cs
 
 		 '
 
@@ -466,8 +466,8 @@ cD:\Workspace\GitHub\Swastika-Identity\src\Swastika.Identity\Identity\Repositori
 
 !!( .
 
-!!7 >ø
-FD:\Workspace\GitHub\Swastika-Identity\src\Swastika.Identity\Startup.cs
+!!7 >ï
+=G:\_github\Swastika-Identity\src\Swastika.Identity\Startup.cs
 
  
 
