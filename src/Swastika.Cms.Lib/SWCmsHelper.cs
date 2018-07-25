@@ -137,12 +137,14 @@ namespace Swastika.Cms.Lib
             StringBuilder strFormat = new StringBuilder();
             for (int i = 0; i < subPaths.Length; i++)
             {
+
                 string connector = string.Empty;
                 if ((i < subPaths.Length - 1) && !string.IsNullOrEmpty(subPaths[i + 1]))
                 {
                     connector = "/";
                 }
                 strFormat.Append(@"{" + i + "}" + connector);
+
             }
             result = string.Format(strFormat.ToString(), subPaths).Replace("//", "/").Replace(":/", "://");
             return result;

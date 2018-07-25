@@ -1,5 +1,6 @@
 ﻿'use strict';
-var app = angular.module('SwastikaPortal', ['ngRoute', 'components', 'ngFileUpload', 'LocalStorageModule', 'bw.paging', 'dndLists','ngSanitize']);
+var app = angular.module('SwastikaPortal', ['ngRoute', 'components', 'ngFileUpload', 'LocalStorageModule',
+    'bw.paging', 'dndLists', 'ngSanitize']);
 var serviceBase = "/";
 
 app.directive('ngEnter', function () {

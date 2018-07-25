@@ -65,14 +65,27 @@ app.run(['$rootScope', '$location', 'commonServices', function ($rootScope, $loc
         }
     });
 
-    //type: success / info / danger / warning - bootstrap 
-    $rootScope.showMessage = function (content, errors, type) {
-        type = type || 'info';
-        $rootScope.message.title = 'Result';
-        $rootScope.message.content = content;
-        $rootScope.message.errors = errors;
-        $rootScope.message.class = type;
-        $('#dlg-msg').modal("show");
+    $rootScope.showErrors = function (errors) {
+        $.each(errors, function (i, e) {
+            $rootScope.showMessage(e, 'danger');
+        });
+    }
+
+    $rootScope.showMessage = function (content, type) {
+        var from = 'bottom';
+        var align = 'right';
+        $.notify({
+            icon: "now-ui-icons ui-1_bell-53",
+            message: content,
+
+        }, {
+                type: type,
+                timer: 2000,
+                placement: {
+                    from: from,
+                    align: align
+                }
+            });
     }
     
 }]);

@@ -43,26 +43,6 @@ namespace Swastika.Cms.Lib.ViewModels
             ListSupportedCulture = CommonRepository.Instance.LoadCultures(Specificulture, _context, _transaction);          
         }
 
-        public override RepositoryResponse<ConfigurationViewModel> SaveModel(bool isSaveSubModels = false, SiocCmsContext _context = null, IDbContextTransaction _transaction = null)
-        {
-            var result = base.SaveModel(isSaveSubModels, _context, _transaction);
-            if (result.IsSucceed)
-            {
-                GlobalConfigurationService.Instance.RefreshConfigurations(_context, _transaction);
-            }
-            return result;
-        }
-
-        public override async Task<RepositoryResponse<ConfigurationViewModel>> SaveModelAsync(bool isSaveSubModels = false, SiocCmsContext _context = null, IDbContextTransaction _transaction = null)
-        {
-            var result = await base.SaveModelAsync(isSaveSubModels, _context, _transaction);
-            if (result.IsSucceed)
-            {
-                GlobalConfigurationService.Instance.RefreshConfigurations(_context, _transaction);
-            }
-            return result;
-        }
-
         #endregion Overrides
     }
 }

@@ -150,6 +150,7 @@ namespace Swastika.Cms.Lib.ViewModels.Api
             if (Asset.Content != null || Asset.FileStream != null)
             {
                 Asset.FileFolder = AssetFolder;
+                Asset.Filename = "assets";
                 string fullPath = CommonHelper.GetFullPath(new string[] {
                     SWCmsConstants.Parameters.WebRootPath,
                     Asset.FileFolder

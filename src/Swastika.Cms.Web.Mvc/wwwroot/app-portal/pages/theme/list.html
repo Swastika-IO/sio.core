@@ -76,7 +76,7 @@
                         <a href="/backend/file/list?folder={{item.assetFolder}}" class="btn btn-light">
                             <span class="fas fa-file text-secondary"></span>
                         </a>
-                        <a class="btn btn-sm btn-light d-inline-block "><span class="fas fa-sync-alt text-primary"></span></a>
+                        <a ng-click="syncTemplates(item.id)" class="btn btn-sm btn-light d-inline-block "><span class="fas fa-sync-alt text-primary"></span></a>
 
                         <a href="/backend/theme/details/{{item.id}}" class="btn btn-light">
                             <span class="fas fa-pencil-alt text-primary"></span>

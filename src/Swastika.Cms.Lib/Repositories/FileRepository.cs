@@ -287,7 +287,7 @@ namespace Swastika.Cms.Lib.Repositories
 
         private void CreateDirectoryIfNotExist(string fullPath)
         {
-            if (!Directory.Exists(fullPath))
+            if (!string.IsNullOrEmpty(fullPath) && !Directory.Exists(fullPath))
             {
                 Directory.CreateDirectory(fullPath);
             }
@@ -558,18 +558,37 @@ namespace Swastika.Cms.Lib.Repositories
         {
             try
             {
-                if (!string.IsNullOrEmpty(file.Content))
+                if (!string.IsNullOrEmpty(file.Filename))
                 {
-                    string folder = Path.Combine(CurrentDirectory, file.FileFolder);
-                    if (!Directory.Exists(folder))
+                    
+                    CreateDirectoryIfNotExist(file.FileFolder);
+
+                    string fileName = $"{file.Filename}{file.Extension}";
+                    if (!string.IsNullOrEmpty(file.FileFolder))
                     {
-                        Directory.CreateDirectory(file.FileFolder);
+                        fileName = SwCmsHelper.GetFullPath(new string[] { file.FileFolder,fileName });
                     }
-                    string fileName = SwCmsHelper.GetFullPath(new string[] { folder, file.Filename + file.Extension });
-                    using (var writer = File.CreateText(fileName))
+                    if (File.Exists(fileName))
                     {
-                        writer.WriteLine(file.Content); //or .Write(), if you wish
-                        return true;
+                        DeleteFile(fileName);
+                    }
+                    if (!string.IsNullOrEmpty(file.Content))
+                    {
+                        using (var writer = File.CreateText(fileName))
+                        {
+                            writer.WriteLine(file.Content); //or .Write(), if you wish
+                            return true;
+                        }
+                    }
+                    else
+                    {
+                        string base64 = file.FileStream.Split(',')[1];
+                        byte[] bytes = Convert.FromBase64String(base64);
+                        using (var writer = File.Create(fileName))
+                        {
+                            writer.Write(bytes, 0, bytes.Length);
+                            return true;
+                        }
                     }
                 }
                 else

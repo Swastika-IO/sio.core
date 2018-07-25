@@ -175,16 +175,16 @@ namespace Swastika.Cms.Lib.ViewModels.Api
                 };
                 Columns.Add(thisField);
             }
-
+            int themeId = GlobalConfigurationService.Instance.GetLocalInt(SWCmsConstants.ConfigurationKeyword.ThemeId, Specificulture, 0);
             View = BETemplateViewModel.Repository.GetSingleModel(t =>
-                    t.TemplateId == GlobalConfigurationService.Instance.GetLocalInt(SWCmsConstants.ConfigurationKeyword.ThemeId, Specificulture, 0)
-                    && !string.IsNullOrEmpty(this.Template) && this.Template.Contains(t.FileName + t.Extension)).Data;
+                    t.TemplateId == themeId
+                    && !string.IsNullOrEmpty(this.Template) && this.Template.Contains($"{t.FileName}{t.Extension}")).Data;
             if (this.View == null)
             {
                 this.View = new BETemplateViewModel(new SiocTemplate()
                 {
                     Extension = SWCmsConstants.Parameters.TemplateExtension,
-                    TemplateId = GlobalConfigurationService.Instance.GetLocalInt(SWCmsConstants.ConfigurationKeyword.ThemeId, Specificulture, 0),
+                    TemplateId = themeId,
                     TemplateName = ActivedTemplate,
                     FolderType = TemplateFolderType,
                     FileFolder = this.TemplateFolder,

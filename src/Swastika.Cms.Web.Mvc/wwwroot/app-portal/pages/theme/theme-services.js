@@ -20,6 +20,16 @@ app.factory('ThemeServices', ['$http', '$rootScope', 'commonServices', function 
         return await commonServices.getApiResult(req)
     };
 
+    var _syncTemplates = async function (id) {
+        var apiUrl = '/api/' + settings.lang + '/theme/';
+        var url = apiUrl + 'sync/' + id;        
+        var req = {
+            method: 'GET',
+            url: url
+        };
+        return await commonServices.getApiResult(req)
+    };
+
     var _initTheme = async function (type) {
         var apiUrl = '/api/' + settings.lang + '/theme/';
         var req = {
@@ -59,6 +69,7 @@ app.factory('ThemeServices', ['$http', '$rootScope', 'commonServices', function 
         return await commonServices.getApiResult(req)
     };
 
+    themesServiceFactory.syncTemplates = _syncTemplates;
     themesServiceFactory.getTheme = _getTheme;
     themesServiceFactory.initTheme = _initTheme;
     themesServiceFactory.getThemes = _getThemes;

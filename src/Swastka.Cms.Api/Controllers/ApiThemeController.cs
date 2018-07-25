@@ -55,6 +55,21 @@ namespace Swastka.Cms.Api.Controllers
             }
         }
 
+        // GET api/theme/id
+        [HttpGet]
+        [Route("sync/{id}")]
+        public async Task<RepositoryResponse<List<ApiTemplateViewModel>>> Sync(int id)
+        {
+
+            var getTemplate = await ApiTemplateViewModel.Repository.GetModelListByAsync(
+                 template => template.TemplateId == id).ConfigureAwait(false);
+            foreach (var item in getTemplate.Data)
+            {
+                await item.SaveModelAsync(true).ConfigureAwait(false);
+            }
+            return getTemplate;            
+        }
+
         // GET api/themes/id
         [HttpGet]
         [Route("details/{viewType}/{id}")]

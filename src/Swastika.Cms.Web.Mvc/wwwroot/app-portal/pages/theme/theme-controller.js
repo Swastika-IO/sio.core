@@ -46,6 +46,18 @@ app.controller('ThemeController', ['$scope', '$rootScope', '$routeParams', '$tim
             }
         };
 
+        $scope.syncTemplates = async function (id) {
+            var response = await themeServices.syncTemplates(id);
+            if (response.isSucceed) {
+                $scope.activedTheme = response.data;
+                $scope.$apply();
+            }
+            else {
+                $rootScope.showErrors(response.errors);
+                $scope.$apply();
+            }
+        };
+
         $scope.loadTheme = async function () {
             $rootScope.isBusy = true;
             var id = $routeParams.id;
