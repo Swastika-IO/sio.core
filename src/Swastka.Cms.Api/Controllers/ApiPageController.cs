@@ -56,7 +56,7 @@ namespace Swastka.Cms.Api.Controllers
         [HttpGet]
         [Route("details/{viewType}/{id}")]
         [Route("details/{viewType}")]
-        public async Task<JObject> BEDetails(string viewType, int? id)
+        public async Task<ActionResult<JObject>> Details(string viewType, int? id)
         {
             switch (viewType)
             {
@@ -68,7 +68,7 @@ namespace Swastka.Cms.Api.Controllers
                         {
                             beResult.Data.DetailsUrl = SwCmsHelper.GetRouterUrl("Page", new { beResult.Data.SeoName }, Request, Url);
                         }
-                        return JObject.FromObject(beResult);
+                        return Ok(JObject.FromObject(beResult));
                     }
                     else
                     {

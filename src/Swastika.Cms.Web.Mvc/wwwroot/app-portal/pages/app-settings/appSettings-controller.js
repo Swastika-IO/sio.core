@@ -1,6 +1,8 @@
 ﻿'use strict';
-app.controller('AppSettingsController', ['$scope', '$rootScope', '$routeParams', '$timeout', '$location', 'authService', 'AppSettingsServices',
-    function ($scope, $rootScope, $routeParams, $timeout, $location, authService, appSettingsServices) {
+app.controller('AppSettingsController', 
+['$scope', '$rootScope', '$routeParams', '$timeout', '$location', 
+'authService','commonServices', 'AppSettingsServices',
+    function ($scope, $rootScope, $routeParams, $timeout, $location, authService, commonServices, appSettingsServices) {
 
         $scope.appSettings = null;
         $scope.errors = [];

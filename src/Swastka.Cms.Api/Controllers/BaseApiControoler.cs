@@ -24,7 +24,7 @@ namespace Swastka.Cms.Api.Controllers
     /// Base Api Controller
     /// </summary>
     /// <seealso cref="Microsoft.AspNetCore.Mvc.Controller"/>
-    public class BaseApiController : Controller
+    public class BaseApiController : ControllerBase
     {
         /// <summary>
         /// The domain
@@ -41,27 +41,6 @@ namespace Swastka.Cms.Api.Controllers
         /// </summary>
         public BaseApiController()
         {
-        }
-
-        /// <summary>
-        /// Creates an <see cref="T:Microsoft.AspNetCore.Mvc.BadRequestObjectResult"/> that produces
-        /// a <see cref="F:Microsoft.AspNetCore.Http.StatusCodes.Status400BadRequest"/> response.
-        /// </summary>
-        /// <param name="modelState"></param>
-        /// <returns>
-        /// The created <see cref="T:Microsoft.AspNetCore.Mvc.BadRequestObjectResult"/> for the response.
-        /// </returns>
-        public override BadRequestObjectResult BadRequest(ModelStateDictionary modelState)
-        {
-            List<string> errors = new List<string>();
-            foreach (ModelStateEntry state in ViewData.ModelState.Values)
-            {
-                foreach (ModelError error in state.Errors)
-                {
-                    errors.Add(error.ErrorMessage);
-                }
-            }
-            return base.BadRequest(modelState);
         }
 
         /// <summary>
@@ -91,16 +70,6 @@ namespace Swastka.Cms.Api.Controllers
         }
 
         /// <summary>
-        /// Called before the action method is invoked.
-        /// </summary>
-        /// <param name="context">The action executing context.</param>
-        public override void OnActionExecuting(ActionExecutingContext context)
-        {
-            GetLanguage();
-            base.OnActionExecuting(context);
-        }
-
-        /// <summary>
         /// Gets the error result.
         /// </summary>
         /// <param name="responseKey">The response key.</param>
@@ -110,17 +79,6 @@ namespace Swastka.Cms.Api.Controllers
         {
             var result = ApiHelper<string>.GetResult(0, string.Empty, responseKey, null);
             return BadRequest(result);
-        }
-
-        /// <summary>
-        /// Gets the language.
-        /// </summary>
-        protected void GetLanguage()
-        {
-            _lang = RouteData?.Values["culture"] != null ? RouteData.Values["culture"].ToString() : GlobalConfigurationService.Instance.CmsConfigurations.Language;
-            ViewBag.culture = _lang;
-
-            _domain = string.Format("{0}://{1}", Request.Scheme, Request.Host);
         }
 
         /// <summary>

@@ -124,8 +124,9 @@ app.controller('ThemeController', ['$scope', '$rootScope', '$routeParams', '$tim
                 $rootScope.showMessage('Thành công', 'success');
                 $rootScope.isBusy = false;
                 $rootScope.updateSettings();
+                $location.path('/backend/theme/list');
                 $scope.$apply();
-                //$location.path('/backend/theme/details/' + resp.data.id);
+                
             }
             else {
                 if (resp) { $rootScope.showErrors(resp.errors); }

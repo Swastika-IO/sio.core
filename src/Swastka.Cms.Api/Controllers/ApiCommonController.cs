@@ -2,6 +2,7 @@
 // The Swastika I/O Foundation licenses this file to you under the MIT license.
 // See the LICENSE file in the project root for more information.
 
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
@@ -49,7 +50,7 @@ namespace Swastka.Cms.Api.Controllers
         {
             SiteSettingsViewModel settings = new SiteSettingsViewModel()
             {
-                Lang = _lang,
+                Lang = GlobalConfigurationService.Instance.CmsConfigurations.Language,
                 ThemeId = GlobalConfigurationService.Instance.GetLocalInt(SWCmsConstants.ConfigurationKeyword.ThemeId, _lang),
                 Cultures = CommonRepository.Instance.LoadCultures(),
                 PageTypes = Enum.GetNames(typeof(SWCmsConstants.CateType)).ToList()
@@ -115,7 +116,7 @@ namespace Swastka.Cms.Api.Controllers
         #region Post
 
         // GET 
-        [Authorize(Roles = "SuperAdmin")]
+        [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme, Roles = "SuperAdmin")]
         [HttpGet]
         [Route("app-settings/details")]
         public RepositoryResponse<JObject> LoadAppSettings()
@@ -130,7 +131,7 @@ namespace Swastka.Cms.Api.Controllers
         }
 
         // POST api/category
-        [Authorize(Roles = "SuperAdmin")]
+        [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme, Roles = "SuperAdmin")]
         [HttpPost]
         [Route("app-settings/save")]
         public RepositoryResponse<JObject> SaveAppSettings([FromBody]JObject model)

@@ -24,7 +24,7 @@ namespace Swastka.Cms.Api.Controllers
     [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme, 
         Roles = "SuperAdmin")]
     [Produces("application/json")]
-    [Route("api/{culture}/theme")]
+    [Route("api/theme")]
     public class ApiThemeController :
         BaseApiController
     {
