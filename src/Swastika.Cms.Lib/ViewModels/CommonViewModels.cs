@@ -166,6 +166,12 @@ namespace Swastika.Cms.Lib.ViewModels
         [JsonProperty("dataType")]
         public SWCmsConstants.DataType DataType { get; set; }
 
+        [JsonProperty("isUnique")]
+        public bool IsUnique { get; set; }
+        
+        [JsonProperty("isRequired")]
+        public bool IsRequired { get; set; }
+        
         [JsonProperty("isDisplay")]
         public bool IsDisplay { get; set; }
 

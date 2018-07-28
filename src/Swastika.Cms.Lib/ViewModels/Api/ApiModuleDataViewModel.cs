@@ -2,6 +2,7 @@
 // The Swastika I/O Foundation licenses this file to you under the GNU General Public License v3.0.
 // See the LICENSE file in the project root for more information.
 
+using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Storage;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
@@ -101,11 +102,13 @@ namespace Swastika.Cms.Lib.ViewModels.Api
                     ModuleFieldViewModel thisField = new ModuleFieldViewModel()
                     {
                         Name = CommonHelper.ParseJsonPropertyName(field["name"].ToString()),
-                        Title = field["title"]?.ToString(),                        
+                        Title = field["title"]?.ToString(),
                         Priority = field["priority"] != null ? field["priority"].Value<int>() : 0,
                         DataType = (SWCmsConstants.DataType)(int)field["dataType"],
                         Width = field["width"] != null ? field["width"].Value<int>() : 3,
                         Options = field["options"] != null ? field["options"].Value<JArray>() : new JArray(),
+                        IsUnique = field["isUnique"] != null ? field["isUnique"].Value<bool>() : false,
+                        IsRequired = field["isRequired"] != null ? field["isRequired"].Value<bool>() : false,
                         IsSelect = field["isSelect"] != null ? field["isSelect"].Value<bool>() : false,
                         IsGroupBy = field["isGroupBy"] != null ? field["isGroupBy"].Value<bool>() : false,
                         IsDisplay = field["isDisplay"] != null ? field["isDisplay"].Value<bool>() : true
@@ -131,14 +134,44 @@ namespace Swastika.Cms.Lib.ViewModels.Api
                     DataType = (SWCmsConstants.DataType)col.DataType,
                     Name = CommonHelper.ParseJsonPropertyName(prop.Name),
                     Title = col.Title,
+                    IsRequired = col.IsRequired,
+                    IsUnique = col.IsUnique,
                     IsSelect = col.IsSelect,
                     IsGroupBy = col.IsGroupBy,
                     Options = col.Options,
                     Value = prop.Value["value"].Value<string>()
                 };
-                
+
                 this.DataProperties.Add(dataVal);
             }
+        }
+
+        public override void Validate(SiocCmsContext _context = null, IDbContextTransaction _transaction = null)
+        {
+            base.Validate(_context, _transaction);
+
+            foreach (var col in Columns.Where(c => c.IsUnique))
+            {
+                string val = GetStringValue(col.Name);
+                string query = $"SELECT * FROM sioc_module_data WHERE JSON_VALUE([Value],'$.{col.Name}.value') = '{val}'";
+                var count = _context.SiocModuleData.FromSql(new RawSqlString(query)).Count();
+                if (count > 0)
+                {
+                    IsValid = false;
+                    Errors.Add($"{col.Title} is existed");
+                }
+            }
+
+            foreach (var prop in DataProperties.Where(c=>c.IsRequired))
+            {
+                if (string.IsNullOrEmpty(prop.Value))
+                {
+                    IsValid = false;
+                    Errors.Add($"{prop.Title} is required");
+                }
+            }
+
+
         }
 
         #endregion Overrides
@@ -184,6 +217,10 @@ namespace Swastika.Cms.Lib.ViewModels.Api
         public SWCmsConstants.DataType DataType { get; set; }
         [JsonProperty("value")]
         public string Value { get; set; }
+        [JsonProperty("isUnique")]
+        public bool IsUnique { get; set; }
+        [JsonProperty("isRequired")]
+        public bool IsRequired { get; set; }
         [JsonProperty("isSelect")]
         public bool IsSelect { get; set; }
         [JsonProperty("isGroupBy")]

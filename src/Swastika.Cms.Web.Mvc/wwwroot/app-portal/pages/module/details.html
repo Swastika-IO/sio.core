@@ -26,17 +26,19 @@
                                 <table class="table table-sm table-hover" id="Table">
                                     <thead class="thead-light">
                                         <tr>
-                                            <th scope="col" width="5%">
+                                            <!--<th scope="col" width="5%">
                                                 <span class="fas fa-sort"></span>
-                                            </th>
-                                            <th scope="col" width="5%">
+                                            </th>-->
+                                            <!--<th scope="col" width="5%">
                                                 <span class="fas fa-sort-numeric-down"></span>
-                                            </th>
-                                            <th scope="col">Title</th>
-                                            <th scope="col">Name</th>
+                                            </th>-->
+                                            <th scope="col">Title / Name</th>
+                                            <!--<th scope="col">Name</th>-->
                                             <th scope="col" width="20%">Data Type</th>
-                                            <th scope="col" width="5%">Width</th>
-                                            <th scope="col" width="5%">GroupBy</th>
+                                            <!--<th scope="col" width="5%">Width</th>-->
+                                            <th scope="col" width="5%">Unique</th>
+                                            <th scope="col" width="5%">Required</th>
+                                            <!--<th scope="col" width="5%">GroupBy</th>-->
                                             <th scope="col" width="5%">Select</th>
                                             <th scope="col" width="5%">Display</th>
                                             <th scope="col" width="5%"></th>
@@ -44,32 +46,43 @@
                                     </thead>
                                     <tbody class="sortable">
                                         <tr class="sortable-item module-column" ng-repeat="col in activedModule.columns track by $index">
-                                            <td style="cursor:move;" class="drag-header">
+                                            <!--<td style="cursor:move;" class="drag-header">
                                                 <span class="fas fa-sort"></span>
-                                            </td>
-                                            <td>
+                                            </td>-->
+                                            <!--<td>
                                                 <input type="text" ng-model="col.priority" class="item-priority form-control form-control-sm d-inline" style="width:40px;" />
-                                            </td>
+                                            </td>-->
+                                            
                                             <td>
-                                                <input ng-model="col.title" ng-change="generateName(col)" class="form-control form-control-sm" />
-                                            </td>
-                                            <td>
-                                                <input ng-model="col.name" class="form-control form-control-sm" />
+                                                <input ng-model="col.title" ng-change="generateName(col)" class="form-control form-control-sm" /><br />
+                                                <input ng-model="col.name" placeholder="Field Name" class="form-control form-control-sm" />
                                             </td>
                                             <td>
                                                 <select class="form-control form-control-sm" ng-model="col.dataType">
                                                     <option ng-repeat="item in dataTypes" ng-value="item.value">{{item.title}}</option>
                                                 </select>
                                             </td>
-                                            <td>
+                                            <!--<td>
                                                 <input ng-model="col.width" class="form-control form-control-sm" />
+                                            </td>-->
+                                            <td>
+                                                <span class="switch switch-sm">
+                                                    <input id="isUnique_{{$index}}" type="checkbox" class="switch" ng-model="col.isUnique">
+                                                    <label for="isUnique_{{$index}}">&nbsp;</label>
+                                                </span>
                                             </td>
                                             <td>
+                                                <span class="switch switch-sm">
+                                                    <input id="isRequired_{{$index}}" type="checkbox" class="checkbox" ng-model="col.isRequired">
+                                                    <label for="isRequired_{{$index}}">&nbsp;</label>
+                                                </span>
+                                            </td>
+                                            <!--<td>
                                                 <span class="switch switch-sm">
                                                     <input id="isGroupBy_{{$index}}" type="checkbox" class="switch" ng-model="col.isGroupBy">
                                                     <label for="isGroupBy_{{$index}}">&nbsp;</label>
                                                 </span>
-                                            </td>
+                                            </td>-->
                                             <td>
                                                 <span class="switch switch-sm">
                                                     <input id="isSelect_{{$index}}" type="checkbox" class="switch" ng-model="col.isSelect">

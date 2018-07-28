@@ -170,6 +170,8 @@ namespace Swastika.Cms.Lib.ViewModels.Api
                     Priority = field["priority"] != null ? field["priority"].Value<int>() : 0,
                     DataType = (SWCmsConstants.DataType)(int)field["dataType"],
                     Width = field["width"] != null ? field["width"].Value<int>() : 3,
+                    IsUnique = field["isUnique"] != null ? field["isUnique"].Value<bool>() : true,
+                    IsRequired = field["isRequired"] != null ? field["isRequired"].Value<bool>() : true,
                     IsDisplay = field["isDisplay"] != null ? field["isDisplay"].Value<bool>() : true,
                     IsSelect = field["isSelect"] != null ? field["isSelect"].Value<bool>() : false,
                     IsGroupBy = field["isGroupBy"] != null ? field["isGroupBy"].Value<bool>() : false,

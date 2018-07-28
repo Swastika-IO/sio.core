@@ -1,0 +1,28 @@
+﻿<div class="row" ng-init="$ctrl.initModuleForm();">
+    <div class="col-sm-12">
+        <form ng-class="{'submitted': submitted}"
+              ng-submit="$ctrl.saveModuleData()" id="module-{{$ctrl.data.moduleId}}">
+            <actions back-url="$ctrl.backUrl"></actions>
+            <div class="card">
+                <div class="card-header">
+                    <span ng-bind="$ctrl.data.title" />
+                </div>
+                <div class="card-body">
+                    <div ng-repeat="prop in $ctrl.data.dataProperties track by $index">
+                        <module-form-editor data="prop" ng-if="!prop.isSelect" />
+                        <div class="form-group" ng-if="prop.isSelect" >
+                            <label ng-if="$ctrl.isShowTitle" class="control-label" ng-bind="prop.title"></label><br />
+                            <select class="btn custom-select form-control"
+                                    ng-model="prop.value">
+                                <option ng-repeat="item in prop.options track by $index" ng-value="item">{{item}}</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                <div class="card-footer">
+                    <a class="btn btn-success" ng-click="$ctrl.saveModuleData()">Save</a>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
