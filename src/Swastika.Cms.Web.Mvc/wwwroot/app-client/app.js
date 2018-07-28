@@ -1,6 +1,6 @@
 ﻿'use strict';
-var modules = angular.module('components', []);
-var app = angular.module('SwastikaClient', []);
+
+var app = angular.module('SwastikaClient', ['ngRoute', 'LocalStorageModule', 'components', 'ngSanitize']);
 var serviceBase = "/";
 
 app.directive('ngEnter', function () {
@@ -46,10 +46,13 @@ app.directive('ngEnter', function () {
         facebookAppId: '464285300363325'
     });
 
-app.run(['$rootScope', '$location', function ($rootScope, $location) {
+app.run(['$rootScope', '$location', 'commonServices', 'authService', function ($rootScope, $location, commonServices, authService) {
     $rootScope.currentContext = $rootScope;
     $rootScope.errors = [];
-
+    //$rootScope.settings = { lang: 'vi-vn' };
+    commonServices.fillSettings().then(function (response) {
+        $rootScope.settings = response;
+    });
     $rootScope.message = {
         title: 'test',
         content: '',
@@ -272,3 +275,4 @@ function Filter($filter) {
         return $filter('date')(utcDateString, format);
     };
 }
+var modules = angular.module('components', []);

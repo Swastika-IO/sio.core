@@ -26,7 +26,7 @@
                     <span class="fas fa-sort-numeric-down"></span>
                 </th>
                 <th scope="col" ng-repeat="col in activedModule.columns track by $index">
-                    <span ng-bind="col.name" ng-if="col.isDisplay" />
+                    <span ng-bind="col.title" ng-if="col.isDisplay" />
                 </th>
                 <th scope="col" width="5%" class="text-right">
                     Actions

@@ -154,6 +154,9 @@ namespace Swastika.Cms.Lib.ViewModels
         [JsonProperty("name")]
         public string Name { get; set; }
 
+        [JsonProperty("title")]
+        public string Title { get; set; }
+
         [JsonProperty("options")]
         public JArray Options { get; set; } = new JArray();
 

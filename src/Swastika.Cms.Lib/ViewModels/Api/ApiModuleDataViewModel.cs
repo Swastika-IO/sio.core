@@ -101,7 +101,7 @@ namespace Swastika.Cms.Lib.ViewModels.Api
                     ModuleFieldViewModel thisField = new ModuleFieldViewModel()
                     {
                         Name = CommonHelper.ParseJsonPropertyName(field["name"].ToString()),
-                        
+                        Title = field["title"]?.ToString(),                        
                         Priority = field["priority"] != null ? field["priority"].Value<int>() : 0,
                         DataType = (SWCmsConstants.DataType)(int)field["dataType"],
                         Width = field["width"] != null ? field["width"].Value<int>() : 3,
@@ -130,6 +130,7 @@ namespace Swastika.Cms.Lib.ViewModels.Api
                     ModuleId = ModuleId,
                     DataType = (SWCmsConstants.DataType)col.DataType,
                     Name = CommonHelper.ParseJsonPropertyName(prop.Name),
+                    Title = col.Title,
                     IsSelect = col.IsSelect,
                     IsGroupBy = col.IsGroupBy,
                     Options = col.Options,
@@ -177,6 +178,8 @@ namespace Swastika.Cms.Lib.ViewModels.Api
         public int ModuleId { get; set; }
         [JsonProperty("name")]
         public string Name { get; set; }
+        [JsonProperty("title")]
+        public string Title { get; set; }
         [JsonProperty("dataType")]
         public SWCmsConstants.DataType DataType { get; set; }
         [JsonProperty("value")]

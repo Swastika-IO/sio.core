@@ -219,6 +219,16 @@ app.controller('ModuleController', ['$scope', '$rootScope', '$routeParams', '$ti
             angular.element('#option_' + index).val('');
         }
 
+        $scope.generateName = function (col) {
+            col.name = col.title.replace(/[^a-zA-Z0-9]+/g, '_')
+                .replace(/([A-Z]+)([A-Z][a-z])/g, '$1-$2')
+                .replace(/([a-z])([A-Z])/g, '$1-$2')
+                .replace(/([0-9])([^0-9])/g, '$1-$2')
+                .replace(/([^0-9])([0-9])/g, '$1-$2')
+                .replace(/-+/g, '_')
+                .toLowerCase();
+        }
+
         $scope.removeAttr = function (index) {
             if ($scope.activedModule) {
 

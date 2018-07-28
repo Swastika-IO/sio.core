@@ -9,9 +9,9 @@
                 </div>
                 <div class="card-body">
                     <div ng-repeat="prop in $ctrl.data.dataProperties track by $index">
-                        <module-form-editor data="prop" ng-if="!prop.isSelect" />
+                        <module-form-editor is-show-title="isShowTitle" data="prop" ng-if="!prop.isSelect" />
                         <div class="form-group" ng-if="prop.isSelect" >
-                            <label class="control-label" ng-bind="prop.name"></label><br />
+                            <label class="control-label" ng-bind="prop.title"></label><br />
                             <select class="btn custom-select form-control"
                                     ng-model="prop.value">
                                 <option ng-repeat="item in prop.options track by $index" ng-value="item">{{item}}</option>

@@ -35,10 +35,13 @@ app.factory('ModuleDataServices', ['$http', '$rootScope', 'commonServices', func
     };
 
     var _initModuleForm = async function (name) {
+        if (!settings) {
+            settings = await commonServices.fillSettings();
+        }
         var apiUrl = '/api/' + settings.lang + '/module-data/';
         var req = {
             method: 'GET',
-            url: apiUrl + 'init/' + name,
+            url: apiUrl + 'init-by-name/' + name,
         };
         
         return await commonServices.getApiResult(req);

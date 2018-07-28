@@ -743,6 +743,8 @@ namespace Swastika.Cms.Lib.Models.Cms
 
                 entity.Property(e => e.Fields).HasMaxLength(4000);
 
+                entity.Property(e => e.FormTemplate).HasMaxLength(4000);
+
                 entity.Property(e => e.Image).HasMaxLength(250);
 
                 entity.Property(e => e.LastModified).HasColumnType("datetime");

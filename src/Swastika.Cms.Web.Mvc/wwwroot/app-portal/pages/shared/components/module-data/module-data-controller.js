@@ -48,8 +48,9 @@ app.controller('ModuleDataController', ['$scope', '$rootScope', '$routeParams', 
             }
         };
 
-        $scope.initModuleForm = async function () {
+        $scope.initModuleForm = async function (name) {
             var resp = null;
+            $scope.name = name;
             if ($scope.id) {
                 var resp = await moduleDataServices.getModuleData($scope.id, $scope.dataId, 'be');
             }
@@ -131,6 +132,7 @@ app.controller('ModuleDataController', ['$scope', '$rootScope', '$routeParams', 
                 $scope.activedModuleData = resp.data;
                 $rootScope.showMessage('Thành công', 'success');
                 $rootScope.isBusy = false;
+                $scope.initModuleForm($scope.name);
                 $scope.$apply();
                 //$location.path('/backend/moduleData/details/' + resp.data.id);
             }

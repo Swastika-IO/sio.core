@@ -27,6 +27,7 @@ namespace Swastika.Cms.Lib.Models.Cms
         public int Priority { get; set; }
         public int Status { get; set; }
         public string Template { get; set; }
+        public string FormTemplate { get; set; }
         public string Title { get; set; }
         public int Type { get; set; }
         public int? PageSize { get; set; }

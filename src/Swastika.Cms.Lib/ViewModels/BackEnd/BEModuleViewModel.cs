@@ -173,6 +173,7 @@ namespace Swastika.Cms.Lib.ViewModels.BackEnd
                 ModuleFieldViewModel thisField = new ModuleFieldViewModel()
                 {
                     Name = CommonHelper.ParseJsonPropertyName(field["name"].ToString()),
+                    Title = field["title"]?.ToString(),
                     Priority = field["priority"] != null ? field["priority"].Value<int>() : 0,
                     DataType = (SWCmsConstants.DataType)(int)field["dataType"],
                     Width = field["width"] != null ? field["width"].Value<int>() : 3,

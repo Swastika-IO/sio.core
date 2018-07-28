@@ -121,7 +121,7 @@ namespace Swastka.Cms.Api.Controllers
 
         // GET api/module-data/create/id
         [HttpGet]
-        [Route("init/{moduleName}")]
+        [Route("init-by-name/{moduleName}")]
         public async Task<RepositoryResponse<ApiModuleDataViewModel>> InitAsync(string moduleName)
         {
             var getModule = await InfoModuleViewModel.Repository.GetSingleModelAsync(

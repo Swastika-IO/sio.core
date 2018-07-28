@@ -278,6 +278,7 @@
 
   <ItemGroup>
     <Folder Include="Areas\Portal\Views\Shared\Widgets\" />
+    <Folder Include="wwwroot\app-client\shared\controllers\" />
     <Folder Include="wwwroot\app\services\" />
     <Folder Include="wwwroot\app-shared\" />
   </ItemGroup>
