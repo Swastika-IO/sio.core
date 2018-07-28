@@ -24,7 +24,7 @@ namespace Swastka.Cms.Api.Controllers
     [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme, 
         Roles = "SuperAdmin")]
     [Produces("application/json")]
-    [Route("api/theme")]
+    [Route("api/{culture}/theme")]
     public class ApiThemeController :
         BaseApiController
     {
@@ -131,6 +131,7 @@ namespace Swastka.Cms.Api.Controllers
             if (model != null)
             {
                 model.CreatedBy = User.Claims.ToList().Find(c=>c.Type=="Username")?.Value;
+                model.Specificulture = _lang;
                 var result = await model.SaveModelAsync(true).ConfigureAwait(false);
                 return result;
             }

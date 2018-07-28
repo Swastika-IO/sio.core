@@ -274,7 +274,9 @@ namespace Swastika.Cms.Lib.ViewModels.BackEnd
 
         public override void ExpandView(SiocCmsContext _context = null, IDbContextTransaction _transaction = null)
         {
-            
+            ListSupportedCulture = CommonRepository.Instance.LoadCultures(Specificulture, _context, _transaction);
+            ListSupportedCulture.ForEach(c => c.IsSupported = _context.SiocProduct.Any(m => m.Id == Id && m.Specificulture == c.Specificulture));
+
             StrNormalPrice = SwCmsHelper.FormatPrice(NormalPrice);
             StrDealPrice = SwCmsHelper.FormatPrice(DealPrice);
             StrImportPrice = SwCmsHelper.FormatPrice(ImportPrice);
@@ -369,8 +371,6 @@ namespace Swastika.Cms.Lib.ViewModels.BackEnd
                     this.ActivedModules.ForEach(m => m.LoadData(Id));
                 }
             }
-
-            ListSupportedCulture = CommonRepository.Instance.LoadCultures(Specificulture, _context, _transaction);
         }
 
         public override SiocProduct ParseModel(SiocCmsContext _context = null, IDbContextTransaction _transaction = null)

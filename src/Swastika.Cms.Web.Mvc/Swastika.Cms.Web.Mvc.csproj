@@ -18,6 +18,7 @@
     <PackageIconUrl>https://avatars2.githubusercontent.com/u/26378971</PackageIconUrl>
     <RepositoryUrl>https://github.com/Swastika-IO/Swastika-IO-Core</RepositoryUrl>
     <PackageTags>Asp.Net Core CMS, Asp.Net Core MVC CMS, C# Core CMS, NetCoreCMS, Core CMS, Modular Architecture, CMS Theme, CMS Widget, Multilangual CMS, .Net CMS Platform, .Net CMS Open Source, .Net CMS Comparison 2017, .Net CMS System, .Net CMS Framework, .Net CMS Open Source MVC, .Net CMS tools, .Net CMS website, Content Management System, Blog Engine, DotNet Core,</PackageTags>
+    <RuntimeFrameworkVersion>2.1.2</RuntimeFrameworkVersion>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">

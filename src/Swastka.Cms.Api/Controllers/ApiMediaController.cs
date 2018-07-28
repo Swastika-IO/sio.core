@@ -173,6 +173,8 @@ namespace Swastka.Cms.Api.Controllers
         {
             if (model != null)
             {
+                model.Specificulture = _lang;
+                model.IsClone = true;
                 var result = await model.SaveModelAsync(true).ConfigureAwait(false);
 
                 return result;

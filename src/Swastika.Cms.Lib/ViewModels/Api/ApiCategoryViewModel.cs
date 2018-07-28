@@ -258,7 +258,7 @@ namespace Swastika.Cms.Lib.ViewModels.Api
         public override void ExpandView(SiocCmsContext _context = null, IDbContextTransaction _transaction = null)
         {
             ListSupportedCulture = CommonRepository.Instance.LoadCultures(Specificulture, _context, _transaction);
-
+            ListSupportedCulture.ForEach(c => c.IsSupported = _context.SiocCategory.Any(m => m.Id == Id && m.Specificulture == c.Specificulture));
             if (!string.IsNullOrEmpty(this.Tags))
             {
                 ListTag = JArray.Parse(this.Tags);

@@ -8,7 +8,7 @@ app.factory('ThemeServices', ['$http', '$rootScope', 'commonServices', function 
     var settings = $rootScope.settings;
 
     var _getTheme = async function (id, type) {
-        var apiUrl = '/api/theme/';
+        var apiUrl = '/api/' + settings.lang + '/theme/';
         var url = apiUrl + 'details/' + type;
         if (id) {
             url += '/' + id;
@@ -21,7 +21,7 @@ app.factory('ThemeServices', ['$http', '$rootScope', 'commonServices', function 
     };
 
     var _syncTemplates = async function (id) {
-        var apiUrl = '/api/theme/';
+        var apiUrl = '/api/' + settings.lang + '/theme/';
         var url = apiUrl + 'sync/' + id;        
         var req = {
             method: 'GET',
@@ -31,7 +31,7 @@ app.factory('ThemeServices', ['$http', '$rootScope', 'commonServices', function 
     };
 
     var _initTheme = async function (type) {
-        var apiUrl = '/api/theme/';
+        var apiUrl = '/api/' + settings.lang + '/theme/';
         var req = {
             method: 'GET',
             url: apiUrl + 'init/' + type,
@@ -40,7 +40,7 @@ app.factory('ThemeServices', ['$http', '$rootScope', 'commonServices', function 
     };
 
     var _getThemes = async function (request) {
-        var apiUrl = '/api/theme/';
+        var apiUrl = '/api/' + settings.lang + '/theme/';
         var req = {
             method: 'POST',
             url: apiUrl + 'list',
@@ -51,7 +51,7 @@ app.factory('ThemeServices', ['$http', '$rootScope', 'commonServices', function 
     };
 
     var _removeTheme = async function (id) {
-        var apiUrl = '/api/theme/';
+        var apiUrl = '/api/' + settings.lang + '/theme/';
         var req = {
             method: 'GET',
             url: apiUrl + 'delete/' + id
@@ -60,7 +60,7 @@ app.factory('ThemeServices', ['$http', '$rootScope', 'commonServices', function 
     };
 
     var _saveTheme = async function (theme) {
-        var apiUrl = '/api/theme/';
+        var apiUrl = '/api/' + settings.lang + '/theme/';
         var req = {
             method: 'POST',
             url: apiUrl + 'save',

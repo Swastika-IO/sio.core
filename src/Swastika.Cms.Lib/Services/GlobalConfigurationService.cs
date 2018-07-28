@@ -94,17 +94,23 @@ namespace Swastika.Cms.Lib.Services
                             CreatedBy = "Admin"
                         }, context, transaction);
 
-                        isSucceed = cate.SaveModel(false, context, transaction).IsSucceed;
+                        var createVNHome = await cate.SaveModelAsync(false, context, transaction).ConfigureAwait(false);
+                        isSucceed = createVNHome.IsSucceed;
+                        
                         BECategoryViewModel uscate = new BECategoryViewModel(new SiocCategory()
                         {
+                            Id = cate.Model.Id,
                             Title = "Home",
                             Specificulture = "en-us",
                             Template = "_Home",
                             Type = (int)SWCmsConstants.CateType.Home,
                             CreatedBy = "Admin",
-
+                            CreatedDateTime = DateTime.UtcNow,
                         }, context, transaction);
-                        isSucceed = isSucceed && uscate.SaveModel(false, context, transaction).IsSucceed;
+
+                        var createUSHome = await uscate.SaveModelAsync(false, context, transaction).ConfigureAwait(false);
+                        isSucceed = createUSHome.IsSucceed;
+
                     }
 
                     if (isSucceed)

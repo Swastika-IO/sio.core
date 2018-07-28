@@ -84,6 +84,7 @@ app.controller('ModuleController', ['$scope', '$rootScope', '$routeParams', '$ti
             }
             else {
                 $rootScope.showErrors(response.errors);
+                $location.path('/backend/module/list/');
                 $scope.$apply();
             }
         };
@@ -198,8 +199,10 @@ app.controller('ModuleController', ['$scope', '$rootScope', '$routeParams', '$ti
                 $scope.activedModule = resp.data;
                 $rootScope.showMessage('Thành công', 'success');
                 $rootScope.isBusy = false;
+                if (!$routeParams.id) {
+                    $location.path('/backend/module/list/');
+                }
                 $scope.$apply();
-                //$location.path('/backend/module/details/' + resp.data.id);
             }
             else {
                 if (resp) { $rootScope.showErrors(resp.errors); }

@@ -11,14 +11,20 @@ app.controller('MediaController', ['$scope', '$rootScope', '$routeParams', '$tim
             toDate: null,
             keyword: ''
         };
-        $scope.mediaFile = {
-            file: null,
-            fullPath: '',
-            folder: 'Media',
+        $scope.activedMedia = {
             title: '',
-            description: ''
+            description: '',
+            mediaFile: {
+                file: null,
+                fullPath: '',
+                folderName: 'Media',
+                fileFolder: '',
+                fileName: '',
+                extension: '',
+                content: '',
+                fileStream: '',
+            }
         };
-        $scope.activedMedia = null;
         $scope.relatedMedias = [];
         $rootScope.isBusy = false;
         $scope.data = {
@@ -90,7 +96,7 @@ app.controller('MediaController', ['$scope', '$rootScope', '$routeParams', '$tim
             if (resp && resp.isSucceed) {
 
                 $scope.data = resp.data;
-                
+
                 $scope.$apply();
             }
             else {
@@ -111,14 +117,44 @@ app.controller('MediaController', ['$scope', '$rootScope', '$routeParams', '$tim
             }
         };
 
+        $scope.selectFile = function (file, errFiles) {
+            if (file !== undefined && file !== null) {
+                $scope.mediaFile.folder = 'Media';
+                $scope.mediaFile.file = file;
+                $scope.getBase64(file);
+            }
+        };
+
+        $scope.getBase64 = function (file) {
+            if (file !== null && $scope.postedFile) {
+                $rootScope.isBusy = true;
+                var reader = new FileReader();
+                reader.readAsDataURL(file);
+                reader.onload = function () {
+                    var index = reader.result.indexOf(',') + 1;
+                    var base64 = reader.result.substring(index);
+                    $scope.activedMedia.mediaFile.fileName = file.name.substring(0, file.name.lastIndexOf('.'));
+                    $scope.activedMedia.mediaFile.extension = file.name.substring(file.name.lastIndexOf('.'));
+                    $scope.activedMedia.mediaFile.fileStream = reader.result;
+                    $rootScope.isBusy = false;
+                    $scope.$apply();
+                };
+                reader.onerror = function (error) {
+
+                };
+            }
+            else {
+                return null;
+            }
+        }
+
         $scope.saveMedia = async function (media) {
-            media.content = $('.editor-content.content').val();
-            media.excerpt = $('.editor-content.excerpt').val();
             var resp = await mediaServices.saveMedia(media);
             if (resp && resp.isSucceed) {
                 $scope.activedMedia = resp.data;
                 $rootScope.showMessage('Thành công', 'success');
                 $rootScope.isBusy = false;
+                $scope.loadMedias();
                 $scope.$apply();
                 //$location.path('/backend/media/details/' + resp.data.id);
             }

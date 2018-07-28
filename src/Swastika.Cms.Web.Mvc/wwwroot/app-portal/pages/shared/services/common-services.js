@@ -75,10 +75,10 @@ app.factory('commonServices', ['$location', '$http', '$rootScope', 'authService'
 
         if (!req.headers) {
             req.headers = {
-                'Content-Type': 'application/json',
-                'Authorization': 'Bearer ' + authService.authentication.token
+                'Content-Type': 'application/json'
             };
         }
+        req.headers.Authorization = 'Bearer ' + authService.authentication.token;
         return $http(req).then(function (resp) {
             //var resp = results.data;
             $rootScope.isBusy = false;
