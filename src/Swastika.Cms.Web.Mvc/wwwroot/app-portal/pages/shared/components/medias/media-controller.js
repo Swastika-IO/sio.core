@@ -155,6 +155,7 @@ app.controller('MediaController', ['$scope', '$rootScope', '$routeParams', '$tim
                 $rootScope.showMessage('Thành công', 'success');
                 $rootScope.isBusy = false;
                 $scope.loadMedias();
+                $scope.loadMedia();
                 $scope.$apply();
                 //$location.path('/backend/media/details/' + resp.data.id);
             }

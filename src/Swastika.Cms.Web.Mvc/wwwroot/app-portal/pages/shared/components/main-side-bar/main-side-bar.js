@@ -182,6 +182,24 @@
                         icon: 'mi mi-List'
                     }
                 ]
+            },
+            {
+                title: 'Language',
+                shortTitle: 'Language',
+                icon: 'mi mi-Settings mi-spin',
+                href: '#',
+                subMenus: [
+                    {
+                        title: 'Create',
+                        href: '/backend/language/create',
+                        icon: 'mi mi-Add'
+                    },
+                    {
+                        title: 'List',
+                        href: '/backend/language/list',
+                        icon: 'mi mi-List'
+                    }
+                ]
             }
         ]
     },

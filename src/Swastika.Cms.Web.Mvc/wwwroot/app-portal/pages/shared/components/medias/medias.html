@@ -21,15 +21,15 @@
                     <div class="col-md-12 d-flex justify-content-end">
                         <div class="btn-toolbar mb-3" role="toolbar" aria-label="Toolbar with button groups">
                             <div class="input-group mr-2">
-                                <label class="custom-file">
-                                    <img imageonload ng-src="{{mediaFile.fullPath}}" name="pic" class="d-block" style="max-height: 150px; width: auto; margin: 0 auto;" accept="image/*" width="100%" />
-                                    <input type="hidden" ng-model="mediaFile.folder" class="folder-val" />
-                                    <input type="file" name="pic" class="" data-file="mediaFile.file">
-                                    <input type="text" class="form-control d-none" ng-model="mediaFile.fullPath">
-                                </label>
+                                
+                                <custom-file header="''" folder="'Medias'" media="activedMedia" auto="'false'"></custom-file>
+                
                             </div>
                             <div class="btn-group mr-2" role="group" aria-label="First group">
-                                <button type="button" ng-click="uploadMedia()" class="btn btn-secondary"><i class="mi mi-Upload"></i> Upload</button>
+                                <!--<cultures is-clone="activedMedia.isClone" data="activedMedia.cultures"></cultures>-->
+
+                                <button type="button" ng-click="saveMedia(activedMedia)" class="btn btn-secondary"><i class="mi mi-Upload"></i> Upload</button>
+                                <!--<button type="button" ng-click="uploadMedia()" class="btn btn-secondary"><i class="mi mi-Upload"></i> Upload</button>-->
                             </div>
                         </div>
                     </div>

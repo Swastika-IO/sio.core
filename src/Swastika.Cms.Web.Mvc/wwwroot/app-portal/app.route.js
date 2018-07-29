@@ -111,6 +111,22 @@
         templateUrl: "/app-portal/pages/media/details.html"
     });
 
+
+    $routeProvider.when("/backend/language/list", {
+        controller: "LanguageController",
+        templateUrl: "/app-portal/pages/language/list.html"
+    });
+
+    $routeProvider.when("/backend/language/details/:id", {
+        controller: "LanguageController",
+        templateUrl: "/app-portal/pages/language/details.html"
+    });
+
+    $routeProvider.when("/backend/language/create", {
+        controller: "LanguageController",
+        templateUrl: "/app-portal/pages/language/details.html"
+    });
+
     $routeProvider.when("/backend/configuration/list", {
         controller: "ConfigurationController",
         templateUrl: "/app-portal/pages/configuration/list.html"

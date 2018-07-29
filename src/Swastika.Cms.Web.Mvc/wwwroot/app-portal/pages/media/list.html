@@ -3,13 +3,18 @@
         <div class="col-md-12">
             <filter-list request="request" callback="loadMedias(pageIndex)" />
         </div>
-        <div ng-init="getMedia()">
-            <custom-file header="''" folder="'Medias'" media="activedMedia" auto="'false'"></custom-file>
-            <cultures is-clone="activedMedia.isClone" data="activedMedia.cultures"></cultures>
+    </div>
+    <div ng-init="getMedia()" class="row">
+        <div class="col-md-9 input-group">
+            <div class="input-group-sm">
+                <custom-file header="''" folder="'Medias'" media="activedMedia" auto="'false'"></custom-file>                
 
-            <button type="button" ng-click="saveMedia(activedMedia)" class="btn btn-secondary"><i class="mi mi-Upload"></i> Upload</button>
+                <button type="button" ng-click="saveMedia(activedMedia)" class="btn btn-secondary"><i class="mi mi-Upload"></i> Upload</button>
+            </div>
         </div>
-
+        <div class="col-md-3">
+            <cultures is-clone="activedMedia.isClone" data="activedMedia.cultures"></cultures>
+        </div>
     </div>
     <table class="table table-sm table-hover" cellspacing="0">
         <thead class="thead-light">

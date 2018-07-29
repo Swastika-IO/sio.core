@@ -81,13 +81,5 @@ namespace Swastika.Cms.Lib.ViewModels.BackEnd
 
         #endregion Overrides
     }
-    public class DataValueViewModel
-    {
-        [JsonProperty("dataType")]
-        public SWCmsConstants.DataType DataType { get; set; }
-        [JsonProperty("value")]
-        public string Value { get; set; }
-        [JsonProperty("name")]
-        public string Name { get; set; }
-    }
+   
 }

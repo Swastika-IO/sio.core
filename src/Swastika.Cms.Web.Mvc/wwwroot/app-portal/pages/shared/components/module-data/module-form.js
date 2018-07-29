@@ -131,6 +131,7 @@ modules.component('moduleFormEditor', {
     ],
     bindings: {
         data: '=',
+        inputClass: '='
     }
 });
 

@@ -50,7 +50,12 @@ app.run(['$rootScope', '$location', 'commonServices', 'authService', function ($
     authService.fillAuthData();
     commonServices.fillSettings().then(function (response) {
         $rootScope.settings = response;
+        commonServices.fillTranslator(response.lang).then(function (response) {
+            $rootScope.translator = response;
+        });
     });
+
+   
 
     $rootScope.currentContext = $rootScope;
     $rootScope.errors = [];

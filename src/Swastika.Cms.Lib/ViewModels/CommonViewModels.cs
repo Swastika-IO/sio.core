@@ -91,8 +91,10 @@ namespace Swastika.Cms.Lib.ViewModels
         private string _fullPath = string.Empty;
         private string _webPath = string.Empty;
         [JsonProperty("fullPath")]
-        public string FullPath {
-            get {
+        public string FullPath
+        {
+            get
+            {
                 _fullPath = CommonHelper.GetFullPath(new string[] {
                     FileFolder,
                     FolderName,
@@ -101,7 +103,8 @@ namespace Swastika.Cms.Lib.ViewModels
 
                 return _fullPath;
             }
-            set {
+            set
+            {
                 _fullPath = value;
             }
         }
@@ -168,10 +171,10 @@ namespace Swastika.Cms.Lib.ViewModels
 
         [JsonProperty("isUnique")]
         public bool IsUnique { get; set; }
-        
+
         [JsonProperty("isRequired")]
         public bool IsRequired { get; set; }
-        
+
         [JsonProperty("isDisplay")]
         public bool IsDisplay { get; set; }
 
@@ -245,7 +248,7 @@ namespace Swastika.Cms.Lib.ViewModels
 
         [JsonProperty("value")]
         public string Value { get; set; }
-        
+
     }
 
     public class AccessTokenViewModel
@@ -290,5 +293,15 @@ namespace Swastika.Cms.Lib.ViewModels
 
         [JsonProperty("pageTypes")]
         public List<string> PageTypes { get; set; }
+    }
+
+    public class DataValueViewModel
+    {
+        [JsonProperty("dataType")]
+        public SWCmsConstants.DataType DataType { get; set; }
+        [JsonProperty("value")]
+        public string Value { get; set; }
+        [JsonProperty("name")]
+        public string Name { get; set; }
     }
 }

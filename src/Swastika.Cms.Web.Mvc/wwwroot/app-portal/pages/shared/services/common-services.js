@@ -5,6 +5,8 @@ app.factory('commonServices', ['$location', '$http', '$rootScope', 'authService'
         lang: '',
         cultures: []
     }
+    var _translator = {}
+
     var _showAlertMsg = function (title, message) {
         $rootScope.message = {
             title: title,
@@ -45,6 +47,27 @@ app.factory('commonServices', ['$location', '$http', '$rootScope', 'authService'
         }
     };
 
+    var _getTranslator = async function (culture) {
+        var translator = localStorageService.get('translator');
+        if (translator) {
+            return translator;
+        }
+        else {
+            var url = 'api/portal';
+            if (culture) {
+                url += '/' + culture;
+            }
+            url += '/translator';
+            var req = {
+                method: 'GET',
+                url: url
+            };
+            return _getApiResult(req).then(function (response) {
+                return response.data;
+            });
+        }
+    };
+
     var _setSettings = async function (settings) {
         if (settings && settings.cultures.length > 0) {
             localStorageService.set('settings', settings);
@@ -69,6 +92,21 @@ app.factory('commonServices', ['$location', '$http', '$rootScope', 'authService'
         }
 
     };
+
+    var _fillTranslator = async function (culture) {
+        var translator = localStorageService.get('translator');
+        if (translator) {
+            _translator = translator;
+            return translator;
+        }
+        else {
+            translator = await _getTranslator(culture);
+            localStorageService.set('translator', translator);
+            return translator;
+        }
+
+    };
+
     var _getApiResult = async function (req) {
         $rootScope.isBusy = true;
         req.Authorization = authService.authentication.token;
@@ -113,6 +151,11 @@ app.factory('commonServices', ['$location', '$http', '$rootScope', 'authService'
                     }
                     );
                 }
+                else if (error.status === 403) {
+                    var t = { isSucceed: false, errors: ['Forbidden'] };
+                    $location.path('/backend/login');
+                    return t;
+                }
                 else {
                     var t = { isSucceed: false, errors: [error.statusText] };
                     $rootScope.isBusy = false;
@@ -122,6 +165,8 @@ app.factory('commonServices', ['$location', '$http', '$rootScope', 'authService'
     };
     adminCommonFactory.getApiResult = _getApiResult;
     adminCommonFactory.getSettings = _getSettings;
+    adminCommonFactory.getTranslator = _getTranslator;
+    adminCommonFactory.fillTranslator = _fillTranslator;
     adminCommonFactory.setSettings = _setSettings;
     adminCommonFactory.removeSettings = _removeSettings;
     adminCommonFactory.showAlertMsg = _showAlertMsg;

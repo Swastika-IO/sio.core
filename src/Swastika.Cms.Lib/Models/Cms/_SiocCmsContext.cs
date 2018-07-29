@@ -970,7 +970,7 @@ namespace Swastika.Cms.Lib.Models.Cms
 
                 entity.Property(e => e.UserId).HasMaxLength(50);
 
-                entity.HasOne(d => d.Customer)
+                entity.HasOne(d => d.SiocCustomer)
                     .WithMany(p => p.SiocOrder)
                     .HasForeignKey(d => d.CustomerId)
                     .HasConstraintName("FK_sioc_order_sioc_cms_customer");

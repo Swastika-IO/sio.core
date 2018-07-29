@@ -61,6 +61,21 @@ namespace Swastka.Cms.Api.Controllers
                 Data = settings
             };
         }
+        
+        // GET api/category/id
+        [HttpGet]
+        [Route("{culture}/translator")]
+        [Route("translator")]
+        public RepositoryResponse<JObject> Languages()
+        {
+            GlobalConfigurationService.Instance.RefreshCultures();
+
+            return new RepositoryResponse<JObject>()
+            {
+                IsSucceed = true,
+                Data = GlobalConfigurationService.Instance.CmsCulture.Translator[_lang].ToObject<JObject>()
+            };
+        }
 
         [HttpGet]
         [Route("init-settings")]

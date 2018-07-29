@@ -20,7 +20,7 @@ namespace Swastika.Cms.Lib.Models.Cms
         public string Specificulture { get; set; }
         public int Status { get; set; }
 
-        public SiocCustomer Customer { get; set; }
+        public SiocCustomer SiocCustomer { get; set; }
         public ICollection<SiocComment> SiocComment { get; set; }
         public ICollection<SiocOrderItem> SiocOrderItem { get; set; }
     }
