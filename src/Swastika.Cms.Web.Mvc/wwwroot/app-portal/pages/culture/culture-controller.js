@@ -13,8 +13,11 @@ app.controller('CultureController', ['$scope', '$rootScope', '$routeParams', '$t
         };
         $scope.icons = [
             'flag-icon-us',
-            'flag-icon-vi',
-            'flag-icon-gb'
+            'flag-icon-vn',
+            'flag-icon-gb',
+            'flag-icon-fr',
+            'flag-icon-cn',
+            'flag-icon-be',
         ];
         $scope.activedCulture = null;
 
@@ -68,7 +71,11 @@ app.controller('CultureController', ['$scope', '$rootScope', '$routeParams', '$t
             var response = await cultureServices.getCulture(id, 'be');
             if (response.isSucceed) {
                 $scope.activedCulture = response.data;
+                if (!id) {
+                    $scope.activedCulture.icon = $scope.icons[0];
+                }
                 $scope.$apply();
+
             }
             else {
                 $rootScope.showErrors(response.errors);
@@ -151,5 +158,9 @@ app.controller('CultureController', ['$scope', '$rootScope', '$routeParams', '$t
                 $rootScope.showMessage('failed');
                 $scope.$apply();
             }
+        }
+
+        $scope.changeIcon = function (icon) {
+            $scope.activedCulture.icon = icon;
         }
     }]);

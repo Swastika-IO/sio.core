@@ -285,6 +285,9 @@ namespace Swastika.Cms.Lib.ViewModels
         [JsonProperty("lang")]
         public string Lang { get; set; }
 
+        [JsonProperty("langIcon")]
+        public string LangIcon { get; set; }
+
         [JsonProperty("themeId")]
         public int ThemeId { get; set; }
 

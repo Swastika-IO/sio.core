@@ -13,7 +13,7 @@ using System;
 using System.ComponentModel.DataAnnotations;
 using System.Threading.Tasks;
 
-namespace Swastika.Cms.Lib.ViewModels.BackEnd
+namespace Swastika.Cms.Lib.ViewModels.Api
 {
     public class ApiConfigurationViewModel
         : ViewModelBase<SiocCmsContext, SiocConfiguration, ApiConfigurationViewModel>

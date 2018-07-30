@@ -50,11 +50,13 @@ namespace Swastka.Cms.Api.Controllers
         {
             SiteSettingsViewModel settings = new SiteSettingsViewModel()
             {
-                Lang = GlobalConfigurationService.Instance.CmsConfigurations.Language,
+                Lang = GlobalConfigurationService.Instance.CmsConfigurations.Language,                
                 ThemeId = GlobalConfigurationService.Instance.GetLocalInt(SWCmsConstants.ConfigurationKeyword.ThemeId, _lang),
                 Cultures = CommonRepository.Instance.LoadCultures(),
                 PageTypes = Enum.GetNames(typeof(SWCmsConstants.CateType)).ToList()
+
             };
+            settings.LangIcon = settings.Cultures.First(c => c.Specificulture == _lang).Icon;
             return new RepositoryResponse<SiteSettingsViewModel>()
             {
                 IsSucceed = true,

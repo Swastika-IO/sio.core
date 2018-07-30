@@ -14,7 +14,7 @@ using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace Swastika.Cms.Lib.ViewModels.BackEnd
+namespace Swastika.Cms.Lib.ViewModels.Api
 {
     public class ApiLanguageViewModel
         : ViewModelBase<SiocCmsContext, SiocLanguage, ApiLanguageViewModel>

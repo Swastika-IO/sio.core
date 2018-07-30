@@ -31,12 +31,18 @@
                                    placeholder="Enter your culture specificulture here..." />
                         </div>
                         <div class="form-group">
-                            <label class="control-label">Type</label>
-                            <select class="form-control mr-2"
-                                    ng-model="activedCulture.icon">
-                                <option ng-repeat="item in icons" ng-value="item">{{item}}</option>
-                            </select>
-                            <span class="flag-icon {{activedCulture.icon}}"></span>
+                            <label class="control-label">Icon</label>
+                            <a class="nav-link p-2" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                <span class="flag-icon {{activedCulture.icon}}"></span>
+                            </a>
+                            <div class="dropdown-menu dropdown-menu-left" aria-labelledby="sw-versions">
+                                <a class="dropdown-item" ng-repeat="item in icons"
+                                   ng-class="{active: activedCulture.icon == item}"
+                                   href="#" ng-click="changeIcon(item);">
+                                    <span class="flag-icon {{item}}"></span>
+                                </a>
+                            </div>
+                            
                         </div>
                         <div class="form-group">
                             <input type="text" ng-model="activedCulture.lcid"
