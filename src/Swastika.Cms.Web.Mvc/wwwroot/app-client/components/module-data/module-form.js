@@ -56,7 +56,7 @@ modules.component('moduleForm', {
                 var resp = await moduleDataServices.saveModuleData(ctrl.data);
                 if (resp && resp.isSucceed) {
                     ctrl.data = resp.data;
-                    $rootScope.showMessage('Thành công', 'success');
+                    $rootScope.showMessage('success', 'success');
                     $rootScope.isBusy = false;
                     ctrl.initModuleForm();
                     $scope.$apply();

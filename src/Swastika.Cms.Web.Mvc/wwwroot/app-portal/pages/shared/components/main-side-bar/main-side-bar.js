@@ -31,8 +31,8 @@
                 ]
             },
             {
-                title: 'Products',
-                shortTitle: 'Products',
+                title: ctrl.translator.get('portal_products'),
+                shortTitle: ctrl.translator.get('portal_products'),
                 icon: 'mi mi-Package',
                 href: '#',
                 subMenus: [
@@ -49,8 +49,8 @@
                 ]
             },
             {
-                title: 'Pages',
-                shortTitle: 'Pages',
+                title: ctrl.translator.get('portal_pages'),
+                shortTitle: ctrl.translator.get('portal_pages'),
                 icon: 'mi mi-Page',
                 href: '#',
                 subMenus: [
@@ -198,6 +198,24 @@
                     {
                         title: 'List',
                         href: '/backend/language/list',
+                        icon: 'mi mi-List'
+                    }
+                ]
+            },
+            {
+                title: 'Culture',
+                shortTitle: 'Culture',
+                icon: 'mi mi-Settings mi-spin',
+                href: '#',
+                subMenus: [
+                    {
+                        title: ctrl.translator.get('portal_create'),
+                        href: '/backend/culture/create',
+                        icon: 'mi mi-Add'
+                    },
+                    {
+                        title: 'List',
+                        href: '/backend/culture/list',
                         icon: 'mi mi-List'
                     }
                 ]

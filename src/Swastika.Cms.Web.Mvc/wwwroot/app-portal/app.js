@@ -55,7 +55,7 @@ app.run(['$rootScope', '$location', 'commonServices', 'authService', function ($
         });
     });
 
-   
+
 
     $rootScope.currentContext = $rootScope;
     $rootScope.errors = [];
@@ -287,6 +287,7 @@ app.run(['$rootScope', '$location', 'commonServices', 'authService', function ($
     $rootScope.showMessage = function (content, type) {
         var from = 'bottom';
         var align = 'right';
+
         $.notify({
             icon: "now-ui-icons ui-1_bell-53",
             message: content,

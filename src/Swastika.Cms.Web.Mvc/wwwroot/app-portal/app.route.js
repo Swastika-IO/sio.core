@@ -157,6 +157,21 @@
         templateUrl: "/app-portal/pages/file/details.html"
     });
 
+    $routeProvider.when("/backend/culture/list", {
+        controller: "CultureController",
+        templateUrl: "/app-portal/pages/culture/list.html"
+    });
+
+    $routeProvider.when("/backend/culture/details/:id", {
+        controller: "CultureController",
+        templateUrl: "/app-portal/pages/culture/details.html"
+    });
+
+    $routeProvider.when("/backend/culture/create", {
+        controller: "CultureController",
+        templateUrl: "/app-portal/pages/culture/details.html"
+    });
+
     $routeProvider.when("/backend/theme/list", {
         controller: "ThemeController",
         templateUrl: "/app-portal/pages/theme/list.html"

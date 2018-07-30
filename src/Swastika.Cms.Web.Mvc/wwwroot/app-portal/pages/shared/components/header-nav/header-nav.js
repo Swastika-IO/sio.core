@@ -8,7 +8,8 @@
                 ctrl.settings = await commonServices.getSettings();
             }
             ctrl.changeLang = function (lang) {
-                ctrl.settings.lang = lang;                
+                ctrl.settings.lang = lang;
+                ctrl.settings.langIcon = ctrl.settings.cultures.find(c => c.specificulture == lang).icon;
                 commonServices.setSettings(ctrl.settings).then(function () {
                     commonServices.removeTranslator();
                     commonServices.fillTranslator(lang).then(function () {

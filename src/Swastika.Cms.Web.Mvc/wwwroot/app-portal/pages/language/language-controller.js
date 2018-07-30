@@ -121,11 +121,12 @@ app.controller('LanguageController', ['$scope', '$rootScope', '$routeParams', '$
             var resp = await languageServices.saveLanguage(language);
             if (resp && resp.isSucceed) {
                 $scope.activedLanguage = resp.data;
-                $rootScope.showMessage('Thành công', 'success');
+                $rootScope.showMessage('success', 'success');
                 commonServices.removeTranslator();
-                commonServices.fillTranslator($rootScope.settings.lang)
-                $rootScope.isBusy = false;
-                $scope.$apply();
+                commonServices.fillTranslator($rootScope.settings.lang).then(function () {
+                    window.location.href = '/backend/language/list';
+                })
+                
             }
             else {
                 if (resp) { $rootScope.showErrors(resp.errors); }
@@ -133,8 +134,9 @@ app.controller('LanguageController', ['$scope', '$rootScope', '$routeParams', '$
             }
         };
 
-        $scope.generateKeyword = function (text) {
+        $scope.generateDefault = function (text) {
             if (!$routeParams.id) {
+                $scope.activedLanguage.defaultValue = text;
                 $scope.activedLanguage.keyword = text.replace(/[^a-zA-Z0-9]+/g, '_')
                     .replace(/([A-Z]+)([A-Z][a-z])/g, '$1-$2')
                     .replace(/([a-z])([A-Z])/g, '$1-$2')
@@ -144,4 +146,5 @@ app.controller('LanguageController', ['$scope', '$rootScope', '$routeParams', '$
                     .toLowerCase();
             }
         }
+
     }]);

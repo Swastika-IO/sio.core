@@ -109,7 +109,7 @@ app.controller('UserController', ['$scope', '$rootScope', '$routeParams', '$time
             var resp = await userServices.saveUser(user);
             if (resp && resp.isSucceed) {
                 //$scope.activedUser = resp.data;
-                $rootScope.showMessage('Thành công', 'success');
+                $rootScope.showMessage('success', 'success');
                 $rootScope.isBusy = false;
                 $scope.$apply();
             }
@@ -123,7 +123,7 @@ app.controller('UserController', ['$scope', '$rootScope', '$routeParams', '$time
             var resp = await userServices.register(user);
             if (resp && resp.isSucceed) {
                 $scope.activedUser = resp.data;
-                $rootScope.showMessage('Thành công', 'success');
+                $rootScope.showMessage('success', 'success');
                 $rootScope.isBusy = false;
                 $scope.$apply();
             }
@@ -142,7 +142,7 @@ app.controller('UserController', ['$scope', '$rootScope', '$routeParams', '$time
             };
             var resp = await userServices.updateRoleStatus(userRole);
             if (resp && resp.isSucceed) {
-                $rootScope.showMessage('Thành công', 'success');
+                $rootScope.showMessage('success', 'success');
                 $rootScope.isBusy = false;
                 $scope.$apply();
             }

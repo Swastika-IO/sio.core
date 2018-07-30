@@ -130,7 +130,7 @@ app.controller('ModuleDataController', ['$scope', '$rootScope', '$routeParams', 
             var resp = await moduleDataServices.saveModuleData($scope.activedModuleData);
             if (resp && resp.isSucceed) {
                 $scope.activedModuleData = resp.data;
-                $rootScope.showMessage('Thành công', 'success');
+                $rootScope.showMessage('success', 'success');
                 $rootScope.isBusy = false;
                 $scope.initModuleForm($scope.name);
                 $scope.$apply();

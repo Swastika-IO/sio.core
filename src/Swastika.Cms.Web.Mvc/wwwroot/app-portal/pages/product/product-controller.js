@@ -112,7 +112,7 @@ app.controller('ProductController', ['$scope', '$rootScope', '$routeParams', '$t
             var resp = await productServices.saveProduct(product);
             if (resp && resp.isSucceed) {
                 $scope.activedProduct = resp.data;
-                $rootScope.showMessage('Thành công', 'success');
+                $rootScope.showMessage('success', 'success');
                 $rootScope.isBusy = false;
                 $scope.$apply();
                 //$location.path('/backend/product/details/' + resp.data.id);

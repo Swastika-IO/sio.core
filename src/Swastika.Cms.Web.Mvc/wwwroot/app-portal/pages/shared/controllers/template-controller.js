@@ -119,7 +119,7 @@ app.controller('TemplateController', ['$scope', '$rootScope', '$routeParams', '$
             var resp = await templateServices.saveTemplate($scope.activedTemplate);
             if (resp && resp.isSucceed) {
                 $scope.activedTemplate = resp.data;
-                $rootScope.showMessage('Thành công', 'success');
+                $rootScope.showMessage('success', 'success');
                 $rootScope.isBusy = false;
                 $scope.$apply();
                 //$location.path('/backend/template/details/' + resp.data.id);

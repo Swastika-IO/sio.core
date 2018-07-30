@@ -101,7 +101,7 @@ app.controller('FileController', ['$scope', '$rootScope', '$routeParams', '$time
             var resp = await fileServices.saveFile(file);
             if (resp && resp.isSucceed) {
                 $scope.activedFile = resp.data;
-                $rootScope.showMessage('Thành công', 'success');
+                $rootScope.showMessage('success', 'success');
                 $rootScope.isBusy = false;
                 $scope.$apply();
             }

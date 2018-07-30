@@ -98,7 +98,7 @@ app.controller('RoleController', ['$scope', '$rootScope', '$routeParams', '$time
             var resp = await roleServices.saveRole(role);
             if (resp && resp.isSucceed) {
                 $scope.activedRole = resp.data;
-                $rootScope.showMessage('Thành công', 'success');
+                $rootScope.showMessage('success', 'success');
                 $rootScope.isBusy = false;
                 $scope.$apply();
             }

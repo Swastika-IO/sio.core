@@ -1,6 +1,6 @@
 ﻿'use strict';
-app.controller('ThemeController', ['$scope', '$rootScope', '$routeParams', '$timeout', '$location', 'authService', 'ThemeServices',
-    function ($scope, $rootScope, $routeParams, $timeout, $location, authService, themeServices) {
+app.controller('CultureController', ['$scope', '$rootScope', '$routeParams', '$timeout', '$location', 'authService', 'CultureServices',
+    function ($scope, $rootScope, $routeParams, $timeout, $location, authService, cultureServices) {
         $scope.request = {
             pageSize: '10',
             pageIndex: 0,
@@ -11,10 +11,14 @@ app.controller('ThemeController', ['$scope', '$rootScope', '$routeParams', '$tim
             toDate: null,
             keyword: ''
         };
+        $scope.icons = [
+            'flag-icon-us',
+            'flag-icon-vi',
+            'flag-icon-gb'
+        ];
+        $scope.activedCulture = null;
 
-        $scope.activedTheme = null;
-
-        $scope.relatedThemes = [];
+        $scope.relatedCultures = [];
 
         $rootScope.isBusy = false;
 
@@ -32,11 +36,11 @@ app.controller('ThemeController', ['$scope', '$rootScope', '$routeParams', '$tim
             return input;
         };
 
-        $scope.getTheme = async function (id) {
+        $scope.getCulture = async function (id) {
             $rootScope.isBusy = true;
-            var resp = await themeServices.getTheme(id, 'be');
+            var resp = await cultureServices.getCulture(id, 'be');
             if (resp && resp.isSucceed) {
-                $scope.activedTheme = resp.data;
+                $scope.activedCulture = resp.data;
                 $rootScope.initEditor();
                 $scope.$apply();
             }
@@ -47,9 +51,9 @@ app.controller('ThemeController', ['$scope', '$rootScope', '$routeParams', '$tim
         };
 
         $scope.syncTemplates = async function (id) {
-            var response = await themeServices.syncTemplates(id);
+            var response = await cultureServices.syncTemplates(id);
             if (response.isSucceed) {
-                $scope.activedTheme = response.data;
+                $scope.activedCulture = response.data;
                 $scope.$apply();
             }
             else {
@@ -58,12 +62,12 @@ app.controller('ThemeController', ['$scope', '$rootScope', '$routeParams', '$tim
             }
         };
 
-        $scope.loadTheme = async function () {
+        $scope.loadCulture = async function () {
             $rootScope.isBusy = true;
             var id = $routeParams.id;
-            var response = await themeServices.getTheme(id, 'be');
+            var response = await cultureServices.getCulture(id, 'be');
             if (response.isSucceed) {
-                $scope.activedTheme = response.data;
+                $scope.activedCulture = response.data;
                 $scope.$apply();
             }
             else {
@@ -71,7 +75,7 @@ app.controller('ThemeController', ['$scope', '$rootScope', '$routeParams', '$tim
                 $scope.$apply();
             }
         };
-        $scope.loadThemes = async function (pageIndex) {
+        $scope.loadCultures = async function (pageIndex) {
             if (pageIndex != undefined) {
                 $scope.request.pageIndex = pageIndex;
             }
@@ -82,16 +86,16 @@ app.controller('ThemeController', ['$scope', '$rootScope', '$routeParams', '$tim
             if ($scope.request.toDate != null) {
                 $scope.request.toDate = $scope.request.toDate.toISOString();
             }
-            var resp = await themeServices.getThemes($scope.request);
+            var resp = await cultureServices.getCultures($scope.request);
             if (resp && resp.isSucceed) {
 
                 ($scope.data = resp.data);
                 //$("html, body").animate({ "scrollTop": "0px" }, 500);
-                $.each($scope.data.items, function (i, theme) {
+                $.each($scope.data.items, function (i, culture) {
 
-                    $.each($scope.activedThemes, function (i, e) {
-                        if (e.themeId == theme.id) {
-                            theme.isHidden = true;
+                    $.each($scope.activedCultures, function (i, e) {
+                        if (e.cultureId == culture.id) {
+                            culture.isHidden = true;
                         }
                     })
                 })
@@ -116,15 +120,15 @@ app.controller('ThemeController', ['$scope', '$rootScope', '$routeParams', '$tim
             }
         };
 
-        $scope.saveTheme = async function (theme) {
-            theme.content = $('.editor-content').val();
-            var resp = await themeServices.saveTheme(theme);
+        $scope.saveCulture = async function (culture) {
+            culture.content = $('.editor-content').val();
+            var resp = await cultureServices.saveCulture(culture);
             if (resp && resp.isSucceed) {
-                $scope.activedTheme = resp.data;
+                $scope.activedCulture = resp.data;
                 $rootScope.showMessage('success', 'success');
                 $rootScope.isBusy = false;
                 $rootScope.updateSettings();
-                $location.path('/backend/theme/list');
+                $location.path('/backend/culture/list');
                 $scope.$apply();
                 
             }
@@ -134,14 +138,14 @@ app.controller('ThemeController', ['$scope', '$rootScope', '$routeParams', '$tim
             }
         };
 
-        $scope.removeTheme = function (id) {
-            $rootScope.showConfirm($scope, 'removeThemeConfirmed', [id], null, 'Remove Theme', 'Are you sure');
+        $scope.removeCulture = function (id) {
+            $rootScope.showConfirm($scope, 'removeCultureConfirmed', [id], null, 'Remove Culture', 'Are you sure');
         }
 
-        $scope.removeThemeConfirmed = async function (id) {
-            var result = await themeServices.removeTheme(id);
+        $scope.removeCultureConfirmed = async function (id) {
+            var result = await cultureServices.removeCulture(id);
             if (result.isSucceed) {
-                $scope.loadThemes();
+                $scope.loadCultures();
             }
             else {
                 $rootScope.showMessage('failed');

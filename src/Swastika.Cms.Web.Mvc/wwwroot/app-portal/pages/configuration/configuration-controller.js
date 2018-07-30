@@ -111,7 +111,7 @@ app.controller('ConfigurationController', ['$scope', '$rootScope', '$routeParams
             var resp = await configurationServices.saveConfiguration(configuration);
             if (resp && resp.isSucceed) {
                 $scope.activedConfiguration = resp.data;
-                $rootScope.showMessage('Thành công', 'success');
+                $rootScope.showMessage('success', 'success');
                 $rootScope.isBusy = false;
                 $scope.$apply();
             }

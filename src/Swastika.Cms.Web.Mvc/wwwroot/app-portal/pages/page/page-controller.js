@@ -174,7 +174,7 @@ app.controller('PageController', ['$scope', '$rootScope', '$routeParams', '$time
             var resp = await pageServices.savePage(page);
             if (resp && resp.isSucceed) {
                 $scope.activedPage = resp.data;
-                $rootScope.showMessage('Thành công', 'success');
+                $rootScope.showMessage('success', 'success');
                 $rootScope.isBusy = false;
                 $scope.$apply();
                 //$location.path('/backend/page/details/' + resp.data.id);

@@ -45,7 +45,7 @@ app.controller('AppSettingsController',
             var resp = await appSettingsServices.saveAppSettings(appSettings);
             if (resp && resp.isSucceed) {
                 $scope.appSettings = resp.data;
-                $rootScope.showMessage('Thành công', 'success');
+                $rootScope.showMessage('success', 'success');
                 $rootScope.isBusy = false;
                 $scope.$apply();
             }
