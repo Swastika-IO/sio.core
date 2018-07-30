@@ -673,6 +673,8 @@ namespace Swastika.Cms.Lib.Models.Cms
 
                 entity.Property(e => e.Keyword).HasMaxLength(250);
 
+                entity.Property(e => e.DefaultValue).HasMaxLength(250);
+
                 entity.Property(e => e.Specificulture).HasMaxLength(10);
 
                 entity.Property(e => e.Category).HasMaxLength(250);

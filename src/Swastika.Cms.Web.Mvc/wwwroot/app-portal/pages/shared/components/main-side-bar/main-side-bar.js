@@ -1,7 +1,8 @@
 ﻿modules.component('mainSideBar', {
     templateUrl: '/app-portal/pages/shared/components/main-side-bar/main-side-bar.html',
-    controller: function ($scope) {
+    controller: ['$scope', 'translator', function ($scope, translator) {
         var ctrl = this;
+        ctrl.translator = translator;
         var culture = $('#lang').val();
         ctrl.items = [
             {
@@ -12,13 +13,13 @@
                 subMenus: []
             },
             {
-                title: 'Articles',
-                shortTitle: 'Articles',
+                title: ctrl.translator.get('portal_articles'),
+                shortTitle: ctrl.translator.get('portal_articles'),
                 icon: 'mi mi-Package',
                 href: '#',
                 subMenus: [
                     {
-                        title: 'Create',
+                        title: ctrl.translator.get('portal_create'),
                         href: '/backend/article/create',
                         icon: 'mi mi-Add'
                     },
@@ -36,7 +37,7 @@
                 href: '#',
                 subMenus: [
                     {
-                        title: 'Create',
+                        title: ctrl.translator.get('portal_create'),
                         href: '/backend/product/create',
                         icon: 'mi mi-Add'
                     },
@@ -54,7 +55,7 @@
                 href: '#',
                 subMenus: [
                     {
-                        title: 'Create',
+                        title: ctrl.translator.get('portal_create'),
                         href: '/backend/page/create',
                         icon: 'mi mi-Add'
                     },
@@ -72,7 +73,7 @@
                 href: '#',
                 subMenus: [
                     {
-                        title: 'Create',
+                        title: ctrl.translator.get('portal_create'),
                         href: '/backend/module/create',
                         icon: 'mi mi-Add'
                     },
@@ -90,7 +91,7 @@
                 href: '#',
                 subMenus: [
                     {
-                        title: 'Create',
+                        title: ctrl.translator.get('portal_create'),
                         href: '/backend/theme/create',
                         icon: 'mi mi-Add'
                     },
@@ -108,7 +109,7 @@
                 href: '#',
                 subMenus: [
                     {
-                        title: 'Create',
+                        title: ctrl.translator.get('portal_create'),
                         href: '/backend/media/create',
                         icon: 'mi mi-Add'
                     },
@@ -126,7 +127,7 @@
                 href: '#',
                 subMenus: [
                     {
-                        title: 'Create',
+                        title: ctrl.translator.get('portal_create'),
                         href: '/backend/file/create',
                         icon: 'mi mi-Add'
                     },
@@ -144,7 +145,7 @@
                 href: '#',
                 subMenus: [
                     {
-                        title: 'Create',
+                        title: ctrl.translator.get('portal_create'),
                         href: '/backend/user/create',
                         icon: 'mi mi-Add'
                     },
@@ -172,7 +173,7 @@
                         icon: 'mi mi-Pen'
                     },
                     {
-                        title: 'Create',
+                        title: ctrl.translator.get('portal_create'),
                         href: '/backend/configuration/create',
                         icon: 'mi mi-Add'
                     },
@@ -190,7 +191,7 @@
                 href: '#',
                 subMenus: [
                     {
-                        title: 'Create',
+                        title: ctrl.translator.get('portal_create'),
                         href: '/backend/language/create',
                         icon: 'mi mi-Add'
                     },
@@ -202,7 +203,7 @@
                 ]
             }
         ]
-    },
+    }],
     bindings: {
     }
 });

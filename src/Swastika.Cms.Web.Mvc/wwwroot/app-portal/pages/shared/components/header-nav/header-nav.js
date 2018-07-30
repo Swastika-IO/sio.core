@@ -9,9 +9,12 @@
             }
             ctrl.changeLang = function (lang) {
                 ctrl.settings.lang = lang;                
-                commonServices.setSettings(ctrl.settings);
-                commonServices.removeTranslator();
-                commonServices.fillTranslator(lang);
+                commonServices.setSettings(ctrl.settings).then(function () {
+                    commonServices.removeTranslator();
+                    commonServices.fillTranslator(lang).then(function () {
+                        window.top.location = location.href;
+                    });
+                });                
             };
             ctrl.logOut = function () {
                 $rootScope.logOut();

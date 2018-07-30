@@ -70,8 +70,7 @@ app.factory('commonServices', ['$location', '$http', '$rootScope', 'authService'
 
     var _setSettings = async function (settings) {
         if (settings && settings.cultures.length > 0) {
-            localStorageService.set('settings', settings);
-            window.top.location = location.href;
+            localStorageService.set('settings', settings);            
         }
     };
 

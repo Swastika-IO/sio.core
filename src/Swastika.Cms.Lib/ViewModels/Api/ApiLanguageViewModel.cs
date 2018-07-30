@@ -11,6 +11,7 @@ using Swastika.Domain.Core.ViewModels;
 using Swastika.Domain.Data.ViewModels;
 using System;
 using System.ComponentModel.DataAnnotations;
+using System.Linq;
 using System.Threading.Tasks;
 
 namespace Swastika.Cms.Lib.ViewModels.BackEnd
@@ -37,6 +38,10 @@ namespace Swastika.Cms.Lib.ViewModels.BackEnd
 
         [JsonProperty("value")]
         public string Value { get; set; }
+
+        [Required]
+        [JsonProperty("defaultValue")]
+        public string DefaultValue { get; set; }
 
         #endregion Models
 
@@ -89,6 +94,38 @@ namespace Swastika.Cms.Lib.ViewModels.BackEnd
             Property = new DataValueViewModel() { DataType = DataType, Value = Value, Name = Keyword };
         }
 
+        public override RepositoryResponse<bool> RemoveRelatedModels(ApiLanguageViewModel view, SiocCmsContext _context = null, IDbContextTransaction _transaction = null)
+        {
+            foreach (var culture in ListSupportedCulture.Where(c => c.Specificulture != Specificulture))
+            {
+                var lang = _context.SiocLanguage.First(c => c.Keyword == Keyword && c.Specificulture == culture.Specificulture);
+                if (lang != null)
+                {
+                    _context.SiocLanguage.Remove(lang);
+                }
+            }
+            return new RepositoryResponse<bool>()
+            {
+                IsSucceed = _context.SaveChanges() > 0
+            };
+        }
+
+        public override async Task<RepositoryResponse<bool>> RemoveRelatedModelsAsync(ApiLanguageViewModel view, SiocCmsContext _context = null, IDbContextTransaction _transaction = null)
+        {
+            foreach (var culture in ListSupportedCulture.Where(c => c.Specificulture != Specificulture))
+            {
+                var lang = _context.SiocLanguage.First(c => c.Keyword == Keyword && c.Specificulture == culture.Specificulture);
+                if (lang != null)
+                {
+                    _context.SiocLanguage.Remove(lang);
+                }
+            }
+            return new RepositoryResponse<bool>()
+            {
+                IsSucceed = (await _context.SaveChangesAsync()) > 0
+            };
+        }
+
         #endregion Overrides
-    }   
+    }
 }

@@ -14,7 +14,7 @@ namespace Swastika.Cms.Lib.Services
     public class CmsCultureConfiguration
     {
         public JObject Translator { get; set; }
-        public List<BELanguageViewModel> ListLanguage { get; set; }
+        public List<ApiLanguageViewModel> ListLanguage { get; set; }
 
         public CmsCultureConfiguration()
         {            
@@ -33,15 +33,15 @@ namespace Swastika.Cms.Lib.Services
 
         public void Init(SiocCmsContext _context = null, IDbContextTransaction _transaction = null)
         {
-            var getLanguages = BELanguageViewModel.Repository.GetModelList(_context, _transaction);
-            ListLanguage = getLanguages.Data ?? new List<BELanguageViewModel>();
+            var getLanguages = ApiLanguageViewModel.Repository.GetModelList(_context, _transaction);
+            ListLanguage = getLanguages.Data ?? new List<ApiLanguageViewModel>();
             Translator = new JObject();
             foreach (var culture in GetSupportedCultures())
             {
                 JObject arr = new JObject();
                 foreach (var lang in ListLanguage.Where(l=>l.Specificulture== culture.Specificulture))
                 {
-                    JProperty l = new JProperty(lang.Keyword, lang.Value);
+                    JProperty l = new JProperty(lang.Keyword, lang.Value??lang.DefaultValue);
                     arr.Add(l);
                 }
                 Translator.Add(new JProperty(culture.Specificulture, arr));
@@ -59,7 +59,7 @@ namespace Swastika.Cms.Lib.Services
             string oldValue = config.Value;
 
             config.Value = value;
-            var result = BELanguageViewModel.Repository.SaveModel(config);
+            var result = ApiLanguageViewModel.Repository.SaveModel(config);
 
             if (result.IsSucceed)
             {

@@ -6,6 +6,13 @@
         <div class="row">
             <section class="col-lg-12">
                 <div class="form-group">
+                    <label class="control-label">Type</label>
+                    <select class="form-control mr-2"
+                            ng-model="activedLanguage.category">
+                        <option ng-repeat="item in cates" ng-value="item">{{item}}</option>
+                    </select>
+                </div>
+                <div class="form-group">
                     <label class="control-label">Keyword</label>
                     <input type="text" required
                            class="form-control"
@@ -15,6 +22,10 @@
                     <label class="control-label">Value</label>
                     <!--<module-form-editor data="activedLanguage.property" input-class="mr-2"/>-->
                     <input type="text" class="form-control" ng-model="activedLanguage.property.value" ng-change="generateKeyword(activedLanguage.property.value)" />
+                </div>
+                <div class="form-group">
+                    <label class="control-label">Default Value</label>
+                    <input type="text" class="form-control" ng-model="activedLanguage.defaultValue" ng-change="generateKeyword(activedLanguage.defaultValue)" />
                 </div>
                 <!--<div class="form-group">
                     <label class="control-label">Description</label>
@@ -28,13 +39,7 @@
                            class="form-control"
                            ng-model="activedLanguage.category" />
                 </div>
-                 <div class="form-group">
-                    <label class="control-label">Type</label>
-                    <select ng-change="initEditors()" class="form-control mr-2"
-                            ng-model="activedLanguage.property.dataType">
-                        <option ng-repeat="item in dataTypes" ng-value="item.value">{{item.title}}</option>
-                    </select>
-                </div>-->
+                 -->
                 
                 
             </section>
