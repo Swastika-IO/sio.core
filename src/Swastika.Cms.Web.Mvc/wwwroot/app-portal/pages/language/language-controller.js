@@ -121,4 +121,13 @@ app.controller('LanguageController', ['$scope', '$rootScope', '$routeParams', '$
             }
         };
 
+        $scope.generateKeyword = function (text) {
+            $scope.activedLanguage.keyword = text.replace(/[^a-zA-Z0-9]+/g, '_')
+                .replace(/([A-Z]+)([A-Z][a-z])/g, '$1-$2')
+                .replace(/([a-z])([A-Z])/g, '$1-$2')
+                .replace(/([0-9])([^0-9])/g, '$1-$2')
+                .replace(/([^0-9])([0-9])/g, '$1-$2')
+                .replace(/-+/g, '_')
+                .toLowerCase();
+        }
     }]);

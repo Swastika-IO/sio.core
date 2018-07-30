@@ -5,17 +5,17 @@
                 <div class="row">
                     <div class="col text-center">
                         <button type="submit" class="btn btn-lg btn-outline-primary btn-block">
-                            <i class="mi mi-Save"></i> {{$ctrl.translator['save']}}
+                            <i class="mi mi-Save"></i> <span class="text-uppercase" ng-bind="$ctrl.translator.get('save')"></span>
                         </button>
                     </div>
                     <div class="col text-center" ng-show="$ctrl.previewUrl">
                         <a href="{{$ctrl.previewUrl}}" class="btn btn-lg btn-outline-info btn-block" target="_blank">
-                            <i class="mi mi-PreviewLink"></i> PREVIEW
+                            <i class="mi mi-PreviewLink"></i> <span class="text-uppercase" ng-bind="$ctrl.translator.get('preview')"></span>
                         </a>
                     </div>
                     <div class="col text-center" ng-show="$ctrl.backUrl">
                         <a href="{{$ctrl.backUrl}}" class="btn btn-lg btn-outline-secondary btn-block">
-                            <i class="mi mi-Previous"></i> BACK
+                            <i class="mi mi-Previous"></i> <span class="text-uppercase" ng-bind="$ctrl.translator.get('back')"></span>
                         </a>
                     </div>
                 </div>

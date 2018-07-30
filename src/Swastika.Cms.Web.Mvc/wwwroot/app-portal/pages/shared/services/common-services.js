@@ -79,6 +79,10 @@ app.factory('commonServices', ['$location', '$http', '$rootScope', 'authService'
         localStorageService.remove('settings');
     };
 
+    var _removeTranslator = async function () {
+        localStorageService.remove('translator');
+    };
+
     var _fillSettings = async function (culture) {
         var settings = localStorageService.get('settings');
         if (settings) {
@@ -169,6 +173,7 @@ app.factory('commonServices', ['$location', '$http', '$rootScope', 'authService'
     adminCommonFactory.fillTranslator = _fillTranslator;
     adminCommonFactory.setSettings = _setSettings;
     adminCommonFactory.removeSettings = _removeSettings;
+    adminCommonFactory.removeTranslator = _removeTranslator;
     adminCommonFactory.showAlertMsg = _showAlertMsg;
     adminCommonFactory.checkfile = _checkfile;
     adminCommonFactory.fillSettings = _fillSettings;

@@ -8,8 +8,10 @@
                 ctrl.settings = await commonServices.getSettings();
             }
             ctrl.changeLang = function (lang) {
-                ctrl.settings.lang = lang;
+                ctrl.settings.lang = lang;                
                 commonServices.setSettings(ctrl.settings);
+                commonServices.removeTranslator();
+                commonServices.fillTranslator(lang);
             };
             ctrl.logOut = function () {
                 $rootScope.logOut();
