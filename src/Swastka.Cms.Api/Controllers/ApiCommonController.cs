@@ -48,30 +48,30 @@ namespace Swastka.Cms.Api.Controllers
         [Route("settings")]
         public RepositoryResponse<SiteSettingsViewModel> Settings()
         {
+            var cultures = CommonRepository.Instance.LoadCultures();
+            var culture = cultures.FirstOrDefault(c => c.Specificulture == _lang);
             SiteSettingsViewModel settings = new SiteSettingsViewModel()
             {
-                Lang = GlobalConfigurationService.Instance.CmsConfigurations.Language,                
+                Lang = GlobalConfigurationService.Instance.CmsConfigurations.Language,
                 ThemeId = GlobalConfigurationService.Instance.GetLocalInt(SWCmsConstants.ConfigurationKeyword.ThemeId, _lang),
-                Cultures = CommonRepository.Instance.LoadCultures(),
+                Cultures = cultures,
                 PageTypes = Enum.GetNames(typeof(SWCmsConstants.CateType)).ToList()
 
             };
-            settings.LangIcon = settings.Cultures.First(c => c.Specificulture == _lang).Icon;
+            settings.LangIcon = culture?.Icon ?? GlobalConfigurationService.Instance.CmsConfigurations.Language;
             return new RepositoryResponse<SiteSettingsViewModel>()
             {
                 IsSucceed = true,
                 Data = settings
             };
         }
-        
+
         // GET api/category/id
         [HttpGet]
         [Route("{culture}/translator")]
         [Route("translator")]
         public RepositoryResponse<JObject> Languages()
         {
-            GlobalConfigurationService.Instance.RefreshCultures();
-
             return new RepositoryResponse<JObject>()
             {
                 IsSucceed = true,

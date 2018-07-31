@@ -176,8 +176,9 @@ app.controller('PageController', ['$scope', '$rootScope', '$routeParams', '$time
                 $scope.activedPage = resp.data;
                 $rootScope.showMessage('success', 'success');
                 $rootScope.isBusy = false;
+                $location.path('/backend/page/list');
                 $scope.$apply();
-                //$location.path('/backend/page/details/' + resp.data.id);
+                
             }
             else {
                 if (resp) { $rootScope.showErrors(resp.errors); }

@@ -13,13 +13,7 @@ namespace Swastika.Cms.Mvc.ViewComponents
     {
         public IViewComponentResult Invoke()
         {
-            string culture = ViewBag.culture;
             var topCates = new List<InfoCategoryViewModel>();
-            //Swastika.Cms.Lib.ViewModels.Info.InfoCategoryViewModel.Repository.GetModelListBy
-            //(c => c.Specificulture == culture && c.TtsCategoryPosition.Count(
-            //    p => p.Position == (int)Constants.CatePosition.Footer) > 0
-
-            //);
             return View(topCates.OrderBy(c => c.Priority).ToList());
         }
     }

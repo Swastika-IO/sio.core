@@ -15,8 +15,7 @@ namespace Swastika.Cms.Mvc.ViewComponents
         {
             string culture = ViewBag.culture;
             var topCates = InfoCategoryViewModel.Repository.GetModelListBy
-                (c => c.Specificulture == culture && c.SiocCategoryPosition.Count(p => p.PositionId == (int)SWCmsConstants.CatePosition.Top) > 0
-
+                (c => c.Specificulture == culture && c.SiocCategoryPosition.Any(p => p.PositionId == (int)SWCmsConstants.CatePosition.Top)
                 );
             var data = topCates.Data ?? new System.Collections.Generic.List<InfoCategoryViewModel>();
             return View(data);

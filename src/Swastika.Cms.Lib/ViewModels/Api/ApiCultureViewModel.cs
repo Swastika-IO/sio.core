@@ -4,11 +4,14 @@
 
 using Microsoft.EntityFrameworkCore.Storage;
 using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 using Swastika.Cms.Lib.Models.Cms;
+using Swastika.Cms.Lib.Repositories;
 using Swastika.Cms.Lib.Services;
 using Swastika.Domain.Core.ViewModels;
 using Swastika.Domain.Data.ViewModels;
 using System.ComponentModel.DataAnnotations;
+using System.Linq;
 using System.Threading.Tasks;
 
 namespace Swastika.Cms.Lib.ViewModels.Api
@@ -120,41 +123,45 @@ namespace Swastika.Cms.Lib.ViewModels.Api
         public override async Task<RepositoryResponse<bool>> RemoveRelatedModelsAsync(ApiCultureViewModel view, SiocCmsContext _context = null, IDbContextTransaction _transaction = null)
         {
             var result = new RepositoryResponse<bool>() { IsSucceed = true };
-            var configs = await ApiConfigurationViewModel.Repository.GetModelListByAsync(c => c.Specificulture == view.Specificulture, _context, _transaction);
-            if (configs.IsSucceed)
-            {
-                foreach (var item in configs.Data)
-                {
-                    var removeResult = await item.RemoveModelAsync(false, _context, _transaction);
-                    result.IsSucceed = result.IsSucceed && removeResult.IsSucceed;
-                    if (!result.IsSucceed)
-                    {
-                        result.Errors.AddRange(removeResult.Errors);
-                        result.Exception = removeResult.Exception;
-                        break;
-                    }
-                }
-            }
+
+            var configs = _context.SiocConfiguration.Where(c => c.Specificulture == Specificulture).ToList();
+            configs.ForEach(c => _context.Entry(c).State = Microsoft.EntityFrameworkCore.EntityState.Deleted);
+
+            var languages = _context.SiocLanguage.Where(l => l.Specificulture == Specificulture).ToList();
+            languages.ForEach(l => _context.Entry(l).State = Microsoft.EntityFrameworkCore.EntityState.Deleted);
+
+            var cates = _context.SiocCategory.Where(c => c.Specificulture == Specificulture).ToList();
+            cates.ForEach(c => _context.Entry(c).State = Microsoft.EntityFrameworkCore.EntityState.Deleted);
+
+            var modules = _context.SiocModule.Where(c => c.Specificulture == Specificulture).ToList();
+            modules.ForEach(c => _context.Entry(c).State = Microsoft.EntityFrameworkCore.EntityState.Deleted);
+
+            var articles = _context.SiocArticle.Where(c => c.Specificulture == Specificulture).ToList();
+            articles.ForEach(c => _context.Entry(c).State = Microsoft.EntityFrameworkCore.EntityState.Deleted);
+
+            var products = _context.SiocProduct.Where(c => c.Specificulture == Specificulture).ToList();
+            products.ForEach(c => _context.Entry(c).State = Microsoft.EntityFrameworkCore.EntityState.Deleted);
+
+            await  _context.SaveChangesAsync();
+
+            return result;
+        }
+
+        public override async Task<RepositoryResponse<SiocCulture>> RemoveModelAsync(bool isRemoveRelatedModels = false, SiocCmsContext _context = null, IDbContextTransaction _transaction = null)
+        {
+            var result = await base.RemoveModelAsync(isRemoveRelatedModels, _context, _transaction);
             if (result.IsSucceed)
             {
-                var languages = await ApiLanguageViewModel.Repository.GetModelListByAsync(
-                    c => c.Specificulture == view.Specificulture, _context, _transaction);
-                if (languages.IsSucceed)
+                var cultures = CommonRepository.Instance.LoadCultures(null, _context, _transaction);
+                var settings = FileRepository.Instance.GetFile("appsettings", ".json", string.Empty, true, "{}");
+                var jsonSettings = JObject.Parse(settings.Content);
+                if (jsonSettings["Language"].Value<string>() == Specificulture)
                 {
-                    foreach (var item in languages.Data)
-                    {
-                        var removeResult = await item.RemoveModelAsync(false, _context, _transaction);
-                        result.IsSucceed = result.IsSucceed && removeResult.IsSucceed;
-                        if (!result.IsSucceed)
-                        {
-                            result.Errors.AddRange(removeResult.Errors);
-                            result.Exception = removeResult.Exception;
-                            break;
-                        }
-                    }
+                    jsonSettings["Language"] = cultures.FirstOrDefault().Specificulture;                    
                 }
+                FileRepository.Instance.SaveFile(settings);
+                GlobalConfigurationService.Instance.RefreshAll(_context, _transaction);
             }
-
             return result;
         }
 

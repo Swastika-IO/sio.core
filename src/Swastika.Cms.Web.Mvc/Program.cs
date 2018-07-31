@@ -12,25 +12,13 @@ using Microsoft.AspNetCore.Hosting;
 namespace Swastika.Cms.Web.Mvc
 {
     public static class Program
-    {
-        //public static void Main(string[] args)
-        //{
-        //    BuildWebHost(args).Run();
-        //}
-
-        //public static IWebHost BuildWebHost(string[] args) =>
-        //    WebHost.CreateDefaultBuilder(args)
-        //            .UseStartup<Startup>()
-        //            .UseApplicationInsights()
-        //            .Build();
+    {   
         public static void Main(string[] args)
         {
             CreateWebHostBuilder(args).Build().Run();
         }
 
-        public static IWebHostBuilder CreateWebHostBuilder(string[] args) =>
-            //WebHost.CreateDefaultBuilder(args)
-            //.UseSetting(WebHostDefaults.PreventHostingStartupKey, "true")
+        public static IWebHostBuilder CreateWebHostBuilder(string[] args) =>            
             WebHost.CreateDefaultBuilder(args)
                 .UseStartup<Startup>();
     }

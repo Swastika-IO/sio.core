@@ -13,7 +13,7 @@ namespace Swastika.Cms.Web.Mvc.Controllers
 {
     public class InitCmsController : BaseController
     {
-        private const string InitUrl = "/Portal/Init";
+        private const string InitUrl = "Portal/Init";
         private readonly UserManager<ApplicationUser> _userManager;
         public InitCmsController(IHostingEnvironment env,
              UserManager<ApplicationUser> userManager

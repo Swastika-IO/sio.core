@@ -24,7 +24,6 @@ namespace Swastika.Cms.Mvc.Controllers
         protected string _domain;
         protected IConfiguration _configuration;
         protected IHostingEnvironment _env;
-        private string _currentLanguage;
 
         public BaseController(IHostingEnvironment env)
         {
@@ -49,12 +48,7 @@ namespace Swastika.Cms.Mvc.Controllers
 
         protected string CurrentLanguage
         {
-            get
-            {
-                _currentLanguage = RouteData?.Values[ROUTE_CULTURE_NAME] != null
-                                    ? RouteData.Values[ROUTE_CULTURE_NAME].ToString().ToLower() : ROUTE_DEFAULT_CULTURE.ToLower();
-                return _currentLanguage;
-            }
+            get => RouteData?.Values[ROUTE_CULTURE_NAME]?.ToString().ToLower() ?? ROUTE_DEFAULT_CULTURE.ToLower();            
         }
 
         public override void OnActionExecuting(ActionExecutingContext context)

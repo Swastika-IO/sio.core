@@ -14,8 +14,6 @@ using Swastika.Cms.Lib.ViewModels.FrontEnd;
 using Swastika.Cms.Lib.ViewModels.Info;
 using Swastika.Identity.Models;
 using System;
-using System.Net.Http;
-using System.Net.Http.Headers;
 using static Swastika.Common.Utility.Enums;
 
 namespace Swastika.Cms.Mvc.Controllers
