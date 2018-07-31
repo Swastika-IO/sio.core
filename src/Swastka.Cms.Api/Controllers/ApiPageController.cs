@@ -84,7 +84,7 @@ namespace Swastka.Cms.Api.Controllers
                         RepositoryResponse<ApiCategoryViewModel> result = new RepositoryResponse<ApiCategoryViewModel>()
                         {
                             IsSucceed = true,
-                            Data = await ApiCategoryViewModel.InitViewAsync(model)
+                            Data = await ApiCategoryViewModel.InitAsync(model)
                         };
                         return JObject.FromObject(result);
                     }
@@ -215,11 +215,7 @@ namespace Swastka.Cms.Api.Controllers
             [FromBody] RequestPaging request, int? level = 0)
         {
             ParseRequestPagingDate(request);
-            Expression<Func<SiocCategory, bool>> predicate;
-            switch (request.Key)
-            {
-                case "fe":
-                    predicate = model =>
+            Expression<Func<SiocCategory, bool>> predicate = model =>
                         model.Specificulture == _lang
                         && (string.IsNullOrWhiteSpace(request.Keyword)
                             || (model.Title.Contains(request.Keyword)
@@ -230,6 +226,9 @@ namespace Swastka.Cms.Api.Controllers
                         && (!request.ToDate.HasValue
                             || (model.CreatedDateTime <= request.ToDate.Value)
                         );
+            switch (request.Key)
+            {
+                case "fe":
                     var fedata = await FECategoryViewModel.Repository.GetModelListByAsync(predicate, request.OrderBy, request.Direction, request.PageSize, request.PageIndex).ConfigureAwait(false);
                     if (fedata.IsSucceed)
                     {
@@ -241,17 +240,7 @@ namespace Swastka.Cms.Api.Controllers
                     }
                     return JObject.FromObject(fedata);
                 case "be":
-                    predicate = model =>
-                        model.Specificulture == _lang
-                        && (string.IsNullOrWhiteSpace(request.Keyword)
-                            || (model.Title.Contains(request.Keyword)
-                            || model.Excerpt.Contains(request.Keyword)))
-                        && (!request.FromDate.HasValue
-                            || (model.CreatedDateTime >= request.FromDate.Value)
-                        )
-                        && (!request.ToDate.HasValue
-                            || (model.CreatedDateTime <= request.ToDate.Value)
-                        );
+                    
                     var bedata = await ApiCategoryViewModel.Repository.GetModelListByAsync(predicate, request.OrderBy, request.Direction, request.PageSize, request.PageIndex).ConfigureAwait(false);
                     if (bedata.IsSucceed)
                     {
@@ -263,18 +252,7 @@ namespace Swastka.Cms.Api.Controllers
                     }
                     return JObject.FromObject(bedata);
                 default:
-                    predicate = model =>
-                        model.Specificulture == _lang
-                        && model.Level == level
-                        && (string.IsNullOrWhiteSpace(request.Keyword)
-                            || (model.Title.Contains(request.Keyword)
-                            || model.Excerpt.Contains(request.Keyword)))
-                        && (!request.FromDate.HasValue
-                            || (model.CreatedDateTime >= request.FromDate.Value)
-                        )
-                        && (!request.ToDate.HasValue
-                            || (model.CreatedDateTime <= request.ToDate.Value)
-                        );
+                   
                     var data = await InfoCategoryViewModel.Repository.GetModelListByAsync(predicate, request.OrderBy, request.Direction, request.PageSize, request.PageIndex).ConfigureAwait(false);
                     if (data.IsSucceed)
                     {

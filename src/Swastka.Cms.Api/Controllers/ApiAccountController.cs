@@ -293,7 +293,7 @@ namespace Swastika.Cms.Api.Controllers
                         RepositoryResponse<BEUserViewModel> result = new RepositoryResponse<BEUserViewModel>()
                         {
                             IsSucceed = true,
-                            Data = await BEUserViewModel.InitViewAsync(model)
+                            Data = await BEUserViewModel.InitAsync(model)
                         };
                         result.Data.Specificulture = _lang;
                         return JObject.FromObject(result);
@@ -313,7 +313,7 @@ namespace Swastika.Cms.Api.Controllers
                         RepositoryResponse<InfoUserViewModel> result = new RepositoryResponse<InfoUserViewModel>()
                         {
                             IsSucceed = true,
-                            Data = await InfoUserViewModel.InitViewAsync(model)
+                            Data = await InfoUserViewModel.InitAsync(model)
                         };
                         result.Data.Specificulture = _lang;
                         return JObject.FromObject(result);

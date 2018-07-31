@@ -63,7 +63,7 @@ namespace Swastka.Cms.Api.Controllers
                         Specificulture = _lang,
                         Fields = getModule.Data.Fields
                     };
-                    return new RepositoryResponse<ApiModuleDataViewModel>() { IsSucceed = true, Data = await ApiModuleDataViewModel.InitViewAsync(model) };
+                    return new RepositoryResponse<ApiModuleDataViewModel>() { IsSucceed = true, Data = await ApiModuleDataViewModel.InitAsync(model) };
                 }
                 else
                 {

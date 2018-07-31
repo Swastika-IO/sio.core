@@ -56,7 +56,7 @@ namespace Swastka.Cms.Api.Controllers
                         var result = new RepositoryResponse<BEMediaViewModel>()
                         {
                             IsSucceed = true,
-                            Data = (await BEMediaViewModel.InitViewAsync(media))
+                            Data = (await BEMediaViewModel.InitAsync(media))
                         };
                         return JObject.FromObject(result);
                     }

@@ -55,7 +55,7 @@ namespace Swastka.Cms.Api.Controllers
                         var result = new RepositoryResponse<ApiCustomerViewModel>()
                         { 
                             IsSucceed = true,
-                            Data = (await ApiCustomerViewModel.InitViewAsync(customer))
+                            Data = (await ApiCustomerViewModel.InitAsync(customer))
                         };
                         return JObject.FromObject(result);
                     }

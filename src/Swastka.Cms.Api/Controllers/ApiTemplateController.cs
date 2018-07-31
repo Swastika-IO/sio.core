@@ -60,7 +60,7 @@ namespace Swastka.Cms.Api.Controllers
                     RepositoryResponse<ApiTemplateViewModel> result = new RepositoryResponse<ApiTemplateViewModel>()
                     {
                         IsSucceed = true,
-                        Data = await ApiTemplateViewModel.InitViewAsync(model)
+                        Data = await ApiTemplateViewModel.InitAsync(model)
                     };
                     result.Data.Specificulture = _lang;
                     return result;

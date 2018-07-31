@@ -54,7 +54,7 @@ namespace Swastka.Cms.Api.Controllers
                         var result = new RepositoryResponse<BEConfigurationViewModel>()
                         { 
                             IsSucceed = true,
-                            Data = (await BEConfigurationViewModel.InitViewAsync(configuration))
+                            Data = (await BEConfigurationViewModel.InitAsync(configuration))
                         };
                         return JObject.FromObject(result);
                     }

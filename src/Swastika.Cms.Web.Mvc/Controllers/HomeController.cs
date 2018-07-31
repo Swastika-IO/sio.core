@@ -57,46 +57,26 @@ namespace Swastika.Cms.Mvc.Controllers
         public IActionResult Home(string pageName, int pageIndex, int pageSize = 10)
         {
             // Home Page
-            if (string.IsNullOrEmpty(pageName) || pageName == "Home")
+            var getPage = FECategoryViewModel.Repository.GetSingleModel(
+                p => p.Specificulture == CurrentLanguage
+                    &&
+                    (
+                        (
+                            (string.IsNullOrEmpty(pageName) || pageName == "Home")
+                            && p.Type == (int)SWCmsConstants.CateType.Home
+                        )
+                        || p.SeoName == pageName
+                    )
+
+                );
+            if (getPage.IsSucceed && getPage.Data.View != null)
             {
-                var getPage = FECategoryViewModel.Repository.GetSingleModel(p => p.Type == (int)SWCmsConstants.CateType.Home && p.Specificulture == CurrentLanguage);
-                if (getPage.IsSucceed && getPage.Data.View != null)
-                {
-                    ViewBag.pageClass = getPage.Data.CssClass;
-                    return View(getPage.Data);
-                }
-                else
-                {
-                    return RedirectToAction("Index", "Backend");
-                }
+                ViewBag.pageClass = getPage.Data.CssClass;
+                return View(getPage.Data);
             }
             else
             {
-                var getPage = FECategoryViewModel.Repository.GetSingleModel(
-                    p => p.SeoName == pageName && p.Specificulture == CurrentLanguage);
-                if (getPage.IsSucceed && getPage.Data.View != null)
-                {
-                    if (getPage.Data.Type == SWCmsConstants.CateType.List)
-                    {
-                        getPage.Data.Articles.Items.ForEach(a =>
-                        {
-                            a.Article.DetailsUrl = SwCmsHelper.GetRouterUrl("Article", new { a.Article.SeoName }, Request, Url);
-                        });
-                    }
-                    if (getPage.Data.Type == SWCmsConstants.CateType.ListProduct)
-                    {
-                        getPage.Data.Products.Items.ForEach(p =>
-                        {
-                            p.Product.DetailsUrl = SwCmsHelper.GetRouterUrl("Product", new { p.Product.SeoName }, Request, Url);
-                        });
-                    }
-                    ViewBag.pageClass = getPage.Data.CssClass;
-                    return View(getPage.Data);
-                }
-                else
-                {
-                    return Redirect(string.Format("/{0}", CurrentLanguage));
-                }
+                return RedirectToAction("Index", "Backend");
             }
         }
 
@@ -172,7 +152,7 @@ namespace Swastika.Cms.Mvc.Controllers
 
         [HttpGet]
         [Route("page/{pageName}")]
-        public IActionResult Article(string pageName)
+        public IActionResult Page(string pageName)
         {
             var getPage = FECategoryViewModel.Repository.GetSingleModel(
                 p => p.Type == (int)SWCmsConstants.CateType.Home && p.Specificulture == CurrentLanguage);
