@@ -220,6 +220,18 @@ app.run(['$rootScope', '$location', 'commonServices', 'authService', function ($
         });
         $rootScope.isBusy = false;
     }
+
+    $rootScope.updateTranslator = function () {
+        commonServices.removeTranslator();
+        commonServices.fillTranslator($rootScope.settings.lang).then(function () {
+            window.top.location = location.href;
+        });
+        $rootScope.isBusy = false;
+    }
+    $rootScope.updateConfigs = function () {
+        $rootScope.updateSettings();
+        $rootScope.updateTranslator();
+    }
     $rootScope.executeFunctionByName = async function (functionName, args, context) {
         if (functionName !== null) {
             var namespaces = functionName.split(".");

@@ -135,7 +135,7 @@ app.controller('CultureController', ['$scope', '$rootScope', '$routeParams', '$t
                 $rootScope.showMessage('success', 'success');
                 $rootScope.isBusy = false;
                 $rootScope.updateSettings();
-                $location.path('/backend/culture/list');
+                window.location.href = '/backend/culture/list';
                 $scope.$apply();
                 
             }
@@ -152,7 +152,8 @@ app.controller('CultureController', ['$scope', '$rootScope', '$routeParams', '$t
         $scope.removeCultureConfirmed = async function (id) {
             var result = await cultureServices.removeCulture(id);
             if (result.isSucceed) {
-                $scope.loadCultures();
+                $rootScope.updateSettings();
+                window.location.href = '/backend/culture/list';
             }
             else {
                 $rootScope.showMessage('failed');

@@ -60,7 +60,15 @@ namespace Swastika.Cms.Lib.ViewModels.Api
         #endregion Contructors
 
         #region Overrides
-
+        public override async Task<RepositoryResponse<ApiCultureViewModel>> SaveModelAsync(bool isSaveSubModels = false, SiocCmsContext _context = null, IDbContextTransaction _transaction = null)
+        {
+            var result = await base.SaveModelAsync(isSaveSubModels, _context, _transaction);
+            if (result.IsSucceed)
+            {
+                GlobalConfigurationService.Instance.RefreshCultures();
+            }
+            return result;
+        }
         public override async Task<RepositoryResponse<bool>> SaveSubModelsAsync(SiocCulture parent, SiocCmsContext _context = null, IDbContextTransaction _transaction = null)
         {
             if (Id == 0)
@@ -74,7 +82,7 @@ namespace Swastika.Cms.Lib.ViewModels.Api
                         {
                             Keyword = c.Keyword,
                             Specificulture = Specificulture,
-                            Category = c.Description,
+                            Category = c.Category,
                             DataType = (int)c.DataType,
                             Description = c.Description,
                             Priority = c.Priority.HasValue ? c.Priority.Value : 0,
@@ -94,7 +102,7 @@ namespace Swastika.Cms.Lib.ViewModels.Api
                         {
                             Keyword = c.Keyword,
                             Specificulture = Specificulture,
-                            Category = c.Description,
+                            Category = c.Category,
                             DataType = (int)c.DataType,
                             Description = c.Description,
                             Priority = c.Priority.HasValue ? c.Priority.Value : 0,
