@@ -9,7 +9,7 @@
             <div class="input-group-sm">
                 <custom-file header="''" folder="'Medias'" media="activedMedia" auto="'false'"></custom-file>                
 
-                <button type="button" ng-click="saveMedia(activedMedia)" class="btn btn-secondary"><i class="mi mi-Upload"></i> Upload</button>
+                <button type="button" ng-click="saveMedia(activedMedia)" class="btn btn-secondary"><em class="mi mi-Upload"></em> Upload</button>
             </div>
         </div>
         <div class="col-md-3">
@@ -59,14 +59,14 @@
                 <td>
 
                     <div class="input-group input-group-sm mb-3">
-                        <input id="path-modal-{{$index}}" value="{{item.fullPath}}" onclick="this.select()" class="form-control form-control-sm" readonly />
+                        <emnput id="path-modal-{{$index}}" value="{{item.fullPath}}" onclick="this.select()" class="form-control form-control-sm" readonly />
                         <div class="input-group-append">
-                            <button class="btn btn-outline-secondary btn-clipboard" type="button" data-clipboard-target="#path-modal-{{$index}}"><i class="mi mi-Copy"></i></button>
+                            <button class="btn btn-outline-secondary btn-clipboard" type="button" data-clipboard-target="#path-modal-{{$index}}"><em class="mi mi-Copy"></em></button>
                         </div>
                     </div>
                 </td>
                 <td>
-                    <img imageonload src="{{item.fullPath}}" height="50" />
+                    <emmg imageonload src="{{item.fullPath}}" height="50" />
                 </td>
                 <td>
                     <small>

@@ -14,7 +14,7 @@
                     <input type="checkbox" asp-for="@Model[i].IsSupported" class="switch"
                            name="@(prefix).IsSupported">
                     <label class="switch" asp-for="@Model[i].IsSupported">
-                        <i class="flag-icon @Model[i].Icon"></i> @Model[i].Description
+                         <em class="flag-icon @Model[i].Icon"></em> @Model[i].Description
                     </label>
                 </span>
             </div>
@@ -27,6 +27,6 @@
                id="ListSupportedCulture_@Model[i].Specificulture">
         <input type="hidden" asp-for="@Model[i].Specificulture" />
         <label class="custom-control-label" for="ListSupportedCulture_@Model[i].Specificulture">
-            <i class="flag-icon h5 @Model[i].Icon" style="margin-right: 5px;margin-left: 10px;"></i> @Model[i].Specificulture
+             <em class="flag-icon h5 @Model[i].Icon" style="margin-right: 5px;margin-left: 10px;"></em> @Model[i].Specificulture
         </label>
     </div>*@

@@ -812,7 +812,7 @@
                         if (that.options.hideDisabled && (this.disabled || this.parentNode.tagName === 'OPTGROUP' && this.parentNode.disabled)) return;
 
                         var $this = $(this),
-                            icon = $this.data('icon') && that.options.showIcon ? '<i class="' + that.options.iconBase + ' ' + $this.data('icon') + '"></i> ' : '',
+                            icon = $this.data('icon') && that.options.showIcon ? ' <em class="' + that.options.iconBase + ' ' + $this.data('icon') + '"></em> ' : '',
                             subtext;
 
                         if (that.options.showSubtext && $this.data('subtext') && !that.multiple) {

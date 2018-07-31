@@ -14,7 +14,7 @@
         </div>
         <div class="pull-left info">
             <p>@UserManager.GetUserName(User)</p>
-            <button type="submit" style="text-decoration: none;font-size: 11px;background: transparent;border: 0px;"><i class="fa fa-circle text-red"></i> Log out</button>
+            <button type="submit" style="text-decoration: none;font-size: 11px;background: transparent;border: 0px;"> <em class="fa fa-circle text-red"></em> Log out</button>
         </div>
     </div>
 </form>
@@ -28,7 +28,7 @@ else
         </div>
         <div class="pull-left info">
             <p>Hello Guest...</p>
-            <a asp-controller="Auth" asp-action="Login"><i class="fa fa-circle text-success"></i> Login</a>
+            <a asp-controller="Auth" asp-action="Login"> <em class="fa fa-circle text-success"></em> Login</a>
         </div>
     </div>
 }

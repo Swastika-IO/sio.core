@@ -72,8 +72,8 @@
 
                 <input type="text" value="" class="title form-control" placeholder="Title..." />
                 <input type="text" value="" class="description form-control" placeholder="Description..." />
-                <button type="button" class="btn btn-primary btn-upload" ng-click="uploadMedia()"><i class="mi mi-Upload"></i> Upload</button>
-                <button type="button" class="btn btn-secondary" data-dismiss="modal"><i class="mi mi-Cancel"></i> Dismiss</button>
+                <button type="button" class="btn btn-primary btn-upload" ng-click="uploadMedia()"> <em class="mi mi-Upload"></em> Upload</button>
+                <button type="button" class="btn btn-secondary" data-dismiss="modal"> <em class="mi mi-Cancel"></em> Dismiss</button>
             </div>
         </div>
     </div>
@@ -84,7 +84,7 @@
         <div class="modal-content">
             <div class="modal-header">
                 <div class="col-md-11">
-                    <h5 class="modal-title" id="exampleModalLabel"><i class="mi mi-Media"></i> Quick media upload</h5>
+                    <h5 class="modal-title" id="exampleModalLabel"> <em class="mi mi-Media"></em> Quick media upload</h5>
                 </div>
                 <div class="col-md-1">
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
@@ -114,7 +114,7 @@
                                 </label>
                             </div>
                             <div class="btn-group mr-2" role="group" aria-label="First group">
-                                <button type="button" ng-click="uploadMedia()" class="btn btn-secondary"><i class="mi mi-Upload"></i> Upload</button>
+                                <button type="button" ng-click="uploadMedia()" class="btn btn-secondary"> <em class="mi mi-Upload"></em> Upload</button>
                             </div>
                         </div>
                     </div>
@@ -162,7 +162,7 @@
                                 <div class="input-group input-group-sm mb-3">
                                     <input id="path-modal-{{$index}}" value="{{item.fullPath}}" onclick="this.select()" class="form-control form-control-sm" readonly />
                                     <div class="input-group-append">
-                                        <button class="btn btn-outline-secondary btn-clipboard" type="button" data-clipboard-target="#path-modal-{{$index}}"><i class="mi mi-Copy"></i></button>
+                                        <button class="btn btn-outline-secondary btn-clipboard" type="button" data-clipboard-target="#path-modal-{{$index}}"> <em class="mi mi-Copy"></em></button>
                                     </div>
                                 </div>
                             </td>
@@ -220,18 +220,18 @@
                             <div class="btn-group-vertical mb-1 btn-group-sm">
                                 <button type="button" class="btn btn-primary" data-method="setDragMode" data-option="move" title="Move">
                                     <span class="docs-tooltip" data-toggle="tooltip" title="cropper.setDragMode(&quot;move&quot;)">
-                                        <i class="mi mi-SIPMove"></i>
+                                         <em class="mi mi-SIPMove"></em>
                                     </span>
                                 </button>
                                 <button type="button" class="btn btn-primary" data-method="setDragMode" data-option="crop" title="Crop">
                                     <span class="docs-tooltip" data-toggle="tooltip" title="cropper.setDragMode(&quot;crop&quot;)">
-                                        <i class="mi mi-Crop"></i>
+                                         <em class="mi mi-Crop"></em>
                                     </span>
                                 </button>
 
                                 <button type="button" class="btn btn-primary" data-method="reset" title="Reset">
                                     <span class="docs-tooltip" data-toggle="tooltip" title="cropper.reset()">
-                                        <i class="mi mi-RepeatAll"></i>
+                                         <em class="mi mi-RepeatAll"></em>
                                     </span>
                                 </button>
                             </div>
@@ -239,12 +239,12 @@
                             <div class="btn-group-vertical mb-1 btn-group-sm">
                                 <button type="button" class="btn btn-primary" data-method="zoom" data-option="0.1" title="Zoom In">
                                     <span class="docs-tooltip" data-toggle="tooltip" title="cropper.zoom(0.1)">
-                                        <i class="mi mi-ZoomIn"></i>
+                                         <em class="mi mi-ZoomIn"></em>
                                     </span>
                                 </button>
                                 <button type="button" class="btn btn-primary" data-method="zoom" data-option="-0.1" title="Zoom Out">
                                     <span class="docs-tooltip" data-toggle="tooltip" title="cropper.zoom(-0.1)">
-                                        <i class="mi mi-ZoomOut"></i>
+                                         <em class="mi mi-ZoomOut"></em>
                                     </span>
                                 </button>
                             </div>
@@ -252,22 +252,22 @@
                             <div class="btn-group-vertical mb-1 btn-group-sm">
                                 <button type="button" class="btn btn-primary" data-method="move" data-option="-10" data-second-option="0" title="Move Left">
                                     <span class="docs-tooltip" data-toggle="tooltip" title="cropper.move(-10, 0)">
-                                        <i class="mi mi-ChevronLeftSmall"></i>
+                                         <em class="mi mi-ChevronLeftSmall"></em>
                                     </span>
                                 </button>
                                 <button type="button" class="btn btn-primary" data-method="move" data-option="10" data-second-option="0" title="Move Right">
                                     <span class="docs-tooltip" data-toggle="tooltip" title="cropper.move(10, 0)">
-                                        <i class="mi mi-ChevronRightSmall"></i>
+                                         <em class="mi mi-ChevronRightSmall"></em>
                                     </span>
                                 </button>
                                 <button type="button" class="btn btn-primary" data-method="move" data-option="0" data-second-option="-10" title="Move Up">
                                     <span class="docs-tooltip" data-toggle="tooltip" title="cropper.move(0, -10)">
-                                        <i class="mi mi-ChevronUpSmall"></i>
+                                         <em class="mi mi-ChevronUpSmall"></em>
                                     </span>
                                 </button>
                                 <button type="button" class="btn btn-primary" data-method="move" data-option="0" data-second-option="10" title="Move Down">
                                     <span class="docs-tooltip" data-toggle="tooltip" title="cropper.move(0, 10)">
-                                        <i class="mi mi-ChevronDownSmall"></i>
+                                         <em class="mi mi-ChevronDownSmall"></em>
                                     </span>
                                 </button>
                             </div>
@@ -275,12 +275,12 @@
                             <div class="btn-group-vertical mb-1 btn-group-sm">
                                 <button type="button" class="btn btn-primary" data-method="rotate" data-option="-45" title="Rotate Left">
                                     <span class="docs-tooltip" data-toggle="tooltip" title="cropper.rotate(-45)">
-                                        <i class="mi mi-Rotate mi-flip-horizontal"></i>
+                                         <em class="mi mi-Rotate mi-flip-horizontal"></em>
                                     </span>
                                 </button>
                                 <button type="button" class="btn btn-primary" data-method="rotate" data-option="45" title="Rotate Right">
                                     <span class="docs-tooltip" data-toggle="tooltip" title="cropper.rotate(45)">
-                                        <i class="mi mi-Rotate"></i>
+                                         <em class="mi mi-Rotate"></em>
                                     </span>
                                 </button>
                             </div>
@@ -288,12 +288,12 @@
                             <div class="btn-group-vertical mb-1 btn-group-sm">
                                 <button type="button" class="btn btn-primary" data-method="scaleX" data-option="-1" title="Flip Horizontal">
                                     <span class="docs-tooltip" data-toggle="tooltip" title="cropper.scaleX(-1)">
-                                        <i class="mi mi-Sort mi-rotate-90"></i>
+                                         <em class="mi mi-Sort mi-rotate-90"></em>
                                     </span>
                                 </button>
                                 <button type="button" class="btn btn-primary" data-method="scaleY" data-option="-1" title="Flip Vertical">
                                     <span class="docs-tooltip" data-toggle="tooltip" title="cropper.scaleY(-1)">
-                                        <i class="mi mi-Sort"></i>
+                                         <em class="mi mi-Sort"></em>
                                     </span>
                                 </button>
                             </div>

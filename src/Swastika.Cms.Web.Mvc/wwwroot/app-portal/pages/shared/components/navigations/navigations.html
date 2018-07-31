@@ -8,12 +8,12 @@
         <div class="row">
             <div class="col-1 drag-header" style="cursor:move;"><span class="fas fa-sort"></span></div>
             <!--<div class="col-1">
-                <input type="text" ng-model="nav.priority" ng-change="$ctrl.updatePriorities()" 
+                <emnput type="text" ng-model="nav.priority" ng-change="$ctrl.updatePriorities()" 
                        class="item-priority d-none form-control form-control-sm d"/>
             </div>-->
             <div class="col-10">
                 <span class="switch switch-sm">
-                    <input type="checkbox" ng-change="$ctrl.callback({nav: nav})"
+                    <emnput type="checkbox" ng-change="$ctrl.callback({nav: nav})"
                            ng-model="nav.isActived" id="{{$ctrl.prefix}}_{{$index}}"
                            class="switch">
                     <label class="switch" for="{{$ctrl.prefix}}_{{$index}}">
@@ -22,7 +22,7 @@
                 </span>
             </div>
             <div class="col-1">
-                <img height="50" imageonload src="{{nav.image}}" />
+                <emmg height="50" imageonload src="{{nav.image}}" />
             </div>
         </div>
     </li>

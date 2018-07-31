@@ -54,7 +54,7 @@
                         <span class="fas fa-sort"></span>
                     </td>
                     <td>
-                        <input type="text" asp-for="@Data.Items[i].Priority" class="item-priority form-control form-control-sm d-inline" style="width:40px;" />
+                        <emnput type="text" asp-for="@Data.Items[i].Priority" class="item-priority form-control form-control-sm d-inline" style="width:40px;" />
                     </td>
                     @foreach (var col in Model.Columns.Where(c => c.IsDisplay))
                     {

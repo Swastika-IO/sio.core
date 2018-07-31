@@ -39,7 +39,7 @@ m => m.Specificulture == ViewContext.RouteData.Values["culture"].ToString());
         <!-- DASHBOARD -->
         <li class="sw-toc-item mt-1 mb-1">
             <a asp-area="Portal" asp-controller="Dashboard" asp-action="Index" class="sw-toc-link">
-                <i class="mi mi-Tiles mi-lg mi-fw"></i>
+                 <em class="mi mi-Tiles mi-lg mi-fw"></em>
                 <span class="text">@translator.Get("Dashboard")</span>
             </a>
         </li>
@@ -65,32 +65,32 @@ m => m.Specificulture == ViewContext.RouteData.Values["culture"].ToString());
             </div>
             <div class="sw-toc-link" data-toggle="collapse" data-target="#collapseArticleSubMenus" role="button" aria-expanded="false"
                  aria-controls="collapseArticleSubMenus">
-                <i class="mi mi-ReadingList mi-lg mi-fw"></i>
+                 <em class="mi mi-ReadingList mi-lg mi-fw"></em>
                 <span class="text">@translator.Get("Article")</span>
             </div>
             <ul id="collapseArticleSubMenus" class="collapse list-unstyled" role="tabpanel" data-parent="#sw-docs-nav">
                 <li>
                     <a asp-area="Portal" asp-controller="Article" asp-action="Create" class="sw-toc-sub-link mb-1">
-                        <i class="mi mi-Add mi-fw"></i>
+                         <em class="mi mi-Add mi-fw"></em>
                         <span class="text">@translator.Get("Create Article")</span>
                     </a>
                 </li>
                 <li>
                     <a asp-area="Portal" asp-controller="Article" asp-action="Index" class="sw-toc-sub-link mb-1">
-                        <i class="mi mi-List mi-fw"></i>
+                         <em class="mi mi-List mi-fw"></em>
                         <span class="text">@translator.Get("List Article")</span>
                     </a>
                 </li>
                 <li>
                     <a asp-area="Portal" asp-controller="Article" asp-action="Draft" class="sw-toc-sub-link mb-1">
-                        <i class="mi mi-Paste mi-fw"></i>
+                         <em class="mi mi-Paste mi-fw"></em>
                         <span class="text">@translator.Get("Draft")</span>
                     </a>
                 </li>
 
                 <li class="hide-on-sb-inactive">
                     <div class="sw-toc-sub-link mb-1">
-                        <i class="mi mi-ReadingList mi-fw"></i>
+                         <em class="mi mi-ReadingList mi-fw"></em>
                         <span class="text">Article...</span>
                         <div class="inner">
                             <div class="btn-group btn-group-sm" role="group" aria-label="Basic example">
@@ -132,32 +132,32 @@ m => m.Specificulture == ViewContext.RouteData.Values["culture"].ToString());
             </div>
             <div class="sw-toc-link" data-toggle="collapse" data-target="#collapseProductSubMenus" role="button" aria-expanded="false"
                  aria-controls="collapseProductSubMenus">
-                <i class="mi mi-Package mi-lg mi-fw"></i>
+                 <em class="mi mi-Package mi-lg mi-fw"></em>
                 <span class="text">@translator.Get("Products")</span>
             </div>
             <ul id="collapseProductSubMenus" class="collapse list-unstyled" role="tabpanel" data-parent="#sw-docs-nav">
                 <li>
                     <a asp-area="Portal" asp-controller="Product" asp-action="Create" class="sw-toc-sub-link mb-1">
-                        <i class="mi mi-Add mi-fw"></i>
+                         <em class="mi mi-Add mi-fw"></em>
                         <span class="text">@translator.Get("Create Product")</span>
                     </a>
                 </li>
                 <li>
                     <a asp-area="Portal" asp-controller="Product" asp-action="Index" class="sw-toc-sub-link mb-1">
-                        <i class="mi mi-List mi-fw"></i>
+                         <em class="mi mi-List mi-fw"></em>
                         <span class="text">@translator.Get("List Product")</span>
                     </a>
                 </li>
                 <li>
                     <a asp-area="Portal" asp-controller="Product" asp-action="Draft" class="sw-toc-sub-link mb-1">
-                        <i class="mi mi-Paste mi-fw"></i>
+                         <em class="mi mi-Paste mi-fw"></em>
                         <span class="text">@translator.Get("Draft")</span>
                     </a>
                 </li>
 
                 <li class="hide-on-sb-inactive">
                     <div class="sw-toc-sub-link mb-1">
-                        <i class="mi mi-Package mi-fw"></i>
+                         <em class="mi mi-Package mi-fw"></em>
                         <span class="text">Product...</span>
 
                         <div class="inner">
@@ -200,25 +200,25 @@ m => m.Specificulture == ViewContext.RouteData.Values["culture"].ToString());
             </div>
             <div class="sw-toc-link" data-toggle="collapse" data-target="#collapsePageSubMenus" role="button" aria-expanded="false"
                  aria-controls="collapsePageSubMenus">
-                <i class="mi mi-Page mi-lg mi-fw"></i>
+                 <em class="mi mi-Page mi-lg mi-fw"></em>
                 <span class="text">@translator.Get("Pages")</span>
             </div>
             <ul id="collapsePageSubMenus" class="collapse list-unstyled" role="tabpanel" data-parent="#sw-docs-nav">
                 <li>
                     <a asp-area="Portal" asp-controller="Pages" asp-action="Create" class="sw-toc-sub-link mb-1">
-                        <i class="mi mi-Add mi-fw"></i>
+                         <em class="mi mi-Add mi-fw"></em>
                         <span class="text">@translator.Get("Create Page")</span>
                     </a>
                 </li>
                 <li>
                     <a asp-area="Portal" asp-controller="Pages" asp-action="" class="sw-toc-sub-link mb-1">
-                        <i class="mi mi-List mi-fw"></i>
+                         <em class="mi mi-List mi-fw"></em>
                         <span class="text">@translator.Get("List Article")</span>
                     </a>
                 </li>
                 <li>
                     <a asp-area="Portal" asp-controller="Pages" asp-action="" class="sw-toc-sub-link mb-1">
-                        <i class="mi mi-Paste mi-fw"></i>
+                         <em class="mi mi-Paste mi-fw"></em>
                         <span class="text">@translator.Get("Draft")</span>
                     </a>
                 </li>
@@ -227,7 +227,7 @@ m => m.Specificulture == ViewContext.RouteData.Values["culture"].ToString());
                 {
                     <li class="hide-on-sb-inactive" is-active-menu asp-controllers="Pages" asp-action="AddData,EditData,Contents,Edit" asp-route-id="@cate.Id">
                         <div class="sw-toc-sub-link mb-1">
-                            <i class="mi mi-Page mi-fw"></i>
+                             <em class="mi mi-Page mi-fw"></em>
                             <span class="text">@SwCmsHelper.SubString(cate.Title, 20)</span>
                             <div class="inner">
                                 @if (cate.Type == SWCmsConstants.CateType.List || cate.Type == SWCmsConstants.CateType.ListProduct)
@@ -266,7 +266,7 @@ m => m.Specificulture == ViewContext.RouteData.Values["culture"].ToString());
 
                 <div class="sw-toc-link" data-toggle="collapse" data-target="#collapseModuleForm" aria-expanded="false"
                      aria-controls="collapseModuleForm">
-                    <i class="mi mi-wpform mi-lg mi-fw"></i>
+                     <em class="mi mi-wpform mi-lg mi-fw"></em>
                     <span class="text">@translator.Get("Forms")</span>
                 </div>
                 <ul id="collapseModuleForm" class="collapse list-unstyled" data-parent="#sw-docs-nav">
@@ -275,7 +275,7 @@ m => m.Specificulture == ViewContext.RouteData.Values["culture"].ToString());
                     {
                         <li class="hide-on-sb-inactive">
                             <div class="sw-toc-sub-link mb-1">
-                                <i class="mi mi-Component mi-fw"></i>
+                                 <em class="mi mi-Component mi-fw"></em>
                                 <span class="text">@SwCmsHelper.SubString(module.Title, 20)</span>
 
                                 <div class="inner">
@@ -319,25 +319,25 @@ m => m.Specificulture == ViewContext.RouteData.Values["culture"].ToString());
             </div>
             <div class="sw-toc-link" data-toggle="collapse" data-target="#collapseModuleSubMenus" aria-expanded="false"
                  aria-controls="collapseModuleSubMenus">
-                <i class="mi mi-ResolutionLegacy mi-lg mi-fw"></i>
+                 <em class="mi mi-ResolutionLegacy mi-lg mi-fw"></em>
                 <span class="text">@translator.Get("Modules")</span>
             </div>
             <ul id="collapseModuleSubMenus" class="collapse list-unstyled" data-parent="#sw-docs-nav">
                 <li>
                     <a is-active-route asp-controller="Module" asp-action="Create" class="sw-toc-sub-link mb-1">
-                        <i class="mi mi-Add mi-fw"></i>
+                         <em class="mi mi-Add mi-fw"></em>
                         <span class="text">@translator.Get("Create Module")</span>
                     </a>
                 </li>
                 <li>
                     <a asp-area="Portal" asp-controller="Module" asp-action="Index" class="sw-toc-sub-link mb-1">
-                        <i class="mi mi-List mi-fw"></i>
+                         <em class="mi mi-List mi-fw"></em>
                         <span class="text">@translator.Get("List Module")</span>
                     </a>
                 </li>
                 <li>
                     <a data-target="#" class="sw-toc-sub-link mb-1">
-                        <i class="mi mi-Paste mi-fw"></i>
+                         <em class="mi mi-Paste mi-fw"></em>
                         <span class="text">@translator.Get("Draft")</span>
                     </a>
                 </li>
@@ -345,7 +345,7 @@ m => m.Specificulture == ViewContext.RouteData.Values["culture"].ToString());
                 {
                     <li class="hide-on-sb-inactive">
                         <div class="sw-toc-sub-link mb-1">
-                            <i class="mi mi-Component mi-fw"></i>
+                             <em class="mi mi-Component mi-fw"></em>
                             <span class="text">@SwCmsHelper.SubString(module.Title, 20)</span>
 
                             <div class="inner">
@@ -389,25 +389,25 @@ m => m.Specificulture == ViewContext.RouteData.Values["culture"].ToString());
                 </div>
                 <div class="sw-toc-link" data-toggle="collapse" data-target="#collapseWidgetSubMenus" aria-expanded="false"
                      aria-controls="collapseWidgetSubMenus">
-                    <i class="mi mi-Component mi-lg mi-fw"></i>
+                     <em class="mi mi-Component mi-lg mi-fw"></em>
                     <span class="text">@translator.Get("Widgets")</span>
                 </div>
                 <ul id="collapseWidgetSubMenus" class="collapse list-unstyled" data-parent="#sw-docs-nav">
                     <li>
                         <a is-active-route asp-controller="Widget" asp-action="Create" class="sw-toc-sub-link mb-1">
-                            <i class="mi mi-Add mi-fw"></i>
+                             <em class="mi mi-Add mi-fw"></em>
                             <span class="text">@translator.Get("Create Widget")</span>
                         </a>
                     </li>
                     <li>
                         <a asp-area="Portal" asp-controller="Widget" asp-action="Index" class="sw-toc-sub-link mb-1">
-                            <i class="mi mi-List mi-fw"></i>
+                             <em class="mi mi-List mi-fw"></em>
                             <span class="text">@translator.Get("List Widget")</span>
                         </a>
                     </li>
                     <li>
                         <a data-target="#" class="sw-toc-sub-link mb-1">
-                            <i class="mi mi-Paste mi-fw"></i>
+                             <em class="mi mi-Paste mi-fw"></em>
                             <span class="text">@translator.Get("Draft")</span>
                         </a>
                     </li>
@@ -433,19 +433,19 @@ m => m.Specificulture == ViewContext.RouteData.Values["culture"].ToString());
             </div>
             <div class="sw-toc-link" data-toggle="collapse" data-target="#collapseAppearanceSubMenus" aria-expanded="false"
                  aria-controls="collapseAppearanceSubMenus">
-                <i class="mi mi-Personalize mi-lg mi-fw"></i>
+                 <em class="mi mi-Personalize mi-lg mi-fw"></em>
                 <span class="text">@translator.Get("Themes")</span>
             </div>
             <ul id="collapseAppearanceSubMenus" class="collapse list-unstyled" data-parent="#sw-docs-nav">
                 <li>
                     <a asp-area="Portal" asp-controller="Theme" asp-action="Create" class="sw-toc-sub-link mb-1">
-                        <i class="mi mi-Add mi-fw"></i>
+                         <em class="mi mi-Add mi-fw"></em>
                         <span class="text">@translator.Get("Create Theme")</span>
                     </a>
                 </li>
                 <li>
                     <a asp-area="Portal" asp-controller="Theme" asp-action="Index" class="sw-toc-sub-link mb-1">
-                        <i class="mi mi-List mi-fw"></i>
+                         <em class="mi mi-List mi-fw"></em>
                         <span class="text">@translator.Get("List Theme")</span>
                     </a>
                 </li>
@@ -456,7 +456,7 @@ m => m.Specificulture == ViewContext.RouteData.Values["culture"].ToString());
                     string filesUrl = Url.RouteUrl("File", new { culture = ViewBag.culture, folder = fileFolder });
                     <li class="hide-on-sb-inactive" is-active-menu asp-controllers="Theme" asp-action="AddData,EditData,Contents,Edit" asp-route-id="@item.Id">
                         <div class="sw-toc-sub-link mb-1">
-                            <i class="mi mi-Color mi-fw"></i>
+                             <em class="mi mi-Color mi-fw"></em>
                             <span class="text">@item.Name</span>
 
                             <div class="inner">
@@ -496,19 +496,19 @@ m => m.Specificulture == ViewContext.RouteData.Values["culture"].ToString());
             </div>
             <div class="sw-toc-link" data-toggle="collapse" data-target="#collapseFileSubMenus" aria-expanded="false"
                  aria-controls="collapseFileSubMenus">
-                <i class="mi mi-Photo2 mi-lg mi-fw"></i>
+                 <em class="mi mi-Photo2 mi-lg mi-fw"></em>
                 <span class="text">@translator.Get("Media")</span>
             </div>
             <ul id="collapseFileSubMenus" class="collapse list-unstyled" data-parent="#sw-docs-nav">
                 <li>
                     <a asp-area="Portal" asp-controller="Media" asp-action="Index" class="sw-toc-sub-link mb-1">
-                        <i class="mi mi-Photo2 mi-fw"></i>
+                         <em class="mi mi-Photo2 mi-fw"></em>
                         <span class="text">@translator.Get("Library")</span>
                     </a>
                 </li>
                 <li>
                     <a asp-area="Portal" asp-controller="File" asp-action="Index" class="sw-toc-sub-link mb-1">
-                        <i class="mi mi-FileExplorer mi-fw"></i>
+                         <em class="mi mi-FileExplorer mi-fw"></em>
                         <span class="text">@translator.Get("Files")</span>
                     </a>
                 </li>
@@ -518,7 +518,7 @@ m => m.Specificulture == ViewContext.RouteData.Values["culture"].ToString());
                     string href = Url.RouteUrl("File", new { culture = ViewBag.culture, folder = dirPath });
                     <li>
                         <a href="@href" class="sw-toc-sub-link mb-1">
-                            <i class="mi mi-Folder"></i>
+                             <em class="mi mi-Folder"></em>
                             <span class="text">@folder</span>
                         </a>
                     </li>
@@ -545,19 +545,19 @@ m => m.Specificulture == ViewContext.RouteData.Values["culture"].ToString());
             </div>
             <div class="sw-toc-link" data-toggle="collapse" data-target="#collapseTeamSubMenus" aria-expanded="false"
                  aria-controls="collapseTeamSubMenus">
-                <i class="mi mi-Contact mi-lg mi-fw"></i>
+                 <em class="mi mi-Contact mi-lg mi-fw"></em>
                 <span class="text">@translator.Get("Team")</span>
             </div>
             <ul id="collapseTeamSubMenus" class="collapse list-unstyled" data-parent="#sw-docs-nav">
                 <li>
                     <a asp-area="Portal" asp-controller="Team" asp-action="Create" class="sw-toc-sub-link mb-1">
-                        <i class="mi mi-Add mi-fw"></i>
+                         <em class="mi mi-Add mi-fw"></em>
                         <span class="text">@translator.Get("Create Member")</span>
                     </a>
                 </li>
                 <li>
                     <a asp-area="Portal" asp-controller="Team" asp-action="Index" class="sw-toc-sub-link mb-1">
-                        <i class="mi mi-List mi-fw"></i>
+                         <em class="mi mi-List mi-fw"></em>
                         <span class="text">@translator.Get("List Member")</span>
                     </a>
                 </li>
@@ -570,7 +570,7 @@ m => m.Specificulture == ViewContext.RouteData.Values["culture"].ToString());
             <div class="inner">
                 <div class="btn-group btn-group-sm" role="group" aria-label="Basic example">
                     @*<a class="btn btn-light">
-                            <i class="mi mi-Repair mi-fw"></i>
+                             <em class="mi mi-Repair mi-fw"></em>
                         </a>
                         <a class="btn btn-light">
                             <span class="fas fa-bars"></span>
@@ -586,13 +586,13 @@ m => m.Specificulture == ViewContext.RouteData.Values["culture"].ToString());
             </div>
             <div class="sw-toc-link" data-toggle="collapse" data-target="#collapseSettingSubMenus" aria-expanded="false"
                  aria-controls="collapseSettingSubMenus">
-                <i class="mi mi-Settings mi-lg mi-fw mi-spin"></i>
+                 <em class="mi mi-Settings mi-lg mi-fw mi-spin"></em>
                 <span class="text">@translator.Get("Settings")</span>
             </div>
             <ul id="collapseSettingSubMenus" class="collapse list-unstyled" data-parent="#sw-docs-nav">
                 <li>
                     <div class="sw-toc-sub-link mb-1">
-                        <i class="mi mi-Repair mi-fw"></i>
+                         <em class="mi mi-Repair mi-fw"></em>
                         <span class="text">@translator.Get("Configurations")</span>
 
                         <div class="inner">
@@ -609,7 +609,7 @@ m => m.Specificulture == ViewContext.RouteData.Values["culture"].ToString());
                 </li>
                 <li class="">
                     <div class="sw-toc-sub-link mb-1">
-                        <i class="mi mi-TimeLanguage mi-fw"></i>
+                         <em class="mi mi-TimeLanguage mi-fw"></em>
                         <span class="text">@translator.Get("Languages")</span>
                         <div class="inner">
                             <div class="btn-group btn-group-sm" role="group" aria-label="Basic example">
@@ -625,7 +625,7 @@ m => m.Specificulture == ViewContext.RouteData.Values["culture"].ToString());
                 </li>
                 <li>
                     <div class="sw-toc-sub-link mb-1">
-                        <i class="mi mi-World mi-fw"></i>
+                         <em class="mi mi-World mi-fw"></em>
                         <span class="text">@translator.Get("Cultures")</span>
 
                         <div class="inner">
