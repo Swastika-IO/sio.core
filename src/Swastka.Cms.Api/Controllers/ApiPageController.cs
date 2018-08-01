@@ -84,7 +84,7 @@ namespace Swastka.Cms.Api.Controllers
                         RepositoryResponse<ApiCategoryViewModel> result = new RepositoryResponse<ApiCategoryViewModel>()
                         {
                             IsSucceed = true,
-                            Data = await ApiCategoryViewModel.InitAsync(model)
+                            Data = await ApiCategoryViewModel.InitViewAsync(model)
                         };
                         return JObject.FromObject(result);
                     }

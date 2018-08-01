@@ -63,7 +63,7 @@ namespace Swastka.Cms.Api.Controllers
                         Specificulture = _lang,
                         Fields = getModule.Data.Fields
                     };
-                    return new RepositoryResponse<ApiModuleDataViewModel>() { IsSucceed = true, Data = await ApiModuleDataViewModel.InitAsync(model) };
+                    return new RepositoryResponse<ApiModuleDataViewModel>() { IsSucceed = true, Data = await ApiModuleDataViewModel.InitViewAsync(model) };
                 }
                 else
                 {
@@ -122,7 +122,7 @@ namespace Swastka.Cms.Api.Controllers
         // GET api/module-data/create/id
         [HttpGet]
         [Route("init-by-name/{moduleName}")]
-        public async Task<RepositoryResponse<ApiModuleDataViewModel>> InitAsync(string moduleName)
+        public async Task<RepositoryResponse<ApiModuleDataViewModel>> InitViewAsync(string moduleName)
         {
             var getModule = await InfoModuleViewModel.Repository.GetSingleModelAsync(
                 m => m.Name == moduleName && m.Specificulture == _lang).ConfigureAwait(false);

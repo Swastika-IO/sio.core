@@ -54,7 +54,7 @@ namespace Swastka.Cms.Api.Controllers
                         var result = new RepositoryResponse<ApiLanguageViewModel>()
                         { 
                             IsSucceed = true,
-                            Data = (await ApiLanguageViewModel.InitAsync(language))
+                            Data = (await ApiLanguageViewModel.InitViewAsync(language))
                         };
                         return JObject.FromObject(result);
                     }

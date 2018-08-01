@@ -51,7 +51,7 @@ namespace Swastka.Cms.Api.Controllers
                         RepositoryResponse<SpaModuleViewModel> result = new RepositoryResponse<SpaModuleViewModel>()
                         {
                             IsSucceed = true,
-                            Data = await SpaModuleViewModel.InitAsync(model)
+                            Data = await SpaModuleViewModel.InitViewAsync(model)
                         };
                         return JObject.FromObject(result);
                     }
@@ -74,7 +74,7 @@ namespace Swastka.Cms.Api.Controllers
                         RepositoryResponse<ApiModuleViewModel> result = new RepositoryResponse<ApiModuleViewModel>()
                         {
                             IsSucceed = true,
-                            Data = await ApiModuleViewModel.InitAsync(model)
+                            Data = await ApiModuleViewModel.InitViewAsync(model)
                         };
                         return JObject.FromObject(result);
                     }

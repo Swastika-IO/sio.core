@@ -93,7 +93,7 @@ namespace Swastka.Cms.Api.Controllers
                         RepositoryResponse<ApiThemeViewModel> result = new RepositoryResponse<ApiThemeViewModel>()
                         {
                             IsSucceed = true,
-                            Data = await ApiThemeViewModel.InitAsync(model)
+                            Data = await ApiThemeViewModel.InitViewAsync(model)
                         };
                         result.Data.Specificulture = _lang;
                         return JObject.FromObject(result);
