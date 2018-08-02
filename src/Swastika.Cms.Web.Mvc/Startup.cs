@@ -7,13 +7,16 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Http.Features;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Rewrite;
 using Microsoft.AspNetCore.Routing;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.WebEncoders;
+using RewriteRules;
 using Swastika.Cms.Lib.Models.Cms;
 using Swastika.Cms.Lib.Services;
 using Swastika.Identity.Services;
+using System.IO;
 using System.Text.Encodings.Web;
 using System.Text.Unicode;
 
@@ -93,6 +96,25 @@ namespace Swastika.Cms.Web.Mvc
 
             app.UseAuthentication();
 
+            using (StreamReader apacheModRewriteStreamReader =
+        File.OpenText("ApacheModRewrite.txt"))
+            using (StreamReader iisUrlRewriteStreamReader =
+                File.OpenText("IISUrlRewrite.xml"))
+            {
+                var options = new RewriteOptions()
+                    .AddRedirect("redirect-rule/(.*)", "redirected/$1")
+                    .AddRewrite(@"^rewrite-rule/(\d+)/(\d+)", "rewritten?var1=$1&var2=$2",
+                        skipRemainingRules: true)
+                    .AddApacheModRewrite(apacheModRewriteStreamReader)
+                    .AddIISUrlRewrite(iisUrlRewriteStreamReader)
+                    .Add(MethodRules.RedirectXMLRequests)
+                    .Add(new RedirectImageRequests(".png", "/png-images"))
+                    .Add(new RedirectImageRequests(".jpg", "/jpg-images"));
+
+                app.UseRewriter(options);
+            }
+
+
             app.UseMvc(routes =>
             {
                 routes.MapRoute(
@@ -109,8 +131,13 @@ namespace Swastika.Cms.Web.Mvc
                     template: "{culture=" + CONST_ROUTE_DEFAULT_CULTURE + "}/article/{seoName}");
                 routes.MapRoute(
                     name: "Product",
-                    template: "{culture=" + CONST_ROUTE_DEFAULT_CULTURE + "}/product/{seoName}");
+                    template: @"{culture=" + CONST_ROUTE_DEFAULT_CULTURE + @"}/product/{seoName}");
             });
+
+            
+            //app.Run(context => context.Response.WriteAsync(
+            //    $"Rewritten or Redirected Url: " +
+            //    $"{context.Request.Path + context.Request.QueryString}"));
         }
     }
 }

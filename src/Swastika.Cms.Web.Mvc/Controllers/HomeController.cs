@@ -81,6 +81,34 @@ namespace Swastika.Cms.Mvc.Controllers
         }
 
         [HttpGet]
+        [Route("alias")]
+        public IActionResult Alias(string pageName, int pageIndex, int pageSize = 10)
+        {
+            // Home Page
+            var getPage = FECategoryViewModel.Repository.GetSingleModel(
+                p => p.Specificulture == CurrentLanguage
+                    &&
+                    (
+                        (
+                            (string.IsNullOrEmpty(pageName) || pageName == "Home")
+                            && p.Type == (int)SWCmsConstants.CateType.Home
+                        )
+                        || p.SeoName == pageName
+                    )
+
+                );
+            if (getPage.IsSucceed && getPage.Data.View != null)
+            {
+                ViewBag.pageClass = getPage.Data.CssClass;
+                return View(getPage.Data);
+            }
+            else
+            {
+                return RedirectToAction("Index", "Backend");
+            }
+        }
+
+        [HttpGet]
         [Route("List/{pageName}")]
         [Route("List/{pageName}/{pageIndex:int?}")]
         [Route("List/{pageName}/{pageSize:int?}/{pageIndex:int?}")]

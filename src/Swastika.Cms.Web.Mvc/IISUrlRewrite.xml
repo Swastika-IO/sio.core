@@ -1,0 +1,20 @@
+<rewrite>
+  <rules>
+    <rule name="Rewrite segment to id querystring" stopProcessing="true">
+      <match url="^admin(.*)$" />
+      <action type="Rewrite" url="backend" appendQueryString="false"/>
+    </rule>
+    <rule name="Rewrite to homepage" stopProcessing="true">
+      <match url="^([a-z]{2}[-][a-z]{2})$" />
+      <action type="Rewrite" url="/{R:1}/home" appendQueryString="false"/>
+    </rule>
+    <rule name="Rewrite to alias" stopProcessing="true">
+      <match url="^([a-zA-Z]{2}[-][a-zA-Z]{2})/(\d+)/(\d+)/(.*)$" />
+      <action type="Rewrite" url="/{R:1}/alias?pageName={R:4}&amp;pageSize={R:2}&amp;pageIndex={R:3}" appendQueryString="false"/>
+    </rule>
+    <rule name="Rewrite to alias" stopProcessing="true">
+      <match url="^([a-zA-Z]{2}[-][a-zA-Z]{2})/(.*)$" />
+      <action type="Rewrite" url="/{R:1}/alias?pageName={R:2}" appendQueryString="false"/>
+    </rule>
+  </rules>
+</rewrite>

@@ -25,7 +25,7 @@ namespace Swastika.Cms.Web.Mvc.Controllers
         [HttpGet]
         [Route("")]
         [Route("{culture}")]
-        public async System.Threading.Tasks.Task<IActionResult> Index()
+        public async System.Threading.Tasks.Task<IActionResult> Index(string culture)
         {
             if (string.IsNullOrEmpty(GlobalConfigurationService.Instance.CmsConfigurations.CmsConnectionString))
             {
@@ -40,7 +40,7 @@ namespace Swastika.Cms.Web.Mvc.Controllers
                 }
                 else
                 {
-                    return Redirect($"/{GlobalConfigurationService.Instance.CmsConfigurations.Language}/Home");
+                    return Redirect($"/{culture ?? GlobalConfigurationService.Instance.CmsConfigurations.Language}/Home");
                 }
             }
         }
