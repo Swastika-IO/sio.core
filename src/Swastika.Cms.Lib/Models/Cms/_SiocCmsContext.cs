@@ -23,6 +23,7 @@ namespace Swastika.Cms.Lib.Models.Cms
         public virtual DbSet<SiocCategoryModule> SiocCategoryModule { get; set; }
         public virtual DbSet<SiocCategoryPosition> SiocCategoryPosition { get; set; }
         public virtual DbSet<SiocCategoryProduct> SiocCategoryProduct { get; set; }
+        public virtual DbSet<SiocUrlAlias> SiocUrlAlias { get; set; }
         public virtual DbSet<SiocCmsUser> SiocCmsUser { get; set; }
         public virtual DbSet<SiocComment> SiocComment { get; set; }
         public virtual DbSet<SiocConfiguration> SiocConfiguration { get; set; }
@@ -729,6 +730,35 @@ namespace Swastika.Cms.Lib.Models.Cms
                 entity.Property(e => e.Tags).HasMaxLength(400);
 
                 entity.Property(e => e.Title).HasMaxLength(4000);
+            });
+
+            modelBuilder.Entity<SiocUrlAlias>(entity =>
+            {
+                entity.HasKey(e => new { e.Id, e.Specificulture });
+
+                entity.ToTable("sioc_url_alias");
+
+                entity.HasIndex(e => e.Specificulture);
+
+                entity.Property(e => e.Specificulture).HasMaxLength(10);
+
+                entity.Property(e => e.Description).HasMaxLength(4000);
+
+                entity.Property(e => e.Alias).HasMaxLength(250);
+
+                entity.Property(e => e.CreatedDateTime).HasColumnType("datetime");
+
+                entity.Property(e => e.Status).HasDefaultValueSql("((1))");
+
+                entity.Property(e => e.SourceId).HasMaxLength(250);
+
+                entity.Property(e => e.Type).HasDefaultValueSql("('0')");
+
+                entity.HasOne(d => d.SpecificultureNavigation)
+                    .WithMany(p => p.SiocUrlAlias)
+                    .HasPrincipalKey(p => p.Specificulture)
+                    .HasForeignKey(d => d.Specificulture)
+                    .HasConstraintName("FK_TTS_Url_Alias_TTS_Culture");
             });
 
             modelBuilder.Entity<SiocModule>(entity =>

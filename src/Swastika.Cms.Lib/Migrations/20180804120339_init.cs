@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Migrations;
 
@@ -310,7 +309,8 @@ namespace Swastika.Cms.Lib.Migrations
                     Description = table.Column<string>(maxLength: 250, nullable: true),
                     Priority = table.Column<int>(nullable: false),
                     Status = table.Column<int>(nullable: false, defaultValueSql: "((1))"),
-                    Value = table.Column<string>(nullable: true)
+                    Value = table.Column<string>(nullable: true),
+                    DefaultValue = table.Column<string>(maxLength: 250, nullable: true)
                 },
                 constraints: table =>
                 {
@@ -338,6 +338,7 @@ namespace Swastika.Cms.Lib.Migrations
                     Priority = table.Column<int>(nullable: false),
                     Status = table.Column<int>(nullable: false, defaultValueSql: "((1))"),
                     Template = table.Column<string>(maxLength: 250, nullable: true),
+                    FormTemplate = table.Column<string>(maxLength: 4000, nullable: true),
                     Title = table.Column<string>(maxLength: 250, nullable: true),
                     Type = table.Column<int>(nullable: false, defaultValueSql: "('0')"),
                     PageSize = table.Column<int>(nullable: true)
@@ -402,6 +403,31 @@ namespace Swastika.Cms.Lib.Migrations
                         principalTable: "sioc_culture",
                         principalColumn: "Specificulture",
                         onDelete: ReferentialAction.Restrict);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "sioc_url_alias",
+                columns: table => new
+                {
+                    Id = table.Column<int>(nullable: false),
+                    Specificulture = table.Column<string>(maxLength: 10, nullable: false),
+                    SourceId = table.Column<string>(maxLength: 250, nullable: true),
+                    Type = table.Column<int>(nullable: false, defaultValueSql: "('0')"),
+                    Description = table.Column<string>(maxLength: 4000, nullable: true),
+                    Priority = table.Column<int>(nullable: false),
+                    Status = table.Column<int>(nullable: false, defaultValueSql: "((1))"),
+                    Alias = table.Column<string>(maxLength: 250, nullable: true),
+                    CreatedDateTime = table.Column<DateTime>(type: "datetime", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_sioc_url_alias", x => new { x.Id, x.Specificulture });
+                    table.ForeignKey(
+                        name: "FK_TTS_Url_Alias_TTS_Culture",
+                        column: x => x.Specificulture,
+                        principalTable: "sioc_culture",
+                        principalColumn: "Specificulture",
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
@@ -913,6 +939,7 @@ namespace Swastika.Cms.Lib.Migrations
                     IsDeleted = table.Column<bool>(nullable: false),
                     IsReviewed = table.Column<bool>(nullable: true),
                     IsVisible = table.Column<bool>(nullable: true),
+                    Rating = table.Column<double>(nullable: true),
                     Priority = table.Column<int>(nullable: false),
                     Status = table.Column<int>(nullable: false, defaultValueSql: "((1))"),
                     UpdatedBy = table.Column<string>(maxLength: 250, nullable: true),
@@ -1334,6 +1361,11 @@ namespace Swastika.Cms.Lib.Migrations
                 name: "IX_sioc_template_file_TemplateId",
                 table: "sioc_template",
                 column: "TemplateId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_sioc_url_alias_Specificulture",
+                table: "sioc_url_alias",
+                column: "Specificulture");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
@@ -1406,6 +1438,9 @@ namespace Swastika.Cms.Lib.Migrations
 
             migrationBuilder.DropTable(
                 name: "sioc_template");
+
+            migrationBuilder.DropTable(
+                name: "sioc_url_alias");
 
             migrationBuilder.DropTable(
                 name: "sioc_position");

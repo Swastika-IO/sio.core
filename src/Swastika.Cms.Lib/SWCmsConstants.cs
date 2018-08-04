@@ -128,6 +128,15 @@ namespace Swastika.Cms.Lib
             Form
         }
 
+        public enum UrlAliasType
+        {
+            Page,
+            Article,
+            Product,
+            Module,
+            ModuleData
+        }
+
         public enum SearchType
         {
             All,

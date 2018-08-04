@@ -38,15 +38,6 @@
     <Compile Remove="Migrations\20180507062026_upd_05072018.Designer.cs" />
     <Compile Remove="Migrations\20180709101313_init.cs" />
     <Compile Remove="Migrations\20180709101313_init.Designer.cs" />
-    <Compile Remove="Models\Cms\AspNetRoleClaims.cs" />
-    <Compile Remove="Models\Cms\AspNetRoles.cs" />
-    <Compile Remove="Models\Cms\AspNetUserClaims.cs" />
-    <Compile Remove="Models\Cms\AspNetUserLogins.cs" />
-    <Compile Remove="Models\Cms\AspNetUserRoles.cs" />
-    <Compile Remove="Models\Cms\AspNetUsers.cs" />
-    <Compile Remove="Models\Cms\AspNetUserTokens.cs" />
-    <Compile Remove="Models\Cms\Clients.cs" />
-    <Compile Remove="Models\Cms\RefreshTokens.cs" />
     <Compile Remove="Models\SiocFile.cs" />
     <Compile Remove="Models\SiocTemplate.cs" />
     <Compile Remove="Models\SiocTheme.cs" />

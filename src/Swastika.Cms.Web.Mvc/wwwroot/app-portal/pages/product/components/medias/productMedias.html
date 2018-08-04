@@ -52,10 +52,10 @@
         <div class="col-md-8">
             <div class="btn-toolbar mb-3" role="toolbar" aria-label="Toolbar with button groups">
                 <div class="btn-group mr-2" role="group" aria-label="First group">
-                    <button type="button" class="btn btn-secondary" data-toggle="modal" data-target=".upload-image-modal-lg"> <em class="mi mi-Add"></em></button>
-                    <button type="button" class="btn btn-secondary"> <em class="mi mi-ViewAll"></em></button>
-                    <button type="button" class="btn btn-secondary"> <em class="mi mi-List"></em></button>
-                    <button type="button" class="btn btn-secondary"> <em class="mi mi-TabletSelected"></em></button>
+                    <button type="button" class="btn btn-secondary" data-toggle="modal" data-target=".upload-image-modal-lg"><i class="mi mi-Add"></i></button>
+                    <button type="button" class="btn btn-secondary"><i class="mi mi-ViewAll"></i></button>
+                    <button type="button" class="btn btn-secondary"><i class="mi mi-List"></i></button>
+                    <button type="button" class="btn btn-secondary"><i class="mi mi-TabletSelected"></i></button>
                 </div>
                 <div class="btn-group mr-2" role="group" aria-label="Button group with nested dropdown">
                     <div class="btn-group" role="group">
@@ -91,7 +91,7 @@
             <div class="input-group">
                 <div class="input-group-prepend">
                     <div class="input-group-text " id="btnGroupAddon">
-                         <em class="mi mi-Search btn-search-media" ng-click="$ctrl.loadMedias()" style="top:0;cursor:pointer;"></em>
+                        <i class="mi mi-Search btn-search-media" ng-click="$ctrl.loadMedias()" style="top:0;cursor:pointer;"></i>
                     </div>
                 </div>
                 <input type="text" ng-model="request.keyword" ng-enter="$ctrl.loadMedias()"
@@ -111,10 +111,10 @@
             </span>
             <div class="btn-group btn-group-sm position-absolute m-1" role="group" aria-label="Basic example" style="z-index:3; right:0;">
                 <button class="btn btn-light custom-file-cropper" data-toggle="modal" data-target=".image-crop-modal-lg" data-imgsrc="{{media.fullPath}}" data-imgid="{{media.id}}">
-                     <em class="mi mi-Crop"></em>
+                    <i class="mi mi-Crop"></i>
                 </button>
                 <button class="btn btn-light btn-sm" data-imgsrc="{{media.fullPath}}" data-imgid="{{media.id}}" ng-click="removeMedia(media.id)">
-                     <em class="mi mi-Delete"></em>
+                    <i class="mi mi-Delete"></i>
                 </button>
             </div>
             <a href="#" data-toggle="modal" data-target=".image-preview-modal-lg" data-imgsrc="{{media.fullPath}}">

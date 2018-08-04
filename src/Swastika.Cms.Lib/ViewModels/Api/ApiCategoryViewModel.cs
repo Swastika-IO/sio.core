@@ -111,6 +111,9 @@ namespace Swastika.Cms.Lib.ViewModels.Api
 
         #region Views
 
+        [JsonProperty("urlAlias")]
+        public ApiUrlAliasViewModel UrlAlias { get; set; }
+
         [JsonProperty("details")]
         public string DetailsUrl { get; set; }
 
@@ -257,6 +260,14 @@ namespace Swastika.Cms.Lib.ViewModels.Api
 
         public override void ExpandView(SiocCmsContext _context = null, IDbContextTransaction _transaction = null)
         {
+            UrlAlias = ApiUrlAliasViewModel.Repository.GetSingleModel(u => u.Specificulture == Specificulture && u.SourceId == Id.ToString()).Data;
+            if (UrlAlias == null)
+            {
+                UrlAlias = new ApiUrlAliasViewModel()
+                {
+                    Specificulture = Specificulture
+                };
+            }
             ListSupportedCulture = CommonRepository.Instance.LoadCultures(Specificulture, _context, _transaction);
             ListSupportedCulture.ForEach(c => c.IsSupported = _context.SiocCategory.Any(m => m.Id == Id && m.Specificulture == c.Specificulture));
             if (!string.IsNullOrEmpty(this.Tags))
@@ -434,6 +445,15 @@ namespace Swastika.Cms.Lib.ViewModels.Api
             {
                 result.Errors.AddRange(saveTemplate.Errors);
                 result.Exception = saveTemplate.Exception;
+            }
+
+            if (result.IsSucceed)
+            {
+                UrlAlias.SourceId = parent.Id.ToString();
+                var saveUrl = await UrlAlias.SaveModelAsync(false, _context, _transaction);
+                result.Errors.AddRange(saveUrl.Errors);
+                result.Exception = saveUrl.Exception;
+                result.IsSucceed = saveUrl.IsSucceed;
             }
 
             if (result.IsSucceed)

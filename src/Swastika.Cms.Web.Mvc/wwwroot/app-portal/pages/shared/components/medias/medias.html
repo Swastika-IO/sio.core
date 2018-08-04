@@ -4,7 +4,7 @@
             <div class="modal-header">
 
                 <div class="col-md-11">
-                    <h5 class="modal-title" id="exampleModalLabel"><em class="mi mi-Media"></em> Quick media upload</h5>
+                    <h5 class="modal-title" id="exampleModalLabel"><i class="mi mi-Media"></i> Quick media upload</h5>
                 </div>
                 <div class="col-md-1">
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
@@ -28,8 +28,8 @@
                             <div class="btn-group mr-2" role="group" aria-label="First group">
                                 <!--<cultures is-clone="activedMedia.isClone" data="activedMedia.cultures"></cultures>-->
 
-                                <button type="button" ng-click="saveMedia(activedMedia)" class="btn btn-secondary"><em class="mi mi-Upload"></em> Upload</button>
-                                <!--<button type="button" ng-click="uploadMedia()" class="btn btn-secondary"><em class="mi mi-Upload"></em> Upload</button>-->
+                                <button type="button" ng-click="saveMedia(activedMedia)" class="btn btn-secondary"><i class="mi mi-Upload"></i> Upload</button>
+                                <!--<button type="button" ng-click="uploadMedia()" class="btn btn-secondary"><i class="mi mi-Upload"></i> Upload</button>-->
                             </div>
                         </div>
                     </div>
@@ -57,22 +57,22 @@
                     <tbody>
                         <tr ng-repeat="item in data.items track by $index">
                             <td>
-                                <emnput type="text" ng-model="item.title" />
+                                <input type="text" ng-model="item.title" />
                             </td>
                             <td>
-                                <emnput type="text" ng-model="item.description" />
+                                <input type="text" ng-model="item.description" />
                             </td>
                             <td>
 
                                 <div class="input-group input-group-sm mb-3">
-                                    <emnput id="path-modal-{{$index}}" value="{{item.fullPath}}" onclick="this.select()" class="form-control form-control-sm" readonly />
+                                    <input id="path-modal-{{$index}}" value="{{item.fullPath}}" onclick="this.select()" class="form-control form-control-sm" readonly />
                                     <div class="input-group-append">
-                                        <button class="btn btn-outline-secondary btn-clipboard" type="button" data-clipboard-target="#path-modal-{{$index}}"><em class="mi mi-Copy"></em></button>
+                                        <button class="btn btn-outline-secondary btn-clipboard" type="button" data-clipboard-target="#path-modal-{{$index}}"><i class="mi mi-Copy"></i></button>
                                     </div>
                                 </div>
                             </td>
                             <td>
-                                <emmg height="50" imageonload ng-src="{{item.fullPath}}" />
+                                <img height="50" imageonload ng-src="{{item.fullPath}}" />
                             </td>
                             <td>
                                 <div class="btn-group btn-group-sm" role="group" aria-label="Actions">

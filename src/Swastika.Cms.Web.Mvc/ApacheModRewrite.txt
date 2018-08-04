@@ -1,4 +1,2 @@
 # Rewrite path with additional sub directory
 RewriteRule ^([a-z]{2}[-][a-z]{2})$ /$1/home [L,R=302]
-RewriteRule ^([a-zA-Z]{2}[-][a-zA-Z]{2})/(\d+)/(\d+)/(.*)$ /$1/alias?pageName=$4&pageSize=$2&pageIndex=$3 [L,R=302]
-RewriteRule ^([a-zA-Z]{2}[-][a-zA-Z]{2})/(.*)$ /$1/alias?pageName=$2 [L,R=302]

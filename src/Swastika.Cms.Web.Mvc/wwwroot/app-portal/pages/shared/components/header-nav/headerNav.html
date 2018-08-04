@@ -1,6 +1,6 @@
 ﻿<header class="navbar navbar-expand flex-column flex-md-row sw-navbar" ng-init="$ctrl.loadSettings()">
     <a class="navbar-brand mr-0 mr-md-2" href="/{{$ctrl.settings.lang}}/home" target="_blank" aria-label="Swastika I/O">
-        <emmg src="/css/portal/img/swastika-io-logo-blue.png" alt="Swastika I/O" width="35">
+        <img src="/css/portal/img/swastika-io-logo-blue.png" alt="Swastika I/O" width="35">
     </a>
 
     <button type="button" id="sidebarCollapse" class="btn btn-link">
@@ -14,12 +14,12 @@
     <ul class="navbar-nav flex-row ml-md-auto d-none d-md-flex" ng-if="$ctrl.settings">
         <li class="nav-item mr-2">
             <a class="nav-link p-2" href="#" data-toggle="modal" data-target="#modal-files">
-                <em class="mi mi-Media"></em>
+                <i class="mi mi-Media"></i>
             </a>
         </li>
         <li class="nav-item dropdown mr-2">
             <a class="nav-link p-2" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                <span class="flag-icon {{$ctrl.settings.langIcon}}"></span>
+                <span class="flag-icon flag-icon-{{$ctrl.settings.lang.substring(3, 5)}}"></span>
             </a>
             <div class="dropdown-menu dropdown-menu-right" aria-labelledby="sw-versions">
                 <a class="dropdown-item" ng-repeat="culture in $ctrl.settings.cultures"
@@ -33,7 +33,7 @@
 
         <li class="nav-item mr-2">
             <a class="nav-link p-2 text-danger" href="#" ng-click="$ctrl.logOut()" rel="noopener" aria-label="Logout">
-                <em class="mi mi-PowerButton"></em>
+                <i class="mi mi-PowerButton"></i>
             </a>
         </li>
     </ul>

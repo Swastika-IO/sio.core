@@ -38,7 +38,7 @@
 </head>
 
 <body ng-app="SwastikaPortal" ng-init="initApp()">
-    <emnput type="hidden" id="lang" name="curentLanguage" value="@ViewBag.culture" />
+    <input type="hidden" id="lang" name="curentLanguage" value="@ViewBag.culture" />
     <div class="loader-container" ng-show="isBusy">
         <div id="loader"></div>
     </div>
@@ -107,8 +107,6 @@
 
 
     <script src="/app-portal/app.js"></script>
-    <script src="~/app-portal/app.directive.js"></script>
-    <script src="~/app-portal/app.filter.js"></script>
     <script src="/app-portal/app.route.js"></script>
     <script src="~/app-portal/plugins/angular-drag-and-drop-lists.min.js"></script>
     <!-- Services-->
@@ -147,9 +145,6 @@
     <script src="~/app-portal/pages/configuration/configuration-controller.js"></script>
     <script src="~/app-portal/pages/configuration/configuration-services.js"></script>
     
-    <script src="~/app-portal/pages/culture/culture-controller.js"></script>
-    <script src="~/app-portal/pages/culture/culture-services.js"></script>
-    
     <script src="~/app-portal/pages/language/language-controller.js"></script>
     <script src="~/app-portal/pages/language/language-services.js"></script>
     <script src="~/app-portal/pages/shared/services/translator-services.js"></script>
@@ -161,6 +156,7 @@
     <script src="/app-portal/plugins/paging.js"></script>
 
     <script src="/app-portal/pages/shared/components/header-nav/header-nav.js"></script>
+    <script src="~/app-portal/pages/shared/components/url-alias/url-alias.js"></script>
     <script src="/app-portal/pages/shared/components/directives/pane.js"></script>
     <script src="/app-portal/pages/shared/components/directives/tabs.js"></script>
     <script src="~/app-portal/pages/shared/components/tabs-verticle/tabs.js"></script>

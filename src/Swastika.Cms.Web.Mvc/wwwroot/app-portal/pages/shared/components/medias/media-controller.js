@@ -152,7 +152,7 @@ app.controller('MediaController', ['$scope', '$rootScope', '$routeParams', '$tim
             var resp = await mediaServices.saveMedia(media);
             if (resp && resp.isSucceed) {
                 $scope.activedMedia = resp.data;
-                $rootScope.showMessage('success', 'success');
+                $rootScope.showMessage('Thành công', 'success');
                 $rootScope.isBusy = false;
                 $scope.loadMedias();
                 $scope.loadMedia();

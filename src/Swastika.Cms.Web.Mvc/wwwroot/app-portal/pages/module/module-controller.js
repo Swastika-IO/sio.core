@@ -197,7 +197,7 @@ app.controller('ModuleController', ['$scope', '$rootScope', '$routeParams', '$ti
             var resp = await moduleServices.saveModule(module);
             if (resp && resp.isSucceed) {
                 $scope.activedModule = resp.data;
-                $rootScope.showMessage('success', 'success');
+                $rootScope.showMessage('Thành công', 'success');
                 $rootScope.isBusy = false;
                 if (!$routeParams.id) {
                     $location.path('/backend/module/list/');

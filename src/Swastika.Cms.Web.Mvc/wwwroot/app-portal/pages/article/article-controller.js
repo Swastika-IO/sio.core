@@ -110,7 +110,7 @@ app.controller('ArticleController', ['$scope', '$rootScope', '$routeParams', '$t
             var resp = await articleServices.saveArticle(article);
             if (resp && resp.isSucceed) {
                 $scope.activedArticle = resp.data;
-                $rootScope.showMessage('success', 'success');
+                $rootScope.showMessage('Thành công', 'success');
                 $rootScope.isBusy = false;
                 $scope.$apply();
                 //$location.path('/backend/article/details/' + resp.data.id);

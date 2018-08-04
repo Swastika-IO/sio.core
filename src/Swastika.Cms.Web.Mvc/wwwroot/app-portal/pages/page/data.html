@@ -4,10 +4,10 @@
                 <div class="btn-toolbar mb-3" role="toolbar" aria-label="Toolbar with button groups">
                     <div class="btn-group mr-2" role="group" aria-label="First group">
                         <a href="/backend/Page-data/details/{{activedPage.id}}" class="btn btn-secondary">
-                            <em class="fas fa-plus"></em>
+                            <i class="fas fa-plus"></i>
                         </a>
                         <a href="/backend/Page/details/{{activedPage.id}}" class="btn btn-secondary">
-                            <em class="fas fa-pencil-alt"></em>
+                            <i class="fas fa-pencil-alt"></i>
                         </a>
                     </div>
                 </div>
@@ -53,7 +53,7 @@
                     <span class="fas fa-sort"></span>
                 </td>
                 <td>
-                    <emnput type="text" value="{{item.article.priority}}" class="item-priority form-control form-control-sm d-inline" style="width:40px;" />
+                    <input type="text" value="{{item.article.priority}}" class="item-priority form-control form-control-sm d-inline" style="width:40px;" />
                 </td>
                 <td>
                     {{item.article.code}}
@@ -63,7 +63,7 @@
                 </td>
                 <td>
                     <div ng-if="item.article.image!=''">
-                        <emmg height="50" src="{{item.article.imageUrl}}" />
+                        <img height="50" src="{{item.article.imageUrl}}" />
                     </div>
                     <small>
                         <span ng-bind-html="item.article.excerpt"></span>
@@ -133,14 +133,14 @@
                     <span class="fas fa-sort"></span>
                 </td>
                 <td>
-                    <emnput type="text" value="{{item.product.priority}}" class="item-priority form-control form-control-sm d-inline" style="width:40px;" />
+                    <input type="text" value="{{item.product.priority}}" class="item-priority form-control form-control-sm d-inline" style="width:40px;" />
                 </td>
                 <td>
                     {{item.product.title}}
                 </td>
                 <td>
                     <div ng-if="item.product.image!=''">
-                        <emmg height="50" src="{{item.product.imageUrl}}" />
+                        <img height="50" src="{{item.product.imageUrl}}" />
                     </div>
                     <small>
                         <span ng-bind-html="item.product.excerpt"></span>

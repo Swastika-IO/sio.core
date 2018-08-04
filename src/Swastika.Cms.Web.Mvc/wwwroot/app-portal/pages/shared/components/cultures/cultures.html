@@ -4,7 +4,7 @@
             <div class="card-header">
                 <div class="row">
                     <span class="switch switch-sm">
-                    <emnput type="checkbox" ng-model="$ctrl.isClone" id="isClone"
+                    <input type="checkbox" ng-model="$ctrl.isClone" id="isClone"
                            class="switch">
                     <label class="switch" for="isClone">                        
                         <span>Clone</span>
@@ -15,7 +15,7 @@
             <div class="card-body" ng-show="$ctrl.isClone">                
                 <div class="row" ng-repeat="culture in $ctrl.data">
                     <span class="switch switch-sm">
-                        <emnput type="checkbox" ng-model="culture.isSupported" id="culture_{{$index}}"
+                        <input type="checkbox" ng-model="culture.isSupported" id="culture_{{$index}}"
                                class="switch">
                         <label class="switch" for="culture_{{$index}}">
                             <span class="flag-icon {{culture.icon}}"></span>

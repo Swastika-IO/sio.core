@@ -1,16 +1,9 @@
 ﻿'use strict';
-app.service('translator', ['commonServices', function (commonServices) {
+app.service('translator', ['$rootScope', function ($rootScope) {
 
-    var translator = {};
-    this.init = async function () {
-        translator = await commonServices.getTranslator();
-    }
+    var translator = $rootScope.translator;
+
     this.get = function (keyword) {
-        if (translator) {
-            return translator[keyword] || '[' + keyword + ']';
-        }
-        else {
-            return keyword;
-        }
+        return translator[keyword] || '[' + keyword + ']';
     };
 }]);

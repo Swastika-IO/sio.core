@@ -121,7 +121,7 @@ app.controller('ThemeController', ['$scope', '$rootScope', '$routeParams', '$tim
             var resp = await themeServices.saveTheme(theme);
             if (resp && resp.isSucceed) {
                 $scope.activedTheme = resp.data;
-                $rootScope.showMessage('success', 'success');
+                $rootScope.showMessage('Thành công', 'success');
                 $rootScope.isBusy = false;
                 $rootScope.updateSettings();
                 $location.path('/backend/theme/list');

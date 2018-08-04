@@ -25,6 +25,7 @@ namespace Swastika.Cms.Lib.Models.Cms
         public string Specificulture { get; set; }
         public int Status { get; set; }
 
+        public ICollection<SiocUrlAlias> SiocUrlAlias { get; set; }
         public ICollection<SiocArticle> SiocArticle { get; set; }
         public ICollection<SiocCategory> SiocCategory { get; set; }
         public ICollection<SiocConfiguration> SiocConfiguration { get; set; }

@@ -1,11 +1,50 @@
 ﻿'use strict';
 var app = angular.module('SwastikaPortal', ['ngRoute', 'components', 'ngFileUpload', 'LocalStorageModule',
     'bw.paging', 'dndLists', 'ngSanitize']);
-
-var modules = angular.module('components', []);
-
 var serviceBase = "/";
 
+app.directive('ngEnter', function () {
+    return function (scope, element, attrs) {
+        element.bind("keydown keypress", function (event) {
+            if (event.which === 13) {
+                scope.$apply(function () {
+                    scope.$eval(attrs.ngEnter);
+                });
+
+                event.preventDefault();
+            }
+        });
+    };
+}).directive('file', function () {
+    return {
+        scope: {
+            file: '='
+        },
+        link: function (scope, el, attrs) {
+            el.bind('change', function (event) {
+                var files = event.target.files;
+                var file = files[0];
+                scope.file = file;
+                scope.$apply();
+            });
+        }
+    };
+}).directive('imageonload', function () {
+    return {
+        restrict: 'A',
+        link: function (scope, element, attrs) {
+            element.bind('load', function () {
+            });
+            element.bind('error', function () {
+            });
+        }
+    };
+}).filter('utcToLocal', Filter)
+    .constant('ngAuthSettings', {
+        apiServiceBaseUri: '/',
+        clientId: 'ngAuthApp',
+        facebookAppId: '464285300363325'
+    });
 
 app.run(['$rootScope', '$location', 'commonServices', 'authService', function ($rootScope, $location, commonServices, authService) {
     authService.fillAuthData();
@@ -15,6 +54,8 @@ app.run(['$rootScope', '$location', 'commonServices', 'authService', function ($
             $rootScope.translator = response;
         });
     });
+
+
 
     $rootScope.currentContext = $rootScope;
     $rootScope.errors = [];
@@ -137,13 +178,39 @@ app.run(['$rootScope', '$location', 'commonServices', 'authService', function ($
         for (var i = 1; i <= max; i += 1) input.push(i);
         return input;
     };
-
+    $rootScope.generateKeyword = function (src, character) {
+        return src.replace(/[^a-zA-Z0-9]+/g, character)
+            .replace(/([A-Z]+)([A-Z][a-z])/g, '$1-$2')
+            .replace(/([a-z])([A-Z])/g, '$1-$2')
+            .replace(/([0-9])([^0-9])/g, '$1-$2')
+            .replace(/([^0-9])([0-9])/g, '$1-$2')
+            .replace(/-+/g, character)
+            .toLowerCase();
+    }
     $rootScope.$watch('isBusy', function (newValue, oldValue) {
         if (newValue) {
             $rootScope.message.content = '';
             $rootScope.errors = [];
         }
-    });    
+    });
+
+    $rootScope.showErrorsbk = function (errors) {
+        $rootScope.message.title = 'Errors';
+        $rootScope.message.errors = errors;
+        $rootScope.message.content = '';
+        $rootScope.message.class = 'danger';
+        $('#dlg-msg').modal("show");
+    }
+
+    //type: success / info / danger / warning - bootstrap 
+    $rootScope.showMessagebk = function (content, type) {
+        type = type || 'info';
+        $rootScope.message.title = 'Result';
+        $rootScope.message.content = content;
+        $rootScope.message.errors = [];
+        $rootScope.message.class = type;
+        $('#dlg-msg').modal("show");
+    }
 
     $rootScope.logOut = function () {
         authService.logOut();
@@ -160,18 +227,6 @@ app.run(['$rootScope', '$location', 'commonServices', 'authService', function ($
 
         });
         $rootScope.isBusy = false;
-    }
-
-    $rootScope.updateTranslator = function () {
-        commonServices.removeTranslator();
-        commonServices.fillTranslator($rootScope.settings.lang).then(function () {
-            window.top.location = location.href;
-        });
-        $rootScope.isBusy = false;
-    }
-    $rootScope.updateConfigs = function () {
-        $rootScope.updateSettings();
-        $rootScope.updateTranslator();
     }
     $rootScope.executeFunctionByName = async function (functionName, args, context) {
         if (functionName !== null) {
@@ -237,11 +292,9 @@ app.run(['$rootScope', '$location', 'commonServices', 'authService', function ($
         });
     }
 
-    //type: success / info / danger / warning - bootstrap 
     $rootScope.showMessage = function (content, type) {
         var from = 'bottom';
         var align = 'right';
-
         $.notify({
             icon: "now-ui-icons ui-1_bell-53",
             message: content,
@@ -256,3 +309,21 @@ app.run(['$rootScope', '$location', 'commonServices', 'authService', function ($
             });
     }
 }]);
+
+function Filter($filter) {
+    return function (utcDateString, format) {
+        // return if input date is null or undefined
+        if (!utcDateString) {
+            return;
+        }
+
+        // append 'Z' to the date string to indicate UTC time if the timezone isn't already specified
+        if (utcDateString.indexOf('Z') === -1 && utcDateString.indexOf('+') === -1) {
+            utcDateString += 'Z';
+        }
+
+        // convert and format date using the built in angularjs date filter
+        return $filter('date')(utcDateString, format);
+    };
+}
+var modules = angular.module('components', []);

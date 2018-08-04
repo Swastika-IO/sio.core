@@ -1,15 +1,15 @@
 ﻿<div class="row">
     <div class="col-md-4">
         <h2 class="form-login-heading">Login</h2>
-        <emnput type="text" class="form-control ng-pristine ng-invalid ng-invalid-required" placeholder="Username" 
+        <input type="text" class="form-control ng-pristine ng-invalid ng-invalid-required" placeholder="Username" 
                ng-model="loginData.username" required="" autofocus=""
                ng-enter="login()">
-        <emnput type="password" class="form-control hidden ng-pristine ng-invalid ng-invalid-required" placeholder="Password" 
+        <input type="password" class="form-control hidden ng-pristine ng-invalid ng-invalid-required" placeholder="Password" 
                ng-model="loginData.password" required=""
                ng-enter="login()">
         <div class="checkbox hidden">
             <label>
-                <emnput type="checkbox" ng-model="loginData.rememberme" class="ng-pristine ng-valid"><strong> Remember</strong>
+                <input type="checkbox" ng-model="loginData.rememberme" class="ng-pristine ng-valid"><strong> Remember</strong>
             </label>
         </div>
         <div ng-hide="message == ''" class="alert alert-danger ng-binding ng-hide">

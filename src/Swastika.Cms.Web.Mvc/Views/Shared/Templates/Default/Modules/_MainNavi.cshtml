@@ -29,7 +29,7 @@
                             string pageNames = string.Join(",", cate.Childs.Select(c => c.SeoName).ToList());
                             <li is-active-menu asp-controllers="Home" asp-action=",Home" asp-route-pagenames="@pageNames" pages="@pageNames" class="dropdown nav-item">
                                 <a href="@cate.StaticUrl" target="_blank" class="dropdown-hover-toggle nav-link">
-                                    @cate.Title  <em class="fa fa-angle-down"></em>
+                                    @cate.Title <i class="fa fa-angle-down"></i>
                                 </a>
                                 <ul class="dropdown-hover-menu dropdown-menu navbar-nav ml-auto">
                                     @foreach (var childNav in cate.Childs)

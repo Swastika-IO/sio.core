@@ -20,9 +20,9 @@
                                 <a ng-click="addAttr()" class="btn btn-primary btn-sm float-right text-white">Add New</a>
                             </div>
                             <div class="card-body p-1">
-                                <emnput type="hidden" asp-for="Id" />
-                                <emnput type="hidden" asp-for="Specificulture" />
-                                <emnput type="hidden" asp-for="Priority" />
+                                <input type="hidden" asp-for="Id" />
+                                <input type="hidden" asp-for="Specificulture" />
+                                <input type="hidden" asp-for="Priority" />
                                 <table class="table table-sm table-hover" id="Table">
                                     <thead class="thead-light">
                                         <tr>
@@ -50,12 +50,12 @@
                                                 <span class="fas fa-sort"></span>
                                             </td>-->
                                             <!--<td>
-                                                <emnput type="text" ng-model="col.priority" class="item-priority form-control form-control-sm d-inline" style="width:40px;" />
+                                                <input type="text" ng-model="col.priority" class="item-priority form-control form-control-sm d-inline" style="width:40px;" />
                                             </td>-->
                                             
                                             <td>
-                                                <emnput ng-model="col.title" ng-change="generateName(col)" class="form-control form-control-sm" /><br />
-                                                <emnput ng-model="col.name" placeholder="Field Name" class="form-control form-control-sm" />
+                                                <input ng-model="col.title" ng-change="generateName(col)" class="form-control form-control-sm" /><br />
+                                                <input ng-model="col.name" placeholder="Field Name" class="form-control form-control-sm" />
                                             </td>
                                             <td>
                                                 <select class="form-control form-control-sm" ng-model="col.dataType">
@@ -63,35 +63,35 @@
                                                 </select>
                                             </td>
                                             <!--<td>
-                                                <emnput ng-model="col.width" class="form-control form-control-sm" />
+                                                <input ng-model="col.width" class="form-control form-control-sm" />
                                             </td>-->
                                             <td>
                                                 <span class="switch switch-sm">
-                                                    <emnput id="isUnique_{{$index}}" type="checkbox" class="switch" ng-model="col.isUnique">
+                                                    <input id="isUnique_{{$index}}" type="checkbox" class="switch" ng-model="col.isUnique">
                                                     <label for="isUnique_{{$index}}">&nbsp;</label>
                                                 </span>
                                             </td>
                                             <td>
                                                 <span class="switch switch-sm">
-                                                    <emnput id="isRequired_{{$index}}" type="checkbox" class="checkbox" ng-model="col.isRequired">
+                                                    <input id="isRequired_{{$index}}" type="checkbox" class="checkbox" ng-model="col.isRequired">
                                                     <label for="isRequired_{{$index}}">&nbsp;</label>
                                                 </span>
                                             </td>
                                             <!--<td>
                                                 <span class="switch switch-sm">
-                                                    <emnput id="isGroupBy_{{$index}}" type="checkbox" class="switch" ng-model="col.isGroupBy">
+                                                    <input id="isGroupBy_{{$index}}" type="checkbox" class="switch" ng-model="col.isGroupBy">
                                                     <label for="isGroupBy_{{$index}}">&nbsp;</label>
                                                 </span>
                                             </td>-->
                                             <td>
                                                 <span class="switch switch-sm">
-                                                    <emnput id="isSelect_{{$index}}" type="checkbox" class="switch" ng-model="col.isSelect">
+                                                    <input id="isSelect_{{$index}}" type="checkbox" class="switch" ng-model="col.isSelect">
                                                     <label for="isSelect_{{$index}}">&nbsp;</label>
                                                 </span>
                                             </td>
                                             <td>
                                                 <span class="switch switch-sm">
-                                                    <emnput id="isDisplay_{{$index}}" type="checkbox" class="switch" ng-model="col.isDisplay">
+                                                    <input id="isDisplay_{{$index}}" type="checkbox" class="switch" ng-model="col.isDisplay">
                                                     <label for="isDisplay_{{$index}}">&nbsp;</label>
                                                 </span>
                                             </td>
@@ -108,12 +108,12 @@
 
                                                     <div class="col-12">
                                                         <h1 ng-bind="col.name"></h1>
-                                                        <emnput type="text" id="option_{{$index}}" ng-enter="addOption(col,$index)" placeholder="fill then enter to add options" class="form-control" />
+                                                        <input type="text" id="option_{{$index}}" ng-enter="addOption(col,$index)" placeholder="fill then enter to add options" class="form-control" />
                                                     </div>
                                                 </div>
                                                 <div class="row" ng-repeat="opt in col.options track by $index">
                                                     <div class="col-8">
-                                                        <emnput type="text" class="form-control" ng-model="col.options[$index]" />
+                                                        <input type="text" class="form-control" ng-model="col.options[$index]" />
                                                     </div>
                                                     <div class="col-4 ">
                                                         <a class="btn" ng-click="col.options.splice($index,1)">
@@ -147,7 +147,7 @@
                         <div class="form-group">
                             <span class="switch">
                                 <label>
-                                    <emnput type="checkbox" ng-model="activedModule.isClone" class="switch">
+                                    <input type="checkbox" ng-model="activedModule.isClone" class="switch">
                                     Clone
                                 </label>
                             </span>
@@ -156,9 +156,9 @@
                             <label class="control-label">Created Date Time</label>
                             <div class="input-group input-group-sm mb-3">
                                 <div class="input-group-prepend">
-                                    <span class="input-group-text" id="basic-addon1"><em class="mi mi-Calendar"></em></span>
+                                    <span class="input-group-text" id="basic-addon1"><i class="mi mi-Calendar"></i></span>
                                 </div>
-                                <emnput ng-model="activedModule.createdDateTime" type="text" class="form-control" readonly />
+                                <input ng-model="activedModule.createdDateTime" type="text" class="form-control" readonly />
                             </div>
                         </div>
 
@@ -166,9 +166,9 @@
                             <label class="control-label">Created By</label>
                             <div class="input-group input-group-sm mb-3">
                                 <div class="input-group-prepend">
-                                    <span class="input-group-text" id="basic-addon1"><em class="mi mi-Contact"></em></span>
+                                    <span class="input-group-text" id="basic-addon1"><i class="mi mi-Contact"></i></span>
                                 </div>
-                                <emnput ng-model="activedModule.createdBy" class="form-control" readonly />
+                                <input ng-model="activedModule.createdBy" class="form-control" readonly />
                             </div>
                         </div>
                     </div>
