@@ -107,9 +107,9 @@ namespace Swastika.Cms.Web.Mvc
                         skipRemainingRules: true)
                     .AddApacheModRewrite(apacheModRewriteStreamReader)
                     .AddIISUrlRewrite(iisUrlRewriteStreamReader)
-                    .Add(MethodRules.RedirectXMLRequests)
-                    .Add(new RedirectImageRequests(".png", "/png-images"))
-                    .Add(new RedirectImageRequests(".jpg", "/jpg-images"));
+                    .Add(MethodRules.RedirectXMLRequests);
+                    //.Add(new RedirectImageRequests(".png", "/png-images"))
+                    //.Add(new RedirectImageRequests(".jpg", "/jpg-images"));
 
                 app.UseRewriter(options);
             }

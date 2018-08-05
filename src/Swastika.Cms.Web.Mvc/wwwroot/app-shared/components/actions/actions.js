@@ -1,8 +1,8 @@
 ﻿
 modules.component('actions', {
     templateUrl: '/app-shared/components/actions/actions.html',
-    controller: ['$rootScope', 'translator', function ($rootScope, translator) {
-        this.translator = translator;
+    controller: ['$rootScope', 'translatorService', function ($rootScope, translatorService) {
+        this.translator = translatorService;
     }],
     bindings: {
         previewUrl: '=',

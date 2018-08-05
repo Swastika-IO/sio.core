@@ -1,8 +1,7 @@
 ﻿modules.component('mainSideBar', {
     templateUrl: '/app-shared/components/main-side-bar/main-side-bar.html',
-    controller: ['$scope', 'translator', function ($scope, translator) {
+    controller: ['$rootScope', '$scope', 'translatorService', function ($rootScope, $scope, translatorService) {
         var ctrl = this;
-        ctrl.translator = translator;
         var culture = $('#lang').val();
         ctrl.items = [
             {
@@ -13,13 +12,13 @@
                 subMenus: []
             },
             {
-                title: ctrl.translator.get('portal_articles'),
-                shortTitle: ctrl.translator.get('portal_articles'),
+                title: translatorService.get('portal_articles'),
+                shortTitle: translatorService.get('portal_articles'),
                 icon: 'mi mi-Package',
                 href: '#',
                 subMenus: [
                     {
-                        title: ctrl.translator.get('portal_create'),
+                        title: translatorService.get('portal_create'),
                         href: '/backend/article/create',
                         icon: 'mi mi-Add'
                     },
@@ -37,7 +36,7 @@
                 href: '#',
                 subMenus: [
                     {
-                        title: ctrl.translator.get('portal_create'),
+                        title: translatorService.get('portal_create'),
                         href: '/backend/product/create',
                         icon: 'mi mi-Add'
                     },
@@ -55,7 +54,7 @@
                 href: '#',
                 subMenus: [
                     {
-                        title: ctrl.translator.get('portal_create'),
+                        title: translatorService.get('portal_create'),
                         href: '/backend/page/create',
                         icon: 'mi mi-Add'
                     },
@@ -73,7 +72,7 @@
                 href: '#',
                 subMenus: [
                     {
-                        title: ctrl.translator.get('portal_create'),
+                        title: translatorService.get('portal_create'),
                         href: '/backend/module/create',
                         icon: 'mi mi-Add'
                     },
@@ -91,7 +90,7 @@
                 href: '#',
                 subMenus: [
                     {
-                        title: ctrl.translator.get('portal_create'),
+                        title: translatorService.get('portal_create'),
                         href: '/backend/theme/create',
                         icon: 'mi mi-Add'
                     },
@@ -109,7 +108,7 @@
                 href: '#',
                 subMenus: [
                     {
-                        title: ctrl.translator.get('portal_create'),
+                        title: translatorService.get('portal_create'),
                         href: '/backend/media/create',
                         icon: 'mi mi-Add'
                     },
@@ -127,7 +126,7 @@
                 href: '#',
                 subMenus: [
                     {
-                        title: ctrl.translator.get('portal_create'),
+                        title: translatorService.get('portal_create'),
                         href: '/backend/file/create',
                         icon: 'mi mi-Add'
                     },
@@ -145,7 +144,7 @@
                 href: '#',
                 subMenus: [
                     {
-                        title: ctrl.translator.get('portal_create'),
+                        title: translatorService.get('portal_create'),
                         href: '/backend/user/create',
                         icon: 'mi mi-Add'
                     },
@@ -173,7 +172,7 @@
                         icon: 'mi mi-Pen'
                     },
                     {
-                        title: ctrl.translator.get('portal_create'),
+                        title: translatorService.get('portal_create'),
                         href: '/backend/configuration/create',
                         icon: 'mi mi-Add'
                     },
@@ -191,7 +190,7 @@
                 href: '#',
                 subMenus: [
                     {
-                        title: ctrl.translator.get('portal_create'),
+                        title: translatorService.get('portal_create'),
                         href: '/backend/language/create',
                         icon: 'mi mi-Add'
                     },
@@ -203,6 +202,7 @@
                 ]
             }
         ]
+
     }],
     bindings: {
     }
