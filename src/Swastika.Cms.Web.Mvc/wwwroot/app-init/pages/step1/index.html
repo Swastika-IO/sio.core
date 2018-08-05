@@ -17,7 +17,7 @@
                     </style>
                     <div class="col form-check mb-4">
                         <label class="form-check-label">
-                            <emnput class="form-check-input" type="checkbox" ng-model="initCmsModel.isUseLocal" />
+                            <input class="form-check-input" type="checkbox" ng-model="initCmsModel.isUseLocal" />
                             <span class="form-check-sign"></span>
                             Use local Database
                         </label>
@@ -26,18 +26,18 @@
                     </div>
                     <div ng-show="initCmsModel.isUseLocal" class="input-group form-group-no-border input-lg">
                          <!--<label class="form-check-label hidden">
-                            <emnput class="form-check-input" type="checkbox" ng-model="initCmsModel.isSqlite" />
+                            <input class="form-check-input" type="checkbox" ng-model="initCmsModel.isSqlite" />
                             <span class="form-check-sign"></span>
                             Use Sqlite
                         </label>-->
                         <div class="input-group-prepend">
                             <span class="input-group-text"><em class="now-ui-icons business_chart-pie-36"></em></span>
                         </div>
-                        <emnput ng-show="!initCmsModel.isSqlite" ng-model="initCmsModel.localDbConnectionString" class="form-control" placeholder="Local Db">                        
-                        <emnput ng-show="initCmsModel.isSqlite" ng-model="initCmsModel.sqliteDbConnectionString" class="form-control" placeholder="Local Db">                                                
+                        <input ng-show="!initCmsModel.isSqlite" ng-model="initCmsModel.localDbConnectionString" class="form-control" placeholder="Local Db">                        
+                        <input ng-show="initCmsModel.isSqlite" ng-model="initCmsModel.sqliteDbConnectionString" class="form-control" placeholder="Local Db">                                                
                     </div>
                     <div ng-show="initCmsModel.isUseLocal" class="input-group form-group-no-border input-lg">
-                        <emnput ng-change="updateLocalDbName()" ng-model="initCmsModel.localDbName" class="form-control" placeholder="Local Db">
+                        <input ng-change="updateLocalDbName()" ng-model="initCmsModel.localDbName" class="form-control" placeholder="Local Db">
                     </div>
                 </div>
                 <div ng-hide="initCmsModel.isUseLocal">
@@ -46,25 +46,25 @@
                         <div class="input-group-prepend">
                             <span class="input-group-text"><em class="now-ui-icons business_chart-pie-36"></em></span>
                         </div>
-                        <emnput ng-model="initCmsModel.dataBaseServer" class="form-control" placeholder="Database Server (e.g. domain or IP)">
+                        <input ng-model="initCmsModel.dataBaseServer" class="form-control" placeholder="Database Server (e.g. domain or IP)">
                     </div>
                     <div class="input-group form-group-no-border input-lg">
                         <div class="input-group-prepend">
                             <span class="input-group-text"><em class="now-ui-icons business_badge"></em></span>
                         </div>
-                        <emnput ng-model="initCmsModel.dataBaseName" class="form-control" placeholder="Database name (e.g. SwastikaDb)" />
+                        <input ng-model="initCmsModel.dataBaseName" class="form-control" placeholder="Database name (e.g. SwastikaDb)" />
                     </div>
                     <div class="input-group form-group-no-border input-lg">
                         <div class="input-group-prepend">
                             <span class="input-group-text"><em class="now-ui-icons ui-1_lock-circle-open"></em></span>
                         </div>
-                        <emnput ng-model="initCmsModel.dataBaseUser" class="form-control" placeholder="Database Username">
+                        <input ng-model="initCmsModel.dataBaseUser" class="form-control" placeholder="Database Username">
                     </div>
                     <div class="input-group form-group-no-border input-lg">
                         <div class="input-group-prepend">
                             <span class="input-group-text"><em class="now-ui-icons ui-1_lock-circle-open"></em></span>
                         </div>
-                        <emnput ng-model="initCmsModel.dataBasePassword" type="password" class="form-control" placeholder="Database Password" />
+                        <input ng-model="initCmsModel.dataBasePassword" type="password" class="form-control" placeholder="Database Password" />
                     </div>
                     
             

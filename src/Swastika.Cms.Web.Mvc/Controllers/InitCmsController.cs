@@ -24,7 +24,6 @@ namespace Swastika.Cms.Web.Mvc.Controllers
 
         [HttpGet]
         [Route("")]
-        [Route("{culture}")]
         public async System.Threading.Tasks.Task<IActionResult> Index(string culture)
         {
             if (string.IsNullOrEmpty(GlobalConfigurationService.Instance.CmsConfigurations.CmsConnectionString))

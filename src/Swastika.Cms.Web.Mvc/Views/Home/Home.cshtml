@@ -34,28 +34,34 @@ else
 }
 
 @section scripts{
-    @Html.Raw(Model.View?.Scripts)
-<link href="~/css/portal/main.css" rel="stylesheet" />
     <script src="~/js/angular.min.js"></script>
     <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.2.16/angular-route.min.js"></script>
     <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.2.13/angular-animate.js"></script>
     <script src="~/js/plugins/ng-file-upload-bower-12.2.13/ng-file-upload-all.js"></script>
-    <script src="~/app-portal/plugins/bootstrap-notify.min.js"></script>
+    <script src="/app-client/app.js"></script>
+    
+    <script src="~/app-shared/plugins/bootstrap-notify.min.js"></script>
     <script src="~/js/plugins/ng-file-upload-bower-12.2.13/ng-file-upload-shim.js"></script>
-    <script src="~/app-portal/plugins/angular-local-storage.min.js"></script>
-    <script src="~/app-client/app.js"></script>
-    @*<script src="~/app/app-frontend.js"></script>
-        <script src="~/app/controllers/frontend-controller.js"></script>*@
-
-    <script src="~/app-client/shared/services/common-services.js"></script>
-    <script src="~/app-client/shared/services/auth-services.js"></script>
     <!--module-data-->
-    <script src="~/app-portal/pages/shared/components/module-data/module-data-services.js"></script>
-    <script src="~/app-portal/pages/shared/components/module-data/module-data-controller.js"></script>
+    <script src="~/app-shared/components/module-data/module-data-services.js"></script>
+    <script src="~/app-shared/components/module-data/module-data-controller.js"></script>
     <script src="~/app-client/components/module-data/module-form.js"></script>
 
-    <script src="~/app-portal/pages/shared/components/confirm/confirm.js"></script>
-    <script src="~/app-portal/pages/shared/components/message/message.js"></script>
+    <script src="~/app-shared/components/confirm/confirm.js"></script>
+    <script src="~/app-shared/components/message/message.js"></script>
+    
+    <script src="~/app-shared/plugins/angular-drag-and-drop-lists.min.js"></script>
+    <!-- Services-->
+    <script src="/app-shared/plugins/angular-local-storage.min.js"></script>
+    <script src="/app-shared/services/auth-services.js"></script>
+    <script src="/app-shared/services/common-services.js"></script>
+    <script>
+        var apiKey = '@LocalizerService.GetLocalString("GG_API_KEY", ViewBag.culture as string, "AIzaSyCTDOBll7dfajw8mZ1aL4C2-KsvOY55hko")';
+    </script>
+
+    @Html.Raw(Model.View?.Scripts)
+<link href="~/css/portal/main.css" rel="stylesheet" />
+    
 }
 @section styles{
     @Html.Raw(Model.View?.Styles)
