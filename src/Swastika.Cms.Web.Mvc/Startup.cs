@@ -43,7 +43,7 @@ namespace Swastika.Cms.Web.Mvc
                 options.CheckConsentNeeded = context => true;
                 options.MinimumSameSitePolicy = SameSiteMode.None;
             });
-            
+
             ConfigIdentity(services, Configuration, Swastika.Cms.Lib.SWCmsConstants.CONST_DEFAULT_CONNECTION); //Cms Config
             ConfigCookieAuth(services, Configuration);
             ConfigJWTToken(services, Configuration);
@@ -55,7 +55,7 @@ namespace Swastika.Cms.Web.Mvc
 
             // add application services.
             services.AddTransient<IEmailSender, AuthEmailMessageSender>();
-            services.AddTransient<ISmsSender, AuthSmsMessageSender>();  
+            services.AddTransient<ISmsSender, AuthSmsMessageSender>();
 
             services.AddSingleton<GlobalConfigurationService>();
             GlobalConfigurationService.Instance.RefreshAll();
@@ -134,7 +134,7 @@ namespace Swastika.Cms.Web.Mvc
                     template: @"{culture=" + CONST_ROUTE_DEFAULT_CULTURE + @"}/product/{seoName}");
             });
 
-            
+
             //app.Run(context => context.Response.WriteAsync(
             //    $"Rewritten or Redirected Url: " +
             //    $"{context.Request.Path + context.Request.QueryString}"));

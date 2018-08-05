@@ -40,7 +40,7 @@ namespace Swastika.Cms.Web.Mvc.Controllers
                 }
                 else
                 {
-                    return Redirect($"/{culture ?? GlobalConfigurationService.Instance.CmsConfigurations.Language}/Home");
+                    return Redirect($"/{culture ?? GlobalConfigurationService.Instance.CmsConfigurations.Language}");
                 }
             }
         }

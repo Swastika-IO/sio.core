@@ -24,8 +24,7 @@ namespace Swastka.Cms.Api.Controllers
     //[Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme
     //    //, Policy = "AddEditUser"
     //    )]
-    [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme,
-        Roles = "SuperAdmin, Admin")]
+    [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme, Roles = "SuperAdmin, Admin")]
     [Produces("application/json")]
     [Route("api/{culture}/Article")]
     public class ApiArticleController :
@@ -196,7 +195,7 @@ namespace Swastka.Cms.Api.Controllers
 
         // GET api/Articles
         [HttpGet]
-        //[Authorize]
+        //[Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme, Roles = "SuperAdmin, Admin")]
         [Route("list")]
         [Route("list/{pageSize:int?}/{pageIndex:int?}")]
         [Route("list/{orderBy}/{direction}")]

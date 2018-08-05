@@ -78,7 +78,7 @@ namespace Swastika.Cms.Lib.ViewModels.Api
         public override void Validate(SiocCmsContext _context, IDbContextTransaction _transaction)
         {
             base.Validate(_context, _transaction);
-            if (_context.SiocUrlAlias.Any(u=>u.Alias == Alias && u.Specificulture == Specificulture))
+            if (_context.SiocUrlAlias.Any(u => u.Alias == Alias && u.Specificulture == Specificulture && u.SourceId != SourceId))
             {
                 IsValid = false;
                 Errors.Add("Url Alias is existed");

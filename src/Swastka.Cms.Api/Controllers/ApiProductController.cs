@@ -139,7 +139,7 @@ namespace Swastka.Cms.Api.Controllers
 
         // GET api/products
         [HttpGet]
-        //[Authorize]
+        //[Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme, Roles = "SuperAdmin, Admin")]
         [Route("list")]
         [Route("list/{pageSize:int?}/{pageIndex:int?}")]
         [Route("list/{orderBy}/{direction}")]

@@ -2,6 +2,7 @@
 // The Swastika I/O Foundation licenses this file to you under the MIT license.
 // See the LICENSE file in the project root for more information.
 
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Data.OData.Query;
@@ -14,6 +15,7 @@ using Swastika.Cms.Lib.ViewModels.Info;
 using Swastika.Domain.Core.ViewModels;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Linq.Expressions;
 using System.Threading.Tasks;
 using static Swastika.Common.Utility.Enums;
@@ -168,14 +170,14 @@ namespace Swastka.Cms.Api.Controllers
         #region Post
 
         // POST api/category
-        [Authorize]
+        [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme, Roles = "SuperAdmin, Admin")]
         [HttpPost, HttpOptions]
         [Route("save")]
         public async Task<RepositoryResponse<ApiCategoryViewModel>> Post([FromBody]ApiCategoryViewModel model)
         {
             if (model != null)
             {
-                model.CreatedBy = User.Identity.Name;
+                model.CreatedBy = User.Claims.FirstOrDefault(c => c.Type == "Username")?.Value;
                 var result = await model.SaveModelAsync(true).ConfigureAwait(false);
                 return result;
             }

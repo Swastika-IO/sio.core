@@ -14,7 +14,7 @@
     </rule>
     <rule name="Rewrite to alias" stopProcessing="true">
       <match url="^([a-zA-Z]{2}[-][a-zA-Z]{2})/(.*)$" />
-      <action type="Rewrite" url="/{R:1}/alias?pageName={R:2}" appendQueryString="false"/>
+      <action type="Rewrite" url="/{R:1}/alias?alias={R:2}" appendQueryString="false"/>
     </rule>
   </rules>
 </rewrite>

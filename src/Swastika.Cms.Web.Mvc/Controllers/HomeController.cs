@@ -10,10 +10,12 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.Data.OData.Query;
 using Scriban;
 using Swastika.Cms.Lib;
+using Swastika.Cms.Lib.ViewModels.Api;
 using Swastika.Cms.Lib.ViewModels.FrontEnd;
 using Swastika.Cms.Lib.ViewModels.Info;
 using Swastika.Identity.Models;
 using System;
+using System.Threading.Tasks;
 using static Swastika.Common.Utility.Enums;
 
 namespace Swastika.Cms.Mvc.Controllers
@@ -82,20 +84,39 @@ namespace Swastika.Cms.Mvc.Controllers
 
         [HttpGet]
         [Route("alias")]
-        public IActionResult Alias(string pageName, int pageIndex, int pageSize = 10)
+        public async Task<IActionResult> Alias(string alias, int pageIndex, int pageSize = 10)
+        {
+            // Home Page
+            var getAlias = await ApiUrlAliasViewModel.Repository.GetSingleModelAsync(u => u.Alias == alias && u.Specificulture == CurrentLanguage);
+            if (getAlias.IsSucceed)
+            {
+                switch (getAlias.Data.Type)
+                {
+                    case SWCmsConstants.UrlAliasType.Page:
+                        int.TryParse(getAlias.Data.SourceId, out int pageId);
+                        return Page(pageId, pageIndex, pageSize);
+                    case SWCmsConstants.UrlAliasType.Article:
+                    case SWCmsConstants.UrlAliasType.Product:
+                    case SWCmsConstants.UrlAliasType.Module:
+                    case SWCmsConstants.UrlAliasType.ModuleData:
+                    default:
+                        return RedirectToAction("Index", "Backend");
+                }
+
+            }
+            else
+            {
+                return RedirectToAction("Index", "Backend");
+            }
+
+        }
+
+        public IActionResult Page(int pageId, int pageIndex, int pageSize = 10)
         {
             // Home Page
             var getPage = FECategoryViewModel.Repository.GetSingleModel(
                 p => p.Specificulture == CurrentLanguage
-                    &&
-                    (
-                        (
-                            (string.IsNullOrEmpty(pageName) || pageName == "Home")
-                            && p.Type == (int)SWCmsConstants.CateType.Home
-                        )
-                        || p.SeoName == pageName
-                    )
-
+                    && p.Id == pageId
                 );
             if (getPage.IsSucceed && getPage.Data.View != null)
             {
