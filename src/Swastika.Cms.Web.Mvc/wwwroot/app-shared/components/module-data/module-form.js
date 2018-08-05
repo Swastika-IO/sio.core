@@ -1,6 +1,6 @@
 ﻿
 modules.component('moduleForm', {
-    templateUrl: '/app-portal/pages/shared/components/module-data/module-form.html',
+    templateUrl: '/app-shared/components/module-data/module-form.html',
     controller: ['$scope', '$rootScope', '$routeParams', '$timeout', '$location', 'authService', 'ModuleDataServices',
         function ($scope, $rootScope, $routeParams, $timeout, $location, authService, moduleDataServices) {
             var ctrl = this;
@@ -79,7 +79,7 @@ modules.component('moduleForm', {
 
 
 modules.component('moduleFormEditor', {
-    templateUrl: '/app-portal/pages/shared/components/module-data/module-form-editor.html',
+    templateUrl: '/app-shared/components/module-data/module-form-editor.html',
     controller: ['$rootScope', '$scope', function ($rootScope, $scope) {
         var ctrl = this;
         this.dataTypes = {
@@ -136,7 +136,7 @@ modules.component('moduleFormEditor', {
 });
 
 modules.component('moduleFormPreview', {
-    templateUrl: '/app-portal/pages/shared/components/module-data/module-data-preview.html',
+    templateUrl: '/app-shared/components/module-data/module-data-preview.html',
     controller: ['$rootScope', function ($rootScope) {
         var ctrl = this;
     }

@@ -1,6 +1,6 @@
 ﻿(function (angular) {
     app.component('headerNav', {
-        templateUrl: '/app-portal/pages/shared/components/header-nav/headerNav.html',
+        templateUrl: '/app-shared/components/header-nav/headerNav.html',
         controller: ['$rootScope', 'commonServices', function ($rootScope, commonServices) {
             var ctrl = this;
             ctrl.settings = null;

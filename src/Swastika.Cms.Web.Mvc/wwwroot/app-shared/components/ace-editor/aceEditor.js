@@ -1,5 +1,5 @@
 ﻿modules.component('aceEditor', {
-    aceFileUrl: '/app-portal/pages/shared/components/ace-editor/aceEditor.html',
+    aceFileUrl: '/app-shared/components/ace-editor/aceEditor.html',
     controller: ['$rootScope', '$scope', 'commonServices', function ($rootScope, $scope, commonServices) {
         var vm = this;
         vm.id = Math.random();

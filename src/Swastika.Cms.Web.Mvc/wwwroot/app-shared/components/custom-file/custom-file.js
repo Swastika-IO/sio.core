@@ -1,7 +1,7 @@
 ﻿
 //modules.controller('ImageController', );
 modules.component('customFile', {
-    templateUrl: '/app-portal/pages/shared/components/custom-file/custom-file.html',
+    templateUrl: '/app-shared/components/custom-file/custom-file.html',
     controller: ['$rootScope', '$scope', 'MediaServices', function PortalTemplateController($rootScope, $scope, mediaServices) {
         var ctrl = this;        
         ctrl.media = null;

@@ -1,6 +1,6 @@
 ﻿
 modules.component('apiFile', {
-    templateUrl: '/app-portal/pages/shared/components/api-file/api-file.html',
+    templateUrl: '/app-shared/components/api-file/api-file.html',
     controller: ['$rootScope', '$scope', function PortalTemplateController($rootScope, $scope) {
         var ctrl = this;
         ctrl.selectFile = function (file, errFiles) {

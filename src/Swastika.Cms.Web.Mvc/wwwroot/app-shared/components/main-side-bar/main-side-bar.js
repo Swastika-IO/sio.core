@@ -1,5 +1,5 @@
 ﻿modules.component('mainSideBar', {
-    templateUrl: '/app-portal/pages/shared/components/main-side-bar/main-side-bar.html',
+    templateUrl: '/app-shared/components/main-side-bar/main-side-bar.html',
     controller: ['$scope', 'translator', function ($scope, translator) {
         var ctrl = this;
         ctrl.translator = translator;

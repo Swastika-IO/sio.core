@@ -18,7 +18,7 @@
                 panes.push(pane);
             }
         },
-        templateUrl: '/app-portal/pages/shared/components/tabs-horizontal/tabs.html',
+        templateUrl: '/app-shared/components/tabs-horizontal/tabs.html',
         replace: true
     };
 });

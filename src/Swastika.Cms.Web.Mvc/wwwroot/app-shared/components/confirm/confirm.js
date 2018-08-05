@@ -1,5 +1,5 @@
 ﻿modules.component('confirm', {
-    templateUrl: '/app-portal/pages/shared/components/confirm/confirm.html',
+    templateUrl: '/app-shared/components/confirm/confirm.html',
     controller: ['$rootScope', '$scope', function ($rootScope, $scope) {
         var ctrl = this;
         ctrl.executeFunctionByName =async function (functionName, args, context) {

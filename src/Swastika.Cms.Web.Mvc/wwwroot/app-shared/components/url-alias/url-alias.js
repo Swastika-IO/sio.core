@@ -1,6 +1,6 @@
 ﻿
 modules.component('urlAlias', {
-    templateUrl: '/app-portal/pages/shared/components/url-alias/url-alias.html',
+    templateUrl: '/app-shared/components/url-alias/url-alias.html',
     controller: ['$scope', function ($scope) {
         var ctrl = this;        
     }],

@@ -1,5 +1,5 @@
 ﻿modules.component('templateEditor', {
-    templateUrl: '/app-portal/pages/shared/components/template-editor/templateEditor.html',
+    templateUrl: '/app-shared/components/template-editor/templateEditor.html',
     controller: ['$rootScope', '$scope', 'commonServices', function ($rootScope, $scope, commonServices) {
         var vm = this;
         vm.templates = [];
