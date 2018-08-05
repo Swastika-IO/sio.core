@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.Data.OData.Query;
 using Newtonsoft.Json.Linq;
 using Swastika.Cms.Lib.Models.Cms;
+using Swastika.Cms.Lib.Services;
 using Swastika.Cms.Lib.ViewModels.Api;
 using Swastika.Cms.Lib.ViewModels.BackEnd;
 using Swastika.Domain.Core.ViewModels;
@@ -70,7 +71,12 @@ namespace Swastka.Cms.Api.Controllers
             var getLanguage = ApiLanguageViewModel.Repository.GetSingleModel(a => a.Keyword == keyword && a.Specificulture == _lang);
             if (getLanguage.IsSucceed)
             {
-                return await getLanguage.Data.RemoveModelAsync(true).ConfigureAwait(false);
+                var result =  await getLanguage.Data.RemoveModelAsync(true).ConfigureAwait(false);
+                if (result.IsSucceed)
+                {
+                    GlobalConfigurationService.Instance.RefreshAll();
+                }
+                return result;
             }
             else
             {
@@ -128,7 +134,10 @@ namespace Swastka.Cms.Api.Controllers
             if (model != null)
             {
                 var result = await model.SaveModelAsync(true).ConfigureAwait(false);
-
+                if (result.IsSucceed)
+                {
+                    GlobalConfigurationService.Instance.RefreshAll();
+                }
                 return result;
             }
             return new RepositoryResponse<ApiLanguageViewModel>();

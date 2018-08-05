@@ -217,5 +217,18 @@
         templateUrl: "/app-portal/pages/app-settings/details.html"
     });
 
+    $routeProvider.when("/backend/culture/list", {
+        controller: "CultureController",
+        templateUrl: "/app-portal/pages/culture/list.html"
+    });
+    $routeProvider.when("/backend/culture/details/:id", {
+        controller: "CultureController",
+        templateUrl: "/app-portal/pages/culture/details.html"
+    });
+    $routeProvider.when("/backend/culture/create", {
+        controller: "CultureController",
+        templateUrl: "/app-portal/pages/culture/details.html"
+    });
+
     $routeProvider.otherwise({ redirectTo: "/backend" });
 });

@@ -171,6 +171,10 @@ namespace Swastka.Cms.Api.Controllers
             if (model != null)
             {
                 var result = await InitCmsAsync(model).ConfigureAwait(false);
+                if (result.IsSucceed)
+                {
+                    GlobalConfigurationService.Instance.RefreshAll();
+                }
                 return result;
             }
             return new RepositoryResponse<bool>();

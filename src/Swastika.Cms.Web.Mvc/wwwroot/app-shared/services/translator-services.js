@@ -42,11 +42,27 @@ app.factory('translatorService', ['$rootScope', 'commonServices', 'localStorageS
         await _getTranslator(lang);
     }
     var _get = function (keyword) {
-        if (_translator) {
-            _fillTranslator($rootScope.settings.lang);
+        if (!_translator) {
+            _fillTranslator($rootScope.settings.lang).then(function (response) {
+                _translator = response;
+                return _translator[keyword] || '[' + keyword + ']';
+            });            
+        } else {
+            return _translator[keyword] || '[' + keyword + ']';
         }
-        return _translator[keyword] || '[' + keyword + ']';
+        
     };
+
+    var _getAsync = async function (keyword) {
+        if (!_translator) {
+            _translator = await _fillTranslator($rootScope.settings.lang);
+            return _translator[keyword] || '[' + keyword + ']';            
+        } else {
+            return _translator[keyword] || '[' + keyword + ']';
+        }
+        
+    };
+    factory.getAsync = _getAsync;
     factory.get = _get;
     factory.init = _init;
     factory.reset = _reset;

@@ -115,8 +115,6 @@ namespace Swastika.Cms.Lib.Services
 
                     if (isSucceed)
                     {
-                        GlobalConfigurationService.Instance.RefreshAll(context, transaction);
-
                         transaction.Commit();
                     }
                     else

@@ -15,14 +15,16 @@ app.controller('Step1Controller', ['$scope', '$rootScope', '$timeout', '$locatio
             lang: 'en-us',
             isSqlite: false
         }
-        $scope.settings = null;
-        $scope.loadSettings = async function () {
-            var result = await commonServices.getSettings();
-            if (result.isSucceed) {
-                $scope.settings = result.data;
-                $scope.$apply();
-            }
+        $scope.settings = {
+            cultures: [
+                {
+                    specificulture: 'en-us',
+                    fullName:'English'
+                }
+                
+            ]
         }
+        
         $scope.updateLocalDbName = function () {
             $scope.initCmsModel.localDbConnectionString = 'Server=(localdb)\\mssqllocaldb;Database=' + $scope.initCmsModel.localDbName + ';Trusted_Connection=True;MultipleActiveResultSets=true';
             $scope.initCmsModel.sqliteDbConnectionString = 'Data Source=' + $scope.initCmsModel.localDbName;

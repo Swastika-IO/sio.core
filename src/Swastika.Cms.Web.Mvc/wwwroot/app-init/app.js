@@ -38,57 +38,63 @@ app.directive('ngEnter', function () {
             });
         }
     };
-}).filter('utcToLocal', Filter);
-
-app.run(['$rootScope', '$location', 'commonServices', function ($rootScope, $location, commonServices) {
-   
-    $rootScope.currentContext = $rootScope;
-    $rootScope.errors = [];
-    
-    $rootScope.message = {
-        title: 'test',
-        content: '',
-        errors: [],
-        okFuncName: null,
-        okArgs: [],
-        cancelFuncName: null,
-        cancelArgs: [],
-        lblOK: 'OK',
-        lblCancel: 'Cancel',
-        context: $rootScope
-    };
-
-    $rootScope.$watch('isBusy', function (newValue, oldValue) {
-        if (newValue) {
-            $rootScope.message.content = '';
-            $rootScope.errors = [];
-        }
+}).filter('utcToLocal', Filter)
+    .constant('ngAuthSettings', {
+        apiServiceBaseUri: '/',
+        clientId: 'ngAuthApp',
+        facebookAppId: '464285300363325'
     });
 
-    $rootScope.showErrors = function (errors) {
-        $.each(errors, function (i, e) {
-            $rootScope.showMessage(e, 'danger');
+app.run(['$rootScope', '$location', 'commonServices',
+    function ($rootScope, $location, commonServices) {
+      
+        $rootScope.currentContext = $rootScope;
+        $rootScope.errors = [];
+
+        $rootScope.message = {
+            title: 'test',
+            content: '',
+            errors: [],
+            okFuncName: null,
+            okArgs: [],
+            cancelFuncName: null,
+            cancelArgs: [],
+            lblOK: 'OK',
+            lblCancel: 'Cancel',
+            context: $rootScope
+        };
+
+        $rootScope.$watch('isBusy', function (newValue, oldValue) {
+            if (newValue) {
+                $rootScope.message.content = '';
+                $rootScope.errors = [];
+            }
         });
-    }
 
-    $rootScope.showMessage = function (content, type) {
-        var from = 'bottom';
-        var align = 'right';
-        $.notify({
-            icon: "now-ui-icons ui-1_bell-53",
-            message: content,
-
-        }, {
-                type: type,
-                timer: 2000,
-                placement: {
-                    from: from,
-                    align: align
-                }
+        $rootScope.showErrors = function (errors) {
+            $.each(errors, function (i, e) {
+                $rootScope.showMessage(e, 'danger');
             });
-    }
-    
-}]);
+        }
+
+        $rootScope.showMessage = function (content, type) {
+            var from = 'bottom';
+            var align = 'right';
+            $.notify({
+                icon: "now-ui-icons ui-1_bell-53",
+                message: content,
+
+            }, {
+                    type: type,
+                    timer: 2000,
+                    placement: {
+                        from: from,
+                        align: align
+                    }
+                });
+        }
+
+    }]);
 
 function Filter($filter) {
     return function (utcDateString, format) {

@@ -1,7 +1,7 @@
 ﻿'use strict';
 app.controller('LanguageController', ['$scope', '$rootScope', '$routeParams', '$timeout', '$location'
-    , 'authService', 'LanguageServices', 'commonServices',
-    function ($scope, $rootScope, $routeParams, $timeout, $location, authService, languageServices, commonServices) {
+    , 'authService', 'LanguageServices', 'commonServices', 'translatorService',
+    function ($scope, $rootScope, $routeParams, $timeout, $location, authService, languageServices, commonServices, translatorService) {
         $scope.request = {
             pageSize: '10',
             pageIndex: 0,
@@ -47,8 +47,8 @@ app.controller('LanguageController', ['$scope', '$rootScope', '$routeParams', '$
             $rootScope.isBusy = true;
             var resp = await languageServices.getLanguage(id, 'be');
             if (resp && resp.isSucceed) {
-                
-                $scope.activedLanguage = resp.data;                
+
+                $scope.activedLanguage = resp.data;
                 $rootScope.initEditor();
                 $scope.$apply();
             }
@@ -60,13 +60,12 @@ app.controller('LanguageController', ['$scope', '$rootScope', '$routeParams', '$
         $scope.loadLanguage = async function () {
             $rootScope.isBusy = true;
             var id = $routeParams.id;
-            var response = await languageServices.getLanguage(id, 'be');
+            var response = await languageServices.getLanguage(id, 'api');
             if (response.isSucceed) {
                 $scope.activedLanguage = response.data;
                 if (!id) {
                     $scope.activedLanguage.category = 'Common';
                 }
-                $rootScope.initEditor();
                 $scope.$apply();
             }
             else {
@@ -121,11 +120,12 @@ app.controller('LanguageController', ['$scope', '$rootScope', '$routeParams', '$
             var resp = await languageServices.saveLanguage(language);
             if (resp && resp.isSucceed) {
                 $scope.activedLanguage = resp.data;
-                $rootScope.showMessage('Thành công', 'success');
-                commonServices.removeTranslator();
-                commonServices.fillTranslator($rootScope.settings.lang)
-                $rootScope.isBusy = false;
-                $scope.$apply();
+                $rootScope.showMessage('success', 'success');
+                
+                translatorService.reset($rootScope.settings.lang).then(function () {
+                    window.location.href = '/backend/language/list';
+                })
+
             }
             else {
                 if (resp) { $rootScope.showErrors(resp.errors); }
@@ -133,8 +133,9 @@ app.controller('LanguageController', ['$scope', '$rootScope', '$routeParams', '$
             }
         };
 
-        $scope.generateKeyword = function (text) {
+        $scope.generateDefault = function (text) {
             if (!$routeParams.id) {
+                $scope.activedLanguage.defaultValue = text;
                 $scope.activedLanguage.keyword = text.replace(/[^a-zA-Z0-9]+/g, '_')
                     .replace(/([A-Z]+)([A-Z][a-z])/g, '$1-$2')
                     .replace(/([a-z])([A-Z])/g, '$1-$2')
@@ -144,4 +145,5 @@ app.controller('LanguageController', ['$scope', '$rootScope', '$routeParams', '$
                     .toLowerCase();
             }
         }
+
     }]);
