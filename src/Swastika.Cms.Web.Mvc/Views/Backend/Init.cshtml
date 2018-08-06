@@ -2,12 +2,12 @@
     ViewData["Title"] = "Setup database";
     Layout = "_LayoutNowUI_Angular";
 }
-<div class="col-md-4 content-center">
+<div class="col-md-5 ml-auto mr-auto">
     <div class="card card-login card-plain">
         <form asp-area="Portal" asp-controller="Portal" asp-action="Init" method="post" class="form-horizontal">
             <div class="header header-primary text-center">
                 <div class="logo-container">
-                    @*<emmg src="~/images/swastika-io-logo-white.svg" alt="">*@
+                    <img src="/images/swastika-io-logo-white.svg" alt="">
                 </div>
             </div>
             <div class="content">
@@ -23,15 +23,13 @@
                             <span class="form-check-sign"></span>
                             Use local Database
                         </label>
-
-
                     </div>
                     <div ng-show="isLocalDb" class="input-group form-group-no-border input-lg">
                         <div class="input-group-prepend">
                             <span class="input-group-text"><em class="now-ui-icons business_chart-pie-36"></em></span>
                         </div>
                         <input ng-model="localDbConnectionString" class="form-control" placeholder="Local Db">
-                    </div>                   
+                    </div>
                 </div>
                 <div ng-hide="isLocalDb">
                     <h5 class="card-description text-white"> or remote database </h5>
