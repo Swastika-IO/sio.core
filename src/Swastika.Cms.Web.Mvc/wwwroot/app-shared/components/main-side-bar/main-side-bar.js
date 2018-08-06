@@ -14,7 +14,7 @@
                 {
                     title: await translatorService.getAsync('portal_articles'),
                     shortTitle: await translatorService.getAsync('portal_articles'),
-                    icon: 'mi mi-Package',
+                    icon: 'mi mi-ReadingList',
                     href: '#',
                     subMenus: [
                         {
@@ -186,7 +186,7 @@
                 {
                     title: 'Language',
                     shortTitle: 'Language',
-                    icon: 'mi mi-Settings mi-spin',
+                    icon: 'mi mi-TimeLanguage',
                     href: '#',
                     subMenus: [
                         {
@@ -204,7 +204,7 @@
                 {
                     title: 'Culture',
                     shortTitle: 'Culture',
-                    icon: 'mi mi-Settings mi-spin',
+                    icon: 'mi mi-Globe mi-spin',
                     href: '#',
                     subMenus: [
                         {
@@ -221,7 +221,6 @@
                 }
             ]
         };
-        
     }],
     bindings: {
     }
