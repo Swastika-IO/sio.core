@@ -1,5 +1,6 @@
 ﻿using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
+using Swastika.Cms.Lib.Models.Cms;
 using Swastika.Cms.Lib.Repositories;
 using Swastika.Cms.Lib.Services;
 using Swastika.Cms.Lib.ViewModels.Account;
@@ -60,11 +61,9 @@ namespace Swastika.Cms.Lib.ViewModels.Api
 
         [JsonProperty("isSqlite")]
         public bool IsSqlite { get; set; }
-        #endregion
 
-        #region View
-
-
+        [JsonProperty("culture")]
+        public InitCulture Culture { get; set; }
         #endregion
 
         public ApiInitCmsViewModel()
@@ -73,5 +72,19 @@ namespace Swastika.Cms.Lib.ViewModels.Api
         }
 
 
+    }
+
+    public class InitCulture
+    {
+        [JsonProperty("specificulture")]
+        public string Specificulture { get; set; }
+        [JsonProperty("fullName")]
+        public string FullName { get; set; }
+        [JsonProperty("description")]
+        public string Description { get; set; }
+        [JsonProperty("icon")]
+        public string Icon { get; set; }
+        [JsonProperty("alias")]
+        public string Alias { get; set; }
     }
 }

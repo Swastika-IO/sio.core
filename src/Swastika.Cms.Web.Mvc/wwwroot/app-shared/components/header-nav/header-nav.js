@@ -7,8 +7,10 @@
             ctrl.loadSettings = async function () {
                 ctrl.settings = await commonServices.getSettings();
             }
-            ctrl.changeLang = function (lang) {
+            ctrl.changeLang = function (lang, langIcon  ) {
                 ctrl.settings.lang = lang;
+                ctrl.settings.langIcon = langIcon;
+
                 commonServices.setSettings(ctrl.settings).then(function () {
                     translatorService.reset(lang).then(function () {
                         window.top.location = location.href;

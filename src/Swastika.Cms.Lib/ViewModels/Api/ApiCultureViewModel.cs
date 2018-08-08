@@ -8,8 +8,10 @@ using Newtonsoft.Json.Linq;
 using Swastika.Cms.Lib.Models.Cms;
 using Swastika.Cms.Lib.Repositories;
 using Swastika.Cms.Lib.Services;
+using Swastika.Domain.Core.Models;
 using Swastika.Domain.Core.ViewModels;
 using Swastika.Domain.Data.ViewModels;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Threading.Tasks;
@@ -19,6 +21,7 @@ namespace Swastika.Cms.Lib.ViewModels.Api
     public class ApiCultureViewModel
         : ViewModelBase<SiocCmsContext, SiocCulture, ApiCultureViewModel>
     {
+
         #region Properties
 
         #region Models
@@ -48,6 +51,12 @@ namespace Swastika.Cms.Lib.ViewModels.Api
 
         #endregion Models
 
+        #region Views
+
+        [JsonProperty("configurations")]
+        public List<ApiConfigurationViewModel> Configurations { get; set; }
+
+        #endregion
         #endregion Properties
 
         #region Contructors
@@ -63,17 +72,28 @@ namespace Swastika.Cms.Lib.ViewModels.Api
         #endregion Contructors
 
         #region Overrides
+
+        public override void ExpandView(SiocCmsContext _context = null, IDbContextTransaction _transaction = null)
+        {
+            var getConfigurations = ApiConfigurationViewModel.Repository.GetModelListBy(c => c.Specificulture == Specificulture, _context, _transaction);
+            if (getConfigurations.IsSucceed)
+            {
+                Configurations = getConfigurations.Data;
+            }
+        }
+
         public override async Task<RepositoryResponse<ApiCultureViewModel>> SaveModelAsync(bool isSaveSubModels = false, SiocCmsContext _context = null, IDbContextTransaction _transaction = null)
         {
             var result = await base.SaveModelAsync(isSaveSubModels, _context, _transaction);
             if (result.IsSucceed)
             {
-                GlobalConfigurationService.Instance.RefreshCultures();
+                GlobalConfigurationService.Instance.RefreshAll();
             }
             return result;
         }
         public override async Task<RepositoryResponse<bool>> SaveSubModelsAsync(SiocCulture parent, SiocCmsContext _context = null, IDbContextTransaction _transaction = null)
         {
+            var result = new RepositoryResponse<bool>() { IsSucceed = true };
             if (Id == 0)
             {
                 var getConfigurations = await ApiConfigurationViewModel.Repository.GetModelListByAsync(c => c.Specificulture == GlobalConfigurationService.Instance.CmsConfigurations.Language, _context, _transaction);
@@ -116,8 +136,8 @@ namespace Swastika.Cms.Lib.ViewModels.Api
                     }
                 }
                 _context.SaveChanges();
-            }
-            return new RepositoryResponse<bool>() { IsSucceed = true };
+            } 
+            return result;
         }
 
         public override async Task<RepositoryResponse<bool>> RemoveRelatedModelsAsync(ApiCultureViewModel view, SiocCmsContext _context = null, IDbContextTransaction _transaction = null)

@@ -5,8 +5,8 @@
       <action type="Rewrite" url="backend" appendQueryString="false"/>
     </rule>
     <rule name="Rewrite to homepage" stopProcessing="true">
-      <match url="^([a-z]{2}[-][a-z]{2})$" />
-      <action type="Rewrite" url="/{R:1}/home" appendQueryString="false"/>
+      <match url="^([a-zA-Z]{2}[-][a-zA-Z]{2})$" />
+      <action type="Rewrite" url="/{R:1}/alias" appendQueryString="false"/>
     </rule>
     <rule name="Rewrite to alias" stopProcessing="true">
       <match url="^([a-zA-Z]{2}[-][a-zA-Z]{2})/(\d+)/(\d+)/(.*)$" />

@@ -2,24 +2,13 @@
 app.controller('Step1Controller', ['$scope', '$rootScope', '$timeout', '$location', '$http',
     'commonServices', 'Step1Services',
     function ($scope, $rootScope, $timeout, $location, $http, commonServices, step1Services) {
-        $scope.initCmsModel = {
-            isUseLocal: false,
-            localDbConnectionString: 'Server=(localdb)\\MSSQLLocalDB;Initial Catalog=sw-cms.db;Integrated Security=True;Persist Security Info=False;Pooling=False;MultipleActiveResultSets=False;Encrypt=False;TrustServerCertificate=True',
-            sqliteDbConnectionString: 'Data Source=sw-cms.db',
-            localDbName: 'sw-cms.db',
-            dataBaseServer: '',
-            dataBaseName: '',
-            dataBaseUser: '',
-            dataBasePassword: '',
-            adminPassword: '',
-            lang: 'en-us',
-            isSqlite: false
-        }
+       
         $scope.settings = {
             cultures: [
                 {
                     specificulture: 'en-us',
-                    fullName: 'English (Default)'
+                    fullName: 'English (Default)',
+                    icon:'flag-icon-us'
                 },
                 { specificulture: 'af', fullName: 'Afrikaans' },
                 { specificulture: 'af-ZA', fullName: 'Afrikaans (South Africa)' },
@@ -263,7 +252,20 @@ app.controller('Step1Controller', ['$scope', '$rootScope', '$timeout', '$locatio
 
             ]
         }
-
+        $scope.initCmsModel = {
+            isUseLocal: false,
+            localDbConnectionString: 'Server=(localdb)\\MSSQLLocalDB;Initial Catalog=sw-cms.db;Integrated Security=True;Persist Security Info=False;Pooling=False;MultipleActiveResultSets=False;Encrypt=False;TrustServerCertificate=True',
+            sqliteDbConnectionString: 'Data Source=sw-cms.db',
+            localDbName: 'sw-cms.db',
+            dataBaseServer: '',
+            dataBaseName: '',
+            dataBaseUser: '',
+            dataBasePassword: '',
+            adminPassword: '',
+            lang: 'en-us',
+            isSqlite: false,
+            culture: $scope.settings[0]
+        }
         $scope.updateLocalDbName = function () {
             $scope.initCmsModel.localDbConnectionString = 'Server=(localdb)\\mssqllocaldb;Database=' + $scope.initCmsModel.localDbName + ';Trusted_Connection=True;MultipleActiveResultSets=true';
             $scope.initCmsModel.sqliteDbConnectionString = 'Data Source=' + $scope.initCmsModel.localDbName;

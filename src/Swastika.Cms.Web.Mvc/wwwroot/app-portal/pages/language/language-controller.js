@@ -20,10 +20,20 @@ app.controller('LanguageController', ['$scope', '$rootScope', '$routeParams', '$
             description: ''
         };
         $scope.cates = [
-            'Common',
-            'Portal',
-            'Frontend'
+            {
+                title: 'Common',
+                prefix: ''
+            },
+            {
+                title: 'Portal',
+                prefix: 'portal_'
+            },
+            {
+                title: 'Frontend',
+                prefix: 'fe_'
+            }
         ];
+        $scope.cate = $scope.cates[0];
         $scope.dataTypes = $rootScope.configurations.dataTypes;
         $scope.activedLanguage = null;
         $scope.relatedLanguages = [];
@@ -121,7 +131,7 @@ app.controller('LanguageController', ['$scope', '$rootScope', '$routeParams', '$
             if (resp && resp.isSucceed) {
                 $scope.activedLanguage = resp.data;
                 $rootScope.showMessage('success', 'success');
-                
+
                 translatorService.reset($rootScope.settings.lang).then(function () {
                     window.location.href = '/backend/language/list';
                 })
@@ -133,10 +143,10 @@ app.controller('LanguageController', ['$scope', '$rootScope', '$routeParams', '$
             }
         };
 
-        $scope.generateDefault = function (text) {
+        $scope.generateDefault = function (text, cate) {
             if (!$routeParams.id) {
                 $scope.activedLanguage.defaultValue = text;
-                $scope.activedLanguage.keyword = text.replace(/[^a-zA-Z0-9]+/g, '_')
+                $scope.activedLanguage.keyword = cate.prefix + text.replace(/[^a-zA-Z0-9]+/g, '_')
                     .replace(/([A-Z]+)([A-Z][a-z])/g, '$1-$2')
                     .replace(/([a-z])([A-Z])/g, '$1-$2')
                     .replace(/([0-9])([^0-9])/g, '$1-$2')

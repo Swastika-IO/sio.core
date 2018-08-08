@@ -194,14 +194,13 @@ namespace Swastka.Cms.Api.Controllers
                 jsonSettings["ConnectionStrings"][SWCmsConstants.CONST_DEFAULT_CONNECTION] = model.ConnectionString;
                 jsonSettings["ConnectionStrings"]["AccountConnection"] = model.ConnectionString;
                 jsonSettings["IsSqlite"] = false;
-                jsonSettings["Language"] = model.Lang;
+                jsonSettings["Language"] = model.Culture.Specificulture;
                 settings.Content = jsonSettings.ToString();
                 FileRepository.Instance.SaveFile(settings);
             }
 
             GlobalConfigurationService.Instance.CmsConfigurations = new CmsConfiguration();
-            var initResult = await GlobalConfigurationService.Instance.InitSWCms(
-                _userManager, _roleManager);
+            var initResult = await GlobalConfigurationService.Instance.InitSWCms(model.Culture);
             if (initResult.IsSucceed)
             {
                 await InitRolesAsync();

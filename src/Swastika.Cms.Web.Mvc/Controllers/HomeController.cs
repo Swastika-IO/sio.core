@@ -49,65 +49,83 @@ namespace Swastika.Cms.Mvc.Controllers
             return LocalRedirect(returnUrl);
         }
 
-        [HttpGet]
-        [Route("Home")]
-        [Route("{pageName}")]
-        //[Route("Index")]
+        //[HttpGet]
+        //[Route("Home")]
         //[Route("{pageName}")]
-        [Route("{pageName}/{pageIndex:int?}")]
-        [Route("{pageName}/{pageSize:int?}/{pageIndex:int?}")]
-        public IActionResult Home(string pageName, int pageIndex, int pageSize = 10)
-        {
-            // Home Page
-            var getPage = FECategoryViewModel.Repository.GetSingleModel(
-                p => p.Specificulture == CurrentLanguage
-                    &&
-                    (
-                        (
-                            (string.IsNullOrEmpty(pageName) || pageName == "Home")
-                            && p.Type == (int)SWCmsConstants.CateType.Home
-                        )
-                        || p.SeoName == pageName
-                    )
+        ////[Route("Index")]
+        ////[Route("{pageName}")]
+        //[Route("{pageName}/{pageIndex:int?}")]
+        //[Route("{pageName}/{pageSize:int?}/{pageIndex:int?}")]
+        //public IActionResult Home(string pageName, int pageIndex, int pageSize = 10)
+        //{
+        //    // Home Page
+        //    var getPage = FECategoryViewModel.Repository.GetSingleModel(
+        //        p => p.Specificulture == CurrentLanguage
+        //            &&
+        //            (
+        //                (
+        //                    (string.IsNullOrEmpty(pageName) || pageName == "Home")
+        //                    && p.Type == (int)SWCmsConstants.CateType.Home
+        //                )
+        //                || p.SeoName == pageName
+        //            )
 
-                );
-            if (getPage.IsSucceed && getPage.Data.View != null)
-            {
-                ViewBag.pageClass = getPage.Data.CssClass;
-                return View(getPage.Data);
-            }
-            else
-            {
-                return RedirectToAction("Index", "Backend");
-            }
-        }
+        //        );
+        //    if (getPage.IsSucceed && getPage.Data.View != null)
+        //    {
+        //        ViewBag.pageClass = getPage.Data.CssClass;
+        //        return View(getPage.Data);
+        //    }
+        //    else
+        //    {
+        //        return RedirectToAction("Index", "Backend");
+        //    }
+        //}
 
         [HttpGet]
         [Route("alias")]
         public async Task<IActionResult> Alias(string alias, int pageIndex, int pageSize = 10)
         {
             // Home Page
-            var getAlias = await ApiUrlAliasViewModel.Repository.GetSingleModelAsync(u => u.Alias == alias && u.Specificulture == CurrentLanguage);
-            if (getAlias.IsSucceed)
+            if (!string.IsNullOrEmpty(alias))
             {
-                switch (getAlias.Data.Type)
+                var getAlias = await ApiUrlAliasViewModel.Repository.GetSingleModelAsync(u => u.Alias == alias && u.Specificulture == CurrentLanguage);
+                if (getAlias.IsSucceed)
                 {
-                    case SWCmsConstants.UrlAliasType.Page:
-                        int.TryParse(getAlias.Data.SourceId, out int pageId);
-                        return Page(pageId, pageIndex, pageSize);
-                    case SWCmsConstants.UrlAliasType.Article:
-                    case SWCmsConstants.UrlAliasType.Product:
-                    case SWCmsConstants.UrlAliasType.Module:
-                    case SWCmsConstants.UrlAliasType.ModuleData:
-                    default:
-                        return RedirectToAction("Index", "Backend");
-                }
+                    switch (getAlias.Data.Type)
+                    {
+                        case SWCmsConstants.UrlAliasType.Page:
+                            int.TryParse(getAlias.Data.SourceId, out int pageId);
+                            return Page(pageId, pageIndex, pageSize);
+                        case SWCmsConstants.UrlAliasType.Article:
+                        case SWCmsConstants.UrlAliasType.Product:
+                        case SWCmsConstants.UrlAliasType.Module:
+                        case SWCmsConstants.UrlAliasType.ModuleData:
+                        default:
+                            return RedirectToAction("Index", "Backend");
+                    }
 
+                }
+                else
+                {
+                    return RedirectToAction("Index", "Backend");
+                }
             }
             else
             {
-                return RedirectToAction("Index", "Backend");
+                var getPage = FECategoryViewModel.Repository.GetSingleModel(
+                    p => p.Specificulture == CurrentLanguage && (p.Type == (int)SWCmsConstants.CateType.Home));
+                if (getPage.IsSucceed)
+                {
+                    return Page(getPage.Data.Id, pageIndex, pageSize);
+
+                }
+                else
+                {
+                    return RedirectToAction("Index", "Backend");
+                }
             }
+
 
         }
 

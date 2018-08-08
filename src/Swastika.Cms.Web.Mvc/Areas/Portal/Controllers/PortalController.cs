@@ -52,61 +52,6 @@ namespace Swastika.Cms.Mvc.Areas.Portal.Controllers
             return View();
         }
 
-        [HttpPost]
-        [Route("init")]
-        public async Task<IActionResult> Init(InitCmsViewModel model)
-        {
-            if (ModelState.IsValid)
-            {
-                string cnnString = string.Empty;
-                if (!model.IsUseLocal)
-                {
-                    cnnString = string.Format("Server={0};Database={1};UID={2};Pwd={3};MultipleActiveResultSets=true;"
-                       , model.DataBaseServer, model.DataBaseName, model.DataBaseUser, model.DataBasePassword);
-                }
-                else
-                {
-                    cnnString = model.LocalDbConnectionString;
-                }
-                var settings = FileRepository.Instance.GetFile("appsettings", ".json", string.Empty, true, "{}");
-                if (settings != null)
-                {
-                    JObject jsonSettings = JObject.Parse(settings.Content);
-                    jsonSettings["ConnectionStrings"][SWCmsConstants.CONST_DEFAULT_CONNECTION] = cnnString;
-                    // Set connection string for identity ApplicationDbContext
-                    jsonSettings["ConnectionStrings"]["AccountConnection"] = cnnString;
-                    settings.Content = jsonSettings.ToString();
-                    FileRepository.Instance.SaveFile(settings);
-                }
-                var initResult = await GlobalConfigurationService.Instance.InitSWCms(_userManager, _roleManager);
-                if (initResult.IsSucceed)
-                {
-
-
-                    await InitRolesAsync();
-                    return RedirectToAction("RegisterSuperAdmin", "Auth", new { culture = GlobalConfigurationService.Instance.CmsConfigurations.Language });
-                }
-                else
-                {
-                    settings = FileRepository.Instance.GetFile("appsettings", ".json", string.Empty);
-                    JObject jsonSettings = JObject.Parse(settings.Content);
-                    jsonSettings["ConnectionStrings"][SWCmsConstants.CONST_DEFAULT_CONNECTION] = null;
-                    jsonSettings["ConnectionStrings"]["AccountConnection"] = null;
-
-                    settings.Content = jsonSettings.ToString();
-                    FileRepository.Instance.SaveFile(settings);
-                    if (initResult.Exception != null)
-                    {
-                        ModelState.AddModelError("", initResult.Exception.Message);
-                    }
-                    foreach (var item in initResult.Errors)
-                    {
-                        ModelState.AddModelError("", item);
-                    }
-                }
-            }
-            return View(model);
-        }
 
         private async Task<bool> InitRolesAsync()
         {

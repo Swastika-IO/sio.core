@@ -69,12 +69,14 @@
                         <input ng-model="initCmsModel.dataBasePassword" type="password" class="form-control" placeholder="Database Password" />
                     </div>
                 </div>
-                <select class="btn btn-secondary custom-select"
-                        ng-model="initCmsModel.lang">
-                    <option ng-repeat="item in settings.cultures track by $index"
-                            ng-value="item.specificulture">
-                        {{item.fullName}}
-                    </option>
+                <!--<select class="btn btn-secondary custom-select"
+                        ng-model="initCmsModel.culture"
+                        ng-options="item in settings.cultures track by $index">                    
+                </select>-->
+                <select class="btn btn-secondary custom-select" 
+                        ng-options="item as item.fullName for item in settings.cultures track by item.specificulture" 
+                        ng-model="initCmsModel.culture">
+
                 </select>
             </div>
             <div class="card-footer text-center">
