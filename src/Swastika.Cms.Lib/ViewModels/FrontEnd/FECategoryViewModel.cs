@@ -11,6 +11,7 @@ using Microsoft.EntityFrameworkCore.Storage;
 using Newtonsoft.Json;
 using Swastika.Cms.Lib.Models.Cms;
 using Swastika.Cms.Lib.Services;
+using Swastika.Cms.Lib.ViewModels.Api;
 using Swastika.Cms.Lib.ViewModels.Navigation;
 using Swastika.Domain.Core.ViewModels;
 using Swastika.Domain.Data.ViewModels;
@@ -108,6 +109,9 @@ namespace Swastika.Cms.Lib.ViewModels.FrontEnd
 
         #region Views
 
+        [JsonProperty("urlAlias")]
+        public ApiUrlAliasViewModel UrlAlias { get; set; }
+
         [JsonProperty("details")]
         public string DetailsUrl { get; set; }
 
@@ -174,6 +178,8 @@ namespace Swastika.Cms.Lib.ViewModels.FrontEnd
 
         public override void ExpandView(SiocCmsContext _context = null, IDbContextTransaction _transaction = null)
         {
+            UrlAlias = ApiUrlAliasViewModel.Repository.GetSingleModel(u => u.Specificulture == Specificulture && u.SourceId == Id.ToString()).Data;
+            
             this.View = FETemplateViewModel.GetTemplateByPath(Template, Specificulture, _context, _transaction).Data;
             if (View != null)
             {

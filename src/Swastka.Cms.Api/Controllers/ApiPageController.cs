@@ -237,7 +237,7 @@ namespace Swastka.Cms.Api.Controllers
                         fedata.Data.Items.ForEach(a =>
                         {
                             a.DetailsUrl = SwCmsHelper.GetRouterUrl(
-                                "Page", new { a.SeoName }, Request, Url);
+                                "Page", new { a.UrlAlias.Alias }, Request, Url);
                         });
                     }
                     return JObject.FromObject(fedata);

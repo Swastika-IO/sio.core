@@ -2,24 +2,29 @@
   <rules>
     <rule name="Rewrite segment to id querystring" stopProcessing="true">
       <match url="^admin(.*)$" />
-      <action type="Rewrite" url="backend" appendQueryString="false"/>
+      <action type="Rewrite" url="backend/{R:1}" appendQueryString="false"/>
     </rule>
-    <rule name="Rewrite to homepage" stopProcessing="true">
-      <match url="^([a-zA-Z]{2}[-][a-zA-Z]{2})$" />
-      <action type="Rewrite" url="/{R:1}/alias" appendQueryString="false"/>
+    
+    <rule name="Not rewrite api" stopProcessing="true">
+      <match url="^portal|api|backend|Content|lib|css|js|app-shared|app-client|app-portal|app-init|images(\/(.*)){2,8}$" />
+      <action type="None" appendQueryString="false"/>
     </rule>
-    <rule name="Rewrite to alias" stopProcessing="true">
-      <match url="^([a-zA-Z]{2}[-][a-zA-Z]{2})/(\d+)/(\d+)/(.*)$" />
-      <action type="Rewrite" url="/{R:1}/alias?pageName={R:4}&amp;pageSize={R:2}&amp;pageIndex={R:3}" appendQueryString="false"/>
-    </rule>
-    <rule name="Rewrite to alias" stopProcessing="true">
-      <match url="^([a-zA-Z]{2}[-][a-zA-Z]{2})/(.*)$" />
-      <action type="Rewrite" url="/{R:1}/alias?alias={R:2}" appendQueryString="false"/>
+    <rule name="Not rewrite backend" stopProcessing="true">
+      <match url="^backend(\/(.*)){1,8}$" />
+      <action type="None" appendQueryString="false"/>
     </rule>
 
     <rule name="Not rewrite content" stopProcessing="true">
       <match url="^Content/(.*)$" />
       <action type="None" appendQueryString="false"/>
+    </rule>
+    <rule name="Rewrite to alias splash" stopProcessing="true">
+      <match url="^([A-Za-z]{1,8}|[A-Za-z]{1,8}(-[A-Za-z0-9]{1,8})|[A-Za-z]{1,8}(-[A-Za-z0-9]{1,8})(-[A-Za-z0-9]{1,8}))$" />
+      <action type="Redirect" url="/{R:1}/" appendQueryString="false"/>
+    </rule>
+    <rule name="Rewrite to alias page" stopProcessing="true">
+      <match url="^([A-Za-z]{1,8}|[A-Za-z]{1,8}(-[A-Za-z0-9]{1,8})|[A-Za-z]{1,8}(-[A-Za-z0-9]{1,8})(-[A-Za-z0-9]{1,8}))\/(.*)$" />
+      <action type="Rewrite" url="/{R:1}/alias?alias={R:5}" appendQueryString="false"/>
     </rule>
   </rules>
 </rewrite>

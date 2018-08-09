@@ -85,7 +85,7 @@ namespace Swastika.Cms.Lib.Services
                     if (isSucceed && BECategoryViewModel.Repository.Count(context, transaction).Data == 0)
                     {
 
-                        BECategoryViewModel cate = new BECategoryViewModel(new SiocCategory()
+                        ApiCategoryViewModel cate = new ApiCategoryViewModel(new SiocCategory()
                         {
                             Title = "Home",
                             Specificulture = culture.Specificulture,
@@ -95,22 +95,14 @@ namespace Swastika.Cms.Lib.Services
                         }, context, transaction);
 
                         var createVNHome = await cate.SaveModelAsync(false, context, transaction).ConfigureAwait(false);
-                        isSucceed = createVNHome.IsSucceed;
-
-                        //BECategoryViewModel uscate = new BECategoryViewModel(new SiocCategory()
-                        //{
-                        //    Id = cate.Model.Id,
-                        //    Title = "Home",
-                        //    Specificulture = "en-us",
-                        //    Template = "_Home",
-                        //    Type = (int)SWCmsConstants.CateType.Home,
-                        //    CreatedBy = "Admin",
-                        //    CreatedDateTime = DateTime.UtcNow,
-                        //}, context, transaction);
-
-                        //var createUSHome = await uscate.SaveModelAsync(false, context, transaction).ConfigureAwait(false);
-                        //isSucceed = createUSHome.IsSucceed;
-
+                        ApiUrlAliasViewModel UrlAlias = new ApiUrlAliasViewModel(new SiocUrlAlias()
+                        {
+                            Specificulture = culture.Specificulture,
+                            Alias = cate.SeoName,
+                            SourceId = createVNHome.Data.Model.Id.ToString()
+                        });
+                        var createAlias = await UrlAlias.SaveModelAsync(false, context, transaction).ConfigureAwait(false);
+                        isSucceed = createVNHome.IsSucceed && createAlias.IsSucceed;
                     }
 
                     if (isSucceed)
@@ -190,31 +182,6 @@ namespace Swastika.Cms.Lib.Services
                 };
                 context.Entry(config1).State = EntityState.Added;
 
-                //var config2 = new SiocConfiguration()
-                //{
-                //    Keyword = SWCmsConstants.ConfigurationKeyword.Theme,
-                //    Specificulture = "en-us",
-                //    Category = SWCmsConstants.ConfigurationType.User,
-                //    DataType = (int)SWCmsConstants.DataType.String,
-                //    Description = "Cms Theme",
-
-                //    Value = "Default"
-                //};
-
-                //context.Entry(config2).State = EntityState.Added;
-
-
-                //var config3 = new SiocConfiguration()
-                //{
-                //    Keyword = SWCmsConstants.ConfigurationKeyword.ThemeId,
-                //    Specificulture = "en-us",
-                //    Category = SWCmsConstants.ConfigurationType.User,
-                //    DataType = (int)SWCmsConstants.DataType.String,
-                //    Description = "Cms Theme",
-
-                //    Value = "1"
-                //};
-                //context.Entry(config3).State = EntityState.Added;
                 context.SaveChanges();
                 GlobalConfigurationService.Instance.RefreshConfigurations(context, transaction);
             }
@@ -230,8 +197,7 @@ namespace Swastika.Cms.Lib.Services
             var getThemes = BEThemeViewModel.Repository.GetModelList(_context: context, _transaction: transaction);
             if (getThemes.IsSucceed && getThemes.Data.Count == 0)
             {
-                //if (getThemes.Data.Count == 0)
-                //{
+
                 BEThemeViewModel theme = new BEThemeViewModel(new SiocTheme()
                 {
                     Name = "Default",
@@ -240,25 +206,7 @@ namespace Swastika.Cms.Lib.Services
                 }, context, transaction);
 
                 isSucceed = isSucceed && theme.SaveModel(true, context, transaction).IsSucceed;
-                //}
-                //else
-                //{
-                //    foreach (var theme in getThemes.Data)
-                //    {
-                //        string folderPath = CommonHelper.GetFullPath(new string[]
-                //        {
-                //            SWCmsConstants.Parameters.TemplatesFolder,
-                //            theme.Name
-                //        });
 
-                //        FileRepository.Instance.DeleteFolder(folderPath);
-
-                //        foreach (var item in theme.Templates)
-                //        {
-                //            isSucceed = isSucceed && item.SaveModel(true, _context: context, _transaction: transaction).IsSucceed;
-                //        }
-                //    }
-                //}
             }
 
             return isSucceed;
@@ -283,16 +231,6 @@ namespace Swastika.Cms.Lib.Services
                         Alias = culture.Alias
                     };
                     context.Entry(enCulture).State = EntityState.Added;
-
-                    //var vnCulture = new SiocCulture()
-                    //{
-                    //    Specificulture = "vi-vn",
-                    //    FullName = "Vietnam",
-                    //    Description = "Việt Nam",
-                    //    Icon = "flag-icon-vn",
-                    //    Alias = "VN"
-                    //};
-                    //context.Entry(vnCulture).State = EntityState.Added;
 
                     context.SaveChanges();
                 }
