@@ -1,10 +1,12 @@
 ﻿<div class="col-md-5 ml-auto mr-auto" style="z-index:9999;">
     <div class="card card-login card-plain">
-        <div class="card-body">
-            <h4 class="card-title text-center">Create Administrator Account</h4>
-            <form class="form-horizontal"
-                  ng-class="{'submitted': submitted}"
-                  ng-submit="register()">
+        <form class="form-horizontal"
+              ng-class="{'submitted': submitted}"
+              ng-submit="register()">
+            <div class="card-header text-center">
+                <h4 class="card-title text-center">Create Administrator Account</h4>
+            </div>
+            <div class="card-body">
                 <div class="input-group no-border input-lg">
                     <div class="input-group-prepend">
                         <span class="input-group-text"><em class="now-ui-icons users_circle-08"></em></span>
@@ -41,11 +43,11 @@
                         I agree to the <a href="#something">terms and conditions</a>.
                     </label>
                 </div>
+            </div>
 
-                <div class="card-footer text-center">
-                    <button type="submit" class="btn btn-primary btn-round btn-lg btn-block">Get Started</button>
-                </div>
-            </form>
-        </div>
+            <div class="card-footer text-center">
+                <button type="submit" class="btn btn-primary btn-round btn-lg btn-block">Get Started</button>
+            </div>
+        </form>
     </div>
 </div>
