@@ -179,7 +179,14 @@ namespace Swastika.Cms.Lib.ViewModels.FrontEnd
         public override void ExpandView(SiocCmsContext _context = null, IDbContextTransaction _transaction = null)
         {
             UrlAlias = ApiUrlAliasViewModel.Repository.GetSingleModel(u => u.Specificulture == Specificulture && u.SourceId == Id.ToString()).Data;
-            
+            if (UrlAlias == null)
+            {
+                UrlAlias = new ApiUrlAliasViewModel()
+                {
+                    Specificulture = Specificulture,
+                    Alias = SeoName
+                };
+            }
             this.View = FETemplateViewModel.GetTemplateByPath(Template, Specificulture, _context, _transaction).Data;
             if (View != null)
             {

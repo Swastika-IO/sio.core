@@ -10,7 +10,7 @@ app.controller('Step1Controller', ['$scope', '$rootScope', '$timeout', '$locatio
                     fullName: 'English (Default)',
                     icon:'flag-icon-us'
                 },
-                { specificulture: 'af', fullName: 'Afrikaans' },
+                { specificulture: 'af', fullName: 'Afrikaans', icon: 'flag-icon-af' },
                 { specificulture: 'af-ZA', fullName: 'Afrikaans (South Africa)' },
                 { specificulture: 'ar', fullName: 'Arabic' },
                 { specificulture: 'ar-AE', fullName: 'Arabic (U.A.E.)' },

@@ -265,7 +265,8 @@ namespace Swastika.Cms.Lib.ViewModels.Api
             {
                 UrlAlias = new ApiUrlAliasViewModel()
                 {
-                    Specificulture = Specificulture
+                    Specificulture = Specificulture,
+                    Alias= SeoName
                 };
             }
             ListSupportedCulture = CommonRepository.Instance.LoadCultures(Specificulture, _context, _transaction);
@@ -440,6 +441,7 @@ namespace Swastika.Cms.Lib.ViewModels.Api
         {
             var result = new RepositoryResponse<bool> { IsSucceed = true };
             var saveTemplate = await View.SaveModelAsync(true, _context, _transaction);
+
             result.IsSucceed = result.IsSucceed && saveTemplate.IsSucceed;
             if (saveTemplate.IsSucceed)
             {
@@ -447,8 +449,11 @@ namespace Swastika.Cms.Lib.ViewModels.Api
                 result.Exception = saveTemplate.Exception;
             }
 
+            // Save url alias
             if (result.IsSucceed)
             {
+                UrlAlias.IsClone = IsClone;
+                UrlAlias.ListSupportedCulture = ListSupportedCulture;
                 UrlAlias.SourceId = parent.Id.ToString();
                 var saveUrl = await UrlAlias.SaveModelAsync(false, _context, _transaction);
                 result.Errors.AddRange(saveUrl.Errors);

@@ -249,7 +249,7 @@ namespace Swastka.Cms.Api.Controllers
                         bedata.Data.Items.ForEach(a =>
                         {
                             a.DetailsUrl = SwCmsHelper.GetRouterUrl(
-                                "Page", new { a.SeoName }, Request, Url);
+                                "Page", new { a.UrlAlias.Alias }, Request, Url);
                         });
                     }
                     return JObject.FromObject(bedata);
@@ -265,7 +265,7 @@ namespace Swastka.Cms.Api.Controllers
                             a.Childs.ForEach(c =>
                             {
                                 c.DetailsUrl = SwCmsHelper.GetRouterUrl(
-                                    "Page", new { c.SeoName }, Request, Url);
+                                    "Page", new { c.UrlAlias.Alias }, Request, Url);
                             });
                         });
                     }
