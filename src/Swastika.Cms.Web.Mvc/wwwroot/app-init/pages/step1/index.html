@@ -71,13 +71,11 @@
                 </div>
                 <!--<select class="btn btn-secondary custom-select"
                         ng-model="initCmsModel.culture"
-                        ng-options="item in settings.cultures track by $index">                    
+                        ng-options="item in settings.cultures track by $index">
                 </select>-->
-                <select class="btn btn-secondary custom-select" 
-                        ng-options="item as item.fullName for item in settings.cultures track by item.specificulture" 
-                        ng-model="initCmsModel.culture">
-
-                </select>
+                <select class="btn btn-secondary custom-select input-lg"
+                        ng-options="item as item.fullName for item in settings.cultures track by item.specificulture"
+                        ng-model="initCmsModel.culture"></select>
             </div>
             <div class="card-footer text-center">
                 <a ng-click="initCms();" class="btn btn-primary btn-round btn-lg btn-block">Continue...</a>
