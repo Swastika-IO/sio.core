@@ -25,7 +25,7 @@ namespace Swastika.Cms.Web.Mvc
     public partial class Startup
     {
         public const string CONST_ROUTE_DEFAULT_CULTURE = "vi-vn";
-        private const string ErrorHandlingPath = "Home/Error";
+        private const string ErrorHandlingPath = "/Home/Error";
 
         public Startup(IConfiguration configuration)
         {
@@ -86,7 +86,8 @@ namespace Swastika.Cms.Web.Mvc
             }
             else
             {
-                app.UseExceptionHandler(errorHandlingPath: ErrorHandlingPath);
+                app.UseDeveloperExceptionPage();
+                //app.UseExceptionHandler(errorHandlingPath: ErrorHandlingPath);
                 app.UseHsts();
             }
 

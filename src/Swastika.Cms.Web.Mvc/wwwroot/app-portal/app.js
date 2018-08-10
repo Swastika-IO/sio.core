@@ -9,11 +9,7 @@ app.run(['$rootScope', '$location', 'commonServices', 'authService', 'translator
         
         commonServices.fillSettings().then(function (response) {
             $rootScope.settings = response;
-            translatorService.fillTranslator($rootScope.settings.lang);
-            //commonServices.fillTranslator(response.lang).then(function (response) {
-            //    $rootScope.translator = response;
-                
-            //});
+            translatorService.fillTranslator($rootScope.settings.lang);            
         });
 
 

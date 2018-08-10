@@ -263,6 +263,11 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Content Include="wwwroot\lib\now-ui-kit-pro-v1.2.2\assets\css\bootstrap.min.css" />
+    <Content Include="wwwroot\lib\now-ui-kit-pro-v1.2.2\assets\css\now-ui-kit.css" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="angular-file-upload" Version="12.2.13" />
     <PackageReference Include="angularjs" Version="1.7.2" />
     <PackageReference Include="JWT" Version="5.0.0-beta2" />
@@ -280,6 +285,7 @@
 
   <ItemGroup>
     <Folder Include="Areas\Portal\Views\Shared\Widgets\" />
+    <Folder Include="logs\" />
     <Folder Include="wwwroot\app-client\shared\controllers\" />
     <Folder Include="wwwroot\app\services\" />
     <Folder Include="wwwroot\app-shared\" />
@@ -312,6 +318,17 @@
     <None Include="wwwroot\app-portal\pages\shared\services\common-services.js" />
     <None Include="wwwroot\app\app-portal.js" />
     <None Include="wwwroot\app\controllers\portal-controller.js" />
+    <None Include="wwwroot\lib\now-ui-kit-pro-v1.2.2\assets\js\core\bootstrap.min.js" />
+    <None Include="wwwroot\lib\now-ui-kit-pro-v1.2.2\assets\js\core\jquery.min.js" />
+    <None Include="wwwroot\lib\now-ui-kit-pro-v1.2.2\assets\js\core\popper.min.js" />
+    <None Include="wwwroot\lib\now-ui-kit-pro-v1.2.2\assets\js\plugins\bootstrap-datetimepicker.js" />
+    <None Include="wwwroot\lib\now-ui-kit-pro-v1.2.2\assets\js\plugins\bootstrap-selectpicker.js" />
+    <None Include="wwwroot\lib\now-ui-kit-pro-v1.2.2\assets\js\plugins\bootstrap-switch.js" />
+    <None Include="wwwroot\lib\now-ui-kit-pro-v1.2.2\assets\js\plugins\bootstrap-tagsinput.js" />
+    <None Include="wwwroot\lib\now-ui-kit-pro-v1.2.2\assets\js\plugins\jasny-bootstrap.min.js" />
+    <None Include="wwwroot\lib\now-ui-kit-pro-v1.2.2\assets\js\plugins\moment.min.js" />
+    <None Include="wwwroot\lib\now-ui-kit-pro-v1.2.2\assets\js\plugins\nouislider.min.js" />
+    <None Include="wwwroot\lib\now-ui-kit-pro-v1.2.2\assets\js\plugins\presentation-page\rellax.min.js" />
   </ItemGroup>
 
   <ItemGroup>

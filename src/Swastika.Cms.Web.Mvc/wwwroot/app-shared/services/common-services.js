@@ -28,7 +28,7 @@ app.factory('commonServices', ['$location', '$http', '$rootScope', 'authService'
 
     var _getSettings = async function (culture) {
         var settings = localStorageService.get('settings');
-        if (settings) {
+        if (settings && settings.lang == culture) {
             return settings;
         }
         else {
@@ -70,7 +70,7 @@ app.factory('commonServices', ['$location', '$http', '$rootScope', 'authService'
 
     var _setSettings = async function (settings) {
         if (settings && settings.cultures.length > 0) {
-            localStorageService.set('settings', settings);            
+            localStorageService.set('settings', settings);
         }
     };
 
@@ -91,6 +91,7 @@ app.factory('commonServices', ['$location', '$http', '$rootScope', 'authService'
         else {
             settings = await _getSettings(culture);
             localStorageService.set('settings', settings);
+            window.top.location = location.href;
             return settings;
         }
 
@@ -98,7 +99,7 @@ app.factory('commonServices', ['$location', '$http', '$rootScope', 'authService'
 
     var _fillTranslator = async function (culture) {
         var translator = localStorageService.get('translator');
-        if (translator) {
+        if (translator && _settings.lang == culture) {
             _translator = translator;
             return translator;
         }

@@ -41,9 +41,10 @@ app.factory('translatorService', ['$rootScope', 'commonServices', 'localStorageS
         
         await _getTranslator(lang);
     }
-    var _get = function (keyword) {
+    var _get = function (keyword, lang) {
+        lang = lang || $rootScope.settings.lang
         if (!_translator) {
-            _fillTranslator($rootScope.settings.lang).then(function (response) {
+            _fillTranslator(lang).then(function (response) {
                 _translator = response;
                 return _translator[keyword] || '[' + keyword + ']';
             });            
@@ -53,9 +54,10 @@ app.factory('translatorService', ['$rootScope', 'commonServices', 'localStorageS
         
     };
 
-    var _getAsync = async function (keyword) {
+    var _getAsync = async function (keyword, lang) {
+        lang = lang || $rootScope.settings.lang
         if (!_translator) {
-            _translator = await _fillTranslator($rootScope.settings.lang);
+            _translator = await _fillTranslator(lang);
             return _translator[keyword] || '[' + keyword + ']';            
         } else {
             return _translator[keyword] || '[' + keyword + ']';
