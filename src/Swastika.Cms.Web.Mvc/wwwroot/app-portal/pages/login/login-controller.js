@@ -17,12 +17,16 @@ app.controller('loginController', ['$rootScope', '$scope', '$location', 'authSer
     $scope.$on('$viewContentLoaded', function () {
         $rootScope.isBusy = false;
     });
-    $scope.login = function () {
+    $scope.login = async function () {
         
         if (authService.authentication.referredUrl == "/backend/login") {
             authService.authentication.referredUrl = "/backend";
         }
-        authService.login($scope.loginData);
+        var result = await authService.login($scope.loginData);
+        if (result) {
+            $rootScope.isBusy = false;
+            $scope.$apply();
+        }
     };
 
 $scope.authExternalProvider = function (provider) {
