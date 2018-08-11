@@ -49,8 +49,9 @@ app.directive('ngEnter', function () {
 app.run(['$rootScope', '$location', 'commonServices', 'authService', 'translatorService',
     function ($rootScope, $location, commonServices, authService, translatorService) {
         authService.fillAuthData();
-
+        $rootScope.isInit = false;
         commonServices.fillSettings().then(function (response) {
+            $rootScope.isInit = true;
             $rootScope.settings = response;
             translatorService.fillTranslator($rootScope.settings.lang);
         });

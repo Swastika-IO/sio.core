@@ -92,16 +92,19 @@ app.controller('MediaController', ['$scope', '$rootScope', '$routeParams', '$tim
             if ($scope.request.toDate != null) {
                 $scope.request.toDate = $scope.request.toDate.toISOString();
             }
-            var resp = await mediaServices.getMedias($scope.request);
-            if (resp && resp.isSucceed) {
+            if ($rootScope.settings) {
 
-                $scope.data = resp.data;
+                var resp = await mediaServices.getMedias($scope.request);
+                if (resp && resp.isSucceed) {
 
-                $scope.$apply();
-            }
-            else {
-                if (resp) { $rootScope.showErrors(resp.errors); }
-                $scope.$apply();
+                    $scope.data = resp.data;
+
+                    $scope.$apply();
+                }
+                else {
+                    if (resp) { $rootScope.showErrors(resp.errors); }
+                    $scope.$apply();
+                }
             }
         };
 

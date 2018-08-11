@@ -63,6 +63,7 @@
     <Compile Remove="Views\Shared\Widgets\**" />
     <Compile Remove="wwwroot\app-portal\components\**" />
     <Compile Remove="wwwroot\app-portal\controllers\**" />
+    <Compile Remove="wwwroot\app-portal\pages\shared\**" />
     <Compile Remove="wwwroot\app-portal\plugins\**" />
     <Compile Remove="wwwroot\app-portal\plunk\**" />
     <Compile Remove="wwwroot\app-portal\services\**" />
@@ -103,6 +104,7 @@
     <Content Remove="Views\Shared\Widgets\**" />
     <Content Remove="wwwroot\app-portal\components\**" />
     <Content Remove="wwwroot\app-portal\controllers\**" />
+    <Content Remove="wwwroot\app-portal\pages\shared\**" />
     <Content Remove="wwwroot\app-portal\plunk\**" />
     <Content Remove="wwwroot\app-portal\services\**" />
     <Content Remove="wwwroot\lib\**" />
@@ -143,6 +145,7 @@
     <EmbeddedResource Remove="Views\Shared\Widgets\**" />
     <EmbeddedResource Remove="wwwroot\app-portal\components\**" />
     <EmbeddedResource Remove="wwwroot\app-portal\controllers\**" />
+    <EmbeddedResource Remove="wwwroot\app-portal\pages\shared\**" />
     <EmbeddedResource Remove="wwwroot\app-portal\plugins\**" />
     <EmbeddedResource Remove="wwwroot\app-portal\plunk\**" />
     <EmbeddedResource Remove="wwwroot\app-portal\services\**" />
@@ -183,6 +186,7 @@
     <None Remove="Views\Shared\Widgets\**" />
     <None Remove="wwwroot\app-portal\components\**" />
     <None Remove="wwwroot\app-portal\controllers\**" />
+    <None Remove="wwwroot\app-portal\pages\shared\**" />
     <None Remove="wwwroot\app-portal\plugins\**" />
     <None Remove="wwwroot\app-portal\plunk\**" />
     <None Remove="wwwroot\app-portal\services\**" />
@@ -286,7 +290,6 @@
   <ItemGroup>
     <Folder Include="Areas\Portal\Views\Shared\Widgets\" />
     <Folder Include="logs\" />
-    <Folder Include="wwwroot\app-client\shared\controllers\" />
     <Folder Include="wwwroot\app\services\" />
     <Folder Include="wwwroot\app-shared\" />
   </ItemGroup>
@@ -314,8 +317,6 @@
     <None Include="Areas\Portal\Views\_ViewStart.cshtml" />
     <None Include="Views\_ViewImports.cshtml" />
     <None Include="Views\_ViewStart.cshtml" />
-    <None Include="wwwroot\app-portal\pages\shared\services\auth-services.js" />
-    <None Include="wwwroot\app-portal\pages\shared\services\common-services.js" />
     <None Include="wwwroot\app\app-portal.js" />
     <None Include="wwwroot\app\controllers\portal-controller.js" />
     <None Include="wwwroot\lib\now-ui-kit-pro-v1.2.2\assets\js\core\bootstrap.min.js" />

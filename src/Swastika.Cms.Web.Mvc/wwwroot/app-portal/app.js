@@ -5,20 +5,12 @@ var serviceBase = "/";
 
 app.run(['$rootScope', '$location', 'commonServices', 'authService', 'translatorService',
     function ($rootScope, $location, commonServices, authService, translatorService) {
-        authService.fillAuthData();
-        
-        commonServices.fillSettings().then(function (response) {
-            $rootScope.settings = response;
-            translatorService.fillTranslator($rootScope.settings.lang);            
-        });
-
-
 
         $rootScope.currentContext = $rootScope;
         $rootScope.errors = [];
 
         $rootScope.message = {
-            title: 'test',
+            title: '',
             content: '',
             errors: [],
             okFuncName: null,
@@ -29,8 +21,6 @@ app.run(['$rootScope', '$location', 'commonServices', 'authService', 'translator
             lblCancel: 'Cancel',
             context: $rootScope
         };
-
-        $rootScope.authentication = authService.authentication;
 
         $rootScope.swStatus = [
             'Deleted',
@@ -155,10 +145,7 @@ app.run(['$rootScope', '$location', 'commonServices', 'authService', 'translator
             authService.logOut();
             $location.path('/backend/login');
         };
-        if (!authService.authentication.isAuth || !authService.authentication.isAdmin) {
-            authService.authentication.referredUrl = $location.$$url;
-            $location.path('/backend/login');
-        }
+
         $rootScope.updateSettings = function () {
             commonServices.removeSettings();
             commonServices.fillSettings($rootScope.settings.lang).then(function (response) {
@@ -246,6 +233,15 @@ app.run(['$rootScope', '$location', 'commonServices', 'authService', 'translator
                         align: align
                     }
                 });
+        }
+
+        $rootScope.translate = function (keyword, defaultValue) {
+            if ($rootScope.settings) {
+                return translatorService.get(keyword, defaultValue);
+            }
+            else {
+                return defaultValue || keyword;
+            }
         }
     }]);
 

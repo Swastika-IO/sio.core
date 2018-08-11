@@ -13,15 +13,20 @@ app.controller('Step2Controller', ['$scope', '$rootScope', '$timeout', '$locatio
                 $rootScope.showMessage('Please agreed with our policy', 'warning');
             }
             else {
-                $rootScope.isBusy = true;
-                var result = await services.register($scope.user);
-                if (result.isSucceed) {
-                    $rootScope.isBusy = false;
-                    window.location.href = '/backend';
-                } else {
-                    if (result) { $rootScope.showMessage('', result.errors, 'danger'); }
-                    $rootScope.isBusy = false;
-                    $scope.$apply();
+                if ($scope.password != $scope.confirmPassword) {
+                    $rootScope.showErrors(['Confirm Password is not matched']);
+                }
+                else {
+                    $rootScope.isBusy = true;
+                    var result = await services.register($scope.user);
+                    if (result.isSucceed) {
+                        $rootScope.isBusy = false;
+                        window.location.href = '/backend';
+                    } else {
+                        if (result) { $rootScope.showErrors(result.errors); }
+                        $rootScope.isBusy = false;
+                        $scope.$apply();
+                    }
                 }
             }
         }

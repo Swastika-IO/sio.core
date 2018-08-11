@@ -134,7 +134,7 @@ app.factory('authService', ['$http', '$rootScope','$location', '$q', 'localStora
 
         };
 
-        var _fillAuthData = function () {
+        var _fillAuthData = async function () {
 
             var authData = localStorageService.get('authorizationData');
             if (authData) {

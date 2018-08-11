@@ -92,7 +92,7 @@ app.factory('commonServices', ['$location', '$http', '$rootScope', 'authService'
             settings = await _getSettings(culture);
             localStorageService.set('settings', settings);
             window.top.location = location.href;
-            return settings;
+            //return settings;
         }
 
     };

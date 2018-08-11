@@ -75,7 +75,7 @@ namespace Swastka.Cms.Api.Controllers
             return new RepositoryResponse<JObject>()
             {
                 IsSucceed = true,
-                Data = GlobalConfigurationService.Instance.CmsCulture.Translator[_lang].ToObject<JObject>()
+                Data = GlobalConfigurationService.Instance.CmsCulture.Translator[_lang]?.ToObject<JObject>()
             };
         }
 

@@ -37,35 +37,35 @@
     @RenderSection("Styles", required: false)
 </head>
 
-<body ng-app="SwastikaPortal" ng-init="initApp()">
-    <input type="hidden" id="lang" name="curentLanguage" value="@ViewBag.culture" />
+<body ng-app="SwastikaPortal" ng-init="init()" ng-controller="AppPortalController">
     <div class="loader-container" ng-show="isBusy">
         <div id="loader"></div>
     </div>
-    <header-nav></header-nav>
-    <div class="container-fluid wrapper">
-        <div class="row flex-xl-nowrap">
-            <main-side-bar></main-side-bar>
-            <main class="py-md-3 px-md-2 sw-content" role="main">
+    <div>
+        <header-nav></header-nav>
+        <div class="container-fluid wrapper">
+            <div class="row flex-xl-nowrap">
+                <main-side-bar></main-side-bar>
+                <main class="py-md-3 px-md-2 sw-content" role="main">
 
-                @RenderBody()
+                    @RenderBody()
 
-                <footer class="footer d-block">
-                    <div class="container-fluid">
-                        <nav>
-                            <p class="copyright text-center">
-                                <script>
-                                    document.write(new Date().getFullYear())
-                                </script>
-                                <a href="http://www.swastika.io">Swastika I/O</a>, made on Earth by humans.
-                            </p>
-                        </nav>
-                    </div>
-                </footer>
-            </main>
+                    <footer class="footer d-block">
+                        <div class="container-fluid">
+                            <nav>
+                                <p class="copyright text-center">
+                                    <script>
+                                        document.write(new Date().getFullYear())
+                                    </script>
+                                    <a href="http://www.swastika.io">Swastika I/O</a>, made on Earth by humans.
+                                </p>
+                            </nav>
+                        </div>
+                    </footer>
+                </main>
+            </div>
         </div>
     </div>
-
     <script src="/lib/jquery-ui-1.12.1/jquery-ui.min.js"></script>
     <script src="/lib/popper.js-1.12.9/dist/umd/popper.min.js"></script>
 
@@ -107,6 +107,7 @@
 
     <script src="/app-shared/plugins/angular-local-storage.min.js"></script>
     <script src="/app-portal/app.js"></script>
+    <script src="~/app-portal/shared/controllers/app-portal-controller.js"></script>
     <script src="/app-portal/app.filter.js"></script>
     <script src="/app-portal/app.directive.js"></script>
     <script src="/app-portal/app.route.js"></script>
@@ -118,7 +119,7 @@
 
     <script src="/app-portal/pages/login/login-controller.js"></script>
 
-    
+
     <script src="~/app-shared/services/template-services.js"></script>
     <script src="/app-portal/pages/product/product-services.js"></script>
     <script src="/app-portal/pages/product/product-controller.js"></script>
@@ -148,14 +149,14 @@
 
     <script src="~/app-portal/pages/configuration/configuration-controller.js"></script>
     <script src="~/app-portal/pages/configuration/configuration-services.js"></script>
-    
+
     <script src="~/app-portal/pages/language/language-controller.js"></script>
     <script src="~/app-portal/pages/language/language-services.js"></script>
 
     <script src="~/app-portal/pages/culture/culture-controller.js"></script>
     <script src="~/app-portal/pages/culture/culture-services.js"></script>
-    
-    
+
+
     <!-- End Services -->
     <script src="~/app-shared/controllers/template-controller.js"></script>
 
@@ -240,5 +241,6 @@
     <!--Datatables-->
     @*@RenderSection("Modals", required: false)*@
     @*@await Component.InvokeAsync(typeof(Swastika.Cms.Mvc.Areas.Portal.ViewComponents.Modals))*@
+
 </body>
 </html>

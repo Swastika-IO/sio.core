@@ -41,26 +41,24 @@ app.factory('translatorService', ['$rootScope', 'commonServices', 'localStorageS
         
         await _getTranslator(lang);
     }
-    var _get = function (keyword, lang) {
-        lang = lang || $rootScope.settings.lang
-        if (!_translator) {
+    var _get = function (keyword, defaultValue) {
+        if (!_translator && $rootScope.settings) {
             _fillTranslator(lang).then(function (response) {
                 _translator = response;
-                return _translator[keyword] || '[' + keyword + ']';
+                return _translator[keyword] || defaultValue || '[' + keyword + ']';
             });            
         } else {
-            return _translator[keyword] || '[' + keyword + ']';
+            return _translator[keyword] || defaultValue || '[' + keyword + ']';
         }
         
     };
 
-    var _getAsync = async function (keyword, lang) {
-        lang = lang || $rootScope.settings.lang
+    var _getAsync = async function (keyword, defaultValue) {
         if (!_translator) {
             _translator = await _fillTranslator(lang);
-            return _translator[keyword] || '[' + keyword + ']';            
+            return _translator[keyword] || defaultValue || '[' + keyword + ']';            
         } else {
-            return _translator[keyword] || '[' + keyword + ']';
+            return _translator[keyword] || defaultValue || '[' + keyword + ']';
         }
         
     };

@@ -10,7 +10,7 @@
     <div class="sw-toc-link" data-toggle="collapse" data-target="#{{$ctrl.item.title}}" role="button" aria-expanded="false"
          aria-controls="{{$ctrl.item.title}}">
         <i class="{{$ctrl.item.icon}} mi-lg mi-fw"></i>
-        <a href="{{$ctrl.item.href}}" class="text" ng-bind="$ctrl.item.title"></a>
+        <a href="{{$ctrl.item.href}}" class="text" ng-bind="$ctrl.translate($ctrl.item.title,$ctrl.item.title)"></a>
     </div>
     <ul ng-if="$ctrl.item.subMenus.length>0" id="{{$ctrl.item.title}}" class="collapse list-unstyled" role="tabpanel" data-parent="#sw-docs-nav">
         <li ng-repeat="m in $ctrl.item.subMenus">

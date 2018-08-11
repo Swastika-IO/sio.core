@@ -12,13 +12,13 @@
                     subMenus: []
                 },
                 {
-                    title: await translatorService.getAsync('portal_articles'),
-                    shortTitle: await translatorService.getAsync('portal_articles'),
+                    title: 'portal_articles',
+                    shortTitle: ('portal_articles'),
                     icon: 'mi mi-ReadingList',
                     href: '#',
                     subMenus: [
                         {
-                            title: await translatorService.getAsync('portal_create'),
+                            title: ('portal_create'),
                             href: '/backend/article/create',
                             icon: 'mi mi-Add'
                         },
@@ -36,7 +36,7 @@
                     href: '#',
                     subMenus: [
                         {
-                            title: await translatorService.getAsync('portal_create'),
+                            title: ('portal_create'),
                             href: '/backend/product/create',
                             icon: 'mi mi-Add'
                         },
@@ -54,7 +54,7 @@
                     href: '#',
                     subMenus: [
                         {
-                            title: await translatorService.getAsync('portal_create'),
+                            title: ('portal_create'),
                             href: '/backend/page/create',
                             icon: 'mi mi-Add'
                         },
@@ -72,7 +72,7 @@
                     href: '#',
                     subMenus: [
                         {
-                            title: await translatorService.getAsync('portal_create'),
+                            title: ('portal_create'),
                             href: '/backend/module/create',
                             icon: 'mi mi-Add'
                         },
@@ -90,7 +90,7 @@
                     href: '#',
                     subMenus: [
                         {
-                            title: await translatorService.getAsync('portal_create'),
+                            title: ('portal_create'),
                             href: '/backend/theme/create',
                             icon: 'mi mi-Add'
                         },
@@ -108,7 +108,7 @@
                     href: '#',
                     subMenus: [
                         {
-                            title: await translatorService.getAsync('portal_create'),
+                            title: ('portal_create'),
                             href: '/backend/media/create',
                             icon: 'mi mi-Add'
                         },
@@ -126,7 +126,7 @@
                     href: '#',
                     subMenus: [
                         {
-                            title: await translatorService.getAsync('portal_create'),
+                            title: ('portal_create'),
                             href: '/backend/file/create',
                             icon: 'mi mi-Add'
                         },
@@ -144,7 +144,7 @@
                     href: '#',
                     subMenus: [
                         {
-                            title: await translatorService.getAsync('portal_create'),
+                            title: ('portal_create'),
                             href: '/backend/user/create',
                             icon: 'mi mi-Add'
                         },
@@ -172,7 +172,7 @@
                             icon: 'mi mi-Pen'
                         },
                         {
-                            title: await translatorService.getAsync('portal_create'),
+                            title: ('portal_create'),
                             href: '/backend/configuration/create',
                             icon: 'mi mi-Add'
                         },
@@ -184,13 +184,13 @@
                     ]
                 },
                 {
-                    title: 'Language',
+                    title: 'language',
                     shortTitle: 'Language',
                     icon: 'mi mi-TimeLanguage',
                     href: '#',
                     subMenus: [
                         {
-                            title: await translatorService.getAsync('portal_create'),
+                            title: ('portal_create'),
                             href: '/backend/language/create',
                             icon: 'mi mi-Add'
                         },
@@ -208,7 +208,7 @@
                     href: '#',
                     subMenus: [
                         {
-                            title: await translatorService.getAsync('portal_create'),
+                            title: ('portal_create'),
                             href: '/backend/culture/create',
                             icon: 'mi mi-Add'
                         },
@@ -223,5 +223,6 @@
         };
     }],
     bindings: {
+        translate:  '&'
     }
 });
