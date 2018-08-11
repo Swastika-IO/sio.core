@@ -5,8 +5,8 @@
         ctrl.init = async function () {
             ctrl.items = [
                 {
-                    title: 'Dashboard',
-                    shortTitle: 'Dashboard',
+                    title: 'portal_dashboard',
+                    shortTitle: 'portal_short_dashboard',
                     icon: 'mi mi-Tiles',
                     href: '/backend',
                     subMenus: []
@@ -23,15 +23,15 @@
                             icon: 'mi mi-Add'
                         },
                         {
-                            title: 'List',
+                            title: 'portal_list',
                             href: '/backend/article/list',
                             icon: 'mi mi-List'
                         }
                     ]
                 },
                 {
-                    title: 'Products',
-                    shortTitle: 'Products',
+                    title: 'portal_products',
+                    shortTitle: 'portal_products',
                     icon: 'mi mi-Package',
                     href: '#',
                     subMenus: [
@@ -41,15 +41,15 @@
                             icon: 'mi mi-Add'
                         },
                         {
-                            title: 'List',
+                            title: 'portal_list',
                             href: '/backend/product/list',
                             icon: 'mi mi-List'
                         }
                     ]
                 },
                 {
-                    title: 'Pages',
-                    shortTitle: 'Pages',
+                    title: 'portal_pages',
+                    shortTitle: 'portal_pages',
                     icon: 'mi mi-Page',
                     href: '#',
                     subMenus: [
@@ -59,15 +59,15 @@
                             icon: 'mi mi-Add'
                         },
                         {
-                            title: 'List',
+                            title: 'portal_list',
                             href: '/backend/page/list',
                             icon: 'mi mi-List'
                         }
                     ]
                 },
                 {
-                    title: 'Modules',
-                    shortTitle: 'Modules',
+                    title: 'portal_modules',
+                    shortTitle: 'portal_modules',
                     icon: 'mi mi-ResolutionLegacy',
                     href: '#',
                     subMenus: [
@@ -77,15 +77,15 @@
                             icon: 'mi mi-Add'
                         },
                         {
-                            title: 'List',
+                            title: 'portal_list',
                             href: '/backend/module/list',
                             icon: 'mi mi-List'
                         }
                     ]
                 },
                 {
-                    title: 'Themes',
-                    shortTitle: 'Themes',
+                    title: 'portal_themes',
+                    shortTitle: 'portal_themes',
                     icon: 'mi mi-Personalize',
                     href: '#',
                     subMenus: [
@@ -95,14 +95,14 @@
                             icon: 'mi mi-Add'
                         },
                         {
-                            title: 'List',
+                            title: 'portal_list',
                             href: '/backend/theme/list',
                             icon: 'mi mi-List'
                         }
                     ]
                 },
                 {
-                    title: 'Media',
+                    title: 'portal_media',
                     shortTitle: 'Media',
                     icon: 'mi mi-Photo2',
                     href: '#',
@@ -113,14 +113,14 @@
                             icon: 'mi mi-Add'
                         },
                         {
-                            title: 'List',
+                            title: 'portal_list',
                             href: '/backend/media/list',
                             icon: 'mi mi-List'
                         }
                     ]
                 },
                 {
-                    title: 'File',
+                    title: 'portal_file',
                     shortTitle: 'File',
                     icon: 'mi mi-Photo2',
                     href: '#',
@@ -131,14 +131,14 @@
                             icon: 'mi mi-Add'
                         },
                         {
-                            title: 'List',
+                            title: 'portal_list',
                             href: '/backend/file/list',
                             icon: 'mi mi-List'
                         }
                     ]
                 },
                 {
-                    title: 'Users',
+                    title: 'portal_users',
                     shortTitle: 'Users',
                     icon: 'mi mi-Contact',
                     href: '#',
@@ -149,7 +149,7 @@
                             icon: 'mi mi-Add'
                         },
                         {
-                            title: 'List',
+                            title: 'portal_list',
                             href: '/backend/user/list',
                             icon: 'mi mi-List'
                         },
@@ -161,13 +161,13 @@
                     ]
                 },
                 {
-                    title: 'Settings',
+                    title: 'portal_settings',
                     shortTitle: 'Settings',
                     icon: 'mi mi-Settings mi-spin',
                     href: '#',
                     subMenus: [
                         {
-                            title: 'App Settings',
+                            title: 'portal_app_settings',
                             href: '/backend/app-settings/details',
                             icon: 'mi mi-Pen'
                         },
@@ -177,7 +177,7 @@
                             icon: 'mi mi-Add'
                         },
                         {
-                            title: 'List',
+                            title: 'portal_list',
                             href: '/backend/configuration/list',
                             icon: 'mi mi-List'
                         }
@@ -190,7 +190,7 @@
                     href: '#',
                     subMenus: [
                         {
-                            title: ('portal_create'),
+                            title: 'portal_create',
                             href: '/backend/language/create',
                             icon: 'mi mi-Add'
                         },
@@ -202,8 +202,8 @@
                     ]
                 },
                 {
-                    title: 'Culture',
-                    shortTitle: 'Culture',
+                    title: 'portal_cultures',
+                    shortTitle: 'portal_short_cultures',
                     icon: 'mi mi-Globe mi-spin',
                     href: '#',
                     subMenus: [
@@ -213,7 +213,7 @@
                             icon: 'mi mi-Add'
                         },
                         {
-                            title: 'List',
+                            title: 'portal_list',
                             href: '/backend/culture/list',
                             icon: 'mi mi-List'
                         }

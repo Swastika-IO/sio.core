@@ -1,6 +1,7 @@
 ﻿'use strict';
 app.controller('ArticleController', ['$scope', '$rootScope', '$routeParams', '$timeout', '$location', 'authService', 'ArticleServices',
     function ($scope, $rootScope, $routeParams, $timeout, $location, authService, articleServices) {
+        
         $scope.request = {
             pageSize: '10',
             pageIndex: 0,
@@ -21,13 +22,13 @@ app.controller('ArticleController', ['$scope', '$rootScope', '$routeParams', '$t
             totalItems: 0,
         };
         $scope.errors = [];
-        
+
         $scope.range = function (max) {
             var input = [];
             for (var i = 1; i <= max; i += 1) input.push(i);
             return input;
         };
-        
+
         $scope.loadArticle = async function () {
             $rootScope.isBusy = true;
             var id = $routeParams.id;

@@ -1,7 +1,10 @@
 ﻿<ul class="navbar-nav sw-navbar-nav flex-row">
-    <li class="nav-item"><a class="nav-link" href="#"><span ng-bind="$ctrl.area"></span></a></li>
+
+    <li class="nav-item"><a class="nav-link" href="/backend"><span>Portal</span></a></li>
     <span class="fas fa-chevron-right breadcrumb-item"></span>
-    <li class="nav-item"><a class="nav-link" href="#"><span ng-bind="$ctrl.controller"></span></a></li>
-    <span class="fas fa-chevron-right breadcrumb-item"></span>
-    <li class="nav-item active"><span class="nav-link"><span ng-bind="$ctrl.action"></span></span></li>
+    <li ng-repeat="b in $ctrl.breadCrumbs" class="nav-item">
+        <a class="nav-link" href="{{b.url}}"><span ng-bind="b.title"></span></a>
+        <span ng-hide="$last" class="fas fa-chevron-right breadcrumb-item"></span>
+    </li>
+
 </ul>

@@ -8,7 +8,7 @@ app.run(['$rootScope', '$location', 'commonServices', 'authService', 'translator
 
         $rootScope.currentContext = $rootScope;
         $rootScope.errors = [];
-
+        $rootScope.breadCrumbs = [];
         $rootScope.message = {
             title: '',
             content: '',
@@ -134,12 +134,6 @@ app.run(['$rootScope', '$location', 'commonServices', 'authService', 'translator
                 .replace(/-+/g, character)
                 .toLowerCase();
         }
-        $rootScope.$watch('isBusy', function (newValue, oldValue) {
-            if (newValue) {
-                $rootScope.message.content = '';
-                $rootScope.errors = [];
-            }
-        });
 
         $rootScope.logOut = function () {
             authService.logOut();
@@ -243,6 +237,32 @@ app.run(['$rootScope', '$location', 'commonServices', 'authService', 'translator
                 return defaultValue || keyword;
             }
         }
+        $rootScope.$watch('isBusy', function (newValue, oldValue) {
+            if (newValue) {
+                $rootScope.message.content = '';
+                $rootScope.errors = [];
+            }
+        });
+        $rootScope.$watch('breadCrumbs', function (newValue, oldValue) {
+            if (newValue) {
+                //console.log(newValue);
+            }
+        });
+        $rootScope.$on("$locationChangeSuccess", function (event, next, current) {
+            // handle route changes     
+            console.log(event,next, current);
+            //$rootScope.breadCrumbs = [
+            //    {
+            //        url: '/backend/articles',
+            //        title: 'articles'
+            //    }, {
+            //        url: '',
+            //        title: 'list'
+            //    }
+            //];
+        });
+        
+
     }]);
 
 function Filter($filter) {

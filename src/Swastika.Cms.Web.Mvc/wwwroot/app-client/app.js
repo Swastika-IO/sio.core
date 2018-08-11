@@ -265,6 +265,16 @@ app.run(['$rootScope', '$location', 'commonServices', 'authService', 'translator
                     }
                 });
         }
+
+        $rootScope.translate = function (keyword, defaultValue) {
+            if ($rootScope.settings) {
+
+                return translatorService.get(keyword, defaultValue);
+            }
+            else {
+                return defaultValue || keyword;
+            }
+        }
     }]);
 
 function Filter($filter) {

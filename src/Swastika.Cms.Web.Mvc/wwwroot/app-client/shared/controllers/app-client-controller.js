@@ -1,18 +1,25 @@
 ﻿(function (angular) {
     'use strict';
-    app.controller('AppClientController', ['$rootScope', '$scope', 'commonServices', 'translatorService',
-        function ($rootScope, $scope, commonServices, translatorService) {
-            $scope.translator = translatorService;
+    app.controller('AppClientController', ['$rootScope', '$scope', 'commonServices', 'authService', 'translatorService',
+        function ($rootScope, $scope, commonServices, authService, translatorService) {
             $scope.lang = '';
-            $scope.init = function (lang) {
-                $scope.lang = lang;
+            $scope.isInit = false;
+            $scope.translator = {};
+            $scope.init = async function (lang) {
                 commonServices.fillSettings(lang).then(function (response) {
+                    $scope.translator = translatorService;
+                    $scope.isInit = true;
                     $rootScope.settings = response;
-                    translatorService.fillTranslator($rootScope.settings.lang);
+                    $scope.settings = response;
+                    translatorService.fillTranslator($rootScope.settings.lang).then(function () {
+                        authService.fillAuthData().then(function (response) {
+                            $rootScope.authentication = authService.authentication;
+                        });
+                        $scope.$apply();
+                    });
+                    
                 });
-            };
-            $scope.translate = function (keyword) {
-                return $scope.translator.get(keyword, $scope.lang);
             }
+            $scope.translate = $rootScope.translate;
         }]);
 })(window.angular);
