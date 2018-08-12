@@ -42,7 +42,7 @@ namespace Swastika.Cms.Lib.ViewModels.BackEnd
 
         public override void ExpandView(SiocCmsContext _context = null, IDbContextTransaction _transaction = null)
         {
-            ListSupportedCulture = CommonRepository.Instance.LoadCultures(Specificulture, _context, _transaction);
+            Cultures = CommonRepository.Instance.LoadCultures(Specificulture, _context, _transaction);
         }
 
         public override RepositoryResponse<BELanguageViewModel> SaveModel(bool isSaveSubModels = false, SiocCmsContext _context = null, IDbContextTransaction _transaction = null)

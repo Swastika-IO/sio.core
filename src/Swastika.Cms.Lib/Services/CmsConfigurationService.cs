@@ -11,6 +11,7 @@ using Swastika.Cms.Lib.Models.Cms;
 using Swastika.Cms.Lib.Repositories;
 using Swastika.Cms.Lib.ViewModels;
 using Swastika.Cms.Lib.ViewModels.BackEnd;
+using Swastika.Cms.Lib.ViewModels.Info;
 using Swastika.Common.Helper;
 using Swastika.Domain.Core.ViewModels;
 using Swastika.Identity.Models;
@@ -39,7 +40,7 @@ namespace Swastika.Cms.Lib.Services
         public string AccountConnectionString { get; set; }
         public bool IsSqlite { get; set; }
         public string Language { get; set; }
-        public List<ConfigurationViewModel> ListConfiguration { get; set; }
+        public List<InfoConfigurationViewModel> ListConfiguration { get; set; }
         public IConfiguration Configuration { get; set; }
         
         private void InitParams()
@@ -53,8 +54,8 @@ namespace Swastika.Cms.Lib.Services
 
         private void InitConfigurations(SiocCmsContext _context = null, IDbContextTransaction _transaction = null)
         {
-            var getConfigurations = ConfigurationViewModel.Repository.GetModelList(_context, _transaction);
-            ListConfiguration = getConfigurations.Data ?? new List<ConfigurationViewModel>();
+            var getConfigurations = InfoConfigurationViewModel.Repository.GetModelList(_context, _transaction);
+            ListConfiguration = getConfigurations.Data ?? new List<InfoConfigurationViewModel>();
         }
 
         public IConfiguration LoadConfiguration()

@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore.Storage;
 using Newtonsoft.Json;
 using Swastika.Cms.Lib.Models.Cms;
 using Swastika.Cms.Lib.Services;
-using Swastika.Cms.Lib.ViewModels.Api;
+using Swastika.Cms.Lib.ViewModels.Info;
 using Swastika.Cms.Lib.ViewModels.Navigation;
 using Swastika.Domain.Data.ViewModels;
 using System;
@@ -81,7 +81,7 @@ namespace Swastika.Cms.Lib.ViewModels.Info
         #region Views
 
         [JsonProperty("urlAlias")]
-        public ApiUrlAliasViewModel UrlAlias { get; set; }
+        public InfoUrlAliasViewModel UrlAlias { get; set; }
 
         [JsonProperty("domain")]
         public string Domain { get { return GlobalConfigurationService.Instance.GetLocalString("Domain", Specificulture, "/"); } }
@@ -141,10 +141,10 @@ namespace Swastika.Cms.Lib.ViewModels.Info
 
         public override void ExpandView(SiocCmsContext _context = null, IDbContextTransaction _transaction = null)
         {
-            UrlAlias = ApiUrlAliasViewModel.Repository.GetSingleModel(u => u.Specificulture == Specificulture && u.SourceId == Id.ToString()).Data;
+            UrlAlias = InfoUrlAliasViewModel.Repository.GetSingleModel(u => u.Specificulture == Specificulture && u.SourceId == Id.ToString()).Data;
             if (UrlAlias == null)
             {
-                UrlAlias = new ApiUrlAliasViewModel()
+                UrlAlias = new InfoUrlAliasViewModel()
                 {
                     Specificulture = Specificulture,
                     Alias = SeoName

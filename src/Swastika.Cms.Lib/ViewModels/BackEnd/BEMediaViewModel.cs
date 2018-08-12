@@ -137,8 +137,8 @@ namespace Swastika.Cms.Lib.ViewModels.BackEnd
 
         public override void ExpandView(SiocCmsContext _context = null, IDbContextTransaction _transaction = null)
         {
-            ListSupportedCulture = CommonRepository.Instance.LoadCultures(Specificulture, _context, _transaction);
-            this.ListSupportedCulture.ForEach(c => c.IsSupported = true);
+            Cultures = CommonRepository.Instance.LoadCultures(Specificulture, _context, _transaction);
+            this.Cultures.ForEach(c => c.IsSupported = true);
             MediaFile = new FileViewModel();
         }
 

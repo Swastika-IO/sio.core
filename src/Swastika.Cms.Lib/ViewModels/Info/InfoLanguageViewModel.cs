@@ -14,10 +14,10 @@ using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace Swastika.Cms.Lib.ViewModels.Api
+namespace Swastika.Cms.Lib.ViewModels.Info
 {
-    public class ApiLanguageViewModel
-        : ViewModelBase<SiocCmsContext, SiocLanguage, ApiLanguageViewModel>
+    public class InfoLanguageViewModel
+        : ViewModelBase<SiocCmsContext, SiocLanguage, InfoLanguageViewModel>
     {
         #region Properties
 
@@ -58,11 +58,11 @@ namespace Swastika.Cms.Lib.ViewModels.Api
 
         #region Contructors
 
-        public ApiLanguageViewModel() : base()
+        public InfoLanguageViewModel() : base()
         {
         }
 
-        public ApiLanguageViewModel(SiocLanguage model, SiocCmsContext _context = null, IDbContextTransaction _transaction = null)
+        public InfoLanguageViewModel(SiocLanguage model, SiocCmsContext _context = null, IDbContextTransaction _transaction = null)
             : base(model, _context, _transaction)
         {
         }
@@ -79,22 +79,16 @@ namespace Swastika.Cms.Lib.ViewModels.Api
 
         public override Task<bool> ExpandViewAsync(SiocCmsContext _context = null, IDbContextTransaction _transaction = null)
         {
-            Cultures = CommonRepository.Instance.LoadCultures(Specificulture, _context, _transaction);
-            this.Cultures.ForEach(c => c.IsSupported = true);
-            IsClone = true;
             Property = new DataValueViewModel() { DataType = DataType, Value = Value, Name = Keyword };
             return base.ExpandViewAsync(_context, _transaction);
         }
 
         public override void ExpandView(SiocCmsContext _context = null, IDbContextTransaction _transaction = null)
         {
-            Cultures = CommonRepository.Instance.LoadCultures(Specificulture, _context, _transaction);
-            this.Cultures.ForEach(c => c.IsSupported = true);
-            IsClone = true;
             Property = new DataValueViewModel() { DataType = DataType, Value = Value, Name = Keyword };
         }
 
-        public override RepositoryResponse<bool> RemoveRelatedModels(ApiLanguageViewModel view, SiocCmsContext _context = null, IDbContextTransaction _transaction = null)
+        public override RepositoryResponse<bool> RemoveRelatedModels(InfoLanguageViewModel view, SiocCmsContext _context = null, IDbContextTransaction _transaction = null)
         {
             foreach (var culture in Cultures.Where(c => c.Specificulture != Specificulture))
             {
@@ -110,7 +104,7 @@ namespace Swastika.Cms.Lib.ViewModels.Api
             };
         }
 
-        public override async Task<RepositoryResponse<bool>> RemoveRelatedModelsAsync(ApiLanguageViewModel view, SiocCmsContext _context = null, IDbContextTransaction _transaction = null)
+        public override async Task<RepositoryResponse<bool>> RemoveRelatedModelsAsync(InfoLanguageViewModel view, SiocCmsContext _context = null, IDbContextTransaction _transaction = null)
         {
             foreach (var culture in Cultures.Where(c => c.Specificulture != Specificulture))
             {

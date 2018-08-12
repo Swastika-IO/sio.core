@@ -71,10 +71,7 @@ namespace Swastika.Cms.Lib.ViewModels.Api
 
         [JsonProperty("seoKeywords")]
         public string SeoKeywords { get; set; }
-
-        [JsonProperty("source")]
-        public string Source { get; set; }
-
+        
         [JsonProperty("views")]
         public int? Views { get; set; }
 
@@ -238,7 +235,7 @@ namespace Swastika.Cms.Lib.ViewModels.Api
         {
             GenerateSEO();
 
-            var navParent = ParentNavs.FirstOrDefault(p => p.IsActived);
+            var navParent = ParentNavs?.FirstOrDefault(p => p.IsActived);
 
             if (navParent != null)
             {
@@ -266,11 +263,11 @@ namespace Swastika.Cms.Lib.ViewModels.Api
                 UrlAlias = new ApiUrlAliasViewModel()
                 {
                     Specificulture = Specificulture,
-                    Alias= SeoName
+                    Alias = SeoName
                 };
             }
-            ListSupportedCulture = CommonRepository.Instance.LoadCultures(Specificulture, _context, _transaction);
-            ListSupportedCulture.ForEach(c => c.IsSupported = _context.SiocCategory.Any(m => m.Id == Id && m.Specificulture == c.Specificulture));
+            Cultures = Cultures ?? CommonRepository.Instance.LoadCultures(Specificulture, _context, _transaction);
+            Cultures.ForEach(c => c.IsSupported = _context.SiocCategory.Any(m => m.Id == Id && m.Specificulture == c.Specificulture));
             if (!string.IsNullOrEmpty(this.Tags))
             {
                 ListTag = JArray.Parse(this.Tags);
@@ -453,7 +450,7 @@ namespace Swastika.Cms.Lib.ViewModels.Api
             if (result.IsSucceed)
             {
                 UrlAlias.IsClone = IsClone;
-                UrlAlias.ListSupportedCulture = ListSupportedCulture;
+                UrlAlias.Cultures = Cultures;
                 UrlAlias.SourceId = parent.Id.ToString();
                 var saveUrl = await UrlAlias.SaveModelAsync(false, _context, _transaction);
                 result.Errors.AddRange(saveUrl.Errors);

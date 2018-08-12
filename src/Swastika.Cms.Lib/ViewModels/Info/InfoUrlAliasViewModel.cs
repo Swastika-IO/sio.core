@@ -12,10 +12,10 @@ using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using static Swastika.Cms.Lib.SWCmsConstants;
 
-namespace Swastika.Cms.Lib.ViewModels.Api
+namespace Swastika.Cms.Lib.ViewModels.Info
 {
-    public class ApiUrlAliasViewModel
-        : ViewModelBase<SiocCmsContext, SiocUrlAlias, ApiUrlAliasViewModel>
+    public class InfoUrlAliasViewModel
+        : ViewModelBase<SiocCmsContext, SiocUrlAlias, InfoUrlAliasViewModel>
     {
         #region Properties
 
@@ -47,11 +47,11 @@ namespace Swastika.Cms.Lib.ViewModels.Api
 
         #region Contructors
 
-        public ApiUrlAliasViewModel() : base()
+        public InfoUrlAliasViewModel() : base()
         {
         }
 
-        public ApiUrlAliasViewModel(SiocUrlAlias model, SiocCmsContext _context = null, IDbContextTransaction _transaction = null)
+        public InfoUrlAliasViewModel(SiocUrlAlias model, SiocCmsContext _context = null, IDbContextTransaction _transaction = null)
             : base(model, _context, _transaction)
         {
         }
@@ -64,16 +64,16 @@ namespace Swastika.Cms.Lib.ViewModels.Api
         {
             if (Id == 0)
             {
-                Id = ApiUrlAliasViewModel.Repository.Max(c => c.Id, _context, _transaction).Data + 1;
+                Id = InfoUrlAliasViewModel.Repository.Max(c => c.Id, _context, _transaction).Data + 1;
                 CreatedDateTime = DateTime.UtcNow;
             }
             return base.ParseModel(_context, _transaction);
         }
         public override void ExpandView(SiocCmsContext _context = null, IDbContextTransaction _transaction = null)
         {
-            //IsClone = true;
-            //Cultures = Cultures ?? CommonRepository.Instance.LoadCultures(Specificulture, _context, _transaction);
-            //Cultures.ForEach(c => c.IsSupported = _context.SiocUrlAlias.Any(m => m.Id == Id && m.Specificulture == c.Specificulture));
+            IsClone = true;
+            Cultures = CommonRepository.Instance.LoadCultures(Specificulture, _context, _transaction);
+            Cultures.ForEach(c => c.IsSupported = _context.SiocUrlAlias.Any(m => m.Id == Id && m.Specificulture == c.Specificulture));
         }
 
         public override void Validate(SiocCmsContext _context, IDbContextTransaction _transaction)

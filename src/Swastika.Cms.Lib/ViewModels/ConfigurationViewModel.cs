@@ -40,7 +40,7 @@ namespace Swastika.Cms.Lib.ViewModels
 
         public override void ExpandView(SiocCmsContext _context = null, IDbContextTransaction _transaction = null)
         {
-            ListSupportedCulture = CommonRepository.Instance.LoadCultures(Specificulture, _context, _transaction);          
+            Cultures = CommonRepository.Instance.LoadCultures(Specificulture, _context, _transaction);          
         }
 
         #endregion Overrides

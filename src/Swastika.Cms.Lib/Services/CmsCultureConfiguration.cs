@@ -3,6 +3,7 @@ using Newtonsoft.Json.Linq;
 using Swastika.Cms.Lib.Models.Cms;
 using Swastika.Cms.Lib.Repositories;
 using Swastika.Cms.Lib.ViewModels.Api;
+using Swastika.Cms.Lib.ViewModels.Info;
 using Swastika.Domain.Core.Models;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,7 +13,7 @@ namespace Swastika.Cms.Lib.Services
     public class CmsCultureConfiguration
     {
         public JObject Translator { get; set; }
-        public List<ApiLanguageViewModel> ListLanguage { get; set; }
+        public List<InfoLanguageViewModel> ListLanguage { get; set; }
 
         public CmsCultureConfiguration()
         {            
@@ -31,8 +32,8 @@ namespace Swastika.Cms.Lib.Services
 
         public void Init(SiocCmsContext _context = null, IDbContextTransaction _transaction = null)
         {
-            var getLanguages = ApiLanguageViewModel.Repository.GetModelList(_context, _transaction);
-            ListLanguage = getLanguages.Data ?? new List<ApiLanguageViewModel>();
+            var getLanguages = InfoLanguageViewModel.Repository.GetModelList(_context, _transaction);
+            ListLanguage = getLanguages.Data ?? new List<InfoLanguageViewModel>();
             Translator = new JObject();
             foreach (var culture in GetSupportedCultures())
             {
@@ -57,7 +58,7 @@ namespace Swastika.Cms.Lib.Services
             string oldValue = config.Value;
 
             config.Value = value;
-            var result = ApiLanguageViewModel.Repository.SaveModel(config);
+            var result = InfoLanguageViewModel.Repository.SaveModel(config);
 
             if (result.IsSucceed)
             {

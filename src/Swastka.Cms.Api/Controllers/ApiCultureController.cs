@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json.Linq;
 using Swastika.Cms.Lib.Models.Cms;
+using Swastika.Cms.Lib.Services;
 using Swastika.Cms.Lib.ViewModels.Api;
 using Swastika.Domain.Core.ViewModels;
 using System;
@@ -121,6 +122,10 @@ namespace Swastka.Cms.Api.Controllers
             if (model != null)
             {
                 var result = await model.SaveModelAsync(true).ConfigureAwait(false);
+                if (result.IsSucceed)
+                {
+                    GlobalConfigurationService.Instance.RefreshAll();
+                }
                 return result;
             }
             return new RepositoryResponse<ApiCultureViewModel>();

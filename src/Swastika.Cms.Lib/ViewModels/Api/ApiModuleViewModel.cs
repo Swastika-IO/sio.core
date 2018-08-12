@@ -157,8 +157,8 @@ namespace Swastika.Cms.Lib.ViewModels.Api
 
         public override void ExpandView(SiocCmsContext _context = null, IDbContextTransaction _transaction = null)
         {
-            ListSupportedCulture = CommonRepository.Instance.LoadCultures(Specificulture, _context, _transaction);
-            ListSupportedCulture.ForEach(c => c.IsSupported = _context.SiocModule.Any(m => m.Id == Id && m.Specificulture == c.Specificulture));
+            Cultures = CommonRepository.Instance.LoadCultures(Specificulture, _context, _transaction);
+            Cultures.ForEach(c => c.IsSupported = _context.SiocModule.Any(m => m.Id == Id && m.Specificulture == c.Specificulture));
             Columns = new List<ModuleFieldViewModel>();
             JArray arrField = !string.IsNullOrEmpty(Fields) ? JArray.Parse(Fields) : new JArray();
             foreach (var field in arrField)

@@ -237,7 +237,7 @@ namespace Swastka.Cms.Api.Controllers
                         fedata.Data.Items.ForEach(a =>
                         {
                             a.DetailsUrl = SwCmsHelper.GetRouterUrl(
-                                "Page", new { a.UrlAlias.Alias }, Request, Url);
+                                "Page", new { seoName = a.UrlAlias.Alias }, Request, Url);
                         });
                     }
                     return JObject.FromObject(fedata);
@@ -249,7 +249,7 @@ namespace Swastka.Cms.Api.Controllers
                         bedata.Data.Items.ForEach(a =>
                         {
                             a.DetailsUrl = SwCmsHelper.GetRouterUrl(
-                                "Page", new { a.UrlAlias.Alias }, Request, Url);
+                                "Page", new { seoName = a.UrlAlias.Alias }, Request, Url);
                         });
                     }
                     return JObject.FromObject(bedata);
@@ -261,11 +261,11 @@ namespace Swastka.Cms.Api.Controllers
                         data.Data.Items.ForEach(a =>
                         {
                             a.DetailsUrl = SwCmsHelper.GetRouterUrl(
-                                "Page", new { a.SeoName }, Request, Url);
+                                "Page", new { seoName = a.UrlAlias.Alias }, Request, Url);
                             a.Childs.ForEach(c =>
                             {
                                 c.DetailsUrl = SwCmsHelper.GetRouterUrl(
-                                    "Page", new { c.UrlAlias.Alias }, Request, Url);
+                                    "Page", new { seoName = c.UrlAlias.Alias }, Request, Url);
                             });
                         });
                     }
