@@ -248,7 +248,7 @@ app.run(['$rootScope', '$location', 'commonServices', 'authService', 'translator
                 //console.log(newValue);
             }
         });
-        $rootScope.$on("$locationChangeSuccess", function (event, next, current) {
+        $rootScope.$on("$locationChangeStart", function (event, next, current) {
             // handle route changes     
             console.log(event,next, current);
             //$rootScope.breadCrumbs = [

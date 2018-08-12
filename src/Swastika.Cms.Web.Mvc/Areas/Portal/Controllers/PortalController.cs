@@ -45,6 +45,7 @@ namespace Swastika.Cms.Mvc.Areas.Portal.Controllers
         }
 
         [HttpGet]
+        [Route("login")]
         [Route("init")]
         [Route("init/{step}")]
         public IActionResult Init()
