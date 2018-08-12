@@ -3,9 +3,6 @@
         templateUrl: '/app-shared/components/header-nav/headerNav.html',
         controller: ['$rootScope', 'commonServices', 'translatorService', function ($rootScope, commonServices, translatorService) {
             var ctrl = this;
-            ctrl.settings = $rootScope.settings;
-           
-            ctrl.breadCrumbs = $rootScope.breadCrumbs;
             ctrl.changeLang = function (lang, langIcon) {
                 ctrl.settings.lang = lang;
                 ctrl.settings.langIcon = langIcon;
@@ -21,7 +18,8 @@
             }
         }],
         bindings: {
-            breadCrumbs: '='
+            breadCrumbs: '=',
+            settings: '='
         }
     });
 })(window.angular);

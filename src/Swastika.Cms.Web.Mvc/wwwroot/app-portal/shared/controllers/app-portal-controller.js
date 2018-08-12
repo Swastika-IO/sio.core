@@ -12,6 +12,7 @@
                         $scope.translator = translatorService;
                         $scope.isInit = true;
                         $rootScope.settings = response;
+                        $scope.settings = response;
                         if ($rootScope.settings && !$rootScope.isBusy) {
 
                             translatorService.fillTranslator($rootScope.settings.lang).then(function () {
