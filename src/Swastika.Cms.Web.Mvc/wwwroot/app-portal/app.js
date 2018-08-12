@@ -230,13 +230,15 @@ app.run(['$rootScope', '$location', 'commonServices', 'authService', 'translator
         }
 
         $rootScope.translate = function (keyword, defaultValue) {
-            if ($rootScope.settings) {
+            if ($rootScope.settings && !$rootScope.isBusy) {
+
                 return translatorService.get(keyword, defaultValue);
             }
             else {
                 return defaultValue || keyword;
             }
         }
+
         $rootScope.$watch('isBusy', function (newValue, oldValue) {
             if (newValue) {
                 $rootScope.message.content = '';

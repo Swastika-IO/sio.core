@@ -76,13 +76,22 @@ namespace Swastika.Cms.Lib.ViewModels.Api
             Value = Property.Value;
             return base.ParseModel(_context, _transaction);
         }
-
+        public override ApiLanguageViewModel ParseView(bool isExpand = true, SiocCmsContext _context = null, IDbContextTransaction _transaction = null)
+        {
+            Property = new DataValueViewModel() { DataType = DataType, Value = Value, Name = Keyword };
+            return base.ParseView(isExpand, _context, _transaction);
+        }
+        public override Task<ApiLanguageViewModel> ParseViewAsync(bool isExpand = true, SiocCmsContext _context = null, IDbContextTransaction _transaction = null)
+        {
+            Property = new DataValueViewModel() { DataType = DataType, Value = Value, Name = Keyword };
+            return base.ParseViewAsync(isExpand, _context, _transaction);
+        }
         public override Task<bool> ExpandViewAsync(SiocCmsContext _context = null, IDbContextTransaction _transaction = null)
         {
             Cultures = CommonRepository.Instance.LoadCultures(Specificulture, _context, _transaction);
             this.Cultures.ForEach(c => c.IsSupported = true);
             IsClone = true;
-            Property = new DataValueViewModel() { DataType = DataType, Value = Value, Name = Keyword };
+            
             return base.ExpandViewAsync(_context, _transaction);
         }
 

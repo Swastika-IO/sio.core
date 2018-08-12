@@ -6,19 +6,23 @@
             $scope.isInit = false;
             $scope.translator = {};
             $scope.init = async function (lang) {
-                commonServices.fillSettings(lang).then(function (response) {
-                    $scope.translator = translatorService;
-                    $scope.isInit = true;
-                    $rootScope.settings = response;
-                    $scope.settings = response;
-                    translatorService.fillTranslator($rootScope.settings.lang).then(function () {
-                        authService.fillAuthData().then(function (response) {
-                            $rootScope.authentication = authService.authentication;
-                        });
-                        $scope.$apply();
+                if (!$rootScope.isBusy) {
+                    commonServices.fillSettings(lang).then(function (response) {
+                        $scope.translator = translatorService;
+                        $scope.isInit = true;
+                        $rootScope.settings = response;
+                        if ($rootScope.settings && !$rootScope.isBusy) {
+
+                            translatorService.fillTranslator($rootScope.settings.lang).then(function () {
+                                authService.fillAuthData().then(function (response) {
+                                    $rootScope.authentication = authService.authentication;
+                                });
+                                $scope.$apply();
+                            });
+
+                        }
                     });
-                    
-                });
+                }
             }
             $scope.translate = $rootScope.translate;
         }]);

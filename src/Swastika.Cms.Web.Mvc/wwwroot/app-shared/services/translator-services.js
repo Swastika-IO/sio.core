@@ -43,8 +43,10 @@ app.factory('translatorService', ['$rootScope', 'commonServices', 'localStorageS
     }
     var _get = function (keyword, defaultValue) {
         if (!_translator && $rootScope.settings) {
+            $rootScope.isBusy = true;
             _fillTranslator($rootScope.settings.lang).then(function (response) {
                 _translator = response;
+                $rootScope.isBusy = false;
                 return _translator[keyword] || defaultValue || getLinkCreateLanguage(keyword);
             });
         } else {
