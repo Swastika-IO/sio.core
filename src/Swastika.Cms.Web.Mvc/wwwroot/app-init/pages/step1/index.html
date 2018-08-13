@@ -73,6 +73,7 @@
                         ng-model="initCmsModel.culture"
                         ng-options="item in settings.cultures track by $index">
                 </select>-->
+                <h5 class="card-description text-white">Select culture </h5>
                 <select class="btn btn-secondary custom-select input-lg"
                         ng-options="item as item.fullName for item in settings.cultures track by item.specificulture"
                         ng-model="initCmsModel.culture"></select>
