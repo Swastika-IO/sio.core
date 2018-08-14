@@ -47,27 +47,6 @@ app.factory('commonServices', ['$location', '$http', '$rootScope', 'authService'
         }
     };
 
-    var _getTranslator = async function (culture) {
-        var translator = localStorageService.get('translator');
-        if (translator) {
-            return translator;
-        }
-        else {
-            var url = 'api/portal';
-            if (culture) {
-                url += '/' + culture;
-            }
-            url += '/translator';
-            var req = {
-                method: 'GET',
-                url: url
-            };
-            return _getApiResult(req).then(function (response) {
-                return response.data;
-            });
-        }
-    };
-
     var _setSettings = async function (settings) {
         if (settings && settings.cultures.length > 0) {
             localStorageService.set('settings', settings);
@@ -91,29 +70,14 @@ app.factory('commonServices', ['$location', '$http', '$rootScope', 'authService'
         else {
             settings = await _getSettings(culture);
             localStorageService.set('settings', settings);
-            await _fillTranslator(settings.lang);
             //window.top.location = location.href;
             return settings;
         }
 
     };
 
-    var _fillTranslator = async function (culture) {
-        var translator = localStorageService.get('translator');
-        if (translator && _settings.lang == culture) {
-            _translator = translator;
-            return translator;
-        }
-        else {
-            translator = await _getTranslator(culture);
-            localStorageService.set('translator', translator);
-            return translator;
-        }
-
-    };
-
     var _getApiResult = async function (req) {
-        $rootScope.isBusy = true;
+        //$rootScope.isBusy = true;
         req.Authorization = authService.authentication.token;
 
         if (!req.headers) {
@@ -124,7 +88,7 @@ app.factory('commonServices', ['$location', '$http', '$rootScope', 'authService'
         req.headers.Authorization = 'Bearer ' + authService.authentication.token;
         return $http(req).then(function (resp) {
             //var resp = results.data;
-            $rootScope.isBusy = false;
+            //$rootScope.isBusy = false;
             return resp.data;
         },
             function (error) {
@@ -133,10 +97,10 @@ app.factory('commonServices', ['$location', '$http', '$rootScope', 'authService'
                     return authService.refreshToken(authService.authentication.refresh_token).then(function () {
                         req.headers.Authorization = 'Bearer ' + authService.authentication.token;
                         return $http(req).then(function (results) {
-                            $rootScope.isBusy = false;
+                            //$rootScope.isBusy = false;
                             return results.data;
                         }, function (err) {
-                            $rootScope.isBusy = false;
+                            //$rootScope.isBusy = false;
                             authService.logOut();
                             authService.authentication.token = null;
                             authService.authentication.refresh_token = null;
@@ -146,7 +110,7 @@ app.factory('commonServices', ['$location', '$http', '$rootScope', 'authService'
                     }, function (err) {
 
                         var t = { isSucceed: false, errors: [err.statusText] };
-                        $rootScope.isBusy = false;
+                        //$rootScope.isBusy = false;
                         authService.logOut();
                         authService.authentication.token = null;
                         authService.authentication.refresh_token = null;
@@ -163,15 +127,13 @@ app.factory('commonServices', ['$location', '$http', '$rootScope', 'authService'
                 }
                 else {
                     var t = { isSucceed: false, errors: [error.statusText] };
-                    $rootScope.isBusy = false;
+                    //$rootScope.isBusy = false;
                     return t;
                 }
             });
     };
     adminCommonFactory.getApiResult = _getApiResult;
     adminCommonFactory.getSettings = _getSettings;
-    adminCommonFactory.getTranslator = _getTranslator;
-    adminCommonFactory.fillTranslator = _fillTranslator;
     adminCommonFactory.setSettings = _setSettings;
     adminCommonFactory.removeSettings = _removeSettings;
     adminCommonFactory.removeTranslator = _removeTranslator;

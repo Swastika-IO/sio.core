@@ -4,22 +4,24 @@
         function ($rootScope, $scope, commonServices, authService, translatorService) {
             $scope.lang = '';
             $scope.isInit = false;
-            $scope.translator = {};
             $scope.init = async function (lang) {
                 if (!$rootScope.isBusy) {
-                    commonServices.fillSettings(lang).then(function (response) {
-                        $scope.translator = translatorService;
+                    $rootScope.isBusy = true;
+                    commonServices.fillSettings(lang).then(function (response) {                        
                         $scope.isInit = true;
                         $rootScope.settings = response;
-                        if ($rootScope.settings && !$rootScope.isBusy) {
+                        if ($rootScope.settings) {
 
-                            translatorService.fillTranslator($rootScope.settings.lang).then(function () {
+                            $rootScope.translator.fillTranslator(lang).then(function () {
                                 authService.fillAuthData().then(function (response) {
                                     $rootScope.authentication = authService.authentication;
                                 });
+                                $rootScope.isBusy = false;
                                 $scope.$apply();
                             });
 
+                        } else {
+                            $rootScope.isBusy = false;
                         }
                     });
                 }

@@ -7,6 +7,9 @@ app.run(['$rootScope', '$location', 'commonServices', 'authService', 'translator
     function ($rootScope, $location, commonServices, authService, translatorService) {
 
         $rootScope.currentContext = $rootScope;
+        $rootScope.isBusy = false;
+        $rootScope.translator = translatorService;
+
         $rootScope.errors = [];
         $rootScope.breadCrumbs = [];
         $rootScope.message = {
@@ -232,7 +235,7 @@ app.run(['$rootScope', '$location', 'commonServices', 'authService', 'translator
         $rootScope.translate = function (keyword, defaultValue) {
             if ($rootScope.settings && !$rootScope.isBusy) {
 
-                return translatorService.get(keyword, defaultValue);
+                return $rootScope.translator.get(keyword, defaultValue);
             }
             else {
                 return defaultValue || keyword;
@@ -252,7 +255,6 @@ app.run(['$rootScope', '$location', 'commonServices', 'authService', 'translator
         });
         $rootScope.$on("$locationChangeStart", function (event, next, current) {
             // handle route changes     
-            console.log(event,next, current);
             //$rootScope.breadCrumbs = [
             //    {
             //        url: '/backend/articles',

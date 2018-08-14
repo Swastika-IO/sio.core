@@ -100,7 +100,6 @@ namespace Swastika.Cms.Lib.ViewModels.Api
             Cultures = CommonRepository.Instance.LoadCultures(Specificulture, _context, _transaction);
             this.Cultures.ForEach(c => c.IsSupported = true);
             IsClone = true;
-            Property = new DataValueViewModel() { DataType = DataType, Value = Value, Name = Keyword };
         }
 
         public override RepositoryResponse<bool> RemoveRelatedModels(ApiLanguageViewModel view, SiocCmsContext _context = null, IDbContextTransaction _transaction = null)

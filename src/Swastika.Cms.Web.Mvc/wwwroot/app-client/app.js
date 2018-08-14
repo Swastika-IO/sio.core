@@ -48,7 +48,8 @@ app.directive('ngEnter', function () {
 
 app.run(['$rootScope', '$location', 'commonServices', 'authService', 'translatorService',
     function ($rootScope, $location, commonServices, authService, translatorService) {
-        
+        $rootScope.isBusy = false;
+        $rootScope.translator = translatorService;
         $rootScope.message = {
             title: 'test',
             content: '',
@@ -262,7 +263,7 @@ app.run(['$rootScope', '$location', 'commonServices', 'authService', 'translator
         $rootScope.translate = function (keyword, defaultValue) {
             if ($rootScope.settings && !$rootScope.isBusy) {
 
-                return translatorService.get(keyword, defaultValue);
+                return $rootScope.translator.get(keyword, defaultValue);
             }
             else {
                 return defaultValue || keyword;
