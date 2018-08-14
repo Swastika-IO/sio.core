@@ -32,14 +32,17 @@ app.controller('FileController', ['$scope', '$rootScope', '$routeParams', '$time
         $scope.loadFile = async function () {
             $rootScope.isBusy = true;
             $scope.listUrl = '/backend/file/list?folder=' + $routeParams.folder;
+            $rootScope.isBusy = true;
             var response = await fileServices.getFile($routeParams.folder, $routeParams.filename);
             if (response.isSucceed) {
                 $scope.activedFile = response.data;                
+                $rootScope.isBusy = false;
                 $scope.$apply();
                 $rootScope.initEditor();
             }
             else {
                 $rootScope.showErrors(response.errors);
+                $rootScope.isBusy = false;
                 $scope.$apply();
             }
         };
@@ -50,7 +53,7 @@ app.controller('FileController', ['$scope', '$rootScope', '$routeParams', '$time
             } else {
                 $scope.request.key = $routeParams.folder ? $routeParams.folder : '';
             }
-
+            $rootScope.isBusy = true;
             var resp = await fileServices.getFiles($scope.request);
             if (resp && resp.isSucceed) {
 
@@ -63,41 +66,34 @@ app.controller('FileController', ['$scope', '$rootScope', '$routeParams', '$time
                         }
                     })
                 })
-                setTimeout(function () {
-                    $('[data-toggle="popover"]').popover({
-                        html: true,
-                        content: function () {
-                            var content = $(this).next('.popover-body');
-                            return $(content).html();
-                        },
-                        title: function () {
-                            var title = $(this).attr("data-popover-content");
-                            return $(title).children(".popover-heading").html();
-                        }
-                    });
-                }, 200);
+                $rootScope.isBusy = false;
                 $scope.$apply();
             }
             else {
                 if (resp) { $rootScope.showErrors(resp.errors); }
+                $rootScope.isBusy = false;
                 $scope.$apply();
             }
         };
 
         $scope.removeFile = async function (id) {
             if (confirm("Are you sure!")) {
+                $rootScope.isBusy = true;
                 var resp = await fileServices.removeFile(id);
                 if (resp && resp.isSucceed) {
                     $scope.loadFiles();
                 }
                 else {
                     if (resp) { $rootScope.showErrors(resp.errors); }
+                    $rootScope.isBusy = false;
+                    $scope.$apply();
                 }
             }
         };
 
         $scope.saveFile = async function (file) {
             file.content = $('.code-content').val();
+            $rootScope.isBusy = true;
             var resp = await fileServices.saveFile(file);
             if (resp && resp.isSucceed) {
                 $scope.activedFile = resp.data;
@@ -107,6 +103,7 @@ app.controller('FileController', ['$scope', '$rootScope', '$routeParams', '$time
             }
             else {
                 if (resp) { $rootScope.showErrors(resp.errors); }
+                $rootScope.isBusy = false;
                 $scope.$apply();
             }
         };

@@ -69,23 +69,12 @@ app.controller('ArticleController', ['$scope', '$rootScope', '$routeParams', '$t
                         }
                     })
                 })
-                setTimeout(function () {
-                    $('[data-toggle="popover"]').popover({
-                        html: true,
-                        content: function () {
-                            var content = $(this).next('.popover-body');
-                            return $(content).html();
-                        },
-                        title: function () {
-                            var title = $(this).attr("data-popover-content");
-                            return $(title).children(".popover-heading").html();
-                        }
-                    });
-                }, 200);
+                $rootScope.isBusy = false;
                 $scope.$apply();
             }
             else {
                 if (resp) { $rootScope.showErrors(resp.errors); }
+                $rootScope.isBusy = false;
                 $scope.$apply();
             }
         };
@@ -95,12 +84,14 @@ app.controller('ArticleController', ['$scope', '$rootScope', '$routeParams', '$t
         }
 
         $scope.removeArticleConfirmed = async function (id) {
+            $rootScope.isBusy = true;
             var result = await articleServices.removeArticle(id);
             if (result.isSucceed) {
                 $scope.loadArticles();
             }
             else {
-                $rootScope.showMessage('failed');
+                $rootScope.showErrors(result.errors);
+                $rootScope.isBusy = false;
                 $scope.$apply();
             }
         }
@@ -108,16 +99,19 @@ app.controller('ArticleController', ['$scope', '$rootScope', '$routeParams', '$t
 
         $scope.saveArticle = async function (article) {
             article.content = $('.editor-content').val();
+            $rootScope.isBusy = true;
             var resp = await articleServices.saveArticle(article);
             if (resp && resp.isSucceed) {
                 $scope.activedArticle = resp.data;
                 $rootScope.showMessage('Thành công', 'success');
                 $rootScope.isBusy = false;
+                $location.path('/backend/article/list')
                 $scope.$apply();
                 //$location.path('/backend/article/details/' + resp.data.id);
             }
             else {
                 if (resp) { $rootScope.showErrors(resp.errors); }
+                $rootScope.isBusy = false;
                 $scope.$apply();
             }
         };

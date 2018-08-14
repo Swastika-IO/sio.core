@@ -60,10 +60,12 @@ app.controller('LanguageController', ['$scope', '$rootScope', '$routeParams', '$
 
                 $scope.activedLanguage = resp.data;
                 $rootScope.initEditor();
+                $rootScope.isBusy = false;
                 $scope.$apply();
             }
             else {
                 if (resp) { $rootScope.showErrors(resp.errors); }
+                $rootScope.isBusy = false;
                 $scope.$apply();
             }
         };
@@ -76,10 +78,12 @@ app.controller('LanguageController', ['$scope', '$rootScope', '$routeParams', '$
                 if (!id) {
                     $scope.activedLanguage.category = 'Common';
                 }
+                $rootScope.isBusy = false;
                 $scope.$apply();
             }
             else {
                 $rootScope.showErrors(response.errors);
+                $rootScope.isBusy = false;
                 $scope.$apply();
             }
         };
@@ -88,7 +92,7 @@ app.controller('LanguageController', ['$scope', '$rootScope', '$routeParams', '$
             if (pageIndex != undefined) {
                 $scope.request.pageIndex = pageIndex;
             }
-
+            $rootScope.isBusy = true;
             var resp = await languageServices.getLanguages($scope.request);
             if (resp && resp.isSucceed) {
 
@@ -101,10 +105,12 @@ app.controller('LanguageController', ['$scope', '$rootScope', '$routeParams', '$
                         }
                     })
                 });
+                $rootScope.isBusy = false;
                 $scope.$apply();
             }
             else {
                 if (resp) { $rootScope.showErrors(resp.errors); }
+                $rootScope.isBusy = false;
                 $scope.$apply();
             }
         };
@@ -114,12 +120,14 @@ app.controller('LanguageController', ['$scope', '$rootScope', '$routeParams', '$
         }
 
         $scope.removeLanguageConfirmed = async function (id) {
+            $rootScope.isBusy = true;
             var result = await languageServices.removeLanguage(id);
             if (result.isSucceed) {
                 $scope.loadLanguages();
             }
             else {
                 $rootScope.showMessage('failed');
+                $rootScope.isBusy = false;
                 $scope.$apply();
             }
         }
@@ -139,6 +147,7 @@ app.controller('LanguageController', ['$scope', '$rootScope', '$routeParams', '$
             }
             else {
                 if (resp) { $rootScope.showErrors(resp.errors); }
+                $rootScope.isBusy = false;
                 $scope.$apply();
             }
         };

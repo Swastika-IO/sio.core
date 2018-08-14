@@ -42,10 +42,12 @@ app.controller('UserController', ['$scope', '$rootScope', '$routeParams', '$time
             if (response.isSucceed) {
                 $scope.activedUser = response.data;
                 $rootScope.initEditor();
+                $rootScope.isBusy = false;
                 $scope.$apply();
             }
             else {
                 $rootScope.showErrors(response.errors);
+                $rootScope.isBusy = false;
                 $scope.$apply();
             }
         };
@@ -54,7 +56,7 @@ app.controller('UserController', ['$scope', '$rootScope', '$routeParams', '$time
             if (pageIndex != undefined) {
                 $scope.request.pageIndex = pageIndex;
             }
-
+            $rootScope.isBusy = true;
             var resp = await userServices.getUsers($scope.request);
             if (resp && resp.isSucceed) {
                 $scope.data = resp.data;
@@ -66,23 +68,12 @@ app.controller('UserController', ['$scope', '$rootScope', '$routeParams', '$time
                         }
                     })
                 })
-                setTimeout(function () {
-                    $('[data-toggle="popover"]').popover({
-                        html: true,
-                        content: function () {
-                            var content = $(this).next('.popover-body');
-                            return $(content).html();
-                        },
-                        title: function () {
-                            var title = $(this).attr("data-popover-content");
-                            return $(title).children(".popover-heading").html();
-                        }
-                    });
-                }, 200);
+                $rootScope.isBusy = false;
                 $scope.$apply();
             }
             else {
                 if (resp) { $rootScope.showErrors(resp.errors); }
+                $rootScope.isBusy = false;
                 $scope.$apply();
             }
         };
@@ -92,12 +83,14 @@ app.controller('UserController', ['$scope', '$rootScope', '$routeParams', '$time
         }
 
         $scope.removeUserConfirmed = async function (id) {
+            $rootScope.isBusy = true;
             var result = await userServices.removeUser(id);
             if (result.isSucceed) {
                 $scope.loadUsers();
             }
             else {
                 $rootScope.showMessage('failed');
+                $rootScope.isBusy = false;
                 $scope.$apply();
             }
         }
@@ -106,6 +99,7 @@ app.controller('UserController', ['$scope', '$rootScope', '$routeParams', '$time
             //if (user.avatar != user.avatarUrl) {
             //    user.avatar = user.avatarUrl;
             //}
+            $rootScope.isBusy = true;
             var resp = await userServices.saveUser(user);
             if (resp && resp.isSucceed) {
                 //$scope.activedUser = resp.data;
@@ -115,11 +109,13 @@ app.controller('UserController', ['$scope', '$rootScope', '$routeParams', '$time
             }
             else {
                 if (resp) { $rootScope.showErrors(resp.errors); }
+                $rootScope.isBusy = false;
                 $scope.$apply();
             }
         };
 
         $scope.register = async function (user) {
+            $rootScope.isBusy = true;
             var resp = await userServices.register(user);
             if (resp && resp.isSucceed) {
                 $scope.activedUser = resp.data;
@@ -129,6 +125,7 @@ app.controller('UserController', ['$scope', '$rootScope', '$routeParams', '$time
             }
             else {
                 if (resp) { $rootScope.showErrors(resp.errors); }
+                $rootScope.isBusy = false;
                 $scope.$apply();
             }
         };
@@ -140,6 +137,7 @@ app.controller('UserController', ['$scope', '$rootScope', '$routeParams', '$time
                 roleName: nav.description,
                 isUserInRole: nav.isActived
             };
+            $rootScope.isBusy = true;
             var resp = await userServices.updateRoleStatus(userRole);
             if (resp && resp.isSucceed) {
                 $rootScope.showMessage('Thành công', 'success');
@@ -148,6 +146,7 @@ app.controller('UserController', ['$scope', '$rootScope', '$routeParams', '$time
             }
             else {
                 if (resp) { $rootScope.showErrors(resp.errors); }
+                $rootScope.isBusy = false;
                 $scope.$apply();
             }
         };

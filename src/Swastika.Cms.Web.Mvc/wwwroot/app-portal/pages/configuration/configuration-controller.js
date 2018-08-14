@@ -43,10 +43,12 @@ app.controller('ConfigurationController', ['$scope', '$rootScope', '$routeParams
             if (resp && resp.isSucceed) {
                 $scope.activedConfiguration = resp.data;
                 $rootScope.initEditor();
+                $rootScope.isBusy = false;
                 $scope.$apply();
             }
             else {
                 if (resp) { $rootScope.showErrors(resp.errors); }
+                $rootScope.isBusy = false;
                 $scope.$apply();
             }
         };
@@ -57,10 +59,12 @@ app.controller('ConfigurationController', ['$scope', '$rootScope', '$routeParams
             if (response.isSucceed) {
                 $scope.activedConfiguration = response.data;
                 $rootScope.initEditor();
+                $rootScope.isBusy = false;
                 $scope.$apply();
             }
             else {
                 $rootScope.showErrors(response.errors);
+                $rootScope.isBusy = false;
                 $scope.$apply();
             }
         };
@@ -69,7 +73,7 @@ app.controller('ConfigurationController', ['$scope', '$rootScope', '$routeParams
             if (pageIndex != undefined) {
                 $scope.request.pageIndex = pageIndex;
             }
-
+            $rootScope.isBusy = true;
             var resp = await configurationServices.getConfigurations($scope.request);
             if (resp && resp.isSucceed) {
 
@@ -82,10 +86,12 @@ app.controller('ConfigurationController', ['$scope', '$rootScope', '$routeParams
                         }
                     })
                 });
+                $rootScope.isBusy = false;
                 $scope.$apply();
             }
             else {
                 if (resp) { $rootScope.showErrors(resp.errors); }
+                $rootScope.isBusy = false;
                 $scope.$apply();
             }
         };
@@ -95,12 +101,14 @@ app.controller('ConfigurationController', ['$scope', '$rootScope', '$routeParams
         }
 
         $scope.removeConfigurationConfirmed = async function (id) {
+            $rootScope.isBusy = true;
             var result = await configurationServices.removeConfiguration(id);
             if (result.isSucceed) {
                 $scope.loadConfigurations();
             }
             else {
-                $rootScope.showMessage('failed');
+                $rootScope.showErrors(result.errors);
+                $rootScope.isBusy = false;
                 $scope.$apply();
             }
         }
@@ -108,6 +116,7 @@ app.controller('ConfigurationController', ['$scope', '$rootScope', '$routeParams
         $scope.saveConfiguration = async function (configuration) {
             configuration.content = $('.editor-content').val();
             configuration.dataType = configuration.property.dataType;
+            $rootScope.isBusy = true;
             var resp = await configurationServices.saveConfiguration(configuration);
             if (resp && resp.isSucceed) {
                 $scope.activedConfiguration = resp.data;
@@ -117,6 +126,7 @@ app.controller('ConfigurationController', ['$scope', '$rootScope', '$routeParams
             }
             else {
                 if (resp) { $rootScope.showErrors(resp.errors); }
+                $rootScope.isBusy = false;
                 $scope.$apply();
             }
         };

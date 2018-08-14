@@ -53,6 +53,7 @@ app.factory('commonServices', ['$location', '$http', '$rootScope', 'authService'
         }
     };
 
+
     var _removeSettings = async function (settings) {
         localStorageService.remove('settings');
     };
@@ -77,7 +78,7 @@ app.factory('commonServices', ['$location', '$http', '$rootScope', 'authService'
     };
 
     var _getApiResult = async function (req) {
-        //$rootScope.isBusy = true;
+        $rootScope.isBusy = true;
         req.Authorization = authService.authentication.token;
 
         if (!req.headers) {

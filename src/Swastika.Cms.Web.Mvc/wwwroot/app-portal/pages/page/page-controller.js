@@ -41,7 +41,7 @@ app.controller('PageController', ['$scope', '$rootScope', '$routeParams', '$time
         };
 
         $scope.errors = [];
-        
+
         $scope.range = function (max) {
             var input = [];
             for (var i = 1; i <= max; i += 1) input.push(i);
@@ -54,10 +54,12 @@ app.controller('PageController', ['$scope', '$rootScope', '$routeParams', '$time
             if (resp && resp.isSucceed) {
                 $scope.activedPage = resp.data;
                 $rootScope.initEditor();
+                $rootScope.isBusy = false;
                 $scope.$apply();
             }
             else {
                 if (resp) { $rootScope.showErrors(resp.errors); }
+                $rootScope.isBusy = false;
                 $scope.$apply();
             }
         };
@@ -71,24 +73,29 @@ app.controller('PageController', ['$scope', '$rootScope', '$routeParams', '$time
                         $rootScope.initEditor();
                     }
                     $rootScope.isBusy = false;
+                    $rootScope.isBusy = false;
                     $scope.$apply();
                 }).error(function (a, b, c) {
                     errors.push(a, b, c);
                     $rootScope.isBusy = false;
-                });            }
+                });
+            }
         };
 
         $scope.loadPage = async function () {
             $rootScope.isBusy = true;
             var id = $routeParams.id;
+            $rootScope.isBusy = true;
             var response = await pageServices.getPage(id, 'be');
             if (response.isSucceed) {
                 $scope.activedPage = response.data;
                 $rootScope.initEditor();
+                $rootScope.isBusy = false;
                 $scope.$apply();
             }
             else {
                 $rootScope.showErrors(response.errors);
+                $rootScope.isBusy = false;
                 $scope.$apply();
             }
         };
@@ -100,10 +107,12 @@ app.controller('PageController', ['$scope', '$rootScope', '$routeParams', '$time
             if (response.isSucceed) {
                 $scope.activedPage = response.data;
                 $rootScope.initEditor();
+                $rootScope.isBusy = false;
                 $scope.$apply();
             }
             else {
                 $rootScope.showErrors(response.errors);
+                $rootScope.isBusy = false;
                 $scope.$apply();
             }
         };
@@ -132,23 +141,12 @@ app.controller('PageController', ['$scope', '$rootScope', '$routeParams', '$time
                         }
                     })
                 })
-                setTimeout(function () {
-                    $('[data-toggle="popover"]').popover({
-                        html: true,
-                        content: function () {
-                            var content = $(this).next('.popover-body');
-                            return $(content).html();
-                        },
-                        title: function () {
-                            var title = $(this).attr("data-popover-content");
-                            return $(title).children(".popover-heading").html();
-                        }
-                    });
-                }, 200);
+                $rootScope.isBusy = false;
                 $scope.$apply();
             }
             else {
                 if (resp) { $rootScope.showErrors(resp.errors); }
+                $rootScope.isBusy = false;
                 $scope.$apply();
             }
         };
@@ -158,12 +156,14 @@ app.controller('PageController', ['$scope', '$rootScope', '$routeParams', '$time
         }
 
         $scope.removePageConfirmed = async function (id) {
+            $rootScope.isBusy = true;
             var result = await pageServices.removePage(id);
             if (result.isSucceed) {
                 $scope.loadPages();
             }
             else {
                 $rootScope.showMessage('failed');
+                $rootScope.isBusy = false;
                 $scope.$apply();
             }
         }
@@ -171,6 +171,7 @@ app.controller('PageController', ['$scope', '$rootScope', '$routeParams', '$time
 
         $scope.savePage = async function (page) {
             page.content = $('.editor-content').val();
+            $rootScope.isBusy = true;
             var resp = await pageServices.savePage(page);
             if (resp && resp.isSucceed) {
                 $scope.activedPage = resp.data;
@@ -181,6 +182,7 @@ app.controller('PageController', ['$scope', '$rootScope', '$routeParams', '$time
             }
             else {
                 if (resp) { $rootScope.showErrors(resp.errors); }
+                $rootScope.isBusy = false;
                 $scope.$apply();
             }
         };

@@ -51,7 +51,7 @@ app.run(['$rootScope', '$location', 'commonServices',
         commonServices.removeTranslator();
         $rootScope.currentContext = $rootScope;
         $rootScope.errors = [];
-
+        $rootScope.isBusy = false;
         $rootScope.message = {
             title: 'test',
             content: '',

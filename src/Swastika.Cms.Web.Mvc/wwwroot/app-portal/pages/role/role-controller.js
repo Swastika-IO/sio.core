@@ -34,10 +34,12 @@ app.controller('RoleController', ['$scope', '$rootScope', '$routeParams', '$time
             if (response.isSucceed) {
                 $scope.activedRole = response.data;
                 $rootScope.initEditor();
+                $rootScope.isBusy = false;
                 $scope.$apply();
             }
             else {
                 $rootScope.showErrors(response.errors);
+                $rootScope.isBusy = false;
                 $scope.$apply();
             }
         };
@@ -46,7 +48,7 @@ app.controller('RoleController', ['$scope', '$rootScope', '$routeParams', '$time
             if (pageIndex != undefined) {
                 $scope.request.pageIndex = pageIndex;
             }
-
+            $rootScope.isBusy = true;
             var resp = await roleServices.getRoles($scope.request);
             if (resp && resp.isSucceed) {
                 $scope.data = resp.data;
@@ -58,10 +60,12 @@ app.controller('RoleController', ['$scope', '$rootScope', '$routeParams', '$time
                         }
                     })
                 })
+                $rootScope.isBusy = false;
                 $scope.$apply();
             }
             else {
                 if (resp) { $rootScope.showErrors(resp.errors); }
+                $rootScope.isBusy = false;
                 $scope.$apply();
             }
         };
@@ -71,17 +75,20 @@ app.controller('RoleController', ['$scope', '$rootScope', '$routeParams', '$time
         }
 
         $scope.removeRoleConfirmed = async function (id) {
+            $rootScope.isBusy = true;
             var result = await roleServices.removeRole(id);
             if (result.isSucceed) {
                 $scope.loadRoles();
             }
             else {
                 $rootScope.showMessage('failed');
+                $rootScope.isBusy = false;
                 $scope.$apply();
             }
         }
 
         $scope.createRole = async function () {
+            $rootScope.isBusy = true;
             var result = await roleServices.createRole($scope.role.name);
             if (result.isSucceed) {
                 $scope.role.name = '';
@@ -89,12 +96,14 @@ app.controller('RoleController', ['$scope', '$rootScope', '$routeParams', '$time
             }
             else {
                 $rootScope.showMessage(result.errors);
+                $rootScope.isBusy = false;
                 $scope.$apply();
             }
         }
 
 
         $scope.saveRole = async function (role) {
+            $rootScope.isBusy = true;
             var resp = await roleServices.saveRole(role);
             if (resp && resp.isSucceed) {
                 $scope.activedRole = resp.data;
@@ -104,6 +113,7 @@ app.controller('RoleController', ['$scope', '$rootScope', '$routeParams', '$time
             }
             else {
                 if (resp) { $rootScope.showErrors(resp.errors); }
+                $rootScope.isBusy = false;
                 $scope.$apply();
             }
         };

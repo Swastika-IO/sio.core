@@ -146,22 +146,27 @@ app.controller('CultureController', ['$scope', '$rootScope', '$routeParams', '$t
             if (resp && resp.isSucceed) {
                 $scope.activedCulture = resp.data;
                 $rootScope.initEditor();
+                $rootScope.isBusy = false;
                 $scope.$apply();
             }
             else {
                 if (resp) { $rootScope.showErrors(resp.errors); }
+                $rootScope.isBusy = false;
                 $scope.$apply();
             }
         };
 
         $scope.syncTemplates = async function (id) {
+            $rootScope.isBusy = true;
             var response = await cultureServices.syncTemplates(id);
             if (response.isSucceed) {
                 $scope.activedCulture = response.data;
+                $rootScope.isBusy = false;
                 $scope.$apply();
             }
             else {
                 $rootScope.showErrors(response.errors);
+                $rootScope.isBusy = false;
                 $scope.$apply();
             }
         };
@@ -175,10 +180,12 @@ app.controller('CultureController', ['$scope', '$rootScope', '$routeParams', '$t
                 if (!id) {
                     $scope.activedCulture.icon = $scope.icons[0];
                 }
+                $rootScope.isBusy = false;
                 $scope.$apply();
             }
             else {
                 $rootScope.showErrors(response.errors);
+                $rootScope.isBusy = false;
                 $scope.$apply();
             }
         };
@@ -193,6 +200,7 @@ app.controller('CultureController', ['$scope', '$rootScope', '$routeParams', '$t
             if ($scope.request.toDate != null) {
                 $scope.request.toDate = $scope.request.toDate.toISOString();
             }
+            $rootScope.isBusy = true;
             var resp = await cultureServices.getCultures($scope.request);
             if (resp && resp.isSucceed) {
                 ($scope.data = resp.data);
@@ -204,29 +212,19 @@ app.controller('CultureController', ['$scope', '$rootScope', '$routeParams', '$t
                         }
                     })
                 })
-                setTimeout(function () {
-                    $('[data-toggle="popover"]').popover({
-                        html: true,
-                        content: function () {
-                            var content = $(this).next('.popover-body');
-                            return $(content).html();
-                        },
-                        title: function () {
-                            var title = $(this).attr("data-popover-content");
-                            return $(title).children(".popover-heading").html();
-                        }
-                    });
-                }, 200);
+                $rootScope.isBusy = false;
                 $scope.$apply();
             }
             else {
                 if (resp) { $rootScope.showErrors(resp.errors); }
+                $rootScope.isBusy = false;
                 $scope.$apply();
             }
         };
 
         $scope.saveCulture = async function (culture) {
             culture.content = $('.editor-content').val();
+            $rootScope.isBusy = true;
             var resp = await cultureServices.saveCulture(culture);
             if (resp && resp.isSucceed) {
                 $scope.activedCulture = resp.data;
@@ -234,10 +232,12 @@ app.controller('CultureController', ['$scope', '$rootScope', '$routeParams', '$t
                 $rootScope.isBusy = false;
                 $rootScope.updateSettings();
                 window.location.href = '/backend/culture/list';
+                $rootScope.isBusy = false;
                 $scope.$apply();
             }
             else {
                 if (resp) { $rootScope.showErrors(resp.errors); }
+                $rootScope.isBusy = false;
                 $scope.$apply();
             }
         };
@@ -247,6 +247,7 @@ app.controller('CultureController', ['$scope', '$rootScope', '$routeParams', '$t
         }
 
         $scope.removeCultureConfirmed = async function (id) {
+            $rootScope.isBusy = true;
             var result = await cultureServices.removeCulture(id);
             if (result.isSucceed) {
                 $rootScope.updateSettings();
@@ -254,6 +255,7 @@ app.controller('CultureController', ['$scope', '$rootScope', '$routeParams', '$t
             }
             else {
                 $rootScope.showMessage('failed');
+                $rootScope.isBusy = false;
                 $scope.$apply();
             }
         }

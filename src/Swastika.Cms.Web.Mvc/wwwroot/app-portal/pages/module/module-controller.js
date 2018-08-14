@@ -47,10 +47,12 @@ app.controller('ModuleController', ['$scope', '$rootScope', '$routeParams', '$ti
             if (resp && resp.isSucceed) {
                 $scope.activedModule = resp.data;
                 $rootScope.initEditor();
+                $rootScope.isBusy = false;
                 $scope.$apply();
             }
             else {
                 if (resp) { $rootScope.showErrors(resp.errors); }
+                $rootScope.isBusy = false;
                 $scope.$apply();
             }
         };
@@ -80,11 +82,13 @@ app.controller('ModuleController', ['$scope', '$rootScope', '$routeParams', '$ti
             if (response.isSucceed) {
                 $scope.activedModule = response.data;
                 $rootScope.initEditor();
+                $rootScope.isBusy = false;
                 $scope.$apply();
             }
             else {
                 $rootScope.showErrors(response.errors);
                 $location.path('/backend/module/list/');
+                $rootScope.isBusy = false;
                 $scope.$apply();
             }
         };
@@ -96,10 +100,12 @@ app.controller('ModuleController', ['$scope', '$rootScope', '$routeParams', '$ti
             if (response.isSucceed) {
                 $scope.activedModule = response.data;
                 $rootScope.initEditor();
+                $rootScope.isBusy = false;
                 $scope.$apply();
             }
             else {
                 $rootScope.showErrors(response.errors);
+                $rootScope.isBusy = false;
                 $scope.$apply();
             }
         };
@@ -116,14 +122,17 @@ app.controller('ModuleController', ['$scope', '$rootScope', '$routeParams', '$ti
             if ($scope.request.toDate != null) {
                 $scope.request.toDate = $scope.request.toDate.toISOString();
             }
+            $rootScope.isBusy = true;
             var resp = await moduleDataServices.getModuleDatas($scope.request);
             if (resp && resp.isSucceed) {
 
                 $scope.activedModule.data = resp.data;
+                $rootScope.isBusy = false;
                 $scope.$apply();
             }
             else {
                 if (resp) { $rootScope.showErrors(resp.errors); }
+                $rootScope.isBusy = false;
                 $scope.$apply();
             }
         }
@@ -139,6 +148,7 @@ app.controller('ModuleController', ['$scope', '$rootScope', '$routeParams', '$ti
             if ($scope.request.toDate != null) {
                 $scope.request.toDate = $scope.request.toDate.toISOString();
             }
+            $rootScope.isBusy = true;
             var resp = await moduleServices.getModules($scope.request);
             if (resp && resp.isSucceed) {
 
@@ -152,23 +162,12 @@ app.controller('ModuleController', ['$scope', '$rootScope', '$routeParams', '$ti
                         }
                     })
                 })
-                setTimeout(function () {
-                    $('[data-toggle="popover"]').popover({
-                        html: true,
-                        content: function () {
-                            var content = $(this).next('.popover-body');
-                            return $(content).html();
-                        },
-                        title: function () {
-                            var title = $(this).attr("data-popover-content");
-                            return $(title).children(".popover-heading").html();
-                        }
-                    });
-                }, 200);
+                $rootScope.isBusy = false;
                 $scope.$apply();
             }
             else {
                 if (resp) { $rootScope.showErrors(resp.errors); }
+                $rootScope.isBusy = false;
                 $scope.$apply();
             }
         };
@@ -178,12 +177,14 @@ app.controller('ModuleController', ['$scope', '$rootScope', '$routeParams', '$ti
         }
 
         $scope.removeModuleConfirmed = async function (id) {
+            $rootScope.isBusy = true;
             var result = await moduleServices.removeModule(id);
             if (result.isSucceed) {
                 $scope.loadModules();
             }
             else {
                 $rootScope.showMessage('failed');
+                $rootScope.isBusy = false;
                 $scope.$apply();
             }
         }
@@ -194,6 +195,7 @@ app.controller('ModuleController', ['$scope', '$rootScope', '$routeParams', '$ti
             if (module.title) {
                 module.name = module.title.replace(/ /g, "_");//(' ', '_');
             }
+            $rootScope.isBusy = true;
             var resp = await moduleServices.saveModule(module);
             if (resp && resp.isSucceed) {
                 $scope.activedModule = resp.data;
@@ -206,6 +208,7 @@ app.controller('ModuleController', ['$scope', '$rootScope', '$routeParams', '$ti
             }
             else {
                 if (resp) { $rootScope.showErrors(resp.errors); }
+                $rootScope.isBusy = false;
                 $scope.$apply();
             }
         };
@@ -246,12 +249,14 @@ app.controller('ModuleController', ['$scope', '$rootScope', '$routeParams', '$ti
         }
 
         $scope.removeDataConfirmed = async function (id) {
+            $rootScope.isBusy = true;
             var result = await moduleDataServices.removeModuleData(id);
             if (result.isSucceed) {
                 $scope.loadModuleDatas();
             }
             else {
                 $rootScope.showMessage('failed');
+                $rootScope.isBusy = false;
                 $scope.$apply();
             }
         }

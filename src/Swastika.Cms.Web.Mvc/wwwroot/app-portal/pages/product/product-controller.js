@@ -21,7 +21,7 @@ app.controller('ProductController', ['$scope', '$rootScope', '$routeParams', '$t
             totalItems: 0,
         };
         $scope.errors = [];
-        
+
         $scope.range = function (max) {
             var input = [];
             for (var i = 1; i <= max; i += 1) input.push(i);
@@ -55,6 +55,7 @@ app.controller('ProductController', ['$scope', '$rootScope', '$routeParams', '$t
             if ($scope.request.toDate != null) {
                 $scope.request.toDate = $scope.request.toDate.toISOString();
             }
+            $rootScope.isBusy = true;
             var resp = await productServices.getProducts($scope.request);
             if (resp && resp.isSucceed) {
 
@@ -68,19 +69,6 @@ app.controller('ProductController', ['$scope', '$rootScope', '$routeParams', '$t
                         }
                     })
                 })
-                setTimeout(function () {
-                    $('[data-toggle="popover"]').popover({
-                        html: true,
-                        content: function () {
-                            var content = $(this).next('.popover-body');
-                            return $(content).html();
-                        },
-                        title: function () {
-                            var title = $(this).attr("data-popover-content");
-                            return $(title).children(".popover-heading").html();
-                        }
-                    });
-                }, 200);
                 $rootScope.isBusy = false;
                 $scope.$apply();
             }
@@ -96,12 +84,14 @@ app.controller('ProductController', ['$scope', '$rootScope', '$routeParams', '$t
         }
 
         $scope.removeProductConfirmed = async function (id) {
+            $rootScope.isBusy = true;
             var result = await productServices.removeProduct(id);
             if (result.isSucceed) {
                 $scope.loadProducts();
             }
             else {
                 $rootScope.showMessage('failed');
+                $rootScope.isBusy = false;
                 $scope.$apply();
             }
         }
@@ -109,6 +99,7 @@ app.controller('ProductController', ['$scope', '$rootScope', '$routeParams', '$t
         $scope.saveProduct = async function (product) {
             product.content = $('.editor-content.content').val();
             product.excerpt = $('.editor-content.excerpt').val();
+            $rootScope.isBusy = true;
             var resp = await productServices.saveProduct(product);
             if (resp && resp.isSucceed) {
                 $scope.activedProduct = resp.data;

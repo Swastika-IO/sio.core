@@ -38,22 +38,27 @@ app.controller('ThemeController', ['$scope', '$rootScope', '$routeParams', '$tim
             if (resp && resp.isSucceed) {
                 $scope.activedTheme = resp.data;
                 $rootScope.initEditor();
+                $rootScope.isBusy = false;
                 $scope.$apply();
             }
             else {
                 if (resp) { $rootScope.showErrors(resp.errors); }
+                $rootScope.isBusy = false;
                 $scope.$apply();
             }
         };
 
         $scope.syncTemplates = async function (id) {
+            $rootScope.isBusy = true;
             var response = await themeServices.syncTemplates(id);
             if (response.isSucceed) {
                 $scope.activedTheme = response.data;
+                $rootScope.isBusy = false;
                 $scope.$apply();
             }
             else {
                 $rootScope.showErrors(response.errors);
+                $rootScope.isBusy = false;
                 $scope.$apply();
             }
         };
@@ -64,10 +69,12 @@ app.controller('ThemeController', ['$scope', '$rootScope', '$routeParams', '$tim
             var response = await themeServices.getTheme(id, 'be');
             if (response.isSucceed) {
                 $scope.activedTheme = response.data;
+                $rootScope.isBusy = false;
                 $scope.$apply();
             }
             else {
                 $rootScope.showErrors(response.errors);
+                $rootScope.isBusy = false;
                 $scope.$apply();
             }
         };
@@ -82,6 +89,7 @@ app.controller('ThemeController', ['$scope', '$rootScope', '$routeParams', '$tim
             if ($scope.request.toDate != null) {
                 $scope.request.toDate = $scope.request.toDate.toISOString();
             }
+            $rootScope.isBusy = true;
             var resp = await themeServices.getThemes($scope.request);
             if (resp && resp.isSucceed) {
 
@@ -95,29 +103,19 @@ app.controller('ThemeController', ['$scope', '$rootScope', '$routeParams', '$tim
                         }
                     })
                 })
-                setTimeout(function () {
-                    $('[data-toggle="popover"]').popover({
-                        html: true,
-                        content: function () {
-                            var content = $(this).next('.popover-body');
-                            return $(content).html();
-                        },
-                        title: function () {
-                            var title = $(this).attr("data-popover-content");
-                            return $(title).children(".popover-heading").html();
-                        }
-                    });
-                }, 200);
+                $rootScope.isBusy = false;
                 $scope.$apply();
             }
             else {
                 if (resp) { $rootScope.showErrors(resp.errors); }
+                $rootScope.isBusy = false;
                 $scope.$apply();
             }
         };
 
         $scope.saveTheme = async function (theme) {
             theme.content = $('.editor-content').val();
+            $rootScope.isBusy = true;
             var resp = await themeServices.saveTheme(theme);
             if (resp && resp.isSucceed) {
                 $scope.activedTheme = resp.data;
@@ -125,11 +123,13 @@ app.controller('ThemeController', ['$scope', '$rootScope', '$routeParams', '$tim
                 $rootScope.isBusy = false;
                 $rootScope.updateSettings();
                 $location.path('/backend/theme/list');
+                $rootScope.isBusy = false;
                 $scope.$apply();
                 
             }
             else {
                 if (resp) { $rootScope.showErrors(resp.errors); }
+                $rootScope.isBusy = false;
                 $scope.$apply();
             }
         };
@@ -139,12 +139,14 @@ app.controller('ThemeController', ['$scope', '$rootScope', '$routeParams', '$tim
         }
 
         $scope.removeThemeConfirmed = async function (id) {
+            $rootScope.isBusy = true;
             var result = await themeServices.removeTheme(id);
             if (result.isSucceed) {
                 $scope.loadThemes();
             }
             else {
                 $rootScope.showMessage('failed');
+                $rootScope.isBusy = false;
                 $scope.$apply();
             }
         }

@@ -13,10 +13,12 @@ app.controller('AppSettingsController',
             if (resp && resp.isSucceed) {
                 $scope.appSettings = resp.data;
                 $rootScope.initEditor();
+                $rootScope.isBusy = false;
                 $scope.$apply();
             }
             else {
                 if (resp) { $rootScope.showErrors(resp.errors); }
+                $rootScope.isBusy = false;
                 $scope.$apply();
             }
         };
@@ -27,21 +29,28 @@ app.controller('AppSettingsController',
             var response = await appSettingsServices.getAppSettings();
             if (response.isSucceed) {
                 $scope.appSettings = response.data;
+                $rootScope.isBusy = false;
                 $scope.$apply();
             }
             else {
                 $rootScope.showErrors(response.errors);
+                $rootScope.isBusy = false;
                 $scope.$apply();
             }
 
             var result = await commonServices.getSettings();
             if (result.isSucceed) {
                 $scope.settings = result.data;
+                $rootScope.isBusy = false;
                 $scope.$apply();
+            }
+            else {
+                $rootScope.isBusy = false;
             }
         };
 
         $scope.saveAppSettings = async function (appSettings) {
+            $rootScope.isBusy = true;
             var resp = await appSettingsServices.saveAppSettings(appSettings);
             if (resp && resp.isSucceed) {
                 $scope.appSettings = resp.data;
