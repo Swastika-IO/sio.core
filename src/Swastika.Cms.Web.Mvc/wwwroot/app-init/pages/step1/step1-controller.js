@@ -4,6 +4,7 @@ app.controller('Step1Controller', ['$scope', '$rootScope', '$timeout', '$locatio
     function ($scope, $rootScope, $timeout, $location, $http, commonServices, step1Services) {
         $scope.settings = {
             cultures: [
+                { specificulture: 'en-us', fullName: 'United States - English (Default)', icon: 'flag-icon-us' },
                 { specificulture: 'fr-dz', fullName: 'Algeria - Français', icon: 'flag-icon-dz' },
                 { specificulture: 'es-ar', fullName: 'Argentina - Español', icon: 'flag-icon-ar' },
                 { specificulture: 'en-au', fullName: 'Australia - English', icon: 'flag-icon-au' },

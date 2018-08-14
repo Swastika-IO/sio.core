@@ -18,9 +18,9 @@
         <link href="~/lib/now-ui-kit-pro-v1.2.2/assets/css/bootstrap.min.css" rel="stylesheet" />
         <link href="~/lib/now-ui-kit-pro-v1.2.2/assets/css/now-ui-kit.css" rel="stylesheet" />
         <!-- CSS Just for demo purpose, don't include it in your project -->
-        <link href="~/lib/now-ui-kit-pro-v1.2.2/assets/css/demo.css" rel="stylesheet" />
+        @*<link href="~/lib/now-ui-kit-pro-v1.2.2/assets/css/demo.css" rel="stylesheet" />*@
     </environment>
-    <link href="~/css/portal/main.css" rel="stylesheet" />
+    @*<link href="~/css/portal/main.css" rel="stylesheet" />*@
     @*@Html.Raw(JavaScriptSnippet.FullScript)*@
 </head>
 
@@ -41,7 +41,7 @@
                 <div class="copyright">
                     &copy;
                     <script>
-document.write(new Date().getFullYear())
+                        document.write(new Date().getFullYear())
                     </script>
                     <a href="http://www.swastika.io" target="_blank">Swastika I/O</a>.
                 </div>
@@ -73,7 +73,7 @@ document.write(new Date().getFullYear())
     <script src="~/app-init/app.js"></script>
     <script src="~/app-init/app.route.js"></script>
     <script src="~/app-init/pages/login/login-controller.js"></script>
-    
+
     <script src="~/app-init/pages/step1/step1-controller.js"></script>
     <script src="~/app-init/pages/step1/step1-services.js"></script>
 
@@ -83,5 +83,59 @@ document.write(new Date().getFullYear())
     <script src="~/app-shared/services/common-services.js"></script>
 
     @RenderSection("Scripts", required: false)
+
+    <!-- Modal -->
+    <div class="modal fade" id="termAndCondition" tabindex="-1" role="dialog" aria-labelledby="termAndConditionTitle" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="termAndConditionTitle">Terms and Conditions.</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    Cras mattis consectetur purus sit amet fermentum. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Morbi leo risus, porta ac consectetur ac, vestibulum at eros.
+
+                    Praesent commodo cursus magna, vel scelerisque nisl consectetur et. Vivamus sagittis lacus vel augue laoreet rutrum faucibus dolor auctor.
+
+                    Aenean lacinia bibendum nulla sed consectetur. Praesent commodo cursus magna, vel scelerisque nisl consectetur et. Donec sed odio dui. Donec ullamcorper nulla non metus auctor fringilla.
+
+                    Cras mattis consectetur purus sit amet fermentum. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Morbi leo risus, porta ac consectetur ac, vestibulum at eros.
+
+                    Praesent commodo cursus magna, vel scelerisque nisl consectetur et. Vivamus sagittis lacus vel augue laoreet rutrum faucibus dolor auctor.
+
+                    Aenean lacinia bibendum nulla sed consectetur. Praesent commodo cursus magna, vel scelerisque nisl consectetur et. Donec sed odio dui. Donec ullamcorper nulla non metus auctor fringilla.
+
+                    Cras mattis consectetur purus sit amet fermentum. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Morbi leo risus, porta ac consectetur ac, vestibulum at eros.
+
+                    Praesent commodo cursus magna, vel scelerisque nisl consectetur et. Vivamus sagittis lacus vel augue laoreet rutrum faucibus dolor auctor.
+
+                    Aenean lacinia bibendum nulla sed consectetur. Praesent commodo cursus magna, vel scelerisque nisl consectetur et. Donec sed odio dui. Donec ullamcorper nulla non metus auctor fringilla.
+
+                    Cras mattis consectetur purus sit amet fermentum. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Morbi leo risus, porta ac consectetur ac, vestibulum at eros.
+
+                    Praesent commodo cursus magna, vel scelerisque nisl consectetur et. Vivamus sagittis lacus vel augue laoreet rutrum faucibus dolor auctor.
+
+                    Aenean lacinia bibendum nulla sed consectetur. Praesent commodo cursus magna, vel scelerisque nisl consectetur et. Donec sed odio dui. Donec ullamcorper nulla non metus auctor fringilla.
+
+                    Cras mattis consectetur purus sit amet fermentum. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Morbi leo risus, porta ac consectetur ac, vestibulum at eros.
+
+                    Praesent commodo cursus magna, vel scelerisque nisl consectetur et. Vivamus sagittis lacus vel augue laoreet rutrum faucibus dolor auctor.
+
+                    Aenean lacinia bibendum nulla sed consectetur. Praesent commodo cursus magna, vel scelerisque nisl consectetur et. Donec sed odio dui. Donec ullamcorper nulla non metus auctor fringilla.
+
+                    Cras mattis consectetur purus sit amet fermentum. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Morbi leo risus, porta ac consectetur ac, vestibulum at eros.
+
+                    Praesent commodo cursus magna, vel scelerisque nisl consectetur et. Vivamus sagittis lacus vel augue laoreet rutrum faucibus dolor auctor.
+
+                    Aenean lacinia bibendum nulla sed consectetur. Praesent commodo cursus magna, vel scelerisque nisl consectetur et. Donec sed odio dui. Donec ullamcorper nulla non metus auctor fringilla.
+                </div>
+                <div class="modal-footer justify-content-center">
+                    <button type="button" class="btn btn-primary" data-dismiss="modal">I have read and understand!</button>
+                </div>
+            </div>
+        </div>
+    </div>
 </body>
 </html>
