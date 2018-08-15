@@ -6,7 +6,7 @@
     </rule>
     
     <rule name="Not rewrite api" stopProcessing="true">
-      <match url="^portal|api|backend|Content|lib|css|js|app-shared|app-client|app-portal|app-init|images(\/(.*)){2,8}$" />
+      <match url="^swagger|portal|api|backend|Content|lib|css|js|app-shared|app-client|app-portal|app-init|images(\/(.*)){2,8}$" />
       <action type="None" appendQueryString="false"/>
     </rule>
     <rule name="Not rewrite backend" stopProcessing="true">

@@ -129,6 +129,7 @@ namespace Swastika.Cms.Mvc.Controllers
 
         }
 
+        [HttpGet]
         public IActionResult Page(int pageId, int pageIndex, int pageSize = 10)
         {
             // Home Page
@@ -217,21 +218,21 @@ namespace Swastika.Cms.Mvc.Controllers
             return View(getArticles.Data);
         }
 
-        [HttpGet]
-        [Route("page/{pageName}")]
-        public IActionResult Page(string pageName)
-        {
-            var getPage = FECategoryViewModel.Repository.GetSingleModel(
-                p => p.Type == (int)SWCmsConstants.CateType.Home && p.Specificulture == CurrentLanguage);
-            if (getPage.IsSucceed)
-            {
-                return View(getPage.Data);
-            }
-            else
-            {
-                return Redirect(string.Format("/{0}", CurrentLanguage));
-            }
-        }
+        //[HttpGet]
+        //[Route("page/{pageName}")]
+        //public IActionResult Page(string pageName)
+        //{
+        //    var getPage = FECategoryViewModel.Repository.GetSingleModel(
+        //        p => p.Type == (int)SWCmsConstants.CateType.Home && p.Specificulture == CurrentLanguage);
+        //    if (getPage.IsSucceed)
+        //    {
+        //        return View(getPage.Data);
+        //    }
+        //    else
+        //    {
+        //        return Redirect(string.Format("/{0}", CurrentLanguage));
+        //    }
+        //}
 
         [HttpGet]
         [Route("article/{SeoName}")]

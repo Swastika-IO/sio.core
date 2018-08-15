@@ -13,6 +13,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.WebEncoders;
 using RewriteRules;
+using Swashbuckle.AspNetCore.Swagger;
 using Swastika.Cms.Lib.Models.Cms;
 using Swastika.Cms.Lib.Services;
 using Swastika.Identity.Services;
@@ -60,6 +61,12 @@ namespace Swastika.Cms.Web.Mvc
             services.AddSingleton<GlobalConfigurationService>();
             GlobalConfigurationService.Instance.RefreshAll();
 
+            services.AddSwaggerGen(c =>
+            {
+                c.SwaggerDoc("v1", new Info { Title = "AccountOwner API", Version = "v1" });
+            });
+            services.AddAuthentication("Bearer");
+
             services.AddMvc(options =>
             {
                 options.CacheProfiles.Add("Default",
@@ -96,7 +103,12 @@ namespace Swastika.Cms.Web.Mvc
             app.UseCookiePolicy();
 
             app.UseAuthentication();
+            app.UseSwagger();
 
+            app.UseSwaggerUI(c =>
+            {
+                c.SwaggerEndpoint("/swagger/v1/swagger.json", "Swastika API V1");
+            });
             using (StreamReader apacheModRewriteStreamReader =
         File.OpenText("ApacheModRewrite.txt"))
             using (StreamReader iisUrlRewriteStreamReader =
