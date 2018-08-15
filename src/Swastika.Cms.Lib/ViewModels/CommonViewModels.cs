@@ -196,6 +196,15 @@ namespace Swastika.Cms.Lib.ViewModels
         [JsonProperty("name")]
         public string Name { get; set; }
 
+        [JsonProperty("title")]
+        public string Title { get; set; }
+
+        [JsonProperty("isUnique")]
+        public bool IsUnique { get; set; }
+
+        [JsonProperty("isRequired")]
+        public bool IsRequired { get; set; }
+
         [JsonProperty("dataType")]
         public SWCmsConstants.DataType DataType { get; set; }
 
@@ -217,6 +226,7 @@ namespace Swastika.Cms.Lib.ViewModels
         public bool IsGroupBy { get; set; }
         [JsonProperty("options")]
         public JArray Options { get; set; } = new JArray();
+
     }
 
     public class SpaModuleDataValueViewModel

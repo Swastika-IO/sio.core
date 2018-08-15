@@ -164,7 +164,7 @@ namespace Swastika.Cms.Lib.ViewModels.Api
 
             foreach (var prop in DataProperties.Where(c=>c.IsRequired))
             {
-                if (string.IsNullOrEmpty(prop.Value))
+                if (string.IsNullOrEmpty(prop.Value.ToString()))
                 {
                     IsValid = false;
                     Errors.Add($"{prop.Title} is required");
@@ -205,27 +205,27 @@ namespace Swastika.Cms.Lib.ViewModels.Api
         #endregion Expands
     }
 
-    public class ModuleDataValueViewModel
-    {
-        [JsonProperty("moduleId")]
-        public int ModuleId { get; set; }
-        [JsonProperty("name")]
-        public string Name { get; set; }
-        [JsonProperty("title")]
-        public string Title { get; set; }
-        [JsonProperty("dataType")]
-        public SWCmsConstants.DataType DataType { get; set; }
-        [JsonProperty("value")]
-        public string Value { get; set; }
-        [JsonProperty("isUnique")]
-        public bool IsUnique { get; set; }
-        [JsonProperty("isRequired")]
-        public bool IsRequired { get; set; }
-        [JsonProperty("isSelect")]
-        public bool IsSelect { get; set; }
-        [JsonProperty("isGroupBy")]
-        public bool IsGroupBy { get; set; }
-        [JsonProperty("options")]
-        public JArray Options { get; set; } = new JArray();
-    }
+    //public class ModuleDataValueViewModel
+    //{
+    //    [JsonProperty("moduleId")]
+    //    public int ModuleId { get; set; }
+    //    [JsonProperty("name")]
+    //    public string Name { get; set; }
+    //    [JsonProperty("title")]
+    //    public string Title { get; set; }
+    //    [JsonProperty("dataType")]
+    //    public SWCmsConstants.DataType DataType { get; set; }
+    //    [JsonProperty("value")]
+    //    public string Value { get; set; }
+    //    [JsonProperty("isUnique")]
+    //    public bool IsUnique { get; set; }
+    //    [JsonProperty("isRequired")]
+    //    public bool IsRequired { get; set; }
+    //    [JsonProperty("isSelect")]
+    //    public bool IsSelect { get; set; }
+    //    [JsonProperty("isGroupBy")]
+    //    public bool IsGroupBy { get; set; }
+    //    [JsonProperty("options")]
+    //    public JArray Options { get; set; } = new JArray();
+    //}
 }

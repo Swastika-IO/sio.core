@@ -71,7 +71,7 @@ namespace Swastika.Cms.Lib.ViewModels.Api
 
         [JsonProperty("seoKeywords")]
         public string SeoKeywords { get; set; }
-        
+
         [JsonProperty("views")]
         public int? Views { get; set; }
 
@@ -262,6 +262,7 @@ namespace Swastika.Cms.Lib.ViewModels.Api
             {
                 UrlAlias = new ApiUrlAliasViewModel()
                 {
+                    Type = SWCmsConstants.UrlAliasType.Page,
                     Specificulture = Specificulture,
                     Alias = SeoName
                 };
@@ -314,6 +315,18 @@ namespace Swastika.Cms.Lib.ViewModels.Api
             {
                 result.Errors.AddRange(saveTemplate.Errors);
                 result.Exception = saveTemplate.Exception;
+            }
+            // Save url alias
+            if (result.IsSucceed)
+            {
+                UrlAlias.IsClone = IsClone;
+                UrlAlias.Cultures = Cultures;
+                UrlAlias.Type = SWCmsConstants.UrlAliasType.Page;
+                UrlAlias.SourceId = parent.Id.ToString();
+                var saveUrl = UrlAlias.SaveModel(false, _context, _transaction);
+                result.Errors.AddRange(saveUrl.Errors);
+                result.Exception = saveUrl.Exception;
+                result.IsSucceed = saveUrl.IsSucceed;
             }
 
             if (result.IsSucceed)
@@ -451,6 +464,7 @@ namespace Swastika.Cms.Lib.ViewModels.Api
             {
                 UrlAlias.IsClone = IsClone;
                 UrlAlias.Cultures = Cultures;
+                UrlAlias.Type = SWCmsConstants.UrlAliasType.Page;
                 UrlAlias.SourceId = parent.Id.ToString();
                 var saveUrl = await UrlAlias.SaveModelAsync(false, _context, _transaction);
                 result.Errors.AddRange(saveUrl.Errors);

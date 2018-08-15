@@ -183,7 +183,7 @@ namespace Swastka.Cms.Api.Controllers
         #endregion Post
 
         #region Helpers
-        public async Task<RepositoryResponse<bool>> InitCmsAsync(ApiInitCmsViewModel model)
+        private async Task<RepositoryResponse<bool>> InitCmsAsync(ApiInitCmsViewModel model)
         {
             var result = new RepositoryResponse<bool>();
 

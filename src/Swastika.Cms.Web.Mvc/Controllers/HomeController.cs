@@ -98,7 +98,9 @@ namespace Swastika.Cms.Mvc.Controllers
                             int.TryParse(getAlias.Data.SourceId, out int pageId);
                             return Page(pageId, pageIndex, pageSize);
                         case SWCmsConstants.UrlAliasType.Article:
+                            return ArticleView(getAlias.Data.SourceId);
                         case SWCmsConstants.UrlAliasType.Product:
+                            return ProductView(getAlias.Data.SourceId);
                         case SWCmsConstants.UrlAliasType.Module:
                         case SWCmsConstants.UrlAliasType.ModuleData:
                         default:
@@ -129,7 +131,8 @@ namespace Swastika.Cms.Mvc.Controllers
 
         }
 
-        public IActionResult Page(int pageId, int pageIndex, int pageSize = 10)
+        [HttpGet]
+        IActionResult Page(int pageId, int pageIndex, int pageSize = 10)
         {
             // Home Page
             var getPage = FECategoryViewModel.Repository.GetSingleModel(
@@ -144,6 +147,34 @@ namespace Swastika.Cms.Mvc.Controllers
             else
             {
                 return RedirectToAction("Index", "Backend");
+            }
+        }
+
+        IActionResult ArticleView(string id)
+        {
+            var getArticle = FEArticleViewModel.Repository.GetSingleModel(
+                a => a.Id == id && a.Specificulture == CurrentLanguage);
+            if (getArticle.IsSucceed)
+            {
+                return View(getArticle.Data);
+            }
+            else
+            {
+                return Redirect(string.Format("/{0}", CurrentLanguage));
+            }
+        }
+
+        IActionResult ProductView(string id)
+        {
+            var getProduct = FEProductViewModel.Repository.GetSingleModel(
+                a => a.Id == id && a.Specificulture == CurrentLanguage);
+            if (getProduct.IsSucceed)
+            {
+                return View(getProduct.Data);
+            }
+            else
+            {
+                return Redirect(string.Format("/{0}", CurrentLanguage));
             }
         }
 
@@ -217,21 +248,21 @@ namespace Swastika.Cms.Mvc.Controllers
             return View(getArticles.Data);
         }
 
-        [HttpGet]
-        [Route("page/{pageName}")]
-        public IActionResult Page(string pageName)
-        {
-            var getPage = FECategoryViewModel.Repository.GetSingleModel(
-                p => p.Type == (int)SWCmsConstants.CateType.Home && p.Specificulture == CurrentLanguage);
-            if (getPage.IsSucceed)
-            {
-                return View(getPage.Data);
-            }
-            else
-            {
-                return Redirect(string.Format("/{0}", CurrentLanguage));
-            }
-        }
+        //[HttpGet]
+        //[Route("page/{pageName}")]
+        //public IActionResult Page(string pageName)
+        //{
+        //    var getPage = FECategoryViewModel.Repository.GetSingleModel(
+        //        p => p.Type == (int)SWCmsConstants.CateType.Home && p.Specificulture == CurrentLanguage);
+        //    if (getPage.IsSucceed)
+        //    {
+        //        return View(getPage.Data);
+        //    }
+        //    else
+        //    {
+        //        return Redirect(string.Format("/{0}", CurrentLanguage));
+        //    }
+        //}
 
         [HttpGet]
         [Route("article/{SeoName}")]

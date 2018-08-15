@@ -9,12 +9,12 @@ app.factory('translatorService', ['$rootScope', 'commonServices', 'localStorageS
         this._translator = translator;
     }
     var _fillTranslator = async function (culture) {
-        
+
         if (this.translator.data && this.translator.lang == culture) {
 
             //_translator = translator;
             //this.translator = translator;
-            
+
             return this.translator;
         }
         else {
@@ -54,15 +54,15 @@ app.factory('translatorService', ['$rootScope', 'commonServices', 'localStorageS
 
         await _getTranslator(lang);
     }
-    var _get = function (keyword, defaultValue) {
+    var _get = function (keyword, isWrap) {
         if (!this.translator.data && $rootScope.settings) {
             $rootScope.isBusy = true;
             this.fillTranslator($rootScope.settings.lang).then(function (response) {
                 $rootScope.isBusy = false;
-                return response.data[keyword] || defaultValue || getLinkCreateLanguage(keyword);
+                return response.data[keyword] || getLinkCreateLanguage(keyword, isWrap);
             });
         } else {
-            return this.translator.data[keyword] || defaultValue || getLinkCreateLanguage(keyword);
+            return this.translator.data[keyword] || getLinkCreateLanguage(keyword, isWrap);
         }
 
     };
@@ -71,16 +71,16 @@ app.factory('translatorService', ['$rootScope', 'commonServices', 'localStorageS
         if (!this.translator.data && $rootScope.settings) {
             $rootScope.isBusy = true;
             this.translator = await _fillTranslator(lang);
-            return this.translator.data[keyword] || defaultValue || getLinkCreateLanguage(keyword);
+            return this.translator.data[keyword] || getLinkCreateLanguage(keyword, isWrap);
         } else {
-            return this.translator.data[keyword] || defaultValue || getLinkCreateLanguage(keyword);
+            return this.translator.data[keyword] || getLinkCreateLanguage(keyword, isWrap);
         }
 
     };
 
-    var getLinkCreateLanguage = function (keyword) {
+    var getLinkCreateLanguage = function (keyword, isWrap) {
         //return '<span data-key="/backend/language/details?k=' + keyword + '">[' + keyword + ']</span>';
-        return '[' + keyword + ']';
+        return isWrap ? '[' + keyword + ']' : keyword;
     }
 
     factory.getAsync = _getAsync;

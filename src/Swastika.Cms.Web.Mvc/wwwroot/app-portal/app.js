@@ -220,7 +220,7 @@ app.run(['$rootScope', '$location', 'commonServices', 'authService', 'translator
             var align = 'right';
             $.notify({
                 icon: "now-ui-icons ui-1_bell-53",
-                message: translatorService.get(content),
+                message: $rootScope.translate(content),
 
             }, {
                     type: type,
@@ -232,13 +232,12 @@ app.run(['$rootScope', '$location', 'commonServices', 'authService', 'translator
                 });
         }
 
-        $rootScope.translate = function (keyword, defaultValue) {
+        $rootScope.translate = function (keyword, isWrap) {
             if ($rootScope.settings && !$rootScope.isBusy) {
-
-                return $rootScope.translator.get(keyword, defaultValue);
+                return $rootScope.translator.get(keyword, isWrap);
             }
             else {
-                return defaultValue || keyword;
+                return keyword;
             }
         }
 

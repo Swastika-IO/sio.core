@@ -15,6 +15,7 @@ namespace Swastika.Cms.Mvc.Controllers
         public BackendController(IHostingEnvironment env) : base(env)
         {}
 
+        [HttpGet]
         [Route("")]
         [Route("{pageName}")]
         [Route("{pageName}/{type}")]
@@ -28,6 +29,7 @@ namespace Swastika.Cms.Mvc.Controllers
             return View();
         }
 
+        [HttpGet]
         [Route("init")]
         public IActionResult Init()
         {
