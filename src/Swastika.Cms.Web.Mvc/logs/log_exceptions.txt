@@ -120,5 +120,22 @@
       "Source": "Microsoft.EntityFrameworkCore.Relational",
       "WatsonBuckets": null
     }
+  },
+  {
+    "CreatedDateTime": "2018-08-15T05:26:07.7416212Z",
+    "Details": {
+      "ClassName": "System.InvalidOperationException",
+      "Message": "Sequence contains no elements.",
+      "Data": null,
+      "InnerException": null,
+      "HelpURL": null,
+      "StackTraceString": "   at Microsoft.EntityFrameworkCore.Query.QueryMethodProvider.GetResult[TResult](IEnumerable`1 valueBuffers, Boolean throwOnNullResult)\r\n   at Microsoft.EntityFrameworkCore.Query.Internal.LinqOperatorProvider.ResultEnumerable`1.GetEnumerator()\r\n   at Microsoft.EntityFrameworkCore.Query.Internal.LinqOperatorProvider.ExceptionInterceptor`1.EnumeratorExceptionInterceptor.MoveNext()\r\n   at System.Linq.Enumerable.TryGetFirst[TSource](IEnumerable`1 source, Boolean& found)\r\n   at System.Linq.Enumerable.First[TSource](IEnumerable`1 source)\r\n   at Microsoft.EntityFrameworkCore.Query.Internal.QueryCompiler.<>c__DisplayClass15_1`1.<CompileQueryCore>b__0(QueryContext qc)\r\n   at Swastika.Domain.Data.Repository.ViewRepositoryBase`3.Max(Expression`1 predicate, TDbContext _context, IDbContextTransaction _transaction)",
+      "RemoteStackTraceString": null,
+      "RemoteStackIndex": 0,
+      "ExceptionMethod": null,
+      "HResult": -2146233079,
+      "Source": "Microsoft.EntityFrameworkCore.Relational",
+      "WatsonBuckets": null
+    }
   }
 ]

@@ -22,6 +22,7 @@ app.controller('loginController', ['$rootScope', '$scope', '$location', 'authSer
         if (authService.authentication.referredUrl == "/backend/login") {
             authService.authentication.referredUrl = "/backend";
         }
+        $rootScope.isBusy = true;
         var result = await authService.login($scope.loginData);
         if (result) {
             $rootScope.isBusy = false;

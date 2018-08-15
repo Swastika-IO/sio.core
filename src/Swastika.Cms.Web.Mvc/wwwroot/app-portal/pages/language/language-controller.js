@@ -122,7 +122,8 @@ app.controller('LanguageController', ['$scope', '$rootScope', '$routeParams', '$
         $scope.removeLanguageConfirmed = async function (id) {
             $rootScope.isBusy = true;
             var result = await languageServices.removeLanguage(id);
-            if (result.isSucceed) {
+            if (result.isSucceed) {                
+                commonServices.removeTranslator();
                 $scope.loadLanguages();
             }
             else {
@@ -138,6 +139,7 @@ app.controller('LanguageController', ['$scope', '$rootScope', '$routeParams', '$
             var resp = await languageServices.saveLanguage(language);
             if (resp && resp.isSucceed) {
                 $scope.activedLanguage = resp.data;
+                commonServices.removeTranslator();
                 $rootScope.showMessage('success', 'success');
 
                 translatorService.reset($rootScope.settings.lang).then(function () {

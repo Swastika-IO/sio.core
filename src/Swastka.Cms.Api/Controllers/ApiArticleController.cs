@@ -9,6 +9,7 @@ using Microsoft.Data.OData.Query;
 using Newtonsoft.Json.Linq;
 using Swastika.Cms.Lib;
 using Swastika.Cms.Lib.Models.Cms;
+using Swastika.Cms.Lib.ViewModels.Api;
 using Swastika.Cms.Lib.ViewModels.BackEnd;
 using Swastika.Cms.Lib.ViewModels.FrontEnd;
 using Swastika.Cms.Lib.ViewModels.Info;
@@ -47,7 +48,7 @@ namespace Swastka.Cms.Api.Controllers
                 case "be":
                     if (!string.IsNullOrEmpty(id))
                     {
-                        var beResult = await BEArticleViewModel.Repository.GetSingleModelAsync(model => model.Id == id && model.Specificulture == _lang).ConfigureAwait(false);
+                        var beResult = await ApiArticleViewModel.Repository.GetSingleModelAsync(model => model.Id == id && model.Specificulture == _lang).ConfigureAwait(false);
                         if (beResult.IsSucceed)
                         {
                             beResult.Data.DetailsUrl = SwCmsHelper.GetRouterUrl("Article", new { beResult.Data.SeoName }, Request, Url);
@@ -60,19 +61,19 @@ namespace Swastka.Cms.Api.Controllers
                         {
                             Specificulture = _lang,
                             Status = (int)SWStatus.Preview,
-                            Priority = BEArticleViewModel.Repository.Max(a => a.Priority).Data + 1
+                            Priority = ApiArticleViewModel.Repository.Max(a => a.Priority).Data + 1
                         };
-                        RepositoryResponse<BEArticleViewModel> result = new RepositoryResponse<BEArticleViewModel>()
+                        RepositoryResponse<ApiArticleViewModel> result = new RepositoryResponse<ApiArticleViewModel>()
                         {
                             IsSucceed = true,
-                            Data = new BEArticleViewModel(model)
+                            Data = new ApiArticleViewModel(model)
                         };
                         return JObject.FromObject(result);
                     }
                 default:
                     if (!string.IsNullOrEmpty(id))
                     {
-                        var beResult = await FEArticleViewModel.Repository.GetSingleModelAsync(model => model.Id == id && model.Specificulture == _lang).ConfigureAwait(false);
+                        var beResult = await ApiArticleViewModel.Repository.GetSingleModelAsync(model => model.Id == id && model.Specificulture == _lang).ConfigureAwait(false);
                         if (beResult.IsSucceed)
                         {
                             beResult.Data.DetailsUrl = SwCmsHelper.GetRouterUrl("Article", new { beResult.Data.SeoName }, Request, Url);
@@ -82,10 +83,10 @@ namespace Swastka.Cms.Api.Controllers
                     else
                     {
                         var model = new SiocArticle();
-                        RepositoryResponse<FEArticleViewModel> result = new RepositoryResponse<FEArticleViewModel>()
+                        RepositoryResponse<ApiArticleViewModel> result = new RepositoryResponse<ApiArticleViewModel>()
                         {
                             IsSucceed = true,
-                            Data = new FEArticleViewModel(model) { Specificulture = _lang, Status = SWStatus.Preview }
+                            Data = new ApiArticleViewModel(model) { Specificulture = _lang, Status = SWStatus.Preview }
                         };
                         return JObject.FromObject(result);
                     }
@@ -95,7 +96,7 @@ namespace Swastka.Cms.Api.Controllers
         // GET api/Articles/id
         [HttpGet]
         [Route("create")]
-        public RepositoryResponse<BEArticleViewModel> Create()
+        public RepositoryResponse<ApiArticleViewModel> Create()
         {
             SiocArticle Article = new SiocArticle()
             {
@@ -103,10 +104,10 @@ namespace Swastka.Cms.Api.Controllers
                 Specificulture = _lang
 
             };
-            return new RepositoryResponse<BEArticleViewModel>()
+            return new RepositoryResponse<ApiArticleViewModel>()
             {
                 IsSucceed = true,
-                Data = new BEArticleViewModel(Article) { Status = SWStatus.Preview }
+                Data = new ApiArticleViewModel(Article) { Status = SWStatus.Preview }
             };
         }
 
@@ -125,17 +126,17 @@ namespace Swastka.Cms.Api.Controllers
             switch (viewType)
             {
                 case "be":
-                    var be = new RepositoryResponse<BEArticleViewModel>()
+                    var be = new RepositoryResponse<ApiArticleViewModel>()
                     {
                         IsSucceed = true,
-                        Data = new BEArticleViewModel(Article) { Status = SWStatus.Preview }
+                        Data = new ApiArticleViewModel(Article) { Status = SWStatus.Preview }
                     };
                     return JObject.FromObject(be);
                 default:
-                    var fe = new RepositoryResponse<InfoArticleViewModel>()
+                    var fe = new RepositoryResponse<ApiArticleViewModel>()
                     {
                         IsSucceed = true,
-                        Data = new InfoArticleViewModel(Article) { Status = SWStatus.Preview }
+                        Data = new ApiArticleViewModel(Article) { Status = SWStatus.Preview }
                     };
                     return JObject.FromObject(fe);
             }
@@ -182,7 +183,7 @@ namespace Swastka.Cms.Api.Controllers
         [Route("delete/{id}")]
         public async Task<RepositoryResponse<SiocArticle>> Delete(string id)
         {
-            var getArticle = BEArticleViewModel.Repository.GetSingleModel(a => a.Id == id && a.Specificulture == _lang);
+            var getArticle = ApiArticleViewModel.Repository.GetSingleModel(a => a.Id == id && a.Specificulture == _lang);
             if (getArticle.IsSucceed)
             {
                 return await getArticle.Data.RemoveModelAsync(true).ConfigureAwait(false);
@@ -218,7 +219,7 @@ namespace Swastka.Cms.Api.Controllers
         // POST api/Articles
         [HttpPost]
         [Route("save")]
-        public async Task<RepositoryResponse<BEArticleViewModel>> Save([FromBody] BEArticleViewModel Article)
+        public async Task<RepositoryResponse<ApiArticleViewModel>> Save([FromBody] ApiArticleViewModel Article)
         {
             if (Article != null)
             {
@@ -230,7 +231,7 @@ namespace Swastka.Cms.Api.Controllers
                 }
                 return result;
             }
-            return new RepositoryResponse<BEArticleViewModel>();
+            return new RepositoryResponse<ApiArticleViewModel>();
         }
 
         // POST api/category
@@ -243,7 +244,7 @@ namespace Swastka.Cms.Api.Controllers
                 var result = new RepositoryResponse<SiocArticle>();
                 foreach (var property in fields)
                 {
-                     result =  await BEArticleViewModel.Repository.UpdateFieldsAsync(c => c.Id == id, fields).ConfigureAwait(false);
+                     result =  await ApiArticleViewModel.Repository.UpdateFieldsAsync(c => c.Id == id, fields).ConfigureAwait(false);
                 }
                 return result;
             }

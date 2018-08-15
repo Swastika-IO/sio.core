@@ -265,7 +265,7 @@ app.run(['$rootScope', '$location', 'commonServices', 'authService', 'translator
             //    }
             //];
         });
-        
+
 
     }]);
 

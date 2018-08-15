@@ -2,7 +2,7 @@
 app.factory('Step1Services', ['$http', 'commonServices', function ($http, commonServices) {
 
     //var serviceBase = 'http://ngauthenticationapi.azurewebsites.net/';
-
+    
     var step1ServiceFactory = {};
     var apiUrl = '/api/portal/';
     var _initCms = async function (data) {

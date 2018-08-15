@@ -15,13 +15,16 @@ app.controller('DashboardController', ['$scope', '$rootScope', '$timeout', '$loc
 
     });
     $scope.getDashboardInfo = async function () {
+        $rootScope.isBusy = true;
         var response = await dashboardServices.getDashboardInfo();
         if (response.isSucceed) {
             $scope.data = response.data;
+            $rootScope.isBusy = false;
             $scope.$apply();
         }
         else {
             $rootScope.showErrors(response.errors);
+            $rootScope.isBusy = false;
             $scope.$apply();
         }
     }

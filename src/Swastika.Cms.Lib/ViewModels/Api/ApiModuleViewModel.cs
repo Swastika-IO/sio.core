@@ -72,6 +72,8 @@ namespace Swastika.Cms.Lib.ViewModels.Api
         #endregion Models
 
         #region Views
+        [JsonProperty("data")]
+        public PaginationModel<InfoModuleDataViewModel> Data { get; set; } = new PaginationModel<InfoModuleDataViewModel>();
 
         [JsonProperty("columns")]
         public List<ModuleFieldViewModel> Columns { get; set; }
@@ -243,6 +245,48 @@ namespace Swastika.Cms.Lib.ViewModels.Api
                 result.Data.CategoryId = categoryId;
             }
             return result;
+        }
+        public void LoadData(string articleId = null, int? categoryId = null
+            , int? pageSize = null, int? pageIndex = 0
+            , SiocCmsContext _context = null, IDbContextTransaction _transaction = null)
+        {
+            RepositoryResponse<PaginationModel<InfoModuleDataViewModel>> getDataResult = new RepositoryResponse<PaginationModel<InfoModuleDataViewModel>>();
+
+            switch (Type)
+            {
+                case SWCmsConstants.ModuleType.Root:
+                    getDataResult = InfoModuleDataViewModel.Repository
+                       .GetModelListBy(m => m.ModuleId == Id && m.Specificulture == Specificulture
+                       , "Priority", OrderByDirection.Ascending, pageSize, pageIndex
+                       , _context, _transaction);
+                    break;
+
+                case SWCmsConstants.ModuleType.SubPage:
+                    getDataResult = InfoModuleDataViewModel.Repository
+                       .GetModelListBy(m => m.ModuleId == Id && m.Specificulture == Specificulture
+                       && (m.CategoryId == categoryId)
+                       , "Priority", OrderByDirection.Ascending, pageSize, pageIndex
+                       , _context, _transaction);
+                    break;
+
+                case SWCmsConstants.ModuleType.SubArticle:
+                    getDataResult = InfoModuleDataViewModel.Repository
+                       .GetModelListBy(m => m.ModuleId == Id && m.Specificulture == Specificulture
+                       && (m.ArticleId == articleId)
+                       , "Priority", OrderByDirection.Ascending, pageSize, pageIndex
+                       , _context, _transaction);
+                    break;
+
+                default:
+                    break;
+            }
+
+            if (getDataResult.IsSucceed)
+            {
+                getDataResult.Data.JsonItems = new List<JObject>();
+                getDataResult.Data.Items.ForEach(d => getDataResult.Data.JsonItems.Add(d.JItem));
+                Data = getDataResult.Data;
+            }
         }
 
         #endregion Expand

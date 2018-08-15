@@ -12,6 +12,7 @@
                     commonServices.fillSettings().then(function (response) {
                         $scope.isInit = true;
                         $rootScope.settings = response;
+                        $scope.settings = response;
                         if ($rootScope.settings) {
 
                             $rootScope.translator.fillTranslator($rootScope.settings.lang).then(function () {
