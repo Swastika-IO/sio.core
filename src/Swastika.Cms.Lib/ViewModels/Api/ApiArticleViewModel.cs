@@ -370,7 +370,7 @@ namespace Swastika.Cms.Lib.ViewModels.Api
                 Id = Guid.NewGuid().ToString();
                 CreatedDateTime = DateTime.UtcNow;
             }
-            if (Properties.Count > 0)
+            if (Properties != null && Properties.Count > 0)
             {
                 JArray arrProperties = new JArray();
                 foreach (var p in Properties.Where(p => !string.IsNullOrEmpty(p.Value) && !string.IsNullOrEmpty(p.Name)).OrderBy(p => p.Priority))

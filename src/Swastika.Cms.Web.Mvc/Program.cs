@@ -15,6 +15,8 @@ namespace Swastika.Cms.Web.Mvc
     {   
         public static void Main(string[] args)
         {
+
+            
             CreateWebHostBuilder(args).Build().Run();
         }
 

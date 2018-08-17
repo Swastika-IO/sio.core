@@ -31,9 +31,9 @@
                             </div>
                         </pane>
                         <pane title="Medias">
-                            <!--   <product-medias product="activedProduct" medias="mediaData"></product-medias>-->
+                               <product-medias product="activedProduct" medias="mediaData"></product-medias>
                             <!--<navigation data="activedProduct.mediaNavs" prefix="media"></navigation>-->
-                            <navs data="activedProduct.mediaNavs" prefix="'media'" model="'nav-product-media'"></navs>
+                            <!--<navs data="activedProduct.mediaNavs" prefix="'media'" model="'nav-product-media'"></navs>-->
                         </pane>
                         <pane title="Related">
                             <product-related product="activedProduct" list="data"></product-related>
@@ -43,6 +43,7 @@
             </section>
             <section class="col-lg-3" style="padding-left:0">
                 <cultures is-clone="activedProduct.isClone" data="activedProduct.cultures"></cultures>
+                <url-alias url-alias="activedArticle.urlAlias"></url-alias>
                 <div class="card">
                     <div class="card-header">
                         Info

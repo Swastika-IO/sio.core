@@ -353,9 +353,6 @@
     <Content Update="Views\Home\Alias.cshtml">
       <Pack>$(IncludeRazorContentInPack)</Pack>
     </Content>
-    <Content Update="Views\Home\ArticleView.cshtml">
-      <Pack>$(IncludeRazorContentInPack)</Pack>
-    </Content>
     <Content Update="Views\Shared\Templates\Default_Blank\Widgets\_Pagination.cshtml">
       <Pack>$(IncludeRazorContentInPack)</Pack>
     </Content>

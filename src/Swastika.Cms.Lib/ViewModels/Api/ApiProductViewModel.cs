@@ -8,6 +8,7 @@ using Newtonsoft.Json.Linq;
 using Swastika.Cms.Lib.Models.Cms;
 using Swastika.Cms.Lib.Repositories;
 using Swastika.Cms.Lib.Services;
+using Swastika.Cms.Lib.ViewModels.Api;
 using Swastika.Cms.Lib.ViewModels.Info;
 using Swastika.Cms.Lib.ViewModels.Navigation;
 using Swastika.Common.Helper;
@@ -20,7 +21,7 @@ using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace Swastika.Cms.Lib.ViewModels.BackEnd
+namespace Swastika.Cms.Lib.ViewModels.Api
 {
     public class ApiProductViewModel
         : ViewModelBase<SiocCmsContext, SiocProduct, ApiProductViewModel>
@@ -131,6 +132,9 @@ namespace Swastika.Cms.Lib.ViewModels.BackEnd
 
         #region Views
 
+        [JsonProperty("urlAlias")]
+        public ApiUrlAliasViewModel UrlAlias { get; set; }
+
         [JsonProperty("domain")]
         public string Domain => GlobalConfigurationService.Instance.GetLocalString("Domain", Specificulture, "/");
 
@@ -156,7 +160,7 @@ namespace Swastika.Cms.Lib.ViewModels.BackEnd
         public JArray JProductNavs { get { return JArray.FromObject(ProductNavs ?? new List<NavRelatedProductViewModel>()); } }
 
         [JsonProperty("activedModules")]
-        public List<BEModuleViewModel> ActivedModules { get; set; } // Children Modules
+        public List<ApiModuleViewModel> ActivedModules { get; set; } // Children Modules
 
         [JsonProperty("listTag")]
         public JArray ListTag { get; set; } = new JArray();
@@ -179,10 +183,10 @@ namespace Swastika.Cms.Lib.ViewModels.BackEnd
         #region Template
 
         [JsonProperty("view")]
-        public BETemplateViewModel View { get; set; }
+        public ApiTemplateViewModel View { get; set; }
 
         [JsonProperty("templates")]
-        public List<BETemplateViewModel> Templates { get; set; }// Product Templates
+        public List<ApiTemplateViewModel> Templates { get; set; }// Product Templates
 
         [JsonIgnore]
         public string ActivedTemplate
@@ -275,7 +279,16 @@ namespace Swastika.Cms.Lib.ViewModels.BackEnd
         public override void ExpandView(SiocCmsContext _context = null, IDbContextTransaction _transaction = null)
         {
             Cultures = CommonRepository.Instance.LoadCultures(Specificulture, _context, _transaction);
-            Cultures.ForEach(c => c.IsSupported = _context.SiocProduct.Any(m => m.Id == Id && m.Specificulture == c.Specificulture));
+            UrlAlias = ApiUrlAliasViewModel.Repository.GetSingleModel(u => u.Specificulture == Specificulture && u.SourceId == Id.ToString()).Data;
+            if (UrlAlias == null)
+            {
+                UrlAlias = new ApiUrlAliasViewModel()
+                {
+                    Specificulture = Specificulture,
+                    Type = SWCmsConstants.UrlAliasType.Product,
+                    Alias = SeoName
+                };
+            }
 
             StrNormalPrice = SwCmsHelper.FormatPrice(NormalPrice);
             StrDealPrice = SwCmsHelper.FormatPrice(DealPrice);
@@ -296,7 +309,7 @@ namespace Swastika.Cms.Lib.ViewModels.BackEnd
             }
             //Get Templates
             this.Templates = this.Templates ??
-                BETemplateViewModel.Repository.GetModelListBy(
+                ApiTemplateViewModel.Repository.GetModelListBy(
                 t => t.Template.Name == ActivedTemplate && t.FolderType == this.TemplateFolderType).Data;
             if (!string.IsNullOrEmpty(Template))
             {
@@ -306,7 +319,7 @@ namespace Swastika.Cms.Lib.ViewModels.BackEnd
 
             if (this.View == null)
             {
-                this.View = new BETemplateViewModel(new SiocTemplate()
+                this.View = new ApiTemplateViewModel(new SiocTemplate()
                 {
                     Extension = SWCmsConstants.Parameters.TemplateExtension,
                     TemplateId = GlobalConfigurationService.Instance.GetLocalInt(SWCmsConstants.ConfigurationKeyword.ThemeId, Specificulture, 0),
@@ -361,10 +374,10 @@ namespace Swastika.Cms.Lib.ViewModels.BackEnd
                 ProductNavs.ForEach(n => n.IsActived = true);
             }
 
-            this.ActivedModules = new List<BEModuleViewModel>();
+            this.ActivedModules = new List<ApiModuleViewModel>();
             foreach (var module in this.ModuleNavs.Where(m => m.IsActived))
             {
-                var getModule = BEModuleViewModel.Repository.GetSingleModel(m => m.Id == module.ModuleId && m.Specificulture == module.Specificulture, _context, _transaction);
+                var getModule = ApiModuleViewModel.Repository.GetSingleModel(m => m.Id == module.ModuleId && m.Specificulture == module.Specificulture, _context, _transaction);
                 if (getModule.IsSucceed)
                 {
                     this.ActivedModules.Add(getModule.Data);
@@ -380,7 +393,7 @@ namespace Swastika.Cms.Lib.ViewModels.BackEnd
                 Id = Guid.NewGuid().ToString();
                 CreatedDateTime = DateTime.UtcNow;
             }
-            if (Properties.Count > 0)
+            if (Properties != null && Properties.Count > 0)
             {
                 JArray arrProperties = new JArray();
                 foreach (var p in Properties.Where(p => !string.IsNullOrEmpty(p.Value) && !string.IsNullOrEmpty(p.Name)).OrderBy(p => p.Priority))
@@ -446,6 +459,18 @@ namespace Swastika.Cms.Lib.ViewModels.BackEnd
                 {
                     result.Errors.AddRange(saveTemplate.Errors);
                     result.Exception = saveTemplate.Exception;
+                }
+                // Save url alias
+                if (result.IsSucceed)
+                {
+                    UrlAlias.IsClone = IsClone;
+                    UrlAlias.Cultures = Cultures;
+                    UrlAlias.SourceId = parent.Id.ToString();
+                    UrlAlias.Type = SWCmsConstants.UrlAliasType.Product;
+                    var saveUrl = await UrlAlias.SaveModelAsync(false, _context, _transaction);
+                    result.Errors.AddRange(saveUrl.Errors);
+                    result.Exception = saveUrl.Exception;
+                    result.IsSucceed = saveUrl.IsSucceed;
                 }
 
                 if (result.IsSucceed)
@@ -798,6 +823,18 @@ namespace Swastika.Cms.Lib.ViewModels.BackEnd
                 {
                     result.Errors.AddRange(saveTemplate.Errors);
                     result.Exception = saveTemplate.Exception;
+                }
+                // Save url alias
+                if (result.IsSucceed)
+                {
+                    UrlAlias.IsClone = IsClone;
+                    UrlAlias.Cultures = Cultures;
+                    UrlAlias.Type = SWCmsConstants.UrlAliasType.Product;
+                    UrlAlias.SourceId = parent.Id.ToString();
+                    var saveUrl = UrlAlias.SaveModel(false, _context, _transaction);
+                    result.Errors.AddRange(saveUrl.Errors);
+                    result.Exception = saveUrl.Exception;
+                    result.IsSucceed = saveUrl.IsSucceed;
                 }
 
                 if (result.IsSucceed)

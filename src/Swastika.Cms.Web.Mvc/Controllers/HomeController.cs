@@ -8,7 +8,6 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Localization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Data.OData.Query;
-using Scriban;
 using Swastika.Cms.Lib;
 using Swastika.Cms.Lib.ViewModels.Api;
 using Swastika.Cms.Lib.ViewModels.FrontEnd;
@@ -36,51 +35,6 @@ namespace Swastika.Cms.Mvc.Controllers
             this._userManager = userManager;
             this._roleManager = roleManager;
         }
-
-        [HttpPost]
-        public IActionResult SetLanguage(string culture, string returnUrl)
-        {
-            Response.Cookies.Append(
-                CookieRequestCultureProvider.DefaultCookieName,
-                CookieRequestCultureProvider.MakeCookieValue(new RequestCulture(culture)),
-                new CookieOptions { Expires = DateTimeOffset.UtcNow.AddYears(1) }
-            );
-
-            return LocalRedirect(returnUrl);
-        }
-
-        //[HttpGet]
-        //[Route("Home")]
-        //[Route("{pageName}")]
-        ////[Route("Index")]
-        ////[Route("{pageName}")]
-        //[Route("{pageName}/{pageIndex:int?}")]
-        //[Route("{pageName}/{pageSize:int?}/{pageIndex:int?}")]
-        //public IActionResult Home(string pageName, int pageIndex, int pageSize = 10)
-        //{
-        //    // Home Page
-        //    var getPage = FECategoryViewModel.Repository.GetSingleModel(
-        //        p => p.Specificulture == CurrentLanguage
-        //            &&
-        //            (
-        //                (
-        //                    (string.IsNullOrEmpty(pageName) || pageName == "Home")
-        //                    && p.Type == (int)SWCmsConstants.CateType.Home
-        //                )
-        //                || p.SeoName == pageName
-        //            )
-
-        //        );
-        //    if (getPage.IsSucceed && getPage.Data.View != null)
-        //    {
-        //        ViewBag.pageClass = getPage.Data.CssClass;
-        //        return View(getPage.Data);
-        //    }
-        //    else
-        //    {
-        //        return RedirectToAction("Index", "Backend");
-        //    }
-        //}
 
         [HttpGet]
         [Route("alias")]
@@ -110,7 +64,7 @@ namespace Swastika.Cms.Mvc.Controllers
                 }
                 else
                 {
-                    return RedirectToAction("Index", "Backend");
+                    return NotFound();
                 }
             }
             else
@@ -248,22 +202,6 @@ namespace Swastika.Cms.Mvc.Controllers
             return View(getArticles.Data);
         }
 
-        //[HttpGet]
-        //[Route("page/{pageName}")]
-        //public IActionResult Page(string pageName)
-        //{
-        //    var getPage = FECategoryViewModel.Repository.GetSingleModel(
-        //        p => p.Type == (int)SWCmsConstants.CateType.Home && p.Specificulture == CurrentLanguage);
-        //    if (getPage.IsSucceed)
-        //    {
-        //        return View(getPage.Data);
-        //    }
-        //    else
-        //    {
-        //        return Redirect(string.Format("/{0}", CurrentLanguage));
-        //    }
-        //}
-
         [HttpGet]
         [Route("article/{SeoName}")]
         [Route("article/{CateSeoName}/{SeoName}")]
@@ -300,58 +238,5 @@ namespace Swastika.Cms.Mvc.Controllers
             }
         }
 
-        // TEST DEMO LIQUID templating language with https://github.com/lunet-io/scriban/
-        [HttpGet]
-        [Route("scriban/{pageName}")]
-        public ActionResult Scriban(string pageName)
-        {
-            Product products = new Product();
-            products.Products = new ProductList[3];
-            products.Products[0] = new ProductList { Name = "abc", Price = 12, Description = "abc product" };
-            products.Products[1] = new ProductList { Name = "def", Price = (float)0.23, Description = "abc product" };
-            products.Products[2] = new ProductList { Name = "ght", Price = 16, Description = "abc product" };
-
-            var getPage = FECategoryViewModel.Repository.GetSingleModel(
-                   p => p.SeoName == pageName && p.Specificulture == CurrentLanguage);
-
-            string tmpsource = getPage.Data.View.SpaContent != "" ? getPage.Data.View.SpaContent : @"
-            <html><body>
-            <ul id='products'>
-              {{ for product in products }}
-                <li>
-                  <h2>{{ product.name }}</h2>
-                       Price: {{ product.price }}
-                       {{ product.description | string.truncate 15 }}
-                </li>
-              {{ end }}
-            </ul></body></html>";
-            var template = Template.Parse(tmpsource);
-            string result = template.Render(products);
-
-            if (getPage.IsSucceed)
-            {
-                return new ContentResult()
-                {
-                    Content = result,
-                    ContentType = "text/html",
-                };
-            }
-            else
-            {
-                return Content("Error!");
-            }
-        }
-
-        private class Product
-        {
-            public ProductList[] Products { get; set; }
-        }
-
-        private class ProductList
-        {
-            public string Name { get; set; }
-            public float Price { get; set; }
-            public string Description { get; set; }
-        }
     }
 }

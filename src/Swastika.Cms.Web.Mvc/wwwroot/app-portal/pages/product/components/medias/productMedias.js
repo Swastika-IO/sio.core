@@ -1,8 +1,9 @@
 ﻿
 app.component('productMedias', {
     templateUrl: '/app-portal/pages/product/components/medias/productMedias.html',
-    controller: function () {
+    controller: ['$rootScope', function ($rootScope) {
         var ctrl = this;
+        ctrl.medias = $rootScope.medias;
         ctrl.activeMedia = function (media) {
             var currentItem = null;
             if (ctrl.product.mediaNavs == null) {
@@ -30,7 +31,7 @@ app.component('productMedias', {
                 ctrl.product.mediaNavs.push(currentItem);
             }
         }
-    },
+    }],
     bindings: {
         product: '=',
         medias: '=',

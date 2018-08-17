@@ -46,15 +46,18 @@ app.controller('MediaController', ['$scope', '$rootScope', '$routeParams', '$tim
             if (resp && resp.isSucceed) {
                 $scope.activedMedia = resp.data;
                 $rootScope.initEditor();
+                $rootScope.isBusy = false;
                 $scope.$apply();
             }
             else {
                 if (resp) { $rootScope.showErrors(resp.errors); }
+                $rootScope.isBusy = false;
                 $scope.$apply();
             }
         };
 
         $scope.uploadMedia = async function () {
+            $rootScope.isBusy = true;
             var resp = await mediaServices.uploadMedia($scope.mediaFile);
             if (resp && resp.isSucceed) {
                 $scope.activedMedia = resp.data;
@@ -63,6 +66,7 @@ app.controller('MediaController', ['$scope', '$rootScope', '$routeParams', '$tim
             }
             else {
                 if (resp) { $rootScope.showErrors(resp.errors); }
+                $rootScope.isBusy = false;
                 $scope.$apply();
             }
         };
@@ -74,10 +78,12 @@ app.controller('MediaController', ['$scope', '$rootScope', '$routeParams', '$tim
             if (response.isSucceed) {
                 $scope.activedMedia = response.data;
                 $rootScope.initEditor();
+                $rootScope.isBusy = false;
                 $scope.$apply();
             }
             else {
                 $rootScope.showErrors(response.errors);
+                $rootScope.isBusy = false;
                 $scope.$apply();
             }
         };
@@ -93,16 +99,17 @@ app.controller('MediaController', ['$scope', '$rootScope', '$routeParams', '$tim
                 $scope.request.toDate = $scope.request.toDate.toISOString();
             }
             if ($rootScope.settings) {
-
+                $rootScope.isBusy = true;
                 var resp = await mediaServices.getMedias($scope.request);
                 if (resp && resp.isSucceed) {
-
+                    $rootScope.medias = resp.data;
                     $scope.data = resp.data;
-
+                    $rootScope.isBusy = false;
                     $scope.$apply();
                 }
                 else {
                     if (resp) { $rootScope.showErrors(resp.errors); }
+                    $rootScope.isBusy = false;
                     $scope.$apply();
                 }
             }
@@ -110,12 +117,14 @@ app.controller('MediaController', ['$scope', '$rootScope', '$routeParams', '$tim
 
         $scope.removeMedia = async function (id) {
             if (confirm("Are you sure!")) {
+                $rootScope.isBusy = true;
                 var resp = await mediaServices.removeMedia(id);
                 if (resp && resp.isSucceed) {
                     $scope.loadMedias();
                 }
                 else {
                     if (resp) { $rootScope.showErrors(resp.errors); }
+                    $rootScope.isBusy = false;
                 }
             }
         };
@@ -143,7 +152,8 @@ app.controller('MediaController', ['$scope', '$rootScope', '$routeParams', '$tim
                     $scope.$apply();
                 };
                 reader.onerror = function (error) {
-
+                    $rootScope.showErrors([error]);
+                    $rootScope.isBusy = false;
                 };
             }
             else {
@@ -152,11 +162,11 @@ app.controller('MediaController', ['$scope', '$rootScope', '$routeParams', '$tim
         }
 
         $scope.saveMedia = async function (media) {
+            $rootScope.isBusy = true;
             var resp = await mediaServices.saveMedia(media);
             if (resp && resp.isSucceed) {
                 $scope.activedMedia = resp.data;
                 $rootScope.showMessage('Thành công', 'success');
-                $rootScope.isBusy = false;
                 $scope.loadMedias();
                 $scope.loadMedia();
                 $scope.$apply();
@@ -164,6 +174,7 @@ app.controller('MediaController', ['$scope', '$rootScope', '$routeParams', '$tim
             }
             else {
                 if (resp) { $rootScope.showErrors(resp.errors); }
+                $rootScope.isBusy = false;
                 $scope.$apply();
             }
         };

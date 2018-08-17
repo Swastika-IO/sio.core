@@ -137,5 +137,864 @@
       "Source": "Microsoft.EntityFrameworkCore.Relational",
       "WatsonBuckets": null
     }
+  },
+  {
+    "CreatedDateTime": "2018-08-15T15:49:37.0979923Z",
+    "Details": {
+      "ClassName": "System.NullReferenceException",
+      "Message": "Object reference not set to an instance of an object.",
+      "Data": null,
+      "InnerException": null,
+      "HelpURL": null,
+      "StackTraceString": "   at Swastika.Cms.Lib.ViewModels.Api.ApiArticleViewModel.ParseModel(SiocCmsContext _context, IDbContextTransaction _transaction) in C:\\Git\\GitHub\\Swastika\\Swastika-IO-Core\\src\\Swastika.Cms.Lib\\ViewModels\\Api\\ApiArticleViewModel.cs:line 373\r\n   at Swastika.Domain.Data.ViewModels.ViewModelBase`3.CloneAsync(TModel model, List`1 cloneCultures, TDbContext _context, IDbContextTransaction _transaction)",
+      "RemoteStackTraceString": null,
+      "RemoteStackIndex": 0,
+      "ExceptionMethod": null,
+      "HResult": -2147467261,
+      "Source": "Swastika.Cms.Lib",
+      "WatsonBuckets": null
+    }
+  },
+  {
+    "CreatedDateTime": "2018-08-15T15:54:34.7352034Z",
+    "Details": {
+      "ClassName": "System.NullReferenceException",
+      "Message": "Object reference not set to an instance of an object.",
+      "Data": null,
+      "InnerException": null,
+      "HelpURL": null,
+      "StackTraceString": "   at Swastika.Cms.Lib.ViewModels.Api.ApiArticleViewModel.ParseModel(SiocCmsContext _context, IDbContextTransaction _transaction) in C:\\Git\\GitHub\\Swastika\\Swastika-IO-Core\\src\\Swastika.Cms.Lib\\ViewModels\\Api\\ApiArticleViewModel.cs:line 373\r\n   at Swastika.Domain.Data.ViewModels.ViewModelBase`3.CloneAsync(TModel model, List`1 cloneCultures, TDbContext _context, IDbContextTransaction _transaction)",
+      "RemoteStackTraceString": null,
+      "RemoteStackIndex": 0,
+      "ExceptionMethod": null,
+      "HResult": -2147467261,
+      "Source": "Swastika.Cms.Lib",
+      "WatsonBuckets": null
+    }
+  },
+  {
+    "CreatedDateTime": "2018-08-15T16:02:35.1449731Z",
+    "Details": {
+      "ClassName": "System.InvalidOperationException",
+      "Message": "An exception was thrown while attempting to evaluate a LINQ query parameter expression. To show additional information call EnableSensitiveDataLogging() when overriding DbContext.OnConfiguring.",
+      "Data": null,
+      "InnerException": {
+        "ClassName": "System.NullReferenceException",
+        "Message": "Object reference not set to an instance of an object.",
+        "Data": null,
+        "InnerException": null,
+        "HelpURL": null,
+        "StackTraceString": "   at lambda_method(Closure )\r\n   at Microsoft.EntityFrameworkCore.Query.ExpressionVisitors.Internal.ParameterExtractingExpressionVisitor.Evaluate(Expression expression, String& parameterName)",
+        "RemoteStackTraceString": null,
+        "RemoteStackIndex": 0,
+        "ExceptionMethod": null,
+        "HResult": -2147467261,
+        "Source": "Anonymously Hosted DynamicMethods Assembly",
+        "WatsonBuckets": null
+      },
+      "HelpURL": null,
+      "StackTraceString": "   at Microsoft.EntityFrameworkCore.Query.ExpressionVisitors.Internal.ParameterExtractingExpressionVisitor.Evaluate(Expression expression, String& parameterName)\r\n   at Microsoft.EntityFrameworkCore.Query.ExpressionVisitors.Internal.ParameterExtractingExpressionVisitor.TryExtractParameter(Expression expression)\r\n   at Microsoft.EntityFrameworkCore.Query.ExpressionVisitors.Internal.ParameterExtractingExpressionVisitor.VisitMethodCall(MethodCallExpression methodCallExpression)\r\n   at System.Linq.Expressions.MethodCallExpression.Accept(ExpressionVisitor visitor)\r\n   at System.Linq.Expressions.ExpressionVisitor.Visit(Expression node)\r\n   at System.Linq.Expressions.ExpressionVisitor.VisitBinary(BinaryExpression node)\r\n   at Microsoft.EntityFrameworkCore.Query.ExpressionVisitors.Internal.ParameterExtractingExpressionVisitor.VisitBinary(BinaryExpression binaryExpression)\r\n   at System.Linq.Expressions.BinaryExpression.Accept(ExpressionVisitor visitor)\r\n   at System.Linq.Expressions.ExpressionVisitor.Visit(Expression node)\r\n   at Microsoft.EntityFrameworkCore.Query.ExpressionVisitors.Internal.ParameterExtractingExpressionVisitor.VisitBinary(BinaryExpression binaryExpression)\r\n   at System.Linq.Expressions.BinaryExpression.Accept(ExpressionVisitor visitor)\r\n   at System.Linq.Expressions.ExpressionVisitor.Visit(Expression node)\r\n   at System.Linq.Expressions.ExpressionVisitor.VisitLambda[T](Expression`1 node)\r\n   at Microsoft.EntityFrameworkCore.Query.ExpressionVisitors.Internal.ParameterExtractingExpressionVisitor.VisitLambda[T](Expression`1 node)\r\n   at System.Linq.Expressions.Expression`1.Accept(ExpressionVisitor visitor)\r\n   at System.Linq.Expressions.ExpressionVisitor.Visit(Expression node)\r\n   at System.Linq.Expressions.ExpressionVisitor.VisitUnary(UnaryExpression node)\r\n   at Microsoft.EntityFrameworkCore.Query.ExpressionVisitors.Internal.ParameterExtractingExpressionVisitor.VisitUnary(UnaryExpression unaryExpression)\r\n   at System.Linq.Expressions.UnaryExpression.Accept(ExpressionVisitor visitor)\r\n   at System.Linq.Expressions.ExpressionVisitor.Visit(Expression node)\r\n   at System.Dynamic.Utils.ExpressionVisitorUtils.VisitArguments(ExpressionVisitor visitor, IArgumentProvider nodes)\r\n   at System.Linq.Expressions.ExpressionVisitor.VisitMethodCall(MethodCallExpression node)\r\n   at Microsoft.EntityFrameworkCore.Query.ExpressionVisitors.Internal.ParameterExtractingExpressionVisitor.VisitMethodCall(MethodCallExpression methodCallExpression)\r\n   at System.Linq.Expressions.MethodCallExpression.Accept(ExpressionVisitor visitor)\r\n   at System.Linq.Expressions.ExpressionVisitor.Visit(Expression node)\r\n   at Microsoft.EntityFrameworkCore.Query.ExpressionVisitors.Internal.ParameterExtractingExpressionVisitor.ExtractParameters(Expression expression)\r\n   at Microsoft.EntityFrameworkCore.Query.Internal.QueryModelGenerator.ExtractParameters(IDiagnosticsLogger`1 logger, Expression query, IParameterValues parameterValues, Boolean parameterize, Boolean generateContextAccessors)\r\n   at Microsoft.EntityFrameworkCore.Query.Internal.QueryCompiler.Execute[TResult](Expression query)\r\n   at Microsoft.EntityFrameworkCore.Query.Internal.EntityQueryProvider.Execute[TResult](Expression expression)\r\n   at System.Linq.Queryable.SingleOrDefault[TSource](IQueryable`1 source, Expression`1 predicate)\r\n   at Swastika.Domain.Data.Repository.ViewRepositoryBase`3.GetSingleModel(Expression`1 predicate, TDbContext _context, IDbContextTransaction _transaction)",
+      "RemoteStackTraceString": null,
+      "RemoteStackIndex": 0,
+      "ExceptionMethod": null,
+      "HResult": -2146233079,
+      "Source": "Microsoft.EntityFrameworkCore",
+      "WatsonBuckets": null
+    }
+  },
+  {
+    "CreatedDateTime": "2018-08-15T16:04:26.0948771Z",
+    "Details": {
+      "ClassName": "System.InvalidOperationException",
+      "Message": "Sequence contains no elements.",
+      "Data": null,
+      "InnerException": null,
+      "HelpURL": null,
+      "StackTraceString": "   at Microsoft.EntityFrameworkCore.Query.QueryMethodProvider.GetResult[TResult](IEnumerable`1 valueBuffers, Boolean throwOnNullResult)\r\n   at Microsoft.EntityFrameworkCore.Query.Internal.LinqOperatorProvider.ResultEnumerable`1.GetEnumerator()\r\n   at Microsoft.EntityFrameworkCore.Query.Internal.LinqOperatorProvider.ExceptionInterceptor`1.EnumeratorExceptionInterceptor.MoveNext()\r\n   at System.Linq.Enumerable.TryGetFirst[TSource](IEnumerable`1 source, Boolean& found)\r\n   at System.Linq.Enumerable.First[TSource](IEnumerable`1 source)\r\n   at Microsoft.EntityFrameworkCore.Query.Internal.QueryCompiler.<>c__DisplayClass15_1`1.<CompileQueryCore>b__0(QueryContext qc)\r\n   at Swastika.Domain.Data.Repository.ViewRepositoryBase`3.Max(Expression`1 predicate, TDbContext _context, IDbContextTransaction _transaction)",
+      "RemoteStackTraceString": null,
+      "RemoteStackIndex": 0,
+      "ExceptionMethod": null,
+      "HResult": -2146233079,
+      "Source": "Microsoft.EntityFrameworkCore.Relational",
+      "WatsonBuckets": null
+    }
+  },
+  {
+    "CreatedDateTime": "2018-08-15T16:04:47.7329862Z",
+    "Details": {
+      "ClassName": "System.InvalidOperationException",
+      "Message": "An exception was thrown while attempting to evaluate a LINQ query parameter expression. To show additional information call EnableSensitiveDataLogging() when overriding DbContext.OnConfiguring.",
+      "Data": null,
+      "InnerException": {
+        "ClassName": "System.NullReferenceException",
+        "Message": "Object reference not set to an instance of an object.",
+        "Data": null,
+        "InnerException": null,
+        "HelpURL": null,
+        "StackTraceString": "   at lambda_method(Closure )\r\n   at Microsoft.EntityFrameworkCore.Query.ExpressionVisitors.Internal.ParameterExtractingExpressionVisitor.Evaluate(Expression expression, String& parameterName)",
+        "RemoteStackTraceString": null,
+        "RemoteStackIndex": 0,
+        "ExceptionMethod": null,
+        "HResult": -2147467261,
+        "Source": "Anonymously Hosted DynamicMethods Assembly",
+        "WatsonBuckets": null
+      },
+      "HelpURL": null,
+      "StackTraceString": "   at Microsoft.EntityFrameworkCore.Query.ExpressionVisitors.Internal.ParameterExtractingExpressionVisitor.Evaluate(Expression expression, String& parameterName)\r\n   at Microsoft.EntityFrameworkCore.Query.ExpressionVisitors.Internal.ParameterExtractingExpressionVisitor.TryExtractParameter(Expression expression)\r\n   at Microsoft.EntityFrameworkCore.Query.ExpressionVisitors.Internal.ParameterExtractingExpressionVisitor.VisitMethodCall(MethodCallExpression methodCallExpression)\r\n   at System.Linq.Expressions.MethodCallExpression.Accept(ExpressionVisitor visitor)\r\n   at System.Linq.Expressions.ExpressionVisitor.Visit(Expression node)\r\n   at System.Linq.Expressions.ExpressionVisitor.VisitBinary(BinaryExpression node)\r\n   at Microsoft.EntityFrameworkCore.Query.ExpressionVisitors.Internal.ParameterExtractingExpressionVisitor.VisitBinary(BinaryExpression binaryExpression)\r\n   at System.Linq.Expressions.BinaryExpression.Accept(ExpressionVisitor visitor)\r\n   at System.Linq.Expressions.ExpressionVisitor.Visit(Expression node)\r\n   at Microsoft.EntityFrameworkCore.Query.ExpressionVisitors.Internal.ParameterExtractingExpressionVisitor.VisitBinary(BinaryExpression binaryExpression)\r\n   at System.Linq.Expressions.BinaryExpression.Accept(ExpressionVisitor visitor)\r\n   at System.Linq.Expressions.ExpressionVisitor.Visit(Expression node)\r\n   at System.Linq.Expressions.ExpressionVisitor.VisitLambda[T](Expression`1 node)\r\n   at Microsoft.EntityFrameworkCore.Query.ExpressionVisitors.Internal.ParameterExtractingExpressionVisitor.VisitLambda[T](Expression`1 node)\r\n   at System.Linq.Expressions.Expression`1.Accept(ExpressionVisitor visitor)\r\n   at System.Linq.Expressions.ExpressionVisitor.Visit(Expression node)\r\n   at System.Linq.Expressions.ExpressionVisitor.VisitUnary(UnaryExpression node)\r\n   at Microsoft.EntityFrameworkCore.Query.ExpressionVisitors.Internal.ParameterExtractingExpressionVisitor.VisitUnary(UnaryExpression unaryExpression)\r\n   at System.Linq.Expressions.UnaryExpression.Accept(ExpressionVisitor visitor)\r\n   at System.Linq.Expressions.ExpressionVisitor.Visit(Expression node)\r\n   at System.Dynamic.Utils.ExpressionVisitorUtils.VisitArguments(ExpressionVisitor visitor, IArgumentProvider nodes)\r\n   at System.Linq.Expressions.ExpressionVisitor.VisitMethodCall(MethodCallExpression node)\r\n   at Microsoft.EntityFrameworkCore.Query.ExpressionVisitors.Internal.ParameterExtractingExpressionVisitor.VisitMethodCall(MethodCallExpression methodCallExpression)\r\n   at System.Linq.Expressions.MethodCallExpression.Accept(ExpressionVisitor visitor)\r\n   at System.Linq.Expressions.ExpressionVisitor.Visit(Expression node)\r\n   at Microsoft.EntityFrameworkCore.Query.ExpressionVisitors.Internal.ParameterExtractingExpressionVisitor.ExtractParameters(Expression expression)\r\n   at Microsoft.EntityFrameworkCore.Query.Internal.QueryModelGenerator.ExtractParameters(IDiagnosticsLogger`1 logger, Expression query, IParameterValues parameterValues, Boolean parameterize, Boolean generateContextAccessors)\r\n   at Microsoft.EntityFrameworkCore.Query.Internal.QueryCompiler.Execute[TResult](Expression query)\r\n   at Microsoft.EntityFrameworkCore.Query.Internal.EntityQueryProvider.Execute[TResult](Expression expression)\r\n   at System.Linq.Queryable.SingleOrDefault[TSource](IQueryable`1 source, Expression`1 predicate)\r\n   at Swastika.Domain.Data.Repository.ViewRepositoryBase`3.GetSingleModel(Expression`1 predicate, TDbContext _context, IDbContextTransaction _transaction)",
+      "RemoteStackTraceString": null,
+      "RemoteStackIndex": 0,
+      "ExceptionMethod": null,
+      "HResult": -2146233079,
+      "Source": "Microsoft.EntityFrameworkCore",
+      "WatsonBuckets": null
+    }
+  },
+  {
+    "CreatedDateTime": "2018-08-15T16:18:19.837294Z",
+    "Details": {
+      "ClassName": "System.InvalidOperationException",
+      "Message": "An exception was thrown while attempting to evaluate a LINQ query parameter expression. To show additional information call EnableSensitiveDataLogging() when overriding DbContext.OnConfiguring.",
+      "Data": null,
+      "InnerException": {
+        "ClassName": "System.NullReferenceException",
+        "Message": "Object reference not set to an instance of an object.",
+        "Data": null,
+        "InnerException": null,
+        "HelpURL": null,
+        "StackTraceString": "   at lambda_method(Closure )\r\n   at Microsoft.EntityFrameworkCore.Query.ExpressionVisitors.Internal.ParameterExtractingExpressionVisitor.Evaluate(Expression expression, String& parameterName)",
+        "RemoteStackTraceString": null,
+        "RemoteStackIndex": 0,
+        "ExceptionMethod": null,
+        "HResult": -2147467261,
+        "Source": "Anonymously Hosted DynamicMethods Assembly",
+        "WatsonBuckets": null
+      },
+      "HelpURL": null,
+      "StackTraceString": "   at Microsoft.EntityFrameworkCore.Query.ExpressionVisitors.Internal.ParameterExtractingExpressionVisitor.Evaluate(Expression expression, String& parameterName)\r\n   at Microsoft.EntityFrameworkCore.Query.ExpressionVisitors.Internal.ParameterExtractingExpressionVisitor.TryExtractParameter(Expression expression)\r\n   at Microsoft.EntityFrameworkCore.Query.ExpressionVisitors.Internal.ParameterExtractingExpressionVisitor.VisitMethodCall(MethodCallExpression methodCallExpression)\r\n   at System.Linq.Expressions.MethodCallExpression.Accept(ExpressionVisitor visitor)\r\n   at System.Linq.Expressions.ExpressionVisitor.Visit(Expression node)\r\n   at System.Linq.Expressions.ExpressionVisitor.VisitBinary(BinaryExpression node)\r\n   at Microsoft.EntityFrameworkCore.Query.ExpressionVisitors.Internal.ParameterExtractingExpressionVisitor.VisitBinary(BinaryExpression binaryExpression)\r\n   at System.Linq.Expressions.BinaryExpression.Accept(ExpressionVisitor visitor)\r\n   at System.Linq.Expressions.ExpressionVisitor.Visit(Expression node)\r\n   at Microsoft.EntityFrameworkCore.Query.ExpressionVisitors.Internal.ParameterExtractingExpressionVisitor.VisitBinary(BinaryExpression binaryExpression)\r\n   at System.Linq.Expressions.BinaryExpression.Accept(ExpressionVisitor visitor)\r\n   at System.Linq.Expressions.ExpressionVisitor.Visit(Expression node)\r\n   at System.Linq.Expressions.ExpressionVisitor.VisitLambda[T](Expression`1 node)\r\n   at Microsoft.EntityFrameworkCore.Query.ExpressionVisitors.Internal.ParameterExtractingExpressionVisitor.VisitLambda[T](Expression`1 node)\r\n   at System.Linq.Expressions.Expression`1.Accept(ExpressionVisitor visitor)\r\n   at System.Linq.Expressions.ExpressionVisitor.Visit(Expression node)\r\n   at System.Linq.Expressions.ExpressionVisitor.VisitUnary(UnaryExpression node)\r\n   at Microsoft.EntityFrameworkCore.Query.ExpressionVisitors.Internal.ParameterExtractingExpressionVisitor.VisitUnary(UnaryExpression unaryExpression)\r\n   at System.Linq.Expressions.UnaryExpression.Accept(ExpressionVisitor visitor)\r\n   at System.Linq.Expressions.ExpressionVisitor.Visit(Expression node)\r\n   at System.Dynamic.Utils.ExpressionVisitorUtils.VisitArguments(ExpressionVisitor visitor, IArgumentProvider nodes)\r\n   at System.Linq.Expressions.ExpressionVisitor.VisitMethodCall(MethodCallExpression node)\r\n   at Microsoft.EntityFrameworkCore.Query.ExpressionVisitors.Internal.ParameterExtractingExpressionVisitor.VisitMethodCall(MethodCallExpression methodCallExpression)\r\n   at System.Linq.Expressions.MethodCallExpression.Accept(ExpressionVisitor visitor)\r\n   at System.Linq.Expressions.ExpressionVisitor.Visit(Expression node)\r\n   at Microsoft.EntityFrameworkCore.Query.ExpressionVisitors.Internal.ParameterExtractingExpressionVisitor.ExtractParameters(Expression expression)\r\n   at Microsoft.EntityFrameworkCore.Query.Internal.QueryModelGenerator.ExtractParameters(IDiagnosticsLogger`1 logger, Expression query, IParameterValues parameterValues, Boolean parameterize, Boolean generateContextAccessors)\r\n   at Microsoft.EntityFrameworkCore.Query.Internal.QueryCompiler.Execute[TResult](Expression query)\r\n   at Microsoft.EntityFrameworkCore.Query.Internal.EntityQueryProvider.Execute[TResult](Expression expression)\r\n   at System.Linq.Queryable.SingleOrDefault[TSource](IQueryable`1 source, Expression`1 predicate)\r\n   at Swastika.Domain.Data.Repository.ViewRepositoryBase`3.GetSingleModel(Expression`1 predicate, TDbContext _context, IDbContextTransaction _transaction)",
+      "RemoteStackTraceString": null,
+      "RemoteStackIndex": 0,
+      "ExceptionMethod": null,
+      "HResult": -2146233079,
+      "Source": "Microsoft.EntityFrameworkCore",
+      "WatsonBuckets": null
+    }
+  },
+  {
+    "CreatedDateTime": "2018-08-15T16:19:39.6926491Z",
+    "Details": {
+      "ClassName": "System.InvalidOperationException",
+      "Message": "An exception was thrown while attempting to evaluate a LINQ query parameter expression. To show additional information call EnableSensitiveDataLogging() when overriding DbContext.OnConfiguring.",
+      "Data": null,
+      "InnerException": {
+        "ClassName": "System.NullReferenceException",
+        "Message": "Object reference not set to an instance of an object.",
+        "Data": null,
+        "InnerException": null,
+        "HelpURL": null,
+        "StackTraceString": "   at lambda_method(Closure )\r\n   at Microsoft.EntityFrameworkCore.Query.ExpressionVisitors.Internal.ParameterExtractingExpressionVisitor.Evaluate(Expression expression, String& parameterName)",
+        "RemoteStackTraceString": null,
+        "RemoteStackIndex": 0,
+        "ExceptionMethod": null,
+        "HResult": -2147467261,
+        "Source": "Anonymously Hosted DynamicMethods Assembly",
+        "WatsonBuckets": null
+      },
+      "HelpURL": null,
+      "StackTraceString": "   at Microsoft.EntityFrameworkCore.Query.ExpressionVisitors.Internal.ParameterExtractingExpressionVisitor.Evaluate(Expression expression, String& parameterName)\r\n   at Microsoft.EntityFrameworkCore.Query.ExpressionVisitors.Internal.ParameterExtractingExpressionVisitor.TryExtractParameter(Expression expression)\r\n   at Microsoft.EntityFrameworkCore.Query.ExpressionVisitors.Internal.ParameterExtractingExpressionVisitor.VisitMethodCall(MethodCallExpression methodCallExpression)\r\n   at System.Linq.Expressions.MethodCallExpression.Accept(ExpressionVisitor visitor)\r\n   at System.Linq.Expressions.ExpressionVisitor.Visit(Expression node)\r\n   at System.Linq.Expressions.ExpressionVisitor.VisitBinary(BinaryExpression node)\r\n   at Microsoft.EntityFrameworkCore.Query.ExpressionVisitors.Internal.ParameterExtractingExpressionVisitor.VisitBinary(BinaryExpression binaryExpression)\r\n   at System.Linq.Expressions.BinaryExpression.Accept(ExpressionVisitor visitor)\r\n   at System.Linq.Expressions.ExpressionVisitor.Visit(Expression node)\r\n   at Microsoft.EntityFrameworkCore.Query.ExpressionVisitors.Internal.ParameterExtractingExpressionVisitor.VisitBinary(BinaryExpression binaryExpression)\r\n   at System.Linq.Expressions.BinaryExpression.Accept(ExpressionVisitor visitor)\r\n   at System.Linq.Expressions.ExpressionVisitor.Visit(Expression node)\r\n   at System.Linq.Expressions.ExpressionVisitor.VisitLambda[T](Expression`1 node)\r\n   at Microsoft.EntityFrameworkCore.Query.ExpressionVisitors.Internal.ParameterExtractingExpressionVisitor.VisitLambda[T](Expression`1 node)\r\n   at System.Linq.Expressions.Expression`1.Accept(ExpressionVisitor visitor)\r\n   at System.Linq.Expressions.ExpressionVisitor.Visit(Expression node)\r\n   at System.Linq.Expressions.ExpressionVisitor.VisitUnary(UnaryExpression node)\r\n   at Microsoft.EntityFrameworkCore.Query.ExpressionVisitors.Internal.ParameterExtractingExpressionVisitor.VisitUnary(UnaryExpression unaryExpression)\r\n   at System.Linq.Expressions.UnaryExpression.Accept(ExpressionVisitor visitor)\r\n   at System.Linq.Expressions.ExpressionVisitor.Visit(Expression node)\r\n   at System.Dynamic.Utils.ExpressionVisitorUtils.VisitArguments(ExpressionVisitor visitor, IArgumentProvider nodes)\r\n   at System.Linq.Expressions.ExpressionVisitor.VisitMethodCall(MethodCallExpression node)\r\n   at Microsoft.EntityFrameworkCore.Query.ExpressionVisitors.Internal.ParameterExtractingExpressionVisitor.VisitMethodCall(MethodCallExpression methodCallExpression)\r\n   at System.Linq.Expressions.MethodCallExpression.Accept(ExpressionVisitor visitor)\r\n   at System.Linq.Expressions.ExpressionVisitor.Visit(Expression node)\r\n   at Microsoft.EntityFrameworkCore.Query.ExpressionVisitors.Internal.ParameterExtractingExpressionVisitor.ExtractParameters(Expression expression)\r\n   at Microsoft.EntityFrameworkCore.Query.Internal.QueryModelGenerator.ExtractParameters(IDiagnosticsLogger`1 logger, Expression query, IParameterValues parameterValues, Boolean parameterize, Boolean generateContextAccessors)\r\n   at Microsoft.EntityFrameworkCore.Query.Internal.QueryCompiler.Execute[TResult](Expression query)\r\n   at Microsoft.EntityFrameworkCore.Query.Internal.EntityQueryProvider.Execute[TResult](Expression expression)\r\n   at System.Linq.Queryable.SingleOrDefault[TSource](IQueryable`1 source, Expression`1 predicate)\r\n   at Swastika.Domain.Data.Repository.ViewRepositoryBase`3.GetSingleModel(Expression`1 predicate, TDbContext _context, IDbContextTransaction _transaction)",
+      "RemoteStackTraceString": null,
+      "RemoteStackIndex": 0,
+      "ExceptionMethod": null,
+      "HResult": -2146233079,
+      "Source": "Microsoft.EntityFrameworkCore",
+      "WatsonBuckets": null
+    }
+  },
+  {
+    "CreatedDateTime": "2018-08-16T05:23:43.4216098Z",
+    "Details": {
+      "ClassName": "System.InvalidOperationException",
+      "Message": "An exception was thrown while attempting to evaluate a LINQ query parameter expression. To show additional information call EnableSensitiveDataLogging() when overriding DbContext.OnConfiguring.",
+      "Data": null,
+      "InnerException": {
+        "ClassName": "System.NullReferenceException",
+        "Message": "Object reference not set to an instance of an object.",
+        "Data": null,
+        "InnerException": null,
+        "HelpURL": null,
+        "StackTraceString": "   at lambda_method(Closure )\r\n   at Microsoft.EntityFrameworkCore.Query.ExpressionVisitors.Internal.ParameterExtractingExpressionVisitor.Evaluate(Expression expression, String& parameterName)",
+        "RemoteStackTraceString": null,
+        "RemoteStackIndex": 0,
+        "ExceptionMethod": null,
+        "HResult": -2147467261,
+        "Source": "Anonymously Hosted DynamicMethods Assembly",
+        "WatsonBuckets": null
+      },
+      "HelpURL": null,
+      "StackTraceString": "   at Microsoft.EntityFrameworkCore.Query.ExpressionVisitors.Internal.ParameterExtractingExpressionVisitor.Evaluate(Expression expression, String& parameterName)\r\n   at Microsoft.EntityFrameworkCore.Query.ExpressionVisitors.Internal.ParameterExtractingExpressionVisitor.TryExtractParameter(Expression expression)\r\n   at Microsoft.EntityFrameworkCore.Query.ExpressionVisitors.Internal.ParameterExtractingExpressionVisitor.VisitMethodCall(MethodCallExpression methodCallExpression)\r\n   at System.Linq.Expressions.MethodCallExpression.Accept(ExpressionVisitor visitor)\r\n   at System.Linq.Expressions.ExpressionVisitor.Visit(Expression node)\r\n   at System.Linq.Expressions.ExpressionVisitor.VisitBinary(BinaryExpression node)\r\n   at Microsoft.EntityFrameworkCore.Query.ExpressionVisitors.Internal.ParameterExtractingExpressionVisitor.VisitBinary(BinaryExpression binaryExpression)\r\n   at System.Linq.Expressions.BinaryExpression.Accept(ExpressionVisitor visitor)\r\n   at System.Linq.Expressions.ExpressionVisitor.Visit(Expression node)\r\n   at Microsoft.EntityFrameworkCore.Query.ExpressionVisitors.Internal.ParameterExtractingExpressionVisitor.VisitBinary(BinaryExpression binaryExpression)\r\n   at System.Linq.Expressions.BinaryExpression.Accept(ExpressionVisitor visitor)\r\n   at System.Linq.Expressions.ExpressionVisitor.Visit(Expression node)\r\n   at System.Linq.Expressions.ExpressionVisitor.VisitLambda[T](Expression`1 node)\r\n   at Microsoft.EntityFrameworkCore.Query.ExpressionVisitors.Internal.ParameterExtractingExpressionVisitor.VisitLambda[T](Expression`1 node)\r\n   at System.Linq.Expressions.Expression`1.Accept(ExpressionVisitor visitor)\r\n   at System.Linq.Expressions.ExpressionVisitor.Visit(Expression node)\r\n   at System.Linq.Expressions.ExpressionVisitor.VisitUnary(UnaryExpression node)\r\n   at Microsoft.EntityFrameworkCore.Query.ExpressionVisitors.Internal.ParameterExtractingExpressionVisitor.VisitUnary(UnaryExpression unaryExpression)\r\n   at System.Linq.Expressions.UnaryExpression.Accept(ExpressionVisitor visitor)\r\n   at System.Linq.Expressions.ExpressionVisitor.Visit(Expression node)\r\n   at System.Dynamic.Utils.ExpressionVisitorUtils.VisitArguments(ExpressionVisitor visitor, IArgumentProvider nodes)\r\n   at System.Linq.Expressions.ExpressionVisitor.VisitMethodCall(MethodCallExpression node)\r\n   at Microsoft.EntityFrameworkCore.Query.ExpressionVisitors.Internal.ParameterExtractingExpressionVisitor.VisitMethodCall(MethodCallExpression methodCallExpression)\r\n   at System.Linq.Expressions.MethodCallExpression.Accept(ExpressionVisitor visitor)\r\n   at System.Linq.Expressions.ExpressionVisitor.Visit(Expression node)\r\n   at Microsoft.EntityFrameworkCore.Query.ExpressionVisitors.Internal.ParameterExtractingExpressionVisitor.ExtractParameters(Expression expression)\r\n   at Microsoft.EntityFrameworkCore.Query.Internal.QueryModelGenerator.ExtractParameters(IDiagnosticsLogger`1 logger, Expression query, IParameterValues parameterValues, Boolean parameterize, Boolean generateContextAccessors)\r\n   at Microsoft.EntityFrameworkCore.Query.Internal.QueryCompiler.Execute[TResult](Expression query)\r\n   at Microsoft.EntityFrameworkCore.Query.Internal.EntityQueryProvider.Execute[TResult](Expression expression)\r\n   at System.Linq.Queryable.SingleOrDefault[TSource](IQueryable`1 source, Expression`1 predicate)\r\n   at Swastika.Domain.Data.Repository.ViewRepositoryBase`3.GetSingleModel(Expression`1 predicate, TDbContext _context, IDbContextTransaction _transaction)",
+      "RemoteStackTraceString": null,
+      "RemoteStackIndex": 0,
+      "ExceptionMethod": null,
+      "HResult": -2146233079,
+      "Source": "Microsoft.EntityFrameworkCore",
+      "WatsonBuckets": null
+    }
+  },
+  {
+    "CreatedDateTime": "2018-08-16T05:25:02.8749418Z",
+    "Details": {
+      "ClassName": "System.InvalidOperationException",
+      "Message": "An exception was thrown while attempting to evaluate a LINQ query parameter expression. To show additional information call EnableSensitiveDataLogging() when overriding DbContext.OnConfiguring.",
+      "Data": null,
+      "InnerException": {
+        "ClassName": "System.NullReferenceException",
+        "Message": "Object reference not set to an instance of an object.",
+        "Data": null,
+        "InnerException": null,
+        "HelpURL": null,
+        "StackTraceString": "   at lambda_method(Closure )\r\n   at Microsoft.EntityFrameworkCore.Query.ExpressionVisitors.Internal.ParameterExtractingExpressionVisitor.Evaluate(Expression expression, String& parameterName)",
+        "RemoteStackTraceString": null,
+        "RemoteStackIndex": 0,
+        "ExceptionMethod": null,
+        "HResult": -2147467261,
+        "Source": "Anonymously Hosted DynamicMethods Assembly",
+        "WatsonBuckets": null
+      },
+      "HelpURL": null,
+      "StackTraceString": "   at Microsoft.EntityFrameworkCore.Query.ExpressionVisitors.Internal.ParameterExtractingExpressionVisitor.Evaluate(Expression expression, String& parameterName)\r\n   at Microsoft.EntityFrameworkCore.Query.ExpressionVisitors.Internal.ParameterExtractingExpressionVisitor.TryExtractParameter(Expression expression)\r\n   at Microsoft.EntityFrameworkCore.Query.ExpressionVisitors.Internal.ParameterExtractingExpressionVisitor.VisitMethodCall(MethodCallExpression methodCallExpression)\r\n   at System.Linq.Expressions.MethodCallExpression.Accept(ExpressionVisitor visitor)\r\n   at System.Linq.Expressions.ExpressionVisitor.Visit(Expression node)\r\n   at System.Linq.Expressions.ExpressionVisitor.VisitBinary(BinaryExpression node)\r\n   at Microsoft.EntityFrameworkCore.Query.ExpressionVisitors.Internal.ParameterExtractingExpressionVisitor.VisitBinary(BinaryExpression binaryExpression)\r\n   at System.Linq.Expressions.BinaryExpression.Accept(ExpressionVisitor visitor)\r\n   at System.Linq.Expressions.ExpressionVisitor.Visit(Expression node)\r\n   at Microsoft.EntityFrameworkCore.Query.ExpressionVisitors.Internal.ParameterExtractingExpressionVisitor.VisitBinary(BinaryExpression binaryExpression)\r\n   at System.Linq.Expressions.BinaryExpression.Accept(ExpressionVisitor visitor)\r\n   at System.Linq.Expressions.ExpressionVisitor.Visit(Expression node)\r\n   at System.Linq.Expressions.ExpressionVisitor.VisitLambda[T](Expression`1 node)\r\n   at Microsoft.EntityFrameworkCore.Query.ExpressionVisitors.Internal.ParameterExtractingExpressionVisitor.VisitLambda[T](Expression`1 node)\r\n   at System.Linq.Expressions.Expression`1.Accept(ExpressionVisitor visitor)\r\n   at System.Linq.Expressions.ExpressionVisitor.Visit(Expression node)\r\n   at System.Linq.Expressions.ExpressionVisitor.VisitUnary(UnaryExpression node)\r\n   at Microsoft.EntityFrameworkCore.Query.ExpressionVisitors.Internal.ParameterExtractingExpressionVisitor.VisitUnary(UnaryExpression unaryExpression)\r\n   at System.Linq.Expressions.UnaryExpression.Accept(ExpressionVisitor visitor)\r\n   at System.Linq.Expressions.ExpressionVisitor.Visit(Expression node)\r\n   at System.Dynamic.Utils.ExpressionVisitorUtils.VisitArguments(ExpressionVisitor visitor, IArgumentProvider nodes)\r\n   at System.Linq.Expressions.ExpressionVisitor.VisitMethodCall(MethodCallExpression node)\r\n   at Microsoft.EntityFrameworkCore.Query.ExpressionVisitors.Internal.ParameterExtractingExpressionVisitor.VisitMethodCall(MethodCallExpression methodCallExpression)\r\n   at System.Linq.Expressions.MethodCallExpression.Accept(ExpressionVisitor visitor)\r\n   at System.Linq.Expressions.ExpressionVisitor.Visit(Expression node)\r\n   at Microsoft.EntityFrameworkCore.Query.ExpressionVisitors.Internal.ParameterExtractingExpressionVisitor.ExtractParameters(Expression expression)\r\n   at Microsoft.EntityFrameworkCore.Query.Internal.QueryModelGenerator.ExtractParameters(IDiagnosticsLogger`1 logger, Expression query, IParameterValues parameterValues, Boolean parameterize, Boolean generateContextAccessors)\r\n   at Microsoft.EntityFrameworkCore.Query.Internal.QueryCompiler.Execute[TResult](Expression query)\r\n   at Microsoft.EntityFrameworkCore.Query.Internal.EntityQueryProvider.Execute[TResult](Expression expression)\r\n   at System.Linq.Queryable.SingleOrDefault[TSource](IQueryable`1 source, Expression`1 predicate)\r\n   at Swastika.Domain.Data.Repository.ViewRepositoryBase`3.GetSingleModel(Expression`1 predicate, TDbContext _context, IDbContextTransaction _transaction)",
+      "RemoteStackTraceString": null,
+      "RemoteStackIndex": 0,
+      "ExceptionMethod": null,
+      "HResult": -2146233079,
+      "Source": "Microsoft.EntityFrameworkCore",
+      "WatsonBuckets": null
+    }
+  },
+  {
+    "CreatedDateTime": "2018-08-16T05:25:30.7205383Z",
+    "Details": {
+      "ClassName": "System.InvalidOperationException",
+      "Message": "An exception was thrown while attempting to evaluate a LINQ query parameter expression. To show additional information call EnableSensitiveDataLogging() when overriding DbContext.OnConfiguring.",
+      "Data": null,
+      "InnerException": {
+        "ClassName": "System.NullReferenceException",
+        "Message": "Object reference not set to an instance of an object.",
+        "Data": null,
+        "InnerException": null,
+        "HelpURL": null,
+        "StackTraceString": "   at lambda_method(Closure )\r\n   at Microsoft.EntityFrameworkCore.Query.ExpressionVisitors.Internal.ParameterExtractingExpressionVisitor.Evaluate(Expression expression, String& parameterName)",
+        "RemoteStackTraceString": null,
+        "RemoteStackIndex": 0,
+        "ExceptionMethod": null,
+        "HResult": -2147467261,
+        "Source": "Anonymously Hosted DynamicMethods Assembly",
+        "WatsonBuckets": null
+      },
+      "HelpURL": null,
+      "StackTraceString": "   at Microsoft.EntityFrameworkCore.Query.ExpressionVisitors.Internal.ParameterExtractingExpressionVisitor.Evaluate(Expression expression, String& parameterName)\r\n   at Microsoft.EntityFrameworkCore.Query.ExpressionVisitors.Internal.ParameterExtractingExpressionVisitor.TryExtractParameter(Expression expression)\r\n   at Microsoft.EntityFrameworkCore.Query.ExpressionVisitors.Internal.ParameterExtractingExpressionVisitor.VisitMethodCall(MethodCallExpression methodCallExpression)\r\n   at System.Linq.Expressions.MethodCallExpression.Accept(ExpressionVisitor visitor)\r\n   at System.Linq.Expressions.ExpressionVisitor.Visit(Expression node)\r\n   at System.Linq.Expressions.ExpressionVisitor.VisitBinary(BinaryExpression node)\r\n   at Microsoft.EntityFrameworkCore.Query.ExpressionVisitors.Internal.ParameterExtractingExpressionVisitor.VisitBinary(BinaryExpression binaryExpression)\r\n   at System.Linq.Expressions.BinaryExpression.Accept(ExpressionVisitor visitor)\r\n   at System.Linq.Expressions.ExpressionVisitor.Visit(Expression node)\r\n   at Microsoft.EntityFrameworkCore.Query.ExpressionVisitors.Internal.ParameterExtractingExpressionVisitor.VisitBinary(BinaryExpression binaryExpression)\r\n   at System.Linq.Expressions.BinaryExpression.Accept(ExpressionVisitor visitor)\r\n   at System.Linq.Expressions.ExpressionVisitor.Visit(Expression node)\r\n   at System.Linq.Expressions.ExpressionVisitor.VisitLambda[T](Expression`1 node)\r\n   at Microsoft.EntityFrameworkCore.Query.ExpressionVisitors.Internal.ParameterExtractingExpressionVisitor.VisitLambda[T](Expression`1 node)\r\n   at System.Linq.Expressions.Expression`1.Accept(ExpressionVisitor visitor)\r\n   at System.Linq.Expressions.ExpressionVisitor.Visit(Expression node)\r\n   at System.Linq.Expressions.ExpressionVisitor.VisitUnary(UnaryExpression node)\r\n   at Microsoft.EntityFrameworkCore.Query.ExpressionVisitors.Internal.ParameterExtractingExpressionVisitor.VisitUnary(UnaryExpression unaryExpression)\r\n   at System.Linq.Expressions.UnaryExpression.Accept(ExpressionVisitor visitor)\r\n   at System.Linq.Expressions.ExpressionVisitor.Visit(Expression node)\r\n   at System.Dynamic.Utils.ExpressionVisitorUtils.VisitArguments(ExpressionVisitor visitor, IArgumentProvider nodes)\r\n   at System.Linq.Expressions.ExpressionVisitor.VisitMethodCall(MethodCallExpression node)\r\n   at Microsoft.EntityFrameworkCore.Query.ExpressionVisitors.Internal.ParameterExtractingExpressionVisitor.VisitMethodCall(MethodCallExpression methodCallExpression)\r\n   at System.Linq.Expressions.MethodCallExpression.Accept(ExpressionVisitor visitor)\r\n   at System.Linq.Expressions.ExpressionVisitor.Visit(Expression node)\r\n   at Microsoft.EntityFrameworkCore.Query.ExpressionVisitors.Internal.ParameterExtractingExpressionVisitor.ExtractParameters(Expression expression)\r\n   at Microsoft.EntityFrameworkCore.Query.Internal.QueryModelGenerator.ExtractParameters(IDiagnosticsLogger`1 logger, Expression query, IParameterValues parameterValues, Boolean parameterize, Boolean generateContextAccessors)\r\n   at Microsoft.EntityFrameworkCore.Query.Internal.QueryCompiler.Execute[TResult](Expression query)\r\n   at Microsoft.EntityFrameworkCore.Query.Internal.EntityQueryProvider.Execute[TResult](Expression expression)\r\n   at System.Linq.Queryable.SingleOrDefault[TSource](IQueryable`1 source, Expression`1 predicate)\r\n   at Swastika.Domain.Data.Repository.ViewRepositoryBase`3.GetSingleModel(Expression`1 predicate, TDbContext _context, IDbContextTransaction _transaction)",
+      "RemoteStackTraceString": null,
+      "RemoteStackIndex": 0,
+      "ExceptionMethod": null,
+      "HResult": -2146233079,
+      "Source": "Microsoft.EntityFrameworkCore",
+      "WatsonBuckets": null
+    }
+  },
+  {
+    "CreatedDateTime": "2018-08-16T05:26:11.1491074Z",
+    "Details": {
+      "ClassName": "System.InvalidOperationException",
+      "Message": "An exception was thrown while attempting to evaluate a LINQ query parameter expression. To show additional information call EnableSensitiveDataLogging() when overriding DbContext.OnConfiguring.",
+      "Data": null,
+      "InnerException": {
+        "ClassName": "System.NullReferenceException",
+        "Message": "Object reference not set to an instance of an object.",
+        "Data": null,
+        "InnerException": null,
+        "HelpURL": null,
+        "StackTraceString": "   at lambda_method(Closure )\r\n   at Microsoft.EntityFrameworkCore.Query.ExpressionVisitors.Internal.ParameterExtractingExpressionVisitor.Evaluate(Expression expression, String& parameterName)",
+        "RemoteStackTraceString": null,
+        "RemoteStackIndex": 0,
+        "ExceptionMethod": null,
+        "HResult": -2147467261,
+        "Source": "Anonymously Hosted DynamicMethods Assembly",
+        "WatsonBuckets": null
+      },
+      "HelpURL": null,
+      "StackTraceString": "   at Microsoft.EntityFrameworkCore.Query.ExpressionVisitors.Internal.ParameterExtractingExpressionVisitor.Evaluate(Expression expression, String& parameterName)\r\n   at Microsoft.EntityFrameworkCore.Query.ExpressionVisitors.Internal.ParameterExtractingExpressionVisitor.TryExtractParameter(Expression expression)\r\n   at Microsoft.EntityFrameworkCore.Query.ExpressionVisitors.Internal.ParameterExtractingExpressionVisitor.VisitMethodCall(MethodCallExpression methodCallExpression)\r\n   at System.Linq.Expressions.MethodCallExpression.Accept(ExpressionVisitor visitor)\r\n   at System.Linq.Expressions.ExpressionVisitor.Visit(Expression node)\r\n   at System.Linq.Expressions.ExpressionVisitor.VisitBinary(BinaryExpression node)\r\n   at Microsoft.EntityFrameworkCore.Query.ExpressionVisitors.Internal.ParameterExtractingExpressionVisitor.VisitBinary(BinaryExpression binaryExpression)\r\n   at System.Linq.Expressions.BinaryExpression.Accept(ExpressionVisitor visitor)\r\n   at System.Linq.Expressions.ExpressionVisitor.Visit(Expression node)\r\n   at Microsoft.EntityFrameworkCore.Query.ExpressionVisitors.Internal.ParameterExtractingExpressionVisitor.VisitBinary(BinaryExpression binaryExpression)\r\n   at System.Linq.Expressions.BinaryExpression.Accept(ExpressionVisitor visitor)\r\n   at System.Linq.Expressions.ExpressionVisitor.Visit(Expression node)\r\n   at System.Linq.Expressions.ExpressionVisitor.VisitLambda[T](Expression`1 node)\r\n   at Microsoft.EntityFrameworkCore.Query.ExpressionVisitors.Internal.ParameterExtractingExpressionVisitor.VisitLambda[T](Expression`1 node)\r\n   at System.Linq.Expressions.Expression`1.Accept(ExpressionVisitor visitor)\r\n   at System.Linq.Expressions.ExpressionVisitor.Visit(Expression node)\r\n   at System.Linq.Expressions.ExpressionVisitor.VisitUnary(UnaryExpression node)\r\n   at Microsoft.EntityFrameworkCore.Query.ExpressionVisitors.Internal.ParameterExtractingExpressionVisitor.VisitUnary(UnaryExpression unaryExpression)\r\n   at System.Linq.Expressions.UnaryExpression.Accept(ExpressionVisitor visitor)\r\n   at System.Linq.Expressions.ExpressionVisitor.Visit(Expression node)\r\n   at System.Dynamic.Utils.ExpressionVisitorUtils.VisitArguments(ExpressionVisitor visitor, IArgumentProvider nodes)\r\n   at System.Linq.Expressions.ExpressionVisitor.VisitMethodCall(MethodCallExpression node)\r\n   at Microsoft.EntityFrameworkCore.Query.ExpressionVisitors.Internal.ParameterExtractingExpressionVisitor.VisitMethodCall(MethodCallExpression methodCallExpression)\r\n   at System.Linq.Expressions.MethodCallExpression.Accept(ExpressionVisitor visitor)\r\n   at System.Linq.Expressions.ExpressionVisitor.Visit(Expression node)\r\n   at Microsoft.EntityFrameworkCore.Query.ExpressionVisitors.Internal.ParameterExtractingExpressionVisitor.ExtractParameters(Expression expression)\r\n   at Microsoft.EntityFrameworkCore.Query.Internal.QueryModelGenerator.ExtractParameters(IDiagnosticsLogger`1 logger, Expression query, IParameterValues parameterValues, Boolean parameterize, Boolean generateContextAccessors)\r\n   at Microsoft.EntityFrameworkCore.Query.Internal.QueryCompiler.Execute[TResult](Expression query)\r\n   at Microsoft.EntityFrameworkCore.Query.Internal.EntityQueryProvider.Execute[TResult](Expression expression)\r\n   at System.Linq.Queryable.SingleOrDefault[TSource](IQueryable`1 source, Expression`1 predicate)\r\n   at Swastika.Domain.Data.Repository.ViewRepositoryBase`3.GetSingleModel(Expression`1 predicate, TDbContext _context, IDbContextTransaction _transaction)",
+      "RemoteStackTraceString": null,
+      "RemoteStackIndex": 0,
+      "ExceptionMethod": null,
+      "HResult": -2146233079,
+      "Source": "Microsoft.EntityFrameworkCore",
+      "WatsonBuckets": null
+    }
+  },
+  {
+    "CreatedDateTime": "2018-08-16T05:27:09.6144278Z",
+    "Details": {
+      "ClassName": "System.InvalidOperationException",
+      "Message": "An exception was thrown while attempting to evaluate a LINQ query parameter expression. To show additional information call EnableSensitiveDataLogging() when overriding DbContext.OnConfiguring.",
+      "Data": null,
+      "InnerException": {
+        "ClassName": "System.NullReferenceException",
+        "Message": "Object reference not set to an instance of an object.",
+        "Data": null,
+        "InnerException": null,
+        "HelpURL": null,
+        "StackTraceString": "   at lambda_method(Closure )\r\n   at Microsoft.EntityFrameworkCore.Query.ExpressionVisitors.Internal.ParameterExtractingExpressionVisitor.Evaluate(Expression expression, String& parameterName)",
+        "RemoteStackTraceString": null,
+        "RemoteStackIndex": 0,
+        "ExceptionMethod": null,
+        "HResult": -2147467261,
+        "Source": "Anonymously Hosted DynamicMethods Assembly",
+        "WatsonBuckets": null
+      },
+      "HelpURL": null,
+      "StackTraceString": "   at Microsoft.EntityFrameworkCore.Query.ExpressionVisitors.Internal.ParameterExtractingExpressionVisitor.Evaluate(Expression expression, String& parameterName)\r\n   at Microsoft.EntityFrameworkCore.Query.ExpressionVisitors.Internal.ParameterExtractingExpressionVisitor.TryExtractParameter(Expression expression)\r\n   at Microsoft.EntityFrameworkCore.Query.ExpressionVisitors.Internal.ParameterExtractingExpressionVisitor.VisitMethodCall(MethodCallExpression methodCallExpression)\r\n   at System.Linq.Expressions.MethodCallExpression.Accept(ExpressionVisitor visitor)\r\n   at System.Linq.Expressions.ExpressionVisitor.Visit(Expression node)\r\n   at System.Linq.Expressions.ExpressionVisitor.VisitBinary(BinaryExpression node)\r\n   at Microsoft.EntityFrameworkCore.Query.ExpressionVisitors.Internal.ParameterExtractingExpressionVisitor.VisitBinary(BinaryExpression binaryExpression)\r\n   at System.Linq.Expressions.BinaryExpression.Accept(ExpressionVisitor visitor)\r\n   at System.Linq.Expressions.ExpressionVisitor.Visit(Expression node)\r\n   at Microsoft.EntityFrameworkCore.Query.ExpressionVisitors.Internal.ParameterExtractingExpressionVisitor.VisitBinary(BinaryExpression binaryExpression)\r\n   at System.Linq.Expressions.BinaryExpression.Accept(ExpressionVisitor visitor)\r\n   at System.Linq.Expressions.ExpressionVisitor.Visit(Expression node)\r\n   at System.Linq.Expressions.ExpressionVisitor.VisitLambda[T](Expression`1 node)\r\n   at Microsoft.EntityFrameworkCore.Query.ExpressionVisitors.Internal.ParameterExtractingExpressionVisitor.VisitLambda[T](Expression`1 node)\r\n   at System.Linq.Expressions.Expression`1.Accept(ExpressionVisitor visitor)\r\n   at System.Linq.Expressions.ExpressionVisitor.Visit(Expression node)\r\n   at System.Linq.Expressions.ExpressionVisitor.VisitUnary(UnaryExpression node)\r\n   at Microsoft.EntityFrameworkCore.Query.ExpressionVisitors.Internal.ParameterExtractingExpressionVisitor.VisitUnary(UnaryExpression unaryExpression)\r\n   at System.Linq.Expressions.UnaryExpression.Accept(ExpressionVisitor visitor)\r\n   at System.Linq.Expressions.ExpressionVisitor.Visit(Expression node)\r\n   at System.Dynamic.Utils.ExpressionVisitorUtils.VisitArguments(ExpressionVisitor visitor, IArgumentProvider nodes)\r\n   at System.Linq.Expressions.ExpressionVisitor.VisitMethodCall(MethodCallExpression node)\r\n   at Microsoft.EntityFrameworkCore.Query.ExpressionVisitors.Internal.ParameterExtractingExpressionVisitor.VisitMethodCall(MethodCallExpression methodCallExpression)\r\n   at System.Linq.Expressions.MethodCallExpression.Accept(ExpressionVisitor visitor)\r\n   at System.Linq.Expressions.ExpressionVisitor.Visit(Expression node)\r\n   at Microsoft.EntityFrameworkCore.Query.ExpressionVisitors.Internal.ParameterExtractingExpressionVisitor.ExtractParameters(Expression expression)\r\n   at Microsoft.EntityFrameworkCore.Query.Internal.QueryModelGenerator.ExtractParameters(IDiagnosticsLogger`1 logger, Expression query, IParameterValues parameterValues, Boolean parameterize, Boolean generateContextAccessors)\r\n   at Microsoft.EntityFrameworkCore.Query.Internal.QueryCompiler.Execute[TResult](Expression query)\r\n   at Microsoft.EntityFrameworkCore.Query.Internal.EntityQueryProvider.Execute[TResult](Expression expression)\r\n   at System.Linq.Queryable.SingleOrDefault[TSource](IQueryable`1 source, Expression`1 predicate)\r\n   at Swastika.Domain.Data.Repository.ViewRepositoryBase`3.GetSingleModel(Expression`1 predicate, TDbContext _context, IDbContextTransaction _transaction)",
+      "RemoteStackTraceString": null,
+      "RemoteStackIndex": 0,
+      "ExceptionMethod": null,
+      "HResult": -2146233079,
+      "Source": "Microsoft.EntityFrameworkCore",
+      "WatsonBuckets": null
+    }
+  },
+  {
+    "CreatedDateTime": "2018-08-16T05:27:23.5645752Z",
+    "Details": {
+      "ClassName": "System.InvalidOperationException",
+      "Message": "An exception was thrown while attempting to evaluate a LINQ query parameter expression. To show additional information call EnableSensitiveDataLogging() when overriding DbContext.OnConfiguring.",
+      "Data": null,
+      "InnerException": {
+        "ClassName": "System.NullReferenceException",
+        "Message": "Object reference not set to an instance of an object.",
+        "Data": null,
+        "InnerException": null,
+        "HelpURL": null,
+        "StackTraceString": "   at lambda_method(Closure )\r\n   at Microsoft.EntityFrameworkCore.Query.ExpressionVisitors.Internal.ParameterExtractingExpressionVisitor.Evaluate(Expression expression, String& parameterName)",
+        "RemoteStackTraceString": null,
+        "RemoteStackIndex": 0,
+        "ExceptionMethod": null,
+        "HResult": -2147467261,
+        "Source": "Anonymously Hosted DynamicMethods Assembly",
+        "WatsonBuckets": null
+      },
+      "HelpURL": null,
+      "StackTraceString": "   at Microsoft.EntityFrameworkCore.Query.ExpressionVisitors.Internal.ParameterExtractingExpressionVisitor.Evaluate(Expression expression, String& parameterName)\r\n   at Microsoft.EntityFrameworkCore.Query.ExpressionVisitors.Internal.ParameterExtractingExpressionVisitor.TryExtractParameter(Expression expression)\r\n   at Microsoft.EntityFrameworkCore.Query.ExpressionVisitors.Internal.ParameterExtractingExpressionVisitor.VisitMethodCall(MethodCallExpression methodCallExpression)\r\n   at System.Linq.Expressions.MethodCallExpression.Accept(ExpressionVisitor visitor)\r\n   at System.Linq.Expressions.ExpressionVisitor.Visit(Expression node)\r\n   at System.Linq.Expressions.ExpressionVisitor.VisitBinary(BinaryExpression node)\r\n   at Microsoft.EntityFrameworkCore.Query.ExpressionVisitors.Internal.ParameterExtractingExpressionVisitor.VisitBinary(BinaryExpression binaryExpression)\r\n   at System.Linq.Expressions.BinaryExpression.Accept(ExpressionVisitor visitor)\r\n   at System.Linq.Expressions.ExpressionVisitor.Visit(Expression node)\r\n   at Microsoft.EntityFrameworkCore.Query.ExpressionVisitors.Internal.ParameterExtractingExpressionVisitor.VisitBinary(BinaryExpression binaryExpression)\r\n   at System.Linq.Expressions.BinaryExpression.Accept(ExpressionVisitor visitor)\r\n   at System.Linq.Expressions.ExpressionVisitor.Visit(Expression node)\r\n   at System.Linq.Expressions.ExpressionVisitor.VisitLambda[T](Expression`1 node)\r\n   at Microsoft.EntityFrameworkCore.Query.ExpressionVisitors.Internal.ParameterExtractingExpressionVisitor.VisitLambda[T](Expression`1 node)\r\n   at System.Linq.Expressions.Expression`1.Accept(ExpressionVisitor visitor)\r\n   at System.Linq.Expressions.ExpressionVisitor.Visit(Expression node)\r\n   at System.Linq.Expressions.ExpressionVisitor.VisitUnary(UnaryExpression node)\r\n   at Microsoft.EntityFrameworkCore.Query.ExpressionVisitors.Internal.ParameterExtractingExpressionVisitor.VisitUnary(UnaryExpression unaryExpression)\r\n   at System.Linq.Expressions.UnaryExpression.Accept(ExpressionVisitor visitor)\r\n   at System.Linq.Expressions.ExpressionVisitor.Visit(Expression node)\r\n   at System.Dynamic.Utils.ExpressionVisitorUtils.VisitArguments(ExpressionVisitor visitor, IArgumentProvider nodes)\r\n   at System.Linq.Expressions.ExpressionVisitor.VisitMethodCall(MethodCallExpression node)\r\n   at Microsoft.EntityFrameworkCore.Query.ExpressionVisitors.Internal.ParameterExtractingExpressionVisitor.VisitMethodCall(MethodCallExpression methodCallExpression)\r\n   at System.Linq.Expressions.MethodCallExpression.Accept(ExpressionVisitor visitor)\r\n   at System.Linq.Expressions.ExpressionVisitor.Visit(Expression node)\r\n   at Microsoft.EntityFrameworkCore.Query.ExpressionVisitors.Internal.ParameterExtractingExpressionVisitor.ExtractParameters(Expression expression)\r\n   at Microsoft.EntityFrameworkCore.Query.Internal.QueryModelGenerator.ExtractParameters(IDiagnosticsLogger`1 logger, Expression query, IParameterValues parameterValues, Boolean parameterize, Boolean generateContextAccessors)\r\n   at Microsoft.EntityFrameworkCore.Query.Internal.QueryCompiler.Execute[TResult](Expression query)\r\n   at Microsoft.EntityFrameworkCore.Query.Internal.EntityQueryProvider.Execute[TResult](Expression expression)\r\n   at System.Linq.Queryable.SingleOrDefault[TSource](IQueryable`1 source, Expression`1 predicate)\r\n   at Swastika.Domain.Data.Repository.ViewRepositoryBase`3.GetSingleModel(Expression`1 predicate, TDbContext _context, IDbContextTransaction _transaction)",
+      "RemoteStackTraceString": null,
+      "RemoteStackIndex": 0,
+      "ExceptionMethod": null,
+      "HResult": -2146233079,
+      "Source": "Microsoft.EntityFrameworkCore",
+      "WatsonBuckets": null
+    }
+  },
+  {
+    "CreatedDateTime": "2018-08-16T05:28:28.991425Z",
+    "Details": {
+      "ClassName": "System.InvalidOperationException",
+      "Message": "An exception was thrown while attempting to evaluate a LINQ query parameter expression. To show additional information call EnableSensitiveDataLogging() when overriding DbContext.OnConfiguring.",
+      "Data": null,
+      "InnerException": {
+        "ClassName": "System.NullReferenceException",
+        "Message": "Object reference not set to an instance of an object.",
+        "Data": null,
+        "InnerException": null,
+        "HelpURL": null,
+        "StackTraceString": "   at lambda_method(Closure )\r\n   at Microsoft.EntityFrameworkCore.Query.ExpressionVisitors.Internal.ParameterExtractingExpressionVisitor.Evaluate(Expression expression, String& parameterName)",
+        "RemoteStackTraceString": null,
+        "RemoteStackIndex": 0,
+        "ExceptionMethod": null,
+        "HResult": -2147467261,
+        "Source": "Anonymously Hosted DynamicMethods Assembly",
+        "WatsonBuckets": null
+      },
+      "HelpURL": null,
+      "StackTraceString": "   at Microsoft.EntityFrameworkCore.Query.ExpressionVisitors.Internal.ParameterExtractingExpressionVisitor.Evaluate(Expression expression, String& parameterName)\r\n   at Microsoft.EntityFrameworkCore.Query.ExpressionVisitors.Internal.ParameterExtractingExpressionVisitor.TryExtractParameter(Expression expression)\r\n   at Microsoft.EntityFrameworkCore.Query.ExpressionVisitors.Internal.ParameterExtractingExpressionVisitor.VisitMethodCall(MethodCallExpression methodCallExpression)\r\n   at System.Linq.Expressions.MethodCallExpression.Accept(ExpressionVisitor visitor)\r\n   at System.Linq.Expressions.ExpressionVisitor.Visit(Expression node)\r\n   at System.Linq.Expressions.ExpressionVisitor.VisitBinary(BinaryExpression node)\r\n   at Microsoft.EntityFrameworkCore.Query.ExpressionVisitors.Internal.ParameterExtractingExpressionVisitor.VisitBinary(BinaryExpression binaryExpression)\r\n   at System.Linq.Expressions.BinaryExpression.Accept(ExpressionVisitor visitor)\r\n   at System.Linq.Expressions.ExpressionVisitor.Visit(Expression node)\r\n   at Microsoft.EntityFrameworkCore.Query.ExpressionVisitors.Internal.ParameterExtractingExpressionVisitor.VisitBinary(BinaryExpression binaryExpression)\r\n   at System.Linq.Expressions.BinaryExpression.Accept(ExpressionVisitor visitor)\r\n   at System.Linq.Expressions.ExpressionVisitor.Visit(Expression node)\r\n   at System.Linq.Expressions.ExpressionVisitor.VisitLambda[T](Expression`1 node)\r\n   at Microsoft.EntityFrameworkCore.Query.ExpressionVisitors.Internal.ParameterExtractingExpressionVisitor.VisitLambda[T](Expression`1 node)\r\n   at System.Linq.Expressions.Expression`1.Accept(ExpressionVisitor visitor)\r\n   at System.Linq.Expressions.ExpressionVisitor.Visit(Expression node)\r\n   at System.Linq.Expressions.ExpressionVisitor.VisitUnary(UnaryExpression node)\r\n   at Microsoft.EntityFrameworkCore.Query.ExpressionVisitors.Internal.ParameterExtractingExpressionVisitor.VisitUnary(UnaryExpression unaryExpression)\r\n   at System.Linq.Expressions.UnaryExpression.Accept(ExpressionVisitor visitor)\r\n   at System.Linq.Expressions.ExpressionVisitor.Visit(Expression node)\r\n   at System.Dynamic.Utils.ExpressionVisitorUtils.VisitArguments(ExpressionVisitor visitor, IArgumentProvider nodes)\r\n   at System.Linq.Expressions.ExpressionVisitor.VisitMethodCall(MethodCallExpression node)\r\n   at Microsoft.EntityFrameworkCore.Query.ExpressionVisitors.Internal.ParameterExtractingExpressionVisitor.VisitMethodCall(MethodCallExpression methodCallExpression)\r\n   at System.Linq.Expressions.MethodCallExpression.Accept(ExpressionVisitor visitor)\r\n   at System.Linq.Expressions.ExpressionVisitor.Visit(Expression node)\r\n   at Microsoft.EntityFrameworkCore.Query.ExpressionVisitors.Internal.ParameterExtractingExpressionVisitor.ExtractParameters(Expression expression)\r\n   at Microsoft.EntityFrameworkCore.Query.Internal.QueryModelGenerator.ExtractParameters(IDiagnosticsLogger`1 logger, Expression query, IParameterValues parameterValues, Boolean parameterize, Boolean generateContextAccessors)\r\n   at Microsoft.EntityFrameworkCore.Query.Internal.QueryCompiler.Execute[TResult](Expression query)\r\n   at Microsoft.EntityFrameworkCore.Query.Internal.EntityQueryProvider.Execute[TResult](Expression expression)\r\n   at System.Linq.Queryable.SingleOrDefault[TSource](IQueryable`1 source, Expression`1 predicate)\r\n   at Swastika.Domain.Data.Repository.ViewRepositoryBase`3.GetSingleModel(Expression`1 predicate, TDbContext _context, IDbContextTransaction _transaction)",
+      "RemoteStackTraceString": null,
+      "RemoteStackIndex": 0,
+      "ExceptionMethod": null,
+      "HResult": -2146233079,
+      "Source": "Microsoft.EntityFrameworkCore",
+      "WatsonBuckets": null
+    }
+  },
+  {
+    "CreatedDateTime": "2018-08-16T05:31:38.6527971Z",
+    "Details": {
+      "ClassName": "System.InvalidOperationException",
+      "Message": "An exception was thrown while attempting to evaluate a LINQ query parameter expression. To show additional information call EnableSensitiveDataLogging() when overriding DbContext.OnConfiguring.",
+      "Data": null,
+      "InnerException": {
+        "ClassName": "System.NullReferenceException",
+        "Message": "Object reference not set to an instance of an object.",
+        "Data": null,
+        "InnerException": null,
+        "HelpURL": null,
+        "StackTraceString": "   at lambda_method(Closure )\r\n   at Microsoft.EntityFrameworkCore.Query.ExpressionVisitors.Internal.ParameterExtractingExpressionVisitor.Evaluate(Expression expression, String& parameterName)",
+        "RemoteStackTraceString": null,
+        "RemoteStackIndex": 0,
+        "ExceptionMethod": null,
+        "HResult": -2147467261,
+        "Source": "Anonymously Hosted DynamicMethods Assembly",
+        "WatsonBuckets": null
+      },
+      "HelpURL": null,
+      "StackTraceString": "   at Microsoft.EntityFrameworkCore.Query.ExpressionVisitors.Internal.ParameterExtractingExpressionVisitor.Evaluate(Expression expression, String& parameterName)\r\n   at Microsoft.EntityFrameworkCore.Query.ExpressionVisitors.Internal.ParameterExtractingExpressionVisitor.TryExtractParameter(Expression expression)\r\n   at Microsoft.EntityFrameworkCore.Query.ExpressionVisitors.Internal.ParameterExtractingExpressionVisitor.VisitMethodCall(MethodCallExpression methodCallExpression)\r\n   at System.Linq.Expressions.MethodCallExpression.Accept(ExpressionVisitor visitor)\r\n   at System.Linq.Expressions.ExpressionVisitor.Visit(Expression node)\r\n   at System.Linq.Expressions.ExpressionVisitor.VisitBinary(BinaryExpression node)\r\n   at Microsoft.EntityFrameworkCore.Query.ExpressionVisitors.Internal.ParameterExtractingExpressionVisitor.VisitBinary(BinaryExpression binaryExpression)\r\n   at System.Linq.Expressions.BinaryExpression.Accept(ExpressionVisitor visitor)\r\n   at System.Linq.Expressions.ExpressionVisitor.Visit(Expression node)\r\n   at Microsoft.EntityFrameworkCore.Query.ExpressionVisitors.Internal.ParameterExtractingExpressionVisitor.VisitBinary(BinaryExpression binaryExpression)\r\n   at System.Linq.Expressions.BinaryExpression.Accept(ExpressionVisitor visitor)\r\n   at System.Linq.Expressions.ExpressionVisitor.Visit(Expression node)\r\n   at System.Linq.Expressions.ExpressionVisitor.VisitLambda[T](Expression`1 node)\r\n   at Microsoft.EntityFrameworkCore.Query.ExpressionVisitors.Internal.ParameterExtractingExpressionVisitor.VisitLambda[T](Expression`1 node)\r\n   at System.Linq.Expressions.Expression`1.Accept(ExpressionVisitor visitor)\r\n   at System.Linq.Expressions.ExpressionVisitor.Visit(Expression node)\r\n   at System.Linq.Expressions.ExpressionVisitor.VisitUnary(UnaryExpression node)\r\n   at Microsoft.EntityFrameworkCore.Query.ExpressionVisitors.Internal.ParameterExtractingExpressionVisitor.VisitUnary(UnaryExpression unaryExpression)\r\n   at System.Linq.Expressions.UnaryExpression.Accept(ExpressionVisitor visitor)\r\n   at System.Linq.Expressions.ExpressionVisitor.Visit(Expression node)\r\n   at System.Dynamic.Utils.ExpressionVisitorUtils.VisitArguments(ExpressionVisitor visitor, IArgumentProvider nodes)\r\n   at System.Linq.Expressions.ExpressionVisitor.VisitMethodCall(MethodCallExpression node)\r\n   at Microsoft.EntityFrameworkCore.Query.ExpressionVisitors.Internal.ParameterExtractingExpressionVisitor.VisitMethodCall(MethodCallExpression methodCallExpression)\r\n   at System.Linq.Expressions.MethodCallExpression.Accept(ExpressionVisitor visitor)\r\n   at System.Linq.Expressions.ExpressionVisitor.Visit(Expression node)\r\n   at Microsoft.EntityFrameworkCore.Query.ExpressionVisitors.Internal.ParameterExtractingExpressionVisitor.ExtractParameters(Expression expression)\r\n   at Microsoft.EntityFrameworkCore.Query.Internal.QueryModelGenerator.ExtractParameters(IDiagnosticsLogger`1 logger, Expression query, IParameterValues parameterValues, Boolean parameterize, Boolean generateContextAccessors)\r\n   at Microsoft.EntityFrameworkCore.Query.Internal.QueryCompiler.Execute[TResult](Expression query)\r\n   at Microsoft.EntityFrameworkCore.Query.Internal.EntityQueryProvider.Execute[TResult](Expression expression)\r\n   at System.Linq.Queryable.SingleOrDefault[TSource](IQueryable`1 source, Expression`1 predicate)\r\n   at Swastika.Domain.Data.Repository.ViewRepositoryBase`3.GetSingleModel(Expression`1 predicate, TDbContext _context, IDbContextTransaction _transaction)",
+      "RemoteStackTraceString": null,
+      "RemoteStackIndex": 0,
+      "ExceptionMethod": null,
+      "HResult": -2146233079,
+      "Source": "Microsoft.EntityFrameworkCore",
+      "WatsonBuckets": null
+    }
+  },
+  {
+    "CreatedDateTime": "2018-08-16T05:31:45.6595565Z",
+    "Details": {
+      "ClassName": "System.InvalidOperationException",
+      "Message": "An exception was thrown while attempting to evaluate a LINQ query parameter expression. To show additional information call EnableSensitiveDataLogging() when overriding DbContext.OnConfiguring.",
+      "Data": null,
+      "InnerException": {
+        "ClassName": "System.NullReferenceException",
+        "Message": "Object reference not set to an instance of an object.",
+        "Data": null,
+        "InnerException": null,
+        "HelpURL": null,
+        "StackTraceString": "   at lambda_method(Closure )\r\n   at Microsoft.EntityFrameworkCore.Query.ExpressionVisitors.Internal.ParameterExtractingExpressionVisitor.Evaluate(Expression expression, String& parameterName)",
+        "RemoteStackTraceString": null,
+        "RemoteStackIndex": 0,
+        "ExceptionMethod": null,
+        "HResult": -2147467261,
+        "Source": "Anonymously Hosted DynamicMethods Assembly",
+        "WatsonBuckets": null
+      },
+      "HelpURL": null,
+      "StackTraceString": "   at Microsoft.EntityFrameworkCore.Query.ExpressionVisitors.Internal.ParameterExtractingExpressionVisitor.Evaluate(Expression expression, String& parameterName)\r\n   at Microsoft.EntityFrameworkCore.Query.ExpressionVisitors.Internal.ParameterExtractingExpressionVisitor.TryExtractParameter(Expression expression)\r\n   at Microsoft.EntityFrameworkCore.Query.ExpressionVisitors.Internal.ParameterExtractingExpressionVisitor.VisitMethodCall(MethodCallExpression methodCallExpression)\r\n   at System.Linq.Expressions.MethodCallExpression.Accept(ExpressionVisitor visitor)\r\n   at System.Linq.Expressions.ExpressionVisitor.Visit(Expression node)\r\n   at System.Linq.Expressions.ExpressionVisitor.VisitBinary(BinaryExpression node)\r\n   at Microsoft.EntityFrameworkCore.Query.ExpressionVisitors.Internal.ParameterExtractingExpressionVisitor.VisitBinary(BinaryExpression binaryExpression)\r\n   at System.Linq.Expressions.BinaryExpression.Accept(ExpressionVisitor visitor)\r\n   at System.Linq.Expressions.ExpressionVisitor.Visit(Expression node)\r\n   at Microsoft.EntityFrameworkCore.Query.ExpressionVisitors.Internal.ParameterExtractingExpressionVisitor.VisitBinary(BinaryExpression binaryExpression)\r\n   at System.Linq.Expressions.BinaryExpression.Accept(ExpressionVisitor visitor)\r\n   at System.Linq.Expressions.ExpressionVisitor.Visit(Expression node)\r\n   at System.Linq.Expressions.ExpressionVisitor.VisitLambda[T](Expression`1 node)\r\n   at Microsoft.EntityFrameworkCore.Query.ExpressionVisitors.Internal.ParameterExtractingExpressionVisitor.VisitLambda[T](Expression`1 node)\r\n   at System.Linq.Expressions.Expression`1.Accept(ExpressionVisitor visitor)\r\n   at System.Linq.Expressions.ExpressionVisitor.Visit(Expression node)\r\n   at System.Linq.Expressions.ExpressionVisitor.VisitUnary(UnaryExpression node)\r\n   at Microsoft.EntityFrameworkCore.Query.ExpressionVisitors.Internal.ParameterExtractingExpressionVisitor.VisitUnary(UnaryExpression unaryExpression)\r\n   at System.Linq.Expressions.UnaryExpression.Accept(ExpressionVisitor visitor)\r\n   at System.Linq.Expressions.ExpressionVisitor.Visit(Expression node)\r\n   at System.Dynamic.Utils.ExpressionVisitorUtils.VisitArguments(ExpressionVisitor visitor, IArgumentProvider nodes)\r\n   at System.Linq.Expressions.ExpressionVisitor.VisitMethodCall(MethodCallExpression node)\r\n   at Microsoft.EntityFrameworkCore.Query.ExpressionVisitors.Internal.ParameterExtractingExpressionVisitor.VisitMethodCall(MethodCallExpression methodCallExpression)\r\n   at System.Linq.Expressions.MethodCallExpression.Accept(ExpressionVisitor visitor)\r\n   at System.Linq.Expressions.ExpressionVisitor.Visit(Expression node)\r\n   at Microsoft.EntityFrameworkCore.Query.ExpressionVisitors.Internal.ParameterExtractingExpressionVisitor.ExtractParameters(Expression expression)\r\n   at Microsoft.EntityFrameworkCore.Query.Internal.QueryModelGenerator.ExtractParameters(IDiagnosticsLogger`1 logger, Expression query, IParameterValues parameterValues, Boolean parameterize, Boolean generateContextAccessors)\r\n   at Microsoft.EntityFrameworkCore.Query.Internal.QueryCompiler.Execute[TResult](Expression query)\r\n   at Microsoft.EntityFrameworkCore.Query.Internal.EntityQueryProvider.Execute[TResult](Expression expression)\r\n   at System.Linq.Queryable.SingleOrDefault[TSource](IQueryable`1 source, Expression`1 predicate)\r\n   at Swastika.Domain.Data.Repository.ViewRepositoryBase`3.GetSingleModel(Expression`1 predicate, TDbContext _context, IDbContextTransaction _transaction)",
+      "RemoteStackTraceString": null,
+      "RemoteStackIndex": 0,
+      "ExceptionMethod": null,
+      "HResult": -2146233079,
+      "Source": "Microsoft.EntityFrameworkCore",
+      "WatsonBuckets": null
+    }
+  },
+  {
+    "CreatedDateTime": "2018-08-16T05:31:59.3083074Z",
+    "Details": {
+      "ClassName": "System.InvalidOperationException",
+      "Message": "A second operation started on this context before a previous operation completed. Any instance members are not guaranteed to be thread safe.",
+      "Data": null,
+      "InnerException": null,
+      "HelpURL": null,
+      "StackTraceString": "   at Microsoft.EntityFrameworkCore.Internal.ConcurrencyDetector.EnterCriticalSection()\r\n   at Microsoft.EntityFrameworkCore.Query.Internal.LinqOperatorProvider.ExceptionInterceptor`1.EnumeratorExceptionInterceptor.MoveNext()\r\n   at System.Collections.Generic.List`1.AddEnumerable(IEnumerable`1 enumerable)\r\n   at System.Linq.Enumerable.ToList[TSource](IEnumerable`1 source)\r\n   at Swastika.Domain.Data.Repository.ViewRepositoryBase`3.GetModelListBy(Expression`1 predicate, TDbContext _context, IDbContextTransaction _transaction)",
+      "RemoteStackTraceString": null,
+      "RemoteStackIndex": 0,
+      "ExceptionMethod": null,
+      "HResult": -2146233079,
+      "Source": "Microsoft.EntityFrameworkCore",
+      "WatsonBuckets": null
+    }
+  },
+  {
+    "CreatedDateTime": "2018-08-16T05:31:59.3556731Z",
+    "Details": {
+      "ClassName": "System.InvalidOperationException",
+      "Message": "A second operation started on this context before a previous operation completed. Any instance members are not guaranteed to be thread safe.",
+      "Data": null,
+      "InnerException": null,
+      "HelpURL": null,
+      "StackTraceString": "   at Microsoft.EntityFrameworkCore.Internal.ConcurrencyDetector.EnterCriticalSection()\r\n   at Microsoft.EntityFrameworkCore.Query.Internal.LinqOperatorProvider.ExceptionInterceptor`1.EnumeratorExceptionInterceptor.MoveNext()\r\n   at System.Collections.Generic.List`1.AddEnumerable(IEnumerable`1 enumerable)\r\n   at System.Linq.Enumerable.ToList[TSource](IEnumerable`1 source)\r\n   at Swastika.Domain.Data.Repository.ViewRepositoryBase`3.GetModelListBy(Expression`1 predicate, TDbContext _context, IDbContextTransaction _transaction)",
+      "RemoteStackTraceString": null,
+      "RemoteStackIndex": 0,
+      "ExceptionMethod": null,
+      "HResult": -2146233079,
+      "Source": "Microsoft.EntityFrameworkCore",
+      "WatsonBuckets": null
+    }
+  },
+  {
+    "CreatedDateTime": "2018-08-16T05:32:05.459935Z",
+    "Details": {
+      "ClassName": "System.InvalidOperationException",
+      "Message": "A second operation started on this context before a previous operation completed. Any instance members are not guaranteed to be thread safe.",
+      "Data": null,
+      "InnerException": null,
+      "HelpURL": null,
+      "StackTraceString": "   at Microsoft.EntityFrameworkCore.Internal.ConcurrencyDetector.EnterCriticalSection()\r\n   at Microsoft.EntityFrameworkCore.Query.Internal.LinqOperatorProvider.ExceptionInterceptor`1.EnumeratorExceptionInterceptor.MoveNext()\r\n   at System.Collections.Generic.List`1.AddEnumerable(IEnumerable`1 enumerable)\r\n   at System.Linq.Enumerable.ToList[TSource](IEnumerable`1 source)\r\n   at Swastika.Domain.Data.Repository.ViewRepositoryBase`3.GetModelListBy(Expression`1 predicate, TDbContext _context, IDbContextTransaction _transaction)",
+      "RemoteStackTraceString": null,
+      "RemoteStackIndex": 0,
+      "ExceptionMethod": null,
+      "HResult": -2146233079,
+      "Source": "Microsoft.EntityFrameworkCore",
+      "WatsonBuckets": null
+    }
+  },
+  {
+    "CreatedDateTime": "2018-08-16T05:32:05.4904141Z",
+    "Details": {
+      "ClassName": "System.InvalidOperationException",
+      "Message": "A second operation started on this context before a previous operation completed. Any instance members are not guaranteed to be thread safe.",
+      "Data": null,
+      "InnerException": null,
+      "HelpURL": null,
+      "StackTraceString": "   at Microsoft.EntityFrameworkCore.Internal.ConcurrencyDetector.EnterCriticalSection()\r\n   at Microsoft.EntityFrameworkCore.Query.Internal.LinqOperatorProvider.ExceptionInterceptor`1.EnumeratorExceptionInterceptor.MoveNext()\r\n   at System.Collections.Generic.List`1.AddEnumerable(IEnumerable`1 enumerable)\r\n   at System.Linq.Enumerable.ToList[TSource](IEnumerable`1 source)\r\n   at Swastika.Domain.Data.Repository.ViewRepositoryBase`3.GetModelListBy(Expression`1 predicate, TDbContext _context, IDbContextTransaction _transaction)",
+      "RemoteStackTraceString": null,
+      "RemoteStackIndex": 0,
+      "ExceptionMethod": null,
+      "HResult": -2146233079,
+      "Source": "Microsoft.EntityFrameworkCore",
+      "WatsonBuckets": null
+    }
+  },
+  {
+    "CreatedDateTime": "2018-08-16T05:34:22.6435054Z",
+    "Details": {
+      "ClassName": "System.InvalidOperationException",
+      "Message": "A second operation started on this context before a previous operation completed. Any instance members are not guaranteed to be thread safe.",
+      "Data": null,
+      "InnerException": null,
+      "HelpURL": null,
+      "StackTraceString": "   at Microsoft.EntityFrameworkCore.Internal.ConcurrencyDetector.EnterCriticalSection()\r\n   at Microsoft.EntityFrameworkCore.Query.Internal.LinqOperatorProvider.ExceptionInterceptor`1.EnumeratorExceptionInterceptor.MoveNext()\r\n   at System.Collections.Generic.List`1.AddEnumerable(IEnumerable`1 enumerable)\r\n   at System.Linq.Enumerable.ToList[TSource](IEnumerable`1 source)\r\n   at Swastika.Domain.Data.Repository.ViewRepositoryBase`3.GetModelListBy(Expression`1 predicate, TDbContext _context, IDbContextTransaction _transaction)",
+      "RemoteStackTraceString": null,
+      "RemoteStackIndex": 0,
+      "ExceptionMethod": null,
+      "HResult": -2146233079,
+      "Source": "Microsoft.EntityFrameworkCore",
+      "WatsonBuckets": null
+    }
+  },
+  {
+    "CreatedDateTime": "2018-08-16T05:34:22.6732242Z",
+    "Details": {
+      "ClassName": "System.InvalidOperationException",
+      "Message": "A second operation started on this context before a previous operation completed. Any instance members are not guaranteed to be thread safe.",
+      "Data": null,
+      "InnerException": null,
+      "HelpURL": null,
+      "StackTraceString": "   at Microsoft.EntityFrameworkCore.Internal.ConcurrencyDetector.EnterCriticalSection()\r\n   at Microsoft.EntityFrameworkCore.Query.Internal.LinqOperatorProvider.ExceptionInterceptor`1.EnumeratorExceptionInterceptor.MoveNext()\r\n   at System.Collections.Generic.List`1.AddEnumerable(IEnumerable`1 enumerable)\r\n   at System.Linq.Enumerable.ToList[TSource](IEnumerable`1 source)\r\n   at Swastika.Domain.Data.Repository.ViewRepositoryBase`3.GetModelListBy(Expression`1 predicate, TDbContext _context, IDbContextTransaction _transaction)",
+      "RemoteStackTraceString": null,
+      "RemoteStackIndex": 0,
+      "ExceptionMethod": null,
+      "HResult": -2146233079,
+      "Source": "Microsoft.EntityFrameworkCore",
+      "WatsonBuckets": null
+    }
+  },
+  {
+    "CreatedDateTime": "2018-08-16T05:34:38.2764683Z",
+    "Details": {
+      "ClassName": "System.InvalidOperationException",
+      "Message": "A second operation started on this context before a previous operation completed. Any instance members are not guaranteed to be thread safe.",
+      "Data": null,
+      "InnerException": null,
+      "HelpURL": null,
+      "StackTraceString": "   at Microsoft.EntityFrameworkCore.Internal.ConcurrencyDetector.EnterCriticalSection()\r\n   at Microsoft.EntityFrameworkCore.Query.Internal.LinqOperatorProvider.ExceptionInterceptor`1.EnumeratorExceptionInterceptor.MoveNext()\r\n   at System.Collections.Generic.List`1.AddEnumerable(IEnumerable`1 enumerable)\r\n   at System.Linq.Enumerable.ToList[TSource](IEnumerable`1 source)\r\n   at Swastika.Domain.Data.Repository.ViewRepositoryBase`3.GetModelListBy(Expression`1 predicate, TDbContext _context, IDbContextTransaction _transaction)",
+      "RemoteStackTraceString": null,
+      "RemoteStackIndex": 0,
+      "ExceptionMethod": null,
+      "HResult": -2146233079,
+      "Source": "Microsoft.EntityFrameworkCore",
+      "WatsonBuckets": null
+    }
+  },
+  {
+    "CreatedDateTime": "2018-08-16T05:34:38.3052409Z",
+    "Details": {
+      "ClassName": "System.InvalidOperationException",
+      "Message": "A second operation started on this context before a previous operation completed. Any instance members are not guaranteed to be thread safe.",
+      "Data": null,
+      "InnerException": null,
+      "HelpURL": null,
+      "StackTraceString": "   at Microsoft.EntityFrameworkCore.Internal.ConcurrencyDetector.EnterCriticalSection()\r\n   at Microsoft.EntityFrameworkCore.Query.Internal.LinqOperatorProvider.ExceptionInterceptor`1.EnumeratorExceptionInterceptor.MoveNext()\r\n   at System.Collections.Generic.List`1.AddEnumerable(IEnumerable`1 enumerable)\r\n   at System.Linq.Enumerable.ToList[TSource](IEnumerable`1 source)\r\n   at Swastika.Domain.Data.Repository.ViewRepositoryBase`3.GetModelListBy(Expression`1 predicate, TDbContext _context, IDbContextTransaction _transaction)",
+      "RemoteStackTraceString": null,
+      "RemoteStackIndex": 0,
+      "ExceptionMethod": null,
+      "HResult": -2146233079,
+      "Source": "Microsoft.EntityFrameworkCore",
+      "WatsonBuckets": null
+    }
+  },
+  {
+    "CreatedDateTime": "2018-08-16T05:34:46.3016977Z",
+    "Details": {
+      "ClassName": "System.InvalidOperationException",
+      "Message": "A second operation started on this context before a previous operation completed. Any instance members are not guaranteed to be thread safe.",
+      "Data": null,
+      "InnerException": null,
+      "HelpURL": null,
+      "StackTraceString": "   at Microsoft.EntityFrameworkCore.Internal.ConcurrencyDetector.EnterCriticalSection()\r\n   at Microsoft.EntityFrameworkCore.Query.Internal.LinqOperatorProvider.ExceptionInterceptor`1.EnumeratorExceptionInterceptor.MoveNext()\r\n   at System.Collections.Generic.List`1.AddEnumerable(IEnumerable`1 enumerable)\r\n   at System.Linq.Enumerable.ToList[TSource](IEnumerable`1 source)\r\n   at Swastika.Domain.Data.Repository.ViewRepositoryBase`3.GetModelListBy(Expression`1 predicate, TDbContext _context, IDbContextTransaction _transaction)",
+      "RemoteStackTraceString": null,
+      "RemoteStackIndex": 0,
+      "ExceptionMethod": null,
+      "HResult": -2146233079,
+      "Source": "Microsoft.EntityFrameworkCore",
+      "WatsonBuckets": null
+    }
+  },
+  {
+    "CreatedDateTime": "2018-08-16T05:34:46.327454Z",
+    "Details": {
+      "ClassName": "System.InvalidOperationException",
+      "Message": "A second operation started on this context before a previous operation completed. Any instance members are not guaranteed to be thread safe.",
+      "Data": null,
+      "InnerException": null,
+      "HelpURL": null,
+      "StackTraceString": "   at Microsoft.EntityFrameworkCore.Internal.ConcurrencyDetector.EnterCriticalSection()\r\n   at Microsoft.EntityFrameworkCore.Query.Internal.LinqOperatorProvider.ExceptionInterceptor`1.EnumeratorExceptionInterceptor.MoveNext()\r\n   at System.Collections.Generic.List`1.AddEnumerable(IEnumerable`1 enumerable)\r\n   at System.Linq.Enumerable.ToList[TSource](IEnumerable`1 source)\r\n   at Swastika.Domain.Data.Repository.ViewRepositoryBase`3.GetModelListBy(Expression`1 predicate, TDbContext _context, IDbContextTransaction _transaction)",
+      "RemoteStackTraceString": null,
+      "RemoteStackIndex": 0,
+      "ExceptionMethod": null,
+      "HResult": -2146233079,
+      "Source": "Microsoft.EntityFrameworkCore",
+      "WatsonBuckets": null
+    }
+  },
+  {
+    "CreatedDateTime": "2018-08-16T05:35:36.3792038Z",
+    "Details": {
+      "ClassName": "System.InvalidOperationException",
+      "Message": "A second operation started on this context before a previous operation completed. Any instance members are not guaranteed to be thread safe.",
+      "Data": null,
+      "InnerException": null,
+      "HelpURL": null,
+      "StackTraceString": "   at Microsoft.EntityFrameworkCore.Internal.ConcurrencyDetector.EnterCriticalSection()\r\n   at Microsoft.EntityFrameworkCore.Query.Internal.LinqOperatorProvider.ExceptionInterceptor`1.EnumeratorExceptionInterceptor.MoveNext()\r\n   at System.Collections.Generic.List`1.AddEnumerable(IEnumerable`1 enumerable)\r\n   at System.Linq.Enumerable.ToList[TSource](IEnumerable`1 source)\r\n   at Swastika.Domain.Data.Repository.ViewRepositoryBase`3.GetModelListBy(Expression`1 predicate, TDbContext _context, IDbContextTransaction _transaction)",
+      "RemoteStackTraceString": null,
+      "RemoteStackIndex": 0,
+      "ExceptionMethod": null,
+      "HResult": -2146233079,
+      "Source": "Microsoft.EntityFrameworkCore",
+      "WatsonBuckets": null
+    }
+  },
+  {
+    "CreatedDateTime": "2018-08-16T05:35:36.4387967Z",
+    "Details": {
+      "ClassName": "System.InvalidOperationException",
+      "Message": "A second operation started on this context before a previous operation completed. Any instance members are not guaranteed to be thread safe.",
+      "Data": null,
+      "InnerException": null,
+      "HelpURL": null,
+      "StackTraceString": "   at Microsoft.EntityFrameworkCore.Internal.ConcurrencyDetector.EnterCriticalSection()\r\n   at Microsoft.EntityFrameworkCore.Query.Internal.LinqOperatorProvider.ExceptionInterceptor`1.EnumeratorExceptionInterceptor.MoveNext()\r\n   at System.Collections.Generic.List`1.AddEnumerable(IEnumerable`1 enumerable)\r\n   at System.Linq.Enumerable.ToList[TSource](IEnumerable`1 source)\r\n   at Swastika.Domain.Data.Repository.ViewRepositoryBase`3.GetModelListBy(Expression`1 predicate, TDbContext _context, IDbContextTransaction _transaction)",
+      "RemoteStackTraceString": null,
+      "RemoteStackIndex": 0,
+      "ExceptionMethod": null,
+      "HResult": -2146233079,
+      "Source": "Microsoft.EntityFrameworkCore",
+      "WatsonBuckets": null
+    }
+  },
+  {
+    "CreatedDateTime": "2018-08-16T05:38:23.8526903Z",
+    "Details": {
+      "ClassName": "System.InvalidOperationException",
+      "Message": "A second operation started on this context before a previous operation completed. Any instance members are not guaranteed to be thread safe.",
+      "Data": null,
+      "InnerException": null,
+      "HelpURL": null,
+      "StackTraceString": "   at Microsoft.EntityFrameworkCore.Internal.ConcurrencyDetector.EnterCriticalSection()\r\n   at Microsoft.EntityFrameworkCore.Query.Internal.LinqOperatorProvider.ExceptionInterceptor`1.EnumeratorExceptionInterceptor.MoveNext()\r\n   at System.Collections.Generic.List`1.AddEnumerable(IEnumerable`1 enumerable)\r\n   at System.Linq.Enumerable.ToList[TSource](IEnumerable`1 source)\r\n   at Swastika.Domain.Data.Repository.ViewRepositoryBase`3.GetModelListBy(Expression`1 predicate, TDbContext _context, IDbContextTransaction _transaction)",
+      "RemoteStackTraceString": null,
+      "RemoteStackIndex": 0,
+      "ExceptionMethod": null,
+      "HResult": -2146233079,
+      "Source": "Microsoft.EntityFrameworkCore",
+      "WatsonBuckets": null
+    }
+  },
+  {
+    "CreatedDateTime": "2018-08-16T05:38:23.8949791Z",
+    "Details": {
+      "ClassName": "System.InvalidOperationException",
+      "Message": "A second operation started on this context before a previous operation completed. Any instance members are not guaranteed to be thread safe.",
+      "Data": null,
+      "InnerException": null,
+      "HelpURL": null,
+      "StackTraceString": "   at Microsoft.EntityFrameworkCore.Internal.ConcurrencyDetector.EnterCriticalSection()\r\n   at Microsoft.EntityFrameworkCore.Query.Internal.LinqOperatorProvider.ExceptionInterceptor`1.EnumeratorExceptionInterceptor.MoveNext()\r\n   at System.Collections.Generic.List`1.AddEnumerable(IEnumerable`1 enumerable)\r\n   at System.Linq.Enumerable.ToList[TSource](IEnumerable`1 source)\r\n   at Swastika.Domain.Data.Repository.ViewRepositoryBase`3.GetModelListBy(Expression`1 predicate, TDbContext _context, IDbContextTransaction _transaction)",
+      "RemoteStackTraceString": null,
+      "RemoteStackIndex": 0,
+      "ExceptionMethod": null,
+      "HResult": -2146233079,
+      "Source": "Microsoft.EntityFrameworkCore",
+      "WatsonBuckets": null
+    }
+  },
+  {
+    "CreatedDateTime": "2018-08-16T05:46:48.8194749Z",
+    "Details": {
+      "ClassName": "System.InvalidOperationException",
+      "Message": "An exception was thrown while attempting to evaluate a LINQ query parameter expression. To show additional information call EnableSensitiveDataLogging() when overriding DbContext.OnConfiguring.",
+      "Data": null,
+      "InnerException": {
+        "ClassName": "System.NullReferenceException",
+        "Message": "Object reference not set to an instance of an object.",
+        "Data": null,
+        "InnerException": null,
+        "HelpURL": null,
+        "StackTraceString": "   at lambda_method(Closure )\r\n   at Microsoft.EntityFrameworkCore.Query.ExpressionVisitors.Internal.ParameterExtractingExpressionVisitor.Evaluate(Expression expression, String& parameterName)",
+        "RemoteStackTraceString": null,
+        "RemoteStackIndex": 0,
+        "ExceptionMethod": null,
+        "HResult": -2147467261,
+        "Source": "Anonymously Hosted DynamicMethods Assembly",
+        "WatsonBuckets": null
+      },
+      "HelpURL": null,
+      "StackTraceString": "   at Microsoft.EntityFrameworkCore.Query.ExpressionVisitors.Internal.ParameterExtractingExpressionVisitor.Evaluate(Expression expression, String& parameterName)\r\n   at Microsoft.EntityFrameworkCore.Query.ExpressionVisitors.Internal.ParameterExtractingExpressionVisitor.TryExtractParameter(Expression expression)\r\n   at Microsoft.EntityFrameworkCore.Query.ExpressionVisitors.Internal.ParameterExtractingExpressionVisitor.VisitMethodCall(MethodCallExpression methodCallExpression)\r\n   at System.Linq.Expressions.MethodCallExpression.Accept(ExpressionVisitor visitor)\r\n   at System.Linq.Expressions.ExpressionVisitor.Visit(Expression node)\r\n   at System.Linq.Expressions.ExpressionVisitor.VisitBinary(BinaryExpression node)\r\n   at Microsoft.EntityFrameworkCore.Query.ExpressionVisitors.Internal.ParameterExtractingExpressionVisitor.VisitBinary(BinaryExpression binaryExpression)\r\n   at System.Linq.Expressions.BinaryExpression.Accept(ExpressionVisitor visitor)\r\n   at System.Linq.Expressions.ExpressionVisitor.Visit(Expression node)\r\n   at Microsoft.EntityFrameworkCore.Query.ExpressionVisitors.Internal.ParameterExtractingExpressionVisitor.VisitBinary(BinaryExpression binaryExpression)\r\n   at System.Linq.Expressions.BinaryExpression.Accept(ExpressionVisitor visitor)\r\n   at System.Linq.Expressions.ExpressionVisitor.Visit(Expression node)\r\n   at System.Linq.Expressions.ExpressionVisitor.VisitLambda[T](Expression`1 node)\r\n   at Microsoft.EntityFrameworkCore.Query.ExpressionVisitors.Internal.ParameterExtractingExpressionVisitor.VisitLambda[T](Expression`1 node)\r\n   at System.Linq.Expressions.Expression`1.Accept(ExpressionVisitor visitor)\r\n   at System.Linq.Expressions.ExpressionVisitor.Visit(Expression node)\r\n   at System.Linq.Expressions.ExpressionVisitor.VisitUnary(UnaryExpression node)\r\n   at Microsoft.EntityFrameworkCore.Query.ExpressionVisitors.Internal.ParameterExtractingExpressionVisitor.VisitUnary(UnaryExpression unaryExpression)\r\n   at System.Linq.Expressions.UnaryExpression.Accept(ExpressionVisitor visitor)\r\n   at System.Linq.Expressions.ExpressionVisitor.Visit(Expression node)\r\n   at System.Dynamic.Utils.ExpressionVisitorUtils.VisitArguments(ExpressionVisitor visitor, IArgumentProvider nodes)\r\n   at System.Linq.Expressions.ExpressionVisitor.VisitMethodCall(MethodCallExpression node)\r\n   at Microsoft.EntityFrameworkCore.Query.ExpressionVisitors.Internal.ParameterExtractingExpressionVisitor.VisitMethodCall(MethodCallExpression methodCallExpression)\r\n   at System.Linq.Expressions.MethodCallExpression.Accept(ExpressionVisitor visitor)\r\n   at System.Linq.Expressions.ExpressionVisitor.Visit(Expression node)\r\n   at Microsoft.EntityFrameworkCore.Query.ExpressionVisitors.Internal.ParameterExtractingExpressionVisitor.ExtractParameters(Expression expression)\r\n   at Microsoft.EntityFrameworkCore.Query.Internal.QueryModelGenerator.ExtractParameters(IDiagnosticsLogger`1 logger, Expression query, IParameterValues parameterValues, Boolean parameterize, Boolean generateContextAccessors)\r\n   at Microsoft.EntityFrameworkCore.Query.Internal.QueryCompiler.Execute[TResult](Expression query)\r\n   at Microsoft.EntityFrameworkCore.Query.Internal.EntityQueryProvider.Execute[TResult](Expression expression)\r\n   at System.Linq.Queryable.SingleOrDefault[TSource](IQueryable`1 source, Expression`1 predicate)\r\n   at Swastika.Domain.Data.Repository.ViewRepositoryBase`3.GetSingleModel(Expression`1 predicate, TDbContext _context, IDbContextTransaction _transaction)",
+      "RemoteStackTraceString": null,
+      "RemoteStackIndex": 0,
+      "ExceptionMethod": null,
+      "HResult": -2146233079,
+      "Source": "Microsoft.EntityFrameworkCore",
+      "WatsonBuckets": null
+    }
+  },
+  {
+    "CreatedDateTime": "2018-08-16T05:49:31.468513Z",
+    "Details": {
+      "ClassName": "System.InvalidOperationException",
+      "Message": "An exception was thrown while attempting to evaluate a LINQ query parameter expression. To show additional information call EnableSensitiveDataLogging() when overriding DbContext.OnConfiguring.",
+      "Data": null,
+      "InnerException": {
+        "ClassName": "System.NullReferenceException",
+        "Message": "Object reference not set to an instance of an object.",
+        "Data": null,
+        "InnerException": null,
+        "HelpURL": null,
+        "StackTraceString": "   at lambda_method(Closure )\r\n   at Microsoft.EntityFrameworkCore.Query.ExpressionVisitors.Internal.ParameterExtractingExpressionVisitor.Evaluate(Expression expression, String& parameterName)",
+        "RemoteStackTraceString": null,
+        "RemoteStackIndex": 0,
+        "ExceptionMethod": null,
+        "HResult": -2147467261,
+        "Source": "Anonymously Hosted DynamicMethods Assembly",
+        "WatsonBuckets": null
+      },
+      "HelpURL": null,
+      "StackTraceString": "   at Microsoft.EntityFrameworkCore.Query.ExpressionVisitors.Internal.ParameterExtractingExpressionVisitor.Evaluate(Expression expression, String& parameterName)\r\n   at Microsoft.EntityFrameworkCore.Query.ExpressionVisitors.Internal.ParameterExtractingExpressionVisitor.TryExtractParameter(Expression expression)\r\n   at Microsoft.EntityFrameworkCore.Query.ExpressionVisitors.Internal.ParameterExtractingExpressionVisitor.VisitMethodCall(MethodCallExpression methodCallExpression)\r\n   at System.Linq.Expressions.MethodCallExpression.Accept(ExpressionVisitor visitor)\r\n   at System.Linq.Expressions.ExpressionVisitor.Visit(Expression node)\r\n   at System.Linq.Expressions.ExpressionVisitor.VisitBinary(BinaryExpression node)\r\n   at Microsoft.EntityFrameworkCore.Query.ExpressionVisitors.Internal.ParameterExtractingExpressionVisitor.VisitBinary(BinaryExpression binaryExpression)\r\n   at System.Linq.Expressions.BinaryExpression.Accept(ExpressionVisitor visitor)\r\n   at System.Linq.Expressions.ExpressionVisitor.Visit(Expression node)\r\n   at Microsoft.EntityFrameworkCore.Query.ExpressionVisitors.Internal.ParameterExtractingExpressionVisitor.VisitBinary(BinaryExpression binaryExpression)\r\n   at System.Linq.Expressions.BinaryExpression.Accept(ExpressionVisitor visitor)\r\n   at System.Linq.Expressions.ExpressionVisitor.Visit(Expression node)\r\n   at System.Linq.Expressions.ExpressionVisitor.VisitLambda[T](Expression`1 node)\r\n   at Microsoft.EntityFrameworkCore.Query.ExpressionVisitors.Internal.ParameterExtractingExpressionVisitor.VisitLambda[T](Expression`1 node)\r\n   at System.Linq.Expressions.Expression`1.Accept(ExpressionVisitor visitor)\r\n   at System.Linq.Expressions.ExpressionVisitor.Visit(Expression node)\r\n   at System.Linq.Expressions.ExpressionVisitor.VisitUnary(UnaryExpression node)\r\n   at Microsoft.EntityFrameworkCore.Query.ExpressionVisitors.Internal.ParameterExtractingExpressionVisitor.VisitUnary(UnaryExpression unaryExpression)\r\n   at System.Linq.Expressions.UnaryExpression.Accept(ExpressionVisitor visitor)\r\n   at System.Linq.Expressions.ExpressionVisitor.Visit(Expression node)\r\n   at System.Dynamic.Utils.ExpressionVisitorUtils.VisitArguments(ExpressionVisitor visitor, IArgumentProvider nodes)\r\n   at System.Linq.Expressions.ExpressionVisitor.VisitMethodCall(MethodCallExpression node)\r\n   at Microsoft.EntityFrameworkCore.Query.ExpressionVisitors.Internal.ParameterExtractingExpressionVisitor.VisitMethodCall(MethodCallExpression methodCallExpression)\r\n   at System.Linq.Expressions.MethodCallExpression.Accept(ExpressionVisitor visitor)\r\n   at System.Linq.Expressions.ExpressionVisitor.Visit(Expression node)\r\n   at Microsoft.EntityFrameworkCore.Query.ExpressionVisitors.Internal.ParameterExtractingExpressionVisitor.ExtractParameters(Expression expression)\r\n   at Microsoft.EntityFrameworkCore.Query.Internal.QueryModelGenerator.ExtractParameters(IDiagnosticsLogger`1 logger, Expression query, IParameterValues parameterValues, Boolean parameterize, Boolean generateContextAccessors)\r\n   at Microsoft.EntityFrameworkCore.Query.Internal.QueryCompiler.Execute[TResult](Expression query)\r\n   at Microsoft.EntityFrameworkCore.Query.Internal.EntityQueryProvider.Execute[TResult](Expression expression)\r\n   at System.Linq.Queryable.SingleOrDefault[TSource](IQueryable`1 source, Expression`1 predicate)\r\n   at Swastika.Domain.Data.Repository.ViewRepositoryBase`3.GetSingleModel(Expression`1 predicate, TDbContext _context, IDbContextTransaction _transaction)",
+      "RemoteStackTraceString": null,
+      "RemoteStackIndex": 0,
+      "ExceptionMethod": null,
+      "HResult": -2146233079,
+      "Source": "Microsoft.EntityFrameworkCore",
+      "WatsonBuckets": null
+    }
+  },
+  {
+    "CreatedDateTime": "2018-08-16T05:50:14.0256441Z",
+    "Details": {
+      "ClassName": "System.InvalidOperationException",
+      "Message": "An exception was thrown while attempting to evaluate a LINQ query parameter expression. To show additional information call EnableSensitiveDataLogging() when overriding DbContext.OnConfiguring.",
+      "Data": null,
+      "InnerException": {
+        "ClassName": "System.NullReferenceException",
+        "Message": "Object reference not set to an instance of an object.",
+        "Data": null,
+        "InnerException": null,
+        "HelpURL": null,
+        "StackTraceString": "   at lambda_method(Closure )\r\n   at Microsoft.EntityFrameworkCore.Query.ExpressionVisitors.Internal.ParameterExtractingExpressionVisitor.Evaluate(Expression expression, String& parameterName)",
+        "RemoteStackTraceString": null,
+        "RemoteStackIndex": 0,
+        "ExceptionMethod": null,
+        "HResult": -2147467261,
+        "Source": "Anonymously Hosted DynamicMethods Assembly",
+        "WatsonBuckets": null
+      },
+      "HelpURL": null,
+      "StackTraceString": "   at Microsoft.EntityFrameworkCore.Query.ExpressionVisitors.Internal.ParameterExtractingExpressionVisitor.Evaluate(Expression expression, String& parameterName)\r\n   at Microsoft.EntityFrameworkCore.Query.ExpressionVisitors.Internal.ParameterExtractingExpressionVisitor.TryExtractParameter(Expression expression)\r\n   at Microsoft.EntityFrameworkCore.Query.ExpressionVisitors.Internal.ParameterExtractingExpressionVisitor.VisitMethodCall(MethodCallExpression methodCallExpression)\r\n   at System.Linq.Expressions.MethodCallExpression.Accept(ExpressionVisitor visitor)\r\n   at System.Linq.Expressions.ExpressionVisitor.Visit(Expression node)\r\n   at System.Linq.Expressions.ExpressionVisitor.VisitBinary(BinaryExpression node)\r\n   at Microsoft.EntityFrameworkCore.Query.ExpressionVisitors.Internal.ParameterExtractingExpressionVisitor.VisitBinary(BinaryExpression binaryExpression)\r\n   at System.Linq.Expressions.BinaryExpression.Accept(ExpressionVisitor visitor)\r\n   at System.Linq.Expressions.ExpressionVisitor.Visit(Expression node)\r\n   at Microsoft.EntityFrameworkCore.Query.ExpressionVisitors.Internal.ParameterExtractingExpressionVisitor.VisitBinary(BinaryExpression binaryExpression)\r\n   at System.Linq.Expressions.BinaryExpression.Accept(ExpressionVisitor visitor)\r\n   at System.Linq.Expressions.ExpressionVisitor.Visit(Expression node)\r\n   at System.Linq.Expressions.ExpressionVisitor.VisitLambda[T](Expression`1 node)\r\n   at Microsoft.EntityFrameworkCore.Query.ExpressionVisitors.Internal.ParameterExtractingExpressionVisitor.VisitLambda[T](Expression`1 node)\r\n   at System.Linq.Expressions.Expression`1.Accept(ExpressionVisitor visitor)\r\n   at System.Linq.Expressions.ExpressionVisitor.Visit(Expression node)\r\n   at System.Linq.Expressions.ExpressionVisitor.VisitUnary(UnaryExpression node)\r\n   at Microsoft.EntityFrameworkCore.Query.ExpressionVisitors.Internal.ParameterExtractingExpressionVisitor.VisitUnary(UnaryExpression unaryExpression)\r\n   at System.Linq.Expressions.UnaryExpression.Accept(ExpressionVisitor visitor)\r\n   at System.Linq.Expressions.ExpressionVisitor.Visit(Expression node)\r\n   at System.Dynamic.Utils.ExpressionVisitorUtils.VisitArguments(ExpressionVisitor visitor, IArgumentProvider nodes)\r\n   at System.Linq.Expressions.ExpressionVisitor.VisitMethodCall(MethodCallExpression node)\r\n   at Microsoft.EntityFrameworkCore.Query.ExpressionVisitors.Internal.ParameterExtractingExpressionVisitor.VisitMethodCall(MethodCallExpression methodCallExpression)\r\n   at System.Linq.Expressions.MethodCallExpression.Accept(ExpressionVisitor visitor)\r\n   at System.Linq.Expressions.ExpressionVisitor.Visit(Expression node)\r\n   at Microsoft.EntityFrameworkCore.Query.ExpressionVisitors.Internal.ParameterExtractingExpressionVisitor.ExtractParameters(Expression expression)\r\n   at Microsoft.EntityFrameworkCore.Query.Internal.QueryModelGenerator.ExtractParameters(IDiagnosticsLogger`1 logger, Expression query, IParameterValues parameterValues, Boolean parameterize, Boolean generateContextAccessors)\r\n   at Microsoft.EntityFrameworkCore.Query.Internal.QueryCompiler.Execute[TResult](Expression query)\r\n   at Microsoft.EntityFrameworkCore.Query.Internal.EntityQueryProvider.Execute[TResult](Expression expression)\r\n   at System.Linq.Queryable.SingleOrDefault[TSource](IQueryable`1 source, Expression`1 predicate)\r\n   at Swastika.Domain.Data.Repository.ViewRepositoryBase`3.GetSingleModel(Expression`1 predicate, TDbContext _context, IDbContextTransaction _transaction)",
+      "RemoteStackTraceString": null,
+      "RemoteStackIndex": 0,
+      "ExceptionMethod": null,
+      "HResult": -2146233079,
+      "Source": "Microsoft.EntityFrameworkCore",
+      "WatsonBuckets": null
+    }
+  },
+  {
+    "CreatedDateTime": "2018-08-16T05:51:49.1678536Z",
+    "Details": {
+      "ClassName": "System.InvalidOperationException",
+      "Message": "An exception was thrown while attempting to evaluate a LINQ query parameter expression. To show additional information call EnableSensitiveDataLogging() when overriding DbContext.OnConfiguring.",
+      "Data": null,
+      "InnerException": {
+        "ClassName": "System.NullReferenceException",
+        "Message": "Object reference not set to an instance of an object.",
+        "Data": null,
+        "InnerException": null,
+        "HelpURL": null,
+        "StackTraceString": "   at lambda_method(Closure )\r\n   at Microsoft.EntityFrameworkCore.Query.ExpressionVisitors.Internal.ParameterExtractingExpressionVisitor.Evaluate(Expression expression, String& parameterName)",
+        "RemoteStackTraceString": null,
+        "RemoteStackIndex": 0,
+        "ExceptionMethod": null,
+        "HResult": -2147467261,
+        "Source": "Anonymously Hosted DynamicMethods Assembly",
+        "WatsonBuckets": null
+      },
+      "HelpURL": null,
+      "StackTraceString": "   at Microsoft.EntityFrameworkCore.Query.ExpressionVisitors.Internal.ParameterExtractingExpressionVisitor.Evaluate(Expression expression, String& parameterName)\r\n   at Microsoft.EntityFrameworkCore.Query.ExpressionVisitors.Internal.ParameterExtractingExpressionVisitor.TryExtractParameter(Expression expression)\r\n   at Microsoft.EntityFrameworkCore.Query.ExpressionVisitors.Internal.ParameterExtractingExpressionVisitor.VisitMethodCall(MethodCallExpression methodCallExpression)\r\n   at System.Linq.Expressions.MethodCallExpression.Accept(ExpressionVisitor visitor)\r\n   at System.Linq.Expressions.ExpressionVisitor.Visit(Expression node)\r\n   at System.Linq.Expressions.ExpressionVisitor.VisitBinary(BinaryExpression node)\r\n   at Microsoft.EntityFrameworkCore.Query.ExpressionVisitors.Internal.ParameterExtractingExpressionVisitor.VisitBinary(BinaryExpression binaryExpression)\r\n   at System.Linq.Expressions.BinaryExpression.Accept(ExpressionVisitor visitor)\r\n   at System.Linq.Expressions.ExpressionVisitor.Visit(Expression node)\r\n   at Microsoft.EntityFrameworkCore.Query.ExpressionVisitors.Internal.ParameterExtractingExpressionVisitor.VisitBinary(BinaryExpression binaryExpression)\r\n   at System.Linq.Expressions.BinaryExpression.Accept(ExpressionVisitor visitor)\r\n   at System.Linq.Expressions.ExpressionVisitor.Visit(Expression node)\r\n   at System.Linq.Expressions.ExpressionVisitor.VisitLambda[T](Expression`1 node)\r\n   at Microsoft.EntityFrameworkCore.Query.ExpressionVisitors.Internal.ParameterExtractingExpressionVisitor.VisitLambda[T](Expression`1 node)\r\n   at System.Linq.Expressions.Expression`1.Accept(ExpressionVisitor visitor)\r\n   at System.Linq.Expressions.ExpressionVisitor.Visit(Expression node)\r\n   at System.Linq.Expressions.ExpressionVisitor.VisitUnary(UnaryExpression node)\r\n   at Microsoft.EntityFrameworkCore.Query.ExpressionVisitors.Internal.ParameterExtractingExpressionVisitor.VisitUnary(UnaryExpression unaryExpression)\r\n   at System.Linq.Expressions.UnaryExpression.Accept(ExpressionVisitor visitor)\r\n   at System.Linq.Expressions.ExpressionVisitor.Visit(Expression node)\r\n   at System.Dynamic.Utils.ExpressionVisitorUtils.VisitArguments(ExpressionVisitor visitor, IArgumentProvider nodes)\r\n   at System.Linq.Expressions.ExpressionVisitor.VisitMethodCall(MethodCallExpression node)\r\n   at Microsoft.EntityFrameworkCore.Query.ExpressionVisitors.Internal.ParameterExtractingExpressionVisitor.VisitMethodCall(MethodCallExpression methodCallExpression)\r\n   at System.Linq.Expressions.MethodCallExpression.Accept(ExpressionVisitor visitor)\r\n   at System.Linq.Expressions.ExpressionVisitor.Visit(Expression node)\r\n   at Microsoft.EntityFrameworkCore.Query.ExpressionVisitors.Internal.ParameterExtractingExpressionVisitor.ExtractParameters(Expression expression)\r\n   at Microsoft.EntityFrameworkCore.Query.Internal.QueryModelGenerator.ExtractParameters(IDiagnosticsLogger`1 logger, Expression query, IParameterValues parameterValues, Boolean parameterize, Boolean generateContextAccessors)\r\n   at Microsoft.EntityFrameworkCore.Query.Internal.QueryCompiler.Execute[TResult](Expression query)\r\n   at Microsoft.EntityFrameworkCore.Query.Internal.EntityQueryProvider.Execute[TResult](Expression expression)\r\n   at System.Linq.Queryable.SingleOrDefault[TSource](IQueryable`1 source, Expression`1 predicate)\r\n   at Swastika.Domain.Data.Repository.ViewRepositoryBase`3.GetSingleModel(Expression`1 predicate, TDbContext _context, IDbContextTransaction _transaction)",
+      "RemoteStackTraceString": null,
+      "RemoteStackIndex": 0,
+      "ExceptionMethod": null,
+      "HResult": -2146233079,
+      "Source": "Microsoft.EntityFrameworkCore",
+      "WatsonBuckets": null
+    }
+  },
+  {
+    "CreatedDateTime": "2018-08-16T05:54:33.921184Z",
+    "Details": {
+      "ClassName": "System.InvalidOperationException",
+      "Message": "An exception was thrown while attempting to evaluate a LINQ query parameter expression. To show additional information call EnableSensitiveDataLogging() when overriding DbContext.OnConfiguring.",
+      "Data": null,
+      "InnerException": {
+        "ClassName": "System.NullReferenceException",
+        "Message": "Object reference not set to an instance of an object.",
+        "Data": null,
+        "InnerException": null,
+        "HelpURL": null,
+        "StackTraceString": "   at lambda_method(Closure )\r\n   at Microsoft.EntityFrameworkCore.Query.ExpressionVisitors.Internal.ParameterExtractingExpressionVisitor.Evaluate(Expression expression, String& parameterName)",
+        "RemoteStackTraceString": null,
+        "RemoteStackIndex": 0,
+        "ExceptionMethod": null,
+        "HResult": -2147467261,
+        "Source": "Anonymously Hosted DynamicMethods Assembly",
+        "WatsonBuckets": null
+      },
+      "HelpURL": null,
+      "StackTraceString": "   at Microsoft.EntityFrameworkCore.Query.ExpressionVisitors.Internal.ParameterExtractingExpressionVisitor.Evaluate(Expression expression, String& parameterName)\r\n   at Microsoft.EntityFrameworkCore.Query.ExpressionVisitors.Internal.ParameterExtractingExpressionVisitor.TryExtractParameter(Expression expression)\r\n   at Microsoft.EntityFrameworkCore.Query.ExpressionVisitors.Internal.ParameterExtractingExpressionVisitor.VisitMethodCall(MethodCallExpression methodCallExpression)\r\n   at System.Linq.Expressions.MethodCallExpression.Accept(ExpressionVisitor visitor)\r\n   at System.Linq.Expressions.ExpressionVisitor.Visit(Expression node)\r\n   at System.Linq.Expressions.ExpressionVisitor.VisitBinary(BinaryExpression node)\r\n   at Microsoft.EntityFrameworkCore.Query.ExpressionVisitors.Internal.ParameterExtractingExpressionVisitor.VisitBinary(BinaryExpression binaryExpression)\r\n   at System.Linq.Expressions.BinaryExpression.Accept(ExpressionVisitor visitor)\r\n   at System.Linq.Expressions.ExpressionVisitor.Visit(Expression node)\r\n   at Microsoft.EntityFrameworkCore.Query.ExpressionVisitors.Internal.ParameterExtractingExpressionVisitor.VisitBinary(BinaryExpression binaryExpression)\r\n   at System.Linq.Expressions.BinaryExpression.Accept(ExpressionVisitor visitor)\r\n   at System.Linq.Expressions.ExpressionVisitor.Visit(Expression node)\r\n   at System.Linq.Expressions.ExpressionVisitor.VisitLambda[T](Expression`1 node)\r\n   at Microsoft.EntityFrameworkCore.Query.ExpressionVisitors.Internal.ParameterExtractingExpressionVisitor.VisitLambda[T](Expression`1 node)\r\n   at System.Linq.Expressions.Expression`1.Accept(ExpressionVisitor visitor)\r\n   at System.Linq.Expressions.ExpressionVisitor.Visit(Expression node)\r\n   at System.Linq.Expressions.ExpressionVisitor.VisitUnary(UnaryExpression node)\r\n   at Microsoft.EntityFrameworkCore.Query.ExpressionVisitors.Internal.ParameterExtractingExpressionVisitor.VisitUnary(UnaryExpression unaryExpression)\r\n   at System.Linq.Expressions.UnaryExpression.Accept(ExpressionVisitor visitor)\r\n   at System.Linq.Expressions.ExpressionVisitor.Visit(Expression node)\r\n   at System.Dynamic.Utils.ExpressionVisitorUtils.VisitArguments(ExpressionVisitor visitor, IArgumentProvider nodes)\r\n   at System.Linq.Expressions.ExpressionVisitor.VisitMethodCall(MethodCallExpression node)\r\n   at Microsoft.EntityFrameworkCore.Query.ExpressionVisitors.Internal.ParameterExtractingExpressionVisitor.VisitMethodCall(MethodCallExpression methodCallExpression)\r\n   at System.Linq.Expressions.MethodCallExpression.Accept(ExpressionVisitor visitor)\r\n   at System.Linq.Expressions.ExpressionVisitor.Visit(Expression node)\r\n   at Microsoft.EntityFrameworkCore.Query.ExpressionVisitors.Internal.ParameterExtractingExpressionVisitor.ExtractParameters(Expression expression)\r\n   at Microsoft.EntityFrameworkCore.Query.Internal.QueryModelGenerator.ExtractParameters(IDiagnosticsLogger`1 logger, Expression query, IParameterValues parameterValues, Boolean parameterize, Boolean generateContextAccessors)\r\n   at Microsoft.EntityFrameworkCore.Query.Internal.QueryCompiler.Execute[TResult](Expression query)\r\n   at Microsoft.EntityFrameworkCore.Query.Internal.EntityQueryProvider.Execute[TResult](Expression expression)\r\n   at System.Linq.Queryable.SingleOrDefault[TSource](IQueryable`1 source, Expression`1 predicate)\r\n   at Swastika.Domain.Data.Repository.ViewRepositoryBase`3.GetSingleModel(Expression`1 predicate, TDbContext _context, IDbContextTransaction _transaction)",
+      "RemoteStackTraceString": null,
+      "RemoteStackIndex": 0,
+      "ExceptionMethod": null,
+      "HResult": -2146233079,
+      "Source": "Microsoft.EntityFrameworkCore",
+      "WatsonBuckets": null
+    }
+  },
+  {
+    "CreatedDateTime": "2018-08-16T05:54:38.9446779Z",
+    "Details": {
+      "ClassName": "System.InvalidOperationException",
+      "Message": "An exception was thrown while attempting to evaluate a LINQ query parameter expression. To show additional information call EnableSensitiveDataLogging() when overriding DbContext.OnConfiguring.",
+      "Data": null,
+      "InnerException": {
+        "ClassName": "System.NullReferenceException",
+        "Message": "Object reference not set to an instance of an object.",
+        "Data": null,
+        "InnerException": null,
+        "HelpURL": null,
+        "StackTraceString": "   at lambda_method(Closure )\r\n   at Microsoft.EntityFrameworkCore.Query.ExpressionVisitors.Internal.ParameterExtractingExpressionVisitor.Evaluate(Expression expression, String& parameterName)",
+        "RemoteStackTraceString": null,
+        "RemoteStackIndex": 0,
+        "ExceptionMethod": null,
+        "HResult": -2147467261,
+        "Source": "Anonymously Hosted DynamicMethods Assembly",
+        "WatsonBuckets": null
+      },
+      "HelpURL": null,
+      "StackTraceString": "   at Microsoft.EntityFrameworkCore.Query.ExpressionVisitors.Internal.ParameterExtractingExpressionVisitor.Evaluate(Expression expression, String& parameterName)\r\n   at Microsoft.EntityFrameworkCore.Query.ExpressionVisitors.Internal.ParameterExtractingExpressionVisitor.TryExtractParameter(Expression expression)\r\n   at Microsoft.EntityFrameworkCore.Query.ExpressionVisitors.Internal.ParameterExtractingExpressionVisitor.VisitMethodCall(MethodCallExpression methodCallExpression)\r\n   at System.Linq.Expressions.MethodCallExpression.Accept(ExpressionVisitor visitor)\r\n   at System.Linq.Expressions.ExpressionVisitor.Visit(Expression node)\r\n   at System.Linq.Expressions.ExpressionVisitor.VisitBinary(BinaryExpression node)\r\n   at Microsoft.EntityFrameworkCore.Query.ExpressionVisitors.Internal.ParameterExtractingExpressionVisitor.VisitBinary(BinaryExpression binaryExpression)\r\n   at System.Linq.Expressions.BinaryExpression.Accept(ExpressionVisitor visitor)\r\n   at System.Linq.Expressions.ExpressionVisitor.Visit(Expression node)\r\n   at Microsoft.EntityFrameworkCore.Query.ExpressionVisitors.Internal.ParameterExtractingExpressionVisitor.VisitBinary(BinaryExpression binaryExpression)\r\n   at System.Linq.Expressions.BinaryExpression.Accept(ExpressionVisitor visitor)\r\n   at System.Linq.Expressions.ExpressionVisitor.Visit(Expression node)\r\n   at System.Linq.Expressions.ExpressionVisitor.VisitLambda[T](Expression`1 node)\r\n   at Microsoft.EntityFrameworkCore.Query.ExpressionVisitors.Internal.ParameterExtractingExpressionVisitor.VisitLambda[T](Expression`1 node)\r\n   at System.Linq.Expressions.Expression`1.Accept(ExpressionVisitor visitor)\r\n   at System.Linq.Expressions.ExpressionVisitor.Visit(Expression node)\r\n   at System.Linq.Expressions.ExpressionVisitor.VisitUnary(UnaryExpression node)\r\n   at Microsoft.EntityFrameworkCore.Query.ExpressionVisitors.Internal.ParameterExtractingExpressionVisitor.VisitUnary(UnaryExpression unaryExpression)\r\n   at System.Linq.Expressions.UnaryExpression.Accept(ExpressionVisitor visitor)\r\n   at System.Linq.Expressions.ExpressionVisitor.Visit(Expression node)\r\n   at System.Dynamic.Utils.ExpressionVisitorUtils.VisitArguments(ExpressionVisitor visitor, IArgumentProvider nodes)\r\n   at System.Linq.Expressions.ExpressionVisitor.VisitMethodCall(MethodCallExpression node)\r\n   at Microsoft.EntityFrameworkCore.Query.ExpressionVisitors.Internal.ParameterExtractingExpressionVisitor.VisitMethodCall(MethodCallExpression methodCallExpression)\r\n   at System.Linq.Expressions.MethodCallExpression.Accept(ExpressionVisitor visitor)\r\n   at System.Linq.Expressions.ExpressionVisitor.Visit(Expression node)\r\n   at Microsoft.EntityFrameworkCore.Query.ExpressionVisitors.Internal.ParameterExtractingExpressionVisitor.ExtractParameters(Expression expression)\r\n   at Microsoft.EntityFrameworkCore.Query.Internal.QueryModelGenerator.ExtractParameters(IDiagnosticsLogger`1 logger, Expression query, IParameterValues parameterValues, Boolean parameterize, Boolean generateContextAccessors)\r\n   at Microsoft.EntityFrameworkCore.Query.Internal.QueryCompiler.Execute[TResult](Expression query)\r\n   at Microsoft.EntityFrameworkCore.Query.Internal.EntityQueryProvider.Execute[TResult](Expression expression)\r\n   at System.Linq.Queryable.SingleOrDefault[TSource](IQueryable`1 source, Expression`1 predicate)\r\n   at Swastika.Domain.Data.Repository.ViewRepositoryBase`3.GetSingleModel(Expression`1 predicate, TDbContext _context, IDbContextTransaction _transaction)",
+      "RemoteStackTraceString": null,
+      "RemoteStackIndex": 0,
+      "ExceptionMethod": null,
+      "HResult": -2146233079,
+      "Source": "Microsoft.EntityFrameworkCore",
+      "WatsonBuckets": null
+    }
   }
 ]

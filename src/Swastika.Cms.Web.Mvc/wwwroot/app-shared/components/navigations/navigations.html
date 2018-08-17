@@ -1,4 +1,4 @@
-﻿<ul dnd-list="$ctrl.data" class="nav">
+﻿<ul dnd-list="$ctrl.data" class="nav" ng-if="$ctrl.data.length">
     <li ng-repeat="nav in $ctrl.data"  class="col-sm-12" 
         dnd-draggable="nav"
         dnd-moved="$ctrl.updateOrders($index)"
@@ -22,7 +22,7 @@
                 </span>
             </div>
             <div class="col-1">
-                <img height="50" imageonload src="{{nav.image}}" />
+                <img height="50" ng-src="{{nav.image}}" />
             </div>
         </div>
     </li>

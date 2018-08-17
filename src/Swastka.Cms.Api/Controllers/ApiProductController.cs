@@ -7,7 +7,7 @@ using Microsoft.Data.OData.Query;
 using Newtonsoft.Json.Linq;
 using Swastika.Cms.Lib;
 using Swastika.Cms.Lib.Models.Cms;
-using Swastika.Cms.Lib.ViewModels.BackEnd;
+using Swastika.Cms.Lib.ViewModels.Api;
 using Swastika.Cms.Lib.ViewModels.FrontEnd;
 using Swastika.Cms.Lib.ViewModels.Info;
 using Swastika.Domain.Core.ViewModels;
