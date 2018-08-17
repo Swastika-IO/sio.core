@@ -8,6 +8,11 @@
                             <i class="mi mi-Save"></i> <span class="text-uppercase" ng-bind="$ctrl.translator.get('save')"></span>
                         </button>
                     </div>
+                    <div class="col text-center" ng-show="$ctrl.saveAnContinueUrl">
+                        <a href="{{$ctrl.saveAnContinueUrl}}" class="btn btn-lg btn-outline-info btn-block" target="_blank">
+                            <i class="mi mi-Save"></i> <span class="text-uppercase" ng-bind="$ctrl.translator.get('saveAnContinue')"></span>
+                        </a>
+                    </div>
                     <div class="col text-center" ng-show="$ctrl.previewUrl">
                         <a href="{{$ctrl.previewUrl}}" class="btn btn-lg btn-outline-info btn-block" target="_blank">
                             <i class="mi mi-PreviewLink"></i> <span class="text-uppercase" ng-bind="$ctrl.translator.get('preview')"></span>
@@ -23,3 +28,4 @@
         </div>
     </div>
 </div>
+<div class="m-4"></div>

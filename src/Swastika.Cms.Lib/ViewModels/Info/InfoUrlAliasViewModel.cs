@@ -82,7 +82,7 @@ namespace Swastika.Cms.Lib.ViewModels.Info
             if (_context.SiocUrlAlias.Any(u => u.Alias == Alias && u.Specificulture == Specificulture && u.SourceId != SourceId))
             {
                 IsValid = false;
-                Errors.Add("Url Alias is existed");
+                Errors.Add("Slug is existed");
             }
         }
         #endregion Overrides
