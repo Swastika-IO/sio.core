@@ -1,8 +1,8 @@
 ﻿    <ul class="$ctrl.style" ng-if="$ctrl.settings">
         <li ng-repeat="culture in $ctrl.settings.cultures"
             ng-class="{active: culture.specificulture == $ctrl.settings.lang}">
-                <a class="dropdown-item"
-                   href="#" ng-click="$ctrl.changeLang(culture.specificulture, culture.icon);">
+                <a class="dropdown-item btn-sm"
+                   href="" ng-click="$ctrl.changeLang(culture.specificulture, culture.icon);">
                     <span class="flag-icon {{culture.icon}}"></span>
                 </a>
         </li>
