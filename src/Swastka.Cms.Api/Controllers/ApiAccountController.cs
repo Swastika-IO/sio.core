@@ -64,7 +64,7 @@ namespace Swastika.Cms.Api.Controllers
         // POST: /Account/Logout
         [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
         [Route("Logout")]
-        [HttpGet, HttpPost]
+        [HttpGet, HttpPost, HttpOptions]
         public async Task<RepositoryResponse<bool>> Logout()
         {
             var result = new RepositoryResponse<bool>() { IsSucceed = true, Data = true };
@@ -75,7 +75,7 @@ namespace Swastika.Cms.Api.Controllers
         }
 
         [Route("login")]
-        [HttpPost]
+        [HttpPost, HttpOptions]
         [AllowAnonymous]
         //[ValidateAntiForgeryToken]
         public async Task<RepositoryResponse<AccessTokenViewModel>> Login([FromBody] LoginViewModel model)
@@ -125,7 +125,7 @@ namespace Swastika.Cms.Api.Controllers
         }
 
         [Route("refresh-token/{refreshTokenId}")]
-        [HttpGet]
+        [HttpGet, HttpOptions]
         [AllowAnonymous]
         public async Task<RepositoryResponse<AccessTokenViewModel>> RefreshToken(string refreshTokenId)
         {
@@ -161,7 +161,7 @@ namespace Swastika.Cms.Api.Controllers
         }
 
         [Route("Register")]
-        [HttpPost]
+        [HttpPost, HttpOptions]
         [AllowAnonymous]
         public async Task<RepositoryResponse<AccessTokenViewModel>> Register([FromBody] BEUserViewModel model)
         {
@@ -220,7 +220,7 @@ namespace Swastika.Cms.Api.Controllers
         [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme,
         Roles = "SuperAdmin")]
         [Route("user-in-role")]
-        [HttpPost]
+        [HttpPost, HttpOptions]
         public async Task<RepositoryResponse<bool>> ManageUserInRole([FromBody]UserRoleModel model)
         {
             var role = await _roleManager.FindByIdAsync(model.RoleId);
@@ -271,7 +271,7 @@ namespace Swastika.Cms.Api.Controllers
             return result;
         }
 
-        [HttpGet]
+        [HttpGet, HttpOptions]
         [Route("details/{viewType}/{id}")]
         [Route("details/{viewType}")]
         public async Task<JObject> Details(string viewType, string id = null)

@@ -85,7 +85,6 @@ namespace Swastika.Cms.Mvc.Controllers
 
         }
 
-        [HttpGet]
         IActionResult Page(int pageId, int pageIndex, int pageSize = 10)
         {
             // Home Page
@@ -95,6 +94,7 @@ namespace Swastika.Cms.Mvc.Controllers
                 );
             if (getPage.IsSucceed && getPage.Data.View != null)
             {
+                GeneratePageDetailsUrls(getPage.Data);
                 ViewBag.pageClass = getPage.Data.CssClass;
                 return View(getPage.Data);
             }
@@ -130,6 +130,43 @@ namespace Swastika.Cms.Mvc.Controllers
             {
                 return Redirect(string.Format("/{0}", CurrentLanguage));
             }
+        }
+
+        void GeneratePageDetailsUrls(FECategoryViewModel page)
+        {
+            foreach (var articleNav in page.Articles.Items)
+            {
+                articleNav.Article.DetailsUrl = GenerateDetailsUrl("Alias", new { seoName = articleNav.Article.UrlAlias.Alias });
+            }
+
+            foreach (var productNav in page.Products.Items)
+            {
+                productNav.Product.DetailsUrl = GenerateDetailsUrl("Alias", new { seoName = productNav.Product.UrlAlias.Alias });
+            }
+
+            foreach (var module in page.Modules)
+            {
+                module.DetailsUrl = GenerateDetailsUrl("Alias", new { seoName = module.UrlAlias.Alias });
+                GeneratePageDetailsUrls(module);
+            }
+        }
+
+        void GeneratePageDetailsUrls(FEModuleViewModel module)
+        {
+            foreach (var articleNav in module.Articles.Items)
+            {
+                articleNav.Article.DetailsUrl = GenerateDetailsUrl("Alias", new { seoName = articleNav.Article.UrlAlias.Alias });
+            }
+
+            foreach (var productNav in module.Products.Items)
+            {
+                productNav.Product.DetailsUrl = GenerateDetailsUrl("Alias", new { seoName = productNav.Product.UrlAlias.Alias });
+            }
+        }
+
+        string GenerateDetailsUrl(string type, object routeValues)
+        {
+            return SwCmsHelper.GetRouterUrl(type, routeValues, Request, Url);
         }
 
         [HttpGet]

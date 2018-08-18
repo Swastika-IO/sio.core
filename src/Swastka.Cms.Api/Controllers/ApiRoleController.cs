@@ -52,7 +52,7 @@ namespace Swastka.Cms.Api.Controllers
         }
 
         [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme, Roles = "SuperAdmin")]
-        [HttpGet, HttpPost]
+        [HttpGet, HttpPost, HttpOptions]
         [Route("list")]
         public async Task<RepositoryResponse<List<RoleViewModel>>> GetList()
         {
@@ -60,7 +60,7 @@ namespace Swastka.Cms.Api.Controllers
         }
 
         [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme, Roles = "SuperAdmin")]
-        [HttpPost]
+        [HttpPost, HttpOptions]
         [Route("create")]
         public async Task<RepositoryResponse<IdentityRole>> Save([FromBody]string name)
         {
@@ -81,7 +81,7 @@ namespace Swastka.Cms.Api.Controllers
         }
 
         [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme, Roles = "SuperAdmin")]
-        [HttpPost]
+        [HttpPost, HttpOptions]
         [Route("delete")]
         public async Task<RepositoryResponse<AspNetRoles>> Delete([FromBody] string name)
         {

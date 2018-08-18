@@ -32,7 +32,7 @@ namespace Swastka.Cms.Api.Controllers
         #region Get
 
         // GET api/medias/id
-        [HttpGet]
+        [HttpGet,HttpOptions]
         [Route("details/{viewType}/{id}")]
         [Route("details/{viewType}")]
         public async Task<JObject> BEDetails(string viewType, int? id = null)
@@ -65,7 +65,7 @@ namespace Swastka.Cms.Api.Controllers
         }
 
         // GET api/medias/id
-        [HttpGet]
+        [HttpGet, HttpOptions]
         [Route("delete/{id}")]
         public async Task<RepositoryResponse<SiocMedia>> Delete(int id)
         {
@@ -81,7 +81,7 @@ namespace Swastka.Cms.Api.Controllers
         }
 
         // GET api/medias
-        [HttpGet]
+        [HttpGet, HttpOptions]
         //[Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme, Roles = "SuperAdmin, Admin")]
         [Route("list")]
         [Route("list/{pageSize:int?}/{pageIndex:int?}")]
@@ -97,7 +97,7 @@ namespace Swastka.Cms.Api.Controllers
         }
 
         // GET api/medias
-        [HttpGet]
+        [HttpGet, HttpOptions]
         [Route("search/{keyword}")]
         [Route("search/{pageSize:int?}/{pageIndex:int?}/{keyword}")]
         [Route("search/{pageSize:int?}/{pageIndex:int?}/{orderBy}/{direction}/{keyword}")]
@@ -121,7 +121,7 @@ namespace Swastka.Cms.Api.Controllers
         #region Post
 
         [Route("upload")]
-        [HttpPost]
+        [HttpPost, HttpOptions]
         public async Task<RepositoryResponse<BEMediaViewModel>> UploadAsync([FromForm] string fileFolder, [FromForm] string title, [FromForm] string description)
         {
             var files = Request.Form.Files;

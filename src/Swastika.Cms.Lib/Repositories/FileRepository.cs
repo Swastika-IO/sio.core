@@ -192,7 +192,7 @@ namespace Swastika.Cms.Lib.Repositories
 
             FileInfo file = new FileInfo(fullPath);
 
-            if (file.Length > 0)
+            if (file != null && file.Length > 0)
             {
                 try
                 {
@@ -560,13 +560,13 @@ namespace Swastika.Cms.Lib.Repositories
             {
                 if (!string.IsNullOrEmpty(file.Filename))
                 {
-                    
+
                     CreateDirectoryIfNotExist(file.FileFolder);
 
                     string fileName = $"{file.Filename}{file.Extension}";
                     if (!string.IsNullOrEmpty(file.FileFolder))
                     {
-                        fileName = SwCmsHelper.GetFullPath(new string[] { file.FileFolder,fileName });
+                        fileName = SwCmsHelper.GetFullPath(new string[] { file.FileFolder, fileName });
                     }
                     if (File.Exists(fileName))
                     {

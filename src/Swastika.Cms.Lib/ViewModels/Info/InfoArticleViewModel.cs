@@ -7,6 +7,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Storage;
 using Newtonsoft.Json;
 using Swastika.Cms.Lib.Models.Cms;
+using Swastika.Cms.Lib.Services;
 using Swastika.Domain.Core.ViewModels;
 using Swastika.Domain.Data.ViewModels;
 using System;
@@ -74,8 +75,13 @@ namespace Swastika.Cms.Lib.ViewModels.Info
 
         #region Views
 
+
+        [JsonProperty("urlAlias")]
+        public InfoUrlAliasViewModel UrlAlias { get; set; }
+
+
         [JsonProperty("domain")]
-        public string Domain { get; set; } = "/";
+        public string Domain { get { return GlobalConfigurationService.Instance.GetLocalString("Domain", Specificulture, "/"); } }
 
         [JsonProperty("imageUrl")]
         public string ImageUrl {
@@ -298,5 +304,23 @@ namespace Swastika.Cms.Lib.ViewModels.Info
         #endregion Sync
 
         #endregion Expands
+
+        #region Overrides
+
+        public override void ExpandView(SiocCmsContext _context = null, IDbContextTransaction _transaction = null)
+        {
+            UrlAlias = InfoUrlAliasViewModel.Repository.GetSingleModel(u => u.Specificulture == Specificulture && u.SourceId == Id.ToString()).Data;
+            if (UrlAlias == null)
+            {
+                UrlAlias = new InfoUrlAliasViewModel()
+                {
+                    Type = SWCmsConstants.UrlAliasType.Article,
+                    Specificulture = Specificulture,
+                    Alias = SeoName
+                };
+            }
+        }
+
+        #endregion
     }
 }

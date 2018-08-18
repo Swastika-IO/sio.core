@@ -5,8 +5,10 @@
 using Microsoft.EntityFrameworkCore.Storage;
 using Newtonsoft.Json;
 using Swastika.Cms.Lib.Models.Cms;
+using Swastika.Cms.Lib.Services;
 using Swastika.Domain.Data.ViewModels;
 using System;
+using System.Threading.Tasks;
 
 namespace Swastika.Cms.Lib.ViewModels.Info
 {
@@ -46,6 +48,11 @@ namespace Swastika.Cms.Lib.ViewModels.Info
 
         [JsonProperty("modifiedBy")]
         public string ModifiedBy { get; set; }
+        [JsonIgnore]
+        public string Domain { get; set; }
+
+        [JsonProperty("imageUrl")]
+        public string ImageUrl { get; set; }
 
         #endregion Models
 
@@ -62,5 +69,40 @@ namespace Swastika.Cms.Lib.ViewModels.Info
         }
 
         #endregion Contructors
+
+        #region Overrides
+
+        public override void ExpandView(SiocCmsContext _context = null, IDbContextTransaction _transaction = null)
+        {
+            Domain = GlobalConfigurationService.Instance.CmsConfigurations.GetLocalString("Domain", Specificulture, "/");
+            if (Image != null && (Image.IndexOf("http") == -1 && Image[0] != '/'))
+            {
+                ImageUrl = SwCmsHelper.GetFullPath(new string[] {
+                    Domain,  Image
+                });
+            }
+            else
+            {
+                ImageUrl = Image;
+            }
+        }
+
+        public override Task<bool> ExpandViewAsync(SiocCmsContext _context = null, IDbContextTransaction _transaction = null)
+        {
+            Domain = GlobalConfigurationService.Instance.CmsConfigurations.GetLocalString("Domain", Specificulture, "/");
+            if (Image != null && (Image.IndexOf("http") == -1 && Image[0] != '/'))
+            {
+                ImageUrl = SwCmsHelper.GetFullPath(new string[] {
+                    Domain,  Image
+                });
+            }
+            else
+            {
+                ImageUrl = Image;
+            }
+            return base.ExpandViewAsync(_context, _transaction);
+        }
+
+        #endregion
     }
 }

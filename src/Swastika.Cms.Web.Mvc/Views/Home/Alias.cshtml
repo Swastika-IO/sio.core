@@ -36,9 +36,36 @@
         </section>
     }
 </div>
+@section Styles{
+    <base href="/@ViewBag.culture">
+    @Html.Raw(Model.View?.Styles)
+    @if (!string.IsNullOrEmpty(@LocalizerService.GetLocalString("GA_KEY", "vi-vn")))
+    {
+        <!-- Google Analytics -->
+        <script>
+        (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+        (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+        m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+        })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
 
+        ga('create', '@LocalizerService.GetLocalString("GA_KEY", "vi-vn")', 'auto');
+        ga('send', 'pageview');
+        </script>
+        <!-- End Google Analytics -->
+    }
+    <div id="fb-root"></div>
+    <script>
+        (function (d, s, id) {
+            var js, fjs = d.getElementsByTagName(s)[0];
+            if (d.getElementById(id)) return;
+            js = d.createElement(s); js.id = id;
+            js.src = 'https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v3.1&appId=1471411989648473&autoLogAppEvents=1';
+            fjs.parentNode.insertBefore(js, fjs);
+        }(document, 'script', 'facebook-jssdk'));</script>
+
+}
 @section scripts{
-    
+
     <!-- TRUMBOWYG -->
     <script src="/lib/Trumbowyg-2.9.0/trumbowyg.min.js"></script>
     <script src="/lib/Trumbowyg-2.9.0/plugins/base64/trumbowyg.base64.js"></script>
@@ -56,9 +83,11 @@
     <script type="text/javascript" src="/lib/ace/src/worker-json.js"></script>
     <script src="/lib/clipboard.js-2.0.0/dist/clipboard.min.js"></script>
     <script type="text/javascript" src="/lib/bootstrap4-tagsinput-4.1.2/tagsinput.js"></script>
-    
+
     @Html.Raw(Model.View?.Scripts)
     <link href="~/css/portal/main.css" rel="stylesheet" />
+    <link href="/lib/flag-icon-css/css/flag-icon.min.css" rel="stylesheet" />
+    <link href="/lib/flag-icon-css/css/flag-icon.min.css" />
     <script src="~/js/angular.min.js"></script>
     <script src="~/app-shared/plugins/angular-route.min.js"></script>
     <script src="~/app-shared/plugins/angular-animate.min.js"></script>
@@ -73,13 +102,11 @@
     <script src="~/app-shared/services/translator-services.js"></script>
     <!--module-data-->
     <script src="~/app-shared/components/module-data/module-data-services.js"></script>
+
     <script src="~/app-shared/components/module-data/module-data-controller.js"></script>
     <script src="~/app-client/components/module-data/module-form.js"></script>
 
+    <script src="~/app-shared/components/language-switcher/language-switcher.js"></script>
     <script src="~/app-shared/components/confirm/confirm.js"></script>
     <script src="~/app-shared/components/message/message.js"></script>
-}
-@section styles{
-    <base href="/@ViewBag.culture">
-    @Html.Raw(Model.View?.Styles)
 }

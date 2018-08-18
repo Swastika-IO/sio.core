@@ -31,7 +31,7 @@ namespace Swastka.Cms.Api.Controllers
         #region Get
 
         // GET api/customers/id
-        [HttpGet]
+        [HttpGet, HttpOptions]
         [Route("details/{viewType}/{id}")]
         [Route("details/{viewType}")]
         public async Task<JObject> Details(string viewType, string id = null)
@@ -64,7 +64,7 @@ namespace Swastka.Cms.Api.Controllers
         }
 
         // GET api/customers/id
-        [HttpGet]
+        [HttpGet, HttpOptions]
         [Route("delete/{id}")]
         public async Task<RepositoryResponse<SiocCustomer>> Delete(string id)
         {

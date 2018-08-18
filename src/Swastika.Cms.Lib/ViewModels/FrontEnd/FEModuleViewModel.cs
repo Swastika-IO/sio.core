@@ -63,6 +63,12 @@ namespace Swastika.Cms.Lib.ViewModels.FrontEnd
 
         #region Views
 
+        [JsonProperty("urlAlias")]
+        public InfoUrlAliasViewModel UrlAlias { get; set; }
+
+        [JsonProperty("detailsUrl")]
+        public string DetailsUrl { get; set; }
+
         [JsonProperty("columns")]
         public List<ModuleFieldViewModel> Columns { get; set; }
 
@@ -107,6 +113,17 @@ namespace Swastika.Cms.Lib.ViewModels.FrontEnd
 
         public override void ExpandView(SiocCmsContext _context = null, IDbContextTransaction _transaction = null)
         {
+            UrlAlias = InfoUrlAliasViewModel.Repository.GetSingleModel(u => u.Specificulture == Specificulture && u.SourceId == Id.ToString()).Data;
+            if (UrlAlias == null)
+            {
+                UrlAlias = new InfoUrlAliasViewModel()
+                {
+                    Type = SWCmsConstants.UrlAliasType.Module,
+                    Specificulture = Specificulture,
+                    Alias = Name
+                };
+            }
+
             this.View = FETemplateViewModel.GetTemplateByPath(Template, Specificulture, _context, _transaction).Data;
             Columns = new List<ModuleFieldViewModel>();
             JArray arrField = !string.IsNullOrEmpty(Fields) ? JArray.Parse(Fields) : new JArray();

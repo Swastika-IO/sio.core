@@ -37,7 +37,7 @@ namespace Swastika.Cms.Lib.ViewModels.Api
         [JsonProperty("id")]
         public int Id { get; set; }
 
-        //[Required]
+        [Required]
         [JsonProperty("name")]
         public string Name { get; set; }
 
@@ -47,7 +47,7 @@ namespace Swastika.Cms.Lib.ViewModels.Api
         [JsonProperty("template")]
         public string Template { get; set; }
 
-        //[Required]
+        [Required]
         [JsonProperty("title")]
         public string Title { get; set; }
 
@@ -81,7 +81,7 @@ namespace Swastika.Cms.Lib.ViewModels.Api
         #region Template
 
         [JsonProperty("view")]
-        public BETemplateViewModel View { get; set; }
+        public ApiTemplateViewModel View { get; set; }
 
         //[JsonProperty("templates")]
         //public List<BETemplateViewModel> Templates { get; set; }// Article Templates
@@ -182,12 +182,12 @@ namespace Swastika.Cms.Lib.ViewModels.Api
                 Columns.Add(thisField);
             }
             int themeId = GlobalConfigurationService.Instance.GetLocalInt(SWCmsConstants.ConfigurationKeyword.ThemeId, Specificulture, 0);
-            View = BETemplateViewModel.Repository.GetSingleModel(t =>
+            View = ApiTemplateViewModel.Repository.GetSingleModel(t =>
                     t.TemplateId == themeId
                     && !string.IsNullOrEmpty(this.Template) && this.Template.Contains($"{t.FileName}{t.Extension}")).Data;
             if (this.View == null)
             {
-                this.View = new BETemplateViewModel(new SiocTemplate()
+                this.View = new ApiTemplateViewModel(new SiocTemplate()
                 {
                     Extension = SWCmsConstants.Parameters.TemplateExtension,
                     TemplateId = themeId,

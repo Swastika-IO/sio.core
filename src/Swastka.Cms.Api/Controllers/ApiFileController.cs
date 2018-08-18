@@ -22,7 +22,7 @@ namespace Swastka.Cms.Api.Controllers
         #region Post
 
         // Post api/files/id
-        [HttpGet]
+        [HttpGet, HttpOptions]
         [Route("details")]
         public RepositoryResponse<FileViewModel> Details(string folder, string filename)
         {
@@ -44,7 +44,7 @@ namespace Swastka.Cms.Api.Controllers
         }
 
         // GET api/files/id
-        [HttpGet]
+        [HttpGet, HttpOptions]
         [Route("delete/{id}")]
         public RepositoryResponse<bool> Delete(RequestObject request)
         {
@@ -69,7 +69,7 @@ namespace Swastka.Cms.Api.Controllers
         /// <param name="template"></param> Ex: { "base64": "", "fileFolder":"" }
         /// <returns></returns>
         [Route("uploadFile")]
-        [HttpPost]
+        [HttpPost, HttpOptions]
         public IActionResult Edit(FileViewModel template)
         {
             if (ModelState.IsValid)

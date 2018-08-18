@@ -32,7 +32,7 @@ namespace Swastka.Cms.Api.Controllers
         #region Get
 
         // GET api/languages/id
-        [HttpGet]
+        [HttpGet, HttpOptions]
         [Route("details/{viewType}/{keyword}")]
         [Route("details/{viewType}")]
         public async Task<JObject> Details(string viewType, string keyword = null)
@@ -64,7 +64,7 @@ namespace Swastka.Cms.Api.Controllers
         }
 
         // GET api/languages/id
-        [HttpGet]
+        [HttpGet, HttpOptions]
         [Route("delete/{keyword}")]
         public async Task<RepositoryResponse<SiocLanguage>> Delete(string keyword)
         {
@@ -85,7 +85,7 @@ namespace Swastka.Cms.Api.Controllers
         }
 
         // GET api/languages
-        [HttpGet]
+        [HttpGet, HttpOptions]
         //[Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme, Roles = "SuperAdmin, Admin")]
         [Route("list")]
         [Route("list/{pageSize:int?}/{pageIndex:int?}")]
@@ -101,7 +101,7 @@ namespace Swastka.Cms.Api.Controllers
         }
 
         // GET api/languages
-        [HttpGet]
+        [HttpGet, HttpOptions]
         [Route("search/{keyword}")]
         [Route("search/{pageSize:int?}/{pageIndex:int?}/{keyword}")]
         [Route("search/{pageSize:int?}/{pageIndex:int?}/{orderBy}/{direction}/{keyword}")]

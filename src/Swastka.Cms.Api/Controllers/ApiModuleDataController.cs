@@ -44,7 +44,7 @@ namespace Swastka.Cms.Api.Controllers
         }
 
         // GET api/module-data/id
-        [HttpGet]
+        [HttpGet, HttpOptions]
         [Route("details/{viewType}/{moduleId}/{id}")]
         [Route("details/{viewType}/{moduleId}")]
         public async Task<RepositoryResponse<ApiModuleDataViewModel>> DetailsAsync(string viewType, int moduleId, string id = null)
@@ -78,7 +78,7 @@ namespace Swastka.Cms.Api.Controllers
         }
 
         // GET api/module-data/id
-        [HttpGet]
+        [HttpGet, HttpOptions]
         [Route("edit/{id}")]
         public Task<RepositoryResponse<InfoModuleDataViewModel>> Edit(string id)
         {
@@ -86,7 +86,7 @@ namespace Swastka.Cms.Api.Controllers
         }
 
         // GET api/module-data/create/id
-        [HttpGet]
+        [HttpGet, HttpOptions]
         [Route("create/{moduleId}")]
         public async Task<RepositoryResponse<BEModuleDataViewModel>> CreateAsync(int moduleId)
         {
@@ -120,7 +120,7 @@ namespace Swastka.Cms.Api.Controllers
         }
 
         // GET api/module-data/create/id
-        [HttpGet]
+        [HttpGet, HttpOptions]
         [Route("init-by-name/{moduleName}")]
         public async Task<RepositoryResponse<ApiModuleDataViewModel>> InitViewAsync(string moduleName)
         {
@@ -154,7 +154,7 @@ namespace Swastka.Cms.Api.Controllers
         }
 
         // GET api/module-data/create/id
-        [HttpGet]
+        [HttpGet, HttpOptions]
         [Route("init/{moduleId}")]
         public async Task<RepositoryResponse<ApiModuleDataViewModel>> InitByIdAsync(int moduleId)
         {
@@ -188,7 +188,7 @@ namespace Swastka.Cms.Api.Controllers
         }
 
         // GET api/module-data/id
-        [HttpGet]
+        [HttpGet, HttpOptions]
         [Route("delete/{id}")]
         public Task<RepositoryResponse<SiocModuleData>> Delete(string id)
         {
@@ -196,7 +196,7 @@ namespace Swastka.Cms.Api.Controllers
         }
 
         // GET api/module-data
-        [HttpGet]
+        [HttpGet, HttpOptions]
         [Route("{moduleId}")]
         [Route("{moduleId}/{pageSize:int?}/{pageIndex:int?}")]
         [Route("{moduleId}/{orderBy}/{direction}")]
@@ -214,7 +214,7 @@ namespace Swastka.Cms.Api.Controllers
         }
 
         // GET api/module-data
-        [HttpGet]
+        [HttpGet, HttpOptions]
         [Route("getByArticle/{articleId}/{moduleId}")]
         [Route("getByArticle/{articleId}/{moduleId}/{pageSize:int?}/{pageIndex:int?}")]
         [Route("getByArticle/{articleId}/{moduleId}/{orderBy}/{direction}")]
@@ -233,7 +233,7 @@ namespace Swastka.Cms.Api.Controllers
         }
 
         // GET api/module-data
-        [HttpGet]
+        [HttpGet, HttpOptions]
         [Route("{moduleId}/{keyword}")]
         [Route("{moduleId}/{pageSize:int?}/{pageIndex:int?}/{keyword}")]
         [Route("{moduleId}/{pageSize:int?}/{pageIndex:int?}/{orderBy}/{direction}/{keyword}")]

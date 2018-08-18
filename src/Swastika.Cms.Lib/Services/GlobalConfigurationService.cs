@@ -24,26 +24,36 @@ namespace Swastika.Cms.Lib.Services
 {
     public class GlobalConfigurationService
     {
+        public CmsCultureConfiguration CmsCulture { get; set; }
+        public CmsConfiguration CmsConfigurations { get; set; }
         private static GlobalConfigurationService _instance;
 
         public static GlobalConfigurationService Instance
         {
             get
             {
-                return _instance ?? (_instance = new GlobalConfigurationService());
+                return _instance;
             }
             set
             {
                 _instance = value;
             }
         }
-
+        static GlobalConfigurationService()
+        {
+            _instance = new GlobalConfigurationService();
+            _instance.RefreshAll();
+        }
+        
         public GlobalConfigurationService()
         {
 
+        }       
+
+        public string Translate(string culture, string key)
+        {
+            return Instance.CmsCulture.Translator[culture][key]?.ToString() ?? key;
         }
-        public CmsCultureConfiguration CmsCulture { get; set; }
-        public CmsConfiguration CmsConfigurations { get; set; }
 
         public async Task<RepositoryResponse<bool>> InitSWCms(InitCulture culture)
         {

@@ -35,7 +35,7 @@ namespace Swastka.Cms.Api.Controllers
         #region Get
 
         // GET api/products/id
-        [HttpGet]
+        [HttpGet, HttpOptions]
         [Route("details/{viewType}/{id}")]
         [Route("details/{viewType}")]
         public async Task<JObject> Details(string viewType, string id)
@@ -86,7 +86,7 @@ namespace Swastka.Cms.Api.Controllers
         }
 
         // GET api/products/id
-        [HttpGet]
+        [HttpGet, HttpOptions]
         [Route("recycle/{id}")]
         public async Task<RepositoryResponse<InfoProductViewModel>> Recycle(string id)
         {
@@ -104,7 +104,7 @@ namespace Swastka.Cms.Api.Controllers
         }
 
         // GET api/products/id
-        [HttpGet]
+        [HttpGet, HttpOptions]
         [Route("restore/{id}")]
         public async Task<RepositoryResponse<InfoProductViewModel>> Restore(string id)
         {
@@ -122,7 +122,7 @@ namespace Swastka.Cms.Api.Controllers
         }
 
         // GET api/products/id
-        [HttpGet]
+        [HttpGet, HttpOptions]
         [Route("delete/{id}")]
         public async Task<RepositoryResponse<SiocProduct>> Delete(string id)
         {
@@ -138,7 +138,7 @@ namespace Swastka.Cms.Api.Controllers
         }
 
         // GET api/products
-        [HttpGet]
+        [HttpGet, HttpOptions]
         //[Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme, Roles = "SuperAdmin, Admin")]
         [Route("list")]
         [Route("list/{pageSize:int?}/{pageIndex:int?}")]
@@ -156,7 +156,7 @@ namespace Swastka.Cms.Api.Controllers
         }
 
         // GET api/products
-        [HttpGet]
+        [HttpGet, HttpOptions]
         [Route("search/{keyword}")]
         [Route("search/{pageSize:int?}/{pageIndex:int?}/{keyword}")]
         [Route("search/{pageSize:int?}/{pageIndex:int?}/{orderBy}/{direction}/{keyword}")]
@@ -175,7 +175,7 @@ namespace Swastka.Cms.Api.Controllers
         }
 
         // GET api/products
-        [HttpGet]
+        [HttpGet, HttpOptions]
         [Route("draft/{keyword}")]
         [Route("draft/{pageSize:int?}/{pageIndex:int?}")]
         [Route("draft/{pageSize:int?}/{pageIndex:int?}/{keyword}")]
@@ -202,7 +202,7 @@ namespace Swastka.Cms.Api.Controllers
         #region Post
 
         // POST api/products
-        [HttpPost]
+        [HttpPost, HttpOptions]
         [Route("save")]
         public async Task<RepositoryResponse<ApiProductViewModel>> Save([FromBody] ApiProductViewModel product)
         {

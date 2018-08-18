@@ -43,7 +43,7 @@ namespace Swastka.Cms.Api.Controllers
         #region Get
 
         // GET api/category/id
-        [HttpGet]
+        [HttpGet, HttpOptions]
         [Route("{culture}/settings")]
         [Route("settings")]
         public RepositoryResponse<SiteSettingsViewModel> Settings()
@@ -67,7 +67,7 @@ namespace Swastka.Cms.Api.Controllers
         }
 
         // GET api/category/id
-        [HttpGet]
+        [HttpGet, HttpOptions]
         [Route("{culture}/translator")]
         [Route("translator")]
         public RepositoryResponse<JObject> Languages()
@@ -79,7 +79,7 @@ namespace Swastka.Cms.Api.Controllers
             };
         }
 
-        [HttpGet]
+        [HttpGet, HttpOptions]
         [Route("init-settings")]
         public RepositoryResponse<SiteSettingsViewModel> InitSettings()
         {
@@ -117,7 +117,7 @@ namespace Swastka.Cms.Api.Controllers
         }
 
         // GET api/category/id
-        [HttpGet]
+        [HttpGet, HttpOptions]
         [Route("dashboard")]
         public RepositoryResponse<DashboardViewModel> Dashboard(int id)
         {
@@ -134,7 +134,7 @@ namespace Swastka.Cms.Api.Controllers
 
         // GET 
         [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme, Roles = "SuperAdmin")]
-        [HttpGet]
+        [HttpGet, HttpOptions]
         [Route("app-settings/details")]
         public RepositoryResponse<JObject> LoadAppSettings()
         {
@@ -149,7 +149,7 @@ namespace Swastka.Cms.Api.Controllers
 
         // POST api/category
         [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme, Roles = "SuperAdmin")]
-        [HttpPost]
+        [HttpPost, HttpOptions]
         [Route("app-settings/save")]
         public RepositoryResponse<JObject> SaveAppSettings([FromBody]JObject model)
         {

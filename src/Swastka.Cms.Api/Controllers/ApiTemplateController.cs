@@ -32,7 +32,7 @@ namespace Swastka.Cms.Api.Controllers
         }
         #region Get
 
-        [HttpGet]
+        [HttpGet, HttpOptions]
         [Route("details/{viewType}/{themeId}/{folderType}/{id}")]
         [Route("details/{viewType}/{themeId}/{folderType}")]
         public async Task<RepositoryResponse<ApiTemplateViewModel>> DetailsAsync(string viewType, int themeId, string folderType, int? id)
@@ -73,7 +73,7 @@ namespace Swastka.Cms.Api.Controllers
         }
 
         // GET api/category/id
-        [HttpGet]
+        [HttpGet, HttpOptions]
         [Route("delete/{id}")]
         public async Task<RepositoryResponse<SiocTemplate>> DeleteAsync(int id)
         {

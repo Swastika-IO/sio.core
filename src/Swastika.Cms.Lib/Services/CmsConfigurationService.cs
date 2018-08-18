@@ -42,7 +42,7 @@ namespace Swastika.Cms.Lib.Services
         public string Language { get; set; }
         public List<InfoConfigurationViewModel> ListConfiguration { get; set; }
         public IConfiguration Configuration { get; set; }
-        
+
         private void InitParams()
         {
             CmsConnectionString = Configuration.GetConnectionString(SWCmsConstants.CONST_DEFAULT_CONNECTION);
@@ -68,9 +68,9 @@ namespace Swastika.Cms.Lib.Services
             return configuration;
         }
 
-        public string GetLocalString(string key, string culture, string defaultValue = null)
+        public string GetLocalString(string key, string culture = null, string defaultValue = null)
         {
-            var config = ListConfiguration.Find(c => c.Keyword == key && c.Specificulture == culture);
+            var config = ListConfiguration.Find(c => c.Keyword == key && (culture == null || c.Specificulture == culture));
             return config != null ? config.Value : defaultValue;
         }
 

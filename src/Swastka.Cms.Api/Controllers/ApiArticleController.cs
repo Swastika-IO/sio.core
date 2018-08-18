@@ -38,7 +38,7 @@ namespace Swastka.Cms.Api.Controllers
         #region Get
 
         // GET api/Articles/id
-        [HttpGet]
+        [HttpGet, HttpOptions]
         [Route("details/{viewType}/{id}")]
         [Route("details/{viewType}")]
         public async Task<JObject> BEDetails(string viewType, string id)
@@ -94,7 +94,7 @@ namespace Swastka.Cms.Api.Controllers
         }
 
         // GET api/Articles/id
-        [HttpGet]
+        [HttpGet, HttpOptions]
         [Route("create")]
         public RepositoryResponse<ApiArticleViewModel> Create()
         {
@@ -112,7 +112,7 @@ namespace Swastka.Cms.Api.Controllers
         }
 
         // GET api/Articles/id
-        [HttpGet]
+        [HttpGet, HttpOptions]
         [Route("init/{viewType}")]
         public JObject Init(string viewType)
         {
@@ -143,7 +143,7 @@ namespace Swastka.Cms.Api.Controllers
         }
 
         // GET api/Articles/id
-        [HttpGet]
+        [HttpGet, HttpOptions]
         [Route("recycle/{id}")]
         public async Task<RepositoryResponse<InfoArticleViewModel>> Recycle(string id)
         {
@@ -161,7 +161,7 @@ namespace Swastka.Cms.Api.Controllers
         }
 
         // GET api/Articles/id
-        [HttpGet]
+        [HttpGet, HttpOptions]
         [Route("restore/{id}")]
         public async Task<RepositoryResponse<InfoArticleViewModel>> Restore(string id)
         {
@@ -179,7 +179,7 @@ namespace Swastka.Cms.Api.Controllers
         }
 
         // GET api/Articles/id
-        [HttpGet]
+        [HttpGet, HttpOptions]
         [Route("delete/{id}")]
         public async Task<RepositoryResponse<SiocArticle>> Delete(string id)
         {
@@ -195,7 +195,7 @@ namespace Swastka.Cms.Api.Controllers
         }
 
         // GET api/Articles
-        [HttpGet]
+        [HttpGet, HttpOptions]
         //[Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme, Roles = "SuperAdmin, Admin")]
         [Route("list")]
         [Route("list/{pageSize:int?}/{pageIndex:int?}")]
@@ -217,7 +217,7 @@ namespace Swastka.Cms.Api.Controllers
         #region Post
 
         // POST api/Articles
-        [HttpPost]
+        [HttpPost, HttpOptions]
         [Route("save")]
         public async Task<RepositoryResponse<ApiArticleViewModel>> Save([FromBody] ApiArticleViewModel Article)
         {

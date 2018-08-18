@@ -10,6 +10,7 @@ using Swastika.Cms.Lib.Services;
 using Swastika.Common.Helper;
 using Swastika.Domain.Data.ViewModels;
 using System;
+using System.Threading.Tasks;
 
 namespace Swastika.Cms.Lib.ViewModels.Info
 {
@@ -70,25 +71,10 @@ namespace Swastika.Cms.Lib.ViewModels.Info
         }
 
         [JsonProperty("domain")]
-        public string Domain => GlobalConfigurationService.Instance.GetLocalString("Domain", Specificulture, "/");
+        public string Domain { get; set; }
 
         [JsonProperty("imageUrl")]
-        public string ImageUrl
-        {
-            get
-            {
-                if (Image != null && (Image.IndexOf("http") == -1 && Image[0] != '/'))
-                {
-                    return SwCmsHelper.GetFullPath(new string[] {
-                    Domain,  Image
-                });
-                }
-                else
-                {
-                    return Image;
-                }
-            }
-        }
+        public string ImageUrl { get; set; }
         #endregion Views
 
         #endregion Properties
@@ -106,5 +92,40 @@ namespace Swastika.Cms.Lib.ViewModels.Info
         }
 
         #endregion Contructors
+
+        #region Overrides
+
+        public override void ExpandView(SiocCmsContext _context = null, IDbContextTransaction _transaction = null)
+        {
+            Domain = GlobalConfigurationService.Instance.CmsConfigurations.GetLocalString("Domain", null, "/");
+            if (Image != null && (Image.IndexOf("http") == -1 && Image[0] != '/'))
+            {
+                ImageUrl = SwCmsHelper.GetFullPath(new string[] {
+                    Domain,  Image
+                });
+            }
+            else
+            {
+                ImageUrl = Image;
+            }
+
+        }
+        public override Task<bool> ExpandViewAsync(SiocCmsContext _context = null, IDbContextTransaction _transaction = null)
+        {
+            Domain = GlobalConfigurationService.Instance.CmsConfigurations.GetLocalString("Domain", Specificulture, "/");
+            if (Image != null && (Image.IndexOf("http") == -1 && Image[0] != '/'))
+            {
+                ImageUrl = SwCmsHelper.GetFullPath(new string[] {
+                    Domain,  Image
+                });
+            }
+            else
+            {
+                ImageUrl = Image;
+            }
+
+            return base.ExpandViewAsync(_context, _transaction);
+        }
+        #endregion
     }
 }

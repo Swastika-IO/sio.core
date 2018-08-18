@@ -97,8 +97,13 @@ namespace Swastika.Cms.Web.Mvc
                 //app.UseExceptionHandler(errorHandlingPath: ErrorHandlingPath);
                 app.UseHsts();
             }
-
-            app.UseHttpsRedirection();
+            app.UseCors(opt =>
+            {
+                opt.AllowAnyOrigin();
+                opt.AllowAnyHeader();
+                opt.AllowAnyMethod();
+            });
+            //app.UseHttpsRedirection();
             app.UseStaticFiles();
             app.UseCookiePolicy();
 
@@ -134,11 +139,14 @@ namespace Swastika.Cms.Web.Mvc
                     name: "areaRoute",
                     template: "{culture=" + CONST_ROUTE_DEFAULT_CULTURE + "}/{area:exists}/{controller=Portal}/{action=Init}");
                 routes.MapRoute(
-                    name: "Page",
+                    name: "Alias",
                     template: "{culture=" + CONST_ROUTE_DEFAULT_CULTURE + "}/{seoName}");
                 routes.MapRoute(
+                    name: "Page",
+                    template: "{culture=" + CONST_ROUTE_DEFAULT_CULTURE + "}/page/{seoName}");
+                routes.MapRoute(
                     name: "File",
-                    template: "{culture=" + CONST_ROUTE_DEFAULT_CULTURE + "}/Portal/File");
+                    template: "{culture=" + CONST_ROUTE_DEFAULT_CULTURE + "}/portal/file");
                 routes.MapRoute(
                     name: "Article",
                     template: "{culture=" + CONST_ROUTE_DEFAULT_CULTURE + "}/article/{seoName}");

@@ -34,7 +34,7 @@ namespace Swastka.Cms.Api.Controllers
         #region Get
 
         // GET api/category/id
-        [HttpGet]
+        [HttpGet, HttpOptions]
         [Route("delete/{id}")]
         public async Task<RepositoryResponse<SiocCategory>> DeleteAsync(int id)
         {
@@ -55,7 +55,7 @@ namespace Swastka.Cms.Api.Controllers
         }
 
         // GET api/pages/id
-        [HttpGet]
+        [HttpGet, HttpOptions]
         [Route("details/{viewType}/{id}")]
         [Route("details/{viewType}")]
         public async Task<ActionResult<JObject>> Details(string viewType, int? id)
@@ -119,7 +119,7 @@ namespace Swastka.Cms.Api.Controllers
         }
 
         // GET api/category/id
-        [HttpGet]
+        [HttpGet, HttpOptions]
         [Route("byArticle/{id}")]
         [Route("byArticle/{id}/{articleId}")]
         public Task<RepositoryResponse<FECategoryViewModel>> GetByArticle(int id, string articleId = null)
@@ -129,7 +129,7 @@ namespace Swastka.Cms.Api.Controllers
         }
 
         // GET api/Category
-        [HttpGet]
+        [HttpGet, HttpOptions]
         [Route("list")]
         [Route("list/{PageSize:int?}/{PageIndex:int?}")]
         [Route("list/{orderBy}/{direction}")]
@@ -144,7 +144,7 @@ namespace Swastka.Cms.Api.Controllers
         }
 
         // GET api/Category
-        [HttpGet]
+        [HttpGet, HttpOptions]
         [Route("search/{keyword}")]
         [Route("search/{PageSize:int?}/{PageIndex:int?}/{keyword}")]
         [Route("search/{PageSize:int?}/{PageIndex:int?}/{keyword}/{description}")]
