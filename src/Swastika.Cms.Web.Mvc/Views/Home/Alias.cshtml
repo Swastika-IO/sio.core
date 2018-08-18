@@ -38,6 +38,7 @@
 </div>
 
 @section scripts{
+    
     <!-- TRUMBOWYG -->
     <script src="/lib/Trumbowyg-2.9.0/trumbowyg.min.js"></script>
     <script src="/lib/Trumbowyg-2.9.0/plugins/base64/trumbowyg.base64.js"></script>
@@ -45,7 +46,6 @@
     <script src="/lib/Trumbowyg-2.9.0/plugins/colors/trumbowyg.colors.js"></script>
     <script src="/lib/Trumbowyg-2.9.0/plugins/upload/trumbowyg.upload.js"></script>
     <script src="/lib/Trumbowyg-2.9.0/plugins/noembed/trumbowyg.noembed.js"></script>
-    @*<script type="text/javascript" src="/lib/DataTables/datatables.min.js"></script>*@
     <script type="text/javascript" src="/lib/cropperjs-1.2.2/dist/cropper.js"></script>
     <script type="text/javascript" src="/lib/ace/src/ace.js"></script>
     <script type="text/javascript" src="/lib/ace/src/mode-csharp.js"></script>
@@ -56,26 +56,17 @@
     <script type="text/javascript" src="/lib/ace/src/worker-json.js"></script>
     <script src="/lib/clipboard.js-2.0.0/dist/clipboard.min.js"></script>
     <script type="text/javascript" src="/lib/bootstrap4-tagsinput-4.1.2/tagsinput.js"></script>
-    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
-    <script src="/js/plugins/ng-file-upload-bower-12.2.13/ng-file-upload-all.js"></script>
-    <script src="/js/plugins/ng-file-upload-bower-12.2.13/ng-file-upload-shim.js"></script>
-    <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.2.16/angular-route.min.js"></script>
-    <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.2.13/angular-animate.js"></script>
-    <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.3.8/angular-sanitize.js"></script>
-
-
+    
     @Html.Raw(Model.View?.Scripts)
     <link href="~/css/portal/main.css" rel="stylesheet" />
     <script src="~/js/angular.min.js"></script>
-    <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.2.16/angular-route.min.js"></script>
-    <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.2.13/angular-animate.js"></script>
-    <script src="~/js/plugins/ng-file-upload-bower-12.2.13/ng-file-upload-all.js"></script>
+    <script src="~/app-shared/plugins/angular-route.min.js"></script>
+    <script src="~/app-shared/plugins/angular-animate.min.js"></script>
+
+    <script src="~/app-client/app.js"></script>
     <script src="~/app-shared/plugins/bootstrap-notify.min.js"></script>
     <script src="~/js/plugins/ng-file-upload-bower-12.2.13/ng-file-upload-shim.js"></script>
     <script src="~/app-shared/plugins/angular-local-storage.min.js"></script>
-    <script src="~/app-client/app.js"></script>
-    @*<script src="~/app/app-frontend.js"></script>
-        <script src="~/app/controllers/frontend-controller.js"></script>*@
     <script src="~/app-client/shared/controllers/app-client-controller.js"></script>
     <script src="~/app-shared/services/common-services.js"></script>
     <script src="~/app-shared/services/auth-services.js"></script>

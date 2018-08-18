@@ -233,7 +233,7 @@ app.run(['$rootScope', '$location', 'commonServices', 'authService', 'translator
         }
 
         $rootScope.translate = function (keyword, isWrap) {
-            if ($rootScope.settings && !$rootScope.isBusy) {
+            if ($rootScope.settings && ($rootScope.translator || $rootScope.isBusy)) {
                 return $rootScope.translator.get(keyword, isWrap);
             }
             else {

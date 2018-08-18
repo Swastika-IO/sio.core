@@ -1,6 +1,6 @@
 ﻿'use strict';
 
-var app = angular.module('SwastikaClient', ['ngRoute', 'LocalStorageModule', 'components', 'ngSanitize']);
+var app = angular.module('SwastikaClient', ['LocalStorageModule', 'components']);
 var serviceBase = "/";
 
 app.directive('ngEnter', function () {
@@ -261,8 +261,8 @@ app.run(['$rootScope', '$location', 'commonServices', 'authService', 'translator
         }
 
         $rootScope.translate = function (keyword, defaultValue) {
-            if ($rootScope.settings && !$rootScope.isBusy) {
-
+            if ($rootScope.settings && ($rootScope.translator || $rootScope.isBusy))
+            {
                 return $rootScope.translator.get(keyword, defaultValue);
             }
             else {

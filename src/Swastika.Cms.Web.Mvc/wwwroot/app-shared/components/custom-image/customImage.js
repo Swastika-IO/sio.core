@@ -46,10 +46,12 @@ modules.component('customImage', {
                         var resp = await mediaServices.saveMedia(media);
                         if (resp && resp.isSucceed) {
                             ctrl.src = resp.data.fullPath;
+                            $rootScope.isBusy = false;
                             $scope.$apply();
                         }
                         else {
                             if (resp) { $rootScope.showErrors(resp.errors); }
+                            $rootScope.isBusy = false;
                             $scope.$apply();
                         }    
                     }
@@ -80,7 +82,8 @@ modules.component('customImage', {
                     $scope.$apply();
                 };
                 reader.onerror = function (error) {
-
+                    $rootScope.isBusy = false;
+                    $rootScope.showErrors([error]);
                 };
             }
             else {

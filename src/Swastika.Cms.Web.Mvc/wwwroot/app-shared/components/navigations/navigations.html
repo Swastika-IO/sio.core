@@ -11,7 +11,7 @@
                 <input type="text" ng-model="nav.priority" ng-change="$ctrl.updatePriorities()" 
                        class="item-priority d-none form-control form-control-sm d"/>
             </div>-->
-            <div class="col-10">
+            <div class="col-9">
                 <span class="switch switch-sm">
                     <input type="checkbox" ng-change="$ctrl.callback({nav: nav})"
                            ng-model="nav.isActived" id="{{$ctrl.prefix}}_{{$index}}"
@@ -21,8 +21,8 @@
                     </label>
                 </span>
             </div>
-            <div class="col-1">
-                <img height="50" ng-src="{{nav.image}}" />
+            <div class="col-2">
+                <img ng-src="{{nav.image}}" />
             </div>
         </div>
     </li>
