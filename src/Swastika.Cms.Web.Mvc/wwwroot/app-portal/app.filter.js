@@ -2,6 +2,7 @@
 app.filter('utcToLocal', Filter)
     .constant('ngAuthSettings', {
         apiServiceBaseUri: '/',
+        serviceBase: '',
         clientId: 'ngAuthApp',
         facebookAppId: '464285300363325'
     });

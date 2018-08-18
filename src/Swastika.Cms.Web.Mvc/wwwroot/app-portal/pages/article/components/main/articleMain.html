@@ -8,7 +8,8 @@
             <label>Title</label>
             <input type="text"
                    class="form-control form-control-lg"
-                   ng-model="$ctrl.article.title" />
+                   ng-model="$ctrl.article.title"
+                   ng-blur="$ctrl.generateSEO()" />
         </div>
         <div class="form-group">
             <label>Excerpt</label>

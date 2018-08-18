@@ -11,7 +11,7 @@
                         $scope.isInit = true;
                         $rootScope.settings = response;
                         if ($rootScope.settings) {
-
+                            $scope.settings = $rootScope.settings;
                             $rootScope.translator.fillTranslator(lang).then(function () {
                                 authService.fillAuthData().then(function (response) {
                                     $rootScope.authentication = authService.authentication;

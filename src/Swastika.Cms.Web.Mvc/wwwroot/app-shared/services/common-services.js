@@ -1,5 +1,6 @@
 ﻿'use strict';
-app.factory('commonServices', ['$location', '$http', '$rootScope', 'authService', 'localStorageService', function ($location, $http, $rootScope, authService, localStorageService) {
+app.factory('commonServices', ['$location', '$http', '$rootScope', 'authService', 'localStorageService', 'ngAuthSettings',
+    function ($location, $http, $rootScope, authService, localStorageService, ngAuthSettings) {
     var adminCommonFactory = {};
     var _settings = {
         lang: '',
@@ -28,11 +29,11 @@ app.factory('commonServices', ['$location', '$http', '$rootScope', 'authService'
 
     var _getSettings = async function (culture) {
         var settings = localStorageService.get('settings');
-        if (settings && settings.lang == culture) {
+        if (settings && settings.lang === culture) {
             return settings;
         }
         else {
-            var url = 'api/portal';
+            var url = '/api/portal';
             if (culture) {
                 url += '/' + culture;
             }
@@ -77,10 +78,13 @@ app.factory('commonServices', ['$location', '$http', '$rootScope', 'authService'
 
     };
 
-    var _getApiResult = async function (req) {
+    var _getApiResult = async function (req, serviceBase) {
         $rootScope.isBusy = true;
         req.Authorization = authService.authentication.token;
-
+        if (serviceBase == undefined) {
+            serviceBase = ngAuthSettings.serviceBase;
+        }
+        req.url = serviceBase  + req.url;
         if (!req.headers) {
             req.headers = {
                 'Content-Type': 'application/json'
@@ -126,10 +130,8 @@ app.factory('commonServices', ['$location', '$http', '$rootScope', 'authService'
                     $location.path('/backend/login');
                     return t;
                 }
-                else {
-                    var t = { isSucceed: false, errors: [error.statusText] };
-                    //$rootScope.isBusy = false;
-                    return t;
+                else {                    
+                    return { isSucceed: false, errors: [error.statusText] };
                 }
             });
     };

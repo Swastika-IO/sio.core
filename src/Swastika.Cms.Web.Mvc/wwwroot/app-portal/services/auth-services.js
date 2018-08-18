@@ -1,7 +1,7 @@
 ﻿'use strict';
 app.factory('authService', ['$http', '$q', 'localStorageService', 'ngAuthSettings', function ($http, $q, localStorageService, ngAuthSettings) {
 
-    var serviceBase = '/';
+    var serviceBase = '';
     var authServiceFactory = {};
 
     var _authentication = {
@@ -24,7 +24,7 @@ app.factory('authService', ['$http', '$q', 'localStorageService', 'ngAuthSetting
 
         _logOut();
 
-        return $http.post(serviceBase + 'api/account/register', registration).then(function (response) {
+        return $http.post(serviceBase + '/api/account/register', registration).then(function (response) {
             return response;
         });
 
@@ -45,7 +45,7 @@ app.factory('authService', ['$http', '$q', 'localStorageService', 'ngAuthSetting
 
         var deferred = $q.defer();
 
-        $http.post(serviceBase + 'api/account/login', data).success(function (response) {
+        $http.post(serviceBase + '/api/account/login', data).success(function (response) {
 
             localStorageService.set('authorizationData', { token: response.data.access_token, userName: response.data.userData.NickName, roleNames: response.data.userData.RoleNames, avatar: response.data.userData.Avatar, refresh_token: response.data.refresh_token, userId: response.data.userData.Id });
             _authentication.isAuth = true;
@@ -129,7 +129,7 @@ app.factory('authService', ['$http', '$q', 'localStorageService', 'ngAuthSetting
 
         var deferred = $q.defer();
 
-        $http.get(serviceBase + 'api/account/ObtainLocalAccessToken', { params: { provider: externalData.provider, externalAccessToken: externalData.externalAccessToken } }).success(function (response) {
+        $http.get(serviceBase + '/api/account/ObtainLocalAccessToken', { params: { provider: externalData.provider, externalAccessToken: externalData.externalAccessToken } }).success(function (response) {
 
             localStorageService.set('authorizationData', { token: response.access_token, userName: response.userName, roleName: response.userData.roleNames, refresh_token: response.refresh_token, useRefreshTokens: true });
 
@@ -153,7 +153,7 @@ app.factory('authService', ['$http', '$q', 'localStorageService', 'ngAuthSetting
 
         var deferred = $q.defer();
 
-        $http.post(serviceBase + 'api/account/registerexternal', registerExternalData).success(function (response) {
+        $http.post(serviceBase + '/api/account/registerexternal', registerExternalData).success(function (response) {
 
             localStorageService.set('authorizationData', { token: response.access_token, userName: response.userName, refresh_token: response.refresh_token, useRefreshTokens: true });
 

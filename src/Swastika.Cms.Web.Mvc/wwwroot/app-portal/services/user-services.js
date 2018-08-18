@@ -6,7 +6,7 @@ app.factory('userServices', ['$http', 'commonServices', function ($http, commonS
     var usersServiceFactory = {};
     var apiUrl = '/api/e-voucher/';
     var _getUserDemographicInfo = function () {
-        var url = 'api/GetUserDemographicInfo';
+        var url = '/api/GetUserDemographicInfo';
         var req = {
             method: 'GET',
             url: serviceBase + url
@@ -39,7 +39,7 @@ app.factory('userServices', ['$http', 'commonServices', function ($http, commonS
 
         var req = {
             method: 'POST',
-            url: serviceBase + 'api/roles/UpdateUserRole',
+            url: serviceBase + '/api/roles/UpdateUserRole',
             data: JSON.stringify(userInRole)
 
         };

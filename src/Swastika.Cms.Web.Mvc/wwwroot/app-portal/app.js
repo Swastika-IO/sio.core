@@ -1,15 +1,14 @@
 ﻿'use strict';
 var app = angular.module('SwastikaPortal', ['ngRoute', 'components', 'ngFileUpload', 'LocalStorageModule',
     'bw.paging', 'dndLists', 'ngSanitize']);
-var serviceBase = "/";
+//var serviceBase = 'http://crickettours.asia';
 
 app.run(['$rootScope', '$location', 'commonServices', 'authService', 'translatorService',
     function ($rootScope, $location, commonServices, authService, translatorService) {
-
         $rootScope.currentContext = $rootScope;
         $rootScope.isBusy = false;
         $rootScope.translator = translatorService;
-
+        
         $rootScope.errors = [];
         $rootScope.breadCrumbs = [];
         $rootScope.message = {

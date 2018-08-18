@@ -27,7 +27,7 @@ app.factory('ThemeServices', ['$http', '$rootScope', 'commonServices', function 
             method: 'GET',
             url: url
         };
-        return await commonServices.getApiResult(req)
+        return await commonServices.getApiResult(req,'');
     };
 
     var _initTheme = async function (type) {

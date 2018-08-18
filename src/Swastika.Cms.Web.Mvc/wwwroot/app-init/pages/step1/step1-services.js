@@ -8,7 +8,7 @@ app.factory('Step1Services', ['$http', 'commonServices', function ($http, common
     var _initCms = async function (data) {
         var req = {
             method: 'POST',
-            url: 'api/portal/init-cms',
+            url: '/api/portal/init-cms',
             data: JSON.stringify(data)
         };
         return await commonServices.getApiResult(req);

@@ -25,7 +25,7 @@ app.factory('commonServices', ['$location', '$http', '$rootScope', 'localStorage
     };
 
     var _getSettings = async function () {
-        var url = 'api/portal';
+        var url = '/api/portal';
         url += '/init-settings';
         var req = {
             method: 'GET',

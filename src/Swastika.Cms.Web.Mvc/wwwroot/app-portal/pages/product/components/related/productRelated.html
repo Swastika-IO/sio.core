@@ -30,7 +30,7 @@
                         </td>
                         <td>
                             <a href="#" ng-if="item.relatedProduct.image!=''" data-toggle="modal" data-target=".image-preview-modal-lg" data-imgsrc="{{item.relatedProduct.image}}">
-                                <img imageonload class="" src="{{item.relatedProduct.image}}" alt="{{item.relatedProduct.title}}" style="max-height: 50px;">
+                                <img imageonload class="" ng-src="{{item.relatedProduct.image}}" alt="{{item.relatedProduct.title}}" style="max-height: 50px;">
                             </a>
                         </td>
                         <td style="position:relative">
@@ -110,7 +110,7 @@
                         <small>{{product.title}}</small>
                     </td>
                     <td>
-                        <img height="50" src="{{product.image}}" />
+                        <img height="50" ng-src="{{product.image}}" />
                     </td>
                     <td>
                         <span class="switch switch-sm">

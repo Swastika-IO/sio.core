@@ -1,5 +1,5 @@
 ﻿
-modules.component('apiFile', {
+modules.component('/apiFile', {
     templateUrl: '/app-shared/components/api-file/api-file.html',
     controller: ['$rootScope', '$scope', function PortalTemplateController($rootScope, $scope) {
         var ctrl = this;

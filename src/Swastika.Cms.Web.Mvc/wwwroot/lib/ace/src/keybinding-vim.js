@@ -1387,7 +1387,7 @@ dom.importCssString(".normal-mode .ace_cursor{\
           throw new Error('(Vim.defineEx) "'+prefix+'" is not a prefix of "'+name+'", command not registered');
         }
         exCommands[name]=func;
-        exCommandDispatcher.commandMap_[prefix]={name:name, shortName:prefix, type:'api'};
+        exCommandDispatcher.commandMap_[prefix]={name:name, shortName:prefix, type:'/api'};
       },
       handleKey: function (cm, key, origin) {
         var command = this.findKey(cm, key, origin);

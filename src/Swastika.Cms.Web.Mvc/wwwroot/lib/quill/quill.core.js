@@ -1930,7 +1930,7 @@ Emitter.events = {
   TEXT_CHANGE: 'text-change'
 };
 Emitter.sources = {
-  API: 'api',
+  API: '/api',
   SILENT: 'silent',
   USER: 'user'
 };

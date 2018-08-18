@@ -24,7 +24,7 @@ app.factory('authService', ['$http', '$q', 'localStorageService', 'ngAuthSetting
 
         _logOut();
         var deferred = $q.defer();
-        return $http.post(serviceBase + 'api/account/register', registration)
+        return $http.post(serviceBase + '/api/account/register', registration)
             .success(function (response) {
                 if (response.data.userData !== undefined) {
 
@@ -72,7 +72,7 @@ app.factory('authService', ['$http', '$q', 'localStorageService', 'ngAuthSetting
 
         var deferred = $q.defer();
 
-        $http.post(serviceBase + 'api/account/login', data).success(function (response) {
+        $http.post(serviceBase + '/api/account/login', data).success(function (response) {
             if (response.data.userData !== null) {
 
                 localStorageService.set('authorizationData',
@@ -175,7 +175,7 @@ app.factory('authService', ['$http', '$q', 'localStorageService', 'ngAuthSetting
 
         var deferred = $q.defer();
 
-        $http.get(serviceBase + 'api/account/ObtainLocalAccessToken', { params: { provider: externalData.provider, externalAccessToken: externalData.externalAccessToken } }).success(function (response) {
+        $http.get(serviceBase + '/api/account/ObtainLocalAccessToken', { params: { provider: externalData.provider, externalAccessToken: externalData.externalAccessToken } }).success(function (response) {
 
             localStorageService.set('authorizationData', { token: response.access_token, username: response.username, roleName: response.userData.roleNames, refresh_token: response.refresh_token, useRefreshTokens: true });
 
@@ -199,7 +199,7 @@ app.factory('authService', ['$http', '$q', 'localStorageService', 'ngAuthSetting
 
         var deferred = $q.defer();
 
-        $http.post(serviceBase + 'api/account/registerexternal', registerExternalData).success(function (response) {
+        $http.post(serviceBase + '/api/account/registerexternal', registerExternalData).success(function (response) {
 
             localStorageService.set('authorizationData', { token: response.access_token, username: response.username, refresh_token: response.refresh_token, useRefreshTokens: true });
 

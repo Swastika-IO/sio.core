@@ -62,7 +62,7 @@ app.controller('registerController', ['$scope', '$rootScope', '$timeout', '$loca
         $.ajax({
             method: 'GET',
             contentType: "application/json; charset=utf-8",
-            url: 'api/e-voucher/init-register',
+            url: '/api/e-voucher/init-register',
             success: function (data) {
                 $scope.register = data;
                 console.log($scope.register);

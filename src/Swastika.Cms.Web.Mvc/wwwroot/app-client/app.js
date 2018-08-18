@@ -1,7 +1,7 @@
 ﻿'use strict';
 
 var app = angular.module('SwastikaClient', ['LocalStorageModule', 'components']);
-var serviceBase = "/";
+var serviceBase = '';
 
 app.directive('ngEnter', function () {
     return function (scope, element, attrs) {

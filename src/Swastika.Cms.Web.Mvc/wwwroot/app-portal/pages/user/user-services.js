@@ -6,7 +6,7 @@ app.factory('UserServices', ['$http', 'commonServices', function ($http, commonS
     var usersServiceFactory = {};
     var apiUrl = '/api/account/';
     var _getUserDemographicInfo = function () {
-        var url = 'api/GetUserDemographicInfo';
+        var url = '/api/GetUserDemographicInfo';
         var req = {
             method: 'GET',
             url: serviceBase + url
@@ -56,7 +56,7 @@ app.factory('UserServices', ['$http', 'commonServices', function ($http, commonS
 
         var req = {
             method: 'POST',
-            url: serviceBase + 'api/account/user-in-role',
+            url: serviceBase + '/api/account/user-in-role',
             data: JSON.stringify(userInRole)
 
         };
