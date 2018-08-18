@@ -9,7 +9,15 @@
                 <label>Title</label>
                 <input type="text"
                        class="form-control form-control-lg"
-                       ng-model="$ctrl.module.title" />
+                       ng-model="$ctrl.module.title" 
+                       ng-blur="$ctrl.gennerateName()"
+                       />
+            </div>
+            <div class="form-group">
+                <label>System Name</label>
+                <input type="text"
+                       class="form-control form-control-lg"
+                       ng-model="$ctrl.module.name" />
             </div>
             <div class="form-group">
                 <label>PageSize</label>

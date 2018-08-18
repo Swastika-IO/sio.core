@@ -8,7 +8,7 @@ app.run(['$rootScope', '$location', 'commonServices', 'authService', 'translator
         $rootScope.currentContext = $rootScope;
         $rootScope.isBusy = false;
         $rootScope.translator = translatorService;
-        
+        $rootScope.serviceBase = 'http://crickettours.asia';
         $rootScope.errors = [];
         $rootScope.breadCrumbs = [];
         $rootScope.message = {

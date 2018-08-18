@@ -2,7 +2,12 @@
 app.component('moduleMain', {
     templateUrl: '/app-portal/pages/module/components/main/main.html',
     controller: ['$rootScope', function ($rootScope) {
-        this.settings = $rootScope.settings;
+        var ctrl = this;
+        ctrl.gennerateName = function () {
+            if (!ctrl.module.id) {
+                ctrl.module.name = $rootScope.generateKeyword(ctrl.module.title, '_');
+            }
+        };
     }],
     bindings: {
         module: '=',

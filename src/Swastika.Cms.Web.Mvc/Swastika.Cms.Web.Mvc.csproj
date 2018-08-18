@@ -291,6 +291,7 @@
   <ItemGroup>
     <Folder Include="Areas\Portal\Views\Shared\Widgets\" />
     <Folder Include="logs\" />
+    <Folder Include="Views\Shared\Templates\Ossibird\Products\" />
     <Folder Include="wwwroot\app\services\" />
     <Folder Include="wwwroot\app-shared\" />
   </ItemGroup>

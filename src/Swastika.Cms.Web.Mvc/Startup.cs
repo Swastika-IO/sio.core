@@ -143,7 +143,7 @@ namespace Swastika.Cms.Web.Mvc
                     template: "{culture=" + CONST_ROUTE_DEFAULT_CULTURE + "}/{seoName}");
                 routes.MapRoute(
                     name: "Page",
-                    template: "{culture=" + CONST_ROUTE_DEFAULT_CULTURE + "}/page/{seoName}");
+                    template: "{culture=" + CONST_ROUTE_DEFAULT_CULTURE + "}/{seoName}");
                 routes.MapRoute(
                     name: "File",
                     template: "{culture=" + CONST_ROUTE_DEFAULT_CULTURE + "}/portal/file");

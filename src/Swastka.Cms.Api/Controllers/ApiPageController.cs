@@ -68,7 +68,7 @@ namespace Swastka.Cms.Api.Controllers
                         var beResult = await ApiCategoryViewModel.Repository.GetSingleModelAsync(model => model.Id == id && model.Specificulture == _lang).ConfigureAwait(false);
                         if (beResult.IsSucceed)
                         {
-                            beResult.Data.DetailsUrl = SwCmsHelper.GetRouterUrl("Page", new { beResult.Data.SeoName }, Request, Url);
+                            beResult.Data.DetailsUrl = SwCmsHelper.GetRouterUrl("Alias", new { beResult.Data.SeoName }, Request, Url);
                         }
                         return Ok(JObject.FromObject(beResult));
                     }
@@ -96,7 +96,7 @@ namespace Swastka.Cms.Api.Controllers
                         var beResult = await FECategoryViewModel.Repository.GetSingleModelAsync(model => model.Id == id && model.Specificulture == _lang).ConfigureAwait(false);
                         if (beResult.IsSucceed)
                         {
-                            beResult.Data.DetailsUrl = SwCmsHelper.GetRouterUrl("Page", new { beResult.Data.SeoName }, Request, Url);
+                            beResult.Data.DetailsUrl = SwCmsHelper.GetRouterUrl("Alias", new { beResult.Data.SeoName }, Request, Url);
                         }
                         return JObject.FromObject(beResult);
                     }
@@ -237,7 +237,7 @@ namespace Swastka.Cms.Api.Controllers
                         fedata.Data.Items.ForEach(a =>
                         {
                             a.DetailsUrl = SwCmsHelper.GetRouterUrl(
-                                "Page", new { seoName = a.UrlAlias.Alias }, Request, Url);
+                                "Alias", new { seoName = a.UrlAlias.Alias }, Request, Url);
                         });
                     }
                     return JObject.FromObject(fedata);
@@ -249,7 +249,7 @@ namespace Swastka.Cms.Api.Controllers
                         bedata.Data.Items.ForEach(a =>
                         {
                             a.DetailsUrl = SwCmsHelper.GetRouterUrl(
-                                "Page", new { seoName = a.UrlAlias.Alias }, Request, Url);
+                                "Alias", new { seoName = a.UrlAlias.Alias }, Request, Url);
                         });
                     }
                     return JObject.FromObject(bedata);
@@ -261,11 +261,11 @@ namespace Swastka.Cms.Api.Controllers
                         data.Data.Items.ForEach(a =>
                         {
                             a.DetailsUrl = SwCmsHelper.GetRouterUrl(
-                                "Page", new { seoName = a.UrlAlias.Alias }, Request, Url);
+                                "Alias", new { seoName = a.UrlAlias.Alias }, Request, Url);
                             a.Childs.ForEach(c =>
                             {
                                 c.DetailsUrl = SwCmsHelper.GetRouterUrl(
-                                    "Page", new { seoName = c.UrlAlias.Alias }, Request, Url);
+                                    "Alias", new { seoName = c.UrlAlias.Alias }, Request, Url);
                             });
                         });
                     }

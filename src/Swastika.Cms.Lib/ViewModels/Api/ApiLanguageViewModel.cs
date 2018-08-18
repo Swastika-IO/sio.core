@@ -73,7 +73,7 @@ namespace Swastika.Cms.Lib.ViewModels.Api
 
         public override SiocLanguage ParseModel(SiocCmsContext _context = null, IDbContextTransaction _transaction = null)
         {
-            Value = Property.Value;
+            Value = Property.Value ?? Value;
             return base.ParseModel(_context, _transaction);
         }
         public override ApiLanguageViewModel ParseView(bool isExpand = true, SiocCmsContext _context = null, IDbContextTransaction _transaction = null)
