@@ -1,8 +1,6 @@
 ﻿'use strict';
 app.factory('MediaServices', ['$http', '$rootScope', 'commonServices', function ($http, $rootScope, commonServices) {
 
-    //var serviceBase = 'http://ngauthenticationapi.azurewebsites.net/';
-
     var mediasServiceFactory = {};
 
     var settings = $rootScope.settings
@@ -17,7 +15,7 @@ app.factory('MediaServices', ['$http', '$rootScope', 'commonServices', function 
             method: 'GET',
             url: url
         };
-        return await commonServices.getApiResult(req)
+        return await commonServices.getApiResult(req);
     };
 
     var _getMedias = async function (request) {
