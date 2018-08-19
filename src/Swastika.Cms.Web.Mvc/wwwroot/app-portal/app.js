@@ -30,7 +30,8 @@ app.run(['$rootScope', '$location', 'commonServices', 'authService', 'translator
             'Published',
             'Draft',
             'Schedule'
-        ]
+        ];
+
         $rootScope.orders = [
             {
                 value: 'CreatedDateTime',
@@ -56,13 +57,13 @@ app.run(['$rootScope', '$location', 'commonServices', 'authService', 'translator
                 value: '1',
                 title: 'Desc'
             }
-        ]
+        ];
         $rootScope.pageSizes = [
             '5',
             '10',
             '15',
             '20'
-        ]
+        ];
         $rootScope.request = {
             pageSize: '10',
             pageIndex: 0,
@@ -72,55 +73,6 @@ app.run(['$rootScope', '$location', 'commonServices', 'authService', 'translator
             fromDate: null,
             toDate: null,
             keyword: ''
-        };
-        $rootScope.configurations = {
-            core: {},
-            plugins: {
-                btnsDef: {
-                    // Customizables dropdowns
-                    image: {
-                        dropdown: ['insertImage', 'upload', 'base64', 'noembed'],
-                        ico: 'insertImage'
-                    }
-                },
-                btns: [
-                    ['viewHTML'],
-                    ['undo', 'redo'],
-                    ['formatting'],
-                    ['strong', 'em', 'del', 'underline'],
-                    ['link'],
-                    ['image'],
-                    ['justifyLeft', 'justifyCenter', 'justifyRight', 'justifyFull'],
-                    ['unorderedList', 'orderedList'],
-                    ['foreColor', 'backColor'],
-                    ['preformatted'],
-                    ['horizontalRule'],
-                    ['fullscreen']
-                ],
-                plugins: {
-                    // Add imagur parameters to upload plugin
-                    upload: {
-                        serverPath: 'https://api.imgur.com/3/image',
-                        fileFieldName: 'image',
-                        headers: {
-                            'Authorization': 'Client-ID 9e57cb1c4791cea'
-                        },
-                        urlPropertyName: 'data.link'
-                    }
-                }
-            },
-            dataTypes: [
-                { title: 'string', value: 0 },
-                { title: 'int', value: 1 },
-                { title: 'image', value: 2 },
-                { title: 'codeEditor', value: 4 },
-                { title: 'html', value: 5 },
-                { title: 'textArea', value: 6 },
-                { title: 'boolean', value: 7 },
-                { title: 'mdTextArea', value: 8 },
-                { title: 'date', value: 9 },
-                { title: 'datetime', value: 10 },
-            ]
         };
         $rootScope.range = function (max) {
             var input = [];
@@ -135,7 +87,7 @@ app.run(['$rootScope', '$location', 'commonServices', 'authService', 'translator
                 .replace(/([^0-9])([0-9])/g, '$1-$2')
                 .replace(/-+/g, character)
                 .toLowerCase();
-        }
+        };
 
         $rootScope.logOut = function () {
             authService.logOut();
@@ -149,7 +101,7 @@ app.run(['$rootScope', '$location', 'commonServices', 'authService', 'translator
 
             });
             $rootScope.isBusy = false;
-        }
+        };
         $rootScope.executeFunctionByName = async function (functionName, args, context) {
             if (functionName !== null) {
                 var namespaces = functionName.split(".");
@@ -177,9 +129,62 @@ app.run(['$rootScope', '$location', 'commonServices', 'authService', 'translator
             };
             $('#dlg-confirm-msg').modal('show');
         };
+
+        $rootScope.configurations = {
+            core: {},
+            plugins: {
+                btnsDef: {
+                    // Customizables dropdowns
+                    image: {
+                        dropdown: ['insertImage', 'upload', 'base64', 'noembed'],
+                        ico: 'insertImage'
+                    }
+                },
+                btns: [
+                    ['table'],
+                    ['emoji'],
+                    ['undo', 'redo'],
+                    ['formatting'],
+                    ['strong', 'em', 'del', 'underline'],
+                    ['link'],
+                    ['image'],
+                    ['justifyLeft', 'justifyCenter', 'justifyRight', 'justifyFull'],
+                    ['unorderedList', 'orderedList'],
+                    ['foreColor', 'backColor'],
+                    ['preformatted'],
+                    ['horizontalRule'],
+                    ['fullscreen'],
+                    ['viewHTML'],
+                ],
+                plugins: {
+                    // Add imagur parameters to upload plugin
+                    upload: {
+                        serverPath: 'https://api.imgur.com/3/image',
+                        fileFieldName: 'image',
+                        headers: {
+                            'Authorization': 'Client-ID 9e57cb1c4791cea'
+                        },
+                        urlPropertyName: 'data.link'
+                    }
+                }
+            },
+            dataTypes: [
+                { title: 'string', value: 0 },
+                { title: 'int', value: 1 },
+                { title: 'image', value: 2 },
+                { title: 'codeEditor', value: 4 },
+                { title: 'html', value: 5 },
+                { title: 'textArea', value: 6 },
+                { title: 'boolean', value: 7 },
+                { title: 'mdTextArea', value: 8 },
+                { title: 'date', value: 9 },
+                { title: 'datetime', value: 10 }
+            ]
+        };
+
         $rootScope.initEditor = function () {
             setTimeout(function () {
-                // Init Code editor
+                
                 $.each($('.code-editor'), function (i, e) {
                     var container = $(this);
                     var editor = ace.edit(e);
@@ -200,19 +205,28 @@ app.run(['$rootScope', '$location', 'commonServices', 'authService', 'translator
                         // e.type, etc
                         $(container).parent().find('.code-content').val(editor.getValue());
                     });
-                })
-                $.each($('.editor-content'), function (i, e) {
-                    var $demoTextarea = $(e);
-                    $demoTextarea.trumbowyg($rootScope.configurations.plugins);
                 });
-            }, 200)
-        }
+                // Customize your emoji images base URL
+                emojify.setConfig({
+                    img_dir: '//cdnjs.cloudflare.com/ajax/libs/emojify.js/1.1.0/images/basic/',
+                });
+                $.each($('.editor-content'), function (i, e) {
+                    var $textArea = $(e);
+                    $textArea.trumbowyg($rootScope.configurations.plugins);
+                    emojify.run();
+                    // Will transform an :emoji: to img tag at each input
+                    $('.trumbowyg-editor').on('input propertychange', function () {
+                        emojify.run();
+                    });
+                });
+            }, 200);
+        };
 
         $rootScope.showErrors = function (errors) {
             $.each(errors, function (i, e) {
                 $rootScope.showMessage(e, 'danger');
             });
-        }
+        };
 
         $rootScope.showMessage = function (content, type) {
             var from = 'bottom';

@@ -4,7 +4,6 @@
     ViewData["SeoKeywords"] = Model.SeoKeywords;
     ViewData["SeoDescription"] = Model.SeoDescription;
     string lang = ViewBag.culture;
-    var module = SwCmsHelper.GetModule("Latest_News", ViewBag.culture as string)
 }
 <div ng-controller="AppClientController" ng-init="init('@lang')">
     @if (!string.IsNullOrEmpty(Model.TemplatePath))
@@ -66,6 +65,8 @@
 
 }
 @section scripts{
+
+    <script>window.jQuery || document.write('<script src="~/js/jquery.min.js"><\/script>')</script>
 
     <!-- TRUMBOWYG -->
     <script src="/lib/Trumbowyg-2.9.0/trumbowyg.min.js"></script>
