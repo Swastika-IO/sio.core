@@ -73,10 +73,10 @@ namespace Swastika.Cms.Lib
 
         public enum CatePosition
         {
-            Top = 1,
-            Left = 2,
-            Footer = 3,
-            Nav = 4
+            Nav = 1,
+            Top = 2,
+            Left = 3,
+            Footer = 4
         }
 
         public enum CateType

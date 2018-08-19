@@ -112,9 +112,6 @@ namespace Swastika.Cms.Lib.ViewModels.Info
         [JsonProperty("totalProduct")]
         public int TotalProduct { get; set; }
 
-        [JsonProperty("href")]
-        public string Href { get; set; }
-
         [JsonProperty("isActived")]
         public bool IsActived { get; set; }
 

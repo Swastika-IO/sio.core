@@ -385,7 +385,7 @@ namespace Swastika.Cms.Lib.ViewModels.FrontEnd
             var getProducts = NavCategoryProductViewModel.Repository.GetModelListBy(
                m => m.CategoryId == Id && m.Specificulture == Specificulture
            , SWCmsConstants.Default.OrderBy, OrderByDirection.Ascending
-           , null, null
+           , PageSize, 0
                , _context: _context, _transaction: _transaction
                );
             if (getProducts.IsSucceed)

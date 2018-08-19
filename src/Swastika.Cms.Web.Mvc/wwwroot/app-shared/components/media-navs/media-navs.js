@@ -56,12 +56,14 @@ app.component('mediaNavs', {
                 var resp = await mediaServices.getMedias(ctrl.request);
                 if (resp && resp.isSucceed) {
                     ctrl.medias = resp.data;
-                    angular.forEach(ctrl.medias.items, function (value, key) {
-                        var temp = ctrl.mediaNavs.filter(function (item) {
-                            return item.mediaId === value.id;
-                        })[0];
-                        value.isActived = temp !== undefined;
-                    });
+                    if (ctrl.mediaNavs) {
+                        angular.forEach(ctrl.medias.items, function (value, key) {
+                            var temp = ctrl.mediaNavs.filter(function (item) {
+                                return item.mediaId === value.id;
+                            })[0];
+                            value.isActived = temp !== undefined;
+                        });
+                    }
                     $rootScope.isBusy = false;
                     $scope.$apply();
                 }

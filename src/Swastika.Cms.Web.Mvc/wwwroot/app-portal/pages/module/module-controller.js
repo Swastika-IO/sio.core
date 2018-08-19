@@ -191,7 +191,7 @@ app.controller('ModuleController', ['$scope', '$rootScope', '$routeParams', '$ti
 
 
         $scope.saveModule = async function (module) {
-            module.content = $('.editor-content').val();
+            module.description = $('.editor-content').val();
             if (module.title) {
                 module.name = module.title.replace(/ /g, "_");//(' ', '_');
             }

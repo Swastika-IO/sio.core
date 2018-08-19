@@ -58,12 +58,12 @@ namespace Swastika.Cms.Lib
                     case SWCmsConstants.CateType.Blank:
                         foreach (var child in cate.Childs)
                         {
-                            child.Href = Url.RouteUrl("Page", new { culture, seoName = child.SeoName });
+                            child.DetailsUrl = Url.RouteUrl("Page", new { culture, seoName = child.SeoName });
                         }
                         break;
 
                     case SWCmsConstants.CateType.StaticUrl:
-                        cate.Href = cate.StaticUrl;
+                        cate.DetailsUrl = cate.StaticUrl;
                         break;
 
                     case SWCmsConstants.CateType.Home:
@@ -71,17 +71,60 @@ namespace Swastika.Cms.Lib
                     case SWCmsConstants.CateType.Article:
                     case SWCmsConstants.CateType.Modules:
                     default:
-                        cate.Href = Url.RouteUrl("Page", new { culture, seoName = cate.SeoName });
+                        cate.DetailsUrl = Url.RouteUrl("Page", new { culture, seoName = cate.SeoName });
                         break;
                 }
-                cate.IsActived = (cate.Href == activePath
+                cate.IsActived = (cate.DetailsUrl == activePath
                     || (cate.Type == SWCmsConstants.CateType.Home && activePath == string.Format("/{0}/home", culture)));
-                cate.Childs.ForEach(c =>
+                cate.Childs.ForEach((Action<InfoCategoryViewModel>)(c =>
                 {
                     c.IsActived = (
-                    c.Href == activePath);
+                    c.DetailsUrl == activePath);
                     cate.IsActived = cate.IsActived || c.IsActived;
-                });
+                }));
+            }
+            return cates;
+        }
+
+        public static List<InfoCategoryViewModel> GetCategoryByAlias(IUrlHelper Url, string culture, SWCmsConstants.CatePosition position, string activePath = "")
+        {
+            var getTopCates = InfoCategoryViewModel.Repository.GetModelListBy
+            (c => c.Specificulture == culture && c.SiocCategoryPosition.Any(
+              p => p.PositionId == (int)position)
+            );
+            var cates = getTopCates.Data ?? new List<InfoCategoryViewModel>();
+            activePath = activePath.ToLower();
+            foreach (var cate in cates)
+            {
+                switch (cate.Type)
+                {
+                    case SWCmsConstants.CateType.Blank:
+                        foreach (var child in cate.Childs)
+                        {
+                            child.DetailsUrl = Url.RouteUrl("Page", new { culture, seoName = child.SeoName });
+                        }
+                        break;
+
+                    case SWCmsConstants.CateType.StaticUrl:
+                        cate.DetailsUrl = cate.StaticUrl;
+                        break;
+
+                    case SWCmsConstants.CateType.Home:
+                    case SWCmsConstants.CateType.List:
+                    case SWCmsConstants.CateType.Article:
+                    case SWCmsConstants.CateType.Modules:
+                    default:
+                        cate.DetailsUrl = Url.RouteUrl("Page", new { culture, seoName = cate.SeoName });
+                        break;
+                }
+                cate.IsActived = (cate.UrlAlias.Alias == activePath
+                    || (cate.Type == SWCmsConstants.CateType.Home && activePath == string.Empty));
+                cate.Childs.ForEach((Action<InfoCategoryViewModel>)(c =>
+                {
+                    c.IsActived = (
+                    c.UrlAlias.Alias == activePath);
+                    cate.IsActived = cate.IsActived || c.IsActived;
+                }));
             }
             return cates;
         }
@@ -100,12 +143,12 @@ namespace Swastika.Cms.Lib
                     case SWCmsConstants.CateType.Blank:
                         foreach (var child in cate.Childs)
                         {
-                            child.Href = Url.RouteUrl("Page", new { culture, pageName = child.SeoName });
+                            child.DetailsUrl = Url.RouteUrl("Page", new { culture, pageName = child.SeoName });
                         }
                         break;
 
                     case SWCmsConstants.CateType.StaticUrl:
-                        cate.Href = cate.StaticUrl;
+                        cate.DetailsUrl = cate.StaticUrl;
                         break;
 
                     case SWCmsConstants.CateType.Home:
@@ -113,20 +156,20 @@ namespace Swastika.Cms.Lib
                     case SWCmsConstants.CateType.Article:
                     case SWCmsConstants.CateType.Modules:
                     default:
-                        cate.Href = Url.RouteUrl("Page", new { culture, pageName = cate.SeoName });
+                        cate.DetailsUrl = Url.RouteUrl("Page", new { culture, pageName = cate.SeoName });
                         break;
                 }
 
                 cate.IsActived = (
-                    cate.Href == activePath || (cate.Type == SWCmsConstants.CateType.Home && activePath == string.Format("/{0}/home", culture))
+                    cate.DetailsUrl == activePath || (cate.Type == SWCmsConstants.CateType.Home && activePath == string.Format("/{0}/home", culture))
                     );
 
-                cate.Childs.ForEach(c =>
+                cate.Childs.ForEach((Action<InfoCategoryViewModel>)(c =>
                 {
                     c.IsActived = (
-                    c.Href == activePath);
+                    c.DetailsUrl == activePath);
                     cate.IsActived = cate.IsActived || c.IsActived;
-                });
+                }));
             }
             return cates;
         }

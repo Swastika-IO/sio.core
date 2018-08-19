@@ -258,16 +258,16 @@ namespace Swastka.Cms.Api.Controllers
                     var data = await InfoCategoryViewModel.Repository.GetModelListByAsync(predicate, request.OrderBy, request.Direction, request.PageSize, request.PageIndex).ConfigureAwait(false);
                     if (data.IsSucceed)
                     {
-                        data.Data.Items.ForEach(a =>
+                        data.Data.Items.ForEach((Action<InfoCategoryViewModel>)(a =>
                         {
                             a.DetailsUrl = SwCmsHelper.GetRouterUrl(
                                 "Alias", new { seoName = a.UrlAlias.Alias }, Request, Url);
-                            a.Childs.ForEach(c =>
+                            a.Childs.ForEach((Action<InfoCategoryViewModel>)(c =>
                             {
                                 c.DetailsUrl = SwCmsHelper.GetRouterUrl(
                                     "Alias", new { seoName = c.UrlAlias.Alias }, Request, Url);
-                            });
-                        });
+                            }));
+                        }));
                     }
                     return JObject.FromObject(data);
             }
