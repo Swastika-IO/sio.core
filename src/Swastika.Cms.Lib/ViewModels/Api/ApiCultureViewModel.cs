@@ -8,9 +8,11 @@ using Newtonsoft.Json.Linq;
 using Swastika.Cms.Lib.Models.Cms;
 using Swastika.Cms.Lib.Repositories;
 using Swastika.Cms.Lib.Services;
+using Swastika.Cms.Lib.ViewModels.Info;
 using Swastika.Domain.Core.Models;
 using Swastika.Domain.Core.ViewModels;
 using Swastika.Domain.Data.ViewModels;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
@@ -96,6 +98,42 @@ namespace Swastika.Cms.Lib.ViewModels.Api
             var result = new RepositoryResponse<bool>() { IsSucceed = true };
             if (Id == 0)
             {
+                var getPages = await InfoCategoryViewModel.Repository.GetModelListByAsync(c => c.Specificulture == GlobalConfigurationService.Instance.CmsConfigurations.Language, _context, _transaction);
+                if (getPages.IsSucceed)
+                {
+                    foreach (var p in getPages.Data)
+                    {
+                        var page = new SiocCategory()
+                        {
+                            Specificulture = p.Specificulture,
+                            Id = p.Id,
+                            Content = p.Content,
+                            CreatedBy = p.CreatedBy,
+                            CreatedDateTime = DateTime.UtcNow,
+                            Layout = p.Layout,
+                            CssClass = p.CssClass,
+                            Excerpt = p.Specificulture,
+                            Icon = p.Specificulture,
+                            Image = p.Specificulture,
+                            LastModified = p.LastModified,
+                            Level = p.Level,
+                            ModifiedBy = p.ModifiedBy,
+                            PageSize = p.PageSize,
+                            Priority = p.Priority.HasValue ? p.Priority.Value : 0,
+                            SeoDescription = p.SeoDescription,
+                            SeoKeywords = p.SeoKeywords,
+                            SeoName = p.SeoName,
+                            SeoTitle = p.SeoTitle,
+                            StaticUrl = p.StaticUrl,
+                            Status = (int)p.Status,
+                            Tags = p.Tags,
+                            Template = p.Template,
+                            Title = p.Title,
+                            Type = (int)p.Type,
+                        };
+                        _context.Entry(page).State = Microsoft.EntityFrameworkCore.EntityState.Added;
+                    }
+                }
                 var getConfigurations = await ApiConfigurationViewModel.Repository.GetModelListByAsync(c => c.Specificulture == GlobalConfigurationService.Instance.CmsConfigurations.Language, _context, _transaction);
                 if (getConfigurations.IsSucceed)
                 {
@@ -136,7 +174,7 @@ namespace Swastika.Cms.Lib.ViewModels.Api
                     }
                 }
                 _context.SaveChanges();
-            } 
+            }
             return result;
         }
 
@@ -162,7 +200,7 @@ namespace Swastika.Cms.Lib.ViewModels.Api
             var products = _context.SiocProduct.Where(c => c.Specificulture == Specificulture).ToList();
             products.ForEach(c => _context.Entry(c).State = Microsoft.EntityFrameworkCore.EntityState.Deleted);
 
-            await  _context.SaveChangesAsync();
+            await _context.SaveChangesAsync();
 
             return result;
         }
@@ -177,7 +215,7 @@ namespace Swastika.Cms.Lib.ViewModels.Api
                 var jsonSettings = JObject.Parse(settings.Content);
                 if (jsonSettings["Language"].Value<string>() == Specificulture)
                 {
-                    jsonSettings["Language"] = cultures.FirstOrDefault().Specificulture;                    
+                    jsonSettings["Language"] = cultures.FirstOrDefault().Specificulture;
                 }
                 FileRepository.Instance.SaveFile(settings);
                 GlobalConfigurationService.Instance.RefreshAll(_context, _transaction);

@@ -28,6 +28,12 @@ namespace Swastika.Cms.Lib.ViewModels.Info
         [JsonProperty("name")]
         public string Name { get; set; }
 
+        [JsonProperty("content")]
+        public string Content { get; set; }
+
+        [JsonProperty("layout")]
+        public string Layout { get; set; }
+
         [JsonProperty("template")]
         public string Template { get; set; }
 
@@ -58,8 +64,23 @@ namespace Swastika.Cms.Lib.ViewModels.Info
         [JsonProperty("seoName")]
         public string SeoName { get; set; }
 
+        [JsonProperty("seoDescription")]
+        public string SeoDescription { get; set; }
+
+        [JsonProperty("seoKeywords")]
+        public string SeoKeywords { get; set; }
+
+        [JsonProperty("seoTitle")]
+        public string SeoTitle { get; set; }
+
         [JsonProperty("level")]
         public int? Level { get; set; }
+
+        [JsonProperty("pageSize")]
+        public int PageSize { get; set; }
+
+        [JsonProperty("lastModified")]
+        public DateTime LastModified { get; set; }
 
         [JsonProperty("createdDateTime")]
         public DateTime CreatedDateTime { get; set; }
@@ -72,6 +93,9 @@ namespace Swastika.Cms.Lib.ViewModels.Info
 
         [JsonProperty("updatedBy")]
         public string UpdatedBy { get; set; }
+
+        [JsonProperty("modifiedBy")]
+        public string ModifiedBy { get; set; }
 
         [JsonProperty("tags")]
         public string Tags { get; set; }
