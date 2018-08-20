@@ -40,6 +40,7 @@ namespace Swastka.Cms.Api.Controllers
             _signInManager = signInManager;
             _roleManager = roleManager;
         }
+
         #region Get
 
         // GET api/category/id
@@ -52,7 +53,7 @@ namespace Swastka.Cms.Api.Controllers
             var culture = cultures.FirstOrDefault(c => c.Specificulture == _lang);
             SiteSettingsViewModel settings = new SiteSettingsViewModel()
             {
-                Lang = GlobalConfigurationService.Instance.CmsConfigurations.Language,
+                Lang = _lang,
                 ThemeId = GlobalConfigurationService.Instance.GetLocalInt(SWCmsConstants.ConfigurationKeyword.ThemeId, _lang),
                 Cultures = cultures,
                 PageTypes = Enum.GetNames(typeof(SWCmsConstants.CateType)).ToList()

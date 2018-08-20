@@ -105,7 +105,7 @@ namespace Swastika.Cms.Lib.ViewModels.Api
                     {
                         var page = new SiocCategory()
                         {
-                            Specificulture = p.Specificulture,
+                            Specificulture = Specificulture,
                             Id = p.Id,
                             Content = p.Content,
                             CreatedBy = p.CreatedBy,
@@ -115,7 +115,6 @@ namespace Swastika.Cms.Lib.ViewModels.Api
                             Excerpt = p.Specificulture,
                             Icon = p.Specificulture,
                             Image = p.Specificulture,
-                            LastModified = p.LastModified,
                             Level = p.Level,
                             ModifiedBy = p.ModifiedBy,
                             PageSize = p.PageSize,
@@ -131,6 +130,21 @@ namespace Swastika.Cms.Lib.ViewModels.Api
                             Title = p.Title,
                             Type = (int)p.Type,
                         };
+                        if (p.UrlAlias != null)
+                        {
+                            var alias = new SiocUrlAlias()
+                            {
+                                Id = p.UrlAlias.Id,
+                                Specificulture = Specificulture,
+                                CreatedDateTime = DateTime.UtcNow,
+                                SourceId = p.Id.ToString(),
+                                Alias = p.UrlAlias.Alias,
+                                Description = p.UrlAlias.Description,
+                                Status = (int)p.UrlAlias.Status,
+                                Type = (int)p.UrlAlias.Type
+                            };
+                            _context.Entry(alias).State = Microsoft.EntityFrameworkCore.EntityState.Added;
+                        }
                         _context.Entry(page).State = Microsoft.EntityFrameworkCore.EntityState.Added;
                     }
                 }

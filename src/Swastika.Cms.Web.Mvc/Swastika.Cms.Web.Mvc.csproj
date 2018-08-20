@@ -331,6 +331,7 @@
     <None Include="wwwroot\lib\now-ui-kit-pro-v1.2.2\assets\js\plugins\moment.min.js" />
     <None Include="wwwroot\lib\now-ui-kit-pro-v1.2.2\assets\js\plugins\nouislider.min.js" />
     <None Include="wwwroot\lib\now-ui-kit-pro-v1.2.2\assets\js\plugins\presentation-page\rellax.min.js" />
+    <None Include="wwwroot\lib\Trumbowyg-2.9.0\plugins\table\trumbowyg.table.min.js" />
   </ItemGroup>
 
   <ItemGroup>
