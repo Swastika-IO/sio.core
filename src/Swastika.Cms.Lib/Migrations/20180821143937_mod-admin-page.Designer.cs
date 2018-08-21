@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Swastika.Cms.Lib.Models.Cms;
 
 namespace Swastika.Cms.Lib.Migrations
 {
     [DbContext(typeof(SiocCmsContext))]
-    partial class SiocCmsContextModelSnapshot : ModelSnapshot
+    [Migration("20180821143937_mod-admin-page")]
+    partial class modadminpage
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -1155,8 +1157,6 @@ namespace Swastika.Cms.Lib.Migrations
                     b.Property<string>("Icon")
                         .HasMaxLength(50);
 
-                    b.Property<int>("Level");
-
                     b.Property<int>("Priority");
 
                     b.Property<int>("Status")
@@ -1200,28 +1200,6 @@ namespace Swastika.Cms.Lib.Migrations
                     b.HasIndex("ParentId");
 
                     b.ToTable("sioc_portal_page_navigation");
-                });
-
-            modelBuilder.Entity("Swastika.Cms.Lib.Models.Cms.SiocPortalPagePosition", b =>
-                {
-                    b.Property<int>("PositionId");
-
-                    b.Property<int>("PortalPageId");
-
-                    b.Property<string>("Description")
-                        .HasMaxLength(250);
-
-                    b.Property<int>("Priority");
-
-                    b.Property<int>("Status")
-                        .ValueGeneratedOnAdd()
-                        .HasDefaultValueSql("((1))");
-
-                    b.HasKey("PositionId", "PortalPageId");
-
-                    b.HasIndex("PortalPageId");
-
-                    b.ToTable("sioc_portal_page_position");
                 });
 
             modelBuilder.Entity("Swastika.Cms.Lib.Models.Cms.SiocPortalPageRole", b =>
@@ -1894,20 +1872,6 @@ namespace Swastika.Cms.Lib.Migrations
                         .WithMany("SiocPortalPageNavigationParent")
                         .HasForeignKey("ParentId")
                         .HasConstraintName("FK_sioc_portal_page_navigation_sioc_portal_page1");
-                });
-
-            modelBuilder.Entity("Swastika.Cms.Lib.Models.Cms.SiocPortalPagePosition", b =>
-                {
-                    b.HasOne("Swastika.Cms.Lib.Models.Cms.SiocPortalPage", "SiocPortalPage")
-                        .WithMany("SiocPortalPagePosition")
-                        .HasForeignKey("PortalPageId")
-                        .HasConstraintName("FK_TTS_PortalPage_Position_TTS_PortalPage");
-
-                    b.HasOne("Swastika.Cms.Lib.Models.Cms.SiocPosition", "Position")
-                        .WithMany("SiocPortalPagePosition")
-                        .HasForeignKey("PositionId")
-                        .HasConstraintName("FK_TTS_PortalPage_Position_TTS_Position")
-                        .OnDelete(DeleteBehavior.Cascade);
                 });
 
             modelBuilder.Entity("Swastika.Cms.Lib.Models.Cms.SiocPortalPageRole", b =>

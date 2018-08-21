@@ -44,6 +44,7 @@ namespace Swastika.Cms.Lib.Models.Cms
         public virtual DbSet<SiocParameter> SiocParameter { get; set; }
         public virtual DbSet<SiocPortalPage> SiocPortalPage { get; set; }
         public virtual DbSet<SiocPortalPageNavigation> SiocPortalPageNavigation { get; set; }
+        public virtual DbSet<SiocPortalPagePosition> SiocPortalPagePosition { get; set; }
         public virtual DbSet<SiocPortalPageRole> SiocPortalPageRole { get; set; }
         public virtual DbSet<SiocPosition> SiocPosition { get; set; }
         public virtual DbSet<SiocProduct> SiocProduct { get; set; }
@@ -1067,25 +1068,47 @@ namespace Swastika.Cms.Lib.Models.Cms
                 entity.ToTable("sioc_portal_page");
 
                 entity.Property(e => e.CreatedBy)
-                    .IsRequired()
                     .HasMaxLength(50);
 
                 entity.Property(e => e.CreatedDateTime).HasColumnType("datetime");
 
-                entity.Property(e => e.RouteAction).HasMaxLength(50);
+                entity.Property(e => e.Description).HasMaxLength(450);
 
-                entity.Property(e => e.RouteName).HasMaxLength(50);
+                entity.Property(e => e.Icon).HasMaxLength(50);
 
-                entity.Property(e => e.RouteValue).HasMaxLength(250);
+                entity.Property(e => e.TextDefault).HasMaxLength(250);
+
+                entity.Property(e => e.TextKeyword).HasMaxLength(250);
 
                 entity.Property(e => e.Status).HasDefaultValueSql("((1))");
 
-                entity.Property(e => e.Title)
-                    .IsRequired()
-                    .HasMaxLength(250);
-
                 entity.Property(e => e.Url).HasMaxLength(250);
             });
+
+            modelBuilder.Entity<SiocPortalPagePosition>(entity =>
+            {
+                entity.HasKey(e => new { e.PositionId, e.PortalPageId });
+
+                entity.ToTable("sioc_portal_page_position");
+
+                entity.HasIndex(e => new { e.PortalPageId });
+
+                entity.Property(e => e.Description).HasMaxLength(250);
+
+                entity.Property(e => e.Status).HasDefaultValueSql("((1))");
+
+                entity.HasOne(d => d.Position)
+                    .WithMany(p => p.SiocPortalPagePosition)
+                    .HasForeignKey(d => d.PositionId)
+                    .HasConstraintName("FK_TTS_PortalPage_Position_TTS_Position");
+
+                entity.HasOne(d => d.SiocPortalPage)
+                    .WithMany(p => p.SiocPortalPagePosition)
+                    .HasForeignKey(d => new { d.PortalPageId })
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("FK_TTS_PortalPage_Position_TTS_PortalPage");
+            });
+
 
             modelBuilder.Entity<SiocPortalPageNavigation>(entity =>
             {

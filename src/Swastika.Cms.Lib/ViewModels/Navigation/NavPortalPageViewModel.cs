@@ -41,6 +41,7 @@ namespace Swastika.Cms.Lib.ViewModels.Navigation
 
         [JsonProperty("page")]
         public InfoPortalPageViewModel Page { get; set; }
+
         [JsonProperty("parent")]
         public InfoPortalPageViewModel Parent { get; set; }
 

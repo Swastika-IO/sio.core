@@ -165,6 +165,6 @@ app.controller('LanguageController', ['$scope', '$rootScope', '$routeParams', '$
                     .replace(/-+/g, '_')
                     .toLowerCase();
             }
-        }
+        };
 
     }]);

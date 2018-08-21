@@ -15,10 +15,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace Swastika.Cms.Lib.ViewModels.Info
+namespace Swastika.Cms.Lib.ViewModels.FrontEnd
 {
-    public class InfoPortalPageViewModel
-       : ViewModelBase<SiocCmsContext, SiocPortalPage, InfoPortalPageViewModel>
+    public class FEPortalPageViewModel
+       : ViewModelBase<SiocCmsContext, SiocPortalPage, FEPortalPageViewModel>
     {
         #region Properties
 
@@ -55,19 +55,41 @@ namespace Swastika.Cms.Lib.ViewModels.Info
         public DateTime CreatedDateTime { get; set; }
 
         #endregion Models
+
+        #region Views
+
+        [JsonProperty("domain")]
+        public string Domain { get { return GlobalConfigurationService.Instance.GetLocalString("Domain", Specificulture, "/"); } }
+
+        [JsonProperty("childNavs")]
+        public List<NavPortalPageViewModel> ChildNavs { get; set; } = new List<NavPortalPageViewModel>();
+
+        #endregion Views
+
         #endregion Properties
 
         #region Contructors
 
-        public InfoPortalPageViewModel() : base()
+        public FEPortalPageViewModel() : base()
         {
         }
 
-        public InfoPortalPageViewModel(SiocPortalPage model, SiocCmsContext _context = null, IDbContextTransaction _transaction = null) : base(model, _context, _transaction)
+        public FEPortalPageViewModel(SiocPortalPage model, SiocCmsContext _context = null, IDbContextTransaction _transaction = null) : base(model, _context, _transaction)
         {
         }
 
         #endregion Contructors
 
+        #region Overrides
+        public override void ExpandView(SiocCmsContext _context = null, IDbContextTransaction _transaction = null)
+        {
+            var getChilds = NavPortalPageViewModel.Repository.GetModelListBy(n => n.ParentId == Id, _context, _transaction);
+            if (getChilds.IsSucceed)
+            {
+                ChildNavs = getChilds.Data.OrderBy(c => c.Priority).ToList();
+            }
+        }
+
+        #endregion Overrides
     }
 }

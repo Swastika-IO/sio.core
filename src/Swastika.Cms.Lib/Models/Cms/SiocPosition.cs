@@ -16,5 +16,6 @@ namespace Swastika.Cms.Lib.Models.Cms
         public int Status { get; set; }
 
         public ICollection<SiocCategoryPosition> SiocCategoryPosition { get; set; }
+        public ICollection<SiocPortalPagePosition> SiocPortalPagePosition { get; set; }
     }
 }

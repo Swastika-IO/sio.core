@@ -51,6 +51,21 @@
         templateUrl: "/app-portal/pages/page/details.html"
     });
 
+    $routeProvider.when("/backend/portal-page/list", {
+        controller: "PortalPageController",
+        templateUrl: "/app-portal/pages/portal-page/list.html"
+    });
+
+    $routeProvider.when("/backend/portal-page/create", {
+        controller: "PortalPageController",
+        templateUrl: "/app-portal/pages/portal-page/details.html"
+    });
+
+    $routeProvider.when("/backend/portal-page/details/:id", {
+        controller: "PortalPageController",
+        templateUrl: "/app-portal/pages/portal-page/details.html"
+    });
+
     $routeProvider.when("/backend/page/data/:id", {
         controller: "PageController",
         templateUrl: "/app-portal/pages/page/data.html"

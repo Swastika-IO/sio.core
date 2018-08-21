@@ -218,8 +218,26 @@
                             icon: 'mi mi-List'
                         }
                     ]
+                },
+                {
+                    title: 'portal_portal_pages',
+                    shortTitle: 'portal_short_portal_pages',
+                    icon: 'mi mi-Globe mi-spin',
+                    href: '#',
+                    subMenus: [
+                        {
+                            title: ('portal_create'),
+                            href: '/backend/portal-page/create',
+                            icon: 'mi mi-Add'
+                        },
+                        {
+                            title: 'portal_list',
+                            href: '/backend/portal-page/list',
+                            icon: 'mi mi-List'
+                        }
+                    ]
                 }
-            ]
+            ];
         };
     }],
     bindings: {
