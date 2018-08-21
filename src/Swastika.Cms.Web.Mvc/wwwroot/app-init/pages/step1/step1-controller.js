@@ -103,7 +103,7 @@ app.controller('Step1Controller', ['$scope', '$rootScope', '$timeout', '$locatio
                 { specificulture: 'zh-hk', fullName: '香港特別行政區 - 繁體中文', icon: 'flag-icon-hk' }
 
             ]
-        }
+        };
         $scope.initCmsModel = {
             isUseLocal: false,
             localDbConnectionString: 'Server=(localdb)\\MSSQLLocalDB;Initial Catalog=sw-cms.db;Integrated Security=True;Persist Security Info=False;Pooling=False;MultipleActiveResultSets=False;Encrypt=False;TrustServerCertificate=True',
@@ -117,11 +117,11 @@ app.controller('Step1Controller', ['$scope', '$rootScope', '$timeout', '$locatio
             lang: 'en-us',
             isSqlite: false,
             culture: $scope.settings[0]
-        }
+        };
         $scope.updateLocalDbName = function () {
             $scope.initCmsModel.localDbConnectionString = 'Server=(localdb)\\mssqllocaldb;Database=' + $scope.initCmsModel.localDbName + ';Trusted_Connection=True;MultipleActiveResultSets=true';
             $scope.initCmsModel.sqliteDbConnectionString = 'Data Source=' + $scope.initCmsModel.localDbName;
-        }
+        };
         $scope.initCms = async function () {
             $rootScope.isBusy = true;
             var result = await step1Services.initCms($scope.initCmsModel);

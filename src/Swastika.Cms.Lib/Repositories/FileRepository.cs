@@ -192,7 +192,7 @@ namespace Swastika.Cms.Lib.Repositories
 
             FileInfo file = new FileInfo(fullPath);
 
-            if (file != null && file.Length > 0)
+            if (file.Exists)
             {
                 try
                 {

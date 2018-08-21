@@ -60,17 +60,14 @@ app.factory('commonServices', ['$location', '$http', '$rootScope', 'localStorage
     };
     var _getApiResult = async function (req) {
         $rootScope.isBusy = true;
-
         return $http(req).then(function (resp) {
-            //var resp = results.data;
             $rootScope.isBusy = false;
             return resp.data;
-        },
-            function (error) {
+        }, function (error) {
                 var t = { isSucceed: false, errors: [error.statusText] };
                 $rootScope.isBusy = false;
                 return t;
-            });
+        });
     };
     adminCommonFactory.getApiResult = _getApiResult;
     adminCommonFactory.getSettings = _getSettings;

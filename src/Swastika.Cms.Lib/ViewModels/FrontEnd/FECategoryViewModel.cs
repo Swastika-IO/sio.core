@@ -144,7 +144,7 @@ namespace Swastika.Cms.Lib.ViewModels.FrontEnd
         public PaginationModel<NavCategoryProductViewModel> Products { get; set; } = new PaginationModel<NavCategoryProductViewModel>();
 
         [JsonProperty("modules")]
-        public List<FEModuleViewModel> Modules { get; set; } = new List<FEModuleViewModel>(); // Get All Module
+        public List<NavCategoryModuleViewModel> Modules { get; set; } = new List<NavCategoryModuleViewModel>(); // Get All Module
 
         public string TemplatePath {
             get {
@@ -342,25 +342,18 @@ namespace Swastika.Cms.Lib.ViewModels.FrontEnd
 
         private void GetSubModules(SiocCmsContext _context = null, IDbContextTransaction _transaction = null)
         {
-            var getNavs = CategoryModuleViewModel.Repository.GetModelListBy(
+            var getNavs = NavCategoryModuleViewModel.Repository.GetModelListBy(
                 m => m.CategoryId == Id && m.Specificulture == Specificulture
                 , _context, _transaction);
             if (getNavs.IsSucceed)
             {
-                Modules = new List<FEModuleViewModel>();
+                Modules = getNavs.Data;
                 StringBuilder scripts = new StringBuilder();
                 StringBuilder styles = new StringBuilder();
                 foreach (var nav in getNavs.Data.OrderBy(n => n.Priority).ToList())
                 {
-                    var getModule = FEModuleViewModel.Repository.GetSingleModel(
-                        m => m.Id == nav.ModuleId && nav.Specificulture == m.Specificulture
-                        , _context, _transaction);
-                    if (getModule.IsSucceed && getModule.Data.View != null)
-                    {
-                        scripts.Append(getModule.Data.View.Scripts);
-                        styles.Append(getModule.Data.View.Styles);
-                        Modules.Add(getModule.Data);
-                    }
+                        scripts.Append(nav.Module.View.Scripts);
+                        styles.Append(nav.Module.View.Styles);
                 }
                 View.Scripts = scripts.ToString();
                 View.Styles = styles.ToString();
@@ -398,7 +391,7 @@ namespace Swastika.Cms.Lib.ViewModels.FrontEnd
 
         public FEModuleViewModel GetModule(string name)
         {
-            return Modules.FirstOrDefault(m => m.Name == name);
+            return Modules.FirstOrDefault(m => m.Module.Name == name)?.Module;
         }
 
         #endregion Expands

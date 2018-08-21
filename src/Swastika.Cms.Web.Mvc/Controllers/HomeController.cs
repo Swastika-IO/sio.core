@@ -9,11 +9,13 @@ using Microsoft.AspNetCore.Localization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Data.OData.Query;
 using Swastika.Cms.Lib;
+using Swastika.Cms.Lib.Models.Cms;
 using Swastika.Cms.Lib.ViewModels.Api;
 using Swastika.Cms.Lib.ViewModels.FrontEnd;
 using Swastika.Cms.Lib.ViewModels.Info;
 using Swastika.Identity.Models;
 using System;
+using System.Linq.Expressions;
 using System.Threading.Tasks;
 using static Swastika.Common.Utility.Enums;
 
@@ -50,7 +52,7 @@ namespace Swastika.Cms.Mvc.Controllers
                     {
                         case SWCmsConstants.UrlAliasType.Page:
                             int.TryParse(getAlias.Data.SourceId, out int pageId);
-                            return Page(pageId, pageIndex, pageSize);
+                            return Page(p => p.Specificulture == CurrentLanguage && p.Id == pageId, pageIndex, pageSize);
                         case SWCmsConstants.UrlAliasType.Article:
                             return ArticleView(getAlias.Data.SourceId);
                         case SWCmsConstants.UrlAliasType.Product:
@@ -69,29 +71,16 @@ namespace Swastika.Cms.Mvc.Controllers
             }
             else
             {
-                var getPage = FECategoryViewModel.Repository.GetSingleModel(
-                    p => p.Specificulture == CurrentLanguage && (p.Type == (int)SWCmsConstants.CateType.Home));
-                if (getPage.IsSucceed)
-                {
-                    return Page(getPage.Data.Id, pageIndex, pageSize);
-
-                }
-                else
-                {
-                    return RedirectToAction("Index", "Backend");
-                }
+                return Page(p => p.Specificulture == CurrentLanguage && (p.Type == (int)SWCmsConstants.CateType.Home), pageIndex, pageSize);
             }
-
 
         }
 
-        IActionResult Page(int pageId, int pageIndex, int pageSize = 10)
+        IActionResult Page(Expression<Func<SiocCategory, bool>> predicate, int pageIndex, int pageSize = 10)
         {
             // Home Page
-            var getPage = FECategoryViewModel.Repository.GetSingleModel(
-                p => p.Specificulture == CurrentLanguage
-                    && p.Id == pageId
-                );
+            var getPage = FECategoryViewModel.Repository.GetSingleModel(predicate);
+
             if (getPage.IsSucceed && getPage.Data.View != null)
             {
                 GeneratePageDetailsUrls(getPage.Data);
@@ -144,8 +133,9 @@ namespace Swastika.Cms.Mvc.Controllers
                 productNav.Product.DetailsUrl = GenerateDetailsUrl("Alias", new { seoName = productNav.Product.UrlAlias.Alias });
             }
 
-            foreach (var module in page.Modules)
+            foreach (var nav in page.Modules)
             {
+                var module = nav.Module;
                 module.DetailsUrl = GenerateDetailsUrl("Alias", new { seoName = module.UrlAlias.Alias });
                 GeneratePageDetailsUrls(module);
             }

@@ -86,7 +86,7 @@ app.factory('authService', ['$http', '$rootScope','$location', '$q', 'localStora
                 url: apiUrl,
                 data: JSON.stringify(data)
             };
-            var resp = await _getApiResult(req)
+            var resp = await _getApiResult(req);
 
             if (resp.isSucceed) {
                 var data = resp.data;

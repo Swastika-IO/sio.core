@@ -81,7 +81,7 @@ app.factory('commonServices', ['$location', '$http', '$rootScope', 'authService'
     var _getApiResult = async function (req, serviceBase) {
         $rootScope.isBusy = true;
         req.Authorization = authService.authentication.token;
-        if (serviceBase == undefined) {
+        if (serviceBase === undefined) {
             serviceBase = ngAuthSettings.serviceBase;
         }
         req.url = serviceBase  + req.url;

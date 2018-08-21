@@ -69,13 +69,7 @@ namespace Swastika.Cms.Lib.ViewModels.Api
             }
             return base.ParseModel(_context, _transaction);
         }
-        public override void ExpandView(SiocCmsContext _context = null, IDbContextTransaction _transaction = null)
-        {
-            //IsClone = true;
-            //Cultures = Cultures ?? CommonRepository.Instance.LoadCultures(Specificulture, _context, _transaction);
-            //Cultures.ForEach(c => c.IsSupported = _context.SiocUrlAlias.Any(m => m.Id == Id && m.Specificulture == c.Specificulture));
-        }
-
+        
         public override void Validate(SiocCmsContext _context, IDbContextTransaction _transaction)
         {
             base.Validate(_context, _transaction);
