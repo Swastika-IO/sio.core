@@ -1139,6 +1139,8 @@ namespace Swastika.Cms.Lib.Models.Cms
 
             modelBuilder.Entity<SiocPortalPageRole>(entity =>
             {
+                entity.HasKey(e => new { e.RoleId, e.PageId });
+
                 entity.ToTable("sioc_portal_page_role");
 
                 entity.HasIndex(e => e.PageId);
@@ -1150,7 +1152,6 @@ namespace Swastika.Cms.Lib.Models.Cms
                 entity.Property(e => e.CreatedDateTime).HasColumnType("datetime");
 
                 entity.Property(e => e.RoleId)
-                    .IsRequired()
                     .HasMaxLength(450);
 
                 entity.Property(e => e.Status).HasDefaultValueSql("((1))");
@@ -1185,7 +1186,6 @@ namespace Swastika.Cms.Lib.Models.Cms
                 entity.Property(e => e.Specificulture).HasMaxLength(10);
 
                 entity.Property(e => e.Code)
-                    .IsRequired()
                     .HasMaxLength(50)
                     .HasDefaultValueSql("(N'')");
 
@@ -1308,35 +1308,37 @@ namespace Swastika.Cms.Lib.Models.Cms
 
             modelBuilder.Entity<SiocRelatedProduct>(entity =>
             {
-                entity.HasKey(e => new { e.SourceProductId, e.RelatedProductId, e.Specificulture });
+                entity.HasKey(e => new { e.SourceId, e.DestinationId, e.Specificulture });
 
                 entity.ToTable("sioc_related_product");
 
-                entity.HasIndex(e => new { e.RelatedProductId, e.Specificulture });
+                entity.HasIndex(e => new { e.DestinationId, e.Specificulture });
 
-                entity.HasIndex(e => new { e.SourceProductId, e.Specificulture });
+                entity.HasIndex(e => new { e.SourceId, e.Specificulture });
 
-                entity.Property(e => e.SourceProductId).HasMaxLength(50);
+                entity.Property(e => e.SourceId).HasMaxLength(50);
 
-                entity.Property(e => e.RelatedProductId).HasMaxLength(50);
+                entity.Property(e => e.DestinationId).HasMaxLength(50);
 
                 entity.Property(e => e.Specificulture).HasMaxLength(10);
 
-                entity.Property(e => e.CreatedBy)
-                    .IsRequired()
-                    .HasMaxLength(50);
+                entity.Property(e => e.Image)
+                    .HasMaxLength(450);
+
+                entity.Property(e => e.Description)
+                    .HasMaxLength(450);
 
                 entity.Property(e => e.CreatedDateTime).HasColumnType("datetime");
 
                 entity.HasOne(d => d.SiocProduct)
                     .WithMany(p => p.SiocRelatedProductSiocProduct)
-                    .HasForeignKey(d => new { d.RelatedProductId, d.Specificulture })
+                    .HasForeignKey(d => new { d.DestinationId, d.Specificulture })
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_sioc_related_product_sioc_product1");
 
                 entity.HasOne(d => d.S)
                     .WithMany(p => p.SiocRelatedProductS)
-                    .HasForeignKey(d => new { d.SourceProductId, d.Specificulture })
+                    .HasForeignKey(d => new { d.SourceId, d.Specificulture })
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_sioc_related_product_sioc_product");
             });

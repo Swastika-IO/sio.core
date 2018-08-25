@@ -17,11 +17,11 @@ namespace Swastika.Cms.Lib.ViewModels.Navigation
 
         #region Models
 
+        [JsonProperty("productId")]// ProductId
+        public string ProductId { get; set; }
+
         [JsonProperty("mediaId")]
         public int MediaId { get; set; }
-
-        [JsonProperty("productId")]
-        public string ProductId { get; set; }
 
         [JsonProperty("position")]
         public int Position { get; set; }

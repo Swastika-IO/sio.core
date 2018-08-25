@@ -5,10 +5,11 @@ namespace Swastika.Cms.Lib.Models.Cms
 {
     public partial class SiocRelatedProduct
     {
-        public string SourceProductId { get; set; }
-        public string RelatedProductId { get; set; }
+        public string SourceId { get; set; }
+        public string DestinationId { get; set; }
         public string Specificulture { get; set; }
-        public string CreatedBy { get; set; }
+        public string Image { get; set; }
+        public string Description { get; set; }
         public DateTime CreatedDateTime { get; set; }
         public int Priority { get; set; }
         public int Status { get; set; }

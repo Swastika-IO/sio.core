@@ -290,7 +290,7 @@ namespace Swastika.Cms.Lib.ViewModels.FrontEnd
                 MediaNavs.ForEach(n => n.IsActived = true);
             }
 
-            var getRelatedProduct = NavRelatedProductViewModel.Repository.GetModelListBy(n => n.SourceProductId == Id && n.Specificulture == Specificulture, _context, _transaction);
+            var getRelatedProduct = NavRelatedProductViewModel.Repository.GetModelListBy(n => n.SourceId == Id && n.Specificulture == Specificulture, _context, _transaction);
             if (getRelatedProduct.IsSucceed)
             {
                 ProductNavs = getRelatedProduct.Data.OrderBy(p => p.Priority).ToList();

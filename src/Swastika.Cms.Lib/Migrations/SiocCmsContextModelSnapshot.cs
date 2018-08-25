@@ -1226,9 +1226,10 @@ namespace Swastika.Cms.Lib.Migrations
 
             modelBuilder.Entity("Swastika.Cms.Lib.Models.Cms.SiocPortalPageRole", b =>
                 {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+                    b.Property<string>("RoleId")
+                        .HasMaxLength(450);
+
+                    b.Property<int>("PageId");
 
                     b.Property<string>("CreatedBy")
                         .IsRequired()
@@ -1237,19 +1238,13 @@ namespace Swastika.Cms.Lib.Migrations
                     b.Property<DateTime>("CreatedDateTime")
                         .HasColumnType("datetime");
 
-                    b.Property<int>("PageId");
-
                     b.Property<int>("Priority");
-
-                    b.Property<string>("RoleId")
-                        .IsRequired()
-                        .HasMaxLength(450);
 
                     b.Property<int>("Status")
                         .ValueGeneratedOnAdd()
                         .HasDefaultValueSql("((1))");
 
-                    b.HasKey("Id");
+                    b.HasKey("RoleId", "PageId");
 
                     b.HasIndex("PageId");
 
@@ -1286,7 +1281,6 @@ namespace Swastika.Cms.Lib.Migrations
                         .HasMaxLength(10);
 
                     b.Property<string>("Code")
-                        .IsRequired()
                         .ValueGeneratedOnAdd()
                         .HasDefaultValueSql("(N'')")
                         .HasMaxLength(50);
@@ -1455,31 +1449,33 @@ namespace Swastika.Cms.Lib.Migrations
 
             modelBuilder.Entity("Swastika.Cms.Lib.Models.Cms.SiocRelatedProduct", b =>
                 {
-                    b.Property<string>("SourceProductId")
+                    b.Property<string>("SourceId")
                         .HasMaxLength(50);
 
-                    b.Property<string>("RelatedProductId")
+                    b.Property<string>("DestinationId")
                         .HasMaxLength(50);
 
                     b.Property<string>("Specificulture")
                         .HasMaxLength(10);
 
-                    b.Property<string>("CreatedBy")
-                        .IsRequired()
-                        .HasMaxLength(50);
-
                     b.Property<DateTime>("CreatedDateTime")
                         .HasColumnType("datetime");
+
+                    b.Property<string>("Description")
+                        .HasMaxLength(450);
+
+                    b.Property<string>("Image")
+                        .HasMaxLength(450);
 
                     b.Property<int>("Priority");
 
                     b.Property<int>("Status");
 
-                    b.HasKey("SourceProductId", "RelatedProductId", "Specificulture");
+                    b.HasKey("SourceId", "DestinationId", "Specificulture");
 
-                    b.HasIndex("RelatedProductId", "Specificulture");
+                    b.HasIndex("DestinationId", "Specificulture");
 
-                    b.HasIndex("SourceProductId", "Specificulture");
+                    b.HasIndex("SourceId", "Specificulture");
 
                     b.ToTable("sioc_related_product");
                 });
@@ -1959,12 +1955,12 @@ namespace Swastika.Cms.Lib.Migrations
                 {
                     b.HasOne("Swastika.Cms.Lib.Models.Cms.SiocProduct", "SiocProduct")
                         .WithMany("SiocRelatedProductSiocProduct")
-                        .HasForeignKey("RelatedProductId", "Specificulture")
+                        .HasForeignKey("DestinationId", "Specificulture")
                         .HasConstraintName("FK_sioc_related_product_sioc_product1");
 
                     b.HasOne("Swastika.Cms.Lib.Models.Cms.SiocProduct", "S")
                         .WithMany("SiocRelatedProductS")
-                        .HasForeignKey("SourceProductId", "Specificulture")
+                        .HasForeignKey("SourceId", "Specificulture")
                         .HasConstraintName("FK_sioc_related_product_sioc_product");
                 });
 

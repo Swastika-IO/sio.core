@@ -17,7 +17,7 @@ app.controller('RoleController', ['$scope', '$rootScope', '$routeParams', '$time
         $scope.data = {
             pageIndex: 0,
             pageSize: 1,
-            totalItems: 0,
+            totalItems: 0
         };
         $scope.errors = [];
         $scope.role = { name: '' };
@@ -45,7 +45,7 @@ app.controller('RoleController', ['$scope', '$rootScope', '$routeParams', '$time
         };
 
         $scope.loadRoles = async function (pageIndex) {
-            if (pageIndex != undefined) {
+            if (pageIndex !== undefined) {
                 $scope.request.pageIndex = pageIndex;
             }
             $rootScope.isBusy = true;
@@ -55,11 +55,11 @@ app.controller('RoleController', ['$scope', '$rootScope', '$routeParams', '$time
                 $.each($scope.data.items, function (i, role) {
 
                     $.each($scope.data, function (i, e) {
-                        if (e.roleId == role.id) {
+                        if (e.roleId === role.id) {
                             role.isHidden = true;
                         }
-                    })
-                })
+                    });
+                });
                 $rootScope.isBusy = false;
                 $scope.$apply();
             }
@@ -72,7 +72,7 @@ app.controller('RoleController', ['$scope', '$rootScope', '$routeParams', '$time
 
         $scope.removeRole = function (id) {
             $rootScope.showConfirm($scope, 'removeRoleConfirmed', [id], null, 'Remove Role', 'Are you sure');
-        }
+        };
 
         $scope.removeRoleConfirmed = async function (id) {
             $rootScope.isBusy = true;
@@ -85,7 +85,7 @@ app.controller('RoleController', ['$scope', '$rootScope', '$routeParams', '$time
                 $rootScope.isBusy = false;
                 $scope.$apply();
             }
-        }
+        };
 
         $scope.createRole = async function () {
             $rootScope.isBusy = true;
@@ -99,7 +99,7 @@ app.controller('RoleController', ['$scope', '$rootScope', '$routeParams', '$time
                 $rootScope.isBusy = false;
                 $scope.$apply();
             }
-        }
+        };
 
 
         $scope.saveRole = async function (role) {

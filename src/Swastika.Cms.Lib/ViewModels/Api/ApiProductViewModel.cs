@@ -2,6 +2,7 @@
 // The Swastika I/O Foundation licenses this file to you under the GNU General Public License v3.0.
 // See the LICENSE file in the project root for more information.
 
+using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Storage;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
@@ -150,14 +151,8 @@ namespace Swastika.Cms.Lib.ViewModels.Api
         [JsonProperty("mediaNavs")]
         public List<NavProductMediaViewModel> MediaNavs { get; set; }
 
-        [JsonProperty("jMediaNavs")]
-        public JArray JMediaNavs { get { return JArray.FromObject(MediaNavs); } }
-
         [JsonProperty("productNavs")]
         public List<NavRelatedProductViewModel> ProductNavs { get; set; }
-
-        [JsonProperty("jProductNavs")]
-        public JArray JProductNavs { get { return JArray.FromObject(ProductNavs ?? new List<NavRelatedProductViewModel>()); } }
 
         [JsonProperty("activedModules")]
         public List<ApiModuleViewModel> ActivedModules { get; set; } // Children Modules
@@ -367,12 +362,7 @@ namespace Swastika.Cms.Lib.ViewModels.Api
                 MediaNavs.ForEach(n => n.IsActived = true);
             }
 
-            var getRelatedProduct = NavRelatedProductViewModel.Repository.GetModelListBy(n => (n.SourceProductId == Id || n.RelatedProductId == Id) && n.Specificulture == Specificulture, _context, _transaction);
-            if (getRelatedProduct.IsSucceed)
-            {
-                ProductNavs = getRelatedProduct.Data.OrderBy(p => p.Priority).ToList();
-                ProductNavs.ForEach(n => n.IsActived = true);
-            }
+            ProductNavs = GetRelated(_context, _transaction);
 
             this.ActivedModules = new List<ApiModuleViewModel>();
             foreach (var module in this.ModuleNavs.Where(m => m.IsActived))
@@ -644,9 +634,8 @@ namespace Swastika.Cms.Lib.ViewModels.Api
                 {
                     foreach (var navProduct in ProductNavs)
                     {
-                        navProduct.SourceProductId = parent.Id;
+                        navProduct.SourceId = parent.Id;
                         navProduct.Specificulture = parent.Specificulture;
-                        navProduct.CreatedBy = parent.CreatedBy ?? "Unknown";
                         if (navProduct.IsActived)
                         {
                             var saveResult = await navProduct.SaveModelAsync(false, _context, _transaction);
@@ -1008,9 +997,8 @@ namespace Swastika.Cms.Lib.ViewModels.Api
                 {
                     foreach (var navProduct in ProductNavs)
                     {
-                        navProduct.SourceProductId = parent.Id;
+                        navProduct.SourceId = parent.Id;
                         navProduct.Specificulture = parent.Specificulture;
-                        navProduct.CreatedBy = parent.CreatedBy;
                         if (navProduct.IsActived)
                         {
                             var saveResult = navProduct.SaveModel(false, _context, _transaction);
@@ -1081,6 +1069,39 @@ namespace Swastika.Cms.Lib.ViewModels.Api
             }
         }
 
+        public List<NavRelatedProductViewModel> GetRelated(SiocCmsContext context, IDbContextTransaction transaction)
+        {
+            var navs= NavRelatedProductViewModel.Repository.GetModelListBy(n => n.SourceId == Id, context, transaction).Data;
+            navs.ForEach(n => n.IsActived = true);
+            return navs.OrderBy(p=>p.Priority).ToList();
+            //var query = context.SiocProduct
+            //    .Include(cp => cp.SiocRelatedProductS)
+            //    .Where(product => product.Specificulture == Specificulture && product.Id != Id);
+            //int total = query.Count();
+            //int pageSize = 10;
+            //var result = query.Take(pageSize)
+            //    .Select(product =>
+            //        new NavRelatedProductViewModel()
+            //        {
+            //            SourceProductId = Id,
+            //            RelatedProductId = product.Id,
+            //            Specificulture = Specificulture
+            //        }
+            //    ).ToList();
+            //result.ForEach(nav =>
+            //{
+            //    nav.IsActived = context.SiocRelatedProduct.Any(
+            //            m => m.SourceProductId == Id && m.RelatedProductId == nav.RelatedProductId && m.Specificulture == Specificulture);
+            //    nav.RelatedProduct = InfoProductViewModel.Repository.GetSingleModel(p => p.Id == nav.RelatedProductId && p.Specificulture == nav.Specificulture, context, transaction).Data;
+            //});
+            //return new PaginationModel<NavRelatedProductViewModel>()
+            //{
+            //    PageIndex = 0,
+            //    PageSize = pageSize,
+            //    Items = result,
+            //    TotalItems = total
+            //};
+        }
         #endregion Expands
     }
 }

@@ -5,7 +5,6 @@ namespace Swastika.Cms.Lib.Models.Cms
 {
     public partial class SiocPortalPageRole
     {
-        public int Id { get; set; }
         public string CreatedBy { get; set; }
         public DateTime CreatedDateTime { get; set; }
         public int PageId { get; set; }

@@ -207,6 +207,11 @@
         templateUrl: "/app-portal/pages/role/list.html"
     });
 
+    $routeProvider.when("/backend/role/details/:id", {
+        controller: "RoleController",
+        templateUrl: "/app-portal/pages/role/details.html"
+    });
+
     $routeProvider.when("/backend/user/list", {
         controller: "UserController",
         templateUrl: "/app-portal/pages/user/list.html"

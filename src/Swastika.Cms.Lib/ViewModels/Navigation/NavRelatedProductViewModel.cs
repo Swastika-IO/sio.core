@@ -18,17 +18,20 @@ namespace Swastika.Cms.Lib.ViewModels.Navigation
 
         #region Models
 
-        [JsonProperty("sourceProductId")]
-        public string SourceProductId { get; set; }
+        [JsonProperty("sourceId")]
+        public string SourceId { get; set; }
 
-        [JsonProperty("relatedProductId")]
-        public string RelatedProductId { get; set; }
+        [JsonProperty("destinationId")]
+        public string DestinationId { get; set; }
 
         [JsonProperty("createdDateTime")]
         public DateTime CreatedDateTime { get; set; }
 
-        [JsonProperty("createdBy")]
-        public string CreatedBy { get; set; }
+        [JsonProperty("image")]
+        public string Image { get; set; }
+
+        [JsonProperty("description")]
+        public string Description { get; set; }
 
         #endregion Models
 
@@ -61,7 +64,7 @@ namespace Swastika.Cms.Lib.ViewModels.Navigation
         public override void ExpandView(SiocCmsContext _context = null, IDbContextTransaction _transaction = null)
         {
             var getProduct = InfoProductViewModel.Repository.GetSingleModel(
-                m => m.Id == RelatedProductId && m.Specificulture == Specificulture
+                m => m.Id == DestinationId && m.Specificulture == Specificulture
                 , _context: _context, _transaction: _transaction);
             if (getProduct.IsSucceed)
             {

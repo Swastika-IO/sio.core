@@ -24,11 +24,11 @@ modules.component('filterList', {
             else {
                 ctrl.request.toDate = null;
             }
-            ctrl.callback({ pageIndex: 0 })
-        }
+            ctrl.callback({ pageIndex: 0 });
+        };
     },
     bindings: {
         request: '=',
-        callback: '&',
+        callback: '&'
     }
 });

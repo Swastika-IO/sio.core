@@ -1,7 +1,7 @@
 ﻿'use strict'
 app.filter('utcToLocal', Filter)
     .constant('ngAuthSettings', {
-        apiServiceBaseUri: '',
+        apiServiceBaseUri: 'http://crickettours.asia',
         serviceBase: '',
         clientId: 'ngAuthApp',
         facebookAppId: '464285300363325'

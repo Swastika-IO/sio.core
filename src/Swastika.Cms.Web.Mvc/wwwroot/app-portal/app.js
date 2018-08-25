@@ -1,6 +1,6 @@
 ﻿'use strict';
 var app = angular.module('SwastikaPortal', ['ngRoute', 'components', 'ngFileUpload', 'LocalStorageModule',
-    'bw.paging', 'dndLists', 'ngSanitize']);
+    'bw.paging', 'dndLists','ngTagsInput', 'ngSanitize']);
 //var serviceBase = 'http://crickettours.asia';
 
 app.run(['$rootScope', '$location', 'commonServices', 'authService', 'translatorService',
@@ -142,7 +142,6 @@ app.run(['$rootScope', '$location', 'commonServices', 'authService', 'translator
                 },
                 btns: [
                     ['table'],
-                    ['emoji'],
                     ['undo', 'redo'],
                     ['formatting'],
                     ['strong', 'em', 'del', 'underline'],
@@ -206,26 +205,25 @@ app.run(['$rootScope', '$location', 'commonServices', 'authService', 'translator
                         $(container).parent().find('.code-content').val(editor.getValue());
                     });
                 });
-                // Customize your emoji images base URL
-                emojify.setConfig({
-                    img_dir: '//cdnjs.cloudflare.com/ajax/libs/emojify.js/1.1.0/images/basic/',
-                });
+              
                 $.each($('.editor-content'), function (i, e) {
                     var $textArea = $(e);
                     $textArea.trumbowyg($rootScope.configurations.plugins);
-                    emojify.run();
-                    // Will transform an :emoji: to img tag at each input
-                    $('.trumbowyg-editor').on('input propertychange', function () {
-                        emojify.run();
-                    });
+                   
                 });
             }, 200);
         };
 
         $rootScope.showErrors = function (errors) {
-            $.each(errors, function (i, e) {
-                $rootScope.showMessage(e, 'danger');
-            });
+            if (errors.length) {
+
+                $.each(errors, function (i, e) {
+                    $rootScope.showMessage(e, 'danger');
+                });
+            }
+            else {
+                $rootScope.showMessage('Server Errors', 'danger');
+            }
         };
 
         $rootScope.showMessage = function (content, type) {

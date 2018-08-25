@@ -351,7 +351,7 @@ namespace Swastika.Cms.Lib.ViewModels.BackEnd
                 MediaNavs.ForEach(n => n.IsActived = true);
             }
 
-            var getRelatedProduct = NavRelatedProductViewModel.Repository.GetModelListBy(n => (n.SourceProductId == Id || n.RelatedProductId == Id) && n.Specificulture == Specificulture, _context, _transaction);
+            var getRelatedProduct = NavRelatedProductViewModel.Repository.GetModelListBy(n => (n.SourceId == Id || n.DestinationId == Id) && n.Specificulture == Specificulture, _context, _transaction);
             if (getRelatedProduct.IsSucceed)
             {
                 ProductNavs = getRelatedProduct.Data.OrderBy(p => p.Priority).ToList();
@@ -620,9 +620,8 @@ namespace Swastika.Cms.Lib.ViewModels.BackEnd
                 {
                     foreach (var navProduct in ProductNavs)
                     {
-                        navProduct.SourceProductId = parent.Id;
+                        navProduct.SourceId = parent.Id;
                         navProduct.Specificulture = parent.Specificulture;
-                        navProduct.CreatedBy = parent.CreatedBy ?? "Unknown";
                         if (navProduct.IsActived)
                         {
                             var saveResult = await navProduct.SaveModelAsync(false, _context, _transaction);
@@ -972,9 +971,8 @@ namespace Swastika.Cms.Lib.ViewModels.BackEnd
                 {
                     foreach (var navProduct in ProductNavs)
                     {
-                        navProduct.SourceProductId = parent.Id;
+                        navProduct.SourceId = parent.Id;
                         navProduct.Specificulture = parent.Specificulture;
-                        navProduct.CreatedBy = parent.CreatedBy;
                         if (navProduct.IsActived)
                         {
                             var saveResult = navProduct.SaveModel(false, _context, _transaction);

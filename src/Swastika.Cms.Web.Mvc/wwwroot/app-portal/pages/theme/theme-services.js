@@ -60,13 +60,13 @@ app.factory('ThemeServices', ['$http', '$rootScope', 'commonServices', function 
     };
 
     var _saveTheme = async function (theme) {
-        var apiUrl = '/api/' + settings.lang + '/theme/';
+        var apiUrl = '/api/' + $rootScope.settings.lang + '/theme/';
         var req = {
             method: 'POST',
             url: apiUrl + 'save',
             data: JSON.stringify(theme)
         };
-        return await commonServices.getApiResult(req)
+        return await commonServices.getApiResult(req);
     };
 
     themesServiceFactory.syncTemplates = _syncTemplates;

@@ -189,8 +189,8 @@ namespace Swastka.Cms.Api.Controllers
         {
             ParseRequestPagingDate(request);
             Expression<Func<SiocMedia, bool>> predicate = model =>
-                //model.Specificulture == _lang
-                (string.IsNullOrWhiteSpace(request.Keyword)
+                model.Specificulture == _lang
+                && (string.IsNullOrWhiteSpace(request.Keyword)
                 || (model.FileName.Contains(request.Keyword)
                 || model.Title.Contains(request.Keyword)
                 || model.Description.Contains(request.Keyword)))

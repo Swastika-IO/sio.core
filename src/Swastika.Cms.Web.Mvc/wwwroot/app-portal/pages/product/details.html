@@ -35,7 +35,10 @@
                             <!--<navs data="activedProduct.mediaNavs" prefix="'media'" model="'nav-product-media'"></navs>-->
                         </pane>
                         <pane title="Related">
-                            <product-related product="activedProduct" list="data"></product-related>
+                            <related-navs request="request" source-id="activedProduct.id" culture="activedProduct.specificulture"
+                                      prefix="'product'" navs="activedProduct.productNavs" data="data" 
+                                      load-data="loadProducts(pageIndex)"></related-navs>
+                        
                         </pane>
                     </tabs>
                 </div>

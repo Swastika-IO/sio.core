@@ -692,6 +692,7 @@ namespace Swastika.Cms.Lib.ViewModels.Api
 
         public List<NavCategoryCategoryViewModel> GetChildNavs(SiocCmsContext context, IDbContextTransaction transaction)
         {
+            // Get other category
             var query = context.SiocCategory
                 .Include(cp => cp.SiocCategoryCategorySiocCategory)
                 .Where(Category => Category.Specificulture == Specificulture && Category.Id != Id)

@@ -114,7 +114,6 @@ app.controller('ThemeController', ['$scope', '$rootScope', '$routeParams', '$tim
         };
 
         $scope.saveTheme = async function (theme) {
-            theme.content = $('.editor-content').val();
             $rootScope.isBusy = true;
             var resp = await themeServices.saveTheme(theme);
             if (resp && resp.isSucceed) {
@@ -125,7 +124,6 @@ app.controller('ThemeController', ['$scope', '$rootScope', '$routeParams', '$tim
                 $location.path('/backend/theme/list');
                 $rootScope.isBusy = false;
                 $scope.$apply();
-                
             }
             else {
                 if (resp) { $rootScope.showErrors(resp.errors); }
@@ -136,7 +134,7 @@ app.controller('ThemeController', ['$scope', '$rootScope', '$routeParams', '$tim
 
         $scope.removeTheme = function (id) {
             $rootScope.showConfirm($scope, 'removeThemeConfirmed', [id], null, 'Remove Theme', 'Are you sure');
-        }
+        };
 
         $scope.removeThemeConfirmed = async function (id) {
             $rootScope.isBusy = true;

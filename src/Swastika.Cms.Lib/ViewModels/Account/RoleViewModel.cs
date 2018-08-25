@@ -6,6 +6,13 @@ using Swastika.Cms.Lib.Models.Account;
 using System.ComponentModel.DataAnnotations;
 using Swastika.Domain.Core.ViewModels;
 using System.Threading.Tasks;
+using Swastika.Cms.Lib.ViewModels.Navigation;
+using System.Collections.Generic;
+using Swastika.Cms.Lib.ViewModels.FrontEnd;
+using System.Linq;
+using Swastika.Cms.Lib.Models.Cms;
+using Microsoft.EntityFrameworkCore;
+using static Swastika.Common.Utility.Enums;
 
 namespace Swastika.Cms.Lib.ViewModels.Account
 {
@@ -23,6 +30,7 @@ namespace Swastika.Cms.Lib.ViewModels.Account
         public string Name { get; set; }
         [JsonProperty("normalizedName")]
         public string NormalizedName { get; set; }
+
         #region Models
 
         #endregion
@@ -30,6 +38,7 @@ namespace Swastika.Cms.Lib.ViewModels.Account
         #region Views
 
         #endregion
+
         #endregion
 
         #region Contructors
@@ -57,7 +66,8 @@ namespace Swastika.Cms.Lib.ViewModels.Account
         public override async Task<RepositoryResponse<bool>> RemoveRelatedModelsAsync(RoleViewModel view, SiocCmsAccountContext _context = null, IDbContextTransaction _transaction = null)
         {
             var result = await UserRoleViewModel.Repository.RemoveListModelAsync(ur => ur.RoleId == Id, _context, _transaction);
-            return new RepositoryResponse<bool>() {
+            return new RepositoryResponse<bool>()
+            {
                 IsSucceed = result.IsSucceed,
                 Errors = result.Errors,
                 Exception = result.Exception

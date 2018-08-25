@@ -5,6 +5,7 @@
 using Microsoft.EntityFrameworkCore.Storage;
 using Newtonsoft.Json;
 using Swastika.Cms.Lib.Models.Cms;
+using Swastika.Cms.Lib.ViewModels.FrontEnd;
 using Swastika.Cms.Lib.ViewModels.Info;
 using Swastika.Domain.Data.ViewModels;
 
@@ -28,9 +29,7 @@ namespace Swastika.Cms.Lib.ViewModels.Navigation
         [JsonProperty("parentId")]
         public int ParentId { get; set; }
 
-        [JsonProperty("isActived")]
-        public bool IsActived { get; set; }
-
+        
         [JsonProperty("image")]
         public string Image { get; set; }
 
@@ -39,8 +38,11 @@ namespace Swastika.Cms.Lib.ViewModels.Navigation
 
         #region Views
 
+        [JsonProperty("isActived")]
+        public bool IsActived { get; set; }
+
         [JsonProperty("page")]
-        public InfoPortalPageViewModel Page { get; set; }
+        public RolePortalPageViewModel Page { get; set; }
 
         [JsonProperty("parent")]
         public InfoPortalPageViewModel Parent { get; set; }
@@ -51,7 +53,7 @@ namespace Swastika.Cms.Lib.ViewModels.Navigation
 
         public override void ExpandView(SiocCmsContext _context = null, IDbContextTransaction _transaction = null)
         {
-            var getCategory = InfoPortalPageViewModel.Repository.GetSingleModel(p => p.Id == Id
+            var getCategory = RolePortalPageViewModel.Repository.GetSingleModel(p => p.Id == Id
                 , _context: _context, _transaction: _transaction
             );
             if (getCategory.IsSucceed)
@@ -63,7 +65,7 @@ namespace Swastika.Cms.Lib.ViewModels.Navigation
             );
             if (getParent.IsSucceed)
             {
-                Parent = getCategory.Data;
+                Parent = getParent.Data;
             }
         }
 

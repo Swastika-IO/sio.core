@@ -10,6 +10,7 @@ using Swastika.Cms.Lib.Services;
 using Swastika.Domain.Core.ViewModels;
 using Swastika.Domain.Data.ViewModels;
 using System;
+using System.ComponentModel.DataAnnotations;
 using System.Threading.Tasks;
 
 namespace Swastika.Cms.Lib.ViewModels.BackEnd
@@ -24,6 +25,7 @@ namespace Swastika.Cms.Lib.ViewModels.BackEnd
         [JsonProperty("id")]
         public int Id { get; set; }
 
+        [Required(ErrorMessage = "Please choose File")]
         [JsonProperty("extension")]
         public string Extension { get; set; }
 
@@ -104,9 +106,17 @@ namespace Swastika.Cms.Lib.ViewModels.BackEnd
             {
                 Id = BEMediaViewModel.Repository.Max(c => c.Id).Data + 1;
                 CreatedDateTime = DateTime.UtcNow;
+                IsClone = true;
+                Cultures = Cultures ?? CommonRepository.Instance.LoadCultures(Specificulture, _context, _transaction);
+                Cultures.ForEach(c => c.IsSupported = true);
             }
+            
+            return base.ParseModel(_context, _transaction);
+        }
 
-            if (MediaFile.FileStream != null)
+        public override void Validate(SiocCmsContext _context = null, IDbContextTransaction _transaction = null)
+        {
+            if (MediaFile?.FileStream != null)
             {
                 MediaFile.FileFolder = SwCmsHelper.GetFullPath(new[] {
                     SWCmsConstants.Parameters.UploadFolder,
@@ -126,11 +136,6 @@ namespace Swastika.Cms.Lib.ViewModels.BackEnd
 
             }
             FileType = FileType ?? "image";
-            return base.ParseModel(_context, _transaction);
-        }
-
-        public override void Validate(SiocCmsContext _context = null, IDbContextTransaction _transaction = null)
-        {
             base.Validate(_context, _transaction);
 
         }
@@ -154,7 +159,7 @@ namespace Swastika.Cms.Lib.ViewModels.BackEnd
         public override Task<RepositoryResponse<bool>> RemoveRelatedModelsAsync(BEMediaViewModel view, SiocCmsContext _context = null, IDbContextTransaction _transaction = null)
         {
             FileRepository.Instance.DeleteFile(FileName, Extension, FileFolder);
-            return base.RemoveRelatedModelsAsync(view,_context,_transaction);
+            return base.RemoveRelatedModelsAsync(view, _context, _transaction);
         }
 
         #endregion Overrides

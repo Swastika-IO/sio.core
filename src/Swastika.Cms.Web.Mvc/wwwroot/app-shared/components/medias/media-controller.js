@@ -88,14 +88,14 @@ app.controller('MediaController', ['$scope', '$rootScope', '$routeParams', '$tim
             }
         };
         $scope.loadMedias = async function (pageIndex) {
-            if (pageIndex != undefined) {
+            if (pageIndex !== undefined) {
                 $scope.request.pageIndex = pageIndex;
             }
-            if ($scope.request.fromDate != null) {
+            if ($scope.request.fromDate !== null) {
                 var d = new Date($scope.request.fromDate);
                 $scope.request.fromDate = d.toISOString();
             }
-            if ($scope.request.toDate != null) {
+            if ($scope.request.toDate !== null) {
                 $scope.request.toDate = $scope.request.toDate.toISOString();
             }
             if ($rootScope.settings) {
@@ -125,6 +125,7 @@ app.controller('MediaController', ['$scope', '$rootScope', '$routeParams', '$tim
                 else {
                     if (resp) { $rootScope.showErrors(resp.errors); }
                     $rootScope.isBusy = false;
+                    $scope.$apply();
                 }
             }
         };
@@ -145,7 +146,7 @@ app.controller('MediaController', ['$scope', '$rootScope', '$routeParams', '$tim
                 reader.onload = function () {
                     var index = reader.result.indexOf(',') + 1;
                     var base64 = reader.result.substring(index);
-                    $scope.activedMedia.mediaFile.fileName = file.name.substring(0, file.name.lastIndexOf('.'));
+                    $scope.activedMedia.mediaFile.fileName = $rootScope.generateKeyword(file.name.substring(0, file.name.lastIndexOf('.')), '-');
                     $scope.activedMedia.mediaFile.extension = file.name.substring(file.name.lastIndexOf('.'));
                     $scope.activedMedia.mediaFile.fileStream = reader.result;
                     $rootScope.isBusy = false;
@@ -159,7 +160,7 @@ app.controller('MediaController', ['$scope', '$rootScope', '$routeParams', '$tim
             else {
                 return null;
             }
-        }
+        };
 
         $scope.saveMedia = async function (media) {
             $rootScope.isBusy = true;

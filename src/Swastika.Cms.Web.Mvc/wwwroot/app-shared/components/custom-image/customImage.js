@@ -46,6 +46,7 @@ modules.component('customImage', {
                         var resp = await mediaServices.saveMedia(media);
                         if (resp && resp.isSucceed) {
                             ctrl.src = resp.data.fullPath;
+                            ctrl.srcUrl = resp.data.fullPath;
                             $rootScope.isBusy = false;
                             $scope.$apply();
                         }

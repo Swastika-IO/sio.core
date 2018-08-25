@@ -203,6 +203,7 @@ namespace Swastika.Cms.Lib.ViewModels.Info
             return result;
         }
         #endregion Overrides
+
         #region Expands
 
         public List<NavPortalPageViewModel> GetParentNavs(SiocCmsContext context, IDbContextTransaction transaction)
