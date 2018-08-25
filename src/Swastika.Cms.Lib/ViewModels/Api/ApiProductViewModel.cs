@@ -1071,7 +1071,7 @@ namespace Swastika.Cms.Lib.ViewModels.Api
 
         public List<NavRelatedProductViewModel> GetRelated(SiocCmsContext context, IDbContextTransaction transaction)
         {
-            var navs= NavRelatedProductViewModel.Repository.GetModelListBy(n => n.SourceId == Id, context, transaction).Data;
+            var navs= NavRelatedProductViewModel.Repository.GetModelListBy(n => n.SourceId == Id && n.Specificulture== Specificulture, context, transaction).Data;
             navs.ForEach(n => n.IsActived = true);
             return navs.OrderBy(p=>p.Priority).ToList();
             //var query = context.SiocProduct

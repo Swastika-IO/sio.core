@@ -19,6 +19,7 @@ app.controller('ProductController', ['$scope', '$rootScope', '$routeParams', '$t
             pageIndex: 0,
             pageSize: 1,
             totalItems: 0,
+            items: []
         };
         $scope.errors = [];
 

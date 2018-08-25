@@ -1,7 +1,7 @@
 ﻿
 modules.component('relatedNavs', {
     templateUrl: '/app-shared/components/related-navigations/related-navigations.html',
-    controller: ['$rootScope', '$scope', function ($rootScope, $scope) {
+    controller: ['$rootScope', '$scope', '$q', function ($rootScope, $scope, $q) {
         var ctrl = this;
         ctrl.selected = null;
         ctrl.activeItem = function (item) {
@@ -37,10 +37,12 @@ modules.component('relatedNavs', {
                 ctrl.request.pageIndex = pageIndex;
             }
             ctrl.loadData({ pageIndex: ctrl.request.pageIndex }).then(function () {
+
                 angular.forEach(ctrl.data.items, function (value, key) {
+                    var deferred = $q.defer();
                     value.isActived = ctrl.checkActived(value) !== undefined;
+                    deferred.resolve();
                 });
-                $scope.$apply();
             });
         };
         ctrl.checkActived = function (item) {

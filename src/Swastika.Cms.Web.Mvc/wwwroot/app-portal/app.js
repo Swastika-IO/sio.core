@@ -250,7 +250,7 @@ app.run(['$rootScope', '$location', 'commonServices', 'authService', 'translator
             else {
                 return keyword;
             }
-        }
+        };
 
         $rootScope.$watch('isBusy', function (newValue, oldValue) {
             if (newValue) {
