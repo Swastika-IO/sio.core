@@ -51,7 +51,7 @@ namespace Swastika.Cms.Lib.ViewModels.Api
 
         #region Views
 
-        public List<ModuleDataValueViewModel> DataProperties { get; set; }
+        public List<ApiModuleDataValueViewModel> DataProperties { get; set; }
         public List<ModuleFieldViewModel> Columns { get; set; }
 
         #endregion Views
@@ -90,7 +90,7 @@ namespace Swastika.Cms.Lib.ViewModels.Api
             Cultures = CommonRepository.Instance.LoadCultures(Specificulture, _context, _transaction);
 
             var objValue = Value != null ? JObject.Parse(Value) : new JObject();
-            this.DataProperties = new List<ModuleDataValueViewModel>();
+            this.DataProperties = new List<ApiModuleDataValueViewModel>();
             Fields = InfoModuleViewModel.Repository.GetSingleModel(m => m.Id == ModuleId && m.Specificulture == Specificulture, _context, _transaction).Data?.Fields;
             this.Columns = new List<ModuleFieldViewModel>();
             if (!string.IsNullOrEmpty(Fields))
@@ -128,7 +128,7 @@ namespace Swastika.Cms.Lib.ViewModels.Api
                     };
                     prop = new JProperty(col.Name, val);
                 }
-                var dataVal = new ModuleDataValueViewModel()
+                var dataVal = new ApiModuleDataValueViewModel()
                 {
                     ModuleId = ModuleId,
                     DataType = (SWCmsConstants.DataType)col.DataType,
@@ -197,35 +197,11 @@ namespace Swastika.Cms.Lib.ViewModels.Api
             return prop != null && prop.Value != null ? prop.Value.ToString() : string.Empty;
         }
 
-        public ModuleDataValueViewModel GetDataProperty(string name)
+        public ApiModuleDataValueViewModel GetDataProperty(string name)
         {
             return DataProperties.FirstOrDefault(p => p.Name == name);
         }
 
         #endregion Expands
     }
-
-    //public class ModuleDataValueViewModel
-    //{
-    //    [JsonProperty("moduleId")]
-    //    public int ModuleId { get; set; }
-    //    [JsonProperty("name")]
-    //    public string Name { get; set; }
-    //    [JsonProperty("title")]
-    //    public string Title { get; set; }
-    //    [JsonProperty("dataType")]
-    //    public SWCmsConstants.DataType DataType { get; set; }
-    //    [JsonProperty("value")]
-    //    public string Value { get; set; }
-    //    [JsonProperty("isUnique")]
-    //    public bool IsUnique { get; set; }
-    //    [JsonProperty("isRequired")]
-    //    public bool IsRequired { get; set; }
-    //    [JsonProperty("isSelect")]
-    //    public bool IsSelect { get; set; }
-    //    [JsonProperty("isGroupBy")]
-    //    public bool IsGroupBy { get; set; }
-    //    [JsonProperty("options")]
-    //    public JArray Options { get; set; } = new JArray();
-    //}
 }

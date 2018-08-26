@@ -80,7 +80,7 @@ app.factory('MediaServices', ['$http', '$rootScope', 'commonServices', function 
                 data: files,
             };
 
-            return await commonServices.getApiResult(req)
+            return await commonServices.getApiResult(req);
         }
     };
 

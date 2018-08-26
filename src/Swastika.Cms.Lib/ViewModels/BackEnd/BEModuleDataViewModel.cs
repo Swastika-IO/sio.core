@@ -149,11 +149,11 @@ namespace Swastika.Cms.Lib.ViewModels.BackEnd
                 switch (col.DataType)
                 {
                     case SWCmsConstants.DataType.Int:
-                        dataVal.Value = "0";// prop.Value["value"].HasValues ? prop.Value["value"].Value<int>() : 0;
+                        dataVal.Value = prop.Value["value"].HasValues ? prop.Value["value"].Value<int>() : 0;
                         break;
 
                     case SWCmsConstants.DataType.Boolean:
-                        dataVal.Value = "false";// !string.IsNullOrEmpty(prop.Value["value"].ToString()) ? prop.Value["value"].Value<bool>() : false;
+                        dataVal.Value = !string.IsNullOrEmpty(prop.Value["value"].ToString()) ? prop.Value["value"].Value<bool>() : false;
                         break;
 
                     case SWCmsConstants.DataType.String:
@@ -181,7 +181,7 @@ namespace Swastika.Cms.Lib.ViewModels.BackEnd
                 {
                     if (prop.DataType == SWCmsConstants.DataType.Image)
                     {
-                        FileRepository.Instance.DeleteWebFile(prop.Value);
+                        FileRepository.Instance.DeleteWebFile(prop.StringValue);
                     }
                 }
             }
@@ -201,7 +201,7 @@ namespace Swastika.Cms.Lib.ViewModels.BackEnd
                 {
                     if (prop.DataType == SWCmsConstants.DataType.Image)
                     {
-                        FileRepository.Instance.DeleteWebFile(prop.Value);
+                        FileRepository.Instance.DeleteWebFile(prop.StringValue);
                     }
                 }
             }

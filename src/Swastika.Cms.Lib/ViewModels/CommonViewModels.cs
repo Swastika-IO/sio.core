@@ -208,16 +208,16 @@ namespace Swastika.Cms.Lib.ViewModels
         [JsonProperty("dataType")]
         public SWCmsConstants.DataType DataType { get; set; }
 
-        //[JsonProperty("value")]
-        //public IConvertible Value { get; set; }
-
         [JsonProperty("value")]
-        public string Value { get; set; }
+        public IConvertible Value { get; set; }
 
-        //public T GetValue<T>()
-        //{
-        //    return this.Value != null ? (T)Value : default(T);
-        //}
+        [JsonProperty("stringValue")]
+        public string StringValue { get; set; }
+
+        public T GetValue<T>()
+        {
+            return this.Value != null ? (T)Value : default(T);
+        }
         [JsonProperty("isDisplay")]
         public bool IsDisplay { get; set; }
         [JsonProperty("isSelect")]
@@ -229,7 +229,7 @@ namespace Swastika.Cms.Lib.ViewModels
 
     }
 
-    public class SpaModuleDataValueViewModel
+    public class ApiModuleDataValueViewModel
     {
         [JsonProperty("moduleId")]
         public int ModuleId { get; set; }
@@ -237,11 +237,29 @@ namespace Swastika.Cms.Lib.ViewModels
         [JsonProperty("name")]
         public string Name { get; set; }
 
+        [JsonProperty("title")]
+        public string Title { get; set; }
+
+        [JsonProperty("isUnique")]
+        public bool IsUnique { get; set; }
+
+        [JsonProperty("isRequired")]
+        public bool IsRequired { get; set; }
+
         [JsonProperty("dataType")]
         public SWCmsConstants.DataType DataType { get; set; }
 
         [JsonProperty("value")]
-        public string value { get; set; }
+        public string Value { get; set; }
+
+        [JsonProperty("isDisplay")]
+        public bool IsDisplay { get; set; }
+        [JsonProperty("isSelect")]
+        public bool IsSelect { get; set; }
+        [JsonProperty("isGroupBy")]
+        public bool IsGroupBy { get; set; }
+        [JsonProperty("options")]
+        public JArray Options { get; set; } = new JArray();
 
     }
 

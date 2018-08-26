@@ -176,7 +176,7 @@ namespace Swastika.Cms.Lib.ViewModels.Info
                 {
                     if (prop.DataType == SWCmsConstants.DataType.Image)
                     {
-                        FileRepository.Instance.DeleteWebFile(prop.Value);
+                        FileRepository.Instance.DeleteWebFile(prop.StringValue);
                     }
                 }
             }
@@ -196,7 +196,7 @@ namespace Swastika.Cms.Lib.ViewModels.Info
                 {
                     if (prop.DataType == SWCmsConstants.DataType.Image)
                     {
-                        FileRepository.Instance.DeleteWebFile(prop.Value);
+                        FileRepository.Instance.DeleteWebFile(prop.StringValue);
                     }
                 }
             }
