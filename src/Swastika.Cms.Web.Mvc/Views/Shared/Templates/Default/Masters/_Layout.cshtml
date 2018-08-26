@@ -39,13 +39,12 @@
     @RenderSection("Styles", false)
 </head>
 
-<body class="@this.ViewData["pageClass"]"  ng-app="SwastikaClient">
-    <partial name="../Layouts/_Top_Nav.cshtml" />
-    
+<body class="@this.ViewData["pageClass"]">
+    @Html.Partial("../Layouts/_Top_Nav.cshtml")
     <div class="wrapper">
-        <partial name="../Layouts/_Header.cshtml" />
+        @Html.Partial("../Layouts/_Header.cshtml")
         @RenderBody()
-        <partial name="../Layouts/_Footer.cshtml" />
+        @await Html.PartialAsync("../Layouts/_Footer.cshtml")
     </div>
     <script src='/Content/Templates/Default/assets/js/core/jquery.min.js'></script>
     <script src='/Content/Templates/Default/assets/js/now-ui-kit.js'></script>

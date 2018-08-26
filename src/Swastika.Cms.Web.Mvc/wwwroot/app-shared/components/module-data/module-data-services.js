@@ -53,7 +53,7 @@ app.factory('ModuleDataServices', ['$http', '$rootScope', 'commonServices', func
             method: 'GET',
             url: apiUrl + 'delete/' + id
         };
-        return await commonServices.getApiResult(req)
+        return await commonServices.getApiResult(req);
     };
 
     var _saveModuleData = async function (moduleData) {
@@ -63,9 +63,8 @@ app.factory('ModuleDataServices', ['$http', '$rootScope', 'commonServices', func
             url: apiUrl + 'save',
             data: JSON.stringify(moduleData)
         };
-        return await commonServices.getApiResult(req)
+        return await commonServices.getApiResult(req);
     };
-
     moduleDatasServiceFactory.getModuleData = _getModuleData;
     moduleDatasServiceFactory.getModuleDatas = _getModuleDatas;
     moduleDatasServiceFactory.removeModuleData = _removeModuleData;

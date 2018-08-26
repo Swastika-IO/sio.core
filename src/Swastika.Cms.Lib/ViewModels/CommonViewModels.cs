@@ -208,16 +208,16 @@ namespace Swastika.Cms.Lib.ViewModels
         [JsonProperty("dataType")]
         public SWCmsConstants.DataType DataType { get; set; }
 
+        //[JsonProperty("value")]
+        //public IConvertible Value { get; set; }
+
         [JsonProperty("value")]
-        public IConvertible Value { get; set; }
+        public string Value { get; set; }
 
-        [JsonProperty("stringValue")]
-        public string StringValue { get; set; }
-
-        public T GetValue<T>()
-        {
-            return this.Value != null ? (T)Value : default(T);
-        }
+        //public T GetValue<T>()
+        //{
+        //    return this.Value != null ? (T)Value : default(T);
+        //}
         [JsonProperty("isDisplay")]
         public bool IsDisplay { get; set; }
         [JsonProperty("isSelect")]

@@ -205,7 +205,16 @@ namespace Swastika.Cms.Lib.ViewModels.FrontEnd
         public List<NavRelatedProductViewModel> ProductNavs { get; set; }
 
 
-        [JsonProperty("strNormalPrice")]
+        [JsonProperty("strPrice")]
+        public string StrPrice
+        {
+            get
+            {
+                return SwCmsHelper.FormatPrice(Price);
+            }
+        }
+
+         [JsonProperty("strNormalPrice")]
         public string StrNormalPrice
         {
             get
@@ -324,7 +333,10 @@ namespace Swastika.Cms.Lib.ViewModels.FrontEnd
                 this.SeoKeywords = SeoHelper.GetSEOString(this.Title);
             }
         }
-
+        public string GetProperty(string name)
+        {
+            return Properties.Find(p => p.Name == name)?.Value;
+        }
         #endregion Expands
     }
 }

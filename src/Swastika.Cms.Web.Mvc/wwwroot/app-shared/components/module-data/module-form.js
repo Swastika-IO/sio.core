@@ -16,6 +16,7 @@ modules.component('moduleForm', {
                 }
                 if (resp && resp.isSucceed) {
                     ctrl.data = resp.data;
+                    $rootScope.isBusy = false;
                     $scope.$apply();
                     //ctrl.initEditor();
                 }
@@ -33,10 +34,12 @@ modules.component('moduleForm', {
                 if (response.isSucceed) {
                     ctrl.data = response.data;
                     //$rootScope.initEditor();
+                    $rootScope.isBusy = false;
                     $scope.$apply();
                 }
                 else {
                     $rootScope.showErrors(response.errors);
+                    $rootScope.isBusy = false;
                     $scope.$apply();
                 }
             };
@@ -58,11 +61,13 @@ modules.component('moduleForm', {
                     ctrl.data = resp.data;
                     $rootScope.showMessage('Thành công', 'success');
                     $rootScope.isBusy = false;
+                    $rootScope.isBusy = false;
                     $scope.$apply();
                     //$location.path('/backend/moduleData/details/' + resp.data.id);
                 }
                 else {
                     if (resp) { $rootScope.showErrors(resp.errors); }
+                    $rootScope.isBusy = false;
                     $scope.$apply();
                 }
             };
@@ -125,8 +130,8 @@ modules.component('moduleFormEditor', {
                         ctrl.data.value = $demoTextarea.val();
                     });
                 });
-            }, 200)
-        }
+            }, 200);
+        };
     }
     ],
     bindings: {

@@ -7,7 +7,7 @@
                 ctrl.settings.lang = lang;
                 ctrl.settings.langIcon = langIcon;
 
-                commonServices.setSettings(ctrl.settings).then(function () {
+                commonServices.fillSettings(lang).then(function () {
                     translatorService.reset(lang).then(function () {
                         window.top.location = location.href;
                     });
@@ -15,7 +15,7 @@
             };
             ctrl.logOut = function () {
                 $rootScope.logOut();
-            }
+            };
         }],
         bindings: {
             breadCrumbs: '=',

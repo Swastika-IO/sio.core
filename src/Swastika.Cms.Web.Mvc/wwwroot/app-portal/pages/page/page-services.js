@@ -5,10 +5,9 @@ app.factory('PageServices', ['$http', '$rootScope', 'commonServices', function (
 
     var pagesServiceFactory = {};
 
-    var settings = $rootScope.settings
 
     var _getPage = async function (id, type) {
-        var apiUrl = '/api/' + settings.lang + '/page/';
+        var apiUrl = '/api/' + $rootScope.settings.lang + '/page/';
         var url = apiUrl + 'details/' + type;
         if (id) {
             url += '/' + id;
@@ -17,20 +16,20 @@ app.factory('PageServices', ['$http', '$rootScope', 'commonServices', function (
             method: 'GET',
             url: url
         };
-        return await commonServices.getApiResult(req)
+        return await commonServices.getApiResult(req);
     };
 
     var _initPage = async function (type) {
-        var apiUrl = '/api/' + settings.lang + '/page/';
+        var apiUrl = '/api/' + $rootScope.settings.lang + '/page/';
         var req = {
             method: 'GET',
-            url: apiUrl + 'init/' + type,
+            url: apiUrl + 'init/' + type
         };
-        return await commonServices.getApiResult(req)
+        return await commonServices.getApiResult(req);
     };
 
     var _getPages = async function (request) {
-        var apiUrl = '/api/' + settings.lang + '/page/';
+        var apiUrl = '/api/' + $rootScope.settings.lang + '/page/';
         var req = {
             method: 'POST',
             url: apiUrl + 'list',
@@ -41,22 +40,22 @@ app.factory('PageServices', ['$http', '$rootScope', 'commonServices', function (
     };
 
     var _removePage = async function (id) {
-        var apiUrl = '/api/' + settings.lang + '/page/';
+        var apiUrl = '/api/' + $rootScope.settings.lang + '/page/';
         var req = {
             method: 'GET',
             url: apiUrl + 'delete/' + id
         };
-        return await commonServices.getApiResult(req)
+        return await commonServices.getApiResult(req);
     };
 
     var _savePage = async function (page) {
-        var apiUrl = '/api/' + settings.lang + '/page/';
+        var apiUrl = '/api/' + $rootScope.settings.lang + '/page/';
         var req = {
             method: 'POST',
             url: apiUrl + 'save',
             data: JSON.stringify(page)
         };
-        return await commonServices.getApiResult(req)
+        return await commonServices.getApiResult(req);
     };
 
     pagesServiceFactory.getPage = _getPage;

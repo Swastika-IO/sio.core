@@ -84,7 +84,7 @@ namespace Swastika.Cms.Mvc.Controllers
             if (getPage.IsSucceed && getPage.Data.View != null)
             {
                 GeneratePageDetailsUrls(getPage.Data);
-                ViewBag.pageClass = getPage.Data.CssClass;
+                ViewData["PageClass"] = getPage.Data.CssClass;
                 return View(getPage.Data);
             }
             else

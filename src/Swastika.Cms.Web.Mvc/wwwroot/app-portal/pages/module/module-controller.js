@@ -31,7 +31,7 @@ app.controller('ModuleController', ['$scope', '$rootScope', '$routeParams', '$ti
         $scope.data = {
             pageIndex: 0,
             pageSize: 1,
-            totalItems: 0,
+            totalItems: 0
         };
         $scope.errors = [];
 
@@ -70,7 +70,7 @@ app.controller('ModuleController', ['$scope', '$rootScope', '$routeParams', '$ti
                 }).error(function (a, b, c) {
                     errors.push(a, b, c);
                     $rootScope.isBusy = false;
-                    //$("html, body").animate({ "scrollTop": "0px" }, 500);
+                    $scope.$apply();
                 });
             }
         };
@@ -112,14 +112,14 @@ app.controller('ModuleController', ['$scope', '$rootScope', '$routeParams', '$ti
 
         $scope.loadMoreModuleDatas = async function (pageIndex) {
             $scope.request.key = $scope.activedModule.id;
-            if (pageIndex != undefined) {
+            if (pageIndex !== undefined) {
                 $scope.request.pageIndex = pageIndex;
             }
-            if ($scope.request.fromDate != null) {
+            if ($scope.request.fromDate !== null) {
                 var d = new Date($scope.request.fromDate);
                 $scope.request.fromDate = d.toISOString();
             }
-            if ($scope.request.toDate != null) {
+            if ($scope.request.toDate !== null) {
                 $scope.request.toDate = $scope.request.toDate.toISOString();
             }
             $rootScope.isBusy = true;
@@ -135,33 +135,31 @@ app.controller('ModuleController', ['$scope', '$rootScope', '$routeParams', '$ti
                 $rootScope.isBusy = false;
                 $scope.$apply();
             }
-        }
+        };
 
         $scope.loadModules = async function (pageIndex) {
-            if (pageIndex != undefined) {
+            if (pageIndex !== undefined) {
                 $scope.request.pageIndex = pageIndex;
             }
-            if ($scope.request.fromDate != null) {
+            if ($scope.request.fromDate !== null) {
                 var d = new Date($scope.request.fromDate);
                 $scope.request.fromDate = d.toISOString();
             }
-            if ($scope.request.toDate != null) {
+            if ($scope.request.toDate !== null) {
                 $scope.request.toDate = $scope.request.toDate.toISOString();
             }
             $rootScope.isBusy = true;
             var resp = await moduleServices.getModules($scope.request);
             if (resp && resp.isSucceed) {
-
                 ($scope.data = resp.data);
-                //$("html, body").animate({ "scrollTop": "0px" }, 500);
                 $.each($scope.data.items, function (i, module) {
 
                     $.each($scope.activedModules, function (i, e) {
-                        if (e.moduleId == module.id) {
+                        if (e.moduleId === module.id) {
                             module.isHidden = true;
                         }
-                    })
-                })
+                    });
+                });
                 $rootScope.isBusy = false;
                 $scope.$apply();
             }
@@ -174,7 +172,7 @@ app.controller('ModuleController', ['$scope', '$rootScope', '$routeParams', '$ti
 
         $scope.removeModule = function (id) {
             $rootScope.showConfirm($scope, 'removeModuleConfirmed', [id], null, 'Remove Module', 'Are you sure');
-        }
+        };
 
         $scope.removeModuleConfirmed = async function (id) {
             $rootScope.isBusy = true;
@@ -187,7 +185,7 @@ app.controller('ModuleController', ['$scope', '$rootScope', '$routeParams', '$ti
                 $rootScope.isBusy = false;
                 $scope.$apply();
             }
-        }
+        };
 
 
         $scope.saveModule = async function (module) {
@@ -217,13 +215,13 @@ app.controller('ModuleController', ['$scope', '$rootScope', '$routeParams', '$ti
                 var t = angular.copy($scope.defaultAttr);
                 $scope.activedModule.columns.push(t);
             }
-        }
+        };
 
         $scope.addOption = function (col, index) {
             var val = angular.element('#option_' + index).val();
             col.options.push(val);
             angular.element('#option_' + index).val('');
-        }
+        };
 
         $scope.generateName = function (col) {
             col.name = col.title.replace(/[^a-zA-Z0-9]+/g, '_')

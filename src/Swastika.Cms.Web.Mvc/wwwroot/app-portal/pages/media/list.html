@@ -78,6 +78,7 @@
                         <a href="{{item.fullPath}}" target="_blank" class="btn btn-light">
                             <span class="oi oi-eye text-primary"></span>
                         </a>
+                        <a ng-click="clone(item.id)" class="btn btn-sm btn-light d-inline-block "><span class="fas fa-sync-alt text-primary"></span></a>
 
                         <button type="button" class="btn btn-light del-popover"
                                 ng-click="removeMedia(item.id)">

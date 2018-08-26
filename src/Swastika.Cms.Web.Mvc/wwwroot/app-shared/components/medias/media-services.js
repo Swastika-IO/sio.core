@@ -35,7 +35,15 @@ app.factory('MediaServices', ['$http', '$rootScope', 'commonServices', function 
             method: 'GET',
             url: apiUrl + 'delete/' + id
         };
-        return await commonServices.getApiResult(req)
+        return await commonServices.getApiResult(req);
+    };
+    var _cloneMedia = async function (id) {
+        var apiUrl = '/api/' + settings.lang + '/media/';
+        var req = {
+            method: 'GET',
+            url: apiUrl + 'clone/' + id
+        };
+        return await commonServices.getApiResult(req);
     };
 
     var _saveMedia = async function (media) {
@@ -45,7 +53,7 @@ app.factory('MediaServices', ['$http', '$rootScope', 'commonServices', function 
             url: apiUrl + 'save',
             data: JSON.stringify(media)
         };
-        return await commonServices.getApiResult(req)
+        return await commonServices.getApiResult(req);
     };
 
     var _uploadMedia = async function (mediaFile) {
@@ -77,6 +85,7 @@ app.factory('MediaServices', ['$http', '$rootScope', 'commonServices', function 
     };
 
     mediasServiceFactory.getMedia = _getMedia;
+    mediasServiceFactory.cloneMedia = _cloneMedia;
     mediasServiceFactory.getMedias = _getMedias;
     mediasServiceFactory.removeMedia = _removeMedia;
     mediasServiceFactory.saveMedia = _saveMedia;

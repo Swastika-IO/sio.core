@@ -14,17 +14,17 @@
 
 <div class="blog-posts">
     <div class="page-header page-header-small">
-        <div class="page-header-image" data-parallax="true" style="background-image: url('@Model.Image') ;">
+        <div class="page-header-image" data-parallax="true" style="background-image: url('/Content/Templates/Default/assets/img/bg41.jpg') ;">
         </div>
         <div class="content-center">
             <div class="row">
                 <div class="col-md-8 ml-auto mr-auto text-center">
                     <h2 class="title">@Model.Title</h2>
                     <a href="#button" class="btn btn-primary btn-round  btn-icon">
-                        <i class="fa fa-twitter"></i>
+                        <i class="fab fa-twitter"></i>
                     </a>
                     <a href="#button" class="btn btn-primary btn-round  btn-icon">
-                        <i class="fa fa-instagram"></i>
+                        <i class="fab fa-instagram"></i>
                     </a>
                 </div>
             </div>
@@ -33,16 +33,16 @@
     <div class="projects-4">
         <div class="container-fluid">
             
-            @for(int i = 0; i< Model.Articles.TotalItems; i+=2)
+            @for(int i = 0; i< Model.Products.TotalItems; i+=2)
             {
-                var article = Model.Articles.Items[i];
+                var product = Model.Products.Items[i].Product;
                 var index = (i/2)%2;
-                if(i < Model.Articles.TotalItems - 1)
+                if(i < Model.Products.TotalItems - 1)
                 {
-                    var nextArticle = Model.Articles.Items[i+1];
+                    var nextProduct = Model.Products.Items[i+1];
                     <div class="row">
                         @Html.Partial("../Pages/_List_Post_Item.cshtml"
-                        , article
+                        , product
                         , new ViewDataDictionary(this.ViewData)
                         {
                             {
@@ -50,7 +50,7 @@
                             }
                         })
                         @Html.Partial("../Pages/_List_Post_Item.cshtml"
-                        , nextArticle
+                        , nextProduct.Product
                         , new ViewDataDictionary(this.ViewData)
                         {
                             {
@@ -62,7 +62,7 @@
                 else{
                     <div class="row">
                         @Html.Partial("../Pages/_List_Post_Item.cshtml"
-                        , article
+                        , product
                         , new ViewDataDictionary(this.ViewData)
                         {
                             {
@@ -87,7 +87,7 @@
                         <div class="card card-plain card-blog">
                             <div class="card-image">
                                 <a href="#pablo">
-                                    <img class="img rounded img-raised" src="../assets/img/bg5.jpg" />
+                                    <img class="img rounded img-raised" src="/Content/Templates/Default/assets/img/bg5.jpg" />
                                 </a>
                             </div>
                             <div class="card-body">
@@ -99,7 +99,7 @@
                                     Like so many organizations these days, Autodesk is a company in transition. It was until recently a traditional boxed software company selling licenses.
                                     <a href="#pablo"> Read More </a>
                                     <div class="author">
-                                        <img src="../assets/img/olivia.jpg" alt="..." class="avatar img-raised">
+                                        <img src="/Content/Templates/Default/assets/img/olivia.jpg" alt="..." class="avatar img-raised">
                                         <span>Anna Spark</span>
                                     </div>
                                 </p>
@@ -110,7 +110,7 @@
                         <div class="card card-plain card-blog">
                             <div class="card-image">
                                 <a href="#pablo">
-                                    <img class="img rounded img-raised" src="../assets/img/bg27.jpg" />
+                                    <img class="img rounded img-raised" src="/Content/Templates/Default/assets/img/bg27.jpg" />
                                 </a>
                             </div>
                             <div class="card-body">
@@ -124,7 +124,7 @@
                                     Like so many organizations these days, Autodesk is a company in transition. It was until recently a traditional boxed software company selling licenses.
                                     <a href="#pablo"> Read More </a>
                                     <div class="author">
-                                        <img src="../assets/img/michael.jpg" alt="..." class="avatar img-raised">
+                                        <img src="/Content/Templates/Default/assets/img/michael.jpg" alt="..." class="avatar img-raised">
                                         <span>John Black</span>
                                     </div>
                                 </p>
@@ -135,7 +135,7 @@
                         <div class="card card-plain card-blog">
                             <div class="card-image">
                                 <a href="#pablo">
-                                    <img class="img rounded img-raised" src="../assets/img/bg21.jpg" />
+                                    <img class="img rounded img-raised" src="/Content/Templates/Default/assets/img/bg21.jpg" />
                                 </a>
                             </div>
                             <div class="card-body">
@@ -149,7 +149,7 @@
                                     Like so many organizations these days, Autodesk is a company in transition. It was until recently a traditional boxed software company selling licenses.
                                     <a href="#pablo"> Read More </a>
                                     <div class="author">
-                                        <img src="../assets/img/james.jpg" alt="..." class="avatar img-raised">
+                                        <img src="/Content/Templates/Default/assets/img/james.jpg" alt="..." class="avatar img-raised">
                                         <span>James Newman</span>
                                     </div>
                                 </p>
@@ -160,7 +160,7 @@
             </div>
         </div>
         <div class="section pt-0 pb-0">
-            <div class="team-3 section-image" data-parallax="true" style="background-image: url('../assets/img/bg26.jpg')">
+            <div class="team-3 section-image" data-parallax="true" style="background-image: url('/Content/Templates/Default/assets/img/bg26.jpg')">
                 <div class="container">
                     <div class="row">
                         <div class="col-md-8 ml-auto mr-auto text-center">
@@ -175,7 +175,7 @@
                                     <div class="col-md-5">
                                         <div class="card-image">
                                             <a href="#pablo">
-                                                <img class="img" src="../assets/img/olivia.jpg">
+                                                <img class="img" src="/Content/Templates/Default/assets/img/olivia.jpg">
                                             </a>
                                         </div>
                                     </div>
@@ -197,7 +197,7 @@
                                     <div class="col-md-5">
                                         <div class="card-image">
                                             <a href="#pablo">
-                                                <img class="img" src="../assets/img/james.jpg">
+                                                <img class="img" src="/Content/Templates/Default/assets/img/james.jpg">
                                             </a>
                                         </div>
                                     </div>

@@ -259,11 +259,11 @@ namespace Swastka.Cms.Api.Controllers
 
         [HttpPost, HttpOptions]
         [Route("save")]
-        public async Task<RepositoryResponse<ApiModuleDataViewModel>> Post([FromBody]ApiModuleDataViewModel model)
+        public async Task<RepositoryResponse<ApiModuleDataViewModel>> Post([FromBody]ApiModuleDataViewModel data)
         {
-            if (model != null)
+            if (data != null)
             {
-                var result = await model.SaveModelAsync(true).ConfigureAwait(false);
+                var result = await data.SaveModelAsync(true).ConfigureAwait(false);
                 return result;
             }
             return new RepositoryResponse<ApiModuleDataViewModel>();

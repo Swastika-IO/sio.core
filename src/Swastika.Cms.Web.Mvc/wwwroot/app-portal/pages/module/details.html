@@ -53,8 +53,9 @@
                                             </td>-->
                                             
                                             <td>
-                                                <input ng-model="col.title" ng-change="generateName(col)" class="form-control form-control-sm" /><br />
-                                                <input ng-model="col.name" placeholder="Field Name" class="form-control form-control-sm" />
+                                                <input ng-model="col.title" placeholder="Title" ng-change="generateName(col)" class="form-control form-control-sm" /><br />
+                                                Field Name: <span ng-bind="col.name"></span>
+                                                <!--<input ng-model="col.name" placeholder="Field Name" class="form-control form-control-sm" />-->
                                             </td>
                                             <td>
                                                 <select class="form-control form-control-sm" ng-model="col.dataType">

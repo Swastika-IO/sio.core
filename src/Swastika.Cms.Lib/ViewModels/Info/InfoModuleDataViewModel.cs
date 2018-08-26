@@ -139,16 +139,16 @@ namespace Swastika.Cms.Lib.ViewModels.Info
                     IsSelect = col.IsSelect,
                     IsGroupBy = col.IsGroupBy,
                     Options = col.Options,
-                    StringValue = prop.Value["value"].Value<string>()
+                    Value = prop.Value["value"].Value<string>()
                 };
                 switch (col.DataType)
                 {
                     case SWCmsConstants.DataType.Int:
-                        dataVal.Value = prop.Value["value"].HasValues ? prop.Value["value"].Value<int>() : 0;
+                        dataVal.Value = "0";// prop.Value["value"].HasValues ? prop.Value["value"].Value<int>() : 0;
                         break;
 
                     case SWCmsConstants.DataType.Boolean:
-                        dataVal.Value = !string.IsNullOrEmpty(prop.Value["value"].ToString()) ? prop.Value["value"].Value<bool>() : false;
+                        dataVal.Value = "false";// !string.IsNullOrEmpty(prop.Value["value"].ToString()) ? prop.Value["value"].Value<bool>() : false;
                         break;
 
                     case SWCmsConstants.DataType.String:
@@ -176,7 +176,7 @@ namespace Swastika.Cms.Lib.ViewModels.Info
                 {
                     if (prop.DataType == SWCmsConstants.DataType.Image)
                     {
-                        FileRepository.Instance.DeleteWebFile(prop.StringValue);
+                        FileRepository.Instance.DeleteWebFile(prop.Value);
                     }
                 }
             }
@@ -196,7 +196,7 @@ namespace Swastika.Cms.Lib.ViewModels.Info
                 {
                     if (prop.DataType == SWCmsConstants.DataType.Image)
                     {
-                        FileRepository.Instance.DeleteWebFile(prop.StringValue);
+                        FileRepository.Instance.DeleteWebFile(prop.Value);
                     }
                 }
             }
@@ -216,7 +216,7 @@ namespace Swastika.Cms.Lib.ViewModels.Info
             {
                 JObject obj = new JObject();
                 obj.Add(new JProperty("dataType", prop.DataType));
-                obj.Add(new JProperty("value", prop.StringValue));
+                obj.Add(new JProperty("value", prop.Value));
                 result.Add(new JProperty(CommonHelper.ParseJsonPropertyName(prop.Name), obj));
             }
             return result.ToString(Formatting.None);
@@ -228,11 +228,11 @@ namespace Swastika.Cms.Lib.ViewModels.Info
             return prop != null && prop.Value != null ? prop.Value.ToString() : string.Empty;
         }
 
-        public T GetValue<T>(string name) where T : IConvertible
-        {
-            var prop = DataProperties.FirstOrDefault(p => p.Name == name);
-            return prop != null && prop.Value != null ? (T)prop.Value : default(T);
-        }
+        //public T GetValue<T>(string name) where T : IConvertible
+        //{
+        //    var prop = DataProperties.FirstOrDefault(p => p.Name == name);
+        //    return prop != null && prop.Value != null ? (T)prop.Value : default(T);
+        //}
 
         public ModuleDataValueViewModel GetDataProperty(string name)
         {

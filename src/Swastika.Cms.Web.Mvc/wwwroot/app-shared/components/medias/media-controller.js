@@ -180,4 +180,21 @@ app.controller('MediaController', ['$scope', '$rootScope', '$routeParams', '$tim
             }
         };
 
+        $scope.clone = async function (id) {
+            $rootScope.isBusy = true;
+            var resp = await mediaServices.cloneMedia(id);
+            if (resp && resp.isSucceed) {
+                $scope.activedMedia = resp.data;
+                $rootScope.showMessage('Thành công', 'success');
+                $rootScope.isBusy = false;
+                $scope.$apply();
+                //$location.path('/backend/media/details/' + resp.data.id);
+            }
+            else {
+                if (resp) { $rootScope.showErrors(resp.errors); }
+                $rootScope.isBusy = false;
+                $scope.$apply();
+            }
+        };
+
     }]);

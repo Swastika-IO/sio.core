@@ -32,7 +32,7 @@ namespace Swastka.Cms.Api.Controllers
         #region Get
 
         // GET api/medias/id
-        [HttpGet,HttpOptions]
+        [HttpGet, HttpOptions]
         [Route("details/{viewType}/{id}")]
         [Route("details/{viewType}")]
         public async Task<JObject> BEDetails(string viewType, int? id = null)
@@ -61,6 +61,24 @@ namespace Swastka.Cms.Api.Controllers
                         return JObject.FromObject(result);
                     }
 
+            }
+        }
+        // GET api/medias/id
+        [HttpGet, HttpOptions]
+        [Route("clone/{id}")]
+        public async Task<JObject> Clone(int id)
+        {
+            var result = await BEMediaViewModel.Repository.GetSingleModelAsync(
+            model => model.Id == id && model.Specificulture == _lang).ConfigureAwait(false);
+            if (result.IsSucceed)
+            {
+                result.Data.IsClone = true;
+                var cloneResult = await result.Data.SaveModelAsync(false);
+                return JObject.FromObject(cloneResult);
+            }
+            else
+            {
+                return JObject.FromObject(result);
             }
         }
 
