@@ -26,23 +26,12 @@ namespace Swastika.Cms.Lib.Services
     {
         public CmsCultureConfiguration CmsCulture { get; set; }
         public CmsConfiguration CmsConfigurations { get; set; }
-        private static GlobalConfigurationService _instance;
 
-        public static GlobalConfigurationService Instance
-        {
-            get
-            {
-                return _instance;
-            }
-            set
-            {
-                _instance = value;
-            }
-        }
+        public static GlobalConfigurationService Instance { get; }
         static GlobalConfigurationService()
         {
-            _instance = new GlobalConfigurationService();
-            _instance.RefreshAll();
+            Instance = new GlobalConfigurationService();
+            Instance.RefreshAll();
         }
         
         public GlobalConfigurationService()

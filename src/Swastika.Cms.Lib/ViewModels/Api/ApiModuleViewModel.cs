@@ -145,7 +145,7 @@ namespace Swastika.Cms.Lib.ViewModels.Api
         {
             if (Id == 0)
             {
-                Id = InfoModuleViewModel.Repository.Count().Data + 1;
+                Id = InfoModuleViewModel.Repository.Max(m => m.Id, _context, _transaction).Data + 1;
                 LastModified = DateTime.UtcNow;
             }
             Template = View != null ? string.Format(@"{0}/{1}{2}", View.FolderType, View.FileName, View.Extension) : Template;

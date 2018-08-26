@@ -59,7 +59,7 @@ namespace Swastika.Cms.Web.Mvc
             services.AddTransient<ISmsSender, AuthSmsMessageSender>();
 
             services.AddSingleton<GlobalConfigurationService>();
-            GlobalConfigurationService.Instance.RefreshAll();
+            //GlobalConfigurationService.Instance.RefreshAll();
 
             services.AddSwaggerGen(c =>
             {
