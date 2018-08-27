@@ -1,13 +1,14 @@
 ﻿(function (angular) {
     'use strict';
-    app.controller('AppClientController', ['$rootScope', '$scope', 'commonServices', 'authService', 'translatorService',
-        function ($rootScope, $scope, commonServices, authService, translatorService) {
+    app.controller('AppClientController', ['$rootScope', '$scope', 'commonServices', 'authService'
+        , 'translatorService', 'ModuleDataServices',
+        function ($rootScope, $scope, commonServices, authService, translatorService, moduleDataServices) {
             $scope.lang = '';
             $scope.isInit = false;
             $scope.init = async function (lang) {
                 if (!$rootScope.isBusy) {
                     $rootScope.isBusy = true;
-                    commonServices.fillSettings(lang).then(function (response) {                        
+                    commonServices.fillSettings(lang).then(function (response) {
                         $scope.isInit = true;
                         $rootScope.settings = response;
                         if ($rootScope.settings) {
@@ -25,7 +26,50 @@
                         }
                     });
                 }
-            }
+            };
+
             $scope.translate = $rootScope.translate;
+
+            $scope.initModuleForm = async function (name) {
+                var resp = null;
+                $scope.name = name;
+                if ($scope.id) {
+                    resp = await moduleDataServices.getModuleData($scope.id, $scope.dataId, 'be');
+                }
+                else {
+                    resp = await moduleDataServices.initModuleForm($scope.name);
+                }
+
+                if (resp && resp.isSucceed) {
+                    $scope.activedModuleData = resp.data;
+                    $rootScope.isBusy = false;
+                    $scope.$apply();
+                }
+                else {
+                    if (resp) { $rootScope.showErrors(resp.errors); }
+                    $rootScope.isBusy = false;
+                    $scope.$apply();
+                }
+            };
+            $scope.saveModuleData = async function () {
+
+                var resp = await moduleDataServices.saveModuleData($scope.activedModuleData);
+                if (resp && resp.isSucceed) {
+                    $scope.activedModuleData = resp.data;
+                    $rootScope.showMessage('Success', 'success');
+                    $rootScope.isBusy = false;
+                    $scope.initModuleForm($scope.name);
+                    $rootScope.isBusy = false;
+                    $scope.$apply();
+                    //$location.path('/backend/moduleData/details/' + resp.data.id);
+                }
+                else {
+                    if (resp) { $rootScope.showErrors(resp.errors); }
+                    $rootScope.isBusy = false;
+                    $scope.$apply();
+                }
+            };
         }]);
+
+
 })(window.angular);

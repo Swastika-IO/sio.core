@@ -187,12 +187,9 @@ app.controller('ModuleController', ['$scope', '$rootScope', '$routeParams', '$ti
             }
         };
 
-
+       
         $scope.saveModule = async function (module) {
             module.description = $('.editor-content').val();
-            if (module.title) {
-                module.name = module.title.replace(/ /g, "_");//(' ', '_');
-            }
             $rootScope.isBusy = true;
             var resp = await moduleServices.saveModule(module);
             if (resp && resp.isSucceed) {
