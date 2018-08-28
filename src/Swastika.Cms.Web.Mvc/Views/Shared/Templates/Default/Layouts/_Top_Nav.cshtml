@@ -14,7 +14,7 @@
                 <span class="navbar-toggler-bar bar3"></span>
             </button>
             <a class="navbar-brand" href="https://www.swastika.io" title="Swastika I/O">
-                <img class="logo-white" src="~/images/swastika-io-logo-white.svg" width="32" title="Swastika I/O" alt="Swastika I/O" />
+                <img class="logo-white" src="@LocalizerService.GetLocalString("Logo", ViewBag.culture as string)" width="32" title="@LocalizerService.GetLocalString("SiteName", ViewBag.culture as string)" alt="@LocalizerService.GetLocalString("SiteName", ViewBag.culture as string)" />
             </a>
         </div>
         <div class="collapse navbar-collapse" id="example-navbar-primary">
@@ -57,18 +57,7 @@
                     </li>
                 }
             </ul>
-            <ul class="nav navbar-nav">
-                <li class="nav-item">
-                    <a class="nav-link" href="https://www.facebook.com/Swastika-IO-268388420255457/">
-                        <i class="fab fa-facebook-square"></i>
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="https://github.com/Swastika-IO/Swastika-IO-Core">
-                        <i class="fab fa-github"></i>
-                    </a>
-                </li>
-            </ul>
+           
         </div>
     </div>
 </nav>
