@@ -153,6 +153,15 @@ namespace Swastika.Cms.Lib.ViewModels.Info
             }
         }
 
+        [JsonProperty("strPrice")]
+        public string StrPrice
+        {
+            get
+            {
+                return SwCmsHelper.FormatPrice(Price);
+            }
+        }
+        
         [JsonProperty("strNormalPrice")]
         public string StrNormalPrice
         {
