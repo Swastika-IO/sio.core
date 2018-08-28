@@ -59,6 +59,7 @@ modules.component('moduleForm', {
                 var resp = await moduleDataServices.saveModuleData(ctrl.data);
                 if (resp && resp.isSucceed) {
                     ctrl.data = resp.data;
+                    ctrl.initModuleForm();
                     $rootScope.showMessage('Thành công', 'success');
                     $rootScope.isBusy = false;
                     $rootScope.isBusy = false;
@@ -77,6 +78,7 @@ modules.component('moduleForm', {
     bindings: {
         moduleId: '=',
         d: '=',
+        title: '=',
         name: '=',
         backUrl: '='
     }
