@@ -32,7 +32,7 @@ app.factory('PageServices', ['$http', '$rootScope', 'commonServices', function (
         var apiUrl = '/api/' + $rootScope.settings.lang + '/page/';
         var req = {
             method: 'POST',
-            url: apiUrl + 'list',
+            url: apiUrl + 'list/0',
             data: JSON.stringify(request)
         };
         

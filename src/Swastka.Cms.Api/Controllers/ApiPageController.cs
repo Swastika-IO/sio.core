@@ -219,6 +219,7 @@ namespace Swastka.Cms.Api.Controllers
             ParseRequestPagingDate(request);
             Expression<Func<SiocCategory, bool>> predicate = model =>
                         model.Specificulture == _lang
+                        && (!level.HasValue || model.Level == level)
                         && (string.IsNullOrWhiteSpace(request.Keyword)
                             || (model.Title.Contains(request.Keyword)
                             || model.Excerpt.Contains(request.Keyword)))
@@ -242,7 +243,7 @@ namespace Swastka.Cms.Api.Controllers
                     }
                     return JObject.FromObject(fedata);
                 case "be":
-                    
+
                     var bedata = await ApiCategoryViewModel.Repository.GetModelListByAsync(predicate, request.OrderBy, request.Direction, request.PageSize, request.PageIndex).ConfigureAwait(false);
                     if (bedata.IsSucceed)
                     {
@@ -254,7 +255,7 @@ namespace Swastka.Cms.Api.Controllers
                     }
                     return JObject.FromObject(bedata);
                 default:
-                   
+
                     var data = await InfoCategoryViewModel.Repository.GetModelListByAsync(predicate, request.OrderBy, request.Direction, request.PageSize, request.PageIndex).ConfigureAwait(false);
                     if (data.IsSucceed)
                     {

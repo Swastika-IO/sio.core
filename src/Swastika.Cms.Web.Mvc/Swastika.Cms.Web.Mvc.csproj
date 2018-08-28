@@ -61,6 +61,7 @@
     <Compile Remove="Views\Shared\Pages\**" />
     <Compile Remove="Views\Shared\Templates\Modus\**" />
     <Compile Remove="Views\Shared\Templates\Now-UI-Kit-PRO\**" />
+    <Compile Remove="Views\Shared\Templates\Ossibird\**" />
     <Compile Remove="Views\Shared\Widgets\**" />
     <Compile Remove="wwwroot\app-portal\components\**" />
     <Compile Remove="wwwroot\app-portal\controllers\**" />
@@ -102,6 +103,7 @@
     <Content Remove="Views\Shared\Pages\**" />
     <Content Remove="Views\Shared\Templates\Modus\**" />
     <Content Remove="Views\Shared\Templates\Now-UI-Kit-PRO\**" />
+    <Content Remove="Views\Shared\Templates\Ossibird\**" />
     <Content Remove="Views\Shared\Widgets\**" />
     <Content Remove="wwwroot\app-portal\components\**" />
     <Content Remove="wwwroot\app-portal\controllers\**" />
@@ -143,6 +145,7 @@
     <EmbeddedResource Remove="Views\Shared\Pages\**" />
     <EmbeddedResource Remove="Views\Shared\Templates\Modus\**" />
     <EmbeddedResource Remove="Views\Shared\Templates\Now-UI-Kit-PRO\**" />
+    <EmbeddedResource Remove="Views\Shared\Templates\Ossibird\**" />
     <EmbeddedResource Remove="Views\Shared\Widgets\**" />
     <EmbeddedResource Remove="wwwroot\app-portal\components\**" />
     <EmbeddedResource Remove="wwwroot\app-portal\controllers\**" />
@@ -184,6 +187,7 @@
     <None Remove="Views\Shared\Pages\**" />
     <None Remove="Views\Shared\Templates\Modus\**" />
     <None Remove="Views\Shared\Templates\Now-UI-Kit-PRO\**" />
+    <None Remove="Views\Shared\Templates\Ossibird\**" />
     <None Remove="Views\Shared\Widgets\**" />
     <None Remove="wwwroot\app-portal\components\**" />
     <None Remove="wwwroot\app-portal\controllers\**" />
@@ -291,7 +295,6 @@
   <ItemGroup>
     <Folder Include="Areas\Portal\Views\Shared\Widgets\" />
     <Folder Include="logs\" />
-    <Folder Include="Views\Shared\Templates\Ossibird\Products\" />
     <Folder Include="wwwroot\app\services\" />
   </ItemGroup>
 
