@@ -22,7 +22,10 @@
         }],
         bindings: {
             settings: '=',
-            style: '=',
+            ulStyle: '=',
+            liStyle: '=',
+            aStyle: '=',
+            activeClass: '='
         }
     });
 })(window.angular);

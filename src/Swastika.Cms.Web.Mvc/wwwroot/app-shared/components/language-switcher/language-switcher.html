@@ -1,7 +1,7 @@
-﻿    <ul class="$ctrl.style" ng-if="$ctrl.settings">
-        <li ng-repeat="culture in $ctrl.settings.cultures"
-            ng-class="{active: culture.specificulture == $ctrl.settings.lang}">
-                <a class="dropdown-item btn-sm"
+﻿    <ul class="{{$ctrl.ulStyle}}" ng-if="$ctrl.settings">
+        <li class="{{$ctrl.liStyle}}" ng-repeat="culture in $ctrl.settings.cultures"
+            ng-class="{ {{$ctrl.activeClass}}: culture.specificulture == $ctrl.settings.lang}">
+                <a class="{{$ctrl.aStyle}}"                   
                    href="" ng-click="$ctrl.changeLang(culture.specificulture, culture.icon);">
                     <span class="flag-icon {{culture.icon}}"></span>
                 </a>
