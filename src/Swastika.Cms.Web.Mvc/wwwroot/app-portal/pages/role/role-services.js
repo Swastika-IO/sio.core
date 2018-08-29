@@ -27,7 +27,16 @@ app.factory('RoleServices', ['$http', 'commonServices', function ($http, commonS
             method: 'GET',
             url: url
         };
-        return await commonServices.getApiResult(req)
+        return await commonServices.getApiResult(req);
+    };
+
+    var _getPermissions = async function () {
+        var apiUrl = '/api/role/';
+        var req = {
+            method: 'GET',
+            url: apiUrl + 'permissions'
+        };
+        return await commonServices.getApiResult(req);
     };
 
     var _saveRole = async function (role) {
@@ -37,7 +46,17 @@ app.factory('RoleServices', ['$http', 'commonServices', function ($http, commonS
             url: apiUrl + 'save',
             data: JSON.stringify(role)
         };
-        return await commonServices.getApiResult(req)
+        return await commonServices.getApiResult(req);
+    };
+
+    var _updatePermission = async function (permission) {
+        var apiUrl = '/api/role/';
+        var req = {
+            method: 'POST',
+            url: apiUrl + 'update-permission',
+            data: JSON.stringify(permission)
+        };
+        return await commonServices.getApiResult(req);
     };
 
     var _removeRole = function (role) {
@@ -61,7 +80,9 @@ app.factory('RoleServices', ['$http', 'commonServices', function ($http, commonS
     };
 
     rolesServiceFactory.getRoles = _getRoles;
+    rolesServiceFactory.getPermissions = _getPermissions;
     rolesServiceFactory.getRole = _getRole;
+    rolesServiceFactory.updatePermission = _updatePermission;
     rolesServiceFactory.saveRole = _saveRole;
     rolesServiceFactory.createRole = _createRole;
     rolesServiceFactory.removeRole = _removeRole;

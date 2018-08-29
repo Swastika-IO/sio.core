@@ -10,6 +10,7 @@ using Microsoft.Extensions.Logging;
 using Newtonsoft.Json.Linq;
 using Swastika.Cms.Lib.Models.Account;
 using Swastika.Cms.Lib.ViewModels.Account;
+using Swastika.Cms.Lib.ViewModels.Navigation;
 using Swastika.Domain.Core.ViewModels;
 using Swastika.Identity.Models;
 using Swastika.Identity.Services;
@@ -52,8 +53,8 @@ namespace Swastka.Cms.Api.Controllers
             });
         }
 
-        //[Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme
-        //    , Roles = "SuperAdmin,Admin")]
+        [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme
+            , Roles = "SuperAdmin")]
         [HttpGet, HttpPost, HttpOptions]
         [Route("details/{viewType}/{id}")]
         public async Task<JObject> GetDetails(string viewType, string id)
@@ -68,6 +69,29 @@ namespace Swastka.Cms.Api.Controllers
                     return JObject.FromObject(result);
             }
             
+        }
+
+        [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
+        [HttpGet, HttpPost, HttpOptions]
+        [Route("permissions")]
+        public async Task<JObject> GetPermissions()
+        {
+            RepositoryResponse<List<FERoleViewModel>> permissions = new RepositoryResponse<List<FERoleViewModel>>()
+            {
+                IsSucceed = true,
+                Data = new List<FERoleViewModel>()
+            };
+            var roles = User.Claims.Where(c => c.Type == "http://schemas.microsoft.com/ws/2008/06/identity/claims/role").ToList();
+            foreach (var item in roles)
+            {
+                var role = await _roleManager.FindByNameAsync(item.Value);
+                var temp = await FERoleViewModel.Repository.GetModelListByAsync(r => r.Id == role.Id);
+                if (temp.IsSucceed)
+                {
+                    permissions.Data.AddRange(temp.Data);
+                }
+            }
+            return JObject.FromObject(permissions);
         }
 
         [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme, Roles = "SuperAdmin")]
@@ -112,6 +136,43 @@ namespace Swastka.Cms.Api.Controllers
                 return result;
             }
             return new RepositoryResponse<BERoleViewModel>();
+        }
+
+        // POST api/role
+        [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme, Roles = "SuperAdmin")]
+        [HttpPost, HttpOptions]
+        [Route("update-permission")]
+        public async Task<RepositoryResponse<NavPortalPageRoleViewModel>> Update(
+            [FromBody] NavPortalPageRoleViewModel model)
+        {
+            var result = new RepositoryResponse<NavPortalPageRoleViewModel>() { IsSucceed = true, Data = model };
+            if (model != null)
+            {
+                if (model.IsActived)
+                {
+                    model.CreatedBy = User.Claims.FirstOrDefault(c => c.Type == "Username")?.Value;
+                    var saveResult = await model.SaveModelAsync(false);
+                    result.IsSucceed = saveResult.IsSucceed;
+
+                    if (!result.IsSucceed)
+                    {
+                        result.Exception = saveResult.Exception;
+                        result.Errors.AddRange(saveResult.Errors);
+
+                    }
+                }
+                else
+                {
+                    var saveResult = await model.RemoveModelAsync(false);
+                    if (!result.IsSucceed)
+                    {
+                        result.Exception = saveResult.Exception;
+                        result.Errors.AddRange(saveResult.Errors);
+                    }
+                }
+                return result;
+            }
+            return new RepositoryResponse<NavPortalPageRoleViewModel>();
         }
 
 

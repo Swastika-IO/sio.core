@@ -2,8 +2,12 @@
 //modules.controller('ImageController', );
 modules.component('customImage', {
     templateUrl: '/app-shared/components/custom-image/customImage.html',
-    controller: ['$rootScope', '$scope', 'MediaServices', function PortalTemplateController($rootScope, $scope, mediaServices) {
+    controller: ['$rootScope', '$scope', 'MediaServices', function ($rootScope, $scope, mediaServices) {
         var ctrl = this;
+        ctrl.init = function () {
+            ctrl.srcUrl = ctrl.srcUrl || '/lib/now-ui-kit-pro-v1.2.2/assets/img/image_placeholder.jpg';
+            
+        };
         ctrl.mediaFile = {
             file: null,
             fullPath: '',
@@ -18,7 +22,7 @@ modules.component('customImage', {
                 ctrl.mediaFile.title = ctrl.title ? ctrl.title : '';
                 ctrl.mediaFile.description = ctrl.description ? ctrl.description : '';
                 ctrl.mediaFile.file = file;
-                
+
                 if (ctrl.auto) {
                     ctrl.uploadFile(file);
                 }
@@ -54,9 +58,9 @@ modules.component('customImage', {
                             if (resp) { $rootScope.showErrors(resp.errors); }
                             $rootScope.isBusy = false;
                             $scope.$apply();
-                        }    
+                        }
                     }
-                    
+
                 };
                 reader.onerror = function (error) {
 
@@ -65,7 +69,7 @@ modules.component('customImage', {
             else {
                 return null;
             }
-           
+
         }
         ctrl.getBase64 = function (file) {
             if (file !== null && ctrl.postedFile) {
@@ -91,7 +95,7 @@ modules.component('customImage', {
                 return null;
             }
         }
-        
+
     }],
     bindings: {
         header: '=',

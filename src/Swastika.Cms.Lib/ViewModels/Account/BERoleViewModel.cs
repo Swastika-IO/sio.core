@@ -106,15 +106,16 @@ namespace Swastika.Cms.Lib.ViewModels.Account
                     {
                         var nav = new SiocPortalPageRole()
                         {
-                            PageId = item.Id,
+                            PageId = child.Page.Id,
                             RoleId = Id,
                             Status = (int)SWStatus.Preview
                         };
                         child.Page.NavPermission = new NavPortalPageRoleViewModel(nav) { IsActived = false };
-                    }else
-                {
-                    item.NavPermission.IsActived = true;
-                }
+                    }
+                    else
+                    {
+                        child.Page.NavPermission.IsActived = true;
+                    }
                 }
             }
         }
@@ -132,6 +133,8 @@ namespace Swastika.Cms.Lib.ViewModels.Account
                     if (result.IsSucceed)
                     {
                         result = await HandlePermission(item, context, transaction);
+
+
                     }
                     else
                     {
@@ -202,7 +205,7 @@ namespace Swastika.Cms.Lib.ViewModels.Account
                 item.NavPermission.CreatedBy = item.CreatedBy;
                 var saveResult = await item.NavPermission.SaveModelAsync(false, context, transaction);
                 result.IsSucceed = saveResult.IsSucceed;
-                /* skip child nav
+                /* skip child nav*/
                 if (result.IsSucceed)
                 {
                     foreach (var child in item.ChildPages)
@@ -214,7 +217,7 @@ namespace Swastika.Cms.Lib.ViewModels.Account
                         }
                     }
                 }
-                */
+
                 if (!result.IsSucceed)
                 {
                     result.Exception = saveResult.Exception;
@@ -225,7 +228,7 @@ namespace Swastika.Cms.Lib.ViewModels.Account
             else
             {
                 var saveResult = await item.NavPermission.RemoveModelAsync(false, context, transaction);
-                /* skip child nav
+                /* skip child nav */
                 result.IsSucceed = saveResult.IsSucceed;
                 if (result.IsSucceed)
                 {
@@ -235,7 +238,7 @@ namespace Swastika.Cms.Lib.ViewModels.Account
                         result = await HandlePermission(child.Page, context, transaction);
                     }
                 }
-                */
+
                 if (!result.IsSucceed)
                 {
                     result.Exception = saveResult.Exception;

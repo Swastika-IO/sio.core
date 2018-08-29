@@ -98,7 +98,7 @@ namespace Swastika.Cms.Lib.ViewModels.Info
 
             if (navParent != null)
             {
-                Level = InfoCategoryViewModel.Repository.GetSingleModel(c => c.Id == navParent.ParentId, _context, _transaction).Data?.Level ?? 0 + 1;
+                Level = navParent.Level + 1;
             }
             else
             {
@@ -217,6 +217,7 @@ namespace Swastika.Cms.Lib.ViewModels.Info
                         Id = Id,
                         ParentId = PortalPage.Id,
                         Description = PortalPage.TextDefault,
+                        Level = PortalPage.Level
                     }
                 );
 

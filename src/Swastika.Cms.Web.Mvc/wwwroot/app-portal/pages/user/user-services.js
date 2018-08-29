@@ -1,10 +1,14 @@
 ﻿'use strict';
-app.factory('UserServices', ['$http', 'commonServices', function ($http, commonServices) {
+app.factory('UserServices', ['$http', 'commonServices', 'ngAuthSettings'
+    , function ($http, commonServices, ngAuthSettings) {
 
     //var serviceBase = 'http://ngauthenticationapi.azurewebsites.net/';
 
     var usersServiceFactory = {};
     var apiUrl = '/api/account/';
+    
+    var serviceBase = ngAuthSettings.serviceBase;
+    
     var _getUserDemographicInfo = function () {
         var url = '/api/GetUserDemographicInfo';
         var req = {

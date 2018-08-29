@@ -63,11 +63,11 @@ app.controller('UserController', ['$scope', '$rootScope', '$routeParams', '$time
                 $.each($scope.data.items, function (i, user) {
 
                     $.each($scope.data, function (i, e) {
-                        if (e.userId == user.id) {
+                        if (e.userId === user.id) {
                             user.isHidden = true;
                         }
-                    })
-                })
+                    });
+                });
                 $rootScope.isBusy = false;
                 $scope.$apply();
             }

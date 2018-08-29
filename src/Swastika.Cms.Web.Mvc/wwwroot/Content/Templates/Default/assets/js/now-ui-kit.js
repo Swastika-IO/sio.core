@@ -192,7 +192,8 @@ $(document).on('click', '.navbar-toggler', function() {
       }, 550);
     });
 
-    $('html').addClass('nav-open');
+      $('html').addClass('nav-open');
+      $('.navbar-collapse').addClass('show');
     nowuiKit.misc.navbar_menu_visible = 1;
   }
 });

@@ -36,6 +36,10 @@ namespace Swastika.Cms.Lib.ViewModels.Navigation
         [JsonProperty("description")]
         public string Description { get; set; }
 
+        [JsonProperty("level")]
+        public int Level { get; set; }
+
+
         #region Views
 
         [JsonProperty("isActived")]

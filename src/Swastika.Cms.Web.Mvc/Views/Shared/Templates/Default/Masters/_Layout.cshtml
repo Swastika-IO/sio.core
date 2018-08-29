@@ -1,3 +1,6 @@
+@{
+    string href = string.Format("{0}://{1}{2}", Context.Request.Scheme, Context.Request.Host, Url.Action());
+}
 <!DOCTYPE html>
 <html lang="en">
 
@@ -12,13 +15,13 @@
     <meta name="theme-color" content="#ffffff">
     
     <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0, shrink-to-fit=no' name='viewport' />
-    <meta property="fb:app_id" content="@LocalizerService.GetLocalString("GG_API_KEY", ViewBag.culture as string)" />
-    <meta property="og:url" content="http://crickettours.asia/@ViewBag.culture/" />
+    <meta property="fb:app_id" content="@LocalizerService.GetLocalString("FacebookId", ViewBag.culture as string)" />
+    <meta property="og:url" content="@href" />
     <meta property="og:type" content="article" />
-    <meta property="og:title" content="Cricket Tours" />
+    <meta property="og:title" content="@ViewData["Title"]" />
     <meta property="og:description"
-          content="Cricket Tours" />
-    <meta property="og:image" content="http://crickettours.asia/Content/Uploads/08-2018/top-2.jpeg" />
+          content="@ViewData["Description"]" />
+    <meta property="og:image" content="@ViewData["Image"]" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
     <title>@LocalizerService.GetLocalString("SiteName", ViewBag.culture as string) - @ViewData["Title"]</title>
 

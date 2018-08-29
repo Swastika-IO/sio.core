@@ -220,7 +220,7 @@
                     ]
                 },
                 {
-                    title: 'portal_portal_pages',
+                    title: 'Portal Pages',
                     shortTitle: 'portal_short_portal_pages',
                     icon: 'mi mi-Globe mi-spin',
                     href: '#',

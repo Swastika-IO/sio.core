@@ -7,10 +7,10 @@ app.factory('translatorService', ['$rootScope', 'commonServices', 'localStorageS
     };
     var _init = function (translator) {
         this._translator = translator;
-    }
+    };
     var _fillTranslator = async function (culture) {
 
-        if (this.translator.data && this.translator.lang == culture) {
+        if (this.translator.data && this.translator.lang === culture) {
 
             //_translator = translator;
             //this.translator = translator;
@@ -26,7 +26,7 @@ app.factory('translatorService', ['$rootScope', 'commonServices', 'localStorageS
     };
     var _getTranslator = async function (culture) {
         var translator = localStorageService.get('translator');
-        if (translator && translator.lang == culture) {
+        if (translator && translator.lang === culture) {
             translator = translator;
             return translator;
         }
@@ -53,27 +53,27 @@ app.factory('translatorService', ['$rootScope', 'commonServices', 'localStorageS
     var _reset = async function (lang) {
 
         await _getTranslator(lang);
-    }
-    var _get = function (keyword, isWrap) {
+    };
+    var _get = function (keyword, isWrap, defaultText) {
         if (!this.translator.data && $rootScope.settings) {
             $rootScope.isBusy = true;
             this.fillTranslator($rootScope.settings.lang).then(function (response) {
                 $rootScope.isBusy = false;
-                return response.data[keyword] || getLinkCreateLanguage(keyword, isWrap);
+                return response.data[keyword] || defaultText || getLinkCreateLanguage(keyword, isWrap);
             });
         } else {
-            return this.translator.data[keyword] || getLinkCreateLanguage(keyword, isWrap);
+            return this.translator.data[keyword] || defaultText || getLinkCreateLanguage(keyword, isWrap);
         }
 
     };
 
-    var _getAsync = async function (keyword, defaultValue) {
+    var _getAsync = async function (keyword, defaultText) {
         if (!this.translator.data && $rootScope.settings) {
             $rootScope.isBusy = true;
             this.translator = await _fillTranslator(lang);
-            return this.translator.data[keyword] || getLinkCreateLanguage(keyword, isWrap);
+            return this.translator.data[keyword] || defaultText || getLinkCreateLanguage(keyword, isWrap);
         } else {
-            return this.translator.data[keyword] || getLinkCreateLanguage(keyword, isWrap);
+            return this.translator.data[keyword] || defaultText || getLinkCreateLanguage(keyword, isWrap);
         }
 
     };
@@ -81,7 +81,7 @@ app.factory('translatorService', ['$rootScope', 'commonServices', 'localStorageS
     var getLinkCreateLanguage = function (keyword, isWrap) {
         //return '<span data-key="/backend/language/details?k=' + keyword + '">[' + keyword + ']</span>';
         return isWrap ? '[' + keyword + ']' : keyword;
-    }
+    };
 
     factory.getAsync = _getAsync;
     factory.get = _get;

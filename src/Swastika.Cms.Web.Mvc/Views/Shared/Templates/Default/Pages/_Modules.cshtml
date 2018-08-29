@@ -1,4 +1,10 @@
 @model Swastika.Cms.Lib.ViewModels.FrontEnd.FECategoryViewModel
+@{ 
+
+    ViewData["Title"] = Model.Title;
+    ViewData["Description"] = Model.Excerpt;
+    ViewData["Image"] = Model.ImageUrl;
+}
 @foreach (var nav in Model.Modules.OrderBy(n => n.Priority))
 {
     var module = nav.Module;

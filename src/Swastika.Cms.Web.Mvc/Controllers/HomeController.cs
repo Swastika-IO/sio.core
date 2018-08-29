@@ -84,6 +84,9 @@ namespace Swastika.Cms.Mvc.Controllers
             if (getPage.IsSucceed && getPage.Data.View != null)
             {
                 GeneratePageDetailsUrls(getPage.Data);
+                ViewData["Title"] = getPage.Data.Title;
+                ViewData["Description"] = getPage.Data.Excerpt;
+                ViewData["Image"] = getPage.Data.ImageUrl;
                 ViewData["PageClass"] = getPage.Data.CssClass;
                 return View(getPage.Data);
             }
@@ -99,6 +102,9 @@ namespace Swastika.Cms.Mvc.Controllers
                 a => a.Id == id && a.Specificulture == CurrentLanguage);
             if (getArticle.IsSucceed)
             {
+                ViewData["Title"] = getArticle.Data.Title;
+                ViewData["Description"] = getArticle.Data.Excerpt;
+                ViewData["Image"] = getArticle.Data.ImageUrl;
                 return View(getArticle.Data);
             }
             else
@@ -113,6 +119,9 @@ namespace Swastika.Cms.Mvc.Controllers
                 a => a.Id == id && a.Specificulture == CurrentLanguage);
             if (getProduct.IsSucceed)
             {
+                ViewData["Title"] = getProduct.Data.Title;
+                ViewData["Description"] = getProduct.Data.Excerpt;
+                ViewData["Image"] = getProduct.Data.ImageUrl;
                 return View(getProduct.Data);
             }
             else

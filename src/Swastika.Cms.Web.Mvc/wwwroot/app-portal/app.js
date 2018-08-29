@@ -1,6 +1,6 @@
 ﻿'use strict';
 var app = angular.module('SwastikaPortal', ['ngRoute', 'components', 'ngFileUpload', 'LocalStorageModule',
-    'bw.paging', 'dndLists','ngTagsInput', 'ngSanitize']);
+    'bw.paging', 'dndLists', 'ngTagsInput', 'ngSanitize']);
 //var serviceBase = 'http://crickettours.asia';
 
 app.run(['$rootScope', '$location', 'commonServices', 'authService', 'translatorService',
@@ -152,7 +152,7 @@ app.run(['$rootScope', '$location', 'commonServices', 'authService', 'translator
                     ['preformatted'],
                     ['horizontalRule'],
                     ['fullscreen'],
-                    ['viewHTML'],
+                    ['viewHTML']
                 ],
                 plugins: {
                     // Add imagur parameters to upload plugin
@@ -182,7 +182,7 @@ app.run(['$rootScope', '$location', 'commonServices', 'authService', 'translator
 
         $rootScope.initEditor = function () {
             setTimeout(function () {
-                
+
                 $.each($('.code-editor'), function (i, e) {
                     var container = $(this);
                     var editor = ace.edit(e);
@@ -204,11 +204,11 @@ app.run(['$rootScope', '$location', 'commonServices', 'authService', 'translator
                         $(container).parent().find('.code-content').val(editor.getValue());
                     });
                 });
-              
+
                 $.each($('.editor-content'), function (i, e) {
                     var $textArea = $(e);
                     $textArea.trumbowyg($rootScope.configurations.plugins);
-                   
+
                 });
             }, 200);
         };
@@ -230,7 +230,7 @@ app.run(['$rootScope', '$location', 'commonServices', 'authService', 'translator
             var align = 'right';
             $.notify({
                 icon: "now-ui-icons ui-1_bell-53",
-                message: $rootScope.translate(content),
+                message: $rootScope.translate(content)
 
             }, {
                     type: type,
@@ -240,14 +240,14 @@ app.run(['$rootScope', '$location', 'commonServices', 'authService', 'translator
                         align: align
                     }
                 });
-        }
+        };
 
-        $rootScope.translate = function (keyword, isWrap) {
+        $rootScope.translate = function (keyword, isWrap, defaultText) {
             if ($rootScope.settings && ($rootScope.translator || $rootScope.isBusy)) {
-                return $rootScope.translator.get(keyword, isWrap);
+                return $rootScope.translator.get(keyword, isWrap, defaultText);
             }
             else {
-                return keyword;
+                return keyword || defaultText;
             }
         };
 
