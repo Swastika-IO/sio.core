@@ -4,6 +4,7 @@
     ViewData["SeoKeywords"] = Model.SeoKeywords;
     ViewData["SeoDescription"] = Model.SeoDescription;
     string lang = ViewBag.culture;
+
 }
 <div ng-controller="AppClientController" ng-init="init('@lang')">
     @if (!string.IsNullOrEmpty(Model.TemplatePath))
@@ -107,10 +108,15 @@
     <script src="~/app-shared/components/module-data/module-data-controller.js"></script>
     <script src="~/app-shared/components/module-data/module-form.js"></script>
     @*<script src="~/app-client/components/module-data/module-form.js"></script>*@
-
+    <script src="~/app-client/components/fb-share/fb-share.js"></script>
+    <script src="~/app-client/components/fb-send/fb-send.js"></script>
 
     <script src="~/app-shared/components/paging/paging.js"></script>
     <script src="~/app-shared/components/language-switcher/language-switcher.js"></script>
     <script src="~/app-shared/components/confirm/confirm.js"></script>
     <script src="~/app-shared/components/message/message.js"></script>
+
+    <!--     Fonts and icons     -->
+  <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700,200|Open+Sans+Condensed:700" rel="stylesheet">
+  <link href="https://use.fontawesome.com/releases/v5.0.6/css/all.css" rel="stylesheet">
 }

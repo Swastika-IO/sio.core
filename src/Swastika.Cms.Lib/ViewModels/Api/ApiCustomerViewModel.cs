@@ -30,6 +30,12 @@ namespace Swastika.Cms.Lib.ViewModels.Api
         public string IsAgreeNotified { get; set; }
         [JsonProperty("fullName")]
         public string FullName { get; set; }
+        [JsonProperty("firstName")]
+        public string FirstName { get; set; }
+        [JsonProperty("middleName")]
+        public string MiddleName { get; set; }
+        [JsonProperty("lastName")]
+        public string LastName { get; set; }
         [Required]
         [JsonProperty("phoneNumber")]
         public string PhoneNumber { get; set; }

@@ -1,7 +1,4 @@
-@{
-    string href = string.Format("{0}://{1}{2}", Context.Request.Scheme, Context.Request.Host, Url.Action());
-}
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 
 <head>
@@ -15,8 +12,8 @@
     <meta name="theme-color" content="#ffffff">
     
     <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0, shrink-to-fit=no' name='viewport' />
-    <meta property="fb:app_id" content="@LocalizerService.GetLocalString("FacebookId", ViewBag.culture as string)" />
-    <meta property="og:url" content="@href" />
+    <meta property="fb:app_id" content="@LocalizerService.GetLocalString("FacebookAppId", ViewBag.culture as string)" />
+    <script>document.write('<meta property="og:url" content="' + window.top.location + '" />')</script>
     <meta property="og:type" content="article" />
     <meta property="og:title" content="@ViewData["Title"]" />
     <meta property="og:description"

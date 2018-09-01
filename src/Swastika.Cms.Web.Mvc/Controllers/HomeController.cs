@@ -84,8 +84,9 @@ namespace Swastika.Cms.Mvc.Controllers
             if (getPage.IsSucceed && getPage.Data.View != null)
             {
                 GeneratePageDetailsUrls(getPage.Data);
-                ViewData["Title"] = getPage.Data.Title;
-                ViewData["Description"] = getPage.Data.Excerpt;
+                ViewData["Title"] = getPage.Data.SeoTitle;
+                ViewData["Description"] = getPage.Data.SeoDescription;
+                ViewData["Keywords"] = getPage.Data.SeoKeywords;
                 ViewData["Image"] = getPage.Data.ImageUrl;
                 ViewData["PageClass"] = getPage.Data.CssClass;
                 return View(getPage.Data);
@@ -102,8 +103,9 @@ namespace Swastika.Cms.Mvc.Controllers
                 a => a.Id == id && a.Specificulture == CurrentLanguage);
             if (getArticle.IsSucceed)
             {
-                ViewData["Title"] = getArticle.Data.Title;
-                ViewData["Description"] = getArticle.Data.Excerpt;
+                ViewData["Title"] = getArticle.Data.SeoTitle;
+                ViewData["Description"] = getArticle.Data.SeoDescription;
+                ViewData["Keywords"] = getArticle.Data.SeoKeywords;
                 ViewData["Image"] = getArticle.Data.ImageUrl;
                 return View(getArticle.Data);
             }
@@ -119,9 +121,11 @@ namespace Swastika.Cms.Mvc.Controllers
                 a => a.Id == id && a.Specificulture == CurrentLanguage);
             if (getProduct.IsSucceed)
             {
-                ViewData["Title"] = getProduct.Data.Title;
-                ViewData["Description"] = getProduct.Data.Excerpt;
+                ViewData["Title"] = getProduct.Data.SeoTitle;
+                ViewData["Description"] = getProduct.Data.SeoDescription;
+                ViewData["Keywords"] = getProduct.Data.SeoKeywords;
                 ViewData["Image"] = getProduct.Data.ImageUrl;
+
                 return View(getProduct.Data);
             }
             else

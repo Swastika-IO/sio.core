@@ -1,5 +1,6 @@
 @{
-    string href = string.Format("{0}://{1}{2}", Context.Request.Scheme, Context.Request.Host, Url.Action());
+    string href = $"{Context.Request.Scheme}://{Context.Request.Host}{Context.Request.Path}";
+
 }
 
 
