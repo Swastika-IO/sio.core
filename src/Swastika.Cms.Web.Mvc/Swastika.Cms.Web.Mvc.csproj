@@ -338,7 +338,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\..\..\VietlandTravel\src\CricketTours.Web\CricketTours.Web.csproj" />
     <ProjectReference Include="..\Swastika.Cms.Lib\Swastika.Cms.Lib.csproj" />
     <ProjectReference Include="..\Swastka.Cms.Api\Swastka.Cms.Api.csproj" />
   </ItemGroup>
