@@ -182,9 +182,10 @@ namespace Swastika.Cms.Lib.ViewModels.Api
                 Columns.Add(thisField);
             }
             int themeId = GlobalConfigurationService.Instance.GetLocalInt(SWCmsConstants.ConfigurationKeyword.ThemeId, Specificulture, 0);
-            View = ApiTemplateViewModel.Repository.GetSingleModel(t =>
-                    t.TemplateId == themeId
-                    && !string.IsNullOrEmpty(this.Template) && this.Template.Contains($"{t.FileName}{t.Extension}")).Data;
+            var getView = ApiTemplateViewModel.Repository.GetSingleModel(t =>
+                    t.TemplateId == themeId && t.FolderType == SWCmsConstants.TemplateFolder.Modules
+                    && !string.IsNullOrEmpty(this.Template) && this.Template.Contains($"{t.FileName}{t.Extension}"), _context, _transaction);
+            View = getView.Data;
             if (this.View == null)
             {
                 this.View = new ApiTemplateViewModel(new SiocTemplate()
@@ -197,7 +198,7 @@ namespace Swastika.Cms.Lib.ViewModels.Api
                     FileName = SWCmsConstants.Default.DefaultTemplate,
                     ModifiedBy = ModifiedBy,
                     Content = "<div></div>"
-                });
+                }, _context, _transaction);
             }
             this.Template = SwCmsHelper.GetFullPath(new string[]
                {

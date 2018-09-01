@@ -202,6 +202,7 @@ namespace Swastika.Cms.Lib.ViewModels.Info
             }
             return result;
         }
+
         #endregion Overrides
 
         #region Expands

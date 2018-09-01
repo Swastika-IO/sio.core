@@ -2,6 +2,8 @@
 // The Swastika I/O Foundation licenses this file to you under the GNU General Public License v3.0.
 // See the LICENSE file in the project root for more information.
 
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Data.OData.Query;
 using Newtonsoft.Json.Linq;
@@ -138,6 +140,7 @@ namespace Swastka.Cms.Api.Controllers
 
         #region Post
 
+        [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
         [Route("upload")]
         [HttpPost, HttpOptions]
         public async Task<RepositoryResponse<BEMediaViewModel>> UploadAsync([FromForm] string fileFolder, [FromForm] string title, [FromForm] string description)
@@ -185,6 +188,7 @@ namespace Swastka.Cms.Api.Controllers
         }
 
         // POST api/medias
+        [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
         [HttpPost, HttpOptions]
         [Route("save")]
         public async Task<RepositoryResponse<BEMediaViewModel>> Post([FromBody]BEMediaViewModel model)
@@ -201,6 +205,7 @@ namespace Swastka.Cms.Api.Controllers
 
         // GET api/medias
 
+        [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
         [HttpPost, HttpOptions]
         [Route("list")]
         public async Task<RepositoryResponse<PaginationModel<BEMediaViewModel>>> GetList([FromBody]RequestPaging request)
@@ -224,6 +229,7 @@ namespace Swastka.Cms.Api.Controllers
             return data;
         }
 
+        [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
         [HttpPost, HttpOptions]
         [Route("list/byProduct/{productId}")]
         [Route("list/byProduct")]

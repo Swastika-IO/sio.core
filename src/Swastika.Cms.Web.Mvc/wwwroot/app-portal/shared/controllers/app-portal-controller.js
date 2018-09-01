@@ -1,8 +1,10 @@
 ﻿(function (angular) {
     'use strict';
-    app.controller('AppPortalController', ['$rootScope', '$scope', '$location', 'commonServices', 'authService', 'translatorService',
-        function ($rootScope, $scope, $location, commonServices, authService, translatorService) {
+    app.controller('AppPortalController', ['$rootScope', '$scope', '$location'
+        , 'commonServices', 'authService', 'translatorService', 'RoleServices',
+        function ($rootScope, $scope, $location, commonServices, authService, translatorService, roleServices) {
             $scope.isInit = false;
+            $scope.isAdmin = false;
             $scope.translator = translatorService;
             $scope.lang = '';
             $scope.settings = {};
@@ -18,9 +20,29 @@
                             $rootScope.translator.fillTranslator($rootScope.settings.lang).then(function () {
                                 authService.fillAuthData().then(function (response) {
                                     $rootScope.authentication = authService.authentication;
-                                    if (!authService.authentication.isAuth || !authService.authentication.isAdmin) {
+                                    if (!authService.authentication.isAuth) {
                                         authService.authentication.referredUrl = $location.$$url;
-                                        $location.path('/backend/login');
+                                        window.top.location.href = '/portal/login';
+                                    }
+                                    else {
+                                        $scope.isAdmin = authService.authentication.isAdmin;
+                                        if (!$scope.isAdmin) {
+
+                                            roleServices.getPermissions().then(function (response) {
+
+                                                if (response && response.isSucceed) {
+
+                                                    $scope.isInit = true;
+                                                    $scope.roles = response.data;
+                                                    $rootScope.isBusy = false;
+                                                    $scope.$apply();
+                                                }
+                                                else {
+                                                    window.top.location.href = '/portal/login';
+
+                                                }
+                                            });
+                                        }
                                     }
                                 });
                                 $rootScope.isBusy = false;
@@ -32,14 +54,6 @@
                         }
                     });
                 }
-            }
-            //$scope.translate = function (keyword) {
-            //    if ($scope.isInit) {
-            //        return $scope.translator.get(keyword, $scope.lang);
-            //    }
-            //    else {
-            //        return keyword;
-            //    }
-            //}
+            };
         }]);
 })(window.angular);

@@ -33,6 +33,8 @@ namespace Swastka.Cms.Api.Controllers
         #region Get
 
         // GET api/PortalPage/id
+        [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme,
+        Roles = "SuperAdmin")]
         [HttpGet, HttpOptions]
         [Route("delete/{id}")]
         public async Task<RepositoryResponse<SiocPortalPage>> DeleteAsync(int id)
@@ -42,7 +44,8 @@ namespace Swastka.Cms.Api.Controllers
             if (getPage.IsSucceed)
             {
 
-                return await getPage.Data.RemoveModelAsync(true);
+                var result =  await getPage.Data.RemoveModelAsync(true);
+                return result;
             }
             else
             {

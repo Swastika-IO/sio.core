@@ -303,13 +303,12 @@ namespace Swastika.Cms.Lib.ViewModels.Api
                 }
             }
             //Get Templates
-            this.Templates = this.Templates ??
-                ApiTemplateViewModel.Repository.GetModelListBy(
-                t => t.Template.Name == ActivedTemplate && t.FolderType == this.TemplateFolderType).Data;
-            if (!string.IsNullOrEmpty(Template))
-            {
-                this.View = Templates.FirstOrDefault(t => Template.Contains(t.FileName));
-            }
+            int themeId = GlobalConfigurationService.Instance.GetLocalInt(SWCmsConstants.ConfigurationKeyword.ThemeId, Specificulture, 0);
+            var getView = ApiTemplateViewModel.Repository.GetSingleModel(t =>
+                    t.TemplateId == themeId && t.FolderType == SWCmsConstants.TemplateFolder.Products
+                    && !string.IsNullOrEmpty(this.Template) && this.Template.Contains($"{t.FileName}{t.Extension}"), _context, _transaction);
+            View = getView.Data;
+
             this.View = View ?? Templates.FirstOrDefault();
 
             if (this.View == null)

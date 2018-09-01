@@ -134,7 +134,7 @@ namespace Swastka.Cms.Api.Controllers
         #region Post
 
         // GET 
-        [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme, Roles = "SuperAdmin")]
+        [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme, Roles = "SuperAdmin, Admin")]
         [HttpGet, HttpOptions]
         [Route("app-settings/details")]
         public RepositoryResponse<JObject> LoadAppSettings()
@@ -149,7 +149,7 @@ namespace Swastka.Cms.Api.Controllers
         }
 
         // POST api/category
-        [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme, Roles = "SuperAdmin")]
+        [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme, Roles = "SuperAdmin, Admin")]
         [HttpPost, HttpOptions]
         [Route("app-settings/save")]
         public RepositoryResponse<JObject> SaveAppSettings([FromBody]JObject model)

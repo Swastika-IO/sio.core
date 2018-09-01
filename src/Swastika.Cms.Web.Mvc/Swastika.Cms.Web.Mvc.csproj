@@ -338,6 +338,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\..\..\..\VietlandTravel\src\CricketTours.Web\CricketTours.Web.csproj" />
     <ProjectReference Include="..\Swastika.Cms.Lib\Swastika.Cms.Lib.csproj" />
     <ProjectReference Include="..\Swastka.Cms.Api\Swastka.Cms.Api.csproj" />
   </ItemGroup>
@@ -376,6 +377,15 @@
     <Content Update="wwwroot\app-portal\pages\page\page-services.js">
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
     </Content>
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Update="ApacheModRewrite.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="IISUrlRewrite.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
   </ItemGroup>
 
   <ProjectExtensions>

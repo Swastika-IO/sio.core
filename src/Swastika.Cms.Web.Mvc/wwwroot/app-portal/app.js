@@ -90,7 +90,8 @@ app.run(['$rootScope', '$location', 'commonServices', 'authService', 'translator
 
         $rootScope.logOut = function () {
             authService.logOut();
-            $location.path('/backend/login');
+            //$location.path('/portal/login');
+            window.top.location.href = '/portal/login';
         };
 
         $rootScope.updateSettings = function () {
@@ -262,7 +263,8 @@ app.run(['$rootScope', '$location', 'commonServices', 'authService', 'translator
                 //console.log(newValue);
             }
         });
-        $rootScope.$on("$locationChangeStart", function (event, next, current) {
+        $rootScope.$on("$locationChangeEnd", function (event, next, current) {
+            console.log(event, next, current);
             // handle route changes     
             //$rootScope.breadCrumbs = [
             //    {

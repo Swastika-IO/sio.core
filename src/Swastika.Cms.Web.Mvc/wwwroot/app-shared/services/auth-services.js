@@ -51,7 +51,8 @@ app.factory('authService', ['$http', '$rootScope','$location', '$q', 'localStora
                 _authentication.isAuth = true;
                 angular.forEach(data.userData.userRoles, function (value, key) {
                     if (value.role.name === 'SuperAdmin'
-                        || value.role.name === 'Admin') {
+                        //|| value.role.name === 'Admin'
+                    ) {
                         _authentication.isAdmin = true;
                     }
                 });
@@ -89,29 +90,30 @@ app.factory('authService', ['$http', '$rootScope','$location', '$q', 'localStora
             var resp = await _getApiResult(req);
 
             if (resp.isSucceed) {
-                var data = resp.data;
+                data = resp.data;
                 localStorageService.set('authorizationData',
                     {
                         userRoles: data.userData.userRoles,
                         token: data.access_token, userName: data.userData.firstName, roleNames: data.userData.roles,
                         avatar: data.userData.avatar, refresh_token: data.refresh_token, userId: data.userData.id
                     });
-                _authentication.isAuth = true;
+                _authentication.isAuth = false;
                 angular.forEach(data.userData.userRoles, function (value, key) {
                     if (value.role.name === 'SuperAdmin'
-                        || value.role.name === 'Admin') {
+                        //|| value.role.name === 'Admin'
+                    ) {
                         _authentication.isAdmin = true;
                     }
                 });
-                //_authentication.isAdmin = $.inArray("SuperAdmin", data.userData.roles) >= 0;
-                //_authentication.userName = data.userData.NickName;
+                _authentication.isAdmin = $.inArray("SuperAdmin", data.userData.roles) >= 0;
+                _authentication.userName = data.userData.NickName;
                 _authentication.roleNames = data.userData.roles;
                 _authentication.userId = data.userData.id;
                 _authentication.avatar = data.userData.avatar;
                 _authentication.useRefreshTokens = loginData.rememberme;
                 _authentication.token = data.access_token;
                 _authentication.refresh_token = data.refresh_token;
-                window.location.href = _authentication.referredUrl;
+                window.location.href = document.referrer||'/';//_authentication.referredUrl;
             } else {
                 $rootScope.isBusy = false;
                 $rootScope.showErrors(resp.errors);
@@ -140,7 +142,8 @@ app.factory('authService', ['$http', '$rootScope','$location', '$q', 'localStora
                 _authentication.isAuth = true;
                 angular.forEach(authData.userRoles, function (value, key) {
                     if (value.role.name === 'SuperAdmin'
-                        || value.role.name === 'Admin') {
+                        //|| value.role.name === 'Admin'
+                    ) {
                         _authentication.isAdmin = true;
                     }
                 });
@@ -190,7 +193,7 @@ app.factory('authService', ['$http', '$rootScope','$location', '$q', 'localStora
                 localStorageService.set('authorizationData', { token: response.access_token, userName: response.userName, roleName: response.userData.roleNames, refresh_token: response.refresh_token, useRefreshTokens: true });
 
                 _authentication.isAuth = true;
-                _authentication.isAdmin = _authentication.isAdmin = $.inArray("Admin", response.userData.RoleNames) >= 0;
+                _authentication.isAdmin = _authentication.isAdmin = $.inArray("SuperAdmin", response.userData.RoleNames) >= 0;
                 _authentication.userName = response.userName;
                 _authentication.useRefreshTokens = false;
 

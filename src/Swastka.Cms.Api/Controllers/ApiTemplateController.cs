@@ -20,7 +20,7 @@ using static Swastika.Common.Utility.Enums;
 namespace Swastka.Cms.Api.Controllers
 {
     [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme,
-        Roles = "SuperAdmin")]
+        Roles = "SuperAdmin, Admin")]
     [Produces("application/json")]
     [Route("api/{culture}/template")]
     public class ApiTemplateController :

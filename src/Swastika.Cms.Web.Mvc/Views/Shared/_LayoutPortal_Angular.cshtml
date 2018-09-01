@@ -32,7 +32,7 @@
     <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script src="~/app-shared/plugins/bootstrap-notify.min.js"></script>
 
-    
+
     <link href="~/app-portal/app.css" rel="stylesheet" />
     @RenderSection("Styles", required: false)
 </head>
@@ -45,9 +45,9 @@
         <header-nav settings="settings" bread-crumbs="breadCrumbs"></header-nav>
         <div class="container-fluid wrapper">
             <div class="row flex-xl-nowrap">
-                
-                <main-side-bar-dynamic></main-side-bar-dynamic>
-                <main-side-bar></main-side-bar>
+                <main-side-bar ng-if="isAdmin" ></main-side-bar>
+
+                <main-side-bar-dynamic ng-if="roles" roles="roles" actived-role="roles[0]"></main-side-bar-dynamic>
                 <main class="py-md-3 px-md-2 sw-content" role="main">
 
                     @RenderBody()
@@ -209,7 +209,7 @@
     <script src="/app-shared/components/breadcrumbs/breadcrumbs.js"></script>
     <script src="/app-shared/components/main-side-bar/main-side-bar.js"></script>
     <script src="/app-shared/components/main-side-bar-item/main-side-bar-item.js"></script>
-    
+
     <script src="~/app-shared/components/main-side-bar-dynamic/main-side-bar-dynamic.js"></script>
     <script src="~/app-shared/components/main-side-bar-item-dynamic/main-side-bar-item-dynamic.js"></script>
     <script src="/app-shared/components/filter-list/filter-list.js"></script>
