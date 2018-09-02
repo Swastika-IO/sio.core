@@ -156,7 +156,7 @@
                         {
                             title: 'Roles',
                             href: '/backend/role/list',
-                            icon: 'mi mi-List'
+                            icon: 'mi mi-Permissions'
                         }
                     ]
                 },
@@ -169,7 +169,7 @@
                         {
                             title: 'portal_app_settings',
                             href: '/backend/app-settings/details',
-                            icon: 'mi mi-Pen'
+                            icon: 'mi mi-ViewAll'
                         },
                         {
                             title: ('portal_create'),
