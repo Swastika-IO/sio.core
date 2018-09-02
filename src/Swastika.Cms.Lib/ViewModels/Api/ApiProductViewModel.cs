@@ -274,7 +274,7 @@ namespace Swastika.Cms.Lib.ViewModels.Api
         public override void ExpandView(SiocCmsContext _context = null, IDbContextTransaction _transaction = null)
         {
             Cultures = CommonRepository.Instance.LoadCultures(Specificulture, _context, _transaction);
-            UrlAlias = ApiUrlAliasViewModel.Repository.GetSingleModel(u => u.Specificulture == Specificulture && u.SourceId == Id.ToString()).Data;
+            UrlAlias = ApiUrlAliasViewModel.Repository.GetSingleModel(u => u.Specificulture == Specificulture && u.SourceId == Id.ToString() && u.Type == (int)SWCmsConstants.UrlAliasType.Product).Data;
             if (UrlAlias == null)
             {
                 UrlAlias = new ApiUrlAliasViewModel()

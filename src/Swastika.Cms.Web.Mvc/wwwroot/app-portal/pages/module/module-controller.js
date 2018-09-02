@@ -1,19 +1,9 @@
 ﻿'use strict';
-app.controller('ModuleController', ['$scope', '$rootScope', '$routeParams', '$timeout'
+app.controller('ModuleController', ['$scope', '$rootScope', 'ngAppSettings', '$routeParams', '$timeout'
     , '$location', 'AuthService', 'ModuleServices', 'ModuleDataServices',
-    function ($scope, $rootScope, $routeParams, $timeout,
+    function ($scope, $rootScope, ngAppSettings, $routeParams, $timeout,
         $location, authService, moduleServices, moduleDataServices) {
-        $scope.request = {
-            pageSize: '10',
-            pageIndex: 0,
-            status: $rootScope.swStatus[1],
-            orderBy: 'CreatedDateTime',
-            direction: '1',
-            fromDate: null,
-            toDate: null,
-            keyword: '',
-            key: ''
-        };
+        $scope.request = ngAppSettings.request;
         $scope.defaultAttr = {
             name: '',
             options: [],
@@ -24,7 +14,7 @@ app.controller('ModuleController', ['$scope', '$rootScope', '$routeParams', '$ti
             isDisplay: true,
             width: 3
         };
-        $scope.dataTypes = $rootScope.configurations.dataTypes;
+        $scope.dataTypes = ngAppSettings.editorConfigurations.dataTypes;
         $scope.activedModule = null;
         $scope.relatedModules = [];
         $rootScope.isBusy = false;

@@ -19,6 +19,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using static Swastika.Common.Utility.Enums;
 
 namespace Swastika.Cms.Lib.Services
 {
@@ -90,18 +91,26 @@ namespace Swastika.Cms.Lib.Services
                             Specificulture = culture.Specificulture,
                             Template = "_Home",
                             Type = (int)SWCmsConstants.CateType.Home,
-                            CreatedBy = "Admin"
+                            CreatedBy = "Admin",
+                            Status = (int)SWStatus.Published
                         }, context, transaction);
 
                         var createVNHome = await cate.SaveModelAsync(false, context, transaction).ConfigureAwait(false);
-                        ApiUrlAliasViewModel UrlAlias = new ApiUrlAliasViewModel(new SiocUrlAlias()
+                        isSucceed = createVNHome.IsSucceed;
+
+                        ApiCategoryViewModel error404 = new ApiCategoryViewModel(new SiocCategory()
                         {
+                            Title = "Home",
                             Specificulture = culture.Specificulture,
-                            Alias = cate.SeoName,
-                            SourceId = createVNHome.Data.Model.Id.ToString()
-                        });
-                        var createAlias = await UrlAlias.SaveModelAsync(false, context, transaction).ConfigureAwait(false);
-                        isSucceed = createVNHome.IsSucceed && createAlias.IsSucceed;
+                            Template = "_Home",
+                            Type = (int)SWCmsConstants.CateType.Article,
+                            Status = (int)SWStatus.Published,
+                            CreatedBy = "Admin"
+                        }, context, transaction);
+
+                        var createError404 = await error404.SaveModelAsync(false, context, transaction).ConfigureAwait(false);
+                        isSucceed = isSucceed && createError404.IsSucceed;
+                        
                     }
 
                     if (isSucceed)

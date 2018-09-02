@@ -7,6 +7,7 @@ using Microsoft.Data.OData.Query;
 using Newtonsoft.Json.Linq;
 using Swastika.Cms.Lib;
 using Swastika.Cms.Lib.Models.Cms;
+using Swastika.Cms.Lib.Services;
 using Swastika.Cms.Lib.ViewModels.Api;
 using Swastika.Cms.Lib.ViewModels.FrontEnd;
 using Swastika.Cms.Lib.ViewModels.Info;
@@ -43,45 +44,39 @@ namespace Swastka.Cms.Api.Controllers
             switch (viewType)
             {
                 case "be":
+                    RepositoryResponse<ApiProductViewModel> apiResult = null;
                     if (!string.IsNullOrEmpty(id))
                     {
-                        var beResult = await ApiProductViewModel.Repository.GetSingleModelAsync(model => model.Id == id && model.Specificulture == _lang).ConfigureAwait(false);
-                        if (beResult.IsSucceed)
+                        apiResult = await ApiProductViewModel.Repository.GetSingleModelAsync(model => model.Id == id && model.Specificulture == _lang).ConfigureAwait(false);
+                        if (apiResult.IsSucceed)
                         {
-                            beResult.Data.DetailsUrl = SwCmsHelper.GetRouterUrl("Product", new { beResult.Data.SeoName }, Request, Url);
+                            apiResult.Data.DetailsUrl = SwCmsHelper.GetRouterUrl("Product", new { apiResult.Data.SeoName }, Request, Url);
                         }
-                        return JObject.FromObject(beResult);
+                        return JObject.FromObject(apiResult);
                     }
                     else
                     {
-                        var model = new SiocProduct() { Specificulture = _lang, Status = (int)SWStatus.Preview };
-                        RepositoryResponse<ApiProductViewModel> result = new RepositoryResponse<ApiProductViewModel>()
+                        var model = new SiocProduct()
+                        {
+                            Specificulture = _lang,
+                            Status = GlobalConfigurationService.Instance.CmsConfigurations.DefaultStatus
+                        };
+                        apiResult = new RepositoryResponse<ApiProductViewModel>()
                         {
                             IsSucceed = true,
                             Data = new ApiProductViewModel(model)
                         };
-                        return JObject.FromObject(result);
+                        return JObject.FromObject(apiResult);
                     }
                 default:
-                    if (!string.IsNullOrEmpty(id))
+
+                    var result = await FEProductViewModel.Repository.GetSingleModelAsync(model => model.Id == id && model.Specificulture == _lang).ConfigureAwait(false);
+                    if (result.IsSucceed)
                     {
-                        var beResult = await FEProductViewModel.Repository.GetSingleModelAsync(model => model.Id == id && model.Specificulture == _lang).ConfigureAwait(false);
-                        if (beResult.IsSucceed)
-                        {
-                            beResult.Data.DetailsUrl = SwCmsHelper.GetRouterUrl("Product", new { beResult.Data.SeoName }, Request, Url);
-                        }
-                        return JObject.FromObject(beResult);
+                        result.Data.DetailsUrl = SwCmsHelper.GetRouterUrl("Product", new { result.Data.SeoName }, Request, Url);
                     }
-                    else
-                    {
-                        var model = new SiocProduct();
-                        RepositoryResponse<FEProductViewModel> result = new RepositoryResponse<FEProductViewModel>()
-                        {
-                            IsSucceed = true,
-                            Data = new FEProductViewModel(model) { Specificulture = _lang, Status = SWStatus.Preview }
-                        };
-                        return JObject.FromObject(result);
-                    }
+                    return JObject.FromObject(result);
+
             }
         }
 
@@ -300,7 +295,7 @@ namespace Swastka.Cms.Api.Controllers
                     }
                     return JObject.FromObject(data);
             }
-            
+
         }
 
         #endregion Post

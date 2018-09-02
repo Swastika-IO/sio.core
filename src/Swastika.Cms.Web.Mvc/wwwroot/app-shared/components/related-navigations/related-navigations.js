@@ -1,7 +1,7 @@
 ﻿
 modules.component('relatedNavs', {
     templateUrl: '/app-shared/components/related-navigations/related-navigations.html',
-    controller: ['$rootScope', '$scope', '$q', function ($rootScope, $scope, $q) {
+    controller: ['$rootScope', '$scope', 'ngAppSettings', '$q', function ($rootScope, $scope, ngAppSettings, $q) {
         var ctrl = this;
         ctrl.selected = null;
         ctrl.activeItem = function (item) {

@@ -21,6 +21,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using static Swastika.Cms.Lib.SWCmsConstants;
+using static Swastika.Common.Utility.Enums;
 
 namespace Swastika.Cms.Lib.ViewModels.FrontEnd
 {
@@ -363,7 +364,7 @@ namespace Swastika.Cms.Lib.ViewModels.FrontEnd
         private void GetSubArticles(SiocCmsContext _context = null, IDbContextTransaction _transaction = null)
         {
             var getArticles = NavCategoryArticleViewModel.Repository.GetModelListBy(
-                n => n.CategoryId == Id && n.Specificulture == Specificulture, SWCmsConstants.Default.OrderBy, OrderByDirection.Ascending
+                n => n.Status == (int)SWStatus.Published && n.CategoryId == Id && n.Specificulture == Specificulture, SWCmsConstants.Default.OrderBy, OrderByDirection.Ascending
                 , 4, 0
                , _context: _context, _transaction: _transaction
                );
@@ -376,7 +377,8 @@ namespace Swastika.Cms.Lib.ViewModels.FrontEnd
         private void GetSubProducts(SiocCmsContext _context = null, IDbContextTransaction _transaction = null)
         {
             var getProducts = NavCategoryProductViewModel.Repository.GetModelListBy(
-               m => m.CategoryId == Id && m.Specificulture == Specificulture
+               m => m.Status == (int)SWStatus.Published &&
+               m.CategoryId == Id && m.Specificulture == Specificulture
            , SWCmsConstants.Default.OrderBy, OrderByDirection.Ascending
            , PageSize, 0
                , _context: _context, _transaction: _transaction

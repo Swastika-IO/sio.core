@@ -2,7 +2,7 @@
 modules.component('moduleForm', {
     templateUrl: '/app-shared/components/module-data/module-form.html',
     controller: ['$scope', '$rootScope', '$routeParams', '$timeout', '$location', 'AuthService', 'ModuleDataServices',
-        function ($scope, $rootScope, $routeParams, $timeout, $location, authService, moduleDataServices) {
+        function ($scope, $rootScope, ngAppSettings, $routeParams, $timeout, $location, authService, moduleDataServices) {
             var ctrl = this;
             $rootScope.isBusy = false;
 
@@ -87,7 +87,7 @@ modules.component('moduleForm', {
 
 modules.component('moduleFormEditor', {
     templateUrl: '/app-shared/components/module-data/module-form-editor.html',
-    controller: ['$rootScope', '$scope', function ($rootScope, $scope) {
+    controller: ['$rootScope', '$scope', 'ngAppSettings', function ($rootScope, $scope) {
         var ctrl = this;
         this.dataTypes = {
             'string': 0,

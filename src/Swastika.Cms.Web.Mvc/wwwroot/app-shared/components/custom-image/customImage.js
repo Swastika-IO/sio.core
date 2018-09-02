@@ -2,7 +2,7 @@
 //modules.controller('ImageController', );
 modules.component('customImage', {
     templateUrl: '/app-shared/components/custom-image/customImage.html',
-    controller: ['$rootScope', '$scope', 'MediaServices', function ($rootScope, $scope, mediaServices) {
+    controller: ['$rootScope', '$scope', 'ngAppSettings', 'MediaServices', function ($rootScope, $scope, ngAppSettings, mediaServices) {
         var ctrl = this;
         ctrl.init = function () {
             ctrl.srcUrl = ctrl.srcUrl || '/lib/now-ui-kit-pro-v1.2.2/assets/img/image_placeholder.jpg';

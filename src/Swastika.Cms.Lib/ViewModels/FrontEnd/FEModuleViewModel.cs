@@ -17,6 +17,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq.Expressions;
 using static Swastika.Cms.Lib.SWCmsConstants;
+using static Swastika.Common.Utility.Enums;
 
 namespace Swastika.Cms.Lib.ViewModels.FrontEnd
 {

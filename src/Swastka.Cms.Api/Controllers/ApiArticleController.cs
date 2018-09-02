@@ -9,6 +9,7 @@ using Microsoft.Data.OData.Query;
 using Newtonsoft.Json.Linq;
 using Swastika.Cms.Lib;
 using Swastika.Cms.Lib.Models.Cms;
+using Swastika.Cms.Lib.Services;
 using Swastika.Cms.Lib.ViewModels.Api;
 using Swastika.Cms.Lib.ViewModels.BackEnd;
 using Swastika.Cms.Lib.ViewModels.FrontEnd;
@@ -60,7 +61,7 @@ namespace Swastka.Cms.Api.Controllers
                         var model = new SiocArticle()
                         {
                             Specificulture = _lang,
-                            Status = (int)SWStatus.Preview,
+                            Status = GlobalConfigurationService.Instance.CmsConfigurations.DefaultStatus,
                             Priority = ApiArticleViewModel.Repository.Max(a => a.Priority).Data + 1
                         };
                         RepositoryResponse<ApiArticleViewModel> result = new RepositoryResponse<ApiArticleViewModel>()

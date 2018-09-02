@@ -39,7 +39,7 @@ app.directive('ngEnter', function () {
         }
     };
 }).filter('utcToLocal', Filter)
-    .constant('ngAuthSettings', {
+    .constant('ngAppSettings', {
         apiServiceBaseUri: '/',
         serviceBase: '',
         clientId: 'ngAuthApp',

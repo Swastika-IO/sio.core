@@ -19,7 +19,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-
+using static Swastika.Common.Utility.Enums;
 
 namespace Swastika.Cms.Lib.Services
 {
@@ -40,6 +40,7 @@ namespace Swastika.Cms.Lib.Services
         public string AccountConnectionString { get; set; }
         public bool IsSqlite { get; set; }
         public string Language { get; set; }
+        public int DefaultStatus { get; set; }
         public List<InfoConfigurationViewModel> ListConfiguration { get; set; }
         public IConfiguration Configuration { get; set; }
 
@@ -48,6 +49,8 @@ namespace Swastika.Cms.Lib.Services
             CmsConnectionString = Configuration.GetConnectionString(SWCmsConstants.CONST_DEFAULT_CONNECTION);
             AccountConnectionString = Configuration.GetConnectionString(SWCmsConstants.CONST_DEFAULT_CONNECTION);
             Language = Configuration[SWCmsConstants.ConfigurationKeyword.Language];
+            var stt = Configuration[SWCmsConstants.ConfigurationKeyword.DefaultStatus]?.ToString();
+            DefaultStatus = stt != null ? int.Parse(stt) : 2;
             bool.TryParse(Configuration[SWCmsConstants.ConfigurationKeyword.IsSqlite], out bool isSqlite);
             IsSqlite = isSqlite;
         }

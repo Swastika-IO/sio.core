@@ -1,6 +1,6 @@
 ﻿modules.component('mainSideBar', {
     templateUrl: '/app-shared/components/main-side-bar/main-side-bar.html',
-    controller: ['$rootScope', '$scope', 'TranslatorService', function ($rootScope, $scope, translatorService) {
+    controller: ['$rootScope', '$scope', 'ngAppSettings', 'TranslatorService', function ($rootScope, $scope, ngAppSettings, translatorService) {
         var ctrl = this;
         ctrl.init = async function () {
             ctrl.items = [

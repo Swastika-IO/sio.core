@@ -264,12 +264,13 @@ namespace Swastika.Cms.Lib.ViewModels.Api
 
             Cultures = CommonRepository.Instance.LoadCultures(Specificulture, _context, _transaction);
 
-            UrlAlias = ApiUrlAliasViewModel.Repository.GetSingleModel(u => u.Specificulture == Specificulture && u.SourceId == Id.ToString()).Data;
+            UrlAlias = ApiUrlAliasViewModel.Repository.GetSingleModel(u => u.Specificulture == Specificulture && u.SourceId == Id.ToString() && u.Type == (int)SWCmsConstants.UrlAliasType.Article).Data;
             if (UrlAlias == null)
             {
                 UrlAlias = new ApiUrlAliasViewModel()
                 {
                     Specificulture = Specificulture,
+                    Type = SWCmsConstants.UrlAliasType.Article,
                     Alias = SeoName
                 };
             }

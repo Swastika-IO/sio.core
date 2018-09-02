@@ -8,6 +8,7 @@ using Swastika.Cms.Lib.Models.Cms;
 using Swastika.Cms.Lib.ViewModels.FrontEnd;
 using Swastika.Cms.Lib.ViewModels.Info;
 using Swastika.Domain.Data.ViewModels;
+using static Swastika.Common.Utility.Enums;
 
 namespace Swastika.Cms.Lib.ViewModels.Navigation
 {
@@ -48,7 +49,7 @@ namespace Swastika.Cms.Lib.ViewModels.Navigation
 
         public override void ExpandView(SiocCmsContext _context = null, IDbContextTransaction _transaction = null)
         {
-            var getModule = FEModuleViewModel.Repository.GetSingleModel(p => p.Id == ModuleId && p.Specificulture == Specificulture
+            var getModule = FEModuleViewModel.Repository.GetSingleModel(p => p.Status == (int)SWStatus.Published && p.Id == ModuleId && p.Specificulture == Specificulture
                 , _context: _context, _transaction: _transaction
             );
             if (getModule.IsSucceed)

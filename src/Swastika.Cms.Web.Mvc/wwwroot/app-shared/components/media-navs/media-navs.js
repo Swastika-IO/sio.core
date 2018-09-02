@@ -1,12 +1,12 @@
 ﻿
 app.component('mediaNavs', {
     templateUrl: '/app-shared/components/media-navs/media-navs.html',
-    controller: ['$rootScope', '$scope', 'MediaServices', function ($rootScope, $scope, mediaServices) {
+    controller: ['$rootScope', '$scope', 'ngAppSettings', 'MediaServices', function ($rootScope, $scope, ngAppSettings, mediaServices) {
         var ctrl = this;
         ctrl.request = {
             pageSize: '10',
             pageIndex: 0,
-            status: $rootScope.swStatus[1],
+            status: ngAppSettings.swStatus[1],
             orderBy: 'CreatedDateTime',
             direction: '1',
             fromDate: null,

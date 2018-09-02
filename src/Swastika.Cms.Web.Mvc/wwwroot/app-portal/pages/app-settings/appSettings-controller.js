@@ -1,12 +1,12 @@
 ﻿'use strict';
 app.controller('AppSettingsController', 
-['$scope', '$rootScope', '$routeParams', '$timeout', '$location', 
+    ['$scope', '$rootScope', 'ngAppSettings', '$routeParams', '$timeout', '$location', 
 'AuthService','CommonServices', 'AppSettingsServices',
-    function ($scope, $rootScope, $routeParams, $timeout, $location, authService, commonServices, appSettingsServices) {
+    function ($scope, $rootScope, ngAppSettings, $routeParams, $timeout, $location, authService, commonServices, appSettingsServices) {
 
         $scope.appSettings = null;
         $scope.errors = [];
-
+        $scope.statuses = ngAppSettings.swStatus;
         $scope.getAppSettings = async function (id) {
             $rootScope.isBusy = true;
             var resp = await appSettingsServices.getAppSettings();

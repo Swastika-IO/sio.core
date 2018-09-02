@@ -1,6 +1,6 @@
 ﻿modules.component('templateEditor', {
     templateUrl: '/app-shared/components/template-editor/templateEditor.html',
-    controller: ['$rootScope', '$scope', 'CommonServices', function ($rootScope, $scope, commonServices) {
+    controller: ['$rootScope', '$scope', 'ngAppSettings', 'CommonServices', function ($rootScope, $scope, ngAppSettings, commonServices) {
         var vm = this;
         vm.templates = [];
         vm.activedId = -1;

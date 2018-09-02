@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.Data.OData.Query;
 using Newtonsoft.Json.Linq;
 using Swastika.Cms.Lib.Models.Cms;
+using Swastika.Cms.Lib.Services;
 using Swastika.Cms.Lib.ViewModels.Api;
 using Swastika.Cms.Lib.ViewModels.FrontEnd;
 using Swastika.Cms.Lib.ViewModels.Info;
@@ -46,7 +47,7 @@ namespace Swastka.Cms.Api.Controllers
                     }
                     else
                     {
-                        var model = new SiocModule() { Specificulture = _lang, Status = (int)SWStatus.Preview };
+                        var model = new SiocModule() { Specificulture = _lang, Status = GlobalConfigurationService.Instance.CmsConfigurations.DefaultStatus, };
 
                         RepositoryResponse<SpaModuleViewModel> result = new RepositoryResponse<SpaModuleViewModel>()
                         {
@@ -66,7 +67,7 @@ namespace Swastka.Cms.Api.Controllers
                         var model = new SiocModule()
                         {
                             Specificulture = _lang,
-                            Status = (int)SWStatus.Preview
+                            Status = GlobalConfigurationService.Instance.CmsConfigurations.DefaultStatus
                         ,
                             Priority = ApiModuleViewModel.Repository.Max(a => a.Priority).Data + 1
                         };
@@ -216,6 +217,7 @@ namespace Swastka.Cms.Api.Controllers
 
             Expression<Func<SiocModule, bool>> predicate = model =>
                 model.Specificulture == _lang
+                && (!request.Status.HasValue || model.Status == (int)request.Status.Value)
                 && (string.IsNullOrWhiteSpace(request.Keyword)
                     || (model.Title.Contains(request.Keyword)
                     || model.Description.Contains(request.Keyword)))

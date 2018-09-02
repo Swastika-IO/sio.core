@@ -1,10 +1,10 @@
 ﻿
 modules.component('statuses', {
     templateUrl: '/app-shared/components/statuses/statuses.html',
-    controller: ['$rootScope', function ($rootScope) {
-        this.swStatus = $rootScope.swStatus;
+    controller: ['$rootScope','ngAppSettings', function ($rootScope,ngAppSettings) {
+        this.swStatus = ngAppSettings.swStatus;
     }],
     bindings: {
-        status: '=',
+        status: '='
     }
 });

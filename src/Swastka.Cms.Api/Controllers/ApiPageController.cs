@@ -9,6 +9,7 @@ using Microsoft.Data.OData.Query;
 using Newtonsoft.Json.Linq;
 using Swastika.Cms.Lib;
 using Swastika.Cms.Lib.Models.Cms;
+using Swastika.Cms.Lib.Services;
 using Swastika.Cms.Lib.ViewModels.Api;
 using Swastika.Cms.Lib.ViewModels.FrontEnd;
 using Swastika.Cms.Lib.ViewModels.Info;
@@ -77,7 +78,7 @@ namespace Swastka.Cms.Api.Controllers
                         var model = new SiocCategory()
                         {
                             Specificulture = _lang,
-                            Status = (int)SWStatus.Preview,
+                            Status = GlobalConfigurationService.Instance.CmsConfigurations.DefaultStatus,
                             PageSize = 20
                             ,
                             Priority = ApiCategoryViewModel.Repository.Max(a => a.Priority).Data + 1
@@ -219,6 +220,7 @@ namespace Swastka.Cms.Api.Controllers
             ParseRequestPagingDate(request);
             Expression<Func<SiocCategory, bool>> predicate = model =>
                         model.Specificulture == _lang
+                        && (!request.Status.HasValue || model.Status == (int)request.Status.Value)
                         && (!level.HasValue || model.Level == level)
                         && (string.IsNullOrWhiteSpace(request.Keyword)
                             || (model.Title.Contains(request.Keyword)

@@ -1,8 +1,8 @@
 ﻿(function (angular) {
     'use strict';
-    app.controller('AppClientController', ['$rootScope', '$scope', 'CommonServices', 'AuthService'
+    app.controller('AppClientController', [ '$rootScope', '$scope', 'ngAppSettings', 'CommonServices', 'AuthService'
         , 'TranslatorService', 'ModuleDataServices',
-        function ($rootScope, $scope, commonServices, authService, translatorService, moduleDataServices) {
+        function ($rootScope, $scope, ngAppSettings, commonServices, authService, translatorService, moduleDataServices) {
             $scope.lang = '';
             $scope.isInit = false;
             $scope.init = async function (lang) {

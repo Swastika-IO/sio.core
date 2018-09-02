@@ -1,16 +1,16 @@
 ﻿
 modules.component('filterList', {
     templateUrl: '/app-shared/components/filter-list/filter-list.html',
-    controller: function ($scope, $rootScope) {
+    controller: ['$scope', '$rootScope', 'ngAppSettings', function ($scope, $rootScope, ngAppSettings) {
         var ctrl = this;
         ctrl.dateRange = {
             fromDate: null,
             toDate: null
         };
-        ctrl.orders = $rootScope.orders;
-        ctrl.directions = $rootScope.directions;
-        ctrl.pageSizes = $rootScope.pageSizes;
-        ctrl.statuses = $rootScope.swStatus;
+        ctrl.orders = ngAppSettings.orders;
+        ctrl.directions = ngAppSettings.directions;
+        ctrl.pageSizes = ngAppSettings.pageSizes;
+        ctrl.statuses = ngAppSettings.swStatus;
         ctrl.updateDate = function () {
             if (Date.parse(ctrl.dateRange.fromDate)) {
                 ctrl.request.fromDate = new Date(ctrl.dateRange.fromDate).toISOString();
@@ -26,7 +26,7 @@ modules.component('filterList', {
             }
             ctrl.callback({ pageIndex: 0 });
         };
-    },
+    }],
     bindings: {
         request: '=',
         callback: '&'

@@ -1,10 +1,10 @@
 ﻿'use strict';
-app.controller('ConfigurationController', ['$scope', '$rootScope', '$routeParams', '$timeout', '$location', 'AuthService', 'ConfigurationServices',
-    function ($scope, $rootScope, $routeParams, $timeout, $location, authService, configurationServices) {
+app.controller('ConfigurationController', ['$scope', '$rootScope', 'ngAppSettings', '$routeParams', '$timeout', '$location', 'AuthService', 'ConfigurationServices',
+    function ($scope, $rootScope, ngAppSettings, $routeParams, $timeout, $location, authService, configurationServices) {
         $scope.request = {
             pageSize: '10',
             pageIndex: 0,
-            status: $rootScope.swStatus[1],
+            status: ngAppSettings.swStatus[1],
             orderBy: 'CreatedDateTime',
             direction: '1',
             fromDate: null,
@@ -18,7 +18,7 @@ app.controller('ConfigurationController', ['$scope', '$rootScope', '$routeParams
             title: '',
             description: ''
         };
-        $scope.dataTypes = $rootScope.configurations.dataTypes;
+        $scope.dataTypes = ngAppSettings.editorConfigurations.dataTypes;
         $scope.activedConfiguration = null;
         $scope.relatedConfigurations = [];
         $rootScope.isBusy = false;

@@ -40,7 +40,7 @@ app.directive('ngEnter', function () {
         }
     };
 }).filter('utcToLocal', Filter)
-    .constant('ngAuthSettings', {
+    .constant('ngAppSettings', {
         apiServiceBaseUri: '/',
         serviceBase: '',
         clientId: 'ngAuthApp',
@@ -64,14 +64,14 @@ app.run(['$rootScope', '$location', 'CommonServices', 'AuthService', 'Translator
             context: $rootScope
         };
 
-        $rootScope.swStatus = [
+        ngAppSettings.swStatus = [
             'Deleted',
             'Preview',
             'Published',
             'Draft',
             'Schedule'
         ]
-        $rootScope.orders = [
+        ngAppSettings.orders = [
             {
                 value: 'CreatedDateTime',
                 title: 'Created Date'
@@ -87,7 +87,7 @@ app.run(['$rootScope', '$location', 'CommonServices', 'AuthService', 'Translator
                 title: 'Title'
             }
         ];
-        $rootScope.directions = [
+        ngAppSettings.directions = [
             {
                 value: '0',
                 title: 'Asc'
@@ -97,23 +97,23 @@ app.run(['$rootScope', '$location', 'CommonServices', 'AuthService', 'Translator
                 title: 'Desc'
             }
         ]
-        $rootScope.pageSizes = [
+        ngAppSettings.pageSizes = [
             '5',
             '10',
             '15',
             '20'
         ]
-        $rootScope.request = {
+        ngAppSettings.request = {
             pageSize: '10',
             pageIndex: 0,
-            status: $rootScope.swStatus[1],
+            status: ngAppSettings.swStatus[1],
             orderBy: 'CreatedDateTime',
             direction: '1',
             fromDate: null,
             toDate: null,
             keyword: ''
         };
-        $rootScope.configurations = {
+        ngAppSettings.editorConfigurations = {
             core: {},
             plugins: {
                 btnsDef: {
@@ -233,7 +233,7 @@ app.run(['$rootScope', '$location', 'CommonServices', 'AuthService', 'Translator
                 })
                 $.each($('.editor-content'), function (i, e) {
                     var $demoTextarea = $(e);
-                    $demoTextarea.trumbowyg($rootScope.configurations.plugins);
+                    $demoTextarea.trumbowyg(ngAppSettings.editorConfigurations.plugins);
                 });
             }, 200)
         }

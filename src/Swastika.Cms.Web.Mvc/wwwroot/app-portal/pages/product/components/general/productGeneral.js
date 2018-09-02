@@ -1,7 +1,7 @@
 ﻿
 app.component('productGeneral', {
     templateUrl: '/app-portal/pages/product/components/general/productGeneral.html',
-    controller: ['$rootScope', '$scope', function ($rootScope, $scope) {
+    controller: ['$rootScope', '$scope', 'ngAppSettings', function ($rootScope, $scope) {
         var ctrl = this;
         //ctrl.tags = ctrl.product.tags;
         ctrl.dataTypes = [
@@ -22,7 +22,7 @@ app.component('productGeneral', {
                 value: 7
             }
         ];
-        ctrl.configurations = $rootScope.configurations;
+        ctrl.configurations = ngAppSettings.editorConfigurations;
         ctrl.addProperty = function (type) {
             var i = $(".property").length;
             ctrl.product.properties.push({

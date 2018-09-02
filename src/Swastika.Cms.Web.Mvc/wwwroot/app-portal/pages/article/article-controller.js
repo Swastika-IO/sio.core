@@ -1,11 +1,11 @@
 ﻿'use strict';
-app.controller('ArticleController', ['$scope', '$rootScope', '$routeParams', '$timeout', '$location', 'AuthService', 'ArticleServices',
-    function ($scope, $rootScope, $routeParams, $timeout, $location, authService, articleServices) {
-        
+app.controller('ArticleController', ['$scope', '$rootScope', 'ngAppSettings', '$routeParams', '$location', 'ArticleServices',
+    function ($scope, $rootScope, ngAppSettings, $routeParams, $location, articleServices) {
+
         $scope.request = {
             pageSize: '10',
             pageIndex: 0,
-            status: $rootScope.swStatus[1],
+            status: ngAppSettings.swStatus[1],
             orderBy: 'CreatedDateTime',
             direction: '1',
             fromDate: null,
@@ -19,7 +19,7 @@ app.controller('ArticleController', ['$scope', '$rootScope', '$routeParams', '$t
         $scope.data = {
             pageIndex: 0,
             pageSize: 1,
-            totalItems: 0,
+            totalItems: 0
         };
         $scope.errors = [];
 
@@ -46,14 +46,14 @@ app.controller('ArticleController', ['$scope', '$rootScope', '$routeParams', '$t
             }
         };
         $scope.loadArticles = async function (pageIndex) {
-            if (pageIndex != undefined) {
+            if (pageIndex !== undefined) {
                 $scope.request.pageIndex = pageIndex;
             }
-            if ($scope.request.fromDate != null) {
+            if ($scope.request.fromDate !== null) {
                 var d = new Date($scope.request.fromDate);
                 $scope.request.fromDate = d.toISOString();
             }
-            if ($scope.request.toDate != null) {
+            if ($scope.request.toDate !== null) {
                 $scope.request.toDate = $scope.request.toDate.toISOString();
             }
             var resp = await articleServices.getArticles($scope.request);
@@ -64,7 +64,7 @@ app.controller('ArticleController', ['$scope', '$rootScope', '$routeParams', '$t
                 $.each($scope.data.items, function (i, article) {
 
                     $.each($scope.activedArticles, function (i, e) {
-                        if (e.articleId == article.id) {
+                        if (e.articleId === article.id) {
                             article.isHidden = true;
                         }
                     })

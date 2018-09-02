@@ -2,7 +2,7 @@
 //modules.controller('ImageController', );
 modules.component('customFile', {
     templateUrl: '/app-shared/components/custom-file/custom-file.html',
-    controller: ['$rootScope', '$scope', 'MediaServices', function PortalTemplateController($rootScope, $scope, mediaServices) {
+    controller: ['$rootScope', '$scope', 'ngAppSettings', 'MediaServices', function PortalTemplateController($rootScope, $scope, mediaServices) {
         var ctrl = this;        
         ctrl.media = null;
         ctrl.selectFile = function (file, errFiles) {

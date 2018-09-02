@@ -324,6 +324,9 @@ namespace Swastika.Cms.Lib.ViewModels
 
         [JsonProperty("pageTypes")]
         public List<string> PageTypes { get; set; }
+
+        [JsonProperty("statuses")]
+        public List<string> Statuses { get; set; }
     }
 
     public class DataValueViewModel

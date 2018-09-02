@@ -20,6 +20,7 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Threading.Tasks;
+using static Swastika.Common.Utility.Enums;
 
 namespace Swastika.Cms.Lib.ViewModels.Api
 {
@@ -257,7 +258,9 @@ namespace Swastika.Cms.Lib.ViewModels.Api
 
         public override void ExpandView(SiocCmsContext _context = null, IDbContextTransaction _transaction = null)
         {
-            UrlAlias = ApiUrlAliasViewModel.Repository.GetSingleModel(u => u.Specificulture == Specificulture && u.SourceId == Id.ToString()).Data;
+            var getAlias = ApiUrlAliasViewModel.Repository.GetSingleModel(
+                u => u.Specificulture == Specificulture && u.SourceId == Id.ToString() && u.Type == (int)SWCmsConstants.UrlAliasType.Page);
+            UrlAlias = getAlias.Data;
             if (UrlAlias == null)
             {
                 UrlAlias = new ApiUrlAliasViewModel()
@@ -648,7 +651,7 @@ namespace Swastika.Cms.Lib.ViewModels.Api
         {
             var query = context.SiocModule
                 .Include(cp => cp.SiocCategoryModule)
-                .Where(module => module.Specificulture == Specificulture)
+                .Where(module => module.Status == (int)SWStatus.Published && module.Specificulture == Specificulture)
                 .Select(module => new CategoryModuleViewModel()
                 {
                     CategoryId = Id,
@@ -673,7 +676,7 @@ namespace Swastika.Cms.Lib.ViewModels.Api
         {
             var query = context.SiocCategory
                 .Include(cp => cp.SiocCategoryCategorySiocCategory)
-                .Where(Category => Category.Specificulture == Specificulture && Category.Id != Id)
+                .Where(Category => Category.Status == (int)SWStatus.Published && Category.Specificulture == Specificulture && Category.Id != Id)
                 .Select(Category =>
                     new NavCategoryCategoryViewModel()
                     {
@@ -698,7 +701,7 @@ namespace Swastika.Cms.Lib.ViewModels.Api
             // Get other category
             var query = context.SiocCategory
                 .Include(cp => cp.SiocCategoryCategorySiocCategory)
-                .Where(Category => Category.Specificulture == Specificulture && Category.Id != Id)
+                .Where(Category => Category.Status == (int)SWStatus.Published && Category.Specificulture == Specificulture && Category.Id != Id)
                 .Select(Category =>
                 new NavCategoryCategoryViewModel(
                       new SiocCategoryCategory()

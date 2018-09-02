@@ -1,8 +1,8 @@
 ﻿(function (angular) {
     'use strict';
-    app.controller('AppPortalController', ['$rootScope', '$scope', '$location'
+    app.controller('AppPortalController', [ '$rootScope', '$scope', 'ngAppSettings', '$location'
         , 'CommonServices', 'AuthService', 'TranslatorService', 'RoleServices',
-        function ($rootScope, $scope, $location, commonServices, authService, translatorService, roleServices) {
+        function ($rootScope, $scope, ngAppSettings, $location, commonServices, authService, translatorService, roleServices) {
             $scope.isInit = false;
             $scope.isAdmin = false;
             $scope.translator = translatorService;

@@ -210,6 +210,7 @@ namespace Swastika.Cms.Lib
             public const string ConnectionString = "ConnectionString";
             public const string Theme = "Theme";
             public const string Language = "Language";
+            public const string DefaultStatus = "DefaultStatus";
             public const string IsSqlite = "IsSqlite";
             public const string ThemeId = "ThemeId";
         }

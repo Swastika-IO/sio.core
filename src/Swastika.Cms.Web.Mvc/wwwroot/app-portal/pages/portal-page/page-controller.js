@@ -1,10 +1,10 @@
 ﻿'use strict';
-app.controller('PortalPageController', ['$scope', '$rootScope', '$routeParams', '$timeout', '$location', 'AuthService', 'PortalPageServices',
-    function ($scope, $rootScope, $routeParams, $timeout, $location, authService, pageServices) {
+app.controller('PortalPageController', ['$scope', '$rootScope', 'ngAppSettings', '$routeParams', '$timeout', '$location', 'AuthService', 'PortalPageServices',
+    function ($scope, $rootScope, ngAppSettings, $routeParams, $timeout, $location, authService, pageServices) {
         $scope.request = {
             pageSize: '10',
             pageIndex: 0,
-            status: $rootScope.swStatus[1],
+            status: ngAppSettings.swStatus[1],
             orderBy: 'Priority',
             direction: '0',
             fromDate: null,

@@ -1,7 +1,7 @@
 ﻿
 app.component('pageMain', {
     templateUrl: '/app-portal/pages/page/components/main/main.html',
-    controller: ['$rootScope', '$scope', function ($rootScope, $scope) {
+    controller: ['$rootScope', '$scope', 'ngAppSettings', function ($rootScope, $scope) {
         var ctrl = this;
         ctrl.settings = $rootScope.settings;
         ctrl.setPageType = function (type) {

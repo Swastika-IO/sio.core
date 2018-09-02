@@ -1,7 +1,7 @@
 ﻿
 modules.component('apiFile', {
     templateUrl: '/app-shared/components/api-file/api-file.html',
-    controller: ['$rootScope', '$scope', function PortalTemplateController($rootScope, $scope) {
+    controller: ['$rootScope', '$scope', 'ngAppSettings', function PortalTemplateController($rootScope, $scope) {
         var ctrl = this;
         ctrl.selectFile = function (file, errFiles) {
             if (file !== undefined && file !== null) {

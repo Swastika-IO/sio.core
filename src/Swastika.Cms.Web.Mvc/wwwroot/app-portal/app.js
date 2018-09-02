@@ -3,8 +3,8 @@ var app = angular.module('SwastikaPortal', ['ngRoute', 'components', 'ngFileUplo
     'bw.paging', 'dndLists', 'ngTagsInput', 'ngSanitize']);
 //var serviceBase = 'http://crickettours.asia';
 
-app.run(['$rootScope', '$location', 'CommonServices', 'AuthService', 'TranslatorService',
-    function ($rootScope, $location, commonServices, authService, translatorService) {
+app.run(['$rootScope', '$location', 'CommonServices', 'AuthService', 'TranslatorService', 'ngAppSettings',
+    function ($rootScope, $location, commonServices, authService, translatorService, ngAppSettings) {
         $rootScope.currentContext = $rootScope;
         $rootScope.isBusy = false;
         $rootScope.translator = translatorService;
@@ -23,56 +23,7 @@ app.run(['$rootScope', '$location', 'CommonServices', 'AuthService', 'Translator
             context: $rootScope
         };
 
-        $rootScope.swStatus = [
-            'Deleted',
-            'Preview',
-            'Published',
-            'Draft',
-            'Schedule'
-        ];
-
-        $rootScope.orders = [
-            {
-                value: 'CreatedDateTime',
-                title: 'Created Date'
-            }
-            ,
-            {
-                value: 'Priority',
-                title: 'Priority'
-            },
-
-            {
-                value: 'Title',
-                title: 'Title'
-            }
-        ];
-        $rootScope.directions = [
-            {
-                value: '0',
-                title: 'Asc'
-            },
-            {
-                value: '1',
-                title: 'Desc'
-            }
-        ];
-        $rootScope.pageSizes = [
-            '5',
-            '10',
-            '15',
-            '20'
-        ];
-        $rootScope.request = {
-            pageSize: '10',
-            pageIndex: 0,
-            status: $rootScope.swStatus[1],
-            orderBy: 'CreatedDateTime',
-            direction: '1',
-            fromDate: null,
-            toDate: null,
-            keyword: ''
-        };
+        
         $rootScope.range = function (max) {
             var input = [];
             for (var i = 1; i <= max; i += 1) input.push(i);
@@ -90,7 +41,6 @@ app.run(['$rootScope', '$location', 'CommonServices', 'AuthService', 'Translator
 
         $rootScope.logOut = function () {
             authService.logOut();
-            //$location.path('/portal/login');
             window.top.location.href = '/portal/login';
         };
 
@@ -130,64 +80,14 @@ app.run(['$rootScope', '$location', 'CommonServices', 'AuthService', 'Translator
             $('#dlg-confirm-msg').modal('show');
         };
 
-        $rootScope.preview = function (type, data, title) {
+        $rootScope.preview = function (type, data, title, size) {
             $rootScope.previewObject = {
                 title: title || 'Preview',
+                size: size || 'modal-md',
                 type: type,
                 data: data
             };
             $('#dlg-preview-popup').modal('show');
-        };
-
-        $rootScope.configurations = {
-            core: {},
-            plugins: {
-                btnsDef: {
-                    // Customizables dropdowns
-                    image: {
-                        dropdown: ['insertImage', 'upload', 'base64', 'noembed'],
-                        ico: 'insertImage'
-                    }
-                },
-                btns: [
-                    ['table'],
-                    ['undo', 'redo'],
-                    ['formatting'],
-                    ['strong', 'em', 'del', 'underline'],
-                    ['link'],
-                    ['image'],
-                    ['justifyLeft', 'justifyCenter', 'justifyRight', 'justifyFull'],
-                    ['unorderedList', 'orderedList'],
-                    ['foreColor', 'backColor'],
-                    ['preformatted'],
-                    ['horizontalRule'],
-                    ['fullscreen'],
-                    ['viewHTML']
-                ],
-                plugins: {
-                    // Add imagur parameters to upload plugin
-                    upload: {
-                        serverPath: 'https://api.imgur.com/3/image',
-                        fileFieldName: 'image',
-                        headers: {
-                            'Authorization': 'Client-ID 9e57cb1c4791cea'
-                        },
-                        urlPropertyName: 'data.link'
-                    }
-                }
-            },
-            dataTypes: [
-                { title: 'string', value: 0 },
-                { title: 'int', value: 1 },
-                { title: 'image', value: 2 },
-                { title: 'codeEditor', value: 4 },
-                { title: 'html', value: 5 },
-                { title: 'textArea', value: 6 },
-                { title: 'boolean', value: 7 },
-                { title: 'mdTextArea', value: 8 },
-                { title: 'date', value: 9 },
-                { title: 'datetime', value: 10 }
-            ]
         };
 
         $rootScope.initEditor = function () {
@@ -217,7 +117,7 @@ app.run(['$rootScope', '$location', 'CommonServices', 'AuthService', 'Translator
 
                 $.each($('.editor-content'), function (i, e) {
                     var $textArea = $(e);
-                    $textArea.trumbowyg($rootScope.configurations.plugins);
+                    $textArea.trumbowyg(ngAppSettings.editorConfigurations.plugins);
 
                 });
             }, 200);

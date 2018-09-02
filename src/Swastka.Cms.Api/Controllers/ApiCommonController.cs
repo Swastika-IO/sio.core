@@ -19,6 +19,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using static Swastika.Common.Utility.Enums;
 
 namespace Swastka.Cms.Api.Controllers
 {
@@ -56,7 +57,8 @@ namespace Swastka.Cms.Api.Controllers
                 Lang = _lang,
                 ThemeId = GlobalConfigurationService.Instance.GetLocalInt(SWCmsConstants.ConfigurationKeyword.ThemeId, _lang),
                 Cultures = cultures,
-                PageTypes = Enum.GetNames(typeof(SWCmsConstants.CateType)).ToList()
+                PageTypes = Enum.GetNames(typeof(SWCmsConstants.CateType)).ToList(),
+                Statuses = Enum.GetNames(typeof(SWStatus)).ToList()
 
             };
             settings.LangIcon = culture?.Icon ?? GlobalConfigurationService.Instance.CmsConfigurations.Language;

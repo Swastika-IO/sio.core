@@ -1,10 +1,10 @@
 ﻿'use strict';
-app.controller('CultureController', ['$scope', '$rootScope', '$routeParams', '$timeout', '$location', 'AuthService', 'CultureServices',
-    function ($scope, $rootScope, $routeParams, $timeout, $location, authService, cultureServices) {
+app.controller('CultureController', ['$scope', '$rootScope', 'ngAppSettings', '$routeParams', '$timeout', '$location', 'AuthService', 'CultureServices',
+    function ($scope, $rootScope, ngAppSettings, $routeParams, $timeout, $location, authService, cultureServices) {
         $scope.request = {
             pageSize: '10',
             pageIndex: 0,
-            status: $rootScope.swStatus[1],
+            status: ngAppSettings.swStatus[1],
             orderBy: 'Priority',
             direction: '0',
             fromDate: null,

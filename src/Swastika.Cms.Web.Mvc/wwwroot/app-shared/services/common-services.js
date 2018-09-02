@@ -1,5 +1,5 @@
 ﻿'use strict';
-app.factory('CommonServices', ['$location', '$http', '$rootScope', 'AuthService', 'localStorageService', 'ngAuthSettings',
+app.factory('CommonServices', ['$location', '$http', '$rootScope', 'AuthService', 'localStorageService', 'ngAppSettings',
     function ($location, $http, $rootScope, authService, localStorageService, ngAuthSettings) {
         var adminCommonFactory = {};
         var _settings = {

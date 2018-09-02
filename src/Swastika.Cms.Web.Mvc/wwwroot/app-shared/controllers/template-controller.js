@@ -1,11 +1,11 @@
 ﻿'use strict';
-app.controller('TemplateController', ['$scope', '$rootScope', '$routeParams', '$timeout', '$location', 'AuthService', 'TemplateServices',
-    function ($scope, $rootScope, $routeParams, $timeout, $location, authService, templateServices) {
+app.controller('TemplateController', ['$scope', '$rootScope', 'ngAppSettings', '$routeParams', '$timeout', '$location', 'AuthService', 'TemplateServices',
+    function ($scope, $rootScope, ngAppSettings, $routeParams, $timeout, $location, authService, templateServices) {
         $scope.themeId = 0;
         $scope.request = {
             pageSize: '10',
             pageIndex: 0,
-            status: $rootScope.swStatus[1],
+            status: ngAppSettings.swStatus[1],
             orderBy: 'CreatedDateTime',
             direction: '1',
             fromDate: null,

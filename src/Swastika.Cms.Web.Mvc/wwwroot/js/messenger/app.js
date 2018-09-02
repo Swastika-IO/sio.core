@@ -1,7 +1,7 @@
 ﻿'use strict';
 var app = angular.module('MessengerApp', ['LocalStorageModule']);
 var serviceBase = "http://chat.demo.smileway.co/";//'https://microsoft-apiapp0b3793bb8b0045e28d315e567a5c882c.azurewebsites.net/';//"http://localhost:52615/";//'http://txt.ogilvy.com.vn/';//
-app.constant('ngAuthSettings', {
+app.constant('ngAppSettings', {
     apiServiceBaseUri: '/',
     clientId: 'ngAuthApp',
     facebookAppId: '464285300363325'

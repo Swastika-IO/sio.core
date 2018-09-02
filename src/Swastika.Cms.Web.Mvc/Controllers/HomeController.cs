@@ -45,18 +45,24 @@ namespace Swastika.Cms.Mvc.Controllers
             // Home Page
             if (!string.IsNullOrEmpty(alias))
             {
-                var getAlias = await ApiUrlAliasViewModel.Repository.GetSingleModelAsync(u => u.Alias == alias && u.Specificulture == CurrentLanguage);
+                var getAlias = await ApiUrlAliasViewModel.Repository.GetSingleModelAsync(
+                    u => u.Alias == alias && u.Specificulture == CurrentLanguage);
                 if (getAlias.IsSucceed)
                 {
                     switch (getAlias.Data.Type)
                     {
                         case SWCmsConstants.UrlAliasType.Page:
                             int.TryParse(getAlias.Data.SourceId, out int pageId);
-                            return Page(p => p.Specificulture == CurrentLanguage && p.Id == pageId, pageIndex, pageSize);
+                            return Page(p =>
+                                p.Status == (int)SWStatus.Published && p.Specificulture == CurrentLanguage && p.Id == pageId, pageIndex, pageSize);
+
                         case SWCmsConstants.UrlAliasType.Article:
-                            return ArticleView(getAlias.Data.SourceId);
+                            return ArticleView(a => a.Status == (int)SWStatus.Published && a.Id == getAlias.Data.SourceId && a.Specificulture == CurrentLanguage);
+
                         case SWCmsConstants.UrlAliasType.Product:
-                            return ProductView(getAlias.Data.SourceId);
+                            return ProductView(a =>
+                            a.Status == (int)SWStatus.Published && a.Id == getAlias.Data.SourceId && a.Specificulture == CurrentLanguage);
+
                         case SWCmsConstants.UrlAliasType.Module:
                         case SWCmsConstants.UrlAliasType.ModuleData:
                         default:
@@ -66,7 +72,7 @@ namespace Swastika.Cms.Mvc.Controllers
                 }
                 else
                 {
-                    return NotFound();
+                    return Redirect(string.Format("/{0}/404", CurrentLanguage));
                 }
             }
             else
@@ -93,14 +99,13 @@ namespace Swastika.Cms.Mvc.Controllers
             }
             else
             {
-                return RedirectToAction("Index", "Backend");
+                return Redirect(string.Format("/{0}/404", CurrentLanguage));
             }
         }
 
-        IActionResult ArticleView(string id)
+        IActionResult ArticleView(Expression<Func<SiocArticle, bool>> predicate)
         {
-            var getArticle = FEArticleViewModel.Repository.GetSingleModel(
-                a => a.Id == id && a.Specificulture == CurrentLanguage);
+            var getArticle = FEArticleViewModel.Repository.GetSingleModel(predicate);
             if (getArticle.IsSucceed)
             {
                 ViewData["Title"] = getArticle.Data.SeoTitle;
@@ -111,17 +116,17 @@ namespace Swastika.Cms.Mvc.Controllers
             }
             else
             {
-                return Redirect(string.Format("/{0}", CurrentLanguage));
+                return Redirect(string.Format("/{0}/404", CurrentLanguage));
             }
         }
 
-        IActionResult ProductView(string id)
+        IActionResult ProductView(Expression<Func<SiocProduct, bool>> predicate)
         {
-            var getProduct = FEProductViewModel.Repository.GetSingleModel(
-                a => a.Id == id && a.Specificulture == CurrentLanguage);
+            var getProduct = FEProductViewModel.Repository.GetSingleModel(predicate);
             if (getProduct.IsSucceed)
             {
-                getProduct.Data.ProductNavs.ForEach(p => {
+                getProduct.Data.ProductNavs.ForEach(p =>
+                {
                     p.RelatedProduct.DetailsUrl = GenerateDetailsUrl("Alias", new { seoName = p.RelatedProduct.UrlAlias.Alias });
                 });
 
@@ -134,7 +139,7 @@ namespace Swastika.Cms.Mvc.Controllers
             }
             else
             {
-                return Redirect(string.Format("/{0}", CurrentLanguage));
+                return Redirect(string.Format("/{0}/404", CurrentLanguage));
             }
         }
 
@@ -142,19 +147,28 @@ namespace Swastika.Cms.Mvc.Controllers
         {
             foreach (var articleNav in page.Articles.Items)
             {
-                articleNav.Article.DetailsUrl = GenerateDetailsUrl("Alias", new { seoName = articleNav.Article.UrlAlias.Alias });
+                if (articleNav.Article!=null)
+                {
+                    articleNav.Article.DetailsUrl = GenerateDetailsUrl("Alias", new { seoName = articleNav.Article.UrlAlias.Alias });
+                }
             }
 
             foreach (var productNav in page.Products.Items)
             {
-                productNav.Product.DetailsUrl = GenerateDetailsUrl("Alias", new { seoName = productNav.Product.UrlAlias.Alias });
+                if (productNav.Product!=null)
+                {
+                    productNav.Product.DetailsUrl = GenerateDetailsUrl("Alias", new { seoName = productNav.Product.UrlAlias.Alias });
+                }
             }
 
             foreach (var nav in page.Modules)
             {
                 var module = nav.Module;
-                module.DetailsUrl = GenerateDetailsUrl("Alias", new { seoName = module.UrlAlias.Alias });
-                GeneratePageDetailsUrls(module);
+                if (module!=null)
+                {
+                    module.DetailsUrl = GenerateDetailsUrl("Alias", new { seoName = module.UrlAlias.Alias });
+                    GeneratePageDetailsUrls(module);
+                }
             }
         }
 
@@ -162,12 +176,18 @@ namespace Swastika.Cms.Mvc.Controllers
         {
             foreach (var articleNav in module.Articles.Items)
             {
-                articleNav.Article.DetailsUrl = GenerateDetailsUrl("Alias", new { seoName = articleNav.Article.UrlAlias.Alias });
+                if (articleNav.Article != null)
+                {
+                    articleNav.Article.DetailsUrl = GenerateDetailsUrl("Alias", new { seoName = articleNav.Article.UrlAlias.Alias });
+                }
             }
 
             foreach (var productNav in module.Products.Items)
             {
-                productNav.Product.DetailsUrl = GenerateDetailsUrl("Alias", new { seoName = productNav.Product.UrlAlias.Alias });
+                if (productNav.Product != null)
+                {
+                    productNav.Product.DetailsUrl = GenerateDetailsUrl("Alias", new { seoName = productNav.Product.UrlAlias.Alias });
+                }
             }
         }
 

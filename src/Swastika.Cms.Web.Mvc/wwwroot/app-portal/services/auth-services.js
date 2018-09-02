@@ -1,5 +1,5 @@
 ﻿'use strict';
-app.factory('AuthService', ['$http', '$q', 'localStorageService', 'ngAuthSettings', function ($http, $q, localStorageService, ngAuthSettings) {
+app.factory('AuthService', ['$http', '$q', 'localStorageService', 'ngAppSettings', function ($http, $q, localStorageService, ngAuthSettings) {
 
     var serviceBase = '';
     var authServiceFactory = {};

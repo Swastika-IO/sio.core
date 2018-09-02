@@ -1,5 +1,5 @@
 ﻿'use strict';
-app.controller('TemplateControllerbk', ['$rootScope', '$scope', function TemplateController($rootScope, $scope) {
+app.controller('TemplateControllerbk', ['$rootScope', '$scope', 'ngAppSettings', function TemplateController($rootScope, $scope) {
     var vm = this;    
     vm.templates = [];
     vm.activedId = -1;

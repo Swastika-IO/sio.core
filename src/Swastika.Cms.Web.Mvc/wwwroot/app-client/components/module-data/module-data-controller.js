@@ -1,11 +1,11 @@
 ﻿'use strict';
-app.controller('ModuleDataController', ['$scope', '$rootScope', '$timeout', '$location',
+app.controller('ModuleDataController', ['$scope', '$rootScope', 'ngAppSettings', '$timeout', '$location',
     'AuthService', 'ModuleDataServices',
-    function ($scope, $rootScope, $timeout, $location, authService, moduleDataServices) {
+    function ($scope, $rootScope, ngAppSettings, $timeout, $location, authService, moduleDataServices) {
         $scope.request = {
             pageSize: '10',
             pageIndex: 0,
-            status: $rootScope.swStatus[1],
+            status: ngAppSettings.swStatus[1],
             orderBy: 'CreatedDateTime',
             direction: '1',
             fromDate: null,

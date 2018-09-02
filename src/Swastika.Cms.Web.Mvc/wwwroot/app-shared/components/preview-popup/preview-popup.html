@@ -1,6 +1,6 @@
 ﻿<!-- Modal -->
 <div class="modal fade modal-default" id="dlg-preview-popup" tabindex="-1" role="dialog" aria-hidden="true">
-    <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
+    <div class="modal-dialog {{$ctrl.previewObject.size}} modal-dialog-centered" role="document">
         <div class="modal-content">
             <div class="modal-header">
                 <h5 class="modal-title" ng-bind="$ctrl.previewObject.title"></h5>
@@ -11,14 +11,23 @@
             <div class="modal-body p-0">
                 <div class="container">
                     <div ng-switch="$ctrl.previewObject.type">
-                        <div ng-switch-when="img">
-                            <img  style="max-height: 350px;" ng-src="{{$ctrl.previewObject.data}}" />
+                        <div class="row" ng-switch-when="img">
+                            <div class="col-md-12">
+                                <img style="max-height: 350px;display:block;margin:10px auto" ng-src="{{$ctrl.previewObject.data}}" />
+                            </div>
                         </div>
                         <div ng-switch-when="product" class="mt-2">
                             <div class="row">
-                                <img style="max-height: 350px;" ng-src="{{$ctrl.previewObject.data.imageUrl}}" />
+                                <div class="col-md-12">
+                                    <img style="max-height: 350px;display:block;margin:10px" ng-src="{{$ctrl.previewObject.data.imageUrl}}" />
+                                    <p>
+                                        <a class="btn btn-info btn-preview mr-2" style="float:right" href="{{$ctrl.previewObject.data.detailsUrl}}" target="_blank">Preview</a>
+                                    </p>
+                                </div>
                             </div>
-                            <div class="row" ng-bind-html="$ctrl.previewObject.data.content"></div>
+                            <div class="row">
+                                <div class="col-md-12" ng-bind-html="$ctrl.previewObject.data.content"></div>
+                            </div>
                         </div>
                     </div>
                 </div>

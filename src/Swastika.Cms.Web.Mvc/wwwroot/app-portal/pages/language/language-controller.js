@@ -1,11 +1,11 @@
 ﻿'use strict';
-app.controller('LanguageController', ['$scope', '$rootScope', '$routeParams', '$timeout', '$location'
+app.controller('LanguageController', ['$scope', '$rootScope', 'ngAppSettings', '$routeParams', '$timeout', '$location'
     , 'AuthService', 'LanguageServices', 'CommonServices', 'TranslatorService',
-    function ($scope, $rootScope, $routeParams, $timeout, $location, authService, languageServices, commonServices, translatorService) {
+    function ($scope, $rootScope, ngAppSettings, $routeParams, $timeout, $location, authService, languageServices, commonServices, translatorService) {
         $scope.request = {
             pageSize: '10',
             pageIndex: 0,
-            status: $rootScope.swStatus[1],
+            status: ngAppSettings.swStatus[1],
             orderBy: 'CreatedDateTime',
             direction: '1',
             fromDate: null,
@@ -34,7 +34,7 @@ app.controller('LanguageController', ['$scope', '$rootScope', '$routeParams', '$
             }
         ];
         $scope.cate = $scope.cates[0];
-        $scope.dataTypes = $rootScope.configurations.dataTypes;
+        $scope.dataTypes = ngAppSettings.editorConfigurations.dataTypes;
         $scope.activedLanguage = null;
         $scope.relatedLanguages = [];
         $rootScope.isBusy = false;

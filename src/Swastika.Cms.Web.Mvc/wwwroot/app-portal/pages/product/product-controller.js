@@ -1,16 +1,7 @@
 ﻿'use strict';
-app.controller('ProductController', ['$scope', '$rootScope', '$routeParams', '$timeout', '$location', 'AuthService', 'ProductServices',
-    function ($scope, $rootScope, $routeParams, $timeout, $location, authService, productServices) {
-        $scope.request = {
-            pageSize: '10',
-            pageIndex: 0,
-            status: $rootScope.swStatus[1],
-            orderBy: 'CreatedDateTime',
-            direction: '1',
-            fromDate: null,
-            toDate: null,
-            keyword: ''
-        };
+app.controller('ProductController', ['$scope', '$rootScope', 'ngAppSettings', '$routeParams', '$timeout', '$location', 'AuthService', 'ProductServices', 'ngAppSettings',
+    function ($scope, $rootScope, ngAppSettings, $routeParams, $timeout, $location, authService, productServices) {
+        $scope.request = ngAppSettings.request;
 
         $scope.activedProduct = null;
         $scope.relatedProducts = [];
@@ -46,14 +37,14 @@ app.controller('ProductController', ['$scope', '$rootScope', '$routeParams', '$t
             }
         };
         $scope.loadProducts = async function (pageIndex) {
-            if (pageIndex != undefined) {
+            if (pageIndex !== undefined) {
                 $scope.request.pageIndex = pageIndex;
             }
-            if ($scope.request.fromDate != null) {
+            if ($scope.request.fromDate !== null) {
                 var d = new Date($scope.request.fromDate);
                 $scope.request.fromDate = d.toISOString();
             }
-            if ($scope.request.toDate != null) {
+            if ($scope.request.toDate !== null) {
                 $scope.request.toDate = $scope.request.toDate.toISOString();
             }
             $rootScope.isBusy = true;
@@ -65,7 +56,7 @@ app.controller('ProductController', ['$scope', '$rootScope', '$routeParams', '$t
                 $.each($scope.data.items, function (i, product) {
 
                     $.each($scope.activedProducts, function (i, e) {
-                        if (e.productId == product.id) {
+                        if (e.productId === product.id) {
                             product.isHidden = true;
                         }
                     })
@@ -117,6 +108,6 @@ app.controller('ProductController', ['$scope', '$rootScope', '$routeParams', '$t
         };
 
         $scope.preview = function (item) {
-            $rootScope.preview('product', item, item.title);
+            $rootScope.preview('product', item, item.title, 'modal-lg');
         };
     }]);
