@@ -3,7 +3,7 @@ var app = angular.module('SwastikaPortal', ['ngRoute', 'components', 'ngFileUplo
     'bw.paging', 'dndLists', 'ngTagsInput', 'ngSanitize']);
 //var serviceBase = 'http://crickettours.asia';
 
-app.run(['$rootScope', '$location', 'commonServices', 'authService', 'translatorService',
+app.run(['$rootScope', '$location', 'CommonServices', 'AuthService', 'TranslatorService',
     function ($rootScope, $location, commonServices, authService, translatorService) {
         $rootScope.currentContext = $rootScope;
         $rootScope.isBusy = false;
@@ -195,7 +195,7 @@ app.run(['$rootScope', '$location', 'commonServices', 'authService', 'translator
                     }
                     editor.setTheme("ace/theme/chrome");
                     //editor.setReadOnly(true);
-
+                    editor.$blockScrolling = Infinity;
                     editor.session.setUseWrapMode(true);
                     editor.setOptions({
                         maxLines: Infinity

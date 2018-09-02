@@ -1,5 +1,5 @@
 ﻿'use strict';
-app.controller('RoleController', ['$scope', '$rootScope', '$routeParams', '$timeout', '$location', 'authService', 'RoleServices',
+app.controller('RoleController', ['$scope', '$rootScope', '$routeParams', '$timeout', '$location', 'AuthService', 'RoleServices',
     function ($scope, $rootScope, $routeParams, $timeout, $location, authService, roleServices) {
         $scope.request = {
             pageSize: '10',

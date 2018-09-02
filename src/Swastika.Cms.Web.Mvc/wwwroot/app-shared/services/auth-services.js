@@ -1,7 +1,7 @@
 ﻿'use strict';
-app.factory('authService', ['$http', '$rootScope','$location', '$q', 'localStorageService', 'ngAuthSettings',
+app.factory('AuthService', ['$http', '$rootScope', '$location', '$q', 'localStorageService', 'ngAuthSettings',
     function ($http, $rootScope, $location, $q, localStorageService, ngAuthSettings) {
-        
+
         var authServiceFactory = {};
 
         var _authentication = {
@@ -113,7 +113,10 @@ app.factory('authService', ['$http', '$rootScope','$location', '$q', 'localStora
                 _authentication.useRefreshTokens = loginData.rememberme;
                 _authentication.token = data.access_token;
                 _authentication.refresh_token = data.refresh_token;
-                window.location.href = document.referrer||'/';//_authentication.referredUrl;
+                _fillSettings().then(function (response) {
+                    window.location.href = document.referrer || '/';//_authentication.referredUrl;
+                });
+
             } else {
                 $rootScope.isBusy = false;
                 $rootScope.showErrors(resp.errors);
@@ -155,6 +158,47 @@ app.factory('authService', ['$http', '$rootScope','$location', '$q', 'localStora
 
                 _authentication.token = authData.token;
                 _authentication.refresh_token = authData.refresh_token;
+            }
+
+        };
+
+        var _getSettings = async function (culture) {
+            var settings = localStorageService.get('settings');
+            // && culture !== undefined && settings.lang === culture
+            if (settings) {
+                return settings;
+            }
+            else {
+                var url = '/api/portal';
+                if (culture) {
+                    url += '/' + culture;
+                }
+                url += '/settings';
+                var req = {
+                    method: 'GET',
+                    url: url
+                };
+                return _getApiResult(req).then(function (response) {
+                    return response.data;
+                });
+            }
+        };
+
+        var _fillSettings = async function (culture) {
+            var settings = localStorageService.get('settings');
+            if (settings && settings.lang === culture) {
+                _settings = settings;
+                return settings;
+            }
+            else {
+                if (culture !== undefined && settings && settings.lang !== culture) {
+                    await _removeSettings();
+                    await _removeTranslator();
+                }
+                settings = await _getSettings(culture);
+                localStorageService.set('settings', settings);
+                //window.top.location = location.href;
+                return settings;
             }
 
         };
@@ -236,11 +280,11 @@ app.factory('authService', ['$http', '$rootScope','$location', '$q', 'localStora
 
             return $http(req).then(function (resp) {
                 //var resp = results.data;
-                
+
                 return resp.data;
             },
                 function (error) {
-                    var t = { isSucceed: false, errors: [error.statusText] };                    
+                    var t = { isSucceed: false, errors: [error.statusText] };
                     return t;
                 });
         };

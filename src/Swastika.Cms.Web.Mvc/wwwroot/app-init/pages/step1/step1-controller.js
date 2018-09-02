@@ -1,6 +1,6 @@
 ﻿'use strict';
 app.controller('Step1Controller', ['$scope', '$rootScope', '$timeout', '$location', '$http',
-    'commonServices', 'Step1Services',
+    'CommonServices', 'Step1Services',
     function ($scope, $rootScope, $timeout, $location, $http, commonServices, step1Services) {
         $scope.settings = {
             cultures: [

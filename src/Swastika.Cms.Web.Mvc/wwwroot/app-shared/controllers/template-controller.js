@@ -1,5 +1,5 @@
 ﻿'use strict';
-app.controller('TemplateController', ['$scope', '$rootScope', '$routeParams', '$timeout', '$location', 'authService', 'TemplateServices',
+app.controller('TemplateController', ['$scope', '$rootScope', '$routeParams', '$timeout', '$location', 'AuthService', 'TemplateServices',
     function ($scope, $rootScope, $routeParams, $timeout, $location, authService, templateServices) {
         $scope.themeId = 0;
         $scope.request = {

@@ -9,7 +9,7 @@
         </div>
         <div ng-switch-when="2">
             <custom-image header="''" type="'Modules'" folder="activedPage.seoName"
-                          src-url="$ctrl.data.value" src="$ctrl.data.value" auto="'true'" />
+                          src-url="$ctrl.data.value" ng-src="{{$ctrl.data.value}}" auto="'true'" />
         </div>
         <div ng-switch-when="3">
             <div class="no-margin no-padding">

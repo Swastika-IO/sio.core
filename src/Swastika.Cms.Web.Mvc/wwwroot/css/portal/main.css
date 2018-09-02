@@ -233,3 +233,8 @@ input[type="date"]::-webkit-inner-spin-button {
         transform: rotate(360deg);
     }
 }
+@media screen and (max-width: 580px) {
+    .hide-on-mb {
+        display: none;
+    }
+}

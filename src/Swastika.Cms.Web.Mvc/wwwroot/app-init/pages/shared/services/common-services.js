@@ -1,5 +1,5 @@
 ﻿'use strict';
-app.factory('commonServices', ['$location', '$http', '$rootScope', 'localStorageService', function ($location, $http, $rootScope, localStorageService) {
+app.factory('CommonServices', ['$location', '$http', '$rootScope', 'localStorageService', function ($location, $http, $rootScope, localStorageService) {
     var adminCommonFactory = {};
     var _settings = {
         lang: '',

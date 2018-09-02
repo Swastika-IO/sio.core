@@ -1,7 +1,7 @@
 ﻿(function (angular) {
     app.component('headerNav', {
         templateUrl: '/app-shared/components/header-nav/headerNav.html',
-        controller: ['$rootScope', 'commonServices', 'translatorService', function ($rootScope, commonServices, translatorService) {
+        controller: ['$rootScope', 'CommonServices', 'TranslatorService', function ($rootScope, commonServices, translatorService) {
             var ctrl = this;
             ctrl.changeLang = function (lang, langIcon) {
                 ctrl.settings.lang = lang;

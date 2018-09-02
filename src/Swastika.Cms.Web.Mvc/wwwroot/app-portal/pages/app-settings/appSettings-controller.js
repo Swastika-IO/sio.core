@@ -1,7 +1,7 @@
 ﻿'use strict';
 app.controller('AppSettingsController', 
 ['$scope', '$rootScope', '$routeParams', '$timeout', '$location', 
-'authService','commonServices', 'AppSettingsServices',
+'AuthService','CommonServices', 'AppSettingsServices',
     function ($scope, $rootScope, $routeParams, $timeout, $location, authService, commonServices, appSettingsServices) {
 
         $scope.appSettings = null;

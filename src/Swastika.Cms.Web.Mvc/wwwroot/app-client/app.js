@@ -47,7 +47,7 @@ app.directive('ngEnter', function () {
         facebookAppId: '464285300363325'
     });
 
-app.run(['$rootScope', '$location', 'commonServices', 'authService', 'translatorService',
+app.run(['$rootScope', '$location', 'CommonServices', 'AuthService', 'TranslatorService',
     function ($rootScope, $location, commonServices, authService, translatorService) {
         $rootScope.isBusy = false;
         $rootScope.translator = translatorService;

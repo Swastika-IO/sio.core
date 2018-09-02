@@ -1,5 +1,5 @@
 ﻿'use strict';
-app.factory('MediaServices', ['$http', '$rootScope', 'commonServices', function ($http, $rootScope, commonServices) {
+app.factory('MediaServices', ['$http', '$rootScope', 'CommonServices', function ($http, $rootScope, commonServices) {
 
     //var serviceBase = 'http://ngauthenticationapi.azurewebsites.net/';
 

@@ -1,5 +1,5 @@
 ﻿'use strict';
-app.controller('PortalPageController', ['$scope', '$rootScope', '$routeParams', '$timeout', '$location', 'authService', 'PortalPageServices',
+app.controller('PortalPageController', ['$scope', '$rootScope', '$routeParams', '$timeout', '$location', 'AuthService', 'PortalPageServices',
     function ($scope, $rootScope, $routeParams, $timeout, $location, authService, pageServices) {
         $scope.request = {
             pageSize: '10',

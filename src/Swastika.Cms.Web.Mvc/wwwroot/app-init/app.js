@@ -46,7 +46,7 @@ app.directive('ngEnter', function () {
         facebookAppId: '464285300363325'
     });
 
-app.run(['$rootScope', '$location', 'commonServices',
+app.run(['$rootScope', '$location', 'CommonServices',
     function ($rootScope, $location, commonServices) {
         commonServices.removeSettings();
         commonServices.removeTranslator();

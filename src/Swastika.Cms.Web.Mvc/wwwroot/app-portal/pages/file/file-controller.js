@@ -1,5 +1,5 @@
 ﻿'use strict';
-app.controller('FileController', ['$scope', '$rootScope', '$routeParams', '$timeout', '$location', 'authService', 'FileServices',
+app.controller('FileController', ['$scope', '$rootScope', '$routeParams', '$timeout', '$location', 'AuthService', 'FileServices',
     function ($scope, $rootScope, $routeParams, $timeout, $location, authService, fileServices) {
         $scope.request = {
             pageSize: '10',

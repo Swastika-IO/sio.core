@@ -1,5 +1,5 @@
 ﻿'use strict';
-app.controller('CultureController', ['$scope', '$rootScope', '$routeParams', '$timeout', '$location', 'authService', 'CultureServices',
+app.controller('CultureController', ['$scope', '$rootScope', '$routeParams', '$timeout', '$location', 'AuthService', 'CultureServices',
     function ($scope, $rootScope, $routeParams, $timeout, $location, authService, cultureServices) {
         $scope.request = {
             pageSize: '10',

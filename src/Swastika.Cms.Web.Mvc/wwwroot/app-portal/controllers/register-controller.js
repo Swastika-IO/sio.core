@@ -1,5 +1,5 @@
 ﻿'use strict';
-app.controller('registerController', ['$scope', '$rootScope', '$timeout', '$location', 'authService', 'registerServices', function ($scope, $rootScope, $timeout, $location, authService, registerServices) {
+app.controller('registerController', ['$scope', '$rootScope', '$timeout', '$location', 'AuthService', 'registerServices', function ($scope, $rootScope, $timeout, $location, authService, registerServices) {
     $scope.errors = [];
     $scope.selected = null;
     $scope.isImport = false;

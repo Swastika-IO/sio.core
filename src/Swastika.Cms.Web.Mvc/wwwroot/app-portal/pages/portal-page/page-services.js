@@ -1,5 +1,5 @@
 ﻿'use strict';
-app.factory('PortalPageServices', ['$http', '$rootScope', 'commonServices', function ($http, $rootScope, commonServices) {
+app.factory('PortalPageServices', ['$http', '$rootScope', 'CommonServices', function ($http, $rootScope, commonServices) {
 
     var pagesServiceFactory = {};
 

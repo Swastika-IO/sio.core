@@ -1,5 +1,5 @@
 ﻿'use strict';
-app.controller('userController', ['$scope', '$rootScope', '$timeout', '$location', 'authService', 'userServices', function ($scope, $rootScope, $timeout, $location, authService, userServices) {
+app.controller('userController', ['$scope', '$rootScope', '$timeout', '$location', 'AuthService', 'userServices', function ($scope, $rootScope, $timeout, $location, authService, userServices) {
     $rootScope.page = 'page-managers';
     $scope.data = {
         pageIndex: 0,

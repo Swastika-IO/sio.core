@@ -8,6 +8,7 @@ modules.component('mainSideBarItemDynamic', {
     bindings: {
         iconSize: '=',
         linkStyle: '=',
+        itemStyle:'=',
         item: '='
     }
 });

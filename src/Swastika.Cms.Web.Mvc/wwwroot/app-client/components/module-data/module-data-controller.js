@@ -1,6 +1,6 @@
 ﻿'use strict';
 app.controller('ModuleDataController', ['$scope', '$rootScope', '$timeout', '$location',
-    'authService', 'ModuleDataServices',
+    'AuthService', 'ModuleDataServices',
     function ($scope, $rootScope, $timeout, $location, authService, moduleDataServices) {
         $scope.request = {
             pageSize: '10',

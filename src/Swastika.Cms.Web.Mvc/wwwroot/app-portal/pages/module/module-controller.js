@@ -1,6 +1,6 @@
 ﻿'use strict';
 app.controller('ModuleController', ['$scope', '$rootScope', '$routeParams', '$timeout'
-    , '$location', 'authService', 'ModuleServices', 'ModuleDataServices',
+    , '$location', 'AuthService', 'ModuleServices', 'ModuleDataServices',
     function ($scope, $rootScope, $routeParams, $timeout,
         $location, authService, moduleServices, moduleDataServices) {
         $scope.request = {

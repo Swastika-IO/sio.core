@@ -1,5 +1,5 @@
 ﻿'use strict';
-app.factory('commonServices', ['$location', '$http', '$rootScope', 'authService', 'localStorageService', function ($location, $http, $rootScope, authService, localStorageService) {
+app.factory('CommonServices', ['$location', '$http', '$rootScope', 'AuthService', 'localStorageService', function ($location, $http, $rootScope, authService, localStorageService) {
     var adminCommonFactory = {};
 
     var _showAlertMsg = function (title, message) {

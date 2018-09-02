@@ -1,6 +1,6 @@
 ﻿modules.component('aceEditor', {
     aceFileUrl: '/app-shared/components/ace-editor/aceEditor.html',
-    controller: ['$rootScope', '$scope', 'commonServices', function ($rootScope, $scope, commonServices) {
+    controller: ['$rootScope', '$scope', 'CommonServices', function ($rootScope, $scope, commonServices) {
         var vm = this;
         vm.id = Math.random();
         vm.initAce = function () {

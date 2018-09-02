@@ -1,6 +1,6 @@
 ﻿'use strict';
 app.controller('LanguageController', ['$scope', '$rootScope', '$routeParams', '$timeout', '$location'
-    , 'authService', 'LanguageServices', 'commonServices', 'translatorService',
+    , 'AuthService', 'LanguageServices', 'CommonServices', 'TranslatorService',
     function ($scope, $rootScope, $routeParams, $timeout, $location, authService, languageServices, commonServices, translatorService) {
         $scope.request = {
             pageSize: '10',

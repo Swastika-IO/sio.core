@@ -1,7 +1,7 @@
 ﻿(function (angular) {
     'use strict';
     app.controller('AppPortalController', ['$rootScope', '$scope', '$location'
-        , 'commonServices', 'authService', 'translatorService', 'RoleServices',
+        , 'CommonServices', 'AuthService', 'TranslatorService', 'RoleServices',
         function ($rootScope, $scope, $location, commonServices, authService, translatorService, roleServices) {
             $scope.isInit = false;
             $scope.isAdmin = false;

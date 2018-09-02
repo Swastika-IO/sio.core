@@ -1,5 +1,5 @@
 ﻿'use strict';
-app.controller('UserController', ['$scope', '$rootScope', '$routeParams', '$timeout', '$location', 'authService', 'UserServices',
+app.controller('UserController', ['$scope', '$rootScope', '$routeParams', '$timeout', '$location', 'AuthService', 'UserServices',
     function ($scope, $rootScope, $routeParams, $timeout, $location, authService, userServices) {
         $scope.request = {
             pageSize: '10',

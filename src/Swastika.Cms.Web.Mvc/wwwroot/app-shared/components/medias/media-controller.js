@@ -1,5 +1,5 @@
 ﻿'use strict';
-app.controller('MediaController', ['$scope', '$rootScope', '$routeParams', '$timeout', '$location', 'authService', 'MediaServices',
+app.controller('MediaController', ['$scope', '$rootScope', '$routeParams', '$timeout', '$location', 'AuthService', 'MediaServices',
     function ($scope, $rootScope, $routeParams, $timeout, $location, authService, mediaServices) {
         $scope.request = {
             pageSize: '10',

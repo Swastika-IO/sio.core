@@ -1,7 +1,7 @@
 ﻿
 modules.component('moduleForm', {
     templateUrl: '/app-shared/components/module-data/module-form.html',
-    controller: ['$scope', '$rootScope', '$routeParams', '$timeout', '$location', 'authService', 'ModuleDataServices',
+    controller: ['$scope', '$rootScope', '$routeParams', '$timeout', '$location', 'AuthService', 'ModuleDataServices',
         function ($scope, $rootScope, $routeParams, $timeout, $location, authService, moduleDataServices) {
             var ctrl = this;
             $rootScope.isBusy = false;

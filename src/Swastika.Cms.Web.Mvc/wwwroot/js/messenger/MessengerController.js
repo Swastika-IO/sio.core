@@ -1,5 +1,5 @@
 ﻿'use strict';
-app.controller('MessengerController', ['$scope', '$location', 'authService', function ($scope, $location, authService) {
+app.controller('MessengerController', ['$scope', '$location', 'AuthService', function ($scope, $location, authService) {
 
     $scope.pageClass = 'page-chat';
     $scope.authentication = authService.authentication;

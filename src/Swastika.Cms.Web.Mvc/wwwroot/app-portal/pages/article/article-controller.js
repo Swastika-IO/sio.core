@@ -1,5 +1,5 @@
 ﻿'use strict';
-app.controller('ArticleController', ['$scope', '$rootScope', '$routeParams', '$timeout', '$location', 'authService', 'ArticleServices',
+app.controller('ArticleController', ['$scope', '$rootScope', '$routeParams', '$timeout', '$location', 'AuthService', 'ArticleServices',
     function ($scope, $rootScope, $routeParams, $timeout, $location, authService, articleServices) {
         
         $scope.request = {
