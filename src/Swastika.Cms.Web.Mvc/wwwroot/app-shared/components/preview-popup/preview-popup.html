@@ -1,6 +1,6 @@
 ﻿<!-- Modal -->
 <div class="modal fade modal-default" id="dlg-preview-popup" tabindex="-1" role="dialog" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
         <div class="modal-content">
             <div class="modal-header">
                 <h3 class="col-md-11" ng-bind="$ctrl.previewObject.title"></h3>
@@ -11,12 +11,21 @@
                 </div>
             </div>
             <div class="modal-body">
-                <div ng-switch="$ctrl.previewObject.type">
-                    <div ng-switch-when="img">
-                        <img ng-src="{{$ctrl.previewObject.value}}" />
-                    </div>                    
+                <div class="container">
+                    <div ng-switch="$ctrl.previewObject.type">
+                        <div ng-switch-when="img">
+                            <img  style="max-height: 350px;" ng-src="{{$ctrl.previewObject.data}}" />
+                        </div>
+                        <div ng-switch-when="product" class="mt-2">
+                            <div class="row">
+                                <img style="max-height: 350px;" ng-src="{{$ctrl.previewObject.data.imageUrl}}" />
+                            </div>
+                            <div class="row" ng-bind-html="$ctrl.previewObject.data.content"></div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
+</div>
 </div>

@@ -130,11 +130,11 @@ app.run(['$rootScope', '$location', 'CommonServices', 'AuthService', 'Translator
             $('#dlg-confirm-msg').modal('show');
         };
 
-        $rootScope.preview = function (type, value) {
+        $rootScope.preview = function (type, data, title) {
             $rootScope.previewObject = {
-                title: 'Preview',
+                title: title || 'Preview',
                 type: type,
-                value: value
+                data: data
             };
             $('#dlg-preview-popup').modal('show');
         };
