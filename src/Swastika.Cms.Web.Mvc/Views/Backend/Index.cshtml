@@ -20,7 +20,7 @@
 
                         <div class="{{pageClass}}" ng-view>
                         </div>
-                        <medias></medias>
+                        <medias ng-if="isInit"></medias>
                         <message message="message"></message>
                         <confirm message="confirmMessage"></confirm>
                     </section>
