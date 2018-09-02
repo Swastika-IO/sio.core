@@ -7,29 +7,15 @@
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
-            <div class="modal-body" style="height: calc(100vh - 143px);overflow-y: auto;">
+            <!-- <div class="modal-body" style="height: calc(100vh - 143px);overflow-y: auto;"> -->
+            <div class="modal-body">
                 <div class="row">
-                    <div class="col-md-12 d-flex justify-content-end">
-                        <div class="btn-toolbar mb-3" role="toolbar" aria-label="Toolbar with button groups">
-                            <div class="input-group mr-2">
-
-                                <custom-file header="''" folder="'Medias'" media="activedMedia" auto="'false'"></custom-file>
-
-                            </div>
-                            <div class="btn-group btn-group-sm mr-2" role="group" aria-label="First group">
-                                <!--<cultures is-clone="activedMedia.isClone" data="activedMedia.cultures"></cultures>-->
-
-                                <button type="button" ng-click="saveMedia(activedMedia)" class="btn btn-secondary"><i class="mi mi-Upload"></i> Upload</button>
-                                <!--<button type="button" ng-click="uploadMedia()" class="btn btn-secondary"><i class="mi mi-Upload"></i> Upload</button>-->
-                            </div>
-                        </div>
-                    </div>
                     <div class="col-md-12">
                         <filter-list request="request" callback="loadMedias(pageIndex)" />
                     </div>
 
                 </div>
-                <table class="table table-sm table-condensed">
+                <table class="table table-sm table-condensed m-0">
                     <thead class="thead-light">
                         <tr>
                             <th scope="col">
@@ -57,18 +43,20 @@
                             <td>
                                 <input type="text" ng-model="item.description" class="form-control form-control-sm" />
                             </td>
-                            <td  width="15%">
+                            <td width="15%">
 
-                                <div class="input-group input-group-sm mb-3">
-                                    <input id="path-modal-{{$index}}" value="{{item.fullPath}}" onclick="this.select()" class="form-control form-control-sm" readonly />
+                                <div class="input-group input-group-sm">
+                                    <input id="path-modal-{{$index}}" value="{{item.fullPath}}" onclick="this.select()" class="form-control form-control-sm"
+                                        readonly />
                                     <div class="input-group-append">
-                                        <button class="btn btn-outline-secondary btn-clipboard" type="button" data-clipboard-target="#path-modal-{{$index}}"><i class="mi mi-Copy"></i></button>
+                                        <button class="btn btn-outline-secondary btn-clipboard" type="button" data-clipboard-target="#path-modal-{{$index}}"><i
+                                                class="mi mi-Copy"></i></button>
                                     </div>
                                 </div>
                             </td>
-                            <td  width="35%">
+                            <td width="35%">
                                 <a class="" style="cursor:pointer;" ng-click="togglePreview(item)">
-                                    <img height="25px" ng-src="{{item.fullPath}}" ng-class="{preview: item.isPreview}"/>
+                                    <img class="rounded" ng-src="{{item.fullPath}}" ng-class="{preview: item.isPreview}" />
                                 </a>
                             </td>
                             <td>
@@ -86,14 +74,25 @@
                 </table>
             </div>
             <div class="modal-footer">
-                <paging class="small"
-                        page="data.pageIndex+1"
-                        page-size="data.pageSize"
-                        total="data.totalItems"
-                        ul-class="pagination justify-content-end"
-                        a-class="page-link"
-                        paging-action="loadMedias(page-1)"
-                        scroll-top="true" />
+
+                <div class="col-md-12 d-flex justify-content-end">
+                    <div class="btn-toolbar" role="toolbar" aria-label="Toolbar with button groups">
+                        <div class="input-group mr-2">
+
+                            <custom-file header="''" folder="'Medias'" media="activedMedia" auto="'false'"></custom-file>
+
+                        </div>
+                        <div class="btn-group btn-group-sm mr-2" role="group" aria-label="First group">
+                            <!--<cultures is-clone="activedMedia.isClone" data="activedMedia.cultures"></cultures>-->
+
+                            <button type="button" ng-click="saveMedia(activedMedia)" class="btn btn-secondary"><i class="mi mi-Upload"></i>
+                                Upload</button>
+                            <!--<button type="button" ng-click="uploadMedia()" class="btn btn-secondary"><i class="mi mi-Upload"></i> Upload</button>-->
+                        </div>
+                    </div>
+                </div>
+                <paging class="small" page="data.pageIndex+1" page-size="data.pageSize" total="data.totalItems" ul-class="pagination justify-content-end m-0"
+                    a-class="page-link" paging-action="loadMedias(page-1)" scroll-top="true" />
             </div>
         </div>
         <!-- /.modal-content -->

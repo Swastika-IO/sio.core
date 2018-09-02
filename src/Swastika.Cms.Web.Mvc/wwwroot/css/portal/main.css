@@ -239,7 +239,7 @@ input[type="date"]::-webkit-inner-spin-button {
     }
 }
 #modal-files img{
-    height: 50px;
+    height: 30px;
 }
 #modal-files img.preview {
     width: 100%;

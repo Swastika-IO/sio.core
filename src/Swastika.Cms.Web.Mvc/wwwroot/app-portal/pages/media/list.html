@@ -1,4 +1,4 @@
-﻿<section class="content container-fluid">
+﻿<!-- <section class="content container-fluid"> -->
     <div class="row">
         <div class="col-md-12">
             <filter-list request="request" callback="loadMedias(pageIndex)" />
@@ -63,7 +63,7 @@
                     </div>
                 </td>
                 <td>
-                    <img imageonload ng-src="{{item.fullPath}}" height="50" />
+                    <img class="rounded" imageonload ng-src="{{item.fullPath}}" height="30" />
                 </td>
                 <td>
                     <small>
@@ -100,4 +100,4 @@
             a-class="page-link"
             paging-action="loadMedias(page-1)"
             scroll-top="true" />
-</section>
+<!-- </section> -->
