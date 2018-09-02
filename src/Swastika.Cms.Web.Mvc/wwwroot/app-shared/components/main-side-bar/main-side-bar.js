@@ -122,7 +122,7 @@
                 {
                     title: 'portal_file',
                     shortTitle: 'File',
-                    icon: 'mi mi-Photo2',
+                    icon: 'mi mi-FileExplorer',
                     href: '#',
                     subMenus: [
                         {
