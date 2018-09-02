@@ -61,7 +61,7 @@
                         <a href="/backend/product/details/{{item.id}}" class="btn btn-light">
                             <span class="oi oi-pencil text-primary"></span>
                         </a>
-                        <a href="{{item.detailsUrl}}" target="_blank" class="btn btn-light">
+                        <a ng-click="preview(item)" target="_blank" class="btn btn-light">
                             <span class="oi oi-eye text-primary"></span>
                         </a>
                         <a ng-click="removeProduct(item.id);"

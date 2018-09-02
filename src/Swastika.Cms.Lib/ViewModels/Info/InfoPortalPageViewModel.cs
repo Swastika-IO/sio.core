@@ -71,13 +71,15 @@ namespace Swastika.Cms.Lib.ViewModels.Info
 
         #region Overrides
 
-        public override Task<RepositoryResponse<bool>> RemoveRelatedModelsAsync(InfoPortalPageViewModel view, SiocCmsContext _context = null, IDbContextTransaction _transaction = null)
+        public override async Task<RepositoryResponse<bool>> RemoveRelatedModelsAsync(InfoPortalPageViewModel view, SiocCmsContext _context = null, IDbContextTransaction _transaction = null)
         {
+            var result = new RepositoryResponse<bool>() { IsSucceed = true };
             var navPages = _context.SiocPortalPageNavigation.Where(p => p.ParentId == Id || p.Id == Id);
-            navPages.ForEachAsync(n => _context.Entry(n).State = EntityState.Deleted);
+            await navPages.ForEachAsync(n => _context.Entry(n).State = EntityState.Deleted);
             var navRoles = _context.SiocPortalPageRole.Where(p => p.PageId == Id);
-            navPages.ForEachAsync(n => _context.Entry(n).State = EntityState.Deleted);
-            return base.RemoveRelatedModelsAsync(view, _context, _transaction);
+            await navPages.ForEachAsync(n => _context.Entry(n).State = EntityState.Deleted);
+            await _context.SaveChangesAsync();
+            return result;
         }
 
 

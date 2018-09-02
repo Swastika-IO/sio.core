@@ -95,7 +95,7 @@ app.controller('ProductController', ['$scope', '$rootScope', '$routeParams', '$t
                 $rootScope.isBusy = false;
                 $scope.$apply();
             }
-        }
+        };
 
         $scope.saveProduct = async function (product) {
             product.content = $('.editor-content.content').val();
@@ -116,4 +116,7 @@ app.controller('ProductController', ['$scope', '$rootScope', '$routeParams', '$t
             }
         };
 
+        $scope.preview = function (item) {
+            $rootScope.preview('product', item, item.title);
+        };
     }]);

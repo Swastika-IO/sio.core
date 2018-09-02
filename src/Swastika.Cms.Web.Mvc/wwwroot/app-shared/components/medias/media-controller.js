@@ -198,5 +198,18 @@ app.controller('MediaController', ['$scope', '$rootScope', '$routeParams', '$tim
                 $scope.$apply();
             }
         };
-
+        var json = {
+            src: 'fonts/font-awsome.ttf',
+            title: 'Font Awsome',
+            data: [
+                {
+                    title: 'Facebook',
+                    value: 'fa-facebook'
+                },
+                {
+                    title: 'Twitter',
+                    value: 'fa-twitter'
+                }
+            ]
+        };
     }]);
