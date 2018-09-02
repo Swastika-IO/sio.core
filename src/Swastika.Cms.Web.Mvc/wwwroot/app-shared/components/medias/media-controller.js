@@ -22,7 +22,7 @@ app.controller('MediaController', ['$scope', '$rootScope', 'ngAppSettings', '$ro
                 fileName: '',
                 extension: '',
                 content: '',
-                fileStream: '',
+                fileStream: ''
             }
         };
         $scope.relatedMedias = [];
@@ -30,7 +30,7 @@ app.controller('MediaController', ['$scope', '$rootScope', 'ngAppSettings', '$ro
         $scope.data = {
             pageIndex: 0,
             pageSize: 1,
-            totalItems: 0,
+            totalItems: 0
         };
         $scope.errors = [];
 
@@ -180,7 +180,7 @@ app.controller('MediaController', ['$scope', '$rootScope', 'ngAppSettings', '$ro
             }
         };
         $scope.togglePreview = function (item) {
-            item.isPreview = item.isPreview == undefined ? true : !item.isPreview;
+            item.isPreview = item.isPreview === undefined ? true : !item.isPreview;
         };
         $scope.clone = async function (id) {
             $rootScope.isBusy = true;

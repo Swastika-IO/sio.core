@@ -1,7 +1,4 @@
 ﻿'use strict';
-var app = angular.module('SwastikaPortal', ['ngRoute', 'components', 'ngFileUpload', 'LocalStorageModule',
-    'bw.paging', 'dndLists', 'ngTagsInput', 'ngSanitize']);
-//var serviceBase = 'http://crickettours.asia';
 
 app.run(['$rootScope', '$location', 'CommonServices', 'AuthService', 'TranslatorService', 'ngAppSettings',
     function ($rootScope, $location, commonServices, authService, translatorService, ngAppSettings) {
@@ -22,8 +19,6 @@ app.run(['$rootScope', '$location', 'CommonServices', 'AuthService', 'Translator
             lblCancel: 'Cancel',
             context: $rootScope
         };
-
-        
         $rootScope.range = function (max) {
             var input = [];
             for (var i = 1; i <= max; i += 1) input.push(i);
@@ -167,25 +162,6 @@ app.run(['$rootScope', '$location', 'CommonServices', 'AuthService', 'Translator
                 $rootScope.errors = [];
             }
         });
-        $rootScope.$watch('breadCrumbs', function (newValue, oldValue) {
-            if (newValue) {
-                //console.log(newValue);
-            }
-        });
-        $rootScope.$on("$locationChangeEnd", function (event, next, current) {
-            console.log(event, next, current);
-            // handle route changes     
-            //$rootScope.breadCrumbs = [
-            //    {
-            //        url: '/backend/articles',
-            //        title: 'articles'
-            //    }, {
-            //        url: '',
-            //        title: 'list'
-            //    }
-            //];
-        });
-
 
     }]);
 
@@ -205,4 +181,3 @@ function Filter($filter) {
         return $filter('date')(utcDateString, format);
     };
 }
-var modules = angular.module('components', []);

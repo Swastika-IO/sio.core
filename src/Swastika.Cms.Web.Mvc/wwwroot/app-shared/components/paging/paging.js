@@ -1,5 +1,5 @@
 ﻿
-modules.component('paging', {
+modules.component('swPaging', {
     templateUrl: '/app-shared/components/paging/paging.html',
     controller: ['$rootScope', function ($rootScope) {
         var ctrl = this;

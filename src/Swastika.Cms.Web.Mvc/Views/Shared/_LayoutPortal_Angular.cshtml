@@ -30,7 +30,6 @@
     @*<link rel="stylesheet" type="text/css" href="/lib/DataTables/datatables.min.css" />*@
     <link href="/lib/cropperjs-1.2.2/dist/cropper.min.css" rel="stylesheet" />
     <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-    <script src="~/app-shared/plugins/bootstrap-notify.min.js"></script>
 
 
     <link href="~/app-portal/app.css" rel="stylesheet" />
@@ -83,153 +82,20 @@
     <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.2.13/angular-animate.js"></script>
     <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.3.8/angular-sanitize.js"></script>
 
-    <script src="/app-shared/plugins/angular-local-storage.min.js"></script>
+    <script>
+        var app = angular.module('SwastikaPortal', ['ngRoute', 'components', 'ngFileUpload', 'LocalStorageModule',
+            'bw.paging', 'dndLists', 'ngTagsInput', 'ngSanitize']);
+        var modules = angular.module('components', []);
+    </script>
+    
     <script src="/app-portal/app.js"></script>
+    <script src="~/js/site.min.js"></script>
+    <script src="~/js/shared.min.js"></script>
+
     <script src="~/app-portal/shared/controllers/app-portal-controller.js"></script>
     <script src="/app-portal/app.filter.js"></script>
     <script src="/app-portal/app.directive.js"></script>
     <script src="/app-portal/app.route.js"></script>
-    <script src="~/app-shared/plugins/angular-drag-and-drop-lists.min.js"></script>
-    <!-- Services-->
-    <script src="/app-shared/services/auth-services.js"></script>
-    <script src="/app-shared/services/common-services.js"></script>
-    <script src="~/app-shared/services/translator-services.js"></script>
-
-    <script src="/app-portal/pages/login/login-controller.js"></script>
-
-
-    <script src="~/app-shared/services/template-services.js"></script>
-    <script src="/app-portal/pages/product/product-services.js"></script>
-    <script src="/app-portal/pages/product/product-controller.js"></script>
-
-    <script src="~/app-portal/pages/article/article-services.js"></script>
-    <script src="/app-portal/pages/article/article-controller.js"></script>
-
-    <script src="/app-portal/pages/page/page-services.js"></script>
-    <script src="/app-portal/pages/page/page-controller.js"></script>
-
-    <script src="~/app-portal/pages/portal-page/page-controller.js"></script>
-    <script src="~/app-portal/pages/portal-page/page-services.js"></script>
-    <script src="~/app-portal/pages/portal-page/components/main/main.js"></script>
-    <script src="~/app-portal/pages/portal-page/components/parents/parents.js"></script>
-    <script src="~/app-portal/pages/portal-page/components/plug-play/plug-play.js"></script>
-
-    <script src="/app-portal/pages/module/module-services.js"></script>
-    <script src="/app-portal/pages/module/module-controller.js"></script>
-
-    <script src="/app-portal/pages/media/media-services.js"></script>
-
-    <script src="/app-portal/pages/dashboard/dashboard-controller.js"></script>
-    <script src="~/app-portal/pages/dashboard/dashboard-services.js"></script>
-
-    <script src="~/app-portal/pages/user/user-controller.js"></script>
-    <script src="~/app-portal/pages/user/user-services.js"></script>
-
-    <script src="~/app-portal/pages/role/role-controller.js"></script>
-    <script src="~/app-portal/pages/role/role-services.js"></script>
-    <script src="~/app-portal/pages/role/components/role-page-navigation/role-page-navigations.js"></script>
-
-    <script src="~/app-portal/pages/app-settings/appSettings-controller.js"></script>
-    <script src="~/app-portal/pages/app-settings/appSettings-services.js"></script>
-
-    <script src="~/app-portal/pages/configuration/configuration-controller.js"></script>
-    <script src="~/app-portal/pages/configuration/configuration-services.js"></script>
-
-    <script src="~/app-portal/pages/language/language-controller.js"></script>
-    <script src="~/app-portal/pages/language/language-services.js"></script>
-
-    <script src="~/app-portal/pages/culture/culture-controller.js"></script>
-    <script src="~/app-portal/pages/culture/culture-services.js"></script>
-
-
-    <!-- End Services -->
-    <script src="~/app-shared/controllers/template-controller.js"></script>
-
-    <!-- Controllers -->
-    <!-- Components -->
-    <link href="~/app-shared/plugins/tags/ng-tags-input.bootstrap.min.css" rel="stylesheet" />
-    <link href="~/app-shared/plugins/tags/ng-tags-input.min.css" rel="stylesheet" />
-    <script src="~/app-shared/plugins/tags/ng-tags-input.min.js"></script>
-    <script src="~/app-shared/components/tags/tags.js"></script>
-    <script src="/app-shared/plugins/paging.js"></script>
-
-    <script src="/app-shared/components/header-nav/header-nav.js"></script>
-    <script src="~/app-shared/components/url-alias/url-alias.js"></script>
-    <script src="/app-shared/components/directives/pane.js"></script>
-    <script src="/app-shared/components/directives/tabs.js"></script>
-    <script src="~/app-shared/components/tabs-verticle/tabs.js"></script>
-    <script src="~/app-shared/components/tabs-verticle/pane.js"></script>
-    <script src="~/app-shared/components/tabs-horizontal/tabs.js"></script>
-    <script src="~/app-shared/components/tabs-horizontal/pane.js"></script>
-    <script src="~/app-shared/components/ace-editor/aceEditor.js"></script>
-    <script src="/app-shared/components/template-editor/templateEditor.js"></script>
-    <script src="~/app-shared/components/api-file/api-file.js"></script>
-    <script src="~/app-shared/components/custom-image/customImage.js"></script>
-    <script src="~/app-shared/components/custom-file/custom-file.js"></script>
-    <script src="/app-shared/components/actions/actions.js"></script>
-    <script src="~/app-shared/components/cultures/cultures.js"></script>
-    <script src="~/app-shared/components/navigations/navigations.js"></script>
-    <script src="~/app-shared/components/related-navigations/related-navigations.js"></script>
-    <script src="~/app-shared/components/media-navs/media-navs.js"></script>
-    @*<script src="/app-shared/components/paging/paging.js"></script>*@
-    <script src="~/app-shared/components/statuses/statuses.js"></script>
-    <script src="~/app-shared/components/confirm/confirm.js"></script>
-    <script src="~/app-shared/components/preview-popup/preview-popup.js"></script>
-    <script src="/app-shared/components/message/message.js"></script>
-    <script src="/app-shared/components/editor/editor.js"></script>
-    <script src="~/app-shared/components/medias/media-controller.js"></script>
-    <script src="/app-shared/components/breadcrumbs/breadcrumbs.js"></script>
-    <script src="/app-shared/components/main-side-bar/main-side-bar.js"></script>
-    <script src="/app-shared/components/main-side-bar-item/main-side-bar-item.js"></script>
-
-    <script src="~/app-shared/components/main-side-bar-dynamic/main-side-bar-dynamic.js"></script>
-    <script src="~/app-shared/components/main-side-bar-item-dynamic/main-side-bar-item-dynamic.js"></script>
-    <script src="/app-shared/components/filter-list/filter-list.js"></script>
-
-    <script src="~/app-shared/components/medias/media-services.js"></script>
-    <script src="~/app-shared/components/medias/medias.js"></script>
-    <script src="~/app-shared/components/preview-image/preview-image.js"></script>
-
-    <!-- File -->
-    <script src="~/app-portal/pages/file/file-controller.js"></script>
-    <script src="~/app-portal/pages/file/file-services.js"></script>
-    <!--Theme-->
-    <script src="~/app-portal/pages/theme/theme-controller.js"></script>
-    <script src="~/app-portal/pages/theme/theme-services.js"></script>
-
-    <!--module-data-->
-    <script src="~/app-shared/components/module-data/module-data-controller.js"></script>
-    <script src="~/app-shared/components/module-data/module-data-services.js"></script>
-    <script src="~/app-shared/components/module-data/module-form.js"></script>
-
-    <!--product-components-->
-    <script src="/app-portal/pages/product/components/general/productGeneral.js"></script>
-    <script src="/app-portal/pages/product/components/main/productMain.js"></script>
-    <script src="/app-portal/pages/product/components/medias/productMedias.js"></script>
-    <script src="/app-portal/pages/product/components/modules/productModules.js"></script>
-    <script src="/app-portal/pages/product/components/parents/productParents.js"></script>
-    <script src="/app-portal/pages/product/components/related/productRelated.js"></script>
-    <script src="/app-portal/pages/product/components/seo/productSeo.js"></script>
-
-    <!--article-components-->
-    <script src="/app-portal/pages/article/components/general/articleGeneral.js"></script>
-    <script src="/app-portal/pages/article/components/main/articleMain.js"></script>
-    <script src="/app-portal/pages/article/components/medias/articleMedias.js"></script>
-    <script src="/app-portal/pages/article/components/modules/articleModules.js"></script>
-    <script src="/app-portal/pages/article/components/parents/articleParents.js"></script>
-    <script src="/app-portal/pages/article/components/related/articleRelated.js"></script>
-    <script src="/app-portal/pages/article/components/seo/articleSeo.js"></script>
-
-    <!--page-components-->
-    <script src="/app-portal/pages/page/components/general/general.js"></script>
-    <script src="/app-portal/pages/page/components/main/main.js"></script>
-    <script src="/app-portal/pages/page/components/modules/modules.js"></script>
-    <script src="/app-portal/pages/page/components/parents/parents.js"></script>
-    <script src="/app-portal/pages/page/components/plug-play/plug-play.js"></script>
-    <script src="/app-portal/pages/page/components/seo/seo.js"></script>
-
-    <!-- module-components -->
-    <script src="/app-portal/pages/module/components/main/main.js"></script>
     <script type="text/javascript" src="/js/portal/common.js"></script>
     <!-- End Components -->
     @RenderSection("Scripts", required: false)

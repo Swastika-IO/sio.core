@@ -398,16 +398,10 @@ namespace Swastika.Cms.Lib.ViewModels.Info
 
         public override void ExpandView(SiocCmsContext _context = null, IDbContextTransaction _transaction = null)
         {
-            UrlAlias = InfoUrlAliasViewModel.Repository.GetSingleModel(u => u.Specificulture == Specificulture && u.SourceId == Id.ToString()).Data;
-            if (UrlAlias == null)
-            {
-                UrlAlias = new InfoUrlAliasViewModel()
-                {
-                    Type = SWCmsConstants.UrlAliasType.Product,
-                    Specificulture = Specificulture,
-                    Alias = SeoName
-                };
-            }
+            UrlAlias = InfoUrlAliasViewModel.Repository.GetSingleModel(u => u.Specificulture == Specificulture && u.SourceId == Id.ToString()
+            && u.Type == (int)SWCmsConstants.UrlAliasType.Product
+            ).Data;
+            
         }
         #endregion
     }

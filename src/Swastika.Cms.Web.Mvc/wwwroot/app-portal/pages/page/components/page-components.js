@@ -1,5 +1,4 @@
-﻿(function (angular) {
-    'use strict';
+﻿    'use strict';
     function PageDetailsController($scope, $element, $attrs) {
         var ctrl = this;
         ctrl.activedPage = null;
@@ -188,5 +187,5 @@
             controller: PageDetailsController
         });
     }
-})(window.angular)
+
 

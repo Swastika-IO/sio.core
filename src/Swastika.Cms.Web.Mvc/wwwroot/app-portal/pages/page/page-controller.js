@@ -92,29 +92,28 @@ app.controller('PageController', ['$scope', '$rootScope', 'ngAppSettings', '$rou
         };
 
         $scope.loadPages = async function (pageIndex) {
-            if (pageIndex != undefined) {
+            if (pageIndex !== undefined) {
                 $scope.request.pageIndex = pageIndex;
             }
-            if ($scope.request.fromDate != null) {
+            if ($scope.request.fromDate !== null) {
                 var d = new Date($scope.request.fromDate);
                 $scope.request.fromDate = d.toISOString();
             }
-            if ($scope.request.toDate != null) {
+            if ($scope.request.toDate !== null) {
                 $scope.request.toDate = $scope.request.toDate.toISOString();
             }
             var resp = await pageServices.getPages($scope.request);
             if (resp && resp.isSucceed) {
 
                 ($scope.data = resp.data);
-                //$("html, body").animate({ "scrollTop": "0px" }, 500);
                 $.each($scope.data.items, function (i, page) {
 
                     $.each($scope.activedPages, function (i, e) {
-                        if (e.pageId == page.id) {
+                        if (e.pageId === page.id) {
                             page.isHidden = true;
                         }
-                    })
-                })
+                    });
+                });
                 $rootScope.isBusy = false;
                 $scope.$apply();
             }
@@ -127,7 +126,7 @@ app.controller('PageController', ['$scope', '$rootScope', 'ngAppSettings', '$rou
 
         $scope.removePage = function (id) {
             $rootScope.showConfirm($scope, 'removePageConfirmed', [id], null, 'Remove Page', 'Are you sure');
-        }
+        };
 
         $scope.removePageConfirmed = async function (id) {
             $rootScope.isBusy = true;
@@ -140,7 +139,7 @@ app.controller('PageController', ['$scope', '$rootScope', 'ngAppSettings', '$rou
                 $rootScope.isBusy = false;
                 $scope.$apply();
             }
-        }
+        };
 
 
         $scope.savePage = async function (page) {

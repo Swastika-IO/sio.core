@@ -2,16 +2,16 @@
 // More info at https://go.microsoft.com/fwlink/?LinkId=808241
 [
   {
-    "outputFileName": "wwwroot/css/site.min.css",
+    "outputFileName": "wwwroot/css/portal/main.min.css",
     // An array of relative input file paths. Globbing patterns supported
     "inputFiles": [
-      "wwwroot/css/site.css"
+      "wwwroot/css/portal/main.css"
     ]
   },
   {
     "outputFileName": "wwwroot/js/site.min.js",
     "inputFiles": [
-      "wwwroot/js/site.js"
+      "wwwroot/app-portal/app.js"
     ],
     // Optionally specify minification options
     "minify": {
@@ -20,48 +20,49 @@
     },
     // Optionally generate .map file
     "sourceMap": false
-  },
-  {
-    // For portal libs css
-    "outputFileName": "wwwroot/lib/all-libs.min.css",
-    // An array of relative input file paths. Globbing patterns supported
-    "inputFiles": [
-      "wwwroot/css/open-iconic/open-iconic-bootstrap.min.css",
-      "wwwroot/lib/micon/css/micon.min.css",
-      "wwwroot/lib/bootstrap4-tagsinput-4.1.2/tagsinput.css",
-      "wwwroot/lib/flag-icon-css/css/flag-icon.min.css",
-      "wwwroot/lib/cropperjs-1.2.2/dist/cropper.min.css"
-    ]
-  },
-  {
-    // For Portal Libs JS
-    "outputFileName": "wwwroot/lib/all-libs.min.js",
-    "inputFiles": [
-      "wwwroot/lib/jquery-ui-1.12.1/jquery-ui.min.js",
-      "wwwroot/lib/popper.js-1.12.9/dist/umd/popper.min.js",
-      "wwwroot/lib/bootstrap-4.0.0/js/bootstrap.min.js",
-      "wwwroot/js/portal/portal.white.js",
-      "wwwroot/lib/bootstrap4-tagsinput-4.1.2/tagsinput.js",
-      "wwwroot/lib/Trumbowyg-2.9.0/trumbowyg.min.js",
-      "wwwroot/lib/Trumbowyg-2.9.0/plugins/base64/trumbowyg.base64.js",
-      "wwwroot/lib/Trumbowyg-2.9.0/plugins/cleanpaste/trumbowyg.cleanpaste.js",
-      "wwwroot/lib/Trumbowyg-2.9.0/plugins/colors/trumbowyg.colors.js",
-      "wwwroot/lib/Trumbowyg-2.9.0/plugins/upload/trumbowyg.upload.js",
-      "wwwroot/lib/Trumbowyg-2.9.0/plugins/noembed/trumbowyg.noembed.js",
-      "wwwroot/lib/cropperjs-1.2.2/dist/cropper.js",
-      "wwwroot/lib/ace/src/ace.js",
-      "wwwroot/lib/ace/src/mode-csharp.js",
-      "wwwroot/lib/ace/src/mode-razor.js",
-      "wwwroot/lib/ace/src/mode-json.js",
-      "wwwroot/lib/ace/src/theme-chrome.js",
-      "wwwroot/lib/ace/src/theme-clouds_midnight.js",
-      "wwwroot/lib/ace/src/worker-json.js",
-      "wwwroot/lib/clipboard.js-2.0.0/dist/clipboard.min.js" //,
-      //"wwwroot/js/angular.min.js",
-      //"wwwroot/app/app-portal.js",
-      //"wwwroot/app/controllers/portal-controller.js",
-    ]
-  },
+  }
+  //{
+  //  // For portal libs css
+  //  "outputFileName": "wwwroot/lib/all-libs.min.css",
+  //  // An array of relative input file paths. Globbing patterns supported
+  //  "inputFiles": [
+  //    "wwwroot/css/open-iconic/open-iconic-bootstrap.min.css",
+  //    "wwwroot/lib/micon/css/micon.min.css",
+  //    "wwwroot/lib/bootstrap4-tagsinput-4.1.2/tagsinput.css",
+  //    "wwwroot/lib/flag-icon-css/css/flag-icon.min.css",
+  //    "wwwroot/lib/cropperjs-1.2.2/dist/cropper.min.css"
+  //  ]
+  //}
+]
+//{
+//  // For Portal Libs JS
+//  "outputFileName": "wwwroot/lib/all-libs.min.js",
+//  "inputFiles": [
+//    "wwwroot/lib/jquery-ui-1.12.1/jquery-ui.min.js",
+//    "wwwroot/lib/popper.js-1.12.9/dist/umd/popper.min.js",
+//    "wwwroot/lib/bootstrap-4.0.0/js/bootstrap.min.js",
+//    "wwwroot/js/portal/portal.white.js",
+//    "wwwroot/lib/bootstrap4-tagsinput-4.1.2/tagsinput.js",
+//    "wwwroot/lib/Trumbowyg-2.9.0/trumbowyg.min.js",
+//    "wwwroot/lib/Trumbowyg-2.9.0/plugins/base64/trumbowyg.base64.js",
+//    "wwwroot/lib/Trumbowyg-2.9.0/plugins/cleanpaste/trumbowyg.cleanpaste.js",
+//    "wwwroot/lib/Trumbowyg-2.9.0/plugins/colors/trumbowyg.colors.js",
+//    "wwwroot/lib/Trumbowyg-2.9.0/plugins/upload/trumbowyg.upload.js",
+//    "wwwroot/lib/Trumbowyg-2.9.0/plugins/noembed/trumbowyg.noembed.js",
+//    "wwwroot/lib/cropperjs-1.2.2/dist/cropper.js",
+//    "wwwroot/lib/ace/src/ace.js",
+//    "wwwroot/lib/ace/src/mode-csharp.js",
+//    "wwwroot/lib/ace/src/mode-razor.js",
+//    "wwwroot/lib/ace/src/mode-json.js",
+//    "wwwroot/lib/ace/src/theme-chrome.js",
+//    "wwwroot/lib/ace/src/theme-clouds_midnight.js",
+//    "wwwroot/lib/ace/src/worker-json.js",
+//    "wwwroot/lib/clipboard.js-2.0.0/dist/clipboard.min.js" //,
+//    //"wwwroot/js/angular.min.js",
+//    //"wwwroot/app/app-portal.js",
+//    //"wwwroot/app/controllers/portal-controller.js",
+//  ]
+//},
 //  {
 //    // For Portal app js
 //    "outputFileName": "wwwroot/app/all-app-portal.min.js",
