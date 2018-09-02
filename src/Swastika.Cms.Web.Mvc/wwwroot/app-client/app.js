@@ -39,16 +39,10 @@ app.directive('ngEnter', function () {
             });
         }
     };
-}).filter('utcToLocal', Filter)
-    .constant('ngAppSettings', {
-        apiServiceBaseUri: '/',
-        serviceBase: '',
-        clientId: 'ngAuthApp',
-        facebookAppId: '464285300363325'
-    });
+}).filter('utcToLocal', Filter);
 
-app.run(['$rootScope', '$location', 'CommonServices', 'AuthService', 'TranslatorService',
-    function ($rootScope, $location, commonServices, authService, translatorService) {
+app.run(['$rootScope', 'ngAppSettings', '$location', 'CommonServices', 'AuthService', 'TranslatorService',
+    function ($rootScope, ngAppSettings, $location, commonServices, authService, translatorService) {
         $rootScope.isBusy = false;
         $rootScope.translator = translatorService;
         $rootScope.message = {
@@ -262,8 +256,7 @@ app.run(['$rootScope', '$location', 'CommonServices', 'AuthService', 'Translator
         }
 
         $rootScope.translate = function (keyword, defaultValue) {
-            if ($rootScope.settings && ($rootScope.translator || $rootScope.isBusy))
-            {
+            if ($rootScope.settings && ($rootScope.translator || $rootScope.isBusy)) {
                 return $rootScope.translator.get(keyword, defaultValue);
             }
             else {
