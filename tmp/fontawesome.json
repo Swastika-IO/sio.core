@@ -1,6 +1,6 @@
 {
 	"src": "fonts/fa-regular-400.ttf,fonts/fa-brands-400.ttf,fonts/fa-solid-900.ttf",
-	"css": "css/all.css",
+	"css": "https://use.fontawesome.com/releases/v5.3.1/css/all.css",
 	"title": "Fontawesome",
 	"prefix": "fab fa-",
 	"data": [
