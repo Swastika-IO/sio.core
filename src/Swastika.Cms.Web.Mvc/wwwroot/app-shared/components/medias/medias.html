@@ -2,22 +2,13 @@
     <div class="modal-dialog modal-lg modal-dialog-centered" style="max-width: 95%;">
         <div class="modal-content">
             <div class="modal-header">
-
-                <div class="col-md-11">
-                    <h5 class="modal-title" id="exampleModalLabel"><i class="mi mi-Media"></i> Quick media upload</h5>
-                </div>
-                <div class="col-md-1">
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
+                <h5 class="modal-title" id="exampleModalLabel"><i class="mi mi-Media"></i> Quick media upload</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
             </div>
             <div class="modal-body" style="height: calc(100vh - 143px);overflow-y: auto;">
                 <div class="row">
-                    <div class="col-md-12">
-                        <filter-list request="request" callback="loadMedias(pageIndex)" />
-                    </div>
-
                     <div class="col-md-12 d-flex justify-content-end">
                         <div class="btn-toolbar mb-3" role="toolbar" aria-label="Toolbar with button groups">
                             <div class="input-group mr-2">
@@ -25,7 +16,7 @@
                                 <custom-file header="''" folder="'Medias'" media="activedMedia" auto="'false'"></custom-file>
 
                             </div>
-                            <div class="btn-group mr-2" role="group" aria-label="First group">
+                            <div class="btn-group btn-group-sm mr-2" role="group" aria-label="First group">
                                 <!--<cultures is-clone="activedMedia.isClone" data="activedMedia.cultures"></cultures>-->
 
                                 <button type="button" ng-click="saveMedia(activedMedia)" class="btn btn-secondary"><i class="mi mi-Upload"></i> Upload</button>
@@ -33,6 +24,10 @@
                             </div>
                         </div>
                     </div>
+                    <div class="col-md-12">
+                        <filter-list request="request" callback="loadMedias(pageIndex)" />
+                    </div>
+
                 </div>
                 <table class="table table-sm table-condensed">
                     <thead class="thead-light">
@@ -57,10 +52,10 @@
                     <tbody>
                         <tr ng-repeat="item in data.items track by $index">
                             <td>
-                                <input type="text" ng-model="item.title" />
+                                <input type="text" ng-model="item.title" class="form-control form-control-sm" />
                             </td>
                             <td>
-                                <input type="text" ng-model="item.description" />
+                                <input type="text" ng-model="item.description" class="form-control form-control-sm" />
                             </td>
                             <td  width="15%">
 
@@ -72,8 +67,8 @@
                                 </div>
                             </td>
                             <td  width="35%">
-                                <a class="btn" ng-click="togglePreview(item)">
-                                    <img ng-src="{{item.fullPath}}" ng-class="{preview: item.isPreview}"/>
+                                <a class="" style="cursor:pointer;" ng-click="togglePreview(item)">
+                                    <img height="25px" ng-src="{{item.fullPath}}" ng-class="{preview: item.isPreview}"/>
                                 </a>
                             </td>
                             <td>
