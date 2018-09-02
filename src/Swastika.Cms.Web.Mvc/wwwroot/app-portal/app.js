@@ -130,6 +130,15 @@ app.run(['$rootScope', '$location', 'CommonServices', 'AuthService', 'Translator
             $('#dlg-confirm-msg').modal('show');
         };
 
+        $rootScope.preview = function (type, value) {
+            $rootScope.previewObject = {
+                title: 'Preview',
+                type: type,
+                value: value
+            };
+            $('#dlg-preview-popup').modal('show');
+        };
+
         $rootScope.configurations = {
             core: {},
             plugins: {

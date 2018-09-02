@@ -121,6 +121,10 @@ namespace Swastika.Cms.Mvc.Controllers
                 a => a.Id == id && a.Specificulture == CurrentLanguage);
             if (getProduct.IsSucceed)
             {
+                getProduct.Data.ProductNavs.ForEach(p => {
+                    p.RelatedProduct.DetailsUrl = GenerateDetailsUrl("Alias", new { seoName = p.RelatedProduct.UrlAlias.Alias });
+                });
+
                 ViewData["Title"] = getProduct.Data.SeoTitle;
                 ViewData["Description"] = getProduct.Data.SeoDescription;
                 ViewData["Keywords"] = getProduct.Data.SeoKeywords;

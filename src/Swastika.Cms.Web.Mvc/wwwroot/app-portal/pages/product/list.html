@@ -40,14 +40,12 @@
                 </td>
                 <!--<td>
                     <input type="text" value="{{item.priority}}" class="item-priority form-control form-control-sm d-inline" style="width:40px;" />
-                </td>-->                
+                </td>-->
                 <td>
                     {{item.title}}
                 </td>
                 <td>
-                    <div ng-if="item.image!=''">
-                        <img height="50" ng-src="{{item.imageUrl}}" />
-                    </div>                    
+                    <preview-image img-height="50" img-src="item.imageUrl"></preview-image>
                 </td>
                 <td>
                     <small>
@@ -65,7 +63,7 @@
                         </a>
                         <a href="{{item.detailsUrl}}" target="_blank" class="btn btn-light">
                             <span class="oi oi-eye text-primary"></span>
-                        </a>        
+                        </a>
                         <a ng-click="removeProduct(item.id);"
                            class="btn btn-light">
                             <span class="fas fa-times text-danger"></span>
@@ -75,7 +73,7 @@
             </tr>
         </tbody>
     </table>
-    <paging class="small" 
+    <paging class="small"
             page="data.pageIndex+1"
             page-size="data.pageSize"
             total="data.totalItems"

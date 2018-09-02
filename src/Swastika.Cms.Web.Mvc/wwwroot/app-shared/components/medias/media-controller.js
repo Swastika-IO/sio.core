@@ -179,7 +179,9 @@ app.controller('MediaController', ['$scope', '$rootScope', '$routeParams', '$tim
                 $scope.$apply();
             }
         };
-
+        $scope.togglePreview = function (item) {
+            item.isPreview = item.isPreview == undefined ? true : !item.isPreview;
+        };
         $scope.clone = async function (id) {
             $rootScope.isBusy = true;
             var resp = await mediaServices.cloneMedia(id);

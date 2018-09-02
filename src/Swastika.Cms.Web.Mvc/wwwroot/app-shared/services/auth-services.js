@@ -114,6 +114,7 @@ app.factory('AuthService', ['$http', '$rootScope', '$location', '$q', 'localStor
                 _authentication.token = data.access_token;
                 _authentication.refresh_token = data.refresh_token;
                 _fillSettings().then(function (response) {
+
                     window.location.href = document.referrer || '/';//_authentication.referredUrl;
                 });
 

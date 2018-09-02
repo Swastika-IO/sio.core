@@ -238,3 +238,10 @@ input[type="date"]::-webkit-inner-spin-button {
         display: none;
     }
 }
+#modal-files img{
+    height: 50px;
+}
+#modal-files img.preview {
+    width: 100%;
+    height: auto;
+}

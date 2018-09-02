@@ -17,13 +17,13 @@
                     <div class="col-md-12">
                         <filter-list request="request" callback="loadMedias(pageIndex)" />
                     </div>
-                   
+
                     <div class="col-md-12 d-flex justify-content-end">
                         <div class="btn-toolbar mb-3" role="toolbar" aria-label="Toolbar with button groups">
                             <div class="input-group mr-2">
-                                
+
                                 <custom-file header="''" folder="'Medias'" media="activedMedia" auto="'false'"></custom-file>
-                
+
                             </div>
                             <div class="btn-group mr-2" role="group" aria-label="First group">
                                 <!--<cultures is-clone="activedMedia.isClone" data="activedMedia.cultures"></cultures>-->
@@ -62,7 +62,7 @@
                             <td>
                                 <input type="text" ng-model="item.description" />
                             </td>
-                            <td>
+                            <td  width="15%">
 
                                 <div class="input-group input-group-sm mb-3">
                                     <input id="path-modal-{{$index}}" value="{{item.fullPath}}" onclick="this.select()" class="form-control form-control-sm" readonly />
@@ -71,8 +71,10 @@
                                     </div>
                                 </div>
                             </td>
-                            <td>
-                                <img height="50" imageonload ng-src="{{item.fullPath}}" />
+                            <td  width="35%">
+                                <a class="btn" ng-click="togglePreview(item)">
+                                    <img ng-src="{{item.fullPath}}" ng-class="{preview: item.isPreview}"/>
+                                </a>
                             </td>
                             <td>
                                 <div class="btn-group btn-group-sm" role="group" aria-label="Actions">

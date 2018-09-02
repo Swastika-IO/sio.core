@@ -46,12 +46,7 @@
                     {{item.title}}
                 </td>
                 <td>
-                    <div ng-if="item.image!=''">
-                        <img height="50" ng-src="{{item.imageUrl}}" />
-                    </div>
-                    <small>
-                        {{item.excerpt}}
-                    </small>
+                    <preview-image img-height="50" img-src="item.imageUrl"></preview-image>
                 </td>
                 <td>
                     <small>

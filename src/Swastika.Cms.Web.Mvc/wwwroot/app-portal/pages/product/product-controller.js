@@ -82,7 +82,7 @@ app.controller('ProductController', ['$scope', '$rootScope', '$routeParams', '$t
 
         $scope.removeProduct = function (id) {
             $rootScope.showConfirm($scope, 'removeProductConfirmed', [id], null, 'Remove Product', 'Are you sure');
-        }
+        };
 
         $scope.removeProductConfirmed = async function (id) {
             $rootScope.isBusy = true;
