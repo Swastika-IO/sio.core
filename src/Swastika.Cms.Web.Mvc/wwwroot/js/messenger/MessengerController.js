@@ -570,7 +570,7 @@ app.controller('MessengerController', [ '$scope', '$location', 'AuthService', fu
         $scope.username = authService.authentication.username;
     }
     else {
-        authService.authentication.referredUrl = $location.path();
+        authService.referredUrl = $location.path();
         $location.path('/login');
     }
 

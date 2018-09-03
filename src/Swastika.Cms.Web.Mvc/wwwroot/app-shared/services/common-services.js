@@ -1,4 +1,4 @@
-﻿'use strict';
+'use strict';
 app.factory('CommonServices', ['$location', '$http', '$rootScope', 'AuthService', 'localStorageService', 'ngAppSettings',
     function ($location, $http, $rootScope, authService, localStorageService, ngAuthSettings) {
         var adminCommonFactory = {};
@@ -84,6 +84,9 @@ app.factory('CommonServices', ['$location', '$http', '$rootScope', 'AuthService'
         };
         var _getApiResult = async function (req, serviceBase) {
             $rootScope.isBusy = true;
+            if(!authService.authentication){
+                await authService.fillAuthData();
+            }
             req.Authorization = authService.authentication.token;
             if (serviceBase === undefined) {
                 serviceBase = ngAuthSettings.serviceBase;
@@ -113,7 +116,7 @@ app.factory('CommonServices', ['$location', '$http', '$rootScope', 'AuthService'
                                 authService.logOut();
                                 authService.authentication.token = null;
                                 authService.authentication.refresh_token = null;
-                                authService.authentication.referredUrl = $location.$$url;
+                                authService.referredUrl = $location.$$url;
                                 window.top.location.href = '/portal/login';
                             });
                         }, function (err) {
@@ -123,7 +126,7 @@ app.factory('CommonServices', ['$location', '$http', '$rootScope', 'AuthService'
                             authService.logOut();
                             authService.authentication.token = null;
                             authService.authentication.refresh_token = null;
-                            authService.authentication.referredUrl = $location.$$url;
+                            authService.referredUrl = $location.$$url;
                             window.top.location.href = '/portal/login';
                             return t;
                         }

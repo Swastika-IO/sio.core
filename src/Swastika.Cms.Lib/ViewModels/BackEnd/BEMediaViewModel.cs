@@ -7,6 +7,7 @@ using Newtonsoft.Json;
 using Swastika.Cms.Lib.Models.Cms;
 using Swastika.Cms.Lib.Repositories;
 using Swastika.Cms.Lib.Services;
+using Swastika.Common.Helper;
 using Swastika.Domain.Core.ViewModels;
 using Swastika.Domain.Data.ViewModels;
 using System;
@@ -118,6 +119,7 @@ namespace Swastika.Cms.Lib.ViewModels.BackEnd
         {
             if (MediaFile?.FileStream != null)
             {
+                MediaFile.Filename =  SeoHelper.GetSEOString(MediaFile.Filename);
                 MediaFile.FileFolder = SwCmsHelper.GetFullPath(new[] {
                     SWCmsConstants.Parameters.UploadFolder,
                     DateTime.UtcNow.ToString("MM-yyyy")

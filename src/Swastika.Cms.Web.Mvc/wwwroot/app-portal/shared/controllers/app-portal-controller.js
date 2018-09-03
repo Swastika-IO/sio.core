@@ -19,8 +19,7 @@ app.controller('AppPortalController', ['$rootScope', '$scope', 'ngAppSettings', 
                         $rootScope.translator.fillTranslator($rootScope.settings.lang).then(function () {
                             authService.fillAuthData().then(function (response) {
                                 $rootScope.authentication = authService.authentication;
-                                if (!authService.authentication.isAuth) {
-                                    authService.authentication.referredUrl = $location.$$url;
+                                if (!authService.authentication || !authService.authentication.isAuth) {
                                     window.top.location.href = '/portal/login';
                                 }
                                 else {

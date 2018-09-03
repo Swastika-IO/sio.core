@@ -1,7 +1,7 @@
 ﻿'use strict';
 app.controller('loginController', [ '$rootScope', '$scope', 'ngAppSettings', '$location', 'AuthService', 'ngAppSettings', function ($rootScope, $scope, ngAppSettings, $location, authService, ngAuthSettings) {
-    if (authService.authentication.isAuth && authService.authentication.isAdmin) {
-        authService.authentication.referredUrl = $location.path();
+    if (authService.authentication && authService.authentication.isAuth && authService.authentication.isAdmin) {
+        authService.referredUrl = $location.path();
         $location.path('/backend');
     }
 
@@ -19,8 +19,8 @@ app.controller('loginController', [ '$rootScope', '$scope', 'ngAppSettings', '$l
     });
     $scope.login = async function () {
         
-        if (authService.authentication.referredUrl == "/backend/login") {
-            authService.authentication.referredUrl = "/backend";
+        if (authService.referredUrl == "/backend/login") {
+            authService.referredUrl = "/backend";
         }
         $rootScope.isBusy = true;
         var result = await authService.login($scope.loginData);

@@ -18,12 +18,12 @@
 
                     <section class="content container-fluid">
 
-                        <div class="{{pageClass}}" ng-view>
+                        <div class="{{pageClass}}" ng-view >
                         </div>
                         <medias ng-if="isInit"></medias>
-                        <message message="message"></message>
-                        <confirm message="confirmMessage"></confirm>
-                        <preview-popup preview-object="previewObject"></preview-popup>
+                        <message ng-if="isInit" message="message"></message>
+                        <confirm ng-if="isInit" message="confirmMessage"></confirm>
+                        <preview-popup ng-if="isInit" preview-object="previewObject"></preview-popup>
                     </section>
 
                     <footer class="footer d-block">
