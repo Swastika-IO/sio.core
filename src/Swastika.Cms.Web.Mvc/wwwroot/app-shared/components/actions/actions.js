@@ -7,8 +7,8 @@ modules.component('actions', {
             return $rootScope.translate(keyword);
         };
         ctrl.back = function () {
-            $location.path(document.referrer);
-            $scope.$apply();
+            ctrl.backUrl = ctrl.backUrl || '/admin';
+            $location.path(ctrl.backUrl);
         };
     }],
     bindings: {
