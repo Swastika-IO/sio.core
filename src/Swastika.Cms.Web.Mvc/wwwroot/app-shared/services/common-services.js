@@ -87,7 +87,10 @@ app.factory('CommonServices', ['$location', '$http', '$rootScope', 'AuthService'
             if(!authService.authentication){
                 await authService.fillAuthData();
             }
-            req.Authorization = authService.authentication.token;
+            if(authService.authentication)
+            {
+                req.Authorization = authService.authentication.token;
+            }
             if (serviceBase === undefined) {
                 serviceBase = ngAuthSettings.serviceBase;
             }
@@ -97,7 +100,7 @@ app.factory('CommonServices', ['$location', '$http', '$rootScope', 'AuthService'
                     'Content-Type': 'application/json'
                 };
             }
-            req.headers.Authorization = 'Bearer ' + authService.authentication.token;
+            req.headers.Authorization = 'Bearer ' + req.Authorization || '';
             return $http(req).then(function (resp) {
                 //var resp = results.data;
                 //$rootScope.isBusy = false;

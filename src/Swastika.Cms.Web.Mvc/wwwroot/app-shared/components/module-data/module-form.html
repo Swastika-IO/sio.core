@@ -2,7 +2,7 @@
     <div class="col-sm-12">
         <form ng-class="{'submitted': submitted}"
               ng-submit="$ctrl.saveModuleData()" id="module-{{$ctrl.data.moduleId}}">
-            <actions back-url="$ctrl.backUrl"></actions>
+            <actions back-url="$ctrl.backUrl" ng-if="$ctrl.backUrl"></actions>
             <div class="card">
                 <div class="card-header text-center">
                     <h4 class="card-title">Contact Us</h4>

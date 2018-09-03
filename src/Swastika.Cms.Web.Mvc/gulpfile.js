@@ -25,6 +25,13 @@ paths.portal = {
     dest: paths.webroot + "js/app-portal.min.js"
 };
 
+paths.client = {
+    src: [
+        paths.webroot + "app-client/components/**/*.js"
+    ],
+    dest: paths.webroot + "js/app-client.min.js"
+};
+
 paths.sharedJs = {
     src: [
         paths.webroot + "app-shared/**/*.js",
@@ -44,6 +51,10 @@ gulp.task("clean:js", function (cb) {
     rimraf(paths.portal.dest, cb);
 });
 
+gulp.task("clean:clientJs", function (cb) {
+    rimraf(paths.client.dest, cb);
+});
+
 gulp.task("clean:sharedJs", function (cb) {
     rimraf(paths.sharedJs.dest, cb);
 });
@@ -52,12 +63,20 @@ gulp.task("clean:css", function (cb) {
     rimraf(paths.css.dest, cb);
 });
 
-gulp.task("clean", ["clean:js", "clean:sharedJs", "clean:css"]);
+gulp.task("clean", ["clean:js", "clean:clientJs","clean:sharedJs", "clean:css"]);
 
 gulp.task("min:js", function (cb) {
     var options = {};
     return gulp.src(paths.portal.src, { base: "." })
         .pipe(concat(paths.portal.dest))
+        //.pipe(minify(options))
+        .pipe(gulp.dest("."));
+
+});
+gulp.task("min:clientJs", function (cb) {
+    var options = {};
+    return gulp.src(paths.client.src, { base: "." })
+        .pipe(concat(paths.client.dest))
         //.pipe(minify(options))
         .pipe(gulp.dest("."));
 
@@ -104,4 +123,4 @@ gulp.task("min:css", function (cb) {
 //        .pipe(gulp.dest("."));
 //});
 
-gulp.task("min", ["min:js", "min:sharedJs", "min:css"]);
+gulp.task("min", ["min:js", "min:clientJs","min:sharedJs", "min:css"]);
