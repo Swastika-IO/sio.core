@@ -1,7 +1,7 @@
 ﻿
 app.component('productGeneral', {
     templateUrl: '/app-portal/pages/product/components/general/productGeneral.html',
-    controller: ['$rootScope', '$scope', 'ngAppSettings', function ($rootScope, $scope) {
+    controller: ['$rootScope', '$scope', 'ngAppSettings', function ($rootScope, $scope, ngAppSettings) {
         var ctrl = this;
         //ctrl.tags = ctrl.product.tags;
         ctrl.dataTypes = [

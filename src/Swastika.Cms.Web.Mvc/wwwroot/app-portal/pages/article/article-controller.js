@@ -30,6 +30,7 @@ app.controller('ArticleController', ['$scope', '$rootScope', 'ngAppSettings', '$
         };
 
         $scope.loadArticle = async function () {
+
             $rootScope.isBusy = true;
             var id = $routeParams.id;
             var response = await articleServices.getArticle(id, 'be');

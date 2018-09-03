@@ -1,7 +1,7 @@
 ﻿
 app.component('articleMain', {
     templateUrl: '/app-portal/pages/article/components/main/articleMain.html',
-    controller: ['$rootScope', '$scope', 'ngAppSettings',
+    controller: ['$rootScope', '$scope',
         function ($rootScope, $scope) {
             var ctrl = this;
             ctrl.generateSEO = function () {

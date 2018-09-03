@@ -57,7 +57,7 @@ gulp.task("min:js", function (cb) {
     var options = {};
     return gulp.src(paths.portal.src, { base: "." })
         .pipe(concat(paths.portal.dest))
-        .pipe(minify(options))
+        //.pipe(minify(options))
         .pipe(gulp.dest("."));
 
 });
@@ -66,7 +66,7 @@ gulp.task("min:sharedJs", function (cb) {
     var options = {};
     return gulp.src(paths.sharedJs.src, { base: "." })
         .pipe(concat(paths.sharedJs.dest))
-        .pipe(minify(options))
+        //.pipe(minify(options))
         .pipe(gulp.dest("."));
 
 });
