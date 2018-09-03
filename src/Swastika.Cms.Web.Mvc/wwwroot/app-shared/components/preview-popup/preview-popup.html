@@ -3,7 +3,7 @@
     <div class="modal-dialog {{$ctrl.previewObject.size}} modal-dialog-centered" role="document">
         <div class="modal-content">
             <div class="modal-header py-2">
-                <h5 class="modal-title" ng-bind="$ctrl.previewObject.title"></h5>
+                <h5 class="modal-title"><i class="mi mi-Preview"></i> <span ng-bind="$ctrl.previewObject.title"></span> - <a class="text-primary" href="{{$ctrl.previewObject.data.detailsUrl}}" target="_blank"><i class="mi mi-NewWindow"></i> New Window</a></h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
@@ -17,13 +17,13 @@
                                 <img ng-src="{{$ctrl.previewObject.data}}" />
                             </div>
                         </div>
-                        <div ng-switch-when="product" class="mt-2">
+                        <div ng-switch-when="product" class="">
                             <div class="row">
                                 <div class="col-md-12 p-0">
                                     <!-- <img style="max-height: 350px;display:block;margin:10px" ng-src="{{$ctrl.previewObject.data.imageUrl}}" /> -->
                                     <img ng-src="{{$ctrl.previewObject.data.imageUrl}}" />
                                     <p>
-                                        <a class="btn btn-info btn-preview mr-2" style="float:right" href="{{$ctrl.previewObject.data.detailsUrl}}" target="_blank">Preview</a>
+                                        
                                     </p>
                                 </div>
                             </div>
