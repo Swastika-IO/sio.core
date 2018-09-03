@@ -1,0 +1,12 @@
+{
+  "devDependencies": {
+    "gulp": "",
+    "gulp-concat": "",
+    "gulp-cssmin": "",
+    "gulp-uglify": "",
+    "gulp-babel": "",
+    "uglify-es": "",
+    "pump": "",
+    "rimraf": ""
+  }
+}
