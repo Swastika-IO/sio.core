@@ -1,10 +1,10 @@
-﻿<div class="input-group input-group-sm">
-    <input ng-model="$ctrl.media.title" placeholder="Title" class="form-control form-control-sm  mr-2" />
-    <input ng-model="$ctrl.media.description" placeholder="Description" class="form-control form-control-sm mr-2" />
-    
+﻿<div class="input-group">
+    <input ng-model="$ctrl.media.title" placeholder="Title" class="form-control mr-2" />
+    <input ng-model="$ctrl.media.description" placeholder="Description" class="form-control mr-2" />
+
     <div class="custom-file">
         <input type="file" class="custom-file-input" ngf-select="$ctrl.selectFile($file, $invalidFiles)" data-file="file.file">
         <label class="custom-file-label" for="validatedCustomFile">Choose file...</label>
         <div class="invalid-feedback">Example invalid custom file feedback</div>
-      </div>
+    </div>
 </div>
