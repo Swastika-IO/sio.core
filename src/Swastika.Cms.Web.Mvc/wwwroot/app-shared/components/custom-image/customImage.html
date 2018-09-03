@@ -3,18 +3,36 @@
         {{$ctrl.header }}
     </div>
     <div class="card-body p-0" style="background:url(/images/upload-image-thumbnail.png) no-repeat center;  cursor:pointer;">
-        <span class="custom-file" style="min-height:210px; overflow:hidden;">
-            <button class="btn btn-light btn-sm custom-file-cropper position-absolute m-1 collapse" style="z-index:3; right:0;"
-                    data-toggle="modal" data-target=".image-crop-modal-lg" data-imgsrc="" data-imgid="">
+        <!-- <span class="custom-file" style="min-height:210px; overflow:hidden;">
+            
+            <button class="btn btn-light btn-sm custom-file-cropper position-absolute m-1 collapse" style="z-index:3; right:0;" data-toggle="modal"
+                data-target=".image-crop-modal-lg" data-imgsrc="" data-imgid="">
                 <i class="mi mi-Crop"></i>
             </button>
-
-            <input type="file" name="pic" ngf-select="$ctrl.selectFile($file, $invalidFiles)" data-file="file.file" class="position-absolute" style="height:130px; cursor:pointer;">
-            <img imageonload ng-src="{{$ctrl.srcUrl}}" name="pic" class="custom-file-img d-block"
-                 style="max-height: 150px; width: auto; margin: 35px auto;" accept="image/*" />
+            <img imageonload ng-src="{{$ctrl.srcUrl}}" name="pic" class="custom-file-img d-block" style="max-height: 150px; width: auto; margin: 35px auto;"
+                accept="image/*" />
             <input type="hidden" value="{{$ctrl.type}}/{{$ctrl.folder}}" class="folder-val" />
-            <input type="text" ng-model="$ctrl.src" ng-change="$ctrl.srcUrl = $ctrl.src" class="form-control custom-file-val">
 
-        </span>
+        </span> -->
+        
+        <img imageonload ng-src="{{$ctrl.srcUrl}}" name="pic" class="custom-file-img d-block" style="max-height: 150px; width: auto;"
+        accept="image/*" />
+        <input type="hidden" value="{{$ctrl.type}}/{{$ctrl.folder}}" class="folder-val" />
+    </div>
+    <div class="card-footer">
+            <div class="form-group">
+                <label>From URL</label>
+                <input type="text" ng-model="$ctrl.src" ng-change="$ctrl.srcUrl = $ctrl.src" class="form-control">
+            </div>
+            <div class="form-group m-0">
+                <label>From File</label>
+
+                <div class="custom-file">
+                        <!-- <input type="file" class="custom-file-input" id="customFile"> -->
+                        <input type="file" name="pic" ngf-select="$ctrl.selectFile($file, $invalidFiles)" data-file="file.file" class="position-absolute"
+                            style="width:100%;height:130px; cursor:pointer;">
+                        <label class="custom-file-label" for="customFile">Choose file</label>
+                    </div>
+            </div>
     </div>
 </div>
