@@ -26,7 +26,7 @@
                 <th scope="col">
                     Name
                 </th>
-                <th scope="col">
+                <th scope="col" width="10%">
                     Image
                 </th>
                 <th scope="col" width="15%">
@@ -35,7 +35,7 @@
                 <th scope="col" width="15%">
                     Created Date
                 </th>
-                <th scope="col" width="5%" class="text-right">
+                <th scope="col" width="10%" class="text-right">
                     Actions
                 </th>
             </tr>
@@ -54,14 +54,14 @@
                     {{item.name}}
                 </td>
                 <td>
-                    <img height="50" imageonload ng-src="{{item.imageUrl}}" />
+                    <img height="30" imageonload ng-src="{{item.imageUrl}}" />
                 </td>
                 <td>
                     {{item.createdBy}}
                 </td>
                 <td>
                     <small>
-                        {{item.createdDateTime | utcToLocal:'dd.MM.yyyy - hh:mm:ss a'}}
+                        {{item.createdDateTime | utcToLocal:'dd.MM.yyyy hh:mm:ss a'}}
                     </small>
                 </td>
                 <td>

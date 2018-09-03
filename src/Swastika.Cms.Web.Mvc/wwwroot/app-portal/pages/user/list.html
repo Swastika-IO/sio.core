@@ -10,10 +10,10 @@
                 <!-- <th scope="col" width="20%">
                     Id
                 </th> -->
-                <th scope="col" style="width: 20%;">
+                <th scope="col" width="10%">
                     Username
                 </th>
-                <th scope="col" style="width: 20%;">
+                <th scope="col" width="20%">
                     Roles
                 </th>
                 <th scope="col" width="10%">
@@ -37,7 +37,7 @@
                     <span ng-bind="item.username"></span>
                 </td> 
                 <td>
-                    <ul>
+                    <ul class="m-0">
                         <li ng-repeat="ur in item.userRoles">
                             <span ng-bind="ur.role.name"></span>
                         </li>
@@ -45,7 +45,7 @@
                     
                 </td>
                 <td>
-                    <img imageonload ng-src="{{item.avatarUrl}}" height="50" />
+                    <img class="rounded-circle" imageonload ng-src="{{item.avatarUrl}}" height="30" />
                 </td>
                 <td>
                     <small>
