@@ -1,5 +1,5 @@
 ﻿<ul dnd-list="$ctrl.data" class="nav" ng-if="$ctrl.data.length">
-    <li ng-repeat="nav in $ctrl.data"  class="col-sm-12" 
+    <li ng-repeat="nav in $ctrl.data"  class="col-sm-12 p-2" 
         dnd-draggable="nav"
         dnd-moved="$ctrl.updateOrders($index)"
         dnd-effect-allowed="move"
@@ -16,13 +16,13 @@
                     <input type="checkbox" ng-change="$ctrl.callback({nav: nav})"
                            ng-model="nav.isActived" id="{{$ctrl.prefix}}_{{$index}}"
                            class="switch">
-                    <label class="switch" for="{{$ctrl.prefix}}_{{$index}}">
+                    <label class="switch m-0" for="{{$ctrl.prefix}}_{{$index}}">
                         {{nav.description}}
                     </label>
                 </span>
             </div>
             <div class="col-2">
-                <img ng-src="{{nav.image}}" />
+                <img height="30" ng-src="{{nav.image}}" />
             </div>
         </div>
     </li>
