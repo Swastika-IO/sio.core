@@ -10,13 +10,13 @@
             <table class="table table-sm table-hover" cellspacing="0">
                 <thead class="thead-light">
                     <tr>
-                        <th scope="col" style="width: 50%;">
+                        <th scope="col">
                             Title
                         </th>
-                        <th scope="col" width="10%">
+                        <th scope="col" width="15%">
                             Image
                         </th>
-                        <th scope="col" width="10%">
+                        <th scope="col" width="5%">
                             Actived
                         </th>
                     </tr>
@@ -28,10 +28,10 @@
                             {{item.title}}
                         </td>
                         <td>
-                            <img height="50" ng-src="{{item.imageUrl}}" />
+                            <img class="rounded" height="25" ng-src="{{item.imageUrl}}" />
                         </td>
                         <td>
-                            <span class="switch switch-sm position-absolute m-1">
+                            <span class="switch switch-sm position-absolute">
                                 <input type="checkbox" class="switch" ng-model="item.isActived" ng-change="$ctrl.activeItem(item)" id="{{$ctrl.prefix}}_{{item.id}}"
                                     value="true">
                                 <label class="switch m-0" for="{{$ctrl.prefix}}_{{item.id}}">
