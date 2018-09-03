@@ -17,7 +17,7 @@
                     <span class="switch switch-sm">
                         <input type="checkbox" ng-model="culture.isSupported" id="culture_{{$index}}"
                                class="switch">
-                        <label class="switch" for="culture_{{$index}}">
+                        <label class="switch" for="culture_{{$index}}" style="overflow: hidden;text-overflow: ellipsis;">
                             <span class="flag-icon {{culture.icon}}"></span>
                             <span ng-bind="culture.description"></span>
                         </label>
