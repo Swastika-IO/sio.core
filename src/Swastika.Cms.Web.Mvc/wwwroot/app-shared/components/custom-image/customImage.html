@@ -15,7 +15,7 @@
 
         </span> -->
         
-        <img imageonload ng-src="{{$ctrl.srcUrl}}" name="pic" class="custom-file-img d-block" style="max-height: 150px; width: auto;"
+        <img imageonload ng-src="{{$ctrl.srcUrl}}" name="pic" class="custom-file-img d-block" style="/*max-height: 150px;*/ width: auto;"
         accept="image/*" />
         <input type="hidden" value="{{$ctrl.type}}/{{$ctrl.folder}}" class="folder-val" />
     </div>
@@ -30,7 +30,7 @@
                 <div class="custom-file">
                         <!-- <input type="file" class="custom-file-input" id="customFile"> -->
                         <input type="file" name="pic" ngf-select="$ctrl.selectFile($file, $invalidFiles)" data-file="file.file" class="position-absolute"
-                            style="width:100%;height:130px; cursor:pointer;">
+                            style="width:100%; /*height:130px;*/ cursor:pointer;">
                         <label class="custom-file-label" for="customFile">Choose file</label>
                     </div>
             </div>
