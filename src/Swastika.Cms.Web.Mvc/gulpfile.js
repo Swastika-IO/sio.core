@@ -27,7 +27,8 @@ paths.portal = {
 
 paths.sharedJs = {
     src: [
-        paths.webroot + "app-shared/**/*.js"
+        paths.webroot + "app-shared/**/*.js",
+        paths.webroot + "app-shared/**/*.*.js"
     ],
     dest: paths.webroot + "js/app-shared.min.js"
 };
