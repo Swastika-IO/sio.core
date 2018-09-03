@@ -1,5 +1,7 @@
 ﻿'use strict';
-
+var app = angular.module('SwastikaPortal', ['ngRoute', 'components', 'ngFileUpload', 'LocalStorageModule',
+    'bw.paging', 'dndLists', 'ngTagsInput', 'ngSanitize']);
+var modules = angular.module('components', []);
 app.run(['$rootScope', '$location', 'CommonServices', 'AuthService', 'TranslatorService', 'ngAppSettings',
     function ($rootScope, $location, commonServices, authService, translatorService, ngAppSettings) {
         $rootScope.currentContext = $rootScope;
