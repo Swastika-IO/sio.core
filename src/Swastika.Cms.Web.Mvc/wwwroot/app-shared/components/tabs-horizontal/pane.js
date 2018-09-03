@@ -1,4 +1,4 @@
-﻿'use trick'
+﻿'use trick';
 modules.directive('paneH', function () {
     return {
         require: '^tabs-h',

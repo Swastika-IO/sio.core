@@ -295,6 +295,7 @@
   <ItemGroup>
     <Folder Include="Areas\Portal\Views\Shared\Widgets\" />
     <Folder Include="logs\" />
+    <Folder Include="wwwroot\app-portal\pages\moduleData\components\" />
     <Folder Include="wwwroot\app\services\" />
   </ItemGroup>
 

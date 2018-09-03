@@ -106,7 +106,7 @@ app.controller('ArticleController', ['$scope', '$rootScope', 'ngAppSettings', '$
                 $scope.activedArticle = resp.data;
                 $rootScope.showMessage('Thành công', 'success');
                 $rootScope.isBusy = false;
-                $location.path('/backend/article/list')
+                $location.path('/backend/article/list');
                 $scope.$apply();
                 //$location.path('/backend/article/details/' + resp.data.id);
             }
