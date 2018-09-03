@@ -98,6 +98,7 @@ modules.component('customImage', {
 
     }],
     bindings: {
+        id: '=',
         header: '=',
         title: '=',
         description: '=',
