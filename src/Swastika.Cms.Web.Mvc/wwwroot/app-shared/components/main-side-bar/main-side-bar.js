@@ -222,7 +222,7 @@
                 {
                     title: 'Portal Pages',
                     shortTitle: 'portal_short_portal_pages',
-                    icon: 'mi mi-Globe mi-spin',
+                    icon: 'mi mi-Multitask',
                     href: '#',
                     subMenus: [
                         {
