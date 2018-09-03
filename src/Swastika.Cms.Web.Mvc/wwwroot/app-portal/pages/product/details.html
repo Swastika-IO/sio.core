@@ -11,36 +11,36 @@
                     </div>
                 </div>
                 <div class="row">
-                    <tabs class="col-lg-12">
-                        <pane title="General">
+                    <tabs-v class="col-lg-12">
+                        <pane-v  title="General">
                             <product-general product="activedProduct"></product-general>
-                        </pane>
-                        <pane title="Seo">
+                        </pane-v>
+                        <pane-v  title="Seo">
                             <product-seo product="activedProduct"></product-seo>
-                        </pane>
-                        <pane title="Parents">
+                        </pane-v>
+                        <pane-v  title="Parents">
                             <product-parents product="activedProduct"></product-parents>
-                        </pane>
-                        <pane title="Modules">
+                        </pane-v>
+                        <pane-v  title="Modules">
                             <product-modules product="activedProduct"></product-modules>
-                        </pane>
-                        <pane title="Layout">
+                        </pane-v>
+                        <pane-v  title="Layout">
                             <div class="tab-pane">
                                 <template-editor template="activedProduct.view"></template-editor>
                             </div>
-                        </pane>
-                        <pane title="Medias">
+                        </pane-v>
+                        <pane-v  title="Medias">
                                <media-navs media-navs="activedProduct.mediaNavs"></media-navs>
                             <!--<navigation data="activedProduct.mediaNavs" prefix="media"></navigation>-->
                             <!--<navs data="activedProduct.mediaNavs" prefix="'media'" model="'nav-product-media'"></navs>-->
-                        </pane>
-                        <pane title="Related">
+                        </pane-v>
+                        <pane-v  title="Related">
                             <related-navs request="request" source-id="activedProduct.id" culture="activedProduct.specificulture"
                                       prefix="'product'" navs="activedProduct.productNavs" data="data" 
                                       load-data="loadProducts(pageIndex)"></related-navs>
                         
-                        </pane>
-                    </tabs>
+                        </pane-v>
+                    </tabs-v>
                 </div>
             </section>
             <section class="col-lg-3" style="padding-left:0">
