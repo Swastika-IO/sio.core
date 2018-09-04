@@ -4,7 +4,7 @@
         <div class="modal-content">
             <div class="modal-header py-2">
                 <h5 class="modal-title">
-                    <i class="mi mi-Preview"></i>
+                    <i class="mi mi-PreviewLink"></i>
                     <span ng-bind="$ctrl.previewObject.title"></span> -
                     <a class="text-primary" href="{{$ctrl.previewObject.data.detailsUrl ||$ctrl.previewObject.data}}" target="_blank"><i class="mi mi-NewWindow"></i> New Window</a>
                 </h5>
@@ -17,7 +17,7 @@
                     <div ng-switch="$ctrl.previewObject.type">
                         <div class="row" ng-switch-when="img">
                             <div class="col-md-12 p-0">
-                                <a class="btn" href="{{$ctrl.previewObject.data}}" target="_blank">
+                                <a class="" href="{{$ctrl.previewObject.data}}" target="_blank">
                                     <img ng-src="{{$ctrl.previewObject.data}}" />
                                 </a>
                             </div>
