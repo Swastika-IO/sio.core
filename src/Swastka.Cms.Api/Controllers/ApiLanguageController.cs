@@ -93,7 +93,7 @@ namespace Swastka.Cms.Api.Controllers
         [Route("list/{pageSize:int?}/{pageIndex:int?}/{orderBy}/{direction}")]
         public async Task<RepositoryResponse<PaginationModel<ApiLanguageViewModel>>> Get(
             int? pageSize = 15, int? pageIndex = 0, string orderBy = "Id"
-            , OrderByDirection direction = OrderByDirection.Ascending)
+            , int direction = 0)
         {
             var data = await ApiLanguageViewModel.Repository.GetModelListByAsync(
                 m => m.Specificulture == _lang, orderBy, direction, pageSize, pageIndex).ConfigureAwait(false);
@@ -107,7 +107,7 @@ namespace Swastka.Cms.Api.Controllers
         [Route("search/{pageSize:int?}/{pageIndex:int?}/{orderBy}/{direction}/{keyword}")]
         public async Task<RepositoryResponse<PaginationModel<ApiLanguageViewModel>>> Search(
             string keyword = null, int? pageSize = null, int? pageIndex = null, string orderBy = "Id"
-            , OrderByDirection direction = OrderByDirection.Ascending)
+            , int direction = 0)
         {
             Expression<Func<SiocLanguage, bool>> predicate = model =>
             model.Specificulture == _lang

@@ -7,10 +7,20 @@ modules.component('filterList', {
             fromDate: null,
             toDate: null
         };
-        ctrl.orders = ngAppSettings.orders;
-        ctrl.directions = ngAppSettings.directions;
-        ctrl.pageSizes = ngAppSettings.pageSizes;
-        ctrl.statuses = ngAppSettings.swStatus;
+        ctrl.init = function(){
+            ctrl.orders = ngAppSettings.orders;
+            ctrl.directions = ngAppSettings.directions;
+            ctrl.pageSizes = ngAppSettings.pageSizes;
+            ctrl.statuses = [];
+            var statuses = ctrl.request.swStatus || ngAppSettings.swStatus;
+            angular.forEach(statuses, function(val,i){
+                ctrl.statuses.push({
+                    value:i,
+                    title:val
+                });
+            });
+            
+        };
         ctrl.updateDate = function () {
             if (Date.parse(ctrl.dateRange.fromDate)) {
                 ctrl.request.fromDate = new Date(ctrl.dateRange.fromDate).toISOString();

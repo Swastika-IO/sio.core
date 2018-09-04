@@ -258,7 +258,7 @@ namespace Swastika.Cms.Lib.ViewModels.Api
                 case SWCmsConstants.ModuleType.Root:
                     getDataResult = InfoModuleDataViewModel.Repository
                        .GetModelListBy(m => m.ModuleId == Id && m.Specificulture == Specificulture
-                       , "Priority", OrderByDirection.Ascending, pageSize, pageIndex
+                       , "Priority", 0, pageSize, pageIndex
                        , _context, _transaction);
                     break;
 
@@ -266,7 +266,7 @@ namespace Swastika.Cms.Lib.ViewModels.Api
                     getDataResult = InfoModuleDataViewModel.Repository
                        .GetModelListBy(m => m.ModuleId == Id && m.Specificulture == Specificulture
                        && (m.CategoryId == categoryId)
-                       , "Priority", OrderByDirection.Ascending, pageSize, pageIndex
+                       , "Priority", 0, pageSize, pageIndex
                        , _context, _transaction);
                     break;
 
@@ -274,7 +274,7 @@ namespace Swastika.Cms.Lib.ViewModels.Api
                     getDataResult = InfoModuleDataViewModel.Repository
                        .GetModelListBy(m => m.ModuleId == Id && m.Specificulture == Specificulture
                        && (m.ArticleId == articleId)
-                       , "Priority", OrderByDirection.Ascending, pageSize, pageIndex
+                       , "Priority", 0, pageSize, pageIndex
                        , _context, _transaction);
                     break;
 

@@ -1,0 +1,52 @@
+﻿<section class="">
+    <filter-list request="request" callback="loadOrders(pageIndex)" />
+    <table id="list-order" class="table table-sm table-hover sortable" cellspacing="0" ng-init="loadOrders()">
+        <thead class="thead-light">
+            <tr>
+                <th scope="col" width="4%">
+                    <span class="oi oi-sort-ascending"></span>
+                </th>
+                <!--<th scope="col" width="3%">
+                    <span class="fas fa-sort"></span>
+                </th>-->
+                <th scope="col" width="20%">
+                    Customer
+                </th>
+                <th scope="col">
+                    Phone
+                </th>
+                <th scope="col" width="15%">
+                    Created Date
+                </th>
+                <th scope="col" width="5%" class="text-right">Actions</th>
+            </tr>
+        </thead>
+
+        <tbody ng-if="data" class="sortable-item" ng-repeat="item in data.items track by $index" style="border: 1px;">
+            <tr>
+                <td></td>
+                <td>
+                    
+                    <span ng-bind="item.customer.fullName"></span>
+                </td>
+                <td>
+                    <span ng-bind="item.phoneNumber"></span>
+                </td>
+                <td>
+                    <small>
+                        {{item.createdDateTime | utcToLocal:'d.M.yyyy h:mm a'}}
+                    </small>
+                </td>
+                <td></td>
+            </tr>
+        </tbody>
+    </table>
+    <paging class="small"
+        page="data.pageIndex+1"
+        page-size="data.pageSize"
+        total="data.totalItems"
+        ul-class="pagination justify-content-end"
+        a-class="page-link"
+        paging-action="loadOrders(page-1)"
+        scroll-top="true" />
+</section>

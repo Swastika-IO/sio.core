@@ -138,7 +138,7 @@ namespace Swastka.Cms.Api.Controllers
         [Route("list/{pageSize:int?}/{pageIndex:int?}/{orderBy}/{direction}")]
         public async Task<RepositoryResponse<PaginationModel<InfoModuleViewModel>>> Get(
             int? pageSize = 15, int? pageIndex = 0, string orderBy = "Id"
-            , OrderByDirection direction = OrderByDirection.Ascending)
+            , int direction = 0)
         {
             var data = await InfoModuleViewModel.Repository.GetModelListByAsync(m => m.Specificulture == _lang, orderBy, direction, pageSize, pageIndex).ConfigureAwait(false);
             return data;
@@ -155,7 +155,7 @@ namespace Swastka.Cms.Api.Controllers
             string keyword = null,
             string description = null,
             int? pageSize = null, int? pageIndex = null, string orderBy = "Id"
-            , OrderByDirection direction = OrderByDirection.Ascending)
+            , int direction = 0)
         {
             Expression<Func<SiocModule, bool>> predicate = model =>
             model.Specificulture == _lang
@@ -217,7 +217,7 @@ namespace Swastka.Cms.Api.Controllers
 
             Expression<Func<SiocModule, bool>> predicate = model =>
                 model.Specificulture == _lang
-                && (!request.Status.HasValue || model.Status == (int)request.Status.Value)
+                && (!request.Status.HasValue || model.Status == request.Status.Value)
                 && (string.IsNullOrWhiteSpace(request.Keyword)
                     || (model.Title.Contains(request.Keyword)
                     || model.Description.Contains(request.Keyword)))

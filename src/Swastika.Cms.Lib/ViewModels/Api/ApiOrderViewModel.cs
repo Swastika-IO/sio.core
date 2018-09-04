@@ -25,15 +25,14 @@ namespace Swastika.Cms.Lib.ViewModels.Api
 
         [JsonProperty("id")]
         public int Id { get; set; }
-        [JsonIgnore]
         [JsonProperty("userId")]
         public string UserId { get; set; }
         [JsonProperty("customerId")]
         public string CustomerId { get; set; }
-        [JsonIgnore]
+
         [JsonProperty("createdDateTime")]
         public DateTime CreatedDateTime { get; set; }
-        [JsonIgnore]
+
         [JsonProperty("createdBy")]
         public string CreatedBy { get; set; }
         [JsonIgnore]
@@ -54,6 +53,9 @@ namespace Swastika.Cms.Lib.ViewModels.Api
 
         [JsonProperty("status")]
         public new int Status { get; set; }
+
+        [JsonProperty("comments")]
+        public List<ApiCommentViewModel> Comments { get; private set; }
 
         #endregion
 
@@ -103,8 +105,11 @@ namespace Swastika.Cms.Lib.ViewModels.Api
         {
             var getCustomer = ApiCustomerViewModel.Repository.GetSingleModel(c => c.Id == CustomerId);
             Customer = getCustomer.Data;
-            var getItems = ApiOrderItemViewModel.Repository.GetModelListBy(i => i.OrderId == Id, _context, _transaction);
+            PhoneNumber = Customer.PhoneNumber;
+            var getItems = ApiOrderItemViewModel.Repository.GetModelListBy(i => i.OrderId == Id && i.Specificulture == Specificulture, _context, _transaction);
             Items = getItems.Data;
+            var getComments = ApiCommentViewModel.Repository.GetModelListBy(i => i.OrderId == Id && i.Specificulture == Specificulture, _context, _transaction);
+            Comments = getComments.Data;
         }
         #endregion Overrides
     }

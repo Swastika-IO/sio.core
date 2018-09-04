@@ -2,13 +2,18 @@
     $locationProvider.html5Mode(true);
 
     $routeProvider.when("/backend", {
-        controller: "DashboardController",
-        templateUrl: "/app-portal/pages/dashboard/dashboard.html"
+        controller: "QueenDashboardController",
+        templateUrl: "/app-portal/pages/queen-dashboard/dashboard.html"
     });
 
     $routeProvider.when("/backend/login", {
         controller: "loginController",
         templateUrl: "/app-portal/pages/login/login.html"
+    });
+
+    $routeProvider.when("/backend/customer/list", {
+        controller: "CustomerController",
+        templateUrl: "/app-portal/pages/customer/list.html"
     });
 
     $routeProvider.when("/backend/product/list", {
@@ -25,7 +30,6 @@
         controller: "ProductController",
         templateUrl: "/app-portal/pages/product/details.html"
     });
-
     $routeProvider.when("/backend/order/list", {
         controller: "OrderController",
         templateUrl: "/app-portal/pages/order/list.html"
@@ -40,7 +44,6 @@
         controller: "OrderController",
         templateUrl: "/app-portal/pages/order/details.html"
     });
-
     $routeProvider.when("/backend/article/list", {
         controller: "ArticleController",
         templateUrl: "/app-portal/pages/article/list.html"

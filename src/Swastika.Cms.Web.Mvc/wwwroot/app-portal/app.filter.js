@@ -7,7 +7,7 @@ app.filter('utcToLocal', Filter)
         request: {
             pageSize: '10',
             pageIndex: 0,
-            status: 'Published',
+            status: '2',
             orderBy: 'Priority',
             direction: '0',
             fromDate: null,

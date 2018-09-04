@@ -342,7 +342,7 @@ namespace Swastika.Cms.Api.Controllers
         public async Task<RepositoryResponse<PaginationModel<InfoUserViewModel>>> GetList(RequestPaging request)
         {
             Expression<Func<SiocCmsUser, bool>> predicate = model =>
-                (!request.Status.HasValue || model.Status == (int)request.Status.Value)
+                (!request.Status.HasValue || model.Status == request.Status.Value)
                 && (string.IsNullOrWhiteSpace(request.Keyword)
                 || (
                     model.Username.Contains(request.Keyword)

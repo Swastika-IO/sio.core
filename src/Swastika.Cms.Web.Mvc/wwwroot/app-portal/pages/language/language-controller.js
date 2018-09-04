@@ -5,7 +5,7 @@ app.controller('LanguageController', ['$scope', '$rootScope', 'ngAppSettings', '
         $scope.request = {
             pageSize: '10',
             pageIndex: 0,
-            status: ngAppSettings.swStatus[1],
+            status: '2',
             orderBy: 'CreatedDateTime',
             direction: '1',
             fromDate: null,
@@ -89,7 +89,7 @@ app.controller('LanguageController', ['$scope', '$rootScope', 'ngAppSettings', '
         };
 
         $scope.loadLanguages = async function (pageIndex) {
-            if (pageIndex != undefined) {
+            if (pageIndex !== undefined) {
                 $scope.request.pageIndex = pageIndex;
             }
             $rootScope.isBusy = true;
@@ -100,7 +100,7 @@ app.controller('LanguageController', ['$scope', '$rootScope', 'ngAppSettings', '
                 $.each($scope.data.items, function (i, language) {
 
                     $.each($scope.activedLanguages, function (i, e) {
-                        if (e.languageId == language.id) {
+                        if (e.languageId === language.id) {
                             language.isHidden = true;
                         }
                     })

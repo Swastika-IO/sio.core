@@ -48,6 +48,24 @@
                     ]
                 },
                 {
+                    title: 'portal_orders',
+                    shortTitle: 'portal_orders',
+                    icon: 'mi mi-Package',
+                    href: '#',
+                    subMenus: [
+                        {
+                            title: ('portal_create'),
+                            href: '/backend/order/create',
+                            icon: 'mi mi-Add'
+                        },
+                        {
+                            title: 'portal_list',
+                            href: '/backend/order/list',
+                            icon: 'mi mi-List'
+                        }
+                    ]
+                },
+                {
                     title: 'portal_pages',
                     shortTitle: 'portal_pages',
                     icon: 'mi mi-Page',

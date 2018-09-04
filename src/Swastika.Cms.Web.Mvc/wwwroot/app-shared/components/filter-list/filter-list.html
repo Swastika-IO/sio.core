@@ -1,9 +1,11 @@
-﻿<div class="row mb-3">
-    <div class="col-5">
+﻿<div class="row mb-3" ng-init="$ctrl.init()">
+    <div class="col-5"> 
         <div class="" role="toolbar" aria-label="Toolbar with button groups">
             <div class="input-group input-group-sm mr-2" role="group" aria-label="First group">
-                <select class="btn custom-select custom-select-sm col-6" ng-model="$ctrl.request.status" ng-change="$ctrl.callback({pageIndex: 0})">
-                    <option ng-repeat="item in $ctrl.statuses track by $index" value="{{item}}">{{item}}</option>
+
+                <select class="btn custom-select custom-select-sm col-6"                                
+                    ng-model="$ctrl.request.status" ng-change="$ctrl.callback({pageIndex: 0})">
+                    <option ng-repeat="item in $ctrl.statuses track by $index" value="{{item.value}}">{{item.title}}</option>
                 </select>
                 <select class="btn custom-select custom-select-sm col-6" ng-model="$ctrl.request.orderBy" ng-change="$ctrl.callback({pageIndex: 0})">
                     <option ng-repeat="item in $ctrl.orders track by $index" value="{{item.value}}">{{item.title}}</option>

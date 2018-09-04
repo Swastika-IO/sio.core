@@ -23,7 +23,7 @@ namespace Swastika.Cms.Mvc.Controllers
 {
     //[ServiceFilter(typeof(Lib.Attributes.LanguageActionFilter))]
     [ResponseCache(CacheProfileName = "Default")]
-    [Route("{culture}")]
+
     public class HomeController : BaseController
     {
         private readonly UserManager<ApplicationUser> _userManager;
@@ -37,9 +37,27 @@ namespace Swastika.Cms.Mvc.Controllers
             this._userManager = userManager;
             this._roleManager = roleManager;
         }
+        [HttpGet]
+        [Route("404")]
+        public async Task<IActionResult> PageNotFound()
+        {
+            var getAlias = await ApiUrlAliasViewModel.Repository.GetSingleModelAsync(
+                    u => u.Alias == "404" && u.Specificulture == CurrentLanguage);
+            if (getAlias.IsSucceed)
+            {
+                int.TryParse(getAlias.Data.SourceId, out int pageId);
+                return Page(p =>
+                    p.Status == (int)SWStatus.Published && p.Specificulture == CurrentLanguage, 0, 0);
+            }
+            else
+            {
+                return NotFound();
+            }
+        }
 
         [HttpGet]
         [Route("alias")]
+        [Route("{culture}/alias")]
         public async Task<IActionResult> Alias(string alias, int pageIndex, int pageSize = 10)
         {
             // Home Page
@@ -66,20 +84,19 @@ namespace Swastika.Cms.Mvc.Controllers
                         case SWCmsConstants.UrlAliasType.Module:
                         case SWCmsConstants.UrlAliasType.ModuleData:
                         default:
-                            return RedirectToAction("Index", "Backend");
+                            return RedirectToAction("PageNotFound", "Home");
                     }
 
                 }
                 else
                 {
-                    return Redirect(string.Format("/{0}/404", CurrentLanguage));
+                    return RedirectToAction("PageNotFound", "Home");
                 }
             }
             else
             {
                 return Page(p => p.Specificulture == CurrentLanguage && (p.Type == (int)SWCmsConstants.CateType.Home), pageIndex, pageSize);
             }
-
         }
 
         IActionResult Page(Expression<Func<SiocCategory, bool>> predicate, int pageIndex, int pageSize = 10)
@@ -99,7 +116,7 @@ namespace Swastika.Cms.Mvc.Controllers
             }
             else
             {
-                return Redirect(string.Format("/{0}/404", CurrentLanguage));
+                return NotFound();
             }
         }
 
@@ -116,7 +133,7 @@ namespace Swastika.Cms.Mvc.Controllers
             }
             else
             {
-                return Redirect(string.Format("/{0}/404", CurrentLanguage));
+                return RedirectToAction("PageNotFound", "Home");
             }
         }
 
@@ -139,7 +156,7 @@ namespace Swastika.Cms.Mvc.Controllers
             }
             else
             {
-                return Redirect(string.Format("/{0}/404", CurrentLanguage));
+                return RedirectToAction("PageNotFound", "Home");
             }
         }
 
@@ -147,7 +164,7 @@ namespace Swastika.Cms.Mvc.Controllers
         {
             foreach (var articleNav in page.Articles.Items)
             {
-                if (articleNav.Article!=null)
+                if (articleNav.Article != null)
                 {
                     articleNav.Article.DetailsUrl = GenerateDetailsUrl("Alias", new { seoName = articleNav.Article.UrlAlias.Alias });
                 }
@@ -155,7 +172,7 @@ namespace Swastika.Cms.Mvc.Controllers
 
             foreach (var productNav in page.Products.Items)
             {
-                if (productNav.Product!=null)
+                if (productNav.Product != null)
                 {
                     productNav.Product.DetailsUrl = GenerateDetailsUrl("Alias", new { seoName = productNav.Product.UrlAlias.Alias });
                 }
@@ -164,7 +181,7 @@ namespace Swastika.Cms.Mvc.Controllers
             foreach (var nav in page.Modules)
             {
                 var module = nav.Module;
-                if (module!=null)
+                if (module != null)
                 {
                     module.DetailsUrl = GenerateDetailsUrl("Alias", new { seoName = module.UrlAlias.Alias });
                     GeneratePageDetailsUrls(module);
@@ -227,7 +244,7 @@ namespace Swastika.Cms.Mvc.Controllers
                         string.IsNullOrEmpty(keyword) || article.Title.Contains(keyword)
                         || (article.Excerpt != null && article.Excerpt.Contains(keyword))
                         ),
-               "CreatedDateTime", OrderByDirection.Descending,
+               "CreatedDateTime", 1,
                pageSize, pageIndex);
             var getProducts = await InfoProductViewModel.Repository.GetModelListByAsync(
                Product => Product.Specificulture == CurrentLanguage
@@ -236,7 +253,7 @@ namespace Swastika.Cms.Mvc.Controllers
                         string.IsNullOrEmpty(keyword) || Product.Title.Contains(keyword)
                         || (Product.Excerpt != null && Product.Excerpt.Contains(keyword))
                         ),
-               "CreatedDateTime", OrderByDirection.Descending,
+               "CreatedDateTime", 1,
                pageSize, pageIndex);
             ViewData["Products"] = getProducts.Data;
             return View(getArticles.Data);
@@ -252,7 +269,7 @@ namespace Swastika.Cms.Mvc.Controllers
                cate => cate.Specificulture == CurrentLanguage
                    && cate.Status != (int)SWStatus.Deleted
                    && (string.IsNullOrEmpty(keyword) || cate.Tags.Contains(keyword)),
-               "CreatedDateTime", OrderByDirection.Descending,
+               "CreatedDateTime",  1,
                pageSize, pageIndex);
             var getProducts = await InfoProductViewModel.Repository.GetModelListByAsync(
                Product => Product.Specificulture == CurrentLanguage
@@ -260,7 +277,7 @@ namespace Swastika.Cms.Mvc.Controllers
                    && (
                         string.IsNullOrEmpty(keyword) || Product.Tags.Contains(keyword)
                         ),
-               "CreatedDateTime", OrderByDirection.Descending,
+               "CreatedDateTime",  1,
                pageSize, pageIndex);
             ViewData["Products"] = getProducts.Data;
             return View(getArticles.Data);

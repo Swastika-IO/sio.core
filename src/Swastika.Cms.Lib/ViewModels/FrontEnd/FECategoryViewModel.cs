@@ -120,8 +120,10 @@ namespace Swastika.Cms.Lib.ViewModels.FrontEnd
         public string Domain { get { return GlobalConfigurationService.Instance.GetLocalString("Domain", Specificulture, "/"); } }
 
         [JsonProperty("imageUrl")]
-        public string ImageUrl {
-            get {
+        public string ImageUrl
+        {
+            get
+            {
                 if (Image != null && (Image.IndexOf("http") == -1 && Image[0] != '/'))
                 {
                     return SwCmsHelper.GetFullPath(new string[] {
@@ -147,8 +149,10 @@ namespace Swastika.Cms.Lib.ViewModels.FrontEnd
         [JsonProperty("modules")]
         public List<NavCategoryModuleViewModel> Modules { get; set; } = new List<NavCategoryModuleViewModel>(); // Get All Module
 
-        public string TemplatePath {
-            get {
+        public string TemplatePath
+        {
+            get
+            {
                 return SwCmsHelper.GetFullPath(new string[]
                 {
                     ""
@@ -353,8 +357,8 @@ namespace Swastika.Cms.Lib.ViewModels.FrontEnd
                 StringBuilder styles = new StringBuilder();
                 foreach (var nav in getNavs.Data.OrderBy(n => n.Priority).ToList())
                 {
-                        scripts.Append(nav.Module.View.Scripts);
-                        styles.Append(nav.Module.View.Styles);
+                    scripts.Append(nav.Module.View.Scripts);
+                    styles.Append(nav.Module.View.Styles);
                 }
                 View.Scripts = scripts.ToString();
                 View.Styles = styles.ToString();
@@ -364,7 +368,7 @@ namespace Swastika.Cms.Lib.ViewModels.FrontEnd
         private void GetSubArticles(SiocCmsContext _context = null, IDbContextTransaction _transaction = null)
         {
             var getArticles = NavCategoryArticleViewModel.Repository.GetModelListBy(
-                n =>  n.CategoryId == Id && n.Specificulture == Specificulture, SWCmsConstants.Default.OrderBy, OrderByDirection.Ascending
+                n => n.CategoryId == Id && n.Specificulture == Specificulture, SWCmsConstants.Default.OrderBy, 0
                 , 4, 0
                , _context: _context, _transaction: _transaction
                );
@@ -378,7 +382,7 @@ namespace Swastika.Cms.Lib.ViewModels.FrontEnd
         {
             var getProducts = NavCategoryProductViewModel.Repository.GetModelListBy(
                m => m.CategoryId == Id && m.Specificulture == Specificulture
-           , SWCmsConstants.Default.OrderBy, OrderByDirection.Ascending
+           , SWCmsConstants.Default.OrderBy, 0
            , PageSize, 0
                , _context: _context, _transaction: _transaction
                );

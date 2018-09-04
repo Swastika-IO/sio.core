@@ -137,7 +137,7 @@ namespace Swastka.Cms.Api.Controllers
         [Route("list/{PageSize:int?}/{PageIndex:int?}/{orderBy}/{direction}")]
         public async Task<RepositoryResponse<PaginationModel<InfoCategoryViewModel>>> Get(
             int? PageSize = 15, int? PageIndex = 0, string orderBy = "Id"
-            , OrderByDirection direction = OrderByDirection.Ascending)
+            , int direction = 0)
         {
             var data = await InfoCategoryViewModel.Repository.GetModelListByAsync(
                 m => m.Specificulture == _lang, orderBy, direction, PageSize, PageIndex).ConfigureAwait(false);
@@ -155,7 +155,7 @@ namespace Swastka.Cms.Api.Controllers
             string keyword = null,
             string description = null,
             int? PageSize = null, int? PageIndex = null, string orderBy = "Id"
-            , OrderByDirection direction = OrderByDirection.Ascending)
+            , int direction = 0)
         {
             Expression<Func<SiocCategory, bool>> predicate = model =>
             model.Specificulture == _lang
@@ -220,7 +220,7 @@ namespace Swastka.Cms.Api.Controllers
             ParseRequestPagingDate(request);
             Expression<Func<SiocCategory, bool>> predicate = model =>
                         model.Specificulture == _lang
-                        && (!request.Status.HasValue || model.Status == (int)request.Status.Value)
+                        && (!request.Status.HasValue || model.Status == request.Status.Value)
                         && (!level.HasValue || model.Level == level)
                         && (string.IsNullOrWhiteSpace(request.Keyword)
                             || (model.Title.Contains(request.Keyword)

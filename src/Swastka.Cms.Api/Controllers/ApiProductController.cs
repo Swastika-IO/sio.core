@@ -139,7 +139,7 @@ namespace Swastka.Cms.Api.Controllers
         [Route("list/{pageSize:int?}/{pageIndex:int?}")]
         [Route("list/{orderBy}/{direction}")]
         [Route("list/{pageSize:int?}/{pageIndex:int?}/{orderBy}/{direction}")]
-        public async Task<RepositoryResponse<PaginationModel<InfoProductViewModel>>> Get(int? pageSize = 15, int? pageIndex = 0, string orderBy = "Id", OrderByDirection direction = OrderByDirection.Ascending)
+        public async Task<RepositoryResponse<PaginationModel<InfoProductViewModel>>> Get(int? pageSize = 15, int? pageIndex = 0, string orderBy = "Id", int direction = 0)
         {
             var data = await InfoProductViewModel.Repository.GetModelListByAsync(
                 m => m.Status != (int)SWStatus.Deleted && m.Specificulture == _lang, orderBy, direction, pageSize, pageIndex).ConfigureAwait(false);
@@ -155,7 +155,7 @@ namespace Swastka.Cms.Api.Controllers
         [Route("search/{keyword}")]
         [Route("search/{pageSize:int?}/{pageIndex:int?}/{keyword}")]
         [Route("search/{pageSize:int?}/{pageIndex:int?}/{orderBy}/{direction}/{keyword}")]
-        public async Task<RepositoryResponse<PaginationModel<InfoProductViewModel>>> Search(string keyword = null, int? pageSize = null, int? pageIndex = null, string orderBy = "Id", OrderByDirection direction = OrderByDirection.Ascending)
+        public async Task<RepositoryResponse<PaginationModel<InfoProductViewModel>>> Search(string keyword = null, int? pageSize = null, int? pageIndex = null, string orderBy = "Id", int direction = 0)
         {
             Expression<Func<SiocProduct, bool>> predicate = model =>
                 model.Specificulture == _lang
@@ -177,7 +177,7 @@ namespace Swastka.Cms.Api.Controllers
         [Route("draft/{pageSize:int?}/{pageIndex:int?}/{orderBy}/{direction}/{keyword}")]
         public async Task<RepositoryResponse<PaginationModel<InfoProductViewModel>>> Draft(
             string keyword = null, int? pageSize = null, int? pageIndex = null, string orderBy = "Id"
-            , OrderByDirection direction = OrderByDirection.Ascending)
+            , int direction = 0)
         {
             Expression<Func<SiocProduct, bool>> predicate = model =>
             model.Specificulture == _lang
@@ -243,7 +243,7 @@ namespace Swastka.Cms.Api.Controllers
             ParseRequestPagingDate(request);
             Expression<Func<SiocProduct, bool>> predicate = model =>
                 model.Specificulture == _lang
-                && (!request.Status.HasValue || model.Status == (int)request.Status.Value)
+                && (!request.Status.HasValue || model.Status == request.Status.Value)
                 && (string.IsNullOrWhiteSpace(request.Keyword)
                 || (
                     model.Title.Contains(request.Keyword)

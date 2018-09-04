@@ -91,7 +91,7 @@ namespace Swastika.Cms.Lib.ViewModels.FrontEnd
             this.View = SpaTemplateViewModel.GetTemplateByPath(Template, Specificulture, _context, _transaction).Data;
             var getDataResult = SpaModuleDataViewModel.Repository
                 .GetModelListBy(m => m.ModuleId == Id && m.Specificulture == Specificulture
-                , "Priority", OrderByDirection.Ascending, null, null
+                , "Priority", 0, null, null
                 , _context, _transaction);
             if (getDataResult.IsSucceed)
             {
@@ -100,7 +100,7 @@ namespace Swastika.Cms.Lib.ViewModels.FrontEnd
                 Data = getDataResult.Data;
             }
 
-            var getArticles = InfoArticleViewModel.GetModelListByModule(Id, Specificulture, SWCmsConstants.Default.OrderBy, OrderByDirection.Ascending
+            var getArticles = InfoArticleViewModel.GetModelListByModule(Id, Specificulture, SWCmsConstants.Default.OrderBy, 0
                 , 4, 0
                 , _context: _context, _transaction: _transaction
                 );
@@ -109,7 +109,7 @@ namespace Swastika.Cms.Lib.ViewModels.FrontEnd
                 Articles = getArticles.Data;
             }
 
-            var getProducts = InfoProductViewModel.GetModelListByModule(Id, Specificulture, SWCmsConstants.Default.OrderBy, OrderByDirection.Ascending
+            var getProducts = InfoProductViewModel.GetModelListByModule(Id, Specificulture, SWCmsConstants.Default.OrderBy, 0
                , 4, 0
                , _context: _context, _transaction: _transaction
                );
@@ -148,7 +148,7 @@ namespace Swastika.Cms.Lib.ViewModels.FrontEnd
                 case SWCmsConstants.ModuleType.Root:
                     getDataResult = SpaModuleDataViewModel.Repository
                        .GetModelListBy(m => m.ModuleId == Id && m.Specificulture == Specificulture
-                       , "Priority", OrderByDirection.Ascending, pageSize, pageIndex
+                       , "Priority", 0, pageSize, pageIndex
                        , _context, _transaction);
                     break;
 
@@ -156,7 +156,7 @@ namespace Swastika.Cms.Lib.ViewModels.FrontEnd
                     getDataResult = SpaModuleDataViewModel.Repository
                        .GetModelListBy(m => m.ModuleId == Id && m.Specificulture == Specificulture
                        && (m.CategoryId == categoryId)
-                       , "Priority", OrderByDirection.Ascending, pageSize, pageIndex
+                       , "Priority", 0, pageSize, pageIndex
                        , _context, _transaction);
                     break;
 
@@ -164,7 +164,7 @@ namespace Swastika.Cms.Lib.ViewModels.FrontEnd
                     getDataResult = SpaModuleDataViewModel.Repository
                        .GetModelListBy(m => m.ModuleId == Id && m.Specificulture == Specificulture
                        && (m.ArticleId == articleId)
-                       , "Priority", OrderByDirection.Ascending, pageSize, pageIndex
+                       , "Priority", 0, pageSize, pageIndex
                        , _context, _transaction);
                     break;
 

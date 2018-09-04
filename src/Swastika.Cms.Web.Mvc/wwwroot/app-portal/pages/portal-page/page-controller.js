@@ -4,7 +4,7 @@ app.controller('PortalPageController', ['$scope', '$rootScope', 'ngAppSettings',
         $scope.request = {
             pageSize: '10',
             pageIndex: 0,
-            status: ngAppSettings.swStatus[1],
+            status: '2',
             orderBy: 'Priority',
             direction: '0',
             fromDate: null,

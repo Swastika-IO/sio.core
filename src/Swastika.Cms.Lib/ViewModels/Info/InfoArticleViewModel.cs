@@ -148,7 +148,7 @@ namespace Swastika.Cms.Lib.ViewModels.Info
 
         public static async Task<RepositoryResponse<PaginationModel<InfoArticleViewModel>>> GetModelListByCategoryAsync(
             int categoryId, string specificulture
-            , string orderByPropertyName, OrderByDirection direction
+            , string orderByPropertyName, int direction
             , int? pageSize = 1, int? pageIndex = 0
             , SiocCmsContext _context = null, IDbContextTransaction _transaction = null)
         {
@@ -201,7 +201,7 @@ namespace Swastika.Cms.Lib.ViewModels.Info
 
         public static RepositoryResponse<PaginationModel<InfoArticleViewModel>> GetModelListByCategory(
            int categoryId, string specificulture
-           , string orderByPropertyName, OrderByDirection direction
+           , string orderByPropertyName, int direction
            , int? pageSize = 1, int? pageIndex = 0
            , SiocCmsContext _context = null, IDbContextTransaction _transaction = null)
         {
@@ -252,7 +252,7 @@ namespace Swastika.Cms.Lib.ViewModels.Info
 
         public static RepositoryResponse<PaginationModel<InfoArticleViewModel>> GetModelListByModule(
           int ModuleId, string specificulture
-          , string orderByPropertyName, OrderByDirection direction
+          , string orderByPropertyName, int direction
           , int? pageSize = 1, int? pageIndex = 0
           , SiocCmsContext _context = null, IDbContextTransaction _transaction = null)
         {

@@ -322,6 +322,11 @@
     <None Include="Areas\Portal\Views\_ViewStart.cshtml" />
     <None Include="Views\_ViewImports.cshtml" />
     <None Include="Views\_ViewStart.cshtml" />
+    <None Include="wwwroot\app-portal\pages\order\components\main\main.js" />
+    <None Include="wwwroot\app-portal\pages\order\components\page-components.js" />
+    <None Include="wwwroot\app-portal\pages\order\components\services\modules.js" />
+    <None Include="wwwroot\app-portal\pages\order\order-controller.js" />
+    <None Include="wwwroot\app-portal\pages\order\order-services.js" />
     <None Include="wwwroot\app\app-portal.js" />
     <None Include="wwwroot\app\controllers\portal-controller.js" />
     <None Include="wwwroot\lib\now-ui-kit-pro-v1.2.2\assets\js\core\bootstrap.min.js" />

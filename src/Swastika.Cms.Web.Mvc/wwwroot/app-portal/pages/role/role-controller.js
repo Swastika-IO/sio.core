@@ -4,7 +4,7 @@ app.controller('RoleController', ['$scope', '$rootScope', 'ngAppSettings', '$rou
         $scope.request = {
             pageSize: '10',
             pageIndex: 0,
-            status: ngAppSettings.swStatus[1],
+            status: '2',
             orderBy: 'CreatedDateTime',
             direction: '1',
             fromDate: null,

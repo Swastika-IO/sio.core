@@ -204,7 +204,7 @@ namespace Swastka.Cms.Api.Controllers
         public async Task<RepositoryResponse<PaginationModel<InfoModuleDataViewModel>>> Get(
             int moduleId,
             int? pageSize = 15, int? pageIndex = 0, string orderBy = "moduleId"
-            , OrderByDirection direction = OrderByDirection.Ascending)
+            , int direction = 0)
         {
             var result = await InfoModuleDataViewModel.Repository.GetModelListByAsync(
                 m => m.ModuleId == moduleId && m.Specificulture == _lang, orderBy, direction, pageSize, pageIndex).ConfigureAwait(false);
@@ -222,7 +222,7 @@ namespace Swastka.Cms.Api.Controllers
         public async Task<RepositoryResponse<PaginationModel<InfoModuleDataViewModel>>> GetByArticle(
             string articleId, int moduleId,
             int? pageSize = 15, int? pageIndex = 0, string orderBy = "moduleId"
-            , OrderByDirection direction = OrderByDirection.Ascending)
+            , int direction = 0)
         {
             var result = await InfoModuleDataViewModel.Repository.GetModelListByAsync(
                 m => m.ModuleId == moduleId && m.ArticleId == articleId && m.Specificulture == _lang,
@@ -240,7 +240,7 @@ namespace Swastka.Cms.Api.Controllers
         public async Task<RepositoryResponse<PaginationModel<InfoModuleDataViewModel>>> Search(int moduleId, 
             string keyword = null, 
             int? pageSize = null, int? pageIndex = null, string orderBy = "Id", 
-            OrderByDirection direction = OrderByDirection.Ascending)
+            int direction = 0)
         {
             Expression<Func<SiocModuleData, bool>> predicate = model =>
                 model.ModuleId == moduleId

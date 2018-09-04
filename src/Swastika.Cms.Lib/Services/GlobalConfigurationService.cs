@@ -34,11 +34,11 @@ namespace Swastika.Cms.Lib.Services
             Instance = new GlobalConfigurationService();
             Instance.RefreshAll();
         }
-        
+
         public GlobalConfigurationService()
         {
 
-        }       
+        }
 
         public string Translate(string culture, string key)
         {
@@ -84,33 +84,60 @@ namespace Swastika.Cms.Lib.Services
 
                     if (isSucceed && BECategoryViewModel.Repository.Count(context, transaction).Data == 0)
                     {
-
-                        ApiCategoryViewModel cate = new ApiCategoryViewModel(new SiocCategory()
+                        var cate = new SiocCategory()
                         {
+                            Id = 1,
                             Title = "Home",
                             Specificulture = culture.Specificulture,
-                            Template = "_Home",
+                            Template = "Pages/_Home.cshtml",
                             Type = (int)SWCmsConstants.CateType.Home,
                             CreatedBy = "Admin",
+                            CreatedDateTime = DateTime.UtcNow,
                             Status = (int)SWStatus.Published
-                        }, context, transaction);
+                        };
 
-                        var createVNHome = await cate.SaveModelAsync(false, context, transaction).ConfigureAwait(false);
-                        isSucceed = createVNHome.IsSucceed;
 
-                        ApiCategoryViewModel error404 = new ApiCategoryViewModel(new SiocCategory()
+                        context.Entry(cate).State = EntityState.Added;
+                        var alias = new SiocUrlAlias()
                         {
-                            Title = "Home",
+                            Id = 1,
+                            SourceId = "1",
+                            Type = (int)SWCmsConstants.UrlAliasType.Page,
                             Specificulture = culture.Specificulture,
-                            Template = "_Home",
-                            Type = (int)SWCmsConstants.CateType.Article,
-                            Status = (int)SWStatus.Published,
-                            CreatedBy = "Admin"
-                        }, context, transaction);
+                            CreatedDateTime = DateTime.UtcNow,
+                            Alias = cate.Title.ToLower()
+                        };
+                        context.Entry(alias).State = EntityState.Added;
 
-                        var createError404 = await error404.SaveModelAsync(false, context, transaction).ConfigureAwait(false);
-                        isSucceed = isSucceed && createError404.IsSucceed;
-                        
+                        var createVNHome = await context.SaveChangesAsync().ConfigureAwait(false);
+                        isSucceed = createVNHome > 0;
+
+                        var cate404 = new SiocCategory()
+                        {
+                            Id = 2,                            
+                            Title = "404",
+                            Specificulture = culture.Specificulture,
+                            Template = "Pages/_404.cshtml",
+                            Type = (int)SWCmsConstants.CateType.Article,
+                            CreatedBy = "Admin",
+                            CreatedDateTime = DateTime.UtcNow,
+                            Status = (int)SWStatus.Published
+                        };
+
+                        var alias404 = new SiocUrlAlias()
+                        {
+                            Id = 2,
+                            SourceId = "2",
+                            Type = (int)SWCmsConstants.UrlAliasType.Page,
+                            Specificulture = culture.Specificulture,
+                            CreatedDateTime = DateTime.UtcNow,
+                            Alias = cate404.Title.ToLower()
+                        };
+                        context.Entry(cate404).State = EntityState.Added;
+                        context.Entry(alias404).State = EntityState.Added;
+
+                        var create404 = await context.SaveChangesAsync().ConfigureAwait(false);
+                        isSucceed = create404 > 0;
                     }
 
                     if (isSucceed)
