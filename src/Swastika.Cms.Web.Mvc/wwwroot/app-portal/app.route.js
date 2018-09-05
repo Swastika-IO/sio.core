@@ -2,8 +2,8 @@
     $locationProvider.html5Mode(true);
 
     $routeProvider.when("/backend", {
-        controller: "QueenDashboardController",
-        templateUrl: "/app-portal/pages/queen-dashboard/dashboard.html"
+        controller: "DashboardController",
+        templateUrl: "/app-portal/pages/dashboard/dashboard.html"
     });
 
     $routeProvider.when("/backend/login", {
