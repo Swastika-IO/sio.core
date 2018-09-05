@@ -296,3 +296,7 @@ src/Swastika.Cms.Web.Mvc/appsettings.json
 /src/Swastika.Cms.Web.Mvc/logs
 /src/Swastika.Cms.Web.Mvc/appsettings.json
 src/Swastika.Cms.Web.Mvc/appsettings.json
+/src/Swastika.Cms.Web.Mvc/wwwroot/css/site.min.css
+/src/Swastika.Cms.Web.Mvc/wwwroot/js/app-client.min.js
+/src/Swastika.Cms.Web.Mvc/wwwroot/js/app-portal.min.js
+/src/Swastika.Cms.Web.Mvc/wwwroot/js/app-shared.min.js
