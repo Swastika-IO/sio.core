@@ -1,16 +1,13 @@
 ﻿'use strict';
-app.controller('ConfigurationController', ['$scope', '$rootScope', 'ngAppSettings', '$routeParams', '$timeout', '$location', 'AuthService', 'ConfigurationServices',
-    function ($scope, $rootScope, ngAppSettings, $routeParams, $timeout, $location, authService, configurationServices) {
-        $scope.request = {
-            pageSize: '10',
-            pageIndex: 0,
-            status: '2',
-            orderBy: 'CreatedDateTime',
-            direction: '1',
-            fromDate: null,
-            toDate: null,
-            keyword: ''
-        };
+app.controller('ConfigurationController', ['$scope', '$rootScope', 'ngAppSettings', '$routeParams', '$timeout', '$location', 'AuthService', 'ConfigurationServices','SiteConfigurationService',
+    function ($scope, $rootScope, ngAppSettings, $routeParams, $timeout, $location, authService, configurationServices, siteConfigurationService) {
+        $scope.request = ngAppSettings.request;
+
+        $scope.request.swStatus = [
+            'Site',
+            'System'
+        ];
+        $scope.request.status = '0';
         $scope.configurationFile = {
             file: null,
             fullPath: '',
@@ -18,6 +15,10 @@ app.controller('ConfigurationController', ['$scope', '$rootScope', 'ngAppSetting
             title: '',
             description: ''
         };
+        $scope.cates = [
+            'Site',
+            'System'
+        ];
         $scope.dataTypes = ngAppSettings.editorConfigurations.dataTypes;
         $scope.activedConfiguration = null;
         $scope.relatedConfigurations = [];
@@ -25,7 +26,7 @@ app.controller('ConfigurationController', ['$scope', '$rootScope', 'ngAppSetting
         $scope.data = {
             pageIndex: 0,
             pageSize: 1,
-            totalItems: 0,
+            totalItems: 0
         };
         $scope.errors = [];
 
@@ -36,7 +37,8 @@ app.controller('ConfigurationController', ['$scope', '$rootScope', 'ngAppSetting
         };
         $scope.initEditors = function () {
             $rootScope.initEditor();
-        }
+        };
+
         $scope.getConfiguration = async function (id) {
             $rootScope.isBusy = true;
             var resp = await configurationServices.getConfiguration(id, 'be');
@@ -70,7 +72,7 @@ app.controller('ConfigurationController', ['$scope', '$rootScope', 'ngAppSetting
         };
 
         $scope.loadConfigurations = async function (pageIndex) {
-            if (pageIndex != undefined) {
+            if (pageIndex !== undefined) {
                 $scope.request.pageIndex = pageIndex;
             }
             $rootScope.isBusy = true;
@@ -81,10 +83,10 @@ app.controller('ConfigurationController', ['$scope', '$rootScope', 'ngAppSetting
                 $.each($scope.data.items, function (i, configuration) {
 
                     $.each($scope.activedConfigurations, function (i, e) {
-                        if (e.configurationId == configuration.id) {
+                        if (e.configurationId === configuration.id) {
                             configuration.isHidden = true;
                         }
-                    })
+                    });
                 });
                 $rootScope.isBusy = false;
                 $scope.$apply();
@@ -98,20 +100,22 @@ app.controller('ConfigurationController', ['$scope', '$rootScope', 'ngAppSetting
 
         $scope.removeConfiguration = function (id) {
             $rootScope.showConfirm($scope, 'removeConfigurationConfirmed', [id], null, 'Remove Configuration', 'Are you sure');
-        }
+        };
 
         $scope.removeConfigurationConfirmed = async function (id) {
             $rootScope.isBusy = true;
             var result = await configurationServices.removeConfiguration(id);
             if (result.isSucceed) {
-                $scope.loadConfigurations();
+                siteConfigurationService.reset($rootScope.settings.lang).then(function () {
+                    window.location.href = '/backend/configuration/list';
+                });
             }
             else {
                 $rootScope.showErrors(result.errors);
                 $rootScope.isBusy = false;
                 $scope.$apply();
             }
-        }
+        };
 
         $scope.saveConfiguration = async function (configuration) {
             configuration.content = $('.editor-content').val();
@@ -121,8 +125,10 @@ app.controller('ConfigurationController', ['$scope', '$rootScope', 'ngAppSetting
             if (resp && resp.isSucceed) {
                 $scope.activedConfiguration = resp.data;
                 $rootScope.showMessage('Thành công', 'success');
-                $rootScope.isBusy = false;
-                $scope.$apply();
+                
+                siteConfigurationService.reset($rootScope.settings.lang).then(function () {
+                    window.location.href = '/backend/configuration/list';
+                });
             }
             else {
                 if (resp) { $rootScope.showErrors(resp.errors); }

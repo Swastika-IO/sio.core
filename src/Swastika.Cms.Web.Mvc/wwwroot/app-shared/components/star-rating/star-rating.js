@@ -9,7 +9,7 @@
         ctrl.rateFunction = function (rating) {
             console.log('Rating selected: ' + rating);
         };
-        ctrl.updateStars = function () {
+        ctrl.init = function () {
             ctrl.stars = [];
             ctrl.max = ctrl.max || 5;
             for (var i = 0; i < ctrl.max; i++) {
@@ -20,10 +20,7 @@
         };
         ctrl.toggle = function (index) {
             if (ctrl.readonly === undefined || ctrl.readonly === false) {
-                ctrl.ratingValue = index + 1;
-                ctrl.onRatingSelect({
-                    rating: index + 1
-                });
+                ctrl.ratingValue = index + 1;                
             }
         };
 
@@ -32,6 +29,6 @@
         ratingValue: '=',
         max: '=?', // optional (default is 5)
         onRatingSelect: '&?',
-        readonly: '=?'
+        isReadonly: '=?'
     }
 });

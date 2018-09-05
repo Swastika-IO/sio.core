@@ -2,11 +2,12 @@
 var app = angular.module('SwastikaPortal', ['ngRoute', 'components', 'ngFileUpload', 'LocalStorageModule',
     'bw.paging', 'dndLists', 'ngTagsInput', 'ngSanitize']);
 var modules = angular.module('components', []);
-app.run(['$rootScope', '$location', 'CommonServices', 'AuthService', 'TranslatorService', 'ngAppSettings',
-    function ($rootScope, $location, commonServices, authService, translatorService, ngAppSettings) {
+app.run(['$rootScope', '$location', 'CommonServices', 'AuthService', 'TranslatorService','SiteConfigurationService', 'ngAppSettings',
+    function ($rootScope, $location, commonServices, authService, translatorService, configurationService, ngAppSettings) {
         $rootScope.currentContext = $rootScope;
         $rootScope.isBusy = false;
         $rootScope.translator = translatorService;
+        $rootScope.configurationService = configurationService;
         $rootScope.errors = [];
         $rootScope.breadCrumbs = [];
         $rootScope.message = {
@@ -152,6 +153,15 @@ app.run(['$rootScope', '$location', 'CommonServices', 'AuthService', 'Translator
         $rootScope.translate = function (keyword, isWrap, defaultText) {
             if ($rootScope.settings && ($rootScope.translator || $rootScope.isBusy)) {
                 return $rootScope.translator.get(keyword, isWrap, defaultText);
+            }
+            else {
+                return keyword || defaultText;
+            }
+        };
+        
+        $rootScope.getConfiguration = function (keyword, isWrap, defaultText) {
+            if ($rootScope.settings && ($rootScope.configurationService || $rootScope.isBusy)) {
+                return $rootScope.configurationService.get(keyword, isWrap, defaultText);
             }
             else {
                 return keyword || defaultText;

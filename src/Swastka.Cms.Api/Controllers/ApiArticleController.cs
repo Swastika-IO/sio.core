@@ -218,6 +218,8 @@ namespace Swastka.Cms.Api.Controllers
         #region Post
 
         // POST api/Articles
+        [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme,
+        Roles = "SuperAdmin, Admin")]
         [HttpPost, HttpOptions]
         [Route("save")]
         public async Task<RepositoryResponse<ApiArticleViewModel>> Save([FromBody] ApiArticleViewModel Article)
@@ -253,7 +255,8 @@ namespace Swastka.Cms.Api.Controllers
         }
 
         // GET api/Articles
-
+        [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme,
+        Roles = "SuperAdmin, Admin")]
         [HttpPost, HttpOptions]
         [Route("list")]
         public async Task<RepositoryResponse<PaginationModel<InfoArticleViewModel>>> GetList([FromBody]RequestPaging request)

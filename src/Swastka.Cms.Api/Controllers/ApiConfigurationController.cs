@@ -2,13 +2,16 @@
 // The Swastika I/O Foundation licenses this file to you under the GNU General Public License v3.0.
 // See the LICENSE file in the project root for more information.
 
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.Data.OData.Query;
 using Newtonsoft.Json.Linq;
 using Swastika.Cms.Lib.Models.Cms;
+using Swastika.Cms.Lib.ViewModels.Api;
 using Swastika.Cms.Lib.ViewModels.BackEnd;
 using Swastika.Domain.Core.ViewModels;
 using System;
+using System.Collections.Generic;
 using System.Linq.Expressions;
 using System.Threading.Tasks;
 
@@ -52,7 +55,7 @@ namespace Swastka.Cms.Api.Controllers
                         };
 
                         var result = new RepositoryResponse<BEConfigurationViewModel>()
-                        { 
+                        {
                             IsSucceed = true,
                             Data = (await BEConfigurationViewModel.InitViewAsync(configuration))
                         };
@@ -76,6 +79,15 @@ namespace Swastka.Cms.Api.Controllers
             {
                 return new RepositoryResponse<SiocConfiguration>() { IsSucceed = false };
             }
+        }
+
+        // GET api/configurations/id
+        [HttpGet, HttpOptions]
+        [Route("configurations/{category}")]
+        public async Task<RepositoryResponse<List<ApiConfigurationViewModel>>> GetSiteConfigurations(string category)
+        {
+            var result = await ApiConfigurationViewModel.Repository.GetModelListByAsync(a => a.Category == category && a.Specificulture == _lang);
+            return result;
         }
 
         // GET api/configurations
@@ -121,6 +133,8 @@ namespace Swastka.Cms.Api.Controllers
         #region Post
 
         // POST api/configurations
+        [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme,
+        Roles = "SuperAdmin, Admin")]
         [HttpPost, HttpOptions]
         [Route("save")]
         public async Task<RepositoryResponse<BEConfigurationViewModel>> Post([FromBody]BEConfigurationViewModel model)
@@ -135,19 +149,22 @@ namespace Swastka.Cms.Api.Controllers
         }
 
         // GET api/configurations
-
+        [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme,
+        Roles = "SuperAdmin, Admin")]
         [HttpPost, HttpOptions]
         [Route("list")]
         public async Task<RepositoryResponse<PaginationModel<BEConfigurationViewModel>>> GetList([FromBody]RequestPaging request)
         {
             ParseRequestPagingDate(request);
+            string[] cates = { "Site", "System" };
             Expression<Func<SiocConfiguration, bool>> predicate = model =>
                 model.Specificulture == _lang
+                && (!request.Status.HasValue || model.Category == cates[request.Status.Value])
                 && (string.IsNullOrWhiteSpace(request.Keyword)
                 || (model.Description.Contains(request.Keyword)
                 || model.Value.Contains(request.Keyword)
                 || model.Keyword.Contains(request.Keyword)));
-            
+
             var data = await BEConfigurationViewModel.Repository.GetModelListByAsync(predicate, request.OrderBy, request.Direction, request.PageSize, request.PageIndex).ConfigureAwait(false);
 
             return data;

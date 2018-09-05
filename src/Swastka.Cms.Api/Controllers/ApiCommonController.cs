@@ -82,6 +82,26 @@ namespace Swastka.Cms.Api.Controllers
             };
         }
 
+        // GET api/configurations/id
+        [HttpGet, HttpOptions]
+        [Route("{culture}/configurations")]
+        [Route("configurations")]
+        public async Task<RepositoryResponse<JObject>> GetSiteConfigurations()
+        {
+            var result = await ApiConfigurationViewModel.Repository.GetModelListByAsync(a => a.Category == "Site" && a.Specificulture == _lang);
+            JObject objResult = new JObject();
+            foreach (var cnf in result.Data)
+            {
+                JProperty l = new JProperty(cnf.Keyword, cnf.Value);
+                objResult.Add(l);
+            }
+            return new RepositoryResponse<JObject>()
+            {
+                IsSucceed = true,
+                Data = objResult
+            };
+        }
+
         [HttpGet, HttpOptions]
         [Route("init-settings")]
         public RepositoryResponse<SiteSettingsViewModel> InitSettings()

@@ -20,7 +20,10 @@
                         </div>
                         <div class="form-group">
                             <label class="control-label">Cateogory</label>
-                            <input type="text" class="form-control" ng-model="activedConfiguration.category" />
+                            <select class="btn custom-select"
+                                    ng-model="activedConfiguration.category">
+                                <option ng-repeat="item in cates" ng-value="item">{{item}}</option>
+                            </select>
                         </div>
                         <div class="form-group">
                             <label class="control-label">Type</label>

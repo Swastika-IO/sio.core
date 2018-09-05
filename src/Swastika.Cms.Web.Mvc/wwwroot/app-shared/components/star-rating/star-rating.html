@@ -1,10 +1,12 @@
-﻿<ul class="star-rating" ng-class="{readonly: $ctrl.readonly}">
-    <li ng-repeat="star in $ctrl.stars" class="star" ng-class="{filled: $ctrl.star.filled}"
-        ng-click="$ctrl.toggle($index)">
-        <i class="fa fa-star"></i>
-        <!-- or &#9733 -->
-    </li>
-</ul>
+﻿<div ng-model="$ctrl.ratingValue" on-rating-select=>
+    <ul class="star-rating" ng-class="{readonly: $ctrl.isReadonly}" ng-init="$ctrl.init()">
+        <li ng-repeat="star in $ctrl.stars" class="star" ng-class="{filled: star.filled}"
+            ng-click="$ctrl.toggle($index)">
+            <i class="fa fa-star"></i>
+            <!-- or &#9733 -->
+        </li>
+    </ul>
+</div>
 <style>
     .star-rating {
         margin: 0;
@@ -12,21 +14,21 @@
         display: inline-block;
     }
 
-        .star-rating .star {
-            padding: 1px;
-            color: #ddd;
-            font-size: 20px;
-            text-shadow: .05em .05em #aaa;
-            list-style-type: none;
-            display: inline-block;
-            cursor: pointer;
-        }
+    .star-rating .star {
+        padding: 1px;
+        color: #ddd;
+        font-size: 12px;
+        text-shadow: .05em .05em #aaa;
+        list-style-type: none;
+        display: inline-block;
+        cursor: pointer;
+    }
 
-            .star-rating .star .filled {
-                color: #fd0;
-            }
+    .star-rating .star.filled {
+        color: #fd0;
+    }
 
-        .star-rating.readonly .star.filled {
-            color: #666;
-        }
+    .star-rating.readonly .star.filled {
+        color: #666;
+    }
 </style>

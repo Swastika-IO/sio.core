@@ -182,15 +182,11 @@ namespace Swastka.Cms.Api.Controllers
         public async Task<JObject> GetList(
             [FromBody] RequestPaging request)
         {
-            if (!request.FromDate.HasValue)
-            {
-                request.FromDate = DateTime.Now;
-            }
             ParseRequestPagingDate(request);
             Expression<Func<SiocOrder, bool>> predicate;
             predicate = model =>
                 model.Specificulture == _lang
-                 && model.Status == request.Status
+                 && (!request.Status.HasValue || model.Status == request.Status.Value)
                 && (string.IsNullOrWhiteSpace(request.Keyword)
                     || (model.SiocCustomer.FullName.Contains(request.Keyword)
                     || model.SiocCustomer.PhoneNumber.Contains(request.Keyword))

@@ -103,7 +103,7 @@ app.controller('LanguageController', ['$scope', '$rootScope', 'ngAppSettings', '
                         if (e.languageId === language.id) {
                             language.isHidden = true;
                         }
-                    })
+                    });
                 });
                 $rootScope.isBusy = false;
                 $scope.$apply();
@@ -117,12 +117,12 @@ app.controller('LanguageController', ['$scope', '$rootScope', 'ngAppSettings', '
 
         $scope.removeLanguage = function (id) {
             $rootScope.showConfirm($scope, 'removeLanguageConfirmed', [id], null, 'Remove Language', 'Are you sure');
-        }
+        };
 
         $scope.removeLanguageConfirmed = async function (id) {
             $rootScope.isBusy = true;
             var result = await languageServices.removeLanguage(id);
-            if (result.isSucceed) {                
+            if (result.isSucceed) {
                 commonServices.removeTranslator();
                 $scope.loadLanguages();
             }
@@ -131,7 +131,7 @@ app.controller('LanguageController', ['$scope', '$rootScope', 'ngAppSettings', '
                 $rootScope.isBusy = false;
                 $scope.$apply();
             }
-        }
+        };
 
         $scope.saveLanguage = async function (language) {
             language.content = $('.editor-content').val();
@@ -144,7 +144,7 @@ app.controller('LanguageController', ['$scope', '$rootScope', 'ngAppSettings', '
 
                 translatorService.reset($rootScope.settings.lang).then(function () {
                     window.location.href = '/backend/language/list';
-                })
+                });
 
             }
             else {

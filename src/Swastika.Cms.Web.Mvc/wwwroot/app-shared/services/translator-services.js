@@ -11,10 +11,6 @@ app.factory('TranslatorService', ['$rootScope', 'CommonServices', 'localStorageS
     var _fillTranslator = async function (culture) {
 
         if (this.translator.data && this.translator.lang === culture) {
-
-            //_translator = translator;
-            //this.translator = translator;
-
             return this.translator;
         }
         else {
@@ -51,7 +47,7 @@ app.factory('TranslatorService', ['$rootScope', 'CommonServices', 'localStorageS
         }
     };
     var _reset = async function (lang) {
-
+        localStorageService.remove('translator');
         await _getTranslator(lang);
     };
     var _get = function (keyword, isWrap, defaultText) {

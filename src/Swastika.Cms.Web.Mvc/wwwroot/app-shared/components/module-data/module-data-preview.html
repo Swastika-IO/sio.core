@@ -6,7 +6,7 @@
         <span ng-bind="$ctrl.data.value" />
     </div>
     <div ng-switch-when="2">
-        <img width="{{$ctrl.width}}" imageonload src="{{$ctrl.data.value}}" />
+        <img width="{{$ctrl.width}}" imageonload ng-src="{{$ctrl.data.value}}" />
     </div>
     <div ng-switch-when="3">
         <i class="{{$ctrl.data.value}}" />
