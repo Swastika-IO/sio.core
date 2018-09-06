@@ -401,7 +401,6 @@ namespace Swastika.Cms.Lib.ViewModels.Info
             UrlAlias = InfoUrlAliasViewModel.Repository.GetSingleModel(u => u.Specificulture == Specificulture && u.SourceId == Id.ToString()
             && u.Type == (int)SWCmsConstants.UrlAliasType.Product
             ).Data;
-            
         }
         #endregion
     }
