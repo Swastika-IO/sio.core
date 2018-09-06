@@ -5,6 +5,7 @@ var gulp = require("gulp"),
     rimraf = require("rimraf"),
     concat = require("gulp-concat"),
     cssmin = require("gulp-cssmin"),
+    htmlmin = require("gulp-htmlmin"),
     uglify = require("gulp-uglify");
 
 var uglifyjs = require('uglify-es'); // can be a git checkout
@@ -13,9 +14,31 @@ var composer = require('gulp-uglify/composer');
 var pump = require('pump');
 
 var minify = composer(uglifyjs, console);
-
+var dest = 'dist';//For publish folder use "./bin/Release/PublishOutput/";
 var paths = {
-    webroot: "./wwwroot/"
+    webroot: "./wwwroot/",
+    jsObtions:{},
+    htmlOptions:{collapseWhitespace: true},
+    cssOptions:{} //showLog : (True, false) to trun on or off of the log
+};
+
+paths.views = {
+    src: [
+        paths.webroot + "app-shared/**/*.html",
+        paths.webroot + "app-portal/**/*.html",
+        paths.webroot + "app-client/**/*.html"
+    ],
+    dest: paths.webroot + "html/*.html"
+};
+
+paths.css = {
+    src: [
+        paths.webroot + "css/**/*.css",
+        paths.webroot + "app-shared/**/*.css",
+        paths.webroot + "app-portal/**/*.css",
+        paths.webroot + "app-client/**/*.css"
+    ],
+    dest : paths.webroot + "css/site.min.css"
 };
 
 paths.portal = {
@@ -40,12 +63,7 @@ paths.sharedJs = {
     dest: paths.webroot + "js/app-shared.min.js"
 };
 
-paths.css = {
-    src: [
-        paths.webroot + "css/**/*.css"
-    ],
-    dest : paths.webroot + "css/site.min.css"
-};
+
 
 gulp.task("clean:js", function (cb) {
     rimraf(paths.portal.dest, cb);
@@ -65,38 +83,42 @@ gulp.task("clean:css", function (cb) {
 
 gulp.task("clean", ["clean:js", "clean:clientJs","clean:sharedJs", "clean:css"]);
 
-gulp.task("min:js", function (cb) {
-    var options = {};
+gulp.task("min:js", function (cb) {    
     return gulp.src(paths.portal.src, { base: "." })
         .pipe(concat(paths.portal.dest))
-        //.pipe(minify(options))
-        .pipe(gulp.dest("."));
+        .pipe(minify(paths.jsOptions))
+        .pipe(gulp.dest(dest));
 
 });
+
+gulp.task("min:views", function (cb) {
+    return gulp.src(paths.views.src, { base: "." })        
+        .pipe(htmlmin(paths.htmlOptions))
+        .pipe(gulp.dest(dest));
+
+});
+
 gulp.task("min:clientJs", function (cb) {
-    var options = {};
     return gulp.src(paths.client.src, { base: "." })
         .pipe(concat(paths.client.dest))
-        //.pipe(minify(options))
-        .pipe(gulp.dest("."));
+        .pipe(minify(paths.jsOptions))
+        .pipe(gulp.dest(dest));
 
 });
 
-gulp.task("min:sharedJs", function (cb) {
-    var options = {};
+gulp.task("min:sharedJs", function (cb) {    
     return gulp.src(paths.sharedJs.src, { base: "." })
         .pipe(concat(paths.sharedJs.dest))
-        //.pipe(minify(options))
-        .pipe(gulp.dest("."));
+        .pipe(minify(paths.jsOptions))
+        .pipe(gulp.dest(dest));
 
 });
 
 gulp.task("min:css", function (cb) {
-    var options = {};
     return gulp.src(paths.css.src, { base: "." })
         .pipe(concat(paths.css.dest))
-        .pipe(cssmin())
-        .pipe(gulp.dest("."));
+        .pipe(cssmin(paths.cssOptions))
+        .pipe(gulp.dest(dest));
 
 });
 
@@ -123,4 +145,5 @@ gulp.task("min:css", function (cb) {
 //        .pipe(gulp.dest("."));
 //});
 
-gulp.task("min", ["min:js", "min:clientJs","min:sharedJs", "min:css"]);
+gulp.task("min", ["min:js", "min:clientJs","min:sharedJs", "min:css"
+    , "min:views"]);
