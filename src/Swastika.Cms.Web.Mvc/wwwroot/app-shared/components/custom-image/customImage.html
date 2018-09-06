@@ -1,20 +1,8 @@
-﻿<div class="card">
+﻿<div class="card" ng-init="$ctrl.init()">
     <div class="card-header">
         {{$ctrl.header }}
     </div>
-    <div class="card-body p-0" style="background:url(/images/upload-image-thumbnail.png) no-repeat center;  cursor:pointer;">
-        <!-- <span class="custom-file" style="min-height:210px; overflow:hidden;">
-            
-            <button class="btn btn-light btn-sm custom-file-cropper position-absolute m-1 collapse" style="z-index:3; right:0;" data-toggle="modal"
-                data-target=".image-crop-modal-lg" data-imgsrc="" data-imgid="">
-                <i class="mi mi-Crop"></i>
-            </button>
-            <img imageonload ng-src="{{$ctrl.srcUrl}}" name="pic" class="custom-file-img d-block" style="max-height: 150px; width: auto; margin: 35px auto;"
-                accept="image/*" />
-            <input type="hidden" value="{{$ctrl.type}}/{{$ctrl.folder}}" class="folder-val" />
-
-        </span> -->
-        
+    <div class="card-body p-0" style="background:url(/images/upload-image-thumbnail.png) no-repeat center;  cursor:pointer;">        
         <img imageonload ng-src="{{$ctrl.srcUrl}}" name="pic" class="custom-file-img d-block" style="/*max-height: 150px;*/ width: 100%;"
         accept="image/*" />
         <input type="hidden" value="{{$ctrl.type}}/{{$ctrl.folder}}" class="folder-val" />
