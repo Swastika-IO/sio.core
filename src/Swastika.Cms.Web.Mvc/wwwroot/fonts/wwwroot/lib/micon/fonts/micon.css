@@ -1,0 +1,12 @@
+@font-face {
+    font-family: "micon";
+    src: url("./wwwroot/fontsmicon.eot"); /* IE9 */
+    src: url("./wwwroot/fontsmicon.eot?#iefix") format("embedded-opentype"), /* IE6-IE8 */
+    url("./wwwroot/fontsmicon.woff") format("woff"), /* chrome, firefox */
+    url("./wwwroot/fontsmicon.ttf") format("truetype"), /* chrome, firefox, opera, Safari, Android, iOS 4.2+ */
+    url("./wwwroot/fontsmicon.svg#micon") format("svg"); /* iOS 4.1- */
+    font-style: normal;
+    font-weight: normal;
+}
+
+
