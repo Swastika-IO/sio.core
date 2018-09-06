@@ -1,4 +1,5 @@
-﻿modules.directive('tabsV', function () {
+﻿
+modules.directive('tabsV', function () {
     return {
         restrict: 'E',
         transclude: true,
@@ -18,7 +19,7 @@
                 panes.push(pane);
             }
         },
-        templateUrl: '/app-shared/components/templates/tabs.html',
+        templateUrl: '/app-shared/components/tabs-verticle/tabs.html',
         replace: true
     };
 });

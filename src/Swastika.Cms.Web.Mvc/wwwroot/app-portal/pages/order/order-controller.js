@@ -5,6 +5,7 @@ app.controller('OrderController', ['$scope', '$rootScope', 'ngAppSettings', '$ro
         $scope.request.swStatus = [
             'Waiting',
             'Serving',
+            'Rated',
             'Finished'
         ];
         $scope.request.status = '2';

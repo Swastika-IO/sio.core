@@ -6,7 +6,7 @@ modules.component('customImage', {
         var ctrl = this;
         ctrl.init = function () {
             ctrl.srcUrl = ctrl.srcUrl || '/lib/now-ui-kit-pro-v1.2.2/assets/img/image_placeholder.jpg';
-            
+            ctrl.id = Math.random();
         };
         ctrl.mediaFile = {
             file: null,
@@ -98,7 +98,6 @@ modules.component('customImage', {
 
     }],
     bindings: {
-        id: '=',
         header: '=',
         title: '=',
         description: '=',

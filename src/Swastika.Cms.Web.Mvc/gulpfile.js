@@ -5,7 +5,9 @@ var gulp = require("gulp"),
     rimraf = require("rimraf"),
     concat = require("gulp-concat"),
     cssmin = require("gulp-cssmin"),
+    fontmin = require("gulp-fontmin"),
     htmlmin = require("gulp-htmlmin"),
+    
     uglify = require("gulp-uglify");
 
 var uglifyjs = require('uglify-es'); // can be a git checkout
@@ -18,8 +20,9 @@ var dest = 'dist';//For publish folder use "./bin/Release/PublishOutput/";
 var paths = {
     webroot: "./wwwroot/",
     jsObtions:{},
-    htmlOptions:{collapseWhitespace: true},
-    cssOptions:{} //showLog : (True, false) to trun on or off of the log
+    htmlOptions:{collapseWhitespace: false},
+    cssOptions:{}, //showLog : (True, false) to trun on or off of the log
+    fontOptions:{fontPath: dest+ '/wwwroot/fonts'}
 };
 
 paths.views = {
@@ -30,17 +33,45 @@ paths.views = {
     ],
     dest: paths.webroot + "html/*.html"
 };
-
+paths.fonts = {
+    src: [
+        paths.webroot + "lib/micon/fonts/*.*"        
+    ],
+    dest: paths.webroot + dest + "/fonts"
+};
 paths.css = {
     src: [
-        paths.webroot + "css/**/*.css",
+
+        paths.webroot + "lib/micon/css/micon.css",
+        paths.webroot + "lib/fontawesome-free-5.0.10/css/fontawesome-all.css",
+        paths.webroot + "lib/open-iconic-master/font/css/open-iconic-bootstrap.min.css",
+        paths.webroot + "lib/bootstrap4-tagsinput-4.1.2/tagsinput.css",
+        paths.webroot + "lib/Trumbowyg-2.9.0/ui/trumbowyg.min.css",
+        paths.webroot + "lib/Trumbowyg-2.9.0/plugins/colors/ui/trumbowyg.colors.css",        
+        paths.webroot + "lib/flag-icon-css/css/flag-icon.min.css",
+
         paths.webroot + "app-shared/**/*.css",
         paths.webroot + "app-portal/**/*.css",
         paths.webroot + "app-client/**/*.css"
     ],
-    dest : paths.webroot + "css/site.min.css"
+    dest : paths.webroot + "css/vendor.min.css"
 };
-
+paths.plugins ={
+    src: [
+        paths.webroot + "lib/Trumbowyg-2.9.0/**/*.min.js",
+        paths.webroot + "lib/ace/src/ace.js",
+        paths.webroot + "lib/ace/src/mode-csharp.js",
+        paths.webroot + "lib/ace/src/mode-razor.js",
+        paths.webroot + "lib/ace/src/mode-json.js",
+        paths.webroot + "lib/ace/src/mode-css.js",
+        paths.webroot + "lib/ace/src/mode-javascript.js",
+        paths.webroot + "lib/ace/src/mode-html.js",
+        paths.webroot + "lib/ace/src/theme-chrome.js",
+        paths.webroot + "lib/ace/src/theme-clouds_midnight.js",
+        paths.webroot + "lib/ace/src/worker-json.js",
+    ],
+    dest: paths.webroot + "js/vendor.min.js"
+}
 paths.portal = {
     src: [
         paths.webroot + "app-portal/pages/**/*.js"
@@ -83,10 +114,18 @@ gulp.task("clean:css", function (cb) {
 
 gulp.task("clean", ["clean:js", "clean:clientJs","clean:sharedJs", "clean:css"]);
 
+gulp.task("min:plugins", function (cb) {    
+    return gulp.src(paths.plugins.src, { base: "." })
+        .pipe(concat(paths.plugins.dest))
+        //.pipe(minify(paths.jsOptions))
+        .pipe(gulp.dest(dest));
+
+});
+
 gulp.task("min:js", function (cb) {    
     return gulp.src(paths.portal.src, { base: "." })
         .pipe(concat(paths.portal.dest))
-        .pipe(minify(paths.jsOptions))
+        //.pipe(minify(paths.jsOptions))
         .pipe(gulp.dest(dest));
 
 });
@@ -97,7 +136,12 @@ gulp.task("min:views", function (cb) {
         .pipe(gulp.dest(dest));
 
 });
+gulp.task("min:fonts", function (cb) {
+    return gulp.src(paths.fonts.src, { base: "." })          
+        .pipe(fontmin(paths.fontOptions))
+        .pipe(gulp.dest(paths.fonts.dest));
 
+});
 gulp.task("min:clientJs", function (cb) {
     return gulp.src(paths.client.src, { base: "." })
         .pipe(concat(paths.client.dest))
@@ -109,7 +153,7 @@ gulp.task("min:clientJs", function (cb) {
 gulp.task("min:sharedJs", function (cb) {    
     return gulp.src(paths.sharedJs.src, { base: "." })
         .pipe(concat(paths.sharedJs.dest))
-        .pipe(minify(paths.jsOptions))
+        //.pipe(minify(paths.jsOptions))
         .pipe(gulp.dest(dest));
 
 });
@@ -145,5 +189,4 @@ gulp.task("min:css", function (cb) {
 //        .pipe(gulp.dest("."));
 //});
 
-gulp.task("min", ["min:js", "min:clientJs","min:sharedJs", "min:css"
-    , "min:views"]);
+gulp.task("min", ["min:plugins", "min:js", "min:clientJs","min:sharedJs", "min:css", "min:fonts"]);
