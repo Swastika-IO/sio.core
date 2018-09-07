@@ -16,7 +16,7 @@ var composer = require('gulp-uglify/composer');
 var pump = require('pump');
 
 var minify = composer(uglifyjs, console);
-var dest = 'dist';//For publish folder use "./bin/Release/PublishOutput/";
+var dest = '.';//For publish folder use "./bin/Release/PublishOutput/";
 var paths = {
     webroot: "./wwwroot/",
     jsObtions:{},

@@ -12,6 +12,13 @@
                     subMenus: []
                 },
                 {
+                    title: 'portal_import',
+                    shortTitle: 'portal_short_import',
+                    icon: 'mi mi-Tiles',
+                    href: '/backend/import',
+                    subMenus: []
+                },
+                {
                     title: 'portal_articles',
                     shortTitle: ('portal_articles'),
                     icon: 'mi mi-ReadingList',
@@ -238,8 +245,8 @@
                     ]
                 },
                 {
-                    title: 'Portal Pages',
-                    shortTitle: 'portal_short_portal_pages',
+                    title: 'portal_permissions',
+                    shortTitle: 'portal_short_portal_permissions',
                     icon: 'mi mi-Multitask',
                     href: '#',
                     subMenus: [
@@ -259,6 +266,5 @@
         };
     }],
     bindings: {
-        translate:  '&'
     }
 });

@@ -9,6 +9,7 @@ using Newtonsoft.Json.Linq;
 using Swastika.Cms.Lib.Models.Cms;
 using Swastika.Cms.Lib.ViewModels.Api;
 using Swastika.Cms.Lib.ViewModels.BackEnd;
+using Swastika.Cms.Lib.ViewModels.Info;
 using Swastika.Domain.Core.ViewModels;
 using System;
 using System.Collections.Generic;
@@ -153,7 +154,7 @@ namespace Swastka.Cms.Api.Controllers
         Roles = "SuperAdmin, Admin")]
         [HttpPost, HttpOptions]
         [Route("list")]
-        public async Task<RepositoryResponse<PaginationModel<BEConfigurationViewModel>>> GetList([FromBody]RequestPaging request)
+        public async Task<RepositoryResponse<PaginationModel<InfoConfigurationViewModel>>> GetList([FromBody]RequestPaging request)
         {
             ParseRequestPagingDate(request);
             string[] cates = { "Site", "System" };
@@ -165,7 +166,7 @@ namespace Swastka.Cms.Api.Controllers
                 || model.Value.Contains(request.Keyword)
                 || model.Keyword.Contains(request.Keyword)));
 
-            var data = await BEConfigurationViewModel.Repository.GetModelListByAsync(predicate, request.OrderBy, request.Direction, request.PageSize, request.PageIndex).ConfigureAwait(false);
+            var data = await InfoConfigurationViewModel.Repository.GetModelListByAsync(predicate, request.OrderBy, request.Direction, request.PageSize, request.PageIndex).ConfigureAwait(false);
 
             return data;
         }

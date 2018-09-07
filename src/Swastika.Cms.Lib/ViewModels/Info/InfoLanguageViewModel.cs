@@ -7,9 +7,11 @@ using Newtonsoft.Json;
 using Swastika.Cms.Lib.Models.Cms;
 using Swastika.Cms.Lib.Repositories;
 using Swastika.Cms.Lib.Services;
+using Swastika.Common.Helper;
 using Swastika.Domain.Core.ViewModels;
 using Swastika.Domain.Data.ViewModels;
 using System;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Threading.Tasks;
@@ -45,15 +47,6 @@ namespace Swastika.Cms.Lib.ViewModels.Info
 
         #endregion Models
 
-        #region Views
-
-        [JsonProperty("domain")]
-        public string Domain { get { return GlobalConfigurationService.Instance.GetLocalString("Domain", Specificulture, "/"); } }
-
-        [JsonProperty("property")]
-        public DataValueViewModel Property { get; set; }
-        #endregion Views
-
         #endregion Properties
 
         #region Contructors
@@ -70,23 +63,6 @@ namespace Swastika.Cms.Lib.ViewModels.Info
         #endregion Contructors
 
         #region Overrides
-
-        public override SiocLanguage ParseModel(SiocCmsContext _context = null, IDbContextTransaction _transaction = null)
-        {
-            Value = Property.Value;
-            return base.ParseModel(_context, _transaction);
-        }
-
-        public override Task<bool> ExpandViewAsync(SiocCmsContext _context = null, IDbContextTransaction _transaction = null)
-        {
-            Property = new DataValueViewModel() { DataType = DataType, Value = Value, Name = Keyword };
-            return base.ExpandViewAsync(_context, _transaction);
-        }
-
-        public override void ExpandView(SiocCmsContext _context = null, IDbContextTransaction _transaction = null)
-        {
-            Property = new DataValueViewModel() { DataType = DataType, Value = Value, Name = Keyword };
-        }
 
         public override RepositoryResponse<bool> RemoveRelatedModels(InfoLanguageViewModel view, SiocCmsContext _context = null, IDbContextTransaction _transaction = null)
         {
@@ -121,5 +97,47 @@ namespace Swastika.Cms.Lib.ViewModels.Info
         }
 
         #endregion Overrides
+
+        #region Expands
+
+        public static async Task<RepositoryResponse<bool>> ImportLanguages(List<SiocLanguage> arrLanguage, string destCulture)
+        {
+            var result = new RepositoryResponse<bool>() { IsSucceed = true };
+            var context = new SiocCmsContext();
+            var transaction = context.Database.BeginTransaction();
+
+            try
+            {
+                foreach (var item in arrLanguage)
+                {
+                    var lang = new InfoLanguageViewModel(item, context, transaction);
+                    lang.Specificulture = destCulture;
+                    var saveResult = await lang.SaveModelAsync(false, context, transaction);
+                    result.IsSucceed = result.IsSucceed && saveResult.IsSucceed;
+                    if (!result.IsSucceed)
+                    {
+                        result.Exception = saveResult.Exception;
+                        result.Errors = saveResult.Errors;
+                        break;
+                    }
+                }
+                UnitOfWorkHelper<SiocCmsContext>.HandleTransaction(result.IsSucceed, true, transaction);
+            }
+            catch (Exception ex) // TODO: Add more specific exeption types instead of Exception only
+            {
+                var error = UnitOfWorkHelper<SiocCmsContext>.HandleException<InfoLanguageViewModel>(ex, true, transaction);
+                result.IsSucceed = false;
+                result.Errors = error.Errors;
+                result.Exception = error.Exception;
+            }
+            finally
+            {
+                //if current Context is Root
+                context?.Dispose();
+            }
+            return result;
+        }
+
+        #endregion
     }
 }

@@ -7,9 +7,11 @@ using Newtonsoft.Json;
 using Swastika.Cms.Lib.Models.Cms;
 using Swastika.Cms.Lib.Repositories;
 using Swastika.Cms.Lib.Services;
+using Swastika.Common.Helper;
 using Swastika.Domain.Core.ViewModels;
 using Swastika.Domain.Data.ViewModels;
 using System;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Threading.Tasks;
@@ -91,7 +93,7 @@ namespace Swastika.Cms.Lib.ViewModels.Api
             Cultures = CommonRepository.Instance.LoadCultures(Specificulture, _context, _transaction);
             this.Cultures.ForEach(c => c.IsSupported = true);
             IsClone = true;
-            
+
             return base.ExpandViewAsync(_context, _transaction);
         }
 
@@ -135,5 +137,7 @@ namespace Swastika.Cms.Lib.ViewModels.Api
         }
 
         #endregion Overrides
+
+        
     }
 }

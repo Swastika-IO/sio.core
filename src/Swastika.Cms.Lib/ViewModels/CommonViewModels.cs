@@ -319,6 +319,9 @@ namespace Swastika.Cms.Lib.ViewModels
         [JsonProperty("themeId")]
         public int ThemeId { get; set; }
 
+        [JsonProperty("themes")]
+        public List<InfoThemeViewModel> Themes { get; set; }
+
         [JsonProperty("cultures")]
         public List<SupportedCulture> Cultures { get; set; }
 

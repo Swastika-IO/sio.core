@@ -5,6 +5,10 @@
         controller: "DashboardController",
         templateUrl: "/app-portal/pages/dashboard/dashboard.html"
     });
+    $routeProvider.when("/backend/import", {
+        controller: "ImportFileController",
+        templateUrl: "/app-portal/pages/import/details.html"
+    });
 
     $routeProvider.when("/backend/login", {
         controller: "loginController",

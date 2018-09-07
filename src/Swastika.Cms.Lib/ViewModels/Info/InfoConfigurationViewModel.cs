@@ -10,7 +10,9 @@ using Swastika.Common.Helper;
 using Swastika.Domain.Core.ViewModels;
 using Swastika.Domain.Data.ViewModels;
 using System;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.Threading.Tasks;
 
 namespace Swastika.Cms.Lib.ViewModels.Info
 {
@@ -35,6 +37,14 @@ namespace Swastika.Cms.Lib.ViewModels.Info
 
         #endregion Models
 
+        #region Views
+
+        [JsonProperty("domain")]
+        public string Domain { get { return GlobalConfigurationService.Instance.GetLocalString("Domain", Specificulture, "/"); } }
+
+        [JsonProperty("property")]
+        public DataValueViewModel Property { get; set; }
+        #endregion Views
         #endregion Properties
 
         #region Contructors
@@ -51,6 +61,55 @@ namespace Swastika.Cms.Lib.ViewModels.Info
 
         #endregion Contructors
 
-        
+        #region Overrides
+
+        public override void ExpandView(SiocCmsContext _context = null, IDbContextTransaction _transaction = null)
+        {
+            Property = new DataValueViewModel() { DataType = DataType, Value = Value, Name = Keyword };
+        }
+
+        #endregion
+
+        #region Expands
+
+        public static async Task<RepositoryResponse<bool>> ImportConfigurations(List<SiocConfiguration> arrConfiguration, string destCulture)
+        {
+            var result = new RepositoryResponse<bool>() { IsSucceed = true };
+            var context = new SiocCmsContext();
+            var transaction = context.Database.BeginTransaction();
+
+            try
+            {
+                foreach (var item in arrConfiguration)
+                {
+                    var lang = new InfoConfigurationViewModel(item, context, transaction);
+                    lang.Specificulture = destCulture;
+                    var saveResult = await lang.SaveModelAsync(false, context, transaction);
+                    result.IsSucceed = result.IsSucceed && saveResult.IsSucceed;
+                    if (!result.IsSucceed)
+                    {
+                        result.Exception = saveResult.Exception;
+                        result.Errors = saveResult.Errors;
+                        break;
+                    }
+                }
+                UnitOfWorkHelper<SiocCmsContext>.HandleTransaction(result.IsSucceed, true, transaction);
+            }
+            catch (Exception ex) // TODO: Add more specific exeption types instead of Exception only
+            {
+                var error = UnitOfWorkHelper<SiocCmsContext>.HandleException<InfoConfigurationViewModel>(ex, true, transaction);
+                result.IsSucceed = false;
+                result.Errors = error.Errors;
+                result.Exception = error.Exception;
+            }
+            finally
+            {
+                //if current Context is Root
+                context?.Dispose();
+            }
+            return result;
+        }
+
+        #endregion   
     }
 }

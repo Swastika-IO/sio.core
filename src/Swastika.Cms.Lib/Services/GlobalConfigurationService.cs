@@ -87,6 +87,7 @@ namespace Swastika.Cms.Lib.Services
                         var cate = new SiocCategory()
                         {
                             Id = 1,
+                            Level = 0,
                             Title = "Home",
                             Specificulture = culture.Specificulture,
                             Template = "Pages/_Home.cshtml",
@@ -114,8 +115,9 @@ namespace Swastika.Cms.Lib.Services
 
                         var cate404 = new SiocCategory()
                         {
-                            Id = 2,                            
+                            Id = 2,
                             Title = "404",
+                            Level = 0,
                             Specificulture = culture.Specificulture,
                             Template = "Pages/_404.cshtml",
                             Type = (int)SWCmsConstants.CateType.Article,

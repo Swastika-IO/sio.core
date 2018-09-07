@@ -66,15 +66,15 @@ namespace Swastka.Cms.Api.Controllers
         /// Uploads the image.
         /// </summary>
         /// <param name="image">The img information.</param>
-        /// <param name="template"></param> Ex: { "base64": "", "fileFolder":"" }
+        /// <param name="file"></param> Ex: { "base64": "", "fileFolder":"" }
         /// <returns></returns>
         [Route("uploadFile")]
         [HttpPost, HttpOptions]
-        public IActionResult Edit(FileViewModel template)
+        public IActionResult Edit(FileViewModel file)
         {
             if (ModelState.IsValid)
             {
-                var result = FileRepository.Instance.SaveWebFile(template);
+                var result = FileRepository.Instance.SaveWebFile(file);
                 return GetSuccessResult(result);
             }
             return GetErrorResult("failed", "invalid");

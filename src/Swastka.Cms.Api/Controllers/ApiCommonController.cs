@@ -8,11 +8,13 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json.Linq;
 using Swastika.Cms.Lib;
+using Swastika.Cms.Lib.Models.Cms;
 using Swastika.Cms.Lib.Repositories;
 using Swastika.Cms.Lib.Services;
 using Swastika.Cms.Lib.ViewModels;
 using Swastika.Cms.Lib.ViewModels.Account;
 using Swastika.Cms.Lib.ViewModels.Api;
+using Swastika.Cms.Lib.ViewModels.Info;
 using Swastika.Domain.Core.ViewModels;
 using Swastika.Identity.Models;
 using System;
@@ -56,6 +58,7 @@ namespace Swastka.Cms.Api.Controllers
             {
                 Lang = _lang,
                 ThemeId = GlobalConfigurationService.Instance.GetLocalInt(SWCmsConstants.ConfigurationKeyword.ThemeId, _lang),
+                Themes = InfoThemeViewModel.Repository.GetModelList().Data,
                 Cultures = cultures,
                 PageTypes = Enum.GetNames(typeof(SWCmsConstants.CateType)).ToList(),
                 Statuses = Enum.GetNames(typeof(SWStatus)).ToList()
@@ -184,6 +187,34 @@ namespace Swastka.Cms.Api.Controllers
                 GlobalConfigurationService.Instance.RefreshConfigurations();
             }
             return new RepositoryResponse<JObject>() { IsSucceed = model != null, Data = model };
+        }
+
+        // POST api/category
+        [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme, Roles = "SuperAdmin, Admin")]
+        [HttpPost, HttpOptions]
+        [Route("import/{type}")]
+        public async Task<RepositoryResponse<bool>> SaveAppSettingsAsync(string type, [FromBody]FileViewModel model)
+        {
+            var result = FileRepository.Instance.SaveWebFile(model);
+            if (result)
+            {
+                var fileContent = FileRepository.Instance.GetWebFile($"{model.Filename}{model.Extension}", model.FileFolder);
+                var obj = JObject.Parse(fileContent.Content);
+                switch (type)
+                {
+                    case "Language":
+                        var arrLanguage = obj["data"].ToObject<List<SiocLanguage>>();
+                        return await InfoLanguageViewModel.ImportLanguages(arrLanguage, _lang);
+                    case "Configuration":
+                        var arrConfiguration = obj["data"].ToObject<List<SiocConfiguration>>();
+                        return await InfoConfigurationViewModel.ImportConfigurations(arrConfiguration, _lang);
+
+                    default:
+                        return new RepositoryResponse<bool>() { IsSucceed = false };
+                }
+            }
+            return new RepositoryResponse<bool>();
+
         }
 
         // POST api/category

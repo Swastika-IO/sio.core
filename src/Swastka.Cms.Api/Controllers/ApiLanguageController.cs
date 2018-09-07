@@ -9,6 +9,7 @@ using Swastika.Cms.Lib.Models.Cms;
 using Swastika.Cms.Lib.Services;
 using Swastika.Cms.Lib.ViewModels.Api;
 using Swastika.Cms.Lib.ViewModels.BackEnd;
+using Swastika.Cms.Lib.ViewModels.Info;
 using Swastika.Domain.Core.ViewModels;
 using System;
 using System.Linq.Expressions;
@@ -147,7 +148,7 @@ namespace Swastka.Cms.Api.Controllers
 
         [HttpPost, HttpOptions]
         [Route("list")]
-        public async Task<RepositoryResponse<PaginationModel<ApiLanguageViewModel>>> GetList([FromBody]RequestPaging request)
+        public async Task<RepositoryResponse<PaginationModel<InfoLanguageViewModel>>> GetList([FromBody]RequestPaging request)
         {
             ParseRequestPagingDate(request);
             Expression<Func<SiocLanguage, bool>> predicate = model =>
@@ -157,7 +158,7 @@ namespace Swastka.Cms.Api.Controllers
                 || model.Value.Contains(request.Keyword)
                 || model.Keyword.Contains(request.Keyword)));
             
-            var data = await ApiLanguageViewModel.Repository.GetModelListByAsync(predicate, request.OrderBy, request.Direction, request.PageSize, request.PageIndex).ConfigureAwait(false);
+            var data = await InfoLanguageViewModel.Repository.GetModelListByAsync(predicate, request.OrderBy, request.Direction, request.PageSize, request.PageIndex).ConfigureAwait(false);
 
             return data;
         }

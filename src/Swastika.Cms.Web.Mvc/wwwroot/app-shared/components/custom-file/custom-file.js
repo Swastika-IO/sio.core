@@ -3,13 +3,14 @@
 modules.component('customFile', {
     templateUrl: '/app-shared/components/custom-file/custom-file.html',
     controller: ['$rootScope', '$scope', 'ngAppSettings', 'MediaServices', function PortalTemplateController($rootScope, $scope, mediaServices) {
-        var ctrl = this;        
+        var ctrl = this;
         ctrl.media = null;
+        ctrl.init = function () {
+            ctrl.id = Math.random();
+        };
         ctrl.selectFile = function (file, errFiles) {
-            if (file !== undefined && file !== null) {                
-               
-                    ctrl.getBase64(file);
-               
+            if (file !== undefined && file !== null) {
+                ctrl.getBase64(file);
             }
         };
 
@@ -19,23 +20,29 @@ modules.component('customFile', {
                 var reader = new FileReader();
                 reader.readAsDataURL(file);
                 reader.onload = async function () {
-                    if (ctrl.media) {
+                    var getMedia = await mediaServices.getMedia(null, 'be');
+                    if (getMedia.isSucceed) {
                         var index = reader.result.indexOf(',') + 1;
                         var base64 = reader.result.substring(index);
-                        ctrl.media.mediaFile.fileName = file.name.substring(0, file.name.lastIndexOf('.'));
-                        ctrl.media.mediaFile.extension = file.name.substring(file.name.lastIndexOf('.'));
-                        ctrl.media.mediaFile.fileStream = reader.result;
-                        var resp = await mediaServices.saveMedia(ctrl.media);
+                        ctrl.mediaFile.fileName = file.name.substring(0, file.name.lastIndexOf('.'));
+                        ctrl.mediaFile.extension = file.name.substring(file.name.lastIndexOf('.'));
+                        ctrl.mediaFile.fileStream = reader.result;
+                        var media = getMedia.data;
+                        media.mediaFile = ctrl.mediaFile;
+                        var resp = await mediaServices.saveMedia(media);
                         if (resp && resp.isSucceed) {
                             ctrl.src = resp.data.fullPath;
+                            ctrl.srcUrl = resp.data.fullPath;
+                            $rootScope.isBusy = false;
                             $scope.$apply();
                         }
                         else {
                             if (resp) { $rootScope.showErrors(resp.errors); }
+                            $rootScope.isBusy = false;
                             $scope.$apply();
-                        }    
+                        }
                     }
-                    
+
                 };
                 reader.onerror = function (error) {
 
@@ -44,38 +51,44 @@ modules.component('customFile', {
             else {
                 return null;
             }
-           
-        }
+
+        };
         ctrl.getBase64 = function (file) {
-            if (file !== null && ctrl.media.mediaFile) {
+            if (file !== null && ctrl.postedFile) {
                 $rootScope.isBusy = true;
                 var reader = new FileReader();
                 reader.readAsDataURL(file);
                 reader.onload = function () {
                     var index = reader.result.indexOf(',') + 1;
                     var base64 = reader.result.substring(index);
-                    ctrl.media.mediaFile.fileName = file.name.substring(0, file.name.lastIndexOf('.'));
-                    ctrl.media.mediaFile.extension = file.name.substring(file.name.lastIndexOf('.'));
-                    ctrl.media.mediaFile.fileStream = reader.result;
+                    ctrl.postedFile.fileName = file.name.substring(0, file.name.lastIndexOf('.'));
+                    ctrl.postedFile.extension = file.name.substring(file.name.lastIndexOf('.'));
+                    ctrl.postedFile.fileStream = reader.result;
                     ctrl.srcUrl = reader.result;
                     $rootScope.isBusy = false;
                     $scope.$apply();
                 };
                 reader.onerror = function (error) {
-
+                    $rootScope.isBusy = false;
+                    $rootScope.showErrors([error]);
                 };
             }
             else {
                 return null;
             }
-        }
-        
+        };
+
     }],
     bindings: {
-        media: '=',
         header: '=',
+        title: '=',
+        description: '=',
+        src: '=',
+        srcUrl: '=',
+        postedFile: '=',
+        type: '=',
         folder: '=',
-        auto: '=',        
+        auto: '=',
         onDelete: '&',
         onUpdate: '&'
     }

@@ -69,6 +69,7 @@
     <Compile Remove="wwwroot\app-portal\plugins\**" />
     <Compile Remove="wwwroot\app-portal\plunk\**" />
     <Compile Remove="wwwroot\app-portal\services\**" />
+    <Compile Remove="wwwroot\app\**" />
     <Compile Remove="wwwroot\lib\**" />
     <Content Remove="Areas\Portal\Controllers\Apis\**" />
     <Content Remove="Areas\Portal\Data\**" />
@@ -110,6 +111,7 @@
     <Content Remove="wwwroot\app-portal\pages\shared\**" />
     <Content Remove="wwwroot\app-portal\plunk\**" />
     <Content Remove="wwwroot\app-portal\services\**" />
+    <Content Remove="wwwroot\app\**" />
     <Content Remove="wwwroot\lib\**" />
     <EmbeddedResource Remove="Areas\Portal\Controllers\Apis\**" />
     <!--<Content Remove="wwwroot\lib\**" />-->
@@ -153,6 +155,7 @@
     <EmbeddedResource Remove="wwwroot\app-portal\plugins\**" />
     <EmbeddedResource Remove="wwwroot\app-portal\plunk\**" />
     <EmbeddedResource Remove="wwwroot\app-portal\services\**" />
+    <EmbeddedResource Remove="wwwroot\app\**" />
     <EmbeddedResource Remove="wwwroot\lib\**" />
     <None Remove="Areas\Portal\Controllers\Apis\**" />
     <None Remove="Areas\Portal\Data\**" />
@@ -195,6 +198,7 @@
     <None Remove="wwwroot\app-portal\plugins\**" />
     <None Remove="wwwroot\app-portal\plunk\**" />
     <None Remove="wwwroot\app-portal\services\**" />
+    <None Remove="wwwroot\app\**" />
     <None Remove="wwwroot\lib\**" />
   </ItemGroup>
 
@@ -226,6 +230,8 @@
     <Content Remove="Areas\Portal\Views\Shared\Widgets\_FeatureImage.cshtml" />
     <Content Remove="Areas\Portal\Views\Shared\Widgets\_ThumbnailImage.cshtml" />
     <Content Remove="Areas\Portal\Views\Shared\_Layout.cshtml" />
+    <Content Remove="data\configuration-en.json" />
+    <Content Remove="data\lang-en.json" />
     <Content Remove="Views\Home\About.cshtml" />
     <Content Remove="Views\Home\Article.cshtml" />
     <Content Remove="Views\Home\Blog.cshtml" />
@@ -297,7 +303,6 @@
     <Folder Include="Areas\Portal\Views\Shared\Widgets\" />
     <Folder Include="logs\" />
     <Folder Include="wwwroot\app-portal\pages\moduleData\components\" />
-    <Folder Include="wwwroot\app\services\" />
   </ItemGroup>
 
   <ItemGroup>
@@ -322,6 +327,8 @@
     <None Include="Areas\Portal\Views\_BlankTemplate.cshtml" />
     <None Include="Areas\Portal\Views\_ViewImports.cshtml" />
     <None Include="Areas\Portal\Views\_ViewStart.cshtml" />
+    <None Include="data\lang-en.json" />
+    <None Include="data\configuration-en.json" />
     <None Include="Views\_ViewImports.cshtml" />
     <None Include="Views\_ViewStart.cshtml" />
     <None Include="wwwroot\app-portal\pages\order\components\main\main.js" />
@@ -329,8 +336,6 @@
     <None Include="wwwroot\app-portal\pages\order\components\services\modules.js" />
     <None Include="wwwroot\app-portal\pages\order\order-controller.js" />
     <None Include="wwwroot\app-portal\pages\order\order-services.js" />
-    <None Include="wwwroot\app\app-portal.js" />
-    <None Include="wwwroot\app\controllers\portal-controller.js" />
     <None Include="wwwroot\lib\now-ui-kit-pro-v1.2.2\assets\js\core\bootstrap.min.js" />
     <None Include="wwwroot\lib\now-ui-kit-pro-v1.2.2\assets\js\core\jquery.min.js" />
     <None Include="wwwroot\lib\now-ui-kit-pro-v1.2.2\assets\js\core\popper.min.js" />

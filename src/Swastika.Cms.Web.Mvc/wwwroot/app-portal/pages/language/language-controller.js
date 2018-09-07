@@ -72,7 +72,7 @@ app.controller('LanguageController', ['$scope', '$rootScope', 'ngAppSettings', '
         $scope.loadLanguage = async function () {
             $rootScope.isBusy = true;
             var id = $routeParams.id;
-            var response = await languageServices.getLanguage(id, '/api');
+            var response = await languageServices.getLanguage(id, 'api');
             if (response.isSucceed) {
                 $scope.activedLanguage = response.data;
                 if (!id) {
