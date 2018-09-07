@@ -4,6 +4,7 @@ app.component('productMain', {
     controller: ['$rootScope', '$scope', 'ngAppSettings',
         function ($rootScope, $scope) {
             var ctrl = this;
+            ctrl.translate = $rootScope.translate;
             ctrl.generateSEO = function () {
                 if (!ctrl.product.id) {
                     ctrl.product.seoName = $rootScope.generateKeyword(ctrl.product.title, '-');
