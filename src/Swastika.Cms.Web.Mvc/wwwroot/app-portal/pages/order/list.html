@@ -1,5 +1,5 @@
-﻿<section class="">
-    <filter-list request="request" callback="loadOrders(pageIndex)" />
+<section class="">
+    <filter-list request="request" callback="loadOrders(pageIndex)"></filter-list>
     <table id="list-page" class="table table-sm table-hover sortable" cellspacing="0" ng-init="data = loadOrders()">
         <thead class="thead-light">
             <tr>
@@ -15,6 +15,9 @@
                 <th scope="col">
                     Phone
                 </th>
+                <td>
+                    Total
+                </td>
                 <th scope="col" width="15%">
                     Created Date
                 </th>
@@ -44,19 +47,22 @@
                     <span ng-bind="item.customer.fullName"></span>
                 </td>
                 <td>
-                    <span ng-bind="item.phoneNumber"></span>
+                    <span ng-bind="item.phoneNumber | phoneNumber"></span>
+                </td>
+                <td>
+                    <span ng-bind="item.totalSpent"></span>
                 </td>
                 <td>
                     <small>
                         {{item.createdDateTime | utcToLocal:'d.M.yyyy h:mm a'}}
                     </small>
                 </td>
-                <td >
+                <td>
                     <table class="table table-sm table-hover mb-0" cellspacing="0" style="background-color: #f5f5f5;" ng-if="item.comments.length>0">
                             <thead style="font-size:small; font-weight:normal">
                                 <tr>
                                     <th scope="col" width="60%">
-                                        Content
+                                        Comment
                                     </th>
                                     <th scope="col">
                                         Rating
@@ -70,7 +76,7 @@
                                 <tr class="sortable-item" ng-repeat="c in item.comments track by $index">
 
                                     <td>
-                                        <span ng-bind="c.content" />
+                                        <span ng-bind="c.content">
                                     </td>
                                     <td>
                                         <star-rating rating-value="c.rating" max="5" is-readonly="false"></star-rating>
@@ -92,8 +98,7 @@
 
                         <a href="/backend/order/details/{{item.id}}" class="btn btn-light"><span class="oi oi-pencil text-primary"></span></a>
                         <!--<a href="{{item.detailsUrl}}" target="_blank" class="btn btn-light"><span class="oi oi-eye text-primary"></span></a>-->
-                        <a href="#" class="btn btn-light"
-                           ng-click="removeOrder(item.id)">
+                        <a href="#" class="btn btn-light" ng-click="removeOrder(item.id)">
                             <span class="oi oi-x text-danger"></span>
                         </a>
                     </div>
@@ -102,12 +107,5 @@
            
         </tbody>
     </table>
-    <paging class="small"
-            page="data.pageIndex+1"
-            page-size="data.pageSize"
-            total="data.totalItems"
-            ul-class="pagination justify-content-end"
-            a-class="page-link"
-            paging-action="loadOrders(page-1)"
-            scroll-top="true" />
+    <paging class="small" page="data.page" page-size="data.pageSize" total="data.totalItems" ul-class="pagination justify-content-end" a-class="page-link" paging-action="loadOrders(page-1)" scroll-top="true">
 </section>

@@ -1,4 +1,4 @@
-﻿<div class="card" ng-if="$ctrl.customer.orders.length > 0">
+<div class="card" ng-if="$ctrl.customer.orders.length > 0">
     <div class="card-header">
         Orders
     </div>
@@ -15,40 +15,61 @@
                     <th scope="col" width="10%">
                         Total
                     </th>
-
+                    <th width="40%">Rating</th>
                     <th scope="col" width="5%" class="text-right"></th>
                 </tr>
             </thead>
 
-            <tbody class="sortable" ng-repeat="c in $ctrl.customer.orders track by $index">
+            <tbody class="sortable" ng-repeat="order in $ctrl.customer.orders track by $index">
                 <tr>
                     <td>
-                        <span ng-bind="c.id" />
+                        <span ng-bind="order.id">
                     </td>
                     <td>
                         <small>
-                            {{c.createdDateTime | utcToLocal:'dd.MM.yy - hh:mm a'}}
+                            {{order.createdDateTime | utcToLocal:'dd.MM.yy - hh:mm a'}}
                         </small>
                     </td>
                     <td>
-                        {{c.total}}
+                        {{order.total}}
                     </td>
+                    <td>
+                        <table class="table table-sm table-hover mb-0" cellspacing="0" style="background-color: #f5f5f5;" ng-if="order.comments.length>0">
+                            <thead style="font-size:small; font-weight:normal">
+                                <tr>
+                                    <th scope="col" width="60%">
+                                        Comment
+                                    </th>
+                                    <th scope="col">
+                                        Rating
+                                    </th>
 
+                                    <!--<th scope="col" width="5%" class="text-right">Actions</th>-->
+                                </tr>
+                            </thead>
+
+                            <tbody class="sortable">
+                                <tr class="sortable-item" ng-repeat="cm in order.comments track by $index">
+
+                                    <td>
+                                        <span ng-bind="cm.content">
+                                    </td>
+                                    <td>
+                                        <star-rating rating-value="cm.rating" max="5" is-readonly="false"></star-rating>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </td>
                     <td>
                         <div class="btn-group btn-group-sm btn-group-sm float-right" role="group" aria-label="Actions">
-                            <a ng-click="removeOrder(c.id);"
-                               class="btn btn-light">
+                            <a ng-click="$ctrl.removeOrder(order.id);" class="btn btn-light">
                                 <span class="fas fa-times text-danger"></span>
                             </a>
                         </div>
                     </td>
-                </tr>
-                <tr ng-repeat="comment in c.comments">
-                    <td colspan="2">Comment: {{comment.content}}</td>
-                    <td colspan="2">
-                        Rating: {{comment.rating}}
-                    </td>
-                </tr>
+                    
+                </tr>               
             </tbody>
         </table>
     </div>

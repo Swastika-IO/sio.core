@@ -1,20 +1,26 @@
-﻿<section class="content container-fluid">
-    <filter-list request="request" callback="loadCustomers(pageIndex)" />
+<section class="content container-fluid">
+    <filter-list request="request" callback="loadCustomers(pageIndex)"></filter-list>
 
     <table class="table table-sm table-hover" cellspacing="0" ng-init="loadCustomers()">
         <thead class="thead-light">
             <tr>
-                <th scope="col" style="width: 5%;">
-                    Name
+                <th scope="col" style="width: 15%;">
+                    First Name
                 </th>
-                <th scope="col" style="width: 25%;">
+                <th scope="col" style="width: 15%;">
+                    Last Name
+                </th>
+                <th scope="col" style="width: 15%;">
+                    Full Name
+                </th>
+                <th scope="col" style="width: 15%;">
                     Phone
                 </th>
                 <th scope="col" width="10%">
                     DOB
                 </th>
                 <th scope="col" width="10%">
-                    Total
+                    Total Visit
                 </th>
                 <th scope="col" width="10%">
                     Money
@@ -25,18 +31,25 @@
         </thead>
 
         <tbody class="sortable" ng-repeat="item in data.items track by $index">
-            <tr class="sortable-item" sort-model="customer" sort-model-id="{{item.id}}"
-                data-toggle="collapse" href="#collapse-page{{item.id}}-childs" role="button" aria-expanded="false" 
-                aria-controls="collapse-page{{item.id}}-childs">
+            <tr class="sortable-item" sort-model="customer" sort-model-id="{{item.id}}" data-toggle="collapse" href="#collapse-page{{item.id}}-childs" role="button" aria-expanded="false" aria-controls="collapse-page{{item.id}}-childs">
+                <td>
+                    {{item.firstName}}
+                </td>
+                <td>
+                    {{item.lastName}}
+                </td>
+                            
                 <td>
                     {{item.fullName}}
                 </td>
                 <td>
-                    {{item.phoneNumber}}
+                    <small>
+                        {{item.phoneNumber | phoneNumber }}
+                    </small>
                 </td>
                 <td>
                     <small>
-                        {{item.birthday | utcToLocal:'dd.MM.yyyy - hh:mm:ss a'}}
+                        {{item.birthday | utcToLocal:'dd.MM.yyyy'}}
                     </small>
                 </td>
                 <td>
@@ -51,8 +64,7 @@
                             <span class="fas fa-eye text-info"></span>
                         </a>
                         
-                        <a ng-click="removeCustomer(item.id);"
-                           class="btn btn-light">
+                        <a ng-click="removeCustomer(item.id);" class="btn btn-light">
                             <span class="fas fa-times text-danger"></span>
                         </a>
                     </div>
@@ -61,12 +73,5 @@
             
         </tbody>
     </table>
-    <paging class="small"
-            page="data.pageIndex+1"
-            page-size="data.pageSize"
-            total="data.totalItems"
-            ul-class="pagination justify-content-end"
-            a-class="page-link"
-            paging-action="loadCustomers(page-1)"
-            scroll-top="true" />
+    <paging class="small" page="data.page" page-size="data.pageSize" total="data.totalItems" ul-class="pagination justify-content-end" a-class="page-link" paging-action="loadCustomers(page-1)" scroll-top="true">
 </section>
