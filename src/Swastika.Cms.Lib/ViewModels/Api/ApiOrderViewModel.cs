@@ -12,6 +12,7 @@ using Swastika.Domain.Data.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.Linq;
 using System.Threading.Tasks;
 
 namespace Swastika.Cms.Lib.ViewModels.Api
@@ -57,6 +58,8 @@ namespace Swastika.Cms.Lib.ViewModels.Api
         [JsonProperty("comments")]
         public List<ApiCommentViewModel> Comments { get; private set; }
 
+        [JsonProperty("totalSpent")]
+        public double TotalSpent { get; set; }
         #endregion
 
         #endregion
@@ -110,6 +113,7 @@ namespace Swastika.Cms.Lib.ViewModels.Api
             Items = getItems.Data;
             var getComments = ApiCommentViewModel.Repository.GetModelListBy(i => i.OrderId == Id && i.Specificulture == Specificulture, _context, _transaction);
             Comments = getComments.Data;
+            TotalSpent = _context.SiocOrderItem.Where(i => i.OrderId == Id && i.Specificulture == Specificulture).Sum(i => i.Price);
         }
         public override async Task<RepositoryResponse<bool>> RemoveRelatedModelsAsync(ApiOrderViewModel view, SiocCmsContext _context = null, IDbContextTransaction _transaction = null)
         {

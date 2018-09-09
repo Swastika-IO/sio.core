@@ -16,9 +16,10 @@ var composer = require('gulp-uglify/composer');
 var pump = require('pump');
 
 var minify = composer(uglifyjs, console);
-var dest = '.';//For publish folder use "./bin/Release/PublishOutput/";
+var dest = '.';//For publish folder use "./bin/Release/PublishOutput/"; 
+//C:\\Git\\GitHub\\Queen-Beauty\\QueenBeauty\\
 var paths = {
-    webroot: "./wwwroot/",
+    webroot: "./wwwroot",///wwwroot
     jsObtions:{},
     htmlOptions:{collapseWhitespace: false},
     cssOptions:{}, //showLog : (True, false) to trun on or off of the log
@@ -29,7 +30,8 @@ paths.views = {
     src: [
         paths.webroot + "app-shared/**/*.html",
         paths.webroot + "app-portal/**/*.html",
-        paths.webroot + "app-client/**/*.html"
+        paths.webroot + "app-client/**/*.html",
+        paths.webroot + "app-init/**/*.html"
     ],
     dest: paths.webroot + "html/*.html"
 };
@@ -41,22 +43,14 @@ paths.fonts = {
 };
 paths.css = {
     src: [
-
-        paths.webroot + "lib/micon/css/micon.css",
-        paths.webroot + "lib/fontawesome-free-5.0.10/css/fontawesome-all.css",
-        paths.webroot + "lib/open-iconic-master/font/css/open-iconic-bootstrap.min.css",
-        paths.webroot + "lib/bootstrap4-tagsinput-4.1.2/tagsinput.css",
-        paths.webroot + "lib/Trumbowyg-2.9.0/ui/trumbowyg.min.css",
-        paths.webroot + "lib/Trumbowyg-2.9.0/plugins/colors/ui/trumbowyg.colors.css",        
-        paths.webroot + "lib/flag-icon-css/css/flag-icon.min.css",
-
         paths.webroot + "app-shared/**/*.css",
         paths.webroot + "app-portal/**/*.css",
-        paths.webroot + "app-client/**/*.css"
+        paths.webroot + "app-client/**/*.css",
+        paths.webroot + "app-init/**/*.css"
     ],
     dest : paths.webroot + "css/vendor.min.css"
 };
-paths.plugins ={
+paths.plugins = {
     src: [
         paths.webroot + "lib/Trumbowyg-2.9.0/**/*.min.js",
         paths.webroot + "lib/ace/src/ace.js",
@@ -71,13 +65,39 @@ paths.plugins ={
         paths.webroot + "lib/ace/src/worker-json.js",
     ],
     dest: paths.webroot + "js/vendor.min.js"
-}
+};
 paths.portal = {
-    src: [
+    src: [        
         paths.webroot + "app-portal/pages/**/*.js"
     ],
     dest: paths.webroot + "js/app-portal.min.js"
 };
+
+paths.portalApp = {
+    src: [
+        paths.webroot + "app-portal/shared/**/*.js",
+        paths.webroot + "app-portal/app.js",
+        paths.webroot + "app-portal/app.filter.js",
+        paths.webroot + "app-portal/app.directive.js",
+        paths.webroot + "app-portal/app.route.js",
+        paths.webroot + "app-portal/demo.js"
+    ]
+};
+
+paths.init = {
+    src: [        
+        paths.webroot + "app-init/pages/**/*.js"
+    ],
+    dest: paths.webroot + "js/app-init.min.js"
+};
+
+paths.initApp = {
+    src: [
+        paths.webroot + "app-init/app.js",
+        paths.webroot + "app-init/app.route.js"
+    ]
+};
+
 
 paths.client = {
     src: [
@@ -122,9 +142,33 @@ gulp.task("min:plugins", function (cb) {
 
 });
 
-gulp.task("min:js", function (cb) {    
+gulp.task("min:portal", function (cb) {    
     return gulp.src(paths.portal.src, { base: "." })
         .pipe(concat(paths.portal.dest))
+        //.pipe(minify(paths.jsOptions))
+        .pipe(gulp.dest(dest));
+
+});
+
+gulp.task("min:portalApp", function (cb) {    
+    return gulp.src(paths.portalApp.src, { base: "." })
+        //.pipe(concat(paths.portal.dest))
+        //.pipe(minify(paths.jsOptions))
+        .pipe(gulp.dest(dest));
+
+});
+
+gulp.task("min:init", function (cb) {    
+    return gulp.src(paths.init.src, { base: "." })
+        .pipe(concat(paths.init.dest))
+        //.pipe(minify(paths.jsOptions))
+        .pipe(gulp.dest(dest));
+
+});
+
+gulp.task("min:initApp", function (cb) {    
+    return gulp.src(paths.initApp.src, { base: "." })
+        //.pipe(concat(paths.portal.dest))
         //.pipe(minify(paths.jsOptions))
         .pipe(gulp.dest(dest));
 
@@ -166,27 +210,5 @@ gulp.task("min:css", function (cb) {
 
 });
 
-//gulp.task("min:js", function (cb) {
-//    var options = {};
-//    return gulp.src([paths.js, "!" + paths.minJs], { base: "." })
-//        .pipe(concat(paths.concatJsDest))
-//        .pipe(minify(options))
-//        .pipe(gulp.dest("."));
-
-//});
-//gulp.task("min:sharedJs", function (cb) {
-//    var options = {};
-//    return gulp.src([paths.sharedJs, "!" + paths.minSharedJs], { base: "." })
-//        .pipe(concat(paths.concatSharedJsDest))
-//        .pipe(minify(options))
-//        .pipe(gulp.dest("."));
-//});
-
-//gulp.task("min:css", function () {
-//    return gulp.src([paths.css, "!" + paths.minCss])
-//        .pipe(concat(paths.concatCssDest))
-//        .pipe(cssmin())
-//        .pipe(gulp.dest("."));
-//});
-
-gulp.task("min", ["min:plugins", "min:js", "min:clientJs","min:sharedJs", "min:css", "min:fonts"]);
+gulp.task("min", ["min:plugins", "min:portal", "min:portalApp", "min:init", "min:initApp", "min:clientJs","min:sharedJs", "min:css", "min:fonts"]);
+gulp.task("build", ["min", "min:views"]);

@@ -1,6 +1,6 @@
 'use strict';
 app.filter('utcToLocal', FilterUtcDate)
-    .filter('phoneNumber', FilterPhoneNumber)
+    .filter('phoneNumber', FilterMoney)
     .constant('ngAppSettings', {
         serviceBase: '',
         clientId: 'ngAuthApp',
@@ -124,7 +124,13 @@ function FilterUtcDate($filter) {
     };
 }
 function FilterPhoneNumber(){
-    return function (phone){
-        return phone.replace(/^([0-9]{3})([0-9]{3})([0-9]{4})$/,'($1) $2-$3');
-    }
+    return function (phone) {
+        return phone.replace(/^([0-9]{3})([0-9]{3})([0-9]{4,})$/, '($1) $2-$3');
+    };
+}
+
+function FilterMoney() {
+    return function (money) {
+        return money.replace(/^((\\d+)(\\d{3}))$/, '($1),$2');
+    };
 }
