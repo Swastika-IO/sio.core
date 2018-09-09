@@ -71,6 +71,55 @@ namespace Swastka.Cms.Api.Controllers
                 Data = settings
             };
         }
+        
+        // GET api/category/id
+        [HttpGet, HttpOptions]
+        [Route("{culture}/all-settings")]
+        [Route("all-settings")]
+        public async Task<RepositoryResponse<JObject>> AllSettingsAsync()
+        {
+            var cultures = CommonRepository.Instance.LoadCultures();
+            var culture = cultures.FirstOrDefault(c => c.Specificulture == _lang);
+
+            // Get Settings
+            SiteSettingsViewModel settings = new SiteSettingsViewModel()
+            {
+                Lang = _lang,
+                ThemeId = GlobalConfigurationService.Instance.GetLocalInt(SWCmsConstants.ConfigurationKeyword.ThemeId, _lang),
+                Themes = InfoThemeViewModel.Repository.GetModelList().Data,
+                Cultures = cultures,
+                PageTypes = Enum.GetNames(typeof(SWCmsConstants.CateType)).ToList(),
+                Statuses = Enum.GetNames(typeof(SWStatus)).ToList()
+
+            };
+
+            settings.LangIcon = culture?.Icon ?? GlobalConfigurationService.Instance.CmsConfigurations.Language;
+
+            // Get translator
+            var translator = GlobalConfigurationService.Instance.CmsCulture.Translator[_lang]?.ToObject<JObject>();
+
+            // Get Configurations
+            var configurations = await ApiConfigurationViewModel.Repository.GetModelListByAsync(a => a.Category == "Site" && a.Specificulture == _lang);
+            JObject objConfigurations = new JObject();
+            foreach (var cnf in configurations.Data)
+            {
+                JProperty l = new JProperty(cnf.Keyword, cnf.Value);
+                objConfigurations.Add(l);
+            }
+
+            JObject result = new JObject()
+            {
+                new JProperty("settings", JObject.FromObject(settings)),
+                new JProperty("translator", translator),
+                new JProperty("configurations", JObject.FromObject(configurations))
+            };
+
+            return new RepositoryResponse<JObject>()
+            {
+                IsSucceed = true,
+                Data = result
+            };
+        }
 
         // GET api/category/id
         [HttpGet, HttpOptions]
