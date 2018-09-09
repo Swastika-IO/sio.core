@@ -107,6 +107,8 @@ namespace Swastka.Cms.Api.Controllers
             Expression<Func<SiocCustomer, bool>> predicate = model =>
                 (string.IsNullOrWhiteSpace(request.Keyword)
                 || (model.FullName.Contains(request.Keyword)
+                || model.FirstName.Contains(request.Keyword)
+                || model.LastName.Contains(request.Keyword)
                 || model.PhoneNumber.Contains(request.Keyword)
                 || model.Email.Contains(request.Keyword)));
             

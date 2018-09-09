@@ -11,6 +11,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.IdentityModel.Tokens;
 using Swastika.Cms.Lib;
 using Swastika.Cms.Lib.Models.Account;
+using Swastika.Cms.Web.Mvc.App_Start.Validattors;
 using Swastika.Identity.Data;
 using Swastika.Identity.Models;
 using System;
@@ -111,7 +112,13 @@ namespace Swastika.Cms.Web.Mvc
                     options.LogoutPath = "/" + CONST_ROUTE_DEFAULT_CULTURE + "/Portal/Auth/Logout"; // If the LogoutPath is not set here, ASP.NET Core will default to /Account/Logout
                     options.AccessDeniedPath = "/"; // If the AccessDeniedPath is not set here, ASP.NET Core will default to /Account/AccessDenied
                     options.SlidingExpiration = true;
-                });
+
+                    options.Events = new CookieAuthenticationEvents()
+                    {
+                        OnValidatePrincipal = CookieValidator.ValidateAsync
+                    };
+                }
+                );
         }
 
         protected static class JwtSecurityKey

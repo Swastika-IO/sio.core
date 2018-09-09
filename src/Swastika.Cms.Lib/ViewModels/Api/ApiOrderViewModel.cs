@@ -111,6 +111,26 @@ namespace Swastika.Cms.Lib.ViewModels.Api
             var getComments = ApiCommentViewModel.Repository.GetModelListBy(i => i.OrderId == Id && i.Specificulture == Specificulture, _context, _transaction);
             Comments = getComments.Data;
         }
+        public override async Task<RepositoryResponse<bool>> RemoveRelatedModelsAsync(ApiOrderViewModel view, SiocCmsContext _context = null, IDbContextTransaction _transaction = null)
+        {
+            RepositoryResponse<bool> result = new RepositoryResponse<bool>() { IsSucceed = true };
+            foreach (var item in Items)
+            {
+                var removeItem = await item.RemoveModelAsync(false, _context, _transaction);
+                result.IsSucceed = removeItem.IsSucceed;
+                result.Errors.AddRange(removeItem.Errors);
+                result.Exception = removeItem.Exception;
+            }
+
+            foreach (var item in Comments)
+            {
+                var removeItem = await item.RemoveModelAsync(false, _context, _transaction);
+                result.IsSucceed = removeItem.IsSucceed;
+                result.Errors.AddRange(removeItem.Errors);
+                result.Exception = removeItem.Exception;
+            }
+            return result;
+        }
         #endregion Overrides
     }
 

@@ -42,7 +42,12 @@ namespace Swastika.Cms.Lib.ViewModels.Info
         public int StoreId { get; set; }
 
         #endregion Models
+        #region View
 
+        [JsonProperty("totalSpent")]
+        public double TotalSpent { get; set; }
+
+        #endregion
         #endregion Properties
 
         #region Contructors
@@ -56,5 +61,14 @@ namespace Swastika.Cms.Lib.ViewModels.Info
         }
 
         #endregion Contructors
+
+        #region Overrides
+
+        public override void ExpandView(SiocCmsContext _context = null, IDbContextTransaction _transaction = null)
+        {
+            TotalSpent = _context.SiocOrderItem.Where(i => i.OrderId == Id && i.Specificulture == Specificulture).Sum(i=>i.Price);
+        }
+
+        #endregion
     }
 }
