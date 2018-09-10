@@ -16,7 +16,7 @@ var composer = require('gulp-uglify/composer');
 var pump = require('pump');
 
 var minify = composer(uglifyjs, console);
-var dest = 'C:\\Git\\GitHub\\Queen-Beauty\\QueenBeauty\\wwwroot\\';//For publish folder use "./bin/Release/PublishOutput/"; 
+var dest = '../wwwroot';//For publish folder use "./bin/Release/PublishOutput/"; 
 //C:\\Git\\GitHub\\Queen-Beauty\\QueenBeauty\\
 var paths = {
     webroot: "./",///wwwroot

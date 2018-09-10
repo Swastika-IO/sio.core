@@ -242,6 +242,7 @@ namespace Swastka.Cms.Api.Controllers
         [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme, Roles = "SuperAdmin, Admin")]
         [HttpPost, HttpOptions]
         [Route("import/{type}")]
+        [Route("{culture}/import/{type}")]
         public async Task<RepositoryResponse<bool>> SaveAppSettingsAsync(string type, [FromBody]FileViewModel model)
         {
             var result = FileRepository.Instance.SaveWebFile(model);

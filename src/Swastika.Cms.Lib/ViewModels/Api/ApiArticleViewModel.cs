@@ -290,10 +290,7 @@ namespace Swastika.Cms.Lib.ViewModels.Api
             }
             //Get Templates
             int themeId = GlobalConfigurationService.Instance.GetLocalInt(SWCmsConstants.ConfigurationKeyword.ThemeId, Specificulture, 0);
-            var getView = ApiTemplateViewModel.Repository.GetSingleModel(t =>
-                    t.TemplateId == themeId && t.FolderType == SWCmsConstants.TemplateFolder.Articles
-                    && !string.IsNullOrEmpty(this.Template) && this.Template.Contains($"{t.FileName}{t.Extension}"), _context, _transaction);
-            View = getView.Data;
+            View = ApiTemplateViewModel.GetTemplateByPath(themeId, Template, SWCmsConstants.TemplateFolder.Articles, _context, _transaction);
 
             if (this.View == null)
             {

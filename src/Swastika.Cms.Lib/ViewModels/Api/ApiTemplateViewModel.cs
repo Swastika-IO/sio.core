@@ -207,5 +207,18 @@ namespace Swastika.Cms.Lib.ViewModels.Api
         #endregion Async
 
         #endregion Overrides
+
+        #region Expands
+
+        public static ApiTemplateViewModel GetTemplateByPath(int themeId, string path, string type, SiocCmsContext _context = null, IDbContextTransaction _transaction = null)
+        {
+            string templateName = path?.Split('/')[1];
+            var getView = ApiTemplateViewModel.Repository.GetSingleModel(t =>
+                    t.TemplateId == themeId && t.FolderType == type
+                    && !string.IsNullOrEmpty(templateName) && templateName.Equals($"{t.FileName}{t.Extension}"), _context, _transaction);
+            return getView.Data;
+        }
+
+        #endregion
     }
 }
