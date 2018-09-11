@@ -250,3 +250,9 @@ input[type="date"]::-webkit-inner-spin-button {
         display: none;
     }
 }
+@media screen and (max-width: 991px) 
+{
+    .navbar .navbar-nav {
+        min-height: unset;
+    }
+}
