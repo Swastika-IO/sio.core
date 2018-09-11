@@ -1,4 +1,4 @@
-﻿<div class="tab-pane">
+<div class="tab-pane">
     <div class="row">
         <navs class="col-12" data="$ctrl.navs" prefix="'module-nav'" model="'nav-related'"></navs>
     </div>
@@ -28,12 +28,11 @@
                             {{item.title}}
                         </td>
                         <td>
-                            <img class="rounded" height="25" ng-src="{{item.imageUrl}}" />
+                            <img class="rounded" height="25" ng-src="{{item.imageUrl}}">
                         </td>
                         <td>
                             <span class="switch switch-sm position-absolute">
-                                <input type="checkbox" class="switch" ng-model="item.isActived" ng-change="$ctrl.activeItem(item)" id="{{$ctrl.prefix}}_{{item.id}}"
-                                    value="true">
+                                <input type="checkbox" class="switch" ng-model="item.isActived" ng-change="$ctrl.activeItem(item)" id="{{$ctrl.prefix}}_{{item.id}}" value="true">
                                 <label class="switch m-0" for="{{$ctrl.prefix}}_{{item.id}}">
                                 </label>
                             </span>
@@ -41,8 +40,7 @@
                     </tr>
                 </tbody>
             </table>
-            <paging class="small" page="$ctrl.data.page" page-size="$ctrl.data.pageSize" total="$ctrl.data.totalItems" ul-class="pagination justify-content-end"
-                a-class="page-link" paging-action="callback(page-1)" scroll-top="true"></paging>
+            <paging class="small" page="$ctrl.data.page" page-size="$ctrl.data.pageSize" total="$ctrl.data.totalItems" ul-class="pagination justify-content-end" a-class="page-link" paging-action="callback(page-1)" scroll-top="true"></paging>
         </div>
     </div>
 </div>

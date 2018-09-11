@@ -1,4 +1,4 @@
-﻿<!-- Main content -->
+<!-- Main content -->
 <section class="" ng-init="loadUser()">
     <form ng-if="activedUser" ng-class="{'submitted': submitted}" ng-submit="saveUser(activedUser)">
         <actions preview-url="activedUser.fullPath" back-url="'/backend/user/list'"></actions>
@@ -12,16 +12,16 @@
 
                         <div class="form-group">
                             <label class="control-label">Username</label>
-                            <input type="text" class="form-control" ng-model="activedUser.username" />
+                            <input type="text" class="form-control" ng-model="activedUser.username">
                         </div>
                         <div class="row">
                             <div class="col form-group">
                                 <label class="control-label">First Name</label>
-                                <input type="text" class="form-control" ng-model="activedUser.firstName" />
+                                <input type="text" class="form-control" ng-model="activedUser.firstName">
                             </div>
                             <div class="col form-group">
                                 <label class="control-label">Last Name</label>
-                                <input type="text" class="form-control tags" ng-model="activedUser.lastName" />
+                                <input type="text" class="form-control tags" ng-model="activedUser.lastName">
                             </div>
                         </div>
 
@@ -34,8 +34,7 @@
                 </div>
             </div>
             <div class="col-lg-3">
-                <custom-image header="'Avatar'" type="'Users'" folder="'Avatars'" src-url="activedUser.avatarUrl" src="activedUser.avatar"
-                    posted-file="activedUser.mediaFile"></custom-image>
+                <custom-image header="'Avatar'" type="'Users'" folder="'Avatars'" src-url="activedUser.avatarUrl" src="activedUser.avatar" posted-file="activedUser.mediaFile"></custom-image>
             </div>
         </div>
 

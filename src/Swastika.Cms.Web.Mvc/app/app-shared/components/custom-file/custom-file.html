@@ -1,9 +1,9 @@
-﻿<div class="card" ng-init="$ctrl.init()">
+<div class="card" ng-init="$ctrl.init()">
     <div class="card-header">
         {{$ctrl.header }}
     </div>
     <div class="card-body p-0" style="background:url(/images/upload-image-thumbnail.png) no-repeat center;  cursor:pointer;">        
-        <input type="hidden" value="{{$ctrl.type}}/{{$ctrl.folder}}" class="folder-val" />
+        <input type="hidden" value="{{$ctrl.type}}/{{$ctrl.folder}}" class="folder-val">
     </div>
     <div class="card-footer">
             <div class="form-group">
@@ -15,8 +15,7 @@
 
                 <div class="custom-file">
                         <!-- <input type="file" class="custom-file-input" id="customFile"> -->
-                        <input id="{{$ctrl.id}}" type="file" name="pic" ngf-select="$ctrl.selectFile($file, $invalidFiles)" data-file="file.file" class="position-absolute"
-                            style="width:100%; /*height:130px;*/ cursor:pointer;">
+                        <input id="{{$ctrl.id}}" type="file" name="pic" ngf-select="$ctrl.selectFile($file, $invalidFiles)" data-file="file.file" class="position-absolute" style="width:100%; /*height:130px;*/ cursor:pointer;">
                         <label class="custom-file-label" for="{{$ctrl.id}}">Choose file</label>
                     </div>
             </div>

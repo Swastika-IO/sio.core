@@ -1,4 +1,4 @@
-﻿<div class="tab-pane" ng-init="$ctrl.medias = $ctrl.loadMedias();">
+<div class="tab-pane" ng-init="$ctrl.medias = $ctrl.loadMedias();">
     <div class="row">
         <div class="col-12">
             <h6>Selected items</h6>
@@ -23,7 +23,7 @@
                             <span class="oi oi-move"></span>
                         </td>
                         <td>
-                            <input type="text" name="MediaNavs[{{$index}}].Priority" value="{{item.priority}}" class="item-priority form-control form-control-sm d-inline" style="width:40px;" />
+                            <input type="text" name="MediaNavs[{{$index}}].Priority" value="{{item.priority}}" class="item-priority form-control form-control-sm d-inline" style="width:40px;">
                         </td>
                         <td>
                             {{item.description}}
@@ -35,8 +35,7 @@
                         </td>
                         <td style="position:relative">
                             <span class="switch switch-sm position-absolute m-1">
-                                <input type="checkbox" class="switch" data-val="{{item.isActived}}"
-                                       id="MediaNavs_{{item.mediaId}}" name="MediaNavs[{{$index}}].IsActived" ng-model="item.isActived" value="{{item.isActived}}">
+                                <input type="checkbox" class="switch" data-val="{{item.isActived}}" id="MediaNavs_{{item.mediaId}}" name="MediaNavs[{{$index}}].IsActived" ng-model="item.isActived" value="{{item.isActived}}">
                                 <label class="switch m-0" for="MediaNavs_{{item.mediaId}}">
                                 </label>
                             </span>
@@ -89,12 +88,11 @@
         <div class="col-md-4">
             <div class="input-group">
                 <div class="input-group-prepend">
-                    <div class="input-group-text " id="btnGroupAddon">
+                    <div class="input-group-text" id="btnGroupAddon">
                         <i class="mi mi-Search btn-search-media" ng-click="$ctrl.loadMedias()" style="top:0;cursor:pointer;"></i>
                     </div>
                 </div>
-                <input type="text" ng-model="request.keyword" ng-enter="$ctrl.loadMedias()"
-                       class="form-control media-keyword" placeholder="Search media items..." aria-label="Search media items..." aria-describedby="btnGroupAddon">
+                <input type="text" ng-model="request.keyword" ng-enter="$ctrl.loadMedias()" class="form-control media-keyword" placeholder="Search media items..." aria-label="Search media items..." aria-describedby="btnGroupAddon">
             </div>
         </div>
     </div>
@@ -102,8 +100,7 @@
     <div class="card-columns" style="column-count: 3 !important;column-gap: 0.75rem;">
         <div class="card" ng-repeat="media in $ctrl.medias.items" ng-hide="media.isHidden">
             <span class="switch switch-sm position-absolute m-1">
-                <input type="checkbox" class="switch" ng-model="media.isActived" ng-change="$ctrl.activeMedia(media)"
-                       id="Media_Image_{{media.id}}" value="true">
+                <input type="checkbox" class="switch" ng-model="media.isActived" ng-change="$ctrl.activeMedia(media)" id="Media_Image_{{media.id}}" value="true">
                 <label class="switch m-0" for="Media_Image_{{media.id}}">
                     @* {{media.title}} {{$ctrl.medias.totalPage}}*@
                 </label>
@@ -124,13 +121,11 @@
     <nav aria-label="Page navigation">
         <ul class="pagination pagination-sm pull-right">
             <li class="page-item">
-                <a class="page-link active" href="javascript:void(0)" ng-click="$ctrl.loadMedias($ctrl.medias.pageIndex-1)"
-                   ng-hide="$ctrl.medias.pageIndex==0">Prev</a>
+                <a class="page-link active" href="javascript:void(0)" ng-click="$ctrl.loadMedias($ctrl.medias.pageIndex-1)" ng-hide="$ctrl.medias.pageIndex==0">Prev</a>
             </li>
             <li class="page-item" ng-class="{active: n-1==$ctrl.medias.pageIndex}" ng-repeat="n in range($ctrl.medias.totalPage)"><a class="page-link" href="javascript:void(0)" ng-click="$ctrl.loadMedias(n-1)">{{n}}</a></li>
             <li class="page-item">
-                <a class="page-link" href="javascript:void(0)" ng-click="$ctrl.loadMedias($ctrl.medias.pageIndex + 1)"
-                   ng-hide="$ctrl.medias.pageIndex >= ($ctrl.medias.totalPage-1)">Next</a>
+                <a class="page-link" href="javascript:void(0)" ng-click="$ctrl.loadMedias($ctrl.medias.pageIndex + 1)" ng-hide="$ctrl.medias.pageIndex >= ($ctrl.medias.totalPage-1)">Next</a>
             </li>
         </ul>
     </nav>

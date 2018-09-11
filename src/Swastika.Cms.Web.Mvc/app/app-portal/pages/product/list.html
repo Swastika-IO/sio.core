@@ -1,4 +1,4 @@
-﻿<!-- <section class="content container-fluid"> -->
+<!-- <section class="content container-fluid"> -->
     <filter-list request="request" callback="loadProducts(pageIndex)"></filter-list>
 
     <table class="table table-sm table-hover" cellspacing="0">
@@ -28,8 +28,7 @@
         </thead>
 
         <tbody class="sortable" ng-init="loadProducts()">
-            <tr ng-repeat="item in data.items track by $index"
-                class="sortable-item" sort-model="product" sort-model-id="{{item.id}}">
+            <tr ng-repeat="item in data.items track by $index" class="sortable-item" sort-model="product" sort-model-id="{{item.id}}">
                 <td style="cursor:move;" class="drag-header">
                     <!--<span class="fas fa-sort"></span>-->
 
@@ -64,8 +63,7 @@
                         <a ng-click="preview(item)" target="_blank" class="btn btn-light">
                             <span class="oi oi-eye text-primary"></span>
                         </a>
-                        <a ng-click="removeProduct(item.id);"
-                           class="btn btn-light">
+                        <a ng-click="removeProduct(item.id);" class="btn btn-light">
                             <span class="fas fa-times text-danger"></span>
                         </a>
                     </div>
@@ -73,12 +71,5 @@
             </tr>
         </tbody>
     </table>
-    <paging class="small"
-            page="data.page"
-            page-size="data.pageSize"
-            total="data.totalItems"
-            ul-class="pagination justify-content-end"
-            a-class="page-link"
-            paging-action="loadProducts(page-1)"
-            scroll-top="true" />
+    <paging class="small" page="data.page" page-size="data.pageSize" total="data.totalItems" ul-class="pagination justify-content-end" a-class="page-link" paging-action="loadProducts(page-1)" scroll-top="true">
 <!-- </section> -->

@@ -1,14 +1,12 @@
-﻿<div class="sw-toc-item" is-active-menu>
+<div class="sw-toc-item" is-active-menu>
     <div class="inner">
         <div class="btn-group btn-group-sm" role="group" ng-if="$ctrl.item.childPages.length > 0">
-            <a ng-repeat="m in $ctrl.item.childPages"
-               href="{{m.page.url}}" class="btn btn-light">
+            <a ng-repeat="m in $ctrl.item.childPages" href="{{m.page.url}}" class="btn btn-light">
                 <span class="mi {{m.page.icon}} mi-fw"></span>
             </a>
         </div>
     </div>
-    <div class="{{$ctrl.itemStyle}}" data-toggle="collapse" data-target="#portal-page-{{$ctrl.item.id}}" role="button" aria-expanded="false"
-         aria-controls="{{$ctrl.item.textDefault}}">
+    <div class="{{$ctrl.itemStyle}}" data-toggle="collapse" data-target="#portal-page-{{$ctrl.item.id}}" role="button" aria-expanded="false" aria-controls="{{$ctrl.item.textDefault}}">
         
         <a href="{{$ctrl.item.url}}" class="text {{$ctrl.linkStyle}}">
             <i class="mi {{$ctrl.item.icon}} {{$ctrl.iconSize}} mi-fw"></i>

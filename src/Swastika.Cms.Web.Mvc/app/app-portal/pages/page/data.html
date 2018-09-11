@@ -1,4 +1,4 @@
-﻿<section ng-init="loadPageDatas()">
+<section ng-init="loadPageDatas()">
     <div class="row">
             <div class="col-md-8">
                 <div class="btn-toolbar mb-3" role="toolbar" aria-label="Toolbar with button groups">
@@ -47,13 +47,12 @@
         </thead>
 
         <tbody class="sortable">
-            <tr ng-repeat="item in activedPage.articles.items track by $index"
-                class="sortable-item" sort-model="article" sort-model-id="{{item.article.id}}">
+            <tr ng-repeat="item in activedPage.articles.items track by $index" class="sortable-item" sort-model="article" sort-model-id="{{item.article.id}}">
                 <td style="cursor:move;" class="drag-header">
                     <span class="fas fa-sort"></span>
                 </td>
                 <td>
-                    <input type="text" value="{{item.article.priority}}" class="item-priority form-control form-control-sm d-inline" style="width:40px;" />
+                    <input type="text" value="{{item.article.priority}}" class="item-priority form-control form-control-sm d-inline" style="width:40px;">
                 </td>
                 <td>
                     {{item.article.code}}
@@ -63,7 +62,7 @@
                 </td>
                 <td>
                     <div ng-if="item.article.image!=''">
-                        <img height="50" ng-src="{{item.article.imageUrl}}" />
+                        <img height="50" ng-src="{{item.article.imageUrl}}">
                     </div>
                     <small>
                         <span ng-bind-html="item.article.excerpt"></span>
@@ -87,8 +86,7 @@
                             <span class="fas fa-eye text-info"></span>
                         </a>
 
-                        <button type="button" class="btn btn-light del-popover"
-                                ng-click="removeArticle(item.article.id)">
+                        <button type="button" class="btn btn-light del-popover" ng-click="removeArticle(item.article.id)">
                             <span class="fas fa-times text-danger"></span>
                         </button>
                         <div class="popover-body d-none">
@@ -127,20 +125,19 @@
         </thead>
 
         <tbody class="sortable">
-            <tr ng-repeat="item in activedPage.products.items track by $index"
-                class="sortable-item" sort-model="product" sort-model-id="{{item.product.id}}">
+            <tr ng-repeat="item in activedPage.products.items track by $index" class="sortable-item" sort-model="product" sort-model-id="{{item.product.id}}">
                 <td style="cursor:move;" class="drag-header">
                     <span class="fas fa-sort"></span>
                 </td>
                 <td>
-                    <input type="text" value="{{item.product.priority}}" class="item-priority form-control form-control-sm d-inline" style="width:40px;" />
+                    <input type="text" value="{{item.product.priority}}" class="item-priority form-control form-control-sm d-inline" style="width:40px;">
                 </td>
                 <td>
                     {{item.product.title}}
                 </td>
                 <td>
                     <div ng-if="item.product.image!=''">
-                        <img height="50" ng-src="{{item.product.imageUrl}}" />
+                        <img height="50" ng-src="{{item.product.imageUrl}}">
                     </div>
                     <small>
                         <span ng-bind-html="item.product.excerpt"></span>
@@ -164,8 +161,7 @@
                             <span class="fas fa-eye text-info"></span>
                         </a>
 
-                        <button type="button" class="btn btn-light del-popover"
-                                ng-click="removeArticle(item.product.id)">
+                        <button type="button" class="btn btn-light del-popover" ng-click="removeArticle(item.product.id)">
                             <span class="fas fa-times text-danger"></span>
                         </button>
                         <div class="popover-body d-none">

@@ -1,4 +1,4 @@
-﻿<div id="pills-rel" class="tab-pane">
+<div id="pills-rel" class="tab-pane">
     <div class="row">
         <div class="col-12">
             <h6>Selected items</h6>
@@ -23,7 +23,7 @@
                             <span class="oi oi-move"></span>
                         </td>
                         <td>
-                            <input type="text" name="ArticleNavs[{{$index}}].Priority" value="{{item.priority}}" class="item-priority form-control form-control-sm d-inline" style="width:40px;" />
+                            <input type="text" name="ArticleNavs[{{$index}}].Priority" value="{{item.priority}}" class="item-priority form-control form-control-sm d-inline" style="width:40px;">
                         </td>
                         <td>
                             {{item.relatedArticle.title}}
@@ -35,8 +35,7 @@
                         </td>
                         <td style="position:relative">
                             <span class="switch switch-sm" style="position: absolute;top: 10px;">
-                                <input type="checkbox" class="switch" data-val="{{item.isActived}}"
-                                       id="ArticleNavs_{{item.relatedArticleId}}" name="ArticleNavs[{{$index}}].IsActived" ng-model="item.isActived" value="{{item.isActived}}">
+                                <input type="checkbox" class="switch" data-val="{{item.isActived}}" id="ArticleNavs_{{item.relatedArticleId}}" name="ArticleNavs[{{$index}}].IsActived" ng-model="item.isActived" value="{{item.isActived}}">
                                 <label class="switch" for="ArticleNavs_{{item.relatedArticleId}}">
                                 </label>
                             </span>
@@ -110,7 +109,7 @@
                         <small>{{article.title}}</small>
                     </td>
                     <td>
-                        <img height="50" ng-src="{{article.image}}" />
+                        <img height="50" ng-src="{{article.image}}">
                     </td>
                     <td>
                         <span class="switch switch-sm">

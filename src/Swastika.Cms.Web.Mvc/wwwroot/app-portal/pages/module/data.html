@@ -40,7 +40,7 @@
                     <span class="fas fa-sort"></span>
                 </td>
                 <td>
-                    <input type="text" ng-model="item.priority" class="item-priority form-control form-control-sm d-inline" style="width:40px;">
+                    <input type="number" ng-model="item.priority" ng-enter="updateModuleDataField(item, 'priority')" class="item-priority form-control form-control-sm d-inline" style="width:40px;">
                 </td>
                 <td ng-repeat="prop in item.dataProperties track by $index">
                     <module-form-preview data="prop" width="50" ng-if="prop.isDisplay">
@@ -97,7 +97,7 @@
                         <span class="fas fa-sort"></span>
                     </td>
                     <td>
-                        <input type="text" value="{{item.article.priority}}" class="item-priority form-control form-control-sm d-inline" style="width:40px;">
+                        <input type="text" ng-model="item.article.priority" class="item-priority form-control form-control-sm d-inline" style="width:40px;">
                     </td>
                     <td>
                         {{item.article.code}}
@@ -131,7 +131,7 @@
                                 <span class="fas fa-eye text-info"></span>
                             </a>
     
-                            <button type="button" class="btn btn-light del-popover" ng-click="removeArticle(item.article.id)">
+                            <button type="button" class="btn btn-light del-popover" ng-click="rermoveArticle(item.article.id)">
                                 <span class="fas fa-times text-danger"></span>
                             </button>
                             <div class="popover-body d-none">
@@ -181,9 +181,7 @@
                         {{item.product.title}}
                     </td>
                     <td>
-                        <div ng-if="item.product.image!=''">
-                            <img height="50" ng-src="{{item.product.imageUrl}}">
-                        </div>
+                        <preview-image img-height="25" img-src="item.product.imageUrl"></preview-image>
                         <small>
                             <span ng-bind-html="item.product.excerpt"></span>
                         </small>

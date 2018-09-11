@@ -1,14 +1,13 @@
-﻿<!-- Main content -->
+<!-- Main content -->
 <section class="" ng-init="loadModule()">
-    <form ng-class="{'submitted': submitted}"
-          ng-submit="saveModule(activedModule)">
+    <form ng-class="{'submitted': submitted}" ng-submit="saveModule(activedModule)">
 
         <actions preview-url="activedModule.detailsUrl" back-url="'/backend/module/list'"></actions>
         <div class="row">
             <section class="col-lg-9">
                 <div class="row">
                     <div class="col-lg-12">
-                        <module-main module="activedModule" />
+                        <module-main module="activedModule">
                     </div>
                 </div>
                 <div class="row">
@@ -19,9 +18,9 @@
                                 <a ng-click="addAttr()" class="btn btn-primary btn-sm float-right text-white">Add New</a>
                             </div>
                             <div class="card-body p-1">
-                                <input type="hidden" asp-for="Id" />
-                                <input type="hidden" asp-for="Specificulture" />
-                                <input type="hidden" asp-for="Priority" />
+                                <input type="hidden" asp-for="Id">
+                                <input type="hidden" asp-for="Specificulture">
+                                <input type="hidden" asp-for="Priority">
                                 <table class="table table-sm table-hover" id="Table">
                                     <thead class="thead-light">
                                         <tr>
@@ -53,7 +52,7 @@
                                             </td>-->
                                             
                                             <td>
-                                                <input ng-model="col.title" placeholder="Title" ng-change="generateName(col)" class="form-control form-control-sm" /><br />
+                                                <input ng-model="col.title" placeholder="Title" ng-change="generateName(col)" class="form-control form-control-sm"><br>
                                                 Field Name: <span ng-bind="col.name"></span>
                                                 <!--<input ng-model="col.name" placeholder="Field Name" class="form-control form-control-sm" />-->
                                             </td>
@@ -96,8 +95,7 @@
                                                 </span>
                                             </td>
                                             <td>
-                                                <a class="btn btn-light del-popover"
-                                                   ng-click="removeAttr($index);">
+                                                <a class="btn btn-light del-popover" ng-click="removeAttr($index);">
                                                     <span class="fas fa-times text-danger"></span>
                                                 </a>
                                             </td>
@@ -108,14 +106,14 @@
 
                                                     <div class="col-12">
                                                         <h1 ng-bind="col.name"></h1>
-                                                        <input type="text" id="option_{{$index}}" ng-enter="addOption(col,$index)" placeholder="fill then enter to add options" class="form-control" />
+                                                        <input type="text" id="option_{{$index}}" ng-enter="addOption(col,$index)" placeholder="fill then enter to add options" class="form-control">
                                                     </div>
                                                 </div>
                                                 <div class="row" ng-repeat="opt in col.options track by $index">
                                                     <div class="col-8">
-                                                        <input type="text" class="form-control" ng-model="col.options[$index]" />
+                                                        <input type="text" class="form-control" ng-model="col.options[$index]">
                                                     </div>
-                                                    <div class="col-4 ">
+                                                    <div class="col-4">
                                                         <a class="btn" ng-click="col.options.splice($index,1)">
                                                             <span class="fas fa-times text-danger"></span>
                                                         </a>
@@ -143,7 +141,7 @@
                         Info
                     </div>
                     <div class="card-body">
-                        <statuses status="activedModule.status" />
+                        <statuses status="activedModule.status">
                         <div class="form-group">
                             <span class="switch">
                                 <label>
@@ -158,7 +156,7 @@
                                 <div class="input-group-prepend">
                                     <span class="input-group-text" id="basic-addon1"><i class="mi mi-Calendar"></i></span>
                                 </div>
-                                <input ng-model="activedModule.createdDateTime" type="text" class="form-control" readonly />
+                                <input ng-model="activedModule.createdDateTime" type="text" class="form-control" readonly="readonly">
                             </div>
                         </div>
 
@@ -168,20 +166,14 @@
                                 <div class="input-group-prepend">
                                     <span class="input-group-text" id="basic-addon1"><i class="mi mi-Contact"></i></span>
                                 </div>
-                                <input ng-model="activedModule.createdBy" class="form-control" readonly />
+                                <input ng-model="activedModule.createdBy" class="form-control" readonly="readonly">
                             </div>
                         </div>
                     </div>
                 </div>
 
-                <custom-image header="'Feature Image'" type="'Modules'"
-                              folder="activedModule.seoName"
-                              src-url="activedModule.image"
-                              src="activedModule.image" auto="'true'"></custom-image>
-                <custom-image header="'Feature Thumnail'" type="'Modules'"
-                              folder="activedModule.seoName"
-                              src-url="activedModule.thumbnail"
-                              src="activedModule.thumbnail" auto="'true'"></custom-image>
+                <custom-image header="'Feature Image'" type="'Modules'" folder="activedModule.seoName" src-url="activedModule.image" src="activedModule.image" auto="'true'"></custom-image>
+                <custom-image header="'Feature Thumnail'" type="'Modules'" folder="activedModule.seoName" src-url="activedModule.thumbnail" src="activedModule.thumbnail" auto="'true'"></custom-image>
             </section>
         </div>
     </form>

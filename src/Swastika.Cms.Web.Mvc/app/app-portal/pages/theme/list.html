@@ -1,4 +1,4 @@
-﻿<!-- <section class="content container-fluid"> -->
+<!-- <section class="content container-fluid"> -->
     <div class="row">
         <div class="col-md-8">
             <div class="btn-toolbar mb-3" role="toolbar" aria-label="Toolbar with button groups">
@@ -42,19 +42,18 @@
         </thead>
 
         <tbody class="sortable" ng-init="loadThemes()">
-            <tr ng-repeat="item in data.items track by $index"
-                class="sortable-item" sort-model="theme" sort-model-id="{{item.id}}">
+            <tr ng-repeat="item in data.items track by $index" class="sortable-item" sort-model="theme" sort-model-id="{{item.id}}">
                 <td style="cursor:move;" class="drag-header">
                     <span class="fas fa-sort"></span>
                 </td>
                 <td>
-                    <input type="text" value="{{item.priority}}" class="item-priority form-control form-control-sm d-inline" style="width:40px;" />
+                    <input type="text" value="{{item.priority}}" class="item-priority form-control form-control-sm d-inline" style="width:40px;">
                 </td>
                 <td>
                     {{item.name}}
                 </td>
                 <td>
-                    <img height="30" imageonload ng-src="{{item.imageUrl}}" />
+                    <img height="30" imageonload ng-src="{{item.imageUrl}}">
                 </td>
                 <td>
                     {{item.createdBy}}
@@ -69,20 +68,18 @@
                         <a ng-if="item.previewUrl" href="{{item.previewUrl}}" target="_blank" class="btn btn-light">
                             <span class="fas fa-eye text-info"></span>
                         </a>
-                        <a href="/backend/template/list/{{item.id}}"
-                           class="btn btn-light">
+                        <a href="/backend/template/list/{{item.id}}" class="btn btn-light">
                             <span class="fas fa-paint-brush text-info"></span>
                         </a>
                         <a href="/backend/file/list?folder={{item.assetFolder}}" class="btn btn-light">
                             <span class="fas fa-file text-secondary"></span>
                         </a>
-                        <a ng-click="syncTemplates(item.id)" class="btn btn-sm btn-light d-inline-block "><span class="fas fa-sync-alt text-primary"></span></a>
+                        <a ng-click="syncTemplates(item.id)" class="btn btn-sm btn-light d-inline-block"><span class="fas fa-sync-alt text-primary"></span></a>
 
                         <a href="/backend/theme/details/{{item.id}}" class="btn btn-light">
                             <span class="fas fa-pencil-alt text-primary"></span>
                         </a>
-                        <a ng-click="removeTheme(item.id);"
-                           class="btn btn-light">
+                        <a ng-click="removeTheme(item.id);" class="btn btn-light">
                             <span class="fas fa-times text-danger"></span>
                         </a>
                     </div>
@@ -93,15 +90,13 @@
     <nav aria-label="Page navigation example">
         <ul class="pagination justify-content-end">
             <li class="page-item">
-                <a class="page-link active" href="javascript:void(0)" ng-click="loadThemes(data.pageIndex-1)"
-                   ng-hide="data.pageIndex==0">Prev</a>
+                <a class="page-link active" href="javascript:void(0)" ng-click="loadThemes(data.pageIndex-1)" ng-hide="data.pageIndex==0">Prev</a>
             </li>
             <li class="page-item" ng-class="{active: n-1==data.pageIndex}" ng-repeat="n in range(data.totalPage)">
                 <a class="page-link" href="javascript:void(0)" ng-click="loadThemes(n-1)">{{n}}</a>
             </li>
             <li class="page-item">
-                <a class="page-link" href="javascript:void(0)" ng-click="loadThemes(data.page)"
-                   ng-hide="data.pageIndex >= (data.totalPage-1)">Next</a>
+                <a class="page-link" href="javascript:void(0)" ng-click="loadThemes(data.page)" ng-hide="data.pageIndex >= (data.totalPage-1)">Next</a>
             </li>
         </ul>
     </nav>

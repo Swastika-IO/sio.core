@@ -1,7 +1,6 @@
-﻿<!-- Main content -->
+<!-- Main content -->
 <section class="" ng-init="loadArticle()">
-    <form ng-class="{'submitted': submitted}"
-          ng-submit="saveArticle(activedArticle)">
+    <form ng-class="{'submitted': submitted}" ng-submit="saveArticle(activedArticle)">
         <actions preview-url="activedArticle.detailsUrl" back-url="'/backend/article/list'"></actions>
         <div class="m-4"></div>
         <div class="row">
@@ -49,7 +48,7 @@
                         Info
                     </div>
                     <div class="card-body">
-                        <statuses status="activedArticle.status" />
+                        <statuses status="activedArticle.status">
                         <div class="form-group">
                             <span class="switch">
                                 <label>
@@ -64,7 +63,7 @@
                                 <div class="input-group-prepend">
                                     <span class="input-group-text" id="basic-addon1"><i class="mi mi-Calendar"></i></span>
                                 </div>
-                                <input ng-model="activedArticle.createdDateTime" type="text" class="form-control" readonly />
+                                <input ng-model="activedArticle.createdDateTime" type="text" class="form-control" readonly="readonly">
                             </div>
                         </div>
                         <div class="form-group">
@@ -73,16 +72,13 @@
                                 <div class="input-group-prepend">
                                     <span class="input-group-text" id="basic-addon1"><i class="mi mi-Contact"></i></span>
                                 </div>
-                                <input ng-model="activedArticle.createdBy" class="form-control" readonly />
+                                <input ng-model="activedArticle.createdBy" class="form-control" readonly="readonly">
                             </div>
                         </div>
                     </div>
                 </div>
-                <custom-image header="'Feature Image'" type="'Articles'" folder="activedArticle.seoName" 
-                              src-url="activedArticle.imageUrl" src="activedArticle.image" auto="'true'"></custom-image>
-                <custom-image header="'Feature Thumnail'" type="'Articles'" folder="activedArticle.seoName" 
-                              src-url="activedArticle.thumbnailUrl" 
-                              src="activedArticle.thumbnail" auto="'true'"></custom-image>
+                <custom-image header="'Feature Image'" type="'Articles'" folder="activedArticle.seoName" src-url="activedArticle.imageUrl" src="activedArticle.image" auto="'true'"></custom-image>
+                <custom-image header="'Feature Thumnail'" type="'Articles'" folder="activedArticle.seoName" src-url="activedArticle.thumbnailUrl" src="activedArticle.thumbnail" auto="'true'"></custom-image>
             </section>
         </div>
     </form>

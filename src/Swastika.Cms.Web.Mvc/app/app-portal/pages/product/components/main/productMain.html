@@ -1,4 +1,4 @@
-﻿<div class="card" ng-if="$ctrl.product!=null">
+<div class="card" ng-if="$ctrl.product!=null">
     <div class="card-header">
             <span ng-bind="$ctrl.translate('portal_main_content')"></span>
     </div>
@@ -6,23 +6,16 @@
 
         <div class="form-group">
             <label>Title</label>
-            <input type="text"
-                   class="form-control form-control-lg"
-                   ng-model="$ctrl.product.title" 
-                   ng-blur="$ctrl.generateSEO()" />
+            <input type="text" class="form-control form-control-lg" ng-model="$ctrl.product.title" ng-blur="$ctrl.generateSEO()">
         </div>
         <div class="row">
                 <div class="form-group col">
                         <label>Price</label>
-                        <input type="text"
-                               class="form-control"
-                               ng-model="$ctrl.product.price" />
+                        <input type="text" class="form-control" ng-model="$ctrl.product.price">
                     </div>
                     <div class="form-group col">
                         <label>Price Unit</label>
-                        <input type="text"
-                               class="form-control"
-                               ng-model="$ctrl.product.priceUnit" />
+                        <input type="text" class="form-control" ng-model="$ctrl.product.priceUnit">
                     </div>
         </div>
         
@@ -58,13 +51,11 @@
         </div>-->
         <div class="form-group">
             <label>Excerpt</label>
-            <textarea class="form-control editor-content excerpt"
-                      ng-model="$ctrl.product.excerpt">{{$ctrl.product.excerpt}}</textarea>
+            <textarea class="form-control editor-content excerpt" ng-model="$ctrl.product.excerpt">{{$ctrl.product.excerpt}}</textarea>
         </div>
         <div class="form-group">
             <label>Body content</label>
-            <textarea class="form-control editor-content content"
-                      ng-model="$ctrl.product.content">{{$ctrl.product.content}}</textarea>
+            <textarea class="form-control editor-content content" ng-model="$ctrl.product.content">{{$ctrl.product.content}}</textarea>
         </div>
     </div>
 </div>

@@ -1,4 +1,4 @@
-﻿<!-- <section class="content container-fluid"> -->
+<!-- <section class="content container-fluid"> -->
     <filter-list request="request" callback="loadModules(pageIndex)"></filter-list>
 
     <table class="table table-sm table-hover" cellspacing="0">
@@ -28,8 +28,7 @@
         </thead>
 
         <tbody class="sortable" ng-init="loadModules()">
-            <tr ng-repeat="item in data.items track by $index"
-                class="sortable-item" sort-model="module" sort-model-id="{{item.id}}">
+            <tr ng-repeat="item in data.items track by $index" class="sortable-item" sort-model="module" sort-model-id="{{item.id}}">
                 <td style="cursor:move;" class="drag-header">
                     <!--<span class="fas fa-sort"></span>-->
 
@@ -63,8 +62,7 @@
                         <a href="/backend/module/data/{{item.id}}" class="btn btn-light">
                             <span class="fas fa-list text-info"></span>
                         </a>                                
-                        <a ng-click="removeModule(item.id);"
-                           class="btn btn-light">
+                        <a ng-click="removeModule(item.id);" class="btn btn-light">
                             <span class="fas fa-times text-danger"></span>
                         </a>
                     </div>
@@ -72,12 +70,5 @@
             </tr>
         </tbody>
     </table>
-    <paging class="small" 
-            page="data.page"
-            page-size="data.pageSize"
-            total="data.totalItems"
-            ul-class="pagination justify-content-end"
-            a-class="page-link"
-            paging-action="loadModules(page-1)"
-            scroll-top="true" />
+    <paging class="small" page="data.page" page-size="data.pageSize" total="data.totalItems" ul-class="pagination justify-content-end" a-class="page-link" paging-action="loadModules(page-1)" scroll-top="true">
 <!-- </section> -->

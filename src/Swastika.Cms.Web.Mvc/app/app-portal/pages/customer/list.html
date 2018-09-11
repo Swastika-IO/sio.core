@@ -1,4 +1,4 @@
-﻿<section class="content container-fluid">
+<section class="content container-fluid">
     <filter-list request="request" callback="loadCustomers(pageIndex)"></filter-list>
 
     <table class="table table-sm table-hover" cellspacing="0" ng-init="loadCustomers()">
@@ -31,9 +31,7 @@
         </thead>
 
         <tbody class="sortable" ng-repeat="item in data.items track by $index">
-            <tr class="sortable-item" sort-model="customer" sort-model-id="{{item.id}}"
-                data-toggle="collapse" href="#collapse-page{{item.id}}-childs" role="button" aria-expanded="false" 
-                aria-controls="collapse-page{{item.id}}-childs">
+            <tr class="sortable-item" sort-model="customer" sort-model-id="{{item.id}}" data-toggle="collapse" href="#collapse-page{{item.id}}-childs" role="button" aria-expanded="false" aria-controls="collapse-page{{item.id}}-childs">
                 <td>
                     {{item.firstName}}
                 </td>
@@ -66,8 +64,7 @@
                             <span class="fas fa-eye text-info"></span>
                         </a>
                         
-                        <a ng-click="removeCustomer(item.id);"
-                           class="btn btn-light">
+                        <a ng-click="removeCustomer(item.id);" class="btn btn-light">
                             <span class="fas fa-times text-danger"></span>
                         </a>
                     </div>
@@ -76,12 +73,5 @@
             
         </tbody>
     </table>
-    <paging class="small"
-            page="data.page"
-            page-size="data.pageSize"
-            total="data.totalItems"
-            ul-class="pagination justify-content-end"
-            a-class="page-link"
-            paging-action="loadCustomers(page-1)"
-            scroll-top="true" />
+    <paging class="small" page="data.page" page-size="data.pageSize" total="data.totalItems" ul-class="pagination justify-content-end" a-class="page-link" paging-action="loadCustomers(page-1)" scroll-top="true">
 </section>

@@ -1,4 +1,4 @@
-﻿'use strict';
+'use strict';
 var app = angular.module('SwastikaPortal',
     ['ngRoute', 'ngFileUpload', 'LocalStorageModule']);
     var modules = angular.module('components', []);

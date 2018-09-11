@@ -1,4 +1,4 @@
-﻿<section class="">
+<section class="">
     <filter-list request="request" callback="loadPages(pageIndex)"></filter-list>
 
     <table id="list-page" class="table table-sm table-hover sortable" cellspacing="0" ng-init="data = loadPages()">
@@ -63,8 +63,7 @@
                         </a>
                         <a href="/backend/portal-page/details/{{item.id}}" class="btn btn-light">
                         <span class="oi oi-pencil text-primary small"></span></a>
-                        <a href="#" class="btn btn-light"
-                           ng-click="removePage(item.id)">
+                        <a href="#" class="btn btn-light" ng-click="removePage(item.id)">
                             <span class="oi oi-x text-danger"></span>
                         </a>
                     </div>
@@ -112,14 +111,14 @@
                                         </div>
                                     </td>
                                     <td>
-                                        <span ng-bind="c.page.textKeyword" />
+                                        <span ng-bind="c.page.textKeyword">
                                     </td>
                                     <td>
-                                        <span ng-bind="c.page.textDefault" />
+                                        <span ng-bind="c.page.textDefault">
                                     </td>
                                     <td>
                                         <small>
-                                            <span ng-bind="c.page.description" />
+                                            <span ng-bind="c.page.description">
                                         </small>
                                     </td>
                                     <td>
@@ -130,8 +129,7 @@
                                     <td>
                                         <div class="btn-group btn-group-sm btn-group-sm float-right" role="group" aria-label="Actions">
                                             <a href="/backend/portal-page/details/{{c.page.id}}" class="btn btn-light"><span class="oi oi-pencil text-primary small"></span></a>
-                                            <a ng-click="removePage(c.page.id);"
-                                               class="btn btn-light">
+                                            <a ng-click="removePage(c.page.id);" class="btn btn-light">
                                                 <span class="fas fa-times text-danger"></span>
                                             </a>
                                         </div>
@@ -144,12 +142,5 @@
             </tr>
         </tbody>
     </table>
-    <paging class="small"
-            page="data.page"
-            page-size="data.pageSize"
-            total="data.totalItems"
-            ul-class="pagination justify-content-end"
-            a-class="page-link"
-            paging-action="loadProducts(page-1)"
-            scroll-top="true" />
+    <paging class="small" page="data.page" page-size="data.pageSize" total="data.totalItems" ul-class="pagination justify-content-end" a-class="page-link" paging-action="loadProducts(page-1)" scroll-top="true">
 </section>

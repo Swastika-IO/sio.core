@@ -1,15 +1,14 @@
-﻿<div class="form-group">
+<div class="form-group">
     <label class="control-label" ng-if="isShowTitle" ng-bind="$ctrl.data.title"></label>
     <div ng-switch="$ctrl.data.dataType">
         <div ng-switch-when="0">
             <input class="form-control {{$ctrl.inputClass}}" type="text" ng-model="$ctrl.data.value" placeholder="{{$ctrl.data.title}}">
         </div>
         <div ng-switch-when="1">
-            <input class="form-control {{$ctrl.inputClass}}" type="number" ng-model="$ctrl.data.value"  placeholder="{{$ctrl.data.title}}">
+            <input class="form-control {{$ctrl.inputClass}}" type="number" ng-model="$ctrl.data.value" placeholder="{{$ctrl.data.title}}">
         </div>
         <div ng-switch-when="2">
-            <custom-image header="''" type="'Modules'" folder="activedPage.seoName"
-                          src-url="$ctrl.data.value" ng-src="{{$ctrl.data.value}}" auto="'true'" />
+            <custom-image header="''" type="'Modules'" folder="activedPage.seoName" src-url="$ctrl.data.value" ng-src="{{$ctrl.data.value}}" auto="'true'">
         </div>
         <div ng-switch-when="3">
             <div class="no-margin no-padding">
@@ -47,10 +46,10 @@
             <textarea placeholder="{{$ctrl.data.title}}" ng-model="$ctrl.data.value" ng-init="$ctrl.initEditor()" class="form-control editor-content {{$ctrl.data.name}} {{$ctrl.inputClass}}">$ctrl.value</textarea>
         </div>
         <div ng-switch-when="9">
-            <input placeholder="{{$ctrl.data.title}}" class="form-control {{$ctrl.inputClass}}" type="date" ng-model="$ctrl.data.value" />
+            <input placeholder="{{$ctrl.data.title}}" class="form-control {{$ctrl.inputClass}}" type="date" ng-model="$ctrl.data.value">
         </div>
         <div ng-switch-when="10">
-            <input placeholder="{{$ctrl.data.title}}" class="form-control {{$ctrl.inputClass}}" type="datetime" ng-model="$ctrl.data.value" />
+            <input placeholder="{{$ctrl.data.title}}" class="form-control {{$ctrl.inputClass}}" type="datetime" ng-model="$ctrl.data.value">
         </div>
     </div>
 </div>

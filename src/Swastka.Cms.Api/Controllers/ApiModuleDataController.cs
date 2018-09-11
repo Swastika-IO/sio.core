@@ -25,24 +25,6 @@ namespace Swastka.Cms.Api.Controllers
         {
         }
 
-        [HttpPost, HttpOptions]
-        [Route("save/{id}")]
-        public async Task<RepositoryResponse<SiocModuleData>> SaveFields(string id, [FromBody]List<EntityField> fields)
-        {
-            var result = new RepositoryResponse<SiocModuleData>();
-            if (fields != null)
-            {
-                foreach (var property in fields)
-                {
-                    result = await InfoModuleDataViewModel.Repository.UpdateFieldsAsync(c => c.Id == id, fields).ConfigureAwait(false);
-
-                    
-                }
-                return result;
-            }
-            return result;
-        }
-
         // GET api/module-data/id
         [HttpGet, HttpOptions]
         [Route("details/{viewType}/{moduleId}/{id}")]
@@ -268,6 +250,32 @@ namespace Swastka.Cms.Api.Controllers
             }
             return new RepositoryResponse<ApiModuleDataViewModel>();
         }
+
+        // POST api/module
+        [HttpPost, HttpOptions]
+        [Route("save/{id}")]
+        public async Task<RepositoryResponse<SiocModuleData>> SaveFields(string id, [FromBody]List<EntityField> fields)
+        {
+            if (fields != null)
+            {
+                var result = new RepositoryResponse<SiocModuleData>() { IsSucceed = true };
+                foreach (var property in fields)
+                {
+                    if (result.IsSucceed)
+                    {
+                        result = await InfoModuleDataViewModel.Repository.UpdateFieldsAsync(c => c.Id == id && c.Specificulture == _lang, fields).ConfigureAwait(false);
+                    }
+                    else
+                    {
+                        break;
+                    }
+
+                }
+                return result;
+            }
+            return new RepositoryResponse<SiocModuleData>();
+        }
+
 
 
         // GET api/moduleData

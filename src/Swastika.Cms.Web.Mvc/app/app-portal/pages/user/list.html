@@ -1,4 +1,4 @@
-﻿<!-- <section class="content container-fluid"> -->
+<!-- <section class="content container-fluid"> -->
     <div class="row">
         <div class="col-md-12">
             <filter-list request="request" callback="loadUsers(pageIndex)"></filter-list>
@@ -28,8 +28,7 @@
         </thead>
 
         <tbody class="sortable">
-            <tr ng-repeat="item in data.items track by $index"
-                class="sortable-item" sort-model="user" sort-model-id="{{item.id}}">
+            <tr ng-repeat="item in data.items track by $index" class="sortable-item" sort-model="user" sort-model-id="{{item.id}}">
                 <!-- <td>
                     <small><span ng-bind="item.id"></span></small>
                 </td> -->
@@ -45,7 +44,7 @@
                     
                 </td>
                 <td>
-                    <img class="rounded-circle" imageonload ng-src="{{item.avatarUrl}}" height="30" />
+                    <img class="rounded-circle" imageonload ng-src="{{item.avatarUrl}}" height="30">
                 </td>
                 <td>
                     <small>
@@ -57,8 +56,7 @@
                         <a href="/backend/user/details/{{item.id}}" class="btn btn-light">
                             <span class="oi oi-pencil text-primary"></span>
                         </a>        
-                        <a ng-click="removeUser(item.id);"
-                           class="btn btn-light">
+                        <a ng-click="removeUser(item.id);" class="btn btn-light">
                             <span class="fas fa-times text-danger"></span>
                         </a>                       
                     </div>
@@ -66,12 +64,5 @@
             </tr>
         </tbody>
     </table>
-    <paging class="small"
-            page="data.page"
-            page-size="data.pageSize"
-            total="data.totalItems"
-            ul-class="pagination justify-content-end"
-            a-class="page-link"
-            paging-action="loadUsers(page-1)"
-            scroll-top="true" />
+    <paging class="small" page="data.page" page-size="data.pageSize" total="data.totalItems" ul-class="pagination justify-content-end" a-class="page-link" paging-action="loadUsers(page-1)" scroll-top="true">
 <!-- </section> -->

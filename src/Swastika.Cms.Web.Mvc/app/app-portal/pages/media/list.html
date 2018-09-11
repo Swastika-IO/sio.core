@@ -1,4 +1,4 @@
-﻿<!-- <section class="content container-fluid"> -->
+<!-- <section class="content container-fluid"> -->
     <div ng-init="getMedia()" class="row mb-3">
         <div class="col-md-10">
                 <custom-file header="''" folder="'Medias'" media="activedMedia" auto="'false'" class=""></custom-file>                
@@ -42,8 +42,7 @@
         </thead>
 
         <tbody class="sortable" ng-init="loadMedias()">
-            <tr ng-repeat="item in data.items track by $index"
-                class="sortable-item" sort-model="media" sort-model-id="{{item.id}}">
+            <tr ng-repeat="item in data.items track by $index" class="sortable-item" sort-model="media" sort-model-id="{{item.id}}">
                 <td style="cursor:move;" class="drag-header">
                     <!--<span class="fas fa-sort"></span>-->
 
@@ -58,7 +57,7 @@
                 <td>
 
                     <div class="input-group input-group-sm">
-                        <input id="path-modal-{{$index}}" value="{{item.fullPath}}" onclick="this.select()" class="form-control form-control-sm" readonly />
+                        <input id="path-modal-{{$index}}" value="{{item.fullPath}}" onclick="this.select()" class="form-control form-control-sm" readonly="readonly">
                         <div class="input-group-append">
                             <button class="btn btn-outline-secondary btn-clipboard" type="button" data-clipboard-target="#path-modal-{{$index}}"><i class="mi mi-Copy"></i></button>
                         </div>
@@ -80,10 +79,9 @@
                         <a href="{{item.fullPath}}" target="_blank" class="btn btn-light">
                             <span class="oi oi-eye text-primary"></span>
                         </a>
-                        <a ng-click="clone(item.id)" class="btn btn-sm btn-light d-inline-block "><span class="fas fa-sync-alt text-primary"></span></a>
+                        <a ng-click="clone(item.id)" class="btn btn-sm btn-light d-inline-block"><span class="fas fa-sync-alt text-primary"></span></a>
 
-                        <button type="button" class="btn btn-light del-popover"
-                                ng-click="removeMedia(item.id)">
+                        <button type="button" class="btn btn-light del-popover" ng-click="removeMedia(item.id)">
                             <span class="oi oi-x text-danger"></span>
                         </button>
                         <div class="popover-body d-none">
@@ -94,12 +92,5 @@
             </tr>
         </tbody>
     </table>
-    <paging class="small"
-            page="data.page"
-            page-size="data.pageSize"
-            total="data.totalItems"
-            ul-class="pagination justify-content-end"
-            a-class="page-link"
-            paging-action="loadMedias(page-1)"
-            scroll-top="true" />
+    <paging class="small" page="data.page" page-size="data.pageSize" total="data.totalItems" ul-class="pagination justify-content-end" a-class="page-link" paging-action="loadMedias(page-1)" scroll-top="true">
 <!-- </section> -->

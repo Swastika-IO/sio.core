@@ -1,4 +1,4 @@
-﻿app.config(function ($routeProvider, $locationProvider, $sceProvider) {
+app.config(function ($routeProvider, $locationProvider, $sceProvider) {
     $locationProvider.html5Mode(true);
 
     $routeProvider.when("/portal/login", {

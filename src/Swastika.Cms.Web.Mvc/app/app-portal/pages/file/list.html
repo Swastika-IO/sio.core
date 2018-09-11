@@ -1,4 +1,4 @@
-﻿<!-- <section class="content container-fluid"> -->
+<!-- <section class="content container-fluid"> -->
     <filter-list request="request" callback="loadFiles(pageIndex)"></filter-list>
 
     <table class="table table-sm table-hover" cellspacing="0">
@@ -26,14 +26,13 @@
                 </td>
                 <td colspan="3"></td>
             </tr>
-            <tr ng-repeat="item in data.files track by $index"
-                class="sortable-item" sort-model="file" sort-model-id="{{item.id}}">
+            <tr ng-repeat="item in data.files track by $index" class="sortable-item" sort-model="file" sort-model-id="{{item.id}}">
                 <td>
                     <span ng-bind="item.fileName"></span>
                 </td>
                 <td>
                    <div class="input-group input-group-sm">
-                        <input id="path-modal-{{$index}}" value="{{item.webPath}}" onclick="this.select()" class="form-control form-control-sm" readonly />
+                        <input id="path-modal-{{$index}}" value="{{item.webPath}}" onclick="this.select()" class="form-control form-control-sm" readonly="readonly">
                         <div class="input-group-append">
                             <button class="btn btn-outline-secondary btn-clipboard" type="button" data-clipboard-target="#path-modal-{{$index}}"><i class="mi mi-Copy"></i></button>
                         </div>
@@ -51,8 +50,7 @@
                             <span class="oi oi-eye text-primary"></span>
                         </a>
 
-                        <button type="button" class="btn btn-light del-popover"
-                                ng-click="removeFile(item.id)">
+                        <button type="button" class="btn btn-light del-popover" ng-click="removeFile(item.id)">
                             <span class="oi oi-x text-danger"></span>
                         </button>
                         <div class="popover-body d-none">
@@ -63,12 +61,5 @@
             </tr>
         </tbody>
     </table>
-    <paging class="small"
-            page="data.page"
-            page-size="data.pageSize"
-            total="data.totalItems"
-            ul-class="pagination justify-content-end"
-            a-class="page-link"
-            paging-action="loadFiles(page-1)"
-            scroll-top="true" />
+    <paging class="small" page="data.page" page-size="data.pageSize" total="data.totalItems" ul-class="pagination justify-content-end" a-class="page-link" paging-action="loadFiles(page-1)" scroll-top="true">
 <!-- </section> -->

@@ -106,6 +106,15 @@ paths.client = {
     dest: paths.webroot + "js/app-client.min.js"
 };
 
+paths.clientApp = {
+    src: [
+        paths.webroot + "app-client/shared/**/*.js",
+        paths.webroot + "app-client/app.js",
+        paths.webroot + "app-client/app.constant.js",
+        paths.webroot + "app-portal/app.route.js"
+    ]
+};
+
 paths.sharedJs = {
     src: [
         paths.webroot + "app-shared/**/*.js",
@@ -186,6 +195,14 @@ gulp.task("min:fonts", function (cb) {
         .pipe(gulp.dest(paths.fonts.dest));
 
 });
+
+gulp.task("min:clientApp", function (cb) {    
+    return gulp.src(paths.clientApp.src, { base: "." })
+        //.pipe(concat(paths.portal.dest))
+        //.pipe(minify(paths.jsOptions))
+        .pipe(gulp.dest(dest));
+
+});
 gulp.task("min:clientJs", function (cb) {
     return gulp.src(paths.client.src, { base: "." })
         .pipe(concat(paths.client.dest))
@@ -210,5 +227,6 @@ gulp.task("min:css", function (cb) {
 
 });
 
-gulp.task("min", ["min:plugins", "min:portal", "min:portalApp", "min:init", "min:initApp", "min:clientJs","min:sharedJs", "min:css", "min:fonts"]);
+gulp.task("min", ["min:plugins", "min:portal", "min:portalApp", "min:init", "min:initApp"
+, "min:clientApp", "min:clientJs","min:sharedJs", "min:css", "min:fonts"]);
 gulp.task("build", ["min", "min:views"]);
