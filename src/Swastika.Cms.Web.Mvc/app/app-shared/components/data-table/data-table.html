@@ -1,49 +1,44 @@
-<filter-list request="request" callback="loadPages(pageIndex)"></filter-list>
-<table class="table table-sm table-hover dataTable" cellspacing="0">
-    <thead class="thead-light">
-        <tr>
-            <th scope="col" width="5%">
-                <span class="fas fa-sort"></span>
-            </th>
-            <th scope="col" width="5%">
-                <span class="fas fa-sort-numeric-down"></span>
-            </th>
-            <th scope="col" ng-repeat="col in $ctrl.columns track by $index">
-                <span ng-bind="col.title"/>
-            </th>
-            <th scope="col" width="5%" class="text-right">
-                Actions
-            </th>
-        </tr>
-    </thead>
-   
-    <tbody class="sortable">
-        <tr ng-repeat="item in $ctrl.data.items track by $index" class="sortable-item">
-            <td style="cursor:move;" class="drag-header">
-                <span class="fas fa-sort"></span>
-            </td>
-            <td>
-                <input type="text" ng-model="item.priority"
-                    ng-enter="$ctrl.updatePriortity(item)"
-                    ng-blur="$ctrl.updatePriortity(item)"
-                       class="item-priority form-control form-control-sm d-inline"
-                       style="width:40px;" />
-            </td>
-            <td ng-repeat="col in $ctrl.columns track by $index">
-                <span ng-bind="item[col.name]"></span>
-                <!--<module-form-preview data="prop" width="50" ng-if="prop.isDisplay" />-->
-            </td>
-            <td>
-                <div class="btn-group btn-group-sm" role="group" aria-label="Actions">
-                    <a href="{{editUrl}}/{{item.id}}" class="btn btn-sm btn-light">
-                        <span class="fas fa-pencil-alt text-primary"></span>
-                    </a>
-                    <a ng-click="removeData(item.id);" class="btn btn-light del-popover"
-                            data-toggle="popover" data-html="true">
-                        <span class="fas fa-times text-danger"></span>
-                    </a>
+<div ng-if="$ctrl.data" ng-init="$ctrl.init()">
+    <div class="nav">
+        <div class="col-sm-12 p-2">
+            <div class="row header">
+                <div class="col-1">
+                    <span class="fas fa-sort"></span>
                 </div>
-            </td>
-        </tr>
-    </tbody>
-</table>
+                <div scope="col" class="col-sm-1">
+                    <span class="fas fa-sort-numeric-down"></span>
+                </div>
+                <div scope="col" class="col-sm-{{$ctrl.colWidth}}" ng-repeat="col in $ctrl.columns track by $index">
+                    <span ng-bind="col.title">
+                </div>
+                <div scope="col" class="col-sm-{{$ctrl.lastColWidth}}">
+                    Actions
+                </div>
+            </div>
+        </div>
+    </div>
+    <div dnd-list="$ctrl.data.items" class="nav" ng-if="$ctrl.data.items.length">
+        <div class="col-sm-12 dndPlaceholder"></div>
+        <div ng-repeat="nav in $ctrl.data.items" class="col-sm-12 dnd-item" dnd-draggable="nav" dnd-moved="$ctrl.updateOrders($index)" dnd-effect-allowed="move" dnd-selected="$ctrl.selected = nav" ng-class="{'selected': $ctrl.selected === nav}">
+            <div class="row">
+                <div class="col-1 drag-header" style="cursor:move;"><span class="fas fa-sort"></span></div>
+                <div class="col-sm-1">
+                    <input type="text" ng-model="nav.priority" class="item-priority form-control form-control-sm d-inline">
+                </div>
+                <div class="col-sm-{{$ctrl.colWidth}}" ng-repeat="col in $ctrl.columns track by $index">
+                        <sw-data-preview type="col.type" value="nav[col.name]" width="50"></sw-data-preview>
+                </div>
+                <div class="col-sm-{{$ctrl.lastColWidth}}">
+                    <div class="btn-group btn-group-sm" role="group" aria-label="Actions">
+                        <a href="{{$ctrl.editUrl}}/{{nav.id}}" class="btn btn-sm btn-light">
+                            <span class="fas fa-pencil-alt text-primary"></span>
+                        </a>
+                        <a ng-click="removeData(nav.id);" class="btn btn-light del-popover" data-toggle="popover" data-html="true">
+                            <span class="fas fa-times text-danger"></span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
