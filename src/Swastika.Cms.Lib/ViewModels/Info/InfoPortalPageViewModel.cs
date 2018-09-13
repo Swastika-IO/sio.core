@@ -8,6 +8,7 @@ using Newtonsoft.Json;
 using Swastika.Cms.Lib.Models.Cms;
 using Swastika.Cms.Lib.Services;
 using Swastika.Cms.Lib.ViewModels.Navigation;
+using Swastika.Common.Helper;
 using Swastika.Domain.Core.ViewModels;
 using Swastika.Domain.Data.ViewModels;
 using System;
@@ -84,6 +85,47 @@ namespace Swastika.Cms.Lib.ViewModels.Info
 
 
         #endregion
+        #region Expands
 
+        public static async System.Threading.Tasks.Task<RepositoryResponse<List<InfoPortalPageViewModel>>> UpdateInfosAsync(List<InfoPortalPageViewModel> cates)
+        {
+            SiocCmsContext context = new SiocCmsContext();
+            var transaction = context.Database.BeginTransaction();
+            var result = new RepositoryResponse<List<InfoPortalPageViewModel>>();
+            try
+            {
+
+                foreach (var item in cates)
+                {
+                    var saveResult = await item.SaveModelAsync(false, context, transaction);
+                    result.IsSucceed = saveResult.IsSucceed;
+                    if (!result.IsSucceed)
+                    {
+                        result.Errors.AddRange(saveResult.Errors);
+                        result.Exception = saveResult.Exception;
+                        break;
+                    }
+                }
+                UnitOfWorkHelper<SiocCmsContext>.HandleTransaction(result.IsSucceed, true, transaction);
+                return result;
+            }
+            catch (Exception ex) // TODO: Add more specific exeption types instead of Exception only
+            {
+                UnitOfWorkHelper<SiocCmsContext>.HandleException<InfoPortalPageViewModel>(ex, true, transaction);
+                return new RepositoryResponse<List<InfoPortalPageViewModel>>()
+                {
+                    IsSucceed = false,
+                    Data = null,
+                    Exception = ex
+                };
+            }
+            finally
+            {
+                //if current Context is Root
+                transaction.Dispose();
+                context.Dispose();
+            }
+        }
+        #endregion
     }
 }

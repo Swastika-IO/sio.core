@@ -210,6 +210,21 @@ namespace Swastka.Cms.Api.Controllers
             return new RepositoryResponse<SiocCategory>();
         }
 
+        // POST api/category
+        [HttpPost, HttpOptions]
+        [Route("update-infos")]
+        public async Task<RepositoryResponse<List<InfoCategoryViewModel>>> UpdateInfos([FromBody]List<InfoCategoryViewModel> models)
+        {
+            if (models != null)
+            {
+                return await InfoCategoryViewModel.UpdateInfosAsync(models);
+            }
+            else
+            {
+                return new RepositoryResponse<List<InfoCategoryViewModel>>();
+            }
+        }
+
         // GET api/category
         [HttpPost, HttpOptions]
         [Route("list")]

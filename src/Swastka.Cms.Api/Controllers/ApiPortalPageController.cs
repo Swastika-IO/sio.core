@@ -12,6 +12,7 @@ using Swastika.Cms.Lib.Models.Cms;
 using Swastika.Cms.Lib.ViewModels.Api;
 using Swastika.Cms.Lib.ViewModels.FrontEnd;
 using Swastika.Cms.Lib.ViewModels.Info;
+using Swastika.Cms.Lib.ViewModels.Navigation;
 using Swastika.Domain.Core.ViewModels;
 using System;
 using System.Collections.Generic;
@@ -144,6 +145,36 @@ namespace Swastka.Cms.Api.Controllers
                 return result;
             }
             return new RepositoryResponse<ApiPortalPageViewModel>();
+        }
+
+        // POST api/PortalPage
+        [HttpPost, HttpOptions]
+        [Route("update-infos")]
+        public async Task<RepositoryResponse<List<InfoPortalPageViewModel>>> UpdateInfos([FromBody]List<InfoPortalPageViewModel> models)
+        {
+            if (models != null)
+            {
+                return await InfoPortalPageViewModel.UpdateInfosAsync(models);
+            }
+            else
+            {
+                return new RepositoryResponse<List<InfoPortalPageViewModel>>();
+            }
+        }
+        
+        // POST api/PortalPage
+        [HttpPost, HttpOptions]
+        [Route("update-child-infos")]
+        public async Task<RepositoryResponse<List<NavPortalPageViewModel>>> UpdateNavInfos([FromBody]List<NavPortalPageViewModel> models)
+        {
+            if (models != null)
+            {
+                return await NavPortalPageViewModel.UpdateInfosAsync(models);
+            }
+            else
+            {
+                return new RepositoryResponse<List<NavPortalPageViewModel>>();
+            }
         }
 
         // GET api/PortalPage

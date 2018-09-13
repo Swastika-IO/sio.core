@@ -7,7 +7,11 @@ using Newtonsoft.Json;
 using Swastika.Cms.Lib.Models.Cms;
 using Swastika.Cms.Lib.ViewModels.FrontEnd;
 using Swastika.Cms.Lib.ViewModels.Info;
+using Swastika.Common.Helper;
+using Swastika.Domain.Core.ViewModels;
 using Swastika.Domain.Data.ViewModels;
+using System;
+using System.Collections.Generic;
 
 namespace Swastika.Cms.Lib.ViewModels.Navigation
 {
@@ -49,7 +53,7 @@ namespace Swastika.Cms.Lib.ViewModels.Navigation
         public RolePortalPageViewModel Page { get; set; }
 
         [JsonProperty("parent")]
-        public InfoPortalPageViewModel Parent { get; set; }
+        public InfoPortalPageViewModel ParentPage { get; set; }
 
         #endregion Views
 
@@ -69,10 +73,53 @@ namespace Swastika.Cms.Lib.ViewModels.Navigation
             );
             if (getParent.IsSucceed)
             {
-                Parent = getParent.Data;
+                ParentPage = getParent.Data;
             }
         }
 
         #endregion overrides
+
+        #region Expands
+
+        public static async System.Threading.Tasks.Task<RepositoryResponse<List<NavPortalPageViewModel>>> UpdateInfosAsync(List<NavPortalPageViewModel> cates)
+        {
+            SiocCmsContext context = new SiocCmsContext();
+            var transaction = context.Database.BeginTransaction();
+            var result = new RepositoryResponse<List<NavPortalPageViewModel>>();
+            try
+            {
+
+                foreach (var item in cates)
+                {
+                    var saveResult = await item.SaveModelAsync(false, context, transaction);
+                    result.IsSucceed = saveResult.IsSucceed;
+                    if (!result.IsSucceed)
+                    {
+                        result.Errors.AddRange(saveResult.Errors);
+                        result.Exception = saveResult.Exception;
+                        break;
+                    }
+                }
+                UnitOfWorkHelper<SiocCmsContext>.HandleTransaction(result.IsSucceed, true, transaction);
+                return result;
+            }
+            catch (Exception ex) // TODO: Add more specific exeption types instead of Exception only
+            {
+                UnitOfWorkHelper<SiocCmsContext>.HandleException<NavPortalPageViewModel>(ex, true, transaction);
+                return new RepositoryResponse<List<NavPortalPageViewModel>>()
+                {
+                    IsSucceed = false,
+                    Data = null,
+                    Exception = ex
+                };
+            }
+            finally
+            {
+                //if current Context is Root
+                transaction.Dispose();
+                context.Dispose();
+            }
+        }
+        #endregion
     }
 }
