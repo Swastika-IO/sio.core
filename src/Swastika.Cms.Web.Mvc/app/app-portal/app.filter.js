@@ -15,7 +15,7 @@ app.filter('utcToLocal', FilterUtcDate)
             toDate: null,
             keyword: ''
         },
-        privacies =  [
+        privacies:  [
             'VND',
             'USD'
         ],
