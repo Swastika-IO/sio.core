@@ -6,12 +6,15 @@
 // The Swastika I/O Foundation licenses this file to you under the GNU General Public License v3.0.
 // See the LICENSE file in the project root for more information.
 
+using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Storage;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using Swastika.Cms.Lib.Models.Cms;
 using Swastika.Cms.Lib.ViewModels.Info;
 using Swastika.Common.Helper;
 using Swastika.Domain.Core.Models;
+using Swastika.Domain.Core.ViewModels;
 using Swastika.Identity.Models;
 using System;
 using System.Collections.Generic;
@@ -231,9 +234,6 @@ namespace Swastika.Cms.Lib.ViewModels
 
     public class ApiModuleDataValueViewModel
     {
-        [JsonProperty("moduleId")]
-        public int ModuleId { get; set; }
-
         [JsonProperty("name")]
         public string Name { get; set; }
 
@@ -247,7 +247,7 @@ namespace Swastika.Cms.Lib.ViewModels
         public bool IsRequired { get; set; }
 
         [JsonProperty("dataType")]
-        public SWCmsConstants.DataType DataType { get; set; }
+        public DataType DataType { get; set; }
 
         [JsonProperty("value")]
         public string Value { get; set; }
@@ -261,6 +261,38 @@ namespace Swastika.Cms.Lib.ViewModels
         [JsonProperty("options")]
         public JArray Options { get; set; } = new JArray();
 
+        public RepositoryResponse<bool> Validate<T>(IConvertible id, string specificulture, JObject jItem, SiocCmsContext _context = null, IDbContextTransaction _transaction = null)
+            where T : class
+        {
+
+            string val = jItem[Name]["value"].Value<string>();
+            var result = new RepositoryResponse<bool>() { IsSucceed = true };
+            if (IsUnique)
+            {
+                //string query = @"SELECT * FROM [sioc_module_data] WHERE JSON_VALUE([Value],'$.{0}.value') = '{1}' AND Specificulture = '{2}' AND Id <> '{3}'";
+                //var temp = string.Format(query, Name, val, specificulture, id?.ToString());
+                //int count = _context.SiocModuleData.FromSql(query, Name, val, specificulture, id?.ToString()).Count();
+
+                string query = $"SELECT * FROM sioc_module_data WHERE JSON_VALUE([Value],'$.{Name}.value') = '{val}' AND Specificulture = '{specificulture}' AND Id != '{id}'";
+                int count = _context.SiocModuleData.FromSql(sql: new RawSqlString(query)).Count();
+                if (count > 0)
+                {
+                    result.IsSucceed = false;
+                    result.Errors.Add($"{Title} is existed");
+                }
+
+                return result;
+            }
+            if (IsRequired)
+            {
+                if (string.IsNullOrEmpty(val))
+                {
+                    result.IsSucceed = false;
+                    result.Errors.Add($"{Title} is required");
+                }
+            }
+            return result;
+        }
     }
 
     public class ExtraProperty

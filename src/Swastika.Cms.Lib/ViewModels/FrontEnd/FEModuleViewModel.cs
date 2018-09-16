@@ -7,6 +7,7 @@ using Microsoft.EntityFrameworkCore.Storage;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using Swastika.Cms.Lib.Models.Cms;
+using Swastika.Cms.Lib.ViewModels.Api;
 using Swastika.Cms.Lib.ViewModels.BackEnd;
 using Swastika.Cms.Lib.ViewModels.Info;
 using Swastika.Cms.Lib.ViewModels.Navigation;
@@ -71,13 +72,17 @@ namespace Swastika.Cms.Lib.ViewModels.FrontEnd
         public string DetailsUrl { get; set; }
 
         [JsonProperty("columns")]
-        public List<ModuleFieldViewModel> Columns { get; set; }
+        public List<ModuleFieldViewModel> Columns
+        {
+            get { return Fields == null ? null : JsonConvert.DeserializeObject<List<ModuleFieldViewModel>>(Fields); }
+            set { Fields = JsonConvert.SerializeObject(value); }
+        }
 
         [JsonProperty("view")]
         public FETemplateViewModel View { get; set; }
 
         [JsonProperty("data")]
-        public PaginationModel<BEModuleDataViewModel> Data { get; set; } = new PaginationModel<BEModuleDataViewModel>();
+        public PaginationModel<ApiModuleDataViewModel> Data { get; set; } = new PaginationModel<ApiModuleDataViewModel>();
 
         [JsonProperty("articles")]
         public PaginationModel<NavModuleArticleViewModel> Articles { get; set; } = new PaginationModel<NavModuleArticleViewModel>();
@@ -85,8 +90,10 @@ namespace Swastika.Cms.Lib.ViewModels.FrontEnd
         [JsonProperty("products")]
         public PaginationModel<NavModuleProductViewModel> Products { get; set; } = new PaginationModel<NavModuleProductViewModel>();
 
-        public string TemplatePath {
-            get {
+        public string TemplatePath
+        {
+            get
+            {
                 return string.Format("../{0}", Template);
             }
         }
@@ -126,23 +133,8 @@ namespace Swastika.Cms.Lib.ViewModels.FrontEnd
             }
 
             this.View = FETemplateViewModel.GetTemplateByPath(Template, Specificulture, _context, _transaction).Data;
-            Columns = new List<ModuleFieldViewModel>();
-            JArray arrField = !string.IsNullOrEmpty(Fields) ? JArray.Parse(Fields) : new JArray();
-            foreach (var field in arrField)
-            {
-                ModuleFieldViewModel thisField = new ModuleFieldViewModel()
-                {
-                    Name = CommonHelper.ParseJsonPropertyName(field["name"].ToString()),
-                    Title = field["title"]?.ToString(),
-                    Priority = field["priority"] != null ? field["priority"].Value<int>() : 0,
-                    DataType = (SWCmsConstants.DataType)(int)field["dataType"],
-                    Width = field["width"] != null ? field["width"].Value<int>() : 3,
-                    IsDisplay = field["isDisplay"] != null ? field["isDisplay"].Value<bool>() : true
-                };
-                Columns.Add(thisField);
-            }
-
-            var getDataResult = BEModuleDataViewModel.Repository
+           
+            var getDataResult = ApiModuleDataViewModel.Repository
                 .GetModelListBy(m => m.ModuleId == Id && m.Specificulture == Specificulture
                 , "Priority", 0, null, null
                 , _context, _transaction);
@@ -197,19 +189,19 @@ namespace Swastika.Cms.Lib.ViewModels.FrontEnd
             , int? pageSize = null, int? pageIndex = 0
             , SiocCmsContext _context = null, IDbContextTransaction _transaction = null)
         {
-            RepositoryResponse<PaginationModel<BEModuleDataViewModel>> getDataResult = new RepositoryResponse<PaginationModel<BEModuleDataViewModel>>();
+            RepositoryResponse<PaginationModel<ApiModuleDataViewModel>> getDataResult = new RepositoryResponse<PaginationModel<ApiModuleDataViewModel>>();
 
             switch (Type)
             {
                 case SWCmsConstants.ModuleType.Root:
-                    getDataResult = BEModuleDataViewModel.Repository
+                    getDataResult = ApiModuleDataViewModel.Repository
                        .GetModelListBy(m => m.ModuleId == Id && m.Specificulture == Specificulture
                        , "Priority", 0, pageSize, pageIndex
                        , _context, _transaction);
                     break;
 
                 case SWCmsConstants.ModuleType.SubPage:
-                    getDataResult = BEModuleDataViewModel.Repository
+                    getDataResult = ApiModuleDataViewModel.Repository
                        .GetModelListBy(m => m.ModuleId == Id && m.Specificulture == Specificulture
                        && (m.CategoryId == categoryId)
                        , "Priority", 0, pageSize, pageIndex
@@ -217,7 +209,7 @@ namespace Swastika.Cms.Lib.ViewModels.FrontEnd
                     break;
 
                 case SWCmsConstants.ModuleType.SubArticle:
-                    getDataResult = BEModuleDataViewModel.Repository
+                    getDataResult = ApiModuleDataViewModel.Repository
                        .GetModelListBy(m => m.ModuleId == Id && m.Specificulture == Specificulture
                        && (m.ArticleId == articleId)
                        , "Priority", 0, pageSize, pageIndex

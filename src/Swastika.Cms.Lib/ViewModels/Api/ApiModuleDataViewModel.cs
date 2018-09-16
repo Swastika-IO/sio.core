@@ -7,14 +7,12 @@ using Microsoft.EntityFrameworkCore.Storage;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using Swastika.Cms.Lib.Models.Cms;
-using Swastika.Cms.Lib.Repositories;
-using Swastika.Cms.Lib.Services;
-using Swastika.Cms.Lib.ViewModels.Info;
 using Swastika.Common.Helper;
 using Swastika.Domain.Data.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 
 namespace Swastika.Cms.Lib.ViewModels.Api
 {
@@ -30,6 +28,7 @@ namespace Swastika.Cms.Lib.ViewModels.Api
 
         [JsonProperty("moduleId")]
         public int ModuleId { get; set; }
+        [JsonIgnore]
         [JsonProperty("fields")]
         public string Fields { get; set; } = "[]";
         [JsonProperty("value")]
@@ -51,8 +50,11 @@ namespace Swastika.Cms.Lib.ViewModels.Api
 
         #region Views
 
+        [JsonProperty("dataProperties")]
         public List<ApiModuleDataValueViewModel> DataProperties { get; set; }
-        public List<ModuleFieldViewModel> Columns { get; set; }
+
+        [JsonProperty("jItem")]
+        public JObject JItem { get; set; }
 
         #endregion Views
 
@@ -82,96 +84,33 @@ namespace Swastika.Cms.Lib.ViewModels.Api
             {
                 UpdatedDateTime = DateTime.UtcNow;
             }
-            Value = ParseObjectValue();
+            Value = JsonConvert.SerializeObject(JItem);
+            Fields = JsonConvert.SerializeObject(DataProperties);
             return base.ParseModel(_context, _transaction);
         }
+
         public override void ExpandView(SiocCmsContext _context = null, IDbContextTransaction _transaction = null)
         {
-            Cultures = CommonRepository.Instance.LoadCultures(Specificulture, _context, _transaction);
-
-            var objValue = Value != null ? JObject.Parse(Value) : new JObject();
-            this.DataProperties = new List<ApiModuleDataValueViewModel>();
-            Fields = InfoModuleViewModel.Repository.GetSingleModel(m => m.Id == ModuleId && m.Specificulture == Specificulture, _context, _transaction).Data?.Fields;
-            this.Columns = new List<ModuleFieldViewModel>();
-            if (!string.IsNullOrEmpty(Fields))
-            {
-                JArray arrField = JArray.Parse(Fields);
-
-                foreach (var field in arrField)
-                {
-                    ModuleFieldViewModel thisField = new ModuleFieldViewModel()
-                    {
-                        Name = CommonHelper.ParseJsonPropertyName(field["name"].ToString()),
-                        Title = field["title"]?.ToString(),
-                        Priority = field["priority"] != null ? field["priority"].Value<int>() : 0,
-                        DataType = (SWCmsConstants.DataType)(int)field["dataType"],
-                        Width = field["width"] != null ? field["width"].Value<int>() : 3,
-                        Options = field["options"] != null ? field["options"].Value<JArray>() : new JArray(),
-                        IsUnique = field["isUnique"] != null ? field["isUnique"].Value<bool>() : false,
-                        IsRequired = field["isRequired"] != null ? field["isRequired"].Value<bool>() : false,
-                        IsSelect = field["isSelect"] != null ? field["isSelect"].Value<bool>() : false,
-                        IsGroupBy = field["isGroupBy"] != null ? field["isGroupBy"].Value<bool>() : false,
-                        IsDisplay = field["isDisplay"] != null ? field["isDisplay"].Value<bool>() : true
-                    };
-                    this.Columns.Add(thisField);
-                }
-            }
-            foreach (var col in Columns)
-            {
-                JProperty prop = objValue.Property(col.Name);
-                if (prop == null)
-                {
-                    JObject val = new JObject
-                    {
-                        { "dataType", (int)col.DataType },
-                        { "value", null }
-                    };
-                    prop = new JProperty(col.Name, val);
-                }
-                var dataVal = new ApiModuleDataValueViewModel()
-                {
-                    ModuleId = ModuleId,
-                    DataType = (SWCmsConstants.DataType)col.DataType,
-                    Name = CommonHelper.ParseJsonPropertyName(prop.Name),
-                    Title = col.Title,
-                    IsRequired = col.IsRequired,
-                    IsUnique = col.IsUnique,
-                    IsSelect = col.IsSelect,
-                    IsGroupBy = col.IsGroupBy,
-                    Options = col.Options,
-                    Value = prop.Value["value"].Value<string>()
-                };
-
-                this.DataProperties.Add(dataVal);
-            }
+            DataProperties = Fields == null ? null : JsonConvert.DeserializeObject<List<ApiModuleDataValueViewModel>>(Fields);
+            JItem = Value == null ? InitValue() : JsonConvert.DeserializeObject<JObject>(Value);
         }
 
         public override void Validate(SiocCmsContext _context = null, IDbContextTransaction _transaction = null)
         {
             base.Validate(_context, _transaction);
 
-            foreach (var col in Columns.Where(c => c.IsUnique))
+            if (IsValid)
             {
-                string val = GetStringValue(col.Name);
-                string query = $"SELECT * FROM sioc_module_data WHERE JSON_VALUE([Value],'$.{col.Name}.value') = '{val}'";
-                var count = _context.SiocModuleData.FromSql(new RawSqlString(query)).Count();
-                if (count > 0)
+                foreach (var col in DataProperties)
                 {
-                    IsValid = false;
-                    Errors.Add($"{col.Title} is existed");
+                    var result = col.Validate<SiocModuleData>(Id, Specificulture, JItem, _context, _transaction);
+                    if (!result.IsSucceed)
+                    {
+                        IsValid = false;
+                        Errors.AddRange(result.Errors);
+                    }
                 }
             }
-
-            foreach (var prop in DataProperties.Where(c=>c.IsRequired))
-            {
-                if (string.IsNullOrEmpty(prop.Value.ToString()))
-                {
-                    IsValid = false;
-                    Errors.Add($"{prop.Title} is required");
-                }
-            }
-
-
         }
 
         #endregion Overrides
@@ -189,6 +128,19 @@ namespace Swastika.Cms.Lib.ViewModels.Api
                 result.Add(new JProperty(CommonHelper.ParseJsonPropertyName(prop.Name), obj));
             }
             return result.ToString(Formatting.None);
+        }
+
+        public JObject InitValue()
+        {
+            JObject result = new JObject();
+            foreach (var prop in DataProperties)
+            {
+                JObject obj = new JObject();
+                obj.Add(new JProperty("dataType", prop.DataType));
+                obj.Add(new JProperty("value", prop.Value));
+                result.Add(new JProperty(CommonHelper.ParseJsonPropertyName(prop.Name), obj));
+            }
+            return result;
         }
 
         public string GetStringValue(string name)
