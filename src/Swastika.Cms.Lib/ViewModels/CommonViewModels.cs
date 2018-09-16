@@ -280,8 +280,6 @@ namespace Swastika.Cms.Lib.ViewModels
                     result.IsSucceed = false;
                     result.Errors.Add($"{Title} is existed");
                 }
-
-                return result;
             }
             if (IsRequired)
             {

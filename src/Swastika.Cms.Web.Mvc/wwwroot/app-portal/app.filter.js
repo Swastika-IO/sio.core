@@ -15,6 +15,10 @@ app.filter('utcToLocal', FilterUtcDate)
             toDate: null,
             keyword: ''
         },
+        privacies =  [
+            'VND',
+            'USD'
+        ],
         pageSizes: [
             '5',
             '10',
