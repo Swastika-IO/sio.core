@@ -22,8 +22,6 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Swastka.Cms.Api", "Swastka.
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "ECommerce", "ECommerce", "{A882CE9A-9EAA-4CFB-8531-19C260DEAF88}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MixCore.ECommerce.Lib", "MixCore.ECommerce.Lib\MixCore.ECommerce.Lib.csproj", "{73D2B95E-3829-4A42-992D-08FC7934D706}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -54,10 +52,6 @@ Global
 		{0236F35B-5B06-4020-8E30-A704E03C4A04}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{0236F35B-5B06-4020-8E30-A704E03C4A04}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{0236F35B-5B06-4020-8E30-A704E03C4A04}.Release|Any CPU.Build.0 = Release|Any CPU
-		{73D2B95E-3829-4A42-992D-08FC7934D706}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{73D2B95E-3829-4A42-992D-08FC7934D706}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{73D2B95E-3829-4A42-992D-08FC7934D706}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{73D2B95E-3829-4A42-992D-08FC7934D706}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -69,7 +63,6 @@ Global
 		{F9643BE2-329E-44F0-ADBB-379B87E97E38} = {96B08E7C-A426-437C-96BA-1A2DF11FD135}
 		{DF31FCFD-6D70-4ADC-A0A2-D774DBA837BB} = {7995F1E6-D8C1-4E09-BB44-056740F208E6}
 		{0236F35B-5B06-4020-8E30-A704E03C4A04} = {7995F1E6-D8C1-4E09-BB44-056740F208E6}
-		{73D2B95E-3829-4A42-992D-08FC7934D706} = {A882CE9A-9EAA-4CFB-8531-19C260DEAF88}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {07795DAD-40EE-4909-A6F5-320D6B0D3B54}
