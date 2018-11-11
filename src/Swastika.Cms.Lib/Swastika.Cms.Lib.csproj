@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
@@ -72,11 +72,8 @@
     <PackageReference Include="Microsoft.EntityFrameworkCore.Sqlite" Version="2.1.3" />
     <PackageReference Include="Microsoft.Extensions.Configuration" Version="2.1.1" />
     <PackageReference Include="Microsoft.IdentityModel.Tokens" Version="5.2.4" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <ProjectReference Include="..\..\..\Swastika-Heart\src\Swastika\Swastika.csproj" />
-    <ProjectReference Include="..\..\..\Swastika-Identity\src\Swastika.Identity\Swastika.Identity.csproj" />
+    <PackageReference Include="Swastika" Version="0.1.3" />
+    <PackageReference Include="Swastika.Identity" Version="0.0.7" />
   </ItemGroup>
 
 </Project>
