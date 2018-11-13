@@ -100,11 +100,12 @@ namespace Swastika.Cms.Lib.ViewModels.Info
 
         #region Expands
 
-        public static async Task<RepositoryResponse<bool>> ImportLanguages(List<SiocLanguage> arrLanguage, string destCulture)
+        public static async Task<RepositoryResponse<bool>> ImportLanguages(List<SiocLanguage> arrLanguage, string destCulture, SiocCmsContext _context = null, IDbContextTransaction _transaction = null)
         {
             var result = new RepositoryResponse<bool>() { IsSucceed = true };
-            var context = new SiocCmsContext();
-            var transaction = context.Database.BeginTransaction();
+            bool isRoot = _context == null;
+            var context = _context ?? new SiocCmsContext();
+            var transaction = _transaction ?? context.Database.BeginTransaction();
 
             try
             {
@@ -121,19 +122,21 @@ namespace Swastika.Cms.Lib.ViewModels.Info
                         break;
                     }
                 }
-                UnitOfWorkHelper<SiocCmsContext>.HandleTransaction(result.IsSucceed, true, transaction);
+                UnitOfWorkHelper<SiocCmsContext>.HandleTransaction(result.IsSucceed, isRoot, transaction);
             }
             catch (Exception ex) // TODO: Add more specific exeption types instead of Exception only
             {
-                var error = UnitOfWorkHelper<SiocCmsContext>.HandleException<InfoLanguageViewModel>(ex, true, transaction);
+                var error = UnitOfWorkHelper<SiocCmsContext>.HandleException<InfoLanguageViewModel>(ex, isRoot, transaction);
                 result.IsSucceed = false;
                 result.Errors = error.Errors;
                 result.Exception = error.Exception;
             }
             finally
             {
-                //if current Context is Root
-                context?.Dispose();
+                if (isRoot)
+                {
+                    context?.Dispose();
+                }
             }
             return result;
         }

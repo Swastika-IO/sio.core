@@ -6,12 +6,14 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Storage;
 using Microsoft.Extensions.Configuration;
+using Newtonsoft.Json.Linq;
 using Swastika.Cms.Lib.Models.Account;
 using Swastika.Cms.Lib.Models.Cms;
 using Swastika.Cms.Lib.Repositories;
 using Swastika.Cms.Lib.ViewModels;
 using Swastika.Cms.Lib.ViewModels.Api;
 using Swastika.Cms.Lib.ViewModels.BackEnd;
+using Swastika.Cms.Lib.ViewModels.Info;
 using Swastika.Common.Helper;
 using Swastika.Domain.Core.ViewModels;
 using Swastika.Identity.Models;
@@ -75,7 +77,8 @@ namespace Swastika.Cms.Lib.Services
 
                         isSucceed = isSucceed && InitThemes(context, transaction);
 
-                        isSucceed = isSucceed && InitConfigurations(culture, context, transaction);
+                        isSucceed = isSucceed && await InitConfigurationsAsync(culture, context, transaction);
+                        isSucceed = isSucceed && await InitLanguagesAsync(culture, context, transaction);
                     }
                     else
                     {
@@ -344,6 +347,27 @@ namespace Swastika.Cms.Lib.Services
         {
             return this.CmsConfigurations.GetLocalInt(key, culture, defaultValue);
         }
+        private async Task<bool> InitConfigurationsAsync(InitCulture culture, SiocCmsContext context, IDbContextTransaction transaction)
+        {
+            /* Init Configs */
+            var configurations = FileRepository.Instance.GetFile("configurations-en", ".json", "data", true, "{}");
+            
+            var obj = JObject.Parse(configurations.Content);
+            var arrConfiguration = obj["data"].ToObject<List<SiocConfiguration>>();
+            var result = await InfoConfigurationViewModel.ImportConfigurations(arrConfiguration, culture.Specificulture, context, transaction);
+            return result.IsSucceed;
 
+        }
+
+        private async Task<bool> InitLanguagesAsync(InitCulture culture, SiocCmsContext context, IDbContextTransaction transaction)
+        {
+            /* Init Languages */
+            var languages = FileRepository.Instance.GetFile("languages-en", ".json", "data", true, "{}");
+            var obj = JObject.Parse(languages.Content);
+            var arrLanguage = obj["data"].ToObject<List<SiocLanguage>>();
+            var result = await InfoLanguageViewModel.ImportLanguages(arrLanguage, culture.Specificulture, context, transaction);
+            return result.IsSucceed;
+
+        }
     }
 }

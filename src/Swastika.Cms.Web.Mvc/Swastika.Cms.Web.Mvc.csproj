@@ -230,7 +230,7 @@
     <Content Remove="Areas\Portal\Views\Shared\Widgets\_FeatureImage.cshtml" />
     <Content Remove="Areas\Portal\Views\Shared\Widgets\_ThumbnailImage.cshtml" />
     <Content Remove="Areas\Portal\Views\Shared\_Layout.cshtml" />
-    <Content Remove="data\configuration-en.json" />
+    <Content Remove="data\configurations-en.json" />
     <Content Remove="data\lang-en.json" />
     <Content Remove="Views\Home\About.cshtml" />
     <Content Remove="Views\Home\Article.cshtml" />
@@ -328,7 +328,7 @@
     <None Include="Areas\Portal\Views\_ViewImports.cshtml" />
     <None Include="Areas\Portal\Views\_ViewStart.cshtml" />
     <None Include="data\lang-en.json" />
-    <None Include="data\configuration-en.json" />
+    <None Include="data\configurations-en.json" />
     <None Include="Views\_ViewImports.cshtml" />
     <None Include="Views\_ViewStart.cshtml" />
     <None Include="wwwroot\app-portal\pages\order\components\main\main.js" />
