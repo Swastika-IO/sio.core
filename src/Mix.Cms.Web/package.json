@@ -1,0 +1,17 @@
+{
+  "devDependencies": {
+    "gulp": "",
+    "gulp-concat": "",
+    "gulp-cssmin": "",
+    "gulp-htmlmin": "",
+    "gulp-fontmin": "",
+    "gulp-uglify": "",
+    "gulp-babel": "",
+    "uglify-es": "",
+    "pump": "",
+    "rimraf": ""
+  },
+  "dependencies": {
+    "bundle": "^2.1.0"
+  }
+}
