@@ -10,9 +10,9 @@
             "type": "coreclr",
             "request": "launch",
             "preLaunchTask": "build",
-            "program": "${workspaceFolder}/Mix.Cms.Api/bin/Debug/netcoreapp2.1/Mix.Cms.Api.dll",
+            "program": "${workspaceFolder}/Sio.Cms.Api/bin/Debug/netcoreapp2.1/Sio.Cms.Api.dll",
             "args": [],
-            "cwd": "${workspaceFolder}/Mix.Cms.Api",
+            "cwd": "${workspaceFolder}/Sio.Cms.Api",
             "stopAtEntry": false,
             "internalConsoleOptions": "openOnSessionStart",
             "launchBrowser": {

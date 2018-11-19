@@ -1,0 +1,35 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Remove="ViewModels\Shared\**" />
+    <EmbeddedResource Remove="ViewModels\Shared\**" />
+    <None Remove="ViewModels\Shared\**" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Remove="Interfaces\ISioCmsService.cs" />
+    <Compile Remove="Services\CmsConfiguration.cs" />
+    <Compile Remove="Services\CmsCultureConfiguration.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.Data.Sqlite" Version="2.1.0" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Sqlite" Version="2.1.4" />
+    <PackageReference Include="Swashbuckle.AspNetCore.SwaggerGen" Version="3.0.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\Sio.heart\src\Sio.Heart\Sio.Heart.csproj" />
+    <ProjectReference Include="..\..\..\Sio.identity\src\Sio.Identity\Sio.Identity.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Interfaces\" />
+    <Folder Include="ViewModels\SioRolePortalPages\" />
+  </ItemGroup>
+
+</Project>
