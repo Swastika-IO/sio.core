@@ -1,5 +1,5 @@
 'use strict';
-var app = angular.module('MixPortal',
+var app = angular.module('SioPortal',
     ['ngRoute', 'ngFileUpload', 'LocalStorageModule']);
     var modules = angular.module('components', []);
 

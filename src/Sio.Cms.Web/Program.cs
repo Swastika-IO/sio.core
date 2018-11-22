@@ -7,6 +7,7 @@ using Microsoft.AspNetCore;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Logging;
+using Sio.Cms.Lib;
 
 namespace Sio.Cms.Web
 {
@@ -21,7 +22,7 @@ namespace Sio.Cms.Web
         {
             var config = new ConfigurationBuilder()
            .SetBasePath(Directory.GetCurrentDirectory())
-           .AddJsonFile("SioCmsSettings.json", optional: true, reloadOnChange: true)
+           .AddJsonFile(SioConstants.CONST_FILE_APPSETTING, optional: true, reloadOnChange: true)
            .Build();
 
             return WebHost.CreateDefaultBuilder(args)

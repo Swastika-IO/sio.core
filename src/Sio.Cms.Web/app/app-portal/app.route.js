@@ -268,6 +268,11 @@ app.config(function ($routeProvider, $locationProvider, $sceProvider) {
         controller: "CultureController",
         templateUrl: "/app/app-portal/pages/culture/details.html"
     });
+    
+    $routeProvider.when("/portal/messenger", {
+        controller: "MessengerController",
+        templateUrl: "/app/app-portal/pages/messenger/index.html"
+    });
 
     $routeProvider.otherwise({ redirectTo: "/portal" });
 });
