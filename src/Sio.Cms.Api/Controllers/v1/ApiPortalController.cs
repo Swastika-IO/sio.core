@@ -272,6 +272,7 @@ namespace Sio.Cms.Api.Controllers.v1
                 SioService.SetConfig<bool>("IsInit", true);
                 SioService.SetConfig<string>("DefaultCulture", model.Culture.Specificulture);
                 SioService.Save();
+                SioService.Reload();
             }
             else
             {

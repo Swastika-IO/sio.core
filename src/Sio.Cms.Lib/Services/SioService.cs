@@ -60,8 +60,14 @@ namespace Sio.Cms.Lib.Services
 
         private void LoadConfiggurations()
         {
-            var settings = FileRepository.Instance.GetFile(SioConstants.CONST_FILE_APPSETTING, string.Empty, true, "{}");
+            var settings = FileRepository.Instance.GetFile(SioConstants.CONST_FILE_APPSETTING, ".json", string.Empty, true);
+            
             JObject jsonSettings = JObject.Parse(settings.Content);
+            if (jsonSettings["GlobalSettings"] == null)
+            {
+                settings = FileRepository.Instance.GetFile(SioConstants.CONST_DEFAULT_FILE_APPSETTING, ".json", string.Empty, true, "{}");
+                jsonSettings = JObject.Parse(settings.Content);
+            }
             instance.ConnectionStrings = JObject.FromObject(jsonSettings["ConnectionStrings"]);
             instance.Authentication = JObject.FromObject(jsonSettings["Authentication"]);
             instance.Translator = JObject.FromObject(jsonSettings["Translator"]);
@@ -143,7 +149,7 @@ namespace Sio.Cms.Lib.Services
 
         public static bool Save()
         {
-            var settings = FileRepository.Instance.GetFile("SioCmsSettings", ".json", string.Empty, true, "{}");
+            var settings = FileRepository.Instance.GetFile(SioConstants.CONST_FILE_APPSETTING, ".json", string.Empty, true, "{}");
             if (settings != null)
             {
                 JObject jsonSettings = JObject.Parse(settings.Content);
@@ -151,6 +157,7 @@ namespace Sio.Cms.Lib.Services
                 jsonSettings["GlobalSettings"] = instance.GlobalSettings;
                 jsonSettings["Translator"] = instance.Translator;
                 jsonSettings["LocalSettings"] = instance.LocalSettings;
+                jsonSettings["Authentication"] = instance.Authentication;
                 settings.Content = jsonSettings.ToString();
                 return FileRepository.Instance.SaveFile(settings);
             }
