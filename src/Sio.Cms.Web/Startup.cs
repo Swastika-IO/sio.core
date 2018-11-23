@@ -54,7 +54,7 @@ namespace Sio.Cms.Web
             ConfigCookieAuth(services, Configuration);
             ConfigJWTToken(services, Configuration);
 
-            services.AddDbContext<SioCmsContext>();
+            //services.AddDbContext<SioCmsContext>();
             //When View Page Source That changes only the HTML encoder, leaving the JavaScript and URL encoders with their (ASCII) defaults.
             services.Configure<WebEncoderOptions>(options => options.TextEncoderSettings = new TextEncoderSettings(UnicodeRanges.All));
             services.Configure<FormOptions>(options => options.MultipartBodyLengthLimit = 100000000);
