@@ -5,21 +5,28 @@ modules.component('aceEditor', {
         function ($rootScope, $scope, ngAppSettings) {
             var ctrl = this;
             ctrl.editor;
-            ctrl.id = Math.floor(Math.random() * 100) + 1;
-            
+            ctrl.id = Math.floor(Math.random() * 100) + 1;            
+            ctrl.$onChanges = (changes) => { 
+               if(changes.content) {
+                ctrl.updateEditors ();
+               }
+             };
             ctrl.initAce = function () {
                 setTimeout(() => {
                     ctrl.updateEditors();
                     $scope.$apply();
                 }, 200);
 
+            };            
+            ctrl.updateContent = function (content) {
+                ctrl.editor.setValue(content);
             };
             $scope.$on('updateContentCodeEditors',function(){
                 ctrl.updateEditors();
             })
             ctrl.updateEditors = function () {
                 $.each($('#code-editor-' + ctrl.id), function (i, e) {
-                    var container = $(this);
+                    //var container = $(this);
                     var editor = ace.edit(e);
                     switch (ctrl.ext) {
                         case '.json':
@@ -43,6 +50,7 @@ modules.component('aceEditor', {
                     }
                     editor.setTheme("ace/theme/chrome");
                     //editor.setReadOnly(true);
+                    editor.setValue(ctrl.content);
                     editor.$blockScrolling = Infinity;
                     editor.session.setUseWrapMode(true);
                     editor.setOptions({
@@ -62,7 +70,7 @@ modules.component('aceEditor', {
             };
         }],
     bindings: {
-        content: '=',
+        content: '<',
         ext: '='
     }
 });
