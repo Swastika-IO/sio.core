@@ -1,9 +1,9 @@
 <header class="navbar navbar-expand flex-column flex-md-row sw-navbar position-sticky">
-    <a class="navbar-brand mr-0 mr-md-2" href="/{{$ctrl.settings.lang}}" target="_blank" aria-label="Siocore">
-        <img src="/css/portal/img/Siocore-logo-blue.png" alt="Siocore" width="35">
+    <a class="navbar-brand mr-0 mr-md-2" href="/{{$ctrl.settings.lang}}" target="_blank" aria-label="mixcore">
+        <img src="/css/portal/img/mixcore-logo-blue.png" alt="mixcore" width="35">
     </a>
 
-    <span class="navbar-brand" ng-bind="$ctrl.getConfiguration('SiteName',false,'Siocore')"></span>
+    <span class="navbar-brand" ng-bind="$ctrl.getConfiguration('SiteName',false,'mixcore')"></span>
 
     <button type="button" id="sidebarCollapse" class="btn btn-link">
         <span class="mi mi-List"></span>
@@ -14,6 +14,11 @@
     </div>
 
     <ul class="navbar-nav flex-row ml-md-auto d-none d-md-flex" ng-if="$ctrl.settings">
+        <li class="nav-item mr-2">
+            <a class="nav-link p-2" href="/portal/messenger">
+                <i class="mi mi-ActionCenter"></i>
+            </a>
+        </li>
         <li class="nav-item mr-2">
             <a class="nav-link p-2" href="#" data-toggle="modal" data-target="#modal-hub-messages">
                 <i class="mi mi-ActionCenter"></i>

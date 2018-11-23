@@ -37,6 +37,7 @@
 
   <ItemGroup>
     <Folder Include="app\app-portal\pages\moduleData\components\" />
+    <Folder Include="wwwroot\app\app-portal\components\header-nav\" />
     <Folder Include="wwwroot\lib\portal\Trumbowyg\" />
    
   </ItemGroup>

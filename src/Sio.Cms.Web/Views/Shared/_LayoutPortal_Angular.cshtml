@@ -1,4 +1,4 @@
-@using Microsoft.AspNetCore.Mvc.Localization
+﻿@using Microsoft.AspNetCore.Mvc.Localization
 @inject UserManager<ApplicationUser> UserManager
 <!doctype html>
 <html lang="en">
@@ -6,21 +6,41 @@
 <head>
     <base href="/portal">
 
-    <title>@ViewData["Title"] - Angular Siocore</title>
+    <title>@ViewData["Title"] - Angular mixcore</title>
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=1920">
 
-    <link rel="icon" href="/css/portal/img/Siocore-logo-blue.png">
+    <link rel="icon" href="/css/portal/img/mixcore-logo-blue.png">
     @*<link href="~/css/shared.min.css" rel="stylesheet" />*@
-    @*<link rel="stylesheet" href="~/css/app-vendor.min.css" />*@
+    <link rel="stylesheet" href="~/css/app-vendor.min.css" />
 
     <link rel="stylesheet" href="~/css/portal/portal.white-sd.css" />
     <link rel="stylesheet" href="~/css/portal.min.css" />
+
     @RenderSection("Styles", required: false)
 </head>
 
 <body>
+    <script>
+        window.fbAsyncInit = function () {
+            FB.init({
+                appId: '@(SioService.GetConfig<string>("FacebookAppId", ViewBag.culture))',
+                autoLogAppEvents: true,
+                xfbml: true,
+                version: 'v3.2'
+            });
+        };
+
+        (function (d, s, id) {
+            var js, fjs = d.getElementsByTagName(s)[0];
+            if (d.getElementById(id)) { return; }
+            js = d.createElement(s); js.id = id;
+            js.src = "https://connect.facebook.net/en_US/sdk.js";
+            fjs.parentNode.insertBefore(js, fjs);
+        }(document, 'script', 'facebook-jssdk'));
+    </script>
+
     @RenderBody()
     <script src="~/js/framework.min.js"></script>
     <script src="~/js/bootstrap.min.js"></script>

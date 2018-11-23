@@ -1,6 +1,6 @@
 'use strict';
 
-var app = angular.module('MixClient', ['ngRoute', 'LocalStorageModule', 'components','ngSanitize']);
+var app = angular.module('SioClient', ['ngRoute', 'LocalStorageModule', 'components','ngSanitize']);
 var serviceBase = '';
 
 app.directive('ngEnter', function () {

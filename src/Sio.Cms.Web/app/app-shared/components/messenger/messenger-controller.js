@@ -5,7 +5,8 @@ app.controller('MessengerController', ['$scope', function ($scope) {
         loggedIn: false,
         info: {}
     };
-    $scope.isHide = false;
+    $scope.isHide = true;
+    $scope.hideContact = true;
     $scope.members = [];
     $scope.messages = [];
     $scope.message = { connection: {}, content: '' };
@@ -18,7 +19,7 @@ app.controller('MessengerController', ['$scope', function ($scope) {
         isMyself: false
     };
     $scope.init = function () {
-        $scope.startConnection('MixChatHub', $scope.checkLoginStatus);
+        $scope.startConnection('SioChatHub', $scope.checkLoginStatus);
     };
 
     $scope.login = function () {
@@ -46,7 +47,9 @@ app.controller('MessengerController', ['$scope', function ($scope) {
     };
     $scope.toggle = function(){
         $scope.isHide = !$scope.isHide;
-        $scope.$apply();
+    }
+    $scope.toggleContact = function(){
+        $scope.hideContact = !$scope.hideContact;
     }
     $scope.sendMessage = function () {
         if ($scope.user.loggedIn) {

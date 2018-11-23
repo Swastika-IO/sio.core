@@ -14,6 +14,9 @@ modules.component('aceEditor', {
                 }, 200);
 
             };
+            $scope.$on('updateContentCodeEditors',function(){
+                ctrl.updateEditors();
+            })
             ctrl.updateEditors = function () {
                 $.each($('#code-editor-' + ctrl.id), function (i, e) {
                     var container = $(this);
