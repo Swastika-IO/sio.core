@@ -1,4 +1,4 @@
-﻿
+
 modules.component('actions', {
     templateUrl: '/app/app-portal/components/actions/actions.html',
     controller: ['$rootScope', '$scope', '$location', function ($rootScope, $scope, $location) {
@@ -13,6 +13,7 @@ modules.component('actions', {
     }],
     bindings: {
         previewUrl: '=',
-        backUrl: '='
+        backUrl: '=',
+        contentUrl: '=',
     }
 });

@@ -1,4 +1,4 @@
-﻿modules.component('mainSideBar', {
+modules.component('mainSideBar', {
     templateUrl: '/app/app-portal/components/main-side-bar/main-side-bar.html',
     controller: ['$rootScope', '$scope', 'ngAppSettings', 'TranslatorService', function ($rootScope, $scope, ngAppSettings, translatorService) {
         var ctrl = this;

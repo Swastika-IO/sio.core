@@ -211,7 +211,7 @@ namespace Sio.Cms.Lib.ViewModels.SioProducts
         {
             get
             {
-                if (Image != null && (Image.IndexOf("http") == -1 && Image[0] != '/'))
+                if (Image != null && (Image.IndexOf("http") == -1) && Image[0] != '/')
                 {
                     return CommonHelper.GetFullPath(new string[] {
                     Domain,  Image
@@ -237,7 +237,7 @@ namespace Sio.Cms.Lib.ViewModels.SioProducts
                 }
                 else
                 {
-                    return Thumbnail;
+                    return ImageUrl;
                 }
             }
         }
@@ -361,7 +361,8 @@ namespace Sio.Cms.Lib.ViewModels.SioProducts
                     Image = CommonHelper.GetFullPath(new string[] { folder, filename });
                 }
             }
-
+            if (Image[0] == '/') { Image = Image.Substring(1); }
+            if (Thumbnail[0] == '/') { Thumbnail = Thumbnail.Substring(1); }
             Tags = ListTag.ToString(Newtonsoft.Json.Formatting.None);
             NormalPrice = SioCmsHelper.ReversePrice(StrNormalPrice);
             DealPrice = SioCmsHelper.ReversePrice(StrDealPrice);

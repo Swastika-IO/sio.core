@@ -33,6 +33,7 @@ namespace Sio.Cms.Hub
         public override async Task OnDisconnectedAsync(Exception exception)
         {
             await Groups.RemoveFromGroupAsync(Context.ConnectionId, "SignalR Users");
+
             await base.OnDisconnectedAsync(exception);
         }
     }

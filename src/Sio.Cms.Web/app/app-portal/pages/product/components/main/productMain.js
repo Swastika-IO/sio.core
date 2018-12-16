@@ -1,4 +1,4 @@
-﻿
+
 app.component('productMain', {
     templateUrl: '/app/app-portal/pages/product/components/main/productMain.html',
     controller: ['$rootScope', '$scope', 'ngAppSettings',

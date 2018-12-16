@@ -1,4 +1,4 @@
-﻿modules.directive('tabs', function () {
+modules.directive('tabs', function () {
     return {
         restrict: 'E',
         transclude: true,

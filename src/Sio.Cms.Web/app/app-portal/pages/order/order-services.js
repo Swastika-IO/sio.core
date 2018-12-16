@@ -1,4 +1,4 @@
-﻿'use strict';
+'use strict';
 app.factory('OrderServices', ['$http', '$rootScope', 'CommonService', function ($http, $rootScope, commonService) {
 
     //var serviceBase = 'http://ngauthenticationapi.azurewebsites.net/';

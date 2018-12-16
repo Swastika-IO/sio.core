@@ -38,10 +38,10 @@ namespace Sio.Cms.Lib.ViewModels.SioInit
 
         [JsonProperty("localDbConnectionString")]
         public string LocalDbConnectionString { get; set; } =
-            $"Server=(localdb)\\MSSQLLocalDB;Initial Catalog=sw-cms.db;Integrated Security=True;Persist Security Info=False;Pooling=False;MultipleActiveResultSets=False;Encrypt=False;TrustServerCertificate=True";
+            $"Server=(localdb)\\MSSQLLocalDB;Initial Catalog=sio-cms.db;Integrated Security=True;Persist Security Info=False;Pooling=False;MultipleActiveResultSets=False;Encrypt=False;TrustServerCertificate=True";
 
         [JsonProperty("sqliteDbConnectionString")]
-        public string SqliteDbConnectionString { get; set; } = $"Data Source=sw-cms.db";
+        public string SqliteDbConnectionString { get; set; } = $"Data Source=sio-cms.db";
 
         [JsonProperty("superAdminsuperAdmin")]
         public string SuperAdmin { get; set; }
@@ -57,6 +57,9 @@ namespace Sio.Cms.Lib.ViewModels.SioInit
 
         [JsonProperty("culture")]
         public InitCulture Culture { get; set; }
+
+        [JsonProperty("siteName")]
+        public string SiteName { get; set; } = "SioCore";
         #endregion
 
         public InitCmsViewModel()

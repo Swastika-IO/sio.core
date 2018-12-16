@@ -228,7 +228,7 @@ namespace Sio.Cms.Lib.ViewModels.SioPortalPages
         {
             var query = context.SioPortalPage
                 .Include(cp => cp.SioPortalPageNavigationParent)
-                .Where(PortalPage => PortalPage.Id != Id)
+                .Where(PortalPage => PortalPage.Id != Id && PortalPage.Level == 0)
                 .Select(PortalPage =>
                     new SioPortalPagePortalPages.UpdateViewModel()
                     {

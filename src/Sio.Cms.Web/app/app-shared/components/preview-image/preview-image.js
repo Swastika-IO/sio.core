@@ -1,4 +1,4 @@
-﻿modules.component('previewImage', {
+modules.component('previewImage', {
     templateUrl: '/app/app-shared/components/preview-image/preview-image.html',
     controller: ['$rootScope', '$scope', 'ngAppSettings', function ($rootScope, $scope) {
         var ctrl = this;

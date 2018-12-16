@@ -100,10 +100,13 @@ namespace Sio.Cms.Lib
 
         public enum SioModuleType
         {
-            Blank = 0,
-            Article = 1,
-            ListArticle = 2,            
-            ListProduct = 6
+            Content = 0,
+            Data = 1,
+            ListArticle = 2,
+            SubPage = 3,
+            SubArticle = 4,
+            SubProduct = 5,
+            ListProduct = 6,            
         }
 
         public enum SioDataType
@@ -175,16 +178,8 @@ namespace Sio.Cms.Lib
             Upload = 16,
             Color = 17,
             Boolean = 18,
-            Icon = 19
-        }
-
-        public enum ModuleType
-        {
-            Root,
-            SubPage,
-            SubArticle,
-            SubProduct,
-            Form
+            Icon = 19,
+            VideoYoutube = 20
         }
 
         public enum UrlAliasType

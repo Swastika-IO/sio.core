@@ -7,6 +7,7 @@ using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using static Sio.Cms.Lib.SioEnums;
 
 namespace Sio.Cms.Lib.ViewModels.SioPageArticles
 {
@@ -37,8 +38,11 @@ namespace Sio.Cms.Lib.ViewModels.SioPageArticles
         [JsonProperty("description")]
         public string Description { get; set; }
 
+        [JsonProperty("status")]
+        public SioContentStatus Status { get; set; }
         #region Views
 
+        [JsonProperty("article")]
         public SioArticles.ReadListItemViewModel Article { get; set; }
 
         #endregion Views

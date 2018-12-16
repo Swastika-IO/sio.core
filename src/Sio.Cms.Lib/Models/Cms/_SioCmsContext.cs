@@ -62,6 +62,7 @@ namespace Sio.Cms.Lib.Models.Cms
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
+
             //define the database to use
             string cnn = SioService.GetConnectionString(SioConstants.CONST_CMS_CONNECTION);
             if (!string.IsNullOrEmpty(cnn))
@@ -83,7 +84,7 @@ namespace Sio.Cms.Lib.Models.Cms
             {
                 entity.HasKey(e => new { e.Id, e.Specificulture });
 
-                entity.ToTable("Sio_article");
+                entity.ToTable("sio_article");
 
                 entity.HasIndex(e => e.SetAttributeId);
 
@@ -130,7 +131,7 @@ namespace Sio.Cms.Lib.Models.Cms
                 entity.HasOne(d => d.SetAttribute)
                     .WithMany(p => p.SioArticle)
                     .HasForeignKey(d => d.SetAttributeId)
-                    .HasConstraintName("FK_Sio_article_Sio_set_attribute");
+                    .HasConstraintName("FK_sio_article_sio_set_attribute");
 
                 entity.HasOne(d => d.SpecificultureNavigation)
                     .WithMany(p => p.SioArticle)
@@ -144,7 +145,7 @@ namespace Sio.Cms.Lib.Models.Cms
             {
                 entity.HasKey(e => new { e.MediaId, e.ArticleId, e.Specificulture });
 
-                entity.ToTable("Sio_article_media");
+                entity.ToTable("sio_article_media");
 
                 entity.HasIndex(e => new { e.ArticleId, e.Specificulture });
 
@@ -162,20 +163,20 @@ namespace Sio.Cms.Lib.Models.Cms
                     .WithMany(p => p.SioArticleMedia)
                     .HasForeignKey(d => new { d.ArticleId, d.Specificulture })
                     .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK_Sio_article_media_Sio_article");
+                    .HasConstraintName("FK_sio_article_media_sio_article");
 
                 entity.HasOne(d => d.SioMedia)
                     .WithMany(p => p.SioArticleMedia)
                     .HasForeignKey(d => new { d.MediaId, d.Specificulture })
                     .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK_Sio_article_media_Sio_media");
+                    .HasConstraintName("FK_sio_article_media_sio_media");
             });
 
             modelBuilder.Entity<SioArticleModule>(entity =>
             {
                 entity.HasKey(e => new { e.ModuleId, e.ArticleId, e.Specificulture });
 
-                entity.ToTable("Sio_article_module");
+                entity.ToTable("sio_article_module");
 
                 entity.HasIndex(e => new { e.ArticleId, e.Specificulture });
 
@@ -203,7 +204,7 @@ namespace Sio.Cms.Lib.Models.Cms
 
             modelBuilder.Entity<SioCmsUser>(entity =>
             {
-                entity.ToTable("Sio_cms_user");
+                entity.ToTable("sio_cms_user");
 
                 entity.Property(e => e.Id).ValueGeneratedNever();
 
@@ -232,7 +233,7 @@ namespace Sio.Cms.Lib.Models.Cms
 
             modelBuilder.Entity<SioComment>(entity =>
             {
-                entity.ToTable("Sio_comment");
+                entity.ToTable("sio_comment");
 
                 entity.HasIndex(e => new { e.ArticleId, e.Specificulture });
 
@@ -261,24 +262,24 @@ namespace Sio.Cms.Lib.Models.Cms
                 entity.HasOne(d => d.SioArticle)
                     .WithMany(p => p.SioComment)
                     .HasForeignKey(d => new { d.ArticleId, d.Specificulture })
-                    .HasConstraintName("FK_Sio_comment_Sio_article");
+                    .HasConstraintName("FK_sio_comment_sio_article");
 
                 entity.HasOne(d => d.SioOrder)
                     .WithMany(p => p.SioComment)
                     .HasForeignKey(d => new { d.OrderId, d.Specificulture })
-                    .HasConstraintName("FK_Sio_comment_Sio_order");
+                    .HasConstraintName("FK_sio_comment_sio_order");
 
                 entity.HasOne(d => d.SioProduct)
                     .WithMany(p => p.SioComment)
                     .HasForeignKey(d => new { d.ProductId, d.Specificulture })
-                    .HasConstraintName("FK_Sio_comment_Sio_product");
+                    .HasConstraintName("FK_sio_comment_sio_product");
             });
 
             modelBuilder.Entity<SioConfiguration>(entity =>
             {
                 entity.HasKey(e => new { e.Keyword, e.Specificulture });
 
-                entity.ToTable("Sio_configuration");
+                entity.ToTable("sio_configuration");
 
                 entity.HasIndex(e => e.Specificulture);
 
@@ -309,7 +310,7 @@ namespace Sio.Cms.Lib.Models.Cms
             {
                 entity.HasKey(e => new { e.Culture, e.Keyword });
 
-                entity.ToTable("Sio_copy");
+                entity.ToTable("sio_copy");
 
                 entity.Property(e => e.Culture).HasMaxLength(10);
 
@@ -322,7 +323,7 @@ namespace Sio.Cms.Lib.Models.Cms
 
             modelBuilder.Entity<SioCulture>(entity =>
             {
-                entity.ToTable("Sio_culture");
+                entity.ToTable("sio_culture");
 
                 entity.HasIndex(e => e.Specificulture)
                     .HasName("IX_Sio_Culture")
@@ -355,7 +356,7 @@ namespace Sio.Cms.Lib.Models.Cms
 
             modelBuilder.Entity<SioCustomer>(entity =>
             {
-                entity.ToTable("Sio_customer");
+                entity.ToTable("sio_customer");
 
                 entity.Property(e => e.Id).ValueGeneratedNever();
 
@@ -390,7 +391,7 @@ namespace Sio.Cms.Lib.Models.Cms
 
             modelBuilder.Entity<SioFile>(entity =>
             {
-                entity.ToTable("Sio_file");
+                entity.ToTable("sio_file");
 
                 entity.HasIndex(e => e.ThemeId);
 
@@ -429,14 +430,14 @@ namespace Sio.Cms.Lib.Models.Cms
                 entity.HasOne(d => d.Theme)
                     .WithMany(p => p.SioFile)
                     .HasForeignKey(d => d.ThemeId)
-                    .HasConstraintName("FK_Sio_file_Sio_template");
+                    .HasConstraintName("FK_sio_file_sio_template");
             });
 
             modelBuilder.Entity<SioLanguage>(entity =>
             {
                 entity.HasKey(e => new { e.Keyword, e.Specificulture });
 
-                entity.ToTable("Sio_language");
+                entity.ToTable("sio_language");
 
                 entity.HasIndex(e => e.Specificulture);
 
@@ -469,7 +470,7 @@ namespace Sio.Cms.Lib.Models.Cms
             {
                 entity.HasKey(e => new { e.Id, e.Specificulture });
 
-                entity.ToTable("Sio_media");
+                entity.ToTable("sio_media");
 
                 entity.Property(e => e.Specificulture).HasMaxLength(10);
 
@@ -510,7 +511,7 @@ namespace Sio.Cms.Lib.Models.Cms
             {
                 entity.HasKey(e => new { e.Id, e.Specificulture });
 
-                entity.ToTable("Sio_module");
+                entity.ToTable("sio_module");
 
                 entity.HasIndex(e => e.Specificulture);
 
@@ -553,7 +554,7 @@ namespace Sio.Cms.Lib.Models.Cms
             {
                 entity.HasKey(e => new { e.ArticleId, e.ModuleId, e.Specificulture });
 
-                entity.ToTable("Sio_module_article");
+                entity.ToTable("sio_module_article");
 
                 entity.HasIndex(e => new { e.ArticleId, e.Specificulture });
 
@@ -584,14 +585,14 @@ namespace Sio.Cms.Lib.Models.Cms
             {
                 entity.HasKey(e => new { e.Id, e.ModuleId, e.Specificulture });
 
-                entity.ToTable("Sio_module_attribute_set");
+                entity.ToTable("sio_module_attribute_set");
 
                 entity.HasIndex(e => new { e.ModuleId, e.Specificulture });
 
                 entity.HasIndex(e => new { e.ModuleId, e.ArticleId, e.Specificulture });
 
                 entity.HasIndex(e => new { e.ModuleId, e.CategoryId, e.Specificulture })
-                    .HasName("IX_Sio_module_attribute_set_ModuleId_PageId_Specificulture");
+                    .HasName("IX_sio_module_attribute_set_ModuleId_PageId_Specificulture");
 
                 entity.Property(e => e.Specificulture).HasMaxLength(10);
 
@@ -625,7 +626,7 @@ namespace Sio.Cms.Lib.Models.Cms
             {
                 entity.HasKey(e => new { e.Id, e.AttributeSetId, e.Specificulture });
 
-                entity.ToTable("Sio_module_attribute_value");
+                entity.ToTable("sio_module_attribute_value");
 
                 entity.HasIndex(e => new { e.AttributeSetId, e.ModuleId, e.Specificulture });
 
@@ -644,21 +645,21 @@ namespace Sio.Cms.Lib.Models.Cms
                 entity.HasOne(d => d.SioModuleAttributeSet)
                     .WithMany(p => p.SioModuleAttributeValue)
                     .HasForeignKey(d => new { d.AttributeSetId, d.ModuleId, d.Specificulture })
-                    .HasConstraintName("FK_Sio_module_attribute_value_Sio_module_attribute_set");
+                    .HasConstraintName("FK_sio_module_attribute_value_sio_module_attribute_set");
             });
 
             modelBuilder.Entity<SioModuleData>(entity =>
             {
                 entity.HasKey(e => new { e.Id, e.ModuleId, e.Specificulture });
 
-                entity.ToTable("Sio_module_data");
+                entity.ToTable("sio_module_data");
 
                 entity.HasIndex(e => new { e.ModuleId, e.Specificulture });
 
                 entity.HasIndex(e => new { e.ModuleId, e.ArticleId, e.Specificulture });
 
                 entity.HasIndex(e => new { e.ModuleId, e.CategoryId, e.Specificulture })
-                    .HasName("IX_Sio_module_data_ModuleId_PageId_Specificulture");
+                    .HasName("IX_sio_module_data_ModuleId_PageId_Specificulture");
 
                 entity.HasIndex(e => new { e.ModuleId, e.ProductId, e.Specificulture });
 
@@ -696,7 +697,7 @@ namespace Sio.Cms.Lib.Models.Cms
             {
                 entity.HasKey(e => new { e.ProductId, e.ModuleId, e.Specificulture });
 
-                entity.ToTable("Sio_module_product");
+                entity.ToTable("sio_module_product");
 
                 entity.HasIndex(e => new { e.ModuleId, e.Specificulture });
 
@@ -727,7 +728,7 @@ namespace Sio.Cms.Lib.Models.Cms
             {
                 entity.HasKey(e => new { e.Id, e.Specificulture });
 
-                entity.ToTable("Sio_order");
+                entity.ToTable("sio_order");
 
                 entity.HasIndex(e => e.CustomerId);
 
@@ -744,19 +745,19 @@ namespace Sio.Cms.Lib.Models.Cms
                 entity.HasOne(d => d.Customer)
                     .WithMany(p => p.SioOrder)
                     .HasForeignKey(d => d.CustomerId)
-                    .HasConstraintName("FK_Sio_order_Sio_cms_customer");
+                    .HasConstraintName("FK_sio_order_sio_cms_customer");
             });
 
             modelBuilder.Entity<SioOrderItem>(entity =>
             {
                 entity.HasKey(e => new { e.ProductId, e.OrderId, e.Specificulture });
 
-                entity.ToTable("Sio_order_item");
+                entity.ToTable("sio_order_item");
 
                 entity.HasIndex(e => e.Specificulture);
 
                 entity.HasIndex(e => new { e.Id, e.Specificulture })
-                    .HasName("AK_Sio_order_item_Id_Specificulture")
+                    .HasName("AK_sio_order_item_Id_Specificulture")
                     .IsUnique();
 
                 entity.HasIndex(e => new { e.OrderId, e.Specificulture });
@@ -788,7 +789,7 @@ namespace Sio.Cms.Lib.Models.Cms
             {
                 entity.HasKey(e => new { e.Id, e.Specificulture });
 
-                entity.ToTable("Sio_page");
+                entity.ToTable("sio_page");
 
                 entity.HasIndex(e => e.SetAttributeId);
 
@@ -839,7 +840,7 @@ namespace Sio.Cms.Lib.Models.Cms
                 entity.HasOne(d => d.SetAttribute)
                     .WithMany(p => p.SioPage)
                     .HasForeignKey(d => d.SetAttributeId)
-                    .HasConstraintName("FK_Sio_page_Sio_set_attribute");
+                    .HasConstraintName("FK_sio_page_sio_set_attribute");
 
                 entity.HasOne(d => d.SpecificultureNavigation)
                     .WithMany(p => p.SioPage)
@@ -853,12 +854,12 @@ namespace Sio.Cms.Lib.Models.Cms
             {
                 entity.HasKey(e => new { e.ArticleId, e.CategoryId, e.Specificulture });
 
-                entity.ToTable("Sio_page_article");
+                entity.ToTable("sio_page_article");
 
                 entity.HasIndex(e => new { e.ArticleId, e.Specificulture });
 
                 entity.HasIndex(e => new { e.CategoryId, e.Specificulture })
-                    .HasName("IX_Sio_page_article_PageId_Specificulture");
+                    .HasName("IX_sio_page_article_PageId_Specificulture");
 
                 entity.Property(e => e.Specificulture).HasMaxLength(10);
 
@@ -887,10 +888,10 @@ namespace Sio.Cms.Lib.Models.Cms
             {
                 entity.HasKey(e => new { e.ModuleId, e.CategoryId, e.Specificulture });
 
-                entity.ToTable("Sio_page_module");
+                entity.ToTable("sio_page_module");
 
                 entity.HasIndex(e => new { e.CategoryId, e.Specificulture })
-                    .HasName("IX_Sio_page_module_PageId_Specificulture");
+                    .HasName("IX_sio_page_module_PageId_Specificulture");
 
                 entity.HasIndex(e => new { e.ModuleId, e.Specificulture });
 
@@ -918,7 +919,7 @@ namespace Sio.Cms.Lib.Models.Cms
             {
                 entity.HasKey(e => new { e.Id, e.ParentId, e.Specificulture });
 
-                entity.ToTable("Sio_page_page");
+                entity.ToTable("sio_page_page");
 
                 entity.HasIndex(e => new { e.Id, e.Specificulture });
 
@@ -949,10 +950,10 @@ namespace Sio.Cms.Lib.Models.Cms
             {
                 entity.HasKey(e => new { e.PositionId, e.CategoryId, e.Specificulture });
 
-                entity.ToTable("Sio_page_position");
+                entity.ToTable("sio_page_position");
 
                 entity.HasIndex(e => new { e.CategoryId, e.Specificulture })
-                    .HasName("IX_Sio_page_position_PageId_Specificulture");
+                    .HasName("IX_sio_page_position_PageId_Specificulture");
 
                 entity.Property(e => e.Specificulture).HasMaxLength(10);
 
@@ -976,10 +977,10 @@ namespace Sio.Cms.Lib.Models.Cms
             {
                 entity.HasKey(e => new { e.ProductId, e.CategoryId, e.Specificulture });
 
-                entity.ToTable("Sio_page_product");
+                entity.ToTable("sio_page_product");
 
                 entity.HasIndex(e => new { e.CategoryId, e.Specificulture })
-                    .HasName("IX_Sio_page_product_PageId_Specificulture");
+                    .HasName("IX_sio_page_product_PageId_Specificulture");
 
                 entity.HasIndex(e => new { e.ProductId, e.Specificulture });
 
@@ -1008,7 +1009,7 @@ namespace Sio.Cms.Lib.Models.Cms
             {
                 entity.HasKey(e => e.Name);
 
-                entity.ToTable("Sio_parameter");
+                entity.ToTable("sio_parameter");
 
                 entity.Property(e => e.Name)
                     .HasMaxLength(256)
@@ -1021,7 +1022,7 @@ namespace Sio.Cms.Lib.Models.Cms
 
             modelBuilder.Entity<SioPortalPage>(entity =>
             {
-                entity.ToTable("Sio_portal_page");
+                entity.ToTable("sio_portal_page");
 
                 entity.Property(e => e.Id).ValueGeneratedNever();
 
@@ -1046,7 +1047,7 @@ namespace Sio.Cms.Lib.Models.Cms
             {
                 entity.HasKey(e => new { e.Id, e.ParentId });
 
-                entity.ToTable("Sio_portal_page_navigation");
+                entity.ToTable("sio_portal_page_navigation");
 
                 entity.HasIndex(e => e.ParentId);
 
@@ -1060,20 +1061,20 @@ namespace Sio.Cms.Lib.Models.Cms
                     .WithMany(p => p.SioPortalPageNavigationIdNavigation)
                     .HasForeignKey(d => d.Id)
                     .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK_Sio_portal_page_navigation_Sio_portal_page");
+                    .HasConstraintName("FK_sio_portal_page_navigation_sio_portal_page");
 
                 entity.HasOne(d => d.Parent)
                     .WithMany(p => p.SioPortalPageNavigationParent)
                     .HasForeignKey(d => d.ParentId)
                     .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK_Sio_portal_page_navigation_Sio_portal_page1");
+                    .HasConstraintName("FK_sio_portal_page_navigation_sio_portal_page1");
             });
 
             modelBuilder.Entity<SioPortalPagePosition>(entity =>
             {
                 entity.HasKey(e => new { e.PositionId, e.PortalPageId });
 
-                entity.ToTable("Sio_portal_page_position");
+                entity.ToTable("sio_portal_page_position");
 
                 entity.HasIndex(e => e.PortalPageId);
 
@@ -1097,7 +1098,7 @@ namespace Sio.Cms.Lib.Models.Cms
             {
                 entity.HasKey(e => new { e.RoleId, e.PageId });
 
-                entity.ToTable("Sio_portal_page_role");
+                entity.ToTable("sio_portal_page_role");
 
                 entity.HasIndex(e => e.PageId);
 
@@ -1112,12 +1113,12 @@ namespace Sio.Cms.Lib.Models.Cms
                 entity.HasOne(d => d.Page)
                     .WithMany(p => p.SioPortalPageRole)
                     .HasForeignKey(d => d.PageId)
-                    .HasConstraintName("FK_Sio_portal_page_role_Sio_portal_page");
+                    .HasConstraintName("FK_sio_portal_page_role_sio_portal_page");
             });
 
             modelBuilder.Entity<SioPosition>(entity =>
             {
-                entity.ToTable("Sio_position");
+                entity.ToTable("sio_position");
 
                 entity.Property(e => e.Description)
                     .IsRequired()
@@ -1130,7 +1131,7 @@ namespace Sio.Cms.Lib.Models.Cms
             {
                 entity.HasKey(e => new { e.Id, e.Specificulture });
 
-                entity.ToTable("Sio_product");
+                entity.ToTable("sio_product");
 
                 entity.HasIndex(e => e.SetAttributeId);
 
@@ -1191,7 +1192,7 @@ namespace Sio.Cms.Lib.Models.Cms
                 entity.HasOne(d => d.SetAttribute)
                     .WithMany(p => p.SioProduct)
                     .HasForeignKey(d => d.SetAttributeId)
-                    .HasConstraintName("FK_Sio_product_Sio_set_attribute");
+                    .HasConstraintName("FK_sio_product_sio_set_attribute");
 
                 entity.HasOne(d => d.SpecificultureNavigation)
                     .WithMany(p => p.SioProduct)
@@ -1205,7 +1206,7 @@ namespace Sio.Cms.Lib.Models.Cms
             {
                 entity.HasKey(e => new { e.MediaId, e.ProductId, e.Specificulture });
 
-                entity.ToTable("Sio_product_media");
+                entity.ToTable("sio_product_media");
 
                 entity.HasIndex(e => new { e.MediaId, e.Specificulture });
 
@@ -1223,20 +1224,20 @@ namespace Sio.Cms.Lib.Models.Cms
                     .WithMany(p => p.SioProductMedia)
                     .HasForeignKey(d => new { d.MediaId, d.Specificulture })
                     .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK_Sio_product_media_Sio_media");
+                    .HasConstraintName("FK_sio_product_media_sio_media");
 
                 entity.HasOne(d => d.SioProduct)
                     .WithMany(p => p.SioProductMedia)
                     .HasForeignKey(d => new { d.ProductId, d.Specificulture })
                     .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK_Sio_product_media_Sio_product");
+                    .HasConstraintName("FK_sio_product_media_sio_product");
             });
 
             modelBuilder.Entity<SioProductModule>(entity =>
             {
                 entity.HasKey(e => new { e.ModuleId, e.ProductId, e.Specificulture });
 
-                entity.ToTable("Sio_product_module");
+                entity.ToTable("sio_product_module");
 
                 entity.HasIndex(e => new { e.ModuleId, e.Specificulture });
 
@@ -1266,7 +1267,7 @@ namespace Sio.Cms.Lib.Models.Cms
             {
                 entity.HasKey(e => new { e.SourceId, e.DestinationId, e.Specificulture });
 
-                entity.ToTable("Sio_related_article");
+                entity.ToTable("sio_related_article");
 
                 entity.Property(e => e.Specificulture).HasMaxLength(10);
 
@@ -1280,20 +1281,20 @@ namespace Sio.Cms.Lib.Models.Cms
                     .WithMany(p => p.SioRelatedArticleSioArticle)
                     .HasForeignKey(d => new { d.DestinationId, d.Specificulture })
                     .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK_Sio_related_article_Sio_article1");
+                    .HasConstraintName("FK_sio_related_article_sio_article1");
 
                 entity.HasOne(d => d.S)
                     .WithMany(p => p.SioRelatedArticleS)
                     .HasForeignKey(d => new { d.SourceId, d.Specificulture })
                     .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK_Sio_related_article_Sio_article");
+                    .HasConstraintName("FK_sio_related_article_sio_article");
             });
 
             modelBuilder.Entity<SioRelatedProduct>(entity =>
             {
                 entity.HasKey(e => new { e.SourceId, e.DestinationId, e.Specificulture });
 
-                entity.ToTable("Sio_related_product");
+                entity.ToTable("sio_related_product");
 
                 entity.HasIndex(e => new { e.DestinationId, e.Specificulture });
 
@@ -1311,18 +1312,18 @@ namespace Sio.Cms.Lib.Models.Cms
                     .WithMany(p => p.SioRelatedProductSioProduct)
                     .HasForeignKey(d => new { d.DestinationId, d.Specificulture })
                     .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK_Sio_related_product_Sio_product1");
+                    .HasConstraintName("FK_sio_related_product_sio_product1");
 
                 entity.HasOne(d => d.S)
                     .WithMany(p => p.SioRelatedProductS)
                     .HasForeignKey(d => new { d.SourceId, d.Specificulture })
                     .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK_Sio_related_product_Sio_product");
+                    .HasConstraintName("FK_sio_related_product_sio_product");
             });
 
             modelBuilder.Entity<SioSetAttribute>(entity =>
             {
-                entity.ToTable("Sio_set_attribute");
+                entity.ToTable("sio_set_attribute");
 
                 entity.Property(e => e.Id).ValueGeneratedNever();
 
@@ -1339,10 +1340,10 @@ namespace Sio.Cms.Lib.Models.Cms
 
             modelBuilder.Entity<SioTemplate>(entity =>
             {
-                entity.ToTable("Sio_template");
+                entity.ToTable("sio_template");
 
                 entity.HasIndex(e => e.ThemeId)
-                    .HasName("IX_Sio_template_file_TemplateId");
+                    .HasName("IX_sio_template_file_TemplateId");
 
                 entity.Property(e => e.Content)
                     .IsRequired()
@@ -1388,12 +1389,12 @@ namespace Sio.Cms.Lib.Models.Cms
                     .WithMany(p => p.SioTemplate)
                     .HasForeignKey(d => d.ThemeId)
                     .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK_Sio_template_Sio_theme");
+                    .HasConstraintName("FK_sio_template_sio_theme");
             });
 
             modelBuilder.Entity<SioTheme>(entity =>
             {
-                entity.ToTable("Sio_theme");
+                entity.ToTable("sio_theme");
 
                 entity.Property(e => e.CreatedBy)
                     .IsRequired()
@@ -1416,7 +1417,7 @@ namespace Sio.Cms.Lib.Models.Cms
             {
                 entity.HasKey(e => new { e.Id, e.Specificulture });
 
-                entity.ToTable("Sio_url_alias");
+                entity.ToTable("sio_url_alias");
 
                 entity.HasIndex(e => e.Specificulture);
 

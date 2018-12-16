@@ -1,4 +1,4 @@
-﻿'use strict';
+'use strict';
 app.factory('RoleService', ['BaseService','CommonService', function (baseService, commonService) {
     var serviceFactory = Object.create(baseService);
     serviceFactory.init('role', true);

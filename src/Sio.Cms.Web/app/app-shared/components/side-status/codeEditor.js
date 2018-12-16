@@ -1,4 +1,4 @@
-﻿
+
 modules.component('codeEditor', {
     templateUrl: 'codeEditor.html',
     bindings: {

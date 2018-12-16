@@ -1,5 +1,7 @@
 using Microsoft.EntityFrameworkCore.Storage;
 using Sio.Cms.Lib.Models.Cms;
+using Sio.Common.Helper;
+using Sio.Domain.Core.ViewModels;
 using Sio.Domain.Data.ViewModels;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
@@ -84,8 +86,20 @@ namespace Sio.Cms.Lib.ViewModels.SioModuleDatas
 
         public override void ExpandView(SioCmsContext _context = null, IDbContextTransaction _transaction = null)
         {
+            Fields = _context.SioModule.First(m => m.Id == ModuleId && m.Specificulture == Specificulture)?.Fields;
             DataProperties = Fields == null ? null : JsonConvert.DeserializeObject<List<ApiModuleDataValueViewModel>>(Fields);
             JItem = Value == null ? InitValue() : JsonConvert.DeserializeObject<JObject>(Value);
+            foreach (var item in DataProperties)
+            {
+                if (!JItem.TryGetValue(item.Name, out JToken tmp))
+                {
+                    JItem[item.Name] = new JObject()
+                    {
+                        new JProperty("dataType", item.DataType),
+                        new JProperty("value", JItem[item.Name]?.Value<JObject>().Value<string>("value"))
+                    };
+                }
+            }
         }
 
         public override void Validate(SioCmsContext _context = null, IDbContextTransaction _transaction = null)
@@ -142,11 +156,58 @@ namespace Sio.Cms.Lib.ViewModels.SioModuleDatas
             return prop != null && prop.Value != null ? prop.Value.ToString() : string.Empty;
         }
 
+        public string Property(string name)
+        {
+            
+            return JItem[name]?.Value<JObject>().Value<string>("value");
+        }
+
         public ApiModuleDataValueViewModel GetDataProperty(string name)
         {
             return DataProperties.FirstOrDefault(p => p.Name == name);
         }
 
-        #endregion Expands
+        public static async System.Threading.Tasks.Task<RepositoryResponse<List<ReadViewModel>>> UpdateInfosAsync(List<ReadViewModel> data)
+        {
+            SioCmsContext context = new SioCmsContext();
+            var transaction = context.Database.BeginTransaction();
+            var result = new RepositoryResponse<List<ReadViewModel>>();
+            try
+            {
+                foreach (var item in data)
+                {
+                    var model = context.SioModuleData.FirstOrDefault(m => m.Id == item.Id && m.Specificulture == item.Specificulture);
+                    if (model != null)
+                    {
+                        model.Priority = item.Priority;
+                        context.Entry(model).State = Microsoft.EntityFrameworkCore.EntityState.Modified;
+                    }
+                }
+                result.IsSucceed = (await context.SaveChangesAsync()) > 0;
+                if (!result.IsSucceed)
+                {
+                    result.Errors.Add("Nothing changed");
+                }
+                UnitOfWorkHelper<SioCmsContext>.HandleTransaction(result.IsSucceed, true, transaction);
+                return result;
+            }
+            catch (Exception ex) // TODO: Add more specific exeption types instead of Exception only
+            {
+                UnitOfWorkHelper<SioCmsContext>.HandleException<ReadViewModel>(ex, true, transaction);
+                return new RepositoryResponse<List<ReadViewModel>>()
+                {
+                    IsSucceed = false,
+                    Data = null,
+                    Exception = ex
+                };
+            }
+            finally
+            {
+                //if current Context is Root
+                transaction.Dispose();
+                context.Dispose();
+            }
+            #endregion Expands
+        }
     }
 }

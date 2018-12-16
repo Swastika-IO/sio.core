@@ -113,7 +113,7 @@ namespace Sio.Cms.Lib.ViewModels.SioMedias
                 Cultures = Cultures ?? LoadCultures(Specificulture, _context, _transaction);
                 Cultures.ForEach(c => c.IsSupported = true);
             }
-
+            if (FileFolder[0] == '/') { FileFolder = FileFolder.Substring(1); }            
             return base.ParseModel(_context, _transaction);
         }
 

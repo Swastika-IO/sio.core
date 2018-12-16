@@ -1,4 +1,4 @@
-﻿'use strict';
+'use strict';
 app.controller('LanguageController',
     ['$scope', '$rootScope', 'ngAppSettings', '$routeParams', '$location', 'LanguageService', 'CommonService',
         function ($scope, $rootScope, ngAppSettings, $routeParams, $location, service, commonService) {

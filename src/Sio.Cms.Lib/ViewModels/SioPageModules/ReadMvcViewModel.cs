@@ -48,6 +48,7 @@ namespace Sio.Cms.Lib.ViewModels.SioPageModules
             if (getModule.IsSucceed)
             {
                 Module = getModule.Data;
+                //Module.LoadData();
             }
         }
 

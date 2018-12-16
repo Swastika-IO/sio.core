@@ -1,4 +1,4 @@
-﻿
+
 app.component('articleMain', {
     templateUrl: '/app/app-portal/pages/article/components/main/articleMain.html',
     controller: ['$rootScope', '$scope',

@@ -98,7 +98,7 @@ namespace Sio.Cms.Lib.ViewModels.SioArticles
         {
             get
             {
-                if (Image != null && (Image.IndexOf("http") == -1 && Image[0] != '/'))
+                if (Image != null && (Image.IndexOf("http") == -1) && Image[0] != '/')
                 {
                     return CommonHelper.GetFullPath(new string[] {
                     Domain,  Image
@@ -124,7 +124,7 @@ namespace Sio.Cms.Lib.ViewModels.SioArticles
                 }
                 else
                 {
-                    return Thumbnail;
+                    return ImageUrl;
                 }
             }
         }

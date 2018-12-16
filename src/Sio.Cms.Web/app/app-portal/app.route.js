@@ -85,9 +85,9 @@ app.config(function ($routeProvider, $locationProvider, $sceProvider) {
         templateUrl: "/app/app-portal/pages/permission/details.html"
     });
 
-    $routeProvider.when("/portal/page/data/:id", {
-        controller: "PageController",
-        templateUrl: "/app/app-portal/pages/page/data.html"
+    $routeProvider.when("/portal/page/page-article/list/:id", {
+        controller: "PageArticleController",
+        templateUrl: "/app/app-portal/pages/page-article/list.html"
     });
 
     $routeProvider.when("/portal/page/create", {
@@ -100,9 +100,9 @@ app.config(function ($routeProvider, $locationProvider, $sceProvider) {
         templateUrl: "/app/app-portal/pages/module/list.html"
     });
 
-    $routeProvider.when("/portal/module/data/:id", {
-        controller: "ModuleController",
-        templateUrl: "/app/app-portal/pages/module/data.html"
+    $routeProvider.when("/portal/module-article/list/:id", {
+        controller: "ModuleArticleController",
+        templateUrl: "/app/app-portal/pages/module-article/list.html"
     });
 
     $routeProvider.when("/portal/module-data/details/:moduleId/:id", {
@@ -118,6 +118,10 @@ app.config(function ($routeProvider, $locationProvider, $sceProvider) {
     $routeProvider.when("/portal/module/details/:id", {
         controller: "ModuleController",
         templateUrl: "/app/app-portal/pages/module/details.html"
+    });
+    $routeProvider.when("/portal/module/data/:id", {
+        controller: "ModuleController",
+        templateUrl: "/app/app-portal/pages/module/data.html"
     });
 
     $routeProvider.when("/portal/module/create", {

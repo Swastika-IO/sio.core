@@ -1,4 +1,4 @@
-﻿'use strict';
+'use strict';
 app.factory('ThemeService', ['CommonService', 'BaseService',
     function (commonService, baseService) {
 

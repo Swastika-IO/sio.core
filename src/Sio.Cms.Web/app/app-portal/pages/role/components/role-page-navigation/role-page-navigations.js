@@ -1,4 +1,4 @@
-Ôªø
+
 modules.component('rolePageNav', {
     templateUrl: '/app/app-portal/pages/role/components/role-page-navigation/role-page-navigations.html',
     controller: ['$rootScope', '$scope', 'ngAppSettings', 'RoleService', function ($rootScope, $scope, ngAppSettings, roleServices) {
@@ -15,7 +15,7 @@ modules.component('rolePageNav', {
         //    //$rootScope.isBusy = true;
         //    //var resp = await roleServices.updatePermission(permission);
         //    //if (resp && resp.isSucceed) {
-        //    //    $rootScope.showMessage('Th√†nh c√¥ng', 'success');
+        //    //    $rootScope.showMessage('Th‡nh cÙng', 'success');
         //    //    $rootScope.isBusy = false;
         //    //    $scope.$apply();
         //    //}

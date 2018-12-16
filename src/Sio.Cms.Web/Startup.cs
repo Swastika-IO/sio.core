@@ -17,6 +17,7 @@ using Sio.Identity.Services;
 using Sio.Cms.Hub;
 using Microsoft.AspNetCore.Mvc.ApiExplorer;
 using Microsoft.Extensions.DependencyInjection.Extensions;
+using Sio.Cms.Messenger.Hubs;
 
 namespace Sio.Cms.Web
 {
@@ -25,14 +26,15 @@ namespace Sio.Cms.Web
         public Startup(IConfiguration configuration)
         {
             Configuration = configuration;
-
+            
         }
 
         public IConfiguration Configuration { get; }
-
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            
+
             services.Configure<CookiePolicyOptions>(options =>
             {
                 // This lambda determines whether user consent for non-essential cookies is needed for a given request.
@@ -54,7 +56,7 @@ namespace Sio.Cms.Web
             ConfigCookieAuth(services, Configuration);
             ConfigJWTToken(services, Configuration);
 
-            //services.AddDbContext<SioCmsContext>();
+            services.AddDbContext<SioCmsContext>();
             //When View Page Source That changes only the HTML encoder, leaving the JavaScript and URL encoders with their (ASCII) defaults.
             services.Configure<WebEncoderOptions>(options => options.TextEncoderSettings = new TextEncoderSettings(UnicodeRanges.All));
             services.Configure<FormOptions>(options => options.MultipartBodyLengthLimit = 100000000);
@@ -111,12 +113,22 @@ namespace Sio.Cms.Web
                 opt.AllowAnyHeader();
                 opt.AllowAnyMethod();
             });
-            //app.UseHttpsRedirection();
-            app.UseStaticFiles();
+            app.UseHttpsRedirection();
+            var cachePeriod = env.IsDevelopment() ? "600" : "604800";
+            app.UseStaticFiles(new StaticFileOptions
+            {
+                OnPrepareResponse = ctx =>
+                {
+                    // Requires the following import:
+                    // using Microsoft.AspNetCore.Http;
+                    ctx.Context.Response.Headers.Append("Cache-Control", $"public, max-age={cachePeriod}");
+                }
+            });
             app.UseCookiePolicy();
             app.UseSignalR(route =>
             {
                 route.MapHub<PortalHub>("/portalhub");
+                route.MapHub<SioChatHub>("/SioChatHub");
             });
 
             app.UseAuthentication();

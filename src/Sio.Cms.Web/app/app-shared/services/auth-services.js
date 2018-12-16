@@ -1,4 +1,4 @@
-﻿'use strict';
+'use strict';
 app.factory('AuthService',
     ['$http', '$rootScope', '$location', '$q', 'localStorageService', 'AppSettings',
         function ($http, $rootScope, $location, $q, localStorageService, appSettings) {
@@ -187,7 +187,11 @@ app.factory('AuthService',
                         authData.token = data.access_token;
                         authData.refresh_token = data.refresh_token;
                         _authentication.token = data.access_token;
-                        _authentication.refresh_token = data.refresh_token;                        
+                        _authentication.refresh_token = data.refresh_token;        
+                        if(!$rootScope.settings.lastUpdateConfiguration || $rootScope.settings.lastUpdateConfiguration < data.lastUpdateConfiguration)
+                        {
+                            _initSettings();
+                        }
                     }
 
                     deferred.resolve(response);

@@ -1,4 +1,4 @@
-﻿    'use strict';
+    'use strict';
     function PageDetailsController($scope, $element, $attrs) {
         var ctrl = this;
         ctrl.activedPage = null;

@@ -1,4 +1,4 @@
-Ôªø'use strict';
+'use strict';
 app.controller('OrderController', ['$scope', '$rootScope', 'ngAppSettings', '$routeParams', '$timeout', '$location', 'AuthService', 'OrderServices', 'ngAppSettings',
     function ($scope, $rootScope, ngAppSettings, $routeParams, $timeout, $location, authService, orderServices) {
         $scope.request = angular.copy(ngAppSettings.request);
@@ -102,7 +102,7 @@ app.controller('OrderController', ['$scope', '$rootScope', 'ngAppSettings', '$ro
             var resp = await orderServices.saveOrder(order);
             if (resp && resp.isSucceed) {
                 $scope.activedOrder = resp.data;
-                $rootScope.showMessage('Th√†nh c√¥ng', 'success');
+                $rootScope.showMessage('Th‡nh cÙng', 'success');
                 $rootScope.isBusy = false;
                 $scope.$apply();
                 //$location.path('/portal/order/details/' + resp.data.id);

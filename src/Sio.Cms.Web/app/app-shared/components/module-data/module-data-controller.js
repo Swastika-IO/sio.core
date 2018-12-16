@@ -1,4 +1,4 @@
-Ôªø'use strict';
+'use strict';
 app.controller('ModuleDataController', ['$scope', '$rootScope', 'ngAppSettings', '$routeParams', '$timeout', '$location', 'AuthService', 'ModuleDataService',
     function ($scope, $rootScope, ngAppSettings, $routeParams, $timeout, $location, authService, moduleDataService) {
         $scope.request = {
@@ -139,7 +139,7 @@ app.controller('ModuleDataController', ['$scope', '$rootScope', 'ngAppSettings',
             var resp = await moduleDataService.saveModuleData($scope.activedModuleData);
             if (resp && resp.isSucceed) {
                 $scope.activedModuleData = resp.data;
-                $rootScope.showMessage('Th√†nh c√¥ng', 'success');
+                $rootScope.showMessage('Th‡nh cÙng', 'success');
                 $rootScope.isBusy = false;
                 $scope.initModuleForm($scope.name);
                 $rootScope.isBusy = false;
@@ -151,6 +151,6 @@ app.controller('ModuleDataController', ['$scope', '$rootScope', 'ngAppSettings',
                 $rootScope.isBusy = false;
                 $scope.$apply();
             }
-        };
+        };       
 
     }]);

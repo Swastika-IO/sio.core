@@ -1,4 +1,4 @@
-﻿'use strict';
+'use strict';
 app.factory('ArticleService', ['BaseService',
     function (baseService) {
         baseService.init('article');

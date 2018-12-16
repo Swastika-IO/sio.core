@@ -1,4 +1,4 @@
-﻿
+
 app.component('productMedias', {
     templateUrl: '/app/app-portal/pages/product/components/medias/productMedias.html',
     controller: ['$rootScope', function ($rootScope) {

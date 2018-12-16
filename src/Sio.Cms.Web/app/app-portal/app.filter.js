@@ -14,10 +14,10 @@ app.filter('utcToLocal', FilterUtcDate)
             fromDate: null,
             toDate: null,
             keyword: '',
-            key:'',
-            query:''
+            key: '',
+            query: ''
         },
-        privacies:  [
+        privacies: [
             'VND',
             'USD'
         ],
@@ -59,10 +59,12 @@ app.filter('utcToLocal', FilterUtcDate)
             'Published',
             'Draft',
             'Schedule'
-        ],        
+        ],
         editorConfigurations: {
             core: {},
             plugins: {
+                removeformatPasted: true,
+                imageWidthModalEdit: true,
                 btnsDef: {
                     // Customizables dropdowns
                     image: {
@@ -70,12 +72,13 @@ app.filter('utcToLocal', FilterUtcDate)
                         ico: 'insertImage'
                     }
                 },
-                btns: [                    
-                    ['undo', 'redo'],
+                btns: [                   
                     ['table'],
                     ['emoji'],
                     ['formatting'],
                     ['strong', 'em', 'del', 'underline'],
+                    ['fontsize'],
+                    ['highlight'],
                     ['link'],
                     ['image'],
                     ['justifyLeft', 'justifyCenter', 'justifyRight', 'justifyFull'],
@@ -96,7 +99,7 @@ app.filter('utcToLocal', FilterUtcDate)
                         },
                         urlPropertyName: 'data.link'
                     },
-                    table:{},
+                    table: {},
                     fontfamily: {
                         init: function (trumbowyg) {
                             trumbowyg.o.plugins.fontfamily = trumbowyg.o.plugins.fontfamily || defaultOptions;
@@ -108,7 +111,7 @@ app.filter('utcToLocal', FilterUtcDate)
                         }
                     }
                 }
-            }            
+            }
         },
         dataTypes: [
             { title: 'Custom', value: 0 },
@@ -129,6 +132,11 @@ app.filter('utcToLocal', FilterUtcDate)
             { title: 'PostalCode', value: 15 },
             { title: 'Upload', value: 16 },
 
+        ]
+        , miIcons: [
+            'mi-Page', 'mi-AllApps', 'mi-Add', 'mi-Accept', 'mi-Account', 'mi-ActionCenter', 'mi-ActionCenterQuiet'
+            , 'mi-AddFriend', 'mi-AddRemoteDevice', 'mi-AddTo', 'mi-AjustHologram', 'mi-Admin', 'mi-Airplane', 'mi-AirplaneSolid'
+            , 'mi-Bank', 'mi-Cancel','mi-telegram'
         ]
     });
 
@@ -165,7 +173,7 @@ function buildDropdown(trumbowyg) {
 
     return dropdown;
 }
-function FilterPhoneNumber(){
+function FilterPhoneNumber() {
     return function (phone) {
         return phone.replace(/^([0-9]{3})([0-9]{3})([0-9]{4,})$/, '($1) $2-$3');
     };
@@ -175,4 +183,6 @@ function FilterMoney() {
     return function (money) {
         return money.replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1,');
     };
-}
+} 
+$.trumbowyg.svgPath = '/assets/icons.svg';
+                

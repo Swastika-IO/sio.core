@@ -19,6 +19,7 @@ using static Sio.Cms.Lib.SioEnums;
 
 namespace Sio.Cms.Lib.ViewModels.SioModules
 {
+    //Use for update module info only => don't need to load data
     public class UpdateViewModel : ViewModelBase<SioCmsContext, SioModule, UpdateViewModel>
     {
         #region Properties
@@ -49,7 +50,7 @@ namespace Sio.Cms.Lib.ViewModels.SioModules
         public string Fields { get; set; }
 
         [JsonProperty("type")]
-        public ModuleType Type { get; set; }
+        public SioModuleType Type { get; set; }
 
         [JsonProperty("status")]
         public SioContentStatus Status { get; set; }
@@ -72,6 +73,27 @@ namespace Sio.Cms.Lib.ViewModels.SioModules
         #endregion Models
 
         #region Views
+        [JsonProperty("domain")]
+        public string Domain { get { return SioService.GetConfig<string>("Domain") ?? "/"; } }
+
+        [JsonProperty("imageUrl")]
+        public string ImageUrl
+        {
+            get
+            {
+                if (Image != null && (Image.IndexOf("http") == -1) && Image[0] != '/')
+                {
+                    return CommonHelper.GetFullPath(new string[] {
+                    Domain,  Image
+                });
+                }
+                else
+                {
+                    return Image;
+                }
+            }
+        }
+
         [JsonProperty("data")]
         public PaginationModel<SioModuleDatas.ReadViewModel> Data { get; set; } = new PaginationModel<SioModuleDatas.ReadViewModel>();
 
@@ -87,7 +109,7 @@ namespace Sio.Cms.Lib.ViewModels.SioModules
         {
             get
             {
-                return SioEnums.EnumTemplateFolder.Articles.ToString();
+                return SioEnums.EnumTemplateFolder.Modules.ToString();
             }
         }
         [JsonProperty("view")]
@@ -161,7 +183,7 @@ namespace Sio.Cms.Lib.ViewModels.SioModules
                 Newtonsoft.Json.JsonConvert.SerializeObject(Columns.OrderBy(c => c.Priority).Where(
                     c => !string.IsNullOrEmpty(c.Name)))) : new JArray();
             Fields = arrField.ToString(Newtonsoft.Json.Formatting.None);
-
+            if (!string.IsNullOrEmpty(Image) && Image[0] == '/') { Image = Image.Substring(1); }            
             return base.ParseModel(_context, _transaction);
         }
 
@@ -191,18 +213,12 @@ namespace Sio.Cms.Lib.ViewModels.SioModules
             }
             this.Templates = this.Templates ?? SioTemplates.UpdateViewModel.Repository.GetModelListBy(
                 t => t.Theme.Name == ActivedTheme && t.FolderType == this.TemplateFolderType).Data;
-            int themeId = SioService.GetConfig<int>(SioConstants.ConfigurationKeyword.ThemeId, Specificulture);
-            View = SioTemplates.UpdateViewModel.GetTemplateByPath(Template, Specificulture, SioEnums.EnumTemplateFolder.Modules, _context, _transaction);
-            if (this.View == null)
-            {
-                this.View = SioTemplates.UpdateViewModel.GetDefault(EnumTemplateFolder.Modules, Specificulture);
-            }
+            this.View = SioTemplates.UpdateViewModel.GetTemplateByPath(Template, Specificulture, SioEnums.EnumTemplateFolder.Modules, _context, _transaction);
             this.Template = CommonHelper.GetFullPath(new string[]
                {
                     this.View?.FileFolder
                     , this.View?.FileName
                });
-
         }
 
         #region Async
@@ -269,7 +285,7 @@ namespace Sio.Cms.Lib.ViewModels.SioModules
             }
             return result;
         }
-        public void LoadData(int? articleId = null, int? categoryId = null
+        public void LoadData(int? articleId = null, int? productId= null, int? categoryId = null
             , int? pageSize = null, int? pageIndex = 0
             , SioCmsContext _context = null, IDbContextTransaction _transaction = null)
         {
@@ -277,14 +293,14 @@ namespace Sio.Cms.Lib.ViewModels.SioModules
 
             switch (Type)
             {
-                case ModuleType.Root:
+                case SioModuleType.Content:
                     getDataResult = SioModuleDatas.ReadViewModel.Repository
                        .GetModelListBy(m => m.ModuleId == Id && m.Specificulture == Specificulture
                        , "Priority", 0, pageSize, pageIndex
                        , _context, _transaction);
                     break;
 
-                case ModuleType.SubPage:
+                case SioModuleType.SubPage:
                     getDataResult = SioModuleDatas.ReadViewModel.Repository
                        .GetModelListBy(m => m.ModuleId == Id && m.Specificulture == Specificulture
                        && (m.CategoryId == categoryId)
@@ -292,10 +308,17 @@ namespace Sio.Cms.Lib.ViewModels.SioModules
                        , _context, _transaction);
                     break;
 
-                case ModuleType.SubArticle:
+                case SioModuleType.SubArticle:
                     getDataResult = SioModuleDatas.ReadViewModel.Repository
                        .GetModelListBy(m => m.ModuleId == Id && m.Specificulture == Specificulture
                        && (m.ArticleId == articleId)
+                       , "Priority", 0, pageSize, pageIndex
+                       , _context, _transaction);
+                    break;
+                case SioModuleType.SubProduct:
+                    getDataResult = SioModuleDatas.ReadViewModel.Repository
+                       .GetModelListBy(m => m.ModuleId == Id && m.Specificulture == Specificulture
+                       && (m.ProductId == productId)
                        , "Priority", 0, pageSize, pageIndex
                        , _context, _transaction);
                     break;

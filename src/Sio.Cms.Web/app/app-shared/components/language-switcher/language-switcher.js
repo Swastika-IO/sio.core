@@ -1,4 +1,4 @@
-﻿(function (angular) {
+(function (angular) {
     app.component('languageSwitcher', {
         templateUrl: '/app/app-shared/components/language-switcher/language-switcher.html',
         controller: ['$rootScope', '$location', 'CommonService', 'TranslatorService', function ($rootScope, $location, commonService, translatorService) {

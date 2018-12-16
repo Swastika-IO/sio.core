@@ -1,4 +1,4 @@
-﻿'use strict';
+'use strict';
 app.factory('Step1Services', ['$http', 'CommonService', function ($http, commonService) {
 
     //var serviceBase = 'http://ngauthenticationapi.azurewebsites.net/';

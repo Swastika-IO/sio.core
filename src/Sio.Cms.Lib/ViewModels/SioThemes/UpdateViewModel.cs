@@ -20,8 +20,6 @@ namespace Sio.Cms.Lib.ViewModels.SioThemes
     public class UpdateViewModel
       : ViewModelBase<SioCmsContext, SioTheme, UpdateViewModel>
     {
-        public const int templatePageSize = 10;
-
         #region Properties
 
         #region Models
@@ -31,6 +29,9 @@ namespace Sio.Cms.Lib.ViewModels.SioThemes
 
         [JsonProperty("name")]
         public string Name { get; set; }
+
+        [JsonProperty("image")]
+        public string Image { get; set; }
 
         [JsonProperty("createdBy")]
         public string CreatedBy { get; set; }
@@ -43,6 +44,26 @@ namespace Sio.Cms.Lib.ViewModels.SioThemes
         #endregion Models
 
         #region Views
+        [JsonProperty("domain")]
+        public string Domain { get { return SioService.GetConfig<string>("Domain") ?? "/"; } }
+
+        [JsonProperty("imageUrl")]
+        public string ImageUrl
+        {
+            get
+            {
+                if (Image != null && (Image.IndexOf("http") == -1) && Image[0] != '/')
+                {
+                    return CommonHelper.GetFullPath(new string[] {
+                    Domain,  Image
+                });
+                }
+                else
+                {
+                    return Image;
+                }
+            }
+        }
 
         [JsonProperty("isActived")]
         public bool IsActived { get; set; }
@@ -61,7 +82,7 @@ namespace Sio.Cms.Lib.ViewModels.SioThemes
                 return CommonHelper.GetFullPath(new string[] {
                     SioConstants.Folder.FileFolder,
                     SioConstants.Folder.TemplatesAssetFolder,
-                    Name });
+                    SeoHelper.GetSEOString($"{SioService.GetConfig<string>("SiteName")}-{Name}") });
             }
         }
 
@@ -70,7 +91,10 @@ namespace Sio.Cms.Lib.ViewModels.SioThemes
         {
             get
             {
-                return CommonHelper.GetFullPath(new string[] { SioConstants.Folder.TemplatesFolder, Name });
+                return CommonHelper.GetFullPath(new string[] {
+                    SioConstants.Folder.TemplatesFolder,
+                    SeoHelper.GetSEOString($"{SioService.GetConfig<string>("SiteName")}-{Name}")
+                });
             }
         }
 
@@ -151,12 +175,15 @@ namespace Sio.Cms.Lib.ViewModels.SioThemes
                 }
 
             }
-            if (Id == 0)
+            if (Id == 0 && (TemplateAsset.Content == null && TemplateAsset.FileStream == null))
             {
-                string defaultFolder = CommonHelper.GetFullPath(new string[] { SioConstants.Folder.TemplatesFolder, Name == "Default" ? "Default" 
-                    : SioService.GetConfig<string>(SioConstants.ConfigurationKeyword.DefaultTemplateFolder) });
+
+                string defaultFolder = CommonHelper.GetFullPath(new string[] {
+                    SioConstants.Folder.TemplatesFolder,
+                    SioService.GetConfig<string>(SioConstants.ConfigurationKeyword.DefaultTemplateFolder) });
                 bool copyResult = FileRepository.Instance.CopyDirectory(defaultFolder, TemplateFolder);
-                var files = copyResult ? FileRepository.Instance.GetFilesWithContent(TemplateFolder) : new List<FileViewModel>();
+
+                var files = FileRepository.Instance.GetFilesWithContent(TemplateFolder);
                 //TODO: Create default asset
                 foreach (var file in files)
                 {
@@ -173,8 +200,8 @@ namespace Sio.Cms.Lib.ViewModels.SioThemes
                             ThemeName = Model.Name,
                             FolderType = file.FolderName,
                             ModifiedBy = CreatedBy
-                        });
-                    var saveResult = await template.SaveModelAsync(true, _context, _transaction);
+                        }, _context, _transaction);
+                    var saveResult = template.SaveModel(true, _context, _transaction);
                     result.IsSucceed = result.IsSucceed && saveResult.IsSucceed;
                     if (!saveResult.IsSucceed)
                     {
@@ -304,12 +331,15 @@ namespace Sio.Cms.Lib.ViewModels.SioThemes
             }
 
             // Create default template if create new without import template assets
-            if (result.IsSucceed && Id == 0 && TemplateAsset.Content == null)
+            if (Id == 0 && (TemplateAsset.Content == null && TemplateAsset.FileStream == null))
             {
-                string defaultFolder = CommonHelper.GetFullPath(new string[] { SioConstants.Folder.TemplatesFolder, Name == "Default" ? "Default" :
+
+                string defaultFolder = CommonHelper.GetFullPath(new string[] {
+                    SioConstants.Folder.TemplatesFolder,
+                    Name == "Default"? "Default":
                     SioService.GetConfig<string>(SioConstants.ConfigurationKeyword.DefaultTemplateFolder) });
                 bool copyResult = FileRepository.Instance.CopyDirectory(defaultFolder, TemplateFolder);
-                var files = copyResult ? FileRepository.Instance.GetFilesWithContent(TemplateFolder) : new List<FileViewModel>();
+                var files = FileRepository.Instance.GetFilesWithContent(TemplateFolder);
                 //TODO: Create default asset
                 foreach (var file in files)
                 {
@@ -466,7 +496,7 @@ namespace Sio.Cms.Lib.ViewModels.SioThemes
             {
                 FileRepository.Instance.UnZipFile($"{TemplateAsset.Filename}{TemplateAsset.Extension}", TemplateAsset.FileFolder);
                 FileRepository.Instance.CopyWebDirectory($"{TemplateAsset.FileFolder}/Assets", AssetFolder);
-                FileRepository.Instance.CopyWebDirectory($"{TemplateAsset.FileFolder}/Templates", TemplateFolder);
+                FileRepository.Instance.CopyDirectory($"{SioConstants.Folder.WebRootPath}/{TemplateAsset.FileFolder}/Templates", TemplateFolder);
                 FileRepository.Instance.DeleteWebFolder(TemplateAsset.FileFolder);
 
                 // Save template files to db                

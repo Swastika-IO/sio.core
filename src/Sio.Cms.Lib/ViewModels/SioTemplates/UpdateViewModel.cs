@@ -140,6 +140,21 @@ namespace Sio.Cms.Lib.ViewModels.SioTemplates
             }
         }
 
+        public override void Validate(SioCmsContext _context, IDbContextTransaction _transaction)
+        {
+            base.Validate(_context, _transaction);
+            if (IsValid)
+            {
+                if (Id == 0)
+                {
+                    if (_context.SioTemplate.Any(t => t.FileName == FileName && t.ThemeId == ThemeId))
+                    {
+                        FileName = $"{FileName}_1";
+                    }
+                }
+            }
+        }
+
         public override SioTemplate ParseModel(SioCmsContext _context = null, IDbContextTransaction _transaction = null)
         {
             if (Id == 0)

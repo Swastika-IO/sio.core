@@ -1,4 +1,4 @@
-﻿
+
 modules.component('fbSend', {
     templateUrl: '/app/app-client/components/fb-send/fb-send.html',
     controller: ['$location', function ($location) {

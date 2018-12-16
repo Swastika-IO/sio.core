@@ -63,6 +63,9 @@ namespace Sio.Cms.Lib.ViewModels.SioPages
         [JsonProperty("image")]
         public string Image { get; set; }
 
+        [JsonProperty("thumbnail")]
+        public string Thumbnail { get; set; }
+
         [JsonProperty("seoName")]
         public string SeoName { get; set; }
 
@@ -113,7 +116,7 @@ namespace Sio.Cms.Lib.ViewModels.SioPages
         {
             get
             {
-                if (Image != null && (Image.IndexOf("http") == -1 && Image[0] != '/'))
+                if (Image != null && (Image.IndexOf("http") == -1) && Image[0] != '/')
                 {
                     return CommonHelper.GetFullPath(new string[] {
                     Domain,  Image
@@ -125,7 +128,23 @@ namespace Sio.Cms.Lib.ViewModels.SioPages
                 }
             }
         }
-
+        [JsonProperty("thumbnailUrl")]
+        public string ThumbnailUrl
+        {
+            get
+            {
+                if (Thumbnail != null && Thumbnail.IndexOf("http") == -1 && Thumbnail[0] != '/')
+                {
+                    return CommonHelper.GetFullPath(new string[] {
+                    Domain,  Thumbnail
+                });
+                }
+                else
+                {
+                    return ImageUrl;
+                }
+            }
+        }
         [JsonProperty("childs")]
         public List<ReadListItemViewModel> Childs { get; set; }
 

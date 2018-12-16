@@ -1,4 +1,4 @@
-﻿'use trick';
+'use trick';
 modules.directive('paneV', function () {
     return {
         require: '^tabs-v',

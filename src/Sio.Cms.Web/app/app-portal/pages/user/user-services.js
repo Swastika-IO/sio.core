@@ -1,4 +1,4 @@
-﻿'use strict';
+'use strict';
 app.factory('UserServices', ['$http', 'CommonService', 'ngAppSettings'
     , function ($http, commonService, ngAuthSettings) {
 

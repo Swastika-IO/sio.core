@@ -26,7 +26,7 @@ namespace Sio.Cms.Lib.ViewModels.SioModuleArticles
         [JsonProperty("articleId")]
         public int ArticleId { get; set; }
 
-        [JsonProperty("ModuleId")]
+        [JsonProperty("moduleId")]
         public int ModuleId { get; set; }
 
         [JsonProperty("isActived")]
@@ -38,9 +38,9 @@ namespace Sio.Cms.Lib.ViewModels.SioModuleArticles
         [JsonProperty("description")]
         public string Description { get; set; }
         [JsonProperty("status")]
-        public SioContentStatus Status { get; set; }
+        public SioEnums.SioContentStatus Status { get; set; }
         #region Views
-
+        [JsonProperty("article")]
         public SioArticles.ReadViewModel Article { get; set; }
 
         #endregion Views

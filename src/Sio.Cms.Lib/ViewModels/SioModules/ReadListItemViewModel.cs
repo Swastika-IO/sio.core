@@ -39,21 +39,37 @@ namespace Sio.Cms.Lib.ViewModels.SioModules
 
         [JsonProperty("modifiedBy")]
         public string ModifiedBy { get; set; }
-        [JsonIgnore]
-        public string Domain { get; set; }
 
-        [JsonProperty("imageUrl")]
-        public string ImageUrl { get; set; }
+        [JsonProperty("domain")]
+        public string Domain { get { return SioService.GetConfig<string>("Domain") ?? "/"; } }
 
         [JsonProperty("fields")]
         public string Fields { get; set; }
 
         [JsonProperty("type")]
-        public ModuleType Type { get; set; }
+        public SioModuleType Type { get; set; }
 
         [JsonProperty("status")]
         public SioContentStatus Status { get; set; }
         #endregion Models
+
+        [JsonProperty("imageUrl")]
+        public string ImageUrl
+        {
+            get
+            {
+                if (Image != null && (Image.IndexOf("http") == -1) && Image[0] != '/')
+                {
+                    return CommonHelper.GetFullPath(new string[] {
+                    Domain,  Image
+                });
+                }
+                else
+                {
+                    return Image;
+                }
+            }
+        }
 
         #endregion Properties
 
@@ -73,32 +89,11 @@ namespace Sio.Cms.Lib.ViewModels.SioModules
 
         public override void ExpandView(SioCmsContext _context = null, IDbContextTransaction _transaction = null)
         {
-            Domain = SioService.GetConfig<string>("Domain", Specificulture) ?? "/";
-            if (Image != null && (Image.IndexOf("http") == -1 && Image[0] != '/'))
-            {
-                ImageUrl = CommonHelper.GetFullPath(new string[] {
-                    Domain,  Image
-                });
-            }
-            else
-            {
-                ImageUrl = Image;
-            }
         }
 
         public override Task<bool> ExpandViewAsync(SioCmsContext _context = null, IDbContextTransaction _transaction = null)
         {
-            Domain = SioService.GetConfig<string>("Domain", Specificulture) ?? "/";
-            if (Image != null && (Image.IndexOf("http") == -1 && Image[0] != '/'))
-            {
-                ImageUrl = CommonHelper.GetFullPath(new string[] {
-                    Domain,  Image
-                });
-            }
-            else
-            {
-                ImageUrl = Image;
-            }
+           
             return base.ExpandViewAsync(_context, _transaction);
         }
 

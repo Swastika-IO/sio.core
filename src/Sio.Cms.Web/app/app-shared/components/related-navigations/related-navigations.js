@@ -1,4 +1,4 @@
-﻿
+
 modules.component('relatedNavs', {
     templateUrl: '/app/app-shared/components/related-navigations/related-navigations.html',
     controller: ['$rootScope', '$scope', 'ngAppSettings', '$q', function ($rootScope, $scope, ngAppSettings, $q) {

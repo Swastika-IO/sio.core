@@ -1,4 +1,4 @@
-﻿'use strict';
+'use strict';
 app.controller('DashboardController', ['$scope', '$rootScope', 'ngAppSettings', '$timeout', '$location', 'DashboardServices', function ($scope, $rootScope, ngAppSettings, $timeout, $location, dashboardServices) {
     $scope.pageClass = 'page-dashboard';
     $('.side-nav li').removeClass('active');

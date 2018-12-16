@@ -1,4 +1,4 @@
-﻿'use strict';
+'use strict';
 app.controller('AppSettingsController', 
     ['$scope', '$rootScope', 'ngAppSettings', '$routeParams', '$timeout', '$location', 
 'AuthService','CommonService', 'AppSettingsServices',

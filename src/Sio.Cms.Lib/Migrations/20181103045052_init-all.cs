@@ -9,7 +9,7 @@ namespace Sio.Cms.Lib.Migrations
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.CreateTable(
-                name: "Sio_cms_user",
+                name: "sio_cms_user",
                 columns: table => new
                 {
                     Id = table.Column<string>(nullable: false),
@@ -28,11 +28,11 @@ namespace Sio.Cms.Lib.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Sio_cms_user", x => x.Id);
+                    table.PrimaryKey("PK_sio_cms_user", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
-                name: "Sio_copy",
+                name: "sio_copy",
                 columns: table => new
                 {
                     Culture = table.Column<string>(maxLength: 10, nullable: false),
@@ -44,11 +44,11 @@ namespace Sio.Cms.Lib.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Sio_copy", x => new { x.Culture, x.Keyword });
+                    table.PrimaryKey("PK_sio_copy", x => new { x.Culture, x.Keyword });
                 });
 
             migrationBuilder.CreateTable(
-                name: "Sio_culture",
+                name: "sio_culture",
                 columns: table => new
                 {
                     Id = table.Column<int>(nullable: false)
@@ -66,12 +66,12 @@ namespace Sio.Cms.Lib.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Sio_culture", x => x.Id);
-                    table.UniqueConstraint("AK_Sio_culture_Specificulture", x => x.Specificulture);
+                    table.PrimaryKey("PK_sio_culture", x => x.Id);
+                    table.UniqueConstraint("AK_sio_culture_Specificulture", x => x.Specificulture);
                 });
 
             migrationBuilder.CreateTable(
-                name: "Sio_customer",
+                name: "sio_customer",
                 columns: table => new
                 {
                     Id = table.Column<int>(nullable: false),
@@ -94,11 +94,11 @@ namespace Sio.Cms.Lib.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Sio_customer", x => x.Id);
+                    table.PrimaryKey("PK_sio_customer", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
-                name: "Sio_media",
+                name: "sio_media",
                 columns: table => new
                 {
                     Id = table.Column<int>(nullable: false),
@@ -120,11 +120,11 @@ namespace Sio.Cms.Lib.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Sio_media", x => new { x.Id, x.Specificulture });
+                    table.PrimaryKey("PK_sio_media", x => new { x.Id, x.Specificulture });
                 });
 
             migrationBuilder.CreateTable(
-                name: "Sio_parameter",
+                name: "sio_parameter",
                 columns: table => new
                 {
                     Name = table.Column<string>(maxLength: 256, nullable: false),
@@ -135,11 +135,11 @@ namespace Sio.Cms.Lib.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Sio_parameter", x => x.Name);
+                    table.PrimaryKey("PK_sio_parameter", x => x.Name);
                 });
 
             migrationBuilder.CreateTable(
-                name: "Sio_portal_page",
+                name: "sio_portal_page",
                 columns: table => new
                 {
                     Id = table.Column<int>(nullable: false),
@@ -156,11 +156,11 @@ namespace Sio.Cms.Lib.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Sio_portal_page", x => x.Id);
+                    table.PrimaryKey("PK_sio_portal_page", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
-                name: "Sio_position",
+                name: "sio_position",
                 columns: table => new
                 {
                     Id = table.Column<int>(nullable: false)
@@ -171,11 +171,11 @@ namespace Sio.Cms.Lib.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Sio_position", x => x.Id);
+                    table.PrimaryKey("PK_sio_position", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
-                name: "Sio_set_attribute",
+                name: "sio_set_attribute",
                 columns: table => new
                 {
                     Id = table.Column<int>(nullable: false),
@@ -190,11 +190,11 @@ namespace Sio.Cms.Lib.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Sio_set_attribute", x => x.Id);
+                    table.PrimaryKey("PK_sio_set_attribute", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
-                name: "Sio_theme",
+                name: "sio_theme",
                 columns: table => new
                 {
                     Id = table.Column<int>(nullable: false)
@@ -209,11 +209,11 @@ namespace Sio.Cms.Lib.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Sio_theme", x => x.Id);
+                    table.PrimaryKey("PK_sio_theme", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
-                name: "Sio_configuration",
+                name: "sio_configuration",
                 columns: table => new
                 {
                     Keyword = table.Column<string>(maxLength: 250, nullable: false),
@@ -229,17 +229,17 @@ namespace Sio.Cms.Lib.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Sio_configuration", x => new { x.Keyword, x.Specificulture });
+                    table.PrimaryKey("PK_sio_configuration", x => new { x.Keyword, x.Specificulture });
                     table.ForeignKey(
                         name: "FK_Sio_Configuration_Sio_Culture",
                         column: x => x.Specificulture,
-                        principalTable: "Sio_culture",
+                        principalTable: "sio_culture",
                         principalColumn: "Specificulture",
                         onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
-                name: "Sio_language",
+                name: "sio_language",
                 columns: table => new
                 {
                     Keyword = table.Column<string>(maxLength: 250, nullable: false),
@@ -256,17 +256,17 @@ namespace Sio.Cms.Lib.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Sio_language", x => new { x.Keyword, x.Specificulture });
+                    table.PrimaryKey("PK_sio_language", x => new { x.Keyword, x.Specificulture });
                     table.ForeignKey(
                         name: "FK_Sio_Language_Sio_Culture",
                         column: x => x.Specificulture,
-                        principalTable: "Sio_culture",
+                        principalTable: "sio_culture",
                         principalColumn: "Specificulture",
                         onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
-                name: "Sio_module",
+                name: "sio_module",
                 columns: table => new
                 {
                     Id = table.Column<int>(nullable: false),
@@ -288,17 +288,17 @@ namespace Sio.Cms.Lib.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Sio_module", x => new { x.Id, x.Specificulture });
+                    table.PrimaryKey("PK_sio_module", x => new { x.Id, x.Specificulture });
                     table.ForeignKey(
                         name: "FK_Sio_Module_Sio_Culture",
                         column: x => x.Specificulture,
-                        principalTable: "Sio_culture",
+                        principalTable: "sio_culture",
                         principalColumn: "Specificulture",
                         onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
-                name: "Sio_url_alias",
+                name: "sio_url_alias",
                 columns: table => new
                 {
                     Id = table.Column<int>(nullable: false),
@@ -313,17 +313,17 @@ namespace Sio.Cms.Lib.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Sio_url_alias", x => new { x.Id, x.Specificulture });
+                    table.PrimaryKey("PK_sio_url_alias", x => new { x.Id, x.Specificulture });
                     table.ForeignKey(
                         name: "FK_Sio_Url_Alias_Sio_Culture",
                         column: x => x.Specificulture,
-                        principalTable: "Sio_culture",
+                        principalTable: "sio_culture",
                         principalColumn: "Specificulture",
                         onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
-                name: "Sio_order",
+                name: "sio_order",
                 columns: table => new
                 {
                     Id = table.Column<int>(nullable: false),
@@ -337,17 +337,17 @@ namespace Sio.Cms.Lib.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Sio_order", x => new { x.Id, x.Specificulture });
+                    table.PrimaryKey("PK_sio_order", x => new { x.Id, x.Specificulture });
                     table.ForeignKey(
-                        name: "FK_Sio_order_Sio_cms_customer",
+                        name: "FK_sio_order_sio_cms_customer",
                         column: x => x.CustomerId,
-                        principalTable: "Sio_customer",
+                        principalTable: "sio_customer",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Restrict);
                 });
 
             migrationBuilder.CreateTable(
-                name: "Sio_portal_page_navigation",
+                name: "sio_portal_page_navigation",
                 columns: table => new
                 {
                     Id = table.Column<int>(nullable: false),
@@ -359,23 +359,23 @@ namespace Sio.Cms.Lib.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Sio_portal_page_navigation", x => new { x.Id, x.ParentId });
+                    table.PrimaryKey("PK_sio_portal_page_navigation", x => new { x.Id, x.ParentId });
                     table.ForeignKey(
-                        name: "FK_Sio_portal_page_navigation_Sio_portal_page",
+                        name: "FK_sio_portal_page_navigation_sio_portal_page",
                         column: x => x.Id,
-                        principalTable: "Sio_portal_page",
+                        principalTable: "sio_portal_page",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Restrict);
                     table.ForeignKey(
-                        name: "FK_Sio_portal_page_navigation_Sio_portal_page1",
+                        name: "FK_sio_portal_page_navigation_sio_portal_page1",
                         column: x => x.ParentId,
-                        principalTable: "Sio_portal_page",
+                        principalTable: "sio_portal_page",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Restrict);
                 });
 
             migrationBuilder.CreateTable(
-                name: "Sio_portal_page_role",
+                name: "sio_portal_page_role",
                 columns: table => new
                 {
                     CreatedBy = table.Column<string>(maxLength: 50, nullable: false),
@@ -387,17 +387,17 @@ namespace Sio.Cms.Lib.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Sio_portal_page_role", x => new { x.RoleId, x.PageId });
+                    table.PrimaryKey("PK_sio_portal_page_role", x => new { x.RoleId, x.PageId });
                     table.ForeignKey(
-                        name: "FK_Sio_portal_page_role_Sio_portal_page",
+                        name: "FK_sio_portal_page_role_sio_portal_page",
                         column: x => x.PageId,
-                        principalTable: "Sio_portal_page",
+                        principalTable: "sio_portal_page",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
-                name: "Sio_portal_page_position",
+                name: "sio_portal_page_position",
                 columns: table => new
                 {
                     PositionId = table.Column<int>(nullable: false),
@@ -408,23 +408,23 @@ namespace Sio.Cms.Lib.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Sio_portal_page_position", x => new { x.PositionId, x.PortalPageId });
+                    table.PrimaryKey("PK_sio_portal_page_position", x => new { x.PositionId, x.PortalPageId });
                     table.ForeignKey(
                         name: "FK_Sio_PortalPage_Position_Sio_PortalPage",
                         column: x => x.PortalPageId,
-                        principalTable: "Sio_portal_page",
+                        principalTable: "sio_portal_page",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Restrict);
                     table.ForeignKey(
                         name: "FK_Sio_PortalPage_Position_Sio_Position",
                         column: x => x.PositionId,
-                        principalTable: "Sio_position",
+                        principalTable: "sio_position",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
-                name: "Sio_article",
+                name: "sio_article",
                 columns: table => new
                 {
                     Id = table.Column<int>(nullable: false),
@@ -456,23 +456,23 @@ namespace Sio.Cms.Lib.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Sio_article", x => new { x.Id, x.Specificulture });
+                    table.PrimaryKey("PK_sio_article", x => new { x.Id, x.Specificulture });
                     table.ForeignKey(
-                        name: "FK_Sio_article_Sio_set_attribute",
+                        name: "FK_sio_article_sio_set_attribute",
                         column: x => x.SetAttributeId,
-                        principalTable: "Sio_set_attribute",
+                        principalTable: "sio_set_attribute",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Restrict);
                     table.ForeignKey(
                         name: "FK_Sio_Article_Sio_Culture",
                         column: x => x.Specificulture,
-                        principalTable: "Sio_culture",
+                        principalTable: "sio_culture",
                         principalColumn: "Specificulture",
                         onDelete: ReferentialAction.Restrict);
                 });
 
             migrationBuilder.CreateTable(
-                name: "Sio_page",
+                name: "sio_page",
                 columns: table => new
                 {
                     Id = table.Column<int>(nullable: false),
@@ -506,23 +506,23 @@ namespace Sio.Cms.Lib.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Sio_page", x => new { x.Id, x.Specificulture });
+                    table.PrimaryKey("PK_sio_page", x => new { x.Id, x.Specificulture });
                     table.ForeignKey(
-                        name: "FK_Sio_page_Sio_set_attribute",
+                        name: "FK_sio_page_sio_set_attribute",
                         column: x => x.SetAttributeId,
-                        principalTable: "Sio_set_attribute",
+                        principalTable: "sio_set_attribute",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Restrict);
                     table.ForeignKey(
                         name: "FK_Sio_Page_Sio_Culture",
                         column: x => x.Specificulture,
-                        principalTable: "Sio_culture",
+                        principalTable: "sio_culture",
                         principalColumn: "Specificulture",
                         onDelete: ReferentialAction.Restrict);
                 });
 
             migrationBuilder.CreateTable(
-                name: "Sio_product",
+                name: "sio_product",
                 columns: table => new
                 {
                     Id = table.Column<int>(nullable: false),
@@ -565,23 +565,23 @@ namespace Sio.Cms.Lib.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Sio_product", x => new { x.Id, x.Specificulture });
+                    table.PrimaryKey("PK_sio_product", x => new { x.Id, x.Specificulture });
                     table.ForeignKey(
-                        name: "FK_Sio_product_Sio_set_attribute",
+                        name: "FK_sio_product_sio_set_attribute",
                         column: x => x.SetAttributeId,
-                        principalTable: "Sio_set_attribute",
+                        principalTable: "sio_set_attribute",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Restrict);
                     table.ForeignKey(
                         name: "FK_Sio_Product_Sio_Culture",
                         column: x => x.Specificulture,
-                        principalTable: "Sio_culture",
+                        principalTable: "sio_culture",
                         principalColumn: "Specificulture",
                         onDelete: ReferentialAction.Restrict);
                 });
 
             migrationBuilder.CreateTable(
-                name: "Sio_file",
+                name: "sio_file",
                 columns: table => new
                 {
                     Id = table.Column<int>(nullable: false)
@@ -601,17 +601,17 @@ namespace Sio.Cms.Lib.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Sio_file", x => x.Id);
+                    table.PrimaryKey("PK_sio_file", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_Sio_file_Sio_template",
+                        name: "FK_sio_file_sio_template",
                         column: x => x.ThemeId,
-                        principalTable: "Sio_theme",
+                        principalTable: "sio_theme",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Restrict);
                 });
 
             migrationBuilder.CreateTable(
-                name: "Sio_template",
+                name: "sio_template",
                 columns: table => new
                 {
                     Id = table.Column<int>(nullable: false)
@@ -635,17 +635,17 @@ namespace Sio.Cms.Lib.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Sio_template", x => x.Id);
+                    table.PrimaryKey("PK_sio_template", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_Sio_template_Sio_theme",
+                        name: "FK_sio_template_sio_theme",
                         column: x => x.ThemeId,
-                        principalTable: "Sio_theme",
+                        principalTable: "sio_theme",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Restrict);
                 });
 
             migrationBuilder.CreateTable(
-                name: "Sio_article_media",
+                name: "sio_article_media",
                 columns: table => new
                 {
                     MediaId = table.Column<int>(nullable: false),
@@ -659,23 +659,23 @@ namespace Sio.Cms.Lib.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Sio_article_media", x => new { x.MediaId, x.ArticleId, x.Specificulture });
+                    table.PrimaryKey("PK_sio_article_media", x => new { x.MediaId, x.ArticleId, x.Specificulture });
                     table.ForeignKey(
-                        name: "FK_Sio_article_media_Sio_article",
+                        name: "FK_sio_article_media_sio_article",
                         columns: x => new { x.ArticleId, x.Specificulture },
-                        principalTable: "Sio_article",
+                        principalTable: "sio_article",
                         principalColumns: new[] { "Id", "Specificulture" },
                         onDelete: ReferentialAction.Restrict);
                     table.ForeignKey(
-                        name: "FK_Sio_article_media_Sio_media",
+                        name: "FK_sio_article_media_sio_media",
                         columns: x => new { x.MediaId, x.Specificulture },
-                        principalTable: "Sio_media",
+                        principalTable: "sio_media",
                         principalColumns: new[] { "Id", "Specificulture" },
                         onDelete: ReferentialAction.Restrict);
                 });
 
             migrationBuilder.CreateTable(
-                name: "Sio_article_module",
+                name: "sio_article_module",
                 columns: table => new
                 {
                     ModuleId = table.Column<int>(nullable: false),
@@ -689,23 +689,23 @@ namespace Sio.Cms.Lib.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Sio_article_module", x => new { x.ModuleId, x.ArticleId, x.Specificulture });
+                    table.PrimaryKey("PK_sio_article_module", x => new { x.ModuleId, x.ArticleId, x.Specificulture });
                     table.ForeignKey(
                         name: "FK_Sio_Article_Module_Sio_Article",
                         columns: x => new { x.ArticleId, x.Specificulture },
-                        principalTable: "Sio_article",
+                        principalTable: "sio_article",
                         principalColumns: new[] { "Id", "Specificulture" },
                         onDelete: ReferentialAction.Restrict);
                     table.ForeignKey(
                         name: "FK_Sio_Article_Module_Sio_Module1",
                         columns: x => new { x.ModuleId, x.Specificulture },
-                        principalTable: "Sio_module",
+                        principalTable: "sio_module",
                         principalColumns: new[] { "Id", "Specificulture" },
                         onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
-                name: "Sio_module_article",
+                name: "sio_module_article",
                 columns: table => new
                 {
                     ArticleId = table.Column<int>(nullable: false),
@@ -718,23 +718,23 @@ namespace Sio.Cms.Lib.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Sio_module_article", x => new { x.ArticleId, x.ModuleId, x.Specificulture });
+                    table.PrimaryKey("PK_sio_module_article", x => new { x.ArticleId, x.ModuleId, x.Specificulture });
                     table.ForeignKey(
                         name: "FK_Sio_Module_Article_Sio_Article",
                         columns: x => new { x.ArticleId, x.Specificulture },
-                        principalTable: "Sio_article",
+                        principalTable: "sio_article",
                         principalColumns: new[] { "Id", "Specificulture" },
                         onDelete: ReferentialAction.Restrict);
                     table.ForeignKey(
                         name: "FK_Sio_Module_Article_Sio_Module",
                         columns: x => new { x.ModuleId, x.Specificulture },
-                        principalTable: "Sio_module",
+                        principalTable: "sio_module",
                         principalColumns: new[] { "Id", "Specificulture" },
                         onDelete: ReferentialAction.Restrict);
                 });
 
             migrationBuilder.CreateTable(
-                name: "Sio_related_article",
+                name: "sio_related_article",
                 columns: table => new
                 {
                     SourceId = table.Column<int>(nullable: false),
@@ -748,23 +748,23 @@ namespace Sio.Cms.Lib.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Sio_related_article", x => new { x.SourceId, x.DestinationId, x.Specificulture });
+                    table.PrimaryKey("PK_sio_related_article", x => new { x.SourceId, x.DestinationId, x.Specificulture });
                     table.ForeignKey(
-                        name: "FK_Sio_related_article_Sio_article1",
+                        name: "FK_sio_related_article_sio_article1",
                         columns: x => new { x.DestinationId, x.Specificulture },
-                        principalTable: "Sio_article",
+                        principalTable: "sio_article",
                         principalColumns: new[] { "Id", "Specificulture" },
                         onDelete: ReferentialAction.Restrict);
                     table.ForeignKey(
-                        name: "FK_Sio_related_article_Sio_article",
+                        name: "FK_sio_related_article_sio_article",
                         columns: x => new { x.SourceId, x.Specificulture },
-                        principalTable: "Sio_article",
+                        principalTable: "sio_article",
                         principalColumns: new[] { "Id", "Specificulture" },
                         onDelete: ReferentialAction.Restrict);
                 });
 
             migrationBuilder.CreateTable(
-                name: "Sio_page_article",
+                name: "sio_page_article",
                 columns: table => new
                 {
                     ArticleId = table.Column<int>(nullable: false),
@@ -772,28 +772,28 @@ namespace Sio.Cms.Lib.Migrations
                     Specificulture = table.Column<string>(maxLength: 10, nullable: false),
                     Description = table.Column<string>(maxLength: 250, nullable: true),
                     Image = table.Column<string>(maxLength: 250, nullable: true),
-                    Priority = table.Column<int>(nullable: true, defaultValueSql: "((0))"),
+                    Priority = table.Column<int>(nullable: false, defaultValueSql: "((0))"),
                     Status = table.Column<int>(nullable: false, defaultValueSql: "((1))")
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Sio_page_article", x => new { x.ArticleId, x.CategoryId, x.Specificulture });
+                    table.PrimaryKey("PK_sio_page_article", x => new { x.ArticleId, x.CategoryId, x.Specificulture });
                     table.ForeignKey(
                         name: "FK_Sio_Page_Article_Sio_Article",
                         columns: x => new { x.ArticleId, x.Specificulture },
-                        principalTable: "Sio_article",
+                        principalTable: "sio_article",
                         principalColumns: new[] { "Id", "Specificulture" },
                         onDelete: ReferentialAction.Restrict);
                     table.ForeignKey(
                         name: "FK_Sio_Page_Article_Sio_Page",
                         columns: x => new { x.CategoryId, x.Specificulture },
-                        principalTable: "Sio_page",
+                        principalTable: "sio_page",
                         principalColumns: new[] { "Id", "Specificulture" },
                         onDelete: ReferentialAction.Restrict);
                 });
 
             migrationBuilder.CreateTable(
-                name: "Sio_page_module",
+                name: "sio_page_module",
                 columns: table => new
                 {
                     ModuleId = table.Column<int>(nullable: false),
@@ -807,23 +807,23 @@ namespace Sio.Cms.Lib.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Sio_page_module", x => new { x.ModuleId, x.CategoryId, x.Specificulture });
+                    table.PrimaryKey("PK_sio_page_module", x => new { x.ModuleId, x.CategoryId, x.Specificulture });
                     table.ForeignKey(
                         name: "FK_Sio_Page_Module_Sio_Page",
                         columns: x => new { x.CategoryId, x.Specificulture },
-                        principalTable: "Sio_page",
+                        principalTable: "sio_page",
                         principalColumns: new[] { "Id", "Specificulture" },
                         onDelete: ReferentialAction.Restrict);
                     table.ForeignKey(
                         name: "FK_Sio_Menu_Module_Sio_Module1",
                         columns: x => new { x.ModuleId, x.Specificulture },
-                        principalTable: "Sio_module",
+                        principalTable: "sio_module",
                         principalColumns: new[] { "Id", "Specificulture" },
                         onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
-                name: "Sio_page_page",
+                name: "sio_page_page",
                 columns: table => new
                 {
                     Id = table.Column<int>(nullable: false),
@@ -836,23 +836,23 @@ namespace Sio.Cms.Lib.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Sio_page_page", x => new { x.Id, x.ParentId, x.Specificulture });
+                    table.PrimaryKey("PK_sio_page_page", x => new { x.Id, x.ParentId, x.Specificulture });
                     table.ForeignKey(
                         name: "FK_Sio_Page_Page_Sio_Page",
                         columns: x => new { x.Id, x.Specificulture },
-                        principalTable: "Sio_page",
+                        principalTable: "sio_page",
                         principalColumns: new[] { "Id", "Specificulture" },
                         onDelete: ReferentialAction.Restrict);
                     table.ForeignKey(
                         name: "FK_Sio_Page_Page_Sio_Page1",
                         columns: x => new { x.ParentId, x.Specificulture },
-                        principalTable: "Sio_page",
+                        principalTable: "sio_page",
                         principalColumns: new[] { "Id", "Specificulture" },
                         onDelete: ReferentialAction.Restrict);
                 });
 
             migrationBuilder.CreateTable(
-                name: "Sio_page_position",
+                name: "sio_page_position",
                 columns: table => new
                 {
                     PositionId = table.Column<int>(nullable: false),
@@ -864,23 +864,23 @@ namespace Sio.Cms.Lib.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Sio_page_position", x => new { x.PositionId, x.CategoryId, x.Specificulture });
+                    table.PrimaryKey("PK_sio_page_position", x => new { x.PositionId, x.CategoryId, x.Specificulture });
                     table.ForeignKey(
                         name: "FK_Sio_Page_Position_Sio_Position",
                         column: x => x.PositionId,
-                        principalTable: "Sio_position",
+                        principalTable: "sio_position",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
                         name: "FK_Sio_Page_Position_Sio_Page",
                         columns: x => new { x.CategoryId, x.Specificulture },
-                        principalTable: "Sio_page",
+                        principalTable: "sio_page",
                         principalColumns: new[] { "Id", "Specificulture" },
                         onDelete: ReferentialAction.Restrict);
                 });
 
             migrationBuilder.CreateTable(
-                name: "Sio_comment",
+                name: "sio_comment",
                 columns: table => new
                 {
                     Id = table.Column<Guid>(nullable: false),
@@ -904,29 +904,29 @@ namespace Sio.Cms.Lib.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Sio_comment", x => x.Id);
+                    table.PrimaryKey("PK_sio_comment", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_Sio_comment_Sio_article",
+                        name: "FK_sio_comment_sio_article",
                         columns: x => new { x.ArticleId, x.Specificulture },
-                        principalTable: "Sio_article",
+                        principalTable: "sio_article",
                         principalColumns: new[] { "Id", "Specificulture" },
                         onDelete: ReferentialAction.Restrict);
                     table.ForeignKey(
-                        name: "FK_Sio_comment_Sio_order",
+                        name: "FK_sio_comment_sio_order",
                         columns: x => new { x.OrderId, x.Specificulture },
-                        principalTable: "Sio_order",
+                        principalTable: "sio_order",
                         principalColumns: new[] { "Id", "Specificulture" },
                         onDelete: ReferentialAction.Restrict);
                     table.ForeignKey(
-                        name: "FK_Sio_comment_Sio_product",
+                        name: "FK_sio_comment_sio_product",
                         columns: x => new { x.ProductId, x.Specificulture },
-                        principalTable: "Sio_product",
+                        principalTable: "sio_product",
                         principalColumns: new[] { "Id", "Specificulture" },
                         onDelete: ReferentialAction.Restrict);
                 });
 
             migrationBuilder.CreateTable(
-                name: "Sio_module_product",
+                name: "sio_module_product",
                 columns: table => new
                 {
                     ProductId = table.Column<int>(nullable: false),
@@ -939,23 +939,23 @@ namespace Sio.Cms.Lib.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Sio_module_product", x => new { x.ProductId, x.ModuleId, x.Specificulture });
+                    table.PrimaryKey("PK_sio_module_product", x => new { x.ProductId, x.ModuleId, x.Specificulture });
                     table.ForeignKey(
                         name: "FK_Sio_Module_Product_Sio_Module",
                         columns: x => new { x.ModuleId, x.Specificulture },
-                        principalTable: "Sio_module",
+                        principalTable: "sio_module",
                         principalColumns: new[] { "Id", "Specificulture" },
                         onDelete: ReferentialAction.Restrict);
                     table.ForeignKey(
                         name: "FK_Sio_Module_Product_Sio_Product",
                         columns: x => new { x.ProductId, x.Specificulture },
-                        principalTable: "Sio_product",
+                        principalTable: "sio_product",
                         principalColumns: new[] { "Id", "Specificulture" },
                         onDelete: ReferentialAction.Restrict);
                 });
 
             migrationBuilder.CreateTable(
-                name: "Sio_order_item",
+                name: "sio_order_item",
                 columns: table => new
                 {
                     Id = table.Column<int>(nullable: false),
@@ -970,23 +970,23 @@ namespace Sio.Cms.Lib.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Sio_order_item", x => new { x.ProductId, x.OrderId, x.Specificulture });
+                    table.PrimaryKey("PK_sio_order_item", x => new { x.ProductId, x.OrderId, x.Specificulture });
                     table.ForeignKey(
                         name: "FK_Order_Item_Order",
                         columns: x => new { x.OrderId, x.Specificulture },
-                        principalTable: "Sio_order",
+                        principalTable: "sio_order",
                         principalColumns: new[] { "Id", "Specificulture" },
                         onDelete: ReferentialAction.Restrict);
                     table.ForeignKey(
                         name: "FK_Order_Item_Product",
                         columns: x => new { x.ProductId, x.Specificulture },
-                        principalTable: "Sio_product",
+                        principalTable: "sio_product",
                         principalColumns: new[] { "Id", "Specificulture" },
                         onDelete: ReferentialAction.Restrict);
                 });
 
             migrationBuilder.CreateTable(
-                name: "Sio_page_product",
+                name: "sio_page_product",
                 columns: table => new
                 {
                     ProductId = table.Column<int>(nullable: false),
@@ -999,23 +999,23 @@ namespace Sio.Cms.Lib.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Sio_page_product", x => new { x.ProductId, x.CategoryId, x.Specificulture });
+                    table.PrimaryKey("PK_sio_page_product", x => new { x.ProductId, x.CategoryId, x.Specificulture });
                     table.ForeignKey(
                         name: "FK_Sio_Page_Product_Sio_Page",
                         columns: x => new { x.CategoryId, x.Specificulture },
-                        principalTable: "Sio_page",
+                        principalTable: "sio_page",
                         principalColumns: new[] { "Id", "Specificulture" },
                         onDelete: ReferentialAction.Restrict);
                     table.ForeignKey(
                         name: "FK_Sio_Page_Product_Sio_Product",
                         columns: x => new { x.ProductId, x.Specificulture },
-                        principalTable: "Sio_product",
+                        principalTable: "sio_product",
                         principalColumns: new[] { "Id", "Specificulture" },
                         onDelete: ReferentialAction.Restrict);
                 });
 
             migrationBuilder.CreateTable(
-                name: "Sio_product_media",
+                name: "sio_product_media",
                 columns: table => new
                 {
                     MediaId = table.Column<int>(nullable: false),
@@ -1029,23 +1029,23 @@ namespace Sio.Cms.Lib.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Sio_product_media", x => new { x.MediaId, x.ProductId, x.Specificulture });
+                    table.PrimaryKey("PK_sio_product_media", x => new { x.MediaId, x.ProductId, x.Specificulture });
                     table.ForeignKey(
-                        name: "FK_Sio_product_media_Sio_media",
+                        name: "FK_sio_product_media_sio_media",
                         columns: x => new { x.MediaId, x.Specificulture },
-                        principalTable: "Sio_media",
+                        principalTable: "sio_media",
                         principalColumns: new[] { "Id", "Specificulture" },
                         onDelete: ReferentialAction.Restrict);
                     table.ForeignKey(
-                        name: "FK_Sio_product_media_Sio_product",
+                        name: "FK_sio_product_media_sio_product",
                         columns: x => new { x.ProductId, x.Specificulture },
-                        principalTable: "Sio_product",
+                        principalTable: "sio_product",
                         principalColumns: new[] { "Id", "Specificulture" },
                         onDelete: ReferentialAction.Restrict);
                 });
 
             migrationBuilder.CreateTable(
-                name: "Sio_product_module",
+                name: "sio_product_module",
                 columns: table => new
                 {
                     ModuleId = table.Column<int>(nullable: false),
@@ -1059,23 +1059,23 @@ namespace Sio.Cms.Lib.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Sio_product_module", x => new { x.ModuleId, x.ProductId, x.Specificulture });
+                    table.PrimaryKey("PK_sio_product_module", x => new { x.ModuleId, x.ProductId, x.Specificulture });
                     table.ForeignKey(
                         name: "FK_Sio_Product_Module_Sio_Module1",
                         columns: x => new { x.ModuleId, x.Specificulture },
-                        principalTable: "Sio_module",
+                        principalTable: "sio_module",
                         principalColumns: new[] { "Id", "Specificulture" },
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
                         name: "FK_Sio_Product_Module_Sio_Product",
                         columns: x => new { x.ProductId, x.Specificulture },
-                        principalTable: "Sio_product",
+                        principalTable: "sio_product",
                         principalColumns: new[] { "Id", "Specificulture" },
                         onDelete: ReferentialAction.Restrict);
                 });
 
             migrationBuilder.CreateTable(
-                name: "Sio_related_product",
+                name: "sio_related_product",
                 columns: table => new
                 {
                     SourceId = table.Column<int>(nullable: false),
@@ -1089,23 +1089,23 @@ namespace Sio.Cms.Lib.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Sio_related_product", x => new { x.SourceId, x.DestinationId, x.Specificulture });
+                    table.PrimaryKey("PK_sio_related_product", x => new { x.SourceId, x.DestinationId, x.Specificulture });
                     table.ForeignKey(
-                        name: "FK_Sio_related_product_Sio_product1",
+                        name: "FK_sio_related_product_sio_product1",
                         columns: x => new { x.DestinationId, x.Specificulture },
-                        principalTable: "Sio_product",
+                        principalTable: "sio_product",
                         principalColumns: new[] { "Id", "Specificulture" },
                         onDelete: ReferentialAction.Restrict);
                     table.ForeignKey(
-                        name: "FK_Sio_related_product_Sio_product",
+                        name: "FK_sio_related_product_sio_product",
                         columns: x => new { x.SourceId, x.Specificulture },
-                        principalTable: "Sio_product",
+                        principalTable: "sio_product",
                         principalColumns: new[] { "Id", "Specificulture" },
                         onDelete: ReferentialAction.Restrict);
                 });
 
             migrationBuilder.CreateTable(
-                name: "Sio_module_attribute_set",
+                name: "sio_module_attribute_set",
                 columns: table => new
                 {
                     Id = table.Column<Guid>(nullable: false),
@@ -1122,29 +1122,29 @@ namespace Sio.Cms.Lib.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Sio_module_attribute_set", x => new { x.Id, x.ModuleId, x.Specificulture });
+                    table.PrimaryKey("PK_sio_module_attribute_set", x => new { x.Id, x.ModuleId, x.Specificulture });
                     table.ForeignKey(
                         name: "FK_Sio_Module_Attribute_set_Sio_Module",
                         columns: x => new { x.ModuleId, x.Specificulture },
-                        principalTable: "Sio_module",
+                        principalTable: "sio_module",
                         principalColumns: new[] { "Id", "Specificulture" },
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
                         name: "FK_Sio_Module_Attribute_set_Sio_Article_Module",
                         columns: x => new { x.ModuleId, x.ArticleId, x.Specificulture },
-                        principalTable: "Sio_article_module",
+                        principalTable: "sio_article_module",
                         principalColumns: new[] { "ModuleId", "ArticleId", "Specificulture" },
                         onDelete: ReferentialAction.Restrict);
                     table.ForeignKey(
                         name: "FK_Sio_Module_Attribute_set_Sio_Page_Module",
                         columns: x => new { x.ModuleId, x.CategoryId, x.Specificulture },
-                        principalTable: "Sio_page_module",
+                        principalTable: "sio_page_module",
                         principalColumns: new[] { "ModuleId", "CategoryId", "Specificulture" },
                         onDelete: ReferentialAction.Restrict);
                 });
 
             migrationBuilder.CreateTable(
-                name: "Sio_module_data",
+                name: "sio_module_data",
                 columns: table => new
                 {
                     Id = table.Column<string>(maxLength: 50, nullable: false),
@@ -1162,29 +1162,29 @@ namespace Sio.Cms.Lib.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Sio_module_data", x => new { x.Id, x.ModuleId, x.Specificulture });
+                    table.PrimaryKey("PK_sio_module_data", x => new { x.Id, x.ModuleId, x.Specificulture });
                     table.ForeignKey(
                         name: "FK_Sio_Module_Data_Sio_Module",
                         columns: x => new { x.ModuleId, x.Specificulture },
-                        principalTable: "Sio_module",
+                        principalTable: "sio_module",
                         principalColumns: new[] { "Id", "Specificulture" },
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
                         name: "FK_Sio_Module_Data_Sio_Page_Module",
                         columns: x => new { x.ModuleId, x.CategoryId, x.Specificulture },
-                        principalTable: "Sio_page_module",
+                        principalTable: "sio_page_module",
                         principalColumns: new[] { "ModuleId", "CategoryId", "Specificulture" },
                         onDelete: ReferentialAction.Restrict);
                     table.ForeignKey(
                         name: "FK_Sio_Module_Data_Sio_Product_Module",
                         columns: x => new { x.ModuleId, x.ProductId, x.Specificulture },
-                        principalTable: "Sio_article_module",
+                        principalTable: "sio_article_module",
                         principalColumns: new[] { "ModuleId", "ArticleId", "Specificulture" },
                         onDelete: ReferentialAction.Restrict);
                 });
 
             migrationBuilder.CreateTable(
-                name: "Sio_module_attribute_value",
+                name: "sio_module_attribute_value",
                 columns: table => new
                 {
                     Id = table.Column<Guid>(nullable: false),
@@ -1201,432 +1201,432 @@ namespace Sio.Cms.Lib.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Sio_module_attribute_value", x => new { x.Id, x.AttributeSetId, x.Specificulture });
+                    table.PrimaryKey("PK_sio_module_attribute_value", x => new { x.Id, x.AttributeSetId, x.Specificulture });
                     table.ForeignKey(
-                        name: "FK_Sio_module_attribute_value_Sio_module_attribute_set",
+                        name: "FK_sio_module_attribute_value_sio_module_attribute_set",
                         columns: x => new { x.AttributeSetId, x.ModuleId, x.Specificulture },
-                        principalTable: "Sio_module_attribute_set",
+                        principalTable: "sio_module_attribute_set",
                         principalColumns: new[] { "Id", "ModuleId", "Specificulture" },
                         onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateIndex(
-                name: "IX_Sio_article_SetAttributeId",
-                table: "Sio_article",
+                name: "IX_sio_article_SetAttributeId",
+                table: "sio_article",
                 column: "SetAttributeId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Sio_article_Specificulture",
-                table: "Sio_article",
+                name: "IX_sio_article_Specificulture",
+                table: "sio_article",
                 column: "Specificulture");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Sio_article_media_ArticleId_Specificulture",
-                table: "Sio_article_media",
+                name: "IX_sio_article_media_ArticleId_Specificulture",
+                table: "sio_article_media",
                 columns: new[] { "ArticleId", "Specificulture" });
 
             migrationBuilder.CreateIndex(
-                name: "IX_Sio_article_media_MediaId_Specificulture",
-                table: "Sio_article_media",
+                name: "IX_sio_article_media_MediaId_Specificulture",
+                table: "sio_article_media",
                 columns: new[] { "MediaId", "Specificulture" });
 
             migrationBuilder.CreateIndex(
-                name: "IX_Sio_article_module_ArticleId_Specificulture",
-                table: "Sio_article_module",
+                name: "IX_sio_article_module_ArticleId_Specificulture",
+                table: "sio_article_module",
                 columns: new[] { "ArticleId", "Specificulture" });
 
             migrationBuilder.CreateIndex(
-                name: "IX_Sio_article_module_ModuleId_Specificulture",
-                table: "Sio_article_module",
+                name: "IX_sio_article_module_ModuleId_Specificulture",
+                table: "sio_article_module",
                 columns: new[] { "ModuleId", "Specificulture" });
 
             migrationBuilder.CreateIndex(
-                name: "IX_Sio_comment_ArticleId_Specificulture",
-                table: "Sio_comment",
+                name: "IX_sio_comment_ArticleId_Specificulture",
+                table: "sio_comment",
                 columns: new[] { "ArticleId", "Specificulture" });
 
             migrationBuilder.CreateIndex(
-                name: "IX_Sio_comment_OrderId_Specificulture",
-                table: "Sio_comment",
+                name: "IX_sio_comment_OrderId_Specificulture",
+                table: "sio_comment",
                 columns: new[] { "OrderId", "Specificulture" });
 
             migrationBuilder.CreateIndex(
-                name: "IX_Sio_comment_ProductId_Specificulture",
-                table: "Sio_comment",
+                name: "IX_sio_comment_ProductId_Specificulture",
+                table: "sio_comment",
                 columns: new[] { "ProductId", "Specificulture" });
 
             migrationBuilder.CreateIndex(
-                name: "IX_Sio_configuration_Specificulture",
-                table: "Sio_configuration",
+                name: "IX_sio_configuration_Specificulture",
+                table: "sio_configuration",
                 column: "Specificulture");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Sio_Culture",
-                table: "Sio_culture",
+                table: "sio_culture",
                 column: "Specificulture",
                 unique: true);
 
             migrationBuilder.CreateIndex(
-                name: "IX_Sio_file_ThemeId",
-                table: "Sio_file",
+                name: "IX_sio_file_ThemeId",
+                table: "sio_file",
                 column: "ThemeId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Sio_language_Specificulture",
-                table: "Sio_language",
+                name: "IX_sio_language_Specificulture",
+                table: "sio_language",
                 column: "Specificulture");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Sio_module_Specificulture",
-                table: "Sio_module",
+                name: "IX_sio_module_Specificulture",
+                table: "sio_module",
                 column: "Specificulture");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Sio_module_article_ArticleId_Specificulture",
-                table: "Sio_module_article",
+                name: "IX_sio_module_article_ArticleId_Specificulture",
+                table: "sio_module_article",
                 columns: new[] { "ArticleId", "Specificulture" });
 
             migrationBuilder.CreateIndex(
-                name: "IX_Sio_module_article_ModuleId_Specificulture",
-                table: "Sio_module_article",
+                name: "IX_sio_module_article_ModuleId_Specificulture",
+                table: "sio_module_article",
                 columns: new[] { "ModuleId", "Specificulture" });
 
             migrationBuilder.CreateIndex(
-                name: "IX_Sio_module_attribute_set_ModuleId_Specificulture",
-                table: "Sio_module_attribute_set",
+                name: "IX_sio_module_attribute_set_ModuleId_Specificulture",
+                table: "sio_module_attribute_set",
                 columns: new[] { "ModuleId", "Specificulture" });
 
             migrationBuilder.CreateIndex(
-                name: "IX_Sio_module_attribute_set_ModuleId_ArticleId_Specificulture",
-                table: "Sio_module_attribute_set",
+                name: "IX_sio_module_attribute_set_ModuleId_ArticleId_Specificulture",
+                table: "sio_module_attribute_set",
                 columns: new[] { "ModuleId", "ArticleId", "Specificulture" });
 
             migrationBuilder.CreateIndex(
-                name: "IX_Sio_module_attribute_set_ModuleId_PageId_Specificulture",
-                table: "Sio_module_attribute_set",
+                name: "IX_sio_module_attribute_set_ModuleId_PageId_Specificulture",
+                table: "sio_module_attribute_set",
                 columns: new[] { "ModuleId", "CategoryId", "Specificulture" });
 
             migrationBuilder.CreateIndex(
-                name: "IX_Sio_module_attribute_value_AttributeSetId_ModuleId_Specificulture",
-                table: "Sio_module_attribute_value",
+                name: "IX_sio_module_attribute_value_AttributeSetId_ModuleId_Specificulture",
+                table: "sio_module_attribute_value",
                 columns: new[] { "AttributeSetId", "ModuleId", "Specificulture" });
 
             migrationBuilder.CreateIndex(
-                name: "IX_Sio_module_data_ModuleId_Specificulture",
-                table: "Sio_module_data",
+                name: "IX_sio_module_data_ModuleId_Specificulture",
+                table: "sio_module_data",
                 columns: new[] { "ModuleId", "Specificulture" });
 
             migrationBuilder.CreateIndex(
-                name: "IX_Sio_module_data_ModuleId_ArticleId_Specificulture",
-                table: "Sio_module_data",
+                name: "IX_sio_module_data_ModuleId_ArticleId_Specificulture",
+                table: "sio_module_data",
                 columns: new[] { "ModuleId", "ArticleId", "Specificulture" });
 
             migrationBuilder.CreateIndex(
-                name: "IX_Sio_module_data_ModuleId_PageId_Specificulture",
-                table: "Sio_module_data",
+                name: "IX_sio_module_data_ModuleId_PageId_Specificulture",
+                table: "sio_module_data",
                 columns: new[] { "ModuleId", "CategoryId", "Specificulture" });
 
             migrationBuilder.CreateIndex(
-                name: "IX_Sio_module_data_ModuleId_ProductId_Specificulture",
-                table: "Sio_module_data",
+                name: "IX_sio_module_data_ModuleId_ProductId_Specificulture",
+                table: "sio_module_data",
                 columns: new[] { "ModuleId", "ProductId", "Specificulture" });
 
             migrationBuilder.CreateIndex(
-                name: "IX_Sio_module_product_ModuleId_Specificulture",
-                table: "Sio_module_product",
+                name: "IX_sio_module_product_ModuleId_Specificulture",
+                table: "sio_module_product",
                 columns: new[] { "ModuleId", "Specificulture" });
 
             migrationBuilder.CreateIndex(
-                name: "IX_Sio_module_product_ProductId_Specificulture",
-                table: "Sio_module_product",
+                name: "IX_sio_module_product_ProductId_Specificulture",
+                table: "sio_module_product",
                 columns: new[] { "ProductId", "Specificulture" });
 
             migrationBuilder.CreateIndex(
-                name: "IX_Sio_order_CustomerId",
-                table: "Sio_order",
+                name: "IX_sio_order_CustomerId",
+                table: "sio_order",
                 column: "CustomerId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Sio_order_Specificulture",
-                table: "Sio_order",
+                name: "IX_sio_order_Specificulture",
+                table: "sio_order",
                 column: "Specificulture");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Sio_order_item_Specificulture",
-                table: "Sio_order_item",
+                name: "IX_sio_order_item_Specificulture",
+                table: "sio_order_item",
                 column: "Specificulture");
 
             migrationBuilder.CreateIndex(
-                name: "AK_Sio_order_item_Id_Specificulture",
-                table: "Sio_order_item",
+                name: "AK_sio_order_item_Id_Specificulture",
+                table: "sio_order_item",
                 columns: new[] { "Id", "Specificulture" },
                 unique: true);
 
             migrationBuilder.CreateIndex(
-                name: "IX_Sio_order_item_OrderId_Specificulture",
-                table: "Sio_order_item",
+                name: "IX_sio_order_item_OrderId_Specificulture",
+                table: "sio_order_item",
                 columns: new[] { "OrderId", "Specificulture" });
 
             migrationBuilder.CreateIndex(
-                name: "IX_Sio_order_item_ProductId_Specificulture",
-                table: "Sio_order_item",
+                name: "IX_sio_order_item_ProductId_Specificulture",
+                table: "sio_order_item",
                 columns: new[] { "ProductId", "Specificulture" });
 
             migrationBuilder.CreateIndex(
-                name: "IX_Sio_page_SetAttributeId",
-                table: "Sio_page",
+                name: "IX_sio_page_SetAttributeId",
+                table: "sio_page",
                 column: "SetAttributeId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Sio_page_Specificulture",
-                table: "Sio_page",
+                name: "IX_sio_page_Specificulture",
+                table: "sio_page",
                 column: "Specificulture");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Sio_page_article_ArticleId_Specificulture",
-                table: "Sio_page_article",
+                name: "IX_sio_page_article_ArticleId_Specificulture",
+                table: "sio_page_article",
                 columns: new[] { "ArticleId", "Specificulture" });
 
             migrationBuilder.CreateIndex(
-                name: "IX_Sio_page_article_PageId_Specificulture",
-                table: "Sio_page_article",
+                name: "IX_sio_page_article_PageId_Specificulture",
+                table: "sio_page_article",
                 columns: new[] { "CategoryId", "Specificulture" });
 
             migrationBuilder.CreateIndex(
-                name: "IX_Sio_page_module_PageId_Specificulture",
-                table: "Sio_page_module",
+                name: "IX_sio_page_module_PageId_Specificulture",
+                table: "sio_page_module",
                 columns: new[] { "CategoryId", "Specificulture" });
 
             migrationBuilder.CreateIndex(
-                name: "IX_Sio_page_module_ModuleId_Specificulture",
-                table: "Sio_page_module",
+                name: "IX_sio_page_module_ModuleId_Specificulture",
+                table: "sio_page_module",
                 columns: new[] { "ModuleId", "Specificulture" });
 
             migrationBuilder.CreateIndex(
-                name: "IX_Sio_page_page_Id_Specificulture",
-                table: "Sio_page_page",
+                name: "IX_sio_page_page_Id_Specificulture",
+                table: "sio_page_page",
                 columns: new[] { "Id", "Specificulture" });
 
             migrationBuilder.CreateIndex(
-                name: "IX_Sio_page_page_ParentId_Specificulture",
-                table: "Sio_page_page",
+                name: "IX_sio_page_page_ParentId_Specificulture",
+                table: "sio_page_page",
                 columns: new[] { "ParentId", "Specificulture" });
 
             migrationBuilder.CreateIndex(
-                name: "IX_Sio_page_position_PageId_Specificulture",
-                table: "Sio_page_position",
+                name: "IX_sio_page_position_PageId_Specificulture",
+                table: "sio_page_position",
                 columns: new[] { "CategoryId", "Specificulture" });
 
             migrationBuilder.CreateIndex(
-                name: "IX_Sio_page_product_PageId_Specificulture",
-                table: "Sio_page_product",
+                name: "IX_sio_page_product_PageId_Specificulture",
+                table: "sio_page_product",
                 columns: new[] { "CategoryId", "Specificulture" });
 
             migrationBuilder.CreateIndex(
-                name: "IX_Sio_page_product_ProductId_Specificulture",
-                table: "Sio_page_product",
+                name: "IX_sio_page_product_ProductId_Specificulture",
+                table: "sio_page_product",
                 columns: new[] { "ProductId", "Specificulture" });
 
             migrationBuilder.CreateIndex(
-                name: "IX_Sio_portal_page_navigation_ParentId",
-                table: "Sio_portal_page_navigation",
+                name: "IX_sio_portal_page_navigation_ParentId",
+                table: "sio_portal_page_navigation",
                 column: "ParentId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Sio_portal_page_position_PortalPageId",
-                table: "Sio_portal_page_position",
+                name: "IX_sio_portal_page_position_PortalPageId",
+                table: "sio_portal_page_position",
                 column: "PortalPageId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Sio_portal_page_role_PageId",
-                table: "Sio_portal_page_role",
+                name: "IX_sio_portal_page_role_PageId",
+                table: "sio_portal_page_role",
                 column: "PageId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Sio_product_SetAttributeId",
-                table: "Sio_product",
+                name: "IX_sio_product_SetAttributeId",
+                table: "sio_product",
                 column: "SetAttributeId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Sio_product_Specificulture",
-                table: "Sio_product",
+                name: "IX_sio_product_Specificulture",
+                table: "sio_product",
                 column: "Specificulture");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Sio_product_media_MediaId_Specificulture",
-                table: "Sio_product_media",
+                name: "IX_sio_product_media_MediaId_Specificulture",
+                table: "sio_product_media",
                 columns: new[] { "MediaId", "Specificulture" });
 
             migrationBuilder.CreateIndex(
-                name: "IX_Sio_product_media_ProductId_Specificulture",
-                table: "Sio_product_media",
+                name: "IX_sio_product_media_ProductId_Specificulture",
+                table: "sio_product_media",
                 columns: new[] { "ProductId", "Specificulture" });
 
             migrationBuilder.CreateIndex(
-                name: "IX_Sio_product_module_ModuleId_Specificulture",
-                table: "Sio_product_module",
+                name: "IX_sio_product_module_ModuleId_Specificulture",
+                table: "sio_product_module",
                 columns: new[] { "ModuleId", "Specificulture" });
 
             migrationBuilder.CreateIndex(
-                name: "IX_Sio_product_module_ProductId_Specificulture",
-                table: "Sio_product_module",
+                name: "IX_sio_product_module_ProductId_Specificulture",
+                table: "sio_product_module",
                 columns: new[] { "ProductId", "Specificulture" });
 
             migrationBuilder.CreateIndex(
-                name: "IX_Sio_related_article_DestinationId_Specificulture",
-                table: "Sio_related_article",
+                name: "IX_sio_related_article_DestinationId_Specificulture",
+                table: "sio_related_article",
                 columns: new[] { "DestinationId", "Specificulture" });
 
             migrationBuilder.CreateIndex(
-                name: "IX_Sio_related_article_SourceId_Specificulture",
-                table: "Sio_related_article",
+                name: "IX_sio_related_article_SourceId_Specificulture",
+                table: "sio_related_article",
                 columns: new[] { "SourceId", "Specificulture" });
 
             migrationBuilder.CreateIndex(
-                name: "IX_Sio_related_product_DestinationId_Specificulture",
-                table: "Sio_related_product",
+                name: "IX_sio_related_product_DestinationId_Specificulture",
+                table: "sio_related_product",
                 columns: new[] { "DestinationId", "Specificulture" });
 
             migrationBuilder.CreateIndex(
-                name: "IX_Sio_related_product_SourceId_Specificulture",
-                table: "Sio_related_product",
+                name: "IX_sio_related_product_SourceId_Specificulture",
+                table: "sio_related_product",
                 columns: new[] { "SourceId", "Specificulture" });
 
             migrationBuilder.CreateIndex(
-                name: "IX_Sio_template_file_TemplateId",
-                table: "Sio_template",
+                name: "IX_sio_template_file_TemplateId",
+                table: "sio_template",
                 column: "ThemeId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Sio_url_alias_Specificulture",
-                table: "Sio_url_alias",
+                name: "IX_sio_url_alias_Specificulture",
+                table: "sio_url_alias",
                 column: "Specificulture");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
-                name: "Sio_article_media");
+                name: "sio_article_media");
 
             migrationBuilder.DropTable(
-                name: "Sio_cms_user");
+                name: "sio_cms_user");
 
             migrationBuilder.DropTable(
-                name: "Sio_comment");
+                name: "sio_comment");
 
             migrationBuilder.DropTable(
-                name: "Sio_configuration");
+                name: "sio_configuration");
 
             migrationBuilder.DropTable(
-                name: "Sio_copy");
+                name: "sio_copy");
 
             migrationBuilder.DropTable(
-                name: "Sio_file");
+                name: "sio_file");
 
             migrationBuilder.DropTable(
-                name: "Sio_language");
+                name: "sio_language");
 
             migrationBuilder.DropTable(
-                name: "Sio_module_article");
+                name: "sio_module_article");
 
             migrationBuilder.DropTable(
-                name: "Sio_module_attribute_value");
+                name: "sio_module_attribute_value");
 
             migrationBuilder.DropTable(
-                name: "Sio_module_data");
+                name: "sio_module_data");
 
             migrationBuilder.DropTable(
-                name: "Sio_module_product");
+                name: "sio_module_product");
 
             migrationBuilder.DropTable(
-                name: "Sio_order_item");
+                name: "sio_order_item");
 
             migrationBuilder.DropTable(
-                name: "Sio_page_article");
+                name: "sio_page_article");
 
             migrationBuilder.DropTable(
-                name: "Sio_page_page");
+                name: "sio_page_page");
 
             migrationBuilder.DropTable(
-                name: "Sio_page_position");
+                name: "sio_page_position");
 
             migrationBuilder.DropTable(
-                name: "Sio_page_product");
+                name: "sio_page_product");
 
             migrationBuilder.DropTable(
-                name: "Sio_parameter");
+                name: "sio_parameter");
 
             migrationBuilder.DropTable(
-                name: "Sio_portal_page_navigation");
+                name: "sio_portal_page_navigation");
 
             migrationBuilder.DropTable(
-                name: "Sio_portal_page_position");
+                name: "sio_portal_page_position");
 
             migrationBuilder.DropTable(
-                name: "Sio_portal_page_role");
+                name: "sio_portal_page_role");
 
             migrationBuilder.DropTable(
-                name: "Sio_product_media");
+                name: "sio_product_media");
 
             migrationBuilder.DropTable(
-                name: "Sio_product_module");
+                name: "sio_product_module");
 
             migrationBuilder.DropTable(
-                name: "Sio_related_article");
+                name: "sio_related_article");
 
             migrationBuilder.DropTable(
-                name: "Sio_related_product");
+                name: "sio_related_product");
 
             migrationBuilder.DropTable(
-                name: "Sio_template");
+                name: "sio_template");
 
             migrationBuilder.DropTable(
-                name: "Sio_url_alias");
+                name: "sio_url_alias");
 
             migrationBuilder.DropTable(
-                name: "Sio_module_attribute_set");
+                name: "sio_module_attribute_set");
 
             migrationBuilder.DropTable(
-                name: "Sio_order");
+                name: "sio_order");
 
             migrationBuilder.DropTable(
-                name: "Sio_position");
+                name: "sio_position");
 
             migrationBuilder.DropTable(
-                name: "Sio_portal_page");
+                name: "sio_portal_page");
 
             migrationBuilder.DropTable(
-                name: "Sio_media");
+                name: "sio_media");
 
             migrationBuilder.DropTable(
-                name: "Sio_product");
+                name: "sio_product");
 
             migrationBuilder.DropTable(
-                name: "Sio_theme");
+                name: "sio_theme");
 
             migrationBuilder.DropTable(
-                name: "Sio_article_module");
+                name: "sio_article_module");
 
             migrationBuilder.DropTable(
-                name: "Sio_page_module");
+                name: "sio_page_module");
 
             migrationBuilder.DropTable(
-                name: "Sio_customer");
+                name: "sio_customer");
 
             migrationBuilder.DropTable(
-                name: "Sio_article");
+                name: "sio_article");
 
             migrationBuilder.DropTable(
-                name: "Sio_page");
+                name: "sio_page");
 
             migrationBuilder.DropTable(
-                name: "Sio_module");
+                name: "sio_module");
 
             migrationBuilder.DropTable(
-                name: "Sio_set_attribute");
+                name: "sio_set_attribute");
 
             migrationBuilder.DropTable(
-                name: "Sio_culture");
+                name: "sio_culture");
         }
     }
 }

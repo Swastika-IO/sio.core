@@ -89,8 +89,7 @@ namespace Sio.Cms.Lib.ViewModels.SioArticles
         #region Views
         [JsonProperty("detailsUrl")]
         public string DetailsUrl { get; set; }
-
-
+        
         [JsonProperty("view")]
         public SioTemplates.ReadViewModel View { get; set; }
 
@@ -105,7 +104,7 @@ namespace Sio.Cms.Lib.ViewModels.SioArticles
         {
             get
             {
-                if (Image != null && (Image.IndexOf("http") == -1 && Image[0] != '/'))
+                if (Image != null && (Image.IndexOf("http") == -1) && Image[0] != '/')
                 {
                     return CommonHelper.GetFullPath(new string[] {
                     Domain,  Image
@@ -131,7 +130,7 @@ namespace Sio.Cms.Lib.ViewModels.SioArticles
                 }
                 else
                 {
-                    return Thumbnail;
+                    return ImageUrl;
                 }
             }
         }
@@ -149,12 +148,17 @@ namespace Sio.Cms.Lib.ViewModels.SioArticles
                 });
             }
         }
-
+        [JsonIgnore]
         public List<ExtraProperty> Properties { get; set; }
 
         [JsonProperty("mediaNavs")]
         public List<SioArticleMedias.ReadViewModel> MediaNavs { get; set; }
 
+        [JsonProperty("moduleNavs")]
+        public List<SioArticleModules.ReadViewModel> ModuleNavs { get; set; }
+                
+        [JsonProperty("articleNavs")]
+        public List<SioArticleArticles.ReadViewModel> ArticleNavs { get; set; }
         #endregion Views
 
         #endregion Properties
@@ -176,7 +180,9 @@ namespace Sio.Cms.Lib.ViewModels.SioArticles
         public override void ExpandView(SioCmsContext _context = null, IDbContextTransaction _transaction = null)
         {
             this.View = SioTemplates.ReadViewModel.GetTemplateByPath(Template, Specificulture, _context, _transaction).Data;
+
             Properties = new List<ExtraProperty>();
+
             if (!string.IsNullOrEmpty(ExtraProperties))
             {
                 JArray arr = JArray.Parse(ExtraProperties);
@@ -192,16 +198,38 @@ namespace Sio.Cms.Lib.ViewModels.SioArticles
                 MediaNavs = getArticleMedia.Data.OrderBy(p => p.Priority).ToList();
                 MediaNavs.ForEach(n => n.IsActived = true);
             }
+
+            // Modules
+            var getArticleModule = SioArticleModules.ReadViewModel.Repository.GetModelListBy(
+                n => n.ArticleId == Id && n.Specificulture == Specificulture, _context, _transaction);
+            if (getArticleModule.IsSucceed)
+            {
+                ModuleNavs = getArticleModule.Data.OrderBy(p => p.Priority).ToList();
+                foreach (var item in ModuleNavs)
+                {
+                    item.IsActived = true;
+                    item.Module.LoadData(articleId: Id, _context: _context, _transaction: _transaction);
+                }
+            }
+
+            // Related Articles
+            ArticleNavs = SioArticleArticles.ReadViewModel.Repository.GetModelListBy(n => n.SourceId == Id && n.Specificulture == Specificulture, _context, _transaction).Data;
         }
 
         #endregion Overrides
 
         #region Expands
-
-        private string GetPropertyValue(string name)
+        //Get Property by name
+        public string Property(string name)
         {
             var prop = Properties.FirstOrDefault(p => p.Name.ToLower() == name.ToLower());
             return prop?.Value;
+
+        }
+
+        public SioModules.ReadMvcViewModel GetModule(string name)
+        {
+            return ModuleNavs.FirstOrDefault(m => m.Module.Name == name)?.Module;
         }
 
         #endregion Expands

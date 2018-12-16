@@ -1,0 +1,9 @@
+@model Sio.Cms.Lib.ViewModels.SioPages.ReadMvcViewModel
+@foreach (var nav in Model.Modules.OrderBy(n => n.Priority))
+{
+    var module = nav.Module; 
+    if (module != null)
+    {
+        <partial name="@module.TemplatePath" model="@module" />
+    }
+}

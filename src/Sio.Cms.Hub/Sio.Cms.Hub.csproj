@@ -12,7 +12,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\..\Sio.heart\src\Sio.Heart\Sio.Heart.csproj" />
+    <ProjectReference Include="..\..\..\sio.heart\src\Sio.Heart\Sio.Heart.csproj" />
   </ItemGroup>
 
 </Project>

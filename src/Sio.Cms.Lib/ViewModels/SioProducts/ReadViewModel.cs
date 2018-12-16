@@ -132,7 +132,7 @@ namespace Sio.Cms.Lib.ViewModels.SioProducts
         {
             get
             {
-                if (Image != null && (Image.IndexOf("http") == -1 && Image[0] != '/'))
+                if (Image != null && (Image.IndexOf("http") == -1) && Image[0] != '/')
                 {
                     return CommonHelper.GetFullPath(new string[] {
                     Domain,  Image
@@ -144,7 +144,23 @@ namespace Sio.Cms.Lib.ViewModels.SioProducts
                 }
             }
         }
-
+        [JsonProperty("thumbnailUrl")]
+        public string ThumbnailUrl
+        {
+            get
+            {
+                if (Thumbnail != null && Thumbnail.IndexOf("http") == -1 && Thumbnail[0] != '/')
+                {
+                    return CommonHelper.GetFullPath(new string[] {
+                    Domain,  Thumbnail
+                });
+                }
+                else
+                {
+                    return ImageUrl;
+                }
+            }
+        }
         [JsonProperty("strPrice")]
         public string StrPrice
         {
@@ -184,31 +200,7 @@ namespace Sio.Cms.Lib.ViewModels.SioProducts
         [JsonProperty("detailsUrl")]
         public string DetailsUrl { get; set; }
 
-        public string ThumbnailUrl
-        {
-            get
-            {
-                if (!string.IsNullOrEmpty(Thumbnail))
-                {
-                    if (Thumbnail.IndexOf("http") == -1)
-                    {
-                        return CommonHelper.GetFullPath(new string[] {
-                            Domain,  Thumbnail
-
-                        });
-                    }
-                    else
-                    {
-                        return Thumbnail;
-                    }
-
-                }
-                else
-                {
-                    return ImageUrl;
-                }
-            }
-        }
+        
         #endregion Views
 
         #endregion Properties

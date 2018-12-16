@@ -1,4 +1,4 @@
-Ôªø'use strict';
+'use strict';
 app.controller('UserController', ['$scope', '$rootScope', 'ngAppSettings', '$routeParams', '$timeout', '$location', 'AuthService', 'UserServices',
     function ($scope, $rootScope, ngAppSettings, $routeParams, $timeout, $location, authService, userServices) {
         $scope.request = {
@@ -102,7 +102,7 @@ app.controller('UserController', ['$scope', '$rootScope', 'ngAppSettings', '$rou
             var resp = await userServices.saveUser(user);
             if (resp && resp.isSucceed) {
                 //$scope.activedUser = resp.data;
-                $rootScope.showMessage('Th√†nh c√¥ng', 'success');
+                $rootScope.showMessage('Th‡nh cÙng', 'success');
                 $rootScope.isBusy = false;
                 $scope.$apply();
             }
@@ -118,7 +118,7 @@ app.controller('UserController', ['$scope', '$rootScope', 'ngAppSettings', '$rou
             var resp = await userServices.register(user);
             if (resp && resp.isSucceed) {
                 $scope.activedUser = resp.data;
-                $rootScope.showMessage('Th√†nh c√¥ng', 'success');
+                $rootScope.showMessage('Th‡nh cÙng', 'success');
                 $rootScope.isBusy = false;
                 $scope.$apply();
             }
@@ -139,7 +139,7 @@ app.controller('UserController', ['$scope', '$rootScope', 'ngAppSettings', '$rou
             $rootScope.isBusy = true;
             var resp = await userServices.updateRoleStatus(userRole);
             if (resp && resp.isSucceed) {
-                $rootScope.showMessage('Th√†nh c√¥ng', 'success');
+                $rootScope.showMessage('Th‡nh cÙng', 'success');
                 $rootScope.isBusy = false;
                 $scope.$apply();
             }

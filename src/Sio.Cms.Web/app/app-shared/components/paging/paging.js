@@ -1,5 +1,5 @@
-﻿
-modules.component('mixPaging', {
+
+modules.component('sioPaging', {
     templateUrl: '/app/app-shared/components/paging/paging.html',
     controller: ['$rootScope', function ($rootScope) {
         var ctrl = this;

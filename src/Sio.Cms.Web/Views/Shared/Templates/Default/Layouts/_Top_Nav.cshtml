@@ -3,7 +3,8 @@
 
 @{
     string culture = ViewBag.culture;
-    List<Sio.Cms.Lib.ViewModels.SioPages.ReadListItemViewModel> topCates = SioCmsHelper.GetCategory(Url, ViewBag.culture, SioEnums.CatePosition.Top, Context.Request.Path);
+    List<Sio.Cms.Lib.ViewModels.SioPages.ReadListItemViewModel> topCates = SioCmsHelper.GetCategory(Url, ViewBag.culture, SioEnums.CatePosition.Nav, Context.Request.Path);
+    var socials = SioCmsHelper.GetModule("social", ViewBag.culture);
 }
 <nav class="navbar navbar-expand-lg bg-white fixed-top navbar-transparent" color-on-scroll="500">
     <div class="container">
@@ -13,14 +14,14 @@
                 <span class="navbar-toggler-bar bar2"></span>
                 <span class="navbar-toggler-bar bar3"></span>
             </button>
-            <a class="navbar-brand" href="/@ViewBag.culture" title="mixcore">
-                <img class="logo-white" src="@(SioService.GetConfig<string>("Logo", ViewBag.culture))" width="32" 
-                     title="@(SioService.GetConfig<string>("SiteName", ViewBag.culture as string))" 
+            <a class="navbar-brand" href="/@ViewBag.culture" title="siocore">
+                <img class="logo-white" src="@(SioService.GetConfig<string>("Logo", ViewBag.culture))" height="40"
+                     title="@(SioService.GetConfig<string>("SiteName", ViewBag.culture as string))"
                      alt="@(SioService.GetConfig<string>("SiteName", ViewBag.culture as string))" />
             </a>
         </div>
         <div class="collapse navbar-collapse" id="example-navbar-primary">
-            <ul class="navbar-nav ml-auto">
+            <ul class="navbar-nav mx-auto">
                 @foreach (var cate in topCates.OrderBy(c => c.Priority))
                 {
                     string activedClass = cate.IsActived ? "active" : string.Empty;
@@ -59,7 +60,21 @@
                     </li>
                 }
             </ul>
-           
+
+            <ul class="nav navbar-nav">
+
+                @if (socials != null)
+                {
+                    foreach (var item in socials.Data.Items)
+                    {
+                        <li class="nav-item">
+                            <a class="nav-link" target="_blank" href="@item.Property("url")">
+                                <i class="@item.Property("icon")"></i>
+                            </a>
+                        </li>
+                    }
+                }
+            </ul>
         </div>
     </div>
 </nav>

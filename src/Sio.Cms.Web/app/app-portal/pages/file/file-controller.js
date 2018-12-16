@@ -1,4 +1,4 @@
-Ôªø'use strict';
+'use strict';
 app.controller('FileController', ['$scope', '$rootScope', 'ngAppSettings', '$routeParams', '$timeout', '$location', 'AuthService', 'FileServices',
     function ($scope, $rootScope, ngAppSettings, $routeParams, $timeout, $location, authService, fileServices) {
         $scope.request = {
@@ -95,7 +95,7 @@ app.controller('FileController', ['$scope', '$rootScope', 'ngAppSettings', '$rou
             var resp = await fileServices.saveFile(file);
             if (resp && resp.isSucceed) {
                 $scope.activedFile = resp.data;
-                $rootScope.showMessage('Th√†nh c√¥ng', 'success');
+                $rootScope.showMessage('Th‡nh cÙng', 'success');
                 $rootScope.isBusy = false;
                 $scope.$apply();
             }

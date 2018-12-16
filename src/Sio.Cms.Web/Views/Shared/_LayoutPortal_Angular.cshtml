@@ -1,22 +1,22 @@
-﻿@using Microsoft.AspNetCore.Mvc.Localization
+@using Microsoft.AspNetCore.Mvc.Localization
 @inject UserManager<ApplicationUser> UserManager
 <!doctype html>
 <html lang="en">
 
 <head>
     <base href="/portal">
-
-    <title>@ViewData["Title"] - Angular mixcore</title>
+    <title>@ViewData["Title"] - Angular siocore</title>
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=1920">
 
-    <link rel="icon" href="/css/portal/img/mixcore-logo-blue.png">
+    <link rel="icon" href="/css/portal/img/siocore-logo-blue.png">
     @*<link href="~/css/shared.min.css" rel="stylesheet" />*@
     <link rel="stylesheet" href="~/css/app-vendor.min.css" />
 
     <link rel="stylesheet" href="~/css/portal/portal.white-sd.css" />
     <link rel="stylesheet" href="~/css/portal.min.css" />
+    
 
     @RenderSection("Styles", required: false)
 </head>
@@ -42,6 +42,7 @@
     </script>
 
     @RenderBody()
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js" integrity="sha384-b/U6ypiBEHpOf/4+1nzFpr53nxSS+GLCkfwBdFNTxtclqqenISfwAzpKaMNFNmj4" crossorigin="anonymous"></script>
     <script src="~/js/framework.min.js"></script>
     <script src="~/js/bootstrap.min.js"></script>
     <script src="~/js/shared.min.js"></script>

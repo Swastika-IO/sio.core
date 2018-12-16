@@ -1,4 +1,4 @@
-﻿'use strict';
+'use strict';
 app.controller('RoleController', ['$scope', '$rootScope', 'ngAppSettings', '$routeParams', 'RoleService',
     function ($scope, $rootScope, ngAppSettings, $routeParams, service) {
         BaseCtrl.call(this, $scope, $rootScope, $routeParams, ngAppSettings, service);

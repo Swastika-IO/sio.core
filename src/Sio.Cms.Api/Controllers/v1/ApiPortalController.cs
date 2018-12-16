@@ -61,7 +61,10 @@ namespace Sio.Cms.Api.Controllers.v1
                 ThemeId = SioService.GetConfig<int>(SioConstants.ConfigurationKeyword.ThemeId, _lang),
                 Cultures = cultures,
                 PageTypes = Enum.GetNames(typeof(SioPageType)).ToList(),
-                Statuses = Enum.GetNames(typeof(SioContentStatus)).ToList()
+                ModuleTypes = Enum.GetNames(typeof(SioModuleType)).ToList(),
+                DataTypes = Enum.GetNames(typeof(SioDataType)).ToList(),
+                Statuses = Enum.GetNames(typeof(SioContentStatus)).ToList(),
+                LastUpdateConfiguration = DateTime.UtcNow
 
             };
             settings.LangIcon = culture?.Icon ?? SioService.GetConfig<string>("Language");
@@ -91,7 +94,10 @@ namespace Sio.Cms.Api.Controllers.v1
                 IsEncryptApi = SioService.GetConfig<bool>(SioConstants.ConfigurationKeyword.IsEncryptApi),
                 Cultures = cultures,
                 PageTypes = Enum.GetNames(typeof(SioPageType)).ToList(),
-                Statuses = Enum.GetNames(typeof(SioContentStatus)).ToList()
+                ModuleTypes = Enum.GetNames(typeof(SioModuleType)).ToList(),
+                DataTypes = Enum.GetNames(typeof(SioDataType)).ToList(),
+                Statuses = Enum.GetNames(typeof(SioContentStatus)).ToList(),
+                LastUpdateConfiguration = DateTime.UtcNow
             };
 
             configurations.LangIcon = culture?.Icon ?? SioService.GetConfig<string>("Language");
@@ -155,8 +161,10 @@ namespace Sio.Cms.Api.Controllers.v1
                 IsEncryptApi = SioService.GetConfig<bool>(SioConstants.ConfigurationKeyword.IsEncryptApi),
                 Cultures = cultures,
                 PageTypes = Enum.GetNames(typeof(SioPageType)).ToList(),
-                Statuses = Enum.GetNames(typeof(SioContentStatus)).ToList()
-
+                ModuleTypes = Enum.GetNames(typeof(SioModuleType)).ToList(),
+                DataTypes = Enum.GetNames(typeof(SioDataType)).ToList(),
+                Statuses = Enum.GetNames(typeof(SioContentStatus)).ToList(),
+                LastUpdateConfiguration = DateTime.UtcNow
             };
 
             configurations.LangIcon = culture?.Icon ?? SioService.GetConfig<string>("Language");
@@ -258,12 +266,13 @@ namespace Sio.Cms.Api.Controllers.v1
             var result = new RepositoryResponse<bool>();
 
             SioService.SetConnectionString(SioConstants.CONST_CMS_CONNECTION, model.ConnectionString);
+            SioService.SetConnectionString(SioConstants.CONST_MESSENGER_CONNECTION, model.ConnectionString);
             SioService.SetConnectionString(SioConstants.CONST_ACCOUNT_CONNECTION, model.ConnectionString);
             SioService.SetConfig(SioConstants.CONST_SETTING_IS_SQLITE, model.IsSqlite);
             SioService.SetConfig(SioConstants.CONST_SETTING_LANGUAGE, model.Culture.Specificulture);
 
             InitCmsService sv = new InitCmsService();
-            var initResult = await sv.InitCms(model.Culture);
+            var initResult = await sv.InitCms(model.SiteName, model.Culture);
             if (initResult.IsSucceed)
             {
                 await InitRolesAsync();

@@ -1,4 +1,4 @@
-﻿'use strict';
+'use strict';
 app.factory('GlobalSettingsService', ['$rootScope', 'CommonService', 'localStorageService', 'AppSettings',
     function ($rootScope, commonService, localStorageService, appSettings) {
         var factory = {};

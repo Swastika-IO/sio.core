@@ -1,4 +1,4 @@
-﻿
+
 app.component('pageGeneral', {
     templateUrl: '/app/app-portal/pages/page/components/general/general.html',
     controller: function ($scope) {

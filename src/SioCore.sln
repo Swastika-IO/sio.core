@@ -6,21 +6,18 @@ MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Cms", "Cms", "{C45D03E7-0453-4199-A5DE-E61B5FF29AF4}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Heart", "Heart", "{C28E20DA-23BA-4B69-8F00-725057F9082E}"
-	ProjectSection(SolutionItems) = preProject
-		Sio.Cms.Lib\ViewModels\Shared\Info\InfoThemeViewModel.cs = Sio.Cms.Lib\ViewModels\Shared\Info\InfoThemeViewModel.cs
-	EndProjectSection
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Sio.Cms.Web", "Sio.Cms.Web\Sio.Cms.Web.csproj", "{0E27FDA9-70B1-41AD-8465-3E56EA78F0DF}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Sio.Cms.Api", "Sio.Cms.Api\Sio.Cms.Api.csproj", "{BC4D7CE6-F507-482E-A939-B9F8D6533929}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Sio.Heart", "..\..\Sio.heart\src\Sio.Heart\Sio.Heart.csproj", "{914E90A4-ED4C-40E9-A005-B825B4E38062}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Sio.Heart", "..\..\sio.heart\src\Sio.Heart\Sio.Heart.csproj", "{914E90A4-ED4C-40E9-A005-B825B4E38062}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Sio.Cms.Lib", "Sio.Cms.Lib\Sio.Cms.Lib.csproj", "{46A6FAC4-B138-4AB8-AAB2-597EE1774371}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Sio.Identity", "..\..\Sio.identity\src\Sio.Identity\Sio.Identity.csproj", "{37ABE40A-13D7-4604-AD4B-540F4093BB1B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Sio.Identity", "..\..\sio.identity\src\Sio.Identity\Sio.Identity.csproj", "{37ABE40A-13D7-4604-AD4B-540F4093BB1B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sio.Cms.Hub", "Sio.Cms.Hub\Sio.Cms.Hub.csproj", "{22C892C8-633B-406B-B8A8-F10F676F4C19}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Sio.Cms.Hub", "Sio.Cms.Hub\Sio.Cms.Hub.csproj", "{22C892C8-633B-406B-B8A8-F10F676F4C19}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

@@ -1,4 +1,4 @@
-﻿
+
 modules.component('fbShare', {
     templateUrl: '/app/app-client/components/fb-share/fb-share.html',
     controller: ['$location', function ($location) {

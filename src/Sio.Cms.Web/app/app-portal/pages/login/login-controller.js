@@ -1,4 +1,4 @@
-﻿'use strict';
+'use strict';
 app.controller('loginController', [ '$rootScope', '$scope', 'ngAppSettings', '$location', 'AuthService', 'ngAppSettings', function ($rootScope, $scope, ngAppSettings, $location, authService, ngAuthSettings) {
     if (authService.authentication && authService.authentication.isAuth && authService.authentication.isAdmin) {
         authService.referredUrl = $location.path();

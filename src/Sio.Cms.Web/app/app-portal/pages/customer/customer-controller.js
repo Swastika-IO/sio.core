@@ -1,4 +1,4 @@
-Ôªø'use strict';
+'use strict';
 app.controller('CustomerController', ['$scope', '$rootScope', 'ngAppSettings', '$routeParams', '$timeout', '$location', 'CustomerServices',
     function ($scope, $rootScope, ngAppSettings, $routeParams, $timeout, $location, customerServices) {
         $scope.request = angular.copy(ngAppSettings.request);
@@ -96,7 +96,7 @@ app.controller('CustomerController', ['$scope', '$rootScope', 'ngAppSettings', '
             var resp = await customerServices.saveCustomer(customer);
             if (resp && resp.isSucceed) {
                 $scope.activedCustomer = resp.data;
-                $rootScope.showMessage('Th√†nh c√¥ng', 'success');
+                $rootScope.showMessage('Th‡nh cÙng', 'success');
                 $rootScope.isBusy = false;
                 $scope.$apply();
                 //$location.path('/portal/customer/details/' + resp.data.id);

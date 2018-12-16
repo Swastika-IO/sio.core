@@ -1,4 +1,4 @@
-﻿'use strict';
+'use strict';
 app.controller('QueenDashboardController', ['$scope', '$rootScope', '$timeout', '$location', 'QueenDashboardServices', function ($scope, $rootScope, $timeout, $location, dashboardServices) {
     $scope.pageClass = 'page-dashboard';
     $('.side-nav li').removeClass('active');

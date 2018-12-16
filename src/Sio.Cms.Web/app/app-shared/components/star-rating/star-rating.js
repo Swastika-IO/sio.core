@@ -1,4 +1,4 @@
-﻿modules.component('starRating', {
+modules.component('starRating', {
     templateUrl: '/app/app-shared/components/star-rating/star-rating.html',
     controller: ['$rootScope', function ($rootScope) {
         var ctrl = this;

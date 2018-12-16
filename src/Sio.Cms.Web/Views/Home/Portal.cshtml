@@ -1,4 +1,4 @@
-﻿@{
+@{
     ViewData["Title"] = "Dashboard";
     ViewData["Description"] = "Your powerful dashboard is here";
     Layout = "_LayoutPortal_Angular";
@@ -25,6 +25,7 @@
                     <hub-messages ng-if="isInit"></hub-messages>
                     <message ng-if="isInit" message="message"></message>
                     <confirm ng-if="isInit" message="confirmMessage"></confirm>
+                    <modal-favorite ng-if="isInit"></modal-favorite>
                     <preview-popup ng-if="isInit" preview-object="previewObject"></preview-popup>
                 </section>
 
@@ -35,7 +36,7 @@
                                 <script>
                                     document.write(new Date().getFullYear());
                                 </script>
-                                <a href="http://www.mixcore.org">mixcore</a>, made on Earth by humans.
+                                <a href="http://www.siocore.org">siocore</a>, made on Earth by humans.
                             </p>
                         </nav>
                     </div>

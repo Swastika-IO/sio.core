@@ -109,6 +109,9 @@ namespace Sio.Cms.Lib.ViewModels.SioArticles
         [JsonProperty("mediaNavs")]
         public List<SioArticleMedias.ReadViewModel> MediaNavs { get; set; }
 
+        [JsonProperty("moduleNavs")]
+        public List<SioArticleModules.ReadViewModel> ModuleNavs { get; set; }
+
         [JsonProperty("articleNavs")]
         public List<SioArticleArticles.ReadViewModel> ArticleNavs { get; set; }
 
@@ -169,7 +172,7 @@ namespace Sio.Cms.Lib.ViewModels.SioArticles
         {
             get
             {
-                if (Image != null && (Image.IndexOf("http") == -1 && Image[0] != '/'))
+                if (Image != null && (Image.IndexOf("http") == -1) && Image[0] != '/')
                 {
                     return CommonHelper.GetFullPath(new string[] {
                     Domain,  Image
@@ -195,7 +198,7 @@ namespace Sio.Cms.Lib.ViewModels.SioArticles
                 }
                 else
                 {
-                    return Thumbnail;
+                    return ImageUrl;
                 }
             }
         }
@@ -271,15 +274,81 @@ namespace Sio.Cms.Lib.ViewModels.SioArticles
                     c.IsActived = SioModuleArticles.ReadViewModel.Repository.CheckIsExists(n => n.ModuleId == c.ModuleId && n.ArticleId == Id, _context, _transaction);
                 });
             }
+            var otherModules = SioModules.ReadListItemViewModel.Repository.GetModelListBy(
+                m => (m.Type == (int)SioEnums.SioModuleType.Content || m.Type == (int)SioEnums.SioModuleType.ListArticle) 
+                && m.Specificulture == Specificulture
+                && !Modules.Any(n => n.ModuleId == m.Id && n.Specificulture == m.Specificulture)
+                , "CreatedDateTime", 1, null, 0, _context, _transaction);
+            foreach (var item in otherModules.Data.Items)
+            {
+                Modules.Add(new SioModuleArticles.ReadViewModel()
+                {
+                    ModuleId = item.Id,
+                    Image = item.Image,
+                    ArticleId = Id,
+                    Description = item.Title
+                });
+            }
 
+            // Medias
             var getArticleMedia = SioArticleMedias.ReadViewModel.Repository.GetModelListBy(n => n.ArticleId == Id && n.Specificulture == Specificulture, _context, _transaction);
             if (getArticleMedia.IsSucceed)
             {
                 MediaNavs = getArticleMedia.Data.OrderBy(p => p.Priority).ToList();
                 MediaNavs.ForEach(n => n.IsActived = true);
             }
+            // var otherMedias = SioMedias.UpdateViewModel.Repository.GetModelListBy(m => !MediaNavs.Any(n => n.MediaId == m.Id), "CreatedDateTime", 1, 10, 0, _context, _transaction);
+            // foreach (var item in otherMedias.Data.Items)
+            // {
+            //     MediaNavs.Add(new SioArticleMedias.ReadViewModel()
+            //     {
+            //         MediaId = item.Id,
+            //         Image = item.FullPath,
+            //         ArticleId = Id,
+            //         Description = item.Title
+            //     });
+            // }
+            // Modules
+            var getArticleModule = SioArticleModules.ReadViewModel.Repository.GetModelListBy(
+                n => n.ArticleId == Id && n.Specificulture == Specificulture, _context, _transaction);
+            if (getArticleModule.IsSucceed)
+            {
+                ModuleNavs = getArticleModule.Data.OrderBy(p => p.Priority).ToList();
+                foreach (var item in ModuleNavs)
+                {
+                    item.IsActived = true;
+                    item.Module.LoadData(articleId: Id, _context: _context, _transaction: _transaction);
+                }
+            }
+            var otherModuleNavs = SioModules.ReadMvcViewModel.Repository.GetModelListBy(
+                m => (m.Type == (int)SioEnums.SioModuleType.SubArticle) && m.Specificulture == Specificulture
+                && !ModuleNavs.Any(n => n.ModuleId == m.Id), "CreatedDateTime", 1, null, 0, _context, _transaction);
+            foreach (var item in otherModuleNavs.Data.Items)
+            {
+                item.LoadData(articleId: Id, _context: _context, _transaction: _transaction);
+                ModuleNavs.Add(new SioArticleModules.ReadViewModel()
+                {
+                    ModuleId = item.Id,
+                    Image = item.Image,
+                    ArticleId = Id,
+                    Description = item.Title,
+                    Module = item
+                });
+            }
 
+            // Related Articles
             ArticleNavs = GetRelated(_context, _transaction);
+            var otherArticles = SioArticles.ReadListItemViewModel.Repository.GetModelListBy(m => !ArticleNavs.Any(n => n.SourceId == m.Id), "CreatedDateTime", 1, 10, 0, _context, _transaction);
+            foreach (var item in otherArticles.Data.Items)
+            {
+                ArticleNavs.Add(new SioArticleArticles.ReadViewModel()
+                {
+                    SourceId = Id,
+                    Image = item.ImageUrl,
+                    DestinationId = item.Id,
+                    Description = item.Title
+                });
+            }
         }
 
         public override SioArticle ParseModel(SioCmsContext _context = null, IDbContextTransaction _transaction = null)
@@ -328,7 +397,8 @@ namespace Sio.Cms.Lib.ViewModels.SioArticles
                     Image = CommonHelper.GetFullPath(new string[] { folder, filename });
                 }
             }
-
+            if(!string.IsNullOrEmpty(Image) && Image[0] == '/'){ Image = Image.Substring(1);}
+            if(!string.IsNullOrEmpty(Thumbnail) && Thumbnail[0] == '/'){ Thumbnail = Thumbnail.Substring(1);}
             Tags = ListTag.ToString(Newtonsoft.Json.Formatting.None);
             GenerateSEO();
 
@@ -381,12 +451,42 @@ namespace Sio.Cms.Lib.ViewModels.SioArticles
                         }
                     }
                 }
+                if (result.IsSucceed)
+                {
+                    foreach (var navModule in ModuleNavs)
+                    {
+                        navModule.ArticleId = parent.Id;
+                        navModule.Specificulture = parent.Specificulture;
+                        navModule.Status = SioEnums.SioContentStatus.Published;
+                        if (navModule.IsActived)
+                        {
+                            var saveResult = await navModule.SaveModelAsync(false, _context, _transaction);
+                            result.IsSucceed = saveResult.IsSucceed;
+                            if (!result.IsSucceed)
+                            {
+                                result.Exception = saveResult.Exception;
+                                Errors.AddRange(saveResult.Errors);
+                            }
+                        }
+                        else
+                        {
+                            var saveResult = await navModule.RemoveModelAsync(false, _context, _transaction);
+                            result.IsSucceed = saveResult.IsSucceed;
+                            if (!result.IsSucceed)
+                            {
+                                result.Exception = saveResult.Exception;
+                                Errors.AddRange(saveResult.Errors);
+                            }
+                        }
+                    }
+                }
 
                 if (result.IsSucceed)
                 {
                     foreach (var navArticle in ArticleNavs)
                     {
                         navArticle.SourceId = parent.Id;
+                        navArticle.Status = SioEnums.SioContentStatus.Published;
                         navArticle.Specificulture = parent.Specificulture;
                         if (navArticle.IsActived)
                         {
@@ -416,6 +516,7 @@ namespace Sio.Cms.Lib.ViewModels.SioArticles
                     foreach (var item in Pages)
                     {
                         item.ArticleId = parent.Id;
+                        item.Status = SioEnums.SioContentStatus.Published;
                         if (item.IsActived)
                         {
                             var saveResult = await item.SaveModelAsync(false, _context, _transaction);
@@ -445,6 +546,7 @@ namespace Sio.Cms.Lib.ViewModels.SioArticles
                     foreach (var item in Modules)
                     {
                         item.ArticleId = parent.Id;
+                        item.Status = SioEnums.SioContentStatus.Published;
                         if (item.IsActived)
                         {
                             var saveResult = await item.SaveModelAsync(false, _context, _transaction);
@@ -511,6 +613,14 @@ namespace Sio.Cms.Lib.ViewModels.SioArticles
                     _context.Entry(item).State = Microsoft.EntityFrameworkCore.EntityState.Deleted;
                 }
             }
+            if (result.IsSucceed)
+            {
+                var navModule = _context.SioArticleModule.AsEnumerable();
+                foreach (var item in navModule)
+                {
+                    _context.Entry(item).State = Microsoft.EntityFrameworkCore.EntityState.Deleted;
+                }
+            }
 
             if (result.IsSucceed)
             {
@@ -522,7 +632,7 @@ namespace Sio.Cms.Lib.ViewModels.SioArticles
             }
             var taskSource = new TaskCompletionSource<RepositoryResponse<bool>>();
             taskSource.SetResult(result);
-            return taskSource.Task;            
+            return taskSource.Task;
         }
 
         #endregion Async Methods

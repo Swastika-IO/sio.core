@@ -23,8 +23,8 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\..\Sio.heart\src\Sio.Heart\Sio.Heart.csproj" />
-    <ProjectReference Include="..\..\..\Sio.identity\src\Sio.Identity\Sio.Identity.csproj" />
+    <ProjectReference Include="..\..\..\sio.heart\src\Sio.Heart\Sio.Heart.csproj" />
+    <ProjectReference Include="..\..\..\sio.identity\src\Sio.Identity\Sio.Identity.csproj" />
   </ItemGroup>
 
   <ItemGroup>

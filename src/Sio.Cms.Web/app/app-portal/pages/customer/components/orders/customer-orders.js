@@ -1,4 +1,4 @@
-﻿
+
 app.component('customerOrders', {
     templateUrl: '/app/app-portal/pages/customer/components/orders/customer-orders.html',
     controller: ['$rootScope', 'OrderServices', function($rootScope, orderServices){

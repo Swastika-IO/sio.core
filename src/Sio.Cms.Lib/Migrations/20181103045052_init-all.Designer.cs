@@ -101,7 +101,7 @@ namespace Sio.Cms.Lib.Migrations
 
                     b.HasIndex("Specificulture");
 
-                    b.ToTable("Sio_article");
+                    b.ToTable("sio_article");
                 });
 
             modelBuilder.Entity("Sio.Cms.Lib.Models.Cms.SioArticleMedia", b =>
@@ -133,7 +133,7 @@ namespace Sio.Cms.Lib.Migrations
 
                     b.HasIndex("MediaId", "Specificulture");
 
-                    b.ToTable("Sio_article_media");
+                    b.ToTable("sio_article_media");
                 });
 
             modelBuilder.Entity("Sio.Cms.Lib.Models.Cms.SioArticleModule", b =>
@@ -165,7 +165,7 @@ namespace Sio.Cms.Lib.Migrations
 
                     b.HasIndex("ModuleId", "Specificulture");
 
-                    b.ToTable("Sio_article_module");
+                    b.ToTable("sio_article_module");
                 });
 
             modelBuilder.Entity("Sio.Cms.Lib.Models.Cms.SioCmsUser", b =>
@@ -210,7 +210,7 @@ namespace Sio.Cms.Lib.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Sio_cms_user");
+                    b.ToTable("sio_cms_user");
                 });
 
             modelBuilder.Entity("Sio.Cms.Lib.Models.Cms.SioComment", b =>
@@ -268,7 +268,7 @@ namespace Sio.Cms.Lib.Migrations
 
                     b.HasIndex("ProductId", "Specificulture");
 
-                    b.ToTable("Sio_comment");
+                    b.ToTable("sio_comment");
                 });
 
             modelBuilder.Entity("Sio.Cms.Lib.Models.Cms.SioConfiguration", b =>
@@ -307,7 +307,7 @@ namespace Sio.Cms.Lib.Migrations
 
                     b.HasIndex("Specificulture");
 
-                    b.ToTable("Sio_configuration");
+                    b.ToTable("sio_configuration");
                 });
 
             modelBuilder.Entity("Sio.Cms.Lib.Models.Cms.SioCopy", b =>
@@ -331,7 +331,7 @@ namespace Sio.Cms.Lib.Migrations
 
                     b.HasKey("Culture", "Keyword");
 
-                    b.ToTable("Sio_copy");
+                    b.ToTable("sio_copy");
                 });
 
             modelBuilder.Entity("Sio.Cms.Lib.Models.Cms.SioCulture", b =>
@@ -380,7 +380,7 @@ namespace Sio.Cms.Lib.Migrations
                         .IsUnique()
                         .HasName("IX_Sio_Culture");
 
-                    b.ToTable("Sio_culture");
+                    b.ToTable("sio_culture");
                 });
 
             modelBuilder.Entity("Sio.Cms.Lib.Models.Cms.SioCustomer", b =>
@@ -436,7 +436,7 @@ namespace Sio.Cms.Lib.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Sio_customer");
+                    b.ToTable("sio_customer");
                 });
 
             modelBuilder.Entity("Sio.Cms.Lib.Models.Cms.SioFile", b =>
@@ -490,7 +490,7 @@ namespace Sio.Cms.Lib.Migrations
 
                     b.HasIndex("ThemeId");
 
-                    b.ToTable("Sio_file");
+                    b.ToTable("sio_file");
                 });
 
             modelBuilder.Entity("Sio.Cms.Lib.Models.Cms.SioLanguage", b =>
@@ -532,7 +532,7 @@ namespace Sio.Cms.Lib.Migrations
 
                     b.HasIndex("Specificulture");
 
-                    b.ToTable("Sio_language");
+                    b.ToTable("sio_language");
                 });
 
             modelBuilder.Entity("Sio.Cms.Lib.Models.Cms.SioMedia", b =>
@@ -589,7 +589,7 @@ namespace Sio.Cms.Lib.Migrations
 
                     b.HasKey("Id", "Specificulture");
 
-                    b.ToTable("Sio_media");
+                    b.ToTable("sio_media");
                 });
 
             modelBuilder.Entity("Sio.Cms.Lib.Models.Cms.SioModule", b =>
@@ -646,7 +646,7 @@ namespace Sio.Cms.Lib.Migrations
 
                     b.HasIndex("Specificulture");
 
-                    b.ToTable("Sio_module");
+                    b.ToTable("sio_module");
                 });
 
             modelBuilder.Entity("Sio.Cms.Lib.Models.Cms.SioModuleArticle", b =>
@@ -676,7 +676,7 @@ namespace Sio.Cms.Lib.Migrations
 
                     b.HasIndex("ModuleId", "Specificulture");
 
-                    b.ToTable("Sio_module_article");
+                    b.ToTable("sio_module_article");
                 });
 
             modelBuilder.Entity("Sio.Cms.Lib.Models.Cms.SioModuleAttributeSet", b =>
@@ -717,9 +717,9 @@ namespace Sio.Cms.Lib.Migrations
                     b.HasIndex("ModuleId", "ArticleId", "Specificulture");
 
                     b.HasIndex("ModuleId", "CategoryId", "Specificulture")
-                        .HasName("IX_Sio_module_attribute_set_ModuleId_PageId_Specificulture");
+                        .HasName("IX_sio_module_attribute_set_ModuleId_PageId_Specificulture");
 
-                    b.ToTable("Sio_module_attribute_set");
+                    b.ToTable("sio_module_attribute_set");
                 });
 
             modelBuilder.Entity("Sio.Cms.Lib.Models.Cms.SioModuleAttributeValue", b =>
@@ -757,7 +757,7 @@ namespace Sio.Cms.Lib.Migrations
 
                     b.HasIndex("AttributeSetId", "ModuleId", "Specificulture");
 
-                    b.ToTable("Sio_module_attribute_value");
+                    b.ToTable("sio_module_attribute_value");
                 });
 
             modelBuilder.Entity("Sio.Cms.Lib.Models.Cms.SioModuleData", b =>
@@ -801,11 +801,11 @@ namespace Sio.Cms.Lib.Migrations
                     b.HasIndex("ModuleId", "ArticleId", "Specificulture");
 
                     b.HasIndex("ModuleId", "CategoryId", "Specificulture")
-                        .HasName("IX_Sio_module_data_ModuleId_PageId_Specificulture");
+                        .HasName("IX_sio_module_data_ModuleId_PageId_Specificulture");
 
                     b.HasIndex("ModuleId", "ProductId", "Specificulture");
 
-                    b.ToTable("Sio_module_data");
+                    b.ToTable("sio_module_data");
                 });
 
             modelBuilder.Entity("Sio.Cms.Lib.Models.Cms.SioModuleProduct", b =>
@@ -835,7 +835,7 @@ namespace Sio.Cms.Lib.Migrations
 
                     b.HasIndex("ProductId", "Specificulture");
 
-                    b.ToTable("Sio_module_product");
+                    b.ToTable("sio_module_product");
                 });
 
             modelBuilder.Entity("Sio.Cms.Lib.Models.Cms.SioOrder", b =>
@@ -866,7 +866,7 @@ namespace Sio.Cms.Lib.Migrations
 
                     b.HasIndex("Specificulture");
 
-                    b.ToTable("Sio_order");
+                    b.ToTable("sio_order");
                 });
 
             modelBuilder.Entity("Sio.Cms.Lib.Models.Cms.SioOrderItem", b =>
@@ -900,13 +900,13 @@ namespace Sio.Cms.Lib.Migrations
 
                     b.HasIndex("Id", "Specificulture")
                         .IsUnique()
-                        .HasName("AK_Sio_order_item_Id_Specificulture");
+                        .HasName("AK_sio_order_item_Id_Specificulture");
 
                     b.HasIndex("OrderId", "Specificulture");
 
                     b.HasIndex("ProductId", "Specificulture");
 
-                    b.ToTable("Sio_order_item");
+                    b.ToTable("sio_order_item");
                 });
 
             modelBuilder.Entity("Sio.Cms.Lib.Models.Cms.SioPage", b =>
@@ -995,7 +995,7 @@ namespace Sio.Cms.Lib.Migrations
 
                     b.HasIndex("Specificulture");
 
-                    b.ToTable("Sio_page");
+                    b.ToTable("sio_page");
                 });
 
             modelBuilder.Entity("Sio.Cms.Lib.Models.Cms.SioPageArticle", b =>
@@ -1026,9 +1026,9 @@ namespace Sio.Cms.Lib.Migrations
                     b.HasIndex("ArticleId", "Specificulture");
 
                     b.HasIndex("CategoryId", "Specificulture")
-                        .HasName("IX_Sio_page_article_PageId_Specificulture");
+                        .HasName("IX_sio_page_article_PageId_Specificulture");
 
-                    b.ToTable("Sio_page_article");
+                    b.ToTable("sio_page_article");
                 });
 
             modelBuilder.Entity("Sio.Cms.Lib.Models.Cms.SioPageModule", b =>
@@ -1057,11 +1057,11 @@ namespace Sio.Cms.Lib.Migrations
                     b.HasKey("ModuleId", "CategoryId", "Specificulture");
 
                     b.HasIndex("CategoryId", "Specificulture")
-                        .HasName("IX_Sio_page_module_PageId_Specificulture");
+                        .HasName("IX_sio_page_module_PageId_Specificulture");
 
                     b.HasIndex("ModuleId", "Specificulture");
 
-                    b.ToTable("Sio_page_module");
+                    b.ToTable("sio_page_module");
                 });
 
             modelBuilder.Entity("Sio.Cms.Lib.Models.Cms.SioPagePage", b =>
@@ -1091,7 +1091,7 @@ namespace Sio.Cms.Lib.Migrations
 
                     b.HasIndex("ParentId", "Specificulture");
 
-                    b.ToTable("Sio_page_page");
+                    b.ToTable("sio_page_page");
                 });
 
             modelBuilder.Entity("Sio.Cms.Lib.Models.Cms.SioPagePosition", b =>
@@ -1115,9 +1115,9 @@ namespace Sio.Cms.Lib.Migrations
                     b.HasKey("PositionId", "CategoryId", "Specificulture");
 
                     b.HasIndex("CategoryId", "Specificulture")
-                        .HasName("IX_Sio_page_position_PageId_Specificulture");
+                        .HasName("IX_sio_page_position_PageId_Specificulture");
 
-                    b.ToTable("Sio_page_position");
+                    b.ToTable("sio_page_position");
                 });
 
             modelBuilder.Entity("Sio.Cms.Lib.Models.Cms.SioPageProduct", b =>
@@ -1144,11 +1144,11 @@ namespace Sio.Cms.Lib.Migrations
                     b.HasKey("ProductId", "CategoryId", "Specificulture");
 
                     b.HasIndex("CategoryId", "Specificulture")
-                        .HasName("IX_Sio_page_product_PageId_Specificulture");
+                        .HasName("IX_sio_page_product_PageId_Specificulture");
 
                     b.HasIndex("ProductId", "Specificulture");
 
-                    b.ToTable("Sio_page_product");
+                    b.ToTable("sio_page_product");
                 });
 
             modelBuilder.Entity("Sio.Cms.Lib.Models.Cms.SioParameter", b =>
@@ -1169,7 +1169,7 @@ namespace Sio.Cms.Lib.Migrations
 
                     b.HasKey("Name");
 
-                    b.ToTable("Sio_parameter");
+                    b.ToTable("sio_parameter");
                 });
 
             modelBuilder.Entity("Sio.Cms.Lib.Models.Cms.SioPortalPage", b =>
@@ -1207,7 +1207,7 @@ namespace Sio.Cms.Lib.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Sio_portal_page");
+                    b.ToTable("sio_portal_page");
                 });
 
             modelBuilder.Entity("Sio.Cms.Lib.Models.Cms.SioPortalPageNavigation", b =>
@@ -1232,7 +1232,7 @@ namespace Sio.Cms.Lib.Migrations
 
                     b.HasIndex("ParentId");
 
-                    b.ToTable("Sio_portal_page_navigation");
+                    b.ToTable("sio_portal_page_navigation");
                 });
 
             modelBuilder.Entity("Sio.Cms.Lib.Models.Cms.SioPortalPagePosition", b =>
@@ -1254,7 +1254,7 @@ namespace Sio.Cms.Lib.Migrations
 
                     b.HasIndex("PortalPageId");
 
-                    b.ToTable("Sio_portal_page_position");
+                    b.ToTable("sio_portal_page_position");
                 });
 
             modelBuilder.Entity("Sio.Cms.Lib.Models.Cms.SioPortalPageRole", b =>
@@ -1280,7 +1280,7 @@ namespace Sio.Cms.Lib.Migrations
 
                     b.HasIndex("PageId");
 
-                    b.ToTable("Sio_portal_page_role");
+                    b.ToTable("sio_portal_page_role");
                 });
 
             modelBuilder.Entity("Sio.Cms.Lib.Models.Cms.SioPosition", b =>
@@ -1301,7 +1301,7 @@ namespace Sio.Cms.Lib.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Sio_position");
+                    b.ToTable("sio_position");
                 });
 
             modelBuilder.Entity("Sio.Cms.Lib.Models.Cms.SioProduct", b =>
@@ -1416,7 +1416,7 @@ namespace Sio.Cms.Lib.Migrations
 
                     b.HasIndex("Specificulture");
 
-                    b.ToTable("Sio_product");
+                    b.ToTable("sio_product");
                 });
 
             modelBuilder.Entity("Sio.Cms.Lib.Models.Cms.SioProductMedia", b =>
@@ -1448,7 +1448,7 @@ namespace Sio.Cms.Lib.Migrations
 
                     b.HasIndex("ProductId", "Specificulture");
 
-                    b.ToTable("Sio_product_media");
+                    b.ToTable("sio_product_media");
                 });
 
             modelBuilder.Entity("Sio.Cms.Lib.Models.Cms.SioProductModule", b =>
@@ -1480,7 +1480,7 @@ namespace Sio.Cms.Lib.Migrations
 
                     b.HasIndex("ProductId", "Specificulture");
 
-                    b.ToTable("Sio_product_module");
+                    b.ToTable("sio_product_module");
                 });
 
             modelBuilder.Entity("Sio.Cms.Lib.Models.Cms.SioRelatedArticle", b =>
@@ -1511,7 +1511,7 @@ namespace Sio.Cms.Lib.Migrations
 
                     b.HasIndex("SourceId", "Specificulture");
 
-                    b.ToTable("Sio_related_article");
+                    b.ToTable("sio_related_article");
                 });
 
             modelBuilder.Entity("Sio.Cms.Lib.Models.Cms.SioRelatedProduct", b =>
@@ -1542,7 +1542,7 @@ namespace Sio.Cms.Lib.Migrations
 
                     b.HasIndex("SourceId", "Specificulture");
 
-                    b.ToTable("Sio_related_product");
+                    b.ToTable("sio_related_product");
                 });
 
             modelBuilder.Entity("Sio.Cms.Lib.Models.Cms.SioSetAttribute", b =>
@@ -1572,7 +1572,7 @@ namespace Sio.Cms.Lib.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Sio_set_attribute");
+                    b.ToTable("sio_set_attribute");
                 });
 
             modelBuilder.Entity("Sio.Cms.Lib.Models.Cms.SioTemplate", b =>
@@ -1637,9 +1637,9 @@ namespace Sio.Cms.Lib.Migrations
                     b.HasKey("Id");
 
                     b.HasIndex("ThemeId")
-                        .HasName("IX_Sio_template_file_TemplateId");
+                        .HasName("IX_sio_template_file_TemplateId");
 
-                    b.ToTable("Sio_template");
+                    b.ToTable("sio_template");
                 });
 
             modelBuilder.Entity("Sio.Cms.Lib.Models.Cms.SioTheme", b =>
@@ -1673,7 +1673,7 @@ namespace Sio.Cms.Lib.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Sio_theme");
+                    b.ToTable("sio_theme");
                 });
 
             modelBuilder.Entity("Sio.Cms.Lib.Models.Cms.SioUrlAlias", b =>
@@ -1709,7 +1709,7 @@ namespace Sio.Cms.Lib.Migrations
 
                     b.HasIndex("Specificulture");
 
-                    b.ToTable("Sio_url_alias");
+                    b.ToTable("sio_url_alias");
                 });
 
             modelBuilder.Entity("Sio.Cms.Lib.Models.Cms.SioArticle", b =>
@@ -1717,7 +1717,7 @@ namespace Sio.Cms.Lib.Migrations
                     b.HasOne("Sio.Cms.Lib.Models.Cms.SioSetAttribute", "SetAttribute")
                         .WithMany("SioArticle")
                         .HasForeignKey("SetAttributeId")
-                        .HasConstraintName("FK_Sio_article_Sio_set_attribute");
+                        .HasConstraintName("FK_sio_article_sio_set_attribute");
 
                     b.HasOne("Sio.Cms.Lib.Models.Cms.SioCulture", "SpecificultureNavigation")
                         .WithMany("SioArticle")
@@ -1731,12 +1731,12 @@ namespace Sio.Cms.Lib.Migrations
                     b.HasOne("Sio.Cms.Lib.Models.Cms.SioArticle", "SioArticle")
                         .WithMany("SioArticleMedia")
                         .HasForeignKey("ArticleId", "Specificulture")
-                        .HasConstraintName("FK_Sio_article_media_Sio_article");
+                        .HasConstraintName("FK_sio_article_media_sio_article");
 
                     b.HasOne("Sio.Cms.Lib.Models.Cms.SioMedia", "SioMedia")
                         .WithMany("SioArticleMedia")
                         .HasForeignKey("MediaId", "Specificulture")
-                        .HasConstraintName("FK_Sio_article_media_Sio_media");
+                        .HasConstraintName("FK_sio_article_media_sio_media");
                 });
 
             modelBuilder.Entity("Sio.Cms.Lib.Models.Cms.SioArticleModule", b =>
@@ -1758,17 +1758,17 @@ namespace Sio.Cms.Lib.Migrations
                     b.HasOne("Sio.Cms.Lib.Models.Cms.SioArticle", "SioArticle")
                         .WithMany("SioComment")
                         .HasForeignKey("ArticleId", "Specificulture")
-                        .HasConstraintName("FK_Sio_comment_Sio_article");
+                        .HasConstraintName("FK_sio_comment_sio_article");
 
                     b.HasOne("Sio.Cms.Lib.Models.Cms.SioOrder", "SioOrder")
                         .WithMany("SioComment")
                         .HasForeignKey("OrderId", "Specificulture")
-                        .HasConstraintName("FK_Sio_comment_Sio_order");
+                        .HasConstraintName("FK_sio_comment_sio_order");
 
                     b.HasOne("Sio.Cms.Lib.Models.Cms.SioProduct", "SioProduct")
                         .WithMany("SioComment")
                         .HasForeignKey("ProductId", "Specificulture")
-                        .HasConstraintName("FK_Sio_comment_Sio_product");
+                        .HasConstraintName("FK_sio_comment_sio_product");
                 });
 
             modelBuilder.Entity("Sio.Cms.Lib.Models.Cms.SioConfiguration", b =>
@@ -1786,7 +1786,7 @@ namespace Sio.Cms.Lib.Migrations
                     b.HasOne("Sio.Cms.Lib.Models.Cms.SioTheme", "Theme")
                         .WithMany("SioFile")
                         .HasForeignKey("ThemeId")
-                        .HasConstraintName("FK_Sio_file_Sio_template");
+                        .HasConstraintName("FK_sio_file_sio_template");
                 });
 
             modelBuilder.Entity("Sio.Cms.Lib.Models.Cms.SioLanguage", b =>
@@ -1846,7 +1846,7 @@ namespace Sio.Cms.Lib.Migrations
                     b.HasOne("Sio.Cms.Lib.Models.Cms.SioModuleAttributeSet", "SioModuleAttributeSet")
                         .WithMany("SioModuleAttributeValue")
                         .HasForeignKey("AttributeSetId", "ModuleId", "Specificulture")
-                        .HasConstraintName("FK_Sio_module_attribute_value_Sio_module_attribute_set")
+                        .HasConstraintName("FK_sio_module_attribute_value_sio_module_attribute_set")
                         .OnDelete(DeleteBehavior.Cascade);
                 });
 
@@ -1887,7 +1887,7 @@ namespace Sio.Cms.Lib.Migrations
                     b.HasOne("Sio.Cms.Lib.Models.Cms.SioCustomer", "Customer")
                         .WithMany("SioOrder")
                         .HasForeignKey("CustomerId")
-                        .HasConstraintName("FK_Sio_order_Sio_cms_customer");
+                        .HasConstraintName("FK_sio_order_sio_cms_customer");
                 });
 
             modelBuilder.Entity("Sio.Cms.Lib.Models.Cms.SioOrderItem", b =>
@@ -1908,7 +1908,7 @@ namespace Sio.Cms.Lib.Migrations
                     b.HasOne("Sio.Cms.Lib.Models.Cms.SioSetAttribute", "SetAttribute")
                         .WithMany("SioPage")
                         .HasForeignKey("SetAttributeId")
-                        .HasConstraintName("FK_Sio_page_Sio_set_attribute");
+                        .HasConstraintName("FK_sio_page_sio_set_attribute");
 
                     b.HasOne("Sio.Cms.Lib.Models.Cms.SioCulture", "SpecificultureNavigation")
                         .WithMany("SioPage")
@@ -1989,12 +1989,12 @@ namespace Sio.Cms.Lib.Migrations
                     b.HasOne("Sio.Cms.Lib.Models.Cms.SioPortalPage", "IdNavigation")
                         .WithMany("SioPortalPageNavigationIdNavigation")
                         .HasForeignKey("Id")
-                        .HasConstraintName("FK_Sio_portal_page_navigation_Sio_portal_page");
+                        .HasConstraintName("FK_sio_portal_page_navigation_sio_portal_page");
 
                     b.HasOne("Sio.Cms.Lib.Models.Cms.SioPortalPage", "Parent")
                         .WithMany("SioPortalPageNavigationParent")
                         .HasForeignKey("ParentId")
-                        .HasConstraintName("FK_Sio_portal_page_navigation_Sio_portal_page1");
+                        .HasConstraintName("FK_sio_portal_page_navigation_sio_portal_page1");
                 });
 
             modelBuilder.Entity("Sio.Cms.Lib.Models.Cms.SioPortalPagePosition", b =>
@@ -2016,7 +2016,7 @@ namespace Sio.Cms.Lib.Migrations
                     b.HasOne("Sio.Cms.Lib.Models.Cms.SioPortalPage", "Page")
                         .WithMany("SioPortalPageRole")
                         .HasForeignKey("PageId")
-                        .HasConstraintName("FK_Sio_portal_page_role_Sio_portal_page")
+                        .HasConstraintName("FK_sio_portal_page_role_sio_portal_page")
                         .OnDelete(DeleteBehavior.Cascade);
                 });
 
@@ -2025,7 +2025,7 @@ namespace Sio.Cms.Lib.Migrations
                     b.HasOne("Sio.Cms.Lib.Models.Cms.SioSetAttribute", "SetAttribute")
                         .WithMany("SioProduct")
                         .HasForeignKey("SetAttributeId")
-                        .HasConstraintName("FK_Sio_product_Sio_set_attribute");
+                        .HasConstraintName("FK_sio_product_sio_set_attribute");
 
                     b.HasOne("Sio.Cms.Lib.Models.Cms.SioCulture", "SpecificultureNavigation")
                         .WithMany("SioProduct")
@@ -2039,12 +2039,12 @@ namespace Sio.Cms.Lib.Migrations
                     b.HasOne("Sio.Cms.Lib.Models.Cms.SioMedia", "SioMedia")
                         .WithMany("SioProductMedia")
                         .HasForeignKey("MediaId", "Specificulture")
-                        .HasConstraintName("FK_Sio_product_media_Sio_media");
+                        .HasConstraintName("FK_sio_product_media_sio_media");
 
                     b.HasOne("Sio.Cms.Lib.Models.Cms.SioProduct", "SioProduct")
                         .WithMany("SioProductMedia")
                         .HasForeignKey("ProductId", "Specificulture")
-                        .HasConstraintName("FK_Sio_product_media_Sio_product");
+                        .HasConstraintName("FK_sio_product_media_sio_product");
                 });
 
             modelBuilder.Entity("Sio.Cms.Lib.Models.Cms.SioProductModule", b =>
@@ -2066,12 +2066,12 @@ namespace Sio.Cms.Lib.Migrations
                     b.HasOne("Sio.Cms.Lib.Models.Cms.SioArticle", "SioArticle")
                         .WithMany("SioRelatedArticleSioArticle")
                         .HasForeignKey("DestinationId", "Specificulture")
-                        .HasConstraintName("FK_Sio_related_article_Sio_article1");
+                        .HasConstraintName("FK_sio_related_article_sio_article1");
 
                     b.HasOne("Sio.Cms.Lib.Models.Cms.SioArticle", "S")
                         .WithMany("SioRelatedArticleS")
                         .HasForeignKey("SourceId", "Specificulture")
-                        .HasConstraintName("FK_Sio_related_article_Sio_article");
+                        .HasConstraintName("FK_sio_related_article_sio_article");
                 });
 
             modelBuilder.Entity("Sio.Cms.Lib.Models.Cms.SioRelatedProduct", b =>
@@ -2079,12 +2079,12 @@ namespace Sio.Cms.Lib.Migrations
                     b.HasOne("Sio.Cms.Lib.Models.Cms.SioProduct", "SioProduct")
                         .WithMany("SioRelatedProductSioProduct")
                         .HasForeignKey("DestinationId", "Specificulture")
-                        .HasConstraintName("FK_Sio_related_product_Sio_product1");
+                        .HasConstraintName("FK_sio_related_product_sio_product1");
 
                     b.HasOne("Sio.Cms.Lib.Models.Cms.SioProduct", "S")
                         .WithMany("SioRelatedProductS")
                         .HasForeignKey("SourceId", "Specificulture")
-                        .HasConstraintName("FK_Sio_related_product_Sio_product");
+                        .HasConstraintName("FK_sio_related_product_sio_product");
                 });
 
             modelBuilder.Entity("Sio.Cms.Lib.Models.Cms.SioTemplate", b =>
@@ -2092,7 +2092,7 @@ namespace Sio.Cms.Lib.Migrations
                     b.HasOne("Sio.Cms.Lib.Models.Cms.SioTheme", "Theme")
                         .WithMany("SioTemplate")
                         .HasForeignKey("ThemeId")
-                        .HasConstraintName("FK_Sio_template_Sio_theme");
+                        .HasConstraintName("FK_sio_template_sio_theme");
                 });
 
             modelBuilder.Entity("Sio.Cms.Lib.Models.Cms.SioUrlAlias", b =>

@@ -1,4 +1,4 @@
-﻿
+
 modules.component('filterList', {
     templateUrl: '/app/app-portal/components/filter-list/filter-list.html',
     controller: ['$scope', '$rootScope', 'ngAppSettings', function ($scope, $rootScope, ngAppSettings) {

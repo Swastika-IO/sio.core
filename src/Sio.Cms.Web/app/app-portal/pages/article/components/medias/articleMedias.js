@@ -1,4 +1,4 @@
-﻿
+
 app.component('articleMedias', {
     templateUrl: '/app/app-portal/pages/article/components/medias/articleMedias.html',
     controller: function () {

@@ -1,4 +1,4 @@
-﻿
+
     'use strict';
     function ProductDetailsController($scope, $element, $attrs) {
         var ctrl = this;

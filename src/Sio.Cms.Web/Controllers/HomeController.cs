@@ -39,7 +39,8 @@ namespace Sio.Cms.Web.Controllers
         [Route("")]
         [Route("{culture}")]
         [Route("{culture}/{seoName}")]
-        public async System.Threading.Tasks.Task<IActionResult> Index(string culture, string seoName)
+        public async System.Threading.Tasks.Task<IActionResult> Index(
+            string culture, string seoName)
         {
             if (SioService.GetConfig<bool>("IsInit"))
             {
@@ -111,14 +112,14 @@ namespace Sio.Cms.Web.Controllers
             return await PageAsync("404");
         }
 
-
         async System.Threading.Tasks.Task<IActionResult> PageAsync(string seoName)//Expression<Func<SioPage, bool>> predicate, int? pageIndex = null, int pageSize = 10)
         {
             // Home Page
-
+            int.TryParse(Request.Query["pageSize"], out int pageSize);
+            int.TryParse(Request.Query["pageIndex"], out int pageIndex);
             var getPage = new RepositoryResponse<Lib.ViewModels.SioPages.ReadMvcViewModel>();
 
-            var cacheKey = $"page_{_culture}_{seoName}";
+            var cacheKey = $"page_{_culture}_{seoName}_{pageSize}_{pageIndex}";
 
             var data = _memoryCache.Get<Lib.ViewModels.SioPages.ReadMvcViewModel>(cacheKey);
             if (data != null)
@@ -143,6 +144,10 @@ namespace Sio.Cms.Web.Controllers
                 }
 
                 getPage = await Lib.ViewModels.SioPages.ReadMvcViewModel.Repository.GetSingleModelAsync(predicate);
+                if (getPage.Data!=null)
+                {
+                    getPage.Data.LoadData(pageIndex: pageIndex, pageSize: pageSize);
+                }
                 _memoryCache.Set(cacheKey, getPage.Data);
                 if (!SioConstants.cachedKeys.Contains(cacheKey))
                 {
@@ -275,19 +280,33 @@ namespace Sio.Cms.Web.Controllers
 
         void GeneratePageDetailsUrls(Lib.ViewModels.SioPages.ReadMvcViewModel page)
         {
-            foreach (var articleNav in page.Articles.Items)
+            if (page.Articles != null)
             {
-                if (articleNav.Article != null)
+                foreach (var articleNav in page.Articles.Items)
                 {
-                    articleNav.Article.DetailsUrl = GenerateDetailsUrl("Article", new { seoName = articleNav.Article.SeoName });
+                    if (articleNav.Article != null)
+                    {
+                        articleNav.Article.DetailsUrl = GenerateDetailsUrl("Article", new { seoName = articleNav.Article.SeoName });
+                    }
                 }
             }
 
-            foreach (var productNav in page.Products.Items)
+            if (page.Products != null)
             {
-                if (productNav.Product != null)
+                foreach (var productNav in page.Products.Items)
                 {
-                    productNav.Product.DetailsUrl = GenerateDetailsUrl("Product", new { seoName = productNav.Product.SeoName });
+                    if (productNav.Product != null)
+                    {
+                        productNav.Product.DetailsUrl = GenerateDetailsUrl("Product", new { seoName = productNav.Product.SeoName });
+                    }
+                }
+            }
+
+            if (page.Modules != null)
+            {
+                foreach (var nav in page.Modules)
+                {
+                    GeneratePageDetailsUrls(nav.Module);
                 }
             }
         }

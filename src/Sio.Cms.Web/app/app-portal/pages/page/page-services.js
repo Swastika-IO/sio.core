@@ -1,4 +1,4 @@
-﻿'use strict';
+'use strict';
 app.factory('PageService', ['$rootScope', 'CommonService', 'BaseService',
     function ($rootScope, commonService, baseService) {
 

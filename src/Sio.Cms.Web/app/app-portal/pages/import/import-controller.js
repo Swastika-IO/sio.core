@@ -1,4 +1,4 @@
-﻿'use strict';
+'use strict';
 app.controller('ImportFileController',
     ['$scope', '$rootScope', 'ImportFileServices', 'TranslatorService', 'GlobalSettingsService', 
         function ($scope, $rootScope, importFileServices, translatorService, GlobalSettingsService) {

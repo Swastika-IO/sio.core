@@ -1,0 +1,60 @@
+/* #sio-messenger{    
+    overflow: auto;
+    padding: 10px;
+    position: fixed;
+    bottom: 0;
+    right: 0;
+    background: #fff;
+    z-index: 99;
+    width: 30%;
+    margin: 0;  
+}
+
+#sio-messenger .btn-toggle{
+    top: 0;
+    right: 5px;
+    position: absolute;
+    padding: 5px 10px;
+    font-size: 11px;
+}
+#sio-messenger .btn-contact{
+    top: 0;
+    right: 35px;
+    position: absolute;
+    padding: 5px 10px;
+    font-size: 11px;
+}
+#sio-messenger .card-body{
+    padding: 10px;
+}
+#sio-messenger .container{
+    height: 350px;    
+}
+#sio-messenger .contact{
+    position: absolute;
+    right: 0;
+    top: 40px;
+    background: #f7f1f1;
+    height: 310px;
+    width: 250px;
+    text-align: right;
+    padding: 10px;
+}
+#sio-messenger .contact.collape{
+    display: none;
+}
+#sio-messenger .contact ul{
+     padding: 0;     
+}
+#sio-messenger .contact ul li{
+     list-style: none;
+}
+#sio-messenger .discussion{
+    height: 250px;    
+    overflow: auto;
+    padding: 15px;
+}
+#sio-discussion .action{
+    height: 100px;
+    bottom: 30px;
+} */

@@ -1,4 +1,4 @@
-﻿modules.directive('tabsH', function () {
+modules.directive('tabsH', function () {
     return {
         restrict: 'E',
         transclude: true,

@@ -11,6 +11,7 @@ using static Sio.Cms.Lib.SioEnums;
 using Sio.Cms.Lib.Repositories;
 using Newtonsoft.Json.Linq;
 using System.Collections.Generic;
+using Sio.Cms.Messenger.Models.Data;
 
 namespace Sio.Cms.Lib.Services
 {
@@ -20,11 +21,12 @@ namespace Sio.Cms.Lib.Services
         {
         }
 
-        public async Task<RepositoryResponse<bool>> InitCms(InitCulture culture)
+        public async Task<RepositoryResponse<bool>> InitCms(string siteName, InitCulture culture)
         {
             RepositoryResponse<bool> result = new RepositoryResponse<bool>();
             SioCmsContext context = null;
             SioCmsAccountContext accountContext = null;
+            SioChatServiceContext messengerContext;
             IDbContextTransaction transaction = null;
             IDbContextTransaction accTransaction = null;
             bool isSucceed = true;
@@ -34,8 +36,11 @@ namespace Sio.Cms.Lib.Services
                 {
                     context = new SioCmsContext();
                     accountContext = new SioCmsAccountContext();
+                    messengerContext = new SioChatServiceContext();
+                    //SioChatServiceContext._cnn = SioService.GetConnectionString(SioConstants.CONST_CMS_CONNECTION);
                     await context.Database.MigrateAsync();
                     await accountContext.Database.MigrateAsync();
+                    await messengerContext.Database.MigrateAsync();
                     transaction = context.Database.BeginTransaction();
 
                     var countCulture = context.SioCulture.Count();
@@ -44,14 +49,17 @@ namespace Sio.Cms.Lib.Services
 
                     if (!isInit)
                     {
+                        SioService.SetConfig<string>("SiteName", siteName);
                         isSucceed = InitCultures(culture, context, transaction);
 
                         isSucceed = isSucceed && InitPositions(context, transaction);
 
+                        isSucceed = isSucceed && await InitConfigurationsAsync(siteName, culture, context, transaction);
+                        isSucceed = isSucceed && await InitLanguagesAsync(culture, context, transaction);
+
                         isSucceed = isSucceed && InitThemes(context, transaction);
 
-                        isSucceed = isSucceed && await InitConfigurationsAsync(culture, context, transaction);
-                        isSucceed = isSucceed && await InitLanguagesAsync(culture, context, transaction);
+                        
                     }
                     else
                     {
@@ -146,12 +154,16 @@ namespace Sio.Cms.Lib.Services
         }
 
         
-        private async Task<bool> InitConfigurationsAsync(InitCulture culture, SioCmsContext context, IDbContextTransaction transaction)
+        private async Task<bool> InitConfigurationsAsync(string siteName, InitCulture culture, SioCmsContext context, IDbContextTransaction transaction)
         {
             /* Init Configs */
             var configurations = FileRepository.Instance.GetFile(SioConstants.CONST_FILE_CONFIGURATIONS, "data", true, "{}");
             var obj = JObject.Parse(configurations.Content);
             var arrConfiguration = obj["data"].ToObject<List<SioConfiguration>>();
+            if (!string.IsNullOrEmpty(siteName))
+            {
+                arrConfiguration.Find(c => c.Keyword == "SiteName").Value = siteName;
+            }
             var result = await ViewModels.SioConfigurations.ReadMvcViewModel.ImportConfigurations(arrConfiguration, culture.Specificulture,  context, transaction);
             return result.IsSucceed;
 

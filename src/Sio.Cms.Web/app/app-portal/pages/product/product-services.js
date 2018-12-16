@@ -1,4 +1,4 @@
-﻿'use strict';
+'use strict';
 app.factory('ProductService', ['BaseService',
     function (baseService) {
         var serviceFactory = Object.create(baseService);

@@ -1,4 +1,4 @@
-﻿
+
 //modules.controller('ImageController', );
 modules.component('customFile', {
     templateUrl: '/app/app-shared/components/custom-file/custom-file.html',

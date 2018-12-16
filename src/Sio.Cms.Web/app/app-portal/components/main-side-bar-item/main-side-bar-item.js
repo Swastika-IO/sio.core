@@ -1,4 +1,4 @@
-﻿
+
 modules.component('mainSideBarItem', {
     templateUrl: '/app/app-portal/components/main-side-bar-item/main-side-bar-item.html',
     controller: ['$rootScope', function ($rootScope) {

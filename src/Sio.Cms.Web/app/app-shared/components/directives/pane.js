@@ -1,4 +1,4 @@
-﻿'use trick'
+'use trick'
 modules.directive('pane', function () {
     return {
         require: '^tabs',

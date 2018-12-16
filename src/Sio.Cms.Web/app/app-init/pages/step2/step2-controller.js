@@ -1,4 +1,4 @@
-﻿'use strict';
+'use strict';
 app.controller('Step2Controller', ['$scope', '$rootScope', 'ngAppSettings', '$timeout', '$location', '$http', 'CommonService', 'Step2Services'
     , function ($scope, $rootScope, ngAppSettings, $timeout, $location, $http, commonService, services) {
         $scope.user = {

@@ -7,10 +7,10 @@ namespace Sio.Cms.Lib
     public class SioConstants
     {
         public const string CONST_CMS_CONNECTION = "SioCmsConnection";
+        public const string CONST_MESSENGER_CONNECTION = "SioMessengerConnection";
         public const string CONST_ACCOUNT_CONNECTION = "SioAccountConnection";
         public const string CONST_SETTING_IS_SQLITE = "IsSqlite";
         public const string CONST_SETTING_LANGUAGE = "Language";
-        public const string CONST_CHAT_CONNECTION = "ChatConnection";
         public const string CONST_FILE_APPSETTING = "appsettings";
         public const string CONST_DEFAULT_FILE_APPSETTING = "default.appsettings";
         public const string CONST_FILE_CONFIGURATIONS = "configurations.json";

@@ -92,8 +92,20 @@ namespace Sio.Cms.Lib.ViewModels.SioModuleDatas
 
         public override void ExpandView(SioCmsContext _context = null, IDbContextTransaction _transaction = null)
         {
+            Fields = _context.SioModule.First(m => m.Id == ModuleId && m.Specificulture == Specificulture)?.Fields;
             DataProperties = Fields == null ? null : JsonConvert.DeserializeObject<List<ApiModuleDataValueViewModel>>(Fields);
             JItem = Value == null ? InitValue() : JsonConvert.DeserializeObject<JObject>(Value);
+            foreach (var item in DataProperties)
+            {
+                if (!JItem.TryGetValue(item.Name, out JToken tmp))
+                {
+                    JItem[item.Name] = new JObject()
+                    {
+                        new JProperty("dataType", item.DataType),
+                        new JProperty("value", JItem[item.Name]?.Value<JObject>().Value<string>("value"))
+                    };
+                }
+            }
         }
 
         public override void Validate(SioCmsContext _context = null, IDbContextTransaction _transaction = null)

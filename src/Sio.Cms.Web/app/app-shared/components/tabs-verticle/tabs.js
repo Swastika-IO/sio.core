@@ -1,4 +1,4 @@
-﻿
+
 modules.directive('tabsV', function () {
     return {
         restrict: 'E',

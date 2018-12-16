@@ -1,4 +1,4 @@
-﻿
+
 modules.component('editor', {
     templateUrl: 'editor.html',
     controller: function ($scope) {

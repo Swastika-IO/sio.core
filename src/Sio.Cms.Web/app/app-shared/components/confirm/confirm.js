@@ -1,4 +1,4 @@
-﻿modules.component('confirm', {
+modules.component('confirm', {
     templateUrl: '/app/app-shared/components/confirm/confirm.html',
     controller: ['$rootScope', '$scope', 'ngAppSettings', function ($rootScope, $scope) {
         var ctrl = this;

@@ -1,4 +1,4 @@
-Ôªø'use strict';
+'use strict';
 app.controller('MediaController', ['$scope', '$rootScope', 'ngAppSettings', '$routeParams', 'MediaService', 'CommonService',
     function ($scope, $rootScope, ngAppSettings, $routeParams, service, commonService) {
         BaseCtrl.call(this, $scope, $rootScope, $routeParams, ngAppSettings, service);
@@ -71,7 +71,7 @@ app.controller('MediaController', ['$scope', '$rootScope', 'ngAppSettings', '$ro
             var resp = await service.cloneMedia(id);
             if (resp && resp.isSucceed) {
                 $scope.activedMedia = resp.data;
-                $rootScope.showMessage('Th√†nh c√¥ng', 'success');
+                $rootScope.showMessage('Th‡nh cÙng', 'success');
                 $rootScope.isBusy = false;
                 $scope.$apply();
                 //$location.path('/portal/media/details/' + resp.data.id);

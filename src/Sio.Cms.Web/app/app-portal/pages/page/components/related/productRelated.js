@@ -1,4 +1,4 @@
-﻿
+
 app.component('productRelated', {
     templateUrl: '/app/app-portal/pages/product/components/related/productRelated.html',
     controller: function () {

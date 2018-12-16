@@ -3,6 +3,7 @@ using Sio.Cms.Lib.Models.Cms;
 using Sio.Domain.Data.ViewModels;
 using Newtonsoft.Json;
 using System;
+using static Sio.Cms.Lib.SioEnums;
 
 namespace Sio.Cms.Lib.ViewModels.SioArticleArticles
 {
@@ -27,6 +28,9 @@ namespace Sio.Cms.Lib.ViewModels.SioArticleArticles
 
         [JsonProperty("description")]
         public string Description { get; set; }
+
+        [JsonProperty("status")]
+        public SioContentStatus Status { get; set; }
 
         #endregion Models
 

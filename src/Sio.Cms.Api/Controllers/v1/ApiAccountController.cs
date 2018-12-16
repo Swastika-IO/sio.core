@@ -414,6 +414,7 @@ namespace Sio.Cms.Api.Controllers.v1
                 //UserData = user,
                 Issued = dtIssued,
                 Expires = dtExpired,
+                LastUpdateConfiguration = SioService.GetConfig<DateTime?>("LastUpdateConfiguration")
             };
             return token;
         }
