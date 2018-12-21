@@ -1,4 +1,5 @@
 # Swastika I/O
+> If you have any concern about the brand, you may considering to switch to [mixcore](https://www.mixcore.org).
 
 ![Swastika I/O CMS](https://github.com/mixcore/mix.core/blob/master/assets/mixcore.png?raw=true "What is Swastika I/O CMS?")
 
