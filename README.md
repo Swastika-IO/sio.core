@@ -18,6 +18,8 @@ dotnet build
 dotnet run
 ```
 
+> Note: If you facing any System.Data.SqlClient.SqlException error, please replace all content inside "appsettings.json" file with "{}".
+
 # UI:  
   - **Default template:**
 ![Swastika I/O CMS default template with Now UI Pro](https://github.com/mixcore/mix.core/blob/master/assets/front-end.jpg?raw=true "Swastika I/O CMS default template with Now UI Pro")
