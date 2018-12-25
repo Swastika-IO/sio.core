@@ -8,11 +8,25 @@
 - Docs: https://docs.swastika.io
 - Youtube: https://www.youtube.com/channel/UChqzh6JnC8HBUSQ9AWIcZAw
 
+# GITs clone
+
+```
+mkdir siocore
+cd siocore
+
+git clone https://github.com/Swastika-IO/sio.heart.git
+git clone https://github.com/Swastika-IO/sio.identity.git
+git clone https://github.com/Swastika-IO/sio.core.git
+```
+
 # Build & Run
 
 ```
-cd src\Sio.Cms.Web
+cd sio.core/src/Sio.Cms.Web
+
+npm install
 gulp build
+dotnet restore
 dotnet bundle
 dotnet build
 dotnet run
