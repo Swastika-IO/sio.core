@@ -1,5 +1,7 @@
-using System;
+﻿using System;
+using System.Collections.Generic;
 using System.Diagnostics;
+using System.Linq;
 using System.Linq.Expressions;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Identity;
@@ -7,15 +9,15 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.ApiExplorer;
 using Microsoft.Extensions.Caching.Distributed;
 using Microsoft.Extensions.Caching.Memory;
-using Sio.Cms.Lib;
-using Sio.Cms.Lib.Models.Cms;
-using Sio.Cms.Lib.Services;
-using Sio.Cms.Web.Models;
-using Sio.Domain.Core.ViewModels;
-using Sio.Identity.Models;
-using static Sio.Cms.Lib.SioEnums;
+using Mix.Cms.Lib;
+using Mix.Cms.Lib.Models.Cms;
+using Mix.Cms.Lib.Services;
+using Mix.Cms.Web.Models;
+using Mix.Domain.Core.ViewModels;
+using Mix.Identity.Models;
+using static Mix.Cms.Lib.MixEnums;
 
-namespace Sio.Cms.Web.Controllers
+namespace Mix.Cms.Web.Controllers
 {
     public class HomeController : BaseController
     {
@@ -42,14 +44,14 @@ namespace Sio.Cms.Web.Controllers
         public async System.Threading.Tasks.Task<IActionResult> Index(
             string culture, string seoName)
         {
-            if (SioService.GetConfig<bool>("IsInit"))
+            if (MixService.GetConfig<bool>("IsInit"))
             {
                 //Go to landing page
                 return await PageAsync(seoName);
             }
             else
             {
-                if (string.IsNullOrEmpty(SioService.GetConnectionString(SioConstants.CONST_CMS_CONNECTION)))
+                if (string.IsNullOrEmpty(MixService.GetConnectionString(MixConstants.CONST_CMS_CONNECTION)))
                 {
                     return Redirect("Init");
                 }
@@ -94,7 +96,7 @@ namespace Sio.Cms.Web.Controllers
         [Route("init/{page}")]
         public IActionResult Init(string page)
         {
-            if (string.IsNullOrEmpty(page) && SioService.GetConfig<bool>("IsInit"))
+            if (string.IsNullOrEmpty(page) && MixService.GetConfig<bool>("IsInit"))
             {
                 return Redirect($"/init/login");
             }
@@ -112,61 +114,65 @@ namespace Sio.Cms.Web.Controllers
             return await PageAsync("404");
         }
 
-        async System.Threading.Tasks.Task<IActionResult> PageAsync(string seoName)//Expression<Func<SioPage, bool>> predicate, int? pageIndex = null, int pageSize = 10)
+        async System.Threading.Tasks.Task<IActionResult> PageAsync(string seoName)//Expression<Func<MixPage, bool>> predicate, int? pageIndex = null, int pageSize = 10)
         {
+            ViewData["TopPages"] = GetCategory(CatePosition.Nav, seoName);
+            ViewData["HeaderPages"] = GetCategory(CatePosition.Top, seoName);
+            ViewData["FooterPages"] = GetCategory(CatePosition.Footer, seoName);
+            ViewData["LeftPages"] = GetCategory(CatePosition.Left, seoName);
             // Home Page
             int.TryParse(Request.Query["pageSize"], out int pageSize);
             int.TryParse(Request.Query["pageIndex"], out int pageIndex);
-            var getPage = new RepositoryResponse<Lib.ViewModels.SioPages.ReadMvcViewModel>();
-
+            var getPage = new RepositoryResponse<Lib.ViewModels.MixPages.ReadMvcViewModel>();
             var cacheKey = $"page_{_culture}_{seoName}_{pageSize}_{pageIndex}";
 
-            var data = _memoryCache.Get<Lib.ViewModels.SioPages.ReadMvcViewModel>(cacheKey);
-            if (data != null)
+            var data = _memoryCache.Get<Lib.ViewModels.MixPages.ReadMvcViewModel>(cacheKey);
+            if (data != null && MixService.GetConfig<bool>("IsCache"))
             {
                 getPage.IsSucceed = true;
                 getPage.Data = data;
             }
             else
             {
-                Expression<Func<SioPage, bool>> predicate;
+                Expression<Func<MixPage, bool>> predicate;
                 if (string.IsNullOrEmpty(seoName))
                 {
                     predicate = p =>
-                    p.Type == (int)SioPageType.Home
-                    && p.Status == (int)SioContentStatus.Published && p.Specificulture == _culture;
+                    p.Type == (int)MixPageType.Home
+                    && p.Status == (int)MixContentStatus.Published && p.Specificulture == _culture;
                 }
                 else
                 {
                     predicate = p =>
                     p.SeoName == seoName
-                    && p.Status == (int)SioContentStatus.Published && p.Specificulture == _culture;
+                    && p.Status == (int)MixContentStatus.Published && p.Specificulture == _culture;
                 }
 
-                getPage = await Lib.ViewModels.SioPages.ReadMvcViewModel.Repository.GetSingleModelAsync(predicate);
-                if (getPage.Data!=null)
+                getPage = await Lib.ViewModels.MixPages.ReadMvcViewModel.Repository.GetSingleModelAsync(predicate);
+                if (getPage.Data != null)
                 {
                     getPage.Data.LoadData(pageIndex: pageIndex, pageSize: pageSize);
                 }
                 _memoryCache.Set(cacheKey, getPage.Data);
-                if (!SioConstants.cachedKeys.Contains(cacheKey))
+                if (!MixConstants.cachedKeys.Contains(cacheKey))
                 {
-                    SioConstants.cachedKeys.Add(cacheKey);
+                    MixConstants.cachedKeys.Add(cacheKey);
                 }
             }
 
             if (getPage.IsSucceed && getPage.Data.View != null)
             {
                 GeneratePageDetailsUrls(getPage.Data);
-                if (!SioConstants.cachedKeys.Contains(cacheKey))
+                if (!MixConstants.cachedKeys.Contains(cacheKey))
                 {
-                    SioConstants.cachedKeys.Add(cacheKey);
+                    MixConstants.cachedKeys.Add(cacheKey);
                 }
                 ViewData["Title"] = getPage.Data.SeoTitle;
                 ViewData["Description"] = getPage.Data.SeoDescription;
                 ViewData["Keywords"] = getPage.Data.SeoKeywords;
                 ViewData["Image"] = getPage.Data.ImageUrl;
                 ViewData["PageClass"] = getPage.Data.CssClass;
+                getPage.LastUpdateConfiguration = MixService.GetConfig<DateTime?>("LastUpdateConfiguration");
                 return View(getPage.Data);
             }
             else
@@ -177,38 +183,41 @@ namespace Sio.Cms.Web.Controllers
 
         async System.Threading.Tasks.Task<IActionResult> ArticleViewAsync(string seoName)
         {
-
-            var getArticle = new RepositoryResponse<Lib.ViewModels.SioArticles.ReadMvcViewModel>();
+            ViewData["TopPages"] = GetCategory(CatePosition.Nav, seoName);
+            ViewData["HeaderPages"] = GetCategory(CatePosition.Top, seoName);
+            ViewData["FooterPages"] = GetCategory(CatePosition.Footer, seoName);
+            ViewData["LeftPages"] = GetCategory(CatePosition.Left, seoName);
+            var getArticle = new RepositoryResponse<Lib.ViewModels.MixArticles.ReadMvcViewModel>();
 
             var cacheKey = $"article_{_culture}_{seoName}";
 
-            var data = _memoryCache.Get<Lib.ViewModels.SioArticles.ReadMvcViewModel>(cacheKey);
-            if (data != null)
+            var data = _memoryCache.Get<Lib.ViewModels.MixArticles.ReadMvcViewModel>(cacheKey);
+            if (data != null && MixService.GetConfig<bool>("IsCache"))
             {
                 getArticle.IsSucceed = true;
                 getArticle.Data = data;
             }
             else
             {
-                Expression<Func<SioArticle, bool>> predicate;
+                Expression<Func<MixArticle, bool>> predicate;
                 if (string.IsNullOrEmpty(seoName))
                 {
                     predicate = p =>
-                    p.Type == (int)SioPageType.Home
-                    && p.Status == (int)SioContentStatus.Published && p.Specificulture == _culture;
+                    p.Type == (int)MixPageType.Home
+                    && p.Status == (int)MixContentStatus.Published && p.Specificulture == _culture;
                 }
                 else
                 {
                     predicate = p =>
                     p.SeoName == seoName
-                    && p.Status == (int)SioContentStatus.Published && p.Specificulture == _culture;
+                    && p.Status == (int)MixContentStatus.Published && p.Specificulture == _culture;
                 }
 
-                getArticle = await Lib.ViewModels.SioArticles.ReadMvcViewModel.Repository.GetSingleModelAsync(predicate);
+                getArticle = await Lib.ViewModels.MixArticles.ReadMvcViewModel.Repository.GetSingleModelAsync(predicate);
                 _memoryCache.Set(cacheKey, getArticle.Data);
-                if (!SioConstants.cachedKeys.Contains(cacheKey))
+                if (!MixConstants.cachedKeys.Contains(cacheKey))
                 {
-                    SioConstants.cachedKeys.Add(cacheKey);
+                    MixConstants.cachedKeys.Add(cacheKey);
                 }
 
             }
@@ -219,6 +228,7 @@ namespace Sio.Cms.Web.Controllers
                 ViewData["Description"] = getArticle.Data.SeoDescription;
                 ViewData["Keywords"] = getArticle.Data.SeoKeywords;
                 ViewData["Image"] = getArticle.Data.ImageUrl;
+                getArticle.LastUpdateConfiguration = MixService.GetConfig<DateTime?>("LastUpdateConfiguration");
                 return View(getArticle.Data);
             }
             else
@@ -229,37 +239,41 @@ namespace Sio.Cms.Web.Controllers
 
         async System.Threading.Tasks.Task<IActionResult> ProductViewAsync(string seoName)
         {
-            var getProduct = new RepositoryResponse<Lib.ViewModels.SioProducts.ReadMvcViewModel>();
+            ViewData["TopPages"] = GetCategory(CatePosition.Nav, seoName);
+            ViewData["HeaderPages"] = GetCategory(CatePosition.Top, seoName);
+            ViewData["FooterPages"] = GetCategory(CatePosition.Footer, seoName);
+            ViewData["LeftPages"] = GetCategory(CatePosition.Left, seoName);
+            var getProduct = new RepositoryResponse<Lib.ViewModels.MixProducts.ReadMvcViewModel>();
 
             var cacheKey = $"product_{_culture}_{seoName}";
 
-            var data = _memoryCache.Get<Lib.ViewModels.SioProducts.ReadMvcViewModel>(cacheKey);
-            if (data != null)
+            var data = _memoryCache.Get<Lib.ViewModels.MixProducts.ReadMvcViewModel>(cacheKey);
+            if (data != null && MixService.GetConfig<bool>("IsCache"))
             {
                 getProduct.IsSucceed = true;
                 getProduct.Data = data;
             }
             else
             {
-                Expression<Func<SioProduct, bool>> predicate;
+                Expression<Func<MixProduct, bool>> predicate;
                 if (string.IsNullOrEmpty(seoName))
                 {
                     predicate = p =>
-                    p.Type == (int)SioPageType.Home
-                    && p.Status == (int)SioContentStatus.Published && p.Specificulture == _culture;
+                    p.Type == (int)MixPageType.Home
+                    && p.Status == (int)MixContentStatus.Published && p.Specificulture == _culture;
                 }
                 else
                 {
                     predicate = p =>
                     p.SeoName == seoName
-                    && p.Status == (int)SioContentStatus.Published && p.Specificulture == _culture;
+                    && p.Status == (int)MixContentStatus.Published && p.Specificulture == _culture;
                 }
 
-                getProduct = await Lib.ViewModels.SioProducts.ReadMvcViewModel.Repository.GetSingleModelAsync(predicate);
+                getProduct = await Lib.ViewModels.MixProducts.ReadMvcViewModel.Repository.GetSingleModelAsync(predicate);
                 _memoryCache.Set(cacheKey, getProduct.Data);
-                if (!SioConstants.cachedKeys.Contains(cacheKey))
+                if (!MixConstants.cachedKeys.Contains(cacheKey))
                 {
-                    SioConstants.cachedKeys.Add(cacheKey);
+                    MixConstants.cachedKeys.Add(cacheKey);
                 }
 
             }
@@ -270,6 +284,7 @@ namespace Sio.Cms.Web.Controllers
                 ViewData["Description"] = getProduct.Data.SeoDescription;
                 ViewData["Keywords"] = getProduct.Data.SeoKeywords;
                 ViewData["Image"] = getProduct.Data.ImageUrl;
+                getProduct.LastUpdateConfiguration = MixService.GetConfig<DateTime?>("LastUpdateConfiguration");
                 return View(getProduct.Data);
             }
             else
@@ -278,7 +293,7 @@ namespace Sio.Cms.Web.Controllers
             }
         }
 
-        void GeneratePageDetailsUrls(Lib.ViewModels.SioPages.ReadMvcViewModel page)
+        void GeneratePageDetailsUrls(Lib.ViewModels.MixPages.ReadMvcViewModel page)
         {
             if (page.Articles != null)
             {
@@ -311,30 +326,95 @@ namespace Sio.Cms.Web.Controllers
             }
         }
 
-        void GeneratePageDetailsUrls(Lib.ViewModels.SioModules.ReadMvcViewModel module)
+        void GeneratePageDetailsUrls(Lib.ViewModels.MixModules.ReadMvcViewModel module)
         {
-            foreach (var articleNav in module.Articles.Items)
+            if (module.Articles != null)
             {
-                if (articleNav.Article != null)
+
+                foreach (var articleNav in module.Articles.Items)
                 {
-                    articleNav.Article.DetailsUrl = GenerateDetailsUrl("Article", new { seoName = articleNav.Article.SeoName });
+                    if (articleNav.Article != null)
+                    {
+                        articleNav.Article.DetailsUrl = GenerateDetailsUrl("Article", new { seoName = articleNav.Article.SeoName });
+                    }
                 }
             }
-
-            foreach (var productNav in module.Products.Items)
+            if (module.Products != null)
             {
-                if (productNav.Product != null)
+
+                foreach (var productNav in module.Products.Items)
                 {
-                    productNav.Product.DetailsUrl = GenerateDetailsUrl("Product", new { seoName = productNav.Product.SeoName });
+                    if (productNav.Product != null)
+                    {
+                        productNav.Product.DetailsUrl = GenerateDetailsUrl("Product", new { seoName = productNav.Product.SeoName });
+                    }
                 }
             }
         }
 
         string GenerateDetailsUrl(string type, object routeValues)
         {
-            return SioCmsHelper.GetRouterUrl(type, routeValues, Request, Url);
+            return MixCmsHelper.GetRouterUrl(type, routeValues, Request, Url);
         }
 
+        List<Lib.ViewModels.MixPages.ReadListItemViewModel> GetCategory(MixEnums.CatePosition position, string seoName)
+        {
+            var result = new List<Lib.ViewModels.MixPages.ReadListItemViewModel>();
+            var cacheKey = $"page_position_{position}";
+
+            var data = _memoryCache.Get<List<Lib.ViewModels.MixPages.ReadListItemViewModel>>(cacheKey);
+            if (data != null && MixService.GetConfig<bool>("IsCache"))
+            {
+                result = data;
+            }
+            else
+            {
+                var getTopCates = Lib.ViewModels.MixPages.ReadListItemViewModel.Repository.GetModelListBy
+            (c => c.Specificulture == _culture && c.MixPagePosition.Any(
+              p => p.PositionId == (int)position)
+            );
+
+                result = getTopCates.Data ?? new List<Lib.ViewModels.MixPages.ReadListItemViewModel>();
+                foreach (var cate in result)
+                {
+                    switch (cate.Type)
+                    {
+                        case MixPageType.Blank:
+                            foreach (var child in cate.Childs)
+                            {
+                                child.Page.DetailsUrl = GenerateDetailsUrl("Page", new { seoName = child.Page.SeoName });
+                            }
+                            break;
+
+                        case MixPageType.StaticUrl:
+                            cate.DetailsUrl = cate.StaticUrl;
+                            break;
+
+                        case MixPageType.Home:
+                        case MixPageType.ListArticle:
+                        case MixPageType.Article:
+                        case MixPageType.Modules:
+                        default:
+                            cate.DetailsUrl = GenerateDetailsUrl("Page", new { seoName = cate.SeoName });
+                            break;
+                    }
+                }
+
+            }
+
+            foreach (var cate in result)
+            {
+                cate.IsActived = (cate.SeoName == seoName
+                    || (cate.Type == MixPageType.Home && string.IsNullOrEmpty(seoName)));
+                cate.Childs.ForEach((Action<Lib.ViewModels.MixPagePages.ReadViewModel>)(c =>
+                {
+                    c.IsActived = (
+                    c.Page.SeoName == seoName);
+                    cate.IsActived = cate.IsActived || c.IsActived;
+                }));
+            }
+            return result;
+        }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()

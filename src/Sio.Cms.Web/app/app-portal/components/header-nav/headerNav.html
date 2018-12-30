@@ -5,7 +5,7 @@
 
     <span class="navbar-brand" ng-bind="$ctrl.getConfiguration('SiteName',false,'siocore')"></span>
 
-    <button type="button" id="sidebarCollapse" class="btn btn-link">
+    <button type="button" id="sidebarCollapse" class="btn btn-link" ng-click="$ctrl.toggleSidebar()">
         <span class="mi mi-List"></span>
     </button>
 
@@ -15,6 +15,11 @@
 
     <ul class="navbar-nav flex-row ml-md-auto d-none d-md-flex" ng-if="$ctrl.settings">
         <li class="nav-item mr-2">
+            <a class="nav-link p-2 btn" ng-click="$ctrl.generateSitemap()" alt="sitemap">
+                <i class="mi mi-AllApps"></i>
+            </a>
+        </li>
+        <li>
             <a class="nav-link p-2 btn" ng-click="$ctrl.addFavorite()">
                 <i class="mi mi-FavoriteList"></i>
             </a>

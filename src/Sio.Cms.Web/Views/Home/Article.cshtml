@@ -1,17 +1,18 @@
-@model Sio.Cms.Lib.ViewModels.SioArticles.ReadMvcViewModel
+﻿@model Mix.Cms.Lib.ViewModels.MixArticles.ReadMvcViewModel
 @{
     string culture = ViewBag.culture;
        
 }
 @section Seo{
-    <title>@(SioService.GetConfig<string>("SiteName", ViewBag.culture)) - @Model.Title</title>
+    <title>@(MixService.GetConfig<string>("SiteName", ViewBag.culture)) - @Model.Title</title>
     <meta property="og:type" content="article" />
     <meta property="og:url" content="@($"{Context.Request.Scheme}://{Context.Request.Host}{Context.Request.Path}")" />
     <meta property="og:title" content="@Model.Title" />
     <meta property="og:description"
           content="@Model.SeoDescription" />
-    <meta property="og:image" content="@Model.Title" />
+    <meta property="og:image" content="@Model.ThumbnailUrl" />
 }
+<preview-popup ng-if="isInit" preview-object="previewObject"></preview-popup>
 @if (!string.IsNullOrEmpty(Model.TemplatePath))
 {
     try
@@ -28,7 +29,7 @@
 else
 {
     <section class="container">
-        <h1>@SioService.Translate("Please choose template", ViewBag.culture)</h1>
+        <h1>@MixService.Translate("Please choose template", ViewBag.culture)</h1>
     </section>
 }
 @section Styles{

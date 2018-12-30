@@ -6,6 +6,7 @@ using Sio.Domain.Data.ViewModels;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
+using static Sio.Cms.Lib.SioEnums;
 
 namespace Sio.Cms.Lib.ViewModels.SioArticles
 {
@@ -80,6 +81,11 @@ namespace Sio.Cms.Lib.ViewModels.SioArticles
         [JsonProperty("tags")]
         public string Tags { get; set; }
 
+        [JsonProperty("status")]
+        public SioContentStatus Status { get; set; }
+
+
+
         #endregion Models
 
         #region Views
@@ -91,14 +97,14 @@ namespace Sio.Cms.Lib.ViewModels.SioArticles
         public ReadViewModel View { get; set; }
 
         [JsonProperty("domain")]
-        public string Domain { get { return SioService.GetConfig<string>("Domain") ?? "/"; } }
+        public string Domain { get { return SioService.GetConfig<string>("Domain"); } }
 
         [JsonProperty("imageUrl")]
         public string ImageUrl
         {
             get
             {
-                if (Image != null && (Image.IndexOf("http") == -1) && Image[0] != '/')
+                if (!string.IsNullOrEmpty(Image) && (Image.IndexOf("http") == -1) && Image[0] != '/')
                 {
                     return CommonHelper.GetFullPath(new string[] {
                     Domain,  Image
@@ -124,7 +130,7 @@ namespace Sio.Cms.Lib.ViewModels.SioArticles
                 }
                 else
                 {
-                    return ImageUrl;
+                    return string.IsNullOrEmpty(Thumbnail) ? ImageUrl : Thumbnail;
                 }
             }
         }

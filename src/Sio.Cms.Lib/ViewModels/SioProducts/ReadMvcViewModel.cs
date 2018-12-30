@@ -125,14 +125,14 @@ namespace Sio.Cms.Lib.ViewModels.SioProducts
         public SioTemplates.ReadViewModel View { get; set; }
 
         [JsonProperty("domain")]
-        public string Domain { get { return SioService.GetConfig<string>("Domain") ?? "/"; } }
+        public string Domain { get { return SioService.GetConfig<string>("Domain"); } }
 
         [JsonProperty("imageUrl")]
         public string ImageUrl
         {
             get
             {
-                if (Image != null && (Image.IndexOf("http") == -1) && Image[0] != '/')
+                if (!string.IsNullOrEmpty(Image) && (Image.IndexOf("http") == -1) && Image[0] != '/')
                 {
                     return CommonHelper.GetFullPath(new string[] {
                     Domain,  Image
@@ -158,7 +158,7 @@ namespace Sio.Cms.Lib.ViewModels.SioProducts
                 }
                 else
                 {
-                    return ImageUrl;
+                    return string.IsNullOrEmpty(Thumbnail) ? ImageUrl : Thumbnail;
                 }
             }
         }

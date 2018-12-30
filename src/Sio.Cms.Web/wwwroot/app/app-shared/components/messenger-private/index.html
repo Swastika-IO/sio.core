@@ -1,4 +1,4 @@
-<section class="card" ng-init="init()" id="sio-messenger" ng-class="{'collape': isHide}">
+<section class="card" ng-init="init()" id="mix-messenger" ng-class="{'collape': isHide}">
     <div class="card-header">
         <h6>Messenger - {{connectionId}}</h6> 
         <a class="btn btn-contact btn-success" ng-click="toggleContact()">Available({{members.length}})</a>
@@ -11,7 +11,7 @@
                 <a href="#" ng-click="login()">Login</a>
             </div>
             <div ng-if="user.loggedIn" class="container">
-                <div id="sio-discussion" class="discussion">
+                <div id="mix-discussion" class="discussion">
                     <div class="row" ng-repeat="msg in messages">
                         <div class="col-md-12" ng-class="{ 'text-right': msg.connection.id == user.info.id }">
                             <img imageonload src="{{msg.connection.avatar}}"> <b class="small">{{msg.connection.name}}</b>

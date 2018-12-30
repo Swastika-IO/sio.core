@@ -1,4 +1,4 @@
-@model Sio.Cms.Lib.ViewModels.SioPages.ReadMvcViewModel
+@model Mix.Cms.Lib.ViewModels.MixPages.ReadMvcViewModel
 @{
     var listTags = Model.Articles.Items.Where(a => !string.IsNullOrEmpty(a.Article.Tags)).Select(a => a.Article.Tags).ToList();
     string tags = string.Empty;

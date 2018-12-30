@@ -34,7 +34,8 @@ namespace Sio.Cms.Lib.ViewModels.SioPagePages
 
         #region Views
 
-        public SioPages.ReadListItemViewModel Category { get; set; }
+        [JsonProperty("page")]
+        public SioPages.ReadListItemViewModel Page { get; set; }
 
         #endregion Views
 
@@ -42,12 +43,12 @@ namespace Sio.Cms.Lib.ViewModels.SioPagePages
 
         public override void ExpandView(SioCmsContext _context = null, IDbContextTransaction _transaction = null)
         {
-            var getCategory = SioPages.ReadListItemViewModel.Repository.GetSingleModel(p => p.Id == ParentId && p.Specificulture == Specificulture
+            var getCategory = SioPages.ReadListItemViewModel.Repository.GetSingleModel(p => p.Id == Id && p.Specificulture == Specificulture
                 , _context: _context, _transaction: _transaction
             );
             if (getCategory.IsSucceed)
             {
-                Category = getCategory.Data;
+                Page = getCategory.Data;
             }
         }
 

@@ -6,7 +6,9 @@ using Sio.Common.Helper;
 using Sio.Domain.Core.ViewModels;
 using Sio.Domain.Data.ViewModels;
 using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 using System;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Threading.Tasks;
@@ -43,6 +45,9 @@ namespace Sio.Cms.Lib.ViewModels.SioArticles
         [JsonProperty("excerpt")]
         public string Excerpt { get; set; }
 
+        [JsonProperty("content")]
+        public string Content { get; set; }
+
         [JsonProperty("seoName")]
         public string SeoName { get; set; }
 
@@ -67,19 +72,22 @@ namespace Sio.Cms.Lib.ViewModels.SioArticles
         [JsonProperty("tags")]
         public string Tags { get; set; }
 
+        [JsonIgnore]
+        [JsonProperty("extraProperties")]
+        public string ExtraProperties { get; set; } = "[]";
         #endregion Models
 
         #region Views
 
         [JsonProperty("domain")]
-        public string Domain { get { return SioService.GetConfig<string>("Domain", Specificulture) ?? "/"; } }
+        public string Domain { get { return SioService.GetConfig<string>("Domain", Specificulture); } }
 
         [JsonProperty("imageUrl")]
         public string ImageUrl
         {
             get
             {
-                if (Image != null && (Image.IndexOf("http") == -1) && Image[0] != '/')
+                if (!string.IsNullOrEmpty(Image) && (Image.IndexOf("http") == -1) && Image[0] != '/')
                 {
                     return CommonHelper.GetFullPath(new string[] {
                     Domain,  Image
@@ -105,14 +113,15 @@ namespace Sio.Cms.Lib.ViewModels.SioArticles
                 }
                 else
                 {
-                    return ImageUrl;
+                    return string.IsNullOrEmpty(Thumbnail) ? ImageUrl : Thumbnail;
                 }
             }
         }
 
         [JsonProperty("detailsUrl")]
         public string DetailsUrl { get; set; }
-
+        [JsonIgnore]
+        public List<ExtraProperty> Properties { get; set; }
         #endregion Views
 
         #endregion Properties
@@ -130,7 +139,13 @@ namespace Sio.Cms.Lib.ViewModels.SioArticles
         #endregion Contructors
 
         #region Expands
+        //Get Property by name
+        public string Property(string name)
+        {
+            var prop = Properties.FirstOrDefault(p => p.Name.ToLower() == name.ToLower());
+            return prop?.Value;
 
+        }
         public static async Task<RepositoryResponse<PaginationModel<ReadViewModel>>> GetModelListByCategoryAsync(
             int categoryId, string specificulture
             , string orderByPropertyName, int direction
@@ -291,7 +306,19 @@ namespace Sio.Cms.Lib.ViewModels.SioArticles
         #endregion Expands
 
         #region Overrides
+        public override void ExpandView(SioCmsContext _context = null, IDbContextTransaction _transaction = null)
+        {
+            Properties = new List<ExtraProperty>();
 
+            if (!string.IsNullOrEmpty(ExtraProperties))
+            {
+                JArray arr = JArray.Parse(ExtraProperties);
+                foreach (JToken item in arr)
+                {
+                    Properties.Add(item.ToObject<ExtraProperty>());
+                }
+            }
+        }
         #endregion
     }
 }

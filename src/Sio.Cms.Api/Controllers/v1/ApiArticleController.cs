@@ -33,7 +33,7 @@ namespace Sio.Cms.Api.Controllers.v1
 
         #region Get
 
-        // GET api/article/id
+         // GET api/article/id
         [HttpGet, HttpOptions]
         [Route("delete/{id}")]
         public async Task<RepositoryResponse<SioArticle>> DeleteAsync(int id)
@@ -155,12 +155,14 @@ namespace Sio.Cms.Api.Controllers.v1
         {
             var query = HttpUtility.ParseQueryString(request.Query ?? "");
             bool isPage = int.TryParse(query.Get("page_id"), out int pageId);
+            bool isNotPage = int.TryParse(query.Get("not_page_id"), out int notPageId);
             bool isModule = int.TryParse(query.Get("module_id"), out int moduleId);
             ParseRequestPagingDate(request);
             Expression<Func<SioArticle, bool>> predicate = model =>
                         model.Specificulture == _lang
                         && (!request.Status.HasValue || model.Status == request.Status.Value)
-                        && (!isPage || model.SioPageArticle.Any(nav=>nav.CategoryId == pageId && nav.ArticleId== model.Id && nav.Specificulture == _lang))
+                        && (!isPage || model.SioPageArticle.Any(nav=>nav.CategoryId == pageId && nav.ArticleId== model.Id && nav.Specificulture == _lang))                        
+                        && (!isNotPage || !model.SioPageArticle.Any(nav=>nav.CategoryId == notPageId && nav.ArticleId== model.Id && nav.Specificulture == _lang))                        
                         && (!isModule || model.SioModuleArticle.Any(nav=>nav.ModuleId == moduleId && nav.ArticleId== model.Id))
                         && (string.IsNullOrWhiteSpace(request.Keyword)
                             || (model.Title.Contains(request.Keyword)
@@ -213,7 +215,20 @@ namespace Sio.Cms.Api.Controllers.v1
                     return JObject.FromObject(listItemResult);
             }
         }
-
+        // POST api/update-infos
+        [HttpPost, HttpOptions]
+        [Route("update-infos")]
+        public async Task<RepositoryResponse<List<ReadListItemViewModel>>> UpdateInfos([FromBody]List<ReadListItemViewModel> models)
+        {
+            if (models != null)
+            {                
+                return await base.SaveListAsync(models, false);
+            }
+            else
+            {
+                return new RepositoryResponse<List<ReadListItemViewModel>>();
+            }
+        }
         #endregion Post
     }
 }

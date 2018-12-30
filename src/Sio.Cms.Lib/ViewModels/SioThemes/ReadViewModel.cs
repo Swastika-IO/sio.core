@@ -43,7 +43,7 @@ namespace Sio.Cms.Lib.ViewModels.SioThemes
         {
             get
             {
-                if (Image != null && (Image.IndexOf("http") == -1) && Image[0] != '/')
+                if (!string.IsNullOrEmpty(Image) && (Image.IndexOf("http") == -1) && Image[0] != '/')
                 {
                     return CommonHelper.GetFullPath(new string[] {
                     Domain,  Image
@@ -70,7 +70,7 @@ namespace Sio.Cms.Lib.ViewModels.SioThemes
                 return CommonHelper.GetFullPath(new string[] {
                     SioConstants.Folder.FileFolder,
                     SioConstants.Folder.TemplatesAssetFolder,
-                    SeoHelper.GetSEOString($"{SioService.GetConfig<string>("SiteName")}-{Name}")
+                    SeoHelper.GetSEOString(Name)
                 });
             }
         }
@@ -80,12 +80,12 @@ namespace Sio.Cms.Lib.ViewModels.SioThemes
         {
             get
             {
-                return CommonHelper.GetFullPath(new string[] { SioConstants.Folder.TemplatesFolder, SeoHelper.GetSEOString($"{SioService.GetConfig<string>("SiteName")}-{Name}") });
+                return CommonHelper.GetFullPath(new string[] { SioConstants.Folder.TemplatesFolder, SeoHelper.GetSEOString(Name) });
             }
         }
 
         [JsonProperty("domain")]
-        public string Domain { get { return SioService.GetConfig<string>("Domain") ?? "/"; } }
+        public string Domain { get { return SioService.GetConfig<string>("Domain"); } }
 
         #endregion Views
 

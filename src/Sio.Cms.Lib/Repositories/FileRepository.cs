@@ -280,7 +280,7 @@ namespace Sio.Cms.Lib.Repositories
 
         public bool CopyDirectory(string srcPath, string desPath)
         {
-            if (srcPath != desPath)
+            if (srcPath.ToLower() != desPath.ToLower())
             {
                 //Now Create all of the directories
                 foreach (string dirPath in Directory.GetDirectories(srcPath, "*", SearchOption.AllDirectories))
@@ -320,7 +320,7 @@ namespace Sio.Cms.Lib.Repositories
         }
 
         
-        private void CreateDirectoryIfNotExist(string fullPath)
+        public void CreateDirectoryIfNotExist(string fullPath)
         {
             if (!string.IsNullOrEmpty(fullPath) && !Directory.Exists(fullPath))
             {

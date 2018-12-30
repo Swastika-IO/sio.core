@@ -1,11 +1,13 @@
-@{
+﻿@{
     ViewData["Title"] = "Dashboard";
     ViewData["Description"] = "Your powerful dashboard is here";
     Layout = "_LayoutPortal_Angular";
 }
-<div ng-app="SioPortal" ng-init="init()" ng-controller="AppPortalController">
+<div ng-app="MixPortal" ng-init="init()" ng-controller="AppPortalController">
     <div class="loader-container" ng-show="isBusy">
-        <div id="loader"></div>
+       <div class="loader">
+            <span>{</span><span>}</span>
+        </div>
     </div>
 
     <header-nav settings="settings" bread-crumbs="breadCrumbs"></header-nav>
@@ -17,11 +19,13 @@
 
             <!-- <main class="py-md-4 px-md-2 sw-content" role="main"> -->
             <main class="py-md-3 px-md-2 sw-content w-100 position-relative" role="main">
-                <section class="content container-fluid">
-
+                <section class="content container">
+                    <jumbotrons ng-if="isInit" tag-name="pageTagName" tag-type="pageTagType"></jumbotrons>
                     <div class="{{pageClass}}" ng-view>
+                         
                     </div>
                     <medias ng-if="isInit"></medias>
+                    <modal-articles ng-if="isInit"></modal-articles>
                     <hub-messages ng-if="isInit"></hub-messages>
                     <message ng-if="isInit" message="message"></message>
                     <confirm ng-if="isInit" message="confirmMessage"></confirm>
@@ -36,7 +40,7 @@
                                 <script>
                                     document.write(new Date().getFullYear());
                                 </script>
-                                <a href="http://www.siocore.org">siocore</a>, made on Earth by humans.
+                                <a href="http://www.mixcore.org">mixcore</a>, made on Earth by humans.
                             </p>
                         </nav>
                     </div>

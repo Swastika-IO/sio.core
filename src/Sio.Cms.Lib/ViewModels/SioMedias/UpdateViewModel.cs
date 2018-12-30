@@ -67,7 +67,7 @@ namespace Sio.Cms.Lib.ViewModels.SioMedias
         #region Views
 
         [JsonProperty("domain")]
-        public string Domain { get { return SioService.GetConfig<string>("Domain") ?? "/"; } }
+        public string Domain { get { return SioService.GetConfig<string>("Domain"); } }
 
         [JsonProperty("fullPath")]
         public string FullPath

@@ -165,8 +165,7 @@ app.controller('MessengerController', ['$scope', function ($scope) {
         if ($scope.user.loggedIn) {
             $scope.request.data = $scope.message;
             $scope.connection.invoke('sendMessage', $scope.request);
-            $scope.message.content = '';
-            //$scope.$apply();
+            $scope.message.content = '';         
         }
     };
     $scope.receiveMessage = function (msg) {
@@ -259,7 +258,7 @@ app.controller('MessengerController', ['$scope', function ($scope) {
     $scope.newMessage = function (msg) {
         $scope.messages.push(msg);
         $scope.$apply();
-        var objDiv = document.getElementById("sio-discussion");
+        var objDiv = document.getElementsByClassName("widget-conversation")[0];
         objDiv.scrollTop = objDiv.scrollHeight + 20;
     }
     

@@ -38,6 +38,9 @@ namespace Sio.Cms.Lib.ViewModels.SioPages
         [JsonProperty("title")]
         public string Title { get; set; }
 
+         [JsonProperty("seoName")]
+        public string SeoName { get; set; }
+
         [JsonProperty("fields")]
         public string Fields { get; set; }
 
@@ -65,9 +68,6 @@ namespace Sio.Cms.Lib.ViewModels.SioPages
 
         [JsonProperty("thumbnail")]
         public string Thumbnail { get; set; }
-
-        [JsonProperty("seoName")]
-        public string SeoName { get; set; }
 
         [JsonProperty("seoDescription")]
         public string SeoDescription { get; set; }
@@ -110,13 +110,13 @@ namespace Sio.Cms.Lib.ViewModels.SioPages
         #region Views
 
         [JsonProperty("domain")]
-        public string Domain { get { return SioService.GetConfig<string>("Domain") ?? "/"; } }
+        public string Domain { get { return SioService.GetConfig<string>("Domain"); } }
         [JsonProperty("imageUrl")]
         public string ImageUrl
         {
             get
             {
-                if (Image != null && (Image.IndexOf("http") == -1) && Image[0] != '/')
+                if (!string.IsNullOrEmpty(Image) && (Image.IndexOf("http") == -1) && Image[0] != '/')
                 {
                     return CommonHelper.GetFullPath(new string[] {
                     Domain,  Image
@@ -141,12 +141,12 @@ namespace Sio.Cms.Lib.ViewModels.SioPages
                 }
                 else
                 {
-                    return ImageUrl;
+                    return string.IsNullOrEmpty(Thumbnail) ? ImageUrl : Thumbnail;
                 }
             }
         }
         [JsonProperty("childs")]
-        public List<ReadListItemViewModel> Childs { get; set; }
+        public List<SioPagePages.ReadViewModel> Childs { get; set; }
 
         [JsonProperty("totalArticle")]
         public int TotalArticle { get; set; }
@@ -180,10 +180,8 @@ namespace Sio.Cms.Lib.ViewModels.SioPages
 
         public override void ExpandView(SioCmsContext _context = null, IDbContextTransaction _transaction = null)
         {
-            var getChilds = Repository.GetModelListBy
-                (p => p.SioPagePageSioPage.Any(c => c.ParentId == Id
-                && c.Specificulture == Specificulture)
-                );
+            var getChilds = SioPagePages.ReadViewModel.Repository.GetModelListBy(
+                p => p.ParentId == Id && p.Specificulture == Specificulture, _context, _transaction);
             if (getChilds.IsSucceed)
             {
                 Childs = getChilds.Data;

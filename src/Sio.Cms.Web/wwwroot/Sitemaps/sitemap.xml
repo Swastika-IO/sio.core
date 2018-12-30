@@ -1,0 +1,15 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<urlset xlmns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <url>
+    <lastmod>2018-12-25T06:17:34.8593688Z</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.3</priority>
+    <loc>http://localhost:5000</loc>
+  </url>
+  <url>
+    <lastmod>2018-12-25T06:17:34.8594048Z</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.3</priority>
+    <loc>http://localhost:5000</loc>
+  </url>
+</urlset>

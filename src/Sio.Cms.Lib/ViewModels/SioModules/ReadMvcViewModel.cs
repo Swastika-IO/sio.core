@@ -32,6 +32,12 @@ namespace Sio.Cms.Lib.ViewModels.SioModules
         [JsonProperty("template")]
         public string Template { get; set; }
 
+        [JsonProperty("formTemplate")]
+        public string FormTemplate { get; set; }
+
+        [JsonProperty("edmTemplate")]
+        public string EdmTemplate { get; set; }
+
         [JsonProperty("title")]
         public string Title { get; set; }
 
@@ -58,7 +64,7 @@ namespace Sio.Cms.Lib.ViewModels.SioModules
 
         #region Views
         [JsonProperty("domain")]
-        public string Domain { get { return SioService.GetConfig<string>("Domain") ?? "/"; } }
+        public string Domain { get { return SioService.GetConfig<string>("Domain"); } }
 
         [JsonProperty("detailsUrl")]
         public string DetailsUrl { get; set; }
@@ -67,7 +73,7 @@ namespace Sio.Cms.Lib.ViewModels.SioModules
         {
             get
             {
-                if (Image != null && (Image.IndexOf("http") == -1) && Image[0] != '/')
+                if (!string.IsNullOrEmpty(Image) && (Image.IndexOf("http") == -1) && Image[0] != '/')
                 {
                     return CommonHelper.GetFullPath(new string[] {
                     Domain,  Image
@@ -89,7 +95,11 @@ namespace Sio.Cms.Lib.ViewModels.SioModules
 
         [JsonProperty("view")]
         public SioTemplates.ReadViewModel View { get; set; }
+        [JsonProperty("formView")]
+        public SioTemplates.ReadViewModel FormView { get; set; }
 
+        [JsonProperty("edmView")]
+        public SioTemplates.ReadViewModel EdmView { get; set; }
         [JsonProperty("data")]
         public PaginationModel<ViewModels.SioModuleDatas.ReadViewModel> Data { get; set; } = new PaginationModel<ViewModels.SioModuleDatas.ReadViewModel>();
 
@@ -131,6 +141,8 @@ namespace Sio.Cms.Lib.ViewModels.SioModules
         public override void ExpandView(SioCmsContext _context = null, IDbContextTransaction _transaction = null)
         {
             this.View = SioTemplates.ReadViewModel.GetTemplateByPath(Template, Specificulture, _context, _transaction).Data;
+            this.FormView = SioTemplates.ReadViewModel.GetTemplateByPath(FormTemplate, Specificulture, _context, _transaction).Data;
+            this.View = SioTemplates.ReadViewModel.GetTemplateByPath(EdmTemplate, Specificulture, _context, _transaction).Data;
             // call load data from controller for padding parameter (articleId, productId, ...)
         }
 
@@ -169,8 +181,8 @@ namespace Sio.Cms.Lib.ViewModels.SioModules
                     case SioModuleType.Content:
                     case SioModuleType.Data:
                         dataExp = m => m.ModuleId == Id && m.Specificulture == Specificulture;
-                        articleExp = n => n.ModuleId == Id && n.Specificulture == Specificulture;
-                        productExp = m => m.ModuleId == Id && m.Specificulture == Specificulture;
+                        //articleExp = n => n.ModuleId == Id && n.Specificulture == Specificulture;
+                        //productExp = m => m.ModuleId == Id && m.Specificulture == Specificulture;
                         break;
 
                     case SioModuleType.SubPage:
@@ -227,14 +239,14 @@ namespace Sio.Cms.Lib.ViewModels.SioModules
                 }
                 if (productExp != null)
                 {
-                    var getArticles = SioModuleArticles.ReadViewModel.Repository
-                    .GetModelListBy(articleExp
+                    var getProducts = SioModuleProducts.ReadViewModel.Repository
+                    .GetModelListBy(productExp
                     , SioService.GetConfig<string>(SioConstants.ConfigurationKeyword.OrderBy), 0
                     , PageSize, pageIndex
                     , _context: context, _transaction: transaction);
-                    if (getArticles.IsSucceed)
+                    if (getProducts.IsSucceed)
                     {
-                        Articles = getArticles.Data;
+                        Products = getProducts.Data;
                     }
                 }
             }

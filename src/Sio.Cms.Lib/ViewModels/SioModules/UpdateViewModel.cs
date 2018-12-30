@@ -39,6 +39,12 @@ namespace Sio.Cms.Lib.ViewModels.SioModules
         [JsonProperty("template")]
         public string Template { get; set; }
 
+        [JsonProperty("formTemplate")]
+        public string FormTemplate { get; set; }
+
+        [JsonProperty("edmTemplate")]
+        public string EdmTemplate { get; set; }
+
         [Required]
         [JsonProperty("title")]
         public string Title { get; set; }
@@ -74,14 +80,14 @@ namespace Sio.Cms.Lib.ViewModels.SioModules
 
         #region Views
         [JsonProperty("domain")]
-        public string Domain { get { return SioService.GetConfig<string>("Domain") ?? "/"; } }
+        public string Domain { get { return SioService.GetConfig<string>("Domain"); } }
 
         [JsonProperty("imageUrl")]
         public string ImageUrl
         {
             get
             {
-                if (Image != null && (Image.IndexOf("http") == -1) && Image[0] != '/')
+                if (!string.IsNullOrEmpty(Image) && (Image.IndexOf("http") == -1) && Image[0] != '/')
                 {
                     return CommonHelper.GetFullPath(new string[] {
                     Domain,  Image
@@ -144,6 +150,71 @@ namespace Sio.Cms.Lib.ViewModels.SioModules
 
         #endregion Template
 
+        #region Form
+        [JsonProperty("forms")]
+        public List<SioTemplates.UpdateViewModel> Forms { get; set; }// Article Forms
+
+        [JsonIgnore]
+        public string FormFolderType
+        {
+            get
+            {
+                return SioEnums.EnumTemplateFolder.Forms.ToString();
+            }
+        }
+        [JsonProperty("formView")]
+        public SioTemplates.UpdateViewModel FormView { get; set; }
+
+        [JsonProperty("formFolder")]
+        public string FormFolder
+        {
+            get
+            {
+                return CommonHelper.GetFullPath(new string[]
+                {
+                    SioConstants.Folder.TemplatesFolder
+                    , ActivedTheme
+                    , SioEnums.EnumTemplateFolder.Forms.ToString()
+                }
+            );
+            }
+        }
+
+        #endregion Form
+
+        #region Edm
+        [JsonProperty("edms")]
+        public List<SioTemplates.UpdateViewModel> Edms { get; set; }// Article Edms
+
+        [JsonIgnore]
+        public string EdmFolderType
+        {
+            get
+            {
+                return SioEnums.EnumTemplateFolder.Edms.ToString();
+            }
+        }
+
+        [JsonProperty("edmView")]
+        public SioTemplates.UpdateViewModel EdmView { get; set; }
+
+        [JsonProperty("edmFolder")]
+        public string EdmFolder
+        {
+            get
+            {
+                return CommonHelper.GetFullPath(new string[]
+                {
+                    SioConstants.Folder.TemplatesFolder
+                    , ActivedTheme
+                    , SioEnums.EnumTemplateFolder.Edms.ToString()
+                }
+            );
+            }
+        }
+
+        #endregion Edm
+
         //Parent Article Id
         [JsonProperty("articleId")]
         public string ArticleId { get; set; }
@@ -179,6 +250,9 @@ namespace Sio.Cms.Lib.ViewModels.SioModules
                 CreatedDateTime = DateTime.UtcNow;
             }
             Template = View != null ? string.Format(@"{0}/{1}{2}", View.FolderType, View.FileName, View.Extension) : Template;
+            FormTemplate = FormView != null ? string.Format(@"{0}/{1}{2}", FormView.FolderType, FormView.FileName, FormView.Extension) : FormTemplate;
+            EdmTemplate = EdmView != null ? string.Format(@"{0}/{1}{2}", EdmView.FolderType, EdmView.FileName, EdmView.Extension) : EdmTemplate;
+
             var arrField = Columns != null ? JArray.Parse(
                 Newtonsoft.Json.JsonConvert.SerializeObject(Columns.OrderBy(c => c.Priority).Where(
                     c => !string.IsNullOrEmpty(c.Name)))) : new JArray();
@@ -219,6 +293,24 @@ namespace Sio.Cms.Lib.ViewModels.SioModules
                     this.View?.FileFolder
                     , this.View?.FileName
                });
+
+            this.Forms = this.Forms ?? SioTemplates.UpdateViewModel.Repository.GetModelListBy(
+                t => t.Theme.Name == ActivedTheme && t.FolderType == this.FormFolderType).Data;
+            this.FormView = SioTemplates.UpdateViewModel.GetTemplateByPath(FormTemplate, Specificulture, SioEnums.EnumTemplateFolder.Forms, _context, _transaction);
+            this.FormTemplate = CommonHelper.GetFullPath(new string[]
+               {
+                    this.FormView?.FileFolder
+                    , this.FormView?.FileName
+               });
+
+            this.Edms = this.Edms ?? SioTemplates.UpdateViewModel.Repository.GetModelListBy(
+                t => t.Theme.Name == ActivedTheme && t.FolderType == this.EdmFolderType).Data;
+            this.EdmView = SioTemplates.UpdateViewModel.GetTemplateByPath(EdmTemplate, Specificulture, SioEnums.EnumTemplateFolder.Edms, _context, _transaction);
+            this.EdmTemplate = CommonHelper.GetFullPath(new string[]
+               {
+                    this.EdmView?.FileFolder
+                    , this.EdmView?.FileName
+               });
         }
 
         #region Async
@@ -230,7 +322,18 @@ namespace Sio.Cms.Lib.ViewModels.SioModules
 
         public override async Task<RepositoryResponse<bool>> SaveSubModelsAsync(SioModule parent, SioCmsContext _context = null, IDbContextTransaction _transaction = null)
         {
+
             var saveView = await View.SaveModelAsync(true, _context, _transaction);
+
+            if (saveView.IsSucceed && !string.IsNullOrEmpty(FormView.Content))
+            {
+                saveView = await FormView.SaveModelAsync(true, _context, _transaction);
+            }
+            if (saveView.IsSucceed && !string.IsNullOrEmpty(EdmView.Content))
+            {
+                saveView = await EdmView.SaveModelAsync(true, _context, _transaction);
+            }
+
             return new RepositoryResponse<bool>()
             {
                 IsSucceed = saveView.IsSucceed,
@@ -238,6 +341,7 @@ namespace Sio.Cms.Lib.ViewModels.SioModules
                 Exception = saveView.Exception,
                 Errors = saveView.Errors
             };
+            
         }
 
         #endregion Async

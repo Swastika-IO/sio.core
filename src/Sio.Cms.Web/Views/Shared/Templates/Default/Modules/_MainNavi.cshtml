@@ -1,7 +1,7 @@
-@using Sio.Cms.Lib.ViewModels;
+@using Mix.Cms.Lib.ViewModels;
 @{
     string culture = ViewBag.culture;
-    List<Sio.Cms.Lib.ViewModels.SioPages.ReadListItemViewModel> topCates = SioCmsHelper.GetCategory(Url, ViewBag.culture, SioEnums.CatePosition.Top, Context.Request.Path);
+    List<Mix.Cms.Lib.ViewModels.MixPages.ReadListItemViewModel> topCates = MixCmsHelper.GetCategory(Url, ViewBag.culture, MixEnums.CatePosition.Top, Context.Request.Path);
 }
 <nav class="navbar navbar-expand-lg navbar-transparent bg-primary navbar-absolute">
     <div class="container">
@@ -21,7 +21,7 @@
                     string action = cate.Type.ToString();
                     switch (cate.Type)
                     {
-                        case SioEnums.SioPageType.Blank:
+                        case MixEnums.MixPageType.Blank:
                             string pageNames = string.Join(",", cate.Childs.Select(c => c.SeoName).ToList());
                             <li is-active-menu asp-controllers="Home" asp-action=",Home" asp-route-pagenames="@pageNames" pages="@pageNames" class="dropdown nav-item">
                                 <a href="@cate.StaticUrl" target="_blank" class="dropdown-hover-toggle nav-link">
@@ -38,12 +38,12 @@
                                 </ul>
                             </li>
                             break;
-                        case SioEnums.SioPageType.Home:
+                        case MixEnums.MixPageType.Home:
                             <li is-active-menu asp-controllers="Home" asp-action="Home" asp-route-pagenames=",@cate.SeoName" class="nav-item">
                                 <a asp-route-culture="@ViewBag.culture" asp-controller="Home" asp-action="Home" asp-route-pageName="" class="nav-link">@cate.Title</a>
                             </li>
                             break;
-                        case SioEnums.SioPageType.StaticUrl:
+                        case MixEnums.MixPageType.StaticUrl:
                             <li class="nav-item">
                                 <a class="nav-link" href="@cate.StaticUrl">@cate.Title</a>
                             </li>

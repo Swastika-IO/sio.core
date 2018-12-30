@@ -107,9 +107,12 @@ app.controller('Step1Controller', ['$scope', '$rootScope', 'ngAppSettings', '$ti
         };
         $scope.initCmsModel = {
             isUseLocal: false,
-            localDbConnectionString: 'Server=(localdb)\\MSSQLLocalDB;Initial Catalog=' + rand + 'sio-cms.db;Integrated Security=True;Persist Security Info=False;Pooling=False;MultipleActiveResultSets=False;Encrypt=False;TrustServerCertificate=True',
-            sqliteDbConnectionString: 'Data Source=' + rand + 'sio-cms.db',
-            localDbName: rand + 'sio-cms.db',
+            localDbConnectionString: '',
+            sqliteDbConnectionString: '',
+            localDbName: '',
+            // localDbConnectionString: 'Server=(localdb)\\MSSQLLocalDB;Initial Catalog=' + rand + 'sio-cms.db;Integrated Security=True;Persist Security Info=False;Pooling=False;MultipleActiveResultSets=False;Encrypt=False;TrustServerCertificate=True',
+            // sqliteDbConnectionString: 'Data Source=' + rand + 'sio-cms.db',
+            // localDbName: rand + 'sio-cms.db',
             dataBaseServer: '',
             dataBaseName: '',
             dataBaseUser: '',

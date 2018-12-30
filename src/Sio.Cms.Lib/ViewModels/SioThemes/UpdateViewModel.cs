@@ -45,14 +45,14 @@ namespace Sio.Cms.Lib.ViewModels.SioThemes
 
         #region Views
         [JsonProperty("domain")]
-        public string Domain { get { return SioService.GetConfig<string>("Domain") ?? "/"; } }
+        public string Domain { get { return SioService.GetConfig<string>("Domain"); } }
 
         [JsonProperty("imageUrl")]
         public string ImageUrl
         {
             get
             {
-                if (Image != null && (Image.IndexOf("http") == -1) && Image[0] != '/')
+                if (!string.IsNullOrEmpty(Image) && (Image.IndexOf("http") == -1) && Image[0] != '/')
                 {
                     return CommonHelper.GetFullPath(new string[] {
                     Domain,  Image
@@ -82,7 +82,8 @@ namespace Sio.Cms.Lib.ViewModels.SioThemes
                 return CommonHelper.GetFullPath(new string[] {
                     SioConstants.Folder.FileFolder,
                     SioConstants.Folder.TemplatesAssetFolder,
-                    SeoHelper.GetSEOString($"{SioService.GetConfig<string>("SiteName")}-{Name}") });
+                    SeoHelper.GetSEOString(Name)
+                });
             }
         }
 
@@ -93,7 +94,7 @@ namespace Sio.Cms.Lib.ViewModels.SioThemes
             {
                 return CommonHelper.GetFullPath(new string[] {
                     SioConstants.Folder.TemplatesFolder,
-                    SeoHelper.GetSEOString($"{SioService.GetConfig<string>("SiteName")}-{Name}")
+                    SeoHelper.GetSEOString(Name)
                 });
             }
         }
@@ -133,11 +134,9 @@ namespace Sio.Cms.Lib.ViewModels.SioThemes
         {
             Templates = SioTemplates.UpdateViewModel.Repository.GetModelListBy(t => t.ThemeId == Id,
                 _context: _context, _transaction: _transaction).Data;
-            TemplateAsset = new FileViewModel() { FileFolder = $"Import/Themes/{DateTime.UtcNow.ToShortDateString()}" };
+            TemplateAsset = new FileViewModel() { FileFolder = $"Import/Themes/{DateTime.UtcNow.ToShortDateString()}/{Name}" };
             Asset = new FileViewModel() { FileFolder = AssetFolder };
         }
-
-
 
         #region Async
 
@@ -147,6 +146,7 @@ namespace Sio.Cms.Lib.ViewModels.SioThemes
 
             if (TemplateAsset.Content != null || TemplateAsset.FileStream != null)
             {
+                TemplateAsset.FileFolder = $"Import/Themes/{DateTime.UtcNow.ToShortDateString()}/{Name}";
                 ImportTheme(_context, _transaction);
             }
             if (Asset.Content != null || Asset.FileStream != null)
@@ -239,10 +239,6 @@ namespace Sio.Cms.Lib.ViewModels.SioThemes
                 if (!saveConfigResult.IsSucceed)
                 {
                     Errors.AddRange(saveConfigResult.Errors);
-                }
-                else
-                {
-                    //SioCmsService.Instance.RefreshConfigurations(_context, _transaction);
                 }
                 result.IsSucceed = result.IsSucceed && saveConfigResult.IsSucceed;
 

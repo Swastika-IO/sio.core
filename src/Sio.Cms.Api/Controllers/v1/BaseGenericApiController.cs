@@ -94,6 +94,7 @@ namespace Sio.Cms.Api.Controllers.v1
                 }
                 AlertAsync("Add Cache", 200, cacheKey);
             }
+            data.LastUpdateConfiguration = SioService.GetConfig<DateTime?>("LastUpdateConfiguration");
             return data;
         }
 
@@ -114,7 +115,7 @@ namespace Sio.Cms.Api.Controllers.v1
             where TView : ViewModelBase<TDbContext, TModel, TView>
         {
             var getData = new RepositoryResponse<Lib.ViewModels.SioPages.ReadMvcViewModel>();
-            var cacheKey = $"{typeof(TModel).Name}_list_{_lang}_{key}_{request.Status}_{request.Keyword}_{request.OrderBy}_{request.PageSize}_{request.PageIndex}";
+            var cacheKey = $"{typeof(TModel).Name}_list_{_lang}_{key}_{request.Status}_{request.Keyword}_{request.OrderBy}_{request.Direction}_{request.PageSize}_{request.PageIndex}";
             var data = _memoryCache.Get<RepositoryResponse<PaginationModel<TView>>>(cacheKey);
             if (data == null)
             {
@@ -135,7 +136,7 @@ namespace Sio.Cms.Api.Controllers.v1
                 }
                 AlertAsync("Add Cache", 200, cacheKey);
             }
-
+            data.LastUpdateConfiguration = SioService.GetConfig<DateTime?>("LastUpdateConfiguration");
             //AlertAsync("Get List Page", 200, $"Get {request.Key} list page");
             return data;
         }
@@ -150,6 +151,27 @@ namespace Sio.Cms.Api.Controllers.v1
                 return result;
             }
             return new RepositoryResponse<TView>();
+        }
+        
+        protected async Task<RepositoryResponse<List<TView>>> SaveListAsync<TView>(List<TView> lstVm, bool isSaveSubModel)
+            where TView : ViewModelBase<TDbContext, TModel, TView>
+        {
+            var result= new RepositoryResponse<List<TView>>(){ IsSucceed = true};
+            if (lstVm != null)
+            {
+                foreach (var vm in lstVm)
+                {
+                    var tmp = await vm.SaveModelAsync(isSaveSubModel).ConfigureAwait(false);                    
+                    result.IsSucceed = result.IsSucceed&& tmp.IsSucceed;
+                    if(!tmp.IsSucceed){
+                        result.Exception = tmp.Exception;
+                        result.Errors.AddRange(tmp.Errors);
+                    }
+                }
+                RemoveCache();
+                return result;
+            }
+            return result;
         }
 
         public JObject SaveEncrypt([FromBody] RequestEncrypted request)

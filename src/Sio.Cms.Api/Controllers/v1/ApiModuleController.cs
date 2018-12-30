@@ -182,6 +182,19 @@ namespace Sio.Cms.Api.Controllers.v1
             }
         }
 
+        [HttpPost, HttpOptions]
+        [Route("update-infos")]
+        public async Task<RepositoryResponse<List<ReadListItemViewModel>>> UpdateInfos([FromBody]List<ReadListItemViewModel> models)
+        {
+            if (models != null)
+            {                
+                return await base.SaveListAsync(models, false);
+            }
+            else
+            {
+                return new RepositoryResponse<List<ReadListItemViewModel>>();
+            }
+        }
         #endregion Post
     }
 }

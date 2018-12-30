@@ -56,7 +56,7 @@ namespace Sio.Cms.Lib.ViewModels.SioPortalPagePortalPages
         #region overrides
         public override async Task<RepositoryResponse<bool>> SaveSubModelsAsync(SioPortalPageNavigation parent, SioCmsContext _context, IDbContextTransaction _transaction)
         {
-            if (Page!=null)
+            if (Page != null)
             {
                 var result = await Page.SaveModelAsync(false, _context, _transaction);
                 return new RepositoryResponse<bool>()
@@ -71,24 +71,24 @@ namespace Sio.Cms.Lib.ViewModels.SioPortalPagePortalPages
             {
                 return await base.SaveSubModelsAsync(parent, _context, _transaction);
             }
-            
+
         }
         public override void ExpandView(SioCmsContext _context = null, IDbContextTransaction _transaction = null)
         {
             var getCategory = SioPortalPages.UpdateRolePermissionViewModel.Repository.GetSingleModel(p => p.Id == Id
-               
+
             );
             if (getCategory.IsSucceed)
             {
                 Page = getCategory.Data;
             }
-            var getParent = SioPortalPages.ReadViewModel.Repository.GetSingleModel(p => p.Id == ParentId
-                , _context: _context, _transaction: _transaction
-            );
-            if (getParent.IsSucceed)
-            {
-                ParentPage = getParent.Data;
-            }
+            //var getParent = SioPortalPages.ReadViewModel.Repository.GetSingleModel(p => p.Id == ParentId
+            //    , _context: _context, _transaction: _transaction
+            //);
+            //if (getParent.IsSucceed)
+            //{
+            //    ParentPage = getParent.Data;
+            //}
         }
 
         #endregion overrides

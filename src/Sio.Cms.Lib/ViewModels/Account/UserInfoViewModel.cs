@@ -55,7 +55,7 @@ namespace Sio.Cms.Lib.ViewModels.Account
 
 
         [JsonProperty("domain")]
-        public string Domain { get { return SioService.GetConfig<string>("Domain") ?? "/"; } }
+        public string Domain { get { return SioService.GetConfig<string>("Domain"); } }
 
         [JsonProperty("avatarUrl")]
         public string AvatarUrl

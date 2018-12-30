@@ -41,6 +41,8 @@ namespace Sio.Cms.Lib
             Layouts,
             Pages,
             Modules,
+            Forms,
+            Edms,
             Articles,
             Products,
             Widgets,

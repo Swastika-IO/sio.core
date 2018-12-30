@@ -131,8 +131,6 @@ namespace Sio.Cms.Lib.ViewModels.Account.SioRoles
                     if (result.IsSucceed)
                     {
                         result = await HandlePermission(item, context, transaction);
-
-
                     }
                     else
                     {
@@ -203,7 +201,7 @@ namespace Sio.Cms.Lib.ViewModels.Account.SioRoles
                 item.NavPermission.CreatedBy = item.CreatedBy;
                 var saveResult = await item.NavPermission.SaveModelAsync(false, context, transaction);
                 result.IsSucceed = saveResult.IsSucceed;
-                /* skip child nav*/
+                /* skip child nav
                 if (result.IsSucceed)
                 {
                     foreach (var child in item.ChildPages)
@@ -214,7 +212,7 @@ namespace Sio.Cms.Lib.ViewModels.Account.SioRoles
                             break;
                         }
                     }
-                }
+                }*/
 
                 if (!result.IsSucceed)
                 {

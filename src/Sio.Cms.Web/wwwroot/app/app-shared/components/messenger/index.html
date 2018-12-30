@@ -1,4 +1,4 @@
-<section ng-init="init()" id="sio-messenger">
+<section ng-init="init()" id="mix-messenger">
 <!-- Chat Widget start -->
 <div class="ui" ng-onload="loadMsgButton()">
                    
@@ -16,7 +16,7 @@
             </div>
             <div ng-if="user.loggedIn" class="widget-conversation">
                 <div ng-if="user.loggedIn" class="container">
-                    <div id="sio-discussion" class="discussion">
+                    <div id="mix-discussion" class="discussion">
                         
                         <div class="row" ng-repeat="msg in messages">
                             
@@ -48,7 +48,9 @@
             </div>
         </div>        
         </div>
-      <a class="btn-support" ng-click="toggle()" id="quest">🦊</a>
+        <a ng-if="user.loggedIn" class="btn-support" ng-click="toggle()" id="quest"><i class="fab fa-facebook-messenger"></i></a>
+        <a ng-if="!user.loggedIn" class="btn-support" ng-click="login()" id="quest"><i class="fab fa-facebook-messenger"></i></a>
+     
       
 <!-- Chat Widget end -->
     <!-- <div class="card-header">
@@ -63,7 +65,7 @@
                 <a href="#" ng-click="login()">Login</a>
             </div>
             <div ng-if="user.loggedIn" class="container">
-                <div id="sio-discussion" class="discussion">
+                <div id="mix-discussion" class="discussion">
                     <div class="row" ng-repeat="msg in messages">
                         <div class="col-md-12" ng-class="{ 'text-right': msg.connection.id == user.info.id }">
                             <img imageonload src="{{msg.connection.avatar}}" /> <b class="small">{{msg.connection.name}}</b>

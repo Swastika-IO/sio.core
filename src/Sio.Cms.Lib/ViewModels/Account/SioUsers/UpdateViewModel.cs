@@ -59,7 +59,7 @@ namespace Sio.Cms.Lib.ViewModels.Account.SioUsers
         public List<NavUserRoleViewModel> UserRoles { get; set; }
 
         [JsonProperty("domain")]
-        public string Domain => SioService.GetConfig<string>("Domain") ?? "/";
+        public string Domain => SioService.GetConfig<string>("Domain");
 
         [JsonProperty("avatarUrl")]
         public string AvatarUrl

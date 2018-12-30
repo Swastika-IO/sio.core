@@ -134,13 +134,13 @@ namespace Sio.Cms.Lib.ViewModels.SioPages
         public FileStreamViewModel ImageFileStream { get; set; }
 
         [JsonProperty("domain")]
-        public string Domain { get { return SioService.GetConfig<string>("Domain") ?? "/"; } }
+        public string Domain { get { return SioService.GetConfig<string>("Domain"); } }
         [JsonProperty("imageUrl")]
         public string ImageUrl
         {
             get
             {
-                if (Image != null && (Image.IndexOf("http") == -1) && Image[0] != '/')
+                if (!string.IsNullOrEmpty(Image) && (Image.IndexOf("http") == -1) && Image[0] != '/')
                 {
                     return CommonHelper.GetFullPath(new string[] {
                     Domain,  Image
@@ -166,7 +166,7 @@ namespace Sio.Cms.Lib.ViewModels.SioPages
                 }
                 else
                 {
-                    return ImageUrl;
+                    return string.IsNullOrEmpty(Thumbnail) ? ImageUrl : Thumbnail;
                 }
             }
         }
@@ -235,7 +235,7 @@ namespace Sio.Cms.Lib.ViewModels.SioPages
         public override SioPage ParseModel(SioCmsContext _context = null, IDbContextTransaction _transaction = null)
         {
             GenerateSEO();
-
+            
             var navParent = ParentNavs?.FirstOrDefault(p => p.IsActived);
 
             if (navParent != null)
@@ -253,6 +253,7 @@ namespace Sio.Cms.Lib.ViewModels.SioPages
                 Id = Repository.Max(c => c.Id, _context, _transaction).Data + 1;
                 CreatedDateTime = DateTime.UtcNow;
             }
+            LastModified = DateTime.UtcNow;
             if (!string.IsNullOrEmpty(Image) && Image[0] == '/') { Image = Image.Substring(1); }
             if (!string.IsNullOrEmpty(Thumbnail) && Thumbnail[0] == '/') { Thumbnail = Thumbnail.Substring(1); }
             return base.ParseModel(_context, _transaction);

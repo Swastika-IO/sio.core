@@ -52,7 +52,7 @@ namespace Sio.Cms.Lib.ViewModels.SioConfigurations
         #region Views
 
         [JsonProperty("domain")]
-        public string Domain { get { return SioService.GetConfig<string>("Domain", Specificulture) ?? "/"; } }
+        public string Domain { get { return SioService.GetConfig<string>("Domain", Specificulture); } }
 
         [JsonProperty("property")]
         public DataValueViewModel Property { get; set; }

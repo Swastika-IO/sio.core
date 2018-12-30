@@ -21,6 +21,10 @@ using static Sio.Cms.Lib.SioEnums;
 using Sio.Cms.Lib.Models.Cms;
 using Sio.Cms.Lib.ViewModels.Account;
 using Sio.Cms.Lib.ViewModels.SioInit;
+using System.Xml.Linq;
+using System.Text;
+using System.Xml;
+using Microsoft.AspNetCore.Hosting;
 
 namespace Sio.Cms.Api.Controllers.v1
 {
@@ -32,19 +36,28 @@ namespace Sio.Cms.Api.Controllers.v1
         private readonly UserManager<ApplicationUser> _userManager;
         private readonly SignInManager<ApplicationUser> _signInManager;
         private readonly RoleManager<IdentityRole> _roleManager;
+        private readonly IApplicationLifetime _appLifetime;
+        private readonly IHostingEnvironment _env;
         public ApiPortalController(
            UserManager<ApplicationUser> userManager,
            SignInManager<ApplicationUser> signInManager,
            RoleManager<IdentityRole> roleManager,
-            Microsoft.AspNetCore.SignalR.IHubContext<Hub.PortalHub> hubContext
+            Microsoft.AspNetCore.SignalR.IHubContext<Hub.PortalHub> hubContext,
+            IApplicationLifetime appLifetime,
+            IHostingEnvironment env
             )
             : base(hubContext)
         {
             _userManager = userManager;
             _signInManager = signInManager;
             _roleManager = roleManager;
+            _appLifetime = appLifetime;
         }
 
+        public async Task ShutdownSite()
+        {
+            _appLifetime.StopApplication();
+        }
         #region Get
 
         // GET api/category/id
@@ -64,7 +77,7 @@ namespace Sio.Cms.Api.Controllers.v1
                 ModuleTypes = Enum.GetNames(typeof(SioModuleType)).ToList(),
                 DataTypes = Enum.GetNames(typeof(SioDataType)).ToList(),
                 Statuses = Enum.GetNames(typeof(SioContentStatus)).ToList(),
-                LastUpdateConfiguration = DateTime.UtcNow
+                LastUpdateConfiguration = SioService.GetConfig<DateTime?>("LastUpdateConfiguration")
 
             };
             settings.LangIcon = culture?.Icon ?? SioService.GetConfig<string>("Language");
@@ -97,7 +110,7 @@ namespace Sio.Cms.Api.Controllers.v1
                 ModuleTypes = Enum.GetNames(typeof(SioModuleType)).ToList(),
                 DataTypes = Enum.GetNames(typeof(SioDataType)).ToList(),
                 Statuses = Enum.GetNames(typeof(SioContentStatus)).ToList(),
-                LastUpdateConfiguration = DateTime.UtcNow
+                LastUpdateConfiguration = SioService.GetConfig<DateTime?>("LastUpdateConfiguration")
             };
 
             configurations.LangIcon = culture?.Icon ?? SioService.GetConfig<string>("Language");
@@ -164,7 +177,7 @@ namespace Sio.Cms.Api.Controllers.v1
                 ModuleTypes = Enum.GetNames(typeof(SioModuleType)).ToList(),
                 DataTypes = Enum.GetNames(typeof(SioDataType)).ToList(),
                 Statuses = Enum.GetNames(typeof(SioContentStatus)).ToList(),
-                LastUpdateConfiguration = DateTime.UtcNow
+                LastUpdateConfiguration = SioService.GetConfig<DateTime?>("LastUpdateConfiguration")
             };
 
             configurations.LangIcon = culture?.Icon ?? SioService.GetConfig<string>("Language");
@@ -187,6 +200,93 @@ namespace Sio.Cms.Api.Controllers.v1
             };
         }
 
+        // GET api/category/id
+        [HttpGet, HttpOptions]
+        [Route("sitemap")]
+        public RepositoryResponse<FileViewModel> SiteMap()
+        {
+            try
+            {
+                var root = new XElement("urlset",
+                new XAttribute("xlmns", @"http://www.sitemaps.org/schemas/sitemap/0.9")
+                );
+                var pages = Lib.ViewModels.SioPages.ReadListItemViewModel.Repository.GetModelList();
+                List<int> handledPageId = new List<int>();
+                foreach (var page in pages.Data)
+                {
+                        page.DetailsUrl = SioCmsHelper.GetRouterUrl(
+                                        "page", new { seoName = page.SeoName, culture = page.Specificulture }, Request, Url);
+                    var otherLanguages = pages.Data.Where(p => p.Id == page.Id && p.Specificulture != page.Specificulture);
+                    var lstOther = new List<SitemapLanguage>();
+                    foreach (var item in otherLanguages)
+                    {
+                        lstOther.Add(new SitemapLanguage() {
+                            HrefLang = item.Specificulture,
+                            Href= SioCmsHelper.GetRouterUrl(
+                                        "page", new { seoName = page.SeoName, culture = item.Specificulture }, Request, Url)
+                        } );
+                    }
+                    
+                    var sitemap = new SiteMap()
+                    {
+                        ChangeFreq = "monthly",
+                        LastMod = DateTime.UtcNow,
+                        Loc = page.DetailsUrl,
+                        Priority = 0.3,
+                        OtherLanguages = lstOther
+                    };
+                    root.Add(sitemap.ParseXElement());
+                }
+
+                var articles = Lib.ViewModels.SioArticles.ReadListItemViewModel.Repository.GetModelList();
+                foreach (var article in articles.Data)
+                {
+                    article.DetailsUrl = SioCmsHelper.GetRouterUrl(
+                                    "article", new { seoName = article.SeoName, culture = article.Specificulture }, Request, Url);
+                    var otherLanguages = pages.Data.Where(p => p.Id == article.Id && p.Specificulture != article.Specificulture);
+                    var lstOther = new List<SitemapLanguage>();
+                    foreach (var item in otherLanguages)
+                    {
+                        lstOther.Add(new SitemapLanguage()
+                        {
+                            HrefLang = item.Specificulture,
+                            Href = SioCmsHelper.GetRouterUrl(
+                                        "page", new { seoName = article.SeoName, culture = item.Specificulture }, Request, Url)
+                        });
+                    }
+                    var sitemap = new SiteMap()
+                    {
+                        ChangeFreq = "monthly",
+                        LastMod = DateTime.UtcNow,
+                        Loc = article.DetailsUrl,
+                        OtherLanguages = lstOther,
+                        Priority = 0.3
+                    };
+                    root.Add(sitemap.ParseXElement());
+                }
+
+                string folder = $"Sitemaps";
+                FileRepository.Instance.CreateDirectoryIfNotExist(folder);
+                string filename = $"sitemap";
+                string filePath = $"wwwroot/{folder}/{filename}.xml";
+                root.Save(filePath);
+                return new RepositoryResponse<FileViewModel>()
+                {
+                    IsSucceed = true,
+                    Data = new FileViewModel()
+                    {
+                        Extension = ".xml",
+                        Filename = filename,
+                        FileFolder = folder
+                    }
+                };
+            }
+            catch (Exception ex)
+            {
+                return new RepositoryResponse<FileViewModel>() { Exception = ex };
+            }
+        }
+
         #endregion Get
 
         #region Post
@@ -197,7 +297,8 @@ namespace Sio.Cms.Api.Controllers.v1
         [Route("app-settings/details")]
         public RepositoryResponse<JObject> LoadAppSettings()
         {
-            return new RepositoryResponse<JObject>() { IsSucceed = true, Data = SioService.GetGlobalSetting() };
+            var settings = FileRepository.Instance.GetFile("appsettings", ".json", string.Empty, true, "{}");
+            return new RepositoryResponse<JObject>() { IsSucceed = true, Data = JObject.Parse(settings.Content) };
         }
 
         // POST api/category
@@ -211,9 +312,19 @@ namespace Sio.Cms.Api.Controllers.v1
             {
                 settings.Content = model.ToString();
                 FileRepository.Instance.SaveFile(settings);
-                //SioCmsService.Instance.RefreshConfigurations();
+                //if (!_env.IsDevelopment())
+                //{
+                //    _appLifetime.StopApplication();
+                //}
             }
             return new RepositoryResponse<JObject>() { IsSucceed = model != null, Data = model };
+        }
+
+        [HttpPost, HttpOptions]
+        [Route("sendmail")]
+        public void SendMail([FromBody]JObject model)
+        {
+            SioService.SendMail(model.Value<string>("subject"), model.Value<string>("body"), SioService.GetConfig<string>("ContactEmail", _lang));
         }
 
         // POST api/category

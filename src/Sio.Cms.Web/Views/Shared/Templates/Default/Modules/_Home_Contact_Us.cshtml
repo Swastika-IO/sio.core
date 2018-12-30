@@ -1,3 +1,4 @@
+@model Mix.Cms.Lib.ViewModels.MixModules.ReadMvcViewModel
 <div class="cd-section pt-0 mt-0" id="contactus">
 <!--     *********    CONTACT US 1     *********      -->
 <div class="contactus-1 section-image" style="background-image: url('@Model.Image')">
@@ -16,7 +17,7 @@
                     <div class="description">
                         <h4 class="info-title">Find us at the office</h4>
                         <p class="description"> 
-                        <a target="_blank" href="https://www.google.com/maps/place/@System.Web.HttpUtility.UrlEncode(SioService.GetConfig<string>("ContactAddress", ViewBag.culture))">@(SioService.GetConfig<string>("ContactAddress", ViewBag.culture))</a>
+                        <a target="_blank" href="https://www.google.com/maps/place/@System.Web.HttpUtility.UrlEncode(MixService.GetConfig<string>("ContactAddress", ViewBag.culture))">@(MixService.GetConfig<string>("ContactAddress", ViewBag.culture))</a>
                         </p>
                     </div>
                 </div>
@@ -27,9 +28,9 @@
                     <div class="description">
                         <h4 class="info-title">Give us a ring</h4>
                         <p class="description"> 
-                             @(SioService.GetConfig<string>("ContactName", ViewBag.culture))
-                            <br> <a href="mailto:@(SioService.GetConfig<string>("ContactEmail", ViewBag.culture))">@(SioService.GetConfig<string>("ContactEmail", ViewBag.culture))</a>
-                            <br> <a href="tel:@(SioService.GetConfig<string>("ContactPhone", ViewBag.culture))">@(SioService.GetConfig<string>("ContactPhone", ViewBag.culture))</a>
+                             @(MixService.GetConfig<string>("ContactName", ViewBag.culture))
+                            <br> <a href="mailto:@(MixService.GetConfig<string>("ContactEmail", ViewBag.culture))">@(MixService.GetConfig<string>("ContactEmail", ViewBag.culture))</a>
+                            <br> <a href="tel:@(MixService.GetConfig<string>("ContactPhone", ViewBag.culture))">@(MixService.GetConfig<string>("ContactPhone", ViewBag.culture))</a>
                         </p>
                     </div>
                 </div>
@@ -41,6 +42,7 @@
                             <h4 class="card-title">Contact Us</h4>
                         </div>
                         <div class="card-body">
+                            
                             <module-form name="contact_us" submit-text="'Send'" module-id="6" is-show-title="'true'"></module-form>
                         </div>
                     

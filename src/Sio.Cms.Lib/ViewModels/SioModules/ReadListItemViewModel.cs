@@ -28,6 +28,12 @@ namespace Sio.Cms.Lib.ViewModels.SioModules
         [JsonProperty("template")]
         public string Template { get; set; }
 
+        [JsonProperty("formTemplate")]
+        public string FormTemplate { get; set; }
+
+        [JsonProperty("edmTemplate")]
+        public string EdmTemplate { get; set; }
+
         [JsonProperty("title")]
         public string Title { get; set; }
 
@@ -41,7 +47,7 @@ namespace Sio.Cms.Lib.ViewModels.SioModules
         public string ModifiedBy { get; set; }
 
         [JsonProperty("domain")]
-        public string Domain { get { return SioService.GetConfig<string>("Domain") ?? "/"; } }
+        public string Domain { get { return SioService.GetConfig<string>("Domain"); } }
 
         [JsonProperty("fields")]
         public string Fields { get; set; }
@@ -58,7 +64,7 @@ namespace Sio.Cms.Lib.ViewModels.SioModules
         {
             get
             {
-                if (Image != null && (Image.IndexOf("http") == -1) && Image[0] != '/')
+                if (!string.IsNullOrWhiteSpace(Image) && (Image.IndexOf("http") == -1) && Image[0] != '/')
                 {
                     return CommonHelper.GetFullPath(new string[] {
                     Domain,  Image

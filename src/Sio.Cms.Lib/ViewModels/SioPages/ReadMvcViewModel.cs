@@ -108,14 +108,14 @@ namespace Sio.Cms.Lib.ViewModels.SioPages
         public string DetailsUrl { get; set; }
 
         [JsonProperty("domain")]
-        public string Domain { get { return SioService.GetConfig<string>("Domain") ?? "/"; } }
+        public string Domain { get { return SioService.GetConfig<string>("Domain"); } }
 
         [JsonProperty("imageUrl")]
         public string ImageUrl
         {
             get
             {
-                if (Image != null && (Image.IndexOf("http") == -1) && Image[0] != '/')
+                if (!string.IsNullOrEmpty(Image) && (Image.IndexOf("http") == -1) && Image[0] != '/')
                 {
                     return CommonHelper.GetFullPath(new string[] {
                     Domain,  Image
@@ -140,7 +140,7 @@ namespace Sio.Cms.Lib.ViewModels.SioPages
                 }
                 else
                 {
-                    return ImageUrl;
+                    return string.IsNullOrEmpty(Thumbnail) ? ImageUrl : Thumbnail;
                 }
             }
         }
@@ -265,14 +265,14 @@ namespace Sio.Cms.Lib.ViewModels.SioPages
                 }
                 if (productExp != null)
                 {
-                    var getArticles = SioPageArticles.ReadViewModel.Repository
-                    .GetModelListBy(articleExp
+                    var getProducts = SioPageProducts.ReadViewModel.Repository
+                    .GetModelListBy(productExp
                     , SioService.GetConfig<string>(SioConstants.ConfigurationKeyword.OrderBy), 0
                     , pageSize, pageIndex
                     , _context: context, _transaction: transaction);
-                    if (getArticles.IsSucceed)
+                    if (getProducts.IsSucceed)
                     {
-                        Articles = getArticles.Data;
+                        Products = getProducts.Data;
                     }
                 }
             }
@@ -305,8 +305,8 @@ namespace Sio.Cms.Lib.ViewModels.SioPages
                     scripts.Append(nav.Module.View.Scripts);
                     styles.Append(nav.Module.View.Styles);
                 }
-                View.Scripts = scripts.ToString();
-                View.Styles = styles.ToString();
+                View.Scripts += scripts.ToString();
+                View.Styles += styles.ToString();
             }
         }
 

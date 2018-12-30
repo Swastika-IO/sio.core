@@ -1,6 +1,6 @@
 using System;
 
-namespace Sio.Cms.Web.Models
+namespace Mix.Cms.Web.Models
 {
     public class ErrorViewModel
     {

@@ -98,7 +98,7 @@ namespace Sio.Cms.Lib.ViewModels.SioArticles
         #region Views
 
         [JsonProperty("domain")]
-        public string Domain => SioService.GetConfig<string>("Domain") ?? "/";
+        public string Domain => SioService.GetConfig<string>("Domain");
 
         [JsonProperty("categories")]
         public List<SioPageArticles.ReadViewModel> Pages { get; set; }
@@ -172,7 +172,7 @@ namespace Sio.Cms.Lib.ViewModels.SioArticles
         {
             get
             {
-                if (Image != null && (Image.IndexOf("http") == -1) && Image[0] != '/')
+                if (!string.IsNullOrEmpty(Image) && (Image.IndexOf("http") == -1) && Image[0] != '/')
                 {
                     return CommonHelper.GetFullPath(new string[] {
                     Domain,  Image
@@ -198,7 +198,7 @@ namespace Sio.Cms.Lib.ViewModels.SioArticles
                 }
                 else
                 {
-                    return ImageUrl;
+                    return string.IsNullOrEmpty(Thumbnail) ? ImageUrl : Thumbnail;
                 }
             }
         }
@@ -358,6 +358,7 @@ namespace Sio.Cms.Lib.ViewModels.SioArticles
                 Id = Repository.Max(c => c.Id, _context, _transaction).Data + 1;
                 CreatedDateTime = DateTime.UtcNow;
             }
+            LastModified = DateTime.UtcNow;
             if (Properties != null && Properties.Count > 0)
             {
                 JArray arrProperties = new JArray();
