@@ -5,19 +5,19 @@
     <meta charset="utf-8" />
 
 
-    <link rel="icon" type="image/png" sizes="16x16" href="@(MixService.GetConfig<string>("Favicon", ViewBag.culture) ?? "/favicon-16x16.png")">
+    <link rel="icon" type="image/png" sizes="16x16" href="@(SioService.GetConfig<string>("Favicon", ViewBag.culture) ?? "/favicon-16x16.png")">
     @*<link rel="manifest" href="/manifest.json">*@
     <meta name="msapplication-TileColor" content="#ffffff">
     <meta name="msapplication-TileImage" content="/ms-icon-144x144.png">
     <meta name="theme-color" content="#ffffff">
 
     <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0, shrink-to-fit=no' name='viewport' />
-    <meta property="fb:app_id" content="@(MixService.GetConfig<string>("FacebookAppId", ViewBag.culture))" />
+    <meta property="fb:app_id" content="@(SioService.GetConfig<string>("FacebookAppId", ViewBag.culture))" />
     <script>document.write('<meta property="og:url" content="' + window.top.location + '" />')</script>
     
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
     
-    <title>@(MixService.GetConfig<string>("SiteName", ViewBag.culture)) - @ViewData["Title"]</title>
+    <title>@(SioService.GetConfig<string>("SiteName", ViewBag.culture)) - @ViewData["Title"]</title>
 
     <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0, shrink-to-fit=no' name='viewport' />
     <!--     Fonts and icons     -->
@@ -31,7 +31,7 @@
     <link rel="stylesheet" href="~/css/app-vendor.min.css" />
     <base href="/@ViewBag.culture">
 
-    @if (!string.IsNullOrEmpty(MixService.GetConfig<string>("Google_Analytic_Key", ViewBag.culture)))
+    @if (!string.IsNullOrEmpty(SioService.GetConfig<string>("Google_Analytic_Key", ViewBag.culture)))
     {
         <!-- Google Analytics -->
         <script>
@@ -40,7 +40,7 @@
         m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
         })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
 
-        ga('create', '@(MixService.GetConfig<string>("Google_Analytic_Key", ViewBag.culture))', 'auto');
+        ga('create', '@(SioService.GetConfig<string>("Google_Analytic_Key", ViewBag.culture))', 'auto');
         ga('send', 'pageview');
         </script>
         <!-- End Google Analytics -->
@@ -54,12 +54,12 @@
             js.src = 'https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v3.1&appId=1471411989648473&autoLogAppEvents=1';
             fjs.parentNode.insertBefore(js, fjs);
         }(document, 'script', 'facebook-jssdk'));</script>
-    @if (!string.IsNullOrEmpty(MixService.GetConfig<string>("FacebookAppId", ViewBag.culture)))
+    @if (!string.IsNullOrEmpty(SioService.GetConfig<string>("FacebookAppId", ViewBag.culture)))
     {
         <script>
         window.fbAsyncInit = function () {
             FB.init({
-                appId: '@(MixService.GetConfig<string>("FacebookAppId", ViewBag.culture))',
+                appId: '@(SioService.GetConfig<string>("FacebookAppId", ViewBag.culture))',
                 autoLogAppEvents: true,
                 xfbml: true,
                 version: 'v3.2'
@@ -82,7 +82,7 @@
     
 </head>
 
-<body class="@ViewData["PageClass"]" ng-app="MixClient" ng-controller="AppClientController" ng-init="init('@ViewBag.culture')">
+<body class="@ViewData["PageClass"]" ng-app="SioClient" ng-controller="AppClientController" ng-init="init('@ViewBag.culture')">
     <div id="fb-root"></div>
     <partial name="../Layouts/_Top_Nav.cshtml" />
     <div class="wrapper">

@@ -1,8 +1,8 @@
 <<<<<<< HEAD
-@using Mix.Cms.Lib.ViewModels;
+@using Sio.Cms.Lib.ViewModels;
 @{
     string culture = ViewBag.culture;
-    List<Mix.Cms.Lib.ViewModels.MixPages.ReadListItemViewModel> topCates = MixCmsHelper.GetCategory(Url, ViewBag.culture, MixEnums.CatePosition.Top, Context.Request.Path);
+    List<Sio.Cms.Lib.ViewModels.SioPages.ReadListItemViewModel> topCates = SioCmsHelper.GetCategory(Url, ViewBag.culture, SioEnums.CatePosition.Top, Context.Request.Path);
 =======
 @using Swastika.Cms.Lib.ViewModels;
 @{
@@ -38,7 +38,7 @@
                     switch (cate.Type)
                     {
 <<<<<<< HEAD
-                        case MixEnums.MixPageType.Blank:
+                        case SioEnums.SioPageType.Blank:
                             string pageNames = string.Join(",", cate.Childs.Select(c => c.SeoName).ToList());
                             <li is-active-menu asp-controllers="Home" asp-action=",Home" asp-route-pagenames="@pageNames" pages="@pageNames" class="dropdown nav-item">
                                 <a href="@cate.StaticUrl" target="_blank" class="dropdown-hover-toggle nav-link">
@@ -63,7 +63,7 @@
                             </li>
                             break;
 <<<<<<< HEAD
-                        case MixEnums.MixPageType.Home:
+                        case SioEnums.SioPageType.Home:
 =======
                         case Swastika.Cms.Lib.SWCmsConstants.CateType.Home:
 >>>>>>> parent of fd2daa4... remove template files
@@ -72,7 +72,7 @@
                             </li>
                             break;
 <<<<<<< HEAD
-                        case MixEnums.MixPageType.StaticUrl:
+                        case SioEnums.SioPageType.StaticUrl:
 =======
                         case Swastika.Cms.Lib.SWCmsConstants.CateType.StaticUrl:
 >>>>>>> parent of fd2daa4... remove template files

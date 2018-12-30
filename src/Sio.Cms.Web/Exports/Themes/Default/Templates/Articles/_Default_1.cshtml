@@ -1,4 +1,4 @@
-@model Mix.Cms.Lib.ViewModels.MixArticles.ReadMvcViewModel
+@model Sio.Cms.Lib.ViewModels.SioArticles.ReadMvcViewModel
 <!-- End Navbar -->
 <div class="page-header page-header-mini">
     
@@ -68,7 +68,7 @@
                             <div class="card-body">
                                 
                                 <p>
-                                <fb-send class="hide-on-mb" app-id="'@(MixService.GetConfig<string>("FacebookAppId", ViewBag.culture as string))'"></fb-send>
+                                <fb-send class="hide-on-mb" app-id="'@(SioService.GetConfig<string>("FacebookAppId", ViewBag.culture as string))'"></fb-send>
                                 <fb-share></fb-share>
                                 </p>
                                 @Html.Raw(Model.Excerpt)

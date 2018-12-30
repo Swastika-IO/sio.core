@@ -25,7 +25,7 @@
     <script>
         window.fbAsyncInit = function () {
             FB.init({
-                appId: '@(MixService.GetConfig<string>("FacebookAppId", ViewBag.culture))',
+                appId: '@(SioService.GetConfig<string>("FacebookAppId", ViewBag.culture))',
                 autoLogAppEvents: true,
                 xfbml: true,
                 version: 'v3.2'
@@ -56,6 +56,6 @@
 
     <!--Datatables-->
     @*@RenderSection("Modals", required: false)*@
-    @*@await Component.InvokeAsync(typeof(Mix.Cms.Mvc.Areas.Portal.ViewComponents.Modals))*@
+    @*@await Component.InvokeAsync(typeof(Sio.Cms.Mvc.Areas.Portal.ViewComponents.Modals))*@
 </body>
 </html>

@@ -2,7 +2,7 @@
     string lang = ViewBag.culture;
 }
 @section Seo{
-    <title>@(MixService.GetConfig<string>("SiteName", ViewBag.culture)) - @Model.Title</title>
+    <title>@(SioService.GetConfig<string>("SiteName", ViewBag.culture)) - @Model.Title</title>
     <meta property="og:type" content="article" />
     <meta property="og:url" content="@($"{Context.Request.Scheme}://{Context.Request.Host}{Context.Request.Path}")" />
     <meta property="og:title" content="@Model.Title" />
@@ -14,7 +14,7 @@
     <preview-popup ng-if="isInit" preview-object="previewObject"></preview-popup>
     @if (!string.IsNullOrEmpty(Model.TemplatePath))
     {
-        @(MixService.GetConfig<string>("Phone", lang))
+        @(SioService.GetConfig<string>("Phone", lang))
         try
         {
             <partial name="@Model.TemplatePath" model="@Model"/>
@@ -38,7 +38,7 @@
     else
     {
         <section class="container">
-            <h1>@(MixService.Translate<string>("Please choose template", ViewBag.culture))</h1>
+            <h1>@(SioService.Translate<string>("Please choose template", ViewBag.culture))</h1>
         </section>
     }
 </div>

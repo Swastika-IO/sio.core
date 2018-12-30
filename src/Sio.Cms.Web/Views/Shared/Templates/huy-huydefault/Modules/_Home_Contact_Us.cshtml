@@ -16,7 +16,7 @@
                     <div class="description">
                         <h4 class="info-title">Find us at the office</h4>
                         <p class="description"> 
-                        <a target="_blank" href="https://www.google.com/maps/place/@System.Web.HttpUtility.UrlEncode(MixService.GetConfig<string>("ContactAddress", ViewBag.culture))">@(MixService.GetConfig<string>("ContactAddress", ViewBag.culture))</a>
+                        <a target="_blank" href="https://www.google.com/maps/place/@System.Web.HttpUtility.UrlEncode(SioService.GetConfig<string>("ContactAddress", ViewBag.culture))">@(SioService.GetConfig<string>("ContactAddress", ViewBag.culture))</a>
                         </p>
                     </div>
                 </div>
@@ -27,9 +27,9 @@
                     <div class="description">
                         <h4 class="info-title">Give us a ring</h4>
                         <p class="description"> 
-                             @(MixService.GetConfig<string>("ContactName", ViewBag.culture))
-                            <br> <a href="mailto:@(MixService.GetConfig<string>("ContactEmail", ViewBag.culture))">@(MixService.GetConfig<string>("ContactEmail", ViewBag.culture))</a>
-                            <br> <a href="tel:@(MixService.GetConfig<string>("ContactPhone", ViewBag.culture))">@(MixService.GetConfig<string>("ContactPhone", ViewBag.culture))</a>
+                             @(SioService.GetConfig<string>("ContactName", ViewBag.culture))
+                            <br> <a href="mailto:@(SioService.GetConfig<string>("ContactEmail", ViewBag.culture))">@(SioService.GetConfig<string>("ContactEmail", ViewBag.culture))</a>
+                            <br> <a href="tel:@(SioService.GetConfig<string>("ContactPhone", ViewBag.culture))">@(SioService.GetConfig<string>("ContactPhone", ViewBag.culture))</a>
                         </p>
                     </div>
                 </div>

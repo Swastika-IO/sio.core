@@ -1,10 +1,10 @@
-﻿@model Mix.Cms.Lib.ViewModels.MixArticles.ReadMvcViewModel
+﻿@model Sio.Cms.Lib.ViewModels.SioArticles.ReadMvcViewModel
 @{
     string culture = ViewBag.culture;
        
 }
 @section Seo{
-    <title>@(MixService.GetConfig<string>("SiteName", ViewBag.culture)) - @Model.Title</title>
+    <title>@(SioService.GetConfig<string>("SiteName", ViewBag.culture)) - @Model.Title</title>
     <meta property="og:type" content="article" />
     <meta property="og:url" content="@($"{Context.Request.Scheme}://{Context.Request.Host}{Context.Request.Path}")" />
     <meta property="og:title" content="@Model.Title" />
@@ -29,7 +29,7 @@
 else
 {
     <section class="container">
-        <h1>@MixService.Translate("Please choose template", ViewBag.culture)</h1>
+        <h1>@SioService.Translate("Please choose template", ViewBag.culture)</h1>
     </section>
 }
 @section Styles{

@@ -15,7 +15,7 @@
         "ASPNETCORE_ENVIRONMENT": "Development"
       }
     },
-    "Mix.Cms.Web": {
+    "Sio.Cms.Web": {
       "commandName": "Project",
       "launchBrowser": true,
       "environmentVariables": {
