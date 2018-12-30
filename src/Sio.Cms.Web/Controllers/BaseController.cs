@@ -1,4 +1,4 @@
-﻿using System.Globalization;
+using System.Globalization;
 using AutoMapper.Configuration;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
@@ -6,10 +6,10 @@ using Microsoft.AspNetCore.Mvc.Filters;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.Extensions.Caching.Distributed;
 using Microsoft.Extensions.Caching.Memory;
-using Mix.Cms.Lib;
-using Mix.Cms.Lib.Services;
+using Sio.Cms.Lib;
+using Sio.Cms.Lib.Services;
 
-namespace Mix.Cms.Web.Controllers
+namespace Sio.Cms.Web.Controllers
 {
     public class BaseController : Controller
     {
@@ -41,7 +41,7 @@ namespace Mix.Cms.Web.Controllers
 
         protected string _culture
         {
-            get => RouteData?.Values["culture"]?.ToString().ToLower() ?? MixService.GetConfig<string>("DefaultCulture");
+            get => RouteData?.Values["culture"]?.ToString().ToLower() ?? SioService.GetConfig<string>("DefaultCulture");
         }
 
         public override void OnActionExecuting(ActionExecutingContext context)

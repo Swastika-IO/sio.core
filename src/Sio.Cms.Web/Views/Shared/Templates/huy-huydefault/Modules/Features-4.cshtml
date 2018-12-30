@@ -19,7 +19,7 @@
                             <div class="description">
                                 <h4 class="info-title">@nav.Product.Title</h4>
                                 @Html.Raw(nav.Product.Excerpt)
-                                <a href="@nav.Product.DetailsUrl" class="ml-3">@(MixService.Translate<string>("read_more", Model.Specificulture)) &raquo;</a>
+                                <a href="@nav.Product.DetailsUrl" class="ml-3">@(SioService.Translate<string>("read_more", Model.Specificulture)) &raquo;</a>
                             </div>
                         </div>
                     </div>

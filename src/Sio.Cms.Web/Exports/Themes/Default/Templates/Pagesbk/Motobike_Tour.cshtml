@@ -1,4 +1,4 @@
-@model Mix.Cms.Lib.ViewModels.MixPages.ReadMvcViewModel
+@model Sio.Cms.Lib.ViewModels.SioPages.ReadMvcViewModel
 @{
     var listTags = Model.Articles.Items.Where(a => !string.IsNullOrEmpty(a.Article.Tags)).Select(a => a.Article.Tags).ToList();
     string tags = string.Empty;
@@ -10,7 +10,7 @@
         }
     }
     string culture = ViewBag.culture;
-    var social = MixCmsHelper.GetModule("Social", ViewBag.culture as string);
+    var social = SioCmsHelper.GetModule("Social", ViewBag.culture as string);
 }
 <div class="wrapper">
     <div class="page-header page-header-small">

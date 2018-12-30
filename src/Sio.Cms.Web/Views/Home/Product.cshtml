@@ -1,4 +1,4 @@
-﻿@model Mix.Cms.Lib.ViewModels.MixProducts.ReadMvcViewModel
+@model Sio.Cms.Lib.ViewModels.SioProducts.ReadMvcViewModel
 @{
     string culture = ViewBag.culture;
     ViewData["Title"] = Model.Title;
@@ -22,13 +22,13 @@
 else
 {
     <section class="container">
-        <h1>@MixService.Translate("Please choose template", ViewBag.culture)</h1>
+        <h1>@SioService.Translate("Please choose template", ViewBag.culture)</h1>
     </section>
 }
 @section Styles{
     <link rel="stylesheet" href="~/css/app-vendor.min.css" />
     <base href="/@ViewBag.culture">
-    @if (!string.IsNullOrEmpty(MixService.GetConfig<string>("GA_KEY", ViewBag.culture)))
+    @if (!string.IsNullOrEmpty(SioService.GetConfig<string>("GA_KEY", ViewBag.culture)))
     {
         <!-- Google Analytics -->
         <script>
@@ -37,7 +37,7 @@ else
         m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
         })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
 
-        ga('create', '@(MixService.GetConfig<string>("GA_KEY", ViewBag.culture))', 'auto');
+        ga('create', '@(SioService.GetConfig<string>("GA_KEY", ViewBag.culture))', 'auto');
         ga('send', 'pageview');
         </script>
         <!-- End Google Analytics -->
@@ -51,12 +51,12 @@ else
             js.src = 'https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v3.1&appId=1471411989648473&autoLogAppEvents=1';
             fjs.parentNode.insertBefore(js, fjs);
         }(document, 'script', 'facebook-jssdk'));</script>
-    @if (!string.IsNullOrEmpty(MixService.GetConfig<string>("FacebookAppId", ViewBag.culture)))
+    @if (!string.IsNullOrEmpty(SioService.GetConfig<string>("FacebookAppId", ViewBag.culture)))
     {
         <script>
         window.fbAsyncInit = function () {
             FB.init({
-                appId: '@(MixService.GetConfig<string>("FacebookAppId", ViewBag.culture))',
+                appId: '@(SioService.GetConfig<string>("FacebookAppId", ViewBag.culture))',
                 autoLogAppEvents: true,
                 xfbml: true,
                 version: 'v3.2'

@@ -1,4 +1,4 @@
-﻿{
+{
   "specificulture": "en-us",
   "data": [
     {
@@ -67,7 +67,7 @@
     {
       "keyword": "Favicon",
       "category": "Site",
-      "value": "/css/portal/img/mixcore-logo-blue.png",
+      "value": "/css/portal/img/siocore-logo-blue.png",
       "dataType": 16,
       "description": null,
       "priority": 0,
@@ -76,7 +76,7 @@
     {
       "keyword": "Logo",
       "category": "Site",
-      "value": "/css/portal/img/mixcore-logo-blue.png",
+      "value": "/css/portal/img/siocore-logo-blue.png",
       "dataType": 16,
       "description": null,
       "priority": 0,
@@ -85,7 +85,7 @@
     {
       "keyword": "SiteName",
       "category": "Site",
-      "value": "Mix Core",
+      "value": "Sio Core",
       "dataType": 7,
       "description": null,
       "priority": 0,

@@ -2,7 +2,7 @@
 @inject IAuthorizationService AuthorizationService
 
 @{
-    List<Mix.Cms.Lib.ViewModels.MixPages.ReadListItemViewModel> cates = MixCmsHelper.GetCategory(Url, ViewBag.culture, MixEnums.CatePosition.Footer, Context.Request.Path);
+    List<Sio.Cms.Lib.ViewModels.SioPages.ReadListItemViewModel> cates = SioCmsHelper.GetCategory(Url, ViewBag.culture, SioEnums.CatePosition.Footer, Context.Request.Path);
 }
 <footer class="footer footer-default ">
     <div class="container">
@@ -39,7 +39,7 @@
             <script>
                 document.write(new Date().getFullYear())
             </script>, Build with love by
-            <a href="http://dev.mixcore.org/en-us/home" target="_blank">mixcore</a>.
+            <a href="http://dev.siocore.org/en-us/home" target="_blank">siocore</a>.
         </div>
     </div>
 </footer>

@@ -1,16 +1,16 @@
-﻿@using Microsoft.AspNetCore.Mvc.Localization
+@using Microsoft.AspNetCore.Mvc.Localization
 @inject UserManager<ApplicationUser> UserManager
 <!doctype html>
 <html lang="en">
 
 <head>
     <base href="/portal">
-    <title>@ViewData["Title"] - Angular mixcore</title>
+    <title>@ViewData["Title"] - Angular siocore</title>
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=1920">
     <meta data-react-helmet="true" name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover, user-scalable=no">
-    <link rel="icon" href="/css/portal/img/mixcore-logo-blue.png">
+    <link rel="icon" href="/css/portal/img/siocore-logo-blue.png">
     @*<link href="~/css/shared.min.css" rel="stylesheet" />*@
     <link rel="stylesheet" href="~/css/app-vendor.min.css" />
 
@@ -25,7 +25,7 @@
     <script>
         window.fbAsyncInit = function () {
             FB.init({
-                appId: '@(MixService.GetConfig<string>("FacebookAppId", ViewBag.culture))',
+                appId: '@(SioService.GetConfig<string>("FacebookAppId", ViewBag.culture))',
                 autoLogAppEvents: true,
                 xfbml: true,
                 version: 'v3.2'
@@ -56,6 +56,6 @@
 
     <!--Datatables-->
     @*@RenderSection("Modals", required: false)*@
-    @*@await Component.InvokeAsync(typeof(Mix.Cms.Mvc.Areas.Portal.ViewComponents.Modals))*@
+    @*@await Component.InvokeAsync(typeof(Sio.Cms.Mvc.Areas.Portal.ViewComponents.Modals))*@
 </body>
 </html>
