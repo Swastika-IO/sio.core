@@ -35,6 +35,9 @@ namespace Sio.Cms.Lib.ViewModels.SioModules
 
         [JsonProperty("image")]
         public string Image { get; set; }
+        
+        [JsonProperty("thumbnail")]
+        public string Thumbnail { get; set; }
 
         [JsonProperty("template")]
         public string Template { get; set; }
@@ -100,6 +103,24 @@ namespace Sio.Cms.Lib.ViewModels.SioModules
             }
         }
 
+        [JsonProperty("thumbnailUrl")]
+        public string ThumbnailUrl
+        {
+            get
+            {
+                if (Thumbnail != null && Thumbnail.IndexOf("http") == -1 && Thumbnail[0] != '/')
+                {
+                    return CommonHelper.GetFullPath(new string[] {
+                    Domain,  Thumbnail
+                });
+                }
+                else
+                {
+                    return string.IsNullOrEmpty(Thumbnail) ? ImageUrl : Thumbnail;
+                }
+            }
+        }
+
         [JsonProperty("data")]
         public PaginationModel<SioModuleDatas.ReadViewModel> Data { get; set; } = new PaginationModel<SioModuleDatas.ReadViewModel>();
 
@@ -122,11 +143,11 @@ namespace Sio.Cms.Lib.ViewModels.SioModules
         public SioTemplates.UpdateViewModel View { get; set; }
 
         [JsonIgnore]
-        public string ActivedTheme
+        public int ActivedTheme
         {
             get
             {
-                return SioService.GetConfig<string>(SioConstants.ConfigurationKeyword.ThemeName, Specificulture) ?? SioService.GetConfig<string>("DefaultTheme");
+                return SioService.GetConfig<int>(SioConstants.ConfigurationKeyword.ThemeId, Specificulture);
             }
         }
 
@@ -141,7 +162,7 @@ namespace Sio.Cms.Lib.ViewModels.SioModules
                 return CommonHelper.GetFullPath(new string[]
                 {
                     SioConstants.Folder.TemplatesFolder
-                    , ActivedTheme
+                    , SioService.GetConfig<string>(SioConstants.ConfigurationKeyword.ThemeName, Specificulture)
                     , ThemeFolderType
                 }
             );
@@ -173,7 +194,7 @@ namespace Sio.Cms.Lib.ViewModels.SioModules
                 return CommonHelper.GetFullPath(new string[]
                 {
                     SioConstants.Folder.TemplatesFolder
-                    , ActivedTheme
+                    , SioService.GetConfig<string>(SioConstants.ConfigurationKeyword.ThemeName, Specificulture)
                     , SioEnums.EnumTemplateFolder.Forms.ToString()
                 }
             );
@@ -206,7 +227,7 @@ namespace Sio.Cms.Lib.ViewModels.SioModules
                 return CommonHelper.GetFullPath(new string[]
                 {
                     SioConstants.Folder.TemplatesFolder
-                    , ActivedTheme
+                    , SioService.GetConfig<string>(SioConstants.ConfigurationKeyword.ThemeName, Specificulture)
                     , SioEnums.EnumTemplateFolder.Edms.ToString()
                 }
             );
@@ -240,7 +261,19 @@ namespace Sio.Cms.Lib.ViewModels.SioModules
         #endregion Contructors
 
         #region Overrides
-
+        public override void Validate(SioCmsContext _context, IDbContextTransaction _transaction)
+        {
+            base.Validate(_context, _transaction);
+            if (IsValid && Id == 0)
+            {
+                IsValid = !Repository.CheckIsExists(m => m.Name == Name && m.Specificulture == Specificulture
+                , _context, _transaction);
+                if (!IsValid)
+                {
+                    Errors.Add("Module Name Existed");
+                }
+            }
+        }
         public override SioModule ParseModel(SioCmsContext _context = null, IDbContextTransaction _transaction = null)
         {
             if (Id == 0)
@@ -263,7 +296,7 @@ namespace Sio.Cms.Lib.ViewModels.SioModules
 
         public override void ExpandView(SioCmsContext _context = null, IDbContextTransaction _transaction = null)
         {
-            Cultures = LoadCultures(Specificulture, _context, _transaction);
+            Cultures = SioModules.Helper.LoadCultures(Id, Specificulture, _context, _transaction);
             Cultures.ForEach(c => c.IsSupported = _context.SioModule.Any(m => m.Id == Id && m.Specificulture == c.Specificulture));
             Columns = new List<ModuleFieldViewModel>();
             JArray arrField = !string.IsNullOrEmpty(Fields) ? JArray.Parse(Fields) : new JArray();
@@ -286,7 +319,7 @@ namespace Sio.Cms.Lib.ViewModels.SioModules
                 Columns.Add(thisField);
             }
             this.Templates = this.Templates ?? SioTemplates.UpdateViewModel.Repository.GetModelListBy(
-                t => t.Theme.Name == ActivedTheme && t.FolderType == this.TemplateFolderType).Data;
+                t => t.Theme.Id == ActivedTheme && t.FolderType == this.TemplateFolderType).Data;
             this.View = SioTemplates.UpdateViewModel.GetTemplateByPath(Template, Specificulture, SioEnums.EnumTemplateFolder.Modules, _context, _transaction);
             this.Template = CommonHelper.GetFullPath(new string[]
                {
@@ -295,7 +328,7 @@ namespace Sio.Cms.Lib.ViewModels.SioModules
                });
 
             this.Forms = this.Forms ?? SioTemplates.UpdateViewModel.Repository.GetModelListBy(
-                t => t.Theme.Name == ActivedTheme && t.FolderType == this.FormFolderType).Data;
+                t => t.Theme.Id == ActivedTheme && t.FolderType == this.FormFolderType).Data;
             this.FormView = SioTemplates.UpdateViewModel.GetTemplateByPath(FormTemplate, Specificulture, SioEnums.EnumTemplateFolder.Forms, _context, _transaction);
             this.FormTemplate = CommonHelper.GetFullPath(new string[]
                {
@@ -304,7 +337,7 @@ namespace Sio.Cms.Lib.ViewModels.SioModules
                });
 
             this.Edms = this.Edms ?? SioTemplates.UpdateViewModel.Repository.GetModelListBy(
-                t => t.Theme.Name == ActivedTheme && t.FolderType == this.EdmFolderType).Data;
+                t => t.Theme.Id == ActivedTheme && t.FolderType == this.EdmFolderType).Data;
             this.EdmView = SioTemplates.UpdateViewModel.GetTemplateByPath(EdmTemplate, Specificulture, SioEnums.EnumTemplateFolder.Edms, _context, _transaction);
             this.EdmTemplate = CommonHelper.GetFullPath(new string[]
                {
@@ -351,44 +384,7 @@ namespace Sio.Cms.Lib.ViewModels.SioModules
         #endregion Overrides
 
         #region Expand
-        List<SupportedCulture> LoadCultures(string initCulture = null, SioCmsContext _context = null, IDbContextTransaction _transaction = null)
-        {
-            var getCultures = SystemCultureViewModel.Repository.GetModelList(_context, _transaction);
-            var result = new List<SupportedCulture>();
-            if (getCultures.IsSucceed)
-            {
-                foreach (var culture in getCultures.Data)
-                {
-                    result.Add(
-                        new SupportedCulture()
-                        {
-                            Icon = culture.Icon,
-                            Specificulture = culture.Specificulture,
-                            Alias = culture.Alias,
-                            FullName = culture.FullName,
-                            Description = culture.FullName,
-                            Id = culture.Id,
-                            Lcid = culture.Lcid,
-                            IsSupported = culture.Specificulture == initCulture || _context.SioModule.Any(p => p.Id == Id && p.Specificulture == culture.Specificulture)
-                        });
-
-                }
-            }
-            return result;
-        }
-
-        public static RepositoryResponse<UpdateViewModel> GetBy(
-            Expression<Func<SioModule, bool>> predicate, string articleId = null, string productId = null, int categoryId = 0
-             , SioCmsContext _context = null, IDbContextTransaction _transaction = null)
-        {
-            var result = Repository.GetSingleModel(predicate, _context, _transaction);
-            if (result.IsSucceed)
-            {
-                result.Data.ArticleId = articleId;
-                result.Data.CategoryId = categoryId;
-            }
-            return result;
-        }
+        
         public void LoadData(int? articleId = null, int? productId= null, int? categoryId = null
             , int? pageSize = null, int? pageIndex = 0
             , SioCmsContext _context = null, IDbContextTransaction _transaction = null)

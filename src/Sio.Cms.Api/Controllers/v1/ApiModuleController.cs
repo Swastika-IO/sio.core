@@ -18,6 +18,7 @@ using System.Linq.Expressions;
 using System.Web;
 using Sio.Cms.Lib.ViewModels.SioModules;
 using Microsoft.Extensions.Caching.Memory;
+using Sio.Cms.Lib.ViewModels;
 
 namespace Sio.Cms.Api.Controllers.v1
 {
@@ -149,7 +150,7 @@ namespace Sio.Cms.Api.Controllers.v1
             [FromBody] RequestPaging request)
         {
             var query = HttpUtility.ParseQueryString(request.Query ?? "");
-            bool isType = int.TryParse(query.Get("type"), out int moduleType);
+            bool isType = int.TryParse(query.Get("type"), out int moduleType) && moduleType >= 0;
             ParseRequestPagingDate(request);
             Expression<Func<SioModule, bool>> predicate = model =>
                         model.Specificulture == _lang
@@ -193,6 +194,25 @@ namespace Sio.Cms.Api.Controllers.v1
             else
             {
                 return new RepositoryResponse<List<ReadListItemViewModel>>();
+            }
+        }
+
+        [HttpPost, HttpOptions]
+        [Route("apply-list")]
+        public async Task<ActionResult<JObject>> ListActionAsync([FromBody]ListAction<int> data)
+        {
+            Expression<Func<SioModule, bool>> predicate = model =>
+                       model.Specificulture == _lang
+                       && data.Data.Contains(model.Id);
+            var result = new RepositoryResponse<bool>();
+            switch (data.Action)
+            {
+                case "Delete":
+                    return Ok(JObject.FromObject(await base.DeleteListAsync<UpdateViewModel>(true, predicate, false)));
+                case "Export":
+                    return Ok(JObject.FromObject(await base.ExportListAsync(predicate, SioStructureType.Module)));
+                default:
+                    return JObject.FromObject(new RepositoryResponse<bool>());
             }
         }
         #endregion Post

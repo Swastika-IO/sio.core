@@ -79,7 +79,7 @@ namespace Sio.Cms.Lib.ViewModels.SioModuleDatas
             if (string.IsNullOrEmpty(Id))
             {
                 Id = Guid.NewGuid().ToString();
-                CreatedDateTime = DateTime.UtcNow;
+                CreatedDateTime = DateTime.UtcNow;                
             }
             else
             {

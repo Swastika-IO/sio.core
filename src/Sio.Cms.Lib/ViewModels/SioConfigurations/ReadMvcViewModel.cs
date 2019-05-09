@@ -33,6 +33,8 @@ namespace Sio.Cms.Lib.ViewModels.SioConfigurations
         public SioContentStatus Status{ get; set; }
         [JsonProperty("description")]
         public string Description { get; set; }
+        [JsonProperty("createdDateTime")]
+        public DateTime CreatedDateTime { get; set; }
 
         #endregion Models
 
@@ -84,7 +86,8 @@ namespace Sio.Cms.Lib.ViewModels.SioConfigurations
                 foreach (var item in arrConfiguration)
                 {
                     var lang = new ReadMvcViewModel(item, context, transaction);
-                    lang.Specificulture = destCulture;
+                    lang.CreatedDateTime = DateTime.UtcNow;
+                    lang.Specificulture = destCulture;                    
                     var saveResult = await lang.SaveModelAsync(false, context, transaction);
                     result.IsSucceed = result.IsSucceed && saveResult.IsSucceed;
                     if (!result.IsSucceed)

@@ -8,16 +8,16 @@ EXPOSE 44319
 
 FROM microsoft/dotnet:2.1-sdk-nanoserver-1803 AS build
 WORKDIR /src
-COPY ["Sio.Cms.Web/Sio.Cms.Web.csproj", "Sio.Cms.Web/"]
-RUN dotnet restore "Sio.Cms.Web/Sio.Cms.Web.csproj"
+COPY ["Mix.Cms.Web/Mix.Cms.Web.csproj", "Mix.Cms.Web/"]
+RUN dotnet restore "Mix.Cms.Web/Mix.Cms.Web.csproj"
 COPY . .
-WORKDIR "/src/Sio.Cms.Web"
-RUN dotnet build "Sio.Cms.Web.csproj" -c Release -o /app
+WORKDIR "/src/Mix.Cms.Web"
+RUN dotnet build "Mix.Cms.Web.csproj" -c Release -o /app
 
 FROM build AS publish
-RUN dotnet publish "Sio.Cms.Web.csproj" -c Release -o /app
+RUN dotnet publish "Mix.Cms.Web.csproj" -c Release -o /app
 
 FROM base AS final
 WORKDIR /app
 COPY --from=publish /app .
-ENTRYPOINT ["dotnet", "Sio.Cms.Web.dll"]
+ENTRYPOINT ["dotnet", "Mix.Cms.Web.dll"]

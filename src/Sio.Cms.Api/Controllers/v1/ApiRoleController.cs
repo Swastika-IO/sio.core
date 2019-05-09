@@ -8,6 +8,7 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.UI.Services;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.SignalR;
+using Microsoft.Extensions.Caching.Memory;
 using Microsoft.Extensions.Logging;
 using Sio.Cms.Hub;
 using Sio.Cms.Lib.Models.Account;
@@ -34,7 +35,8 @@ namespace Sio.Cms.Api.Controllers.v1
             RoleManager<IdentityRole> roleManager,
             IEmailSender emailSender,
             ILogger<ApiRoleController> logger,
-            IHubContext<PortalHub> hubContext) : base(hubContext)
+            IMemoryCache memoryCache,
+            IHubContext<PortalHub> hubContext) : base(memoryCache, hubContext)
         {
             _userManager = userManager;
             _signInManager = signInManager;
@@ -89,10 +91,10 @@ namespace Sio.Cms.Api.Controllers.v1
             foreach (var item in roles)
             {
                 var role = await _roleManager.FindByNameAsync(item.Value);
-                var temp = await ReadViewModel.Repository.GetModelListByAsync(r => r.Id == role.Id);
+                var temp = await ReadViewModel.Repository.GetModelListByAsync(r => r.Id == role.Id, "Priority", 0, null, null, null, null);
                 if (temp.IsSucceed)
                 {
-                    permissions.Data.AddRange(temp.Data);
+                    permissions.Data.AddRange(temp.Data.Items);
                 }
             }
             return JObject.FromObject(permissions);

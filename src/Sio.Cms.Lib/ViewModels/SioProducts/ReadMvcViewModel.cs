@@ -171,7 +171,7 @@ namespace Sio.Cms.Lib.ViewModels.SioProducts
                 {
                     ""
                     , SioConstants.Folder.TemplatesFolder
-                    , SioService.GetConfig<string>(SioConstants.ConfigurationKeyword.ThemeName, Specificulture) ?? "Default"
+                    , SioService.GetConfig<string>(SioConstants.ConfigurationKeyword.ThemeFolder, Specificulture) ?? "Default"
                     , Template
                 });
             }

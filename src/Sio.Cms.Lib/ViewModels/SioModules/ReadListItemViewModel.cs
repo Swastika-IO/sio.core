@@ -25,6 +25,9 @@ namespace Sio.Cms.Lib.ViewModels.SioModules
         [JsonProperty("image")]
         public string Image { get; set; }
 
+        [JsonProperty("thumbnail")]
+        public string Thumbnail { get; set; }
+
         [JsonProperty("template")]
         public string Template { get; set; }
 
@@ -57,6 +60,8 @@ namespace Sio.Cms.Lib.ViewModels.SioModules
 
         [JsonProperty("status")]
         public SioContentStatus Status { get; set; }
+
+        public DateTime CreatedDateTime { get; set; }
         #endregion Models
 
         [JsonProperty("imageUrl")]
@@ -76,6 +81,25 @@ namespace Sio.Cms.Lib.ViewModels.SioModules
                 }
             }
         }
+
+        [JsonProperty("thumbnailUrl")]
+        public string ThumbnailUrl
+        {
+            get
+            {
+                if (Thumbnail != null && Thumbnail.IndexOf("http") == -1 && Thumbnail[0] != '/')
+                {
+                    return CommonHelper.GetFullPath(new string[] {
+                    Domain,  Thumbnail
+                });
+                }
+                else
+                {
+                    return string.IsNullOrEmpty(Thumbnail) ? ImageUrl : Thumbnail;
+                }
+            }
+        }
+
 
         #endregion Properties
 

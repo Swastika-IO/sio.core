@@ -70,6 +70,9 @@ namespace Sio.Cms.Lib.ViewModels.SioArticles
         [JsonProperty("createdDateTime")]
         public DateTime CreatedDateTime { get; set; }
 
+        [JsonProperty("publishedDateTime")]
+        public DateTime? PublishedDateTime { get; set; }
+
         [JsonProperty("createdBy")]
         public string CreatedBy { get; set; }
 
@@ -143,7 +146,7 @@ namespace Sio.Cms.Lib.ViewModels.SioArticles
                 {
                     ""
                     , SioConstants.Folder.TemplatesFolder
-                    , SioService.GetConfig<string>(SioConstants.ConfigurationKeyword.ThemeName, Specificulture) ?? "Default"
+                    , SioService.GetConfig<string>(SioConstants.ConfigurationKeyword.ThemeFolder, Specificulture) ?? "Default"
                     , Template
                 });
             }
@@ -159,6 +162,9 @@ namespace Sio.Cms.Lib.ViewModels.SioArticles
                 
         [JsonProperty("articleNavs")]
         public List<SioArticleArticles.ReadViewModel> ArticleNavs { get; set; }
+        
+        [JsonProperty("listTag")]
+        public JArray ListTag { get => JArray.Parse(Tags ?? "[]"); }
         #endregion Views
 
         #endregion Properties
@@ -179,6 +185,7 @@ namespace Sio.Cms.Lib.ViewModels.SioArticles
 
         public override void ExpandView(SioCmsContext _context = null, IDbContextTransaction _transaction = null)
         {
+            //Load Template + Style +  Scripts for views
             this.View = SioTemplates.ReadViewModel.GetTemplateByPath(Template, Specificulture, _context, _transaction).Data;
 
             Properties = new List<ExtraProperty>();

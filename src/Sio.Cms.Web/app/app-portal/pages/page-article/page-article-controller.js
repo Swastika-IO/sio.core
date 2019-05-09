@@ -7,16 +7,16 @@ app.controller('PageArticleController',
             service, articleService, commonService) {
             BaseCtrl.call(this, $scope, $rootScope, $routeParams, ngAppSettings, service);
             $scope.cates = ['Site', 'System'];
+            $scope.others=[];
             $scope.settings = $rootScope.globalSettings;
             $scope.pageId = $routeParams.id;
-            $scope.othersRequest = angular.copy(ngAppSettings.request);
-            $scope.othersRequest.query = "&not_page_id=" + $routeParams.id;
-            $scope.others = [];
+            $scope.canDrag = $scope.request.orderBy !== 'Priority' || $scope.request.direction !== '0';
             $scope.getList = async function () {
                 $rootScope.isBusy = true;
                 var id = $routeParams.id;
                 $scope.request.query = '&page_id=' + id;
                 var response = await service.getList($scope.request);
+                $scope.canDrag = $scope.request.orderBy !== 'Priority' || $scope.request.direction !== '0';
                 if (response.isSucceed) {
                     $scope.data = response.data;
                     $rootScope.isBusy = false;
@@ -27,6 +27,10 @@ app.controller('PageArticleController',
                     $rootScope.isBusy = false;
                     $scope.$apply();
                 }
+            };
+            $scope.preview = function (item) {
+                item.editUrl = '/portal/article/details/' + item.id;
+                $rootScope.preview('article', item, item.title, 'modal-lg');
             };
             $scope.remove = function (pageId, articleId) {
                 $rootScope.showConfirm($scope, 'removeConfirmed', [pageId, articleId], null, 'Remove', 'Are you sure');
@@ -53,28 +57,34 @@ app.controller('PageArticleController',
             $scope.removeCallback = function () {
             }
 
-            $scope.loadOthers = async function (pageIndex) {
-                $scope.othersRequest.pageIndex = pageIndex;
-                $scope.others = [];
-                var response = await articleService.getList($scope.othersRequest);
+            $scope.saveOthers = async function(){                
+                var response = await service.saveList($scope.others);
                 if (response.isSucceed) {
-                    angular.forEach(response.data.items, function (e) {
-                        $scope.others.push({
-                            priority: $scope.data.totalItem + 1,
-                            description: e.title,
-                            articleId: e.id,
-                            categoryId: $scope.pageId,
-                            image: e.thumbnailUrl,
-                            article: e,
-                            status: 2,
-                            isActived: false
-                        });
-                    });
-                    $rootScope.isBusy = false;
+                    $scope.getList();
                     $scope.$apply();
                 }
                 else {
                     $rootScope.showErrors(response.errors);
+                    $rootScope.isBusy = false;
+                    $scope.$apply();
+                }
+            }
+            $scope.updateInfos = async function (index) {
+                $scope.data.items.splice(index, 1);
+                $rootScope.isBusy = true;
+                var startIndex = $scope.data.items[0].priority-1;
+                for (var i = 0; i < $scope.data.items.length; i++) {
+                    $scope.data.items[i].priority = startIndex + i + 1;
+                }
+                var resp = await service.updateInfos($scope.data.items);
+                if (resp && resp.isSucceed) {
+                    $scope.activedPage = resp.data;
+                    $rootScope.showMessage('success', 'success');
+                    $rootScope.isBusy = false;
+                    $scope.$apply();
+                }
+                else {
+                    if (resp) { $rootScope.showErrors(resp.errors); }
                     $rootScope.isBusy = false;
                     $scope.$apply();
                 }

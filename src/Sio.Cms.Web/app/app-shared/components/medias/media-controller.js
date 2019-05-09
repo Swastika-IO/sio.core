@@ -23,7 +23,7 @@ app.controller('MediaController', ['$scope', '$rootScope', 'ngAppSettings', '$ro
             $rootScope.isBusy = true;
             var resp = await service.uploadMedia($scope.mediaFile);
             if (resp && resp.isSucceed) {
-                $scope.activedMedia = resp.data;
+                //$scope.activedMedia = resp.data;
                 $scope.getList();
                 $scope.$apply();
             }
@@ -83,6 +83,21 @@ app.controller('MediaController', ['$scope', '$rootScope', 'ngAppSettings', '$ro
             }
         };
         $scope.saveCallback = function(){
+            $scope.activedData = {
+                title: '',
+                description: '',
+                status: 2,
+                mediaFile: {
+                    file: null,
+                    fullPath: '',
+                    folderName: 'Media',
+                    fileFolder: '',
+                    fileName: '',
+                    extension: '',
+                    content: '',
+                    fileStream: ''
+                }
+            };
             $scope.getList();
         }
         $scope.removeCallback = function(){

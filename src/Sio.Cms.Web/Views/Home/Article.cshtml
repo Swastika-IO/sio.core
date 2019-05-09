@@ -1,23 +1,12 @@
 @model Sio.Cms.Lib.ViewModels.SioArticles.ReadMvcViewModel
-@{
-    string culture = ViewBag.culture;
-       
-}
-@section Seo{
-    <title>@(SioService.GetConfig<string>("SiteName", ViewBag.culture)) - @Model.Title</title>
-    <meta property="og:type" content="article" />
-    <meta property="og:url" content="@($"{Context.Request.Scheme}://{Context.Request.Host}{Context.Request.Path}")" />
-    <meta property="og:title" content="@Model.Title" />
-    <meta property="og:description"
-          content="@Model.SeoDescription" />
-    <meta property="og:image" content="@Model.ThumbnailUrl" />
-}
+
 <preview-popup ng-if="isInit" preview-object="previewObject"></preview-popup>
+<input type="hidden" id="view-type" value="Article" />
+<input type="hidden" id="view-id" value="@Model.Id" />
 @if (!string.IsNullOrEmpty(Model.TemplatePath))
 {
     try
-    {
-
+    {        
         <partial name="@Model.TemplatePath" model="@Model" />
     }
     catch (Exception ex)
@@ -32,8 +21,30 @@ else
         <h1>@SioService.Translate("Please choose template", ViewBag.culture)</h1>
     </section>
 }
+
+@{
+    string url = ViewData["OgUrl"] != null ? (string)ViewData["OgUrl"] : $"{Context.Request.Scheme}://{Context.Request.Host}{Context.Request.Path}";
+    string title = ViewData["OgTitle"] != null ? (string)ViewData["OgTitle"] : Model.Title;
+    string desc = ViewData["OgDescription"] != null ? (string)ViewData["OgDescription"] : Model.Excerpt;
+    string image = ViewData["OgImage"] != null ? (string)ViewData["OgImage"] : Model.ThumbnailUrl;
+
+}
+@section Seo{
+    <title>@(SioService.GetConfig<string>("SiteName", ViewBag.culture)) - @Model.Title</title>
+    <meta property="og:type" content="article" />
+    <meta property="og:url" content="@url" />
+    <meta property="og:title" content="@title" />
+    <meta property="og:description"
+          content="@desc" />
+    <meta property="og:image" content="@image" />
+
+    <meta name="title" content="@title" />
+    <meta name="description" content="@desc" />
+    <meta name="keywords" content="@desc"/>
+}
+
 @section Styles{
-    
+
     @Html.Raw(Model.View?.Styles)
     @Html.Raw(Model.View?.Scripts)
 }

@@ -4,6 +4,7 @@ using System.Diagnostics;
 using System.Linq;
 using System.Linq.Expressions;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.ApiExplorer;
@@ -26,24 +27,65 @@ namespace Sio.Cms.Web.Controllers
         public HomeController(IHostingEnvironment env,
             IMemoryCache memoryCache,
              UserManager<ApplicationUser> userManager,
-             IApiDescriptionGroupCollectionProvider apiExplorer
-            ) : base(env, memoryCache)
+             IApiDescriptionGroupCollectionProvider apiExplorer,
+            IHttpContextAccessor accessor
+            ) : base(env, memoryCache, accessor)
         {
             this._userManager = userManager;
             _apiExplorer = apiExplorer;
         }
-        [Route("doc")]
-        public IActionResult Documentation()
-        {
-            return View(_apiExplorer);
-        }
+
+        #region Routes
 
         [Route("")]
         [Route("{culture}")]
-        [Route("{culture}/{seoName}")]
-        public async System.Threading.Tasks.Task<IActionResult> Index(
+        [Route("{culture}/{alias}")]
+        public async System.Threading.Tasks.Task<IActionResult> Alias(string culture,
+            string alias, int pageIndex, int pageSize = 10)
+        {
+            string seoName = Request.Query["alias"];
+            seoName = seoName ?? alias;
+            if (_forbidden)
+            {
+                return Redirect($"/error/403");
+            }
+            if (SioService.GetConfig<bool>("IsMaintenance"))
+            {
+                return Redirect($"/maintenance");
+            }
+
+            if (SioService.GetConfig<bool>("IsInit"))
+            {
+                //Go to landing page
+                return await AliasAsync(seoName);
+            }
+            else
+            {
+                if (string.IsNullOrEmpty(SioService.GetConnectionString(SioConstants.CONST_CMS_CONNECTION)))
+                {
+                    return Redirect("Init");
+                }
+                else
+                {
+                    return Redirect($"/init/step2");
+                }
+            }
+        }
+
+        [Route("{culture}/page")]
+        [Route("{culture}/page/{seoName}")]
+        public async System.Threading.Tasks.Task<IActionResult> Page(
             string culture, string seoName)
         {
+            if (_forbidden)
+            {
+                return Redirect($"/error/403");
+            }
+            if (SioService.GetConfig<bool>("IsMaintenance"))
+            {
+                return Redirect($"/maintenance");
+            }
+
             if (SioService.GetConfig<bool>("IsInit"))
             {
                 //Go to landing page
@@ -62,17 +104,45 @@ namespace Sio.Cms.Web.Controllers
             }
         }
 
-        [Route("article/{seoName}")]
-        [Route("{culture}/article/{seoName}")]
-        public async System.Threading.Tasks.Task<IActionResult> Article(string culture, string seoName)
+        [Route("{culture}/tag/{tagName}")]
+        public async System.Threading.Tasks.Task<IActionResult> Tag(string culture, string tagName)
         {
-            return await ArticleViewAsync(seoName);
+            if (_forbidden)
+            {
+                return Redirect($"/error/403");
+            }
+            return await TagAsync(tagName);
+        }
+
+        [Route("{culture}/search/{keyword}")]
+        public async System.Threading.Tasks.Task<IActionResult> Search(string culture, string keyword)
+        {
+            if (_forbidden)
+            {
+                return Redirect($"/error/403");
+            }
+            return await SearchAsync(keyword);
+        }
+
+        [Route("article/{id}/{seoName}")]
+        [Route("{culture}/article/{id}/{seoName}")]
+        public async System.Threading.Tasks.Task<IActionResult> Article(int id, string culture, string seoName)
+        {
+            if (_forbidden)
+            {
+                return Redirect($"/error/403");
+            }
+            return await ArticleViewAsync(id, seoName);
         }
 
         [Route("product/{seoName}")]
         [Route("{culture}/product/{seoName}")]
         public async System.Threading.Tasks.Task<IActionResult> Product(string culture, string seoName)
         {
+            if (_forbidden)
+            {
+                return Redirect($"/error/403");
+            }
             return await ProductViewAsync(seoName);
         }
 
@@ -88,6 +158,10 @@ namespace Sio.Cms.Web.Controllers
         [Route("portal/{pageName}/{type}/{param}/{param1}/{param2}/{param3}/{param4}")]
         public IActionResult Portal()
         {
+            if (_forbiddenPortal)
+            {
+                return Redirect($"/error/403");
+            }
             return View();
         }
 
@@ -96,6 +170,10 @@ namespace Sio.Cms.Web.Controllers
         [Route("init/{page}")]
         public IActionResult Init(string page)
         {
+            if (_forbidden)
+            {
+                return Redirect($"/error/403");
+            }
             if (string.IsNullOrEmpty(page) && SioService.GetConfig<bool>("IsInit"))
             {
                 return Redirect($"/init/login");
@@ -108,18 +186,77 @@ namespace Sio.Cms.Web.Controllers
         }
 
         [HttpGet]
-        [Route("404")]
-        public async System.Threading.Tasks.Task<IActionResult> PageNotFound()
+        [Route("error/{page}")]
+        public async System.Threading.Tasks.Task<IActionResult> PageError(string page = "404")
         {
-            return await PageAsync("404");
+            return await PageAsync(page);
         }
 
-        async System.Threading.Tasks.Task<IActionResult> PageAsync(string seoName)//Expression<Func<SioPage, bool>> predicate, int? pageIndex = null, int pageSize = 10)
+        [HttpGet]
+        [Route("maintenance")]
+        public async System.Threading.Tasks.Task<IActionResult> Maintenance()
         {
-            ViewData["TopPages"] = GetCategory(CatePosition.Nav, seoName);
-            ViewData["HeaderPages"] = GetCategory(CatePosition.Top, seoName);
-            ViewData["FooterPages"] = GetCategory(CatePosition.Footer, seoName);
-            ViewData["LeftPages"] = GetCategory(CatePosition.Left, seoName);
+            return await PageAsync("Maintenance");
+        }
+
+        #endregion
+        #region Helper
+
+        async System.Threading.Tasks.Task<IActionResult> AliasAsync(string seoName)
+        {
+            // Home Page
+            int.TryParse(Request.Query["pageSize"], out int pageSize);
+            int.TryParse(Request.Query["pageIndex"], out int pageIndex);
+            var getAlias = new RepositoryResponse<Lib.ViewModels.SioUrlAliases.UpdateViewModel>();
+            var cacheKey = $"alias_{_culture}_{seoName}_{pageSize}_{pageIndex}";
+
+            var data = _memoryCache.Get<Lib.ViewModels.SioUrlAliases.UpdateViewModel>(cacheKey);
+            if (data != null && SioService.GetConfig<bool>("IsCache"))
+            {
+                getAlias.IsSucceed = true;
+                getAlias.Data = data;
+            }
+            else
+            {
+                Expression<Func<SioUrlAlias, bool>> predicate;
+
+                predicate = p =>
+                p.Alias == seoName
+                && p.Status == (int)SioContentStatus.Published && p.Specificulture == _culture;
+
+                getAlias = await Lib.ViewModels.SioUrlAliases.UpdateViewModel.Repository.GetSingleModelAsync(predicate);
+
+                _memoryCache.Set(cacheKey, getAlias.Data);
+                if (!SioConstants.cachedKeys.Contains(cacheKey))
+                {
+                    SioConstants.cachedKeys.Add(cacheKey);
+                }
+            }
+
+            if (getAlias.IsSucceed)// && getPage.Data.View != null
+            {
+                switch (getAlias.Data.Type)
+                {
+                    case UrlAliasType.Page:
+                        return await PageAsync(int.Parse(getAlias.Data.SourceId));
+                    case UrlAliasType.Article:
+                        return await ArticleViewAsync(int.Parse(getAlias.Data.SourceId));
+                    case UrlAliasType.Product:
+                    case UrlAliasType.Module:
+                    case UrlAliasType.ModuleData:
+                    default:
+                        return await PageError();
+                }
+            }
+            else
+            {
+                return await PageAsync(seoName);
+            }
+        }
+
+        async System.Threading.Tasks.Task<IActionResult> PageAsync(string seoName)
+        {
+
             // Home Page
             int.TryParse(Request.Query["pageSize"], out int pageSize);
             int.TryParse(Request.Query["pageIndex"], out int pageIndex);
@@ -160,7 +297,139 @@ namespace Sio.Cms.Web.Controllers
                 }
             }
 
-            if (getPage.IsSucceed && getPage.Data.View != null)
+            if (getPage.IsSucceed)// && getPage.Data.View != null
+            {
+                GeneratePageDetailsUrls(getPage.Data);
+                if (!SioConstants.cachedKeys.Contains(cacheKey))
+                {
+                    SioConstants.cachedKeys.Add(cacheKey);
+                }
+                ViewData["TopPages"] = GetCategory(CatePosition.Nav, seoName);
+                ViewData["HeaderPages"] = GetCategory(CatePosition.Top, seoName);
+                ViewData["FooterPages"] = GetCategory(CatePosition.Footer, seoName);
+                ViewData["LeftPages"] = GetCategory(CatePosition.Left, seoName);
+
+                ViewData["Title"] = getPage.Data.SeoTitle;
+                ViewData["Description"] = getPage.Data.SeoDescription;
+                ViewData["Keywords"] = getPage.Data.SeoKeywords;
+                ViewData["Image"] = getPage.Data.ImageUrl;
+                ViewData["PageClass"] = getPage.Data.CssClass;
+                getPage.LastUpdateConfiguration = SioService.GetConfig<DateTime?>("LastUpdateConfiguration");
+                return View(getPage.Data);
+            }
+            else
+            {
+                return Redirect($"/error/404");
+            }
+        }
+        async System.Threading.Tasks.Task<IActionResult> PageAsync(int pageId)
+        {
+
+            // Home Page
+            int.TryParse(Request.Query["pageSize"], out int pageSize);
+            int.TryParse(Request.Query["pageIndex"], out int pageIndex);
+            var getPage = new RepositoryResponse<Lib.ViewModels.SioPages.ReadMvcViewModel>();
+            var cacheKey = $"page_{_culture}_{pageId}_{pageSize}_{pageIndex}";
+
+            var data = _memoryCache.Get<Lib.ViewModels.SioPages.ReadMvcViewModel>(cacheKey);
+            if (data != null && SioService.GetConfig<bool>("IsCache"))
+            {
+                getPage.IsSucceed = true;
+                getPage.Data = data;
+
+            }
+            else
+            {
+                Expression<Func<SioPage, bool>> predicate;
+
+                predicate = p =>
+                p.Id == pageId
+                && p.Status == (int)SioContentStatus.Published && p.Specificulture == _culture;
+
+                getPage = await Lib.ViewModels.SioPages.ReadMvcViewModel.Repository.GetSingleModelAsync(predicate);
+                if (getPage.Data != null)
+                {
+                    getPage.Data.LoadData(pageIndex: pageIndex, pageSize: pageSize);
+                    getPage.Data.DetailsUrl = GenerateDetailsUrl("Page", new { seoName = getPage.Data.SeoName });
+                }
+
+                _memoryCache.Set(cacheKey, getPage.Data);
+                if (!SioConstants.cachedKeys.Contains(cacheKey))
+                {
+                    SioConstants.cachedKeys.Add(cacheKey);
+                }
+            }
+
+            if (getPage.IsSucceed)// && getPage.Data.View != null
+            {
+                ViewData["TopPages"] = GetCategory(CatePosition.Nav, getPage.Data.SeoName);
+                ViewData["HeaderPages"] = GetCategory(CatePosition.Top, getPage.Data.SeoName);
+                ViewData["FooterPages"] = GetCategory(CatePosition.Footer, getPage.Data.SeoName);
+                ViewData["LeftPages"] = GetCategory(CatePosition.Left, getPage.Data.SeoName);
+
+                ViewData["Title"] = getPage.Data.SeoTitle;
+                ViewData["Description"] = getPage.Data.SeoDescription;
+                ViewData["Keywords"] = getPage.Data.SeoKeywords;
+                ViewData["Image"] = getPage.Data.ImageUrl;
+                ViewData["PageClass"] = getPage.Data.CssClass;
+
+                GeneratePageDetailsUrls(getPage.Data);
+                if (!SioConstants.cachedKeys.Contains(cacheKey))
+                {
+                    SioConstants.cachedKeys.Add(cacheKey);
+                }
+
+                getPage.LastUpdateConfiguration = SioService.GetConfig<DateTime?>("LastUpdateConfiguration");
+                return View(getPage.Data);
+            }
+            else
+            {
+                return Redirect($"/error/404");
+            }
+        }
+
+        async System.Threading.Tasks.Task<IActionResult> TagAsync(string tagName)
+        {
+            string seoName = "tag";
+            ViewData["TopPages"] = GetCategory(CatePosition.Nav, seoName);
+            ViewData["HeaderPages"] = GetCategory(CatePosition.Top, seoName);
+            ViewData["FooterPages"] = GetCategory(CatePosition.Footer, seoName);
+            ViewData["LeftPages"] = GetCategory(CatePosition.Left, seoName);
+            ViewData["TagName"] = tagName;
+
+            int? pageSize = SioService.GetConfig<int?>("TagPageSize");
+            string orderBy = SioService.GetConfig<string>("OrderBy");
+            int orderDirection = SioService.GetConfig<int>("OrderDirection");
+            int.TryParse(Request.Query["pageIndex"], out int pageIndex);
+            var getPage = new RepositoryResponse<Lib.ViewModels.SioPages.ReadMvcViewModel>();
+            var cacheKey = $"tag_{_culture}_{tagName}_{pageSize}_{pageIndex}";
+            var data = _memoryCache.Get<Lib.ViewModels.SioPages.ReadMvcViewModel>(cacheKey);
+            if (data != null && SioService.GetConfig<bool>("IsCache"))
+            {
+                getPage.IsSucceed = true;
+                getPage.Data = data;
+            }
+            else
+            {
+                Expression<Func<SioPage, bool>> predicate;
+
+                predicate = p =>
+                p.SeoName == "tag"
+                && p.Status == (int)SioContentStatus.Published && p.Specificulture == _culture;
+
+                getPage = await Lib.ViewModels.SioPages.ReadMvcViewModel.Repository.GetSingleModelAsync(predicate);
+                if (getPage.Data != null)
+                {
+                    getPage.Data.LoadDataByTag(tagName, orderBy, orderDirection, pageIndex: pageIndex, pageSize: pageSize);
+                }
+                _memoryCache.Set(cacheKey, getPage.Data);
+                if (!SioConstants.cachedKeys.Contains(cacheKey))
+                {
+                    SioConstants.cachedKeys.Add(cacheKey);
+                }
+            }
+
+            if (getPage.IsSucceed)// && getPage.Data.View != null
             {
                 GeneratePageDetailsUrls(getPage.Data);
                 if (!SioConstants.cachedKeys.Contains(cacheKey))
@@ -177,11 +446,130 @@ namespace Sio.Cms.Web.Controllers
             }
             else
             {
-                return NotFound();
+                return Redirect($"/error/404");
+            }
+        }
+        async System.Threading.Tasks.Task<IActionResult> SearchAsync(string keyword)
+        {
+            string seoName = "search";
+            ViewData["TopPages"] = GetCategory(CatePosition.Nav, seoName);
+            ViewData["HeaderPages"] = GetCategory(CatePosition.Top, seoName);
+            ViewData["FooterPages"] = GetCategory(CatePosition.Footer, seoName);
+            ViewData["LeftPages"] = GetCategory(CatePosition.Left, seoName);
+
+            int? pageSize = SioService.GetConfig<int?>("SearchPageSize");
+            string orderBy = SioService.GetConfig<string>("OrderBy");
+            int orderDirection = SioService.GetConfig<int>("OrderDirection");
+            int.TryParse(Request.Query["pageIndex"], out int pageIndex);
+            var getPage = new RepositoryResponse<Lib.ViewModels.SioPages.ReadMvcViewModel>();
+            var cacheKey = $"search_{_culture}_{keyword}_{pageSize}_{pageIndex}";
+            var data = _memoryCache.Get<Lib.ViewModels.SioPages.ReadMvcViewModel>(cacheKey);
+            if (data != null && SioService.GetConfig<bool>("IsCache"))
+            {
+                getPage.IsSucceed = true;
+                getPage.Data = data;
+            }
+            else
+            {
+                Expression<Func<SioPage, bool>> predicate;
+
+                predicate = p =>
+                p.SeoName == "search"
+                && p.Status == (int)SioContentStatus.Published && p.Specificulture == _culture;
+
+                getPage = await Lib.ViewModels.SioPages.ReadMvcViewModel.Repository.GetSingleModelAsync(predicate);
+                if (getPage.Data != null)
+                {
+                    getPage.Data.LoadDataByKeyword(keyword, orderBy, orderDirection, pageIndex: pageIndex, pageSize: pageSize);
+                }
+                _memoryCache.Set(cacheKey, getPage.Data);
+                if (!SioConstants.cachedKeys.Contains(cacheKey))
+                {
+                    SioConstants.cachedKeys.Add(cacheKey);
+                }
+            }
+
+            if (getPage.IsSucceed)// && getPage.Data.View != null
+            {
+                GeneratePageDetailsUrls(getPage.Data);
+                if (!SioConstants.cachedKeys.Contains(cacheKey))
+                {
+                    SioConstants.cachedKeys.Add(cacheKey);
+                }
+                ViewData["Title"] = getPage.Data.SeoTitle;
+                ViewData["Description"] = getPage.Data.SeoDescription;
+                ViewData["Keywords"] = getPage.Data.SeoKeywords;
+                ViewData["Image"] = getPage.Data.ImageUrl;
+                ViewData["PageClass"] = getPage.Data.CssClass;
+                getPage.LastUpdateConfiguration = SioService.GetConfig<DateTime?>("LastUpdateConfiguration");
+                return View(getPage.Data);
+            }
+            else
+            {
+                return Redirect($"/error/404");
             }
         }
 
-        async System.Threading.Tasks.Task<IActionResult> ArticleViewAsync(string seoName)
+        async System.Threading.Tasks.Task<IActionResult> ArticleViewAsync(int id)
+        {
+
+            var getArticle = new RepositoryResponse<Lib.ViewModels.SioArticles.ReadMvcViewModel>();
+
+            var cacheKey = $"article_{_culture}_{id}";
+
+            var data = _memoryCache.Get<Lib.ViewModels.SioArticles.ReadMvcViewModel>(cacheKey);
+            if (data != null && SioService.GetConfig<bool>("IsCache"))
+            {
+                getArticle.IsSucceed = true;
+                getArticle.Data = data;
+            }
+            else
+            {
+                Expression<Func<SioArticle, bool>> predicate;
+
+                predicate = p =>
+                p.Id == id
+                && p.Status == (int)SioContentStatus.Published
+                && p.Specificulture == _culture;
+
+                getArticle = await Lib.ViewModels.SioArticles.ReadMvcViewModel.Repository.GetSingleModelAsync(predicate);
+                if (getArticle.IsSucceed)
+                {
+                    getArticle.Data.DetailsUrl = GenerateDetailsUrl("Article", new { id = getArticle.Data.Id, seoName = getArticle.Data.SeoName });
+                    //Generate details url for related articles
+                    if (getArticle.Data.ArticleNavs != null && getArticle.Data.ArticleNavs.Count > 0)
+                    {
+                        getArticle.Data.ArticleNavs.ForEach(n => n.RelatedArticle.DetailsUrl = GenerateDetailsUrl("Article", new { id = n.RelatedArticle.Id, seoName = n.RelatedArticle.SeoName }));
+                    }
+                    _memoryCache.Set(cacheKey, getArticle.Data);
+                }
+                if (!SioConstants.cachedKeys.Contains(cacheKey))
+                {
+                    SioConstants.cachedKeys.Add(cacheKey);
+                }
+
+            }
+
+            if (getArticle.IsSucceed)
+            {
+                ViewData["TopPages"] = GetCategory(CatePosition.Nav, getArticle.Data.SeoName);
+                ViewData["HeaderPages"] = GetCategory(CatePosition.Top, getArticle.Data.SeoName);
+                ViewData["FooterPages"] = GetCategory(CatePosition.Footer, getArticle.Data.SeoName);
+                ViewData["LeftPages"] = GetCategory(CatePosition.Left, getArticle.Data.SeoName);
+
+                ViewData["Title"] = getArticle.Data.SeoTitle;
+                ViewData["Description"] = getArticle.Data.SeoDescription;
+                ViewData["Keywords"] = getArticle.Data.SeoKeywords;
+                ViewData["Image"] = getArticle.Data.ImageUrl;
+                getArticle.LastUpdateConfiguration = SioService.GetConfig<DateTime?>("LastUpdateConfiguration");
+                return View(getArticle.Data);
+            }
+            else
+            {
+                return Redirect($"/error/404");
+            }
+        }
+        async System.Threading.Tasks.Task<IActionResult> ArticleViewAsync(int id, string seoName)
         {
             ViewData["TopPages"] = GetCategory(CatePosition.Nav, seoName);
             ViewData["HeaderPages"] = GetCategory(CatePosition.Top, seoName);
@@ -209,12 +597,22 @@ namespace Sio.Cms.Web.Controllers
                 else
                 {
                     predicate = p =>
-                    p.SeoName == seoName
-                    && p.Status == (int)SioContentStatus.Published && p.Specificulture == _culture;
+                    p.Id == id
+                    && p.Status == (int)SioContentStatus.Published
+                    && p.Specificulture == _culture;
                 }
 
                 getArticle = await Lib.ViewModels.SioArticles.ReadMvcViewModel.Repository.GetSingleModelAsync(predicate);
-                _memoryCache.Set(cacheKey, getArticle.Data);
+                if (getArticle.IsSucceed)
+                {
+                    getArticle.Data.DetailsUrl = GenerateDetailsUrl("Article", new { id = getArticle.Data.Id, seoName = getArticle.Data.SeoName });
+                    //Generate details url for related articles
+                    if (getArticle.Data.ArticleNavs != null && getArticle.Data.ArticleNavs.Count > 0)
+                    {
+                        getArticle.Data.ArticleNavs.ForEach(n => n.RelatedArticle.DetailsUrl = GenerateDetailsUrl("Article", new { id = n.RelatedArticle.Id, seoName = n.RelatedArticle.SeoName }));
+                    }
+                    _memoryCache.Set(cacheKey, getArticle.Data);
+                }
                 if (!SioConstants.cachedKeys.Contains(cacheKey))
                 {
                     SioConstants.cachedKeys.Add(cacheKey);
@@ -233,7 +631,7 @@ namespace Sio.Cms.Web.Controllers
             }
             else
             {
-                return RedirectToAction("PageNotFound", "Home");
+                return Redirect($"/error/404");
             }
         }
 
@@ -289,19 +687,20 @@ namespace Sio.Cms.Web.Controllers
             }
             else
             {
-                return RedirectToAction("PageNotFound", "Home");
+                return Redirect($"/error/404");
             }
         }
 
         void GeneratePageDetailsUrls(Lib.ViewModels.SioPages.ReadMvcViewModel page)
         {
+            page.DetailsUrl = GenerateDetailsUrl("Alias", new { seoName = page.SeoName });
             if (page.Articles != null)
             {
                 foreach (var articleNav in page.Articles.Items)
                 {
                     if (articleNav.Article != null)
                     {
-                        articleNav.Article.DetailsUrl = GenerateDetailsUrl("Article", new { seoName = articleNav.Article.SeoName });
+                        articleNav.Article.DetailsUrl = GenerateDetailsUrl("Article", new { id = articleNav.ArticleId, seoName = articleNav.Article.SeoName });
                     }
                 }
             }
@@ -335,18 +734,7 @@ namespace Sio.Cms.Web.Controllers
                 {
                     if (articleNav.Article != null)
                     {
-                        articleNav.Article.DetailsUrl = GenerateDetailsUrl("Article", new { seoName = articleNav.Article.SeoName });
-                    }
-                }
-            }
-            if (module.Products != null)
-            {
-
-                foreach (var productNav in module.Products.Items)
-                {
-                    if (productNav.Product != null)
-                    {
-                        productNav.Product.DetailsUrl = GenerateDetailsUrl("Product", new { seoName = productNav.Product.SeoName });
+                        articleNav.Article.DetailsUrl = GenerateDetailsUrl("Article", new { id = articleNav.ArticleId, seoName = articleNav.Article.SeoName });
                     }
                 }
             }
@@ -357,6 +745,7 @@ namespace Sio.Cms.Web.Controllers
             return SioCmsHelper.GetRouterUrl(type, routeValues, Request, Url);
         }
 
+        #endregion
         List<Lib.ViewModels.SioPages.ReadListItemViewModel> GetCategory(SioEnums.CatePosition position, string seoName)
         {
             var result = new List<Lib.ViewModels.SioPages.ReadListItemViewModel>();

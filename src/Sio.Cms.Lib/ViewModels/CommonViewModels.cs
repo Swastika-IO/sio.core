@@ -1,3 +1,4 @@
+using Microsoft.AspNetCore.Http;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Storage;
 using Sio.Cms.Lib.Models.Cms;
@@ -20,6 +21,9 @@ namespace Sio.Cms.Lib.ViewModels
 {
     public class GlobalSettingsViewModel
     {
+        [JsonProperty("domain")]
+        public string Domain { get; set; }
+
         [JsonProperty("lang")]
         public string Lang { get; set; }
 
@@ -78,8 +82,8 @@ namespace Sio.Cms.Lib.ViewModels
     }
     public class ExtraProperty
     {
-        [JsonProperty("priority")]
-        public int Priority { get; set; }
+        [JsonProperty("title")]
+        public string Title { get; set; }
 
         [JsonProperty("name")]
         public string Name { get; set; }
@@ -89,9 +93,16 @@ namespace Sio.Cms.Lib.ViewModels
 
         [JsonProperty("value")]
         public string Value { get; set; }
-
     }
-
+    public class CryptoViewModel<T>
+    {
+        [JsonProperty("base64Key")]
+        public string Base64Key { get; set; }
+        [JsonProperty("base64IV")]
+        public string Base64IV { get; set; }
+        [JsonProperty("data")]
+        public T Data { get; set; }
+    }
     public class DataValueViewModel
     {
         [JsonProperty("dataType")]
@@ -152,6 +163,17 @@ namespace Sio.Cms.Lib.ViewModels
         public string Content { get; set; }
         [JsonProperty("fileStream")]
         public string FileStream { get; set; }
+
+        public FileViewModel()
+        {
+
+        }
+        public FileViewModel(IFormFile file, string folder)
+        {
+            Filename = file.FileName.Substring(0, file.FileName.LastIndexOf('.'));
+            Extension = file.FileName.Substring(file.FileName.LastIndexOf('.'));
+            FileFolder = folder;
+        }
     }
 
     public class TemplateViewModel
@@ -175,6 +197,9 @@ namespace Sio.Cms.Lib.ViewModels
 
         [JsonProperty("title")]
         public string Title { get; set; }
+        
+        [JsonProperty("defaultValue")]
+        public string DefaultValue { get; set; }
 
         [JsonProperty("options")]
         public JArray Options { get; set; } = new JArray();
@@ -238,15 +263,18 @@ namespace Sio.Cms.Lib.ViewModels
         {
 
             string val = jItem[Name]["value"].Value<string>();
+            var jVal = new JProperty(Name, jItem[Name]);
             var result = new RepositoryResponse<bool>() { IsSucceed = true };
             if (IsUnique)
             {
                 //string query = @"SELECT * FROM [Sio_module_data] WHERE JSON_VALUE([Value],'$.{0}.value') = '{1}'"; // AND Specificulture = '{2}' AND Id <> '{3}'
                 //var temp = string.Format(query, Name, val);//, specificulture, id?.ToString()
                 //int count = _context.SioModuleData.FromSql(query, Name, val).Count(d=>d.Specificulture == specificulture && d.Id != id.ToString());//, specificulture, id?.ToString()
-
-                string query = $"SELECT * FROM Sio_module_data WHERE JSON_VALUE([Value],'$.{Name}.value') = '{val}' AND Specificulture = '{specificulture}' AND Id != '{id}'";
-                int count = _context.SioModuleData.FromSql(sql: new RawSqlString(query)).Count();
+                //string query = $"SELECT * FROM Sio_module_data WHERE JSON_VALUE([Value],'$.{Name}.value') = '{val}' AND Specificulture = '{specificulture}' AND Id != '{id}'";
+                //int count = _context.SioModuleData.FromSql(sql: new RawSqlString(query)).Count();
+                var strId = id?.ToString();
+                int count = _context.SioModuleData.Count(d => d.Specificulture == specificulture
+                    && d.Value.Contains(jVal.ToString(Formatting.None)) && d.Id != strId);
                 if (count > 0)
                 {
                     result.IsSucceed = false;
@@ -375,9 +403,20 @@ namespace Sio.Cms.Lib.ViewModels
             return e;
         }
     }
+    public class ListAction<T>
+    {
+        [JsonProperty("action")]
+        public string Action { get; set; }
+        [JsonProperty("data")]
+        public List<T> Data { get; set; }
+    }
     public class SitemapLanguage
     {
         public string HrefLang { get; set; }
         public string Href { get; set; }
+    }
+    public class FileInputModel
+    {
+        public IFormFile FileToUpload { get; set; }
     }
 }

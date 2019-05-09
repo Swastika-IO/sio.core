@@ -1,3 +1,4 @@
+
 {
   "ConnectionStrings": {
     "SioAccountConnection": null,
@@ -6,17 +7,31 @@
     "DefaultConnection": null
   },
   "Authentication": {
-    "ClockSkew": 10,
-    "CookieExpiration": 10,
-    "RefreshTokenExpiration": 1200,
+    "ClockSkew": 20,
+    "CookieExpiration": 20,
+    "RefreshTokenExpiration": 120,
+    "ValidateIssuer": false,
+    "ValidateAudience": false,
+    "ValidateLifetime": true,
+    "ValidateIssuerSigningKey": true,
     "TokenType": "Bearer",
     "Audience": "sio-core",
     "SecretKey": "siocore-secret-key",
-    "Issuer": "sio-core"
+    "Issuer": "sio-core",
+    "Issuers": "sio-core",
+    "Audiences": "sio-core",
+    "AllowedIps": ""
+  },
+  "IpSecuritySettings": {
+    "IsRetrictIp": true,
+    "AllowedPortalIps": [],
+    "AllowedIps": [],
+    "ExceptIps": []
   },
   "Smtp": {
     "Server": "",
     "Port": 587,
+    "SSL": true,
     "User": "",
     "Password": "",
     "From": "support@siocore.org",
@@ -35,33 +50,46 @@
       "Favicon": "",
       "LanguageVersion": "1",
       "Logo": "",
-      "SettingVersion": "1",      
+      "SettingVersion": "1",
       "Theme": "Default",
       "ThemeId": "1"
     }
   },
   "GlobalSettings": {
     "IsInit": false,
+    "IsMaintenance": false,
+    "IsRewrite": true,
+    "IsHttps": false,
+    "IsCache": true,
     "SiteName": "Site Name",
     "DefaultCulture": "en-us",
     "DefaultTemplate": "_Default",
+    "DefaultTemplateContent": "<div></div>",
     "DefaultTheme": "Default_Blank",
     "DefaultContentStatus": "2",
-    "DefaultTemplateFolder": "Default_Blank",
+    "DefaultBlankTemplateFolder": "Themes/Default_Blank",
+    "DefaultTemplateFolder": "Themes/Default",
     "DefaultTemplateLayout": "_Layout",
+    "DefaultArticleAttr": "[]",
     "OrderBy": "Priority",
+    "OrderDirection": "0",
     "DefaultStatus": "2",
-    "IsSqlite": "False",
     "Language": "en-us",
     "UploadFolder": "Content/Uploads",
     "ThemeId": "1",
+    "Domain": "",
     "TemplateExtension": ".cshtml",
-    "ApiEncryptKey": "2b7e151628aed2a6abf7158809cf4f3c",
-    "ApiEncryptIV": "2b7e151628aed2as",
+    "TagPageSize": "20",
+    "SearchPageSize": "20",
     "IsEncryptApi": true,
-    "LastUpdateConfiguration": null
+    "LastUpdateConfiguration": null,
+    "IsMysql": false,
+    "DatabaseProvider": "MSSQL"
   },
-  
+  "Socials":{
+    "Facebook":{},
+    "Instagram":{}
+  },
   "Logging": {
     "IncludeScopes": false,
     "LogLevel": {
@@ -73,7 +101,6 @@
     "Issuer": "sw-cms",
     "Audience": "sw-client"
   },
-  "AllowedHosts": "*",
-  "IsSqlite": false,
+  "AllowedHosts": "*",  
   "Language": "en-us"
 }

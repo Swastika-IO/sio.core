@@ -25,6 +25,9 @@ using System.Xml.Linq;
 using System.Text;
 using System.Xml;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Http;
+using Microsoft.Extensions.Caching.Memory;
+using Sio.Cms.Lib.Helpers;
 
 namespace Sio.Cms.Api.Controllers.v1
 {
@@ -44,23 +47,25 @@ namespace Sio.Cms.Api.Controllers.v1
            RoleManager<IdentityRole> roleManager,
             Microsoft.AspNetCore.SignalR.IHubContext<Hub.PortalHub> hubContext,
             IApplicationLifetime appLifetime,
-            IHostingEnvironment env
+            IHostingEnvironment env,
+            IMemoryCache memoryCache
             )
-            : base(hubContext)
+            : base(memoryCache, hubContext)
         {
             _userManager = userManager;
             _signInManager = signInManager;
             _roleManager = roleManager;
             _appLifetime = appLifetime;
+            _env = env;
         }
-
-        public async Task ShutdownSite()
+        public void ShutdownSite()
         {
             _appLifetime.StopApplication();
         }
         #region Get
 
         // GET api/category/id
+        [AllowAnonymous]
         [HttpGet, HttpOptions]
         [Route("{culture}/settings")]
         [Route("settings")]
@@ -70,6 +75,7 @@ namespace Sio.Cms.Api.Controllers.v1
             var culture = cultures.FirstOrDefault(c => c.Specificulture == _lang);
             GlobalSettingsViewModel settings = new GlobalSettingsViewModel()
             {
+                Domain = SioService.GetConfig<string>(SioConstants.ConfigurationKeyword.Domain),
                 Lang = _lang,
                 ThemeId = SioService.GetConfig<int>(SioConstants.ConfigurationKeyword.ThemeId, _lang),
                 Cultures = cultures,
@@ -89,57 +95,13 @@ namespace Sio.Cms.Api.Controllers.v1
         }
 
         // GET api/category/id
+        [AllowAnonymous]
         [HttpGet, HttpOptions]
         [Route("{culture}/all-settings")]
         [Route("all-settings")]
         public RepositoryResponse<JObject> AllSettingsAsync()
         {
-            var cultures = CommonRepository.Instance.LoadCultures();
-            var culture = cultures.FirstOrDefault(c => c.Specificulture == _lang);
-
-            // Get Settings
-            GlobalSettingsViewModel configurations = new GlobalSettingsViewModel()
-            {
-                Lang = _lang,
-                ThemeId = SioService.GetConfig<int>(SioConstants.ConfigurationKeyword.ThemeId, _lang),
-                ApiEncryptKey = SioService.GetConfig<string>(SioConstants.ConfigurationKeyword.ApiEncryptKey),
-                ApiEncryptIV = SioService.GetConfig<string>(SioConstants.ConfigurationKeyword.ApiEncryptIV),
-                IsEncryptApi = SioService.GetConfig<bool>(SioConstants.ConfigurationKeyword.IsEncryptApi),
-                Cultures = cultures,
-                PageTypes = Enum.GetNames(typeof(SioPageType)).ToList(),
-                ModuleTypes = Enum.GetNames(typeof(SioModuleType)).ToList(),
-                DataTypes = Enum.GetNames(typeof(SioDataType)).ToList(),
-                Statuses = Enum.GetNames(typeof(SioContentStatus)).ToList(),
-                LastUpdateConfiguration = SioService.GetConfig<DateTime?>("LastUpdateConfiguration")
-            };
-
-            configurations.LangIcon = culture?.Icon ?? SioService.GetConfig<string>("Language");
-
-            // Get translator
-            var translator = new JObject()
-            {
-                new JProperty("lang",_lang),
-                new JProperty("data", SioService.GetTranslator(_lang))
-            };
-
-            // Get Configurations
-            var settings = new JObject()
-            {
-                new JProperty("lang",_lang),
-                new JProperty("data", SioService.GetLocalSettings(_lang))
-            };
-            JObject result = new JObject()
-            {
-                new JProperty("globalSettings", JObject.FromObject(configurations)),
-                new JProperty("translator", translator),
-                new JProperty("settings", JObject.FromObject(settings))
-            };
-
-            return new RepositoryResponse<JObject>()
-            {
-                IsSucceed = true,
-                Data = result
-            };
+            return getAllSettings();
         }
 
         // GET api/category/id
@@ -156,6 +118,7 @@ namespace Sio.Cms.Api.Controllers.v1
         }
 
         // GET api/configurations/id
+        [AllowAnonymous]
         [HttpGet, HttpOptions]
         [Route("{culture}/global-settings")]
         [Route("global-settings")]
@@ -167,6 +130,7 @@ namespace Sio.Cms.Api.Controllers.v1
             // Get Settings
             GlobalSettingsViewModel configurations = new GlobalSettingsViewModel()
             {
+                Domain = SioService.GetConfig<string>(SioConstants.ConfigurationKeyword.Domain),
                 Lang = _lang,
                 ThemeId = SioService.GetConfig<int>(SioConstants.ConfigurationKeyword.ThemeId, _lang),
                 ApiEncryptKey = SioService.GetConfig<string>(SioConstants.ConfigurationKeyword.ApiEncryptKey),
@@ -200,6 +164,24 @@ namespace Sio.Cms.Api.Controllers.v1
             };
         }
 
+        // GET api/v1/portal/check-config
+        [AllowAnonymous]
+        [HttpGet, HttpOptions]
+        [Route("check-config/{lastSync}")]
+        public RepositoryResponse<JObject> checkConfig(DateTime lastSync)
+        {
+            var lastUpdate = SioService.GetConfig<DateTime>("LastUpdateConfiguration");
+            if(lastSync.ToUniversalTime() < lastUpdate){
+                return getAllSettings();
+            }
+            else{
+                return new RepositoryResponse<JObject>()
+                {
+                    IsSucceed = true,                
+                };
+            }
+        }
+
         // GET api/category/id
         [HttpGet, HttpOptions]
         [Route("sitemap")]
@@ -207,9 +189,8 @@ namespace Sio.Cms.Api.Controllers.v1
         {
             try
             {
-                var root = new XElement("urlset",
-                new XAttribute("xlmns", @"http://www.sitemaps.org/schemas/sitemap/0.9")
-                );
+                XNamespace aw = "http://www.sitemaps.org/schemas/sitemap/0.9";
+                var root = new XElement(aw + "urlset");
                 var pages = Lib.ViewModels.SioPages.ReadListItemViewModel.Repository.GetModelList();
                 List<int> handledPageId = new List<int>();
                 foreach (var page in pages.Data)
@@ -287,10 +268,6 @@ namespace Sio.Cms.Api.Controllers.v1
             }
         }
 
-        #endregion Get
-
-        #region Post
-
         // GET 
         [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme, Roles = "SuperAdmin, Admin")]
         [HttpGet, HttpOptions]
@@ -301,6 +278,117 @@ namespace Sio.Cms.Api.Controllers.v1
             return new RepositoryResponse<JObject>() { IsSucceed = true, Data = JObject.Parse(settings.Content) };
         }
 
+        // GET api/category/id
+        [HttpGet, HttpOptions]
+        [Route("translate-url/{culture}/{type}/{id}")]
+        public async Task<RepositoryResponse<string>> TranslateUrlAsync(string culture, string type, int id)
+        {
+            switch (type)
+            {
+                case "Article":
+                    var getArticle = await Lib.ViewModels.SioArticles.ReadListItemViewModel.Repository.GetSingleModelAsync(
+                        a => a.Id == id && a.Specificulture == culture);
+                    if (getArticle.IsSucceed)
+                    {
+                        return new RepositoryResponse<string>()
+                        {
+                            IsSucceed = getArticle.IsSucceed,
+                            Data = SioCmsHelper.GetRouterUrl("Article", new { id = getArticle.Data.Id, getArticle.Data.SeoName }, Request, Url)
+                        };
+                    }
+                    else
+                    {
+                        return new RepositoryResponse<string>()
+                        {
+                            IsSucceed = getArticle.IsSucceed,
+                            Data = $"/{culture}"
+                        };
+                    }
+
+                case "Page":
+                    var getPage = await Lib.ViewModels.SioPages.ReadListItemViewModel.Repository.GetSingleModelAsync(
+                        a => a.Id == id && a.Specificulture == culture);
+                    if (getPage.IsSucceed)
+                    {
+                        return new RepositoryResponse<string>()
+                        {
+                            IsSucceed = getPage.IsSucceed,
+                            Data = SioCmsHelper.GetRouterUrl("Page", new { getPage.Data.SeoName }, Request, Url)
+                        };
+                    
+                    }
+                    else
+                    {
+                        return new RepositoryResponse<string>()
+                        {
+                            IsSucceed = true,
+                            Data = $"/{culture}"
+                        };
+                    }
+                default:
+                    return new RepositoryResponse<string>()
+                    {
+                        IsSucceed = true,
+                        Data = $"/{culture}"
+                    };
+            }
+        }
+
+        #endregion Get
+
+        #region Post
+
+        [AllowAnonymous]
+        [HttpPost, HttpOptions]
+        [Route("encrypt-rsa")]
+        public RepositoryResponse<string> EncryptRsa([FromBody]JObject model)
+        {
+            string data = model.GetValue("data").Value<string>();
+            return new RepositoryResponse<string>()
+            {
+
+                Data = RSAEncryptionHelper.GetEncryptedText(data)
+            };
+        }
+
+        [AllowAnonymous]
+        [HttpPost, HttpOptions]
+        [Route("decrypt-rsa")]
+        public RepositoryResponse<string> DecryptRsa([FromBody]JObject model)
+        {
+            string data = model.GetValue("data").Value<string>();
+            return new RepositoryResponse<string>()
+            {
+
+                Data = RSAEncryptionHelper.GetDecryptedText(data)
+            };
+        }
+
+        [AllowAnonymous]
+        [HttpPost, HttpOptions]
+        [Route("encrypt")]
+        public RepositoryResponse<CryptoViewModel<string>> Encrypt([FromBody]JObject model)
+        {
+            string data = model.GetValue("data").Value<string>();
+            var encrypted = new JObject(new JProperty("encrypted", data));
+            return new RepositoryResponse<CryptoViewModel<string>>() {
+                
+                Data = AesEncryptionHelper.EncryptStringToBytes_Aes(encrypted)
+            };
+        }
+        [AllowAnonymous]
+        [HttpPost, HttpOptions]
+        [Route("decrypt")]
+        public RepositoryResponse<CryptoViewModel<JObject>> Decrypt([FromBody]JObject model)
+        {
+            string data = model.GetValue("data").Value<string>();
+            string key = model.GetValue("key").Value<string>();
+            string iv = model.GetValue("iv").Value<string>();
+            return new RepositoryResponse<CryptoViewModel<JObject>>() {
+                
+                Data = AesEncryptionHelper.DecryptStringFromBytes_Aes(data, key, iv)
+            };
+        }
         // POST api/category
         [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme, Roles = "SuperAdmin, Admin")]
         [HttpPost, HttpOptions]
@@ -311,15 +399,22 @@ namespace Sio.Cms.Api.Controllers.v1
             if (model != null)
             {
                 settings.Content = model.ToString();
-                FileRepository.Instance.SaveFile(settings);
-                //if (!_env.IsDevelopment())
-                //{
-                //    _appLifetime.StopApplication();
-                //}
+                FileRepository.Instance.SaveFile(settings);                            
+                SioService.SetConfig("LastUpdateConfiguration", DateTime.UtcNow);
+            
             }
             return new RepositoryResponse<JObject>() { IsSucceed = model != null, Data = model };
         }
+        
+        // POST api/category
+        [HttpGet, HttpOptions]
+        [Route("app-settings/save-default")]
+        public RepositoryResponse<bool> SaveDefaultAppSettings()
+        {
+            return new RepositoryResponse<bool>() { IsSucceed = true, Data = SioService.SaveSettings() };
+        }
 
+        [AllowAnonymous]
         [HttpPost, HttpOptions]
         [Route("sendmail")]
         public void SendMail([FromBody]JObject model)
@@ -330,24 +425,43 @@ namespace Sio.Cms.Api.Controllers.v1
         // POST api/category
         [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme, Roles = "SuperAdmin, Admin")]
         [HttpPost, HttpOptions]
-        [Route("import/{type}")]
-        [Route("{culture}/import/{type}")]
-        public async Task<RepositoryResponse<bool>> SaveAppSettingsAsync(string type, [FromBody]FileViewModel model)
+        [Route("import")]
+        [Route("{culture}/import")]
+        public async Task<RepositoryResponse<bool>> ImportAsync([FromForm]IFormFile assets)
         {
-            var result = FileRepository.Instance.SaveWebFile(model);
-            if (result)
+            string importFolder = $"Imports/Structures/{_lang}";
+            var result = new RepositoryResponse<bool>();
+            var model = FileRepository.Instance.SaveWebFile(assets, importFolder);
+            if (model != null)
             {
                 var fileContent = FileRepository.Instance.GetWebFile($"{model.Filename}{model.Extension}", model.FileFolder);
                 var obj = JObject.Parse(fileContent.Content);
-                switch (type)
+                switch (obj["type"].Value<string>())
                 {
                     case "Language":
                         var arrLanguage = obj["data"].ToObject<List<SioLanguage>>();
-                        return await Lib.ViewModels.SioLanguages.ReadMvcViewModel.ImportLanguages(arrLanguage, _lang);
+                        result = await Lib.ViewModels.SioLanguages.ReadMvcViewModel.ImportLanguages(arrLanguage, _lang);
+                        if (result.IsSucceed)
+                        {
+                            base.RemoveCache();
+                        }
+                        return result;
                     case "Configuration":
                         var arrConfiguration = obj["data"].ToObject<List<SioConfiguration>>();
-                        return await Lib.ViewModels.SioConfigurations.ReadMvcViewModel.ImportConfigurations(arrConfiguration, _lang);
-
+                        result = await Lib.ViewModels.SioConfigurations.ReadMvcViewModel.ImportConfigurations(arrConfiguration, _lang);
+                        if (result.IsSucceed)
+                        {
+                            base.RemoveCache();
+                        }
+                        return result;
+                    case "Module":
+                        var arrModule = obj["data"].ToObject<List<SioModule>>();
+                        result = await Lib.ViewModels.SioModules.Helper.Import(arrModule, _lang);
+                        if (result.IsSucceed)
+                        {
+                            base.RemoveCache();
+                        }
+                        return result;
                     default:
                         return new RepositoryResponse<bool>() { IsSucceed = false };
                 }
@@ -372,6 +486,58 @@ namespace Sio.Cms.Api.Controllers.v1
         #endregion Post
 
         #region Helpers
+        private RepositoryResponse<JObject> getAllSettings(){
+            var cultures = CommonRepository.Instance.LoadCultures();
+            var culture = cultures.FirstOrDefault(c => c.Specificulture == _lang);
+
+            // Get Settings
+            GlobalSettingsViewModel configurations = new GlobalSettingsViewModel()
+            {
+                Domain = SioService.GetConfig<string>(SioConstants.ConfigurationKeyword.Domain),
+                Lang = _lang,
+                ThemeId = SioService.GetConfig<int>(SioConstants.ConfigurationKeyword.ThemeId, _lang),
+                ApiEncryptKey = SioService.GetConfig<string>(SioConstants.ConfigurationKeyword.ApiEncryptKey),
+                ApiEncryptIV = SioService.GetConfig<string>(SioConstants.ConfigurationKeyword.ApiEncryptIV),
+                IsEncryptApi = SioService.GetConfig<bool>(SioConstants.ConfigurationKeyword.IsEncryptApi),
+                Cultures = cultures,
+                PageTypes = Enum.GetNames(typeof(SioPageType)).ToList(),
+                ModuleTypes = Enum.GetNames(typeof(SioModuleType)).ToList(),
+                DataTypes = Enum.GetNames(typeof(SioDataType)).ToList(),
+                Statuses = Enum.GetNames(typeof(SioContentStatus)).ToList(),
+                LastUpdateConfiguration = SioService.GetConfig<DateTime?>("LastUpdateConfiguration")
+            };
+
+            configurations.LangIcon = culture?.Icon ?? SioService.GetConfig<string>("Language");
+
+            // Get translator
+            var translator = new JObject()
+            {
+                new JProperty("lang",_lang),
+                new JProperty("data", SioService.GetTranslator(_lang))
+            };
+
+            // Get Configurations
+            var settings = new JObject()
+            {
+                new JProperty("lang",_lang),
+                new JProperty("langIcon",configurations.LangIcon),
+                
+                new JProperty("data", SioService.GetLocalSettings(_lang))
+            };
+            JObject result = new JObject()
+            {
+                new JProperty("globalSettings", JObject.FromObject(configurations)),
+                new JProperty("translator", translator),
+                new JProperty("settings", JObject.FromObject(settings))
+            };
+
+            return new RepositoryResponse<JObject>()
+            {
+                IsSucceed = true,
+                Data = result
+            };
+        }
+
         private async Task<RepositoryResponse<bool>> InitCmsAsync(InitCmsViewModel model)
         {
             var result = new RepositoryResponse<bool>();
@@ -379,7 +545,8 @@ namespace Sio.Cms.Api.Controllers.v1
             SioService.SetConnectionString(SioConstants.CONST_CMS_CONNECTION, model.ConnectionString);
             SioService.SetConnectionString(SioConstants.CONST_MESSENGER_CONNECTION, model.ConnectionString);
             SioService.SetConnectionString(SioConstants.CONST_ACCOUNT_CONNECTION, model.ConnectionString);
-            SioService.SetConfig(SioConstants.CONST_SETTING_IS_SQLITE, model.IsSqlite);
+            SioService.SetConfig(SioConstants.CONST_SETTING_IS_MYSQL, model.IsMysql);
+            SioService.SetConfig(SioConstants.CONST_SETTING_DATABASE_PROVIDER, model.DatabaseProvider);
             SioService.SetConfig(SioConstants.CONST_SETTING_LANGUAGE, model.Culture.Specificulture);
 
             InitCmsService sv = new InitCmsService();
@@ -391,12 +558,16 @@ namespace Sio.Cms.Api.Controllers.v1
                 SioService.LoadFromDatabase();
                 SioService.SetConfig<bool>("IsInit", true);
                 SioService.SetConfig<string>("DefaultCulture", model.Culture.Specificulture);
-                SioService.Save();
+                SioService.SaveSettings();
                 SioService.Reload();
             }
             else
             {
+                // if cannot init cms 
+                //  => reload from default settings
+                //  => save to appSettings
                 SioService.Reload();
+                SioService.SaveSettings();
                 if (initResult.Exception != null)
                 {
                     result.Errors.Add(initResult.Exception.Message);

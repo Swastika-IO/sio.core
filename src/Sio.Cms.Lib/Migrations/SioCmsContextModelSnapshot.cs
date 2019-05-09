@@ -15,7 +15,7 @@ namespace Sio.Cms.Lib.Migrations
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "2.1.4-rtm-31024")
+                .HasAnnotation("ProductVersion", "2.2.3-servicing-35854")
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
@@ -36,8 +36,10 @@ namespace Sio.Cms.Lib.Migrations
 
                     b.Property<string>("Excerpt");
 
-                    b.Property<string>("ExtraProperties")
-                        .HasColumnType("ntext");
+                    b.Property<string>("ExtraFields")
+                        .HasMaxLength(4000);
+
+                    b.Property<string>("ExtraProperties");
 
                     b.Property<string>("Icon");
 
@@ -52,6 +54,9 @@ namespace Sio.Cms.Lib.Migrations
 
                     b.Property<int>("Priority");
 
+                    b.Property<DateTime?>("PublishedDateTime")
+                        .HasColumnType("datetime");
+
                     b.Property<string>("SeoDescription")
                         .HasMaxLength(4000);
 
@@ -65,17 +70,14 @@ namespace Sio.Cms.Lib.Migrations
                     b.Property<string>("SeoTitle")
                         .HasMaxLength(4000);
 
-                    b.Property<string>("SetAttributeData")
-                        .HasColumnType("ntext");
+                    b.Property<string>("SetAttributeData");
 
                     b.Property<int?>("SetAttributeId");
 
                     b.Property<string>("Source")
                         .HasMaxLength(250);
 
-                    b.Property<int>("Status")
-                        .ValueGeneratedOnAdd()
-                        .HasDefaultValueSql("((1))");
+                    b.Property<int>("Status");
 
                     b.Property<string>("Tags")
                         .HasMaxLength(500);
@@ -121,9 +123,7 @@ namespace Sio.Cms.Lib.Migrations
 
                     b.Property<int>("Priority");
 
-                    b.Property<int>("Status")
-                        .ValueGeneratedOnAdd()
-                        .HasDefaultValueSql("((1))");
+                    b.Property<int>("Status");
 
                     b.HasKey("MediaId", "ArticleId", "Specificulture");
 
@@ -153,9 +153,7 @@ namespace Sio.Cms.Lib.Migrations
 
                     b.Property<int>("Priority");
 
-                    b.Property<int>("Status")
-                        .ValueGeneratedOnAdd()
-                        .HasDefaultValueSql("((1))");
+                    b.Property<int>("Status");
 
                     b.HasKey("ModuleId", "ArticleId", "Specificulture");
 
@@ -199,9 +197,7 @@ namespace Sio.Cms.Lib.Migrations
 
                     b.Property<int>("Priority");
 
-                    b.Property<int>("Status")
-                        .ValueGeneratedOnAdd()
-                        .HasDefaultValueSql("((1))");
+                    b.Property<int>("Status");
 
                     b.Property<string>("Username")
                         .HasMaxLength(256);
@@ -248,9 +244,7 @@ namespace Sio.Cms.Lib.Migrations
                     b.Property<string>("Specificulture")
                         .HasMaxLength(10);
 
-                    b.Property<int>("Status")
-                        .ValueGeneratedOnAdd()
-                        .HasDefaultValueSql("((1))");
+                    b.Property<int>("Status");
 
                     b.Property<string>("UpdatedBy")
                         .HasMaxLength(250);
@@ -284,9 +278,7 @@ namespace Sio.Cms.Lib.Migrations
                         .HasMaxLength(50);
 
                     b.Property<DateTime>("CreatedDateTime")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("datetime")
-                        .HasDefaultValueSql("(getdate())");
+                        .HasColumnType("datetime");
 
                     b.Property<int>("DataType");
 
@@ -295,9 +287,7 @@ namespace Sio.Cms.Lib.Migrations
 
                     b.Property<int>("Priority");
 
-                    b.Property<int>("Status")
-                        .ValueGeneratedOnAdd()
-                        .HasDefaultValueSql("((1))");
+                    b.Property<int>("Status");
 
                     b.Property<string>("Value");
 
@@ -321,9 +311,7 @@ namespace Sio.Cms.Lib.Migrations
 
                     b.Property<int>("Priority");
 
-                    b.Property<int>("Status")
-                        .ValueGeneratedOnAdd()
-                        .HasDefaultValueSql("((1))");
+                    b.Property<int>("Status");
 
                     b.Property<string>("Value");
 
@@ -334,9 +322,7 @@ namespace Sio.Cms.Lib.Migrations
 
             modelBuilder.Entity("Sio.Cms.Lib.Models.Cms.SioCulture", b =>
                 {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+                    b.Property<int>("Id");
 
                     b.Property<string>("Alias")
                         .HasMaxLength(150);
@@ -345,9 +331,7 @@ namespace Sio.Cms.Lib.Migrations
                         .HasMaxLength(50);
 
                     b.Property<DateTime>("CreatedDateTime")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("datetime")
-                        .HasDefaultValueSql("(getdate())");
+                        .HasColumnType("datetime");
 
                     b.Property<string>("Description")
                         .HasMaxLength(250);
@@ -368,9 +352,7 @@ namespace Sio.Cms.Lib.Migrations
                         .IsRequired()
                         .HasMaxLength(10);
 
-                    b.Property<int>("Status")
-                        .ValueGeneratedOnAdd()
-                        .HasDefaultValueSql("((1))");
+                    b.Property<int>("Status");
 
                     b.HasKey("Id");
 
@@ -422,9 +404,7 @@ namespace Sio.Cms.Lib.Migrations
 
                     b.Property<int>("Priority");
 
-                    b.Property<int>("Status")
-                        .ValueGeneratedOnAdd()
-                        .HasDefaultValueSql("((1))");
+                    b.Property<int>("Status");
 
                     b.Property<string>("UserId")
                         .HasMaxLength(256);
@@ -444,8 +424,7 @@ namespace Sio.Cms.Lib.Migrations
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                     b.Property<string>("Content")
-                        .IsRequired()
-                        .HasColumnType("ntext");
+                        .IsRequired();
 
                     b.Property<DateTime>("CreatedDateTime")
                         .HasColumnType("datetime");
@@ -474,9 +453,7 @@ namespace Sio.Cms.Lib.Migrations
 
                     b.Property<int>("Priority");
 
-                    b.Property<int>("Status")
-                        .ValueGeneratedOnAdd()
-                        .HasDefaultValueSql("((1))");
+                    b.Property<int>("Status");
 
                     b.Property<int?>("ThemeId");
 
@@ -506,9 +483,7 @@ namespace Sio.Cms.Lib.Migrations
                         .HasMaxLength(50);
 
                     b.Property<DateTime>("CreatedDateTime")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("datetime")
-                        .HasDefaultValueSql("(getdate())");
+                        .HasColumnType("datetime");
 
                     b.Property<int>("DataType");
 
@@ -520,9 +495,7 @@ namespace Sio.Cms.Lib.Migrations
 
                     b.Property<int>("Priority");
 
-                    b.Property<int>("Status")
-                        .ValueGeneratedOnAdd()
-                        .HasDefaultValueSql("((1))");
+                    b.Property<int>("Status");
 
                     b.Property<string>("Value");
 
@@ -575,12 +548,16 @@ namespace Sio.Cms.Lib.Migrations
 
                     b.Property<int>("Priority");
 
-                    b.Property<int>("Status")
-                        .ValueGeneratedOnAdd()
-                        .HasDefaultValueSql("((1))");
+                    b.Property<string>("Source")
+                        .HasMaxLength(250);
+
+                    b.Property<int>("Status");
 
                     b.Property<string>("Tags")
                         .HasMaxLength(400);
+
+                    b.Property<string>("TargetUrl")
+                        .HasMaxLength(250);
 
                     b.Property<string>("Title")
                         .HasMaxLength(4000);
@@ -629,19 +606,18 @@ namespace Sio.Cms.Lib.Migrations
 
                     b.Property<int>("Priority");
 
-                    b.Property<int>("Status")
-                        .ValueGeneratedOnAdd()
-                        .HasDefaultValueSql("((1))");
+                    b.Property<int>("Status");
 
                     b.Property<string>("Template")
+                        .HasMaxLength(250);
+
+                    b.Property<string>("Thumbnail")
                         .HasMaxLength(250);
 
                     b.Property<string>("Title")
                         .HasMaxLength(250);
 
-                    b.Property<int>("Type")
-                        .ValueGeneratedOnAdd()
-                        .HasDefaultValueSql("('0')");
+                    b.Property<int>("Type");
 
                     b.HasKey("Id", "Specificulture");
 
@@ -667,9 +643,7 @@ namespace Sio.Cms.Lib.Migrations
 
                     b.Property<int>("Priority");
 
-                    b.Property<int>("Status")
-                        .ValueGeneratedOnAdd()
-                        .HasDefaultValueSql("((1))");
+                    b.Property<int>("Status");
 
                     b.HasKey("ArticleId", "ModuleId", "Specificulture");
 
@@ -702,9 +676,7 @@ namespace Sio.Cms.Lib.Migrations
 
                     b.Property<int>("Priority");
 
-                    b.Property<int>("Status")
-                        .ValueGeneratedOnAdd()
-                        .HasDefaultValueSql("((1))");
+                    b.Property<int>("Status");
 
                     b.Property<DateTime?>("UpdatedDateTime")
                         .HasColumnType("datetime");
@@ -735,8 +707,7 @@ namespace Sio.Cms.Lib.Migrations
                     b.Property<int>("DataType");
 
                     b.Property<string>("DefaultValue")
-                        .IsRequired()
-                        .HasColumnType("ntext");
+                        .IsRequired();
 
                     b.Property<int>("ModuleId");
 
@@ -745,9 +716,7 @@ namespace Sio.Cms.Lib.Migrations
 
                     b.Property<int>("Priority");
 
-                    b.Property<int>("Status")
-                        .ValueGeneratedOnAdd()
-                        .HasDefaultValueSql("((1))");
+                    b.Property<int>("Status");
 
                     b.Property<string>("Title")
                         .HasMaxLength(250);
@@ -786,9 +755,7 @@ namespace Sio.Cms.Lib.Migrations
 
                     b.Property<int?>("ProductId");
 
-                    b.Property<int>("Status")
-                        .ValueGeneratedOnAdd()
-                        .HasDefaultValueSql("((1))");
+                    b.Property<int>("Status");
 
                     b.Property<DateTime?>("UpdatedDateTime")
                         .HasColumnType("datetime");
@@ -826,9 +793,7 @@ namespace Sio.Cms.Lib.Migrations
 
                     b.Property<int>("Priority");
 
-                    b.Property<int>("Status")
-                        .ValueGeneratedOnAdd()
-                        .HasDefaultValueSql("((1))");
+                    b.Property<int>("Status");
 
                     b.HasKey("ProductId", "ModuleId", "Specificulture");
 
@@ -891,9 +856,7 @@ namespace Sio.Cms.Lib.Migrations
 
                     b.Property<int>("Quantity");
 
-                    b.Property<int>("Status")
-                        .ValueGeneratedOnAdd()
-                        .HasDefaultValueSql("((1))");
+                    b.Property<int>("Status");
 
                     b.HasKey("ProductId", "OrderId", "Specificulture");
 
@@ -931,6 +894,9 @@ namespace Sio.Cms.Lib.Migrations
 
                     b.Property<string>("Excerpt");
 
+                    b.Property<string>("ExtraFields")
+                        .HasMaxLength(4000);
+
                     b.Property<string>("Icon")
                         .HasMaxLength(50);
 
@@ -965,17 +931,14 @@ namespace Sio.Cms.Lib.Migrations
                     b.Property<string>("SeoTitle")
                         .HasMaxLength(4000);
 
-                    b.Property<string>("SetAttributeData")
-                        .HasColumnType("ntext");
+                    b.Property<string>("SetAttributeData");
 
                     b.Property<int?>("SetAttributeId");
 
                     b.Property<string>("StaticUrl")
                         .HasMaxLength(250);
 
-                    b.Property<int>("Status")
-                        .ValueGeneratedOnAdd()
-                        .HasDefaultValueSql("((1))");
+                    b.Property<int>("Status");
 
                     b.Property<string>("Tags")
                         .HasMaxLength(500);
@@ -1016,9 +979,7 @@ namespace Sio.Cms.Lib.Migrations
 
                     b.Property<int>("Priority");
 
-                    b.Property<int>("Status")
-                        .ValueGeneratedOnAdd()
-                        .HasDefaultValueSql("((1))");
+                    b.Property<int>("Status");
 
                     b.HasKey("ArticleId", "CategoryId", "Specificulture");
 
@@ -1049,9 +1010,7 @@ namespace Sio.Cms.Lib.Migrations
 
                     b.Property<int>("Priority");
 
-                    b.Property<int>("Status")
-                        .ValueGeneratedOnAdd()
-                        .HasDefaultValueSql("((1))");
+                    b.Property<int>("Status");
 
                     b.HasKey("ModuleId", "CategoryId", "Specificulture");
 
@@ -1080,9 +1039,7 @@ namespace Sio.Cms.Lib.Migrations
 
                     b.Property<int>("Priority");
 
-                    b.Property<int>("Status")
-                        .ValueGeneratedOnAdd()
-                        .HasDefaultValueSql("((1))");
+                    b.Property<int>("Status");
 
                     b.HasKey("Id", "ParentId", "Specificulture");
 
@@ -1107,9 +1064,7 @@ namespace Sio.Cms.Lib.Migrations
 
                     b.Property<int>("Priority");
 
-                    b.Property<int>("Status")
-                        .ValueGeneratedOnAdd()
-                        .HasDefaultValueSql("((1))");
+                    b.Property<int>("Status");
 
                     b.HasKey("PositionId", "CategoryId", "Specificulture");
 
@@ -1136,9 +1091,7 @@ namespace Sio.Cms.Lib.Migrations
 
                     b.Property<int>("Priority");
 
-                    b.Property<int>("Status")
-                        .ValueGeneratedOnAdd()
-                        .HasDefaultValueSql("((1))");
+                    b.Property<int>("Status");
 
                     b.HasKey("ProductId", "CategoryId", "Specificulture");
 
@@ -1153,15 +1106,13 @@ namespace Sio.Cms.Lib.Migrations
             modelBuilder.Entity("Sio.Cms.Lib.Models.Cms.SioParameter", b =>
                 {
                     b.Property<string>("Name")
-                        .HasMaxLength(256);
+                        .HasMaxLength(50);
 
                     b.Property<string>("Description");
 
                     b.Property<int>("Priority");
 
-                    b.Property<int>("Status")
-                        .ValueGeneratedOnAdd()
-                        .HasDefaultValueSql("((1))");
+                    b.Property<int>("Status");
 
                     b.Property<string>("Value")
                         .IsRequired();
@@ -1191,9 +1142,7 @@ namespace Sio.Cms.Lib.Migrations
 
                     b.Property<int>("Priority");
 
-                    b.Property<int>("Status")
-                        .ValueGeneratedOnAdd()
-                        .HasDefaultValueSql("((1))");
+                    b.Property<int>("Status");
 
                     b.Property<string>("TextDefault")
                         .HasMaxLength(250);
@@ -1223,9 +1172,7 @@ namespace Sio.Cms.Lib.Migrations
 
                     b.Property<int>("Priority");
 
-                    b.Property<int>("Status")
-                        .ValueGeneratedOnAdd()
-                        .HasDefaultValueSql("((1))");
+                    b.Property<int>("Status");
 
                     b.HasKey("Id", "ParentId");
 
@@ -1245,9 +1192,7 @@ namespace Sio.Cms.Lib.Migrations
 
                     b.Property<int>("Priority");
 
-                    b.Property<int>("Status")
-                        .ValueGeneratedOnAdd()
-                        .HasDefaultValueSql("((1))");
+                    b.Property<int>("Status");
 
                     b.HasKey("PositionId", "PortalPageId");
 
@@ -1271,9 +1216,7 @@ namespace Sio.Cms.Lib.Migrations
 
                     b.Property<int>("Priority");
 
-                    b.Property<int>("Status")
-                        .ValueGeneratedOnAdd()
-                        .HasDefaultValueSql("((1))");
+                    b.Property<int>("Status");
 
                     b.HasKey("RoleId", "PageId");
 
@@ -1284,9 +1227,7 @@ namespace Sio.Cms.Lib.Migrations
 
             modelBuilder.Entity("Sio.Cms.Lib.Models.Cms.SioPosition", b =>
                 {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+                    b.Property<int>("Id");
 
                     b.Property<string>("Description")
                         .IsRequired()
@@ -1294,9 +1235,7 @@ namespace Sio.Cms.Lib.Migrations
 
                     b.Property<int>("Priority");
 
-                    b.Property<int>("Status")
-                        .ValueGeneratedOnAdd()
-                        .HasDefaultValueSql("((1))");
+                    b.Property<int>("Status");
 
                     b.HasKey("Id");
 
@@ -1311,8 +1250,6 @@ namespace Sio.Cms.Lib.Migrations
                         .HasMaxLength(10);
 
                     b.Property<string>("Code")
-                        .ValueGeneratedOnAdd()
-                        .HasDefaultValueSql("(N'')")
                         .HasMaxLength(50);
 
                     b.Property<string>("Content");
@@ -1323,16 +1260,13 @@ namespace Sio.Cms.Lib.Migrations
                     b.Property<DateTime>("CreatedDateTime")
                         .HasColumnType("datetime");
 
-                    b.Property<double?>("DealPrice")
-                        .ValueGeneratedOnAdd()
-                        .HasDefaultValueSql("((0))");
+                    b.Property<double?>("DealPrice");
 
                     b.Property<double>("Discount");
 
                     b.Property<string>("Excerpt");
 
-                    b.Property<string>("ExtraProperties")
-                        .HasColumnType("ntext");
+                    b.Property<string>("ExtraProperties");
 
                     b.Property<string>("Icon");
 
@@ -1352,9 +1286,7 @@ namespace Sio.Cms.Lib.Migrations
 
                     b.Property<double>("NormalPrice");
 
-                    b.Property<int>("PackageCount")
-                        .ValueGeneratedOnAdd()
-                        .HasDefaultValueSql("((1))");
+                    b.Property<int>("PackageCount");
 
                     b.Property<double>("Price");
 
@@ -1376,17 +1308,14 @@ namespace Sio.Cms.Lib.Migrations
                     b.Property<string>("SeoTitle")
                         .HasMaxLength(4000);
 
-                    b.Property<string>("SetAttributeData")
-                        .HasColumnType("ntext");
+                    b.Property<string>("SetAttributeData");
 
                     b.Property<int?>("SetAttributeId");
 
                     b.Property<string>("Source")
                         .HasMaxLength(250);
 
-                    b.Property<int>("Status")
-                        .ValueGeneratedOnAdd()
-                        .HasDefaultValueSql("((1))");
+                    b.Property<int>("Status");
 
                     b.Property<string>("Tags")
                         .HasMaxLength(500);
@@ -1437,9 +1366,7 @@ namespace Sio.Cms.Lib.Migrations
 
                     b.Property<int>("Priority");
 
-                    b.Property<int>("Status")
-                        .ValueGeneratedOnAdd()
-                        .HasDefaultValueSql("((1))");
+                    b.Property<int>("Status");
 
                     b.HasKey("MediaId", "ProductId", "Specificulture");
 
@@ -1469,9 +1396,7 @@ namespace Sio.Cms.Lib.Migrations
 
                     b.Property<int>("Priority");
 
-                    b.Property<int>("Status")
-                        .ValueGeneratedOnAdd()
-                        .HasDefaultValueSql("((1))");
+                    b.Property<int>("Status");
 
                     b.HasKey("ModuleId", "ProductId", "Specificulture");
 
@@ -1576,13 +1501,10 @@ namespace Sio.Cms.Lib.Migrations
 
             modelBuilder.Entity("Sio.Cms.Lib.Models.Cms.SioTemplate", b =>
                 {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+                    b.Property<int>("Id");
 
                     b.Property<string>("Content")
-                        .IsRequired()
-                        .HasColumnType("ntext");
+                        .IsRequired();
 
                     b.Property<DateTime>("CreatedDateTime")
                         .HasColumnType("datetime");
@@ -1606,26 +1528,20 @@ namespace Sio.Cms.Lib.Migrations
                     b.Property<DateTime?>("LastModified")
                         .HasColumnType("datetime");
 
-                    b.Property<string>("MobileContent")
-                        .HasColumnType("ntext");
+                    b.Property<string>("MobileContent");
 
                     b.Property<string>("ModifiedBy")
                         .HasMaxLength(250);
 
                     b.Property<int>("Priority");
 
-                    b.Property<string>("Scripts")
-                        .HasColumnType("ntext");
+                    b.Property<string>("Scripts");
 
-                    b.Property<string>("SpaContent")
-                        .HasColumnType("ntext");
+                    b.Property<string>("SpaContent");
 
-                    b.Property<int>("Status")
-                        .ValueGeneratedOnAdd()
-                        .HasDefaultValueSql("((1))");
+                    b.Property<int>("Status");
 
-                    b.Property<string>("Styles")
-                        .HasColumnType("ntext");
+                    b.Property<string>("Styles");
 
                     b.Property<int>("ThemeId");
 
@@ -1643,9 +1559,7 @@ namespace Sio.Cms.Lib.Migrations
 
             modelBuilder.Entity("Sio.Cms.Lib.Models.Cms.SioTheme", b =>
                 {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+                    b.Property<int>("Id");
 
                     b.Property<string>("CreatedBy")
                         .IsRequired()
@@ -1666,9 +1580,13 @@ namespace Sio.Cms.Lib.Migrations
 
                     b.Property<int>("Priority");
 
-                    b.Property<int>("Status")
-                        .ValueGeneratedOnAdd()
-                        .HasDefaultValueSql("((1))");
+                    b.Property<int>("Status");
+
+                    b.Property<string>("Thumbnail")
+                        .HasMaxLength(250);
+
+                    b.Property<string>("Title")
+                        .HasMaxLength(250);
 
                     b.HasKey("Id");
 
@@ -1696,13 +1614,9 @@ namespace Sio.Cms.Lib.Migrations
                     b.Property<string>("SourceId")
                         .HasMaxLength(250);
 
-                    b.Property<int>("Status")
-                        .ValueGeneratedOnAdd()
-                        .HasDefaultValueSql("((1))");
+                    b.Property<int>("Status");
 
-                    b.Property<int>("Type")
-                        .ValueGeneratedOnAdd()
-                        .HasDefaultValueSql("('0')");
+                    b.Property<int>("Type");
 
                     b.HasKey("Id", "Specificulture");
 

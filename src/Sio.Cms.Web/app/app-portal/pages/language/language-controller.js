@@ -25,20 +25,20 @@ app.controller('LanguageController',
                 }
             ];
             $scope.cate = $scope.cates[0];
-            $scope.dataTypes = ngAppSettings.dataTypes;
+            $scope.dataTypes = $rootScope.globalSettings.dataTypes;
             
             $scope.saveCallback = function () {
                 commonService.initAllSettings().then(function () {
-                    $location.path('/portal/language/list');
+                    $location.url($scope.referrerUrl);
                 });
             }
             $scope.removeCallback = function () {
                 commonService.initAllSettings().then(function () {
-                    $location.path('/portal/language/list');
+                    $location.url($scope.referrerUrl);
                 });
             }
             $scope.generateDefault = function (text, cate) {
-                if (!$routeParams.id) {
+                if (!$routeParams.id && !$scope.activedData.keyword) {
                     $scope.activedData.defaultValue = text;
                     $scope.activedData.keyword = cate.prefix + text.replace(/[^a-zA-Z0-9]+/g, '_')
                         .replace(/([A-Z]+)([A-Z][a-z])/g, '$1-$2')

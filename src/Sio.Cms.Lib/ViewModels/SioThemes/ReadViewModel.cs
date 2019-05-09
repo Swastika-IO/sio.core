@@ -23,11 +23,17 @@ namespace Sio.Cms.Lib.ViewModels.SioThemes
         [JsonProperty("name")]
         public string Name { get; set; }
 
+        [JsonProperty("title")]
+        public string Title { get; set; }
+
         [JsonProperty("previewUrl")]
         public string PreviewUrl { get; set; }
 
         [JsonProperty("image")]
         public string Image { get; set; }
+
+        [JsonProperty("thumbnail")]
+        public string Thumbnail { get; set; }
 
         [JsonProperty("createdBy")]
         public string CreatedBy { get; set; }
@@ -55,7 +61,23 @@ namespace Sio.Cms.Lib.ViewModels.SioThemes
                 }
             }
         }
-
+        [JsonProperty("thumbnailUrl")]
+        public string ThumbnailUrl
+        {
+            get
+            {
+                if (Thumbnail != null && Thumbnail.IndexOf("http") == -1 && Thumbnail[0] != '/')
+                {
+                    return CommonHelper.GetFullPath(new string[] {
+                    Domain,  Thumbnail
+                });
+                }
+                else
+                {
+                    return string.IsNullOrEmpty(Thumbnail) ? ImageUrl : Thumbnail;
+                }
+            }
+        }
         [JsonProperty("isActived")]
         public bool IsActived { get; set; }
 
@@ -67,11 +89,7 @@ namespace Sio.Cms.Lib.ViewModels.SioThemes
         {
             get
             {
-                return CommonHelper.GetFullPath(new string[] {
-                    SioConstants.Folder.FileFolder,
-                    SioConstants.Folder.TemplatesAssetFolder,
-                    SeoHelper.GetSEOString(Name)
-                });
+                return $"{SioConstants.Folder.FileFolder}/{SioConstants.Folder.TemplatesAssetFolder}/{Name}";
             }
         }
 
@@ -80,7 +98,16 @@ namespace Sio.Cms.Lib.ViewModels.SioThemes
         {
             get
             {
-                return CommonHelper.GetFullPath(new string[] { SioConstants.Folder.TemplatesFolder, SeoHelper.GetSEOString(Name) });
+                return $"{SioConstants.Folder.TemplatesFolder}/{Name}";
+            }
+        }
+
+        [JsonProperty("uploadFolder")]
+        public string UploadFolder
+        {
+            get
+            {
+                return $"content/templates/{Name}/uploads";                
             }
         }
 

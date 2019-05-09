@@ -62,14 +62,13 @@ namespace Sio.Cms.Lib.Models.Cms
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-
             //define the database to use
             string cnn = SioService.GetConnectionString(SioConstants.CONST_CMS_CONNECTION);
             if (!string.IsNullOrEmpty(cnn))
             {
-                if (SioService.GetConfig<bool>("IsSqlite"))
+                if (SioService.GetConfig<int>(SioConstants.CONST_SETTING_DATABASE_PROVIDER) == (int)SioEnums.DatabaseProvider.MySQL)
                 {
-                    optionsBuilder.UseSqlite(cnn);
+                    optionsBuilder.UseMySQL(cnn);
                 }
                 else
                 {
@@ -88,6 +87,8 @@ namespace Sio.Cms.Lib.Models.Cms
 
                 entity.HasIndex(e => e.SetAttributeId);
 
+                entity.Property(e => e.ExtraFields).HasMaxLength(4000);
+
                 entity.HasIndex(e => e.Specificulture);
 
                 entity.Property(e => e.Specificulture).HasMaxLength(10);
@@ -96,13 +97,13 @@ namespace Sio.Cms.Lib.Models.Cms
 
                 entity.Property(e => e.CreatedDateTime).HasColumnType("datetime");
 
-                entity.Property(e => e.ExtraProperties).HasColumnType("ntext");
-
                 entity.Property(e => e.Image).HasMaxLength(250);
 
                 entity.Property(e => e.LastModified).HasColumnType("datetime");
 
                 entity.Property(e => e.ModifiedBy).HasMaxLength(250);
+
+                entity.Property(e => e.PublishedDateTime).HasColumnType("datetime");
 
                 entity.Property(e => e.SeoDescription).HasMaxLength(4000);
 
@@ -114,11 +115,7 @@ namespace Sio.Cms.Lib.Models.Cms
 
                 entity.Property(e => e.SeoTitle).HasMaxLength(4000);
 
-                entity.Property(e => e.SetAttributeData).HasColumnType("ntext");
-
                 entity.Property(e => e.Source).HasMaxLength(250);
-
-                entity.Property(e => e.Status).HasDefaultValueSql("((1))");
 
                 entity.Property(e => e.Tags).HasMaxLength(500);
 
@@ -157,8 +154,6 @@ namespace Sio.Cms.Lib.Models.Cms
 
                 entity.Property(e => e.Image).HasMaxLength(250);
 
-                entity.Property(e => e.Status).HasDefaultValueSql("((1))");
-
                 entity.HasOne(d => d.SioArticle)
                     .WithMany(p => p.SioArticleMedia)
                     .HasForeignKey(d => new { d.ArticleId, d.Specificulture })
@@ -187,8 +182,6 @@ namespace Sio.Cms.Lib.Models.Cms
                 entity.Property(e => e.Description).HasMaxLength(250);
 
                 entity.Property(e => e.Image).HasMaxLength(250);
-
-                entity.Property(e => e.Status).HasDefaultValueSql("((1))");
 
                 entity.HasOne(d => d.SioArticle)
                     .WithMany(p => p.SioArticleModule)
@@ -226,8 +219,6 @@ namespace Sio.Cms.Lib.Models.Cms
 
                 entity.Property(e => e.PhoneNumber).HasMaxLength(50);
 
-                entity.Property(e => e.Status).HasDefaultValueSql("((1))");
-
                 entity.Property(e => e.Username).HasMaxLength(256);
             });
 
@@ -252,8 +243,6 @@ namespace Sio.Cms.Lib.Models.Cms
                 entity.Property(e => e.FullName).HasMaxLength(250);
 
                 entity.Property(e => e.Specificulture).HasMaxLength(10);
-
-                entity.Property(e => e.Status).HasDefaultValueSql("((1))");
 
                 entity.Property(e => e.UpdatedBy).HasMaxLength(250);
 
@@ -291,13 +280,9 @@ namespace Sio.Cms.Lib.Models.Cms
 
                 entity.Property(e => e.CreatedBy).HasMaxLength(50);
 
-                entity.Property(e => e.CreatedDateTime)
-                    .HasColumnType("datetime")
-                    .HasDefaultValueSql("(getdate())");
+                entity.Property(e => e.CreatedDateTime).HasColumnType("datetime");
 
                 entity.Property(e => e.Description).HasMaxLength(250);
-
-                entity.Property(e => e.Status).HasDefaultValueSql("((1))");
 
                 entity.HasOne(d => d.SpecificultureNavigation)
                     .WithMany(p => p.SioConfiguration)
@@ -317,8 +302,6 @@ namespace Sio.Cms.Lib.Models.Cms
                 entity.Property(e => e.Keyword).HasMaxLength(250);
 
                 entity.Property(e => e.Note).HasMaxLength(250);
-
-                entity.Property(e => e.Status).HasDefaultValueSql("((1))");
             });
 
             modelBuilder.Entity<SioCulture>(entity =>
@@ -329,13 +312,13 @@ namespace Sio.Cms.Lib.Models.Cms
                     .HasName("IX_Sio_Culture")
                     .IsUnique();
 
+                entity.Property(e => e.Id).ValueGeneratedNever();
+
                 entity.Property(e => e.Alias).HasMaxLength(150);
 
                 entity.Property(e => e.CreatedBy).HasMaxLength(50);
 
-                entity.Property(e => e.CreatedDateTime)
-                    .HasColumnType("datetime")
-                    .HasDefaultValueSql("(getdate())");
+                entity.Property(e => e.CreatedDateTime).HasColumnType("datetime");
 
                 entity.Property(e => e.Description).HasMaxLength(250);
 
@@ -350,8 +333,6 @@ namespace Sio.Cms.Lib.Models.Cms
                 entity.Property(e => e.Specificulture)
                     .IsRequired()
                     .HasMaxLength(10);
-
-                entity.Property(e => e.Status).HasDefaultValueSql("((1))");
             });
 
             modelBuilder.Entity<SioCustomer>(entity =>
@@ -382,8 +363,6 @@ namespace Sio.Cms.Lib.Models.Cms
 
                 entity.Property(e => e.PhoneNumber).HasMaxLength(50);
 
-                entity.Property(e => e.Status).HasDefaultValueSql("((1))");
-
                 entity.Property(e => e.UserId).HasMaxLength(256);
 
                 entity.Property(e => e.Username).HasMaxLength(256);
@@ -395,9 +374,7 @@ namespace Sio.Cms.Lib.Models.Cms
 
                 entity.HasIndex(e => e.ThemeId);
 
-                entity.Property(e => e.Content)
-                    .IsRequired()
-                    .HasColumnType("ntext");
+                entity.Property(e => e.Content).IsRequired();
 
                 entity.Property(e => e.CreatedDateTime).HasColumnType("datetime");
 
@@ -420,8 +397,6 @@ namespace Sio.Cms.Lib.Models.Cms
                 entity.Property(e => e.LastModified).HasColumnType("datetime");
 
                 entity.Property(e => e.ModifiedBy).HasMaxLength(250);
-
-                entity.Property(e => e.Status).HasDefaultValueSql("((1))");
 
                 entity.Property(e => e.ThemeName)
                     .IsRequired()
@@ -449,15 +424,11 @@ namespace Sio.Cms.Lib.Models.Cms
 
                 entity.Property(e => e.CreatedBy).HasMaxLength(50);
 
-                entity.Property(e => e.CreatedDateTime)
-                    .HasColumnType("datetime")
-                    .HasDefaultValueSql("(getdate())");
+                entity.Property(e => e.CreatedDateTime).HasColumnType("datetime");
 
                 entity.Property(e => e.DefaultValue).HasMaxLength(250);
 
                 entity.Property(e => e.Description).HasMaxLength(250);
-
-                entity.Property(e => e.Status).HasDefaultValueSql("((1))");
 
                 entity.HasOne(d => d.SpecificultureNavigation)
                     .WithMany(p => p.SioLanguage)
@@ -477,6 +448,10 @@ namespace Sio.Cms.Lib.Models.Cms
                 entity.Property(e => e.CreatedDateTime).HasColumnType("datetime");
 
                 entity.Property(e => e.Description).HasMaxLength(4000);
+
+                entity.Property(e => e.TargetUrl).HasMaxLength(250);
+
+                entity.Property(e => e.Source).HasMaxLength(250);
 
                 entity.Property(e => e.Extension)
                     .IsRequired()
@@ -499,8 +474,6 @@ namespace Sio.Cms.Lib.Models.Cms
                 entity.Property(e => e.LastModified).HasColumnType("datetime");
 
                 entity.Property(e => e.ModifiedBy).HasMaxLength(250);
-
-                entity.Property(e => e.Status).HasDefaultValueSql("((1))");
 
                 entity.Property(e => e.Tags).HasMaxLength(400);
 
@@ -537,13 +510,11 @@ namespace Sio.Cms.Lib.Models.Cms
                     .IsRequired()
                     .HasMaxLength(50);
 
-                entity.Property(e => e.Status).HasDefaultValueSql("((1))");
-
                 entity.Property(e => e.Template).HasMaxLength(250);
 
-                entity.Property(e => e.Title).HasMaxLength(250);
+                entity.Property(e => e.Thumbnail).HasMaxLength(250);
 
-                entity.Property(e => e.Type).HasDefaultValueSql("('0')");
+                entity.Property(e => e.Title).HasMaxLength(250);
 
                 entity.HasOne(d => d.SpecificultureNavigation)
                     .WithMany(p => p.SioModule)
@@ -567,8 +538,6 @@ namespace Sio.Cms.Lib.Models.Cms
                 entity.Property(e => e.Description).HasMaxLength(250);
 
                 entity.Property(e => e.Image).HasMaxLength(250);
-
-                entity.Property(e => e.Status).HasDefaultValueSql("((1))");
 
                 entity.HasOne(d => d.SioArticle)
                     .WithMany(p => p.SioModuleArticle)
@@ -604,8 +573,6 @@ namespace Sio.Cms.Lib.Models.Cms
                     .IsRequired()
                     .HasMaxLength(4000);
 
-                entity.Property(e => e.Status).HasDefaultValueSql("((1))");
-
                 entity.Property(e => e.UpdatedDateTime).HasColumnType("datetime");
 
                 entity.HasOne(d => d.SioModule)
@@ -634,13 +601,9 @@ namespace Sio.Cms.Lib.Models.Cms
 
                 entity.Property(e => e.Specificulture).HasMaxLength(10);
 
-                entity.Property(e => e.DefaultValue)
-                    .IsRequired()
-                    .HasColumnType("ntext");
+                entity.Property(e => e.DefaultValue).IsRequired();
 
                 entity.Property(e => e.Name).HasMaxLength(250);
-
-                entity.Property(e => e.Status).HasDefaultValueSql("((1))");
 
                 entity.Property(e => e.Title).HasMaxLength(250);
 
@@ -675,8 +638,6 @@ namespace Sio.Cms.Lib.Models.Cms
                     .IsRequired()
                     .HasMaxLength(4000);
 
-                entity.Property(e => e.Status).HasDefaultValueSql("((1))");
-
                 entity.Property(e => e.UpdatedDateTime).HasColumnType("datetime");
 
                 entity.HasOne(d => d.SioModule)
@@ -710,8 +671,6 @@ namespace Sio.Cms.Lib.Models.Cms
                 entity.Property(e => e.Description).HasMaxLength(250);
 
                 entity.Property(e => e.Image).HasMaxLength(250);
-
-                entity.Property(e => e.Status).HasDefaultValueSql("((1))");
 
                 entity.HasOne(d => d.SioModule)
                     .WithMany(p => p.SioModuleProduct)
@@ -772,8 +731,6 @@ namespace Sio.Cms.Lib.Models.Cms
 
                 entity.Property(e => e.PriceUnit).HasMaxLength(50);
 
-                entity.Property(e => e.Status).HasDefaultValueSql("((1))");
-
                 entity.HasOne(d => d.SioOrder)
                     .WithMany(p => p.SioOrderItem)
                     .HasForeignKey(d => new { d.OrderId, d.Specificulture })
@@ -794,6 +751,8 @@ namespace Sio.Cms.Lib.Models.Cms
                 entity.ToTable("sio_page");
 
                 entity.HasIndex(e => e.SetAttributeId);
+
+                entity.Property(e => e.ExtraFields).HasMaxLength(4000);
 
                 entity.HasIndex(e => e.Specificulture);
 
@@ -827,11 +786,7 @@ namespace Sio.Cms.Lib.Models.Cms
 
                 entity.Property(e => e.SeoTitle).HasMaxLength(4000);
 
-                entity.Property(e => e.SetAttributeData).HasColumnType("ntext");
-
                 entity.Property(e => e.StaticUrl).HasMaxLength(250);
-
-                entity.Property(e => e.Status).HasDefaultValueSql("((1))");
 
                 entity.Property(e => e.Tags).HasMaxLength(500);
 
@@ -869,8 +824,6 @@ namespace Sio.Cms.Lib.Models.Cms
 
                 entity.Property(e => e.Image).HasMaxLength(250);
 
-                entity.Property(e => e.Status).HasDefaultValueSql("((1))");
-
                 entity.HasOne(d => d.SioArticle)
                     .WithMany(p => p.SioPageArticle)
                     .HasForeignKey(d => new { d.ArticleId, d.Specificulture })
@@ -901,8 +854,6 @@ namespace Sio.Cms.Lib.Models.Cms
 
                 entity.Property(e => e.Image).HasMaxLength(250);
 
-                entity.Property(e => e.Status).HasDefaultValueSql("((1))");
-
                 entity.HasOne(d => d.SioPage)
                     .WithMany(p => p.SioPageModule)
                     .HasForeignKey(d => new { d.CategoryId, d.Specificulture })
@@ -931,8 +882,6 @@ namespace Sio.Cms.Lib.Models.Cms
 
                 entity.Property(e => e.Image).HasMaxLength(250);
 
-                entity.Property(e => e.Status).HasDefaultValueSql("((1))");
-
                 entity.HasOne(d => d.SioPage)
                     .WithMany(p => p.SioPagePageSioPage)
                     .HasForeignKey(d => new { d.Id, d.Specificulture })
@@ -958,8 +907,6 @@ namespace Sio.Cms.Lib.Models.Cms
                 entity.Property(e => e.Specificulture).HasMaxLength(10);
 
                 entity.Property(e => e.Description).HasMaxLength(250);
-
-                entity.Property(e => e.Status).HasDefaultValueSql("((1))");
 
                 entity.HasOne(d => d.Position)
                     .WithMany(p => p.SioPagePosition)
@@ -990,8 +937,6 @@ namespace Sio.Cms.Lib.Models.Cms
 
                 entity.Property(e => e.Image).HasMaxLength(250);
 
-                entity.Property(e => e.Status).HasDefaultValueSql("((1))");
-
                 entity.HasOne(d => d.SioPage)
                     .WithMany(p => p.SioPageProduct)
                     .HasForeignKey(d => new { d.CategoryId, d.Specificulture })
@@ -1012,10 +957,8 @@ namespace Sio.Cms.Lib.Models.Cms
                 entity.ToTable("sio_parameter");
 
                 entity.Property(e => e.Name)
-                    .HasMaxLength(256)
+                    .HasMaxLength(50)
                     .ValueGeneratedNever();
-
-                entity.Property(e => e.Status).HasDefaultValueSql("((1))");
 
                 entity.Property(e => e.Value).IsRequired();
             });
@@ -1033,8 +976,6 @@ namespace Sio.Cms.Lib.Models.Cms
                 entity.Property(e => e.Description).HasMaxLength(450);
 
                 entity.Property(e => e.Icon).HasMaxLength(50);
-
-                entity.Property(e => e.Status).HasDefaultValueSql("((1))");
 
                 entity.Property(e => e.TextDefault).HasMaxLength(250);
 
@@ -1054,8 +995,6 @@ namespace Sio.Cms.Lib.Models.Cms
                 entity.Property(e => e.Description).HasMaxLength(250);
 
                 entity.Property(e => e.Image).HasMaxLength(250);
-
-                entity.Property(e => e.Status).HasDefaultValueSql("((1))");
 
                 entity.HasOne(d => d.IdNavigation)
                     .WithMany(p => p.SioPortalPageNavigationIdNavigation)
@@ -1079,8 +1018,6 @@ namespace Sio.Cms.Lib.Models.Cms
                 entity.HasIndex(e => e.PortalPageId);
 
                 entity.Property(e => e.Description).HasMaxLength(250);
-
-                entity.Property(e => e.Status).HasDefaultValueSql("((1))");
 
                 entity.HasOne(d => d.PortalPage)
                     .WithMany(p => p.SioPortalPagePosition)
@@ -1108,8 +1045,6 @@ namespace Sio.Cms.Lib.Models.Cms
 
                 entity.Property(e => e.CreatedDateTime).HasColumnType("datetime");
 
-                entity.Property(e => e.Status).HasDefaultValueSql("((1))");
-
                 entity.HasOne(d => d.Page)
                     .WithMany(p => p.SioPortalPageRole)
                     .HasForeignKey(d => d.PageId)
@@ -1120,11 +1055,11 @@ namespace Sio.Cms.Lib.Models.Cms
             {
                 entity.ToTable("sio_position");
 
+                entity.Property(e => e.Id).ValueGeneratedNever();
+
                 entity.Property(e => e.Description)
                     .IsRequired()
                     .HasMaxLength(250);
-
-                entity.Property(e => e.Status).HasDefaultValueSql("((1))");
             });
 
             modelBuilder.Entity<SioProduct>(entity =>
@@ -1139,17 +1074,11 @@ namespace Sio.Cms.Lib.Models.Cms
 
                 entity.Property(e => e.Specificulture).HasMaxLength(10);
 
-                entity.Property(e => e.Code)
-                    .HasMaxLength(50)
-                    .HasDefaultValueSql("(N'')");
+                entity.Property(e => e.Code).HasMaxLength(50);
 
                 entity.Property(e => e.CreatedBy).HasMaxLength(250);
 
                 entity.Property(e => e.CreatedDateTime).HasColumnType("datetime");
-
-                entity.Property(e => e.DealPrice).HasDefaultValueSql("((0))");
-
-                entity.Property(e => e.ExtraProperties).HasColumnType("ntext");
 
                 entity.Property(e => e.Image).HasMaxLength(250);
 
@@ -1158,8 +1087,6 @@ namespace Sio.Cms.Lib.Models.Cms
                 entity.Property(e => e.Material).HasMaxLength(250);
 
                 entity.Property(e => e.ModifiedBy).HasMaxLength(250);
-
-                entity.Property(e => e.PackageCount).HasDefaultValueSql("((1))");
 
                 entity.Property(e => e.PrivacyId).HasMaxLength(10);
 
@@ -1173,11 +1100,7 @@ namespace Sio.Cms.Lib.Models.Cms
 
                 entity.Property(e => e.SeoTitle).HasMaxLength(4000);
 
-                entity.Property(e => e.SetAttributeData).HasColumnType("ntext");
-
                 entity.Property(e => e.Source).HasMaxLength(250);
-
-                entity.Property(e => e.Status).HasDefaultValueSql("((1))");
 
                 entity.Property(e => e.Tags).HasMaxLength(500);
 
@@ -1218,8 +1141,6 @@ namespace Sio.Cms.Lib.Models.Cms
 
                 entity.Property(e => e.Image).HasMaxLength(250);
 
-                entity.Property(e => e.Status).HasDefaultValueSql("((1))");
-
                 entity.HasOne(d => d.SioMedia)
                     .WithMany(p => p.SioProductMedia)
                     .HasForeignKey(d => new { d.MediaId, d.Specificulture })
@@ -1248,8 +1169,6 @@ namespace Sio.Cms.Lib.Models.Cms
                 entity.Property(e => e.Description).HasMaxLength(250);
 
                 entity.Property(e => e.Image).HasMaxLength(250);
-
-                entity.Property(e => e.Status).HasDefaultValueSql("((1))");
 
                 entity.HasOne(d => d.SioModule)
                     .WithMany(p => p.SioProductModule)
@@ -1349,9 +1268,9 @@ namespace Sio.Cms.Lib.Models.Cms
                 entity.HasIndex(e => e.ThemeId)
                     .HasName("IX_sio_template_file_TemplateId");
 
-                entity.Property(e => e.Content)
-                    .IsRequired()
-                    .HasColumnType("ntext");
+                entity.Property(e => e.Id).ValueGeneratedNever();
+
+                entity.Property(e => e.Content).IsRequired();
 
                 entity.Property(e => e.CreatedDateTime).HasColumnType("datetime");
 
@@ -1373,17 +1292,7 @@ namespace Sio.Cms.Lib.Models.Cms
 
                 entity.Property(e => e.LastModified).HasColumnType("datetime");
 
-                entity.Property(e => e.MobileContent).HasColumnType("ntext");
-
                 entity.Property(e => e.ModifiedBy).HasMaxLength(250);
-
-                entity.Property(e => e.Scripts).HasColumnType("ntext");
-
-                entity.Property(e => e.SpaContent).HasColumnType("ntext");
-
-                entity.Property(e => e.Status).HasDefaultValueSql("((1))");
-
-                entity.Property(e => e.Styles).HasColumnType("ntext");
 
                 entity.Property(e => e.ThemeName)
                     .IsRequired()
@@ -1400,6 +1309,8 @@ namespace Sio.Cms.Lib.Models.Cms
             {
                 entity.ToTable("sio_theme");
 
+                entity.Property(e => e.Id).ValueGeneratedNever();
+
                 entity.Property(e => e.CreatedBy)
                     .IsRequired()
                     .HasMaxLength(250);
@@ -1414,7 +1325,9 @@ namespace Sio.Cms.Lib.Models.Cms
 
                 entity.Property(e => e.PreviewUrl).HasMaxLength(450);
 
-                entity.Property(e => e.Status).HasDefaultValueSql("((1))");
+                entity.Property(e => e.Thumbnail).HasMaxLength(250);
+
+                entity.Property(e => e.Title).HasMaxLength(250);
             });
 
             modelBuilder.Entity<SioUrlAlias>(entity =>
@@ -1434,10 +1347,6 @@ namespace Sio.Cms.Lib.Models.Cms
                 entity.Property(e => e.Description).HasMaxLength(4000);
 
                 entity.Property(e => e.SourceId).HasMaxLength(250);
-
-                entity.Property(e => e.Status).HasDefaultValueSql("((1))");
-
-                entity.Property(e => e.Type).HasDefaultValueSql("('0')");
 
                 entity.HasOne(d => d.SpecificultureNavigation)
                     .WithMany(p => p.SioUrlAlias)

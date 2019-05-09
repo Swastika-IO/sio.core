@@ -10,6 +10,7 @@ using Sio.Cms.Lib;
 using Sio.Common.Helper;
 using Microsoft.AspNetCore.SignalR;
 using Sio.Cms.Hub;
+using Microsoft.Extensions.Caching.Memory;
 
 namespace Sio.Cms.Api.Controllers.v1
 {
@@ -17,7 +18,7 @@ namespace Sio.Cms.Api.Controllers.v1
     [Route("api/v1/file")]
     public class ApiFileController : BaseApiController
     {
-        public ApiFileController(IHubContext<PortalHub> hubContext) : base(hubContext)
+        public ApiFileController(IMemoryCache memoryCache, IHubContext<PortalHub> hubContext) : base(memoryCache, hubContext)
         {
         }
         #region Post

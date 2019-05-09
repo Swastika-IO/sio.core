@@ -24,7 +24,6 @@ namespace Sio.Cms.Messenger.Models.Data
         public virtual DbSet<SioMessengerUser> SioMessengerUser { get; set; }
         public virtual DbSet<SioMessengerUserDevice> SioMessengerUserDevice { get; set; }
 
-        private static string _cnn = "Server=(localdb)\\mssqllocaldb;Database=sio-messenger.db;Trusted_Connection=True;MultipleActiveResultSets=true";
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             if (!optionsBuilder.IsConfigured)
@@ -53,9 +52,9 @@ namespace Sio.Cms.Messenger.Models.Data
                 string cnn = SioService.GetConnectionString(SioConstants.CONST_CMS_CONNECTION);
                 if (!string.IsNullOrEmpty(cnn))
                 {
-                    if (SioService.GetConfig<bool>("IsSqlite"))
+                    if (SioService.GetConfig<int>(SioConstants.CONST_SETTING_DATABASE_PROVIDER) == (int)SioEnums.DatabaseProvider.MySQL)
                     {
-                        optionsBuilder.UseSqlite(cnn);
+                        optionsBuilder.UseMySQL(cnn);
                     }
                     else
                     {

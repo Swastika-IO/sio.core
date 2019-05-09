@@ -83,12 +83,7 @@ namespace Sio.Cms.Lib.ViewModels.SioTemplates
         {
             get
             {
-                return CommonHelper.GetFullPath(new string[]
-                {
-                    ""
-                    , TemplateFolder
-                    , FileFolder
-                });
+                return $"/{FileFolder}/{FileName}{Extension}";
             }
         }
 

@@ -5,6 +5,7 @@ using Sio.Common.Helper;
 using Sio.Domain.Core.ViewModels;
 using Sio.Domain.Data.ViewModels;
 using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -160,13 +161,7 @@ namespace Sio.Cms.Lib.ViewModels.SioPages
         {
             get
             {
-                return CommonHelper.GetFullPath(new string[]
-                {
-                    ""
-                    , SioConstants.Folder.TemplatesFolder
-                    , SioService.GetConfig<string>(SioConstants.ConfigurationKeyword.ThemeName, Specificulture)??  SioService.GetConfig<string>(SioConstants.ConfigurationKeyword.DefaultTemplateFolder)
-                    , Template
-                });
+                return $"/{SioConstants.Folder.TemplatesFolder}/{SioService.GetConfig<string>(SioConstants.ConfigurationKeyword.ThemeFolder, Specificulture)}/{Template}";                
             }
         }
 
@@ -290,6 +285,116 @@ namespace Sio.Cms.Lib.ViewModels.SioPages
             }
         }
 
+        public void LoadDataByTag(string tagName
+            , string orderBy, int orderDirection
+            , int? pageSize = null, int? pageIndex = null            
+            , SioCmsContext _context = null, IDbContextTransaction _transaction = null)
+        {
+            UnitOfWorkHelper<SioCmsContext>.InitTransaction(_context, _transaction, out SioCmsContext context, out IDbContextTransaction transaction, out bool isRoot);
+            try
+            {
+                pageSize = pageSize > 0 ? pageSize : PageSize;
+                pageIndex = pageIndex ?? 0;
+                Expression<Func<SioArticle, bool>> articleExp = null;
+                JObject obj = new JObject(new JProperty("text", tagName));
+
+                articleExp = n => n.Tags.Contains(obj.ToString(Newtonsoft.Json.Formatting.None)) && n.Specificulture == Specificulture;
+
+                if (articleExp != null)
+                {
+                    var getArticles = SioArticles.ReadListItemViewModel.Repository
+                    .GetModelListBy(articleExp
+                    , SioService.GetConfig<string>(orderBy), 0
+                    , pageSize, pageIndex
+                    , _context: context, _transaction: transaction);
+                    if (getArticles.IsSucceed)
+                    {
+                        Articles.Items = new List<SioPageArticles.ReadViewModel>();
+                        Articles.PageIndex = getArticles.Data.PageIndex;
+                        Articles.PageSize = getArticles.Data.PageSize;
+                        Articles.TotalItems = getArticles.Data.TotalItems;
+                        Articles.TotalPage = getArticles.Data.TotalPage;
+                        foreach (var article in getArticles.Data.Items)
+                        {
+                            Articles.Items.Add(new SioPageArticles.ReadViewModel()
+                            {
+                                CategoryId = Id,
+                                ArticleId = article.Id,
+                                Article = article
+                            });
+                        }
+                    }
+                }
+                
+            }
+            catch (Exception ex)
+            {
+                UnitOfWorkHelper<SioCmsContext>.HandleException<PaginationModel<ReadMvcViewModel>>(ex, isRoot, transaction);
+            }
+            finally
+            {
+                if (isRoot)
+                {
+                    //if current Context is Root
+                    context.Dispose();
+                }
+            }
+        }
+         public void LoadDataByKeyword(string keyword
+            , string orderBy, int orderDirection
+            , int? pageSize = null, int? pageIndex = null            
+            , SioCmsContext _context = null, IDbContextTransaction _transaction = null)
+        {
+            UnitOfWorkHelper<SioCmsContext>.InitTransaction(_context, _transaction, out SioCmsContext context, out IDbContextTransaction transaction, out bool isRoot);
+            try
+            {
+                pageSize = pageSize > 0 ? pageSize : PageSize;
+                pageIndex = pageIndex ?? 0;
+                Expression<Func<SioArticle, bool>> articleExp = null;
+
+                articleExp = n => n.Title.Contains(keyword) && n.Specificulture == Specificulture;
+
+                if (articleExp != null)
+                {
+                    var getArticles = SioArticles.ReadListItemViewModel.Repository
+                    .GetModelListBy(articleExp
+                    , SioService.GetConfig<string>(orderBy), 0
+                    , pageSize, pageIndex
+                    , _context: context, _transaction: transaction);
+                    if (getArticles.IsSucceed)
+                    {
+                        Articles.Items = new List<SioPageArticles.ReadViewModel>();
+                        Articles.PageIndex = getArticles.Data.PageIndex;
+                        Articles.PageSize = getArticles.Data.PageSize;
+                        Articles.TotalItems = getArticles.Data.TotalItems;
+                        Articles.TotalPage = getArticles.Data.TotalPage;
+                        foreach (var article in getArticles.Data.Items)
+                        {
+                            Articles.Items.Add(new SioPageArticles.ReadViewModel()
+                            {
+                                CategoryId = Id,
+                                ArticleId = article.Id,
+                                Article = article
+                            });
+                        }
+                    }
+                }
+                
+            }
+            catch (Exception ex)
+            {
+                UnitOfWorkHelper<SioCmsContext>.HandleException<PaginationModel<ReadMvcViewModel>>(ex, isRoot, transaction);
+            }
+            finally
+            {
+                if (isRoot)
+                {
+                    //if current Context is Root
+                    context.Dispose();
+                }
+            }
+        }
+
         private void GetSubModules(SioCmsContext _context = null, IDbContextTransaction _transaction = null)
         {
             var getNavs = SioPageModules.ReadMvcViewModel.Repository.GetModelListBy(
@@ -302,8 +407,8 @@ namespace Sio.Cms.Lib.ViewModels.SioPages
                 StringBuilder styles = new StringBuilder();
                 foreach (var nav in getNavs.Data.OrderBy(n => n.Priority).ToList())
                 {
-                    scripts.Append(nav.Module.View.Scripts);
-                    styles.Append(nav.Module.View.Styles);
+                    scripts.Append(nav.Module.View?.Scripts);
+                    styles.Append(nav.Module.View?.Styles);
                 }
                 View.Scripts += scripts.ToString();
                 View.Styles += styles.ToString();
@@ -344,7 +449,6 @@ namespace Sio.Cms.Lib.ViewModels.SioPages
         {
             return Modules.FirstOrDefault(m => m.Module.Name == name)?.Module;
         }
-
         #endregion Expands
     }
 }

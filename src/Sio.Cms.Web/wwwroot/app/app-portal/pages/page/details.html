@@ -4,7 +4,7 @@
         
         <actions preview-url="activedData.detailsUrl" back-url="'/portal/page/list'"></actions>
         <div class="row">
-            <section class="col-8">                
+            <section class="col-sm-8">                
                 <div class="row">
                     <div class="col-lg-12">
                         <page-main page="activedData">
@@ -32,33 +32,16 @@
                     </tabs-v>
                 </div>
             </section>
-            <section class="col-4" style="padding-left:0">
+            <section class="col-sm-4" style="padding-left:0">
                 <cultures is-clone="activedData.isClone" data="activedData.cultures"></cultures>
+                <a class="btn btn-secondary btn-sm" ng-click="addAlias()">Add Alias</a>
+                <url-alias ng-repeat="alias in activedData.urlAliases" index="$index" url-alias="alias" remove-callback="removeAliasCallback(index)"></url-alias>
                 <div class="card">
                     <h6 class="card-header">
                         Info
                     </h6>
                     <div class="card-body">
-                        <div class="form-group">
-                            <div class="btn-group btn-group-sm btn-group-toggle d-flex w-100">
-                                <label ng-repeat="stt in contentStatuses track by $index" ng-switch="stt" ng-class="{active: $index === activedData.status}" class="btn btn-outline-primary btn-block mt-0">
-                                    <input ng-model="activedData.status" type="radio" value="{{$index}}" class="custom-control-input" id="page_status_{{$index}}">
-                                    <i ng-switch-when="Deleted" class="mi mi-Delete mi-lg mi-fw" title="{{stt}}"></i>
-                                    <i ng-switch-when="Preview" class="mi mi-Preview mi-lg mi-fw" title="{{stt}}"></i>
-                                    <i ng-switch-when="Published" class="mi mi-Page mi-lg mi-fw" title="{{stt}}"></i>
-                                    <i ng-switch-when="Draft" class="fas fa-pencil-alt mi-lg mi-flip-horizontal" title="{{stt}}"></i>
-                                    <i ng-switch-when="Schedule" class="mi mi-Calendar mi-lg mi-flip-horizontal" title="{{stt}}"></i>
-                                </label>
-                            </div>
-                        </div>
-                        <!--div class="form-group">
-                            <span class="switch">
-                                <label>
-                                    <input type="checkbox" ng-model="activedData.isClone" class="switch">
-                                    Clone
-                                </label>
-                            </span>
-                        </div-->
+                        <statuses status="activedData.status"></statuses>
                         <div class="form-group">
                             <label class="control-label">Created Date Time</label>
                             <div class="input-group input-group-sm mb-3">

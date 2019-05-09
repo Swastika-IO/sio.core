@@ -36,8 +36,13 @@ namespace Sio.Cms.Api.Controllers.v1
         [Route("delete/{keyword}")]
         public async Task<RepositoryResponse<SioConfiguration>> DeleteAsync(string keyword)
         {
-            return await base.DeleteAsync<UpdateViewModel>(
+            var result = await base.DeleteAsync<UpdateViewModel>(
                 model => model.Keyword == keyword && model.Specificulture == _lang, true);
+            if (result.IsSucceed)
+            {
+                SioService.SetConfig("LastUpdateConfiguration", DateTime.UtcNow);
+            }
+            return result;
         }
 
         // GET api/configurations/keyword
@@ -106,8 +111,9 @@ namespace Sio.Cms.Api.Controllers.v1
             var result = await base.SaveAsync<UpdateViewModel>(model, true);
             if (result.IsSucceed)
             {
+                SioService.SetConfig("LastUpdateConfiguration", DateTime.UtcNow);
                 SioService.LoadFromDatabase();
-                SioService.Save();
+                SioService.SaveSettings();
             }
             return result;
         }

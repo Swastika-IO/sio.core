@@ -49,9 +49,9 @@ namespace Sio.Cms.Lib.Models.Account
             string cnn = SioService.GetConnectionString(SioConstants.CONST_CMS_CONNECTION);
             if (!string.IsNullOrEmpty(cnn))
             {
-                if (SioService.GetConfig<bool>("IsSqlite"))
+                if (SioService.GetConfig<int>(SioConstants.CONST_SETTING_DATABASE_PROVIDER) == (int)SioEnums.DatabaseProvider.MySQL)
                 {
-                    optionsBuilder.UseSqlite(cnn);
+                    optionsBuilder.UseMySQL(cnn);
                 }
                 else
                 {

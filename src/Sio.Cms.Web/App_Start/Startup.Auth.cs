@@ -9,6 +9,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.IdentityModel.Tokens;
 using Sio.Cms.Lib;
+using Sio.Cms.Lib.MiddleWares;
 using Sio.Cms.Lib.Models.Account;
 using Sio.Cms.Lib.Services;
 using Sio.Cms.Web.Mvc.App_Start.Validattors;
@@ -19,12 +20,19 @@ using System.Threading.Tasks;
 
 namespace Sio.Cms.Web
 {
+    //Ref: https://www.blinkingcaret.com/2017/09/06/secure-web-api-in-asp-net-core/
     public partial class Startup
     {
-        protected void ConfigIdentity(IServiceCollection services, IConfiguration Configuration, string connectionName)
+        protected void ConfigAuthorization(IServiceCollection services, IConfiguration Configuration)
         {
-            services.AddDbContext<SioDbContext>();
+            ConfigIdentity(services, Configuration);
+            ConfigCookieAuth(services, Configuration);
+            ConfigJWTToken(services, Configuration);
 
+        }
+
+        private void ConfigIdentity(IServiceCollection services, IConfiguration Configuration)
+        {
             PasswordOptions pOpt = new PasswordOptions()
             {
                 RequireDigit = false,
@@ -41,7 +49,7 @@ namespace Sio.Cms.Web
                 .AddEntityFrameworkStores<SioDbContext>()
                 .AddDefaultTokenProviders()
                 .AddUserManager<UserManager<ApplicationUser>>()
-                
+
                 ;
             services.AddAuthorization(options =>
             {
@@ -60,16 +68,20 @@ namespace Sio.Cms.Web
             services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
                     .AddJwtBearer(options =>
                     {
+                        options.RequireHttpsMetadata = false;
+                        options.SaveToken = true;
                         options.TokenValidationParameters =
                              new TokenValidationParameters
                              {
-                                 ClockSkew = TimeSpan.FromMinutes(SioService.GetAuthConfig<int>("ClockSkew")),
-                                 ValidateIssuer = false,
-                                 ValidateAudience = false,
-                                 ValidateLifetime = true,
-                                 ValidateIssuerSigningKey = true,
-                                 ValidIssuer = SioService.GetAuthConfig<string>("Issuer"),
-                                 ValidAudience = SioService.GetAuthConfig<string>("Audience"),
+                                 ClockSkew = TimeSpan.Zero,//.FromMinutes(SioService.GetAuthConfig<int>("ClockSkew")), //x minute tolerance for the expiration date
+                                 ValidateIssuer = SioService.GetAuthConfig<bool>("ValidateIssuer"),
+                                 ValidateAudience = SioService.GetAuthConfig<bool>("ValidateAudience"),
+                                 ValidateLifetime = SioService.GetAuthConfig<bool>("ValidateLifetime"),
+                                 ValidateIssuerSigningKey = SioService.GetAuthConfig<bool>("ValidateIssuerSigningKey"),
+                                 //ValidIssuer = SioService.GetAuthConfig<string>("Issuer"),
+                                 //ValidAudience = SioService.GetAuthConfig<string>("Audience"),
+                                 ValidIssuers = SioService.GetAuthConfig<string>("Issuers").Split(','),
+                                 ValidAudiences = SioService.GetAuthConfig<string>("Audiences").Split(','),
                                  IssuerSigningKey = JwtSecurityKey.Create(SioService.GetAuthConfig<string>("SecretKey"))
                              };
                         options.Events = new JwtBearerEvents
@@ -83,9 +95,12 @@ namespace Sio.Cms.Web
                             {
                                 Console.WriteLine("OnTokenValidated: " + context.SecurityToken);
                                 return Task.CompletedTask;
-                            }
+                            },
+                            
                         };
                     });
+            services.AddAuthentication("Bearer");
+            //services.Configure<IpSecuritySettings>(Configuration.GetSection("IpSecuritySettings"));
         }
 
         protected void ConfigCookieAuth(IServiceCollection services, IConfiguration Configuration)

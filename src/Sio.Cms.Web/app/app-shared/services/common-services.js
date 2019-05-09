@@ -48,13 +48,74 @@ app.factory('CommonService', ['$location', '$http', '$rootScope', 'AuthService',
                 if (culture) {
                     url += '/' + culture;
                 }
-                url += '/all-settings';
+                url += '/settings';
                 var req = {
                     method: 'GET',
                     url: url
                 };
                 return _getApiResult(req).then(function (response) {
                     return response.data;
+                });
+            }
+        };
+        var _getAllSettings = async function (culture) {
+            var settings = localStorageService.get('settings');
+            var globalSettings = localStorageService.get('globalSettings');
+            var translator = localStorageService.get('translator');
+            if (settings && globalSettings && translator && settings.lang === culture) {                
+                $rootScope.settings = settings;
+                $rootScope.globalSettings = globalSettings;
+                $rootScope.translator.translator = translator;                
+            }
+            else {
+                var url = '/portal';
+                if (culture) {
+                    url += '/' + culture;
+                }
+                url += '/all-settings';
+                var req = {
+                    method: 'GET',
+                    url: url
+                };
+                return _getApiResult(req).then(function (response) {
+                    localStorageService.set('settings', response.data.settings);
+                    localStorageService.set('globalSettings', response.data.globalSettings);
+                    localStorageService.set('translator', response.data.translator);
+                    $rootScope.settings = response.data.settings;
+                    $rootScope.globalSettings = response.data.globalSettings; 
+                    $rootScope.translator.translator = response.data.translator;                   
+                });
+            }
+        };
+        
+        var _checkConfig = async function (lastSync) {
+            if(lastSync)
+            {
+                var url = '/portal/check-config/' +  lastSync;
+                var req = {
+                    method: 'GET',
+                    url: url
+                };
+                return _getApiResult(req).then(function (response) {
+                    if(response.data){
+                        _removeSettings().then(
+                            ()=>{
+                                _removeTranslator().then(()=>{
+                                    localStorageService.set('settings', response.data.settings);
+                                    localStorageService.set('globalSettings', response.data.globalSettings);
+                                    localStorageService.set('translator', response.data.translator);
+                                    $rootScope.settings = response.data.settings;
+                                    $rootScope.globalSettings = response.data.globalSettings; 
+                                    $rootScope.translator.translator = response.data.translator;                   
+                                });
+                            }
+                        );
+                    }
+                    else{
+                        $rootScope.settings = localStorageService.get('settings');
+                        $rootScope.globalSettings = localStorageService.get('globalSettings'); 
+                        $rootScope.translator.translator = localStorageService.get('translator');                   
+                    }
                 });
             }
         };
@@ -106,7 +167,7 @@ app.factory('CommonService', ['$location', '$http', '$rootScope', 'AuthService',
                 return settings;
             }
             else {
-                if (culture !== undefined && settings && settings.lang !== culture) {
+                if (culture && settings && settings.lang !== culture) {
                     await _removeSettings();
                     await _removeTranslator();
                 }
@@ -114,6 +175,25 @@ app.factory('CommonService', ['$location', '$http', '$rootScope', 'AuthService',
                 localStorageService.set('settings', settings);
                 //window.top.location = location.href;
                 return settings;
+            }
+
+        };
+        var _fillAllSettings = async function (culture) {
+            var settings = localStorageService.get('settings');
+            var globalSettings = localStorageService.get('globalSettings');
+            var translator = localStorageService.get('translator');
+            if (settings && globalSettings && translator && (!culture || settings.lang === culture)) {                
+                $rootScope.settings = settings;
+                $rootScope.globalSettings = globalSettings;
+                $rootScope.translator.translator = translator;       
+                await _checkConfig(globalSettings.lastUpdateConfiguration);         
+            }
+            else {
+                if (culture && settings && settings.lang !== culture) {
+                    await _removeSettings();
+                    await _removeTranslator();
+                }
+                await _getAllSettings(culture);                
             }
 
         };
@@ -193,6 +273,7 @@ app.factory('CommonService', ['$location', '$http', '$rootScope', 'AuthService',
         adminCommonFactory.getSettings = _getSettings;
         adminCommonFactory.setSettings = _setSettings;
         adminCommonFactory.initAllSettings = _initAllSettings;
+        adminCommonFactory.fillAllSettings = _fillAllSettings;
         adminCommonFactory.removeSettings = _removeSettings;
         adminCommonFactory.removeTranslator = _removeTranslator;
         adminCommonFactory.showAlertMsg = _showAlertMsg;
@@ -203,11 +284,4 @@ app.factory('CommonService', ['$location', '$http', '$rootScope', 'AuthService',
         return adminCommonFactory;
 
     }]);
-    function findObjectByKey(array, key, value) {
-        for (var i = 0; i < array.length; i++) {
-            if (array[i][key] === value) {
-                return array[i];
-            }
-        }
-        return null;
-    }
+    

@@ -20,6 +20,10 @@ using Microsoft.Extensions.Caching.Memory;
 using System.Collections.Generic;
 using Sio.Cms.Lib;
 using Sio.Cms.Lib.Repositories;
+using Sio.Cms.Lib.Attributes;
+using Microsoft.AspNetCore.Http;
+using Sio.Domain.Data.Repository;
+using Sio.Cms.Lib.ViewModels;
 
 namespace Sio.Cms.Api.Controllers.v1
 {
@@ -53,27 +57,63 @@ namespace Sio.Cms.Api.Controllers.v1
         // GET api/theme/id
         [HttpGet, HttpOptions]
         [Route("export/{id}")]
-        public async Task<RepositoryResponse<string>> Export(int id)
+        public async Task<RepositoryResponse<SiteStructureViewModel>> Export(int id)
+        {
+            var siteStructures = new SiteStructureViewModel();
+            await siteStructures.InitAsync(_lang);
+            return new RepositoryResponse<SiteStructureViewModel>()
+            {
+                IsSucceed = true,
+                Data = siteStructures
+            };
+        }
+        
+        // GET api/theme/id
+        [HttpPost, HttpOptions]
+        [Route("export/{id}")]
+        public async Task<RepositoryResponse<string>> Export(int id, [FromBody]SiteStructureViewModel data)
         {
             var getTemplate = await ReadViewModel.Repository.GetSingleModelAsync(
                  theme => theme.Id == id).ConfigureAwait(false);
-            string exportPath = $"Exports/Themes/{getTemplate.Data.Name}";
             
+            //path to temporary folder
+            string tempPath = $"wwwroot/Exports/Themes/{getTemplate.Data.Name}/temp";
+            string outputPath = $"Exports/Themes/{getTemplate.Data.Name}";
+
+            string filename = $"schema";
+            var file = new FileViewModel()
+            {
+                Filename = filename,
+                Extension = ".json",
+                FileFolder = $"{tempPath}/Data",
+                Content = JObject.FromObject(data).ToString()
+            };
+
             // Delete Existing folder
-            FileRepository.Instance.DeleteFolder(exportPath);
+            FileRepository.Instance.DeleteFolder(outputPath);
             // Copy current templates file
-            FileRepository.Instance.CopyDirectory($"{getTemplate.Data.TemplateFolder}", $"{exportPath}/Templates");
+            FileRepository.Instance.CopyDirectory($"{getTemplate.Data.TemplateFolder}", $"{tempPath}/Templates");
             // Copy current assets files
-            FileRepository.Instance.CopyDirectory($"wwwroot/{getTemplate.Data.AssetFolder}", $"{exportPath}/Assets");
-            // Zip to [theme_name].zip
-            string filePath = FileRepository.Instance.ZipFolder($"{exportPath}", getTemplate.Data.Name);
+            FileRepository.Instance.CopyDirectory($"wwwroot/{getTemplate.Data.AssetFolder}", $"{tempPath}/Assets");            
+            // Copy current uploads files
+            FileRepository.Instance.CopyDirectory($"wwwroot/{getTemplate.Data.UploadFolder}", $"{tempPath}/Uploads");
+            // Save Site Structures
+            FileRepository.Instance.SaveFile(file);
+
+            // Zip to [theme_name].zip ( wwwroot for web path)
+            string filePath = FileRepository.Instance.ZipFolder($"{tempPath}", outputPath, getTemplate.Data.Name);
+
+            
+
             // Delete temp folder
-            FileRepository.Instance.DeleteWebFolder($"{exportPath}/Assets");
-            FileRepository.Instance.DeleteWebFolder($"{exportPath}/Templates");
+            FileRepository.Instance.DeleteWebFolder($"{outputPath}/Assets");
+            FileRepository.Instance.DeleteWebFolder($"{outputPath}/Uploads");
+            FileRepository.Instance.DeleteWebFolder($"{outputPath}/Templates");
+            FileRepository.Instance.DeleteWebFolder($"{outputPath}/Data");
 
             return new RepositoryResponse<string>()
             {
-                IsSucceed = !string.IsNullOrEmpty(exportPath),
+                IsSucceed = !string.IsNullOrEmpty(outputPath),
                 Data = $"{HttpContext.Request.Scheme}://{HttpContext.Request.Host}/{filePath}"
             };
         }
@@ -151,20 +191,36 @@ namespace Sio.Cms.Api.Controllers.v1
         #region Post
 
         // POST api/theme
-        [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme, Roles = "SuperAdmin, Admin")]
+        [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme, Roles = "SuperAdmin, Admin")]        
         [HttpPost, HttpOptions]
+        [RequestFormSizeLimit(valueCountLimit: 214748364)] // 200Mb
         [Route("save")]
-        public async Task<RepositoryResponse<UpdateViewModel>> Save([FromBody]UpdateViewModel model)
+        public async Task<RepositoryResponse<UpdateViewModel>> Save([FromForm]string model, [FromForm]IFormFile assets, [FromForm]IFormFile theme)
         {
-            if (model != null)
+            var json = JObject.Parse(model);
+            var data = json.ToObject<UpdateViewModel>();
+            if (assets!=null)
             {
-                model.CreatedBy = User.Claims.FirstOrDefault(c => c.Type == "Username")?.Value;
-                model.Specificulture = _lang;
-                var result = await base.SaveAsync<UpdateViewModel>(model, true);
+                data.Asset = new Lib.ViewModels.FileViewModel(assets, data.AssetFolder);
+                FileRepository.Instance.SaveWebFile(assets, data.AssetFolder);
+            }
+            if (theme!=null)
+            {
+                string importFolder = $"Imports/Themes/{DateTime.UtcNow.ToShortDateString()}/{data.Name}";
+                data.TemplateAsset = new Lib.ViewModels.FileViewModel(theme, importFolder);
+                FileRepository.Instance.SaveWebFile(theme, importFolder);
+            }
+
+
+            if (data != null)
+            {
+                data.CreatedBy = User.Claims.FirstOrDefault(c => c.Type == "Username")?.Value;
+                data.Specificulture = _lang;
+                var result = await base.SaveAsync<UpdateViewModel>(data, true);
                 if (result.IsSucceed)
                 {
                     SioService.LoadFromDatabase();
-                    SioService.Save();
+                    SioService.SaveSettings();
                 }
                 return result;
             }

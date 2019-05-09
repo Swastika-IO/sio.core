@@ -52,6 +52,7 @@ app.factory('GlobalSettingsService', ['$rootScope', 'CommonService', 'localStora
             await _getglobalSettings(lang);
         };
         var _get = function (keyword, isWrap, defaultText) {
+            if($rootScope.waitForInit()){
             if (!this.globalSettings && $rootScope.globalSettings) {
                 $rootScope.isBusy = true;
                 this.fillGlobalSettings($rootScope.globalSettings.lang).then(function (response) {
@@ -61,6 +62,7 @@ app.factory('GlobalSettingsService', ['$rootScope', 'CommonService', 'localStora
             } else {
                 return this.globalSettings[keyword] || defaultText || getLinkCreateLanguage(keyword, isWrap);
             }
+        }
 
         };
 

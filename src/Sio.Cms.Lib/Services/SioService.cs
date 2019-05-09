@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Net;
@@ -6,9 +7,11 @@ using System.Net.Mail;
 using System.Security.Cryptography;
 using System.Text;
 using System.Threading;
+using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore.Storage;
 using Sio.Cms.Lib.Models.Cms;
 using Sio.Cms.Lib.Repositories;
+using Sio.Cms.Lib.ViewModels;
 using Sio.Common.Helper;
 using Newtonsoft.Json.Linq;
 
@@ -25,11 +28,13 @@ namespace Sio.Cms.Lib.Services
         /// </summary>
         private static volatile SioService instance;
 
+        private List<string> Cultures { get; set; }
         private JObject GlobalSettings { get; set; }
         private JObject ConnectionStrings { get; set; }
         private JObject LocalSettings { get; set; }
         private JObject Translator { get; set; }
         private JObject Authentication { get; set; }
+        private JObject IpSecuritySettings { get; set; }
         private JObject Smtp { get; set; }
         readonly FileSystemWatcher watcher = new FileSystemWatcher();
 
@@ -63,23 +68,27 @@ namespace Sio.Cms.Lib.Services
 
         private void LoadConfiggurations()
         {
-            var settings = FileRepository.Instance.GetFile(SioConstants.CONST_FILE_APPSETTING, ".json", string.Empty, true, "{}");
+            // Load configurations from appSettings.json
+            JObject jsonSettings = new JObject();
+            var settings = FileRepository.Instance.GetFile(SioConstants.CONST_FILE_APPSETTING, ".json", string.Empty, true);
 
-            string content = string.IsNullOrWhiteSpace(settings.Content) ? "{}" : settings.Content;
-            JObject jsonSettings = JObject.Parse(content);
-            if (jsonSettings["GlobalSettings"] == null)
+            if (string.IsNullOrEmpty(settings.Content))
             {
                 settings = FileRepository.Instance.GetFile(SioConstants.CONST_DEFAULT_FILE_APPSETTING, ".json", string.Empty, true, "{}");
-                jsonSettings = JObject.Parse(settings.Content);
-
             }
+
+            string content = string.IsNullOrWhiteSpace(settings.Content) ? "{}" : settings.Content;
+            jsonSettings = JObject.Parse(content);
+
 
             instance.ConnectionStrings = JObject.FromObject(jsonSettings["ConnectionStrings"]);
             instance.Authentication = JObject.FromObject(jsonSettings["Authentication"]);
+            instance.IpSecuritySettings = JObject.FromObject(jsonSettings["IpSecuritySettings"]);
             instance.Smtp = JObject.FromObject(jsonSettings["Smtp"] ?? new JObject());
             instance.Translator = JObject.FromObject(jsonSettings["Translator"]);
             instance.GlobalSettings = JObject.FromObject(jsonSettings["GlobalSettings"]);
             instance.LocalSettings = JObject.FromObject(jsonSettings["LocalSettings"]);
+
         }
 
         private void OnChanged(object sender, FileSystemEventArgs e)
@@ -109,6 +118,16 @@ namespace Sio.Cms.Lib.Services
         {
             Instance.Authentication[name] = value.ToString();
         }
+        public static T GetIpConfig<T>(string name)
+        {
+            var result = Instance.IpSecuritySettings[name];
+            return result != null ? result.Value<T>() : default(T);
+        }
+
+        public static void SetIpConfig<T>(string name, T value)
+        {
+            Instance.IpSecuritySettings[name] = value.ToString();
+        }
 
         public static T GetConfig<T>(string name)
         {
@@ -118,7 +137,7 @@ namespace Sio.Cms.Lib.Services
 
         public static void SetConfig<T>(string name, T value)
         {
-            Instance.GlobalSettings[name] = value.ToString();
+            Instance.GlobalSettings[name] = value != null ? JToken.FromObject(value) : null;
         }
 
 
@@ -154,27 +173,51 @@ namespace Sio.Cms.Lib.Services
             return JObject.FromObject(Instance.GlobalSettings);
         }
 
-        public static bool Save()
+        public static bool SaveSettings()
         {
             var settings = FileRepository.Instance.GetFile(SioConstants.CONST_FILE_APPSETTING, ".json", string.Empty, true, "{}");
-            if (settings != null && !string.IsNullOrWhiteSpace(settings.Content))
+            if (settings != null)
             {
-                JObject jsonSettings = JObject.Parse(settings.Content);
+                if (string.IsNullOrWhiteSpace(settings.Content))
+                {
+                    var defaultSettings = FileRepository.Instance.GetFile(SioConstants.CONST_DEFAULT_FILE_APPSETTING, ".json", string.Empty, true, "{}");
+                    settings = new FileViewModel()
+                    {
+                        Filename = SioConstants.CONST_FILE_APPSETTING,
+                        Extension = ".json",
+                        Content = defaultSettings.Content
+                    };
+                    return FileRepository.Instance.SaveFile(settings);
 
-                jsonSettings["ConnectionStrings"] = instance.ConnectionStrings;
-                jsonSettings["GlobalSettings"] = instance.GlobalSettings;
-                jsonSettings["GlobalSettings"]["LastUpdateConfiguration"] = DateTime.UtcNow;
-                jsonSettings["Translator"] = instance.Translator;
-                jsonSettings["LocalSettings"] = instance.LocalSettings;
-                jsonSettings["Authentication"] = instance.Authentication;
-                jsonSettings["Smtp"] = instance.Smtp;
-                settings.Content = jsonSettings.ToString();
-                return FileRepository.Instance.SaveFile(settings);
+                }
+                else
+                {
+                    JObject jsonSettings = JObject.Parse(settings.Content);
+
+                    jsonSettings["ConnectionStrings"] = instance.ConnectionStrings;
+                    jsonSettings["GlobalSettings"] = instance.GlobalSettings;
+                    jsonSettings["GlobalSettings"]["LastUpdateConfiguration"] = DateTime.UtcNow;
+                    jsonSettings["Translator"] = instance.Translator;
+                    jsonSettings["LocalSettings"] = instance.LocalSettings;
+                    jsonSettings["Authentication"] = instance.Authentication;
+                    jsonSettings["IpSecuritySettings"] = instance.IpSecuritySettings;
+                    jsonSettings["Smtp"] = instance.Smtp;
+                    settings.Content = jsonSettings.ToString();
+                    return FileRepository.Instance.SaveFile(settings);
+                }
             }
             else
             {
                 return false;
             }
+
+        }
+        public static bool SaveSettings(string content)
+        {
+            var settings = FileRepository.Instance.GetFile(SioConstants.CONST_FILE_APPSETTING, ".json", string.Empty, true, "{}");
+
+            settings.Content = content;
+            return FileRepository.Instance.SaveFile(settings);
 
         }
         public static void Reload()
@@ -231,161 +274,6 @@ namespace Sio.Cms.Lib.Services
             }
         }
 
-        public static string EncryptStringToBytes_Aes(string plainText, byte[] Key, byte[] IV)
-        {
-            // Check arguments.
-            if (plainText == null || plainText.Length <= 0)
-                throw new ArgumentNullException("plainText");
-            if (Key == null || Key.Length <= 0)
-                throw new ArgumentNullException("Key");
-            if (IV == null || IV.Length <= 0)
-                throw new ArgumentNullException("IV");
-            byte[] encrypted;
-
-            // Create an Aes object
-            // with the specified key and IV.
-            using (AesManaged aesAlg = new AesManaged())
-            {
-                aesAlg.Mode = CipherMode.ECB;
-                aesAlg.Padding = PaddingMode.PKCS7;
-                aesAlg.Key = Key;
-                aesAlg.IV = IV;
-
-                // Create an encryptor to perform the stream transform.
-                ICryptoTransform encryptor = aesAlg.CreateEncryptor(aesAlg.Key, aesAlg.IV);
-
-                // Create the streams used for encryption.
-                using (MemoryStream msEncrypt = new MemoryStream())
-                {
-                    using (CryptoStream csEncrypt = new CryptoStream(msEncrypt, encryptor, CryptoStreamMode.Write))
-                    {
-                        using (StreamWriter swEncrypt = new StreamWriter(csEncrypt))
-                        {
-                            //Write all data to the stream.
-                            swEncrypt.Write(plainText);
-                        }
-                        encrypted = msEncrypt.ToArray();
-                    }
-                }
-            }
-            // Return the encrypted bytes from the memory stream.
-            return Convert.ToBase64String(encrypted);
-        }
-
-        public static string DecryptStringFromBytes_Aes(string cipherText, byte[] Key, byte[] IV)
-        {
-            // Check arguments.
-            if (cipherText == null || cipherText.Length <= 0)
-                throw new ArgumentNullException("cipherText");
-            if (Key == null || Key.Length <= 0)
-                throw new ArgumentNullException("Key");
-            if (IV == null || IV.Length <= 0)
-                throw new ArgumentNullException("IV");
-
-            // Declare the string used to hold
-            // the decrypted text.
-            string plaintext = null;
-            var fullCipher = Convert.FromBase64String(cipherText);
-            // Create an Aes object
-            // with the specified key and IV.
-            using (AesManaged aesAlg = new AesManaged())
-            {
-                aesAlg.Mode = CipherMode.ECB;
-                aesAlg.Padding = PaddingMode.PKCS7;
-                aesAlg.Key = Key;
-                aesAlg.IV = IV;
-
-                // Create a decryptor to perform the stream transform.
-                ICryptoTransform decryptor = aesAlg.CreateDecryptor(aesAlg.Key, aesAlg.IV);
-
-                // Create the streams used for decryption.
-                using (MemoryStream msDecrypt = new MemoryStream(fullCipher))
-                {
-                    using (CryptoStream csDecrypt = new CryptoStream(msDecrypt, decryptor, CryptoStreamMode.Read))
-                    {
-                        using (StreamReader srDecrypt = new StreamReader(csDecrypt))
-                        {
-                            // Read the decrypted bytes from the decrypting stream
-                            // and place them in a string.
-                            plaintext = srDecrypt.ReadToEnd();
-                        }
-                    }
-                }
-
-            }
-
-            return plaintext;
-
-        }
-
-        public static string EncryptString(string text, string keyString)
-        {
-            var key = Encoding.UTF8.GetBytes(keyString);
-            var iv = Encoding.UTF8.GetBytes("2b7e151628aed2as");
-            using (var aesAlg = Aes.Create())
-            {
-                aesAlg.Mode = CipherMode.ECB;
-                aesAlg.Padding = PaddingMode.PKCS7;
-                aesAlg.Key = key;
-                aesAlg.IV = iv;
-                using (var encryptor = aesAlg.CreateEncryptor(key, aesAlg.IV))
-                {
-                    using (var msEncrypt = new MemoryStream())
-                    {
-                        using (var csEncrypt = new CryptoStream(msEncrypt, encryptor, CryptoStreamMode.Write))
-                        using (var swEncrypt = new StreamWriter(csEncrypt))
-                        {
-                            swEncrypt.Write(text);
-                        }
-
-
-                        var decryptedContent = msEncrypt.ToArray();
-
-                        var result = new byte[iv.Length + decryptedContent.Length];
-
-                        Buffer.BlockCopy(iv, 0, result, 0, iv.Length);
-                        Buffer.BlockCopy(decryptedContent, 0, result, iv.Length, decryptedContent.Length);
-
-                        return Convert.ToBase64String(result);
-                    }
-                }
-            }
-        }
-
-        public static string DecryptString(string cipherText, string keyString)
-        {
-            var fullCipher = Convert.FromBase64String(cipherText);
-
-
-            var cipher = new byte[16];
-            var key = Encoding.UTF8.GetBytes(keyString);
-            var iv = Encoding.UTF8.GetBytes("2b7e151628aed2as");
-            Buffer.BlockCopy(fullCipher, 0, iv, 0, iv.Length);
-            Buffer.BlockCopy(fullCipher, iv.Length, cipher, 0, iv.Length);
-            using (var aesAlg = new AesManaged())
-            {
-                aesAlg.Mode = CipherMode.ECB;
-                aesAlg.Padding = PaddingMode.PKCS7;
-                aesAlg.Key = key;
-                aesAlg.IV = iv;
-                using (var decryptor = aesAlg.CreateDecryptor(key, iv))
-                {
-                    string result;
-                    using (var msDecrypt = new MemoryStream(cipher))
-                    {
-                        using (var csDecrypt = new CryptoStream(msDecrypt, decryptor, CryptoStreamMode.Read))
-                        {
-                            using (var srDecrypt = new StreamReader(csDecrypt))
-                            {
-                                result = srDecrypt.ReadToEnd();
-                            }
-                        }
-                    }
-
-                    return result;
-                }
-            }
-        }
 
         public static void SendMail(string subject, string message, string to)
         {
@@ -393,7 +281,7 @@ namespace Sio.Cms.Lib.Services
             client.UseDefaultCredentials = false;
             client.Credentials = new NetworkCredential(instance.Smtp.Value<string>("User"), instance.Smtp.Value<string>("Password"));
             client.Port = instance.Smtp.Value<int>("Port");
-            client.EnableSsl = instance.Smtp.Value<bool>("Ssl");
+            client.EnableSsl = instance.Smtp.Value<bool>("SSL");
             MailMessage mailMessage = new MailMessage();
             mailMessage.IsBodyHtml = true;
             mailMessage.From = new MailAddress(instance.Smtp.Value<string>("From"));
@@ -402,6 +290,16 @@ namespace Sio.Cms.Lib.Services
             mailMessage.Subject = subject;
             client.Send(mailMessage);
 
+        }
+
+        public static string GetTemplateFolder(string culture)
+        {
+            return $"content/templates/{Instance.LocalSettings[culture][SioConstants.ConfigurationKeyword.ThemeFolder]}";
+        }
+
+        public static string GetTemplateUploadFolder(string culture)
+        {
+            return $"content/templates/{Instance.LocalSettings[culture][SioConstants.ConfigurationKeyword.ThemeFolder]}/uploads";
         }
     }
 }

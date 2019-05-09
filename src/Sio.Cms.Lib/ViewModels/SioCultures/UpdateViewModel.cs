@@ -1,3 +1,4 @@
+using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Storage;
 using Sio.Cms.Lib.Models.Cms;
 using Sio.Cms.Lib.Services;
@@ -43,7 +44,7 @@ namespace Sio.Cms.Lib.ViewModels.SioCultures
 
         [JsonProperty("createdDateTime")]
         public DateTime CreatedDateTime { get; set; }
-        
+
         [JsonProperty("status")]
         public SioContentStatus Status { get; set; }
         #endregion Models
@@ -71,8 +72,9 @@ namespace Sio.Cms.Lib.ViewModels.SioCultures
         #region Overrides
         public override SioCulture ParseModel(SioCmsContext _context = null, IDbContextTransaction _transaction = null)
         {
-            if (Id==0)
+            if (Id == 0)
             {
+                Id = Repository.Max(m => m.Id).Data + 1;
                 CreatedDateTime = DateTime.UtcNow;
             }
             return base.ParseModel(_context, _transaction);
@@ -92,7 +94,7 @@ namespace Sio.Cms.Lib.ViewModels.SioCultures
             if (result.IsSucceed)
             {
                 SioService.LoadFromDatabase();
-                SioService.Save();
+                SioService.SaveSettings();
             }
             return result;
         }
@@ -100,83 +102,310 @@ namespace Sio.Cms.Lib.ViewModels.SioCultures
         public override async Task<RepositoryResponse<bool>> SaveSubModelsAsync(SioCulture parent, SioCmsContext _context = null, IDbContextTransaction _transaction = null)
         {
             var result = new RepositoryResponse<bool>() { IsSucceed = true };
-            if (Id == 0)
+            var getPages = await SioPages.ReadViewModel.Repository.GetModelListByAsync(c => c.Specificulture == SioService.GetConfig<string>(SioConstants.ConfigurationKeyword.DefaultCulture), _context, _transaction);
+            if (getPages.IsSucceed)
             {
-                var getPages = await SioPages.ReadViewModel.Repository.GetModelListByAsync(c => c.Specificulture == SioService.GetConfig<string>(SioConstants.ConfigurationKeyword.DefaultCulture), _context, _transaction);
-                if (getPages.IsSucceed)
+                foreach (var p in getPages.Data)
                 {
-                    foreach (var p in getPages.Data)
+                    p.Specificulture = Specificulture;
+                    p.CreatedDateTime = DateTime.UtcNow;
+                    p.LastModified = DateTime.UtcNow;
+                    var saveResult = await p.SaveModelAsync(false, _context, _transaction);
+                    result.IsSucceed = saveResult.IsSucceed;
+                    if (!saveResult.IsSucceed)
                     {
-                        var page = new SioPage()
-                        {
-                            Specificulture = Specificulture,
-                            Id = p.Id,
-                            Content = p.Content,
-                            CreatedBy = p.CreatedBy,
-                            CreatedDateTime = DateTime.UtcNow,
-                            Layout = p.Layout,
-                            CssClass = p.CssClass,
-                            Excerpt = p.Excerpt,
-                            Icon = p.Icon,
-                            Image = p.Image,
-                            Level = p.Level,
-                            ModifiedBy = p.ModifiedBy,
-                            PageSize = p.PageSize,
-                            Priority = p.Priority,
-                            SeoDescription = p.SeoDescription,
-                            SeoKeywords = p.SeoKeywords,
-                            SeoName = p.SeoName,
-                            SeoTitle = p.SeoTitle,
-                            StaticUrl = p.StaticUrl,
-                            Status = (int)p.Status,
-                            Tags = p.Tags,
-                            Template = p.Template,
-                            Title = p.Title,
-                            Type = (int)p.Type,
-                        };
-                        _context.Entry(page).State = Microsoft.EntityFrameworkCore.EntityState.Added;
+                        result.Errors.Add("Error: Clone Pages");
+                        result.Errors.AddRange(saveResult.Errors);
+                        result.Exception = saveResult.Exception;
+                        break;
                     }
                 }
+            }
+            if (result.IsSucceed)
+            {
                 var getConfigurations = await SioConfigurations.ReadMvcViewModel.Repository.GetModelListByAsync(c => c.Specificulture == SioService.GetConfig<string>(SioConstants.ConfigurationKeyword.DefaultCulture), _context, _transaction);
                 if (getConfigurations.IsSucceed)
                 {
                     foreach (var c in getConfigurations.Data)
                     {
-                        var cnf = new SioConfiguration()
+                        c.Specificulture = Specificulture;
+                        c.CreatedDateTime = DateTime.UtcNow;
+                        var saveResult = await c.SaveModelAsync(false, _context, _transaction);
+                        result.IsSucceed = saveResult.IsSucceed;
+                        if (!saveResult.IsSucceed)
                         {
-                            Keyword = c.Keyword,
-                            Specificulture = Specificulture,
-                            Category = c.Category,
-                            DataType = (int)c.DataType,
-                            Description = c.Description,
-                            Priority = c.Priority,
-                            Status = (int)c.Status,
-                            Value = c.Value
-                        };
-                        _context.Entry(cnf).State = Microsoft.EntityFrameworkCore.EntityState.Added;
+                            result.Errors.Add("Error: Clone Configurations");
+                            result.Errors.AddRange(saveResult.Errors);
+                            result.Exception = saveResult.Exception;
+                            break;
+                        }
                     }
                 }
 
+            }
+            if (result.IsSucceed)
+            {
                 var getLanguages = await SioLanguages.ReadMvcViewModel.Repository.GetModelListByAsync(c => c.Specificulture == SioService.GetConfig<string>(SioConstants.ConfigurationKeyword.DefaultCulture), _context, _transaction);
                 if (getLanguages.IsSucceed)
                 {
                     foreach (var c in getLanguages.Data)
                     {
-                        var cnf = new SioLanguage()
+                        c.Specificulture = Specificulture;
+                        c.CreatedDateTime = DateTime.UtcNow;
+                        var saveResult = await c.SaveModelAsync(false, _context, _transaction);
+                        result.IsSucceed = saveResult.IsSucceed;
+                        if (!saveResult.IsSucceed)
                         {
-                            Keyword = c.Keyword,
-                            Specificulture = Specificulture,
-                            Category = c.Category,
-                            DataType = (int)c.DataType,
-                            Description = c.Description,
-                            Priority = c.Priority,
-                            Status = (int)c.Status,
-                            DefaultValue = c.DefaultValue
-                        };
-                        _context.Entry(cnf).State = Microsoft.EntityFrameworkCore.EntityState.Added;
+                            result.Errors.Add("Error: Clone Languages");
+                            result.Errors.AddRange(saveResult.Errors);
+                            result.Exception = saveResult.Exception;
+                            break;
+                        }
                     }
                 }
-                _context.SaveChanges();
+            }
+            
+            if (result.IsSucceed)
+            {
+                var getMedias = await SioMedias.UpdateViewModel.Repository.GetModelListByAsync(c => c.Specificulture == SioService.GetConfig<string>(SioConstants.ConfigurationKeyword.DefaultCulture), _context, _transaction);
+                if (getMedias.IsSucceed)
+                {
+                    foreach (var c in getMedias.Data)
+                    {
+                        c.Specificulture = Specificulture;
+                        c.CreatedDateTime = DateTime.UtcNow;
+                        var saveResult = await c.SaveModelAsync(false, _context, _transaction);
+                        result.IsSucceed = saveResult.IsSucceed;
+                        if (!saveResult.IsSucceed)
+                        {
+                            result.Errors.Add("Error: Clone Medias");
+                            result.Errors.AddRange(saveResult.Errors);
+                            result.Exception = saveResult.Exception;
+                            break;
+                        }
+                    }
+                }
+            }
+            if (result.IsSucceed)
+            {
+                // Clone Module from Default culture
+                var getModules = await SioModules.ReadListItemViewModel.Repository.GetModelListByAsync(c => c.Specificulture == SioService.GetConfig<string>(SioConstants.ConfigurationKeyword.DefaultCulture), _context, _transaction);
+                if (getModules.IsSucceed)
+                {
+                    foreach (var c in getModules.Data)
+                    {
+                        c.Specificulture = Specificulture;
+                        c.CreatedDateTime = DateTime.UtcNow;
+                        c.LastModified = DateTime.UtcNow;
+                        var saveResult = await c.SaveModelAsync(false, _context, _transaction);
+                        result.IsSucceed = saveResult.IsSucceed;
+                        if (!saveResult.IsSucceed)
+                        {
+                            result.Errors.Add("Error: Clone Module");
+                            result.Errors.AddRange(saveResult.Errors);
+                            result.Exception = saveResult.Exception;
+                            break;
+                        }
+                    }
+                }
+            }
+
+            // Clone ModuleData from Default culture
+            if (result.IsSucceed)
+            {
+                var getModuleDatas = await SioModuleDatas.ReadViewModel.Repository.GetModelListByAsync(c => c.Specificulture == SioService.GetConfig<string>(SioConstants.ConfigurationKeyword.DefaultCulture), _context, _transaction);
+                if (getModuleDatas.IsSucceed)
+                {
+                    foreach (var c in getModuleDatas.Data)
+                    {
+                        c.Specificulture = Specificulture;
+                        c.CreatedDateTime = DateTime.UtcNow;
+                        var saveResult = await c.SaveModelAsync(false, _context, _transaction);
+                        result.IsSucceed = saveResult.IsSucceed;
+                        if (!saveResult.IsSucceed)
+                        {
+                            result.Errors.Add("Error: Clone Module Data");
+                            result.Errors.AddRange(saveResult.Errors);
+                            result.Exception = saveResult.Exception;
+                            break;
+                        }
+                    }
+                }
+            }
+            // Clone Article from Default culture
+            if (result.IsSucceed)
+            {
+                var getArticles = await SioArticles.ReadListItemViewModel.Repository.GetModelListByAsync(c => c.Specificulture == SioService.GetConfig<string>(SioConstants.ConfigurationKeyword.DefaultCulture), _context, _transaction);
+                if (getArticles.IsSucceed)
+                {
+                    foreach (var c in getArticles.Data)
+                    {
+                        c.Specificulture = Specificulture;
+                        c.CreatedDateTime = DateTime.UtcNow;
+                        c.LastModified = DateTime.UtcNow;
+                        var saveResult = await c.SaveModelAsync(false, _context, _transaction);
+                        result.IsSucceed = saveResult.IsSucceed;
+                        if (!saveResult.IsSucceed)
+                        {
+                            result.Errors.Add("Error: Clone Articles");
+                            result.Errors.AddRange(saveResult.Errors);
+                            result.Exception = saveResult.Exception;
+                            break;
+                        }
+                    }
+                }
+            }
+            if (result.IsSucceed)
+            {
+                // Clone PageModule from Default culture
+                var getPageModules = await SioPageModules.ReadMvcViewModel.Repository.GetModelListByAsync(c => c.Specificulture == SioService.GetConfig<string>(SioConstants.ConfigurationKeyword.DefaultCulture), _context, _transaction);
+                if (getPageModules.IsSucceed)
+                {
+                    foreach (var c in getPageModules.Data)
+                    {
+                        c.Specificulture = Specificulture;
+                        var saveResult = await c.SaveModelAsync(false, _context, _transaction);
+                        result.IsSucceed = saveResult.IsSucceed;
+                        if (!saveResult.IsSucceed)
+                        {
+                            result.Errors.Add("Error: Clone Page Module");
+                            result.Errors.AddRange(saveResult.Errors);
+                            result.Exception = saveResult.Exception;
+                            break;
+                        }
+                    }
+                }
+            }
+
+            if (result.IsSucceed)
+            {
+                // Clone PagePosition from Default culture
+                var getPagePositions = await SioPagePositions.ReadListItemViewModel.Repository.GetModelListByAsync(c => c.Specificulture == SioService.GetConfig<string>(SioConstants.ConfigurationKeyword.DefaultCulture), _context, _transaction);
+                if (getPagePositions.IsSucceed)
+                {
+                    foreach (var c in getPagePositions.Data)
+                    {
+                        c.Specificulture = Specificulture;
+                        var saveResult = await c.SaveModelAsync(false, _context, _transaction);
+                        result.IsSucceed = saveResult.IsSucceed;
+                        if (!saveResult.IsSucceed)
+                        {
+                            result.Errors.Add("Error: Clone Page Position");
+                            result.Errors.AddRange(saveResult.Errors);
+                            result.Exception = saveResult.Exception;
+                            break;
+                        }
+                    }
+                }
+            }
+
+            // Clone PageArticle from Default culture
+            if (result.IsSucceed)
+            {
+                var getPageArticles = await SioPageArticles.ReadViewModel.Repository.GetModelListByAsync(c => c.Specificulture == SioService.GetConfig<string>(SioConstants.ConfigurationKeyword.DefaultCulture), _context, _transaction);
+                if (getPageArticles.IsSucceed)
+                {
+                    foreach (var c in getPageArticles.Data)
+                    {
+                        c.Specificulture = Specificulture;
+                        var saveResult = await c.SaveModelAsync(false, _context, _transaction);
+                        result.IsSucceed = saveResult.IsSucceed;
+                        if (!saveResult.IsSucceed)
+                        {
+                            result.Errors.Add("Error: Clone Page Article");
+                            result.Errors.AddRange(saveResult.Errors);
+                            result.Exception = saveResult.Exception;
+                            break;
+                        }
+                    }
+                }
+            }
+            // Clone ModuleArticle from Default culture
+            if (result.IsSucceed)
+            {
+
+                var getModuleArticles = await SioModuleArticles.ReadViewModel.Repository.GetModelListByAsync(c => c.Specificulture == SioService.GetConfig<string>(SioConstants.ConfigurationKeyword.DefaultCulture), _context, _transaction);
+                if (getModuleArticles.IsSucceed)
+                {
+                    foreach (var c in getModuleArticles.Data)
+                    {
+                        c.Specificulture = Specificulture;
+                        var saveResult = await c.SaveModelAsync(false, _context, _transaction);
+                        result.IsSucceed = saveResult.IsSucceed;
+                        if (!saveResult.IsSucceed)
+                        {
+                            result.Errors.Add("Error: Clone Module Article");
+                            result.Errors.AddRange(saveResult.Errors);
+                            result.Exception = saveResult.Exception;
+                            break;
+                        }
+                    }
+                }
+            }
+            // Clone ArticleArticle from Default culture
+            if (result.IsSucceed)
+            {
+                var getArticleArticles = await SioArticleArticles.ReadViewModel.Repository.GetModelListByAsync(c => c.Specificulture == SioService.GetConfig<string>(SioConstants.ConfigurationKeyword.DefaultCulture), _context, _transaction);
+                if (getArticleArticles.IsSucceed)
+                {
+                    foreach (var c in getArticleArticles.Data)
+                    {
+                        c.Specificulture = Specificulture;
+                        var saveResult = await c.SaveModelAsync(false, _context, _transaction);
+                        result.IsSucceed = saveResult.IsSucceed;
+                        if (!saveResult.IsSucceed)
+                        {
+                            result.Errors.Add("Error: Clone Article Article");
+                            result.Errors.AddRange(saveResult.Errors);
+                            result.Exception = saveResult.Exception;
+                            break;
+                        }
+                    }
+                }
+            }
+
+            // Clone ArticleMedia from Default culture
+            if (result.IsSucceed)
+            {
+                var getArticleMedias = await SioArticleMedias.ReadViewModel.Repository.GetModelListByAsync(c => c.Specificulture == SioService.GetConfig<string>(SioConstants.ConfigurationKeyword.DefaultCulture), _context, _transaction);
+                if (getArticleMedias.IsSucceed)
+                {
+                    foreach (var c in getArticleMedias.Data)
+                    {
+                        c.Specificulture = Specificulture;
+                        var saveResult = await c.SaveModelAsync(false, _context, _transaction);
+                        result.IsSucceed = saveResult.IsSucceed;
+                        if (!saveResult.IsSucceed)
+                        {
+                            result.Errors.Add("Error: Clone Article Media");
+                            result.Errors.AddRange(saveResult.Errors);
+                            result.Exception = saveResult.Exception;
+                            break;
+                        }
+                    }
+                }
+            }
+            
+            // Clone ArticleMedia from Default culture
+            if (result.IsSucceed)
+            {
+                var getUrlAlias = await SioUrlAliases.UpdateViewModel.Repository.GetModelListByAsync(c => c.Specificulture == SioService.GetConfig<string>(SioConstants.ConfigurationKeyword.DefaultCulture), _context, _transaction);
+                if (getUrlAlias.IsSucceed)
+                {
+                    foreach (var c in getUrlAlias.Data)
+                    {
+                        c.Specificulture = Specificulture;
+                        var saveResult = await c.SaveModelAsync(false, _context, _transaction);
+                        result.IsSucceed = saveResult.IsSucceed;
+                        if (!saveResult.IsSucceed)
+                        {
+                            result.Errors.Add("Error: Clone Article Media");
+                            result.Errors.AddRange(saveResult.Errors);
+                            result.Exception = saveResult.Exception;
+                            break;
+                        }
+                    }
+                }
             }
             return result;
         }
@@ -185,26 +414,52 @@ namespace Sio.Cms.Lib.ViewModels.SioCultures
         {
             var result = new RepositoryResponse<bool>() { IsSucceed = true };
 
-            var configs = _context.SioConfiguration.Where(c => c.Specificulture == Specificulture).ToList();
+            var configs = await _context.SioConfiguration.Where(c => c.Specificulture == Specificulture).ToListAsync();
             configs.ForEach(c => _context.Entry(c).State = Microsoft.EntityFrameworkCore.EntityState.Deleted);
 
-            var languages = _context.SioLanguage.Where(l => l.Specificulture == Specificulture).ToList();
+            var languages = await _context.SioLanguage.Where(l => l.Specificulture == Specificulture).ToListAsync();
             languages.ForEach(l => _context.Entry(l).State = Microsoft.EntityFrameworkCore.EntityState.Deleted);
 
-            var cates = _context.SioPage.Where(c => c.Specificulture == Specificulture).ToList();
+            var PageModules = await _context.SioPageModule.Where(l => l.Specificulture == Specificulture).ToListAsync();
+            PageModules.ForEach(l => _context.Entry(l).State = Microsoft.EntityFrameworkCore.EntityState.Deleted);
+
+            var PagePositions = await _context.SioPagePosition.Where(l => l.Specificulture == Specificulture).ToListAsync();
+            PagePositions.ForEach(l => _context.Entry(l).State = Microsoft.EntityFrameworkCore.EntityState.Deleted);
+
+            var PageArticles = await _context.SioPageArticle.Where(l => l.Specificulture == Specificulture).ToListAsync();
+            PageArticles.ForEach(l => _context.Entry(l).State = Microsoft.EntityFrameworkCore.EntityState.Deleted);
+
+            var ModuleArticles = await _context.SioModuleArticle.Where(l => l.Specificulture == Specificulture).ToListAsync();
+            ModuleArticles.ForEach(l => _context.Entry(l).State = Microsoft.EntityFrameworkCore.EntityState.Deleted);
+
+            var ArticleMedias = await _context.SioArticleMedia.Where(l => l.Specificulture == Specificulture).ToListAsync();
+            ArticleMedias.ForEach(l => _context.Entry(l).State = Microsoft.EntityFrameworkCore.EntityState.Deleted);
+
+            var ModuleDatas = await _context.SioModuleData.Where(l => l.Specificulture == Specificulture).ToListAsync();
+            ModuleDatas.ForEach(l => _context.Entry(l).State = Microsoft.EntityFrameworkCore.EntityState.Deleted);
+
+            var ArticleArticles = await _context.SioRelatedArticle.Where(l => l.Specificulture == Specificulture).ToListAsync();
+            ArticleArticles.ForEach(l => _context.Entry(l).State = Microsoft.EntityFrameworkCore.EntityState.Deleted);
+
+            var medias = await _context.SioMedia.Where(c => c.Specificulture == Specificulture).ToListAsync();
+            medias.ForEach(c => _context.Entry(c).State = Microsoft.EntityFrameworkCore.EntityState.Deleted);
+            
+            var cates = await _context.SioPage.Where(c => c.Specificulture == Specificulture).ToListAsync();
             cates.ForEach(c => _context.Entry(c).State = Microsoft.EntityFrameworkCore.EntityState.Deleted);
 
-            var modules = _context.SioModule.Where(c => c.Specificulture == Specificulture).ToList();
+            var modules = await _context.SioModule.Where(c => c.Specificulture == Specificulture).ToListAsync();
             modules.ForEach(c => _context.Entry(c).State = Microsoft.EntityFrameworkCore.EntityState.Deleted);
 
-            var articles = _context.SioArticle.Where(c => c.Specificulture == Specificulture).ToList();
+            var articles = await _context.SioArticle.Where(c => c.Specificulture == Specificulture).ToListAsync();
             articles.ForEach(c => _context.Entry(c).State = Microsoft.EntityFrameworkCore.EntityState.Deleted);
 
-            var products = _context.SioProduct.Where(c => c.Specificulture == Specificulture).ToList();
+            var products = await _context.SioProduct.Where(c => c.Specificulture == Specificulture).ToListAsync();
             products.ForEach(c => _context.Entry(c).State = Microsoft.EntityFrameworkCore.EntityState.Deleted);
 
-            await _context.SaveChangesAsync();
+            var aliases = await _context.SioUrlAlias.Where(c => c.Specificulture == Specificulture).ToListAsync();
+            aliases.ForEach(c => _context.Entry(c).State = Microsoft.EntityFrameworkCore.EntityState.Deleted);
 
+            result.IsSucceed = (await _context.SaveChangesAsync() > 0);
             return result;
         }
 
@@ -216,7 +471,7 @@ namespace Sio.Cms.Lib.ViewModels.SioCultures
                 if (result.IsSucceed)
                 {
                     SioService.LoadFromDatabase();
-                    SioService.Save();
+                    SioService.SaveSettings();
                 }
             }
             return result;

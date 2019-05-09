@@ -68,7 +68,13 @@ app.factory('AuthService',
                     });
                     this.authentication = _authentication;
                     _initSettings().then(function () {
-                        window.location.href = document.referrer || '/';
+                        if (document.referrer && document.referrer.indexOf('init') === -1)
+                        {
+                        window.location.href = document.referrer
+                        }
+                        else{
+                            window.location.href = '/';
+                        }
                     });
 
                 } else {
@@ -188,7 +194,7 @@ app.factory('AuthService',
                         authData.refresh_token = data.refresh_token;
                         _authentication.token = data.access_token;
                         _authentication.refresh_token = data.refresh_token;        
-                        if(!$rootScope.settings.lastUpdateConfiguration || $rootScope.settings.lastUpdateConfiguration < data.lastUpdateConfiguration)
+                        if(!$rootScope.globalSettings.lastUpdateConfiguration || $rootScope.globalSettings.lastUpdateConfiguration < data.lastUpdateConfiguration)
                         {
                             _initSettings();
                         }

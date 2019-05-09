@@ -10,24 +10,12 @@
             "request": "launch",
             "preLaunchTask": "build",
             // If you have changed target frameworks, make sure to update the program path.
-            "program": "Sio.Cms.Api/bin/Debug/netcoreapp2.1/Sio.Cms.Api.dll",
+            "program": "${workspaceFolder}/bin/Debug/netcoreapp2.2/Sio.Cms.Web.dll",
             "args": [],
-            "cwd": "Sio.Cms.Api",
+            "cwd": "${workspaceFolder}",
             "stopAtEntry": false,
-            "internalConsoleOptions": "openOnSessionStart",
             "launchBrowser": {
-                "enabled": true,
-                "args": "${auto-detect-url}",
-                "windows": {
-                    "command": "cmd.exe",
-                    "args": "/C start ${auto-detect-url}"
-                },
-                "osx": {
-                    "command": "open"
-                },
-                "linux": {
-                    "command": "xdg-open"
-                }
+                "enabled": true
             },
             "env": {
                 "ASPNETCORE_ENVIRONMENT": "Development"
@@ -42,5 +30,5 @@
             "request": "attach",
             "processId": "${command:pickProcess}"
         }
-    ,]
+    ]
 }

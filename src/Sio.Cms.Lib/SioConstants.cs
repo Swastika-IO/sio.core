@@ -9,12 +9,14 @@ namespace Sio.Cms.Lib
         public const string CONST_CMS_CONNECTION = "SioCmsConnection";
         public const string CONST_MESSENGER_CONNECTION = "SioMessengerConnection";
         public const string CONST_ACCOUNT_CONNECTION = "SioAccountConnection";
-        public const string CONST_SETTING_IS_SQLITE = "IsSqlite";
+        public const string CONST_SETTING_IS_MYSQL = "IsMysql";
+        public const string CONST_SETTING_DATABASE_PROVIDER = "DatabaseProvider";
         public const string CONST_SETTING_LANGUAGE = "Language";
         public const string CONST_FILE_APPSETTING = "appsettings";
         public const string CONST_DEFAULT_FILE_APPSETTING = "default.appsettings";
         public const string CONST_FILE_CONFIGURATIONS = "configurations.json";
         public const string CONST_FILE_LANGUAGES = "languages.json";
+        public const string CONST_FILE_PAGES = "pages.json";
         public const string CONST_PATH_HOME_ACCESS_DENIED = "/home/access-denied";
         public const string CONST_PATH_HOME_ERROR = "/Home/Error";
         public const string CONST_SECTION_LOGGING = "Logging";
@@ -33,13 +35,16 @@ namespace Sio.Cms.Lib
         {
             public const string ConnectionString = "ConnectionString";
             public const string OrderBy = "OrderBy";
+            public const string DefaultBlankTemplateFolder = "DefaultTemplateFolder";
             public const string DefaultTemplateFolder = "DefaultTemplateFolder";
             public const string Language = "Language";
             public const string DefaultStatus = "DefaultStatus";
             public const string DefaultCulture = "DefaultCulture";
-            public const string IsSqlite = "IsSqlite";
+            public const string IsMysql = "IsMysql";
+            public const string Domain = "Domain";
             public const string ThemeId = "ThemeId";
             public const string ThemeName= "ThemeName";
+            public const string ThemeFolder= "ThemeFolder";
             public const string ApiEncryptKey = "ApiEncryptKey";
             public const string ApiEncryptIV = "ApiEncryptIV";
             public const string IsEncryptApi = "IsEncryptApi";
@@ -48,13 +53,14 @@ namespace Sio.Cms.Lib
             public const string DefaultTemplate = "DefaultTemplate";
             public const string DefaultTemplateContent = "DefaultTemplateContent";
             public const string DefaultContentStatus = "DefaultContentStatus";
+            public const string NextSyncContent = "NextSyncContent";
         }
 
         public static class Folder
         {
-            public const string FileFolder = @"Content";
+            public const string FileFolder = @"content";
             public const string TemplateExtension = @".cshtml";
-            public const string TemplatesAssetFolder = @"Templates";
+            public const string TemplatesAssetFolder = @"templates";
             public const string TemplatesFolder = @"Views/Shared/Templates";
             public const string UploadFolder = @"Content/Uploads";
             public const string WebRootPath = @"wwwroot";

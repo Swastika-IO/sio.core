@@ -7,9 +7,30 @@
             "type": "process",
             "args": [
                 "build",
-                "Sio.Cms.Api/Sio.Cms.Api.csproj"
+                "${workspaceFolder}/Sio.Cms.Web.csproj"
             ],
-            "problemMatcher": "$msCompile"
+            "problemMatcher": "$tsc"
+        },
+        {
+            "label": "publish",
+            "command": "dotnet",
+            "type": "process",
+            "args": [
+                "publish",
+                "${workspaceFolder}/Sio.Cms.Web.csproj"
+            ],
+            "problemMatcher": "$tsc"
+        },
+        {
+            "label": "watch",
+            "command": "dotnet",
+            "type": "process",
+            "args": [
+                "watch",
+                "run",
+                "${workspaceFolder}/Sio.Cms.Web.csproj"
+            ],
+            "problemMatcher": "$tsc"
         }
     ]
 }

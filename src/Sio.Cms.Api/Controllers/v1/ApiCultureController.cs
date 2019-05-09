@@ -37,8 +37,13 @@ namespace Sio.Cms.Api.Controllers.v1
         [Route("delete/{id}")]
         public async Task<RepositoryResponse<SioCulture>> DeleteAsync(int id)
         {
-            return await base.DeleteAsync<UpdateViewModel>(
+            var result = await base.DeleteAsync<UpdateViewModel>(
                 model => model.Id == id, true);
+            if (result.IsSucceed)
+            {
+                SioService.SetConfig("LastUpdateConfiguration", DateTime.UtcNow);
+            }
+            return result;
         }
 
         // GET api/cultures/id
@@ -105,7 +110,11 @@ namespace Sio.Cms.Api.Controllers.v1
             if (model != null)
             {
                 model.CreatedBy = User.Claims.FirstOrDefault(c => c.Type == "Username")?.Value;
-                var result = await base.SaveAsync<UpdateViewModel>(model, true);
+                // Only savesubmodels when create new => clone data from default culture
+                var result = await base.SaveAsync<UpdateViewModel>(model, model.Id == 0);
+                if(result.IsSucceed){
+                    SioService.SetConfig("LastUpdateConfiguration", DateTime.UtcNow);
+                }
                 return result;
             }
             return new RepositoryResponse<UpdateViewModel>() { Status = 501 };

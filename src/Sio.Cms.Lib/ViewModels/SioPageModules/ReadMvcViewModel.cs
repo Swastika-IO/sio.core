@@ -33,7 +33,8 @@ namespace Sio.Cms.Lib.ViewModels.SioPageModules
         public string Description { get; set; }
 
         #region Views
-
+    
+        [JsonProperty("module")]
         public SioModules.ReadMvcViewModel Module { get; set; }
 
         #endregion Views

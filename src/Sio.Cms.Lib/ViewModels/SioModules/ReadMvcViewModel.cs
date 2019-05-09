@@ -29,6 +29,9 @@ namespace Sio.Cms.Lib.ViewModels.SioModules
         [JsonProperty("image")]
         public string Image { get; set; }
 
+        [JsonProperty("thumbnail")]
+        public string Thumbnail { get; set; }
+
         [JsonProperty("template")]
         public string Template { get; set; }
 
@@ -85,6 +88,23 @@ namespace Sio.Cms.Lib.ViewModels.SioModules
                 }
             }
         }
+        [JsonProperty("thumbnailUrl")]
+        public string ThumbnailUrl
+        {
+            get
+            {
+                if (Thumbnail != null && Thumbnail.IndexOf("http") == -1 && Thumbnail[0] != '/')
+                {
+                    return CommonHelper.GetFullPath(new string[] {
+                    Domain,  Thumbnail
+                });
+                }
+                else
+                {
+                    return string.IsNullOrEmpty(Thumbnail) ? ImageUrl : Thumbnail;
+                }
+            }
+        }
 
         [JsonProperty("columns")]
         public List<ModuleFieldViewModel> Columns
@@ -106,14 +126,43 @@ namespace Sio.Cms.Lib.ViewModels.SioModules
         [JsonProperty("articles")]
         public PaginationModel<SioModuleArticles.ReadViewModel> Articles { get; set; } = new PaginationModel<SioModuleArticles.ReadViewModel>();
 
-        [JsonProperty("products")]
-        public PaginationModel<SioModuleProducts.ReadViewModel> Products { get; set; } = new PaginationModel<SioModuleProducts.ReadViewModel>();
-
         public string TemplatePath
         {
             get
             {
-                return string.Format("../{0}", Template);
+                return CommonHelper.GetFullPath(new string[]
+                {
+                    ""
+                    , SioConstants.Folder.TemplatesFolder
+                    , SioService.GetConfig<string>(SioConstants.ConfigurationKeyword.ThemeFolder, Specificulture) ?? "Default"
+                    , Template
+                });
+            }
+        }
+        public string FormTemplatePath
+        {
+            get
+            {
+                return CommonHelper.GetFullPath(new string[]
+                {
+                    ""
+                    , SioConstants.Folder.TemplatesFolder
+                    , SioService.GetConfig<string>(SioConstants.ConfigurationKeyword.ThemeFolder, Specificulture) ?? "Default"
+                    , FormTemplate
+                });
+            }
+        }
+        public string EdmTemplatePath
+        {
+            get
+            {
+                return CommonHelper.GetFullPath(new string[]
+                {
+                    ""
+                    , SioConstants.Folder.TemplatesFolder
+                    , SioService.GetConfig<string>(SioConstants.ConfigurationKeyword.ThemeFolder, Specificulture) ?? "Default"
+                    , EdmTemplate
+                });
             }
         }
 
@@ -140,9 +189,10 @@ namespace Sio.Cms.Lib.ViewModels.SioModules
 
         public override void ExpandView(SioCmsContext _context = null, IDbContextTransaction _transaction = null)
         {
+            //Load Template + Style +  Scripts for views
             this.View = SioTemplates.ReadViewModel.GetTemplateByPath(Template, Specificulture, _context, _transaction).Data;
             this.FormView = SioTemplates.ReadViewModel.GetTemplateByPath(FormTemplate, Specificulture, _context, _transaction).Data;
-            this.View = SioTemplates.ReadViewModel.GetTemplateByPath(EdmTemplate, Specificulture, _context, _transaction).Data;
+            this.EdmView = SioTemplates.ReadViewModel.GetTemplateByPath(EdmTemplate, Specificulture, _context, _transaction).Data;
             // call load data from controller for padding parameter (articleId, productId, ...)
         }
 
@@ -188,7 +238,6 @@ namespace Sio.Cms.Lib.ViewModels.SioModules
                     case SioModuleType.SubPage:
                         dataExp = m => m.ModuleId == Id && m.Specificulture == Specificulture && (m.CategoryId == categoryId);
                         articleExp = n => n.ModuleId == Id && n.Specificulture == Specificulture;
-                        productExp = m => m.ModuleId == Id && m.Specificulture == Specificulture;
                         break;
 
                     case SioModuleType.SubArticle:
@@ -206,7 +255,6 @@ namespace Sio.Cms.Lib.ViewModels.SioModules
                     default:
                         dataExp = m => m.ModuleId == Id && m.Specificulture == Specificulture;
                         articleExp = n => n.ModuleId == Id && n.Specificulture == Specificulture;
-                        productExp = m => m.ModuleId == Id && m.Specificulture == Specificulture;
                         break;
                 }
 
@@ -235,18 +283,6 @@ namespace Sio.Cms.Lib.ViewModels.SioModules
                     if (getArticles.IsSucceed)
                     {
                         Articles = getArticles.Data;
-                    }
-                }
-                if (productExp != null)
-                {
-                    var getProducts = SioModuleProducts.ReadViewModel.Repository
-                    .GetModelListBy(productExp
-                    , SioService.GetConfig<string>(SioConstants.ConfigurationKeyword.OrderBy), 0
-                    , PageSize, pageIndex
-                    , _context: context, _transaction: transaction);
-                    if (getProducts.IsSucceed)
-                    {
-                        Products = getProducts.Data;
                     }
                 }
             }

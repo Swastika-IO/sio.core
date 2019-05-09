@@ -29,8 +29,8 @@ namespace Sio.Cms.Lib.ViewModels.SioTemplates
         public int TemplateId { get; set; }
 
         [JsonIgnore]
-        [JsonProperty("templateName")]
-        public string TemplateName { get; set; }
+        [JsonProperty("themeName")]
+        public string ThemeName { get; set; }
 
         [JsonIgnore]
         [JsonProperty("folderType")]
@@ -64,8 +64,8 @@ namespace Sio.Cms.Lib.ViewModels.SioTemplates
         {
             get
             {
-                return !string.IsNullOrEmpty(SpaContent) 
-                    ? XElement.Parse(Regex.Replace(SpaContent, "(?<!\r)\n|\r\n|\t", "").Trim()) 
+                return !string.IsNullOrEmpty(SpaContent)
+                    ? XElement.Parse(Regex.Replace(SpaContent, "(?<!\r)\n|\r\n|\t", "").Trim())
                     : new XElement("div");
             }
         }
@@ -101,7 +101,7 @@ namespace Sio.Cms.Lib.ViewModels.SioTemplates
                 return CommonHelper.GetFullPath(new string[] {
                     SioConstants.Folder.FileFolder,
                     SioConstants.Folder.TemplatesAssetFolder,
-                    TemplateName });
+                    ThemeName });
             }
         }
 
@@ -111,7 +111,10 @@ namespace Sio.Cms.Lib.ViewModels.SioTemplates
         {
             get
             {
-                return CommonHelper.GetFullPath(new string[] { SioConstants.Folder.TemplatesFolder, TemplateName });
+                return CommonHelper.GetFullPath(new string[] {
+                    SioConstants.Folder.TemplatesFolder,
+                    ThemeName
+                    });
             }
         }
 
@@ -120,12 +123,7 @@ namespace Sio.Cms.Lib.ViewModels.SioTemplates
         {
             get
             {
-                return CommonHelper.GetFullPath(new string[]
-                {
-                    ""
-                    , TemplateFolder
-                    , FileFolder
-                });
+                return $"/{FileFolder}/{FileName}{Extension}";
             }
         }
 
@@ -162,7 +160,7 @@ namespace Sio.Cms.Lib.ViewModels.SioTemplates
             FileFolder = CommonHelper.GetFullPath(new string[]
                 {
                     SioConstants.Folder.TemplatesFolder
-                    , TemplateName
+                    , ThemeName
                     , FolderType
                 });
             Content = Content?.Trim();

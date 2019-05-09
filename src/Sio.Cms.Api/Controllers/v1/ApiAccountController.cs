@@ -328,6 +328,29 @@ namespace Sio.Cms.Api.Controllers.v1
             }
         }
 
+        [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
+        [HttpGet, HttpOptions]
+        [Route("my-profile")]
+        public async Task<JObject> MyProfile()
+        {
+            string id = User.Claims.SingleOrDefault(c => c.Type == "Id")?.Value;
+            if (!string.IsNullOrEmpty(id))
+            {
+                var beResult = await Lib.ViewModels.Account.SioUsers.UpdateViewModel.Repository.GetSingleModelAsync(
+                    model => model.Id == id).ConfigureAwait(false);
+                return JObject.FromObject(beResult);
+            }
+            else
+            {
+                RepositoryResponse<Lib.ViewModels.Account.SioUsers.UpdateViewModel> result = new RepositoryResponse<Lib.ViewModels.Account.SioUsers.UpdateViewModel>()
+                {
+                    IsSucceed = false,
+                    Data = null
+                };
+                return JObject.FromObject(result);
+            }
+
+        }
 
         // POST api/template
         [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
@@ -339,6 +362,33 @@ namespace Sio.Cms.Api.Controllers.v1
             if (model != null)
             {
                 var result = await model.SaveModelAsync(true).ConfigureAwait(false);
+                if (model.IsChangePassword)
+                {
+                    var user = await _userManager.FindByNameAsync(model.Username);
+                    if (user != null)
+                    {
+                        var tmp  = await _userManager.ChangePasswordAsync(user, model.ChangePassword.CurrentPassword, model.ChangePassword.NewPassword);
+                        result.IsSucceed = tmp.Succeeded;
+                        if (!result.IsSucceed)
+                        {
+                            foreach (var err in tmp.Errors)
+                            {
+                                result.Errors.Add(err.Description);
+                            }
+                        }
+                        else
+                        {
+                            // Remove other token if change password success
+                            var refreshToken = User.Claims.SingleOrDefault(c => c.Type == "RefreshToken")?.Value;
+                            await RefreshTokenViewModel.Repository.RemoveModelAsync(r => r.Id != refreshToken);
+                        }
+                    }
+                    else
+                    {
+                        Request.HttpContext.Response.StatusCode = 401;
+                    }
+
+                }
                 return result;
             }
             return new RepositoryResponse<UserInfoViewModel>();
@@ -431,7 +481,8 @@ namespace Sio.Cms.Api.Controllers.v1
             JwtSecurityToken jwtSecurityToken = new JwtSecurityToken(
                 issuer: SioService.GetAuthConfig<string>("Issuer"),
                 audience: SioService.GetAuthConfig<string>("Audience"),
-                notBefore: DateTime.UtcNow,
+                notBefore: expires.AddMinutes(-SioService.GetAuthConfig<int>("CookieExpiration")),
+
                 claims: claims,
                 // our token will live 1 hour, but you can change you token lifetime here
                 expires: expires,
@@ -468,7 +519,26 @@ namespace Sio.Cms.Api.Controllers.v1
         {
             return new Claim(type, value, ClaimValueTypes.String);
         }
+        private ClaimsPrincipal GetPrincipalFromExpiredToken(string token)
+        {
+            var tokenValidationParameters = new TokenValidationParameters
+            {
+                ValidateIssuer = SioService.GetAuthConfig<bool>("ValidateIssuer"),
+                ValidateAudience = SioService.GetAuthConfig<bool>("ValidateAudience"),
+                ValidateLifetime = SioService.GetAuthConfig<bool>("ValidateLifetime"),
+                ValidateIssuerSigningKey = SioService.GetAuthConfig<bool>("ValidateIssuerSigningKey"),
+                IssuerSigningKey = JwtSecurityKey.Create(SioService.GetAuthConfig<string>("SecretKey"))
+            };
 
+            var tokenHandler = new JwtSecurityTokenHandler();
+            SecurityToken securityToken;
+            var principal = tokenHandler.ValidateToken(token, tokenValidationParameters, out securityToken);
+            var jwtSecurityToken = securityToken as JwtSecurityToken;
+            if (jwtSecurityToken == null || !jwtSecurityToken.Header.Alg.Equals(SecurityAlgorithms.HmacSha256, StringComparison.InvariantCultureIgnoreCase))
+                throw new SecurityTokenException("Invalid token");
+
+            return principal;
+        }
         public static class JwtSecurityKey
         {
             public static SymmetricSecurityKey Create(string secret)

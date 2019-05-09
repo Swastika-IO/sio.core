@@ -180,11 +180,11 @@ namespace Sio.Cms.Lib.ViewModels.SioPages
         public List<SioTemplates.UpdateViewModel> Templates { get; set; }// Article Templates
 
         [JsonIgnore]
-        public string ActivedTheme
+        public int ActivedTheme
         {
             get
             {
-                return SioService.GetConfig<string>(SioConstants.ConfigurationKeyword.ThemeName, Specificulture) ?? SioService.GetConfig<string>("DefaultTemplateFolder");
+                return SioService.GetConfig<int>(SioConstants.ConfigurationKeyword.ThemeId, Specificulture);
             }
         }
 
@@ -205,7 +205,7 @@ namespace Sio.Cms.Lib.ViewModels.SioPages
                 return CommonHelper.GetFullPath(new string[]
                 {
                     SioConstants.Folder.TemplatesFolder
-                    , ActivedTheme
+                    , SioService.GetConfig<string>(SioConstants.ConfigurationKeyword.ThemeName, Specificulture)
                     , TemplateFolderType
                 }
             );
@@ -213,6 +213,9 @@ namespace Sio.Cms.Lib.ViewModels.SioPages
         }
 
         #endregion Template
+
+        [JsonProperty("urlAliases")]
+        public List<SioUrlAliases.UpdateViewModel> UrlAliases { get; set; }
 
         #endregion Views
 
@@ -261,14 +264,14 @@ namespace Sio.Cms.Lib.ViewModels.SioPages
 
         public override void ExpandView(SioCmsContext _context = null, IDbContextTransaction _transaction = null)
         {
-            Cultures = LoadCultures(Specificulture, _context, _transaction);
+            Cultures = Helper.LoadCultures(Id, Specificulture, _context, _transaction);
             if (!string.IsNullOrEmpty(this.Tags))
             {
                 ListTag = JArray.Parse(this.Tags);
             }
 
             this.Templates = this.Templates ?? SioTemplates.UpdateViewModel.Repository.GetModelListBy(
-                t => t.Theme.Name == ActivedTheme && t.FolderType == this.TemplateFolderType).Data;
+                t => t.Theme.Id == ActivedTheme && t.FolderType == this.TemplateFolderType).Data;
             this.View = SioTemplates.UpdateViewModel.GetTemplateByPath(Template, Specificulture, SioEnums.EnumTemplateFolder.Pages, _context, _transaction);
             this.Template = CommonHelper.GetFullPath(new string[]
                {
@@ -280,6 +283,7 @@ namespace Sio.Cms.Lib.ViewModels.SioPages
             this.ParentNavs = GetParentNavs(_context, _transaction);
             this.ChildNavs = GetChildNavs(_context, _transaction);
             this.PositionNavs = GetPositionNavs(_context, _transaction);
+            this.UrlAliases = GetAliases(_context, _transaction);
         }
 
         #region Sync
@@ -289,12 +293,28 @@ namespace Sio.Cms.Lib.ViewModels.SioPages
             var result = new RepositoryResponse<bool> { IsSucceed = true };
             var saveTemplate = View.SaveModel(true, _context, _transaction);
             result.IsSucceed = result.IsSucceed && saveTemplate.IsSucceed;
-            if (saveTemplate.IsSucceed)
+            if (!saveTemplate.IsSucceed)
             {
                 result.Errors.AddRange(saveTemplate.Errors);
                 result.Exception = saveTemplate.Exception;
             }
-
+            if (result.IsSucceed)
+            {
+                foreach (var item in UrlAliases)
+                {
+                    item.SourceId = parent.Id.ToString();
+                    item.Type = UrlAliasType.Page;
+                    item.Specificulture = Specificulture;
+                    var saveResult = item.SaveModel(false, _context, _transaction);
+                    result.IsSucceed = saveResult.IsSucceed;
+                    if (!result.IsSucceed)
+                    {
+                        result.Exception = saveResult.Exception;
+                        result.Errors.AddRange(saveResult.Errors);
+                        break;
+                    }
+                }
+            }
             if (result.IsSucceed)
             {
                 foreach (var item in ModuleNavs)
@@ -418,12 +438,28 @@ namespace Sio.Cms.Lib.ViewModels.SioPages
             var result = new RepositoryResponse<bool> { IsSucceed = true };
             var saveTemplate = await View.SaveModelAsync(true, _context, _transaction);
             result.IsSucceed = result.IsSucceed && saveTemplate.IsSucceed;
-            if (saveTemplate.IsSucceed)
+            if (!saveTemplate.IsSucceed)
             {
                 result.Errors.AddRange(saveTemplate.Errors);
                 result.Exception = saveTemplate.Exception;
             }
-
+            if (result.IsSucceed)
+            {
+                foreach (var item in UrlAliases)
+                {
+                    item.SourceId = parent.Id.ToString();
+                    item.Type = UrlAliasType.Page;
+                    item.Specificulture = Specificulture;
+                    var saveResult = await item.SaveModelAsync(false, _context, _transaction);
+                    result.IsSucceed = saveResult.IsSucceed;
+                    if (!result.IsSucceed)
+                    {
+                        result.Exception = saveResult.Exception;
+                        result.Errors.AddRange(saveResult.Errors);
+                        break;
+                    }
+                }
+            }
             if (result.IsSucceed)
             {
                 foreach (var item in ModuleNavs)
@@ -544,32 +580,7 @@ namespace Sio.Cms.Lib.ViewModels.SioPages
         #endregion Overrides
 
         #region Expands
-        List<SupportedCulture> LoadCultures(string initCulture = null, SioCmsContext _context = null, IDbContextTransaction _transaction = null)
-        {
-            var getCultures = SystemCultureViewModel.Repository.GetModelList(_context, _transaction);
-            var result = new List<SupportedCulture>();
-            if (getCultures.IsSucceed)
-            {
-                foreach (var culture in getCultures.Data)
-                {
-                    result.Add(
-                        new SupportedCulture()
-                        {
-                            Icon = culture.Icon,
-                            Specificulture = culture.Specificulture,
-                            Alias = culture.Alias,
-                            FullName = culture.FullName,
-                            Description = culture.FullName,
-                            Id = culture.Id,
-                            Lcid = culture.Lcid,
-                            IsSupported = culture.Specificulture == initCulture || _context.SioPage.Any(p => p.Id == Id && p.Specificulture == culture.Specificulture)
-                        });
-
-                }
-            }
-            return result;
-        }
-
+        
         private void GenerateSEO()
         {
             if (string.IsNullOrEmpty(this.SeoName))
@@ -616,6 +627,20 @@ namespace Sio.Cms.Lib.ViewModels.SioPages
                   });
 
             return query.OrderBy(m => m.Priority).ToList();
+        }
+
+        public List<SioUrlAliases.UpdateViewModel> GetAliases (SioCmsContext context, IDbContextTransaction transaction)
+        {
+            var result = SioUrlAliases.UpdateViewModel.Repository.GetModelListBy(p => p.Specificulture == Specificulture
+                        && p.SourceId == Id.ToString() && p.Type == (int)SioEnums.UrlAliasType.Page, context, transaction);
+            if (result.IsSucceed)
+            {
+                return result.Data;
+            }
+            else
+            {
+                return new List<SioUrlAliases.UpdateViewModel>();
+            }
         }
 
         public List<SioPageModules.ReadMvcViewModel> GetModuleNavs(SioCmsContext context, IDbContextTransaction transaction)

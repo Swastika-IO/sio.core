@@ -1,26 +1,28 @@
 (function (angular) {
     app.component('headerNav', {
         templateUrl: '/app/app-portal/components/header-nav/headerNav.html',
-        controller: ['$rootScope', '$location', 'CommonService', 'AuthService', 'TranslatorService', 'GlobalSettingsService',
-            function ($rootScope, $location, commonService, authService, translatorService, GlobalSettingsService) {
+        controller: ['$rootScope', '$location', 
+                    'CommonService', 'AuthService', 'TranslatorService', 'GlobalSettingsService',
+            function ($rootScope, $location, 
+                    commonService, authService, translatorService, globalSettingsService) {
                 var ctrl = this;
+                ctrl.globalSettings = $rootScope.globalSettings;
                 if (authService.authentication) {
                     ctrl.avatar = authService.authentication.avatar;
                 }
-                GlobalSettingsService.fillGlobalSettings().then(function (response) {
-                    ctrl.settings = response;
-                });
+                this.$onInit = function(){
+                    ctrl.settings = $rootScope.settings;
+                    ctrl.settings.cultures = $rootScope.globalSettings.cultures; 
+                }
                 ctrl.translate = $rootScope.translate;
-                ctrl.getConfiguration = $rootScope.getConfiguration;
+                ctrl.getConfiguration = function (keyword, isWrap, defaultText) {
+                    return  $rootScope.getConfiguration(keyword, isWrap, defaultText);
+                }
                 ctrl.changeLang = function (lang, langIcon) {
                     ctrl.settings.lang = lang;
                     ctrl.settings.langIcon = langIcon;
-                    commonService.fillSettings(lang).then(function () {
-                        translatorService.reset(lang).then(function () {
-                            GlobalSettingsService.reset(lang).then(function () {
-                                window.top.location = location.href;
-                            });
-                        });
+                    commonService.fillAllSettings(lang).then(function () {
+                        window.top.location = location.href;                        
                     });
                 };
                 ctrl.logOut = function () {
@@ -35,7 +37,14 @@
                 ctrl.generateSitemap = async function(){
                     $rootScope.isBusy = true;
                     var resp = await commonService.genrateSitemap();
-                    window.top.location.href = '/portal/file/details?folder=' + resp.fileFolder + '&filename=' + resp.fileName + resp.extension;
+                    if(resp)
+                    {
+                        window.top.location.href = '/portal/file/details?folder=' + resp.fileFolder + '&filename=' + resp.fileName + resp.extension;
+                    }
+                    else{
+                        $rootScope.isBusy = false;
+                        $rootScope.showErrors(['Server error']);
+                    }
                 }
             }],
         bindings: {

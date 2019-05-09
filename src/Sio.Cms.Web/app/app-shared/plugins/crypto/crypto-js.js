@@ -2717,7 +2717,7 @@
 	            for (var round = 0; round < 24; round++) {
 	                // Theta
 	                for (var x = 0; x < 5; x++) {
-	                    // Sio column lanes
+	                    // Mix column lanes
 	                    var tMsw = 0, tLsw = 0;
 	                    for (var y = 0; y < 5; y++) {
 	                        var lane = state[x + 5 * y];
@@ -2737,7 +2737,7 @@
 	                    var Tx1Msw = Tx1.high;
 	                    var Tx1Lsw = Tx1.low;
 
-	                    // Sio surrounding columns
+	                    // Mix surrounding columns
 	                    var tMsw = Tx4.high ^ ((Tx1Msw << 1) | (Tx1Lsw >>> 31));
 	                    var tLsw = Tx4.low  ^ ((Tx1Lsw << 1) | (Tx1Msw >>> 31));
 	                    for (var y = 0; y < 5; y++) {
@@ -2786,7 +2786,7 @@
 	                        var Tx1Lane = T[((x + 1) % 5) + 5 * y];
 	                        var Tx2Lane = T[((x + 2) % 5) + 5 * y];
 
-	                        // Sio rows
+	                        // Mix rows
 	                        lane.high = TLane.high ^ (~Tx1Lane.high & Tx2Lane.high);
 	                        lane.low  = TLane.low  ^ (~Tx1Lane.low  & Tx2Lane.low);
 	                    }
@@ -4083,7 +4083,7 @@
 	            // Encrypt
 	            var ciphertext = SerializableCipher.encrypt.call(this, cipher, message, derivedParams.key, cfg);
 
-	            // Sio in derived params
+	            // Mix in derived params
 	            ciphertext.mixIn(derivedParams);
 
 	            return ciphertext;
@@ -4494,7 +4494,7 @@
 	                        // Sub word
 	                        t = (SBOX[t >>> 24] << 24) | (SBOX[(t >>> 16) & 0xff] << 16) | (SBOX[(t >>> 8) & 0xff] << 8) | SBOX[t & 0xff];
 
-	                        // Sio Rcon
+	                        // Mix Rcon
 	                        t ^= RCON[(ksRow / keySize) | 0] << 24;
 	                    } else if (keySize > 6 && ksRow % keySize === 4) {
 	                        // Sub word

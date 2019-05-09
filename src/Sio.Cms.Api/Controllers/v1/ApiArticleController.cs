@@ -19,6 +19,7 @@ using System.Linq.Expressions;
 using Sio.Cms.Lib.ViewModels.SioArticles;
 using System.Web;
 using Microsoft.Extensions.Caching.Memory;
+using Sio.Cms.Lib.ViewModels;
 
 namespace Sio.Cms.Api.Controllers.v1
 {
@@ -33,12 +34,12 @@ namespace Sio.Cms.Api.Controllers.v1
 
         #region Get
 
-         // GET api/article/id
+        // GET api/article/id
         [HttpGet, HttpOptions]
         [Route("delete/{id}")]
         public async Task<RepositoryResponse<SioArticle>> DeleteAsync(int id)
         {
-            return await base.DeleteAsync<UpdateViewModel>(
+            return await base.DeleteAsync<RemoveViewModel>(
                 model => model.Id == id && model.Specificulture == _lang, true);
         }
 
@@ -58,7 +59,7 @@ namespace Sio.Cms.Api.Controllers.v1
                         var portalResult = await base.GetSingleAsync<UpdateViewModel>($"{viewType}_{id}", predicate);
                         if (portalResult.IsSucceed)
                         {
-                            portalResult.Data.DetailsUrl = SioCmsHelper.GetRouterUrl("Article", new { portalResult.Data.SeoName }, Request, Url);
+                            portalResult.Data.DetailsUrl = SioCmsHelper.GetRouterUrl("Article", new { id = portalResult.Data.Id, SeoName = portalResult.Data.SeoName }, Request, Url);
                         }
 
                         return Ok(JObject.FromObject(portalResult));
@@ -81,7 +82,7 @@ namespace Sio.Cms.Api.Controllers.v1
                         var beResult = await ReadMvcViewModel.Repository.GetSingleModelAsync(model => model.Id == id && model.Specificulture == _lang).ConfigureAwait(false);
                         if (beResult.IsSucceed)
                         {
-                            beResult.Data.DetailsUrl = SioCmsHelper.GetRouterUrl("Article", new { beResult.Data.SeoName }, Request, Url);
+                            beResult.Data.DetailsUrl = SioCmsHelper.GetRouterUrl("Article", new { id = beResult.Data.Id, beResult.Data.SeoName }, Request, Url);
                         }
                         return Ok(JObject.FromObject(beResult));
                     }
@@ -117,11 +118,38 @@ namespace Sio.Cms.Api.Controllers.v1
             {
                 model.CreatedBy = User.Claims.FirstOrDefault(c => c.Type == "Username")?.Value;
                 var result = await base.SaveAsync<UpdateViewModel>(model, true);
+                if (result.IsSucceed)
+                {
+                    if (model.Status == SioEnums.SioContentStatus.Schedule)
+                    {
+                        DateTime dtPublish = DateTime.UtcNow;
+                        if (model.PublishedDateTime.HasValue)
+                        {
+                            dtPublish = model.PublishedDateTime.Value;
+                        }
+                        SioService.SetConfig(SioConstants.ConfigurationKeyword.NextSyncContent, dtPublish);
+                        SioService.SaveSettings();
+                        SioService.Reload();
+                    }
+                }
                 return result;
             }
             return new RepositoryResponse<UpdateViewModel>() { Status = 501 };
         }
 
+        [HttpPost, HttpOptions]
+        [Route("save-list")]
+        public async Task<RepositoryResponse<List<SyncViewModel>>> SaveList([FromBody]List<SyncViewModel> models)
+        {
+            if (models != null)
+            {
+                return await base.SaveListAsync(models, true);
+            }
+            else
+            {
+                return new RepositoryResponse<List<SyncViewModel>>();
+            }
+        }
         // POST api/article
         [HttpPost, HttpOptions]
         [Route("save/{id}")]
@@ -157,13 +185,15 @@ namespace Sio.Cms.Api.Controllers.v1
             bool isPage = int.TryParse(query.Get("page_id"), out int pageId);
             bool isNotPage = int.TryParse(query.Get("not_page_id"), out int notPageId);
             bool isModule = int.TryParse(query.Get("module_id"), out int moduleId);
+            bool isNotModule = int.TryParse(query.Get("not_module_id"), out int notModuleId);
             ParseRequestPagingDate(request);
             Expression<Func<SioArticle, bool>> predicate = model =>
                         model.Specificulture == _lang
                         && (!request.Status.HasValue || model.Status == request.Status.Value)
-                        && (!isPage || model.SioPageArticle.Any(nav=>nav.CategoryId == pageId && nav.ArticleId== model.Id && nav.Specificulture == _lang))                        
-                        && (!isNotPage || !model.SioPageArticle.Any(nav=>nav.CategoryId == notPageId && nav.ArticleId== model.Id && nav.Specificulture == _lang))                        
-                        && (!isModule || model.SioModuleArticle.Any(nav=>nav.ModuleId == moduleId && nav.ArticleId== model.Id))
+                        && (!isPage || model.SioPageArticle.Any(nav => nav.CategoryId == pageId && nav.ArticleId == model.Id && nav.Specificulture == _lang))
+                        && (!isNotPage || !model.SioPageArticle.Any(nav => nav.CategoryId == notPageId && nav.ArticleId == model.Id && nav.Specificulture == _lang))
+                        && (!isModule || model.SioModuleArticle.Any(nav => nav.ModuleId == moduleId && nav.ArticleId == model.Id))
+                        && (!isNotModule || !model.SioModuleArticle.Any(nav => nav.ModuleId == notModuleId && nav.ArticleId == model.Id))
                         && (string.IsNullOrWhiteSpace(request.Keyword)
                             || (model.Title.Contains(request.Keyword)
                             || model.Excerpt.Contains(request.Keyword)))
@@ -173,7 +203,10 @@ namespace Sio.Cms.Api.Controllers.v1
                         && (!request.ToDate.HasValue
                             || (model.CreatedDateTime <= request.ToDate.Value)
                         );
-            string key = $"{request.Key}_{request.Query}_{request.PageSize}_{request.PageIndex}";
+
+            var nextSync = PublishArticles();
+            string key = $"{nextSync}_{request.Key}_{request.Query}_{request.PageSize}_{request.PageIndex}";
+
             switch (request.Key)
             {
                 case "mvc":
@@ -183,7 +216,7 @@ namespace Sio.Cms.Api.Controllers.v1
                         mvcResult.Data.Items.ForEach(a =>
                         {
                             a.DetailsUrl = SioCmsHelper.GetRouterUrl(
-                                "article", new { seoName = a.SeoName }, Request, Url);
+                                "Article", new { id = a.Id, seoName = a.SeoName }, Request, Url);
                         });
                     }
 
@@ -195,7 +228,7 @@ namespace Sio.Cms.Api.Controllers.v1
                         portalResult.Data.Items.ForEach(a =>
                         {
                             a.DetailsUrl = SioCmsHelper.GetRouterUrl(
-                                "article", new { seoName = a.SeoName }, Request, Url);
+                                "Article", new { id = a.Id, seoName = a.SeoName }, Request, Url);
                         });
                     }
 
@@ -208,7 +241,7 @@ namespace Sio.Cms.Api.Controllers.v1
                         listItemResult.Data.Items.ForEach((Action<ReadListItemViewModel>)(a =>
                         {
                             a.DetailsUrl = SioCmsHelper.GetRouterUrl(
-                                "article", new { seoName = a.SeoName }, Request, Url);                            
+                                "Article", new { id = a.Id, seoName = a.SeoName }, Request, Url);
                         }));
                     }
 
@@ -221,7 +254,7 @@ namespace Sio.Cms.Api.Controllers.v1
         public async Task<RepositoryResponse<List<ReadListItemViewModel>>> UpdateInfos([FromBody]List<ReadListItemViewModel> models)
         {
             if (models != null)
-            {                
+            {
                 return await base.SaveListAsync(models, false);
             }
             else
@@ -229,6 +262,50 @@ namespace Sio.Cms.Api.Controllers.v1
                 return new RepositoryResponse<List<ReadListItemViewModel>>();
             }
         }
+
+        [HttpPost, HttpOptions]
+        [Route("apply-list")]
+        public async Task<ActionResult<JObject>> ListActionAsync([FromBody]ListAction<int> data)
+        {
+            Expression<Func<SioArticle, bool>> predicate = model =>
+                       model.Specificulture == _lang
+                       && data.Data.Contains(model.Id);
+            var result = new RepositoryResponse<bool>();
+            switch (data.Action)
+            {
+                case "Delete":
+                    return Ok(JObject.FromObject(await base.DeleteListAsync<RemoveViewModel>(true, predicate, false)));
+                case "Export":
+                    return Ok(JObject.FromObject(await base.ExportListAsync(predicate, SioStructureType.Module)));
+                default:
+                    return JObject.FromObject(new RepositoryResponse<bool>());
+            }
+        }
         #endregion Post
+
+        DateTime? PublishArticles()
+        {
+            var nextSync = SioService.GetConfig<DateTime?>(SioConstants.ConfigurationKeyword.NextSyncContent);
+            if (nextSync.HasValue && nextSync.Value <= DateTime.UtcNow)
+            {
+                var publishedArticles = ReadListItemViewModel.Repository.GetModelListBy(
+                    a => a.Status == (int)SioContentStatus.Schedule
+                        && (!a.PublishedDateTime.HasValue || a.PublishedDateTime.Value <= DateTime.UtcNow)
+                        );
+                publishedArticles.Data.ForEach(a => a.Status = SioContentStatus.Published);
+                base.SaveList(publishedArticles.Data, false);
+                var next = ReadListItemViewModel.Repository.Min(a => a.Type == (int)SioContentStatus.Schedule,
+                            a => a.PublishedDateTime);
+                nextSync = next.Data;
+                SioService.SetConfig(SioConstants.ConfigurationKeyword.NextSyncContent, nextSync);
+                SioService.SaveSettings();
+                SioService.Reload();
+                return nextSync;
+            }
+            else
+            {
+                return nextSync;
+            }
+        }
     }
 }

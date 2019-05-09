@@ -11,13 +11,29 @@ namespace Sio.Cms.Lib.ViewModels.SioInit
         [JsonProperty("connectionString")]
         public string ConnectionString
         {
+            // If use local db  => return local db cnn string
+            // Else If use remote db 
+            // => return: if use mysql => return mysql cnn string
+            //              else return remote mssql cnn string
             get
             {
-                return IsUseLocal
-                    ? IsSqlite ? SqliteDbConnectionString : LocalDbConnectionString
+                switch (DatabaseProvider)
+                {
+                    case SioEnums.DatabaseProvider.MSSQL:
+                        return IsUseLocal
+                    ? LocalDbConnectionString
+
                     : $"Server={DataBaseServer};Database={DataBaseName}" +
                     $";UID={DataBaseUser};Pwd={DataBasePassword};MultipleActiveResultSets=true;"
                     ;
+                    case SioEnums.DatabaseProvider.MySQL:
+                        return $"Server={DataBaseServer};Database={DataBaseName}" +
+                      $";User={DataBaseUser};Password={DataBasePassword};";
+
+                    default:
+                        return string.Empty;
+                }
+
             }
         }
 
@@ -52,8 +68,11 @@ namespace Sio.Cms.Lib.ViewModels.SioInit
         [JsonProperty("lang")]
         public string Lang { get; set; }
 
-        [JsonProperty("isSqlite")]
-        public bool IsSqlite { get; set; }
+        [JsonProperty("isMysql")]
+        public bool IsMysql { get; set; }
+
+        [JsonProperty("databaseProvider")]
+        public SioEnums.DatabaseProvider DatabaseProvider { get; set; }
 
         [JsonProperty("culture")]
         public InitCulture Culture { get; set; }

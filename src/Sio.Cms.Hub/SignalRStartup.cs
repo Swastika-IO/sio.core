@@ -11,8 +11,6 @@ namespace Sio.Cms.Hub
         public void Configure(IWebHostBuilder builder)
         {
             Console.Write(builder);
-            //SioChatServiceContext context = new SioChatServiceContext();
-            //context.Database.Migrate();
         }
     }
 }

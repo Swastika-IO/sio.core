@@ -41,7 +41,7 @@ namespace Sio.Cms.Lib.ViewModels.SioModuleArticles
         public SioEnums.SioContentStatus Status { get; set; }
         #region Views
         [JsonProperty("article")]
-        public SioArticles.ReadViewModel Article { get; set; }
+        public SioArticles.ReadListItemViewModel Article { get; set; }
 
         #endregion Views
 
@@ -49,7 +49,7 @@ namespace Sio.Cms.Lib.ViewModels.SioModuleArticles
 
         public override void ExpandView(SioCmsContext _context = null, IDbContextTransaction _transaction = null)
         {
-            var getArticle = SioArticles.ReadViewModel.Repository.GetSingleModel(p => p.Id == ArticleId && p.Specificulture == Specificulture
+            var getArticle = SioArticles.ReadListItemViewModel.Repository.GetSingleModel(p => p.Id == ArticleId && p.Specificulture == Specificulture
                 , _context: _context, _transaction: _transaction
             );
             if (getArticle.IsSucceed)

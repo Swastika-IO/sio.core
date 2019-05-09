@@ -81,7 +81,7 @@ namespace Sio.Cms.Lib.ViewModels.SioTemplates
                 return CommonHelper.GetFullPath(new string[] {
                     SioConstants.Folder.FileFolder,
                     SioConstants.Folder.TemplatesAssetFolder,
-                    ThemeName });
+                     SeoHelper.GetSEOString(ThemeName) });
             }
         }
 
@@ -90,7 +90,8 @@ namespace Sio.Cms.Lib.ViewModels.SioTemplates
         {
             get
             {
-                return CommonHelper.GetFullPath(new string[] { SioConstants.Folder.TemplatesFolder, ThemeName });
+                return CommonHelper.GetFullPath(new string[] {
+                    SioConstants.Folder.TemplatesFolder, SeoHelper.GetSEOString(ThemeName) });
             }
         }
 
@@ -99,12 +100,7 @@ namespace Sio.Cms.Lib.ViewModels.SioTemplates
         {
             get
             {
-                return CommonHelper.GetFullPath(new string[]
-                {
-                    ""
-                    , TemplateFolder
-                    , FileFolder
-                });
+                return $"/{FileFolder}/{FileName}{Extension}";
             }
         }
 
@@ -147,7 +143,7 @@ namespace Sio.Cms.Lib.ViewModels.SioTemplates
             {
                 if (Id == 0)
                 {
-                    if (_context.SioTemplate.Any(t => t.FileName == FileName && t.ThemeId == ThemeId))
+                    if (_context.SioTemplate.Any(t => t.FileName == FileName && t.FolderType == FolderType && t.ThemeId == ThemeId))
                     {
                         FileName = $"{FileName}_1";
                     }
@@ -159,6 +155,7 @@ namespace Sio.Cms.Lib.ViewModels.SioTemplates
         {
             if (Id == 0)
             {
+                Id = Repository.Max(m => m.Id, _context,  _transaction).Data + 1;
                 CreatedDateTime = DateTime.UtcNow;
             }
             FileFolder = CommonHelper.GetFullPath(new string[]
@@ -285,7 +282,7 @@ namespace Sio.Cms.Lib.ViewModels.SioTemplates
             return defaulTemplate ?? new UpdateViewModel(new SioTemplate()
             {
                 ThemeId = SioService.GetConfig<int>(SioConstants.ConfigurationKeyword.ThemeId, specificulture),
-                ThemeName = SioService.GetConfig<string>(SioConstants.ConfigurationKeyword.ThemeName, specificulture),
+                ThemeName = SioService.GetConfig<string>(SioConstants.ConfigurationKeyword.ThemeFolder, specificulture),
                 FileName = SioService.GetConfig<string>(SioConstants.ConfigurationKeyword.DefaultTemplate),
                 Extension = SioService.GetConfig<string>(SioConstants.ConfigurationKeyword.TemplateExtension),
                 Content = SioService.GetConfig<string>(SioConstants.ConfigurationKeyword.DefaultTemplateContent),

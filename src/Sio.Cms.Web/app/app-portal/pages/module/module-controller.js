@@ -1,7 +1,7 @@
 'use strict';
-app.controller('ModuleController', ['$scope', '$rootScope', 'ngAppSettings', '$routeParams',
-    'ModuleService', 'ModuleDataService',
-    function ($scope, $rootScope, ngAppSettings, $routeParams, moduleServices, moduleDataService) {
+app.controller('ModuleController', ['$scope', '$rootScope', 'ngAppSettings', '$location', '$routeParams',
+    'ModuleService', 'SharedModuleDataService',
+    function ($scope, $rootScope, ngAppSettings, $location, $routeParams, moduleServices, moduleDataService) {
         BaseCtrl.call(this, $scope, $rootScope, $routeParams, ngAppSettings, moduleServices, 'product');
         $scope.contentUrl = '';
         $scope.getSingleSuccessCallback = function () {
@@ -26,7 +26,6 @@ app.controller('ModuleController', ['$scope', '$rootScope', 'ngAppSettings', '$r
         $scope.type='-1';
         
         $scope.settings = $rootScope.globalSettings;
-        //$scope.dataTypes = ngAppSettings.dataTypes;
         $scope.activedData = null;
         $scope.editDataUrl = '';
 
@@ -60,7 +59,7 @@ app.controller('ModuleController', ['$scope', '$rootScope', 'ngAppSettings', '$r
         };
 
         $scope.loadMoreModuleDatas = async function (pageIndex) {
-            $scope.request.key = $scope.activedData.id;
+            $scope.request.query = '&module_id=' + $scope.activedData.id;
             if (pageIndex !== undefined) {
                 $scope.request.pageIndex = pageIndex;
             }
@@ -86,91 +85,33 @@ app.controller('ModuleController', ['$scope', '$rootScope', 'ngAppSettings', '$r
                 $scope.$apply();
             }
         };
-        $scope.addAttr = function () {
-            if ($scope.activedData) {
-                var t = angular.copy($scope.defaultAttr);
-                $scope.activedData.columns.push(t);
+        $scope.exportModuleData = async function (pageIndex) {
+            $scope.request.query = '&module_id=' + $scope.activedData.id;
+            if (pageIndex !== undefined) {
+                $scope.request.pageIndex = pageIndex;
+            }
+            if ($scope.request.fromDate !== null) {
+                var d = new Date($scope.request.fromDate);
+                $scope.request.fromDate = d.toISOString();
+            }
+            if ($scope.request.toDate !== null) {
+                var d = new Date($scope.request.toDate);
+                $scope.request.toDate = d.toISOString();
+            }
+            $rootScope.isBusy = true;
+            var resp = await moduleDataService.exportModuleData($scope.request);
+            if (resp && resp.isSucceed) {
+                window.top.location = resp.data;
+                $rootScope.isBusy = false;
+                $scope.$apply();
+            }
+            else {
+                if (resp) { $rootScope.showErrors(resp.errors); }
+                $rootScope.isBusy = false;
+                $scope.$apply();
             }
         };
-
-        $scope.addOption = function (col, index) {
-            var val = angular.element('#option_' + index).val();
-            col.options.push(val);
-            angular.element('#option_' + index).val('');
-        };
-        $scope.generateForm = function(){
-            var formHtml = document.createElement('module-form');
-            formHtml.setAttribute('class','row');
-            formHtml.setAttribute('ng-controller','ModuleFormController');
-            formHtml.setAttribute("ng-init", "initModuleForm('"+ $scope.activedData.name + "')");
-            angular.forEach($scope.activedData.columns, function(e,i){
-                console.log(e);
-                var el;
-                var label = document.createElement('label');
-                label.setAttribute('class', 'control-label');
-                label.setAttribute('ng-bind', '{{data.title}}');
-                
-                switch(e.dataType){
-                    case 1:
-                    el = document.createElement('input');
-                    el.setAttribute('type', 'datetime-local');                                 
-                    break;
-                    
-                    case 2:
-                    el = document.createElement('input');
-                    el.setAttribute('type', 'date');                                 
-                    break;
-                    
-                    case 3:
-                    el = document.createElement('input');
-                    el.setAttribute('type', 'time');                                 
-                    break;
-
-                    case 5:
-                    el = document.createElement('input');
-                    el.setAttribute('type', 'tel');                                 
-                    break;
-                   
-                    case 6:
-                    el = document.createElement('input');
-                    el.setAttribute('type', 'number');                                 
-                    break;
-                   
-                    case 8:
-                    el = document.createElement('trumbowyg');
-                    el.setAttribute('options', '{}');                                 
-                    el.setAttribute('type', 'number');                                 
-                    break;
-                    
-                    case 9:
-                    el = document.createElement('textarea');
-                    break;
-
-                    default:
-                    el = document.createElement('input');
-                    el.setAttribute('type', 'text');
-                    formHtml.appendChild(el);
-                    break;
-                }
-                el.setAttribute('ng-model', 'data.jItem[' + e.name + '].value');
-                el.setAttribute( 'placeholder', '{{$ctrl.title}}');
-                formHtml.appendChild(label);      
-                formHtml.appendChild(el);      
-                
-            });
-            console.log(formHtml);
-            $scope.activedData.formView.content = formHtml.innerHTML;
-        };
-
-        $scope.generateName = function (col) {
-            col.name = $rootScope.generateKeyword(col.title, '_');
-        }
-        $scope.removeAttr = function (index) {
-            if ($scope.activedData) {
-
-                $scope.activedData.columns.splice(index, 1);
-            }
-        }
+        
 
         $scope.removeData = function (id) {
             if ($scope.activedData) {
@@ -216,7 +157,9 @@ app.controller('ModuleController', ['$scope', '$rootScope', 'ngAppSettings', '$r
                 $scope.$apply();
             }
         };
-
+        $scope.saveCallback = function () {
+            $location.url($scope.referrerUrl);
+        }
         $scope.loadArticles = async function () {
             $rootScope.isBusy = true;
             var id = $routeParams.id;
@@ -234,17 +177,11 @@ app.controller('ModuleController', ['$scope', '$rootScope', 'ngAppSettings', '$r
             }
         };
         $scope.selectedCol = null;
-        $scope.updateColOrders = function (index, items) {
-            items.splice(index, 1);
-            // for (var i = 0; i < items.length; i++) {
-            //     items[i].priority = ctrl.min + i;
-            // }   
-            console.log(items);         
-        };
         $scope.dragoverCallback = function (index, item, external, type) {
             //console.log('drop ', index, item, external, type);
         }
         $scope.insertColCallback = function (index, item, external, type) {
             console.log('insert ', index, item, external, type);
         }
+        
     }]);

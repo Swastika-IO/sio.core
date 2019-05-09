@@ -48,6 +48,12 @@ namespace Sio.Cms.Lib.ViewModels.SioMedias
         [JsonProperty("description")]
         public string Description { get; set; }
 
+        [JsonProperty("targetUrl")]
+        public string TargetUrl { get; set; }
+
+        [JsonProperty("source")]
+        public string Source { get; set; }
+
         [JsonProperty("tags")]
         public string Tags { get; set; }
 
@@ -74,11 +80,15 @@ namespace Sio.Cms.Lib.ViewModels.SioMedias
         {
             get
             {
-                return string.IsNullOrEmpty(FileName) ? string.Empty : CommonHelper.GetFullPath(new string[]{
-                    Domain,
-                    FileFolder,
-                    $"{FileName}{Extension}"
-                });
+                if (!string.IsNullOrEmpty(FileName) && string.IsNullOrEmpty(TargetUrl))
+                {
+                    return FileFolder.IndexOf("http") > 0 ? $"{FileFolder}/{FileName}{Extension}"
+                        : $"{Domain}/{FileFolder}/{FileName}{Extension}";
+                }
+                else
+                {
+                    return TargetUrl;
+                }
             }
         }
 
@@ -105,15 +115,18 @@ namespace Sio.Cms.Lib.ViewModels.SioMedias
 
         public override SioMedia ParseModel(SioCmsContext _context = null, IDbContextTransaction _transaction = null)
         {
-            if (Id == 0)
+            if (CreatedDateTime == default(DateTime))
             {
-                Id = UpdateViewModel.Repository.Max(c => c.Id).Data + 1;
+                Id = Id > 0 ? Id : UpdateViewModel.Repository.Max(c => c.Id).Data + 1;
                 CreatedDateTime = DateTime.UtcNow;
                 IsClone = true;
                 Cultures = Cultures ?? LoadCultures(Specificulture, _context, _transaction);
                 Cultures.ForEach(c => c.IsSupported = true);
             }
-            if (FileFolder[0] == '/') { FileFolder = FileFolder.Substring(1); }            
+            if (string.IsNullOrEmpty(TargetUrl))
+            {
+                if (FileFolder[0] == '/') { FileFolder = FileFolder.Substring(1); }
+            }
             return base.ParseModel(_context, _transaction);
         }
 
@@ -121,10 +134,11 @@ namespace Sio.Cms.Lib.ViewModels.SioMedias
         {
             if (MediaFile?.FileStream != null)
             {
-                MediaFile.Filename = SeoHelper.GetSEOString(MediaFile.Filename);
+                MediaFile.Filename = SeoHelper.GetSEOString(MediaFile.Filename) + Guid.NewGuid().ToString("N");
                 MediaFile.FileFolder = CommonHelper.GetFullPath(new[] {
-                    SioService.GetConfig<string>("UploadFolder"),
-                    DateTime.UtcNow.ToString("MM-yyyy")
+                    //SioService.GetConfig<string>("UploadFolder"),
+                    SioService.GetTemplateUploadFolder(Specificulture),
+                    DateTime.UtcNow.ToString("yyyy-MM")
                 }); ;
                 var isSaved = FileRepository.Instance.SaveWebFile(MediaFile);
                 if (isSaved)
@@ -154,15 +168,21 @@ namespace Sio.Cms.Lib.ViewModels.SioMedias
         {
             var result = new RepositoryResponse<bool>
             {
-                IsSucceed = FileRepository.Instance.DeleteFile(FileName, Extension, FileFolder)
+                IsSucceed = FileRepository.Instance.DeleteWebFile(FileName, Extension, FileFolder)
             };
+            result.IsSucceed = Repository.RemoveListModel(false, m => m.Id == Id && m.Specificulture != Specificulture, _context, _transaction).IsSucceed;
             return result;
         }
 
-        public override Task<RepositoryResponse<bool>> RemoveRelatedModelsAsync(UpdateViewModel view, SioCmsContext _context = null, IDbContextTransaction _transaction = null)
+        public override async Task<RepositoryResponse<bool>> RemoveRelatedModelsAsync(UpdateViewModel view, SioCmsContext _context = null, IDbContextTransaction _transaction = null)
         {
-            FileRepository.Instance.DeleteFile(FileName, Extension, FileFolder);
-            return base.RemoveRelatedModelsAsync(view, _context, _transaction);
+            // Remove local file
+            if (FileFolder.IndexOf("http") < 0)
+            {
+                FileRepository.Instance.DeleteWebFile(FileName, Extension, FileFolder);
+            }
+            await Repository.RemoveListModelAsync(false, m => m.Id == Id && m.Specificulture != Specificulture, _context, _transaction);
+            return await base.RemoveRelatedModelsAsync(view, _context, _transaction);
         }
 
         #endregion Overrides

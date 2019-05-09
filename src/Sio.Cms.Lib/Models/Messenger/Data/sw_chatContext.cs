@@ -35,7 +35,7 @@ namespace Sio.Cms.Messenger.Models.Data
                 //string cnn = SioService.GetConnectionString(SioConstants.CONST_CMS_CONNECTION);
                 //if (!string.IsNullOrEmpty(cnn))
                 //{
-                //    if (SioService.GetConfig<bool>("IsSqlite"))
+                //    if (SioService.GetConfig<bool>("IsMysql"))
                 //    {
                 //        optionsBuilder.UseSqlite(cnn);
                 //    }

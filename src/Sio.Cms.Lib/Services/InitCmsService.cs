@@ -12,6 +12,7 @@ using Sio.Cms.Lib.Repositories;
 using Newtonsoft.Json.Linq;
 using System.Collections.Generic;
 using Sio.Cms.Messenger.Models.Data;
+using Sio.Common.Helper;
 
 namespace Sio.Cms.Lib.Services
 {
@@ -51,81 +52,56 @@ namespace Sio.Cms.Lib.Services
                     {
                         SioService.SetConfig<string>("SiteName", siteName);
                         isSucceed = InitCultures(culture, context, transaction);
-
-                        isSucceed = isSucceed && InitPositions(context, transaction);
-
-                        isSucceed = isSucceed && await InitConfigurationsAsync(siteName, culture, context, transaction);
-                        isSucceed = isSucceed && await InitLanguagesAsync(culture, context, transaction);
-
-                        isSucceed = isSucceed && InitThemes(context, transaction);
-
-                        
+                        if (isSucceed)
+                        {
+                            isSucceed = isSucceed && InitPositions(context, transaction);
+                        }
+                        else
+                        {
+                            result.Errors.Add("Cannot init Cultures");
+                        }
+                        if (isSucceed)
+                        {
+                            isSucceed = isSucceed && await InitConfigurationsAsync(siteName, culture, context, transaction);
+                        }
+                        else
+                        {
+                            result.Errors.Add("Cannot init Positions");
+                        }
+                        if (isSucceed)
+                        {
+                            isSucceed = isSucceed && await InitLanguagesAsync(culture, context, transaction);
+                        }
+                        else
+                        {
+                            result.Errors.Add("Cannot init Configurations");
+                        }
+                        if (isSucceed)
+                        {
+                            var initTheme = await InitThemesAsync(siteName, context, transaction);
+                            isSucceed = isSucceed && initTheme.IsSucceed;
+                            result.Errors.AddRange(initTheme.Errors);
+                            result.Exception = initTheme.Exception;
+                        }
+                        else
+                        {                            
+                            result.Errors.Add("Cannot init Languages");
+                        }
                     }
                     else
                     {
                         isSucceed = true;
                     }
 
-                    if (isSucceed && context.SioPage.Count()==0)
+                    if (isSucceed && context.SioPage.Count() == 0)
                     {
-                        var cate = new SioPage()
-                        {
-                            Id = 1,
-                            Level = 0,
-                            Title = "Home",
-                            Specificulture = culture.Specificulture,
-                            Template = "Pages/_Home.cshtml",
-                            Type = (int)SioPageType.Home,
-                            CreatedBy = "Admin",
-                            CreatedDateTime = DateTime.UtcNow,
-                            Status = (int)PageStatus.Published
-                        };
-
-
-                        context.Entry(cate).State = EntityState.Added;
-                        var alias = new SioUrlAlias()
-                        {
-                            Id = 1,
-                            SourceId = "1",
-                            Type = (int)UrlAliasType.Page,
-                            Specificulture = culture.Specificulture,
-                            CreatedDateTime = DateTime.UtcNow,
-                            Alias = cate.Title.ToLower()
-                        };
-                        context.Entry(alias).State = EntityState.Added;
-
-                        var createVNHome = await context.SaveChangesAsync().ConfigureAwait(false);
-                        isSucceed = createVNHome > 0;
-
-                        var cate404 = new SioPage()
-                        {
-                            Id = 2,
-                            Title = "404",
-                            Level = 0,
-                            Specificulture = culture.Specificulture,
-                            Template = "Pages/_404.cshtml",
-                            Type = (int)SioPageType.Article,
-                            CreatedBy = "Admin",
-                            CreatedDateTime = DateTime.UtcNow,
-                            Status = (int)PageStatus.Published
-                        };
-
-                        var alias404 = new SioUrlAlias()
-                        {
-                            Id = 2,
-                            SourceId = "2",
-                            Type = (int)UrlAliasType.Page,
-                            Specificulture = culture.Specificulture,
-                            CreatedDateTime = DateTime.UtcNow,
-                            Alias = cate404.Title.ToLower()
-                        };
-                        context.Entry(cate404).State = EntityState.Added;
-                        context.Entry(alias404).State = EntityState.Added;
-
-                        var create404 = await context.SaveChangesAsync().ConfigureAwait(false);
-                        isSucceed = create404 > 0;
+                        InitPages(culture.Specificulture, context, transaction);
+                        isSucceed = (await context.SaveChangesAsync().ConfigureAwait(false)) > 0;
                     }
-
+                    else
+                    {
+                        result.Errors.Add("Cannot init Themes");
+                    }
                     if (isSucceed)
                     {
                         transaction.Commit();
@@ -153,7 +129,7 @@ namespace Sio.Cms.Lib.Services
             }
         }
 
-        
+
         private async Task<bool> InitConfigurationsAsync(string siteName, InitCulture culture, SioCmsContext context, IDbContextTransaction transaction)
         {
             /* Init Configs */
@@ -163,8 +139,10 @@ namespace Sio.Cms.Lib.Services
             if (!string.IsNullOrEmpty(siteName))
             {
                 arrConfiguration.Find(c => c.Keyword == "SiteName").Value = siteName;
+                arrConfiguration.Find(c => c.Keyword == "ThemeName").Value = Common.Helper.SeoHelper.GetSEOString(siteName);
+                arrConfiguration.Find(c => c.Keyword == "ThemeFolder").Value = Common.Helper.SeoHelper.GetSEOString(siteName);
             }
-            var result = await ViewModels.SioConfigurations.ReadMvcViewModel.ImportConfigurations(arrConfiguration, culture.Specificulture,  context, transaction);
+            var result = await ViewModels.SioConfigurations.ReadMvcViewModel.ImportConfigurations(arrConfiguration, culture.Specificulture, context, transaction);
             return result.IsSucceed;
 
         }
@@ -175,28 +153,30 @@ namespace Sio.Cms.Lib.Services
             var configurations = FileRepository.Instance.GetFile(SioConstants.CONST_FILE_LANGUAGES, "data", true, "{}");
             var obj = JObject.Parse(configurations.Content);
             var arrLanguage = obj["data"].ToObject<List<SioLanguage>>();
-            var result = await ViewModels.SioLanguages.ReadMvcViewModel.ImportLanguages(arrLanguage, culture.Specificulture,  context, transaction);
+            var result = await ViewModels.SioLanguages.ReadMvcViewModel.ImportLanguages(arrLanguage, culture.Specificulture, context, transaction);
             return result.IsSucceed;
 
         }
 
-        private bool InitThemes(SioCmsContext context, IDbContextTransaction transaction)
+        private async Task<RepositoryResponse<ViewModels.SioThemes.InitViewModel>> InitThemesAsync(string siteName, SioCmsContext context, IDbContextTransaction transaction)
         {
-            bool isSucceed = true;
-            var getThemes = ViewModels.SioThemes.UpdateViewModel.Repository.GetModelList(_context: context, _transaction: transaction);
+            var getThemes = ViewModels.SioThemes.InitViewModel.Repository.GetModelList(_context: context, _transaction: transaction);
             if (!context.SioTheme.Any())
             {
-                ViewModels.SioThemes.UpdateViewModel theme = new ViewModels.SioThemes.UpdateViewModel(new SioTheme()
+                ViewModels.SioThemes.InitViewModel theme = new ViewModels.SioThemes.InitViewModel(new SioTheme()
                 {
-                    Name = "Default",
+                    Id = 1,
+                    Title = siteName,
+                    Name = SeoHelper.GetSEOString(siteName),
+                    CreatedDateTime = DateTime.UtcNow,
                     CreatedBy = "Admin",
-                    Status = (int)SioContentStatus.Published
+                    Status = (int)SioContentStatus.Published,
                 }, context, transaction);
 
-                isSucceed = isSucceed && theme.SaveModel(true, context, transaction).IsSucceed;
+                return await theme.SaveModelAsync(true, context, transaction);
             }
 
-            return isSucceed;
+            return new RepositoryResponse<ViewModels.SioThemes.InitViewModel>() { IsSucceed = true };
         }
 
         protected bool InitCultures(InitCulture culture, SioCmsContext context, IDbContextTransaction transaction)
@@ -211,12 +191,14 @@ namespace Sio.Cms.Lib.Services
 
                     var enCulture = new SioCulture()
                     {
+                        Id = 1,
                         Specificulture = culture.Specificulture,
                         FullName = culture.FullName,
                         Description = culture.Description,
                         Icon = culture.Icon,
                         Alias = culture.Alias,
-                        Status = (int)SioEnums.SioContentStatus.Published
+                        Status = (int)SioEnums.SioContentStatus.Published,
+                        CreatedDateTime = DateTime.UtcNow
                     };
                     context.Entry(enCulture).State = EntityState.Added;
 
@@ -238,21 +220,25 @@ namespace Sio.Cms.Lib.Services
             {
                 var p = new SioPosition()
                 {
+                    Id = 1,
                     Description = nameof(SioEnums.CatePosition.Nav)
                 };
                 context.Entry(p).State = EntityState.Added;
                 p = new SioPosition()
                 {
+                    Id = 2,
                     Description = nameof(SioEnums.CatePosition.Top)
                 };
                 context.Entry(p).State = EntityState.Added;
                 p = new SioPosition()
                 {
+                    Id = 3,
                     Description = nameof(SioEnums.CatePosition.Left)
                 };
                 context.Entry(p).State = EntityState.Added;
                 p = new SioPosition()
                 {
+                    Id = 4,
                     Description = nameof(SioEnums.CatePosition.Footer)
                 };
                 context.Entry(p).State = EntityState.Added;
@@ -262,5 +248,34 @@ namespace Sio.Cms.Lib.Services
             return isSucceed;
         }
 
+        protected void InitPages(string culture, SioCmsContext context, IDbContextTransaction transaction)
+        {
+            /* Init Languages */
+            var pages = FileRepository.Instance.GetFile(SioConstants.CONST_FILE_PAGES, "data", true, "{}");
+            var obj = JObject.Parse(pages.Content);
+            var arrPage = obj["data"].ToObject<List<SioPage>>();
+            foreach (var page in arrPage)
+            {
+                page.Specificulture = culture;
+                page.SeoTitle = page.Title.ToLower();
+                page.SeoName = SeoHelper.GetSEOString(page.Title);
+                page.SeoDescription = page.Title.ToLower();
+                page.SeoKeywords = page.Title.ToLower();
+                page.CreatedDateTime = DateTime.UtcNow;
+                page.CreatedBy = "SuperAdmin";
+                context.Entry(page).State = EntityState.Added;
+                var alias = new SioUrlAlias()
+                {
+                    Id = page.Id,
+                    SourceId = page.Id.ToString(),
+                    Type = (int)UrlAliasType.Page,
+                    Specificulture = culture,
+                    CreatedDateTime = DateTime.UtcNow,
+                    Alias = page.Title.ToLower(),
+                    Status = (int)SioContentStatus.Published
+                };
+                context.Entry(alias).State = EntityState.Added;
+            }
+        }
     }
 }

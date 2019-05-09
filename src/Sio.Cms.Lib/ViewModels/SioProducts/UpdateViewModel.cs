@@ -172,11 +172,11 @@ namespace Sio.Cms.Lib.ViewModels.SioProducts
         public List<SioTemplates.UpdateViewModel> Templates { get; set; }// Product Templates
 
         [JsonIgnore]
-        public string ActivedTheme
+        public int ActivedTheme
         {
             get
             {
-                return SioService.GetConfig<string>(SioConstants.ConfigurationKeyword.ThemeName, Specificulture) ?? SioService.GetConfig<string>("DefaultTemplateFolder");
+                return SioService.GetConfig<int>(SioConstants.ConfigurationKeyword.ThemeId, Specificulture);
             }
         }
 
@@ -197,7 +197,7 @@ namespace Sio.Cms.Lib.ViewModels.SioProducts
                 return CommonHelper.GetFullPath(new string[]
                 {
                     SioConstants.Folder.TemplatesFolder
-                    , ActivedTheme
+                    , SioService.GetConfig<string>(SioConstants.ConfigurationKeyword.ThemeName, Specificulture)
                     , TemplateFolderType
                 }
             );
@@ -289,7 +289,7 @@ namespace Sio.Cms.Lib.ViewModels.SioProducts
 
             //Get Templates
             this.Templates = this.Templates ?? SioTemplates.UpdateViewModel.Repository.GetModelListBy(
-                t => t.Theme.Name == ActivedTheme && t.FolderType == this.TemplateFolderType).Data;
+                t => t.Theme.Id == ActivedTheme && t.FolderType == this.TemplateFolderType).Data;
             View = SioTemplates.UpdateViewModel.GetTemplateByPath(Template, Specificulture, SioEnums.EnumTemplateFolder.Products, _context, _transaction);
 
             this.View = View ?? Templates.FirstOrDefault();
@@ -326,7 +326,7 @@ namespace Sio.Cms.Lib.ViewModels.SioProducts
             if (Properties != null && Properties.Count > 0)
             {
                 JArray arrProperties = new JArray();
-                foreach (var p in Properties.Where(p => !string.IsNullOrEmpty(p.Value) && !string.IsNullOrEmpty(p.Name)).OrderBy(p => p.Priority))
+                foreach (var p in Properties.Where(p => !string.IsNullOrEmpty(p.Value) && !string.IsNullOrEmpty(p.Name)))
                 {
                     arrProperties.Add(JObject.FromObject(p));
                 }

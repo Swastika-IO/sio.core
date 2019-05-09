@@ -60,6 +60,9 @@ namespace Sio.Cms.Lib.ViewModels.SioArticles
         [JsonProperty("createdDateTime")]
         public DateTime CreatedDateTime { get; set; }
 
+        [JsonProperty("publishedDateTime")]
+        public DateTime? PublishedDateTime { get; set; }
+
         [JsonProperty("createdBy")]
         public string CreatedBy { get; set; }
 

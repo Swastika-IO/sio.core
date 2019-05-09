@@ -1,4 +1,7 @@
 /* GENERAL STYLE */
+html, body{
+    height: 100%;
+}
 body {
     color: #212529!important;
 }

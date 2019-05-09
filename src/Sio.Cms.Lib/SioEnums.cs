@@ -7,6 +7,13 @@ namespace Sio.Cms.Lib
     public class SioEnums
     {
         #region Common
+
+        public enum DatabaseProvider
+        {
+            MSSQL = 1,
+            MySQL = 2
+        }
+
         public enum CatePosition
         {
             Nav = 1,
@@ -97,7 +104,8 @@ namespace Sio.Cms.Lib
             Home = 3,
             StaticUrl = 4,
             Modules = 5,
-            ListProduct = 6
+            ListProduct = 6,
+            Gallery = 7
         }
 
         public enum SioModuleType
@@ -108,7 +116,8 @@ namespace Sio.Cms.Lib
             SubPage = 3,
             SubArticle = 4,
             SubProduct = 5,
-            ListProduct = 6,            
+            ListProduct = 6,
+            Gallery = 7
         }
 
         public enum SioDataType
@@ -199,6 +208,13 @@ namespace Sio.Cms.Lib
             Article,
             Module,
             Page
+        }
+
+        public enum SioStructureType
+        {
+            Page,
+            Module,
+            Post
         }
         #endregion
 

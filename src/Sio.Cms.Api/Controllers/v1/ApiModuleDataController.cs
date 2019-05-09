@@ -13,6 +13,10 @@ using Sio.Cms.Lib.ViewModels.SioModuleDatas;
 using Microsoft.Extensions.Caching.Memory;
 using Newtonsoft.Json.Linq;
 using System.Web;
+using Microsoft.AspNetCore.Authorization;
+using Sio.Common.Helper;
+using Sio.Cms.Lib.Services;
+using static Sio.Cms.Lib.SioEnums;
 
 namespace Sio.Cms.Api.Controllers.v1
 {
@@ -26,6 +30,7 @@ namespace Sio.Cms.Api.Controllers.v1
         }
 
         // GET api/module-data/id
+        [AllowAnonymous]
         [HttpGet, HttpOptions]
         [Route("details/{viewType}/{moduleId}/{id}")]
         [Route("details/{viewType}/{moduleId}")]
@@ -44,7 +49,8 @@ namespace Sio.Cms.Api.Controllers.v1
                     {
                         ModuleId = moduleId,
                         Specificulture = _lang,
-                        Fields = getModule.Data.Fields
+                        Fields = getModule.Data.Fields,
+                        Status = SioService.GetConfig<int>("DefaultContentStatus")
                     };
                     RepositoryResponse<UpdateViewModel> result = await base.GetSingleAsync<UpdateViewModel>($"{viewType}_default", null, model);
 
@@ -106,6 +112,7 @@ namespace Sio.Cms.Api.Controllers.v1
         }
 
         // GET api/module-data/create/id
+        [AllowAnonymous]
         [HttpGet, HttpOptions]
         [Route("init-by-name/{moduleName}")]
         public async Task<RepositoryResponse<UpdateViewModel>> InitViewAsync(string moduleName)
@@ -114,7 +121,7 @@ namespace Sio.Cms.Api.Controllers.v1
                 m => m.Name == moduleName && m.Specificulture == _lang).ConfigureAwait(false);
             if (getModule.IsSucceed)
             {
-                var ModuleData = new UpdateViewModel(
+                var moduleData = new UpdateViewModel(
                     new SioModuleData()
                     {
                         ModuleId = getModule.Data.Id,
@@ -124,8 +131,43 @@ namespace Sio.Cms.Api.Controllers.v1
                 return new RepositoryResponse<UpdateViewModel>()
                 {
                     IsSucceed = true,
-                    Data = ModuleData
+                    Data = moduleData
                 };
+            }
+            else
+            {
+                return new RepositoryResponse<UpdateViewModel>()
+                {
+                    IsSucceed = false,
+                    Data = null,
+                    Exception = getModule.Exception,
+                    Errors = getModule.Errors
+                };
+            }
+        }
+        
+        // GET api/module-data/create/id
+        [AllowAnonymous]
+        [HttpPost, HttpOptions]
+        [Route("save/{moduleName}")]
+        public async Task<RepositoryResponse<UpdateViewModel>> SaveByName(string moduleName, [FromBody] JObject data)
+        {
+            var getModule = await Lib.ViewModels.SioModules.ReadListItemViewModel.Repository.GetSingleModelAsync(
+                m => m.Name == moduleName && m.Specificulture == _lang).ConfigureAwait(false);
+            if (getModule.IsSucceed)
+            {
+                var moduleData = new UpdateViewModel(
+                    new SioModuleData()
+                    {
+                        ModuleId = getModule.Data.Id,
+                        Specificulture = _lang,
+                        Fields = getModule.Data.Fields
+                    });
+                foreach (var item in moduleData.DataProperties)
+                {
+                    moduleData.JItem[item.Name]["value"] = data[item.Name]?.Value<string>();
+                }
+                return await moduleData.SaveModelAsync();
             }
             else
             {
@@ -140,7 +182,8 @@ namespace Sio.Cms.Api.Controllers.v1
         }
 
         // GET api/module-data/create/id
-        [HttpGet, HttpOptions]
+        [AllowAnonymous]
+        [HttpGet, HttpOptions]        
         [Route("init/{moduleId}")]
         public async Task<RepositoryResponse<UpdateViewModel>> InitByIdAsync(int moduleId)
         {
@@ -184,7 +227,7 @@ namespace Sio.Cms.Api.Controllers.v1
         #region Post
 
         // POST api/moduleData
-
+        [AllowAnonymous]
         [HttpPost, HttpOptions]
         [Route("save")]
         public async Task<RepositoryResponse<UpdateViewModel>> Post([FromBody]UpdateViewModel data)
@@ -193,6 +236,43 @@ namespace Sio.Cms.Api.Controllers.v1
         }
 
         // GET api/moduleData
+        [AllowAnonymous]
+        [HttpPost, HttpOptions]
+        [Route("export")]
+        public async Task<ActionResult<RepositoryResponse<PaginationModel<ReadViewModel>>>> ExportData(
+            [FromBody] RequestPaging request)
+        {
+            var query = HttpUtility.ParseQueryString(request.Query ?? "");
+            int.TryParse(query.Get("module_id"), out int moduleId);
+            int.TryParse(query.Get("article_id"), out int articleId);
+            int.TryParse(query.Get("product_id"), out int productId);
+            int.TryParse(query.Get("category_id"), out int categoryId);
+            string key = $"{request.Key}_{request.PageSize}_{request.PageIndex}";
+            Expression<Func<SioModuleData, bool>> predicate = model =>
+                model.Specificulture == _lang
+                && model.ModuleId == moduleId
+                && (articleId == 0 || model.ArticleId == articleId)
+                && (productId == 0 || model.ProductId == productId)
+                && (categoryId == 0 || model.CategoryId == categoryId)
+                && (!request.FromDate.HasValue
+                    || (model.CreatedDateTime >= request.FromDate.Value.ToUniversalTime())
+                )
+                && (!request.ToDate.HasValue
+                    || (model.CreatedDateTime <= request.ToDate.Value.ToUniversalTime())
+                )
+                    ;
+            var portalResult = await base.GetListAsync<ReadViewModel>(key, request, predicate);
+            foreach (var item in portalResult.Data.Items)
+            {
+                portalResult.Data.JsonItems.Add(item.JItem);
+            }
+            string exportPath = $"Exports/Module/{moduleId}";
+            var result = CommonHelper.ExportJObjectToExcel(portalResult.Data.JsonItems, string.Empty, exportPath, moduleId.ToString(), null);
+            return Ok(JObject.FromObject(result));
+        }
+
+        // GET api/moduleData
+        [AllowAnonymous]
         [HttpPost, HttpOptions]
         [Route("list")]
         public async Task<ActionResult<RepositoryResponse<PaginationModel<ReadViewModel>>>> GetList(

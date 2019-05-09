@@ -18,10 +18,10 @@ app.component('mediaNavs', {
         ctrl.medias = [];
         ctrl.activeMedia = function (media) {
             var currentItem = null;
-            if (ctrl.mediaNavs === null) {
-                ctrl.mediaNavs = [];
+            if (ctrl.data === null || ctrl.isSingle) {
+                ctrl.data = [];
             }
-            $.each(ctrl.mediaNavs, function (i, e) {
+            $.each(ctrl.data, function (i, e) {
                 if (e.mediaId === media.id) {
                     e.isActived = media.isActived;
                     currentItem = e;
@@ -36,14 +36,26 @@ app.component('mediaNavs', {
                     product: ctrl.id,
                     specificulture: media.specificulture,
                     position: 0,
-                    priority: ctrl.mediaNavs.length + 1,
+                    priority: ctrl.data.length + 1,
                     isActived: true
                 };
-                ctrl.mediaNavs.push(currentItem);
+                ctrl.data.push(currentItem);
+            }
+            if(ctrl.isSingle){
+                if(!media.isActived){
+                    ctrl.output = '';
+                    ctrl.data = [];
+                }
+                else{
+                    ctrl.output = ctrl.data[0].image;
+                    ctrl.loadMedias(ctrl.request.pageIndex);
+                }
             }
         };
         ctrl.loadMedias = async function (pageIndex) {
-            
+            if(!ctrl.prefix){
+                ctrl.prefix = 'media_navs';
+            }
             if (pageIndex !== undefined) {
                 ctrl.request.pageIndex = pageIndex;
             }
@@ -59,28 +71,29 @@ app.component('mediaNavs', {
                 var resp = await mediaService.getList(ctrl.request);
                 if (resp && resp.isSucceed) {
                     ctrl.medias = resp.data;
-                    if (ctrl.mediaNavs) {
+                    if (ctrl.data) {
                         angular.forEach(ctrl.medias.items, function (value, key) {
-                            var temp = ctrl.mediaNavs.filter(function (item) {
+                            var temp = ctrl.data.filter(function (item) {
                                 return item.mediaId === value.id;
                             })[0];
                             value.isActived = temp !== undefined;
                         });
                     }
                     $rootScope.isBusy = false;
-                    $scope.$apply();
                 }
                 else {
                     if (resp) { $rootScope.showErrors(resp.errors); }
                     $rootScope.isBusy = false;
-                    $scope.$apply();
                 }
             }
         };
     }],
     bindings: {
-        mediaNavs: '=',
-        sourceFieldName:'=',
+        data: '=',
+        prefix: '=',
+        sourceFieldName:'=',        
+        isSingle: '=',
+        output: '=',
         loadMedia: '&',
         onDelete: '&',
         onUpdate: '&'

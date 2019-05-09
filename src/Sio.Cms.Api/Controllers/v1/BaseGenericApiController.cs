@@ -1,3 +1,5 @@
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Filters;
@@ -6,7 +8,11 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Caching.Memory;
 using Sio.Cms.Hub;
 using Sio.Cms.Lib;
+using Sio.Cms.Lib.Helpers;
+using Sio.Cms.Lib.Repositories;
 using Sio.Cms.Lib.Services;
+using Sio.Cms.Lib.ViewModels;
+using Sio.Common.Helper;
 using Sio.Domain.Core.ViewModels;
 using Sio.Domain.Data.Repository;
 using Sio.Domain.Data.ViewModels;
@@ -16,9 +22,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
 using System.Threading.Tasks;
+using static Sio.Cms.Lib.SioEnums;
 
 namespace Sio.Cms.Api.Controllers.v1
 {
+    [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme, Roles = "SuperAdmin, Admin")]
     public class BaseGenericApiController<TDbContext, TModel> : Controller
         where TDbContext : DbContext
         where TModel : class
@@ -31,6 +39,21 @@ namespace Sio.Cms.Api.Controllers.v1
         /// The language
         /// </summary>
         protected string _lang;
+
+        protected bool _forbidden = false;
+        protected bool _forbiddenPortal
+        {
+            get
+            {
+                var allowedIps = SioService.GetIpConfig<JArray>("AllowedPortalIps") ?? new JArray();
+                string remoteIp = Request.HttpContext?.Connection?.RemoteIpAddress?.ToString();
+                return _forbidden || (
+                    // allow localhost
+                    //remoteIp != "::1" &&
+                    (allowedIps != null && !allowedIps.Any(t => t.Value<string>() == "*") && !allowedIps.Contains(remoteIp))
+                );
+            }
+        }
 
         /// <summary>
         /// The domain
@@ -49,6 +72,7 @@ namespace Sio.Cms.Api.Controllers.v1
             _memoryCache = memoryCache;
         }
 
+
         #region Overrides
 
         /// <summary>
@@ -59,6 +83,21 @@ namespace Sio.Cms.Api.Controllers.v1
         {
             GetLanguage();
             AlertAsync("Executing request", 200);
+            if (SioService.GetIpConfig<bool>("IsRetrictIp"))
+            {
+                var allowedIps = SioService.GetIpConfig<JArray>("AllowedIps") ?? new JArray();
+                var exceptIps = SioService.GetIpConfig<JArray>("ExceptIps") ?? new JArray();
+                string remoteIp = Request.HttpContext?.Connection?.RemoteIpAddress?.ToString();
+                if (
+                    // allow localhost
+                    //remoteIp != "::1" &&
+                    (!allowedIps.Any(t => t.Value<string>() == "*") && !allowedIps.Contains(remoteIp)) ||
+                    (exceptIps.Any(t => t.Value<string>() == remoteIp))
+                    )
+                {
+                    _forbidden = true;
+                }
+            }
             base.OnActionExecuting(context);
         }
 
@@ -101,7 +140,6 @@ namespace Sio.Cms.Api.Controllers.v1
         protected async Task<RepositoryResponse<TModel>> DeleteAsync<TView>(Expression<Func<TModel, bool>> predicate, bool isDeleteRelated = false)
             where TView : ViewModelBase<TDbContext, TModel, TView>
         {
-            var getPage = new RepositoryResponse<Lib.ViewModels.SioPages.ReadMvcViewModel>();
             var data = await DefaultRepository<TDbContext, TModel, TView>.Instance.GetSingleModelAsync(predicate);
             if (data.IsSucceed)
             {
@@ -111,11 +149,52 @@ namespace Sio.Cms.Api.Controllers.v1
             return new RepositoryResponse<TModel>() { IsSucceed = false };
         }
 
+        protected async Task<RepositoryResponse<List<TModel>>> DeleteListAsync<TView>(bool isRemoveRelatedModel, Expression<Func<TModel, bool>> predicate, bool isDeleteRelated = false)
+            where TView : ViewModelBase<TDbContext, TModel, TView>
+        {
+            var data = await DefaultRepository<TDbContext, TModel, TView>.Instance.RemoveListModelAsync(isRemoveRelatedModel, predicate);
+            if (data.IsSucceed)
+            {
+                RemoveCache();
+
+            }
+            return data;
+        }
+
+
+        protected async Task<RepositoryResponse<FileViewModel>> ExportListAsync(Expression<Func<TModel, bool>> predicate, SioStructureType type)
+        {
+            var getData = await DefaultModelRepository<TDbContext, TModel>.Instance.GetModelListByAsync(predicate);
+            if (getData.IsSucceed)
+            {
+                string exportPath = $"Exports/Structures/{typeof(TModel).Name}/{_lang}";
+                string filename = $"{type.ToString()}_{DateTime.UtcNow.ToString("ddMMyyyy")}";
+                var objContent = new JObject(
+                    new JProperty("type", type.ToString()),
+                    new JProperty("data", JArray.FromObject(getData.Data))
+                    );
+                var file = new FileViewModel()
+                {
+                    Filename = filename,
+                    Extension = ".json",
+                    FileFolder = exportPath,
+                    Content = objContent.ToString()
+                };
+                // Copy current templates file
+                FileRepository.Instance.SaveWebFile(file);
+                return new RepositoryResponse<FileViewModel>()
+                {
+                    IsSucceed = true,
+                    Data = file,
+                };
+            }
+            return new RepositoryResponse<FileViewModel>();
+        }
         protected async Task<RepositoryResponse<PaginationModel<TView>>> GetListAsync<TView>(string key, RequestPaging request, Expression<Func<TModel, bool>> predicate = null, TModel model = null)
             where TView : ViewModelBase<TDbContext, TModel, TView>
         {
             var getData = new RepositoryResponse<Lib.ViewModels.SioPages.ReadMvcViewModel>();
-            var cacheKey = $"{typeof(TModel).Name}_list_{_lang}_{key}_{request.Status}_{request.Keyword}_{request.OrderBy}_{request.Direction}_{request.PageSize}_{request.PageIndex}";
+            var cacheKey = $"{typeof(TModel).Name}_list_{_lang}_{key}_{request.Status}_{request.Keyword}_{request.OrderBy}_{request.Direction}_{request.PageSize}_{request.PageIndex}_{request.Query}";
             var data = _memoryCache.Get<RepositoryResponse<PaginationModel<TView>>>(cacheKey);
             if (data == null)
             {
@@ -152,18 +231,29 @@ namespace Sio.Cms.Api.Controllers.v1
             }
             return new RepositoryResponse<TView>();
         }
-        
+
         protected async Task<RepositoryResponse<List<TView>>> SaveListAsync<TView>(List<TView> lstVm, bool isSaveSubModel)
             where TView : ViewModelBase<TDbContext, TModel, TView>
         {
-            var result= new RepositoryResponse<List<TView>>(){ IsSucceed = true};
+            var result = await DefaultRepository<TDbContext, TModel, TView>.Instance.SaveListModelAsync(lstVm, isSaveSubModel);
+            if (result.IsSucceed)
+            {
+                RemoveCache();
+            }
+            return result;
+        }
+        protected RepositoryResponse<List<TView>> SaveList<TView>(List<TView> lstVm, bool isSaveSubModel)
+            where TView : ViewModelBase<TDbContext, TModel, TView>
+        {
+            var result = new RepositoryResponse<List<TView>>() { IsSucceed = true };
             if (lstVm != null)
             {
                 foreach (var vm in lstVm)
                 {
-                    var tmp = await vm.SaveModelAsync(isSaveSubModel).ConfigureAwait(false);                    
-                    result.IsSucceed = result.IsSucceed&& tmp.IsSucceed;
-                    if(!tmp.IsSucceed){
+                    var tmp = vm.SaveModel(isSaveSubModel);
+                    result.IsSucceed = result.IsSucceed && tmp.IsSucceed;
+                    if (!tmp.IsSucceed)
+                    {
                         result.Exception = tmp.Exception;
                         result.Errors.AddRange(tmp.Errors);
                     }
@@ -176,17 +266,17 @@ namespace Sio.Cms.Api.Controllers.v1
 
         public JObject SaveEncrypt([FromBody] RequestEncrypted request)
         {
-            var key = Convert.FromBase64String(request.Key); //Encoding.UTF8.GetBytes(request.Key);
-            var iv = Convert.FromBase64String(request.IV); //Encoding.UTF8.GetBytes(request.IV);
+            //var key = Convert.FromBase64String(request.Key); //Encoding.UTF8.GetBytes(request.Key);
+            //var iv = Convert.FromBase64String(request.IV); //Encoding.UTF8.GetBytes(request.IV);
             string encrypted = string.Empty;
             string decrypt = string.Empty;
             if (!string.IsNullOrEmpty(request.PlainText))
             {
-                encrypted = SioService.EncryptStringToBytes_Aes(request.PlainText, key, iv).ToString();
+                encrypted = AesEncryptionHelper.EncryptStringToBytes_Aes(new JObject()).ToString();
             }
             if (!string.IsNullOrEmpty(request.Encrypted))
             {
-                decrypt = SioService.DecryptStringFromBytes_Aes(request.Encrypted, key, iv);
+                //decrypt = SioService.DecryptStringFromBytes_Aes(request.Encrypted, request.Key, request.IV);
             }
             JObject data = new JObject(
                 new JProperty("key", request.Key),
@@ -211,7 +301,7 @@ namespace Sio.Cms.Api.Controllers.v1
                 {
                     new JProperty("created_at", DateTime.UtcNow),
                     new JProperty("ip_address", Request.HttpContext.Connection.RemoteIpAddress.ToString()),
-                    new JProperty("user", User.Identity?.Name?? User.Claims.SingleOrDefault(c=>c.Subject.Name == "Username")?.Value),
+                    new JProperty("user", User.Identity?.Name?? User.Claims.SingleOrDefault(c=>c.Type == "Username")?.Value),
                     new JProperty("request_url", Request.Path.Value),
                     new JProperty("action", action),
                     new JProperty("status", status),

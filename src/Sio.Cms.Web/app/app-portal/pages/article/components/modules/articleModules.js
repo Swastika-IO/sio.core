@@ -1,7 +1,7 @@
 
 app.component('articleModules', {
     templateUrl: '/app/app-portal/pages/article/components/modules/articleModules.html',
-    controller: ['$rootScope', '$scope', 'ngAppSettings', 'ModuleDataService',
+    controller: ['$rootScope', '$scope', 'ngAppSettings', 'SharedModuleDataService',
         function ($rootScope, $scope, ngAppSettings, moduleDataService) {
             var ctrl = this;
             ctrl.request = angular.copy(ngAppSettings.request);
@@ -39,7 +39,7 @@ app.component('articleModules', {
                 }
                 var response = await moduleDataService.getModuleDatas(request);
                 if (response.isSucceed) {
-                    var nav = findObjectByKey(ctrl.article.moduleNavs, 'moduleId', id);
+                    var nav = $rootScope.findObjectByKey(ctrl.article.moduleNavs, 'moduleId', id);
                     if (nav) {
                         nav.module.data = response.data;
                     }

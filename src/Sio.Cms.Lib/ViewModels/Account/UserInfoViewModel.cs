@@ -9,6 +9,7 @@ using Newtonsoft.Json;
 using Sio.Cms.Lib.ViewModels.Account;
 using System;
 using System.Collections.Generic;
+using Sio.Identity.Models.AccountViewModels;
 
 namespace Sio.Cms.Lib.ViewModels.Account
 {
@@ -76,6 +77,15 @@ namespace Sio.Cms.Lib.ViewModels.Account
         }
         [JsonProperty("mediaFile")]
         public FileViewModel MediaFile { get; set; } = new FileViewModel();
+
+        [JsonProperty("resetPassword")]
+        public ResetPasswordViewModel ResetPassword { get; set; }
+
+        [JsonProperty("isChangePassword")]
+        public bool IsChangePassword { get; set; }
+
+        [JsonProperty("changePassword")]
+        public ChangePasswordViewModel ChangePassword { get; set; }
         #endregion
 
         #endregion
@@ -112,13 +122,14 @@ namespace Sio.Cms.Lib.ViewModels.Account
                     IsValid = false;
                 }
 
-            }
+            }            
             return base.ParseModel(_context, _transaction);
         }
 
         public override void ExpandView(SioCmsContext _context = null, IDbContextTransaction _transaction = null)
         {
             UserRoles = UserRoleViewModel.Repository.GetModelListBy(ur => ur.UserId == Id).Data;
+            ResetPassword = new ResetPasswordViewModel();
         }
 
         #endregion
@@ -126,5 +137,10 @@ namespace Sio.Cms.Lib.ViewModels.Account
         #region Expands
 
         #endregion
+    }
+    public class ChangePasswordViewModel
+    {
+        public string CurrentPassword { get; set; }
+        public string NewPassword { get; set; }
     }
 }

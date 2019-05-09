@@ -71,18 +71,8 @@ namespace Sio.Cms.Lib.Repositories
 
         public FileViewModel GetWebFile(string filename, string folder)
         {
-            string fullPath = CommonHelper.GetFullPath(new string[]
-            {
-                SioConstants.Folder.WebRootPath,
-                folder,
-                filename
-            });
-            string folderPath = CommonHelper.GetFullPath(new string[]
-            {
-                SioConstants.Folder.WebRootPath,
-                SioConstants.Folder.FileFolder,
-                folder
-            });
+            string fullPath = $"{SioConstants.Folder.WebRootPath}/{folder}/{filename}";
+            string folderPath = $"{SioConstants.Folder.WebRootPath}/{SioConstants.Folder.FileFolder}/{folder}";
             FileInfo file = new FileInfo(fullPath);
             FileViewModel result = null;
             try
@@ -222,6 +212,7 @@ namespace Sio.Cms.Lib.Repositories
                     Extension = ext,
                     Content = defaultContent
                 };
+                SaveFile(result);
             }
 
             return result ?? new FileViewModel() { FileFolder = FileFolder };
@@ -252,6 +243,18 @@ namespace Sio.Cms.Lib.Repositories
             return true;
         }
 
+        public bool DeleteWebFile(string name, string extension, string FileFolder)
+        {
+            string fullPath = string.Format(@"{0}/{1}/{2}{3}", SioConstants.Folder.WebRootPath, FileFolder, name, extension);
+
+            if (File.Exists(fullPath))
+            {
+                CommonHelper.RemoveFile(fullPath);
+            }
+            return true;
+        }
+
+
         public bool DeleteFile(string fullPath)
         {
             if (File.Exists(fullPath))
@@ -280,7 +283,7 @@ namespace Sio.Cms.Lib.Repositories
 
         public bool CopyDirectory(string srcPath, string desPath)
         {
-            if (srcPath.ToLower() != desPath.ToLower())
+            if (srcPath.ToLower() != desPath.ToLower() && Directory.Exists(srcPath))
             {
                 //Now Create all of the directories
                 foreach (string dirPath in Directory.GetDirectories(srcPath, "*", SearchOption.AllDirectories))
@@ -636,7 +639,7 @@ namespace Sio.Cms.Lib.Repositories
             }
         }
 
-        public string SaveWebFile(IFormFile file, string folder)
+        public FileViewModel SaveWebFile(IFormFile file, string folder)
         {
             try
             {
@@ -644,11 +647,17 @@ namespace Sio.Cms.Lib.Repositories
                     SioConstants.Folder.WebRootPath,
                     folder
                 });
-                return SaveFile(file, fullPath);
+                string filename = SaveFile(file, fullPath);
+                return new FileViewModel()
+                {
+                    Filename = file.FileName.Substring(0, file.FileName.LastIndexOf('.')),
+                    Extension = file.FileName.Substring(file.FileName.LastIndexOf('.')),
+                    FileFolder = folder
+                };
             }
             catch
             {
-                return string.Empty;
+                return null;
             }
         }
 
@@ -697,24 +706,24 @@ namespace Sio.Cms.Lib.Repositories
             }
         }
 
-        public string ZipFolder(string srcFolder, string fileName)
+        public string ZipFolder(string tmpPath, string outputPath, string fileName)
         {
             try
             {
-                string tmpPath = $"{SioConstants.Folder.WebRootPath}/{srcFolder}/tmp";
-                string outputFile = $"{srcFolder}/{fileName}.zip";
-                string outputFilePath = $"{SioConstants.Folder.WebRootPath}/{outputFile}";
+                //string tmpPath = $"wwwroot/Exports/temp/{fileName}-{DateTime.UtcNow.ToShortDateString()}";
+                string outputFile = $"wwwroot/{outputPath}/{fileName}.zip";
+                string outputFilePath = $"{outputPath}/{fileName}.zip";
 
-                if (Directory.Exists(srcFolder))
+                if (Directory.Exists(tmpPath))
                 {
-                    CopyDirectory(srcFolder, tmpPath);
-                    if (File.Exists(outputFilePath))
+                    //CopyDirectory(srcFolder, tmpPath);
+                    if (File.Exists(outputFile))
                     {
-                        File.Delete(outputFilePath);
+                        File.Delete(outputFile);
                     }
-                    ZipFile.CreateFromDirectory(tmpPath, outputFilePath);
+                    ZipFile.CreateFromDirectory(tmpPath, outputFile);
                     DeleteFolder(tmpPath);
-                    return outputFile;
+                    return outputFilePath;
                 }
                 else
                 {

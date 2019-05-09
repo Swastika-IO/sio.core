@@ -4,6 +4,10 @@ app.controller('Step1Controller', ['$scope', '$rootScope', 'ngAppSettings', '$ti
     function ($scope, $rootScope, ngAppSettings, $timeout, $location, $http, commonService, step1Services) {
         var rand = Math.random();
         $scope.settings = {
+            providers: [
+                { text: 'Microsoft SQL Server', value: 'MSSQL', img: '/assets/img/mssql.jpg' },
+                { text: 'MySQL Server', value: 'MySQL', img: '/assets/img/mysql.jpg' }
+            ],
             cultures: [
                 { specificulture: 'en-us', fullName: 'United States - English (Default)', icon: 'flag-icon-us' },
                 { specificulture: 'fr-dz', fullName: 'Algeria - Français', icon: 'flag-icon-dz' },
@@ -40,6 +44,7 @@ app.controller('Step1Controller', ['$scope', '$rootScope', 'ngAppSettings', '$ti
                 { specificulture: 'en-ie', fullName: 'Ireland - English', icon: 'flag-icon-ie' },
                 { specificulture: 'is-is', fullName: 'Ísland - Íslenska', icon: 'flag-icon-is' },
                 { specificulture: 'it-it', fullName: 'Italia - Italiano', icon: 'flag-icon-it' },
+                { specificulture: 'ja-jp', fullName: 'Japanese - ???', icon: 'flag-icon-jp' },
                 { specificulture: 'en-jo', fullName: 'Jordan - English', icon: 'flag-icon-jo' },
                 { specificulture: 'lv-lv', fullName: 'Latvija - Latviešu', icon: 'flag-icon-lv' },
                 { specificulture: 'en-lb', fullName: 'Lebanon - English', icon: 'flag-icon-lb' },
@@ -105,23 +110,31 @@ app.controller('Step1Controller', ['$scope', '$rootScope', 'ngAppSettings', '$ti
 
             ]
         };
+        $scope.loadSettings = function () {
+            step1Services.saveDefaultSettings();
+            $scope.dbProvider = $scope.settings.providers[0];
+            $scope.initCmsModel.databaseProvider = $scope.dbProvider.value;
+            $rootScope.isBusy = false;
+        };
+        
         $scope.initCmsModel = {
             isUseLocal: false,
             localDbConnectionString: '',
             sqliteDbConnectionString: '',
-            localDbName: '',
-            // localDbConnectionString: 'Server=(localdb)\\MSSQLLocalDB;Initial Catalog=' + rand + 'sio-cms.db;Integrated Security=True;Persist Security Info=False;Pooling=False;MultipleActiveResultSets=False;Encrypt=False;TrustServerCertificate=True',
-            // sqliteDbConnectionString: 'Data Source=' + rand + 'sio-cms.db',
-            // localDbName: rand + 'sio-cms.db',
+            localDbConnectionString: 'Server=(localdb)\\MSSQLLocalDB;Initial Catalog=' + rand + 'sio-cms.db;Integrated Security=True;Persist Security Info=False;Pooling=False;MultipleActiveResultSets=False;Encrypt=False;TrustServerCertificate=True',
+            sqliteDbConnectionString: 'Data Source=' + rand + 'sio-cms.db',
+            localDbName: rand + 'sio-cms.db',
             dataBaseServer: '',
             dataBaseName: '',
             dataBaseUser: '',
             dataBasePassword: '',
             adminPassword: '',
             lang: 'en-us',
-            isSqlite: false,
+            isMysql: false,
+            databaseProvider: '',
             culture: $scope.settings.cultures[0]
         };
+        
         $scope.updateLocalDbName = function () {
             $scope.initCmsModel.localDbConnectionString = 'Server=(localdb)\\mssqllocaldb;Database=' + $scope.initCmsModel.localDbName + ';Trusted_Connection=True;MultipleActiveResultSets=true';
             $scope.initCmsModel.sqliteDbConnectionString = 'Data Source=' + $scope.initCmsModel.localDbName;
@@ -134,7 +147,7 @@ app.controller('Step1Controller', ['$scope', '$rootScope', 'ngAppSettings', '$ti
                 window.location.href = '/init/step2';
             }
             else {
-                if (result) { $rootScope.showMessage('', result.errors, 'danger'); }
+                if (result) { $rootScope.showErrors(result.errors); }
                 $rootScope.isBusy = false;
                 $scope.$apply();
             }

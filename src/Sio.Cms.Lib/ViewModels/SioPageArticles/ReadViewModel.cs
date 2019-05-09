@@ -26,7 +26,7 @@ namespace Sio.Cms.Lib.ViewModels.SioPageArticles
         [JsonProperty("articleId")]
         public int ArticleId { get; set; }
 
-        [JsonProperty("categoryId")]
+        [JsonProperty("pageId")]
         public int CategoryId { get; set; }
 
         [JsonProperty("isActived")]

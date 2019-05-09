@@ -38,6 +38,7 @@ app.controller('CultureController', ['$scope', '$rootScope', 'ngAppSettings', '$
             { specificulture: 'en-ie', fullName: 'Ireland - English', icon: 'flag-icon-ie' },
             { specificulture: 'is-is', fullName: 'Ísland - Íslenska', icon: 'flag-icon-is' },
             { specificulture: 'it-it', fullName: 'Italia - Italiano', icon: 'flag-icon-it' },
+            { specificulture: 'ja-jp', fullName: 'Japanese - ???', icon: 'flag-icon-jp' },
             { specificulture: 'en-jo', fullName: 'Jordan - English', icon: 'flag-icon-jo' },
             { specificulture: 'lv-lv', fullName: 'Latvija - Latviešu', icon: 'flag-icon-lv' },
             { specificulture: 'en-lb', fullName: 'Lebanon - English', icon: 'flag-icon-lb' },
@@ -105,12 +106,17 @@ app.controller('CultureController', ['$scope', '$rootScope', 'ngAppSettings', '$
         $scope.selected = null;
         BaseCtrl.call(this, $scope, $rootScope, $routeParams, ngAppSettings, service);
         $scope.saveCallback = function () {
-            commonService.initAllSettings();
-            window.location.href = '/portal/culture/list';
+            commonService.initAllSettings().then(
+                () => commonService.fillAllSettings($scope.lang).then(
+                    () => window.location.href = '/portal/culture/list')
+            );
+            
         }
         $scope.removeCallback = function () {
-            commonService.initAllSettings();
-            window.location.href = '/portal/culture/list';
+            commonService.initAllSettings().then(
+                () => commonService.fillAllSettings($scope.lang).then(
+                    () => window.location.href = '/portal/culture/list')
+            );          
         }
         $scope.changeData = function (selected) {
             if (selected) {

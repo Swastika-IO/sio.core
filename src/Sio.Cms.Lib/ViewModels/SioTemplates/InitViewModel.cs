@@ -90,7 +90,9 @@ namespace Sio.Cms.Lib.ViewModels.SioTemplates
         {
             get
             {
-                return CommonHelper.GetFullPath(new string[] { SioConstants.Folder.TemplatesFolder, ThemeName });
+                return CommonHelper.GetFullPath(new string[] { 
+                    SioConstants.Folder.TemplatesFolder, 
+                    ThemeName });
             }
         }
 
@@ -98,12 +100,7 @@ namespace Sio.Cms.Lib.ViewModels.SioTemplates
         {
             get
             {
-                return CommonHelper.GetFullPath(new string[]
-                {
-                    ""
-                    , TemplateFolder
-                    , FileFolder
-                });
+                return $"/{FileFolder}/{FileName}{Extension}";
             }
         }
 
@@ -128,15 +125,6 @@ namespace Sio.Cms.Lib.ViewModels.SioTemplates
         #region Overrides
 
         #region Common
-
-        public override void ExpandView(SioCmsContext _context = null, IDbContextTransaction _transaction = null)
-        {
-            var file = FileRepository.Instance.GetFile(FileName, Extension, FileFolder);
-            if (!string.IsNullOrWhiteSpace(file?.Content))
-            {
-                Content = file.Content;
-            }
-        }
 
         public override SioTemplate ParseModel(SioCmsContext _context = null, IDbContextTransaction _transaction = null)
         {

@@ -99,7 +99,7 @@ namespace Sio.Cms.Api.Controllers.v1
                             Data = new ReadListItemViewModel(model)
                             {
                                 Specificulture = _lang,
-                                Status = SioContentStatus.Preview,
+                                Status = SioEnums.PageStatus.Preview,
                                 PageSize = 20
                             }
                         };

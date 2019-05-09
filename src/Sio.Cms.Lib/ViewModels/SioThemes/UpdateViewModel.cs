@@ -14,6 +14,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using static Sio.Cms.Lib.SioEnums;
+using System.IO;
+using Newtonsoft.Json.Linq;
 
 namespace Sio.Cms.Lib.ViewModels.SioThemes
 {
@@ -29,9 +31,16 @@ namespace Sio.Cms.Lib.ViewModels.SioThemes
 
         [JsonProperty("name")]
         public string Name { get; set; }
+        
+        [Required]
+        [JsonProperty("title")]
+        public string Title { get; set; }
 
         [JsonProperty("image")]
         public string Image { get; set; }
+        
+        [JsonProperty("thumbnail")]
+        public string Thumbnail { get; set; }
 
         [JsonProperty("createdBy")]
         public string CreatedBy { get; set; }
@@ -64,7 +73,23 @@ namespace Sio.Cms.Lib.ViewModels.SioThemes
                 }
             }
         }
-
+        [JsonProperty("thumbnailUrl")]
+        public string ThumbnailUrl
+        {
+            get
+            {
+                if (Thumbnail != null && Thumbnail.IndexOf("http") == -1 && Thumbnail[0] != '/')
+                {
+                    return CommonHelper.GetFullPath(new string[] {
+                    Domain,  Thumbnail
+                });
+                }
+                else
+                {
+                    return string.IsNullOrEmpty(Thumbnail) ? ImageUrl : Thumbnail;
+                }
+            }
+        }
         [JsonProperty("isActived")]
         public bool IsActived { get; set; }
 
@@ -79,11 +104,7 @@ namespace Sio.Cms.Lib.ViewModels.SioThemes
         {
             get
             {
-                return CommonHelper.GetFullPath(new string[] {
-                    SioConstants.Folder.FileFolder,
-                    SioConstants.Folder.TemplatesAssetFolder,
-                    SeoHelper.GetSEOString(Name)
-                });
+                return $"{SioConstants.Folder.FileFolder}/{SioConstants.Folder.TemplatesAssetFolder}/{Name}";
             }
         }
 
@@ -94,7 +115,7 @@ namespace Sio.Cms.Lib.ViewModels.SioThemes
             {
                 return CommonHelper.GetFullPath(new string[] {
                     SioConstants.Folder.TemplatesFolder,
-                    SeoHelper.GetSEOString(Name)
+                    Name
                 });
             }
         }
@@ -125,6 +146,8 @@ namespace Sio.Cms.Lib.ViewModels.SioThemes
         {
             if (Id == 0)
             {
+                Id = Repository.Max(m => m.Id).Data + 1;
+                Name = SeoHelper.GetSEOString(Title);
                 CreatedDateTime = DateTime.UtcNow;
             }
             return base.ParseModel(_context, _transaction);
@@ -144,103 +167,169 @@ namespace Sio.Cms.Lib.ViewModels.SioThemes
         {
             RepositoryResponse<bool> result = new RepositoryResponse<bool>() { IsSucceed = true };
 
-            if (TemplateAsset.Content != null || TemplateAsset.FileStream != null)
+            //Import From existing Theme (zip)
+            if (!string.IsNullOrEmpty(TemplateAsset.Filename))
             {
-                TemplateAsset.FileFolder = $"Import/Themes/{DateTime.UtcNow.ToShortDateString()}/{Name}";
-                ImportTheme(_context, _transaction);
+                result = await ImportThemeAsync(parent, _context, _transaction);
             }
-            if (Asset.Content != null || Asset.FileStream != null)
+
+            // Import Assets
+            if (result.IsSucceed && !string.IsNullOrEmpty(Asset.Filename))
             {
-                Asset.FileFolder = AssetFolder;
-                Asset.Filename = "assets";
-                string fullPath = CommonHelper.GetFullPath(new string[] {
-                    SioConstants.Folder.WebRootPath,
-                    Asset.FileFolder
-                });
-                FileRepository.Instance.EmptyFolder(fullPath);
-                var isSaved = FileRepository.Instance.SaveWebFile(Asset);
-                result.IsSucceed = isSaved;
-                if (isSaved)
-                {
-                    result.IsSucceed = FileRepository.Instance.UnZipFile(Asset);
-                    if (!result.IsSucceed)
-                    {
-                        result.Errors.Add("Cannot unzip file");
-                    }
-
-                }
-                else
-                {
-                    result.Errors.Add("Cannot saved asset file");
-                }
-
+                result = ImportAssetsAsync(_context, _transaction);
             }
-            if (Id == 0 && (TemplateAsset.Content == null && TemplateAsset.FileStream == null))
+
+            // New themes without import existing theme => create from default folder
+            if (result.IsSucceed && !Directory.Exists(TemplateFolder) && string.IsNullOrEmpty(TemplateAsset.Filename))
             {
-
-                string defaultFolder = CommonHelper.GetFullPath(new string[] {
-                    SioConstants.Folder.TemplatesFolder,
-                    SioService.GetConfig<string>(SioConstants.ConfigurationKeyword.DefaultTemplateFolder) });
-                bool copyResult = FileRepository.Instance.CopyDirectory(defaultFolder, TemplateFolder);
-
-                var files = FileRepository.Instance.GetFilesWithContent(TemplateFolder);
-                //TODO: Create default asset
-                foreach (var file in files)
-                {
-                    SioTemplates.InitViewModel template = new SioTemplates.InitViewModel(
-                        new SioTemplate()
-                        {
-                            FileFolder = file.FileFolder,
-                            FileName = file.Filename,
-                            Content = file.Content,
-                            Extension = file.Extension,
-                            CreatedDateTime = DateTime.UtcNow,
-                            LastModified = DateTime.UtcNow,
-                            ThemeId = Model.Id,
-                            ThemeName = Model.Name,
-                            FolderType = file.FolderName,
-                            ModifiedBy = CreatedBy
-                        }, _context, _transaction);
-                    var saveResult = template.SaveModel(true, _context, _transaction);
-                    result.IsSucceed = result.IsSucceed && saveResult.IsSucceed;
-                    if (!saveResult.IsSucceed)
-                    {
-                        result.Exception = saveResult.Exception;
-                        result.Errors.AddRange(saveResult.Errors);
-                        break;
-                    }
-                }
+                result = await CreateDefaultThemeTemplatesAsync(_context, _transaction);
             }
 
             // Actived Theme
             if (IsActived)
             {
-                SystemConfigurationViewModel config = (await SystemConfigurationViewModel.Repository.GetSingleModelAsync(
+                result = await ActivedThemeAsync(_context, _transaction);
+            }
+            return result;
+        }
+
+       
+        public override async Task<RepositoryResponse<bool>> RemoveRelatedModelsAsync(UpdateViewModel view, SioCmsContext _context = null, IDbContextTransaction _transaction = null)
+        {
+            var result = await SioTemplates.InitViewModel.Repository.RemoveListModelAsync(false,  t => t.ThemeId == Id);
+            if (result.IsSucceed)
+            {
+                FileRepository.Instance.DeleteWebFolder(AssetFolder);
+                FileRepository.Instance.DeleteFolder(TemplateFolder);
+            }
+            return new RepositoryResponse<bool>()
+            {
+                IsSucceed = result.IsSucceed,
+                Errors = result.Errors,
+                Exception = result.Exception
+            };
+        }
+
+        #endregion Async
+        #region Sync
+
+        public override RepositoryResponse<bool> RemoveRelatedModels(UpdateViewModel view, SioCmsContext _context = null, IDbContextTransaction _transaction = null)
+        {
+            var result = SioTemplates.InitViewModel.Repository.RemoveListModel(false, t => t.ThemeId == Id);
+            if (result.IsSucceed)
+            {
+                FileRepository.Instance.DeleteWebFolder(AssetFolder);
+                FileRepository.Instance.DeleteFolder(TemplateFolder);
+            }
+            return new RepositoryResponse<bool>()
+            {
+                IsSucceed = result.IsSucceed,
+                Errors = result.Errors,
+                Exception = result.Exception
+            };
+        }
+
+        #endregion
+
+        #endregion Overrides
+
+        #region Expand
+        async Task<RepositoryResponse<bool>> ImportThemeAsync(SioTheme parent, SioCmsContext _context, IDbContextTransaction _transaction)
+        {
+            var result = new RepositoryResponse<bool>() { IsSucceed = true };
+            string fileName = $"wwwroot/{TemplateAsset.FileFolder}/{TemplateAsset.Filename}{TemplateAsset.Extension}";
+            if (File.Exists(fileName)) {
+                
+                FileRepository.Instance.UnZipFile($"{TemplateAsset.Filename}{TemplateAsset.Extension}", TemplateAsset.FileFolder);
+                //Move Unzip Asset folder
+                FileRepository.Instance.CopyWebDirectory($"{TemplateAsset.FileFolder}/Assets", AssetFolder);
+                //Move Unzip Templates folder
+                FileRepository.Instance.CopyDirectory($"{SioConstants.Folder.WebRootPath}/{TemplateAsset.FileFolder}/Templates", TemplateFolder);
+                //Move Unzip Uploads folder
+                FileRepository.Instance.CopyDirectory($"{SioConstants.Folder.WebRootPath}/{TemplateAsset.FileFolder}/Uploads", AssetFolder);
+                // Get SiteStructure
+                var strSchema = FileRepository.Instance.GetWebFile("schema.json", $"{TemplateAsset.FileFolder}/Data");
+                var siteStructures = JObject.Parse(strSchema.Content).ToObject<SiteStructureViewModel>();
+                FileRepository.Instance.DeleteWebFolder(TemplateAsset.FileFolder);
+
+                //Import Site Structures
+                result =  await SioPages.Helper.ImportAsync(siteStructures.Pages, Specificulture);
+                if (result.IsSucceed)
+                {
+
+                    // Save template files to db                
+                    var files = FileRepository.Instance.GetFilesWithContent(TemplateFolder);
+                    //TODO: Create default asset
+                    foreach (var file in files)
+                    {
+                        string content = file.Content.Replace($"/Content/Templates/{TemplateAsset.Filename}/",
+                        $"/Content/Templates/{Name}/");
+                        SioTemplates.UpdateViewModel template = new SioTemplates.UpdateViewModel(
+                            new SioTemplate()
+                            {
+                                FileFolder = file.FileFolder,
+                                FileName = file.Filename,
+                                Content = file.Content,
+                                Extension = file.Extension,
+                                CreatedDateTime = DateTime.UtcNow,
+                                LastModified = DateTime.UtcNow,
+                                ThemeId = parent.Id,
+                                ThemeName = parent.Name,
+                                FolderType = file.FolderName,
+                                ModifiedBy = CreatedBy
+                            });
+                        var saveResult = await template.SaveModelAsync(true, _context, _transaction);
+                        result.IsSucceed = result.IsSucceed && saveResult.IsSucceed;
+                        if (!saveResult.IsSucceed)
+                        {
+                            result.IsSucceed = false;
+                            result.Exception = saveResult.Exception;
+                            result.Errors.AddRange(saveResult.Errors);
+                            break;
+                        }
+                    }
+                }
+            }
+            return result;
+        }
+
+        private async Task<RepositoryResponse<bool>> ActivedThemeAsync(SioCmsContext _context = null, IDbContextTransaction _transaction = null)
+        {
+            var result = new RepositoryResponse<bool>() { IsSucceed = true };
+            SystemConfigurationViewModel config = (await SystemConfigurationViewModel.Repository.GetSingleModelAsync(
                     c => c.Keyword == SioConstants.ConfigurationKeyword.ThemeName && c.Specificulture == Specificulture
                     , _context, _transaction)).Data;
-                if (config == null)
+            if (config == null)
+            {
+                config = new SystemConfigurationViewModel()
                 {
-                    config = new SystemConfigurationViewModel()
-                    {
-                        Keyword = SioConstants.ConfigurationKeyword.ThemeName,
-                        Specificulture = Specificulture,
-                        Category = "Site",
-                        DataType = SioDataType.Text,
-                        Description = "Cms Theme",
-                        Value = Name
-                    };
-                }
-                else
-                {
-                    config.Value = Name;
-                }
+                    Keyword = SioConstants.ConfigurationKeyword.ThemeName,
+                    Specificulture = Specificulture,
+                    Category = "Site",
+                    DataType = SioDataType.Text,
+                    Description = "Cms Theme",
+                    Value = Name
+                };
+            }
+            else
+            {
+                config.Value = Name;
+            }
+            var saveConfigResult = await config.SaveModelAsync(false, _context, _transaction);
+            if (saveConfigResult.IsSucceed)
+            {
+                SystemConfigurationViewModel configFolder = (await SystemConfigurationViewModel.Repository.GetSingleModelAsync(
+                c => c.Keyword == SioConstants.ConfigurationKeyword.ThemeFolder && c.Specificulture == Specificulture
+                , _context, _transaction)).Data;
+                configFolder.Value = Name;
 
-                var saveConfigResult = await config.SaveModelAsync(false, _context, _transaction);
-                if (!saveConfigResult.IsSucceed)
-                {
-                    Errors.AddRange(saveConfigResult.Errors);
-                }
-                result.IsSucceed = result.IsSucceed && saveConfigResult.IsSucceed;
+                saveConfigResult = await configFolder.SaveModelAsync(false, _context, _transaction);
+            }
+
+            ViewModelHelper.HandleResult(saveConfigResult, ref result);
+
+            if (result.IsSucceed)
+            {
 
                 SystemConfigurationViewModel configId = (await SystemConfigurationViewModel.Repository.GetSingleModelAsync(
                       c => c.Keyword == SioConstants.ConfigurationKeyword.ThemeId && c.Specificulture == Specificulture, _context, _transaction)).Data;
@@ -261,272 +350,103 @@ namespace Sio.Cms.Lib.ViewModels.SioThemes
                     configId.Value = Model.Id.ToString();
                 }
                 var saveResult = await configId.SaveModelAsync(false, _context, _transaction);
-                if (!saveResult.IsSucceed)
-                {
-                    Errors.AddRange(saveResult.Errors);
-                }
-                result.IsSucceed = result.IsSucceed && saveResult.IsSucceed;
+                ViewModelHelper.HandleResult(saveResult, ref result);
             }
-
-            if (Asset.Content != null || Asset.FileStream != null)
-            {
-                var files = FileRepository.Instance.GetWebFiles(AssetFolder);
-                StringBuilder strStyles = new StringBuilder();
-
-                foreach (var css in files.Where(f => f.Extension == ".css"))
-                {
-                    strStyles.Append($"   <link href='{css.FileFolder}/{css.Filename}{css.Extension}' rel='stylesheet'/>");
-                }
-                StringBuilder strScripts = new StringBuilder();
-                foreach (var js in files.Where(f => f.Extension == ".js"))
-                {
-                    strScripts.Append($"  <script src='{js.FileFolder}/{js.Filename}{js.Extension}'></script>");
-                }
-                var layout = SioTemplates.InitViewModel.Repository.GetSingleModel(
-                    t => t.FileName == "_Layout" && t.ThemeId == Model.Id
-                    , _context, _transaction);
-                layout.Data.Content = layout.Data.Content.Replace("<!--[STYLES]-->"
-                    , string.Format(@"{0}"
-                    , strStyles));
-                layout.Data.Content = layout.Data.Content.Replace("<!--[SCRIPTS]-->"
-                    , string.Format(@"{0}"
-                    , strScripts));
-
-                await layout.Data.SaveModelAsync(true, _context, _transaction);
-            }
-
             return result;
         }
 
-        public override async Task<RepositoryResponse<bool>> RemoveRelatedModelsAsync(UpdateViewModel view, SioCmsContext _context = null, IDbContextTransaction _transaction = null)
-        {
-            var result = await SioTemplates.InitViewModel.Repository.RemoveListModelAsync(t => t.ThemeId == Id);
-            if (result.IsSucceed)
-            {
-                FileRepository.Instance.DeleteWebFolder(AssetFolder);
-                FileRepository.Instance.DeleteFolder(TemplateFolder);
-            }
-            return new RepositoryResponse<bool>()
-            {
-                IsSucceed = result.IsSucceed,
-                Errors = result.Errors,
-                Exception = result.Exception
-            };
-        }
-
-        #endregion Async
-        #region Sync
-
-        public override RepositoryResponse<bool> SaveSubModels(SioTheme parent, SioCmsContext _context = null, IDbContextTransaction _transaction = null)
-        {
-            RepositoryResponse<bool> result = new RepositoryResponse<bool>() { IsSucceed = true };
-            // import templates  + assets
-            if (TemplateAsset.Content != null || TemplateAsset.FileStream != null)
-            {
-                result = ImportTheme(_context, _transaction);
-            }
-
-            // Create default template if create new without import template assets
-            if (Id == 0 && (TemplateAsset.Content == null && TemplateAsset.FileStream == null))
-            {
-
-                string defaultFolder = CommonHelper.GetFullPath(new string[] {
-                    SioConstants.Folder.TemplatesFolder,
-                    Name == "Default"? "Default":
-                    SioService.GetConfig<string>(SioConstants.ConfigurationKeyword.DefaultTemplateFolder) });
-                bool copyResult = FileRepository.Instance.CopyDirectory(defaultFolder, TemplateFolder);
-                var files = FileRepository.Instance.GetFilesWithContent(TemplateFolder);
-                //TODO: Create default asset
-                foreach (var file in files)
-                {
-                    SioTemplates.InitViewModel template = new SioTemplates.InitViewModel(
-                        new SioTemplate()
-                        {
-                            FileFolder = file.FileFolder,
-                            FileName = file.Filename,
-                            Content = file.Content,
-                            Extension = file.Extension,
-                            CreatedDateTime = DateTime.UtcNow,
-                            LastModified = DateTime.UtcNow,
-                            ThemeId = Model.Id,
-                            ThemeName = Model.Name,
-                            FolderType = file.FolderName,
-                            ModifiedBy = CreatedBy
-                        }, _context, _transaction);
-                    var saveResult = template.SaveModel(true, _context, _transaction);
-                    result.IsSucceed = result.IsSucceed && saveResult.IsSucceed;
-                    if (!saveResult.IsSucceed)
-                    {
-                        result.Exception = saveResult.Exception;
-                        result.Errors.AddRange(saveResult.Errors);
-                        break;
-                    }
-                }
-            }
-
-            // Actived Theme
-            if (result.IsSucceed && IsActived)
-            {
-                SystemConfigurationViewModel config = (SystemConfigurationViewModel.Repository.GetSingleModel(
-                    c => c.Keyword == SioConstants.ConfigurationKeyword.ThemeName && c.Specificulture == Specificulture
-                    , _context, _transaction)).Data;
-
-                if (config == null)
-                {
-                    config = new SystemConfigurationViewModel(new SioConfiguration()
-                    {
-                        Keyword = SioConstants.ConfigurationKeyword.ThemeName,
-                        Specificulture = Specificulture,
-                        Category = "Site",
-                        DataType = (int)DataType.Text,
-                        Description = "Cms Theme",
-                        Value = Name
-                    }, _context, _transaction)
-                    ;
-                }
-                else
-                {
-                    config.Value = Name;
-                }
-
-                var saveConfigResult = config.SaveModel(false, _context, _transaction);
-                if (!saveConfigResult.IsSucceed)
-                {
-                    Errors.AddRange(saveConfigResult.Errors);
-                }
-                else
-                {
-                    //SioCmsService.Instance.RefreshConfigurations(_context, _transaction);
-                }
-                result.IsSucceed = result.IsSucceed && saveConfigResult.IsSucceed;
-
-                SystemConfigurationViewModel configId = (SystemConfigurationViewModel.Repository.GetSingleModel(
-                      c => c.Keyword == SioConstants.ConfigurationKeyword.ThemeId && c.Specificulture == Specificulture, _context, _transaction)).Data;
-                if (configId == null)
-                {
-                    configId = new SystemConfigurationViewModel(new SioConfiguration()
-                    {
-                        Keyword = SioConstants.ConfigurationKeyword.ThemeId,
-                        Specificulture = Specificulture,
-                        Category = "Site",
-                        DataType = (int)DataType.Text,
-                        Description = "Cms Theme Id",
-                        Value = Model.Id.ToString()
-                    }, _context, _transaction)
-                    ;
-                }
-                else
-                {
-                    configId.Value = Model.Id.ToString();
-                }
-                var saveResult = configId.SaveModel(false, _context, _transaction);
-                if (!saveResult.IsSucceed)
-                {
-                    Errors.AddRange(saveResult.Errors);
-                }
-                else
-                {
-                    //SioCmsService.Instance.RefreshConfigurations(_context, _transaction);
-                }
-                result.IsSucceed = result.IsSucceed && saveResult.IsSucceed;
-            }
-
-
-            if (result.IsSucceed && TemplateAsset.Content != null || TemplateAsset.FileStream != null)
-            {
-                var files = FileRepository.Instance.GetWebFiles(AssetFolder);
-                StringBuilder strStyles = new StringBuilder();
-
-                foreach (var css in files.Where(f => f.Extension == ".css"))
-                {
-                    strStyles.Append($"   <link href='{css.FileFolder}/{css.Filename}{css.Extension}' rel='stylesheet'/>");
-                }
-                StringBuilder strScripts = new StringBuilder();
-                foreach (var js in files.Where(f => f.Extension == ".js"))
-                {
-                    strScripts.Append($"  <script src='{js.FileFolder}/{js.Filename}{js.Extension}'></script>");
-                }
-                var layout = SioTemplates.InitViewModel.Repository.GetSingleModel(
-                    t => t.FileName == "_Layout" && t.ThemeId == Model.Id
-                    , _context, _transaction);
-                layout.Data.Content = layout.Data.Content.Replace("<!--[STYLES]-->"
-                    , string.Format(@"{0}"
-                    , strStyles));
-                layout.Data.Content = layout.Data.Content.Replace("<!--[SCRIPTS]-->"
-                    , string.Format(@"{0}"
-                    , strScripts));
-
-                layout.Data.SaveModel(true, _context, _transaction);
-            }
-
-            return result;
-        }
-
-        public override RepositoryResponse<bool> RemoveRelatedModels(UpdateViewModel view, SioCmsContext _context = null, IDbContextTransaction _transaction = null)
-        {
-            var result = SioTemplates.InitViewModel.Repository.RemoveListModel(t => t.ThemeId == Id);
-            if (result.IsSucceed)
-            {
-                FileRepository.Instance.DeleteWebFolder(AssetFolder);
-                FileRepository.Instance.DeleteFolder(TemplateFolder);
-            }
-            return new RepositoryResponse<bool>()
-            {
-                IsSucceed = result.IsSucceed,
-                Errors = result.Errors,
-                Exception = result.Exception
-            };
-        }
-
-        #endregion
-
-        #endregion Overrides
-
-        #region Expand
-
-        RepositoryResponse<bool> ImportTheme(SioCmsContext _context, IDbContextTransaction _transaction)
+        private async Task<RepositoryResponse<bool>> CreateDefaultThemeTemplatesAsync(SioCmsContext _context = null, IDbContextTransaction _transaction = null)
         {
             var result = new RepositoryResponse<bool>() { IsSucceed = true };
-            TemplateAsset.Filename = Name;
-            if (FileRepository.Instance.SaveWebFile(TemplateAsset))
-            {
-                FileRepository.Instance.UnZipFile($"{TemplateAsset.Filename}{TemplateAsset.Extension}", TemplateAsset.FileFolder);
-                FileRepository.Instance.CopyWebDirectory($"{TemplateAsset.FileFolder}/Assets", AssetFolder);
-                FileRepository.Instance.CopyDirectory($"{SioConstants.Folder.WebRootPath}/{TemplateAsset.FileFolder}/Templates", TemplateFolder);
-                FileRepository.Instance.DeleteWebFolder(TemplateAsset.FileFolder);
+            string defaultFolder = $"{SioService.GetConfig<string>(SioConstants.ConfigurationKeyword.DefaultBlankTemplateFolder) }";
+                
+                //CommonHelper.GetFullPath(new string[] {
+                //    SioConstants.Folder.TemplatesFolder,
+                //    SioService.GetConfig<string>(SioConstants.ConfigurationKeyword.DefaultTemplateFolder) });
+            bool copyResult = FileRepository.Instance.CopyDirectory(defaultFolder, TemplateFolder);
 
-                // Save template files to db                
-                var files = FileRepository.Instance.GetFilesWithContent(TemplateFolder);
-                //TODO: Create default asset
-                foreach (var file in files)
-                {
-                    SioTemplates.UpdateViewModel template = new SioTemplates.UpdateViewModel(
-                        new SioTemplate()
-                        {
-                            FileFolder = file.FileFolder,
-                            FileName = file.Filename,
-                            Content = file.Content,
-                            Extension = file.Extension,
-                            CreatedDateTime = DateTime.UtcNow,
-                            LastModified = DateTime.UtcNow,
-                            ThemeId = Model.Id,
-                            ThemeName = Model.Name,
-                            FolderType = file.FolderName,
-                            ModifiedBy = CreatedBy
-                        });
-                    var saveResult = template.SaveModel(true, _context, _transaction);
-                    result.IsSucceed = result.IsSucceed && saveResult.IsSucceed;
-                    if (!saveResult.IsSucceed)
+            var files = FileRepository.Instance.GetFilesWithContent(TemplateFolder);
+            var id = _context.SioTemplate.Count()+1;
+            //TODO: Create default asset
+            foreach (var file in files)
+            {                
+                SioTemplates.InitViewModel template = new SioTemplates.InitViewModel(
+                    new SioTemplate()
                     {
-                        result.IsSucceed = false;
-                        result.Exception = saveResult.Exception;
-                        result.Errors.AddRange(saveResult.Errors);
-                        break;
-                    }
+                        Id= id,
+                        FileFolder = file.FileFolder,
+                        FileName = file.Filename,
+                        Content = file.Content,
+                        Extension = file.Extension,
+                        CreatedDateTime = DateTime.UtcNow,
+                        LastModified = DateTime.UtcNow,
+                        ThemeId = Model.Id,
+                        ThemeName = Model.Name,
+                        FolderType = file.FolderName,
+                        ModifiedBy = CreatedBy
+                    }, _context, _transaction);
+                var saveResult = await template.SaveModelAsync(true, _context, _transaction);
+                ViewModelHelper.HandleResult(saveResult, ref result);
+                if (!result.IsSucceed)
+                {
+                    break;
+                }
+                else
+                {
+                    id += 1;
                 }
             }
             return result;
         }
+
+        private RepositoryResponse<bool> ImportAssetsAsync(SioCmsContext _context = null, IDbContextTransaction _transaction = null)
+        {
+            var result = new RepositoryResponse<bool>();
+            string fullPath = $"{SioConstants.Folder.WebRootPath}/{Asset.FileFolder}/{Asset.Filename}{Asset.Extension}";
+            if (File.Exists(fullPath))
+            {
+                FileRepository.Instance.UnZipFile($"{Asset.Filename}{Asset.Extension}", Asset.FileFolder);
+                //InitAssetStyle();
+                result.IsSucceed = true;
+
+            }
+            else
+            {
+                result.Errors.Add("Cannot saved asset file");
+            }
+
+
+            return result;
+        }
+
+        private async Task InitAssetStyleAsync(SioCmsContext _context = null, IDbContextTransaction _transaction = null)
+        {
+
+            var files = FileRepository.Instance.GetWebFiles(AssetFolder);
+            StringBuilder strStyles = new StringBuilder();
+
+            foreach (var css in files.Where(f => f.Extension == ".css"))
+            {
+                strStyles.Append($"   <link href='{css.FileFolder}/{css.Filename}{css.Extension}' rel='stylesheet'/>");
+            }
+            StringBuilder strScripts = new StringBuilder();
+            foreach (var js in files.Where(f => f.Extension == ".js"))
+            {
+                strScripts.Append($"  <script src='{js.FileFolder}/{js.Filename}{js.Extension}'></script>");
+            }
+            var layout = SioTemplates.InitViewModel.Repository.GetSingleModel(
+                t => t.FileName == "_Layout" && t.ThemeId == Model.Id
+                , _context, _transaction);
+            layout.Data.Content = layout.Data.Content.Replace("<!--[STYLES]-->"
+                , string.Format(@"{0}"
+                , strStyles));
+            layout.Data.Content = layout.Data.Content.Replace("<!--[SCRIPTS]-->"
+                , string.Format(@"{0}"
+                , strScripts));
+
+            await layout.Data.SaveModelAsync(true, _context, _transaction);
+        }
+
         #endregion
     }
 }

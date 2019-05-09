@@ -5,14 +5,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="SonarAnalyzer.CSharp" Version="7.6.0.7024">
-      <PrivateAssets>all</PrivateAssets>
-      <IncludeAssets>runtime; build; native; contentfiles; analyzers</IncludeAssets>
-    </PackageReference>
-  </ItemGroup>
-
-  <ItemGroup>
-    <ProjectReference Include="..\..\..\sio.heart\src\Sio.Heart\Sio.Heart.csproj" />
+    <PackageReference Include="Sio.Heart" Version="0.0.4.1" />
   </ItemGroup>
 
 </Project>

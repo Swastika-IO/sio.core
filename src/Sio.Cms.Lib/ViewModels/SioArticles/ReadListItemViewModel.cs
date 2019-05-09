@@ -4,8 +4,10 @@ using Sio.Cms.Lib.Services;
 using Sio.Common.Helper;
 using Sio.Domain.Data.ViewModels;
 using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using static Sio.Cms.Lib.SioEnums;
 
 namespace Sio.Cms.Lib.ViewModels.SioArticles
@@ -68,6 +70,9 @@ namespace Sio.Cms.Lib.ViewModels.SioArticles
 
         [JsonProperty("createdDateTime")]
         public DateTime CreatedDateTime { get; set; }
+
+        [JsonProperty("publishedDateTime")]
+        public DateTime? PublishedDateTime { get; set; }
 
         [JsonProperty("createdBy")]
         public string CreatedBy { get; set; }
@@ -143,13 +148,17 @@ namespace Sio.Cms.Lib.ViewModels.SioArticles
                 {
                     ""
                     , SioConstants.Folder.TemplatesFolder
-                    , SioService.GetConfig<string>(SioConstants.ConfigurationKeyword.ThemeName, Specificulture) ?? "Default"
+                    , SioService.GetConfig<string>(SioConstants.ConfigurationKeyword.ThemeFolder, Specificulture) ?? "Default"
                     , Template
                 });
             }
         }
 
+        [JsonIgnore]
         public List<ExtraProperty> Properties { get; set; }
+
+        [JsonProperty("listTag")]
+        public JArray ListTag { get => JArray.Parse(Tags ?? "[]"); }
 
         #endregion Views
 
@@ -166,5 +175,34 @@ namespace Sio.Cms.Lib.ViewModels.SioArticles
         }
 
         #endregion Contructors
+
+        #region Overrides
+
+        public override void ExpandView(SioCmsContext _context = null, IDbContextTransaction _transaction = null)
+        {
+            Properties = new List<ExtraProperty>();
+
+            if (!string.IsNullOrEmpty(ExtraProperties))
+            {
+                JArray arr = JArray.Parse(ExtraProperties);
+                foreach (JToken item in arr)
+                {
+                    Properties.Add(item.ToObject<ExtraProperty>());
+                }
+            }
+        }
+
+        #endregion Overrides
+
+        #region Expands
+        //Get Property by name
+        public string Property(string name)
+        {
+            var prop = Properties.FirstOrDefault(p => p.Name.ToLower() == name.ToLower());
+            return prop?.Value;
+
+        }
+
+        #endregion Expands
     }
 }

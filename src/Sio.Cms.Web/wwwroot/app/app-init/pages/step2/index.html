@@ -1,4 +1,52 @@
-<div class="col-md-12 ml-auto mr-auto" style="z-index:9999;">
+<div class="text-center mb-6 mt-6">
+    <img src="/assets/siocore-logo-full-white-text.png" alt="">
+</div>
+<form class="card" ng-class="{'submitted': submitted}" ng-submit="register()">
+    <div class="card-body p-6">
+        <div class="card-title">Create Administrator Account</div>
+        <div class="form-group">
+            <label class="form-label">Username</label>
+            <input ng-model="user.userName" class="form-control" required placeholder="Input admin username...">
+        </div>
+        <div class="form-group">
+            <label class="form-label">
+                Password
+            </label>
+            <input ng-model="user.password" type="password" required class="form-control" placeholder="Input admin password...">
+        </div>
+        <div class="form-group">
+            <label class="form-label">
+                Confirm Password
+            </label>
+            <input ng-model="user.confirmPassword" type="password" required class="form-control" placeholder="Input confirm password...">
+        </div>
+        
+        <div class="form-group">
+            <label class="form-label">Email address
+            </label>
+            <input ng-model="user.email" class="form-control" type="email" required placeholder="Email..." type="text">
+        </div>
+        <div class="form-group">
+            <label class="custom-control custom-checkbox">
+                <input ng-model="user.isAgreed" class="custom-control-input" type="checkbox">
+                        <span class="custom-control-label">
+                        I agree to the <a href="#" data-toggle="modal" data-target="#termAndCondition">terms and conditions</a>.</span>
+            </label>
+        </div>
+        <div class="form-footer">
+            <button type="submit" class="btn btn-primary btn-block">Continue...</button>
+        </div>
+        <div class="mt-1 text-center text-muted">
+            Back to <a href="/init/step1"> step 1</a>
+        </div>
+    </div>
+
+</form>
+
+<!-- <div class="row">
+<div class="col-md-6 ml-auto mr-auto">
+</div>
+<div class="col-md-6 ml-auto mr-auto">
     <div class="card card-login card-plain">
         <form class="form-horizontal" ng-class="{'submitted': submitted}" ng-submit="register()">
             <div class="card-header text-center">
@@ -32,8 +80,6 @@
                     <input ng-model="user.confirmPassword" type="password" required class="form-control" placeholder="Input confirm password...">
                 </div>
 
-                <!-- If you want to add a checkbox to this form, uncomment this code -->
-
                 <div class="form-check">
                     <label class="form-check-label">
                         <input ng-model="user.isAgreed" class="form-check-input" type="checkbox">
@@ -49,3 +95,4 @@
         </form>
     </div>
 </div>
+</div> -->

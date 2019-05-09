@@ -83,6 +83,10 @@ namespace Sio.Cms.Lib.ViewModels.SioLanguages
         public override SioLanguage ParseModel(SioCmsContext _context = null, IDbContextTransaction _transaction = null)
         {
             Value = Property.Value ?? Value;
+            if (CreatedDateTime == default(DateTime))
+            {
+                CreatedDateTime = DateTime.UtcNow;
+            }
             return base.ParseModel(_context, _transaction);
         }
         public override UpdateViewModel ParseView(bool isExpand = true, SioCmsContext _context = null, IDbContextTransaction _transaction = null)
@@ -125,7 +129,7 @@ namespace Sio.Cms.Lib.ViewModels.SioLanguages
             if (result.IsSucceed)
             {
                 SioService.LoadFromDatabase();
-                SioService.Save();
+                SioService.SaveSettings();
             }
             return result;
         }
@@ -138,7 +142,7 @@ namespace Sio.Cms.Lib.ViewModels.SioLanguages
                 if (result.IsSucceed)
                 {
                     SioService.LoadFromDatabase();
-                    SioService.Save();
+                    SioService.SaveSettings();
                 }
             }
             return result;

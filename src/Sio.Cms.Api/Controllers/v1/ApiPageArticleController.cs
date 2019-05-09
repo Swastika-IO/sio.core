@@ -148,6 +148,8 @@ namespace Sio.Cms.Api.Controllers.v1
                 default:
                     var listItemResult = await base.GetListAsync<ReadViewModel>(key, request, predicate);
                     listItemResult.Data.Items.ForEach(n => n.IsActived = true);
+                    listItemResult.Data.Items.ForEach(n => n.Article.DetailsUrl = SioCmsHelper.GetRouterUrl(
+                                "article",  new { id = n.Article.Id, seoName = n.Article.SeoName }, Request, Url));
                     return JObject.FromObject(listItemResult);
             }
         }
@@ -158,6 +160,20 @@ namespace Sio.Cms.Api.Controllers.v1
         {
             if (models != null)
             {                
+                return await base.SaveListAsync(models, false);
+            }
+            else
+            {
+                return new RepositoryResponse<List<ReadViewModel>>();
+            }
+        }
+        // POST api/update-infos
+        [HttpPost, HttpOptions]
+        [Route("save-list")]
+        public async Task<RepositoryResponse<List<ReadViewModel>>> SaveList([FromBody]List<ReadViewModel> models)
+        {
+            if (models != null)
+            {
                 return await base.SaveListAsync(models, false);
             }
             else

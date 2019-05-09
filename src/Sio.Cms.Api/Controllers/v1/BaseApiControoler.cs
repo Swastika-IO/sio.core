@@ -4,10 +4,12 @@ using Microsoft.AspNetCore.Mvc.Filters;
 using Microsoft.AspNetCore.SignalR;
 using Microsoft.Extensions.Caching.Memory;
 using Sio.Cms.Hub;
+using Sio.Cms.Lib;
 using Sio.Cms.Lib.Services;
 using Sio.Domain.Core.ViewModels;
 using Newtonsoft.Json.Linq;
 using System;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 
 namespace Sio.Cms.Api.Controllers.v1
@@ -34,9 +36,10 @@ namespace Sio.Cms.Api.Controllers.v1
         /// <summary>
         /// Initializes a new instance of the <see cref="BaseApiController"/> class.
         /// </summary>
-        public BaseApiController(IHubContext<PortalHub> hubContext)
+        public BaseApiController(IMemoryCache memoryCache, IHubContext<PortalHub> hubContext)
         {
-            _hubContext = hubContext;
+            _hubContext = hubContext; 
+            _memoryCache = memoryCache;
         }
 
         #region Overrides
@@ -54,7 +57,18 @@ namespace Sio.Cms.Api.Controllers.v1
 
 
         #endregion
-
+        protected void RemoveCache()
+        {
+            if (_memoryCache != null)
+            {
+                foreach (var item in SioConstants.cachedKeys)
+                {
+                    _memoryCache.Remove(item);
+                }
+                SioConstants.cachedKeys = new List<string>();
+                AlertAsync("Empty Cache", 200);
+            }
+        }
 
         protected void AlertAsync(string action, int status, string message = null)
         {

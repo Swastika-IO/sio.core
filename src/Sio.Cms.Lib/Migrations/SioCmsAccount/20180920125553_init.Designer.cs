@@ -48,10 +48,10 @@ namespace Sio.Cms.Lib.Migrations.SioCmsAccount
                     b.Property<string>("ConcurrencyStamp");
 
                     b.Property<string>("Name")
-                        .HasMaxLength(256);
+                        .HasMaxLength(250);
 
                     b.Property<string>("NormalizedName")
-                        .HasMaxLength(256);
+                        .HasMaxLength(250);
 
                     b.HasKey("Id");
 
@@ -144,7 +144,7 @@ namespace Sio.Cms.Lib.Migrations.SioCmsAccount
                         .HasColumnName("DOB");
 
                     b.Property<string>("Email")
-                        .HasMaxLength(256);
+                        .HasMaxLength(250);
 
                     b.Property<bool>("EmailConfirmed");
 
@@ -169,10 +169,10 @@ namespace Sio.Cms.Lib.Migrations.SioCmsAccount
                     b.Property<string>("NickName");
 
                     b.Property<string>("NormalizedEmail")
-                        .HasMaxLength(256);
+                        .HasMaxLength(250);
 
                     b.Property<string>("NormalizedUserName")
-                        .HasMaxLength(256);
+                        .HasMaxLength(250);
 
                     b.Property<string>("PasswordHash");
 
@@ -187,7 +187,7 @@ namespace Sio.Cms.Lib.Migrations.SioCmsAccount
                     b.Property<bool>("TwoFactorEnabled");
 
                     b.Property<string>("UserName")
-                        .HasMaxLength(256);
+                        .HasMaxLength(250);
 
                     b.HasKey("Id");
 

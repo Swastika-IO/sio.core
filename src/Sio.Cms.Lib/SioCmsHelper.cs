@@ -1,5 +1,6 @@
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Sio.Cms.Lib.Services;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,6 +11,10 @@ namespace Sio.Cms.Lib
 {
     public class SioCmsHelper
     {
+        public static string GetAssetFolder(string culture)
+        {
+            return $"/{SioConstants.Folder.FileFolder}/{SioConstants.Folder.TemplatesAssetFolder}/{SioService.GetConfig<string>(SioConstants.ConfigurationKeyword.ThemeFolder, culture)}";
+        }
         public static List<ViewModels.SioPages.ReadListItemViewModel> GetCategory(IUrlHelper Url, string culture, SioEnums.CatePosition position, string activePath = "")
         {
             var getTopCates = ViewModels.SioPages.ReadListItemViewModel.Repository.GetModelListBy
@@ -156,6 +161,12 @@ namespace Sio.Cms.Lib
         {
             var module = ViewModels.SioModules.ReadMvcViewModel.GetBy(m => m.Name == name && m.Specificulture == culture);
             return module.Data;
+        }
+
+        public static ViewModels.SioPages.ReadMvcViewModel GetPage(int id, string culture)
+        {
+            var page = ViewModels.SioPages.ReadMvcViewModel.Repository.GetSingleModel(m => m.Id == id&& m.Specificulture == culture);
+            return page.Data;
         }
     }
 }

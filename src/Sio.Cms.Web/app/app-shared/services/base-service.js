@@ -7,7 +7,7 @@ app.factory('BaseService', ['$rootScope', '$routeParams', 'CommonService', 'AppS
             this.modelName = modelName;
             if(!isGlobal)
             {
-                this.lang = $rootScope.configurationService.get('lang');
+                this.lang = $rootScope.settings.lang;
                 this.prefixUrl = '/' + this.lang + '/' + modelName;
             }
             else{
@@ -59,6 +59,24 @@ app.factory('BaseService', ['$rootScope', '$routeParams', 'CommonService', 'AppS
             };
             return await commonService.getApiResult(req);
         };
+        var _applyList = async function (objData) {
+            var url = this.prefixUrl + '/apply-list';
+            var req = {
+                method: 'POST',
+                url: url,
+                data: JSON.stringify(objData)
+            };
+            return await commonService.getApiResult(req);
+        };
+        var _saveList = async function (objData) {
+            var url = this.prefixUrl + '/save-list';
+            var req = {
+                method: 'POST',
+                url: url,
+                data: JSON.stringify(objData)
+            };
+            return await commonService.getApiResult(req);
+        };
 
         var _updateInfos = async function (objData) {
             var url = this.prefixUrl + '/update-infos';
@@ -69,14 +87,28 @@ app.factory('BaseService', ['$rootScope', '$routeParams', 'CommonService', 'AppS
             };
             return await commonService.getApiResult(req);
         };
+        var _ajaxSubmitForm = async function (form, url) {            
+            var req = {
+                method: 'POST',
+                url: url,
+                headers: {'Content-Type': undefined},
+                contentType: false, // Not to set any content header
+                processData: false, // Not to process data
+                data: form
+            };
+            return await commonService.getApiResult(req);            
+        };
         serviceFactory.lang = '';
         serviceFactory.prefixUrl = '';
         serviceFactory.init = _init;
         serviceFactory.getSingle = _getSingle;
         serviceFactory.getList = _getList;
         serviceFactory.save = _save;
+        serviceFactory.applyList = _applyList;
+        serviceFactory.saveList = _saveList;
         serviceFactory.delete = _delete;
         serviceFactory.updateInfos = _updateInfos;
+        serviceFactory.ajaxSubmitForm = _ajaxSubmitForm;
         return serviceFactory;
 
     }]);

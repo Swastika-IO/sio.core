@@ -1,15 +1,39 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
-<urlset xlmns="http://www.sitemaps.org/schemas/sitemap/0.9">
-  <url>
-    <lastmod>2018-12-25T06:17:34.8593688Z</lastmod>
+<?xml version="1.0" encoding="utf-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <url xmlns="">
+    <lastmod>2019-04-15T07:30:43.0534156Z</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.3</priority>
-    <loc>http://localhost:5000</loc>
+    <loc>https://localhost:5001/en-us/home</loc>
   </url>
-  <url>
-    <lastmod>2018-12-25T06:17:34.8594048Z</lastmod>
+  <url xmlns="">
+    <lastmod>2019-04-15T07:30:43.0585793Z</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.3</priority>
-    <loc>http://localhost:5000</loc>
+    <loc>https://localhost:5001/en-us/tag</loc>
+  </url>
+  <url xmlns="">
+    <lastmod>2019-04-15T07:30:43.0586222Z</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.3</priority>
+    <loc>https://localhost:5001/en-us/search</loc>
+  </url>
+  <url xmlns="">
+    <lastmod>2019-04-15T07:30:43.0586357Z</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.3</priority>
+    <loc>https://localhost:5001/en-us/maintenance</loc>
+  </url>
+  <url xmlns="">
+    <lastmod>2019-04-15T07:30:43.0586464Z</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.3</priority>
+    <loc>https://localhost:5001/en-us/404</loc>
+  </url>
+  <url xmlns="">
+    <lastmod>2019-04-15T07:30:43.0586561Z</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.3</priority>
+    <loc>https://localhost:5001/en-us/403</loc>
   </url>
 </urlset>

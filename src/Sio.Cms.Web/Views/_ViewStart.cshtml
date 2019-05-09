@@ -1,4 +1,4 @@
 @{
-    string master = SioService.GetConfig<string>(SioConstants.ConfigurationKeyword.ThemeName, ViewBag.culture) ?? "Default";
-    Layout = $"Templates/{master}/Masters/{"_Layout"}";
+    string master = SioService.GetConfig<string>(SioConstants.ConfigurationKeyword.ThemeFolder, ViewBag.culture) ?? "Default";
+    Layout = $"Templates/{master}/Masters/{"_Layout"}";    
 }
