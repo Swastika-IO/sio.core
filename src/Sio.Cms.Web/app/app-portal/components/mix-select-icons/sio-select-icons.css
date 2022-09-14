@@ -1,7 +1,0 @@
-.sio-sel-icons .dropdown-menu{
-    left:-90px !important;
-}
-.sio-sel-icons .dropdown-menu.show{
-    max-height: 250px;
-    overflow: scroll;
-}
